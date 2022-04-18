@@ -1,0 +1,3 @@
+[submodule "illa-design"]
+	path = illa-design
+	url = git@github.com:illa-family/illa-design.git

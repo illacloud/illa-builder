@@ -1,0 +1,5 @@
+{
+  "viewportWidth": 500,
+  "viewportHeight": 500,
+  "testFiles": "**/tests/*.e2e.{ts,tsx}",
+}

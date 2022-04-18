@@ -1,0 +1,3 @@
+# snapchat
+__snapshots__/**
+*.test.tsx.snap
