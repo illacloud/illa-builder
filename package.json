@@ -14,6 +14,8 @@
     "test": "npx patch-package && yarn build-all && npx jest && npx cypress run-ct -b chrome",
     "report:combined": "sh ./scripts/merge-coverage.sh",
     "posttest": "yarn report:combined",
+    "e2e": "npx cypress open",
+    "unit": "npx jest",
     "lint": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
