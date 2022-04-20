@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import { resolve } from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,4 +22,10 @@ export default defineConfig({
       include: ["**/*.tsx", "**/*.ts"],
     }),
   ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+      "@componentManager": resolve(__dirname, "./src/componentManager"),
+    },
+  },
 })
