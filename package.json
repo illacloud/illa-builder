@@ -19,10 +19,13 @@
     "lint": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "codemirror": "^5.65.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "@emotion/react": "^11.7.1",
-    "framer-motion": "^6.3.0"
+    "framer-motion": "^6.3.0",
+    "react-redux": "^8.0.1",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
@@ -39,6 +42,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "@types/codemirror": "^5.60.5",
     "cypress": "^9.5.1",
     "husky": "^7.0.4",
     "jest": "^27.4.0",
