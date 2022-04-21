@@ -3,11 +3,15 @@ module.exports = {
   coverageDirectory: "./jest-coverage/",
   coverageReporters: ["json"],
   collectCoverage: true,
-  collectCoverageFrom: ["**/src/**/*.(ts|tsx)"],
+  collectCoverageFrom: ["**/*.(ts|tsx)"],
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   modulePathIgnorePatterns: ["<rootDir>/examples"],
   snapshotSerializers: ["@emotion/jest/serializer"],
-  testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/plop-templates/"],
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/plop-templates/",
+  ],
+  roots: ["./src"],
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",
