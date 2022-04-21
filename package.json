@@ -19,10 +19,11 @@
     "lint": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "framer-motion": "^6.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "@emotion/react": "^11.7.1",
-    "framer-motion": "^6.3.0"
+    "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -30,8 +31,6 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.2",
     "@commitlint/cli": "^15.0.0",
     "@cypress/code-coverage": "^3.9.12",
     "@cypress/react": "^5.12.4",
@@ -43,13 +42,13 @@
     "cypress": "^9.5.1",
     "husky": "^7.0.4",
     "jest": "^27.4.0",
-    "@types/jest": "^27.4.0",
     "jest-environment-jsdom": "^27.4.0",
     "prettier": "^2.5.1",
     "sinon": "^13.0.1",
-    "@types/sinon": "^10.0.11",
     "ts-jest": "^27.1.3",
     "turbo": "^1.1.1",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.2",
     "vite-plugin-istanbul": "^2.5.1"
   },
   "workspaces": [
