@@ -8,7 +8,7 @@ import "codemirror/mode/sql/sql"
 import "./cm-replace-style.css"
 
 export function EditorInput() {
-  const targetRef = useRef(null)
+  const targetRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (!targetRef.current) return
     if (targetRef.current.childNodes.length) return
