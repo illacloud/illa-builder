@@ -1,7 +1,11 @@
-import React, { useContext, useEffect } from "react"
+import { FC, HTMLAttributes } from "react"
 
-export function  QueryEditor() {
-  return <div>QueryEditor</div>
+interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> {}
+
+export const QueryEditor: FC<QueryEditorProps> = (props) => {
+  const { className } = props
+
+  return <div className={className}>QueryEditor</div>
 }
 
 QueryEditor.displayName = "QueryEditor"

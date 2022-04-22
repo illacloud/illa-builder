@@ -1,7 +1,11 @@
-import React, { useContext, useEffect } from "react"
+import { FC, HTMLAttributes } from "react"
 
-export function CanvasContainer() {
-  return <div>CanvasContainer</div>
+interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
+
+export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
+  const { className } = props
+
+  return <div className={className}>CanvasContainer</div>
 }
 
 CanvasContainer.displayName = "CanvasContainer"

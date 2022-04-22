@@ -1,7 +1,11 @@
-import React, { useContext, useEffect } from "react"
+import { FC, HTMLAttributes } from "react"
 
-export function  DataWorkspace() {
-  return <div>DataWorkspace</div>
+interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
+
+export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
+  const { className } = props
+
+  return <div className={className}>DataWorkspace</div>
 }
 
 DataWorkspace.displayName = "DataWorkspace"
