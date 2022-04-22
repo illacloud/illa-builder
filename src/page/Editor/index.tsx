@@ -4,13 +4,18 @@ import { CanvasContainer } from "./components/CanvasContainer"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { QueryEditor } from "./components/QueryEditor"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
-import { EditorBody, EditorContainer, LeftPanelStyle } from "./style"
+import {
+  EditorBody,
+  EditorContainer,
+  EditorRightArea,
+  LeftPanelStyle,
+} from "./style"
 
 export const Editor: FC = () => {
   return (
     <div css={EditorContainer}>
       <DataWorkspace css={LeftPanelStyle} />
-      <div>
+      <div css={EditorRightArea}>
         <PageNavBar />
         <div css={EditorBody}>
           <div>
