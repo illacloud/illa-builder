@@ -4,7 +4,7 @@ import { CanvasContainer } from "./components/CanvasContainer"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { QueryEditor } from "./components/QueryEditor"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
-import { EditorBody, EditorContainer, LeftPanelStyle } from "./styles/style"
+import { EditorBody, EditorContainer, LeftPanelStyle } from "./style"
 
 export const Editor: FC = () => {
   return (
