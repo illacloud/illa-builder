@@ -6,9 +6,11 @@ import { QueryEditor } from "./components/QueryEditor"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import {
   EditorBody,
+  EditorCenterStyle,
   EditorContainer,
   EditorRightArea,
   LeftPanelStyle,
+  RightPanelStyle,
 } from "./style"
 
 export const Editor: FC = () => {
@@ -16,13 +18,13 @@ export const Editor: FC = () => {
     <div css={EditorContainer}>
       <DataWorkspace css={LeftPanelStyle} />
       <div css={EditorRightArea}>
-        <PageNavBar />
+        <PageNavBar css={{ height: "48px" }} />
         <div css={EditorBody}>
-          <div>
+          <div css={EditorCenterStyle}>
             <CanvasContainer />
             <QueryEditor />
           </div>
-          <WidgetPickerEditor />
+          <WidgetPickerEditor css={RightPanelStyle} />
         </div>
       </div>
     </div>
