@@ -7,7 +7,7 @@ import 'codemirror/mode/sql/sql'
 
 import './cm-replace-style.css'
 
-function EditorInput() {
+export function EditorInput() {
   const targetRef = useRef(null)
   useEffect(() => {
     if (!targetRef.current) return
@@ -29,4 +29,4 @@ function EditorInput() {
   )
 }
 
-export default EditorInput
+EditorInput.displayName = "EditorInput"
