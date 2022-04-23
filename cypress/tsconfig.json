@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "cypress",
+      "@testing-library/cypress"
+    ]
+  },
+  "include": [
+    "../src/**/tests/*.e2e.{tsx,ts}"
+  ]
+}
