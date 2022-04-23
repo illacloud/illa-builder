@@ -1,5 +1,8 @@
 {
   "viewportWidth": 500,
   "viewportHeight": 500,
-  "testFiles": "**/tests/*.e2e.{ts,tsx}"
+  "component": {
+    "testFiles": "**/tests/*.e2e.{ts,tsx}",
+    "componentFolder": "src"
+  }
 }
