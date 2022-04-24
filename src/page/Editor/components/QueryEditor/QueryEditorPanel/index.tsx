@@ -4,18 +4,23 @@ import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { QueryEditorPanelProps } from "./interface"
 import {
-  QueryEditorPanelContainer,
-  QueryEditorPanelHeader,
-  QueryEditorPanelAction,
-  QueryEditorPanelFilling,
-  QueryEditorPanelHeaderButton,
-  QueryEditorPanelActionSelect,
+  Container,
+  Header,
+  Action,
+  Filling,
+  HeaderButton,
+  ActionSelect,
   ModeSelect,
   TriggerSelect,
-  ResourceSelectContainer,
   ResourceSelect,
   EditIcon,
+  MoreBtn,
+  RunBtn,
+  TitleContainer,
+  TitleEditIcon,
+  Title,
 } from "./style"
+import { TitleInput } from "./TitleInput"
 
 export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
   const { className, children, onEditResource, onCreateResource } = props
@@ -45,32 +50,32 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
   }
 
   return (
-    <div className={className} css={QueryEditorPanelContainer}>
-      <header css={QueryEditorPanelHeader}>
-        <label>Query</label>
-        <span css={QueryEditorPanelFilling} />
-        <Button css={QueryEditorPanelHeaderButton}>
+    <div className={className} css={Container}>
+      <header css={Header}>
+        <TitleInput title={"Query"} />
+        <span css={Filling} />
+        <Button css={[HeaderButton, MoreBtn]}>
           <MoreIcon />
         </Button>
-        <Button css={QueryEditorPanelHeaderButton}>
+        <Button css={[HeaderButton, RunBtn]}>
           <CaretRightIcon /> Run
         </Button>
       </header>
-      <div css={QueryEditorPanelAction}>
+      <div css={Action}>
         <label>Resourse</label>
-        <span css={QueryEditorPanelFilling} />
+        <span css={Filling} />
         <Select
           options={modeOptions}
           defaultValue={0}
-          css={[QueryEditorPanelActionSelect, ModeSelect]}
+          css={[ActionSelect, ModeSelect]}
         ></Select>
         <Select
           options={triggerOptions}
           defaultValue={0}
-          css={[QueryEditorPanelActionSelect, TriggerSelect]}
+          css={[ActionSelect, TriggerSelect]}
         ></Select>
 
-        <Select css={[QueryEditorPanelActionSelect, ResourceSelect]}>
+        <Select css={[ActionSelect, ResourceSelect]}>
           <Option onClick={createResouce}>Create a new resouce</Option>
           <Option>SQL</Option>
           <Option>REST API</Option>
