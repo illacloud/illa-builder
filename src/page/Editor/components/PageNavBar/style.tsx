@@ -7,4 +7,5 @@ export const NavBarStyle = css`
   flex-direction: row;
   justify-content: flex-end;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  padding-right: 17px;
 `
