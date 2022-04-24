@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes } from "react"
-import { QueryList } from "./QeuryList"
+import { QueryList } from "./QueryList"
 import { QueryEditorPanel } from "./QueryEditorPanel"
 import { QueryEditorContainer } from "./style"
 import { FormContainer } from "./FormContainer"
@@ -13,7 +13,7 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
   return <div className={className} css={QueryEditorContainer}>
     <QueryList />
     <QueryEditorPanel />
-    <FormContainer visible={true} actionType={"select"} />
+    <FormContainer visible={false} actionType={"select"} />
   </div>
 }
 

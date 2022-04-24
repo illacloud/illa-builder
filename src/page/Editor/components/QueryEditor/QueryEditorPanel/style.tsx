@@ -11,7 +11,7 @@ export const QueryEditorPanelHeader = css`
   padding: 8px 16px;
   height: 48px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
-`
+  `
 
 export const QueryEditorPanelAction = css`
   display: flex;
@@ -27,7 +27,7 @@ export const QueryEditorPanelFilling = css`
 export const QueryEditorPanelHeaderButton = css`
   height: 32px;
   & + & {
-    margin-left: 8px;
+  margin-left: 8px;
   }
 `
 
@@ -43,4 +43,4 @@ export const ResourceSelect = css`
   display: flex;
   align-items: center;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
-`
+  `
