@@ -36,6 +36,8 @@ export const RightPanelStyle = css`
 
 export const EditorCenterStyle = css`
   width: 100%;
+  position: relative;
+  overflow: auto;
 `
 
 export function applyFixedPosition(): SerializedStyles {
