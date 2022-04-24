@@ -5,10 +5,10 @@ import { ModalCSS } from "./style"
 import { SelectResourceForm } from "../SelectResourceForm"
 
 export const FormContainer: FC<FormContainerProps> = (props) => {
-  const { actionType, resourceType, databaseType, apiType, visible } = props
+  const { actionType, resourceType, databaseType, apiType, visible, onCancel } = props
   return (
-    <Modal _css={ModalCSS} visible={visible} footer={false} closable={false}>
-      <SelectResourceForm onSelect={() => {}} />
+    <Modal _css={ModalCSS} visible={visible} footer={false} closable={true} onCancel={onCancel}>
+      <SelectResourceForm onSelect={() => { }} />
     </Modal>
   )
 }

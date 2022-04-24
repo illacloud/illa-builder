@@ -1,7 +1,8 @@
-import { FC, HTMLAttributes } from "react"
+import { FC } from "react"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { AddIcon, MoreIcon, PenIcon } from "@illa-design/icon"
+import { QueryEditorPanelProps } from "./interface"
 import {
   QueryEditorPanelContainer,
   QueryEditorPanelHeader,
@@ -14,10 +15,8 @@ import {
   ResourceSelect,
 } from "./style"
 
-interface QueryEditorPanelProps extends HTMLAttributes<HTMLDivElement> { }
-
 export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
-  const { className, children } = props
+  const { className, children, onEditResource, onCreateResource } = props
 
   const modeOptions = [
     { label: "SQL mode", value: 0 },
@@ -36,11 +35,11 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
   ]
 
   function createResouce() {
-    console.log("ceeate")
+    onCreateResource && onCreateResource()
   }
 
   function editResource() {
-    console.log("edit")
+    onEditResource && onEditResource();
   }
 
   return (

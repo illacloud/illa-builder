@@ -12,4 +12,5 @@ export interface FormContainerProps {
   resourceType?: ResourceType
   databaseType?: DatabaseType
   apiType?: ApiType
+  onCancel?: () => void
 }
