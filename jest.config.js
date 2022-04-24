@@ -11,6 +11,9 @@ module.exports = {
     "<rootDir>/node_modules/",
     "<rootDir>/plop-templates/",
   ],
+  moduleNameMapper: {
+    "^react($|/.+)": "<rootDir>/node_modules/react$1", // makes sure all React imports are running off of the one in this package.
+  },
   roots: ["./src"],
   globals: {
     "ts-jest": {
