@@ -11,7 +11,7 @@ export const QueryEditorPanelHeader = css`
   padding: 8px 16px;
   height: 48px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
-  `
+`
 
 export const QueryEditorPanelAction = css`
   display: flex;
@@ -27,20 +27,45 @@ export const QueryEditorPanelFilling = css`
 export const QueryEditorPanelHeaderButton = css`
   height: 32px;
   & + & {
-  margin-left: 8px;
+    margin-left: 8px;
   }
 `
 
-export const QueryEditorPanelActionSelect = css``
+export const QueryEditorPanelActionSelect = css`
+  height: 32px;
+  font-size: 14px;
+
+  & > div {
+    padding: 0 16px;
+  }
+`
+
 export const ModeSelect = css`
-  width: 115px;
+  max-width: 115px;
+  border-radius: 8px 0 0 8px !important;
 `
 export const TriggerSelect = css`
-  width: 300px;
+  max-width: 313px;
   margin-right: 8px;
+  border-radius: 0 8px 8px 0px !important;
 `
+export const ResourceSelectContainer = css``
+
 export const ResourceSelect = css`
-  display: flex;
-  align-items: center;
+  min-width: 151px !important;
+  max-width: 151px;
+  border-radius: 8px 0 0 8px !important;
+`
+
+export const EditIcon = css`
+  width: 32px;
+  height: 32px;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
-  `
+  border-radius: 0 8px 8px 0;
+  box-sizing: border-box;
+
+  & > svg {
+    margin: 8px;
+    color: ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  }
+`

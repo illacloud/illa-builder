@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
-import { AddIcon, MoreIcon, PenIcon } from "@illa-design/icon"
+import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { QueryEditorPanelProps } from "./interface"
 import {
   QueryEditorPanelContainer,
@@ -12,7 +12,9 @@ import {
   QueryEditorPanelActionSelect,
   ModeSelect,
   TriggerSelect,
+  ResourceSelectContainer,
   ResourceSelect,
+  EditIcon,
 } from "./style"
 
 export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
@@ -39,7 +41,7 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
   }
 
   function editResource() {
-    onEditResource && onEditResource();
+    onEditResource && onEditResource()
   }
 
   return (
@@ -51,7 +53,7 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
           <MoreIcon />
         </Button>
         <Button css={QueryEditorPanelHeaderButton}>
-          <AddIcon /> Run
+          <CaretRightIcon /> Run
         </Button>
       </header>
       <div css={QueryEditorPanelAction}>
@@ -67,12 +69,13 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
           defaultValue={0}
           css={[QueryEditorPanelActionSelect, TriggerSelect]}
         ></Select>
-        <div css={[QueryEditorPanelActionSelect, ResourceSelect]}>
-          <Select>
-            <Option onClick={createResouce}>Create a new resouce</Option>
-            <Option>SQL</Option>
-            <Option>REST API</Option>
-          </Select>
+
+        <Select css={[QueryEditorPanelActionSelect, ResourceSelect]}>
+          <Option onClick={createResouce}>Create a new resouce</Option>
+          <Option>SQL</Option>
+          <Option>REST API</Option>
+        </Select>
+        <div css={EditIcon}>
           <PenIcon onClick={editResource} />
         </div>
       </div>
