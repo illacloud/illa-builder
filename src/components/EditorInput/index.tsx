@@ -11,7 +11,7 @@ export function EditorInput() {
   const targetRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (!targetRef.current) return
-    if (targetRef.current.childNodes.length) return
+    if (targetRef.current?.childNodes?.length) return
     CodeMirror(targetRef.current, {
       mode: { name: "javascript", json: true },
       // theme: "monokai",
