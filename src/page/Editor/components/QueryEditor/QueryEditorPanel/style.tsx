@@ -16,8 +16,8 @@ export const Header = css`
   `
 
 export const TitleContainer = css`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
   width: 280px;
   max-width: 280px;
   border-radius: 8px;
@@ -28,14 +28,14 @@ align-items: center;
   padding: 0px 19px 0 16px;
 
   &:hover {
-    cursor: pointer;
-    background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)};
+  cursor: pointer;
+  background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)};
 
     & > svg {
       opacity: 1;
     }
   }
-`
+  `
 
 export const TitleInputContainer = css`
   width: 280px;
@@ -48,13 +48,13 @@ export const TitleInputContainer = css`
 
 export const TitleInputCss = css`
   & > span {
-    border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
+  border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-brand-purple-01`))
     .alpha(0.2)
     .hex()};
   }
-`
+      `
 
 export const Title = css`
   display: inline-block;
@@ -68,7 +68,7 @@ export const TitleEditIcon = css`
   /* font-size: 14px; */
   transition: all 0.2s ease-in-out;
   opacity: 0;
-`
+  `
 
 export const Action = css`
   display: flex;
@@ -88,8 +88,8 @@ export const HeaderButton = css`
   font-size: 14px !important;
 
   & * {
-    line-height: 14px !important;
-    font-size: 14px !important;
+  line-height: 14px !important;
+  font-size: 14px !important;
   }
 `
 
@@ -103,7 +103,7 @@ export const MoreBtn = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayblue-08`)}!important;
   }
-`
+    `
 
 export const RunBtn = css`
   color: ${globalColor(`--${illaPrefix}-brand-purple-02`)}!important;
@@ -114,16 +114,16 @@ export const RunBtn = css`
   `--${illaPrefix}-brand-purple-06`,
 )}!important;
   }
-`
+  `
 
 export const ActionSelect = css`
-  height: 32px;
-  font-size: 14px;
+               height: 32px;
+               font-size: 14px;
 
-  & > div {
-    padding: 0 16px;
-  }
-`
+               & > div {
+               padding: 0 16px;
+               }
+             `
 
 export const ModeSelect = css`
   max-width: 115px;
@@ -153,4 +153,4 @@ export const EditIcon = css`
     margin: 8px;
     color: ${globalColor(`--${illaPrefix}-grayblue-08`)};
   }
-`
+    `

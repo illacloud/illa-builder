@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useRef, useState } from "react"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
@@ -16,9 +16,6 @@ import {
   EditIcon,
   MoreBtn,
   RunBtn,
-  TitleContainer,
-  TitleEditIcon,
-  Title,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 

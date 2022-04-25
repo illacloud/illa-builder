@@ -36,6 +36,8 @@ export const RightPanelStyle = css`
 
 export const EditorCenterStyle = css`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 export function applyFixedPosition(): SerializedStyles {
