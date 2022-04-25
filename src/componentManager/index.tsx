@@ -1,10 +1,12 @@
-import ConfigsPanel from './configs';
-import ComponentListPanel from './componentList';
+// import ConfigsPanel from './configs';
+// import ComponentListPanel from './componentList';
+import ColorPicker from "./components/ColorPicker";
 
 function ComponentsManager(){
   return <>
-    <ConfigsPanel />
-    <ComponentListPanel />
+    {/*<ConfigsPanel />*/}
+    {/*<ComponentListPanel />*/}
+    <ColorPicker/>
   </>
 }
 

@@ -946,7 +946,7 @@
     "@babel/plugin-transform-react-jsx-development" "^7.16.7"
     "@babel/plugin-transform-react-pure-annotations" "^7.16.7"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.4", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.16.0", "@babel/runtime@^7.17.2", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.4", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.16.0", "@babel/runtime@^7.17.2", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2", "@babel/runtime@~7.17.2":
   version "7.17.9"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
   integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
@@ -2027,7 +2027,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@*":
+"@types/jest@*", "@types/jest@^27.4.0":
   version "27.4.1"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-27.4.1.tgz#185cbe2926eaaf9662d340cc02e548ce9e11ab6d"
   integrity sha512-23iPJADSmicDVrWk+HT58LMJtzLAnB2AgIzplQuq/bSrGaxCrlvRFjGbXmamnnk/mAmCdLStiGqggu28ocUyiw==
@@ -2134,6 +2134,18 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-6.2.3.tgz#5798ecf1bec94eaa64db39ee52808ec0693315aa"
   integrity sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==
 
+"@types/sinon@^10.0.11":
+  version "10.0.11"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-10.0.11.tgz#8245827b05d3fc57a6601bd35aee1f7ad330fc42"
+  integrity sha512-dmZsHlBsKUtBpHriNjlK0ndlvEh8dcb9uV9Afsbt89QIyydpC7NcR+nWlAhASfy3GHnxTl4FX/aKE7XZUt/B4g==
+  dependencies:
+    "@types/sinonjs__fake-timers" "*"
+
+"@types/sinonjs__fake-timers@*":
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/@types/sinonjs__fake-timers/-/sinonjs__fake-timers-8.1.2.tgz#bf2e02a3dbd4aecaf95942ecd99b7402e03fad5e"
+  integrity sha512-9GcLXF0/v3t80caGs5p2rRfkB+a8VBGLJZVih6CNFkx8IZ994wiKKLSRs9nuFwk1HevWs/1mnUmkApGrSGsShA==
+
 "@types/sinonjs__fake-timers@8.1.1":
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/@types/sinonjs__fake-timers/-/sinonjs__fake-timers-8.1.1.tgz#b49c2c70150141a15e0fa7e79cf1f92a72934ce3"
@@ -2186,6 +2198,53 @@
   integrity sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==
   dependencies:
     "@types/node" "*"
+
+"@uiw/color-convert@1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@uiw/color-convert/-/color-convert-1.0.10.tgz#606e2ff116f14cdc03c325921fa815b34b2dc960"
+  integrity sha512-jAqe5dwGmn8KV/P1VNfcWTaUrfznEVWyuZWWYrAEeQT2FtVhPQjyTBkoeRMoghnpTCJ73EEeXNqsv3dsHLQ6aA==
+
+"@uiw/react-color-alpha@1.0.10", "@uiw/react-color-alpha@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-alpha/-/react-color-alpha-1.0.10.tgz#5f4b70de2060738fe0649120dc51777c119c3a4b"
+  integrity sha512-zaUuO+bvbkLAH8sxV4+OPoet5LGzzMCeDUnrENWtBTLpd7DNI1yqdfXye6QkFlYqoWvct5u23BqzMTDdgK6Wqg==
+  dependencies:
+    "@babel/runtime" "~7.17.2"
+    "@uiw/color-convert" "1.0.10"
+    "@uiw/react-drag-event-interactive" "1.0.10"
+
+"@uiw/react-color-hue@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-hue/-/react-color-hue-1.0.10.tgz#7d33fa1c448c301db5b86dde2cf19296a2046a83"
+  integrity sha512-aK9vhrAIIAKrFIPxPXs+NqtJ9DsHlyA0WpVCT7QayPyjRs9fe5vXAGRDTeNQT+QBsfMpNQAacwQ2dTaTpOkmjg==
+  dependencies:
+    "@babel/runtime" "~7.17.2"
+    "@uiw/color-convert" "1.0.10"
+    "@uiw/react-color-alpha" "1.0.10"
+
+"@uiw/react-color-saturation@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-saturation/-/react-color-saturation-1.0.10.tgz#d47414a9cb9057388c5d5b7ab6a06beca0a04b11"
+  integrity sha512-LkpME/jbbfG8US6yAfwvZqz7aCsxcq3dT74/i9AJNiOXcnvm+0sFokxCgVubKeC8Vn7GGriufDw6vVDWts/phQ==
+  dependencies:
+    "@babel/runtime" "~7.17.2"
+    "@uiw/color-convert" "1.0.10"
+    "@uiw/react-drag-event-interactive" "1.0.10"
+
+"@uiw/react-color-swatch@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@uiw/react-color-swatch/-/react-color-swatch-1.0.10.tgz#c9c6f9ce6acd07e0ae0b95aedaa6e21198e89cee"
+  integrity sha512-ASOBx/wpsD86bYEUPdafBAB0JkMNEUFE/HhcEqsUbbDNImQQn+lRoOprzxP+BrIto/luccItxNzWQ5g5zFj0dw==
+  dependencies:
+    "@babel/runtime" "~7.17.2"
+    "@uiw/color-convert" "1.0.10"
+
+"@uiw/react-drag-event-interactive@1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@uiw/react-drag-event-interactive/-/react-drag-event-interactive-1.0.10.tgz#8ffdf6776394f9067adc2d2cf145e7e74e82337f"
+  integrity sha512-PpAuzEv8RpVN5U9COojC5uzRISalpNw459sASFmBefjY81PBmPBj4ScfYm1NnF30dpvFf262ALLBs6uR0XJGLA==
+  dependencies:
+    "@babel/runtime" "~7.17.2"
 
 "@vitejs/plugin-react@^1.2.0", "@vitejs/plugin-react@^1.3.0":
   version "1.3.1"
@@ -8769,7 +8828,7 @@ vite-plugin-istanbul@^2.5.1:
     picocolors "^1.0.0"
     test-exclude "^6.0.0"
 
-vite@^2.8.6, vite@^2.9.2:
+vite@^2.8.6, vite@^2.9.5:
   version "2.9.5"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.5.tgz#08ef37ac7a6d879c96f328b791732c9a00ea25ea"
   integrity sha512-dvMN64X2YEQgSXF1lYabKXw3BbN6e+BL67+P3Vy4MacnY+UzT1AfkHiioFSi9+uiDUiaDy7Ax/LQqivk6orilg==
