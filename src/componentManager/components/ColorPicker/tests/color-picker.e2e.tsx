@@ -1,7 +1,7 @@
 import "@testing-library/cypress"
 import { mount, unmount } from "@cypress/react"
 import ColorPicker from "../index"
-import {HsvaColor, hsvaToHex, hsvaToRgba} from "@uiw/color-convert"
+import { HsvaColor, hsvaToHex, hsvaToRgba } from "@uiw/color-convert"
 
 it("ColorPicker renders correctly", () => {
   mount(<ColorPicker labelName={"ColorPicker"} />)
@@ -20,30 +20,38 @@ it("ColorPickerPanel render and close correctly", () => {
 
 it("change color by ColorPicker Saturation", () => {
   const onChangeEvent = cy.spy().as("onChangeEvent")
-    let targetColor:HsvaColor
-  mount(<ColorPicker labelName={"ColorPicker"} onColorChange={(hsva)=>{
-      targetColor = hsva
-      onChangeEvent()}} />)
+  let targetColor: HsvaColor
+  mount(
+    <ColorPicker
+      labelName={"ColorPicker"}
+      onColorChange={(hsva) => {
+        targetColor = hsva
+        onChangeEvent()
+      }}
+    />,
+  )
   cy.findByText("ColorPicker").next().trigger("click")
   cy.findByText("edit color").parent().next().trigger("mousedown", 30, 50)
-  cy.get("@onChangeEvent").should("be.called").then(()=>{
+  cy.get("@onChangeEvent")
+    .should("be.called")
+    .then(() => {
       const hexStr = hsvaToHex(targetColor)
       cy.findByDisplayValue(hexStr).should("exist")
       const rgbStr = hsvaToRgba(targetColor)
       cy.findByText("ColorPicker")
-          .next()
-          .children()
-          .should("have.css", "background-color", rgbStr)
+        .next()
+        .children()
+        .should("have.css", "background-color", rgbStr)
       cy.findByText("edit color")
-          .parent()
-          .next()
-          .next()
-          .first()
-          .last()
-          .children()
-          .last()
-          .should("have.css", "background-color", rgbStr)
-  })
+        .parent()
+        .next()
+        .next()
+        .first()
+        .last()
+        .children()
+        .last()
+        .should("have.css", "background-color", rgbStr)
+    })
   cy.findByText("edit color")
     .parent()
     .next()
@@ -91,9 +99,17 @@ it("change color by ColorPicker SwatchPicker", () => {
     />,
   )
   cy.findByText("ColorPicker").next().trigger("click")
-  cy.findByText("Prefabricated color").next().children().first().next().next().trigger("click")
+  cy.findByText("Prefabricated color")
+    .next()
+    .children()
+    .first()
+    .next()
+    .next()
+    .trigger("click")
   cy.findByDisplayValue("#e02424").should("exist")
-    cy.findByText("ColorPicker").next().children()
+  cy.findByText("ColorPicker")
+    .next()
+    .children()
     .should("have.css", "background-color", "rgb(224, 36, 36)")
   unmount()
 })

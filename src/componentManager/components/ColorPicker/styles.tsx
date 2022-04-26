@@ -96,9 +96,10 @@ export function applyAlphaPointCss(percent?: string) {
 
 export function applyColorLumpCss(colorStr: RgbaColor) {
   return css`
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    margin-left: 8px;
     border: solid ${globalColor(`--${illaPrefix}-gray-06`)} 0.6px;
     background-color: rgba(
       ${colorStr.r},
@@ -110,15 +111,19 @@ export function applyColorLumpCss(colorStr: RgbaColor) {
 }
 
 export const colorInputContainerCss = css`
-  padding: 10px 4px;
   border-radius: 4px;
+  width: 100%;
   display: inline-flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  box-sizing: border-box;
   align-items: center;
 `
 
 export const labelCss = css`
   margin-right: 5px;
-  font-size: 12px;
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-grayblue-04`)};
 `
 
 export const swatchContainerCss = css`
@@ -132,20 +137,29 @@ export const swatchContainerCss = css`
 `
 
 export const colorInputCss = css`
-  margin-right: 10px;
   display: inline-flex;
+  border-radius: 8px;
+  font-size: 12px;
+
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)};
+  }
+`
+
+export const triggerCss = css`
+  width: fit-content;
+  margin-right: 4px;
 `
 
 export const percentInputCss = css`
   border: 0;
   height: 100%;
-  width: 40px;
+  width: 34px;
   font-size: 12px;
+  margin-left: 8px;
+  margin-right: 8px;
   box-sizing: border-box;
-  border-left: 1px solid #e0e0e0;
-  &:focus {
-    outline: none;
-  }
+  background-color: transparent;
 `
 
 export const colorSwatchItemContainer = css`
@@ -156,7 +170,6 @@ export const colorSwatchItemContainer = css`
   box-sizing: border-box;
 `
 
-
 export function applyColorCheckedItemContainer(isChecked?: boolean) {
   const borderCss = isChecked
     ? css`
@@ -166,7 +179,7 @@ export function applyColorCheckedItemContainer(isChecked?: boolean) {
         border: solid white 1px;
       `
   return css`
-    width:100%;
+    width: 100%;
     height: 100%;
     padding: 1px;
     border-radius: 4px;
@@ -182,7 +195,7 @@ export function applyColorSwatchCss(colorStr?: string) {
           border: solid 1px ${globalColor(`--${illaPrefix}-grayblue-08`)};
         `
       : css`
-          border:  solid 1px ${colorStr};
+          border: solid 1px ${colorStr};
         `
 
   return css`
