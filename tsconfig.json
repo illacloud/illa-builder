@@ -20,5 +20,10 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["src"]
+  "include": [
+    "./src/**/*.{tsx,ts}"
+  ],
+  "exclude": [
+    "./src/**/tests/*.e2e.{tsx,ts}"
+  ]
 }

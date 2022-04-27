@@ -1,9 +1,13 @@
 module.exports = {
   testEnvironment: "jsdom",
   coverageDirectory: "./jest-coverage/",
-  coverageReporters: ["json", "lcov"],
+  coverageReporters: ["lcov"],
   collectCoverage: true,
-  collectCoverageFrom: ["./src/**/*.(ts|tsx)"],
+  collectCoverageFrom: [
+    "./src/**/*.(ts|tsx)",
+    "!./src/**/*.test.(ts|tsx)",
+    "!./src/**/*.e2e.(ts|tsx)",
+  ],
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
   modulePathIgnorePatterns: ["<rootDir>/examples"],
   snapshotSerializers: ["@emotion/jest/serializer"],
