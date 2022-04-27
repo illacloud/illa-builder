@@ -70,7 +70,7 @@
   "nyc": {
     "report-dir": "cypress-coverage",
     "reporter": [
-      "json"
+      "lcov"
     ]
   }
 }
