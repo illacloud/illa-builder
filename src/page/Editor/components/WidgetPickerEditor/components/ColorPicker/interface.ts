@@ -1,5 +1,5 @@
 import { HsvaColor, hsvaToRgba } from "@uiw/color-convert"
-import colorPicker from "@componentManager/components/ColorPicker/index"
+import colorPicker from "@/page/Editor/components/WidgetPickerEditor/components/ColorPicker/index"
 
 export interface ColorPickerOperationProps {
   color: HsvaColor
