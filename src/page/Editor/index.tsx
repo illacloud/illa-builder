@@ -11,6 +11,7 @@ import {
   middlePanelStyle,
   centerPanelStyle,
   bottomPanelStyle,
+  contentStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { CanvasContainer } from "./components/CanvasContainer"
@@ -18,14 +19,16 @@ import { CanvasContainer } from "./components/CanvasContainer"
 export const Editor: FC = () => {
   return (
     <div css={editorContainerStyle}>
-      <PageNavBar css={navbarStyle} />
+      <DataWorkspace css={leftPanelStyle} />
       <div css={mainPanelStyle}>
-        <DataWorkspace css={leftPanelStyle} />
-        <div css={middlePanelStyle}>
-          <CanvasContainer css={centerPanelStyle} />
-          <QueryEditor css={bottomPanelStyle} />
+        <PageNavBar css={navbarStyle} />
+        <div css={contentStyle}>
+          <div css={middlePanelStyle}>
+            <CanvasContainer css={centerPanelStyle} />
+            <QueryEditor css={bottomPanelStyle} />
+          </div>
+          <WidgetPickerEditor css={rightPanelStyle} />
         </div>
-        <WidgetPickerEditor css={rightPanelStyle} />
       </div>
     </div>
   )

@@ -3,21 +3,27 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const editorContainerStyle = css`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
   width: 100vw;
 `
 
 export const mainPanelStyle = css`
-  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-grow: 1;
 `
 
 export const navbarStyle = css`
   width: 100%;
   height: 35px;
+`
+
+export const contentStyle = css`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  flex-grow: 1;
 `
 
 export const leftPanelStyle = css`
