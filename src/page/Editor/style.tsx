@@ -10,6 +10,7 @@ export const editorContainerStyle = css`
 
 export const mainPanelStyle = css`
   display: flex;
+  height: 100%;
   flex-direction: column;
   flex-grow: 1;
 `
@@ -21,15 +22,14 @@ export const navbarStyle = css`
 
 export const contentStyle = css`
   display: flex;
+  width: 100%;
   flex-direction: row;
-  height: 100%;
   flex-grow: 1;
 `
 
 export const leftPanelStyle = css`
   width: 280px;
   height: 100%;
-  flex-shrink: 0;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
 `
 
@@ -47,7 +47,6 @@ export const bottomPanelStyle = css`
 export const rightPanelStyle = css`
   width: 320px;
   height: 100%;
-  flex-shrink: 0;
   border-left: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
 `
 
