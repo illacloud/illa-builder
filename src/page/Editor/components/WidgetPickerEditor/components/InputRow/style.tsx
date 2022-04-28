@@ -7,8 +7,7 @@ export const singleWrapperCss = css`
   justify-content: space-between;
   height: 48px;
 `
-export const doubleWrapperCss = css`
-`
+export const doubleWrapperCss = css``
 
 export const fxSvgWrapper = css`
   width: 16px;

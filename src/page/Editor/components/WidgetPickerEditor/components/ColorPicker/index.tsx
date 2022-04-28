@@ -126,6 +126,7 @@ function ColorPicker(props: ColorPickerProps) {
             setInputValue(hsvaToHex(hsva))
           }}
           withoutNormalBorder={true}
+          spellCheck={false}
           suffix={{
             render: (
               <input

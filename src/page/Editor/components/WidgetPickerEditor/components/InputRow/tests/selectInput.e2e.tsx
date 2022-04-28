@@ -69,13 +69,7 @@ it("Render SelectInput Component with Click custom button", () => {
 })
 
 it("Render SelectInput Component with Click custom button", () => {
-  mount(
-    <SelectInput
-      labelName="testName"
-      options={cities}
-      canCustom
-    />,
-  )
+  mount(<SelectInput labelName="testName" options={cities} canCustom />)
   const oldLabelWrapper = cy.findByText("testName").parent()
   oldLabelWrapper.parent().children().last().children().first().click()
   cy.get("input").should("exist")

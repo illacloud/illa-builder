@@ -21,7 +21,7 @@ it("Render single SimpleInput", () => {
 it("Type some string in SimpleInput", () => {
   mount(<SimpleInput labelName="testName" />)
   cy.get("input").should("exist")
-  cy.get("input").type("test");
+  cy.get("input").type("test")
   cy.findByDisplayValue("test").should("exist")
   unmount()
 })
