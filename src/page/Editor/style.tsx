@@ -2,39 +2,36 @@ import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const EditorContainer = css`
+export const applyEditorContainer = css`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100vh;
-  body {
-    margin: 0;
-  }
 `
-export const EditorRightArea = css`
+export const applyEditorRightArea = css`
   width: 100%;
 `
-export const EditorBody = css`
+export const applyEditorBody = css`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: calc(100% - 48px);
 `
 
-export const LeftPanelStyle = css`
+export const applyLeftPanelStyle = css`
   width: 280px;
   height: 100%;
   flex-shrink: 0;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
 `
 
-export const RightPanelStyle = css`
+export const applyRightPanelStyle = css`
   width: 320px;
   height: 100%;
   flex-shrink: 0;
   border-left: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
 `
 
-export const EditorCenterStyle = css`
+export const applyEditorCenterStyle = css`
   width: 100%;
   display: flex;
   flex-direction: column;

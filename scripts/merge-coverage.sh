@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 mkdir reports || true
-cp cypress-coverage/coverage-final.json reports/from-cypress.json && cp jest-coverage/coverage-final.json reports/from-jest.json
-npx nyc merge reports && mv coverage.json .nyc_output/out.json
-npx nyc report --reporter lcov --reporter text --report-dir coverage
+cp cypress-coverage/lcov.info reports/from-cypress.info && cp jest-coverage/lcov.info reports/from-jest.info
+mkdir coverage || true
+./scripts/mergeLcov.perl -a ./reports/from-cypress.info -a ./reports/from-jest.info -o ./coverage/lcov.info
+./scripts/genHtml.perl ./coverage/lcov.info --output-directory=./coverage/lcov-report

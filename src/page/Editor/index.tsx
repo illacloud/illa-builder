@@ -5,26 +5,26 @@ import { DataWorkspace } from "./components/DataWorkspace"
 import { QueryEditor } from "./components/QueryEditor"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import {
-  EditorBody,
-  EditorCenterStyle,
-  EditorContainer,
-  EditorRightArea,
-  LeftPanelStyle,
-  RightPanelStyle,
+  applyEditorBody,
+  applyEditorCenterStyle,
+  applyEditorContainer,
+  applyEditorRightArea,
+  applyLeftPanelStyle,
+  applyRightPanelStyle,
 } from "./style"
 
 export const Editor: FC = () => {
   return (
-    <div css={EditorContainer}>
-      <DataWorkspace css={LeftPanelStyle} />
-      <div css={EditorRightArea}>
-        <PageNavBar css={{ height: "48px" }} />
-        <div css={EditorBody}>
-          <div css={EditorCenterStyle}>
+    <div css={applyEditorContainer}>
+      <PageNavBar />
+      <div css={applyEditorRightArea}>
+        <DataWorkspace css={applyLeftPanelStyle} />
+        <div css={applyEditorBody}>
+          <div css={applyEditorCenterStyle}>
             <CanvasContainer />
             <QueryEditor />
           </div>
-          <WidgetPickerEditor css={RightPanelStyle} />
+          <WidgetPickerEditor css={applyRightPanelStyle} />
         </div>
       </div>
     </div>
