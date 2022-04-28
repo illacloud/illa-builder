@@ -1,31 +1,31 @@
 import { FC } from "react"
 import { PageNavBar } from "./components/PageNavBar"
-import { CanvasContainer } from "./components/CanvasContainer"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { QueryEditor } from "./components/QueryEditor"
-import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import {
-  applyEditorBody,
-  applyEditorCenterStyle,
-  applyEditorContainer,
-  applyEditorRightArea,
-  applyLeftPanelStyle,
-  applyRightPanelStyle,
+  editorContainerStyle,
+  leftPanelStyle,
+  rightPanelStyle,
+  mainPanelStyle,
+  navbarStyle,
+  middlePanelStyle,
+  centerPanelStyle,
+  bottomPanelStyle,
 } from "./style"
+import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
+import { CanvasContainer } from "./components/CanvasContainer"
 
 export const Editor: FC = () => {
   return (
-    <div css={applyEditorContainer}>
-      <PageNavBar />
-      <div css={applyEditorRightArea}>
-        <DataWorkspace css={applyLeftPanelStyle} />
-        <div css={applyEditorBody}>
-          <div css={applyEditorCenterStyle}>
-            <CanvasContainer />
-            <QueryEditor />
-          </div>
-          <WidgetPickerEditor css={applyRightPanelStyle} />
+    <div css={editorContainerStyle}>
+      <PageNavBar css={navbarStyle} />
+      <div css={mainPanelStyle}>
+        <DataWorkspace css={leftPanelStyle} />
+        <div css={middlePanelStyle}>
+          <CanvasContainer css={centerPanelStyle} />
+          <QueryEditor css={bottomPanelStyle} />
         </div>
+        <WidgetPickerEditor css={rightPanelStyle} />
       </div>
     </div>
   )
