@@ -32,7 +32,7 @@ export const contentStyle = css`
 export const leftPanelStyle = css`
   width: 280px;
   height: 100%;
-  border-right: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 
 export const centerPanelStyle = css`
@@ -42,13 +42,13 @@ export const centerPanelStyle = css`
 
 export const bottomPanelStyle = css`
   width: 100%;
-  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 
 export const rightPanelStyle = css`
   width: 320px;
   height: 100%;
-  border-left: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   `
 
 export const middlePanelStyle = css`

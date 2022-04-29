@@ -11,7 +11,7 @@ export const Header = css`
   align-items: center;
   padding: 8px 16px 8px 0;
   height: 48px;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   box-sizing: border-box;
   `
 
@@ -29,7 +29,7 @@ export const TitleContainer = css`
 
   &:hover {
   cursor: pointer;
-  background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 
     & > svg {
       opacity: 1;
@@ -64,7 +64,7 @@ export const Title = css`
 `
 
 export const TitleEditIcon = css`
-  color: ${globalColor(`--${illaPrefix}-grayblue-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   /* font-size: 14px; */
   transition: all 0.2s ease-in-out;
   opacity: 0;
@@ -97,11 +97,11 @@ export const MoreBtn = css`
   width: 32px;
   margin-right: 8px;
   padding: 9px !important;
-  color: ${globalColor(`--${illaPrefix}-grayblue-01`)}!important;
-  background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)}!important;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)}!important;
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)}!important;
 
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-grayblue-08`)}!important;
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}!important;
   }
     `
 
@@ -145,12 +145,12 @@ export const ResourceSelect = css`
 export const EditIcon = css`
   width: 32px;
   height: 32px;
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-radius: 0 8px 8px 0;
   box-sizing: border-box;
 
   & > svg {
     margin: 8px;
-    color: ${globalColor(`--${illaPrefix}-grayblue-08`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
     `

@@ -14,7 +14,7 @@ export const TitleCSS = css`
   line-height: 1.4;
   padding-bottom: 16px;
   font-family: HelveticaNeue;
-  color: ${globalColor(`--${illaPrefix}-grayblue-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   text-align: center;
 `
 
@@ -24,6 +24,6 @@ export const CloseIconCSS = css`
   font-size: 14px;
   top: 32.8px;
   right: 30.8px;
-  color: ${globalColor(`--${illaPrefix}-grayblue-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   cursor: pointer;
 `
