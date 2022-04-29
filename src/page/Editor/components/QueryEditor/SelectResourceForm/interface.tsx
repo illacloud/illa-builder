@@ -1,14 +1,13 @@
 import { ApiType, DatabaseType } from "../FormContainer/interface"
-import { ReactNode } from "react"
 
 export interface ApiItemProps {
   title: ApiType
-  img: ReactNode
+  img: JSX.Element
 }
 
 export interface DatabaseItemProps {
   title: DatabaseType
-  img: ReactNode
+  img: JSX.Element
 }
 
 export interface SelectResourceFormProps {

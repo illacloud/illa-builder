@@ -2,9 +2,9 @@ export type ActionType = "select" | "configure" | "edit"
 
 export type ResourceType = "DATABASE" | "API"
 
-export type ApiType = "REST"
+export type ApiType = "REST API"
 
-export type DatabaseType = "MySQL"
+export type DatabaseType = "MySQL" | "Postgres" | "Redis"
 
 export interface FormContainerProps {
   actionType: ActionType

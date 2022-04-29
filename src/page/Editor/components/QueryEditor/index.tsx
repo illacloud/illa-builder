@@ -4,7 +4,7 @@ import { QueryEditorPanel } from "./QueryEditorPanel"
 import { QueryEditorContainer } from "./style"
 import { FormContainer } from "./FormContainer"
 
-interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> { }
+interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const { className } = props
@@ -17,7 +17,11 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
         onCreateResource={() => setFormVisible(true)}
         onEditResource={() => setFormVisible(true)}
       />
-      <FormContainer visible={formVisible} actionType={"select"} onCancel={() => setFormVisible(false)} />
+      <FormContainer
+        visible={formVisible}
+        actionType={"select"}
+        onCancel={() => setFormVisible(false)}
+      />
     </div>
   )
 }
