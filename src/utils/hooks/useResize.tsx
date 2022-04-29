@@ -25,7 +25,7 @@ export const useResize = (
   const [originHeight, setOriginHeight] = useState<number>(0)
   const [originWidth, setOriginWidth] = useState<number>(0)
 
-  // saving min height and max height
+  // saving min/max-height/width
   useEffect(() => {
     const { minHeight, maxHeight, minWidth, maxWidth } =
       window.getComputedStyle(ref.current)
@@ -75,13 +75,18 @@ export const useResize = (
       }),
   ) => {
     unFocus(document, window)
+
     const { clientX, clientY } = event.touches[0]
+
     setPosition([clientX, clientY])
+
     if (ref.current) {
       setOriginHeight(ref.current.clientHeight)
       setOriginWidth(ref.current.clientWidth)
     }
+
     setResizing(true)
+
     document.body.style.cursor = "row-resize"
   }
 
@@ -122,6 +127,7 @@ export const useResize = (
   ) => {
     if (resizing) {
       unFocus(document, window)
+
       const [originClientX, originClientY] = position
 
       if (ref.current) {
