@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, useState, useRef } from "react"
-import { useVerticalResize } from "@/utils/hooks/useVerticalResize"
+import { useResize } from "@/utils/hooks/useResize"
 import { QueryList } from "./QueryList"
 import { QueryEditorPanel } from "./QueryEditorPanel"
 import {
@@ -15,15 +15,15 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const { className } = props
   const [formVisible, setFormVisible] = useState(false)
 
-  const [containerHeight, setContainerHeight] = useState(450)
+  const [containerHeight, setContainerHeight] = useState(300)
 
   const editorRef = useRef<HTMLDivElement>(null)
   const onHeightChange = (height: number) => {
     setContainerHeight(height)
   }
-  const onDragEnd = () => {}
+  const onDragEnd = () => { }
 
-  const resizer = useVerticalResize(editorRef, onHeightChange, onDragEnd)
+  const resizer = useResize("vertical", editorRef, onHeightChange, onDragEnd)
 
   return (
     <div css={QueryEditorPanelWrapper}>

@@ -1,1 +1,3 @@
-export interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> { }
+export interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> {
+  className?: string
+}

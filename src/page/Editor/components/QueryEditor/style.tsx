@@ -6,6 +6,7 @@ export const QueryEditorContainer = css`
   height: 100%;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
   min-height: 300px;
+  max-height: calc(100% - 50px);
 `
 
 export const QueryEditorPanelWrapper = css`
