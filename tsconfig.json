@@ -15,11 +15,15 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["src/*"],
-      "@componentManager/*": ["src/componentManager/*"]
+      "@/*": ["./*"]
     }
   },
-  "include": ["src"]
+  "include": [
+    "./src/**/*.{tsx,ts}"
+  ],
+  "exclude": [
+    "./src/**/tests/*.e2e.{tsx,ts}"
+  ]
 }
