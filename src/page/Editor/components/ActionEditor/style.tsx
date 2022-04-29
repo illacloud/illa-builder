@@ -1,14 +1,14 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const QueryEditorContainer = css`
+export const ActionEditorContainer = css`
   display: flex;
   height: 100%;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
   min-height: 300px;
 `
 
-export const QueryEditorPanelWrapper = css`
+export const ActionEditorPanelWrapper = css`
   display: flex;
   flex-direction: column;
   position: relative;
