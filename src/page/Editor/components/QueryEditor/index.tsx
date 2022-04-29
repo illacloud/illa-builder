@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useState, useRef } from "react"
+import { FC, useState, useRef } from "react"
 import { useResize } from "@/utils/hooks/useResize"
 import { QueryList } from "./QueryList"
 import { QueryEditorPanel } from "./QueryEditorPanel"
@@ -21,7 +21,7 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const onHeightChange = (height: number) => {
     setContainerHeight(height)
   }
-  const onDragEnd = () => { }
+  const onDragEnd = () => {}
 
   const resizer = useResize("vertical", editorRef, onHeightChange, onDragEnd)
 
@@ -32,7 +32,7 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
         onTouchStart={resizer.onTouchStart}
         onTouchEnd={resizer.onMouseUp}
         css={applyResizerCss(resizer.resizing, containerHeight)}
-      ></div>
+      />
       <div
         className={className}
         css={[QueryEditorContainer, applyContainerHeight(containerHeight)]}
