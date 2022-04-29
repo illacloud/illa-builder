@@ -1,37 +1,36 @@
 import { FC } from "react"
-import { HTML5Backend } from "react-dnd-html5-backend"
-import { DndProvider } from "react-dnd"
 import { PageNavBar } from "./components/PageNavBar"
-import { CanvasContainer } from "./components/CanvasContainer"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { QueryEditor } from "./components/QueryEditor"
-import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import {
-  EditorBody,
-  EditorCenterStyle,
-  EditorContainer,
-  EditorRightArea,
-  LeftPanelStyle,
-  RightPanelStyle,
+  editorContainerStyle,
+  leftPanelStyle,
+  rightPanelStyle,
+  mainPanelStyle,
+  navbarStyle,
+  middlePanelStyle,
+  centerPanelStyle,
+  bottomPanelStyle,
+  contentStyle,
 } from "./style"
+import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
+import { CanvasContainer } from "./components/CanvasContainer"
 
 export const Editor: FC = () => {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div css={EditorContainer}>
-        <DataWorkspace css={LeftPanelStyle} />
-        <div css={EditorRightArea}>
-          <PageNavBar css={{ height: "48px" }} />
-          <div css={EditorBody}>
-            <div css={EditorCenterStyle}>
-              <CanvasContainer />
-              <QueryEditor />
-            </div>
-            <WidgetPickerEditor css={RightPanelStyle} />
+    <div css={editorContainerStyle}>
+      <DataWorkspace css={leftPanelStyle} />
+      <div css={mainPanelStyle}>
+        <PageNavBar css={navbarStyle} />
+        <div css={contentStyle}>
+          <div css={middlePanelStyle}>
+            <CanvasContainer css={centerPanelStyle} />
+            <QueryEditor css={bottomPanelStyle} />
           </div>
+          <WidgetPickerEditor css={rightPanelStyle} />
         </div>
       </div>
-    </DndProvider>
+    </div>
   )
 }
 
