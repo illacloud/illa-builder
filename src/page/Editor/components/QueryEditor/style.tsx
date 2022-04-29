@@ -13,7 +13,6 @@ export const QueryEditorPanelWrapper = css`
   flex-direction: column;
   position: relative;
   flex: 0 0 auto;
-  z-index: 1000;
 `
 
 export function applyContainerHeight(height: number): SerializedStyles {
