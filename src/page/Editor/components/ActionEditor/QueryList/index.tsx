@@ -1,17 +1,16 @@
-import { FC, HTMLAttributes, useState } from "react"
+import { FC, useState } from "react"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
+import { Input } from "@illa-design/input"
 import {
   AddIcon,
   SearchIcon,
   ImageDefaultIcon,
-  FilterIcon,
   WarningCircleIcon,
 } from "@illa-design/icon"
 import {
   QueryListContainer,
   QueryListHeader,
-  FilterIconCss,
   HeaderTitle,
   applyNewButton,
   NewButtonContentWrapper,
@@ -25,12 +24,17 @@ import {
   QueryItemTime,
   NewQueryOptionsList,
   NewQueryOptionsItem,
+  SearchInput,
+  SearchInputIcon,
+  CloseBtn,
+  HeaderSearchIcon,
 } from "./style"
 import { QueryListProps } from "./interface"
 
 export const QueryList: FC<QueryListProps> = (props) => {
   const { className } = props
   const [queryOptionsVisible, setQueryOptionsVisible] = useState(false)
+  const [isSearch, setIsSearch] = useState(false)
   const [queryItems, setQueryItems] = useState<
     {
       type: string
@@ -88,13 +92,34 @@ export const QueryList: FC<QueryListProps> = (props) => {
     })
   }
 
+  const headerContent = isSearch ? (
+    <>
+      <Input
+        prefix={{
+          render: <SearchIcon size={"12px"} css={SearchInputIcon} />,
+        }}
+        css={SearchInput}
+        allowClear
+      />
+      <Button
+        onClick={() => setIsSearch(false)}
+        colorScheme={"white"}
+        css={CloseBtn}
+      >
+        Close
+      </Button>
+    </>
+  ) : (
+    <>
+      <span css={HeaderTitle}>Queries List</span>
+      <SearchIcon size={"12px"} onClick={() => setIsSearch(true)} css={HeaderSearchIcon} />
+    </>
+  )
+
   return (
     <div className={className} css={QueryListContainer}>
-      <header css={QueryListHeader}>
-        <span css={HeaderTitle}>Queries List</span>
-        <SearchIcon size={"12px"} />
-        <FilterIcon size={"12px"} css={FilterIconCss} />
-      </header>
+      <header css={QueryListHeader}>{headerContent}</header>
+
       <Dropdown
         dropList={newQueryOptions}
         trigger={"click"}

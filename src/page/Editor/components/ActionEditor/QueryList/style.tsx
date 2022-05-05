@@ -1,3 +1,4 @@
+import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
@@ -21,13 +22,22 @@ export const HeaderTitle = css`
   flex: 1;
 `
 
+export const HeaderSearchIcon = css`
+  cursor: pointer;
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  }
+`
+
 export const applyNewButton = (isActive: boolean): SerializedStyles => {
-  const activeCss = css`background-color: ${globalColor(
+  const activeCss = css`
+    background-color: ${globalColor(
     `--${illaPrefix}-brand-purple-05`,
-  )}!important;`
+  )}!important;
+  `
 
   return css`
-          background-color: ${globalColor(
+    background-color: ${globalColor(
     `--${illaPrefix}-brand-purple-07`,
   )}!important;
     color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
@@ -54,10 +64,6 @@ export const applyNewButton = (isActive: boolean): SerializedStyles => {
     }
   `
 }
-
-export const FilterIconCss = css`
-  margin-left: 10px;
-`
 
 export const NewButtonContentWrapper = css`
   display: flex;
@@ -137,5 +143,26 @@ export const NewQueryOptionsItem = css`
 
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
+`
+export const SearchInput = css`
+  margin-right: 8px;
+  & > span {
+    border-radius: 8px !important;
+    border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
+    box-shadow: 0 0 8px 0
+      ${chroma(globalColor(`--${illaPrefix}-brand-purple-01`))
+    .alpha(0.2)
+    .hex()};
+  }
+`
+
+export const SearchInputIcon = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+`
+
+export const CloseBtn = css`
+  & > span {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
 `
