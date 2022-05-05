@@ -1,4 +1,4 @@
 export interface DropInfo {
-    parent: Object
-    hasDropped: boolean
+  parent: Object
+  hasDropped: boolean
 }

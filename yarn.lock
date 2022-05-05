@@ -1532,6 +1532,28 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@daybrush/utils@1.6.0", "@daybrush/utils@^1.0.0", "@daybrush/utils@^1.1.1", "@daybrush/utils@^1.3.1", "@daybrush/utils@^1.4.0", "@daybrush/utils@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.npmmirror.com/@daybrush/utils/-/utils-1.6.0.tgz#0dfd2c360764f63380df4ec0d44e176c69f7bbc3"
+  integrity sha512-9MjMoOLl1U+l8lXByN3BbLZXf+mktoLyeb6t78Jz2WZ7LRldK0FNg8oW//9giO2hHCUyxS7LX6jS1hToGIfRWA==
+
+"@egjs/agent@^2.2.1":
+  version "2.4.2"
+  resolved "https://registry.npmmirror.com/@egjs/agent/-/agent-2.4.2.tgz#9a0efb4ae36e4f1ee869008fbcafbddb8760c7de"
+  integrity sha512-UZQzdpPl0g0M1wDAiq4EY2vUzUI6P5SKGOAPkf0yxSnlcwrU8/zuoyUWbYj11ROFeHV8iW0IetGsmia83z1Hbw==
+
+"@egjs/children-differ@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmmirror.com/@egjs/children-differ/-/children-differ-1.0.1.tgz#5465fa80671d5ca3564ebe912f48b05b3e8a14fd"
+  integrity sha512-DRvyqMf+CPCOzAopQKHtW+X8iN6Hy6SFol+/7zCUiE5y4P/OB8JP8FtU4NxtZwtafvSL4faD5KoQYPj3JHzPFQ==
+  dependencies:
+    "@egjs/list-differ" "^1.0.0"
+
+"@egjs/list-differ@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/@egjs/list-differ/-/list-differ-1.0.0.tgz#2277aff52e3e4bd9318d5c30ffc3ba3b6216f05e"
+  integrity sha512-HsbMKc0ZAQH+EUeCmI/2PvTYSybmkaWwakU8QGDYYgMVIg9BQ5sM0A0Nnombjxo2+JzXHxmH+jw//yGX+y6GYw==
+
 "@emotion/babel-plugin@^11.7.1", "@emotion/babel-plugin@^11.7.2":
   version "11.9.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.9.2.tgz#723b6d394c89fb2ef782229d92ba95a740576e95"
@@ -1983,6 +2005,28 @@
   dependencies:
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
+
+"@scena/dragscroll@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmmirror.com/@scena/dragscroll/-/dragscroll-1.1.1.tgz#43e57bcc0133d51e9927ba5dc0c41bbbb78bbc21"
+  integrity sha512-RnoGpQC0aJ5Z+glLzQAAAf1jmRac1yRuil4zi4HQ8GhzoxTqlgplAOGkFF/IRnUMK1uc5S6R/MEEybfyDGlEcQ==
+  dependencies:
+    "@daybrush/utils" "1.6.0"
+    "@scena/event-emitter" "^1.0.2"
+
+"@scena/event-emitter@^1.0.2", "@scena/event-emitter@^1.0.3", "@scena/event-emitter@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmmirror.com/@scena/event-emitter/-/event-emitter-1.0.5.tgz#047e3acef93cf238d7ce3a8cc5a12ec6bd9c3bb1"
+  integrity sha512-AzY4OTb0+7ynefmWFQ6hxDdk0CySAq/D4efljfhtRHCOP7MBF9zUfhKG3TJiroVjASqVgkRJFdenS8ArZo6Olg==
+  dependencies:
+    "@daybrush/utils" "^1.1.1"
+
+"@scena/matrix@^1.0.0", "@scena/matrix@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmmirror.com/@scena/matrix/-/matrix-1.1.1.tgz#5297f71825c72e2c2c8f802f924f482ed200c43c"
+  integrity sha512-JVKBhN0tm2Srl+Yt+Ywqu0oLgLcdemDQlD1OxmN9jaCTwaFPZ7tY8n6dhVgMEaR9qcR7r+kAlMXnSfNyYdE+Vg==
+  dependencies:
+    "@daybrush/utils" "^1.4.0"
 
 "@sinonjs/commons@^1.6.0", "@sinonjs/commons@^1.7.0", "@sinonjs/commons@^1.8.3":
   version "1.8.3"
@@ -3639,6 +3683,22 @@ css-in-js-utils@^2.0.0:
     hyphenate-style-name "^1.0.2"
     isobject "^3.0.1"
 
+css-styled@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/css-styled/-/css-styled-1.0.0.tgz#6fe10a98f95c24fa66cb1c41e11e7c00bcedac13"
+  integrity sha512-lDdPvM2/djv+La110zVY3RGQ7X4OOlzLS+IEjRcn8UlUmJd1+GNcGfDFmsKWwnLBupsY1w0QM1gRgV4RdcCjfw==
+  dependencies:
+    "@daybrush/utils" "^1.0.0"
+    string-hash "^1.1.3"
+
+css-to-mat@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmmirror.com/css-to-mat/-/css-to-mat-1.0.3.tgz#5c0d9b572b68b57fa8ba0b1a4c572c18ce3b2b60"
+  integrity sha512-HADRhVqPc8wFqEp6ClK+uuPYg+FMBinNo2ReLyI/KQCncmHPJ60o5zldyJG7NjsTqXWbdfGJO51jnoxfMvWJiA==
+  dependencies:
+    "@daybrush/utils" "^1.3.1"
+    "@scena/matrix" "^1.0.0"
+
 css-tree@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.1.3.tgz#eb4870fb6fd7707327ec95c2ff2ab09b5e8db91d"
@@ -4719,6 +4779,11 @@ framesync@6.0.1:
   dependencies:
     tslib "^2.1.0"
 
+framework-utils@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/framework-utils/-/framework-utils-1.1.0.tgz#a3b528bce838dfd623148847dc92371b09d0da2d"
+  integrity sha512-KAfqli5PwpFJ8o3psRNs8svpMGyCSAe8nmGcjQ0zZBWN2H6dZDnq+ABp3N3hdUmFeMrLtjOCTXD4yplUJIWceg==
+
 fromentries@^1.2.0:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/fromentries/-/fromentries-1.3.2.tgz#e4bca6808816bf8f93b52750f1127f5a6fd86e3a"
@@ -4789,6 +4854,14 @@ gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
+
+gesto@^1.7.0:
+  version "1.8.1"
+  resolved "https://registry.npmmirror.com/gesto/-/gesto-1.8.1.tgz#8a6481235dc0c1ad3f70e759fff937a53264fd70"
+  integrity sha512-FwZ3e4C9cJ3DN1PgeOf9tFQIYzBk5RzavtT2bDzGG51Wbp6+JEGzX4A8VqbgkHVTBlJGaRLdsNKRnH0fIVFsmA==
+  dependencies:
+    "@daybrush/utils" "^1.0.0"
+    "@scena/event-emitter" "^1.0.2"
 
 get-assigned-identifiers@^1.2.0:
   version "1.2.0"
@@ -6895,6 +6968,13 @@ optionator@^0.8.1:
     type-check "~0.3.2"
     word-wrap "~1.2.3"
 
+order-map@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.npmmirror.com/order-map/-/order-map-0.2.2.tgz#dcdfd6f81e7eef61ba79c52cfb960be5166ddd9f"
+  integrity sha512-X//Db/lT11tdxxutWQfE+bmbTyieDJWrr/vSiwBwOf8RRw9yAgF7gqn1ihFmfX2E7l7gcPcucep3aWFjo5FpoA==
+  dependencies:
+    "@daybrush/utils" "^1.0.0"
+
 os-browserify@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
@@ -6921,6 +7001,13 @@ outpipe@^1.1.0:
   integrity sha1-UM+GFjZeh+Ax4ppeyTOaPaRyX6I=
   dependencies:
     shell-quote "^1.4.2"
+
+overlap-area@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/overlap-area/-/overlap-area-1.0.0.tgz#d44db45b810ec05c4c2c9f430ab60c9473f2101b"
+  integrity sha512-Oi3hxRf6Flvv1upldnjOtV7euFkc75G/wsxYfS/ssNKEZ3Z+HbIoPHkFfLH3hgwqLJKpq9wdFo7I6xcdS6k8yg==
+  dependencies:
+    "@daybrush/utils" "^1.3.1"
 
 p-filter@^2.1.0:
   version "2.1.0"
@@ -7373,6 +7460,14 @@ react-clientside-effect@^1.2.5:
   dependencies:
     "@babel/runtime" "^7.12.13"
 
+react-css-styled@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmmirror.com/react-css-styled/-/react-css-styled-1.0.3.tgz#f6dda995f41e4777567d2464b7d12ed1373b4f1d"
+  integrity sha512-6H3aZPO66PYmYg9wx12WzOJpPlBEdA7O5JefCh+4SldlihVKBCxA6mityfWSGWL5ldOkJdHJWGwHR6nGPcVm+A==
+  dependencies:
+    css-styled "^1.0.0"
+    framework-utils "^1.1.0"
+
 react-dnd-html5-backend@^16.0.1:
   version "16.0.1"
   resolved "https://registry.npmmirror.com/react-dnd-html5-backend/-/react-dnd-html5-backend-16.0.1.tgz#87faef15845d512a23b3c08d29ecfd34871688b6"
@@ -7439,6 +7534,23 @@ react-is@^18.0.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.1.0.tgz#61aaed3096d30eacf2a2127118b5b41387d32a67"
   integrity sha512-Fl7FuabXsJnV5Q1qIOQwx/sagGF18kogb4gpfcG4gjLBWO0WDiiz1ko/ExayuxE7InyQkBLkxRFG5oxY6Uu3Kg==
+
+react-moveable@^0.32.7:
+  version "0.32.7"
+  resolved "https://registry.npmmirror.com/react-moveable/-/react-moveable-0.32.7.tgz#5cb6dfc59f211d43c5b2791a2c873b2abefe0812"
+  integrity sha512-6fvqNU7NtKsE4pbwPbHEP/0Y486nDkvk0FgIV0fxOnuueF5fs0jRatDFGxg4fkyyYamlfqvR5Lrao2ukhzZTVg==
+  dependencies:
+    "@daybrush/utils" "^1.6.0"
+    "@egjs/agent" "^2.2.1"
+    "@egjs/children-differ" "^1.0.1"
+    "@scena/dragscroll" "^1.1.1"
+    "@scena/event-emitter" "^1.0.5"
+    "@scena/matrix" "^1.1.1"
+    css-to-mat "^1.0.3"
+    framework-utils "^1.1.0"
+    gesto "^1.7.0"
+    overlap-area "^1.0.0"
+    react-css-styled "^1.0.3"
 
 react-redux@^8.0.1:
   version "8.0.1"
@@ -7838,6 +7950,16 @@ saxes@^5.0.1:
   integrity sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
   dependencies:
     xmlchars "^2.2.0"
+
+scenejs@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.npmmirror.com/scenejs/-/scenejs-1.6.0.tgz#9b73ce16723638b99f80544e078dee208b5da568"
+  integrity sha512-eVTffBKWGFqnELJfiUD5SOqOnkD1M+tW4YclcyLA5FMhml2zVNLhnRkCE6I53iqkoKDH/HrRZH6R4I2WQEXWhg==
+  dependencies:
+    "@daybrush/utils" "^1.3.1"
+    "@scena/event-emitter" "^1.0.3"
+    css-styled "^1.0.0"
+    order-map "^0.2.2"
 
 scheduler@^0.22.0:
   version "0.22.0"
@@ -8296,6 +8418,11 @@ stream-transform@^2.1.3:
   integrity sha512-9GHUiM5hMiCi6Y03jD2ARC1ettBXkQBoQAe7nJsPknnI0ow10aXjTnew8QtYQmLjzn974BnmWEAJgCY6ZP1DeQ==
   dependencies:
     mixme "^0.5.1"
+
+string-hash@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.npmmirror.com/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
+  integrity sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==
 
 string-length@^4.0.1:
   version "4.0.2"

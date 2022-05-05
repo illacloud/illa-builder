@@ -4,4 +4,5 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const CanvasStyle = css`
   height: 100vh;
+  position: relative;
 `

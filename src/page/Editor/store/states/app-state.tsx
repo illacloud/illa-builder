@@ -1,7 +1,7 @@
-import { DslState } from "./dsl-state";
-import { MenuState } from "./menu-state";
+import { DslState } from "./dsl-state"
+import { MenuState } from "./menu-state"
 
 export interface AppState {
-    dslState: DslState;
-    menuState: MenuState;
+  dslState: DslState
+  menuState: MenuState
 }

@@ -11,13 +11,15 @@ import { DslFrame } from "../../dragConfig/dsl"
 import { DslActionName } from "../../store/dsl-action"
 import { AppState } from "../../store/states/app-state"
 import { DslState } from "../../store/states/dsl-state"
+import { applyDslLayout } from "./comp/compose"
+import { dslActions } from "@/reducers/CanvasContainer/dslReducer"
 
 interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
   const { className } = props
-  // const dispatch = useDispatch()
-  // const { root } = useSelector<AppState, DslState>((state) => state.dslState)
+  const dispatch = useDispatch()
+  const { root } = useSelector<AppState, DslState>((state) => state.dslState)
 
   const [collectProps, drop] = useDrop<PanelDrag, DropInfo, Object>(
     () => ({
@@ -28,39 +30,42 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
         ItemTypes.TEXT,
       ],
       drop: (item, monitor: DropTargetMonitor) => {
+        console.log(item, monitor, "drop in container")
         if (monitor.getDropResult<DropInfo>()?.hasDropped == true) {
           return monitor.getDropResult<DropInfo>()!!
         }
         switch (item.type) {
           case ItemTypes.FRAME: {
             console.log("drop into root")
-            // dispatch({
-            //   type: DslActionName.AddFrame,
-            //   dslFrame: {
-            //     dslKey: "dsl" + uuid(),
-            //     background: "#EEEEEE",
-            //     version: "0.0.1",
-            //     nodeChildren: [],
-            //     type: DslType["DslFrame"],
-            //     category: Category.Layout,
-            //     height: "100%",
-            //     width: "100%",
-            //     left: "auto",
-            //     right: "auto",
-            //     top: "auto",
-            //     bottom: "auto",
-            //     parentKey: "root",
-            //     position: "absolute",
-            //   } as DslFrame,
-            // })
+            dispatch(
+              dslActions.dslActionHandler({
+                type: DslActionName.AddFrame,
+                dslFrame: {
+                  dslKey: "dsl" + uuid(),
+                  background: "#EEEEEE",
+                  version: "0.0.1",
+                  nodeChildren: [],
+                  type: DslType["DslFrame"],
+                  category: Category.Layout,
+                  height: "100%",
+                  width: "100%",
+                  left: "auto",
+                  right: "auto",
+                  top: "auto",
+                  bottom: "auto",
+                  parentKey: "root",
+                  position: "absolute",
+                } as DslFrame,
+              }),
+            )
             return {
-              // parent: root,
+              parent: root,
               hasDropped: true,
             } as DropInfo
           }
         }
         return {
-          // parent: root,
+          parent: root,
           hasDropped: false,
         } as DropInfo
       },
@@ -69,8 +74,8 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
   )
 
   return (
-    <div className={className} css={CanvasStyle}>
-      CanvasContainer
+    <div className={className} css={CanvasStyle} ref={drop}>
+      {root ? applyDslLayout(root) : <div>CanvasContainer</div>}
     </div>
   )
 }
