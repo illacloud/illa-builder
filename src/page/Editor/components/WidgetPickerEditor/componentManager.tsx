@@ -2,26 +2,18 @@ import { componentPanelCss } from "./style"
 import { TabPane, Tabs } from "@illa-design/tabs"
 import { ComponentPanel } from "./components/ComponentPanel"
 import { ConfigPanel } from "./components/ConfigPanel"
-import ColorPicker from "./components/ColorPicker"
 
 function ComponentsManager() {
   return (
     <div css={componentPanelCss}>
-      {/*<ConfigsPanel />*/}
-      {/*<ComponentListPanel />*/}
-      {/*<div css={colorListCss}>*/}
-      {/*  <ColorPicker />*/}
-      {/*  <ColorPicker />*/}
-      {/*  <ColorPicker />*/}
-      {/*</div>*/}
-      <Tabs variant={"text"} defaultActiveKey={"Insert"}>
-        <TabPane title={"Frame"} key={"Frame"}>
+      <Tabs variant="text" defaultActiveKey="Insert">
+        <TabPane title="Frame" key="Frame">
           Frame
         </TabPane>
-        <TabPane title={"Inspect"} key={"Inspect"}>
+        <TabPane title="Inspect" key="Inspect">
           <ConfigPanel />
         </TabPane>
-        <TabPane title={"Insert"} key={"Insert"}>
+        <TabPane title="Insert" key="Insert">
           <ComponentPanel />
         </TabPane>
       </Tabs>

@@ -43,19 +43,6 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
 
   return (
     <div className={className} css={componentContainerCss}>
-      <ColorPicker
-        onHueChange={(value) => console.log("onHueChange", value)}
-        prefabricatedColors={[
-          "#000000",
-          "#FFFFFF",
-          "#E02424",
-          "#FFAB00",
-          "#00AA5B",
-          "#0CC1E2",
-          "#654AEC",
-          "#1E6FFF",
-        ]}
-      />
       <Search
         borderColor={"purple"}
         variant={"fill"}

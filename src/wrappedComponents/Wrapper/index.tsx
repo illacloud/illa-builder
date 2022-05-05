@@ -1,10 +1,21 @@
 import { FC } from "react"
 import { WrapperProps } from "./interface"
+import { css } from "@emotion/react"
 
-export const QueryEditor: FC<WrapperProps> = (props) => {
-  const { className } = props
+export const Wrapper: FC<WrapperProps> = (props) => {
+  const { className, h, w } = props
 
-  return <div className={className}>QueryEditor</div>
+  const sizeCss = css`
+    width: ${w ?? "fit-content"};
+    height: ${h ?? "fit-content"};
+    border: solid 0.5px pink;
+  `
+
+  return (
+    <div className={className} css={sizeCss}>
+      {props.children}
+    </div>
+  )
 }
 
-QueryEditor.displayName = "QueryEditor"
+Wrapper.displayName = "QueryEditor"
