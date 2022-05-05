@@ -4,8 +4,9 @@ import { componentContainerCss, sessionListContainerCss } from "./style"
 import { SearchIcon } from "@illa-design/icon"
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import { ComponentSession } from "./ComponentSession"
-import { getMatchComponent } from "@/page/Editor/components/WidgetPickerEditor/components/ComponentPanel/utils"
+import { getMatchComponent } from "./utils"
 import { Empty } from "./Empty"
+import ColorPicker from "../ColorPicker"
 
 const defaultList: ComponentSessionProps[] = [
   {
@@ -42,6 +43,19 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
 
   return (
     <div className={className} css={componentContainerCss}>
+      <ColorPicker
+        onHueChange={(value) => console.log("onHueChange", value)}
+        prefabricatedColors={[
+          "#000000",
+          "#FFFFFF",
+          "#E02424",
+          "#FFAB00",
+          "#00AA5B",
+          "#0CC1E2",
+          "#654AEC",
+          "#1E6FFF",
+        ]}
+      />
       <Search
         borderColor={"purple"}
         variant={"fill"}

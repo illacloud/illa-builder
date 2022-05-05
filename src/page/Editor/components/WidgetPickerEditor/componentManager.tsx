@@ -1,8 +1,8 @@
-import ColorPicker from "./components/ColorPicker"
-import { colorListCss, componentPanelCss } from "./style"
+import { componentPanelCss } from "./style"
 import { TabPane, Tabs } from "@illa-design/tabs"
-import { ComponentPanel } from "@/page/Editor/components/WidgetPickerEditor/components/ComponentPanel"
-import { ConfigPanel } from "@/page/Editor/components/WidgetPickerEditor/components/ConfigPanel"
+import { ComponentPanel } from "./components/ComponentPanel"
+import { ConfigPanel } from "./components/ConfigPanel"
+import ColorPicker from "./components/ColorPicker"
 
 function ComponentsManager() {
   return (
