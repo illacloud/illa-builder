@@ -21,27 +21,39 @@ export const HeaderTitle = css`
   flex: 1;
 `
 
-export const NewButton = css`
-  background-color: ${globalColor(`--${illaPrefix}-brand-purple-07`)}!important;
-  color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
-  justify-content: center;
-  font-size: 14px;
-  margin: 0 16px;
-  height: 32px;
-  border-radius: 8px !important;
-  line-height: 32px;
-  flex-shrink: 0;
+export const applyNewButton = (isActive: boolean): SerializedStyles => {
+  const activeCss = css`background-color: ${globalColor(
+    `--${illaPrefix}-brand-purple-05`,
+  )}!important;`
 
-  & > * {
-    font-size: 14px !important;
-  }
+  return css`
+          background-color: ${globalColor(
+    `--${illaPrefix}-brand-purple-07`,
+  )}!important;
+    color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
+    justify-content: center;
+    font-size: 14px;
+    margin: 0 16px 8px 16px;
+    height: 32px;
+    border-radius: 8px !important;
+    line-height: 32px;
+    flex-shrink: 0;
 
-  &:hover {
-    background-color: ${globalColor(
-  `--${illaPrefix}-brand-purple-06`,
-)}!important;
-  }
-`
+    ${isActive && activeCss}
+
+    transition: background-color .2s ease-in-out;
+
+    & > * {
+      font-size: 14px !important;
+    }
+
+    &:hover {
+      background-color: ${globalColor(
+    `--${illaPrefix}-brand-purple-06`,
+  )}!important;
+    }
+  `
+}
 
 export const FilterIconCss = css`
   margin-left: 10px;
@@ -58,9 +70,8 @@ export const AddIconInNewButton = css`
 
 export const QueryItemList = css`
   list-style: none;
-  line-height: 40px;
-  padding: 9px 16px;
   margin: 0;
+  padding: 0;
   overflow: auto;
 `
 
@@ -68,6 +79,12 @@ export const QueryItem = css`
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 9px 16px;
+  height: 40px;
+
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
 `
 
 export const QueryItemIcon = css`
@@ -85,7 +102,7 @@ export const QueryItemTitle = css`
 export const WarningIndicator = css`
   position: absolute;
   color: ${globalColor(`--${illaPrefix}-orange-06`)};
-  bottom: 10px;
+  bottom: 0;
   right: 0;
 
   & > path:last-child {
@@ -103,4 +120,22 @@ export const UpdatedIndicator = css`
 `
 export const QueryItemTime = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+`
+
+export const NewQueryOptionsList = css`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`
+
+export const NewQueryOptionsItem = css`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 9px 16px;
+  height: 40px;
+
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
 `
