@@ -8,7 +8,7 @@ import {
 import { Button } from "@illa-design/button"
 import { AddIcon, SearchIcon } from "@illa-design/icon"
 
-interface QueryListProps extends HTMLAttributes<HTMLDivElement> { }
+interface QueryListProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const QueryList: FC<QueryListProps> = (props) => {
   const { className } = props

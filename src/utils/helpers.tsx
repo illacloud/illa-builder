@@ -10,6 +10,6 @@ export function unFocus(document: Document, window: Window) {
   } else {
     try {
       window.getSelection()?.removeAllRanges()
-    } catch (e) { }
+    } catch (e) {}
   }
 }
