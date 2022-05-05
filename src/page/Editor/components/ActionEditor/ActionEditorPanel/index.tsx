@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react"
+import { FC } from "react"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
@@ -77,8 +77,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <Option>SQL</Option>
           <Option>REST API</Option>
         </Select>
-        <div css={EditIcon}>
-          <PenIcon onClick={editResource} />
+        <div css={EditIcon} onClick={editResource}>
+          <PenIcon />
         </div>
       </div>
       <div>{children}</div>

@@ -148,9 +148,14 @@ export const EditIcon = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-radius: 0 8px 8px 0;
   box-sizing: border-box;
+  cursor: pointer;
 
   & > svg {
     margin: 8px;
     color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+
+  &:hover > svg {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   }
     `
