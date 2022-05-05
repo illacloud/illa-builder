@@ -1,17 +1,17 @@
 import { FC, useState, useRef } from "react"
 import { useResize } from "@/utils/hooks/useResize"
 import { QueryList } from "./QueryList"
-import { QueryEditorPanel } from "./QueryEditorPanel"
+import { ActionEditorPanel } from "./ActionEditorPanel"
 import {
   applyContainerHeight,
   applyResizerCss,
-  QueryEditorContainer,
-  QueryEditorPanelWrapper,
+  ActionEditorContainer,
+  ActionEditorPanelWrapper,
 } from "./style"
 import { FormContainer } from "./FormContainer"
-import { QueryEditorProps } from "./interface"
+import { ActionEditorProps } from "./interface"
 
-export const QueryEditor: FC<QueryEditorProps> = (props) => {
+export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const { className } = props
   const [formVisible, setFormVisible] = useState(false)
 
@@ -26,7 +26,7 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const resizer = useResize("vertical", editorRef, onHeightChange, onDragEnd)
 
   return (
-    <div css={QueryEditorPanelWrapper}>
+    <div css={ActionEditorPanelWrapper}>
       <div
         onMouseDown={resizer.onMouseDown}
         onTouchStart={resizer.onTouchStart}
@@ -35,11 +35,11 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
       />
       <div
         className={className}
-        css={[QueryEditorContainer, applyContainerHeight(containerHeight)]}
+        css={[ActionEditorContainer, applyContainerHeight(containerHeight)]}
         ref={editorRef}
       >
         <QueryList />
-        <QueryEditorPanel
+        <ActionEditorPanel
           onCreateResource={() => setFormVisible(true)}
           onEditResource={() => setFormVisible(true)}
         />
@@ -53,4 +53,4 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
   )
 }
 
-QueryEditor.displayName = "QueryEditor"
+ActionEditor.displayName = "ActionEditor"

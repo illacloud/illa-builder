@@ -5,7 +5,7 @@ export const QueryListContainer = css`
   display: flex;
   flex-direction: column;
   width: 255px;
-  border-right: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const QueryListHeader = css`
@@ -13,7 +13,7 @@ export const QueryListHeader = css`
   display: flex;
   align-items: center;
   padding: 13px 16px;
-  color: ${globalColor(`--${illaPrefix}-grayblue-06`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   justify-content: space-between;
 `
 

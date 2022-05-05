@@ -1,8 +1,8 @@
-import { FC, useRef, useState } from "react"
+import { FC } from "react"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
-import { QueryEditorPanelProps } from "./interface"
+import { ActionEditorPanelProps } from "./interface"
 import {
   Container,
   Header,
@@ -19,7 +19,7 @@ import {
 } from "./style"
 import { TitleInput } from "./TitleInput"
 
-export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
+export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, children, onEditResource, onCreateResource } = props
 
   const modeOptions = [
@@ -29,11 +29,11 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
 
   const triggerOptions = [
     {
-      label: "Run query only when manually triggered",
+      label: "Run action only when manually triggered",
       value: 0,
     },
     {
-      label: "Run query automatically when inputs change",
+      label: "Run action automatically when inputs change",
       value: 1,
     },
   ]
@@ -49,7 +49,7 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
   return (
     <div className={className} css={Container}>
       <header css={Header}>
-        <TitleInput title={"Query"} />
+        <TitleInput title={"Action"} />
         <span css={Filling} />
         <Button css={[HeaderButton, MoreBtn]}>
           <MoreIcon />
@@ -77,8 +77,8 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
           <Option>SQL</Option>
           <Option>REST API</Option>
         </Select>
-        <div css={EditIcon}>
-          <PenIcon onClick={editResource} />
+        <div css={EditIcon} onClick={editResource}>
+          <PenIcon />
         </div>
       </div>
       <div>{children}</div>
@@ -86,4 +86,4 @@ export const QueryEditorPanel: FC<QueryEditorPanelProps> = (props) => {
   )
 }
 
-QueryEditorPanel.displayName = "QueryEditorPanel"
+ActionEditorPanel.displayName = "ActionEditorPanel"

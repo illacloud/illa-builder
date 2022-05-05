@@ -7,7 +7,7 @@ export const CategoryCSS = css`
   font-weight: 500;
   line-height: 1.57;
   font-family: HelveticaNeue;
-  color: ${globalColor(`--${illaPrefix}-grayblue-06`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   padding-top: 8px;
 `
 
@@ -23,7 +23,7 @@ export function ResourceListCSS(last?: boolean): SerializedStyles {
 
 export const ResourceItemCSS = css`
   border-radius: 8px;
-  border: solid 1px ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   padding: 24px 44px;
   text-align: center;
