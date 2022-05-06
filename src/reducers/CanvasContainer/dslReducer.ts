@@ -14,56 +14,6 @@ import { Category } from "@/page/Editor/dragConfig/dragType"
 
 const initialState = { root: null } as DslState
 
-const dslReducer = (dslState?: DslState | null, action?: AnyAction | null) => {
-  console.log(dslState, action, "dslReducer")
-  let safeState =
-    dslState ??
-    ({
-      root: null,
-    } as DslState)
-
-  switch (action?.type) {
-    case DslActionName.AddFrame: {
-      const addFrameAction = action as AddFrame
-      if (addFrameAction.dslFrame.parentKey == null) {
-        safeState = {
-          ...safeState,
-          root: addFrameAction.dslFrame,
-        }
-      } else {
-        safeState = addNode(
-          safeState,
-          addFrameAction.dslFrame.parentKey,
-          addFrameAction.dslFrame,
-        )
-      }
-      break
-    }
-    case DslActionName.AddText: {
-      const addTextAction = action as AddText
-      addNode2Layout(
-        addTextAction.dslText.parentKey,
-        safeState.root!!,
-        addTextAction.dslText,
-      )
-      safeState = {
-        ...safeState,
-      }
-      break
-    }
-    case DslActionName.UpdateText: {
-      const updateTextAction = action as UpdateText
-      updateNode(safeState, safeState.root!!, updateTextAction.newDslText)
-      safeState = {
-        ...safeState,
-      }
-      break
-    }
-  }
-
-  return safeState
-}
-
 function addNode(
   currentState: DslState,
   parentKey: string,
@@ -81,9 +31,7 @@ function addNode(
     }
   } else {
     addNode2Layout(parentKey, currentState.root!!, dslNode)
-    return {
-      ...currentState,
-    }
+    return currentState
   }
 }
 
@@ -100,7 +48,7 @@ function addNode2Layout(
     ) {
       dslLayout.nodeChildren.push(dslNode)
     }
-    return
+    return dslLayout
   } else {
     dslLayout.nodeChildren.forEach((value) => {
       if (value.category == Category.Layout) {
@@ -167,21 +115,14 @@ const dslSlice = createSlice({
             safeState.root!!,
             addTextAction.dslText,
           )
-          safeState = {
-            ...safeState,
-          }
           break
         }
         case DslActionName.UpdateText: {
           const updateTextAction = action.payload as UpdateText
           updateNode(safeState, safeState.root!!, updateTextAction.newDslText)
-          safeState = {
-            ...safeState,
-          }
           break
         }
       }
-
       return safeState
     },
   },

@@ -6,6 +6,7 @@ import { Dispatch } from "redux"
 import { DslActionName } from "../../../store/dsl-action"
 import { DslNode, DslText } from "../../../dragConfig/dsl"
 import { MenuActionName } from "../../../store/menu-action"
+import { dslActions } from "../../../../../reducers/CanvasContainer/dslReducer"
 
 const TextView: React.FC<DslText> = (textViewProps) => {
   const dispatch = useDispatch()
@@ -74,20 +75,22 @@ const TextView: React.FC<DslText> = (textViewProps) => {
             const lastFrame = new Frame(
               `left: ${textViewProps.left}; top: ${textViewProps.top}`,
             )
-            dispatch({
-              type: DslActionName.UpdateText,
-              newDslText: {
-                ...textViewProps,
-                left:
-                  parseFloat(lastFrame.get("left")) +
-                  parseFloat(frame.get("transform", "translateX")) +
-                  "px",
-                top:
-                  parseFloat(lastFrame.get("top")) +
-                  parseFloat(frame.get("transform", "translateY")) +
-                  "px",
-              },
-            })
+            dispatch(
+              dslActions.dslActionHandler({
+                type: DslActionName.UpdateText,
+                newDslText: {
+                  ...textViewProps,
+                  left:
+                    parseFloat(lastFrame.get("left")) +
+                    parseFloat(frame.get("transform", "translateX")) +
+                    "px",
+                  top:
+                    parseFloat(lastFrame.get("top")) +
+                    parseFloat(frame.get("transform", "translateY")) +
+                    "px",
+                },
+              }),
+            )
             target.style.cssText += new Frame(
               "transform: translateX(0px) translateY(0px)",
             ).toCSS()
@@ -116,7 +119,12 @@ const TextView: React.FC<DslText> = (textViewProps) => {
 }
 
 function selectNode(dispatch: Dispatch, dslNode: DslNode) {
-  dispatch({ type: MenuActionName.SelectNode, selectedNode: dslNode })
+  dispatch(
+    dslActions.dslActionHandler({
+      type: MenuActionName.SelectNode,
+      selectedNode: dslNode,
+    }),
+  )
 }
 
 export default TextView
