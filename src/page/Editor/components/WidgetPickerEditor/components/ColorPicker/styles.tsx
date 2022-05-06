@@ -99,6 +99,9 @@ export function applyColorLumpCss(colorStr: RgbaColor) {
     width: 24px;
     height: 24px;
     border-radius: 12px;
+    &:hover {
+      cursor: pointer;
+    }
     margin-left: 8px;
     border: solid ${globalColor(`--${illaPrefix}-gray-06`)} 0.6px;
     background-color: rgba(

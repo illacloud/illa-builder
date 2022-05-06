@@ -97,6 +97,8 @@ function ColorPicker(props: ColorPickerProps) {
                   content={
                     <ColorPickerOperation
                       color={hsva}
+                      handleHueChange={props.onHueChange}
+                      handleAlphaChange={props.onAlphaChange}
                       prefabricatedColors={props.prefabricatedColors}
                       handleColorPick={handleColorPick}
                       handleClosePanel={() => setCurrentVisible(false)}

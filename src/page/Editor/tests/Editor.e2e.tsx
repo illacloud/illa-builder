@@ -4,7 +4,7 @@ import "@testing-library/cypress"
 import { WidgetPickerEditor } from "../components/WidgetPickerEditor/index"
 
 it("Editor renders correctly", () => {
-  mount(<WidgetPickerEditor />)
+  mount(<div>WidgetPickerEditor</div>)
   cy.findByText("WidgetPickerEditor").should("exist")
   unmount()
 })

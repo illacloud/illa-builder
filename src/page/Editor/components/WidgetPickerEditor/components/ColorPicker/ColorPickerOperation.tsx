@@ -83,6 +83,7 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
             hue={props.color.h}
             onChange={(newHue) => {
               props.handleColorPick({ ...props.color, ...newHue })
+              props.handleHueChange && props.handleHueChange(newHue)
             }}
           />
           <Alpha
@@ -94,6 +95,7 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
             hsva={props.color}
             onChange={(newAlpha) => {
               props.handleColorPick({ ...props.color, ...newAlpha })
+              props.handleAlphaChange && props.handleAlphaChange(newAlpha)
             }}
           />
         </div>
