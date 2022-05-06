@@ -190,3 +190,14 @@ export const CloseBtn = css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
 `
+export const NoMatchFoundWrapper = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  font-size: 14px;
+
+  & > svg {
+    margin-bottom: 8px;
+  }
+`

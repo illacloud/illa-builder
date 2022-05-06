@@ -7,6 +7,7 @@ import {
   SearchIcon,
   ImageDefaultIcon,
   WarningCircleIcon,
+  EmptyStateIcon,
 } from "@illa-design/icon"
 import {
   QueryListContainer,
@@ -29,6 +30,7 @@ import {
   SearchInputIcon,
   CloseBtn,
   HeaderSearchIcon,
+  NoMatchFoundWrapper,
 } from "./style"
 import { QueryListProps, QueryItem } from "./interface"
 
@@ -84,8 +86,6 @@ export const QueryList: FC<QueryListProps> = (props) => {
   )
 
   function addQuery() {
-    const now = Date.now()
-
     setQueryItems((prev) => {
       const newItems = prev.slice(0)
       const length = newItems.filter((i) => i.type === "query").length
@@ -111,6 +111,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
         }}
         placeholder={"Search"}
         onChange={setQuery}
+        onClear={() => setQuery("")}
         css={SearchInput}
         allowClear
       />
@@ -136,6 +137,29 @@ export const QueryList: FC<QueryListProps> = (props) => {
     </>
   )
 
+  const NoMatchFound = (
+    <div css={NoMatchFoundWrapper}>
+      <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
+      <span>Sorry, No Search result</span>
+    </div>
+  )
+
+  const renderQueryItemList = () => {
+    if (filteredQueryItems.length === 0) {
+      if (isSearch && query !== "") {
+        return NoMatchFound
+      }
+
+      return (
+        <span>
+          Add a query to begin working with data from a connected resource.
+        </span>
+      )
+    }
+
+    return queryItemsList
+  }
+
   return (
     <div className={className} css={QueryListContainer}>
       <header css={QueryListHeader}>{headerContent}</header>
@@ -154,7 +178,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
         </Button>
       </Dropdown>
 
-      <ul css={QueryItemList}>{queryItemsList}</ul>
+      <ul css={QueryItemList}>{renderQueryItemList()}</ul>
     </div>
   )
 }
