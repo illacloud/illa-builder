@@ -18,4 +18,4 @@ export const Wrapper: FC<WrapperProps> = (props) => {
   )
 }
 
-Wrapper.displayName = "QueryEditor"
+Wrapper.displayName = "Wrapper"
