@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, useMemo } from "react"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
@@ -16,9 +16,10 @@ import {
   NewButtonContentWrapper,
   AddIconInNewButton,
   QueryItemList,
-  QueryItem,
+  applyQueryItem,
+  QueryItemTitleWrapper,
+  applyQueryItemTitle,
   QueryItemIcon,
-  QueryItemTitle,
   WarningIndicator,
   UpdatedIndicator,
   QueryItemTime,
@@ -29,36 +30,43 @@ import {
   CloseBtn,
   HeaderSearchIcon,
 } from "./style"
-import { QueryListProps } from "./interface"
+import { QueryListProps, QueryItem } from "./interface"
 
 export const QueryList: FC<QueryListProps> = (props) => {
   const { className } = props
   const [queryOptionsVisible, setQueryOptionsVisible] = useState(false)
   const [isSearch, setIsSearch] = useState(false)
-  const [queryItems, setQueryItems] = useState<
-    {
-      type: string
-      name: string
-      isWarning: boolean
-      isUpdated: boolean
-      time: string
-    }[]
-  >([])
+  const [selectedQuery, setSelectedQuery] = useState<string>()
+  const [queryItems, setQueryItems] = useState<QueryItem[]>([])
+  const [query, setQuery] = useState<string>("")
+  const filteredQueryItems = useMemo(() => {
+    if (query === "") {
+      return queryItems
+    }
 
-  const queryItemsList = queryItems.map((item, index) => {
-    const { name, time, isWarning, isUpdated } = item
+    return queryItems.filter(({ name }) => name.includes(query))
+  }, [queryItems, query])
+
+  const queryItemsList = filteredQueryItems.map((item, index) => {
+    const { id, name, time, isWarning, isUpdated } = item
     const icon = <ImageDefaultIcon />
 
     return (
-      <li key={`${name}_${index}`} css={QueryItem}>
+      <li
+        key={id}
+        css={applyQueryItem(id === selectedQuery)}
+        onClick={() => setSelectedQuery(id)}
+      >
         <span css={QueryItemIcon}>
           {icon}
           {isWarning && (
             <WarningCircleIcon css={WarningIndicator} size={"8px"} />
           )}
         </span>
-        <span css={QueryItemTitle}>
-          {name}
+        <span css={QueryItemTitleWrapper}>
+          <span css={applyQueryItemTitle(isWarning)} title={name}>
+            {name}
+          </span>
           {isUpdated && <span css={UpdatedIndicator}></span>}
         </span>
         <span css={QueryItemTime}>{time}</span>
@@ -80,11 +88,14 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
     setQueryItems((prev) => {
       const newItems = prev.slice(0)
+      const length = newItems.filter((i) => i.type === "query").length
+
       newItems.push({
-        type: "rest",
-        name: `Query_${now}`,
-        isUpdated: now % 2 === 0,
-        isWarning: now % 2 === 0,
+        id: Date.now().toString(),
+        type: "query",
+        name: `Query${length + 1}`,
+        isUpdated: Math.random() > 0.5,
+        isWarning: Math.random() > 0.5,
         time: "0.7s",
       })
 
@@ -98,6 +109,8 @@ export const QueryList: FC<QueryListProps> = (props) => {
         prefix={{
           render: <SearchIcon size={"12px"} css={SearchInputIcon} />,
         }}
+        placeholder={"Search"}
+        onChange={setQuery}
         css={SearchInput}
         allowClear
       />
@@ -112,7 +125,11 @@ export const QueryList: FC<QueryListProps> = (props) => {
   ) : (
     <>
       <span css={HeaderTitle}>Queries List</span>
-      <SearchIcon size={"12px"} onClick={() => setIsSearch(true)} css={HeaderSearchIcon} />
+      <SearchIcon
+        size={"12px"}
+        onClick={() => setIsSearch(true)}
+        css={HeaderSearchIcon}
+      />
     </>
   )
 

@@ -78,32 +78,55 @@ export const QueryItemList = css`
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 `
 
-export const QueryItem = css`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  padding: 9px 16px;
-  height: 40px;
-
-  &:hover {
+export function applyQueryItem(isActive: boolean): SerializedStyles {
+  const backgroundColorCss = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-  }
-`
+  `
+  return css`
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 9px 16px;
+    height: 40px;
+
+    &:hover {
+      ${backgroundColorCss}
+    }
+
+    ${isActive && backgroundColorCss}
+  `
+}
 
 export const QueryItemIcon = css`
   position: relative;
 `
 
-export const QueryItemTitle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+export const QueryItemTitleWrapper = css`
   flex: 1 1 0;
   display: flex;
   align-items: center;
   margin-left: 8px;
+  max-width: 164px;
+  overflow: hidden;
+  margin-right: 8px;
 `
+
+export function applyQueryItemTitle(isWarning: boolean): SerializedStyles {
+  const warningColor = css`
+    color: ${globalColor(`--${illaPrefix}-red-03`)};
+  `
+  return css`
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+    ${isWarning && warningColor}
+  `
+}
 
 export const WarningIndicator = css`
   position: absolute;
@@ -122,7 +145,8 @@ export const UpdatedIndicator = css`
   width: 6px;
   border-radius: 50%;
   background-color: ${globalColor(`--${illaPrefix}-blue-03`)};
-  margin-left: 10px;
+  margin-left: 8px;
+  flex: 0 0 6px;
 `
 export const QueryItemTime = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
