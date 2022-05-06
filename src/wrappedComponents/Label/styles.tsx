@@ -13,7 +13,7 @@ function applyLeftLabelStyle(
   width?: string,
 ): SerializedStyles {
   return css`
-    ${baseLabelCss}
+    ${baseLabelCss};
     width: ${width};
     max-width: 80%;
     flex: 0 1 ${width};
@@ -23,11 +23,10 @@ function applyLeftLabelStyle(
   `
 }
 
-function applyTopLabelStyle(
-  alignment: "left" | "right" = "left",
-): SerializedStyles {
+function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
   return css`
-    ${baseLabelCss}
+    ${baseLabelCss};
+
     margin-bottom: 8px;
     text-align: ${alignment};
   `

@@ -1,4 +1,4 @@
-export default interface ILabelProps {
+export default interface LabelProps {
   label?: string
   required?: boolean
   hideLabel?: boolean

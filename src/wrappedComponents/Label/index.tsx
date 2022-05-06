@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react"
-import ILabelProps from "./interface"
+import LabelProps from "./interface"
 import {
   applyLabelStyle,
   labelCaptionCss,
@@ -7,7 +7,7 @@ import {
   labelTitleCss,
 } from "./styles"
 
-const Label: FC<ILabelProps> = (props) => {
+const Label: FC<LabelProps> = (props) => {
   const {
     label = "Label",
     labelAlign = "left",
@@ -15,8 +15,8 @@ const Label: FC<ILabelProps> = (props) => {
     labelPosition = "left",
     labelWidth = 33,
     labelWidthUnit = "%",
-    required = false,
-    hidden = false,
+    required,
+    hidden,
   } = props
 
   const renderLabelTitleRequired = useMemo(() => {
@@ -45,24 +45,12 @@ const Label: FC<ILabelProps> = (props) => {
     }
   }, [labelWidthUnit, labelWidth])
 
-  const renderLabel = useMemo(() => {
-    return !hidden && label ? (
-      <label css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}>
-        {renderLabelTitle}
-        {renderLabelCaption}
-      </label>
-    ) : null
-  }, [
-    hidden,
-    label,
-    labelPosition,
-    labelAlign,
-    formatLabelWidth,
-    renderLabelTitle,
-    renderLabelCaption,
-  ])
-
-  return renderLabel
+  return !hidden && label ? (
+    <label css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}>
+      {renderLabelTitle}
+      {renderLabelCaption}
+    </label>
+  ) : null
 }
 
 export default Label
