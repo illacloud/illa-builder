@@ -11,7 +11,7 @@ import { DslFrame } from "../../dragConfig/dsl"
 import { DslActionName } from "../../store/dsl-action"
 import { AppState } from "../../store/states/app-state"
 import { DslState } from "../../store/states/dsl-state"
-import { applyDslLayout } from "./comp/compose"
+import { applyDslLayout } from "./demo/compose"
 import { dslActions } from "@/reducers/CanvasContainer/dslReducer"
 
 interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
