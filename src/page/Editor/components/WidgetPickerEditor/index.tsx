@@ -1,6 +1,7 @@
 import { FC, HTMLAttributes } from "react"
 import { DemoWidget } from "./DemoWidget"
 import { TestWidget } from "./TestWidget"
+import ComponentsManager from "./componentManager"
 
 interface WidgetPickerEditorProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -12,6 +13,7 @@ export const WidgetPickerEditor: FC<WidgetPickerEditorProps> = (props) => {
       WidgetPickerEditor
       <DemoWidget />
       <TestWidget />
+      <ComponentsManager />
     </div>
   )
 }
