@@ -47,7 +47,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
     return queryItems.filter(({ name }) => name.includes(query))
   }, [queryItems, query])
 
-  const queryItemsList = filteredQueryItems.map((item, index) => {
+  const queryItemsList = filteredQueryItems.map((item) => {
     const { id, name, time, isWarning, isUpdated } = item
     const icon = <ImageDefaultIcon />
 
@@ -115,7 +115,10 @@ export const QueryList: FC<QueryListProps> = (props) => {
         allowClear
       />
       <Button
-        onClick={() => setIsSearch(false)}
+        onClick={() => {
+          setIsSearch(false)
+          setQuery("")
+        }}
         colorScheme={"white"}
         css={CloseBtn}
       >
