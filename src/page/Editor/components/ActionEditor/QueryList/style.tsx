@@ -201,3 +201,14 @@ export const NoMatchFoundWrapper = css`
     margin-bottom: 8px;
   }
 `
+
+export const EmptyQueryListPlaceholder = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  padding: 16px;
+  margin: 0 16px;
+  font-size: 14px;
+  border: 2px dashed ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+`

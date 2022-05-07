@@ -1,4 +1,4 @@
-import { FC, useState, useMemo } from "react"
+import { FC, useState, useMemo, useRef } from "react"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
@@ -31,6 +31,7 @@ import {
   CloseBtn,
   HeaderSearchIcon,
   NoMatchFoundWrapper,
+  EmptyQueryListPlaceholder,
 } from "./style"
 import { QueryListProps, QueryItem } from "./interface"
 
@@ -41,6 +42,8 @@ export const QueryList: FC<QueryListProps> = (props) => {
   const [selectedQuery, setSelectedQuery] = useState<string>()
   const [queryItems, setQueryItems] = useState<QueryItem[]>([])
   const [query, setQuery] = useState<string>("")
+  const [editingQueryItemId, setEditingQueryItemId] = useState("")
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const filteredQueryItems = useMemo(() => {
     if (query === "") {
       return queryItems
@@ -49,9 +52,47 @@ export const QueryList: FC<QueryListProps> = (props) => {
     return queryItems.filter(({ name }) => name.includes(query))
   }, [queryItems, query])
 
+  function updateName(id: string, name: string) {
+    const newQueryItems = queryItems.slice(0)
+    const editingItem = newQueryItems.find((i) => i.id === id)
+    editingItem && (editingItem.name = name)
+    setQueryItems(newQueryItems)
+  }
+
+  function editName(id: string) {
+    setEditingQueryItemId(id)
+    setTimeout(() => {
+      inputRef.current?.focus()
+    }, 0)
+  }
+
   const queryItemsList = filteredQueryItems.map((item) => {
     const { id, name, time, isWarning, isUpdated } = item
     const icon = <ImageDefaultIcon />
+
+    function renderName() {
+      if (id === editingQueryItemId) {
+        return (
+          <Input
+            inputRef={inputRef}
+            requirePadding={false}
+            value={name}
+            onChange={(value) => updateName(id, value)}
+            onBlur={() => setEditingQueryItemId("")}
+            onPressEnter={() => setEditingQueryItemId("")}
+          />
+        )
+      }
+
+      return (
+        <span css={QueryItemTitleWrapper} onDoubleClick={() => editName(id)}>
+          <span css={applyQueryItemTitle(isWarning)} title={name}>
+            {name}
+          </span>
+          {isUpdated && <span css={UpdatedIndicator}></span>}
+        </span>
+      )
+    }
 
     return (
       <li
@@ -65,12 +106,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
             <WarningCircleIcon css={WarningIndicator} size={"8px"} />
           )}
         </span>
-        <span css={QueryItemTitleWrapper}>
-          <span css={applyQueryItemTitle(isWarning)} title={name}>
-            {name}
-          </span>
-          {isUpdated && <span css={UpdatedIndicator}></span>}
-        </span>
+        {renderName()}
         <span css={QueryItemTime}>{time}</span>
       </li>
     )
@@ -151,7 +187,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
       }
 
       return (
-        <span>
+        <span css={EmptyQueryListPlaceholder}>
           Add a query to begin working with data from a connected resource.
         </span>
       )
