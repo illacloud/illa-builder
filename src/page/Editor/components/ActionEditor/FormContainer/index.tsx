@@ -1,29 +1,44 @@
 import { Modal } from "@illa-design/modal"
-import { FC, useState } from "react"
-import { FormContainerProps, ApiType, DatabaseType } from "./interface"
+import { FC, useState, useRef, useMemo, useLayoutEffect } from "react"
+import {
+  FormContainerProps,
+  ApiType,
+  DatabaseType,
+  ActionType,
+} from "./interface"
 import { ModalCSS, CloseIconCSS, TitleCSS } from "./style"
 import { SelectResourceForm } from "../SelectResourceForm"
 import { ConfigureResourceForm } from "../ConfigureResourceForm"
 import { CloseIcon } from "@illa-design/icon"
 
 export const FormContainer: FC<FormContainerProps> = (props) => {
-  const { actionType, resourceType, databaseType, apiType, visible, onCancel } =
-    props
+  const {
+    actionType: propActionType,
+    resourceType,
+    databaseType,
+    apiType,
+    visible,
+    onCancel,
+  } = props
   const [configureType, setConfigureType] = useState<ApiType | DatabaseType>(
     databaseType ?? apiType ?? "MySQL",
   )
-
+  const [actionType, setActionType] = useState<ActionType>(propActionType)
+  useLayoutEffect(() => {
+    setActionType(propActionType)
+  }, [propActionType])
   const title =
     actionType === "select"
       ? "Select Resource Type"
       : `Configure ${configureType}`
 
-  const renderForm = () => {
+  const renderForm = useMemo(() => {
     if (actionType === "select") {
       return (
         <SelectResourceForm
           onSelect={(type) => {
             setConfigureType(type)
+            setActionType("configure")
           }}
         />
       )
@@ -33,7 +48,13 @@ export const FormContainer: FC<FormContainerProps> = (props) => {
         <ConfigureResourceForm actionType={actionType} onCancel={onCancel} />
       )
     }
+  }, [actionType])
+
+  const handleClose = () => {
+    onCancel && onCancel()
+    setActionType(propActionType)
   }
+
   return (
     <Modal
       _css={ModalCSS}
@@ -41,14 +62,14 @@ export const FormContainer: FC<FormContainerProps> = (props) => {
       footer={false}
       closable={true}
       closeElement={
-        <div css={CloseIconCSS} onClick={onCancel}>
+        <div css={CloseIconCSS} onClick={handleClose}>
           <CloseIcon />
         </div>
       }
-      onCancel={onCancel}
+      onCancel={handleClose}
     >
       <div css={TitleCSS}>{title}</div>
-      {renderForm()}
+      {renderForm}
     </Modal>
   )
 }

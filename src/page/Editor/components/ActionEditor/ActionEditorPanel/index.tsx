@@ -65,12 +65,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           options={modeOptions}
           defaultValue={0}
           css={[ActionSelect, ModeSelect]}
-        ></Select>
+        />
         <Select
           options={triggerOptions}
           defaultValue={0}
           css={[ActionSelect, TriggerSelect]}
-        ></Select>
+        />
 
         <Select css={[ActionSelect, ResourceSelect]}>
           <Option onClick={createResouce}>Create a new resouce</Option>
