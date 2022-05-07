@@ -32,14 +32,14 @@ export const HeaderSearchIcon = css`
 export const applyNewButton = (isActive: boolean): SerializedStyles => {
   const activeCss = css`
     background-color: ${globalColor(
-      `--${illaPrefix}-brand-purple-05`,
-    )}!important;
+    `--${illaPrefix}-brand-purple-05`,
+  )}!important;
   `
 
   return css`
     background-color: ${globalColor(
-      `--${illaPrefix}-brand-purple-07`,
-    )}!important;
+    `--${illaPrefix}-brand-purple-07`,
+  )}!important;
     color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
     justify-content: center;
     font-size: 14px;
@@ -59,8 +59,8 @@ export const applyNewButton = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-        `--${illaPrefix}-brand-purple-06`,
-      )}!important;
+    `--${illaPrefix}-brand-purple-06`,
+  )}!important;
     }
   `
 }
@@ -82,7 +82,7 @@ export const QueryItemList = css`
   overflow-y: auto;
 `
 
-export function applyQueryItem(isActive: boolean): SerializedStyles {
+export function applyQueryItem(isSelected: boolean, isActive: boolean): SerializedStyles {
   const backgroundColorCss = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
@@ -97,7 +97,7 @@ export function applyQueryItem(isActive: boolean): SerializedStyles {
       ${backgroundColorCss}
     }
 
-    ${isActive && backgroundColorCss}
+    ${(isSelected || isActive) && backgroundColorCss}
   `
 }
 
@@ -176,8 +176,8 @@ export const SearchInput = css`
     border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-brand-purple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -212,3 +212,23 @@ export const EmptyQueryListPlaceholder = css`
   font-size: 14px;
   border: 2px dashed ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
+
+export function applyActionMenu(top?: number, left?: number): SerializedStyles {
+  return css`
+    position: fixed!important;
+    top: ${top ?? 0}px;
+    left: ${left ?? 0}px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 184px;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
+    border-radius: 8px;
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+  `
+}
+
+export const DeleteAction = css`
+  color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
+  `

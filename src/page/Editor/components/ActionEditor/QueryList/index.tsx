@@ -1,7 +1,8 @@
-import { FC, useState, useMemo, useRef } from "react"
+import { FC, useState, useMemo, useRef, MouseEvent } from "react"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
+import { Menu } from "@illa-design/menu"
 import {
   AddIcon,
   SearchIcon,
@@ -32,20 +33,33 @@ import {
   HeaderSearchIcon,
   NoMatchFoundWrapper,
   EmptyQueryListPlaceholder,
+  applyActionMenu,
+  DeleteAction,
 } from "./style"
+import { useClickAway } from "react-use"
 import { QueryListProps, QueryItem } from "./interface"
+
+const MenuItem = Menu.Item
 
 export const QueryList: FC<QueryListProps> = (props) => {
   const { className } = props
 
   const [queryOptionsVisible, setQueryOptionsVisible] = useState(false)
   const [isSearch, setIsSearch] = useState(false)
-  const [selectedQuery, setSelectedQuery] = useState<string>()
+  const [selectedQueryId, setSelectedQuery] = useState<string>()
   const [queryItems, setQueryItems] = useState<QueryItem[]>([])
   const [query, setQuery] = useState<string>("")
   const [editingQueryItemId, setEditingQueryItemId] = useState("")
+  const [actionQueryItemId, setActionQueryItemId] = useState("")
+  const [actionMenuVisible, setActionMenuVisible] = useState(false)
+  const [actionMenuPosition, setActionMenuPosition] = useState({ x: 0, y: 0 })
 
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const actionMenuRef = useRef<HTMLDivElement | null>(null)
+
+  useClickAway(actionMenuRef, () => {
+    setActionMenuVisible(false)
+  })
 
   const filteredQueryItems = useMemo(() => {
     if (query === "") {
@@ -69,6 +83,15 @@ export const QueryList: FC<QueryListProps> = (props) => {
     setTimeout(() => {
       inputRef.current?.focus()
     }, 0)
+  }
+
+  function showActionMenu(event: MouseEvent, id: string) {
+    event.preventDefault()
+    const { clientX, clientY } = event
+    setActionMenuPosition({ x: clientX, y: clientY })
+    console.log({ ref: actionMenuRef, current: actionMenuRef.current, rect: (actionMenuRef.current as HTMLElement)?.getBoundingClientRect() })
+    setActionQueryItemId(id)
+    setActionMenuVisible(true)
   }
 
   const queryItemsList = filteredQueryItems.map((item) => {
@@ -99,11 +122,15 @@ export const QueryList: FC<QueryListProps> = (props) => {
       )
     }
 
+    const isSelected = id === selectedQueryId
+    const isActive = id === actionQueryItemId
+
     return (
       <li
         key={id}
-        css={applyQueryItem(id === selectedQuery)}
+        css={applyQueryItem(isSelected, isActive)}
         onClick={() => setSelectedQuery(id)}
+        onContextMenu={(e) => showActionMenu(e, id)}
       >
         <span css={QueryItemIcon}>
           {icon}
@@ -134,7 +161,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
       newItems.push({
         id: Date.now().toString(),
         type: "query",
-        name: `Query${length + 1}`,
+        name: `query${length + 1}`,
         isUpdated: Math.random() > 0.5,
         isWarning: Math.random() > 0.5,
         time: "0.7s",
@@ -201,6 +228,50 @@ export const QueryList: FC<QueryListProps> = (props) => {
     return queryItemsList
   }
 
+  const actionMenu = (
+    <Menu
+      css={applyActionMenu(actionMenuPosition.y, actionMenuPosition.x)}
+      onClickMenuItem={handleAction}
+      ref={actionMenuRef}
+    >
+      <MenuItem key={"duplicate"} title={"Duplicate"}></MenuItem>
+      <MenuItem key={"delete"} title={"Delete"} css={DeleteAction}></MenuItem>
+      <MenuItem key={"extract"} title={"Extract To Query Libary"}></MenuItem>
+    </Menu>
+  )
+
+  function handleAction(key: string) {
+    if (key === "duplicate") {
+      duplicateQueryItem()
+    } else if (key === "delete") {
+      deleteQueryItem()
+    }
+  }
+
+  function duplicateQueryItem() {
+    setActionMenuVisible(false)
+    const newQueryItems = queryItems.slice(0)
+    const targetItem = newQueryItems.find((i) => i.id === actionQueryItemId)
+    const length = newQueryItems.filter((i) => i.type === "query").length
+    const duplicateItem = Object.assign({}, targetItem, {
+      id: Date.now().toString(),
+      name: `Query${length + 1}`,
+    })
+    setQueryItems([...newQueryItems, duplicateItem])
+    setActionQueryItemId("")
+  }
+
+  function deleteQueryItem() {
+    setActionMenuVisible(false)
+
+    const newQueryItems = queryItems.slice(0)
+    const index = newQueryItems.findIndex((i) => i.id === actionQueryItemId)
+    newQueryItems.splice(index, 1)
+    index !== -1 && setQueryItems(newQueryItems)
+
+    setActionQueryItemId("")
+  }
+
   return (
     <div className={className} css={QueryListContainer}>
       <header css={QueryListHeader}>{headerContent}</header>
@@ -220,6 +291,8 @@ export const QueryList: FC<QueryListProps> = (props) => {
       </Dropdown>
 
       <ul css={QueryItemList}>{renderQueryItemList()}</ul>
+
+      {actionMenuVisible && actionMenu}
     </div>
   )
 }
