@@ -13,7 +13,6 @@ export const TitleCSS = css`
   font-weight: 500;
   line-height: 1.4;
   padding-bottom: 16px;
-  font-family: HelveticaNeue;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   text-align: center;
 `

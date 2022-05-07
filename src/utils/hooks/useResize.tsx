@@ -28,7 +28,7 @@ export const useResize = (
   // saving min/max-height/width
   useEffect(() => {
     const { minHeight, maxHeight, minWidth, maxWidth } =
-      window.getComputedStyle(ref.current)
+      window.getComputedStyle(ref.current!)
     const parsePX2Number = (value: string) =>
       Number.parseInt(value.replace("px", ""), 10)
 
@@ -71,8 +71,8 @@ export const useResize = (
     event:
       | React.TouchEvent
       | (React.MouseEvent<Element, MouseEvent> & {
-        touches: { clientX: number; clientY: number }[]
-      }),
+          touches: { clientX: number; clientY: number }[]
+        }),
   ) => {
     unFocus(document, window)
 

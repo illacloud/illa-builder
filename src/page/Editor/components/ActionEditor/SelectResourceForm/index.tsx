@@ -32,7 +32,12 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
         <div css={CategoryCSS}>DATABASES</div>
         <div css={ResourceListCSS()}>
           {databaseList.map((database) => (
-            <div css={ResourceItemCSS}>
+            <div
+              css={ResourceItemCSS}
+              onClick={() => {
+                onSelect(database.title)
+              }}
+            >
               <div>{database.img}</div>
               <div css={ResourceNameCSS}>{database.title}</div>
             </div>

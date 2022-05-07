@@ -10,10 +10,12 @@ import {
 } from "./style"
 import { FormContainer } from "./FormContainer"
 import { ActionEditorProps } from "./interface"
+import { ActionType } from "@/page/Editor/components/ActionEditor/FormContainer/interface"
 
 export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const { className } = props
   const [formVisible, setFormVisible] = useState(false)
+  const [actionType, setActionType] = useState<ActionType>("select")
 
   const [containerHeight, setContainerHeight] = useState(300)
 
@@ -21,7 +23,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const onHeightChange = (height: number) => {
     setContainerHeight(height)
   }
-  const onDragEnd = () => { }
+  const onDragEnd = () => {}
 
   const resizer = useResize("vertical", editorRef, onHeightChange, onDragEnd)
 
@@ -40,12 +42,18 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       >
         <QueryList />
         <ActionEditorPanel
-          onCreateResource={() => setFormVisible(true)}
-          onEditResource={() => setFormVisible(true)}
+          onCreateResource={() => {
+            setActionType("select")
+            setFormVisible(true)
+          }}
+          onEditResource={() => {
+            setActionType("edit")
+            setFormVisible(true)
+          }}
         />
         <FormContainer
           visible={formVisible}
-          actionType={"select"}
+          actionType={actionType}
           onCancel={() => setFormVisible(false)}
         />
       </div>
