@@ -37,19 +37,24 @@ import { QueryListProps, QueryItem } from "./interface"
 
 export const QueryList: FC<QueryListProps> = (props) => {
   const { className } = props
+
   const [queryOptionsVisible, setQueryOptionsVisible] = useState(false)
   const [isSearch, setIsSearch] = useState(false)
   const [selectedQuery, setSelectedQuery] = useState<string>()
   const [queryItems, setQueryItems] = useState<QueryItem[]>([])
   const [query, setQuery] = useState<string>("")
   const [editingQueryItemId, setEditingQueryItemId] = useState("")
+
   const inputRef = useRef<HTMLInputElement | null>(null)
+
   const filteredQueryItems = useMemo(() => {
     if (query === "") {
       return queryItems
     }
 
-    return queryItems.filter(({ name }) => name.includes(query))
+    return queryItems.filter(({ name }) =>
+      name.toLowerCase().includes(query.toLowerCase()),
+    )
   }, [queryItems, query])
 
   function updateName(id: string, name: string) {
