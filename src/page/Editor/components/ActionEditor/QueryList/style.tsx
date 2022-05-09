@@ -82,7 +82,7 @@ export const QueryItemList = css`
   overflow-y: auto;
 `
 
-export function applyQueryItem(isActive: boolean): SerializedStyles {
+export function applyQueryItem(isSelected: boolean): SerializedStyles {
   const backgroundColorCss = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
@@ -97,12 +97,13 @@ export function applyQueryItem(isActive: boolean): SerializedStyles {
       ${backgroundColorCss}
     }
 
-    ${isActive && backgroundColorCss}
+    ${isSelected && backgroundColorCss}
   `
 }
 
 export const QueryItemIcon = css`
   position: relative;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 
 export const QueryItemTitleWrapper = css`
@@ -201,3 +202,46 @@ export const NoMatchFoundWrapper = css`
     margin-bottom: 8px;
   }
 `
+
+export const EmptyQueryListPlaceholder = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  padding: 16px;
+  margin: 0 16px;
+  font-size: 14px;
+  border: 2px dashed ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+`
+
+export function applyActionMenu(top?: number, left?: number): SerializedStyles {
+  return css`
+    position: fixed!important;
+    top: ${top ?? 0}px;
+    left: ${left ?? 0}px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 184px;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
+    border-radius: 8px;
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
+  `
+}
+
+export function applyActionMenuVisible(isVisible: boolean): SerializedStyles {
+  if (isVisible) {
+    return css`opacity: 1`;
+  }
+
+  return css`opacity: 0; top: -9999px;`
+}
+
+export const DuplicateAction = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
+  `
+
+export const DeleteAction = css`
+  color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
+  `

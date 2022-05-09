@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react"
 
-export interface QueryListProps extends HTMLAttributes<HTMLDivElement> { }
+export interface QueryListProps extends HTMLAttributes<HTMLDivElement> {}
 
 export interface QueryItem {
   id: string
