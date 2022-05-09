@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import undoable from "redux-undo"
 
 const initValue: demoReduxState = {
   name: "demo name",
@@ -26,13 +27,10 @@ const demoSlice = createSlice({
   },
 })
 
-export const {
-  changeDemoValueA,
-  changeDemoValueB,
-  changeDemoValueC,
-  resetValue,
-} = demoSlice.actions
-export default demoSlice.reducer
+export const { changeDemoValueA, changeDemoValueB, changeDemoValueC } =
+  demoSlice.actions
+
+export default undoable(demoSlice.reducer)
 
 export interface demoReduxState {
   name: string
