@@ -23,7 +23,7 @@ Building
 
 ## 💡 Doc
 
-[https://design.illafamily.com](https://builder.illafamily.com)
+[https://builder.illafamily.com](https://builder.illafamily.com)
 
 ## 🖥 Fast Try
 
