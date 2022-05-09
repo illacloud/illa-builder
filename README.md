@@ -13,7 +13,6 @@
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
 [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illa-family/discussions)
-[![storybook](https://cdn.illafamily.com/storybook.svg)](https://storybook.illasoft.com/main)
 [![license](https://badgen.net/gitlab/license/gitlab-org/omnibus-gitlab)](./LICENSE)
 [![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
 
@@ -21,36 +20,9 @@
 
 Building
 
-## 💡 Doc
-
-[https://builder.illafamily.com](https://builder.illafamily.com)
-
 ## 🖥 Fast Try
 
-You can fast try it on ILLA Cloud.
-
-## 🚀 Deploy
-
-building
-
-## ⌨️ Development
-
-Step 1: Clone locally.
-
-```bash
-$ git clone https://github.com/illa-family/illa-builder.git
-$ git submodule update --init
-$ cd illa-builder
-$ yarn
-```
-
-Step 2: Run.
-
-```bash
-$ yarn dev
-```
-
-Then your can open ILLA Builder in your browser.
+You can use [ILLA](https://illa.illafamily.com) to host it on ILLA Cloud or local.
 
 ## 💬 Community
 
