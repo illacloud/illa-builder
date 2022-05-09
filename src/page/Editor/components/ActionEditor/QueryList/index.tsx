@@ -75,6 +75,11 @@ export const QueryList: FC<QueryListProps> = (props) => {
     )
   }, [queryItems, query])
 
+  const queryItemsNameSet = useMemo(() => {
+    return new Set(queryItems.map((i) => i.name));
+  }, [queryItems])
+
+
   function updateName(id: string, name: string) {
     const newQueryItems = queryItems.slice(0)
     const editingItem = newQueryItems.find((i) => i.id === id)
@@ -87,6 +92,23 @@ export const QueryList: FC<QueryListProps> = (props) => {
     setTimeout(() => {
       inputRef.current?.focus()
     }, 0)
+  }
+
+  function generateName(type: string) {
+    const length = queryItems.filter((i) => i.type === type).length
+    const prefix = type;
+
+    const getUniqueName = (length: number): string => {
+      const name = `${prefix}${length + 1}`;
+
+      if (queryItemsNameSet.has(name)) {
+        return getUniqueName(length + 1)
+      }
+
+      return name;
+    }
+
+    return getUniqueName(length);
   }
 
   function showActionMenu(event: MouseEvent, id: string) {
@@ -180,12 +202,11 @@ export const QueryList: FC<QueryListProps> = (props) => {
   function addQuery() {
     setQueryItems((prev) => {
       const newItems = prev.slice(0)
-      const length = newItems.filter((i) => i.type === "query").length
 
       newItems.push({
         id: Date.now().toString(),
         type: "query",
-        name: `query${length + 1}`,
+        name: generateName("query"),
         isUpdated: Math.random() > 0.5,
         isWarning: Math.random() > 0.5,
         time: "0.7s",
@@ -198,12 +219,11 @@ export const QueryList: FC<QueryListProps> = (props) => {
   function addTransformer() {
     setQueryItems((prev) => {
       const newItems = prev.slice(0)
-      const length = newItems.filter((i) => i.type === "transformer").length
 
       newItems.push({
         id: Date.now().toString(),
         type: "transformer",
-        name: `transformer${length + 1}`,
+        name: generateName("transformer"),
         isUpdated: Math.random() > 0.5,
         isWarning: Math.random() > 0.5,
         time: "0.7s",
@@ -305,11 +325,9 @@ export const QueryList: FC<QueryListProps> = (props) => {
     const newQueryItems = queryItems.slice(0)
     const targetItem = newQueryItems.find((i) => i.id === actionQueryItemId)
     const type = targetItem?.type
-
-    const length = newQueryItems.filter((i) => i.type === type).length
     const duplicateItem = Object.assign({}, targetItem, {
       id: Date.now().toString(),
-      name: `${type}${length + 1}`,
+      name: generateName(type),
     })
     setQueryItems([...newQueryItems, duplicateItem])
     setActionQueryItemId("")
