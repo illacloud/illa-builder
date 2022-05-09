@@ -10,9 +10,25 @@ import {
   DslActionName,
   UpdateText,
 } from "@/page/Editor/store/dsl-action"
-import { Category } from "@/page/Editor/dragConfig/dragType"
+import { Category, DslType } from "@/page/Editor/dragConfig/dragType"
 
-const initialState = { root: null } as DslState
+const initialState = {
+  root: {
+    dslKey: "dslRoot",
+    parentKey: "root",
+    version: "0.0.1",
+    nodeChildren: [],
+    type: DslType.DslFrame,
+    category: Category.Layout,
+    height: "auto",
+    width: "auto",
+    left: "auto",
+    right: "auto",
+    top: "auto",
+    bottom: "auto",
+    position: "absolute",
+  },
+} as DslState
 
 function addNode(
   currentState: DslState,
@@ -86,10 +102,7 @@ const dslSlice = createSlice({
   initialState,
   reducers: {
     dslActionHandler(dslState, action) {
-      console.log(dslState, action, "dslReducer")
-      let safeState = dslState ?? {
-        root: null,
-      }
+      let safeState = dslState
 
       switch (action.payload?.type) {
         case DslActionName.AddFrame: {

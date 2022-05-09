@@ -12,17 +12,14 @@ import { dslActions } from "../../../../../reducers/CanvasContainer/dslReducer"
 
 const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
   const dispatch = useDispatch()
+  const { top, left } = frameLayoutProps
   // 配置drop事件
   const [collectProps, dropTarget] = useDrop<PanelDrag, DropInfo, Object>(
     () => ({
-      accept: [
-        ItemTypes.FRAME,
-        ItemTypes.STACK,
-        ItemTypes.ICON,
-        ItemTypes.TEXT,
-      ],
+      accept: Object.values(ItemTypes),
       drop: (item, monitor: DropTargetMonitor) => {
-        if (monitor.getDropResult<DropInfo>()?.hasDropped == true) {
+        if (monitor.getDropResult<DropInfo>()?.hasDropped) {
+            console.log(monitor.getDropResult<DropInfo>()!!, 'hasDropped == true')
           return monitor.getDropResult<DropInfo>()!!
         }
         switch (item.type) {
@@ -66,8 +63,8 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
                   nodeChildren: [],
                   type: DslType.DslFrame,
                   category: Category.Layout,
-                  height: "600px",
-                  width: "600px",
+                  height: "300px",
+                  width: "300px",
                   left: "auto",
                   right: "auto",
                   top: "auto",
@@ -88,7 +85,7 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
         } as DropInfo
       },
     }),
-    [],
+    [top, left],
   )
   return (
     <div

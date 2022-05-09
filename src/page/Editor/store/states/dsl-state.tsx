@@ -22,9 +22,9 @@ export interface DslNode {
 
 export interface DslLayout extends DslNode {
   nodeChildren: DslNode[]
-  background: string
+  background?: string
 }
 
 export interface DslState {
-  root: DslLayout | null
+  root: DslLayout
 }

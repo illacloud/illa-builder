@@ -6,6 +6,7 @@ export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
 
 export type ComponentModel = {
   name: string
+  itemType: string
   icon: string | ReactNode // url
 }
 

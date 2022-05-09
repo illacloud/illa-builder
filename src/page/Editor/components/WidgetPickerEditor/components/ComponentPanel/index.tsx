@@ -12,25 +12,25 @@ const defaultList: ComponentSessionProps[] = [
   {
     title: "global",
     children: [
-      { name: "component 01 ", icon: <SearchIcon /> },
-      { name: "component 02", icon: <SearchIcon /> },
-      { name: "component 03", icon: <SearchIcon /> },
-      { name: "component 01 ", icon: <SearchIcon /> },
-      { name: "component 02", icon: <SearchIcon /> },
-      { name: "component 03", icon: <SearchIcon /> },
+      { name: "container", icon: <SearchIcon />, itemType: 'container', },
+      { name: "text", icon: <SearchIcon />, itemType: 'text', },
+      { name: "frame", icon: <SearchIcon />, itemType: 'frame', },
+      { name: "component 01 ", icon: <SearchIcon />, itemType: 'frame', },
+      { name: "component 02", icon: <SearchIcon />, itemType: 'frame', },
+      { name: "component 03", icon: <SearchIcon />, itemType: 'frame', },
     ],
   },
   {
     title: "Common",
     children: [
-      { name: "component 01component 01component 01 ", icon: <SearchIcon /> },
-      { name: "component 02", icon: <SearchIcon /> },
-      { name: "component 03", icon: <SearchIcon /> },
+      { name: "component 01component 01component 01 ", icon: <SearchIcon />, itemType: 'frame', },
+      { name: "component 02", icon: <SearchIcon />, itemType: 'frame', },
+      { name: "component 03", icon: <SearchIcon />, itemType: 'frame', },
     ],
   },
   {
     title: "session3",
-    children: [{ name: "aoao ", icon: <SearchIcon /> }],
+    children: [{ name: "aoao ", icon: <SearchIcon />, itemType: 'frame', }],
   },
 ]
 
