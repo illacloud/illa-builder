@@ -9,17 +9,26 @@ export const QueryListContainer = css`
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
+export const QueryListHeaderWrapper = css``
 export const QueryListHeader = css`
+  width: 100%;
   height: 48px;
   display: flex;
-  align-items: center;
   padding: 13px 16px;
+  align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
-  justify-content: space-between;
+`
+
+export const QueryListHeaderInput = css`
+  justify-content: flex-end;
+`
+
+export const QueryListHeaderDisplay = css`
+  justify-content: flex-start;
 `
 
 export const HeaderTitle = css`
-  flex: 1;
+  white-space: nowrap;
 `
 
 export const HeaderSearchIcon = css`
@@ -157,6 +166,7 @@ export const NewQueryOptionsList = css`
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 220px;
 `
 
 export const NewQueryOptionsItem = css`
@@ -216,7 +226,7 @@ export const EmptyQueryListPlaceholder = css`
 
 export function applyActionMenu(top?: number, left?: number): SerializedStyles {
   return css`
-    position: fixed!important;
+    position: fixed !important;
     top: ${top ?? 0}px;
     left: ${left ?? 0}px;
     list-style: none;
@@ -232,16 +242,21 @@ export function applyActionMenu(top?: number, left?: number): SerializedStyles {
 
 export function applyActionMenuVisible(isVisible: boolean): SerializedStyles {
   if (isVisible) {
-    return css`opacity: 1`;
+    return css`
+      opacity: 1;
+    `
   }
 
-  return css`opacity: 0; top: -9999px;`
+  return css`
+    opacity: 0;
+    top: -9999px;
+  `
 }
 
 export const DuplicateAction = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
-  `
+`
 
 export const DeleteAction = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
-  `
+`

@@ -3,7 +3,7 @@ import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
 import { Menu } from "@illa-design/menu"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   AddIcon,
   SearchIcon,
@@ -38,6 +38,9 @@ import {
   DeleteAction,
   DuplicateAction,
   applyActionMenuVisible,
+  QueryListHeaderWrapper,
+  QueryListHeaderInput,
+  QueryListHeaderDisplay,
 } from "./style"
 import { useClickAway } from "react-use"
 import { QueryListProps, QueryItem } from "./interface"
@@ -232,40 +235,6 @@ export const QueryList: FC<QueryListProps> = (props) => {
     })
   }
 
-  const headerContent = isSearch ? (
-    <>
-      <Input
-        prefix={{
-          render: <SearchIcon size={"12px"} css={SearchInputIcon} />,
-        }}
-        placeholder={"Search"}
-        onChange={setQuery}
-        onClear={() => setQuery("")}
-        css={SearchInput}
-        allowClear
-      />
-      <Button
-        onClick={() => {
-          setIsSearch(false)
-          setQuery("")
-        }}
-        colorScheme={"white"}
-        css={CloseBtn}
-      >
-        Close
-      </Button>
-    </>
-  ) : (
-    <>
-      <span css={HeaderTitle}>Queries List</span>
-      <SearchIcon
-        size={"12px"}
-        onClick={() => setIsSearch(true)}
-        css={HeaderSearchIcon}
-      />
-    </>
-  )
-
   const NoMatchFound = (
     <div css={NoMatchFoundWrapper}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
@@ -347,9 +316,79 @@ export const QueryList: FC<QueryListProps> = (props) => {
     setActionQueryItemId("")
   }
 
+  const MotionHeaderSearchInput = motion(
+    forwardRef<HTMLDivElement>((props, ref) => (
+      <Input
+        ref={ref}
+        prefix={{
+          render: <SearchIcon size={"12px"} css={SearchInputIcon} />,
+        }}
+        placeholder={"Search"}
+        onChange={setQuery}
+        onClear={() => setQuery("")}
+        css={SearchInput}
+        allowClear
+      />
+    )),
+  )
+
+  const MotionHeaderSearchCloseBtn = motion(
+    forwardRef<HTMLButtonElement>((props, ref) => (
+      <Button
+        ref={ref}
+        onClick={() => {
+          setIsSearch(false)
+          setQuery("")
+        }}
+        colorScheme={"white"}
+        css={CloseBtn}
+      >
+        Close
+      </Button>
+    )),
+  )
+
+  const headerContent = isSearch ? (
+    <motion.div
+      css={[QueryListHeader, QueryListHeaderInput]}
+      key={"search-title"}
+      exit={{ opacity: 0, display: "none" }}
+    >
+      <MotionHeaderSearchInput
+        initial={{ width: "25px" }}
+        animate={{ width: "auto" }}
+        transition={{ duration: 0.4 }}
+        exit={{ opacity: 0 }}
+      />
+      <MotionHeaderSearchCloseBtn
+        initial={{ opacity: 0, width: 0, padding: 0, overflow: "hidden" }}
+        animate={{ opacity: 1, width: "auto", padding: 8 }}
+        transition={{ duration: 0 }}
+      />
+    </motion.div>
+  ) : (
+    <motion.div
+      css={[QueryListHeader, QueryListHeaderDisplay]}
+      key={"search-input"}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, display: "none" }}
+    >
+      <motion.span css={HeaderTitle} animate={{ flex: 1 }} transition={{ duration: 0.4 }}>
+        Queries List
+      </motion.span>
+      <SearchIcon
+        size={"12px"}
+        onClick={() => setIsSearch(true)}
+        css={HeaderSearchIcon}
+      />
+    </motion.div>
+  )
+
   return (
     <div className={className} css={QueryListContainer}>
-      <header css={QueryListHeader}>{headerContent}</header>
+      <header css={QueryListHeaderWrapper}>
+        <AnimatePresence>{headerContent}</AnimatePresence>
+      </header>
 
       <Dropdown
         dropList={newQueryOptions}
