@@ -103,6 +103,7 @@ export function applyQueryItem(isSelected: boolean): SerializedStyles {
 
 export const QueryItemIcon = css`
   position: relative;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 
 export const QueryItemTitleWrapper = css`

@@ -7,9 +7,9 @@ import { motion } from "framer-motion"
 import {
   AddIcon,
   SearchIcon,
-  ImageDefaultIcon,
   WarningCircleIcon,
   EmptyStateIcon,
+  RestApiIcon
 } from "@illa-design/icon"
 import {
   QueryListContainer,
@@ -111,7 +111,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
   const queryItemsList = filteredQueryItems.map((item) => {
     const { id, name, time, isWarning, isUpdated } = item
-    const icon = <ImageDefaultIcon />
+    const icon = <RestApiIcon />
 
     function renderName() {
       if (id === editingQueryItemId) {
