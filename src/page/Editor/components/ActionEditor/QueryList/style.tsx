@@ -229,6 +229,14 @@ export function applyActionMenu(top?: number, left?: number): SerializedStyles {
   `
 }
 
+export function applyActionMenuVisible(isVisible: boolean): SerializedStyles {
+  if (isVisible) {
+    return css`opacity: 1`;
+  }
+
+  return css`opacity: 0; top: -9999px;`
+}
+
 export const DeleteAction = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
   `

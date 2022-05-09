@@ -35,6 +35,7 @@ import {
   EmptyQueryListPlaceholder,
   applyActionMenu,
   DeleteAction,
+  applyActionMenuVisible,
 } from "./style"
 import { useClickAway } from "react-use"
 import { QueryListProps, QueryItem } from "./interface"
@@ -59,6 +60,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
   useClickAway(actionMenuRef, () => {
     setActionMenuVisible(false)
+    setActionQueryItemId("")
   })
 
   const filteredQueryItems = useMemo(() => {
@@ -87,9 +89,20 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
   function showActionMenu(event: MouseEvent, id: string) {
     event.preventDefault()
+
     const { clientX, clientY } = event
-    setActionMenuPosition({ x: clientX, y: clientY })
-    console.log({ ref: actionMenuRef, current: actionMenuRef.current, rect: (actionMenuRef.current as HTMLElement)?.getBoundingClientRect() })
+    const OFFSET_THRESHOLD = 10;
+    let offset = 0
+    const contextMenuRect = actionMenuRef.current?.getBoundingClientRect()
+    const viewportHeight = window.innerHeight
+    const contextMenuBottom = clientY + (contextMenuRect?.height ?? 0)
+
+    if (contextMenuBottom > viewportHeight) {
+      offset = contextMenuBottom - viewportHeight + OFFSET_THRESHOLD
+    }
+
+    setActionMenuPosition({ x: clientX, y: clientY - offset })
+
     setActionQueryItemId(id)
     setActionMenuVisible(true)
   }
@@ -149,7 +162,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
       <li css={NewQueryOptionsItem} onClick={addQuery}>
         Resource query
       </li>
-      <li css={NewQueryOptionsItem}>JavaScript transformer</li>
+      {/* <li css={NewQueryOptionsItem}>JavaScript transformer</li> */}
     </ul>
   )
 
@@ -230,13 +243,16 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
   const actionMenu = (
     <Menu
-      css={applyActionMenu(actionMenuPosition.y, actionMenuPosition.x)}
+      css={[
+        applyActionMenu(actionMenuPosition.y, actionMenuPosition.x),
+        applyActionMenuVisible(actionMenuVisible),
+      ]}
       onClickMenuItem={handleAction}
       ref={actionMenuRef}
     >
       <MenuItem key={"duplicate"} title={"Duplicate"}></MenuItem>
       <MenuItem key={"delete"} title={"Delete"} css={DeleteAction}></MenuItem>
-      <MenuItem key={"extract"} title={"Extract To Query Libary"}></MenuItem>
+      {/* <MenuItem key={"extract"} title={"Extract To Query Libary"}></MenuItem> */}
     </Menu>
   )
 
@@ -255,7 +271,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
     const length = newQueryItems.filter((i) => i.type === "query").length
     const duplicateItem = Object.assign({}, targetItem, {
       id: Date.now().toString(),
-      name: `Query${length + 1}`,
+      name: `query${length + 1}`,
     })
     setQueryItems([...newQueryItems, duplicateItem])
     setActionQueryItemId("")
@@ -292,7 +308,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
       <ul css={QueryItemList}>{renderQueryItemList()}</ul>
 
-      {actionMenuVisible && actionMenu}
+      {actionMenu}
     </div>
   )
 }
