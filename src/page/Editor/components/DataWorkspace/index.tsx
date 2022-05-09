@@ -16,7 +16,6 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
 
   const dispatch = useDispatch()
   const demoValue = useSelector((state: builderState) => state.module.demo)
-  console.log("demoValue", demoValue)
 
   return (
     <div className={className}>
