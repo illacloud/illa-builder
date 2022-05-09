@@ -33,6 +33,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
         <div css={ResourceListCSS()}>
           {databaseList.map((database) => (
             <div
+              key={database.title}
               css={ResourceItemCSS}
               onClick={() => {
                 onSelect(database.title)
@@ -49,6 +50,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
         <div css={ResourceListCSS(true)}>
           {apiList.map((api) => (
             <div
+              key={api.title}
               css={ResourceItemCSS}
               onClick={() => {
                 onSelect(api.title)
