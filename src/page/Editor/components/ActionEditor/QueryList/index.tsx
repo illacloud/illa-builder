@@ -138,13 +138,12 @@ export const QueryList: FC<QueryListProps> = (props) => {
     }
 
     const isSelected = id === selectedQueryId
-    const isActive = id === actionQueryItemId
 
     return (
       <li
         key={id}
-        css={applyQueryItem(isSelected, isActive)}
-        onClick={() => setSelectedQuery(id)}
+        css={applyQueryItem(isSelected)}
+        onClick={() => onClickQueryItem(id)}
         onContextMenu={(e) => showActionMenu(e, id)}
       >
         <span css={QueryItemIcon}>
@@ -158,6 +157,14 @@ export const QueryList: FC<QueryListProps> = (props) => {
       </li>
     )
   })
+
+  function onClickQueryItem(id: string) {
+    setSelectedQuery(id);
+
+    if (queryItems.length === 1) {
+      editName(id);
+    }
+  }
 
   const newQueryOptions = (
     <ul css={NewQueryOptionsList}>

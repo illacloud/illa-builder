@@ -82,7 +82,7 @@ export const QueryItemList = css`
   overflow-y: auto;
 `
 
-export function applyQueryItem(isSelected: boolean, isActive: boolean): SerializedStyles {
+export function applyQueryItem(isSelected: boolean): SerializedStyles {
   const backgroundColorCss = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
@@ -97,7 +97,7 @@ export function applyQueryItem(isSelected: boolean, isActive: boolean): Serializ
       ${backgroundColorCss}
     }
 
-    ${(isSelected || isActive) && backgroundColorCss}
+    ${isSelected && backgroundColorCss}
   `
 }
 
