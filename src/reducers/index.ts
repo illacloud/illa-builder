@@ -1,7 +1,11 @@
 import { combineReducers } from "redux"
 
-import countReducer from "./DataWorkspace/count"
+import moduleReducer from "./moduleReducer"
 
-export const rootReducer = combineReducers({
-  counter: countReducer,
+const builderReducer = combineReducers({
+  module: moduleReducer
+  // user ?
+  // actions ?
 })
+
+export default builderReducer
