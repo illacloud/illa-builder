@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ModalCSS = css`
   width: 696px;
-  max-height: 900px;
+  max-height: 880px;
   border-radius: 8px;
 `
 

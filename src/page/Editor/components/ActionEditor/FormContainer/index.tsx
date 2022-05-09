@@ -1,5 +1,5 @@
 import { Modal } from "@illa-design/modal"
-import { FC, useState, useRef, useMemo, useLayoutEffect } from "react"
+import { FC, useState, useMemo, useLayoutEffect } from "react"
 import {
   FormContainerProps,
   ApiType,
