@@ -1,8 +1,9 @@
-import { FC, useState, useMemo, useRef, MouseEvent } from "react"
+import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
 import { Menu } from "@illa-design/menu"
+import { motion } from "framer-motion"
 import {
   AddIcon,
   SearchIcon,
@@ -35,6 +36,7 @@ import {
   EmptyQueryListPlaceholder,
   applyActionMenu,
   DeleteAction,
+  DuplicateAction,
   applyActionMenuVisible,
 } from "./style"
 import { useClickAway } from "react-use"
@@ -91,7 +93,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
     event.preventDefault()
 
     const { clientX, clientY } = event
-    const OFFSET_THRESHOLD = 10;
+    const OFFSET_THRESHOLD = 10
     let offset = 0
     const contextMenuRect = actionMenuRef.current?.getBoundingClientRect()
     const viewportHeight = window.innerHeight
@@ -162,7 +164,9 @@ export const QueryList: FC<QueryListProps> = (props) => {
       <li css={NewQueryOptionsItem} onClick={addQuery}>
         Resource query
       </li>
-      {/* <li css={NewQueryOptionsItem}>JavaScript transformer</li> */}
+      <li css={NewQueryOptionsItem} onClick={addTransformer}>
+        JavaScript transformer
+      </li>
     </ul>
   )
 
@@ -175,6 +179,24 @@ export const QueryList: FC<QueryListProps> = (props) => {
         id: Date.now().toString(),
         type: "query",
         name: `query${length + 1}`,
+        isUpdated: Math.random() > 0.5,
+        isWarning: Math.random() > 0.5,
+        time: "0.7s",
+      })
+
+      return newItems
+    })
+  }
+
+  function addTransformer() {
+    setQueryItems((prev) => {
+      const newItems = prev.slice(0)
+      const length = newItems.filter((i) => i.type === "transformer").length
+
+      newItems.push({
+        id: Date.now().toString(),
+        type: "transformer",
+        name: `transformer${length + 1}`,
         isUpdated: Math.random() > 0.5,
         isWarning: Math.random() > 0.5,
         time: "0.7s",
@@ -241,20 +263,27 @@ export const QueryList: FC<QueryListProps> = (props) => {
     return queryItemsList
   }
 
-  const actionMenu = (
-    <Menu
-      css={[
-        applyActionMenu(actionMenuPosition.y, actionMenuPosition.x),
-        applyActionMenuVisible(actionMenuVisible),
-      ]}
-      onClickMenuItem={handleAction}
-      ref={actionMenuRef}
-    >
-      <MenuItem key={"duplicate"} title={"Duplicate"}></MenuItem>
-      <MenuItem key={"delete"} title={"Delete"} css={DeleteAction}></MenuItem>
-      {/* <MenuItem key={"extract"} title={"Extract To Query Libary"}></MenuItem> */}
-    </Menu>
-  )
+  const ActionMenu = forwardRef((props, ref) => {
+    return (
+      <Menu
+        css={[
+          applyActionMenu(actionMenuPosition.y, actionMenuPosition.x),
+          applyActionMenuVisible(actionMenuVisible),
+        ]}
+        onClickMenuItem={handleAction}
+        ref={ref}
+      >
+        <MenuItem
+          key={"duplicate"}
+          title={"Duplicate"}
+          css={DuplicateAction}
+        ></MenuItem>
+        <MenuItem key={"delete"} title={"Delete"} css={DeleteAction}></MenuItem>
+      </Menu>
+    )
+  })
+
+  const MotionActionMenu = motion(ActionMenu)
 
   function handleAction(key: string) {
     if (key === "duplicate") {
@@ -268,10 +297,12 @@ export const QueryList: FC<QueryListProps> = (props) => {
     setActionMenuVisible(false)
     const newQueryItems = queryItems.slice(0)
     const targetItem = newQueryItems.find((i) => i.id === actionQueryItemId)
-    const length = newQueryItems.filter((i) => i.type === "query").length
+    const type = targetItem?.type
+
+    const length = newQueryItems.filter((i) => i.type === type).length
     const duplicateItem = Object.assign({}, targetItem, {
       id: Date.now().toString(),
-      name: `query${length + 1}`,
+      name: `${type}${length + 1}`,
     })
     setQueryItems([...newQueryItems, duplicateItem])
     setActionQueryItemId("")
@@ -308,7 +339,12 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
       <ul css={QueryItemList}>{renderQueryItemList()}</ul>
 
-      {actionMenu}
+      <MotionActionMenu
+        ref={actionMenuRef}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
+      />
     </div>
   )
 }

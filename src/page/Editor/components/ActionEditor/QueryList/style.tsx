@@ -237,6 +237,10 @@ export function applyActionMenuVisible(isVisible: boolean): SerializedStyles {
   return css`opacity: 0; top: -9999px;`
 }
 
+export const DuplicateAction = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
+  `
+
 export const DeleteAction = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
   `
