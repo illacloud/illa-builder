@@ -20,8 +20,9 @@
 
 1. ⚽ **Real-time Collaboration:** We can create everything in real-time together.
 2. 🛠 **Custom Plugin:** Build custom plugin to do what you want.
-3. 🤖 **Support Automate:** Connect everything and automate them in 5 seconds.
-4. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):** Your imagination should not be constrained by components.
+3. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
+4. 🤖 **Page Support:** Create content-rich and UI friendly tool.
+5. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):** Your imagination should not be constrained by components.
 
 ## 🖥 Fast Try
 
