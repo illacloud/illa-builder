@@ -6,9 +6,8 @@ export const Wrapper: FC<WrapperProps> = (props) => {
   const { className, h, w } = props
 
   const sizeCss = css`
-    width: ${w ?? "fit-content"};
-    height: ${h ?? "fit-content"};
-    border: solid 0.5px pink;
+    width: ${w ?? "auto"};
+    height: ${h ?? "auto"};
   `
 
   return (
