@@ -18,22 +18,22 @@ export interface PanelDragCollectInfo {
 
 export const TestWidget: FC<DemoWidgetProps> = (props) => {
   const { className } = props
-    const [textCollectProps, dragRefText, dragPreviewText] = useDrag<
-      PanelDrag,
-      DropInfo,
-      PanelDragCollectInfo
-    >(
-      () => ({
-        type: ItemTypes.TEXT,
-        item: { type: ItemTypes.TEXT, hasDropped: false } as PanelDrag,
-        collect: (monitor) => {
-          return {
-            opacity: monitor.isDragging() ? 0.5 : 1,
-          }
-        },
-      }),
-      [],
-    )
+  const [textCollectProps, dragRefText, dragPreviewText] = useDrag<
+    PanelDrag,
+    DropInfo,
+    PanelDragCollectInfo
+  >(
+    () => ({
+      type: ItemTypes.TEXT,
+      item: { type: ItemTypes.TEXT, hasDropped: false } as PanelDrag,
+      collect: (monitor) => {
+        return {
+          opacity: monitor.isDragging() ? 0.5 : 1,
+        }
+      },
+    }),
+    [],
+  )
 
   return (
     <div

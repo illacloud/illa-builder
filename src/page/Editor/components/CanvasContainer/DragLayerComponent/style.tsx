@@ -16,9 +16,7 @@ export const CONTAINER_GRID_PADDING = GridDefaults.DEFAULT_GRID_ROW_HEIGHT * 0.6
 
 const GRID_POINT_SIZE = 1
 
-export function applyDragLayer(
-  props: DragLayerProps,
-): SerializedStyles {
+export function applyDragLayer(props: DragLayerProps): SerializedStyles {
   return css`
     position: absolute;
     pointer-events: none;

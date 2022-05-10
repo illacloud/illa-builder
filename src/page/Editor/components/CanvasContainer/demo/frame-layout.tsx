@@ -19,7 +19,7 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
       accept: Object.values(ItemTypes),
       drop: (item, monitor: DropTargetMonitor) => {
         if (monitor.getDropResult<DropInfo>()?.hasDropped) {
-            console.log(monitor.getDropResult<DropInfo>()!!, 'hasDropped == true')
+          console.log(monitor.getDropResult<DropInfo>()!!, "hasDropped == true")
           return monitor.getDropResult<DropInfo>()!!
         }
         switch (item.type) {

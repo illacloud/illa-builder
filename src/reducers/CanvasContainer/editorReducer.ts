@@ -10,7 +10,7 @@ const editorSlice = createSlice({
       return {
         ...state,
         isPreviewMode: action.payload,
-      };
+      }
     },
   },
 })
