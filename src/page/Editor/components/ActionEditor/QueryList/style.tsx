@@ -224,7 +224,7 @@ export const EmptyQueryListPlaceholder = css`
   border: 2px dashed ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 
-export function applyActionMenu(top?: number, left?: number): SerializedStyles {
+export function applyContextMenu(top?: number, left?: number): SerializedStyles {
   return css`
     position: fixed !important;
     top: ${top ?? 0}px;
@@ -240,7 +240,7 @@ export function applyActionMenu(top?: number, left?: number): SerializedStyles {
   `
 }
 
-export function applyActionMenuVisible(isVisible: boolean): SerializedStyles {
+export function applyContextMenuVisible(isVisible: boolean): SerializedStyles {
   if (isVisible) {
     return css`
       opacity: 1;
