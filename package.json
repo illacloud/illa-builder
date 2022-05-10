@@ -8,7 +8,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "yarn build-all && vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "build-all": "yarn turbo run build",
     "preview": "vite preview",
     "test": "npx patch-package && yarn build-all && npx jest && npx cypress run-ct -b chrome",
