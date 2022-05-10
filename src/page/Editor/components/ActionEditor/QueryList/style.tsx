@@ -9,8 +9,7 @@ export const QueryListContainer = css`
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
-export const QueryListHeaderWrapper = css``
-export const QueryListHeader = css`
+export const SearchHeaderCss = css`
   width: 100%;
   height: 48px;
   display: flex;
@@ -19,22 +18,44 @@ export const QueryListHeader = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 `
 
-export const QueryListHeaderInput = css`
+export const SearchHeaderInputCss = css`
   justify-content: flex-end;
 `
 
-export const QueryListHeaderDisplay = css`
+export const SearchHeaderTitleCss = css`
   justify-content: flex-start;
 `
 
-export const HeaderTitle = css`
+export const SearchHeaderTitleTextCss = css`
   white-space: nowrap;
 `
 
-export const HeaderSearchIcon = css`
+export const SearchHeaderTitleIconCss = css`
   cursor: pointer;
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  }
+`
+
+export const SearchInputCss = css`
+  margin-right: 8px;
+  & > span {
+    border-radius: 8px !important;
+    border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
+    box-shadow: 0 0 8px 0
+      ${chroma(globalColor(`--${illaPrefix}-brand-purple-01`))
+    .alpha(0.2)
+    .hex()};
+  }
+`
+
+export const SearchInputIconCss = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+`
+
+export const SearchInputCloseBtnCss = css`
+  & > span {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
 `
 
@@ -180,27 +201,7 @@ export const NewQueryOptionsItem = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
-export const SearchInput = css`
-  margin-right: 8px;
-  & > span {
-    border-radius: 8px !important;
-    border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
-    box-shadow: 0 0 8px 0
-      ${chroma(globalColor(`--${illaPrefix}-brand-purple-01`))
-    .alpha(0.2)
-    .hex()};
-  }
-`
 
-export const SearchInputIcon = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-`
-
-export const CloseBtn = css`
-  & > span {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  }
-`
 export const NoMatchFoundWrapper = css`
   display: flex;
   flex-direction: column;
@@ -224,7 +225,10 @@ export const EmptyQueryListPlaceholder = css`
   border: 2px dashed ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 
-export function applyContextMenu(top?: number, left?: number): SerializedStyles {
+export function applyContextMenu(
+  top?: number,
+  left?: number,
+): SerializedStyles {
   return css`
     position: fixed !important;
     top: ${top ?? 0}px;

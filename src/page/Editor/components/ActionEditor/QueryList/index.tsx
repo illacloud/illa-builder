@@ -14,11 +14,6 @@ import {
 } from "@illa-design/icon"
 import {
   QueryListContainer,
-  QueryListHeader,
-  QueryListHeaderWrapper,
-  QueryListHeaderInput,
-  QueryListHeaderDisplay,
-  HeaderTitle,
   applyNewButton,
   NewButtonContentWrapper,
   AddIconInNewButton,
@@ -32,10 +27,6 @@ import {
   QueryItemTime,
   NewQueryOptionsList,
   NewQueryOptionsItem,
-  SearchInput,
-  SearchInputIcon,
-  CloseBtn,
-  HeaderSearchIcon,
   NoMatchFoundWrapper,
   EmptyQueryListPlaceholder,
   applyContextMenu,
@@ -44,6 +35,7 @@ import {
   applyContextMenuVisible,
 } from "./style"
 import { QueryListProps, QueryItem } from "./interface"
+import { SearchHeader } from "./SearchHeader"
 
 const MenuItem = Menu.Item
 
@@ -51,7 +43,6 @@ export const QueryList: FC<QueryListProps> = (props) => {
   const { className } = props
 
   const [newQueryOptionsVisible, setNewQueryOptionsVisible] = useState(false)
-  const [isSearch, setIsSearch] = useState(false)
   const [query, setQuery] = useState<string>("")
 
   const [queryItems, setQueryItems] = useState<QueryItem[]>([])
@@ -247,7 +238,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
   const renderQueryItemList = () => {
     if (matchedQueryItems.length === 0) {
-      if (isSearch && query !== "") {
+      if (query !== "") {
         return NoMatchFound
       }
 
@@ -317,95 +308,9 @@ export const QueryList: FC<QueryListProps> = (props) => {
     setActionQueryItemId("")
   }
 
-  const MotionHeaderSearchInput = motion(
-    forwardRef<HTMLDivElement>((props, ref) => (
-      <Input
-        ref={ref}
-        prefix={{
-          render: <SearchIcon size={"12px"} css={SearchInputIcon} />,
-        }}
-        placeholder={"Search"}
-        onChange={setQuery}
-        onClear={() => setQuery("")}
-        css={SearchInput}
-        allowClear
-      />
-    )),
-  )
-
-  const MotionHeaderSearchCloseBtn = motion(
-    forwardRef<HTMLButtonElement>((props, ref) => (
-      <Button
-        ref={ref}
-        onClick={() => {
-          setIsSearch(false)
-          setQuery("")
-        }}
-        colorScheme={"white"}
-        css={CloseBtn}
-      >
-        Close
-      </Button>
-    )),
-  )
-
-  const searchTitle = (
-    <motion.div
-      css={[QueryListHeader, QueryListHeaderDisplay]}
-      key={"search-title"}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, display: "none" }}
-    >
-      <motion.span
-        css={HeaderTitle}
-        initial={{ flex: 0, width: 25, overflow: "hidden" }}
-        animate={{ flex: 1 }}
-        transition={{ duration: 0.4 }}
-      >
-        Queries List
-      </motion.span>
-      <SearchIcon
-        size={"12px"}
-        onClick={() => setIsSearch(true)}
-        css={HeaderSearchIcon}
-      />
-    </motion.div>
-  )
-
-  const searchInput = (
-    <motion.div
-      css={[QueryListHeader, QueryListHeaderInput]}
-      key={"search-input"}
-      exit={{ opacity: 0, display: "none" }}
-    >
-      <MotionHeaderSearchInput
-        initial={{ width: 25 }}
-        animate={{ width: "auto" }}
-        transition={{ duration: 0.4 }}
-        exit={{ opacity: 0 }}
-      />
-      <MotionHeaderSearchCloseBtn
-        initial={{ opacity: 0, width: 0, padding: 0, overflow: "hidden" }}
-        animate={{ opacity: 1, width: "auto", padding: 8 }}
-        transition={{ duration: 0 }}
-      />
-    </motion.div>
-  )
-
-  const headerContent = isSearch ? searchInput : searchTitle
-
-  const memoHeader = useMemo(
-    () => (
-      <header css={QueryListHeaderWrapper}>
-        <AnimatePresence>{headerContent}</AnimatePresence>
-      </header>
-    ),
-    [isSearch],
-  )
-
   return (
     <div className={className} css={QueryListContainer}>
-      {memoHeader}
+      <SearchHeader updateQuery={setQuery} />
 
       <Dropdown
         dropList={newNewQueryOptions}
