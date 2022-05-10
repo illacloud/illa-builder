@@ -38,7 +38,8 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "scenejs": "^1.6.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "@illa-design/react": "*"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
