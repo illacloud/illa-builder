@@ -29,7 +29,7 @@ Building
 
 ## 🚀 Deploy
 
-You can use [ILLA](https://illa.illafamily.com) to host it on ILLA Cloud or local.
+You can use [ILLA](https://github.com/illa-family/illa) to host it on ILLA Cloud or local.
 
 ## 💬 Community
 
