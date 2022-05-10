@@ -26,11 +26,18 @@ import { Button } from "@illa-design/button"
 import { Switch } from "@illa-design/switch"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { useState, useRef } from "react"
+import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { InputNumber } from "@illa-design/input-number"
+import { MySQLFormValues } from "./interface"
 
 export const MySQL = () => {
   const [expandSSH, setExpandSSH] = useState(false)
   const [expandSSL, setExpandSSL] = useState(false)
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<MySQLFormValues>()
 
   const uploadPrivateKeyRef = useRef<HTMLInputElement | null>(null)
   const privateKeyRef = useRef<HTMLInputElement | null>(null)
@@ -44,6 +51,7 @@ export const MySQL = () => {
   const uploadClientCertificateRef = useRef<HTMLInputElement | null>(null)
   const clientCertificateRef = useRef<HTMLInputElement | null>(null)
   const [clientCertificateName, setClientCertificateName] = useState("")
+  const [color, setColor] = useState("blue")
 
   const handleUploadPrivateKey = () => {
     uploadPrivateKeyRef.current?.click()
@@ -57,8 +65,11 @@ export const MySQL = () => {
   const handleUploadClientCertificate = () => {
     uploadClientCertificateRef.current?.click()
   }
+
+  const onSubmit: SubmitHandler<MySQLFormValues> = (data) =>
+    alert(JSON.stringify(data))
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div
         css={css(
           GridContainerCSS,
@@ -68,7 +79,28 @@ export const MySQL = () => {
       >
         <label css={LabelTextCSS}>Name</label>
         <div>
-          <Input placeholder='i.e."Users DB(readonly)" or "Internal Admin API"' />
+          <Controller
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder='i.e."Users DB(readonly)" or "Internal Admin API"'
+                borderColor={errors.Name ? "red" : "blue"}
+                /*                onChange={(value) => {
+                  console.log("yuuyy", errors)
+                  if (errors.Name) {
+                    setColor("red")
+                  } else {
+                    setColor("blue")
+                  }
+                  field.onChange(value)
+                }}*/
+              />
+            )}
+            rules={{ required: true }}
+            control={control}
+            name={"Name"}
+          />
+          {errors.Name && "Name is required!"}
         </div>
         <label css={LabelTextCSS}>Hostname/Port</label>
         <div css={HostnamePortCSS}>
@@ -300,11 +332,11 @@ export const MySQL = () => {
           >
             Test Connection
           </Button>
-          <Button size="medium" colorScheme="purple">
+          <Button size="medium" colorScheme="purple" type="submit">
             Create Resource
           </Button>
         </div>
       </div>
-    </>
+    </form>
   )
 }
