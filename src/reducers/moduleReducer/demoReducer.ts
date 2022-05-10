@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import undoable from "redux-undo"
+import undoable, { StateWithHistory } from "redux-undo"
 
-const initValue: demoReduxState = {
+const initValue: demoState = {
   name: "demo name",
   value: {
     a: 1,
@@ -11,6 +11,7 @@ const initValue: demoReduxState = {
     },
   },
 }
+
 const demoSlice = createSlice({
   name: "demo",
   initialState: initValue,
@@ -32,7 +33,7 @@ export const { changeDemoValueA, changeDemoValueB, changeDemoValueC } =
 
 export default undoable(demoSlice.reducer)
 
-export interface demoReduxState {
+interface demoState {
   name: string
   value: {
     a: number
@@ -42,3 +43,5 @@ export interface demoReduxState {
     }
   }
 }
+
+export type demoReduxState = StateWithHistory<demoState>
