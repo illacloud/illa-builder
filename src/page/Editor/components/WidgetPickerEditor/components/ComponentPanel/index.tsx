@@ -6,35 +6,30 @@ import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"
 import { Empty } from "./Empty"
-import ColorPicker from "../ColorPicker"
 
 const defaultList: ComponentSessionProps[] = [
   {
     title: "global",
     children: [
-      { name: "container", icon: <SearchIcon />, itemType: "container" },
-      { name: "text", icon: <SearchIcon />, itemType: "text" },
-      { name: "frame", icon: <SearchIcon />, itemType: "frame" },
-      { name: "component 01 ", icon: <SearchIcon />, itemType: "frame" },
-      { name: "component 02", icon: <SearchIcon />, itemType: "frame" },
-      { name: "component 03", icon: <SearchIcon />, itemType: "frame" },
+      { id: "01", name: "container", icon: <SearchIcon />, type: "container" },
+      { id: "02", name: "text", icon: <SearchIcon />, type: "text" },
+      { id: "03", name: "component 03", icon: <SearchIcon /> },
+      { id: "04", name: "component 04 ", icon: <SearchIcon /> },
+      { id: "05", name: "component 05", icon: <SearchIcon /> },
+      { id: "06", name: "component 06", icon: <SearchIcon /> },
     ],
   },
   {
     title: "Common",
     children: [
-      {
-        name: "component 01component 01component 01 ",
-        icon: <SearchIcon />,
-        itemType: "frame",
-      },
-      { name: "component 02", icon: <SearchIcon />, itemType: "frame" },
-      { name: "component 03", icon: <SearchIcon />, itemType: "frame" },
+      { id: "07", name: "component 01 ", icon: <SearchIcon /> },
+      { id: "08", name: "component 02", icon: <SearchIcon /> },
+      { id: "09", name: "component 03", icon: <SearchIcon /> },
     ],
   },
   {
     title: "session3",
-    children: [{ name: "aoao ", icon: <SearchIcon />, itemType: "frame" }],
+    children: [{ id: "01", name: "component 03 ", icon: <SearchIcon /> }],
   },
 ]
 
@@ -63,7 +58,9 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
       />
       <div css={sessionListContainerCss}>
         {searchRes && searchRes.length ? (
-          searchRes.map((session) => <ComponentSession {...session} />)
+          searchRes.map((session) => (
+            <ComponentSession key={"session-" + session.title} {...session} />
+          ))
         ) : (
           <Empty />
         )}

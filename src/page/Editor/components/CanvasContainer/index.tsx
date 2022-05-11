@@ -12,7 +12,7 @@ import { DslActionName } from "../../store/dsl-action"
 import { AppState } from "../../store/states/app-state"
 import { DslState } from "../../store/states/dsl-state"
 import { applyDslLayout, applyDslView } from "./demo/compose"
-import { dslActions } from "@/reducers/CanvasContainer/dslReducer"
+import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 
 interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
 

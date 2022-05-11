@@ -6,7 +6,7 @@ import { Dispatch } from "redux"
 import { DslActionName } from "../../../store/dsl-action"
 import { DslNode, DslText } from "../../../dragConfig/dsl"
 import { MenuActionName } from "../../../store/menu-action"
-import { dslActions } from "../../../../../reducers/CanvasContainer/dslReducer"
+import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 
 const TextView: React.FC<DslText> = (textViewProps) => {
   const dispatch = useDispatch()

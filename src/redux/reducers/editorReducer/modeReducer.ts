@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const editorSlice = createSlice({
-  name: "editor",
+const modeSlice = createSlice({
+  name: "mode",
   initialState: {
     isPreviewMode: false,
   },
@@ -15,5 +15,5 @@ const editorSlice = createSlice({
   },
 })
 
-export const editorActions = editorSlice.actions
-export default editorSlice.reducer
+export const modeActions = modeSlice.actions
+export default modeSlice.reducer

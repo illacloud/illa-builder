@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import { rootReducer } from "@/reducers"
+import builderReducer from "@/redux/reducers"
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: builderReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
 

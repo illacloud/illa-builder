@@ -1,6 +1,6 @@
 import { useCallback } from "react"
 import { useDispatch } from "react-redux"
-import { widgetStatesActions } from "@/reducers/CanvasContainer/widgetStatesReducer"
+import { widgetStatesActions } from "@/redux/reducers/editorReducer/widgetStatesReducer"
 
 export const useResizeWidget = () => {
   const dispatch = useDispatch()

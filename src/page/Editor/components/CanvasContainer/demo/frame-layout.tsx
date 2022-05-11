@@ -8,7 +8,7 @@ import { Category, DslType, ItemTypes } from "../../../dragConfig/dragType"
 import { DropInfo } from "../../../dragConfig/interface"
 import { PanelDrag } from "../../WidgetPickerEditor/DemoWidget"
 import { DslActionName } from "../../../store/dsl-action"
-import { dslActions } from "../../../../../reducers/CanvasContainer/dslReducer"
+import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 
 const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
   const dispatch = useDispatch()

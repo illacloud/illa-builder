@@ -3,14 +3,14 @@ import {
   DslLayout,
   DslNode,
   DslState,
-} from "@/page/Editor/store/states/dsl-state"
+} from "../../../page/Editor/store/states/dsl-state"
 import {
   AddFrame,
   AddText,
   DslActionName,
   UpdateText,
-} from "@/page/Editor/store/dsl-action"
-import { Category, DslType } from "@/page/Editor/dragConfig/dragType"
+} from "../../../page/Editor/store/dsl-action"
+import { Category, DslType } from "../../../page/Editor/dragConfig/dragType"
 
 const initialState = {
   root: {
