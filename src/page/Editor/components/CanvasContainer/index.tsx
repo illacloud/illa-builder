@@ -6,20 +6,26 @@ import { v4 as uuidv4, v4 as uuid } from "uuid"
 import { CanvasStyle } from "./style"
 import { Category, DslType, ItemTypes } from "../../dragConfig/dragType"
 import { PanelDrag } from "../WidgetPickerEditor/DemoWidget"
-import { DropInfo } from "../../dragConfig/interface"
-import { DslFrame, DslLayout, DslText, DslView } from "../../dragConfig/dsl"
-import { DslActionName } from "../../store/dsl-action"
-import { AppState } from "../../store/states/app-state"
-import { DslState } from "../../store/states/dsl-state"
+import { DropInfo } from "@/redux/reducers/editorReducer/dslReducer/interface"
+import {
+  DslFrame,
+  DslLayout,
+  DslText,
+  DslView,
+} from "@/redux/reducers/editorReducer/dslReducer/dsl"
+import { DslActionName } from "../../../../redux/reducers/editorReducer/dslReducer/dsl-action"
 import { applyDslLayout, applyDslView } from "./demo/compose"
 import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
+import { BuilderState } from "@/redux/reducers/interface"
 
 interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
   const { className } = props
   const dispatch = useDispatch()
-  const { root } = useSelector<AppState, DslState>((state) => state.dslState)
+  const { root } = useSelector(
+    (state: BuilderState) => state.editor.present.dsl,
+  )
   const canvasRef = useRef<HTMLDivElement>(null)
   const [currentDragId, setCurrentDragId] = useState<string>("dsl" + uuidv4())
 

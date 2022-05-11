@@ -1,5 +1,5 @@
 import { AnyAction } from "redux"
-import { DslFrame, DslText } from "../dragConfig/dsl"
+import { DslFrame, DslText } from "./dsl"
 
 export const DslActionName = {
   AddFrame: "AddFrame",

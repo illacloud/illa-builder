@@ -4,7 +4,7 @@ import { useDrag } from "react-dnd"
 import { DemoStyle } from "./style"
 import { FileDefaultIcon } from "@illa-design/icon"
 import { ItemTypes } from "../../../dragConfig/dragType"
-import { DropInfo } from "../../../dragConfig/interface"
+import { DropInfo } from "../../../../../redux/reducers/editorReducer/dslReducer/interface"
 
 interface DemoWidgetProps extends HTMLAttributes<HTMLDivElement> {}
 

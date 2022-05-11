@@ -3,9 +3,9 @@ import { Frame } from "scenejs"
 import Moveable from "react-moveable"
 import { useDispatch } from "react-redux"
 import { Dispatch } from "redux"
-import { DslActionName } from "../../../store/dsl-action"
-import { DslNode, DslText } from "../../../dragConfig/dsl"
-import { MenuActionName } from "../../../store/menu-action"
+import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+import { DslNode, DslText } from "@/redux/reducers/editorReducer/dslReducer/dsl"
+import { MenuActionName } from "@/redux/reducers/editorReducer/dslReducer/menu-action"
 import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 
 const TextView: React.FC<DslText> = (textViewProps) => {

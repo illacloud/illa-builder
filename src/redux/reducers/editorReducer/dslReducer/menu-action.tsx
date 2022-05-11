@@ -1,5 +1,5 @@
 import { AnyAction } from "redux"
-import { DslNode } from "../dragConfig/dsl"
+import { DslNode } from "./dsl"
 
 export const MenuActionName = {
   SelectNode: "SelectNode",

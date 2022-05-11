@@ -1,10 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { StateWithHistory } from "redux-undo"
+
+export interface ModeState {
+  isPreviewMode: boolean
+}
+
+const initialState: ModeState = {
+  isPreviewMode: false,
+}
 
 const modeSlice = createSlice({
   name: "mode",
-  initialState: {
-    isPreviewMode: false,
-  },
+  initialState,
   reducers: {
     setPreviewMode(state, action) {
       return {

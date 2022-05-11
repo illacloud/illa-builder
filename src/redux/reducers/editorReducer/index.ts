@@ -1,17 +1,29 @@
 import { combineReducers } from "redux"
-import undoable from "redux-undo"
-import demoReducer from "./demoReducer"
-import modeReducer from "./modeReducer"
-import dragReducer from "./dragReducer"
+import undoable, { StateWithHistory } from "redux-undo"
+import demoReducer, { DemoState } from "./demoReducer"
+import modeReducer, { ModeState } from "./modeReducer"
+import dragReducer, { DragState } from "./dragReducer"
 import dslReducer from "./dslReducer"
-import widgetStatesReducer from "./widgetStatesReducer"
+import { DslState } from "./dslReducer/dsl-state"
+import widgetStatesReducer, {
+  WidgetDragResizeState,
+} from "./widgetStatesReducer"
+
+export interface EditorState {
+  demo: DemoState
+  mode: ModeState
+  drag: DragState
+  dsl: DslState
+  widgetStates: WidgetDragResizeState
+}
 
 const editorReducer = combineReducers({
   demo: demoReducer,
   mode: modeReducer,
   drag: dragReducer,
-  dslState: dslReducer,
+  dsl: dslReducer,
   widgetStates: widgetStatesReducer,
 })
 
+export type EditorReduxState = StateWithHistory<EditorState>
 export default undoable(editorReducer)

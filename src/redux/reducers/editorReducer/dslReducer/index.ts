@@ -1,16 +1,8 @@
-import { createSlice, AnyAction } from "@reduxjs/toolkit"
-import {
-  DslLayout,
-  DslNode,
-  DslState,
-} from "../../../page/Editor/store/states/dsl-state"
-import {
-  AddFrame,
-  AddText,
-  DslActionName,
-  UpdateText,
-} from "../../../page/Editor/store/dsl-action"
-import { Category, DslType } from "../../../page/Editor/dragConfig/dragType"
+import { createSlice } from "@reduxjs/toolkit"
+import { DslLayout, DslNode, DslState } from "./dsl-state"
+import { AddFrame, AddText, DslActionName, UpdateText } from "./dsl-action"
+import { Category, DslType } from "@/page/Editor/dragConfig/dragType"
+import { StateWithHistory } from "redux-undo"
 
 const initialState = {
   root: {
@@ -98,11 +90,11 @@ function updateNode(
 }
 
 const dslSlice = createSlice({
-  name: "dslState",
+  name: "dsl",
   initialState,
   reducers: {
-    dslActionHandler(dslState, action) {
-      let safeState = dslState
+    dslActionHandler(state, action) {
+      let safeState = state
 
       switch (action.payload?.type) {
         case DslActionName.AddFrame: {
@@ -141,6 +133,7 @@ const dslSlice = createSlice({
   },
 })
 
+export type DslReduxState = StateWithHistory<DslState>
 export const { dslActionHandler } = dslSlice.actions
 export const dslActions = dslSlice.actions
 export default dslSlice.reducer

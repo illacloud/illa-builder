@@ -1,15 +1,15 @@
 import { FC } from "react"
 import { useDrag } from "react-dnd"
-import { ComponentModel } from "./interface"
+import { ComponentModel } from "@/wrappedComponents/interface"
 import { iconCss, itemContainerCss, nameCss } from "./style"
 
 export const ComponentItem: FC<ComponentModel> = (props) => {
-  const { name, icon, itemType } = props
+  const { name, icon, type = "" } = props
 
   const [dragCollectProps, dragRef, dragPreview] = useDrag(
     () => ({
-      type: itemType,
-      item: { type: itemType, hasDropped: false },
+      type,
+      item: { type, hasDropped: false },
       options: { dropEffect: "copy" },
       previewOptions: { offsetX: 0 },
       collect: (monitor) => ({

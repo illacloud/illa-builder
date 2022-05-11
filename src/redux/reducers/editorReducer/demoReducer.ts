@@ -33,7 +33,7 @@ export const { changeDemoValueA, changeDemoValueB, changeDemoValueC } =
 
 export default demoSlice.reducer
 
-interface demoState {
+export interface DemoState {
   name: string
   value: {
     a: number
@@ -43,5 +43,3 @@ interface demoState {
     }
   }
 }
-
-export type demoReduxState = StateWithHistory<demoState>
