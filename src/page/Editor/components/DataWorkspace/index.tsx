@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { builderState } from "@/redux/reducers/interface"
+import { BuilderState } from "@/redux/reducers/interface"
 import {
   changeDemoValueA,
   changeDemoValueB,
@@ -16,7 +16,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
 
   const dispatch = useDispatch()
   const demoValue = useSelector(
-    (state: builderState) => state.editor.present.demo,
+    (state: BuilderState) => state.editor.present.demo,
   )
 
   return (
