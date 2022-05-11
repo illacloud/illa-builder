@@ -15,7 +15,7 @@ export const ComponentSession: FC<ComponentSessionProps> = (props) => {
       <span css={sessionTitleCss}>{title}</span>
       <div css={componentListContainerCss}>
         {children?.map((item) => (
-          <ComponentItem {...item} />
+          <ComponentItem key={item.id} {...item} />
         ))}
       </div>
     </div>
