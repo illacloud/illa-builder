@@ -2,8 +2,9 @@ import {
   PanelConfig,
   PanelFieldConfig,
   PanelFieldGroupConfig,
-} from "../interface"
+} from "../../PanelSetters/interface"
 import { Collapse } from "@illa-design/collapse"
+import PanelField from "../field"
 
 const CollapseItem = Collapse.Item
 
@@ -38,8 +39,19 @@ export function fieldFactory(panelConfig: PanelConfig[]) {
     if ((item as PanelFieldGroupConfig).groupName) {
       return renderFieldGroup(item as PanelFieldGroupConfig, activeKeys)
     } else if ((item as PanelFieldConfig).setterType) {
-      const { id } = item
-      return <div key={id}>{(item as PanelFieldConfig).labelName}</div>
+      const { id, setterType, attrName, labelName, labelDesc } =
+        item as PanelFieldConfig
+
+      return (
+        <PanelField
+          key={id}
+          id={id}
+          setterType={setterType}
+          attrName={attrName}
+          labelName={labelName}
+          labelDesc={labelDesc}
+        />
+      )
     }
     return null
   })

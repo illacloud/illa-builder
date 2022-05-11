@@ -2,9 +2,9 @@ import { FC } from "react"
 import PanelHeader from "./header"
 import { Divider } from "@illa-design/divider"
 import { PanelConfig } from "../PanelSetters/interface"
-import { fieldFactory } from "../PanelSetters/utils/fieldFactory"
+import { fieldFactory } from "./utils/fieldFactory"
 
-const mockData: PanelConfig[] = [
+const mockData1: PanelConfig[] = [
   {
     id: "1", // 随机生成
     isOpened: true, // 默认为 true
@@ -12,9 +12,10 @@ const mockData: PanelConfig[] = [
     children: [
       {
         id: "423",
-        labelName: "testLabel1",
+        labelName: "tootips",
         setterType: "INPUT",
         attrName: "test",
+        labelDesc: "xxxxxx",
       },
       {
         id: "413",
@@ -92,7 +93,7 @@ const InspectPanel: FC = () => {
         meta={{ componentId: "testId", componentType: "testType" }}
       />
       <Divider />
-      <div>{fieldFactory(mockData)}</div>
+      <div>{fieldFactory(mockData1)}</div>
     </div>
   )
 }
