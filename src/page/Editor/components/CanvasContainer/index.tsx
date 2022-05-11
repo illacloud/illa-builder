@@ -1,24 +1,26 @@
 import { FC, HTMLAttributes, useRef, useState } from "react"
 import { DropTargetMonitor, useDrop, XYCoord } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
-import { v4 as uuidv4, v4 as uuid } from "uuid"
-
+import { v4 as uuidv4 } from "uuid"
 import { CanvasStyle } from "./style"
 import { Category, DslType, ItemTypes } from "../../dragConfig/dragType"
-import { PanelDrag } from "../WidgetPickerEditor/DemoWidget"
-import { DropInfo } from "@/redux/reducers/editorReducer/dslReducer/interface"
 import {
+  DropInfo,
   DslFrame,
   DslLayout,
   DslText,
   DslView,
-} from "@/redux/reducers/editorReducer/dslReducer/dsl"
-import { DslActionName } from "../../../../redux/reducers/editorReducer/dslReducer/dsl-action"
+  dslActions,
+} from "@/redux/reducers/editorReducer/dslReducer"
+import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
 import { applyDslLayout, applyDslView } from "./demo/compose"
-import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { BuilderState } from "@/redux/reducers/interface"
 
 interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
+
+interface PanelDrag {
+  type: string
+}
 
 export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
   const { className } = props
@@ -124,7 +126,7 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
   return (
     <div className={className} ref={canvasRef}>
       <div ref={drop} css={CanvasStyle}>
-        {root.nodeChildren.map((value) => {
+        {root.nodeChildren.map((value: any) => {
           switch (value.category) {
             case Category.Layout: {
               return applyDslLayout(value as DslLayout)

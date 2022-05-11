@@ -1,7 +1,7 @@
 // 中转函数
 import FrameLayout from "./frame-layout"
 import TextView from "./text-view"
-import { DslFrame, DslLayout, DslText, DslView } from "@/redux/reducers/editorReducer/dslReducer/dsl"
+import { DslFrame, DslLayout, DslText, DslView } from "@/redux/reducers/editorReducer/dslReducer/interface"
 import { DslType } from "../../../dragConfig/dragType"
 
 export function applyDslLayout(dslLayout: DslLayout) {

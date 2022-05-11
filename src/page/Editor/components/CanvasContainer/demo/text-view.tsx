@@ -4,9 +4,12 @@ import Moveable from "react-moveable"
 import { useDispatch } from "react-redux"
 import { Dispatch } from "redux"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
-import { DslNode, DslText } from "@/redux/reducers/editorReducer/dslReducer/dsl"
+import {
+  DslNode,
+  DslText,
+  dslActions,
+} from "@/redux/reducers/editorReducer/dslReducer"
 import { MenuActionName } from "@/redux/reducers/editorReducer/dslReducer/menu-action"
-import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 
 const TextView: React.FC<DslText> = (textViewProps) => {
   const dispatch = useDispatch()

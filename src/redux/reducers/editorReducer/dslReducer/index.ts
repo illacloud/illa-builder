@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { DslLayout, DslNode, DslState } from "./dsl-state"
+import { DslLayout, DslNode, DslState } from "./interface"
 import { AddFrame, AddText, DslActionName, UpdateText } from "./dsl-action"
 import { Category, DslType } from "@/page/Editor/dragConfig/dragType"
 
@@ -132,6 +132,7 @@ const dslSlice = createSlice({
   },
 })
 
+export * from "./interface"
 export const { dslActionHandler } = dslSlice.actions
 export const dslActions = dslSlice.actions
 export default dslSlice.reducer

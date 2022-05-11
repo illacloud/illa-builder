@@ -3,12 +3,20 @@ import { useDispatch } from "react-redux"
 import { DropTargetMonitor, useDrop } from "react-dnd"
 import { v4 as uuidv4 } from "uuid"
 import { applyDslLayout, applyDslView } from "./compose"
-import { DslFrame, DslLayout, DslText, DslView } from "../../../../../redux/reducers/editorReducer/dslReducer/dsl"
+import {
+  DslFrame,
+  DslLayout,
+  DslText,
+  DslView,
+  DropInfo,
+  dslActions,
+} from "@/redux/reducers/editorReducer/dslReducer"
 import { Category, DslType, ItemTypes } from "../../../dragConfig/dragType"
-import { DropInfo } from "../../../../../redux/reducers/editorReducer/dslReducer/interface"
-import { PanelDrag } from "../../WidgetPickerEditor/DemoWidget"
-import { DslActionName } from "../../../../../redux/reducers/editorReducer/dslReducer/dsl-action"
-import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
+import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+
+interface PanelDrag {
+  type: string
+}
 
 const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
   const dispatch = useDispatch()

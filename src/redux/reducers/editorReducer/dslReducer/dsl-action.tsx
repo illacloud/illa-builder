@@ -1,5 +1,5 @@
 import { AnyAction } from "redux"
-import { DslFrame, DslText } from "./dsl"
+import { DslFrame, DslText } from "./interface"
 
 export const DslActionName = {
   AddFrame: "AddFrame",
