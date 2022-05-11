@@ -1517,9 +1517,9 @@
     uuid "^8.3.2"
 
 "@cypress/vite-dev-server@^2.2.2":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@cypress/vite-dev-server/-/vite-dev-server-2.2.3.tgz#7b21031f94d92b338860ead3a8c73f23c96c4e1d"
-  integrity sha512-E9cPKwReweYGRsupfR6Va1R1bHv3zPb3gHG68fyQwAjG4oPORaQlgfFWiR2i1pF+tRftvNfM0O2PBuKX3IvPxg==
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@cypress/vite-dev-server/-/vite-dev-server-2.2.2.tgz#dd16b7470ddd1ff095678b61c56da52ac02f44ed"
+  integrity sha512-02y/Fm0N+CQjKbSjjRtktPgPbp91kOvtc8+WW2l2odIYQkKlG6IOCpmgc898muW0lBAcCszdEIHR/ItdZDiYPw==
   dependencies:
     debug "^4.3.2"
     get-port "^5.1.1"
@@ -7704,6 +7704,11 @@ redux-thunk@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
   integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
+
+redux-undo@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/redux-undo/-/redux-undo-1.0.1.tgz#8d989d6c326e6718f4471042e90a5b8b6f3317eb"
+  integrity sha512-0yFPT+FUgwxCEiS0Mg5T1S4tkgjR8h6sJRY9CW4EMsbJOf1SxO289TbJmlzhRouCHacdDF+powPjrjLHoJYxWQ==
 
 redux@^4.1.2, redux@^4.2.0:
   version "4.2.0"
