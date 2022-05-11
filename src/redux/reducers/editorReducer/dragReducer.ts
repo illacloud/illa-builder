@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { StateWithHistory } from "redux-undo"
 
 const initValue: DragState = {
   value: 101,

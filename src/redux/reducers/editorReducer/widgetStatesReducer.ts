@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { StateWithHistory } from "redux-undo"
 
 export type DraggingGroupCenter = {
   widgetId?: string
@@ -96,6 +95,5 @@ const widgetStatesSlice = createSlice({
   },
 })
 
-export type WidgetStatesReduxState = StateWithHistory<WidgetDragResizeState>
 export const widgetStatesActions = widgetStatesSlice.actions
 export default widgetStatesSlice.reducer

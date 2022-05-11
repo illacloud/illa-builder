@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit"
 import { DslLayout, DslNode, DslState } from "./dsl-state"
 import { AddFrame, AddText, DslActionName, UpdateText } from "./dsl-action"
 import { Category, DslType } from "@/page/Editor/dragConfig/dragType"
-import { StateWithHistory } from "redux-undo"
 
 const initialState = {
   root: {
@@ -133,7 +132,6 @@ const dslSlice = createSlice({
   },
 })
 
-export type DslReduxState = StateWithHistory<DslState>
 export const { dslActionHandler } = dslSlice.actions
 export const dslActions = dslSlice.actions
 export default dslSlice.reducer
