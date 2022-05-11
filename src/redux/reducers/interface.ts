@@ -1,11 +1,7 @@
-import { demoReduxState } from "./editorReducer/demoReducer"
-import { dragReduxState } from "./editorReducer/dragReducer"
+import { EditorReduxState } from "./editorReducer"
 
-export interface builderState {
-  editor: {
-    demo: demoReduxState
-    drag: dragReduxState
-  }
+export interface BuilderState {
+  editor: EditorReduxState
   action: {}
   userGroup: {}
   metaInfo: {}

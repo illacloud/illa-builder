@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { StateWithHistory } from "redux-undo"
 
-const initValue: demoState = {
+const initValue: DemoState = {
   name: "demo name",
   value: {
     a: 1,
@@ -33,7 +33,7 @@ export const { changeDemoValueA, changeDemoValueB, changeDemoValueC } =
 
 export default demoSlice.reducer
 
-interface demoState {
+export interface DemoState {
   name: string
   value: {
     a: number
@@ -43,5 +43,3 @@ interface demoState {
     }
   }
 }
-
-export type demoReduxState = StateWithHistory<demoState>

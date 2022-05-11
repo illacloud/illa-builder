@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
-import { builderState } from "@/redux/reducers/interface"
+import { BuilderState } from "@/redux/reducers/interface"
 import { increaseDragValue } from "@/redux/reducers/editorReducer/dragReducer"
 
 interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> {}
@@ -11,7 +11,7 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
 
   const dispatch = useDispatch()
   const dragValue = useSelector(
-    (state: builderState) => state.editor.present.drag,
+    (state: BuilderState) => state.editor.present.drag,
   )
 
   return (
