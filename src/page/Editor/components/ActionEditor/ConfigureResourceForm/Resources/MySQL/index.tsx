@@ -13,14 +13,16 @@ import {
   applyPadding,
   DescriptionCSS,
   BorderBottomCSS,
-  applyTextAlign,
   SwitchTextCommentCSS,
+  RequireTagCSS,
   applyIllaColor,
   AlignDefaultCSS,
+  ErrorMessageCSS,
   BackAreaCSS,
   BackTextCSS,
   BackIconCSS,
   DisplayNoneCSS,
+  applyJustifyContent,
 } from "./style"
 import { Button } from "@illa-design/button"
 import { Switch } from "@illa-design/switch"
@@ -30,12 +32,15 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { InputNumber } from "@illa-design/input-number"
 import { MySQLFormValues } from "./interface"
 
+const Error_REQUIRED_MESSAGE = "This is required!"
 export const MySQL = () => {
   const [expandSSH, setExpandSSH] = useState(false)
   const [expandSSL, setExpandSSL] = useState(false)
   const {
     handleSubmit,
     control,
+    register,
+    resetField,
     formState: { errors },
   } = useForm<MySQLFormValues>()
 
@@ -51,7 +56,6 @@ export const MySQL = () => {
   const uploadClientCertificateRef = useRef<HTMLInputElement | null>(null)
   const clientCertificateRef = useRef<HTMLInputElement | null>(null)
   const [clientCertificateName, setClientCertificateName] = useState("")
-  const [color, setColor] = useState("blue")
 
   const handleUploadPrivateKey = () => {
     uploadPrivateKeyRef.current?.click()
@@ -66,8 +70,12 @@ export const MySQL = () => {
     uploadClientCertificateRef.current?.click()
   }
 
-  const onSubmit: SubmitHandler<MySQLFormValues> = (data) =>
+  const PK = register("SSH_PrivateKey")
+
+  const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
+    console.log(data)
     alert(JSON.stringify(data))
+  }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
@@ -77,44 +85,99 @@ export const MySQL = () => {
           applyPadding("bottom", 8),
         )}
       >
-        <label css={LabelTextCSS}>Name</label>
+        <label css={LabelTextCSS}>
+          <span css={RequireTagCSS}>*</span>Name
+        </label>
         <div>
           <Controller
             render={({ field }) => (
               <Input
                 {...field}
                 placeholder='i.e."Users DB(readonly)" or "Internal Admin API"'
-                borderColor={errors.Name ? "red" : "blue"}
-                /*                onChange={(value) => {
-                  console.log("yuuyy", errors)
-                  if (errors.Name) {
-                    setColor("red")
-                  } else {
-                    setColor("blue")
-                  }
-                  field.onChange(value)
-                }}*/
+                error={!!errors.Name}
+                maxLength={200}
               />
             )}
-            rules={{ required: true }}
+            rules={{
+              required: Error_REQUIRED_MESSAGE,
+            }}
             control={control}
-            name={"Name"}
+            name="Name"
           />
-          {errors.Name && "Name is required!"}
         </div>
-        <label css={LabelTextCSS}>Hostname/Port</label>
+        {errors.Name && (
+          <div css={css(ErrorMessageCSS, applyGridColIndex(2))}>
+            {errors.Name.message}
+          </div>
+        )}
+        <label css={LabelTextCSS}>
+          <span css={RequireTagCSS}>*</span>Hostname/Port
+        </label>
         <div css={HostnamePortCSS}>
-          <Input maxLength={200} placeholder="Hostname" />
-          <InputNumber defaultValue={3306} placeholder="3306" />
+          <Controller
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Hostname"
+                error={!!errors.Hostname}
+                maxLength={200}
+              />
+            )}
+            control={control}
+            name="Hostname"
+            rules={{
+              required: Error_REQUIRED_MESSAGE,
+            }}
+          />
+          <Controller
+            render={({ field }) => (
+              <InputNumber
+                {...field}
+                placeholder="3306"
+                error={!!errors.Port}
+              />
+            )}
+            control={control}
+            name="Port"
+            rules={{
+              required: Error_REQUIRED_MESSAGE,
+            }}
+          />
         </div>
+        {(errors.Hostname || errors.Port) && (
+          <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
+            <div css={ErrorMessageCSS}>{errors.Hostname?.message}</div>
+            <div css={ErrorMessageCSS}>{errors.Port?.message}</div>
+          </div>
+        )}
         <label css={LabelTextCSS}>Database</label>
         <div>
-          <Input placeholder="acme_production" />
+          <Controller
+            render={({ field }) => (
+              <Input {...field} placeholder="acme_production" />
+            )}
+            control={control}
+            name="Database"
+          />
         </div>
         <label css={LabelTextCSS}>Username/Password</label>
         <div css={UsernamePasswordCSS}>
-          <Input placeholder="Username" />
-          <Password invisibleButton={false} placeholder="Password" />
+          <Controller
+            render={({ field }) => <Input {...field} placeholder="Username" />}
+            control={control}
+            name="Username"
+          />
+          <Controller
+            render={({ field }) => (
+              <Password
+                {...field}
+                invisibleButton={false}
+                placeholder="Password"
+              />
+            )}
+            control={control}
+            name="Password"
+          />
         </div>
       </div>
       <div
@@ -124,7 +187,7 @@ export const MySQL = () => {
           Credentials will be encrypted & stored securely on our servers.
         </div>
         <label css={LabelTextCSS}>Connect Type</label>
-        <div css={css(LabelTextCSS, applyTextAlign("left"))}>
+        <div css={css(LabelTextCSS, applyJustifyContent("start"))}>
           Cloud: PopSQL servers will securely connect to your database.
         </div>
       </div>
@@ -149,23 +212,93 @@ export const MySQL = () => {
             }}
           />
           <div css={css(SwitchDescriptionCSS, applyMargin("left", 8))}>
-            <div css={css(LabelTextCSS, applyTextAlign("left"))}>
-              Useful to connect to private network
-            </div>
+            <div css={LabelTextCSS}>Useful to connect to private network</div>
           </div>
         </div>
         {expandSSH && (
           <>
-            <label css={LabelTextCSS}>SSH Hostname/Port</label>
+            <label css={LabelTextCSS}>
+              <span css={RequireTagCSS}>*</span>SSH Hostname/Port
+            </label>
             <div css={HostnamePortCSS}>
-              <Input placeholder="eg.localhost" />
-              <InputNumber defaultValue={22} />
+              <Controller
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="eg.localhost"
+                    maxLength={200}
+                    error={!!errors.SSH_Hostname}
+                  />
+                )}
+                rules={{
+                  required: Error_REQUIRED_MESSAGE,
+                }}
+                control={control}
+                name="SSH_Hostname"
+              />
+              <Controller
+                render={({ field }) => (
+                  <InputNumber
+                    {...field}
+                    placeholder="22"
+                    error={!!errors.SSH_Port}
+                  />
+                )}
+                rules={{
+                  required: Error_REQUIRED_MESSAGE,
+                }}
+                control={control}
+                name="SSH_Port"
+              />
             </div>
-            <label css={LabelTextCSS}>SSH Credentials</label>
+            {(errors.SSH_Hostname || errors.SSH_Port) && (
+              <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
+                <div css={ErrorMessageCSS}>{errors.SSH_Hostname?.message}</div>
+                <div css={ErrorMessageCSS}>{errors.SSH_Port?.message}</div>
+              </div>
+            )}
+            <label css={LabelTextCSS}>
+              <span css={RequireTagCSS}>*</span>SSH Credentials
+            </label>
             <div css={UsernamePasswordCSS}>
-              <Input placeholder="eg.ec2-user" />
-              <Password invisibleButton={false} placeholder="•••••••••" />
+              <Controller
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder="eg.ec2-user"
+                    error={!!errors.SSH_Credentials}
+                  />
+                )}
+                rules={{
+                  required: Error_REQUIRED_MESSAGE,
+                }}
+                control={control}
+                name="SSH_Credentials"
+              />
+              <Controller
+                render={({ field }) => (
+                  <Password
+                    {...field}
+                    placeholder="•••••••••"
+                    invisibleButton={false}
+                    error={!!errors.SSH_Password}
+                  />
+                )}
+                rules={{
+                  required: Error_REQUIRED_MESSAGE,
+                }}
+                control={control}
+                name="SSH_Password"
+              />
             </div>
+            {(errors.SSH_Credentials || errors.SSH_Password) && (
+              <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
+                <div css={ErrorMessageCSS}>
+                  {errors.SSH_Credentials?.message}
+                </div>
+                <div css={ErrorMessageCSS}>{errors.SSH_Password?.message}</div>
+              </div>
+            )}
             <label css={LabelTextCSS}>Private Key</label>
             <div>
               <Input
@@ -177,16 +310,30 @@ export const MySQL = () => {
                       variant="text"
                       colorScheme="purple"
                       onClick={handleUploadPrivateKey}
+                      type="button"
                     >
                       Choose a File
                     </Button>
                   ),
                 }}
+                onClear={() => {
+                  setPrivateKeyName("")
+                  resetField("SSH_PrivateKey")
+                  /*                  if (uploadPrivateKeyRef.current?.value) {
+                    uploadPrivateKeyRef.current.value = undefined
+                  }*/
+                }}
+                allowClear
               />
               <input
                 css={DisplayNoneCSS}
-                ref={uploadPrivateKeyRef}
+                {...PK}
+                ref={(e) => {
+                  PK.ref(e)
+                  uploadPrivateKeyRef.current = e
+                }}
                 onChange={(event) => {
+                  PK.onChange(event)
                   const files = event.target.files
                   if (files) {
                     setPrivateKeyName(files[0].name)
@@ -218,9 +365,7 @@ export const MySQL = () => {
             }}
           />
           <div css={css(SwitchDescriptionCSS, applyMargin("left", 8))}>
-            <div css={css(LabelTextCSS, applyTextAlign("left"))}>
-              SSL is used when available
-            </div>
+            <div css={LabelTextCSS}>SSL is used when available</div>
           </div>
         </div>
         {expandSSL && (
@@ -236,6 +381,7 @@ export const MySQL = () => {
                       variant="text"
                       colorScheme="purple"
                       onClick={handleUploadServerCertificate}
+                      type="button"
                     >
                       Choose a File
                     </Button>
@@ -265,6 +411,7 @@ export const MySQL = () => {
                       variant="text"
                       colorScheme="purple"
                       onClick={handleUploadClientKey}
+                      type="button"
                     >
                       Choose a File
                     </Button>
@@ -294,6 +441,7 @@ export const MySQL = () => {
                       variant="text"
                       colorScheme="purple"
                       onClick={handleUploadClientCertificate}
+                      type="button"
                     >
                       Choose a File
                     </Button>
@@ -316,7 +464,12 @@ export const MySQL = () => {
         )}
       </div>
       <div css={css(FooterCSS)}>
-        <Button variant="text" size="medium" colorScheme="grayBlue">
+        <Button
+          variant="text"
+          size="medium"
+          colorScheme="grayBlue"
+          type="button"
+        >
           <div css={BackAreaCSS}>
             <div css={BackIconCSS}>
               <PaginationPreIcon />
@@ -329,6 +482,7 @@ export const MySQL = () => {
             css={applyMargin("right", 8)}
             size="medium"
             colorScheme="gray"
+            type="button"
           >
             Test Connection
           </Button>

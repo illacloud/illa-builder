@@ -1,13 +1,14 @@
 export type MySQLFormValues = {
   Name: string
   Hostname: string
-  port: number
-  DataBase: string
+  Port: number
+  Database: string
   Username: string
   Password: string
   SSH_Hostname?: string
   SSH_Port?: number
   SSH_Credentials?: string
+  SSH_Password?: string
   SSH_PrivateKey?: File
   SSH_Passphrase?: string
   SSL_ServerRootCertificate?: File

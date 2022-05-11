@@ -3,8 +3,9 @@ import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const LabelTextCSS = css`
-  display: grid;
+  display: flex;
   align-items: center;
+  justify-content: end;
   font-size: 14px;
   line-height: 1.57;
   font-weight: 500;
@@ -95,9 +96,20 @@ export const SwitchTextCommentCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
-type Direction = "left" | "right" | "top" | "bottom"
+export const ErrorMessageCSS = css`
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+  line-height: 1.57;
+  margin-top: -8px;
+`
 
-type TextAlign = "left" | "center" | "right"
+export const RequireTagCSS = css`
+  margin-right: 5px;
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+  line-height: 0;
+`
+
+type Direction = "left" | "right" | "top" | "bottom"
 
 export function applyGridColIndex(index: number): SerializedStyles {
   return css`
@@ -119,9 +131,9 @@ export function applyPadding(
   return css`padding-${direction}:${number}px; `
 }
 
-export function applyTextAlign(align: TextAlign): SerializedStyles {
+export function applyJustifyContent(align: string): SerializedStyles {
   return css`
-    text-align: ${align};
+    justify-content: ${align};
   `
 }
 
