@@ -1,71 +1,70 @@
 import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
+import { motion } from "framer-motion"
+import { useClickAway } from "react-use"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
 import { Menu } from "@illa-design/menu"
-import { motion } from "framer-motion"
 import {
   AddIcon,
-  SearchIcon,
   WarningCircleIcon,
   EmptyStateIcon,
-  RestApiIcon
+  RestApiIcon,
 } from "@illa-design/icon"
 import {
-  QueryListContainer,
-  QueryListHeader,
-  HeaderTitle,
-  applyNewButton,
-  NewButtonContentWrapper,
-  AddIconInNewButton,
-  QueryItemList,
-  applyQueryItem,
-  QueryItemTitleWrapper,
-  applyQueryItemTitle,
-  QueryItemIcon,
-  WarningIndicator,
-  UpdatedIndicator,
-  QueryItemTime,
-  NewQueryOptionsList,
-  NewQueryOptionsItem,
-  SearchInput,
-  SearchInputIcon,
-  CloseBtn,
-  HeaderSearchIcon,
-  NoMatchFoundWrapper,
-  EmptyQueryListPlaceholder,
-  applyActionMenu,
-  DeleteAction,
-  DuplicateAction,
-  applyActionMenuVisible,
+  QueryListContainerCss,
+
+  applyNewButtonCss,
+  NewButtonTextCss,
+  NewButtonIconCss,
+  NewQueryOptionsListCss,
+  NewQueryOptionsItemCss,
+
+  QueryItemListCss,
+  applyQueryItemCss,
+  QueryItemNameCss,
+  applyQueryItemNameTextCss,
+  QueryItemIconCss,
+  QueryItemTimeCss,
+  WarningIndicatorCss,
+  UpdatedIndicatorCss,
+
+  NoMatchFoundWrapperCss,
+  EmptyQueryListPlaceholderCss,
+  applyContextMenuCss,
+  DeleteActionCss,
+  DuplicateActionCss,
+  applyContextMenuVisibleCss,
 } from "./style"
-import { useClickAway } from "react-use"
 import { QueryListProps, QueryItem } from "./interface"
+import { SearchHeader } from "./SearchHeader"
 
 const MenuItem = Menu.Item
 
 export const QueryList: FC<QueryListProps> = (props) => {
   const { className } = props
 
-  const [queryOptionsVisible, setQueryOptionsVisible] = useState(false)
-  const [isSearch, setIsSearch] = useState(false)
-  const [selectedQueryId, setSelectedQuery] = useState<string>()
-  const [queryItems, setQueryItems] = useState<QueryItem[]>([])
+  const [newQueryOptionsVisible, setNewQueryOptionsVisible] = useState(false)
   const [query, setQuery] = useState<string>("")
+
+  const [queryItems, setQueryItems] = useState<QueryItem[]>([])
+
+  const [selectedQueryItemId, setSelectedQueryItemId] = useState<string>()
   const [editingQueryItemId, setEditingQueryItemId] = useState("")
   const [actionQueryItemId, setActionQueryItemId] = useState("")
-  const [actionMenuVisible, setActionMenuVisible] = useState(false)
-  const [actionMenuPosition, setActionMenuPosition] = useState({ x: 0, y: 0 })
+
+  const [contextMenuVisible, setContextMenuVisible] = useState(false)
+  const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
 
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const actionMenuRef = useRef<HTMLDivElement | null>(null)
+  const contextMenuRef = useRef<HTMLDivElement | null>(null)
 
-  useClickAway(actionMenuRef, () => {
-    setActionMenuVisible(false)
+  useClickAway(contextMenuRef, () => {
+    setContextMenuVisible(false)
     setActionQueryItemId("")
   })
 
-  const filteredQueryItems = useMemo(() => {
+  const matchedQueryItems = useMemo(() => {
     if (query === "") {
       return queryItems
     }
@@ -76,13 +75,13 @@ export const QueryList: FC<QueryListProps> = (props) => {
   }, [queryItems, query])
 
   const queryItemsNameSet = useMemo(() => {
-    return new Set(queryItems.map((i) => i.name));
+    return new Set(queryItems.map((i) => i.name))
   }, [queryItems])
-
 
   function updateName(id: string, name: string) {
     const newQueryItems = queryItems.slice(0)
     const editingItem = newQueryItems.find((i) => i.id === id)
+
     editingItem && (editingItem.name = name)
     setQueryItems(newQueryItems)
   }
@@ -96,28 +95,28 @@ export const QueryList: FC<QueryListProps> = (props) => {
 
   function generateName(type: string) {
     const length = queryItems.filter((i) => i.type === type).length
-    const prefix = type;
+    const prefix = type
 
     const getUniqueName = (length: number): string => {
-      const name = `${prefix}${length + 1}`;
+      const name = `${prefix}${length + 1}`
 
       if (queryItemsNameSet.has(name)) {
         return getUniqueName(length + 1)
       }
 
-      return name;
+      return name
     }
 
-    return getUniqueName(length);
+    return getUniqueName(length)
   }
 
-  function showActionMenu(event: MouseEvent, id: string) {
+  function showContextMenu(event: MouseEvent, id: string) {
     event.preventDefault()
 
+    let offset = 0
     const { clientX, clientY } = event
     const OFFSET_THRESHOLD = 10
-    let offset = 0
-    const contextMenuRect = actionMenuRef.current?.getBoundingClientRect()
+    const contextMenuRect = contextMenuRef.current?.getBoundingClientRect()
     const viewportHeight = window.innerHeight
     const contextMenuBottom = clientY + (contextMenuRect?.height ?? 0)
 
@@ -125,15 +124,16 @@ export const QueryList: FC<QueryListProps> = (props) => {
       offset = contextMenuBottom - viewportHeight + OFFSET_THRESHOLD
     }
 
-    setActionMenuPosition({ x: clientX, y: clientY - offset })
+    setContextMenuPosition({ x: clientX, y: clientY - offset })
 
     setActionQueryItemId(id)
-    setActionMenuVisible(true)
+    setContextMenuVisible(true)
   }
 
-  const queryItemsList = filteredQueryItems.map((item) => {
+  const queryItemsList = matchedQueryItems.map((item) => {
     const { id, name, time, isWarning, isUpdated } = item
     const icon = <RestApiIcon />
+    const isSelected = id === selectedQueryItemId
 
     function renderName() {
       if (id === editingQueryItemId) {
@@ -150,50 +150,48 @@ export const QueryList: FC<QueryListProps> = (props) => {
       }
 
       return (
-        <span css={QueryItemTitleWrapper} onDoubleClick={() => editName(id)}>
-          <span css={applyQueryItemTitle(isWarning)} title={name}>
+        <span css={QueryItemNameCss} onDoubleClick={() => editName(id)}>
+          <span css={applyQueryItemNameTextCss(isWarning)} title={name}>
             {name}
           </span>
-          {isUpdated && <span css={UpdatedIndicator}></span>}
+          {isUpdated && <span css={UpdatedIndicatorCss}></span>}
         </span>
       )
     }
 
-    const isSelected = id === selectedQueryId
-
     return (
       <li
         key={id}
-        css={applyQueryItem(isSelected)}
+        css={applyQueryItemCss(isSelected)}
         onClick={() => onClickQueryItem(id)}
-        onContextMenu={(e) => showActionMenu(e, id)}
+        onContextMenu={(e) => showContextMenu(e, id)}
       >
-        <span css={QueryItemIcon}>
+        <span css={QueryItemIconCss}>
           {icon}
           {isWarning && (
-            <WarningCircleIcon css={WarningIndicator} size={"8px"} />
+            <WarningCircleIcon css={WarningIndicatorCss} size={"8px"} />
           )}
         </span>
         {renderName()}
-        <span css={QueryItemTime}>{time}</span>
+        <span css={QueryItemTimeCss}>{time}</span>
       </li>
     )
   })
 
   function onClickQueryItem(id: string) {
-    setSelectedQuery(id);
+    setSelectedQueryItemId(id)
 
     if (queryItems.length === 1) {
-      editName(id);
+      editName(id)
     }
   }
 
-  const newQueryOptions = (
-    <ul css={NewQueryOptionsList}>
-      <li css={NewQueryOptionsItem} onClick={addQuery}>
+  const newNewQueryOptions = (
+    <ul css={NewQueryOptionsListCss}>
+      <li css={NewQueryOptionsItemCss} onClick={addQuery}>
         Resource query
       </li>
-      <li css={NewQueryOptionsItem} onClick={addTransformer}>
+      <li css={NewQueryOptionsItemCss} onClick={addTransformer}>
         JavaScript transformer
       </li>
     </ul>
@@ -233,55 +231,21 @@ export const QueryList: FC<QueryListProps> = (props) => {
     })
   }
 
-  const headerContent = isSearch ? (
-    <>
-      <Input
-        prefix={{
-          render: <SearchIcon size={"12px"} css={SearchInputIcon} />,
-        }}
-        placeholder={"Search"}
-        onChange={setQuery}
-        onClear={() => setQuery("")}
-        css={SearchInput}
-        allowClear
-      />
-      <Button
-        onClick={() => {
-          setIsSearch(false)
-          setQuery("")
-        }}
-        colorScheme={"white"}
-        css={CloseBtn}
-      >
-        Close
-      </Button>
-    </>
-  ) : (
-    <>
-      <span css={HeaderTitle}>Queries List</span>
-      <SearchIcon
-        size={"12px"}
-        onClick={() => setIsSearch(true)}
-        css={HeaderSearchIcon}
-      />
-    </>
-  )
-
   const NoMatchFound = (
-    <div css={NoMatchFoundWrapper}>
+    <div css={NoMatchFoundWrapperCss}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
       <span>Sorry, No Search result</span>
     </div>
   )
 
   const renderQueryItemList = () => {
-    if (filteredQueryItems.length === 0) {
-      if (isSearch && query !== "") {
+    if (matchedQueryItems.length === 0) {
+      if (query !== "") {
         return NoMatchFound
       }
 
       return (
-        <span css={EmptyQueryListPlaceholder}>
+        <span css={EmptyQueryListPlaceholderCss}>
           Add a query to begin working with data from a connected resource.
         </span>
       )
@@ -290,12 +254,12 @@ export const QueryList: FC<QueryListProps> = (props) => {
     return queryItemsList
   }
 
-  const ActionMenu = forwardRef((props, ref) => {
-    return (
+  const MotionContextMenu = motion(
+    forwardRef((_, ref) => (
       <Menu
         css={[
-          applyActionMenu(actionMenuPosition.y, actionMenuPosition.x),
-          applyActionMenuVisible(actionMenuVisible),
+          applyContextMenuCss(contextMenuPosition.y, contextMenuPosition.x),
+          applyContextMenuVisibleCss(contextMenuVisible),
         ]}
         onClickMenuItem={handleAction}
         ref={ref}
@@ -303,14 +267,12 @@ export const QueryList: FC<QueryListProps> = (props) => {
         <MenuItem
           key={"duplicate"}
           title={"Duplicate"}
-          css={DuplicateAction}
+          css={DuplicateActionCss}
         ></MenuItem>
-        <MenuItem key={"delete"} title={"Delete"} css={DeleteAction}></MenuItem>
+        <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCss}></MenuItem>
       </Menu>
-    )
-  })
-
-  const MotionActionMenu = motion(ActionMenu)
+    )),
+  )
 
   function handleAction(key: string) {
     if (key === "duplicate") {
@@ -321,20 +283,24 @@ export const QueryList: FC<QueryListProps> = (props) => {
   }
 
   function duplicateQueryItem() {
-    setActionMenuVisible(false)
+    setContextMenuVisible(false)
     const newQueryItems = queryItems.slice(0)
     const targetItem = newQueryItems.find((i) => i.id === actionQueryItemId)
-    const type = targetItem?.type
-    const duplicateItem = Object.assign({}, targetItem, {
-      id: Date.now().toString(),
-      name: generateName(type),
-    })
-    setQueryItems([...newQueryItems, duplicateItem])
+
+    if (targetItem) {
+      const type = targetItem.type
+      const duplicateItem = Object.assign({}, targetItem, {
+        id: Date.now().toString(),
+        name: generateName(type),
+      })
+      setQueryItems([...newQueryItems, duplicateItem])
+    }
+
     setActionQueryItemId("")
   }
 
   function deleteQueryItem() {
-    setActionMenuVisible(false)
+    setContextMenuVisible(false)
 
     const newQueryItems = queryItems.slice(0)
     const index = newQueryItems.findIndex((i) => i.id === actionQueryItemId)
@@ -345,27 +311,27 @@ export const QueryList: FC<QueryListProps> = (props) => {
   }
 
   return (
-    <div className={className} css={QueryListContainer}>
-      <header css={QueryListHeader}>{headerContent}</header>
+    <div className={className} css={QueryListContainerCss}>
+      <SearchHeader updateQuery={setQuery} />
 
       <Dropdown
-        dropList={newQueryOptions}
+        dropList={newNewQueryOptions}
         trigger={"click"}
         triggerProps={{ clickOutsideToClose: true, closeOnClick: false }}
-        onVisibleChange={(visible) => setQueryOptionsVisible(visible)}
+        onVisibleChange={(visible) => setNewQueryOptionsVisible(visible)}
       >
-        <Button css={applyNewButton(queryOptionsVisible)}>
-          <span css={NewButtonContentWrapper}>
-            <AddIcon css={AddIconInNewButton} />
+        <Button css={applyNewButtonCss(newQueryOptionsVisible)}>
+          <span css={NewButtonTextCss}>
+            <AddIcon css={NewButtonIconCss} />
             New
           </span>
         </Button>
       </Dropdown>
 
-      <ul css={QueryItemList}>{renderQueryItemList()}</ul>
+      <ul css={QueryItemListCss}>{renderQueryItemList()}</ul>
 
-      <MotionActionMenu
-        ref={actionMenuRef}
+      <MotionContextMenu
+        ref={contextMenuRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.2 }}

@@ -6,14 +6,16 @@ export const ActionEditorContainer = css`
   height: 100%;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   min-height: 300px;
-`
+  `
 
-export const ActionEditorPanelWrapper = css`
+export const ActionEditorPanelLayoutWrapper = css`
   display: flex;
   flex-direction: column;
   position: relative;
   flex: 0 0 auto;
 `
+
+export const ActionEditorPanelWrapper = css``
 
 export function applyContainerHeight(height: number): SerializedStyles {
   return css({

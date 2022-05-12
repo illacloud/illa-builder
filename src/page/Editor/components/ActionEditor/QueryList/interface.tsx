@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react"
 
-export interface QueryListProps extends HTMLAttributes<HTMLDivElement> {}
+export interface QueryListProps extends HTMLAttributes<HTMLDivElement> { }
 
 export interface QueryItem {
   id: string
@@ -9,4 +9,8 @@ export interface QueryItem {
   isWarning: boolean
   isUpdated: boolean
   time: string
+}
+
+export interface SearchHeaderProps {
+  updateQuery: (query: string) => void
 }
