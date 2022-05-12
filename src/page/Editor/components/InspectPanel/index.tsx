@@ -1,7 +1,7 @@
 import { FC } from "react"
 import PanelHeader from "./header"
 import { Divider } from "@illa-design/divider"
-import { PanelConfig } from "../PanelSetters/interface"
+import { PanelConfig } from "./interface"
 import { fieldFactory } from "./utils/fieldFactory"
 
 const mockData1: PanelConfig[] = [
@@ -13,20 +13,20 @@ const mockData1: PanelConfig[] = [
       {
         id: "423",
         labelName: "tootips",
-        setterType: "INPUT",
+        setterType: "switch",
         attrName: "test",
         labelDesc: "xxxxxx",
       },
       {
         id: "413",
         labelName: "testLabel2",
-        setterType: "INPUT",
+        setterType: "input",
         attrName: "test",
       },
       {
         id: "443",
         labelName: "testLabel3",
-        setterType: "INPUT",
+        setterType: "input",
         attrName: "test",
       },
     ],
@@ -38,7 +38,7 @@ const mockData1: PanelConfig[] = [
       {
         id: "442",
         labelName: "testLabel4",
-        setterType: "INPUT",
+        setterType: "switch",
         attrName: "test",
       },
     ],
@@ -56,19 +56,19 @@ const mockData1: PanelConfig[] = [
           {
             id: "42323",
             labelName: "testLabel1",
-            setterType: "INPUT",
+            setterType: "switch",
             attrName: "test",
           },
           {
             id: "4131f",
             labelName: "testLabel2",
-            setterType: "INPUT",
+            setterType: "switch",
             attrName: "test",
           },
           {
             id: "44asd23",
             labelName: "testLabel3",
-            setterType: "INPUT",
+            setterType: "switch",
             attrName: "test",
           },
         ],
@@ -78,7 +78,7 @@ const mockData1: PanelConfig[] = [
   {
     id: "4",
     labelName: "testLabel5",
-    setterType: "INPUT",
+    setterType: "switch",
     attrName: "test",
   },
 ]
