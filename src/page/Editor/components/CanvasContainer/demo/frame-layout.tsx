@@ -11,7 +11,7 @@ import {
   DropInfo,
   dslActions,
 } from "@/redux/reducers/editorReducer/dslReducer"
-import { Category, DslType, ItemTypes } from "../../../dragConfig/dragType"
+import { Category, DslType, ItemTypes } from "../../../constants/dragConfig"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
 
 interface PanelDrag {

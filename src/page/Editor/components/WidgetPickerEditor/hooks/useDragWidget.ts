@@ -46,7 +46,7 @@ export const useDragWidget = () => {
       },
       [dispatch],
     ),
-    setDraggingWidget: useCallback(
+    setDraggingCanvas: useCallback(
       (draggedOn: string) => {
         widgetStatesActions.setDraggingOn({ draggedOn })
       },

@@ -2,7 +2,7 @@
 import FrameLayout from "./frame-layout"
 import TextView from "./text-view"
 import { DslFrame, DslLayout, DslText, DslView } from "@/redux/reducers/editorReducer/dslReducer/interface"
-import { DslType } from "../../../dragConfig/dragType"
+import { DslType } from "../../../constants/dragConfig"
 
 export function applyDslLayout(dslLayout: DslLayout) {
   console.log(dslLayout, "dslLayout")

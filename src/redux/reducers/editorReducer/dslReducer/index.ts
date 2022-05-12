@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { DslLayout, DslNode, DslState } from "./interface"
 import { AddFrame, AddText, DslActionName, UpdateText } from "./dsl-action"
-import { Category, DslType } from "@/page/Editor/dragConfig/dragType"
+import { MAIN_CONTAINER_ID, Category, DslType } from "@/page/Editor/constants/dragConfig"
 
 const initialState = {
   root: {
     dslKey: "dslRoot",
-    parentKey: "root",
+    parentKey: MAIN_CONTAINER_ID,
     version: "0.0.1",
     nodeChildren: [],
     type: DslType.DslFrame,
@@ -27,7 +27,7 @@ function addNode(
   dslNode: DslNode,
 ): DslState {
   // 只有 layout 才可以没有parent
-  if (parentKey == "root") {
+  if (parentKey == MAIN_CONTAINER_ID) {
     if (dslNode.category == Category.Layout) {
       return {
         ...currentState,
@@ -70,7 +70,7 @@ function updateNode(
   parentNode: DslLayout,
   dslNode: DslNode,
 ) {
-  if (dslNode.parentKey == "root" && dslNode.category == Category.Layout) {
+  if (dslNode.parentKey == MAIN_CONTAINER_ID && dslNode.category == Category.Layout) {
     dslState.root = dslNode as DslLayout
     return
   }

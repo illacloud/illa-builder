@@ -3,7 +3,7 @@ import { DropTargetMonitor, useDrop, XYCoord } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { CanvasStyle } from "./style"
-import { Category, DslType, ItemTypes } from "../../dragConfig/dragType"
+import { Category, DslType, ItemTypes } from "../../constants/dragConfig"
 import {
   DropInfo,
   DslFrame,
