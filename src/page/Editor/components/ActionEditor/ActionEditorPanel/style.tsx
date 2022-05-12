@@ -48,9 +48,9 @@ export const TitleInputContainer = css`
 
 export const TitleInputCss = css`
   & > span {
-    border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
-      ${chroma(globalColor(`--${illaPrefix}-brand-purple-01`))
+      ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
         .alpha(0.2)
         .hex()};
   }
@@ -106,13 +106,11 @@ export const MoreBtn = css`
 `
 
 export const RunBtn = css`
-  color: ${globalColor(`--${illaPrefix}-brand-purple-02`)}!important;
-  background-color: ${globalColor(`--${illaPrefix}-brand-purple-07`)}!important;
+  color: ${globalColor(`--${illaPrefix}-techPurple-02`)}!important;
+  background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)}!important;
 
   &:hover {
-    background-color: ${globalColor(
-      `--${illaPrefix}-brand-purple-06`,
-    )}!important;
+    background-color: ${globalColor(`--${illaPrefix}-techPurple-06`)}!important;
   }
 `
 

@@ -11,16 +11,12 @@ export const QueryListContainerCss = css`
 
 export const applyNewButtonCss = (isActive: boolean): SerializedStyles => {
   const activeCss = css`
-    background-color: ${globalColor(
-      `--${illaPrefix}-brand-purple-05`,
-    )}!important;
+    background-color: ${globalColor(`--${illaPrefix}-techPurple-05`)}!important;
   `
 
   return css`
-    background-color: ${globalColor(
-      `--${illaPrefix}-brand-purple-07`,
-    )}!important;
-    color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
+    background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)}!important;
+    color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     justify-content: center;
     font-size: 14px;
     margin: 0 16px 8px 16px;
@@ -39,7 +35,7 @@ export const applyNewButtonCss = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-        `--${illaPrefix}-brand-purple-06`,
+        `--${illaPrefix}-techPurple-06`,
       )}!important;
     }
   `
@@ -249,9 +245,9 @@ export const SearchInputCss = css`
   margin-right: 8px;
   & > span {
     border-radius: 8px !important;
-    border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)}!important;
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
-      ${chroma(globalColor(`--${illaPrefix}-brand-purple-01`))
+      ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
         .alpha(0.2)
         .hex()};
   }

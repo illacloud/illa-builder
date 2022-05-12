@@ -31,8 +31,8 @@ export const ResourceItemCSS = css`
   transition: all 0.2s ease-in-out;
   &:hover {
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
-    background-color: ${globalColor(`--${illaPrefix}-brand-purple-07`)};
-    border-color: ${globalColor(`--${illaPrefix}-brand-purple-01`)};
+    background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   }
 `
 

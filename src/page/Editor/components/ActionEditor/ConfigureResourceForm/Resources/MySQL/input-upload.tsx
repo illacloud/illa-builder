@@ -20,7 +20,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
           render: (
             <Button
               variant="text"
-              colorScheme="purple"
+              colorScheme="techPurple"
               onClick={handleUpload}
               type="button"
             >

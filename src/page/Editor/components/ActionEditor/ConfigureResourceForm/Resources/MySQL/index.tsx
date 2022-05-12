@@ -190,7 +190,7 @@ export const MySQL = (props: MySQLFormProps) => {
         </label>
         <div css={SwitchAreaCSS}>
           <Switch
-            colorScheme="brand-purple"
+            colorScheme="techPurple"
             onChange={() => {
               setExpandSSH((expandSSH) => !expandSSH)
             }}
@@ -321,7 +321,7 @@ export const MySQL = (props: MySQLFormProps) => {
         <label css={LabelTextCSS}>SSL options</label>
         <div css={SwitchAreaCSS}>
           <Switch
-            colorScheme="brand-purple"
+            colorScheme="techPurple"
             onChange={() => {
               setExpandSSL((expandSSL) => !expandSSL)
             }}
@@ -380,7 +380,7 @@ export const MySQL = (props: MySQLFormProps) => {
           >
             Test Connection
           </Button>
-          <Button size="medium" colorScheme="purple" type="submit">
+          <Button size="medium" colorScheme="techPurple" type="submit">
             Create Resource
           </Button>
         </div>
