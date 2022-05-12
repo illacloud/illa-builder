@@ -47,7 +47,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
         borderColor={"purple"}
         variant={"fill"}
         placeholder={"search"}
-        radius={`20px`}
+        // radius={`20px`}
         onChange={(e) => {
           const res = getMatchComponent(e.target.value, componentList)
           setSearchRes(res)
