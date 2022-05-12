@@ -6,9 +6,9 @@ import { fieldFactory } from "./utils/fieldFactory"
 
 const mockData1: PanelConfig[] = [
   {
-    id: "1", // 随机生成
-    isOpened: true, // 默认为 true
-    groupName: "Basic", // 看情况拓展成对象，来搞多语言，但凡展示的都这样考虑
+    id: "1",
+    isOpened: true,
+    groupName: "Basic",
     children: [
       {
         id: "423",
@@ -32,8 +32,8 @@ const mockData1: PanelConfig[] = [
     ],
   },
   {
-    id: "2", // 随机生成
-    groupName: "Styled", // 看情况拓展成对象，来搞多语言，但凡展示的都这样考虑
+    id: "2",
+    groupName: "Styled",
     children: [
       {
         id: "442",
@@ -44,42 +44,29 @@ const mockData1: PanelConfig[] = [
     ],
   },
   {
-    id: "3", // 随机生成
-    isOpened: false, // 默认为 true
-    groupName: "Event", // 看情况拓展成对象，来搞多语言，但凡展示的都这样考虑
+    id: "3",
+    isOpened: false,
+    groupName: "Event",
     children: [
       {
-        id: "7", // 随机生成
-        isOpened: true, // 默认为 true
-        groupName: "Basic", // 看情况拓展成对象，来搞多语言，但凡展示的都这样考虑
-        children: [
-          {
-            id: "42323",
-            labelName: "testLabel1",
-            setterType: "switch",
-            attrName: "test",
-          },
-          {
-            id: "4131f",
-            labelName: "testLabel2",
-            setterType: "switch",
-            attrName: "test",
-          },
-          {
-            id: "44asd23",
-            labelName: "testLabel3",
-            setterType: "switch",
-            attrName: "test",
-          },
-        ],
+        id: "42323",
+        labelName: "testLabel1",
+        setterType: "input",
+        attrName: "test",
+      },
+      {
+        id: "4131f",
+        labelName: "testLabel2",
+        setterType: "input",
+        attrName: "test",
+      },
+      {
+        id: "44asd23",
+        labelName: "testLabel3",
+        setterType: "switch",
+        attrName: "test",
       },
     ],
-  },
-  {
-    id: "4",
-    labelName: "testLabel5",
-    setterType: "switch",
-    attrName: "test",
   },
 ]
 
