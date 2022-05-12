@@ -1,6 +1,4 @@
-import { HTMLAttributes } from "react"
-
-export interface WrappedButtonProps extends HTMLAttributes<HTMLDivElement> {
+export interface WrappedButtonProps {
   variant?: "fill" | "outline"
   text?: string
   leftIcon?: string

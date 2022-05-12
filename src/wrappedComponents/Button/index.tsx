@@ -42,8 +42,8 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
         <Button
           disabled={disabled}
           variant={variant}
-          autoFullVertically={true}
-          autoFullHorizontal={true}
+          autoFullVertically
+          autoFullHorizontal
           buttonRadius={borderRadius}
           borderColor={_borderColor}
           backgroundColor={backgroundColor}

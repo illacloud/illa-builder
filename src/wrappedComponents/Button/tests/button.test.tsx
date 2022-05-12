@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { WrappedButton } from "../index"
 import "@testing-library/jest-dom"
-import { Button } from "@illa-design/button/src"
 
 test("WrappedButton renders correctly", () => {
   render(<WrappedButton text={"Button"} />)
