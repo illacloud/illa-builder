@@ -13,27 +13,29 @@ import {
   applyPadding,
   DescriptionCSS,
   BorderBottomCSS,
-  SwitchTextCommentCSS,
   RequireTagCSS,
   applyIllaColor,
-  AlignDefaultCSS,
   ErrorMessageCSS,
   BackAreaCSS,
   BackTextCSS,
   BackIconCSS,
-  DisplayNoneCSS,
   applyJustifyContent,
+  LabelTextVerticalCSS,
+  LabelTextSmallSizeCSS,
 } from "./style"
 import { Button } from "@illa-design/button"
 import { Switch } from "@illa-design/switch"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { InputNumber } from "@illa-design/input-number"
-import { MySQLFormValues } from "./interface"
+import { MySQLFormValues, MySQLFormProps } from "./interface"
+import { InputUpload } from "./input-upload"
 
 const Error_REQUIRED_MESSAGE = "This is required!"
-export const MySQL = () => {
+
+export const MySQL = (props: MySQLFormProps) => {
+  const { back } = props
   const [expandSSH, setExpandSSH] = useState(false)
   const [expandSSL, setExpandSSL] = useState(false)
   const {
@@ -44,33 +46,15 @@ export const MySQL = () => {
     formState: { errors },
   } = useForm<MySQLFormValues>()
 
-  const uploadPrivateKeyRef = useRef<HTMLInputElement | null>(null)
-  const privateKeyRef = useRef<HTMLInputElement | null>(null)
-  const [privateKeyName, setPrivateKeyName] = useState("")
-  const uploadServerCertificateRef = useRef<HTMLInputElement | null>(null)
-  const serverCertificateRef = useRef<HTMLInputElement | null>(null)
-  const [serverCertificateName, setServerCertificateName] = useState("")
-  const uploadClientKeyRef = useRef<HTMLInputElement | null>(null)
-  const clientKeyRef = useRef<HTMLInputElement | null>(null)
-  const [clientKeyName, setClientKeyName] = useState("")
-  const uploadClientCertificateRef = useRef<HTMLInputElement | null>(null)
-  const clientCertificateRef = useRef<HTMLInputElement | null>(null)
-  const [clientCertificateName, setClientCertificateName] = useState("")
+  let registerSSHPrivateKey
+  let registerSSLClientCertificate
+  let registerSSLClientKey
+  let registerSSLServerRootCertificate
 
-  const handleUploadPrivateKey = () => {
-    uploadPrivateKeyRef.current?.click()
-  }
-  const handleUploadServerCertificate = () => {
-    uploadServerCertificateRef.current?.click()
-  }
-  const handleUploadClientKey = () => {
-    uploadClientKeyRef.current?.click()
-  }
-  const handleUploadClientCertificate = () => {
-    uploadClientCertificateRef.current?.click()
-  }
-
-  const PK = register("SSH_PrivateKey")
+  registerSSHPrivateKey = register("SSHPrivateKey")
+  registerSSLClientCertificate = register("SSLClientCertificate")
+  registerSSLClientKey = register("SSLClientKey")
+  registerSSLServerRootCertificate = register("SSLServerRootCertificate")
 
   const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
     console.log(data)
@@ -227,34 +211,34 @@ export const MySQL = () => {
                     {...field}
                     placeholder="eg.localhost"
                     maxLength={200}
-                    error={!!errors.SSH_Hostname}
+                    error={!!errors.SSHHostname}
                   />
                 )}
                 rules={{
                   required: Error_REQUIRED_MESSAGE,
                 }}
                 control={control}
-                name="SSH_Hostname"
+                name="SSHHostname"
               />
               <Controller
                 render={({ field }) => (
                   <InputNumber
                     {...field}
                     placeholder="22"
-                    error={!!errors.SSH_Port}
+                    error={!!errors.SSHPort}
                   />
                 )}
                 rules={{
                   required: Error_REQUIRED_MESSAGE,
                 }}
                 control={control}
-                name="SSH_Port"
+                name="SSHPort"
               />
             </div>
-            {(errors.SSH_Hostname || errors.SSH_Port) && (
+            {(errors.SSHHostname || errors.SSHPort) && (
               <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                <div css={ErrorMessageCSS}>{errors.SSH_Hostname?.message}</div>
-                <div css={ErrorMessageCSS}>{errors.SSH_Port?.message}</div>
+                <div css={ErrorMessageCSS}>{errors.SSHHostname?.message}</div>
+                <div css={ErrorMessageCSS}>{errors.SSHPort?.message}</div>
               </div>
             )}
             <label css={LabelTextCSS}>
@@ -266,14 +250,14 @@ export const MySQL = () => {
                   <Input
                     {...field}
                     placeholder="eg.ec2-user"
-                    error={!!errors.SSH_Credentials}
+                    error={!!errors.SSHCredentials}
                   />
                 )}
                 rules={{
                   required: Error_REQUIRED_MESSAGE,
                 }}
                 control={control}
-                name="SSH_Credentials"
+                name="SSHCredentials"
               />
               <Controller
                 render={({ field }) => (
@@ -281,70 +265,48 @@ export const MySQL = () => {
                     {...field}
                     placeholder="•••••••••"
                     invisibleButton={false}
-                    error={!!errors.SSH_Password}
+                    error={!!errors.SSHPassword}
                   />
                 )}
                 rules={{
                   required: Error_REQUIRED_MESSAGE,
                 }}
                 control={control}
-                name="SSH_Password"
+                name="SSHPassword"
               />
             </div>
-            {(errors.SSH_Credentials || errors.SSH_Password) && (
+            {(errors.SSHCredentials || errors.SSHPassword) && (
               <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
                 <div css={ErrorMessageCSS}>
-                  {errors.SSH_Credentials?.message}
+                  {errors.SSHCredentials?.message}
                 </div>
-                <div css={ErrorMessageCSS}>{errors.SSH_Password?.message}</div>
+                <div css={ErrorMessageCSS}>{errors.SSHPassword?.message}</div>
               </div>
             )}
             <label css={LabelTextCSS}>Private Key</label>
+            <InputUpload
+              resetValue={() => {
+                resetField("SSHPrivateKey")
+              }}
+              registerValue={registerSSHPrivateKey}
+            />
+            <label css={css(LabelTextCSS, LabelTextVerticalCSS)}>
+              <div>SSH passphrase</div>
+              <div css={LabelTextSmallSizeCSS}>used if provided</div>
+            </label>
             <div>
-              <Input
-                placeholder="e.g.path/to/root.crt"
-                value={privateKeyName}
-                suffix={{
-                  render: (
-                    <Button
-                      variant="text"
-                      colorScheme="purple"
-                      onClick={handleUploadPrivateKey}
-                      type="button"
-                    >
-                      Choose a File
-                    </Button>
-                  ),
-                }}
-                onClear={() => {
-                  setPrivateKeyName("")
-                  resetField("SSH_PrivateKey")
-                  /*                  if (uploadPrivateKeyRef.current?.value) {
-                    uploadPrivateKeyRef.current.value = undefined
-                  }*/
-                }}
-                allowClear
+              <Controller
+                render={({ field }) => (
+                  <Password
+                    {...field}
+                    placeholder="•••••••••"
+                    invisibleButton={false}
+                    error={!!errors.SSHPassword}
+                  />
+                )}
+                control={control}
+                name="SSHPassphrase"
               />
-              <input
-                css={DisplayNoneCSS}
-                {...PK}
-                ref={(e) => {
-                  PK.ref(e)
-                  uploadPrivateKeyRef.current = e
-                }}
-                onChange={(event) => {
-                  PK.onChange(event)
-                  const files = event.target.files
-                  if (files) {
-                    setPrivateKeyName(files[0].name)
-                  }
-                }}
-                type="file"
-              />
-            </div>
-            <label css={LabelTextCSS}>SSH passphrase</label>
-            <div>
-              <Password invisibleButton={false} placeholder="•••••••••" />
             </div>
           </>
         )}
@@ -371,95 +333,26 @@ export const MySQL = () => {
         {expandSSL && (
           <>
             <label css={LabelTextCSS}>Server Root Certificate</label>
-            <div>
-              <Input
-                placeholder="e.g.path/to/root.crt"
-                value={serverCertificateName}
-                suffix={{
-                  render: (
-                    <Button
-                      variant="text"
-                      colorScheme="purple"
-                      onClick={handleUploadServerCertificate}
-                      type="button"
-                    >
-                      Choose a File
-                    </Button>
-                  ),
-                }}
-              />
-              <input
-                css={DisplayNoneCSS}
-                ref={uploadServerCertificateRef}
-                onChange={(event) => {
-                  const files = event.target.files
-                  if (files) {
-                    setServerCertificateName(files[0].name)
-                  }
-                }}
-                type="file"
-              />
-            </div>
+            <InputUpload
+              resetValue={() => {
+                resetField("SSLServerRootCertificate")
+              }}
+              registerValue={registerSSLServerRootCertificate}
+            />
             <label css={LabelTextCSS}>Client Key</label>
-            <div>
-              <Input
-                placeholder="e.g.path/to/client.key"
-                value={clientKeyName}
-                suffix={{
-                  render: (
-                    <Button
-                      variant="text"
-                      colorScheme="purple"
-                      onClick={handleUploadClientKey}
-                      type="button"
-                    >
-                      Choose a File
-                    </Button>
-                  ),
-                }}
-              />
-              <input
-                css={DisplayNoneCSS}
-                ref={uploadClientKeyRef}
-                onChange={(event) => {
-                  const files = event.target.files
-                  if (files) {
-                    setClientKeyName(files[0].name)
-                  }
-                }}
-                type="file"
-              />
-            </div>
+            <InputUpload
+              resetValue={() => {
+                resetField("SSLClientKey")
+              }}
+              registerValue={registerSSLClientKey}
+            />
             <label css={LabelTextCSS}>Client Certificate</label>
-            <div>
-              <Input
-                placeholder="e.g.path/to/client.crt"
-                value={clientCertificateName}
-                suffix={{
-                  render: (
-                    <Button
-                      variant="text"
-                      colorScheme="purple"
-                      onClick={handleUploadClientCertificate}
-                      type="button"
-                    >
-                      Choose a File
-                    </Button>
-                  ),
-                }}
-              />
-              <input
-                css={DisplayNoneCSS}
-                ref={uploadClientCertificateRef}
-                onChange={(event) => {
-                  const files = event.target.files
-                  if (files) {
-                    setClientCertificateName(files[0].name)
-                  }
-                }}
-                type="file"
-              />
-            </div>
+            <InputUpload
+              resetValue={() => {
+                resetField("SSLClientCertificate")
+              }}
+              registerValue={registerSSLClientCertificate}
+            />
           </>
         )}
       </div>
@@ -469,6 +362,7 @@ export const MySQL = () => {
           size="medium"
           colorScheme="grayBlue"
           type="button"
+          onClick={back}
         >
           <div css={BackAreaCSS}>
             <div css={BackIconCSS}>

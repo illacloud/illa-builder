@@ -1,17 +1,28 @@
-export type MySQLFormValues = {
+import { UseFormRegisterReturn } from "react-hook-form"
+
+export interface MySQLFormProps {
+  back?: () => void
+}
+
+export interface MySQLFormValues {
   Name: string
   Hostname: string
   Port: number
   Database: string
   Username: string
   Password: string
-  SSH_Hostname?: string
-  SSH_Port?: number
-  SSH_Credentials?: string
-  SSH_Password?: string
-  SSH_PrivateKey?: File
-  SSH_Passphrase?: string
-  SSL_ServerRootCertificate?: File
-  SSL_ClientKey?: File
-  SSL_ClientCertificate?: File
+  SSHHostname?: string
+  SSHPort?: number
+  SSHCredentials?: string
+  SSHPassword?: string
+  SSHPrivateKey?: string
+  SSHPassphrase?: string
+  SSLServerRootCertificate?: string
+  SSLClientKey?: string
+  SSLClientCertificate?: string
+}
+
+export interface InputUploadProps {
+  resetValue: () => void
+  registerValue: UseFormRegisterReturn
 }

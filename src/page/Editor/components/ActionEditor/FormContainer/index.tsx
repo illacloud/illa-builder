@@ -45,7 +45,13 @@ export const FormContainer: FC<FormContainerProps> = (props) => {
     }
     if (actionType === "edit" || actionType === "configure") {
       return (
-        <ConfigureResourceForm actionType={actionType} onCancel={onCancel} />
+        <ConfigureResourceForm
+          actionType={actionType}
+          onCancel={onCancel}
+          back={() => {
+            setActionType("select")
+          }}
+        />
       )
     }
   }, [actionType])

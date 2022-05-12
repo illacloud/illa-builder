@@ -5,4 +5,5 @@ export interface ConfigureResourceFormProps {
   databaseType?: DatabaseType
   apiType?: ApiType
   onCancel?: () => void
+  back?: () => void
 }

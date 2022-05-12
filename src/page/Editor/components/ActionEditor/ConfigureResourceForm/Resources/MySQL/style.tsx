@@ -10,11 +10,18 @@ export const LabelTextCSS = css`
   line-height: 1.57;
   font-weight: 500;
   text-align: right;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const AlignDefaultCSS = css`
+export const LabelTextVerticalCSS = css`
+  flex-direction: column;
   align-items: normal;
+`
+
+export const LabelTextSmallSizeCSS = css`
+  font-size: 12px;
+  line-height: 1;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 
 export const BorderBottomCSS = css`
@@ -88,12 +95,6 @@ export const BackIconCSS = css`
 
 export const SwitchDescriptionCSS = css`
   display: inline-block;
-`
-
-export const SwitchTextCommentCSS = css`
-  font-size: 12px;
-  line-height: 1.67;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const ErrorMessageCSS = css`
