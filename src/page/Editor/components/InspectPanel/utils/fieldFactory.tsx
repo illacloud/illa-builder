@@ -2,7 +2,7 @@ import {
   PanelConfig,
   PanelFieldConfig,
   PanelFieldGroupConfig,
-} from "../../PanelSetters/interface"
+} from "../interface"
 import { Collapse } from "@illa-design/collapse"
 import PanelField from "../field"
 
