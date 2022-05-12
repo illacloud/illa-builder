@@ -3,17 +3,25 @@ import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const LabelTextCSS = css`
-  display: grid;
+  display: flex;
   align-items: center;
+  justify-content: end;
   font-size: 14px;
   line-height: 1.57;
   font-weight: 500;
   text-align: right;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}; ;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const AlignDefaultCSS = css`
+export const LabelTextVerticalCSS = css`
+  flex-direction: column;
   align-items: normal;
+`
+
+export const LabelTextSmallSizeCSS = css`
+  font-size: 12px;
+  line-height: 1;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 
 export const BorderBottomCSS = css`
@@ -89,15 +97,20 @@ export const SwitchDescriptionCSS = css`
   display: inline-block;
 `
 
-export const SwitchTextCommentCSS = css`
-  font-size: 12px;
-  line-height: 1.67;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+export const ErrorMessageCSS = css`
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+  line-height: 1.57;
+  margin-top: -8px;
+`
+
+export const RequireTagCSS = css`
+  margin-right: 5px;
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+  line-height: 0;
 `
 
 type Direction = "left" | "right" | "top" | "bottom"
-
-type TextAlign = "left" | "center" | "right"
 
 export function applyGridColIndex(index: number): SerializedStyles {
   return css`
@@ -119,9 +132,9 @@ export function applyPadding(
   return css`padding-${direction}:${number}px; `
 }
 
-export function applyTextAlign(align: TextAlign): SerializedStyles {
+export function applyJustifyContent(align: string): SerializedStyles {
   return css`
-    text-align: ${align};
+    justify-content: ${align};
   `
 }
 

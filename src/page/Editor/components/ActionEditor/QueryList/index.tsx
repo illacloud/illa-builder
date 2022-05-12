@@ -13,13 +13,11 @@ import {
 } from "@illa-design/icon"
 import {
   QueryListContainerCss,
-
   applyNewButtonCss,
   NewButtonTextCss,
   NewButtonIconCss,
   NewQueryOptionsListCss,
   NewQueryOptionsItemCss,
-
   QueryItemListCss,
   applyQueryItemCss,
   QueryItemNameCss,
@@ -28,7 +26,6 @@ import {
   QueryItemTimeCss,
   WarningIndicatorCss,
   UpdatedIndicatorCss,
-
   NoMatchFoundWrapperCss,
   EmptyQueryListPlaceholderCss,
   applyContextMenuCss,
@@ -268,8 +265,8 @@ export const QueryList: FC<QueryListProps> = (props) => {
           key={"duplicate"}
           title={"Duplicate"}
           css={DuplicateActionCss}
-        ></MenuItem>
-        <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCss}></MenuItem>
+        />
+        <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCss} />
       </Menu>
     )),
   )

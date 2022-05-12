@@ -7,9 +7,10 @@ import { FormContainerCSS } from "./style"
 export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
   props,
 ) => {
+  const { back } = props
   return (
     <div css={FormContainerCSS}>
-      <MySQL />
+      <MySQL back={back} />
     </div>
   )
 }
