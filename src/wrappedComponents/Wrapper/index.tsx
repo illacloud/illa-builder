@@ -3,7 +3,7 @@ import { WrapperProps } from "./interface"
 import { css } from "@emotion/react"
 
 export const Wrapper: FC<WrapperProps> = (props) => {
-  const { className, h, w } = props
+  const { className, h, w, alignment } = props
 
   const sizeCss = css`
     display: inline-flex;
