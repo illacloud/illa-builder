@@ -6,7 +6,7 @@ export const ActionEditorContainer = css`
   height: 100%;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   min-height: 300px;
-  `
+`
 
 export const ActionEditorPanelLayoutWrapper = css`
   display: flex;

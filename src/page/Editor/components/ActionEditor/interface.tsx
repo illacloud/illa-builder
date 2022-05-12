@@ -4,7 +4,8 @@ export interface ActionEditorProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-export interface ActionEditorLayoutProps extends HTMLAttributes<HTMLDivElement> {
-  queryList: ReactNode,
+export interface ActionEditorLayoutProps
+  extends HTMLAttributes<HTMLDivElement> {
+  queryList: ReactNode
   actionEditorPanel: ReactNode
 }
