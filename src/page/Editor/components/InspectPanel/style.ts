@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Variants } from "framer-motion"
 
 const publicPaddingCss = css`
   padding: 0 16px;
@@ -32,6 +33,7 @@ export const labelTipsCss = css`
 
 export const singleInputCss = css`
   flex: 0 0 184px;
+  text-align: right;
 `
 
 export const singleSetterCss = css`
@@ -40,4 +42,47 @@ export const singleSetterCss = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${publicPaddingCss};
 `
+
+export const panelBarWrapperCss = css``
+
+export const panelBarHeaderCss = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+  cursor: pointer;
+  ${publicPaddingCss};
+`
+
+export const panelBarTitleCss = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  font-weight: 500;
+  font-size: 14px;
+`
+
+export function panelBarOpenedIconCss(isOpened: boolean) {
+  const rotate = isOpened
+    ? ""
+    : css`
+        transform: rotate(180deg);
+      `
+  return css`
+    font-size: 8px;
+    transition: transform 200ms;
+    ${rotate}
+  `
+}
+
+export const panelBarItemContentCss = css`
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  position: relative;
+  overflow: hidden;
+`
+
+export const panelBarItemAnimation: Variants = {
+  enter: { height: "auto", opacity: 1 },
+  exit: { height: 0, opacity: 0 },
+}

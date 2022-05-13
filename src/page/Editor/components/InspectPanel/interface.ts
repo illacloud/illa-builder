@@ -1,3 +1,4 @@
+import { ReactNode } from "react"
 export enum ACTION_TYPE {
   VIEW_DOCUMENT = "VIEW_DOCUMENT",
   SWITCH_COMPONENT = "SWITCH_COMPONENT",
@@ -46,3 +47,9 @@ export interface PanelFieldGroupConfig {
 export type PanelConfig = PanelFieldConfig | PanelFieldGroupConfig
 
 export interface PanelFieldProps extends PanelFieldConfig {}
+
+export interface PanelBarProps {
+  title: string
+  children?: ReactNode
+  isOpened?: boolean
+}
