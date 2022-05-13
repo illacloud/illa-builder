@@ -8,7 +8,6 @@ export const handleValidateCheck = (
   if (props.required && props.value.length === 0) {
     return invalidMessage.get("required")
   }
-  console.log(props.required, props.value.length == 0)
   if (props.maxLength && props.value.length > props.maxLength) {
     return invalidMessage
       .get("maxLength")

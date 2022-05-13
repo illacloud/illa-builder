@@ -1,8 +1,7 @@
 import { ReactNode } from "react"
-import { OptionProps } from "@illa-design/select"
 import LabelProps from "../Label/interface"
 
-export interface SelectProps extends LabelProps {
+interface SelectProps {
   options?: (
     | string
     | number
@@ -13,7 +12,6 @@ export interface SelectProps extends LabelProps {
         extra?: any
       }
   )[]
-  optionConfigureMode?: "dynamic" | "static"
   value?: string | number
   placeholder?: string
   defaultValue?: string | number
@@ -30,5 +28,9 @@ export interface SelectProps extends LabelProps {
   required?: boolean
   showSearch?: boolean
   inputValue?: string
-  // style
+}
+
+export interface WrappedSelectProps extends LabelProps, SelectProps {
+  optionConfigureMode?: "dynamic" | "static"
+  showClear?: boolean
 }
