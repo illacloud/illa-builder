@@ -51,8 +51,8 @@ export const TitleInputCss = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -82,13 +82,11 @@ export const Filling = css`
 `
 
 export const HeaderButton = css`
-  height: 32px;
   box-sizing: border-box;
   border-radius: 8px !important;
   font-size: 14px !important;
 
   & * {
-    line-height: 14px !important;
     font-size: 14px !important;
   }
 `
@@ -96,7 +94,6 @@ export const HeaderButton = css`
 export const MoreBtn = css`
   width: 32px;
   margin-right: 8px;
-  padding: 9px !important;
   color: ${globalColor(`--${illaPrefix}-grayBlue-01`)}!important;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)}!important;
 

@@ -49,12 +49,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   return (
     <div className={className} css={Container}>
       <header css={Header}>
-        <TitleInput title={"Action"} />
+        <TitleInput />
         <span css={Filling} />
-        <Button css={[HeaderButton, MoreBtn]}>
+        <Button css={[HeaderButton, MoreBtn]} size={"medium"}>
           <MoreIcon />
         </Button>
-        <Button css={[HeaderButton, RunBtn]}>
+        <Button css={[HeaderButton, RunBtn]} size={"medium"}>
           <CaretRightIcon /> Run
         </Button>
       </header>
