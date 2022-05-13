@@ -6,7 +6,7 @@ import {
   DatabaseType,
   ActionType,
 } from "./interface"
-import { ModalCSS, CloseIconCSS, TitleCSS } from "./style"
+import { ModalCSS, CloseIconCSS, TitleCSS, ContentCSS } from "./style"
 import { SelectResourceForm } from "../SelectResourceForm"
 import { ConfigureResourceForm } from "../ConfigureResourceForm"
 import { CloseIcon } from "@illa-design/icon"
@@ -67,6 +67,7 @@ export const FormContainer: FC<FormContainerProps> = (props) => {
       visible={visible}
       footer={false}
       closable={true}
+      _contentCSS={ContentCSS}
       closeElement={
         <div css={CloseIconCSS} onClick={handleClose}>
           <CloseIcon />

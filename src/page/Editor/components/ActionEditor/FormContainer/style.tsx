@@ -4,7 +4,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ModalCSS = css`
   width: 696px;
-  max-height: 880px;
   border-radius: 8px;
 `
 
@@ -12,7 +11,7 @@ export const TitleCSS = css`
   font-size: 20px;
   font-weight: 500;
   line-height: 1.4;
-  padding-bottom: 16px;
+  padding: 24px 24px 16px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   text-align: center;
 `
@@ -25,4 +24,8 @@ export const CloseIconCSS = css`
   right: 30.8px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   cursor: pointer;
+`
+
+export const ContentCSS = css`
+  padding: 0;
 `
