@@ -320,7 +320,7 @@ export const QueryList: FC<QueryListProps> = (props) => {
         triggerProps={{ clickOutsideToClose: true, closeOnClick: false }}
         onVisibleChange={(visible) => setNewQueryOptionsVisible(visible)}
       >
-        <Button css={applyNewButtonCss(newQueryOptionsVisible)}>
+        <Button css={applyNewButtonCss(newQueryOptionsVisible)} size={"medium"}>
           <span css={NewButtonTextCss}>
             <AddIcon css={NewButtonIconCss} />
             New

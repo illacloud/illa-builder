@@ -20,7 +20,6 @@ export const applyNewButtonCss = (isActive: boolean): SerializedStyles => {
     justify-content: center;
     font-size: 14px;
     margin: 0 16px 8px 16px;
-    height: 32px;
     border-radius: 8px !important;
     line-height: 32px;
     flex-shrink: 0;
@@ -35,8 +34,8 @@ export const applyNewButtonCss = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-        `--${illaPrefix}-techPurple-06`,
-      )}!important;
+    `--${illaPrefix}-techPurple-06`,
+  )}!important;
     }
   `
 }
@@ -248,8 +247,8 @@ export const SearchInputCss = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
