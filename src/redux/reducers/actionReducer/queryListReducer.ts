@@ -11,6 +11,8 @@ interface ResouceConfig {
   id: string
 }
 
+export interface QueryListState extends EntityState<QueryItem> { }
+
 interface QueryItem {
   id: string
   name: string
@@ -22,8 +24,6 @@ interface QueryItem {
 }
 
 const queryListAdapter: EntityAdapter<QueryItem> = createEntityAdapter()
-
-export interface QueryListState extends EntityState<QueryItem> { }
 
 const queryListSlice = createSlice({
   name: "queryList",
