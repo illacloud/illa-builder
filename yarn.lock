@@ -9159,6 +9159,11 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
+vite-plugin-chunk-split@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vite-plugin-chunk-split/-/vite-plugin-chunk-split-0.2.2.tgz#991f04a9834d8473362aeb3d986f290ffd3a0fe4"
+  integrity sha512-xkECmz83+yMPXIFKnzT5HTmaIlv+mxU35XXs6Qmv6kmytONv2s9jpAmjLkJ11DX6P4DitOaLF2Xcb02R3Z3l3w==
+
 vite-plugin-istanbul@^2.5.1:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/vite-plugin-istanbul/-/vite-plugin-istanbul-2.7.3.tgz#7fb7e014393898c7e401b106fc84094c334446a7"
