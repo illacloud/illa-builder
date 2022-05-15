@@ -6,31 +6,30 @@ import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"
 import { Empty } from "./Empty"
-import ColorPicker from "../ColorPicker"
 
 const defaultList: ComponentSessionProps[] = [
   {
     title: "global",
     children: [
-      { name: "component 01 ", icon: <SearchIcon /> },
-      { name: "component 02", icon: <SearchIcon /> },
-      { name: "component 03", icon: <SearchIcon /> },
-      { name: "component 01 ", icon: <SearchIcon /> },
-      { name: "component 02", icon: <SearchIcon /> },
-      { name: "component 03", icon: <SearchIcon /> },
+      { id: "01", name: "component 01 ", icon: <SearchIcon /> },
+      { id: "02", name: "component 02", icon: <SearchIcon /> },
+      { id: "03", name: "component 03", icon: <SearchIcon /> },
+      { id: "04", name: "component 04 ", icon: <SearchIcon /> },
+      { id: "05", name: "component 05", icon: <SearchIcon /> },
+      { id: "06", name: "component 06", icon: <SearchIcon /> },
     ],
   },
   {
     title: "Common",
     children: [
-      { name: "component 01component 01component 01 ", icon: <SearchIcon /> },
-      { name: "component 02", icon: <SearchIcon /> },
-      { name: "component 03", icon: <SearchIcon /> },
+      { id: "07", name: "component 01 ", icon: <SearchIcon /> },
+      { id: "08", name: "component 02", icon: <SearchIcon /> },
+      { id: "09", name: "component 03", icon: <SearchIcon /> },
     ],
   },
   {
     title: "session3",
-    children: [{ name: "aoao ", icon: <SearchIcon /> }],
+    children: [{ id: "01", name: "component 03 ", icon: <SearchIcon /> }],
   },
 ]
 
@@ -59,7 +58,9 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
       />
       <div css={sessionListContainerCss}>
         {searchRes && searchRes.length ? (
-          searchRes.map((session) => <ComponentSession {...session} />)
+          searchRes.map((session) => (
+            <ComponentSession key={"session-" + session.title} {...session} />
+          ))
         ) : (
           <Empty />
         )}
