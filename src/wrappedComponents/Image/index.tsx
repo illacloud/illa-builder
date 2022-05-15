@@ -1,18 +1,20 @@
 import { Image } from "@illa-design/image"
 import { FC } from "react"
 import { WrappedImageProps } from "./interface"
-import TooltipWrapper from "../TooltipWrapper"
+import { Tooltip } from "@illa-design/tooltip"
 
 const WrappedImage: FC<WrappedImageProps> = (props) => {
   const { src, altText, radius, tooltipText } = props
   return (
-    <TooltipWrapper
+    <Tooltip
       content={tooltipText}
       disabled={!tooltipText}
       position="top"
+      showArrow={false}
+      autoFitPosition={false}
     >
       <Image src={src} alt={altText} radius={radius} height="" width="" />
-    </TooltipWrapper>
+    </Tooltip>
   )
 }
 

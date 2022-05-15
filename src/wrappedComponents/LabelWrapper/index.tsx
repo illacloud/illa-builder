@@ -2,7 +2,7 @@ import Label from "../Label"
 import { FC } from "react"
 import { LabelWrapperProps } from "./interface"
 import { applyLabelWrapperStyle } from "./style"
-import TooltipWrapper from "../TooltipWrapper"
+import { Tooltip } from "@illa-design/tooltip"
 
 const LabelWrapper: FC<LabelWrapperProps> = (props) => {
   const {
@@ -18,7 +18,13 @@ const LabelWrapper: FC<LabelWrapperProps> = (props) => {
 
   return (
     <div css={applyLabelWrapperStyle(labelPosition, !!label)}>
-      <TooltipWrapper content={tooltipText} disabled={!label}>
+      <Tooltip
+        content={tooltipText}
+        disabled={!label && !tooltipText}
+        position="tl"
+        showArrow={false}
+        autoFitPosition={false}
+      >
         <Label
           label={label}
           labelAlign={labelAlign}
@@ -27,11 +33,16 @@ const LabelWrapper: FC<LabelWrapperProps> = (props) => {
           labelWidthUnit={labelWidthUnit}
           labelPosition={labelPosition}
         />
-      </TooltipWrapper>
-
-      <TooltipWrapper content={tooltipText} disabled={!!label}>
+      </Tooltip>
+      <Tooltip
+        content={tooltipText}
+        disabled={!!label && !tooltipText}
+        position="tl"
+        showArrow={false}
+        autoFitPosition={false}
+      >
         {children}
-      </TooltipWrapper>
+      </Tooltip>
     </div>
   )
 }
