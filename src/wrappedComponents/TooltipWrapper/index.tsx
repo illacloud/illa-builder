@@ -3,12 +3,12 @@ import { FC } from "react"
 import { TooltipWrapperProps } from "./interface"
 
 const TooltipWrapper: FC<TooltipWrapperProps> = (props) => {
-  const { children, content, disabled } = props
+  const { children, content, disabled, position = "tl" } = props
   return (
     <Tooltip
       content={content}
       disabled={!!disabled && !!content}
-      position="tl"
+      position={position}
       showArrow={false}
       autoFitPosition={false}
     >
