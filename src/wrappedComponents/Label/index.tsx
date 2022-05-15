@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { useMemo, forwardRef } from "react"
 import LabelProps from "./interface"
 import {
   applyLabelStyle,
@@ -7,9 +7,9 @@ import {
   labelTitleCss,
 } from "./styles"
 
-const Label: FC<LabelProps> = (props) => {
+const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
   const {
-    label = "Label",
+    label,
     labelAlign = "left",
     labelCaption,
     labelPosition = "left",
@@ -46,11 +46,14 @@ const Label: FC<LabelProps> = (props) => {
   }, [labelWidthUnit, labelWidth])
 
   return !hidden && label ? (
-    <label css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}>
+    <label
+      css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}
+      ref={ref}
+    >
       {renderLabelTitle}
       {renderLabelCaption}
     </label>
   ) : null
-}
+})
 
 export default Label
