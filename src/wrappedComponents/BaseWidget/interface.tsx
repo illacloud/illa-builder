@@ -14,11 +14,16 @@ export interface BaseProps {
   parentColumnSpace: number;
   parentRowSpace: number;
   //
+  isVisible?: boolean;
+  isLoading: boolean;
+  isDisabled?: boolean;
+  backgroundColor?: string;
+  animateLoading?: boolean;
 }
 
 export type WidgetProps = HTMLAttributes<HTMLDivElement> & BaseProps
 
-export interface DSLWidget extends WidgetProps {
+export interface DSLWidget extends BaseProps {
   children?: DSLWidget[];
 }
 

@@ -1,8 +1,8 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { BaseWidget } from "../BaseWidget"
-import { TestWidgetProps } from "./interface"
+import { ContainerWidgetProps } from "./interface"
 
-export const TestWidget: FC<TestWidgetProps> = (props) => {
+export const ContainerWidget: FC<ContainerWidgetProps> = (props) => {
   const {
     className,
     children,
@@ -18,7 +18,6 @@ export const TestWidget: FC<TestWidgetProps> = (props) => {
     parentColumnSpace,
   } = props
 
-
   return (
     <BaseWidget {...props}>
       <h1>Test</h1>
@@ -26,4 +25,4 @@ export const TestWidget: FC<TestWidgetProps> = (props) => {
   )
 }
 
-TestWidget.displayName = "TestWidget"
+ContainerWidget.displayName = "ContainerWidget"

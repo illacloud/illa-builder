@@ -1,6 +1,6 @@
 import { WidgetProps } from "../BaseWidget/interface"
 
-export interface TestWidgetProps extends WidgetProps {
+export interface ContainerWidgetProps extends WidgetProps {
   readonly id: string
   readonly dslKey: string
   readonly parentId: string
