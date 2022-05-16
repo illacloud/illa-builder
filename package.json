@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
-    "@illa-design/react": "*",
     "@reduxjs/toolkit": "^1.8.1",
     "@uiw/react-codemirror": "^4.7.0",
     "axios": "^0.26.1",
