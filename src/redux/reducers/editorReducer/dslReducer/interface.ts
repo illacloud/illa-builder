@@ -25,11 +25,13 @@ export interface DslNode {
       | "relative"
       | "static"
       | "sticky"
+
+    dragDisabled?: boolean
   }
 }
 
 export interface DslLayout extends DslNode {
-  nodeChildren: DslNode[]
+  children: DslNode[]
 }
 
 export interface DslState {

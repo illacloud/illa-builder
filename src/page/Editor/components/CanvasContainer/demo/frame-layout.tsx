@@ -28,7 +28,6 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
       accept: Object.values(ItemTypes),
       drop: (item, monitor: DropTargetMonitor) => {
         if (monitor.getDropResult<DropInfo>()?.hasDropped) {
-          console.log(monitor.getDropResult<DropInfo>()!!, "hasDropped == true")
           return monitor.getDropResult<DropInfo>()!!
         }
         switch (item.type) {
@@ -68,7 +67,7 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
                   id: "dsl" + uuidv4(),
                   parentId: frameLayoutProps.id,
                   version: "0.0.1",
-                  nodeChildren: [],
+                  children: [],
                   type: DslType.DslFrame,
                   category: Category.Layout,
                   props: {
@@ -112,7 +111,7 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
         position: props.position,
       }}
     >
-      {frameLayoutProps.nodeChildren.map((value) => {
+      {frameLayoutProps.children.map((value) => {
         switch (value.category) {
           case Category.Layout: {
             return applyDslLayout(value as DslLayout)

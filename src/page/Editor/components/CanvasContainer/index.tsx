@@ -85,7 +85,7 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
               id: currentDragId,
               parentId: root.id,
               version: "0.0.1",
-              nodeChildren: [],
+              children: [],
               type: DslType.DslFrame,
               category: Category.Layout,
               props: {

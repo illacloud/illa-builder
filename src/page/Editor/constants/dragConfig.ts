@@ -5,6 +5,7 @@ export const ItemTypes = {
   STACK: "stack",
   TEXT: "text",
   ICON: "icon",
+  TEST_WIDGET: "TEST_WIDGET",
 }
 
 export const DslType = {

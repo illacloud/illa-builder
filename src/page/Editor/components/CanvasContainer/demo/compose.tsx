@@ -10,7 +10,6 @@ import {
 import { DslType } from "../../../constants/dragConfig"
 
 export function applyDslLayout(dslLayout: DslLayout) {
-  console.log(dslLayout, "dslLayout")
   switch (dslLayout.type) {
     case DslType.DslFrame: {
       return <FrameLayout key={dslLayout.id} {...(dslLayout as DslFrame)} />

@@ -12,7 +12,7 @@ const initialState = {
     id: MAIN_CONTAINER_ID,
     parentId: MAIN_CONTAINER_ID,
     version: "0.0.1",
-    nodeChildren: [],
+    children: [],
     type: "CANVAS_WIDGET",
     category: Category.Layout,
     props: {
@@ -23,6 +23,7 @@ const initialState = {
       topRow: "auto",
       bottomRow: "auto",
       position: "absolute",
+      dragDisabled: true,
     },
   },
 } as DslState
@@ -55,15 +56,15 @@ function addNode2Layout(
 ) {
   if (dslLayout.id == parentId) {
     if (
-      !dslLayout.nodeChildren.some((value) => {
+      !dslLayout.children.some((value) => {
         return dslNode.id == value.id
       })
     ) {
-      dslLayout.nodeChildren.push(dslNode)
+      dslLayout.children.push(dslNode)
     }
     return dslLayout
   } else {
-    dslLayout.nodeChildren.forEach((value) => {
+    dslLayout.children.forEach((value) => {
       if (value.category == Category.Layout) {
         addNode2Layout(parentId, value as DslLayout, dslNode)
       }
@@ -84,12 +85,12 @@ function updateNode(
     return
   }
   if (parentNode.id == dslNode.parentId) {
-    const index = parentNode.nodeChildren.findIndex((value, index, obj) => {
+    const index = parentNode.children.findIndex((value, index, obj) => {
       return value.id == dslNode.id
     })
-    parentNode.nodeChildren[index] = dslNode
+    parentNode.children[index] = dslNode
   } else {
-    parentNode.nodeChildren.forEach((value) => {
+    parentNode.children.forEach((value) => {
       if (value.category == Category.Layout) {
         updateNode(dslState, value as DslLayout, dslNode)
       }

@@ -4,8 +4,8 @@ import { ContainerWidget } from "../ContainerWidget"
 
 export const CANVAS_WIDGET_CONFIG = {
   type: "CANVAS_WIDGET",
-  version: "0.0.1",
   defaults: {
+    version: "0.0.1",
     rows: 0,
     columns: 0,
     width: "100%",

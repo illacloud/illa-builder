@@ -8,4 +8,5 @@ export const CanvasStyle = css`
   height: 100%;
   //background: #eeeeee;
   position: relative;
+  overflow: scroll;
 `

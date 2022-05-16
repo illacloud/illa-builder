@@ -10,7 +10,6 @@ import { useSelectWidget } from "../../page/Editor/components/WidgetPickerEditor
 
 export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
   const {
-    className,
     children,
     id,
     parentId,
@@ -52,8 +51,6 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
   useEffect(() => {
     setTarget(window.document.querySelector<HTMLDivElement>(`#${id}`))
   }, [onWindowResize])
-
-  console.log(draggable, id, "base")
 
   const getSize = (num: number) => `${num ?? 0}px`
 

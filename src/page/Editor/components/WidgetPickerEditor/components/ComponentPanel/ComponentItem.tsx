@@ -2,16 +2,27 @@ import { FC } from "react"
 import { useDrag } from "react-dnd"
 import { ComponentModel } from "@/wrappedComponents/interface"
 import { iconCss, itemContainerCss, nameCss } from "./style"
+import { widgetBuilder } from "../../../../../../wrappedComponents/WidgetBuilder"
+import { v4 as uuidv4 } from "uuid"
 
 export const ComponentItem: FC<ComponentModel> = (props) => {
-  const { name, icon, type = "" } = props
+  const { name, icon, type = "", defaults, ...rest } = props
 
   const [dragCollectProps, dragRef, dragPreview] = useDrag(
     () => ({
       type,
-      item: { type, hasDropped: false },
+      item: {
+        ...rest,
+        type,
+        hasDropped: false,
+        props: defaults,
+        id: "dsl" + uuidv4(),
+      },
       options: { dropEffect: "copy" },
       previewOptions: { offsetX: 0 },
+      end: (draggedItem, monitor) => {
+        console.log(draggedItem, monitor, "drag end")
+      },
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.5 : 1,
       }),

@@ -4,11 +4,11 @@ import { TestWidgetProps } from "./interface"
 
 export const TEST_WIDGET_CONFIG = {
   type: "TEST_WIDGET",
-  version: "0.0.1",
   defaults: {
     rows: 28,
     columns: 24,
-    widgetName: "Video",
+    widgetName: "test",
+    version: "0.0.1",
   },
 }
 
