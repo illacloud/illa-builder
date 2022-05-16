@@ -15,6 +15,7 @@ import {
   ResourceListCSS,
   ResourceItemCSS,
   ResourceNameCSS,
+  SelectLayoutCSS,
 } from "./style"
 
 const databaseList: DatabaseItemProps[] = [
@@ -27,7 +28,7 @@ const apiList: ApiItemProps[] = [{ title: "REST API", img: <RestApiIcon /> }]
 export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
   const { onSelect } = props
   return (
-    <div>
+    <div css={SelectLayoutCSS}>
       <div>
         <div css={CategoryCSS}>DATABASES</div>
         <div css={ResourceListCSS()}>

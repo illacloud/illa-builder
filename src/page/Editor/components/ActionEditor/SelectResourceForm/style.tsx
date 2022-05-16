@@ -44,3 +44,9 @@ export const ResourceNameCSS = css`
   line-height: 1.57;
   color: ${globalColor(`--${illaPrefix}-gray-01`)}; ;
 `
+
+export const SelectLayoutCSS = css`
+  overflow: scroll;
+  padding: 0 24px 24px;
+  max-height: 812px;
+`
