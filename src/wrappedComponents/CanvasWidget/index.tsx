@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { CanvasWidgetProps } from "./interface"
 import { ContainerWidget } from "../ContainerWidget"
-import { widgetBuilder } from "../WidgetBuilder"
 
 export const CANVAS_WIDGET_CONFIG = {
   type: "CANVAS_WIDGET",
@@ -22,17 +21,8 @@ export const CANVAS_WIDGET_CONFIG = {
 
 export const CanvasWidget: FC<CanvasWidgetProps> = (canvasWidgetProp) => {
   const { children, props, id, type } = canvasWidgetProp
-  const { defaults } = widgetBuilder()[type].config
-  const currentProps = {
-    ...canvasWidgetProp,
-    props: {
-      ...defaults,
-      ...props,
-    },
-  }
-  console.log(currentProps, "CanvasWidget")
 
-  return <ContainerWidget {...currentProps} />
+  return <ContainerWidget {...canvasWidgetProp} />
 }
 
 CanvasWidget.displayName = "CanvasWidget"

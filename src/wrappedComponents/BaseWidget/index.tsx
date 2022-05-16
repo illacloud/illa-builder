@@ -19,14 +19,17 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
       bottomRow,
       leftColumn,
       rightColumn,
-      parentRowSpace,
-      parentColumnSpace,
+      parentRowSpace = 1,
+      parentColumnSpace = 1,
       dragDisabled,
+      //
+      width,
+      height,
     },
   } = BaseWidgetProp
 
   const ref = useRef<Moveable>(null)
-  const [target, setTarget] = useState<HTMLElement | null>()
+  const [target, setTarget] = useState<HTMLDivElement | null>()
 
   const isPreviewMode = useSelector(getPreviewMode)
   const { isDragging, isResizing, isDraggingDisabled, selectedWidgets } =
@@ -47,15 +50,23 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
   }, [])
 
   useEffect(() => {
-    setTarget(window.document.querySelector<HTMLElement>(`#${id}`))
+    setTarget(window.document.querySelector<HTMLDivElement>(`#${id}`))
   }, [onWindowResize])
 
   console.log(draggable, id, "base")
 
+  const getSize = (num: number) => `${num ?? 0}px`
+
   return (
     <div
       key={id}
-      style={{ width: "100%", height: "100%", position: "relative" }}
+      style={{
+        height: height,
+        width: width,
+        top: topRow,
+        left: leftColumn,
+        position: "absolute",
+      }}
     >
       <Moveable
         ref={ref}

@@ -26,21 +26,17 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
   containerWidgetProps,
 ) => {
   const { children, props, id, type } = containerWidgetProps
-  const defaultProps = widgetBuilder()[type].config
-  const currentProps = {
-    ...containerWidgetProps,
-    props: {
-      ...defaultProps,
-      ...props,
-    },
-  }
 
   return (
-    <BaseWidget {...currentProps}>
+    <BaseWidget {...containerWidgetProps}>
       <div
         id={id}
         style={{
-          ...props,
+          height: props.height,
+          width: props.width,
+          top: props.topRow,
+          left: props.leftColumn,
+          position: "absolute",
         }}
       >
         {children?.map((value) => {
