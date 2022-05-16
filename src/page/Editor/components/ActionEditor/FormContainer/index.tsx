@@ -67,6 +67,7 @@ export const FormContainer: FC<FormContainerProps> = (props) => {
       visible={visible}
       footer={false}
       closable={true}
+      withoutPadding
       closeElement={
         <div css={CloseIconCSS} onClick={handleClose}>
           <CloseIcon />

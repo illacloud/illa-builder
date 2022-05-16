@@ -2,6 +2,12 @@ import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+export const FormContentCSS = css`
+  overflow: scroll;
+  padding: 0 24px;
+  max-height: 716px;
+`
+
 export const LabelTextCSS = css`
   display: flex;
   align-items: center;
@@ -30,9 +36,9 @@ export const BorderBottomCSS = css`
 
 export const FooterCSS = css`
   width: 100%;
-  padding-top: 24px;
+  padding: 24px;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
 `
 
