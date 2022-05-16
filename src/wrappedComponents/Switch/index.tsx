@@ -12,6 +12,7 @@ const WrappedSwitch: FC<SwitchProps> = (props) => {
     labelCaption,
     labelWidthUnit,
     value,
+    defaultValue,
     disabled,
     required,
     checkedBackgroundColor,
@@ -34,6 +35,7 @@ const WrappedSwitch: FC<SwitchProps> = (props) => {
         disabled={disabled}
         colorScheme={checkedBackgroundColor}
         onChange={onChange}
+        defaultChecked={defaultValue}
       />
     </LabelWrapper>
   )

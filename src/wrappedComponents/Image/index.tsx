@@ -4,7 +4,7 @@ import { WrappedImageProps } from "./interface"
 import { Tooltip } from "@illa-design/tooltip"
 
 const WrappedImage: FC<WrappedImageProps> = (props) => {
-  const { src, altText, radius, tooltipText } = props
+  const { src, defaultSrc, altText, radius, tooltipText } = props
   return (
     <Tooltip
       content={tooltipText}
@@ -13,7 +13,13 @@ const WrappedImage: FC<WrappedImageProps> = (props) => {
       showArrow={false}
       autoFitPosition={false}
     >
-      <Image src={src} alt={altText} radius={radius} height="" width="" />
+      <Image
+        src={src || defaultSrc}
+        alt={altText}
+        radius={radius}
+        height=""
+        width=""
+      />
     </Tooltip>
   )
 }
