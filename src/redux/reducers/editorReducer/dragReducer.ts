@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { StateWithHistory } from "redux-undo"
 
-const initValue: dragState = {
+const initValue: DragState = {
   value: 101,
 }
 
@@ -19,8 +18,6 @@ export const { increaseDragValue } = dragSlice.actions
 
 export default dragSlice.reducer
 
-interface dragState {
+export interface DragState {
   value: number
 }
-
-export type dragReduxState = StateWithHistory<dragState>
