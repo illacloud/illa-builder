@@ -19,9 +19,9 @@ import {
 } from "./style"
 
 const databaseList: DatabaseItemProps[] = [
-  { title: "Postgres", img: <PostgresIcon /> },
+  { title: "Postgres", img: <PostgresIcon />, draft: true },
   { title: "MySQL", img: <MysqlIcon /> },
-  { title: "Redis", img: <RedisIcon /> },
+  { title: "Redis", img: <RedisIcon />, draft: true },
 ]
 const apiList: ApiItemProps[] = [{ title: "REST API", img: <RestApiIcon /> }]
 
@@ -37,7 +37,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
               key={database.title}
               css={ResourceItemCSS}
               onClick={() => {
-                onSelect(database.title)
+                !database.draft && onSelect(database.title)
               }}
             >
               <div>{database.img}</div>
@@ -54,7 +54,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
               key={api.title}
               css={ResourceItemCSS}
               onClick={() => {
-                onSelect(api.title)
+                !api.draft && onSelect(api.title)
               }}
             >
               <div>{api.img}</div>
