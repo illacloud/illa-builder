@@ -25,7 +25,3 @@ export const CloseIconCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   cursor: pointer;
 `
-
-export const ContentCSS = css`
-  padding: 0;
-`
