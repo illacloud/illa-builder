@@ -21,9 +21,10 @@
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
+    "@illa-design/react": "*",
     "@reduxjs/toolkit": "^1.8.1",
-    "axios": "^0.26.1",
     "@uiw/react-codemirror": "^4.7.0",
+    "axios": "^0.26.1",
     "framer-motion": "^6.3.0",
     "i18next": "^21.6.16",
     "react": "^17.0.2",
@@ -33,8 +34,7 @@
     "react-router-dom": "^6.3.0",
     "react-showdown": "^2.3.1",
     "redux": "^4.2.0",
-    "redux-undo": "^1.0.1",
-    "@illa-design/react": "*"
+    "redux-undo": "^1.0.1"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -50,6 +50,7 @@
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
     "@types/codemirror": "^5.60.5",
+    "@types/jest": "^27.4.1",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",
     "@types/sinon": "^10.0.11",
@@ -60,7 +61,6 @@
     "@vitejs/plugin-react": "^1.3.0",
     "cypress": "^9.5.1",
     "husky": "^7.0.4",
-    "@types/jest": "^27.4.1",
     "jest": "^27.4.1",
     "jest-environment-jsdom": "^27.4.1",
     "prettier": "^2.5.1",
@@ -69,6 +69,7 @@
     "turbo": "^1.1.1",
     "typescript": "^4.6.3",
     "vite": "^2.9.5",
+    "vite-plugin-chunk-split": "^0.2.2",
     "vite-plugin-istanbul": "^2.5.1"
   },
   "workspaces": [
