@@ -9,15 +9,15 @@ import {
 
 const initialState = {
   root: {
-    id: "dslRoot",
+    id: MAIN_CONTAINER_ID,
     parentId: MAIN_CONTAINER_ID,
     version: "0.0.1",
     nodeChildren: [],
-    type: DslType.DslFrame,
+    type: "CANVAS_WIDGET",
     category: Category.Layout,
     props: {
-      height: "auto",
-      width: "auto",
+      height: "100%",
+      width: "100%",
       leftColumn: "auto",
       rightColumn: "auto",
       topRow: "auto",

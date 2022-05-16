@@ -15,6 +15,7 @@ import {
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
 import { applyDslLayout, applyDslView } from "./demo/compose"
 import { BuilderState } from "@/redux/reducers/interface"
+import { CanvasWidget } from "@/wrappedComponents/CanvasWidget"
 
 interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -124,19 +125,8 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
   )
 
   return (
-    <div className={className} ref={canvasRef}>
-      <div ref={drop} css={CanvasStyle}>
-        {root.nodeChildren.map((value: any) => {
-          switch (value.category) {
-            case Category.Layout: {
-              return applyDslLayout(value as DslLayout)
-            }
-            case Category.View: {
-              return applyDslView(value as DslView)
-            }
-          }
-        })}
-      </div>
+    <div className={className} ref={canvasRef} css={CanvasStyle}>
+      <CanvasWidget {...root} />
     </div>
   )
 }

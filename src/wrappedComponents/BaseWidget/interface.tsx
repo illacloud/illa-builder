@@ -23,6 +23,10 @@ export interface BaseProps {
     animateLoading?: boolean
     //
     dragDisabled?: boolean
+
+    //
+    width?: string
+    height?: string
   }
 }
 

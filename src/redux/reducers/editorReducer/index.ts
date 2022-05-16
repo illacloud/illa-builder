@@ -3,8 +3,7 @@ import undoable, { StateWithHistory } from "redux-undo"
 import demoReducer, { DemoState } from "./demoReducer"
 import modeReducer, { ModeState } from "./modeReducer"
 import dragReducer, { DragState } from "./dragReducer"
-import dslReducer from "./dslReducer"
-import { DslState } from "./dslReducer/dsl-state"
+import dslReducer, { DslState } from "./dslReducer"
 import widgetStatesReducer, {
   WidgetDragResizeState,
 } from "./widgetStatesReducer"

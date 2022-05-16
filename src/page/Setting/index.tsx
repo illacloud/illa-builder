@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { FC, useState } from "react"
 import { ContainerWidget } from "../../wrappedComponents/ContainerWidget"
 import { widgetBuilder } from "../../wrappedComponents/WidgetBuilder"
+import { CanvasWidget } from "../../wrappedComponents/CanvasWidget"
 
 export const Setting: FC = () => {
   const dsl = {
@@ -32,8 +33,8 @@ export const Setting: FC = () => {
     category: "layout",
     widgetName: "layout",
     props: {
-      height: "auto",
-      width: "auto",
+      height: "100%",
+      width: "100%",
       leftColumn: "auto",
       rightColumn: "auto",
       topRow: "auto",
@@ -43,9 +44,15 @@ export const Setting: FC = () => {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        position: "relative",
+      }}
+    >
       Setting
-      <ContainerWidget {...dsl} />
+      <CanvasWidget {...dsl} />
     </div>
   )
 }

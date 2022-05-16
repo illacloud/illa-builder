@@ -12,7 +12,6 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
   const {
     className,
     children,
-    dragDisabled,
     id,
     parentId,
     props: {
@@ -22,6 +21,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
       rightColumn,
       parentRowSpace,
       parentColumnSpace,
+      dragDisabled,
     },
   } = BaseWidgetProp
 
@@ -50,8 +50,13 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
     setTarget(window.document.querySelector<HTMLElement>(`#${id}`))
   }, [onWindowResize])
 
+  console.log(draggable, id, "base")
+
   return (
-    <div key={id}>
+    <div
+      key={id}
+      style={{ width: "100%", height: "100%", position: "relative" }}
+    >
       <Moveable
         ref={ref}
         target={target}
@@ -61,8 +66,9 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
         scalable={false}
         rotatable={false}
         origin={false}
+        renderDirections={["nw", "n", "ne", "w", "e", "sw", "s", "se"]}
         onDragStart={(e) => {
-          console.log(e, draggable, "draggable")
+          console.log(e, draggable, id, "draggable")
           if (!isCurrentWidgetSelected) {
             selectWidget(id)
           }
@@ -71,10 +77,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
           const bounds = e.target.getBoundingClientRect()
 
           const startPoints = {
-            top: Math.min(
-              Math.max((e.clientY - bounds.top) / parentRowSpace, 0),
-              widgetHeight - 1,
-            ),
+            top: e?.target?.offsetTop,
             left: Math.min(
               Math.max((e.clientX - bounds.left) / parentColumnSpace, 0),
               widgetWidth - 1,

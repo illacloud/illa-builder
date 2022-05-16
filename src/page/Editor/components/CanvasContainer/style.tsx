@@ -6,6 +6,6 @@ export const CanvasStyle = css`
   //height: 100vh;
   width: 100%;
   height: 100%;
-  background: #eeeeee;
+  //background: #eeeeee;
   position: relative;
 `
