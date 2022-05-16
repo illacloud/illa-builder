@@ -6,7 +6,6 @@ export function applyLabelWrapperStyle(
   hasLabel?: boolean,
 ): SerializedStyles {
   let displayCss = css``
-  let mgCss = css``
   if (hasLabel && labelPosition === "right")
     displayCss = css`
       display: flex;
@@ -19,7 +18,6 @@ export function applyLabelWrapperStyle(
 
   return css`
     ${displayCss};
-    ${mgCss};
     width: 100%;
     height: 100%;
   `
