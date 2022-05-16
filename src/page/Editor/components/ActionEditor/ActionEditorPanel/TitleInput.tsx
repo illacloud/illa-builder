@@ -10,11 +10,11 @@ import {
 } from "@/redux/reducers/actionReducer/queryListReducer"
 import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
 import {
-  TitleContainer,
-  TitleEditIcon,
-  Title,
-  TitleInputContainer,
-  TitleInputCss,
+  TitleContainerCSS,
+  TitleEditIconCSS,
+  TitleCSS,
+  TitleInputContainerCSS,
+  TitleInputCSS,
 } from "./style"
 import { TitleInputProps } from "./interface"
 
@@ -60,7 +60,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       exit={"hidden"}
       variants={variants}
       transition={{ duration: 0.2 }}
-      css={TitleInputContainer}
+      css={TitleInputContainerCSS}
       onAnimationComplete={focusInput}
     >
       <Input
@@ -70,7 +70,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
         onChange={(v) => setTitle(v)}
         key={"input"}
         inputRef={inputRef}
-        css={TitleInputCss}
+        css={TitleInputCSS}
       />
     </motion.div>
   ) : (
@@ -78,7 +78,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       onClick={() => {
         setIsEditing(true)
       }}
-      css={TitleContainer}
+      css={TitleContainerCSS}
       initial={"hidden"}
       animate={"visible"}
       exit={"hidden"}
@@ -86,8 +86,8 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       transition={{ duration: 0.2 }}
       key={"title"}
     >
-      <span css={Title}>{title}</span>
-      <PenIcon css={TitleEditIcon} viewBox={"0 0 14 14"} />
+      <span css={TitleCSS}>{title}</span>
+      <PenIcon css={TitleEditIconCSS} viewBox={"0 0 14 14"} />
     </motion.div>
   )
 

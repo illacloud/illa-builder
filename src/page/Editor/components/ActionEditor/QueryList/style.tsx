@@ -2,15 +2,15 @@ import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const QueryListContainerCss = css`
+export const QueryListContainerCSS = css`
   display: flex;
   flex-direction: column;
   width: 255px;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
-export const applyNewButtonCss = (isActive: boolean): SerializedStyles => {
-  const activeCss = css`
+export const applyNewButtonCSS = (isActive: boolean): SerializedStyles => {
+  const activeCSS = css`
     background-color: ${globalColor(`--${illaPrefix}-techPurple-05`)}!important;
   `
 
@@ -24,7 +24,7 @@ export const applyNewButtonCss = (isActive: boolean): SerializedStyles => {
     line-height: 32px;
     flex-shrink: 0;
 
-    ${isActive && activeCss}
+    ${isActive && activeCSS}
 
     transition: background-color .2s ease-in-out;
 
@@ -40,16 +40,16 @@ export const applyNewButtonCss = (isActive: boolean): SerializedStyles => {
   `
 }
 
-export const NewButtonTextCss = css`
+export const NewButtonTextCSS = css`
   display: flex;
   align-items: center;
 `
 
-export const NewButtonIconCss = css`
+export const NewButtonIconCSS = css`
   margin-right: 8px;
 `
 
-export const QueryItemListCss = css`
+export const QueryItemListCSS = css`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -57,8 +57,8 @@ export const QueryItemListCss = css`
   overflow-y: auto;
 `
 
-export function applyQueryItemCss(isSelected: boolean): SerializedStyles {
-  const backgroundColorCss = css`
+export function applyQueryItemCSS(isSelected: boolean): SerializedStyles {
+  const backgroundColorCSS = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
   return css`
@@ -69,19 +69,19 @@ export function applyQueryItemCss(isSelected: boolean): SerializedStyles {
     height: 40px;
 
     &:hover {
-      ${backgroundColorCss}
+      ${backgroundColorCSS}
     }
 
-    ${isSelected && backgroundColorCss}
+    ${isSelected && backgroundColorCSS}
   `
 }
 
-export const QueryItemIconCss = css`
+export const QueryItemIconCSS = css`
   position: relative;
   color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 
-export const QueryItemNameCss = css`
+export const QueryItemNameCSS = css`
   flex: 1 1 0;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@ export const QueryItemNameCss = css`
   margin-right: 8px;
 `
 
-export function applyQueryItemNameTextCss(
+export function applyQueryItemNameTextCSS(
   isWarning: boolean,
 ): SerializedStyles {
   const warningColor = css`
@@ -106,7 +106,7 @@ export function applyQueryItemNameTextCss(
   `
 }
 
-export const WarningIndicatorCss = css`
+export const WarningIndicatorCSS = css`
   position: absolute;
   color: ${globalColor(`--${illaPrefix}-orange-06`)};
   bottom: 0;
@@ -117,7 +117,7 @@ export const WarningIndicatorCss = css`
   }
 `
 
-export const UpdatedIndicatorCss = css`
+export const UpdatedIndicatorCSS = css`
   display: inline-block;
   height: 6px;
   width: 6px;
@@ -126,18 +126,18 @@ export const UpdatedIndicatorCss = css`
   margin-left: 8px;
   flex: 0 0 6px;
 `
-export const QueryItemTimeCss = css`
+export const QueryItemTimeCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 `
 
-export const NewQueryOptionsListCss = css`
+export const NewQueryOptionsListCSS = css`
   list-style: none;
   margin: 0;
   padding: 0;
   width: 220px;
 `
 
-export const NewQueryOptionsItemCss = css`
+export const NewQueryOptionsItemCSS = css`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -149,7 +149,7 @@ export const NewQueryOptionsItemCss = css`
   }
 `
 
-export const NoMatchFoundWrapperCss = css`
+export const NoMatchFoundWrapperCSS = css`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,7 +161,7 @@ export const NoMatchFoundWrapperCss = css`
   }
 `
 
-export const EmptyQueryListPlaceholderCss = css`
+export const EmptyQueryListPlaceholderCSS = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,7 +172,7 @@ export const EmptyQueryListPlaceholderCss = css`
   border: 2px dashed ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 
-export function applyContextMenuCss(
+export function applyContextMenuCSS(
   top?: number,
   left?: number,
 ): SerializedStyles {
@@ -191,7 +191,7 @@ export function applyContextMenuCss(
   `
 }
 
-export function applyContextMenuVisibleCss(
+export function applyContextMenuVisibleCSS(
   isVisible: boolean,
 ): SerializedStyles {
   if (isVisible) {
@@ -206,15 +206,15 @@ export function applyContextMenuVisibleCss(
   `
 }
 
-export const DuplicateActionCss = css`
+export const DuplicateActionCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
 `
 
-export const DeleteActionCss = css`
+export const DeleteActionCSS = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
 `
 
-export const SearchHeaderCss = css`
+export const SearchHeaderCSS = css`
   width: 100%;
   height: 48px;
   display: flex;
@@ -222,25 +222,25 @@ export const SearchHeaderCss = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 `
-export const SearchHeaderInputCss = css`
+export const SearchHeaderInputCSS = css`
   justify-content: flex-end;
 `
 
-export const SearchHeaderTitleCss = css`
+export const SearchHeaderTitleCSS = css`
   justify-content: flex-start;
 `
 
-export const SearchHeaderTitleTextCss = css`
+export const SearchHeaderTitleTextCSS = css`
   white-space: nowrap;
 `
 
-export const SearchHeaderTitleIconCss = css`
+export const SearchHeaderTitleIconCSS = css`
   cursor: pointer;
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   }
 `
-export const SearchInputCss = css`
+export const SearchInputCSS = css`
   margin-right: 8px;
   & > span {
     border-radius: 8px !important;
@@ -252,11 +252,11 @@ export const SearchInputCss = css`
   }
 `
 
-export const SearchInputIconCss = css`
+export const SearchInputIconCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 
-export const SearchInputCloseBtnCss = css`
+export const SearchInputCloseBtnCSS = css`
   & > span {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }

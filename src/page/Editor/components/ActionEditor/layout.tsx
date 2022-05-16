@@ -2,7 +2,7 @@ import { FC, useState, useRef } from "react"
 import { useResize } from "@/utils/hooks/useResize"
 import {
   applyContainerHeight,
-  applyResizerCss,
+  applyResizerCSS,
   ActionEditorContainer,
   ActionEditorPanelLayoutWrapper,
 } from "./style"
@@ -25,7 +25,7 @@ export const ActionEditorLayout: FC<ActionEditorLayoutProps> = (props) => {
         onMouseDown={resizer.onMouseDown}
         onTouchStart={resizer.onTouchStart}
         onTouchEnd={resizer.onMouseUp}
-        css={applyResizerCss(resizer.resizing, containerHeight)}
+        css={applyResizerCSS(resizer.resizing, containerHeight)}
       />
       <div
         css={[ActionEditorContainer, applyContainerHeight(containerHeight)]}

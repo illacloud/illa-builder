@@ -5,14 +5,14 @@ import { Button } from "@illa-design/button"
 import { SearchIcon } from "@illa-design/icon"
 import { SearchHeaderProps } from "./interface"
 import {
-  SearchHeaderCss,
-  SearchHeaderInputCss,
-  SearchHeaderTitleCss,
-  SearchHeaderTitleTextCss,
-  SearchHeaderTitleIconCss,
-  SearchInputCss,
-  SearchInputIconCss,
-  SearchInputCloseBtnCss,
+  SearchHeaderCSS,
+  SearchHeaderInputCSS,
+  SearchHeaderTitleCSS,
+  SearchHeaderTitleTextCSS,
+  SearchHeaderTitleIconCSS,
+  SearchInputCSS,
+  SearchInputIconCSS,
+  SearchInputCloseBtnCSS,
 } from "./style"
 
 export const SearchHeader: FC<SearchHeaderProps> = (props) => {
@@ -24,12 +24,12 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
       <Input
         ref={ref}
         prefix={{
-          render: <SearchIcon size={"12px"} css={SearchInputIconCss} />,
+          render: <SearchIcon size={"12px"} css={SearchInputIconCSS} />,
         }}
         placeholder={"Search"}
         onChange={updateQuery}
         onClear={() => updateQuery("")}
-        css={SearchInputCss}
+        css={SearchInputCSS}
         allowClear
       />
     )),
@@ -44,7 +44,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
           updateQuery("")
         }}
         colorScheme={"white"}
-        css={SearchInputCloseBtnCss}
+        css={SearchInputCloseBtnCSS}
       >
         Close
       </Button>
@@ -53,13 +53,13 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
 
   const searchTitle = (
     <motion.div
-      css={[SearchHeaderCss, SearchHeaderTitleCss]}
+      css={[SearchHeaderCSS, SearchHeaderTitleCSS]}
       key={"search-title"}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, display: "none" }}
     >
       <motion.span
-        css={SearchHeaderTitleTextCss}
+        css={SearchHeaderTitleTextCSS}
         initial={{ flex: 0, width: 25, overflow: "hidden" }}
         animate={{ flex: 1 }}
         transition={{ duration: 0.4 }}
@@ -69,14 +69,14 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
       <SearchIcon
         size={"12px"}
         onClick={() => setIsSearch(true)}
-        css={SearchHeaderTitleIconCss}
+        css={SearchHeaderTitleIconCSS}
       />
     </motion.div>
   )
 
   const searchInput = (
     <motion.div
-      css={[SearchHeaderCss, SearchHeaderInputCss]}
+      css={[SearchHeaderCSS, SearchHeaderInputCSS]}
       key={"search-input"}
       exit={{ opacity: 0, display: "none" }}
     >
