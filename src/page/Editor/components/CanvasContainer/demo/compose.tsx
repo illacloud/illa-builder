@@ -8,7 +8,7 @@ export function applyDslLayout(dslLayout: DslLayout) {
   console.log(dslLayout, "dslLayout")
   switch (dslLayout.type) {
     case DslType.DslFrame: {
-      return <FrameLayout key={dslLayout.dslKey} {...(dslLayout as DslFrame)} />
+      return <FrameLayout key={dslLayout.id} {...(dslLayout as DslFrame)} />
     }
   }
   return null
@@ -17,7 +17,7 @@ export function applyDslLayout(dslLayout: DslLayout) {
 export function applyDslView(dslView: DslView) {
   switch (dslView.type) {
     case DslType.DslText: {
-      return <TextView key={dslView.dslKey} {...(dslView as DslText)} />
+      return <TextView key={dslView.id} {...(dslView as DslText)} />
     }
   }
   return null

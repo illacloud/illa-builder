@@ -12,6 +12,7 @@ import {
 import { MenuActionName } from "@/redux/reducers/editorReducer/dslReducer/menu-action"
 
 const TextView: React.FC<DslText> = (textViewProps) => {
+  const { props } = textViewProps
   const dispatch = useDispatch()
   const [target, setTarget] = useState<HTMLElement | null>()
   const [frame, setFrame] = useState<Frame>()
@@ -22,7 +23,7 @@ const TextView: React.FC<DslText> = (textViewProps) => {
 
   useEffect(() => {
     setTarget(
-      window.document.querySelector<HTMLElement>("#" + textViewProps.dslKey),
+      window.document.querySelector<HTMLElement>("#" + textViewProps.id),
     )
     setFrame(new Frame("transform: translateX(0px) translateY(0px)"))
     window.addEventListener("resize", onWindowResize)
@@ -33,13 +34,13 @@ const TextView: React.FC<DslText> = (textViewProps) => {
 
   return (
     <div
-      key={textViewProps.dslKey}
+      key={textViewProps.id}
       style={{
-        position: textViewProps.position,
-        left: textViewProps.left,
-        top: textViewProps.top,
-        right: textViewProps.right,
-        bottom: textViewProps.bottom,
+        position: props.position,
+        left: props.leftColumn,
+        top: props.topRow,
+        right: props.rightColumn,
+        bottom: props.bottomRow,
       }}
     >
       <Moveable
@@ -76,21 +77,24 @@ const TextView: React.FC<DslText> = (textViewProps) => {
         onDragEnd={() => {
           if (frame != null && target != null && ref != null) {
             const lastFrame = new Frame(
-              `left: ${textViewProps.left}; top: ${textViewProps.top}`,
+              `left: ${props.leftColumn}; top: ${props.topRow}`,
             )
             dispatch(
               dslActions.dslActionHandler({
                 type: DslActionName.UpdateText,
                 newDslText: {
                   ...textViewProps,
-                  left:
-                    parseFloat(lastFrame.get("left")) +
-                    parseFloat(frame.get("transform", "translateX")) +
-                    "px",
-                  top:
-                    parseFloat(lastFrame.get("top")) +
-                    parseFloat(frame.get("transform", "translateY")) +
-                    "px",
+                  props: {
+                    ...textViewProps.props,
+                    leftColumn:
+                      parseFloat(lastFrame.get("left")) +
+                      parseFloat(frame.get("transform", "translateX")) +
+                      "px",
+                    topRow:
+                      parseFloat(lastFrame.get("top")) +
+                      parseFloat(frame.get("transform", "translateY")) +
+                      "px",
+                  },
                 },
               }),
             )
@@ -101,7 +105,7 @@ const TextView: React.FC<DslText> = (textViewProps) => {
         }}
       />
       <div
-        id={textViewProps.dslKey}
+        id={textViewProps.id}
         style={{
           userSelect: "none",
           textAlign: "center",
@@ -115,7 +119,7 @@ const TextView: React.FC<DslText> = (textViewProps) => {
           fontSize: "20px",
         }}
       >
-        {textViewProps.nodeText}
+        {props.nodeText}
       </div>
     </div>
   )

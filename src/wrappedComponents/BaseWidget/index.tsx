@@ -8,21 +8,22 @@ import { getWidgetStates } from "@/redux/selectors/editorSelectors/widgetStateSe
 import { useDragWidget } from "../../page/Editor/components/WidgetPickerEditor/hooks/useDragWidget"
 import { useSelectWidget } from "../../page/Editor/components/WidgetPickerEditor/hooks/useSelectWidget"
 
-export const BaseWidget: FC<BaseWidgetProps> = (props) => {
+export const BaseWidget: FC<BaseWidgetProps> = (BaseWidgetProp) => {
   const {
     className,
     children,
     dragDisabled,
-    dslKey,
     id,
     parentId,
-    topRow,
-    bottomRow,
-    leftColumn,
-    rightColumn,
-    parentRowSpace,
-    parentColumnSpace,
-  } = props
+    props: {
+      topRow,
+      bottomRow,
+      leftColumn,
+      rightColumn,
+      parentRowSpace,
+      parentColumnSpace,
+    },
+  } = BaseWidgetProp
 
   const ref = useRef<Moveable>(null)
   const [target, setTarget] = useState<HTMLElement | null>()
@@ -46,11 +47,11 @@ export const BaseWidget: FC<BaseWidgetProps> = (props) => {
   }, [])
 
   useEffect(() => {
-    setTarget(window.document.querySelector<HTMLElement>(`#${dslKey}`))
+    setTarget(window.document.querySelector<HTMLElement>(`#${id}`))
   }, [onWindowResize])
 
   return (
-    <div key={dslKey}>
+    <div key={id}>
       <Moveable
         ref={ref}
         target={target}

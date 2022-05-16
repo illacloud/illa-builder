@@ -5,29 +5,31 @@ export interface DropInfo {
 
 // base
 export interface DslNode {
-  readonly dslKey: string
+  readonly id: string
   readonly version: string
   readonly type: string
   readonly category: string
-  parentKey: string
-  width: string
-  height: string
-  left: string
-  top: string
-  right: string
-  bottom: string
-  position:
-      | "-webkit-sticky"
-      | "absolute"
-      | "fixed"
-      | "relative"
-      | "static"
-      | "sticky"
+  parentId: string
+  props: {
+    background?: string
+    width: string
+    height: string
+    leftColumn: string
+    topRow: string
+    rightColumn?: string
+    bottomRow?: string
+    position:
+        | "-webkit-sticky"
+        | "absolute"
+        | "fixed"
+        | "relative"
+        | "static"
+        | "sticky"
+  }
 }
 
 export interface DslLayout extends DslNode {
   nodeChildren: DslNode[]
-  background?: string
 }
 
 export interface DslState {
@@ -45,7 +47,9 @@ export interface DslStack extends DslLayout {
 
 // view
 export interface DslText extends DslView {
-  nodeText: string
+  props: DslNode["props"] & {
+    nodeText: string
+  }
 }
 
 export interface DslImage extends DslView {

@@ -20,7 +20,8 @@ interface PanelDrag {
 
 const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
   const dispatch = useDispatch()
-  const { top, left } = frameLayoutProps
+  const { props } = frameLayoutProps
+  const { topRow, leftColumn } = frameLayoutProps.props
   // 配置drop事件
   const [collectProps, dropTarget] = useDrop<PanelDrag, DropInfo, Object>(
     () => ({
@@ -37,19 +38,19 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
               dslActions.dslActionHandler({
                 type: DslActionName.AddText,
                 dslText: {
-                  nodeText: "input",
-                  dslKey: "dsl" + uuidv4(),
+                  id: "dsl" + uuidv4(),
                   version: "0.0.1",
                   type: DslType.DslText,
                   category: Category.View,
-                  parentKey: frameLayoutProps.dslKey,
-                  height: "auto",
-                  width: "auto",
-                  left: "0px",
-                  right: "auto",
-                  top: "0px",
-                  bottom: "auto",
-                  position: "absolute",
+                  parentId: frameLayoutProps.id,
+                  props: {
+                    height: "auto",
+                    width: "auto",
+                    leftColumn: "0px",
+                    topRow: "0px",
+                    position: "absolute",
+                    nodeText: "input",
+                  }
                 } as DslText,
               }),
             )
@@ -64,20 +65,20 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
               dslActions.dslActionHandler({
                 type: DslActionName.AddFrame,
                 dslFrame: {
-                  dslKey: "dsl" + uuidv4(),
-                  parentKey: frameLayoutProps.dslKey,
-                  background: "#EEEEEE",
+                  id: "dsl" + uuidv4(),
+                  parentId: frameLayoutProps.id,
                   version: "0.0.1",
                   nodeChildren: [],
                   type: DslType.DslFrame,
                   category: Category.Layout,
-                  height: "300px",
-                  width: "300px",
-                  left: "auto",
-                  right: "auto",
-                  top: "auto",
-                  bottom: "auto",
-                  position: "absolute",
+                  props: {
+                    height: "300px",
+                    width: "300px",
+                    leftColumn: "auto",
+                    topRow: "auto",
+                    position: "absolute",
+                    background: "#EEEEEE",
+                  }
                 } as DslFrame,
               }),
             )
@@ -93,22 +94,22 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
         } as DropInfo
       },
     }),
-    [top, left],
+    [topRow, leftColumn],
   )
   return (
     <div
-      id={frameLayoutProps.dslKey}
-      key={frameLayoutProps.dslKey}
+      id={frameLayoutProps.id}
+      key={frameLayoutProps.id}
       ref={dropTarget}
       style={{
-        height: frameLayoutProps.height,
-        width: frameLayoutProps.width,
-        top: frameLayoutProps.top,
-        bottom: frameLayoutProps.bottom,
-        left: frameLayoutProps.left,
-        right: frameLayoutProps.right,
-        background: frameLayoutProps.background,
-        position: frameLayoutProps.position,
+        height: props.height,
+        width: props.width,
+        top: props.topRow,
+        bottom: props.bottomRow,
+        left: props.leftColumn,
+        right: props.rightColumn,
+        background: props.background,
+        position: props.position,
       }}
     >
       {frameLayoutProps.nodeChildren.map((value) => {

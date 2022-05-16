@@ -5,29 +5,31 @@ import { MAIN_CONTAINER_ID, Category, DslType } from "@/page/Editor/constants/dr
 
 const initialState = {
   root: {
-    dslKey: "dslRoot",
-    parentKey: MAIN_CONTAINER_ID,
+    id: "dslRoot",
+    parentId: MAIN_CONTAINER_ID,
     version: "0.0.1",
     nodeChildren: [],
     type: DslType.DslFrame,
     category: Category.Layout,
-    height: "auto",
-    width: "auto",
-    left: "auto",
-    right: "auto",
-    top: "auto",
-    bottom: "auto",
-    position: "absolute",
+    props: {
+      height: "auto",
+      width: "auto",
+      leftColumn: "auto",
+      rightColumn: "auto",
+      topRow: "auto",
+      bottomRow: "auto",
+      position: "absolute",
+    }
   },
 } as DslState
 
 function addNode(
   currentState: DslState,
-  parentKey: string,
+  parentId: string,
   dslNode: DslNode,
 ): DslState {
   // 只有 layout 才可以没有parent
-  if (parentKey == MAIN_CONTAINER_ID) {
+  if (parentId == MAIN_CONTAINER_ID) {
     if (dslNode.category == Category.Layout) {
       return {
         ...currentState,
@@ -37,20 +39,20 @@ function addNode(
       return currentState
     }
   } else {
-    addNode2Layout(parentKey, currentState.root!!, dslNode)
+    addNode2Layout(parentId, currentState.root!!, dslNode)
     return currentState
   }
 }
 
 function addNode2Layout(
-  parentKey: string,
+  parentId: string,
   dslLayout: DslLayout,
   dslNode: DslNode,
 ) {
-  if (dslLayout.dslKey == parentKey) {
+  if (dslLayout.id == parentId) {
     if (
       !dslLayout.nodeChildren.some((value) => {
-        return dslNode.dslKey == value.dslKey
+        return dslNode.id == value.id
       })
     ) {
       dslLayout.nodeChildren.push(dslNode)
@@ -59,7 +61,7 @@ function addNode2Layout(
   } else {
     dslLayout.nodeChildren.forEach((value) => {
       if (value.category == Category.Layout) {
-        addNode2Layout(parentKey, value as DslLayout, dslNode)
+        addNode2Layout(parentId, value as DslLayout, dslNode)
       }
     })
   }
@@ -70,13 +72,13 @@ function updateNode(
   parentNode: DslLayout,
   dslNode: DslNode,
 ) {
-  if (dslNode.parentKey == MAIN_CONTAINER_ID && dslNode.category == Category.Layout) {
+  if (dslNode.parentId == MAIN_CONTAINER_ID && dslNode.category == Category.Layout) {
     dslState.root = dslNode as DslLayout
     return
   }
-  if (parentNode.dslKey == dslNode.parentKey) {
+  if (parentNode.id == dslNode.parentId) {
     const index = parentNode.nodeChildren.findIndex((value, index, obj) => {
-      return value.dslKey == dslNode.dslKey
+      return value.id == dslNode.id
     })
     parentNode.nodeChildren[index] = dslNode
   } else {
@@ -98,7 +100,7 @@ const dslSlice = createSlice({
       switch (action.payload?.type) {
         case DslActionName.AddFrame: {
           const addFrameAction = action.payload as AddFrame
-          if (addFrameAction.dslFrame.parentKey == null) {
+          if (addFrameAction.dslFrame.parentId == null) {
             safeState = {
               ...safeState,
               root: addFrameAction.dslFrame,
@@ -106,7 +108,7 @@ const dslSlice = createSlice({
           } else {
             safeState = addNode(
               safeState,
-              addFrameAction.dslFrame.parentKey,
+              addFrameAction.dslFrame.parentId,
               addFrameAction.dslFrame,
             )
           }
@@ -115,7 +117,7 @@ const dslSlice = createSlice({
         case DslActionName.AddText: {
           const addTextAction = action.payload as AddText
           addNode2Layout(
-            addTextAction.dslText.parentKey,
+            addTextAction.dslText.parentId,
             safeState.root!!,
             addTextAction.dslText,
           )

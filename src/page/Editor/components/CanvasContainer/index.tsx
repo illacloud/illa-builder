@@ -38,8 +38,8 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
     const monitorLeft = monitorOffset?.x ?? 0
 
     return {
-      top: `${monitorTop - canvasTop}px`,
-      left: `${monitorLeft - canvasLeft}px`,
+      topRow: `${monitorTop - canvasTop}px`,
+      leftColumn: `${monitorLeft - canvasLeft}px`,
     }
   }
 
@@ -55,18 +55,18 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
           dslActions.dslActionHandler({
             type: DslActionName.AddText,
             dslText: {
-              nodeText: "input",
-              dslKey: currentDragId,
+              id: currentDragId,
               version: "0.0.1",
               type: DslType.DslText,
               category: Category.View,
-              parentKey: root.dslKey,
-              height: "auto",
-              width: "auto",
-              right: "auto",
-              bottom: "auto",
-              position: "absolute",
-              ...monitorOffset,
+              parentId: root.id,
+              props: {
+                height: "auto",
+                width: "auto",
+                position: "absolute",
+                nodeText: "input",
+                ...monitorOffset,
+              }
             } as DslText,
           }),
         )
@@ -81,19 +81,19 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
           dslActions.dslActionHandler({
             type: DslActionName.AddFrame,
             dslFrame: {
-              dslKey: currentDragId,
-              parentKey: root.dslKey,
-              background: "#EEEEEE",
+              id: currentDragId,
+              parentId: root.id,
               version: "0.0.1",
               nodeChildren: [],
               type: DslType.DslFrame,
               category: Category.Layout,
-              height: "300px",
-              width: "300px",
-              right: "auto",
-              bottom: "auto",
-              position: "absolute",
-              ...monitorOffset,
+              props: {
+                height: "300px",
+                width: "300px",
+                position: "absolute",
+                background: "#EEEEEE",
+                ...monitorOffset,
+              }
             } as DslFrame,
           }),
         )
