@@ -71,9 +71,9 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
 
       - name: Run Test
         run: |
@@ -85,3 +85,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/lcov.info
+
+      - name: Test build docker image
+        run: echo "building docker image..."

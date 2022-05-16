@@ -32,9 +32,9 @@ jobs:
           path: |
             **/node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/yarn.lock') }}
+            ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
 
       - name: Check Install/Build Cache
         run: ls -lah node_modules | head -5
