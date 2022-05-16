@@ -22,9 +22,7 @@ export const generateWidgetProps = (
     }
     const sizes = {
       leftColumn,
-      rightColumn: leftColumn + columns,
       topRow,
-      bottomRow: topRow + rows,
     }
     const result: DSLWidget = {
       ...rest,

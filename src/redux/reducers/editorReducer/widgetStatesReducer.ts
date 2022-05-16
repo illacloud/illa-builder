@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { MAIN_CONTAINER_ID } from "../../../page/Editor/constants/dragConfig"
 
 export type DraggingGroupCenter = {
-  widgetId?: string
+  id?: string
   top?: number
   left?: number
 }
@@ -97,26 +97,26 @@ const widgetStatesSlice = createSlice({
     // select
     selectWidget(
       state,
-      action: ReduxAction<{ widgetId?: string; isMultiSelect?: boolean }>,
+      action: ReduxAction<{ id?: string; isMultiSelect?: boolean }>,
     ) {
-      if (action.payload.widgetId === MAIN_CONTAINER_ID) return
+      if (action.payload.id === MAIN_CONTAINER_ID) return
       if (action.payload.isMultiSelect) {
-        const widgetId = action.payload.widgetId || ""
-        const removeSelection = state.selectedWidgets.includes(widgetId)
+        const id = action.payload.id || ""
+        const removeSelection = state.selectedWidgets.includes(id)
         if (removeSelection) {
           state.selectedWidgets = state.selectedWidgets.filter(
-            (each) => each !== widgetId,
+            (each) => each !== id,
           )
-        } else if (!!widgetId) {
-          state.selectedWidgets = [...state.selectedWidgets, widgetId]
+        } else if (!!id) {
+          state.selectedWidgets = [...state.selectedWidgets, id]
         }
         if (state.selectedWidgets.length > 0) {
-          state.lastSelectedWidget = removeSelection ? "" : widgetId
+          state.lastSelectedWidget = removeSelection ? "" : id
         }
       } else {
-        state.lastSelectedWidget = action.payload.widgetId
-        if (action.payload.widgetId) {
-          state.selectedWidgets = [action.payload.widgetId]
+        state.lastSelectedWidget = action.payload.id
+        if (action.payload.id) {
+          state.selectedWidgets = [action.payload.id]
         } else {
           state.selectedWidgets = []
         }
@@ -124,20 +124,20 @@ const widgetStatesSlice = createSlice({
     },
     selectMultipleWidgets(
       state,
-      action: ReduxAction<{ widgetIds?: string[] }>,
+      action: ReduxAction<{ ids?: string[] }>,
     ) {
-      const { widgetIds } = action.payload
-      if (widgetIds) {
-        state.selectedWidgets = widgetIds || []
-        if (widgetIds.length > 1) {
+      const { ids } = action.payload
+      if (ids) {
+        state.selectedWidgets = ids || []
+        if (ids.length > 1) {
           state.lastSelectedWidget = ""
         } else {
-          state.lastSelectedWidget = widgetIds[0]
+          state.lastSelectedWidget = ids[0]
         }
       }
     },
-    focusWidget(state, action: ReduxAction<{ widgetId?: string }>) {
-      state.focusedWidget = action.payload.widgetId
+    focusWidget(state, action: ReduxAction<{ id?: string }>) {
+      state.focusedWidget = action.payload.id
     },
   },
 })

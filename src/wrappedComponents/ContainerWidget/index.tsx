@@ -89,7 +89,6 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
       >
         {children?.map((value) => {
           const { type } = value
-
           const child = widgetBuilder()[type]
           let { defaults } = child.config
           const widgetProps = {

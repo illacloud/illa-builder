@@ -6,19 +6,19 @@ export const useSelectWidget = () => {
   const dispatch = useDispatch()
   return {
     selectWidget: useCallback(
-      (widgetId?: string, isMultiSelect?: boolean) => {
-        dispatch(widgetStatesActions.selectWidget({ widgetId, isMultiSelect }))
+      (id?: string, isMultiSelect?: boolean) => {
+        dispatch(widgetStatesActions.selectWidget({ id, isMultiSelect }))
       },
       [dispatch],
     ),
     focusWidget: useCallback(
-      (widgetId?: string) => {
-        dispatch(widgetStatesActions.focusWidget({ widgetId }))
+      (id?: string) => {
+        dispatch(widgetStatesActions.focusWidget({ id }))
       },
       [dispatch],
     ),
     deselectAll: useCallback(() => {
-      dispatch(widgetStatesActions.selectMultipleWidgets({ widgetIds: [] }))
+      dispatch(widgetStatesActions.selectMultipleWidgets({ ids: [] }))
     }, [dispatch]),
   }
 }

@@ -1,7 +1,6 @@
-import { useEffect } from "react"
-import { FC, useState } from "react"
-import { ContainerWidget } from "../../wrappedComponents/ContainerWidget"
-import { widgetBuilder } from "../../wrappedComponents/WidgetBuilder"
+import { FC } from "react"
+import { DndProvider } from "react-dnd"
+import { HTML5Backend } from "react-dnd-html5-backend"
 import { CanvasWidget } from "../../wrappedComponents/CanvasWidget"
 
 export const Setting: FC = () => {
@@ -44,6 +43,7 @@ export const Setting: FC = () => {
   }
 
   return (
+    <DndProvider backend={HTML5Backend}>
     <div
       style={{
         width: "100vw",
@@ -54,5 +54,6 @@ export const Setting: FC = () => {
       Setting
       <CanvasWidget {...dsl} />
     </div>
+    </DndProvider>
   )
 }
