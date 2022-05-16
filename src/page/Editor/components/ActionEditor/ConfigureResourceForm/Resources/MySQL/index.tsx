@@ -26,7 +26,7 @@ import {
 import { Button } from "@illa-design/button"
 import { Switch } from "@illa-design/switch"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { useState } from "react"
+import { useState, FC } from "react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { InputNumber } from "@illa-design/input-number"
 import { MySQLFormValues, MySQLFormProps } from "./interface"
@@ -34,7 +34,7 @@ import { InputUpload } from "./input-upload"
 
 const Error_REQUIRED_MESSAGE = "This is required!"
 
-export const MySQL = (props: MySQLFormProps) => {
+export const MySQL: FC<MySQLFormProps> = (props) => {
   const { back } = props
   const [expandSSH, setExpandSSH] = useState(false)
   const [expandSSL, setExpandSSL] = useState(false)
