@@ -3,7 +3,7 @@ import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const FormContentCSS = css`
-  overflow: scroll;
+  overflow: auto;
   padding: 0 24px;
   max-height: 716px;
 `

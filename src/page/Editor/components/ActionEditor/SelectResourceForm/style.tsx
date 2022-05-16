@@ -46,7 +46,7 @@ export const ResourceNameCSS = css`
 `
 
 export const SelectLayoutCSS = css`
-  overflow: scroll;
+  overflow: auto;
   padding: 0 24px 24px;
   max-height: 812px;
 `
