@@ -2,7 +2,7 @@ name: "Merge Test"
 
 on:
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, fixs/github_actions ]
 
 env:
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -18,11 +18,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Checkout Submodules
-        run: |
-          git submodule init
-          git submodule update
+        with:
+          submodules: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
