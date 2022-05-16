@@ -3,15 +3,6 @@ import { resolve } from "path"
 import react from "@vitejs/plugin-react"
 import { chunkSplitPlugin } from "vite-plugin-chunk-split"
 
-function renderChunks(deps: Record<string, string>) {
-  let chunks: Record<string, string[]> = {}
-  Object.keys(deps).forEach((key) => {
-    if (["react", "react-router-dom", "react-dom"].includes(key)) return
-    chunks[key] = [key]
-  })
-  return chunks
-}
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
