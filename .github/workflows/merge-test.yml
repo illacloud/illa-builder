@@ -43,7 +43,9 @@ jobs:
 
       - name: Install Dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install
+        run: |
+          yarn install
+          cd illa-design && yarn install
 
   test:
     needs:
