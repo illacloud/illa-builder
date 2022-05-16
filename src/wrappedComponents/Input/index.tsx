@@ -1,5 +1,4 @@
-import { FC, useMemo, useRef, useState } from "react"
-
+import { FC, useState } from "react"
 import { WrappedInputProps } from "./interface"
 import Label from "../Label"
 import { Wrapper } from "../Wrapper"
