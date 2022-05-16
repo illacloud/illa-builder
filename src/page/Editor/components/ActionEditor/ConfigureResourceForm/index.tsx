@@ -1,15 +1,15 @@
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace"
-import { FC } from "react"
+import { FC, useRef, cloneElement } from "react"
 import { ConfigureResourceFormProps } from "./interface"
 import { MySQL, RESTAPI } from "./Resources"
-
-import { BackBtnCSS, FormContainerCSS } from "./style"
-import { Button } from "@illa-design/button"
 import {
-  BackAreaCSS,
+  FormContainerCSS,
+  FormFooterCSS,
   BackIconCSS,
-  BackTextCSS,
-} from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/MySQL/style"
+  FormFooterFilling,
+  CreateResourceBtnCSS,
+} from "./style"
+import { Button } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 
 export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
@@ -17,38 +17,56 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
 ) => {
   const { back, resouceType } = props
 
+  const formRef = useRef<HTMLFormElement>(null)
+
   const renderResouceNode = () => {
     const nodeMap: {
-      [index: string]: EmotionJSX.Element | FC
+      [index: string]: EmotionJSX.Element
     } = {
       // query
-      "REST API": RESTAPI,
+      "REST API": <RESTAPI />,
       // database
-      MySQL: <MySQL back={back} />,
+      MySQL: <MySQL />,
     }
 
-    return nodeMap[resouceType] || null
+    return cloneElement(nodeMap[resouceType], { ref: formRef }) || null
   }
 
+  function submitForm() {
+    formRef.current?.requestSubmit();
+  }
 
   return (
     <div css={FormContainerCSS}>
-      {renderResouceNode()}
-      <Button
-        variant="text"
-        size="medium"
-        colorScheme="grayBlue"
-        type="button"
-        onClick={back}
-        css={BackBtnCSS}
-      >
-        <div css={BackAreaCSS}>
-          <div css={BackIconCSS}>
-            <PaginationPreIcon />
-          </div>
-          <span css={BackTextCSS}>Back</span>
-        </div>
-      </Button>
+      <div>{renderResouceNode()}</div>
+
+      <div css={FormFooterCSS}>
+        <Button
+          variant="text"
+          size="medium"
+          colorScheme="grayBlue"
+          type="button"
+          onClick={back}
+        >
+          <PaginationPreIcon css={BackIconCSS} />
+          Back
+        </Button>
+
+        <div css={FormFooterFilling}></div>
+
+        <Button size="medium" colorScheme="gray" type="button">
+          Test Connection
+        </Button>
+
+        <Button
+          size="medium"
+          colorScheme="techPurple"
+          css={CreateResourceBtnCSS}
+          onClick={submitForm}
+        >
+          Create Resource
+        </Button>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { FC } from "react"
 
 export const RESTAPI: FC = (props) => {
-  return null
+  return <div>RESTAPI</div>
 }
