@@ -7,9 +7,7 @@ export const useSelectWidget = () => {
   return {
     selectWidget: useCallback(
       (widgetId?: string, isMultiSelect?: boolean) => {
-        dispatch(
-          widgetStatesActions.selectWidget({ widgetId, isMultiSelect }),
-        )
+        dispatch(widgetStatesActions.selectWidget({ widgetId, isMultiSelect }))
       },
       [dispatch],
     ),
@@ -19,10 +17,8 @@ export const useSelectWidget = () => {
       },
       [dispatch],
     ),
-    deselectAll: useCallback(
-      () => {
-        dispatch(widgetStatesActions.selectMultipleWidgets({ widgetIds: [] }))
-      },
-      [dispatch]),
+    deselectAll: useCallback(() => {
+      dispatch(widgetStatesActions.selectMultipleWidgets({ widgetIds: [] }))
+    }, [dispatch]),
   }
 }

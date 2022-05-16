@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { DslLayout, DslNode, DslState } from "./interface"
 import { AddFrame, AddText, DslActionName, UpdateText } from "./dsl-action"
-import { MAIN_CONTAINER_ID, Category, DslType } from "@/page/Editor/constants/dragConfig"
+import {
+  MAIN_CONTAINER_ID,
+  Category,
+  DslType,
+} from "@/page/Editor/constants/dragConfig"
 
 const initialState = {
   root: {
@@ -19,7 +23,7 @@ const initialState = {
       topRow: "auto",
       bottomRow: "auto",
       position: "absolute",
-    }
+    },
   },
 } as DslState
 
@@ -72,7 +76,10 @@ function updateNode(
   parentNode: DslLayout,
   dslNode: DslNode,
 ) {
-  if (dslNode.parentId == MAIN_CONTAINER_ID && dslNode.category == Category.Layout) {
+  if (
+    dslNode.parentId == MAIN_CONTAINER_ID &&
+    dslNode.category == Category.Layout
+  ) {
     dslState.root = dslNode as DslLayout
     return
   }

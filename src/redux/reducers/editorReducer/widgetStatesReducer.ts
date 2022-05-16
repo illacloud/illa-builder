@@ -122,24 +122,21 @@ const widgetStatesSlice = createSlice({
         }
       }
     },
-    selectMultipleWidgets (
+    selectMultipleWidgets(
       state,
       action: ReduxAction<{ widgetIds?: string[] }>,
     ) {
-      const { widgetIds } = action.payload;
+      const { widgetIds } = action.payload
       if (widgetIds) {
-        state.selectedWidgets = widgetIds || [];
+        state.selectedWidgets = widgetIds || []
         if (widgetIds.length > 1) {
-          state.lastSelectedWidget = "";
+          state.lastSelectedWidget = ""
         } else {
-          state.lastSelectedWidget = widgetIds[0];
+          state.lastSelectedWidget = widgetIds[0]
         }
       }
     },
-    focusWidget(
-      state,
-      action: ReduxAction<{ widgetId?: string }>,
-    ) {
+    focusWidget(state, action: ReduxAction<{ widgetId?: string }>) {
       state.focusedWidget = action.payload.widgetId
     },
   },

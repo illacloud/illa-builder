@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { FC, useState } from "react"
 import { ContainerWidget } from "../../wrappedComponents/ContainerWidget"
-import {widgetBuilder} from "../../wrappedComponents/WidgetBuilder";
+import { widgetBuilder } from "../../wrappedComponents/WidgetBuilder"
 
 export const Setting: FC = () => {
   const dsl = {

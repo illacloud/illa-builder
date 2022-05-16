@@ -50,7 +50,7 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
                     topRow: "0px",
                     position: "absolute",
                     nodeText: "input",
-                  }
+                  },
                 } as DslText,
               }),
             )
@@ -78,7 +78,7 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
                     topRow: "auto",
                     position: "absolute",
                     background: "#EEEEEE",
-                  }
+                  },
                 } as DslFrame,
               }),
             )

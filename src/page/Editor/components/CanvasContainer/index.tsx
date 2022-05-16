@@ -66,7 +66,7 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
                 position: "absolute",
                 nodeText: "input",
                 ...monitorOffset,
-              }
+              },
             } as DslText,
           }),
         )
@@ -93,7 +93,7 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
                 position: "absolute",
                 background: "#EEEEEE",
                 ...monitorOffset,
-              }
+              },
             } as DslFrame,
           }),
         )

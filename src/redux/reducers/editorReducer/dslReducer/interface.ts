@@ -19,12 +19,12 @@ export interface DslNode {
     rightColumn?: string
     bottomRow?: string
     position:
-        | "-webkit-sticky"
-        | "absolute"
-        | "fixed"
-        | "relative"
-        | "static"
-        | "sticky"
+      | "-webkit-sticky"
+      | "absolute"
+      | "fixed"
+      | "relative"
+      | "static"
+      | "sticky"
   }
 }
 
@@ -55,4 +55,3 @@ export interface DslText extends DslView {
 export interface DslImage extends DslView {
   imageUrl: string
 }
-

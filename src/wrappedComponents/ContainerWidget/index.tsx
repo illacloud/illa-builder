@@ -25,7 +25,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
 ) => {
   const { children, props, id } = ContainerWidgetProp
 
-  console.log(widgetBuilder(), 'widgetBuilder')
+  console.log(widgetBuilder(), "widgetBuilder")
 
   return (
     <BaseWidget {...ContainerWidgetProp}>

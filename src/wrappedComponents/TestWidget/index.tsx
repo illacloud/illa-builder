@@ -13,13 +13,7 @@ export const TEST_WIDGET_CONFIG = {
 }
 
 export const TestWidget: FC<TestWidgetProps> = (props) => {
-  const {
-    className,
-    children,
-    id,
-    parentId,
-  } = props
-
+  const { className, children, id, parentId } = props
 
   return (
     <BaseWidget {...props}>

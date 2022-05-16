@@ -1,10 +1,9 @@
 import { BaseProps, DSLWidget } from "./BaseWidget/interface"
 
-export type WidgetConfig =
-    {
-      columns: number
-      rows: number
-    } & BaseProps
+export type WidgetConfig = {
+  columns: number
+  rows: number
+} & BaseProps
 
 export const generateWidgetProps = (
   parentId: string,
