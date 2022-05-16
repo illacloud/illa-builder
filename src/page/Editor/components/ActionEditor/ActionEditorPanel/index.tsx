@@ -4,18 +4,18 @@ import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { ActionEditorPanelProps } from "./interface"
 import {
-  Container,
-  Header,
-  Action,
-  Filling,
-  HeaderButton,
-  ActionSelect,
-  ModeSelect,
-  TriggerSelect,
-  ResourceSelect,
-  EditIcon,
-  MoreBtn,
-  RunBtn,
+  ContainerCSS,
+  HeaderCSS,
+  ActionCSS,
+  FillingCSS,
+  HeaderButtonCSS,
+  ActionSelectCSS,
+  ModeSelectCSS,
+  TriggerSelectCSS,
+  ResourceSelectCSS,
+  EditIconCSS,
+  MoreBtnCSS,
+  RunBtnCSS,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 
@@ -47,37 +47,37 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   return (
-    <div className={className} css={Container}>
-      <header css={Header}>
+    <div className={className} css={ContainerCSS}>
+      <header css={HeaderCSS}>
         <TitleInput />
-        <span css={Filling} />
-        <Button css={[HeaderButton, MoreBtn]} size={"medium"}>
+        <span css={FillingCSS} />
+        <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
           <MoreIcon />
         </Button>
-        <Button css={[HeaderButton, RunBtn]} size={"medium"}>
+        <Button css={[HeaderButtonCSS, RunBtnCSS]} size={"medium"}>
           <CaretRightIcon /> Run
         </Button>
       </header>
-      <div css={Action}>
+      <div css={ActionCSS}>
         <label>Resourse</label>
-        <span css={Filling} />
+        <span css={FillingCSS} />
         <Select
           options={modeOptions}
           defaultValue={0}
-          css={[ActionSelect, ModeSelect]}
+          css={[ActionSelectCSS, ModeSelectCSS]}
         />
         <Select
           options={triggerOptions}
           defaultValue={0}
-          css={[ActionSelect, TriggerSelect]}
+          css={[ActionSelectCSS, TriggerSelectCSS]}
         />
 
-        <Select css={[ActionSelect, ResourceSelect]}>
+        <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
           <Option onClick={createResouce}>Create a new resouce</Option>
           <Option>SQL</Option>
           <Option>REST API</Option>
         </Select>
-        <div css={EditIcon} onClick={editResource}>
+        <div css={EditIconCSS} onClick={editResource}>
           <PenIcon />
         </div>
       </div>

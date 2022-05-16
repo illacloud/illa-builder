@@ -2,11 +2,11 @@ import chroma from "chroma-js"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const Container = css`
+export const ContainerCSS = css`
   flex: 1;
 `
 
-export const Header = css`
+export const HeaderCSS = css`
   display: flex;
   align-items: center;
   padding: 8px 16px 8px 0;
@@ -15,7 +15,7 @@ export const Header = css`
   box-sizing: border-box;
 `
 
-export const TitleContainer = css`
+export const TitleContainerCSS = css`
   display: flex;
   align-items: center;
   width: 280px;
@@ -37,7 +37,7 @@ export const TitleContainer = css`
   }
 `
 
-export const TitleInputContainer = css`
+export const TitleInputContainerCSS = css`
   width: 280px;
   max-width: 280px;
   border-radius: 8px;
@@ -46,7 +46,7 @@ export const TitleInputContainer = css`
   padding: 0px 19px 0 16px;
 `
 
-export const TitleInputCss = css`
+export const TitleInputCSS = css`
   & > span {
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
@@ -56,32 +56,32 @@ export const TitleInputCss = css`
   }
 `
 
-export const Title = css`
+export const TitleCSS = css`
   display: inline-block;
   max-width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
 `
 
-export const TitleEditIcon = css`
+export const TitleEditIconCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   /* font-size: 14px; */
   transition: all 0.2s ease-in-out;
   opacity: 0;
 `
 
-export const Action = css`
+export const ActionCSS = css`
   display: flex;
   align-items: center;
   padding: 8px 16px;
   height: 48px;
 `
 
-export const Filling = css`
+export const FillingCSS = css`
   flex: 1;
 `
 
-export const HeaderButton = css`
+export const HeaderButtonCSS = css`
   box-sizing: border-box;
   border-radius: 8px !important;
   font-size: 14px !important;
@@ -91,7 +91,7 @@ export const HeaderButton = css`
   }
 `
 
-export const MoreBtn = css`
+export const MoreBtnCSS = css`
   width: 32px;
   margin-right: 8px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-01`)}!important;
@@ -102,7 +102,7 @@ export const MoreBtn = css`
   }
 `
 
-export const RunBtn = css`
+export const RunBtnCSS = css`
   color: ${globalColor(`--${illaPrefix}-techPurple-02`)}!important;
   background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)}!important;
 
@@ -111,7 +111,7 @@ export const RunBtn = css`
   }
 `
 
-export const ActionSelect = css`
+export const ActionSelectCSS = css`
   height: 32px;
   font-size: 14px;
 
@@ -120,24 +120,24 @@ export const ActionSelect = css`
   }
 `
 
-export const ModeSelect = css`
+export const ModeSelectCSS = css`
   max-width: 115px;
   border-radius: 8px 0 0 8px !important;
 `
-export const TriggerSelect = css`
+export const TriggerSelectCSS = css`
   max-width: 313px;
   margin-right: 8px;
   border-radius: 0 8px 8px 0px !important;
 `
-export const ResourceSelectContainer = css``
+export const ResourceSelectContainerCSS = css``
 
-export const ResourceSelect = css`
+export const ResourceSelectCSS = css`
   min-width: 151px !important;
   max-width: 151px;
   border-radius: 8px 0 0 8px !important;
 `
 
-export const EditIcon = css`
+export const EditIconCSS = css`
   width: 32px;
   height: 32px;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
