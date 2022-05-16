@@ -18,12 +18,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-
-      - name: Checkout Submodules
-        run: |
-          git submodule init
-          git submodule update
+        with:
+          submodules: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -80,6 +76,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          submodules: true
           fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
