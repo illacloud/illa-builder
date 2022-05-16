@@ -1,12 +1,8 @@
-import { HTMLAttributes, ReactNode } from "react"
+import { HTMLAttributes } from "react"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
   componentList?: ComponentSessionProps[]
-}
-
-export type ComponentModel = {
-  name: string
-  icon: string | ReactNode // url
 }
 
 export type ComponentSessionProps = {
