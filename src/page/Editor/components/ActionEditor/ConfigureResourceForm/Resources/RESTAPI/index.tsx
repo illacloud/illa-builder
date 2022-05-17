@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, useState } from "react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
@@ -24,6 +24,7 @@ import {
   TopZIndexCSS,
 } from "./style"
 import { ParamList } from "./ParamList"
+import { BasicAuth, OAuth2 } from "./Authentication"
 
 const ERROR_REQUIRED_MESSAGE = "This is required!"
 
@@ -44,12 +45,28 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
         ExtraBodyValues: [],
         CookiesToForward: [],
         Authentication: "none",
+        BasicAuthUsername: "",
+        BasicAuthPassword: "",
       },
     })
+
+    const [authType, setAuthType] = useState("none")
 
     const onSubmit: SubmitHandler<RESTAPIFormValues> = (data) => {
       console.log(data)
       alert(JSON.stringify(data))
+    }
+
+    const renderAuthConfig = () => {
+      if (authType === "basic") {
+        return <BasicAuth control={control} />
+      }
+
+      if (authType === "OAuth2") {
+        return <OAuth2 control={control} />
+      }
+
+      return null
     }
 
     return (
@@ -145,7 +162,8 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           render={({ field }) => (
             <Select
               size={"small"}
-              {...field}
+              onChange={setAuthType}
+              value={authType}
               triggerProps={{ _css: TopZIndexCSS }}
             >
               <Option value={"none"}>None</Option>
@@ -156,6 +174,8 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           control={control}
           name="Authentication"
         />
+
+        {renderAuthConfig()}
       </form>
     )
   },

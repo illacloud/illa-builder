@@ -15,4 +15,6 @@ export interface RESTAPIFormValues {
   ExtraBodyValues: Params[]
   CookiesToForward: string[]
   Authentication: string
+  BasicAuthUsername?: string
+  BasicAuthPassword?: string
 }

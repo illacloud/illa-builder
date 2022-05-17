@@ -21,7 +21,8 @@ export const ParamList: FC<ParamListProps> = (props) => {
 
   const paramList = params.map(({ key, value }, index) => {
     return (
-      <div css={ParamItemCSS}>
+      /* todo: set unique key */
+      <div css={ParamItemCSS} key={index}>
         <Input value={key} placeholder={"key"} css={ParamItemKeyCSS} />
         <Input
           value={value}

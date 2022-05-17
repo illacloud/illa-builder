@@ -17,6 +17,7 @@ export const InputTagSmallSizeCSS = css`
 
 export const CheckboxCSS = css`
   margin: -8px 0 8px;
+  justify-content: flex-start!important;
 
   & > input {
     margin: 0;
@@ -25,4 +26,10 @@ export const CheckboxCSS = css`
 
 export const TopZIndexCSS = css`
   z-index: 3000;
+`
+
+export const OAuth2Description = css`
+  white-space: normal;
+  background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  padding: 8px 16px;
 `
