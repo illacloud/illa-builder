@@ -3415,6 +3415,11 @@ co@^4.6.0:
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
   integrity sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=
 
+codemirror@^5.65.3:
+  version "5.65.3"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.65.3.tgz#2d029930d5a293bc5fb96ceea64654803c0d4ac7"
+  integrity sha512-kCC0iwGZOVZXHEKW3NDTObvM7pTIyowjty4BUqeREROc/3I6bWbgZDA3fGDwlA+rbgRjvnRnfqs9SfXynel1AQ==
+
 coffeeify@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/coffeeify/-/coffeeify-3.0.1.tgz#5e2753000c50bd24c693115f33864248dd11136c"
