@@ -1,7 +1,6 @@
-import { PanelLabelProps } from "@/page/Editor/components/InspectPanel/interface"
+import { BaseSetterProps } from "../interface"
 
-export interface SwitchSetterProps extends PanelLabelProps {
+export interface SwitchSetterProps extends BaseSetterProps {
   canCustom?: boolean
   defaultValue?: boolean
-  handleChange?: (value: boolean) => void
 }

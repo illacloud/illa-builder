@@ -1,8 +1,6 @@
-import { PanelLabelProps } from "../../InspectPanel/interface"
+import { BaseSetterProps } from "../interface"
 
-export interface TextValueSetterProps extends PanelLabelProps {
+export interface TextValueSetterProps extends BaseSetterProps {
   defaultTextValue: string
   defaultTextModelValue: boolean
-  handleChangeTextValue: (value: string) => void
-  handleChangeTextMode: (value: boolean) => void
 }

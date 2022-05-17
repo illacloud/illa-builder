@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC } from "react"
 import { Input } from "@illa-design/input"
 import RadioGroupSetter from "../RadioGroupSetter"
 import { TextValueSetterProps } from "./interface"
@@ -20,8 +20,7 @@ const TextValueSetter: FC<TextValueSetterProps> = (props) => {
     labelDesc,
     defaultTextValue,
     defaultTextModelValue,
-    handleChangeTextValue,
-    handleChangeTextMode,
+    handleChange,
   } = props
 
   return (
@@ -29,11 +28,14 @@ const TextValueSetter: FC<TextValueSetterProps> = (props) => {
       <RadioGroupSetter
         labelName={labelName}
         labelDesc={labelDesc}
-        handleChange={handleChangeTextMode}
+        handleChange={(value) => handleChange(value, "disabledMarkDown")}
         options={options}
         defaultValue={defaultTextModelValue}
       />
-      <Input onChange={handleChangeTextValue} defaultValue={defaultTextValue} />
+      <Input
+        onChange={(value) => handleChange(value, "value")}
+        defaultValue={defaultTextValue}
+      />
     </div>
   )
 }

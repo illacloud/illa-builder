@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react"
-import PanelLabel from "../../InspectPanel/label"
+import PanelLabel from "@/page/Editor/components/InspectPanel/label"
 import { SwitchSetterProps } from "./interface"
 import { Switch } from "@illa-design/switch"
 import { switchSetterCss, switchWrapperStyle } from "./style"
@@ -13,7 +13,7 @@ const SwitchSetter: FC<SwitchSetterProps> = (props) => {
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <div css={switchWrapperStyle}>
           <Switch
-            onChange={handleChange}
+            onChange={(value) => handleChange(value)}
             defaultChecked={defaultValue}
             colorScheme="purple"
           />

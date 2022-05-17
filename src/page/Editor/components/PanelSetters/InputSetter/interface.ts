@@ -1,8 +1,7 @@
-import { PanelLabelProps } from "@/page/Editor/components/InspectPanel/interface"
+import { BaseSetterProps } from "../interface"
 
-export interface InputSetterProps extends PanelLabelProps {
+export interface InputSetterProps extends BaseSetterProps {
   isDouble?: boolean
-  handleChange: (value: any) => void
   placeholder?: string
   defaultValue?: string
 }

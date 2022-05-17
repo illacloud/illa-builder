@@ -1,8 +1,7 @@
-import { PanelLabelProps } from "@/page/Editor/components/InspectPanel/interface"
+import { BaseSetterProps } from "../interface"
 
-export interface RadioGroupProps extends PanelLabelProps {
+export interface RadioGroupProps extends BaseSetterProps {
   isDouble?: boolean
-  handleChange: (value: any) => void
   defaultValue?: any
   options: any
   canCustom?: boolean

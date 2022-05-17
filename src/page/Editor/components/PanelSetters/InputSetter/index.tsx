@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react"
 import { InputSetterProps } from "./interface"
-import PanelLabel from "../../InspectPanel/label"
+import PanelLabel from "@/page/Editor/components/InspectPanel/label"
 import { Input } from "@illa-design/Input"
 import { applyInputSetterStyle, applyInputWrapperStyle } from "./style"
 
@@ -20,7 +20,7 @@ const InputSetter: FC<InputSetterProps> = (props) => {
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <div css={applyInputWrapperStyle(isDouble)}>
           <Input
-            onChange={handleChange}
+            onChange={(value) => handleChange(value)}
             borderColor="purple"
             placeholder={placeholder}
             defaultValue={defaultValue}
@@ -28,7 +28,7 @@ const InputSetter: FC<InputSetterProps> = (props) => {
         </div>
       </>
     )
-  }, [labelName, labelDesc, handleChange])
+  }, [labelName, labelDesc, placeholder, defaultValue, isDouble, handleChange])
 
   return <div css={applyInputSetterStyle(isDouble)}>{renderContent}</div>
 }
