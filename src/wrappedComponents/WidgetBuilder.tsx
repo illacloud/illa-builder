@@ -2,28 +2,28 @@ import { CONTAINER_WIDGET_CONFIG, ContainerWidget } from "./ContainerWidget"
 import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
 import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
 
-export type widgetType = "CONTAINER_WIDGET" | "CANVAS_WIDGET" | "TEST_WIDGET"
+const WidgetConfig = {
+  CONTAINER_WIDGET: {
+    widget: ContainerWidget,
+    config: CONTAINER_WIDGET_CONFIG,
+  },
+  CANVAS_WIDGET: {
+    widget: CanvasWidget,
+    config: CANVAS_WIDGET_CONFIG,
+  },
+  TEST_WIDGET: {
+    widget: TestWidget,
+    config: TEST_WIDGET_CONFIG,
+  },
+  // BUTTON_WIDGET: {
+  //   widget: ButtonWidget,
+  //   config: BUTTON_WIDGET_CONFIG,
+  // },
+}
 
-export const widgetBuilder = () => {
+export type WidgetType = keyof typeof WidgetConfig
+
+export const widgetBuilder = (type: WidgetType) => {
   const start = performance.now()
-  const Config = {
-    CONTAINER_WIDGET: {
-      widget: ContainerWidget,
-      config: CONTAINER_WIDGET_CONFIG,
-    },
-    CANVAS_WIDGET: {
-      widget: CanvasWidget,
-      config: CANVAS_WIDGET_CONFIG,
-    },
-    TEST_WIDGET: {
-      widget: TestWidget,
-      config: TEST_WIDGET_CONFIG,
-    },
-    // BUTTON_WIDGET: {
-    //   widget: ButtonWidget,
-    //   config: BUTTON_WIDGET_CONFIG,
-    // },
-  }
-
-  return Config
+  return WidgetConfig[type]
 }

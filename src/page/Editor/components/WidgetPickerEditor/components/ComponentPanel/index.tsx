@@ -9,7 +9,7 @@ import { Empty } from "./Empty"
 import { widgetBuilder } from "@/wrappedComponents/WidgetBuilder"
 
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
-  const test = widgetBuilder()["TEST_WIDGET"].config as any
+  const test = widgetBuilder("TEST_WIDGET").config as any
   const defaultList: ComponentSessionProps[] = [
     {
       title: "global",

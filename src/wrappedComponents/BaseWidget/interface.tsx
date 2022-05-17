@@ -1,9 +1,9 @@
 import { HTMLAttributes } from "react"
-import { widgetType } from "../WidgetBuilder"
+import { WidgetType } from "../WidgetBuilder"
 
 export interface BaseProps {
   id: string
-  type: widgetType
+  type: WidgetType
   widgetName: string
   parentId: string
   props: {
