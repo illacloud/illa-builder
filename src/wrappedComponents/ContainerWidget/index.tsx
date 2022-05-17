@@ -95,20 +95,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
         {children?.map((value) => {
           const { type } = value
           const child = widgetBuilder(type)
-          let { defaults } = child.config
-          const widgetProps = {
-            ...value,
-            props: {
-              ...defaults,
-              ...value.props,
-            },
-          }
-          const childProps = generateWidgetProps(
-            id,
-            props,
-            widgetProps as unknown as WidgetConfig,
-          )
-          return <child.widget key={value.id} {...childProps} />
+          return <child.widget key={value.id} {...value} />
         })}
       </div>
     </BaseWidget>
