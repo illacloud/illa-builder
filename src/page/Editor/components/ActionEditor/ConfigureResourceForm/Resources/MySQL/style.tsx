@@ -3,7 +3,7 @@ import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const FormContentCSS = css`
-  overflow: scroll;
+  overflow: auto;
   padding: 0 24px;
   max-height: 716px;
 `
@@ -57,7 +57,7 @@ export const DisplayNoneCSS = css`
 export const HostnamePortCSS = css`
   display: grid;
   grid-column-gap: 8px;
-  grid-template-columns: 330px 142px;
+  grid-template-columns: 1fr 142px;
 `
 
 export const UsernamePasswordCSS = css`

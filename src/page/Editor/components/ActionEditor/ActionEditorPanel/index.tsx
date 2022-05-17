@@ -1,7 +1,8 @@
 import { FC } from "react"
-import { Button } from "@illa-design/button"
+import { Button, ButtonGroup } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
+import { RadioGroup } from "@illa-design/radio"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
@@ -16,8 +17,11 @@ import {
   EditIconCSS,
   MoreBtnCSS,
   RunBtnCSS,
+  DisableTextCSS,
 } from "./style"
 import { TitleInput } from "./TitleInput"
+import { MySQLPanel } from "./Resources/MySQL"
+import { applyIllaColor } from "../style"
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, children, onEditResource, onCreateResource } = props
@@ -38,7 +42,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     },
   ]
 
-  function createResouce() {
+  function createResource() {
     onCreateResource && onCreateResource()
   }
 
@@ -73,7 +77,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         />
 
         <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
-          <Option onClick={createResouce}>Create a new resouce</Option>
+          <Option onClick={createResource}>Create a new resouce</Option>
           <Option>SQL</Option>
           <Option>REST API</Option>
         </Select>
@@ -81,7 +85,19 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <PenIcon />
         </div>
       </div>
-      <div>{children}</div>
+      <div>
+        <MySQLPanel />
+      </div>
+      <div css={ActionCSS}>
+        <label>Transformer</label>
+        <span css={FillingCSS} />
+        <RadioGroup
+          type="button"
+          size="small"
+          options={["Disable", "Enable"]}
+          defaultValue="Disable"
+        />
+      </div>
     </div>
   )
 }

@@ -51,8 +51,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
@@ -153,4 +153,11 @@ export const EditIconCSS = css`
   &:hover > svg {
     color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   }
+`
+
+export const DisableTextCSS = css`
+  font-size: 14px;
+  line-height: 1.57;
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `

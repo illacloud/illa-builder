@@ -43,3 +43,9 @@ export function applyResizerCSS(
     }
   `
 }
+
+export function applyIllaColor(color: string, size: string): SerializedStyles {
+  return css`
+    color: ${globalColor(`--${illaPrefix}-${color}-${size}`)};
+  `
+}
