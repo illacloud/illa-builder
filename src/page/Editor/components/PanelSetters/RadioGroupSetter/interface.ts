@@ -1,8 +1,9 @@
 import { PanelLabelProps } from "@/page/Editor/components/InspectPanel/interface"
 
-export interface InputSetterProps extends PanelLabelProps {
+export interface RadioGroupProps extends PanelLabelProps {
   isDouble?: boolean
   handleChange: (value: any) => void
-  placeholder?: string
-  defaultValue?: string
+  defaultValue?: any
+  options: any
+  canCustom?: boolean
 }
