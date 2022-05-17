@@ -1,4 +1,4 @@
-import { DSLWidget } from "@/wrappedComponents/BaseWidget/interface"
+import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
 
 export interface DropInfo {
   parent: Object

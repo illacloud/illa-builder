@@ -1,4 +1,4 @@
-import { DSLWidget, WidgetProps } from "../BaseWidget/interface"
+import { DSLWidget, WidgetProps } from "../DraggableComponent/interface"
 
 export interface ContainerWidgetProps extends WidgetProps {
   children?: DSLWidget[]

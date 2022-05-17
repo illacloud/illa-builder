@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { DslState } from "./interface"
 import { DslActionName } from "./dsl-action"
 import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
-import { DSLWidget } from "@/wrappedComponents/BaseWidget/interface"
+import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
 
 const initialState = {
   root: {

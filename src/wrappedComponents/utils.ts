@@ -1,4 +1,4 @@
-import { BaseProps, DSLWidget } from "./BaseWidget/interface"
+import { BaseProps, DSLWidget } from "./DraggableComponent/interface"
 import { XYCoord } from "react-dnd"
 
 export type WidgetConfig = {

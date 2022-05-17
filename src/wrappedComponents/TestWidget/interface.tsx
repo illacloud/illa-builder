@@ -1,3 +1,3 @@
-import { WidgetProps } from "../BaseWidget/interface"
+import { WidgetProps } from "../DraggableComponent/interface"
 
 export interface TestWidgetProps extends WidgetProps {}

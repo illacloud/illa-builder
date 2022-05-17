@@ -12,9 +12,9 @@ import {
   getFocusedWidget,
   getWidgetStates,
 } from "@/redux/selectors/editorSelectors/widgetStateSelectors"
-import { BaseWidgetProps } from "./interface"
+import { DraggableComponentProps } from "./interface"
 
-export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
+export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
   const {
     children,
     id,
@@ -31,7 +31,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
       width,
       height,
     },
-  } = baseWidgetProp
+  } = baseProps
   const dispatch = useDispatch()
   const ref = useRef<Moveable>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -139,7 +139,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
         }}
         onDragEnd={() => {
           if (frame != null && target != null && ref != null) {
-            const { children, ...currentProps } = baseWidgetProp
+            const { children, ...currentProps } = baseProps
             const lastFrame = new Frame(
               `left: ${leftColumn ?? "0px"}; top: ${topRow ?? "0px"}`,
             )
@@ -173,4 +173,4 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
   )
 }
 
-BaseWidget.displayName = "BaseWidget"
+DraggableComponent.displayName = "DraggableComponent"

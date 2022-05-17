@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { DropInfo, dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
-import { ItemTypes } from "@/page/Editor/constants/dragConfig"
-import { BaseWidget } from "../BaseWidget"
+import { DraggableComponent } from "../DraggableComponent"
 import { ContainerWidgetProps } from "./interface"
 import {widgetBuilder, WidgetTypeList} from "../WidgetBuilder"
 import { getTargetOffset } from "../utils"
@@ -80,7 +79,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
   )
 
   return (
-    <BaseWidget {...containerWidgetProps}>
+    <DraggableComponent {...containerWidgetProps}>
       <div
         id={id}
         style={{
@@ -98,7 +97,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
           return <child.widget key={value.id} {...value} />
         })}
       </div>
-    </BaseWidget>
+    </DraggableComponent>
   )
 }
 

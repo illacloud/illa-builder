@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { BaseWidget } from "../BaseWidget"
+import { DraggableComponent } from "../DraggableComponent"
 import { TestWidgetProps } from "./interface"
 
 export const TEST_WIDGET_CONFIG = {
@@ -16,7 +16,7 @@ export const TestWidget: FC<TestWidgetProps> = (testWidgetProps) => {
   const { id, props } = testWidgetProps
 
   return (
-    <BaseWidget {...testWidgetProps}>
+    <DraggableComponent {...testWidgetProps}>
       <div
         id={id}
         style={{
@@ -26,7 +26,7 @@ export const TestWidget: FC<TestWidgetProps> = (testWidgetProps) => {
       >
         Test Demo
       </div>
-    </BaseWidget>
+    </DraggableComponent>
   )
 }
 

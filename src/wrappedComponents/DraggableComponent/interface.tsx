@@ -43,7 +43,7 @@ export interface DSLWidget extends BaseProps {
   children?: DSLWidget[]
 }
 
-export interface BaseWidgetProps extends WidgetProps {
+export interface DraggableComponentProps extends WidgetProps {
   readonly id: string
   dragDisabled?: boolean
   //
