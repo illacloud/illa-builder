@@ -12,5 +12,3 @@ export const useResizeWidget = () => {
   )
 }
 
-// let Resize = useResizeWidget()
-// Resize(true)

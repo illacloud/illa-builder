@@ -1,21 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { DslLayout, DslNode, DslState } from "./interface"
-import { AddFrame, AddText, DslActionName, UpdateText } from "./dsl-action"
-import {
-  MAIN_CONTAINER_ID,
-  Category,
-  DslType,
-} from "@/page/Editor/constants/dragConfig"
+import { DslState } from "./interface"
+import { DslActionName } from "./dsl-action"
+import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
+import { DSLWidget } from "@/wrappedComponents/BaseWidget/interface"
 
 const initialState = {
   root: {
     id: MAIN_CONTAINER_ID,
     parentId: MAIN_CONTAINER_ID,
-    version: "0.0.1",
     children: [],
     type: "CANVAS_WIDGET",
-    category: Category.Layout,
+    widgetName: "Canvas",
     props: {
+      version: "0.0.1",
       height: "100%",
       width: "100%",
       leftColumn: "auto",
@@ -31,14 +28,14 @@ const initialState = {
 function addNode(
   currentState: DslState,
   parentId: string,
-  dslNode: DslNode,
+  dslNode: DSLWidget,
 ): DslState {
   // 只有 layout 才可以没有parent
   if (parentId == MAIN_CONTAINER_ID) {
-    if (dslNode.category == Category.Layout) {
+    if (dslNode.widgetName == "Canvas") {
       return {
         ...currentState,
-        root: dslNode as DslLayout,
+        root: dslNode as DSLWidget,
       }
     } else {
       return currentState
@@ -51,22 +48,22 @@ function addNode(
 
 function addNode2Layout(
   parentId: string,
-  dslLayout: DslLayout,
-  dslNode: DslNode,
+  dslLayout: DSLWidget,
+  dslNode: DSLWidget,
 ) {
   if (dslLayout.id == parentId) {
     if (
-      !dslLayout.children.some((value) => {
+      !dslLayout?.children?.some((value) => {
         return dslNode.id == value.id
       })
     ) {
-      dslLayout.children.push(dslNode)
+      dslLayout?.children?.push(dslNode)
     }
     return dslLayout
   } else {
-    dslLayout.children.forEach((value) => {
-      if (value.category == Category.Layout) {
-        addNode2Layout(parentId, value as DslLayout, dslNode)
+    dslLayout?.children?.forEach((value) => {
+      if (value.widgetName == "Canvas") {
+        addNode2Layout(parentId, value, dslNode)
       }
     })
   }
@@ -74,25 +71,25 @@ function addNode2Layout(
 
 function updateNode(
   dslState: DslState,
-  parentNode: DslLayout,
-  dslNode: DslNode,
+  parentNode: DSLWidget,
+  dslNode: DSLWidget,
 ) {
   if (
     dslNode.parentId == MAIN_CONTAINER_ID &&
-    dslNode.category == Category.Layout
+    dslNode.widgetName == "Canvas"
   ) {
-    dslState.root = dslNode as DslLayout
+    dslState.root = dslNode as DSLWidget
     return
   }
-  if (parentNode.id == dslNode.parentId) {
+  if (parentNode.id == dslNode.parentId && parentNode.children) {
     const index = parentNode.children.findIndex((value, index, obj) => {
       return value.id == dslNode.id
     })
     parentNode.children[index] = dslNode
   } else {
-    parentNode.children.forEach((value) => {
-      if (value.category == Category.Layout) {
-        updateNode(dslState, value as DslLayout, dslNode)
+    parentNode.children?.forEach((value) => {
+      if (value.widgetName == "Canvas") {
+        updateNode(dslState, value, dslNode)
       }
     })
   }
@@ -104,10 +101,9 @@ const dslSlice = createSlice({
   reducers: {
     dslActionHandler(state, action) {
       let safeState = state
-
       switch (action.payload?.type) {
         case DslActionName.AddFrame: {
-          const addFrameAction = action.payload as AddFrame
+          const addFrameAction = action.payload
           if (addFrameAction.dslFrame.parentId == null) {
             safeState = {
               ...safeState,
@@ -122,17 +118,17 @@ const dslSlice = createSlice({
           }
           break
         }
-        case DslActionName.AddText: {
-          const addTextAction = action.payload as AddText
+        case DslActionName.AddItem: {
+          const addItemAction = action.payload
           addNode2Layout(
-            addTextAction.dslText.parentId,
+            addItemAction.dslText.parentId,
             safeState.root!!,
-            addTextAction.dslText,
+            addItemAction.dslText,
           )
           break
         }
-        case DslActionName.UpdateText: {
-          const updateTextAction = action.payload as UpdateText
+        case DslActionName.UpdateItem: {
+          const updateTextAction = action.payload
           updateNode(safeState, safeState.root!!, updateTextAction.newDslText)
           break
         }

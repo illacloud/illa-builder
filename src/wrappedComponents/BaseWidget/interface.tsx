@@ -5,19 +5,19 @@ export interface BaseProps {
   id: string
   type: widgetType
   widgetName: string
-  parentId?: string
-  version: number
+  parentId: string
   props: {
     // WidgetPosition
-    leftColumn: number
-    rightColumn: number
-    topRow: number
-    bottomRow: number
-    parentColumnSpace: number
-    parentRowSpace: number
+    version: string
+    leftColumn?: number|string
+    rightColumn?: number|string
+    topRow?: number|string
+    bottomRow?: number|string
+    parentColumnSpace?: number
+    parentRowSpace?: number
     //
     isVisible?: boolean
-    isLoading: boolean
+    isLoading?: boolean
     isDisabled?: boolean
     backgroundColor?: string
     animateLoading?: boolean
@@ -27,6 +27,13 @@ export interface BaseProps {
     //
     width?: string
     height?: string
+    position:
+        | "-webkit-sticky"
+        | "absolute"
+        | "fixed"
+        | "relative"
+        | "static"
+        | "sticky"
   }
 }
 

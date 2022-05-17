@@ -1,19 +1,18 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from "react"
-import { css } from "@emotion/react"
 import Moveable from "react-moveable"
-import { BaseWidgetProps } from "./interface"
-import { getPreviewMode } from "@/redux/selectors/editorSelectors/modeSelectors"
 import { useDispatch, useSelector } from "react-redux"
+import { Frame } from "scenejs"
+import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
+import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
+import { useSelectWidget } from "@/page/Editor/hooks/useSelectWidget"
+import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
+import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+import { getPreviewMode } from "@/redux/selectors/editorSelectors/modeSelectors"
 import {
   getFocusedWidget,
   getWidgetStates,
 } from "@/redux/selectors/editorSelectors/widgetStateSelectors"
-import { useDragWidget } from "../../page/Editor/components/WidgetPickerEditor/hooks/useDragWidget"
-import { useSelectWidget } from "../../page/Editor/components/WidgetPickerEditor/hooks/useSelectWidget"
-import { Frame } from "scenejs"
-import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
-import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
-import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
+import { BaseWidgetProps } from "./interface"
 
 export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
   const {
@@ -105,16 +104,10 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
           if (!isCurrentWidgetSelected) {
             selectWidget(id)
           }
-          const widgetHeight = bottomRow - topRow
-          const widgetWidth = rightColumn - leftColumn
           const bounds = e.target.getBoundingClientRect()
-
           const startPoints = {
-            top: 0,
-            left: Math.min(
-              Math.max((e.clientX - bounds.left) / parentColumnSpace, 0),
-              widgetWidth - 1,
-            ),
+            top: bounds.top,
+            left: bounds.left,
           }
           parentId && setDraggingCanvas(parentId)
           setDraggingState({
@@ -123,7 +116,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
             draggingGroupCenter: { id: id },
             startPoints,
           })
-          //
+          // set frame
           if (frame != null) {
             frame.set("transform", "translateX", `0px`)
             frame.set("transform", "translateY", `0px`)
@@ -152,7 +145,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
             )
             dispatch(
               dslActions.dslActionHandler({
-                type: DslActionName.UpdateText,
+                type: DslActionName.UpdateItem,
                 newDslText: {
                   ...currentProps,
                   props: {

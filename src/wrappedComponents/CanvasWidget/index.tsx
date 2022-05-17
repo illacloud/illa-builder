@@ -1,9 +1,10 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC } from "react"
 import { CanvasWidgetProps } from "./interface"
 import { ContainerWidget } from "../ContainerWidget"
 
 export const CANVAS_WIDGET_CONFIG = {
   type: "CANVAS_WIDGET",
+  widgetName: "Canvas",
   defaults: {
     version: "0.0.1",
     rows: 0,

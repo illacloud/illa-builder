@@ -1,24 +1,14 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC } from "react"
+import { DropTargetMonitor, useDrop } from "react-dnd"
+import { useDispatch } from "react-redux"
+import { v4 as uuidv4 } from "uuid"
+import { DropInfo, dslActions } from "@/redux/reducers/editorReducer/dslReducer"
+import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+import { ItemTypes } from "@/page/Editor/constants/dragConfig"
 import { BaseWidget } from "../BaseWidget"
 import { ContainerWidgetProps } from "./interface"
 import { widgetBuilder } from "../WidgetBuilder"
 import { generateWidgetProps, getTargetOffset, WidgetConfig } from "../utils"
-import { DropTargetMonitor, useDrop } from "react-dnd"
-import {
-  DropInfo,
-  dslActions,
-  DslFrame,
-  DslText,
-} from "../../redux/reducers/editorReducer/dslReducer"
-import {
-  Category,
-  DslType,
-  ItemTypes,
-} from "../../page/Editor/constants/dragConfig"
-import { DslActionName } from "../../redux/reducers/editorReducer/dslReducer/dsl-action"
-import { v4 as uuidv4 } from "uuid"
-import { useDispatch } from "react-redux"
-import { getOffset } from "@illa-design/slider/dist/types/util"
 
 interface PanelDrag {
   type: string
@@ -58,11 +48,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
   const [collectProps, dropTarget] = useDrop<PanelDrag, DropInfo, Object>(
     () => ({
       accept: Object.values(ItemTypes),
-      hover: (item, monitor: DropTargetMonitor) => {
-        console.log(item, "hover item")
-      },
       drop: (item, monitor: DropTargetMonitor) => {
-        console.log(item, "drop item")
         if (monitor.getDropResult<DropInfo>()?.hasDropped) {
           return monitor.getDropResult<DropInfo>()!!
         }
@@ -70,13 +56,13 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
           let monitorOffset = getTargetOffset(monitor?.getClientOffset(), id)
           dispatch(
             dslActions.dslActionHandler({
-              type: DslActionName.AddText,
+              type: DslActionName.AddItem,
               dslText: {
                 ...item,
                 props: { ...item.props, ...monitorOffset },
                 parentId: id,
                 id: "dsl" + uuidv4(),
-              } as DslText,
+              },
             }),
           )
           return {

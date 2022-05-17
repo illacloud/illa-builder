@@ -26,6 +26,4 @@ export const widgetBuilder = () => {
   }
 
   return Config
-
-  console.log("Widget registration took: ", performance.now() - start, "ms")
 }
