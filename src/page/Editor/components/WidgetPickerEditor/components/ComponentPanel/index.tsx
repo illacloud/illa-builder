@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { Search } from "@illa-design/input"
-import { componentContainerCss, sessionListContainerCss } from "./style"
 import { SearchIcon } from "@illa-design/icon"
+import { componentContainerCss, sessionListContainerCss } from "./style"
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"

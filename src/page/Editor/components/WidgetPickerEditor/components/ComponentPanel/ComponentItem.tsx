@@ -2,8 +2,6 @@ import { FC } from "react"
 import { useDrag } from "react-dnd"
 import { ComponentModel } from "@/wrappedComponents/interface"
 import { iconCss, itemContainerCss, nameCss } from "./style"
-import { widgetBuilder } from "../../../../../../wrappedComponents/WidgetBuilder"
-import { v4 as uuidv4 } from "uuid"
 
 export const ComponentItem: FC<ComponentModel> = (props) => {
   const { name, icon, type = "", defaults, ...rest } = props

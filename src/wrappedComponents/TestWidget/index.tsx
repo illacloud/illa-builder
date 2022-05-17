@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC } from "react"
 import { BaseWidget } from "../BaseWidget"
 import { TestWidgetProps } from "./interface"
 

@@ -9,10 +9,10 @@ export interface BaseProps {
   props: {
     // WidgetPosition
     version: string
-    leftColumn?: number|string
-    rightColumn?: number|string
-    topRow?: number|string
-    bottomRow?: number|string
+    leftColumn?: number | string
+    rightColumn?: number | string
+    topRow?: number | string
+    bottomRow?: number | string
     parentColumnSpace?: number
     parentRowSpace?: number
     //
@@ -28,12 +28,12 @@ export interface BaseProps {
     width?: string
     height?: string
     position:
-        | "-webkit-sticky"
-        | "absolute"
-        | "fixed"
-        | "relative"
-        | "static"
-        | "sticky"
+      | "-webkit-sticky"
+      | "absolute"
+      | "fixed"
+      | "relative"
+      | "static"
+      | "sticky"
   }
 }
 

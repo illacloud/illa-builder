@@ -8,7 +8,7 @@ import { ItemTypes } from "@/page/Editor/constants/dragConfig"
 import { BaseWidget } from "../BaseWidget"
 import { ContainerWidgetProps } from "./interface"
 import { widgetBuilder } from "../WidgetBuilder"
-import { generateWidgetProps, getTargetOffset, WidgetConfig } from "../utils"
+import { getTargetOffset } from "../utils"
 
 interface PanelDrag {
   type: string

@@ -74,10 +74,7 @@ function updateNode(
   parentNode: DSLWidget,
   dslNode: DSLWidget,
 ) {
-  if (
-    dslNode.parentId == MAIN_CONTAINER_ID &&
-    dslNode.widgetName == "Canvas"
-  ) {
+  if (dslNode.parentId == MAIN_CONTAINER_ID && dslNode.widgetName == "Canvas") {
     dslState.root = dslNode as DSLWidget
     return
   }
