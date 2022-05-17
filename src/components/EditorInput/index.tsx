@@ -1,30 +1,73 @@
-import { useEffect, useRef } from "react"
+import { FC, useEffect, useRef } from "react"
+import { css } from "@emotion/react"
+import { EditorInputProps } from "./interface"
+
 import CodeMirror from "codemirror"
 import "codemirror/lib/codemirror.css"
 // import 'codemirror/theme/monokai.css'
 import "codemirror/mode/javascript/javascript"
 import "codemirror/mode/sql/sql"
 
-import "./cm-replace-style.css"
+import "codemirror/addon/edit/matchbrackets"
+import "codemirror/addon/hint/show-hint.css"
+import "codemirror/addon/hint/show-hint.js"
+import "codemirror/addon/hint/javascript-hint.js"
+import "codemirror/addon/hint/sql-hint.js"
+import "codemirror/addon/edit/closebrackets"
 
-export function EditorInput() {
+import { applyCMCss } from "./style"
+
+export const EditorInput: FC<EditorInputProps> = (props) => {
+  const { mode, lineNumbers = true, height = "auto" } = props
+
   const targetRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
-    if (!targetRef.current) return
-    if (targetRef.current?.childNodes?.length) return
-    CodeMirror(targetRef.current, {
-      mode: { name: "javascript", json: true },
-      // theme: "monokai",
-      extraKeys: { Ctrl: "autocomplete" },
-      lineNumbers: true,
-      autocapitalize: true,
-      viewportMargin: Infinity,
+    const editor = CodeMirror(targetRef.current, {
+      mode: mode,
+      lineNumbers: lineNumbers,
+      autocapitalize: false,
+      autofocus: false,
+      matchBrackets: true,
+      // viewportMargin: Infinity,
+      tabSize: 2,
+      autoCloseBrackets: true,
+      hintOptions: {
+        completeSingle: false,
+      },
+      extraKeys: { "Shift+Q": "autocomplete" },
+    })
+
+    const ignoreStr = ",#,!,-,=,@,$,%,&,+,;,(,),*"
+    const ignoreToken = (text) => {
+      const ignore = ignoreStr.split(",")
+      if (text && text[0]) {
+        for (const pre in ignore) {
+          if (ignore[pre] === text[0]) {
+            return true
+          }
+        }
+      } else {
+        return true
+      }
+      return false
+    }
+
+    editor.on("change", function (editor, change) {
+      // autocomplete
+      if (change.origin == "+input") {
+        var text = change.text
+        // no hint
+        if (!ignoreToken(text)) {
+          setTimeout(function () {
+            editor.execCommand("autocomplete")
+          }, 20)
+        }
+      }
     })
   }, [])
 
-  return (
-    <div ref={targetRef}>{/* <textarea ref={targetRef}></textarea> */}</div>
-  )
+  return <div ref={targetRef} css={applyCMCss(height)} />
 }
 
 EditorInput.displayName = "EditorInput"
