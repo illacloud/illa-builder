@@ -1,6 +1,7 @@
 import { defineConfig } from "vite"
 import { resolve } from "path"
 import react from "@vitejs/plugin-react"
+import { chunkSplitPlugin } from "vite-plugin-chunk-split"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,10 +22,18 @@ export default defineConfig({
       // Only .tsx files
       include: ["**/*.tsx", "**/*.ts"],
     }),
+    chunkSplitPlugin({
+      customSplitting: {
+        "react-vendor": ["react", "react-dom"],
+        "design-libs": ["@illa-design/react"],
+        "editor-page": [/src\/page\/Editor/],
+        "setting-page": [/src\/page\/Setting/],
+      },
+    }),
   ],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src")
+      "@": resolve(__dirname, "src"),
     },
   },
 })

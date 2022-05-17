@@ -24,6 +24,7 @@ packages/*/tsconfig.tsbuildinfo
 tsconfig.tsbuildinfo
 .next
 .idea
+dist
 
 # Local Netlify folder
 .netlify
