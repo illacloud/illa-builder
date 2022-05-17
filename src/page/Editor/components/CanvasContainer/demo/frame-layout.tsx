@@ -32,7 +32,6 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
         }
         switch (item.type) {
           case ItemTypes.TEXT: {
-            console.log("drop into frame TEXT")
             dispatch(
               dslActions.dslActionHandler({
                 type: DslActionName.AddText,
@@ -59,7 +58,6 @@ const FrameLayout: React.FC<DslFrame> = (frameLayoutProps) => {
             } as DropInfo
           }
           case ItemTypes.FRAME: {
-            console.log("drop into frame FRAME")
             dispatch(
               dslActions.dslActionHandler({
                 type: DslActionName.AddFrame,

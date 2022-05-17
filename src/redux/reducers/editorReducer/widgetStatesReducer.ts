@@ -122,10 +122,7 @@ const widgetStatesSlice = createSlice({
         }
       }
     },
-    selectMultipleWidgets(
-      state,
-      action: ReduxAction<{ ids?: string[] }>,
-    ) {
+    selectMultipleWidgets(state, action: ReduxAction<{ ids?: string[] }>) {
       const { ids } = action.payload
       if (ids) {
         state.selectedWidgets = ids || []

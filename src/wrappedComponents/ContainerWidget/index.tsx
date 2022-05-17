@@ -2,17 +2,27 @@ import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { BaseWidget } from "../BaseWidget"
 import { ContainerWidgetProps } from "./interface"
 import { widgetBuilder } from "../WidgetBuilder"
-import { generateWidgetProps, WidgetConfig } from "../utils"
+import { generateWidgetProps, getTargetOffset, WidgetConfig } from "../utils"
 import { DropTargetMonitor, useDrop } from "react-dnd"
-import { DropInfo, dslActions, DslFrame, DslText } from "../../redux/reducers/editorReducer/dslReducer"
-import { Category, DslType, ItemTypes } from "../../page/Editor/constants/dragConfig"
+import {
+  DropInfo,
+  dslActions,
+  DslFrame,
+  DslText,
+} from "../../redux/reducers/editorReducer/dslReducer"
+import {
+  Category,
+  DslType,
+  ItemTypes,
+} from "../../page/Editor/constants/dragConfig"
 import { DslActionName } from "../../redux/reducers/editorReducer/dslReducer/dsl-action"
 import { v4 as uuidv4 } from "uuid"
 import { useDispatch } from "react-redux"
+import { getOffset } from "@illa-design/slider/dist/types/util"
 
 interface PanelDrag {
   type: string
-  dsl: any
+  props: any
 }
 
 export const CONTAINER_WIDGET_CONFIG = {
@@ -36,9 +46,13 @@ export const CONTAINER_WIDGET_CONFIG = {
 export const ContainerWidget: FC<ContainerWidgetProps> = (
   containerWidgetProps,
 ) => {
-  const { children, props, id, type, props: {
-    topRow, leftColumn
-  } } = containerWidgetProps
+  const {
+    children,
+    props,
+    id,
+    type,
+    props: { topRow, leftColumn },
+  } = containerWidgetProps
   const dispatch = useDispatch()
 
   const [collectProps, dropTarget] = useDrop<PanelDrag, DropInfo, Object>(
@@ -48,16 +62,21 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
         console.log(item, "hover item")
       },
       drop: (item, monitor: DropTargetMonitor) => {
-        console.log(item, containerWidgetProps,"drop item")
+        console.log(item, "drop item")
         if (monitor.getDropResult<DropInfo>()?.hasDropped) {
           return monitor.getDropResult<DropInfo>()!!
         }
         if (item.type) {
-          console.log("drop into frame TEXT")
+          let monitorOffset = getTargetOffset(monitor?.getClientOffset(), id)
           dispatch(
             dslActions.dslActionHandler({
               type: DslActionName.AddText,
-              dslText: {parentId:"root", ...item} as DslText,
+              dslText: {
+                ...item,
+                props: { ...item.props, ...monitorOffset },
+                parentId: id,
+                id: "dsl" + uuidv4(),
+              } as DslText,
             }),
           )
           return {

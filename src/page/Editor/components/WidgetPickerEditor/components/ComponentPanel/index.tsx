@@ -8,14 +8,18 @@ import { getMatchComponent } from "./utils"
 import { Empty } from "./Empty"
 import { widgetBuilder } from "@/wrappedComponents/WidgetBuilder"
 
-
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
   const test = widgetBuilder()["TEST_WIDGET"].config as any
   const defaultList: ComponentSessionProps[] = [
     {
       title: "global",
       children: [
-        { id: "01", name: "container", icon: <SearchIcon />, type: "CONTAINER_WIDGET" },
+        {
+          id: "01",
+          name: "container",
+          icon: <SearchIcon />,
+          type: "CONTAINER_WIDGET",
+        },
         { id: "02", name: "test", icon: <SearchIcon />, ...test },
         { id: "03", name: "component 03", icon: <SearchIcon /> },
         { id: "04", name: "component 04 ", icon: <SearchIcon /> },

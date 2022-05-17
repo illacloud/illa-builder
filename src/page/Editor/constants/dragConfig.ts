@@ -1,4 +1,4 @@
-export const MAIN_CONTAINER_ID = "root"
+export const MAIN_CONTAINER_ID = "main-canvas"
 
 export const ItemTypes = {
   FRAME: "frame",

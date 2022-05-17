@@ -16,7 +16,6 @@ export const ComponentItem: FC<ComponentModel> = (props) => {
         type,
         hasDropped: false,
         props: defaults,
-        id: "dsl" + uuidv4(),
       },
       options: { dropEffect: "copy" },
       previewOptions: { offsetX: 0 },

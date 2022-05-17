@@ -44,16 +44,16 @@ export const Setting: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        position: "relative",
-      }}
-    >
-      Setting
-      <CanvasWidget {...dsl} />
-    </div>
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "relative",
+        }}
+      >
+        Setting
+        <CanvasWidget {...dsl} />
+      </div>
     </DndProvider>
   )
 }

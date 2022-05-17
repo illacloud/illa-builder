@@ -1,4 +1,5 @@
 import { BaseProps, DSLWidget } from "./BaseWidget/interface"
+import { XYCoord } from "react-dnd"
 
 export type WidgetConfig = {
   columns: number
@@ -39,5 +40,19 @@ export const generateWidgetProps = (
     return result
   } else {
     throw Error("Failed to create widget: Parent was not provided ")
+  }
+}
+
+export const getTargetOffset = (monitorOffset: XYCoord | null, id: string) => {
+  const target = window.document
+    .querySelector<HTMLDivElement>(`#${id}`)
+    ?.getBoundingClientRect()
+  const targetTop = target?.top ?? 0
+  const targetLeft = target?.left ?? 0
+  const monitorTop = monitorOffset?.y ?? 0
+  const monitorLeft = monitorOffset?.x ?? 0
+  return {
+    topRow: `${monitorTop - targetTop}px`,
+    leftColumn: `${monitorLeft - targetLeft}px`,
   }
 }

@@ -13,6 +13,7 @@ import { useSelectWidget } from "../../page/Editor/components/WidgetPickerEditor
 import { Frame } from "scenejs"
 import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
 
 export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
   const {
@@ -34,6 +35,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
   } = baseWidgetProp
   const dispatch = useDispatch()
   const ref = useRef<Moveable>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const [target, setTarget] = useState<HTMLDivElement | null>()
   const isPreviewMode = useSelector(getPreviewMode)
   const { isDragging, isResizing, isDraggingDisabled, selectedWidgets } =
@@ -86,6 +88,7 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
         left: leftColumn,
         position: "absolute",
       }}
+      ref={wrapperRef}
       onClick={handleMouseOver}
     >
       <Moveable
@@ -93,13 +96,12 @@ export const BaseWidget: FC<BaseWidgetProps> = (baseWidgetProp) => {
         target={target}
         throttleDrag={1}
         keepRatio={false}
-        draggable={id !== "root"}
+        draggable={id !== MAIN_CONTAINER_ID}
         scalable={false}
         rotatable={false}
         origin={false}
         renderDirections={["nw", "n", "ne", "w", "e", "sw", "s", "se"]}
         onDragStart={(e) => {
-          console.log(e, draggable, id, "draggable")
           if (!isCurrentWidgetSelected) {
             selectWidget(id)
           }

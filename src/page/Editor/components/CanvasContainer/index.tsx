@@ -51,7 +51,6 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
     let monitorOffset = getOffset(monitor.getClientOffset())
     switch (item.type) {
       case ItemTypes.TEXT: {
-        console.log("drop into frame TEXT")
         dispatch(
           dslActions.dslActionHandler({
             type: DslActionName.AddText,
@@ -77,7 +76,6 @@ export const CanvasContainer: FC<CanvasContainerProps> = (props) => {
         } as DropInfo
       }
       case ItemTypes.FRAME: {
-        console.log("drop into frame FRAME")
         dispatch(
           dslActions.dslActionHandler({
             type: DslActionName.AddFrame,

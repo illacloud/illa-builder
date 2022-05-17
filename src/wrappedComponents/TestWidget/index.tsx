@@ -13,22 +13,19 @@ export const TEST_WIDGET_CONFIG = {
 }
 
 export const TestWidget: FC<TestWidgetProps> = (testWidgetProps) => {
-  const { className, children, id, props } = testWidgetProps
+  const { id, props } = testWidgetProps
 
   return (
     <BaseWidget {...testWidgetProps}>
-      <h1
+      <div
         id={id}
         style={{
-          position: "absolute",
-          left: props.leftColumn,
-          top: props.topRow,
-          right: props.rightColumn,
-          bottom: props.bottomRow,
+          width: "100%",
+          height: "100%",
         }}
       >
-        Test
-      </h1>
+        Test Demo
+      </div>
     </BaseWidget>
   )
 }
