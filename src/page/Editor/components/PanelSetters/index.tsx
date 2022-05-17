@@ -3,6 +3,7 @@ import RadioGroupSetter from "./RadioGroupSetter"
 import SwitchSetter from "./SwitchSetter"
 import TextValueSetter from "./TextValueSetter"
 import AlignmentSetter from "./AlignmentSetter"
+import ListSetter from "./ListSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: InputSetter,
@@ -10,6 +11,7 @@ const SetterTypeMapSetter = {
   SWITCH_SETTER: SwitchSetter,
   TEXT_VALUE_SETTER: TextValueSetter,
   ALIGNMENT_SETTER: AlignmentSetter,
+  LIST_SETTER: ListSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter
