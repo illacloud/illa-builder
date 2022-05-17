@@ -18,30 +18,50 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache node modules & Turbo building
+      - name: Cache builder node modules & Turbo building
         uses: actions/cache@v2
         env:
-          cache-name: cache-node-modules
+          cache-name: cache-builder-node-modules
         with:
           path: |
-            **/node_modules
+            node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
+            ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
 
-      - name: Check Install/Build Cache
+      - name: Cache design node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-design-node-modules
+        with:
+          path: |
+            illa-design/**/node_modules
+          key: ${{ runner.os }}-design-${{ hashFiles('illa-design/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-design-${{ hashFiles('illa-design/yarn.lock') }}     
+
+      - name: Check builder Install/Build Cache
         run: ls -lah node_modules | head -5
 
+      - name: Check design Install/Build Cache
+        run: ls -lah illa-design/node_modules | head -5
+
       - name: Install Dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        if: steps.cache-builder-node-modules.outputs.cache-hit != 'true'
         run: yarn install
+
+      - name: Install design dependencies
+        if: steps.cache-design-node-modules.outputs.cache-hit != 'true'
+        run: cd illa-design && yarn install
 
   test:
     needs:
@@ -57,6 +77,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          submodules: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -66,14 +87,25 @@ jobs:
       - name: Cache node modules & Turbo building
         uses: actions/cache@v2
         env:
-          cache-name: cache-node-modules
+          cache-name: cache-builder-node-modules
         with:
           path: |
-            **/node_modules
+            node_modules
             ~/Library/Caches/Cypress
-          key: ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('yarn.lock') }}
+            ${{ runner.os }}-builder-${{ hashFiles('yarn.lock') }}
+
+      - name: Cache design node modules & Turbo building
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-design-node-modules
+        with:
+          path: |
+            illa-design/**/node_modules
+          key: ${{ runner.os }}-design-${{ hashFiles('illa-design/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-design-${{ hashFiles('illa-design/yarn.lock') }}
 
       - name: Run Test
         run: |
