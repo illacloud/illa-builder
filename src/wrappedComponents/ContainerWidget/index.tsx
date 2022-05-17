@@ -7,7 +7,7 @@ import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-act
 import { ItemTypes } from "@/page/Editor/constants/dragConfig"
 import { BaseWidget } from "../BaseWidget"
 import { ContainerWidgetProps } from "./interface"
-import { widgetBuilder } from "../WidgetBuilder"
+import {widgetBuilder, WidgetTypeList} from "../WidgetBuilder"
 import { getTargetOffset } from "../utils"
 
 interface PanelDrag {
@@ -47,7 +47,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
 
   const [collectProps, dropTarget] = useDrop<PanelDrag, DropInfo, Object>(
     () => ({
-      accept: Object.values(ItemTypes),
+      accept: WidgetTypeList,
       drop: (item, monitor: DropTargetMonitor) => {
         if (monitor.getDropResult<DropInfo>()?.hasDropped) {
           return monitor.getDropResult<DropInfo>()!!
