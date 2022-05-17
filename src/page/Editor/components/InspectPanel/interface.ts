@@ -37,6 +37,7 @@ export interface PanelFieldConfig extends PanelLabel {
   id: string
   type: SetterType
   attrName?: string
+  childrenSetter?: PanelFieldConfig[]
   // events?:event[] // TODO:
 }
 
@@ -51,4 +52,5 @@ export type PanelConfig = PanelFieldConfig | PanelFieldGroupConfig
 export interface PanelSetterProps extends PanelLabel {
   type: SetterType
   attrName?: string
+  childrenSetter?: PanelFieldConfig[]
 }
