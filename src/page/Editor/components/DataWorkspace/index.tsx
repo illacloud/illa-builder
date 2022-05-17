@@ -8,6 +8,7 @@ import {
 } from "@/redux/reducers/editorReducer/demoReducer"
 import { ActionCreators as UndoActionCreators } from "redux-undo"
 import { Button } from "@illa-design/button"
+import { EditorInput } from "@/components/EditorInput"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -36,6 +37,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       <br />
       <Button onClick={() => dispatch(UndoActionCreators.undo())}>undo</Button>
       <Button onClick={() => dispatch(UndoActionCreators.redo())}>redo</Button>
+      <EditorInput mode="javascript" />
     </div>
   )
 }
