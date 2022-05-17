@@ -17,7 +17,7 @@ export const mainPanelStyle = css`
 
 export const navbarStyle = css`
   width: 100%;
-  height: 35px;
+  height: 48px;
 `
 
 export const contentStyle = css`

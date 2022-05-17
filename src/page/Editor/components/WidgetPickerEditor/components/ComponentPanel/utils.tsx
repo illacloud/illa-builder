@@ -13,7 +13,6 @@ export function getMatchComponent(
   const reg = RegExp(regKey)
 
   const newSessionList: ComponentSessionProps[] = []
-  console.log(regKey)
   options?.forEach((session) => {
     const res = session.children.filter((component) =>
       component.name.match(reg),
