@@ -22,3 +22,7 @@ export const CheckboxCSS = css`
     margin: 0;
   }
 `
+
+export const TopZIndexCSS = css`
+  z-index: 3000;
+`

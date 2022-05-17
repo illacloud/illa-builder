@@ -16,7 +16,13 @@ import {
   GroupTitleCSS,
   EmptyFillingCSS,
 } from "../style"
-import { CheckboxCSS, GridContainerGapCSS, InputTagSmallSizeCSS, LabelAlignSelfFlexStartCSS } from "./style"
+import {
+  CheckboxCSS,
+  GridContainerGapCSS,
+  InputTagSmallSizeCSS,
+  LabelAlignSelfFlexStartCSS,
+  TopZIndexCSS,
+} from "./style"
 import { ParamList } from "./ParamList"
 
 const ERROR_REQUIRED_MESSAGE = "This is required!"
@@ -95,18 +101,14 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           URL Parameters
         </label>
         <Controller
-          render={({ field }) => (
-            <ParamList {...field} />
-          )}
+          render={({ field }) => <ParamList {...field} />}
           control={control}
           name="URLParameters"
         />
 
         <label css={[LabelTextCSS, LabelAlignSelfFlexStartCSS]}>Headers</label>
         <Controller
-          render={({ field }) => (
-            <ParamList {...field} />
-          )}
+          render={({ field }) => <ParamList {...field} />}
           control={control}
           name="Headers"
         />
@@ -115,9 +117,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           Extra Body Values
         </label>
         <Controller
-          render={({ field }) => (
-            <ParamList {...field} />
-          )}
+          render={({ field }) => <ParamList {...field} />}
           control={control}
           name="ExtraBodyValues"
         />
@@ -136,12 +136,18 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           control={control}
           name="CookiesToForward"
         />
-        <Checkbox css={[applyGridColIndex(2), CheckboxCSS]}>Forward All Cookies</Checkbox>
+        <Checkbox css={[applyGridColIndex(2), CheckboxCSS]}>
+          Forward All Cookies
+        </Checkbox>
 
         <label css={LabelTextCSS}>Authentication</label>
         <Controller
           render={({ field }) => (
-            <Select size={"small"} {...field}>
+            <Select
+              size={"small"}
+              {...field}
+              triggerProps={{ _css: TopZIndexCSS }}
+            >
               <Option value={"none"}>None</Option>
               <Option value={"basic"}>Basic Auth</Option>
               <Option value={"OAuth2"}>OAuth 2.0</Option>
