@@ -14,10 +14,13 @@ export interface RESTAPIFormValues {
   Headers?: Params[]
   ExtraBodyValues?: Params[]
   CookiesToForward?: string[]
+  ForwardAllCookies?: boolean
   Authentication?: string
   BasicAuthUsername?: string
   BasicAuthPassword?: string
   UseClientCredentialsAuth?: boolean
+  OAuthCallbackURL?: string
+  ShareOAuth2CredentialsBetweenUsers?: boolean
   AuthorizationURL?: string
   AccessTokenURL?: string
   ClientId?: string
@@ -27,5 +30,5 @@ export interface RESTAPIFormValues {
   AccessToken?: string
   RefreshToken?: string
   AccessTokenLifespan?: number
-  EnableAuthVertificationEndpoint?: boolean
+  EnableAuthVerificationEndpoint?: boolean
 }

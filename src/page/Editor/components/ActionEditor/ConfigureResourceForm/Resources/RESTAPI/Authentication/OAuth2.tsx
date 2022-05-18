@@ -14,7 +14,9 @@ import { OAuth2Props } from "./interface"
 import { OAuth2Description } from "../style"
 
 export const OAuth2: FC<OAuth2Props> = (props) => {
-  const { control } = props
+  const { control, watch } = props
+
+  const isUseClientCredentialsAuth = watch("UseClientCredentialsAuth")
 
   return (
     <>
@@ -27,28 +29,44 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         location for this is as a header such as Authorization: Bearer
         OAUTH2_TOKEN.
       </dd>
-      <Checkbox css={[applyGridColIndex(2), CheckboxCSS]}>
-        Use client credentials auth
-      </Checkbox>
-
-      {/* not client */}
-      <label css={LabelTextCSS}>OAuth callback URL</label>
       <Controller
         render={({ field }) => (
-          <Input
-            {...field}
-            placeholder="https://oauth.retool.com/oauth/user/oauthcallback"
-          />
+          <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+            Use client credentials auth
+          </Checkbox>
         )}
         control={control}
-        name="Name"
+        name="UseClientCredentialsAuth"
       />
-      <button css={[applyGridColIndex(2), ActionTextCSS]}>
-        Copy this URL to your application
-      </button>
-      <Checkbox css={[applyGridColIndex(2), CheckboxCSS]}>
-        Share OAuth2.0 credentials between users
-      </Checkbox>
+
+      {!isUseClientCredentialsAuth && (
+        <>
+          <label css={LabelTextCSS}>OAuth callback URL</label>
+          <Controller
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="https://oauth.retool.com/oauth/user/oauthcallback"
+              />
+            )}
+            control={control}
+            name="OAuthCallbackURL"
+          />
+          <button css={[applyGridColIndex(2), ActionTextCSS]}>
+            Copy this URL to your application
+          </button>
+
+          <Controller
+            render={({ field }) => (
+              <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+                Share OAuth2.0 credentials between users
+              </Checkbox>
+            )}
+            control={control}
+            name="ShareOAuth2CredentialsBetweenUsers"
+          />
+        </>
+      )}
 
       <label css={LabelTextCSS}>Authorization URL</label>
       <Controller
@@ -59,7 +77,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           />
         )}
         control={control}
-        name="Name"
+        name="AuthorizationURL"
       />
 
       <label css={LabelTextCSS}>Access Token URL</label>
@@ -71,21 +89,21 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           />
         )}
         control={control}
-        name="Name"
+        name="AccessTokenURL"
       />
 
       <label css={LabelTextCSS}>Client ID</label>
       <Controller
         render={({ field }) => <Input {...field} />}
         control={control}
-        name="Name"
+        name="ClientId"
       />
 
       <label css={LabelTextCSS}>Client Secret</label>
       <Controller
         render={({ field }) => <Input {...field} />}
         control={control}
-        name="Name"
+        name="ClientSecret"
       />
 
       <label css={LabelTextCSS}>
@@ -94,31 +112,33 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       <Controller
         render={({ field }) => <Input {...field} />}
         control={control}
-        name="Name"
+        name="Scopes"
       />
 
       <label css={LabelTextCSS}>Audience</label>
       <Controller
         render={({ field }) => <Input {...field} />}
         control={control}
-        name="Name"
+        name="Audience"
       />
 
-      {/* not client */}
-      <label css={LabelTextCSS}>Access Token</label>
-      <Controller
-        render={({ field }) => <Input {...field} />}
-        control={control}
-        name="Name"
-      />
+      {!isUseClientCredentialsAuth && (
+        <>
+          <label css={LabelTextCSS}>Access Token</label>
+          <Controller
+            render={({ field }) => <Input {...field} />}
+            control={control}
+            name="AccessToken"
+          />
 
-      {/* not client */}
-      <label css={LabelTextCSS}>Refresh Token</label>
-      <Controller
-        render={({ field }) => <Input {...field} />}
-        control={control}
-        name="Name"
-      />
+          <label css={LabelTextCSS}>Refresh Token</label>
+          <Controller
+            render={({ field }) => <Input {...field} />}
+            control={control}
+            name="RefreshToken"
+          />
+        </>
+      )}
 
       <label css={LabelTextCSS}>
         Access Token
@@ -129,12 +149,18 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           <InputNumber {...field} placeholder={"Token Lifespan in seconds"} />
         )}
         control={control}
-        name="Name"
+        name="AccessTokenLifespan"
       />
 
-      <Checkbox css={[applyGridColIndex(2), CheckboxCSS]}>
-        Enable an auth verification endpoint
-      </Checkbox>
+      <Controller
+        render={({ field }) => (
+          <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+            Enable an auth verification endpoint
+          </Checkbox>
+        )}
+        control={control}
+        name="EnableAuthVerificationEndpoint"
+      />
     </>
   )
 }

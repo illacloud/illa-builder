@@ -15,7 +15,8 @@ import {
   SplitLineCSS,
   GroupTitleCSS,
   EmptyFillingCSS,
-  CheckboxCSS
+  CheckboxCSS,
+  ErrorMessageCSS,
 } from "../style"
 import {
   GridContainerGapCSS,
@@ -33,6 +34,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
     const {
       handleSubmit,
       control,
+      watch,
       formState: { errors },
     } = useForm<RESTAPIFormValues>({
       defaultValues: {
@@ -42,9 +44,23 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
         Headers: [],
         ExtraBodyValues: [],
         CookiesToForward: [],
+        ForwardAllCookies: false,
         Authentication: "none",
         BasicAuthUsername: "",
         BasicAuthPassword: "",
+        UseClientCredentialsAuth: false,
+        OAuthCallbackURL: "",
+        ShareOAuth2CredentialsBetweenUsers: false,
+        AuthorizationURL: "",
+        AccessTokenURL: "",
+        ClientId: "",
+        ClientSecret: "",
+        Scopes: "",
+        Audience: "",
+        AccessToken: "",
+        RefreshToken: "",
+        AccessTokenLifespan: 0,
+        EnableAuthVerificationEndpoint: false,
       },
     })
 
@@ -61,7 +77,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
       }
 
       if (authType === "OAuth2") {
-        return <OAuth2 control={control} />
+        return <OAuth2 control={control} watch={watch} />
       }
 
       return null
@@ -89,6 +105,11 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           control={control}
           name="Name"
         />
+        {errors.Name && (
+          <div css={[ErrorMessageCSS, applyGridColIndex(2)]}>
+            {errors.Name.message}
+          </div>
+        )}
         <dd css={[applyGridColIndex(2), DescriptionCSS]}>
           The name for resource when creating queries in the ILLA.
         </dd>
@@ -151,9 +172,15 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           control={control}
           name="CookiesToForward"
         />
-        <Checkbox css={[applyGridColIndex(2), CheckboxCSS]}>
-          Forward All Cookies
-        </Checkbox>
+        <Controller
+          render={({ field }) => (
+            <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+              Forward All Cookies
+            </Checkbox>
+          )}
+          control={control}
+          name="ForwardAllCookies"
+        />
 
         <label css={LabelTextCSS}>Authentication</label>
         <Controller

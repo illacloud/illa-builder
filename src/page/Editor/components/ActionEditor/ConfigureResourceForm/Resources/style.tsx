@@ -124,7 +124,6 @@ export const ErrorMessageCSS = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-red-03`)};
   line-height: 1.57;
-  margin-top: -8px;
 `
 
 export function applyMargin(
