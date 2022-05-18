@@ -15,9 +15,9 @@ import {
   SplitLineCSS,
   GroupTitleCSS,
   EmptyFillingCSS,
+  CheckboxCSS
 } from "../style"
 import {
-  CheckboxCSS,
   GridContainerGapCSS,
   InputTagSmallSizeCSS,
   LabelAlignSelfFlexStartCSS,
@@ -33,8 +33,6 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
     const {
       handleSubmit,
       control,
-      register,
-      resetField,
       formState: { errors },
     } = useForm<RESTAPIFormValues>({
       defaultValues: {

@@ -1,10 +1,17 @@
-import { FC } from "react"
+import { FC, Fragment } from "react"
 import { Input } from "@illa-design/input"
+import { InputNumber } from "@illa-design/input-number"
 import { Checkbox } from "@illa-design/checkbox"
 import { Controller } from "react-hook-form"
-import { LabelTextCSS, DescriptionCSS, applyGridColIndex } from "../../style"
+import {
+  LabelTextCSS,
+  DescriptionCSS,
+  applyGridColIndex,
+  ActionTextCSS,
+  CheckboxCSS,
+} from "../../style"
 import { OAuth2Props } from "./interface"
-import { OAuth2Description, CheckboxCSS } from "../style"
+import { OAuth2Description } from "../style"
 
 export const OAuth2: FC<OAuth2Props> = (props) => {
   const { control } = props
@@ -24,7 +31,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         Use client credentials auth
       </Checkbox>
 
-      <label css={LabelTextCSS}>Configuring callback URL</label>
+      {/* not client */}
+      <label css={LabelTextCSS}>OAuth callback URL</label>
       <Controller
         render={({ field }) => (
           <Input
@@ -35,9 +43,11 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         control={control}
         name="Name"
       />
-      <a css={applyGridColIndex(2)}>Copy this URL to your application</a>
+      <button css={[applyGridColIndex(2), ActionTextCSS]}>
+        Copy this URL to your application
+      </button>
       <Checkbox css={[applyGridColIndex(2), CheckboxCSS]}>
-        Use client credentials auth
+        Share OAuth2.0 credentials between users
       </Checkbox>
 
       <label css={LabelTextCSS}>Authorization URL</label>
@@ -94,6 +104,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         name="Name"
       />
 
+      {/* not client */}
       <label css={LabelTextCSS}>Access Token</label>
       <Controller
         render={({ field }) => <Input {...field} />}
@@ -101,6 +112,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         name="Name"
       />
 
+      {/* not client */}
       <label css={LabelTextCSS}>Refresh Token</label>
       <Controller
         render={({ field }) => <Input {...field} />}
@@ -113,7 +125,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <br /> lifespan(optiinal)
       </label>
       <Controller
-        render={({ field }) => <Input {...field} />}
+        render={({ field }) => (
+          <InputNumber {...field} placeholder={"Token Lifespan in seconds"} />
+        )}
         control={control}
         name="Name"
       />

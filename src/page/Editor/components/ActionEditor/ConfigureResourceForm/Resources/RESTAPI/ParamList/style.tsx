@@ -11,35 +11,35 @@ export const ParamItemCSS = css`
   display: flex;
 
   & + & {
-  margin-top: 8px;
+    margin-top: 8px;
   }
 `
 
 export const ParamItemKeyCSS = css`
-  width: 169px!important;
+  width: 169px !important;
 
   & > span {
-      border-top-right-radius: 0!important;
-      border-bottom-right-radius: 0!important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
 `
 
 export const ParamItemValueCSS = css`
   & > span {
-      border-top-left-radius: 0!important;
-      border-bottom-left-radius: 0!important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
 `
 
 export const NewButtonCSS = css`
-  align-self: flex-start;
   display: flex;
   align-items: center;
-  padding: 8px!important;
+  align-self: flex-start;
+  padding: 8px;
 
-  &  svg {
-  margin-right: 5px;
-  margin-bottom: 4px;
+  & svg {
+    margin-right: 5px;
+    margin-bottom: 2px;
   }
 `
 
@@ -50,4 +50,4 @@ export const DeleteIconCSS = css`
   &:hover {
     color: ${globalColor(`--${illaPrefix}-red-05`)};
   }
-    `
+`

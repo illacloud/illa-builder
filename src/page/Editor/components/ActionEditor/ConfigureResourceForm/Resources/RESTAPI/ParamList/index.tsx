@@ -13,6 +13,7 @@ import {
 } from "./style"
 
 import { ParamListProps } from "./interface"
+import { ActionTextCSS } from "../../style"
 
 export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
   (props, ref) => {
@@ -59,18 +60,12 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
     return (
       <div css={ParamListWrapperCSS} ref={ref} {...restProps}>
         {paramList}
-        <Button
-          variant="text"
-          size="medium"
-          colorScheme="techPurple"
-          type="button"
-          css={NewButtonCSS}
-          onClick={addParamItem}
-        >
+        <span css={[NewButtonCSS, ActionTextCSS]}
+          onClick={addParamItem}>
           <AddIcon />
           New
-        </Button>
-      </div>
+        </span>
+      </div >
     )
   },
 )

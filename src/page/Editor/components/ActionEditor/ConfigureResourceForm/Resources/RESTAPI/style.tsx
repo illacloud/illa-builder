@@ -1,5 +1,4 @@
 import { css } from "@emotion/react"
-import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const GridContainerGapCSS = css`
@@ -15,15 +14,6 @@ export const InputTagSmallSizeCSS = css`
   height: 32px;
 `
 
-export const CheckboxCSS = css`
-  margin: -8px 0 8px;
-  justify-content: flex-start!important;
-
-  & > input {
-    margin: 0;
-  }
-`
-
 export const TopZIndexCSS = css`
   z-index: 3000;
 `
@@ -32,4 +22,6 @@ export const OAuth2Description = css`
   white-space: normal;
   background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   padding: 8px 16px;
+  border-radius: 8px;
+  margin: 8px 0;
 `
