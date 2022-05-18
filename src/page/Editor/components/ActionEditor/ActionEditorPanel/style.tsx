@@ -51,8 +51,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
@@ -74,7 +74,6 @@ export const ActionCSS = css`
   display: flex;
   align-items: center;
   padding: 8px 16px;
-  height: 48px;
 `
 
 export const FillingCSS = css`
@@ -92,7 +91,10 @@ export const HeaderButtonCSS = css`
 `
 
 export const MoreBtnCSS = css`
-  width: 32px;
+  width: 32px !important;
+  padding: 9px !important;
+  height: 32px !important;
+
   margin-right: 8px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-01`)}!important;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)}!important;
@@ -153,4 +155,28 @@ export const EditIconCSS = css`
   &:hover > svg {
     color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   }
+`
+
+export const SectionTitleCSS = css`
+  font-size: 14px;
+  line-height: 1.57;
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
+export const PanelPaddingCSS = css`
+  padding: 8px 16px;
+`
+
+export const PanelSubBarCSS = css`
+  padding: 13px 16px;
+`
+
+export const DashBorderBottomCSS = css`
+  border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+`
+
+export const GridHandlersCSS = css`
+  display: grid;
+  gap: 8px;
 `

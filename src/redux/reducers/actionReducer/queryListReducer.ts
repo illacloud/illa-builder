@@ -11,7 +11,7 @@ interface ResouceConfig {
   id: string
 }
 
-export interface QueryListState extends EntityState<QueryItem> { }
+export interface QueryListState extends EntityState<QueryItem> {}
 
 interface QueryItem {
   id: string

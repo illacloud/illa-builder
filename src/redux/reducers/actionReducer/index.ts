@@ -9,7 +9,7 @@ export interface ActionState {
 
 const actionReducer = combineReducers({
   editor: editorReducer,
-  queryList: queryListReducer
+  queryList: queryListReducer,
 })
 
 export default actionReducer

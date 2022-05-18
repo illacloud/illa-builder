@@ -115,7 +115,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           The name for resource when creating queries in the ILLA.
         </dd>
 
-        <span css={SplitLineCSS}></span>
+        <span css={SplitLineCSS} />
 
         <h4 css={GroupTitleCSS}>GENERAL</h4>
 
@@ -189,7 +189,6 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           control={control}
           name="Authentication"
         />
-
         {renderAuthConfig()}
       </form>
     )

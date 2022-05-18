@@ -5,7 +5,7 @@ export interface EditorState {
 }
 
 const initialState: EditorState = {
-  queryId: ""
+  queryId: "",
 }
 
 const editorSlice = createSlice({
@@ -14,10 +14,10 @@ const editorSlice = createSlice({
   reducers: {
     updateQueryId(state, action) {
       state.queryId = action.payload
-    }
-  }
+    },
+  },
 })
 
 export const { updateQueryId } = editorSlice.actions
 
-export default editorSlice.reducer;
+export default editorSlice.reducer

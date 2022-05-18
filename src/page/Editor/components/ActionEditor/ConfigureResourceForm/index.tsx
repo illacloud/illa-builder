@@ -33,7 +33,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
   }
 
   function submitForm() {
-    formRef.current?.requestSubmit();
+    formRef.current?.requestSubmit()
   }
 
   return (

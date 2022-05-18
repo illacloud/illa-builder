@@ -3,8 +3,6 @@ import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-type Direction = "left" | "right" | "top" | "bottom"
-
 export const FormCSS = css`
   overflow: auto;
   padding: 0 24px;
@@ -125,29 +123,3 @@ export const ErrorMessageCSS = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)};
   line-height: 1.57;
 `
-
-export function applyMargin(
-  direction: Direction,
-  number: number,
-): SerializedStyles {
-  return css`margin-${direction}:${number}px; `
-}
-
-export function applyPadding(
-  direction: Direction,
-  number: number,
-): SerializedStyles {
-  return css`padding-${direction}:${number}px; `
-}
-
-export function applyJustifyContent(align: string): SerializedStyles {
-  return css`
-    justify-content: ${align};
-  `
-}
-
-export function applyIllaColor(color: string, size: string): SerializedStyles {
-  return css`
-    color: ${globalColor(`--${illaPrefix}-${color}-${size}`)};
-  `
-}

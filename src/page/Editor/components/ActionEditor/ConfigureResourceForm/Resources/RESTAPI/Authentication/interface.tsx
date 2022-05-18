@@ -7,6 +7,6 @@ interface BaseAuthProps<T> {
   errors?: FieldErrors
 }
 
-export interface BasicAuthProps extends BaseAuthProps<RESTAPIFormValues> { }
+export interface BasicAuthProps extends BaseAuthProps<RESTAPIFormValues> {}
 
-export interface OAuth2Props extends BaseAuthProps<RESTAPIFormValues> { }
+export interface OAuth2Props extends BaseAuthProps<RESTAPIFormValues> {}
