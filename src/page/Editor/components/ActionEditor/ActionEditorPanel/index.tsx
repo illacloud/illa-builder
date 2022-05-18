@@ -22,7 +22,7 @@ import {
 import { TitleInput } from "./TitleInput"
 import { Transformer } from "./Transformer"
 import { MySQLPanel } from "./Resources/MySQL"
-import { applyIllaColor, applyMargin, applyPadding } from "../style"
+import { applyMarginSingle } from "../style"
 import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
@@ -54,7 +54,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   return (
     <div className={className} css={ContainerCSS}>
-      <header css={[HeaderCSS, applyMargin("bottom", 8)]}>
+      <header css={[HeaderCSS, applyMarginSingle("bottom", 8)]}>
         <TitleInput />
         <span css={FillingCSS} />
         <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
@@ -64,7 +64,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <CaretRightIcon /> Run
         </Button>
       </header>
-      <div css={[ActionCSS, applyMargin("bottom", 8)]}>
+      <div css={[ActionCSS, applyMarginSingle("bottom", 8)]}>
         <label css={SectionTitleCSS}>Resource</label>
         <span css={FillingCSS} />
         <Select

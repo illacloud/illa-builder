@@ -85,37 +85,3 @@ export const RequireTagCSS = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)};
   line-height: 0;
 `
-
-type Direction = "left" | "right" | "top" | "bottom"
-
-export function applyGridColIndex(index: number): SerializedStyles {
-  return css`
-    grid-column-start: ${index};
-  `
-}
-
-export function applyMargin(
-  direction: Direction,
-  number: number,
-): SerializedStyles {
-  return css`margin-${direction}:${number}px; `
-}
-
-export function applyPadding(
-  direction: Direction,
-  number: number,
-): SerializedStyles {
-  return css`padding-${direction}:${number}px; `
-}
-
-export function applyJustifyContent(align: string): SerializedStyles {
-  return css`
-    justify-content: ${align};
-  `
-}
-
-export function applyIllaColor(color: string, size: string): SerializedStyles {
-  return css`
-    color: ${globalColor(`--${illaPrefix}-${color}-${size}`)};
-  `
-}

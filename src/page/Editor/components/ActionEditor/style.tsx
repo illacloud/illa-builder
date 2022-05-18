@@ -1,6 +1,22 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+type Direction = "left" | "right" | "top" | "bottom"
+type IllaColor =
+  | "white"
+  | "blackAlpha"
+  | "gray"
+  | "grayBlue"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "cyan"
+  | "purple"
+  | "techPink"
+  | "techPurple"
+
 export const ActionEditorContainer = css`
   display: flex;
   height: 100%;
@@ -44,24 +60,86 @@ export function applyResizerCSS(
   `
 }
 
-export function applyIllaColor(color: string, size: string): SerializedStyles {
+export function applyIllaColor(
+  color: IllaColor,
+  size: string,
+): SerializedStyles {
   return css`
     color: ${globalColor(`--${illaPrefix}-${color}-${size}`)};
   `
 }
 
-type Direction = "left" | "right" | "top" | "bottom"
-
-export function applyMargin(
+export function applyMarginSingle(
   direction: Direction,
   number: number,
 ): SerializedStyles {
   return css`margin-${direction}:${number}px; `
 }
 
-export function applyPadding(
+export function applyMargin(...args: number[]) {
+  switch (args.length) {
+    case 1:
+      return css`
+        margin: ${args[0]}px;
+      `
+    case 2:
+      return css`
+        margin: ${args[0]}px ${args[1]}px;
+      `
+    case 3:
+      return css`
+        margin: ${args[0]}px ${args[1]}px ${args[2]}px;
+      `
+    case 4:
+      return css`
+        margin: ${args[0]}px ${args[1]}px ${args[2]}px ${args[3]}px;
+      `
+    default:
+      return css`
+        margin: ${args[0]}px;
+      `
+  }
+}
+
+export function applyPadding(...args: number[]) {
+  switch (args.length) {
+    case 1:
+      return css`
+        padding: ${args[0]}px;
+      `
+    case 2:
+      return css`
+        padding: ${args[0]}px ${args[1]}px;
+      `
+    case 3:
+      return css`
+        padding: ${args[0]}px ${args[1]}px ${args[2]}px;
+      `
+    case 4:
+      return css`
+        padding: ${args[0]}px ${args[1]}px ${args[2]}px ${args[3]}px;
+      `
+    default:
+      return css`
+        padding: ${args[0]}px;
+      `
+  }
+}
+export function applyPaddingSingle(
   direction: Direction,
   number: number,
 ): SerializedStyles {
   return css`padding-${direction}:${number}px; `
+}
+
+export function applyGridColIndex(index: number): SerializedStyles {
+  return css`
+    grid-column-start: ${index};
+  `
+}
+
+export function applyJustifyContent(align: string): SerializedStyles {
+  return css`
+    justify-content: ${align};
+  `
 }

@@ -1,19 +1,15 @@
 import { useState } from "react"
 import {
-  ActionCSS,
   DashBorderBottomCSS,
-  FillingCSS,
   GridHandlersCSS,
-  PanelPaddingCSS,
   PanelSubBarCSS,
   SectionTitleCSS,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import {
-  applyMargin,
-  applyPadding,
+  applyPaddingSingle,
   applyIllaColor,
+  applyPadding,
 } from "@/page/Editor/components/ActionEditor/style"
-import { EditorInput } from "@/components/EditorInput"
 import { Input } from "@illa-design/input"
 import { MoreIcon, PlusIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
@@ -27,8 +23,7 @@ export const EventHandler = () => {
         <div
           css={[
             SectionTitleCSS,
-            applyPadding("top", 16),
-            applyPadding("left", 16),
+            applyPadding(16, 16, 0),
             applyIllaColor("grayBlue", "06"),
           ]}
         >
@@ -37,19 +32,12 @@ export const EventHandler = () => {
         <div css={PanelSubBarCSS}>
           <label css={[SectionTitleCSS, DashBorderBottomCSS]}>Success</label>
         </div>
-        <div
-          css={[
-            applyPadding("right", 16),
-            applyPadding("left", 16),
-            applyPadding("bottom", 8),
-            GridHandlersCSS,
-          ]}
-        >
+        <div css={[applyPadding(0, 16, 8), GridHandlersCSS]}>
           {handlerList.map((item) => (
             <Input key={item.key} addonAfter={{ render: <MoreIcon /> }} />
           ))}
         </div>
-        <div css={applyPadding("left", 16)}>
+        <div css={applyPaddingSingle("left", 16)}>
           <Button
             variant="text"
             size="medium"

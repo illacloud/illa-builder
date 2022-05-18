@@ -10,8 +10,8 @@ import {
 import { RadioGroup } from "@illa-design/radio"
 import { EditorInput } from "@/components/EditorInput"
 import {
-  applyMargin,
-  applyPadding,
+  applyMarginSingle,
+  applyPaddingSingle,
 } from "@/page/Editor/components/ActionEditor/style"
 
 export const Transformer = () => {
@@ -27,7 +27,7 @@ export const Transformer = () => {
           defaultValue="Disable"
         />
       </div>
-      <div css={[PanelPaddingCSS, applyMargin("bottom", 8)]}>
+      <div css={[PanelPaddingCSS, applyMarginSingle("bottom", 8)]}>
         <EditorInput mode="javascript" height="88px" />
       </div>
     </>

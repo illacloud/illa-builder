@@ -73,7 +73,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
 
     const renderAuthConfig = () => {
       if (authType === "basic") {
-        return <BasicAuth control={control} />
+        return <BasicAuth control={control} watch={watch} />
       }
 
       if (authType === "OAuth2") {
@@ -199,7 +199,6 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           control={control}
           name="Authentication"
         />
-
         {renderAuthConfig()}
       </form>
     )
