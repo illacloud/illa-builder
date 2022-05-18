@@ -6,7 +6,7 @@ import { DropInfo, dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
 import { DraggableComponent } from "../DraggableComponent"
 import { ContainerWidgetProps } from "./interface"
-import {widgetBuilder, WidgetTypeList} from "../WidgetBuilder"
+import { widgetBuilder, WidgetTypeList } from "../WidgetBuilder"
 import { getTargetOffset } from "../utils"
 
 interface PanelDrag {
@@ -81,20 +81,20 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
   return (
     <DraggableComponent {...containerWidgetProps}>
       <div
-        id={id}
-        style={{
-          height: props.height,
-          width: props.width,
-          top: props.topRow,
-          left: props.leftColumn,
-          position: "absolute",
-        }}
         ref={dropTarget}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
       >
         {children?.map((value) => {
           const { type } = value
           const child = widgetBuilder(type)
-          return <child.widget key={value.id} {...value} />
+          return (
+            <DraggableComponent key={value.id} {...value}>
+              <child.widget {...value} />
+            </DraggableComponent>
+          )
         })}
       </div>
     </DraggableComponent>
