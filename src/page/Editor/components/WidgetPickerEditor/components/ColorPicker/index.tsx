@@ -54,16 +54,6 @@ function ColorPicker(props: ColorPickerProps) {
 
   const inputRef = useRef<HTMLInputElement>(null)
   const alphaInputRef = useRef<HTMLInputElement>(null)
-  useEffect(() => {
-    if (alphaInputRef.current) {
-      alphaInputRef.current.onfocus = () => {
-        setInputFocus(true)
-      }
-      alphaInputRef.current.onblur = () => {
-        setInputFocus(false)
-      }
-    }
-  }, [alphaInputRef.current])
 
   useDebounce(
     () => {
@@ -79,10 +69,7 @@ function ColorPicker(props: ColorPickerProps) {
       <div css={colorInputCss}>
         <Input
           inputRef={inputRef}
-          focus={debouncedInputFocus}
-          onFocusChange={(focus) => {
-            setInputFocus(focus)
-          }}
+          highlight={debouncedInputFocus}
           prefix={{
             render: (
               <div css={triggerCss}>
@@ -114,7 +101,6 @@ function ColorPicker(props: ColorPickerProps) {
           requirePadding={false}
           style={{ width: 146, height: 40, fontSize: 12 }}
           borderColor={"purple"}
-          radius={"8px"}
           value={inputValue}
           onChange={(value) => {
             setInputValue(value)
@@ -125,9 +111,11 @@ function ColorPicker(props: ColorPickerProps) {
             setAlphaPercentValue(updateAlphaInputValue(_hsva.a))
           }}
           onBlur={() => {
+            setInputFocus(false)
             setInputValue(hsvaToHex(hsva))
           }}
           withoutNormalBorder={true}
+          onFocus={() => setInputFocus(true)}
           spellCheck={false}
           suffix={{
             render: (
@@ -154,7 +142,13 @@ function ColorPicker(props: ColorPickerProps) {
                   }
                   setAlphaPercentValue(event.target.value)
                 }}
-                onBlur={() => setAlphaPercentValue(hsva.a * 100 + "%")}
+                onFocus={() => {
+                  setInputFocus(true)
+                }}
+                onBlur={() => {
+                  setInputFocus(false)
+                  setAlphaPercentValue(hsva.a * 100 + "%")
+                }}
                 css={percentInputCss}
               />
             ),

@@ -1,7 +1,7 @@
 # thx chakra ui template
 name: "Bug Report"
 description: "File a bug report"
-labels: ["Type: Bug 🐛", "needs triage"]
+labels: [ "Type: Bug 🐛", "needs triage" ]
 body:
   - type: "markdown"
     attributes:

@@ -9,7 +9,7 @@ export type ComponentModel = {
   id: string
   name: string
   icon?: string | ReactNode // url
-  type?: "" //组件类型
+  type?: string //组件类型
   defaults?: {
     version: 1
     rows: number

@@ -2,7 +2,7 @@ import { FC } from "react"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
-import { RadioGroup } from "@illa-design/radio"
+import { Divider } from "@illa-design/divider"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
@@ -17,11 +17,13 @@ import {
   EditIconCSS,
   MoreBtnCSS,
   RunBtnCSS,
-  DisableTextCSS,
+  SectionTitleCSS,
 } from "./style"
 import { TitleInput } from "./TitleInput"
+import { Transformer } from "./Transformer"
 import { MySQLPanel } from "./Resources/MySQL"
-import { applyIllaColor } from "../style"
+import { applyIllaColor, applyMargin, applyPadding } from "../style"
+import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, children, onEditResource, onCreateResource } = props
@@ -52,7 +54,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   return (
     <div className={className} css={ContainerCSS}>
-      <header css={HeaderCSS}>
+      <header css={[HeaderCSS, applyMargin("bottom", 8)]}>
         <TitleInput />
         <span css={FillingCSS} />
         <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
@@ -62,8 +64,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <CaretRightIcon /> Run
         </Button>
       </header>
-      <div css={ActionCSS}>
-        <label>Resourse</label>
+      <div css={[ActionCSS, applyMargin("bottom", 8)]}>
+        <label css={SectionTitleCSS}>Resource</label>
         <span css={FillingCSS} />
         <Select
           options={modeOptions}
@@ -85,19 +87,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <PenIcon />
         </div>
       </div>
-      <div>
-        <MySQLPanel />
-      </div>
-      <div css={ActionCSS}>
-        <label>Transformer</label>
-        <span css={FillingCSS} />
-        <RadioGroup
-          type="button"
-          size="small"
-          options={["Disable", "Enable"]}
-          defaultValue="Disable"
-        />
-      </div>
+      <Divider />
+      <MySQLPanel />
+      <Transformer />
+      <Divider />
+      <EventHandler />
     </div>
   )
 }

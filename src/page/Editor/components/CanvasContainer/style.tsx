@@ -1,6 +1,8 @@
 import { css } from "@emotion/react"
 
-export const CanvasContainerCss = css`
-  flex: 1 1 auto;
-  overflow: auto;
+export const CanvasStyle = css`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: scroll;
 `

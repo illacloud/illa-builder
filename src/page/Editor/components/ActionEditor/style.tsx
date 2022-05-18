@@ -49,3 +49,19 @@ export function applyIllaColor(color: string, size: string): SerializedStyles {
     color: ${globalColor(`--${illaPrefix}-${color}-${size}`)};
   `
 }
+
+type Direction = "left" | "right" | "top" | "bottom"
+
+export function applyMargin(
+  direction: Direction,
+  number: number,
+): SerializedStyles {
+  return css`margin-${direction}:${number}px; `
+}
+
+export function applyPadding(
+  direction: Direction,
+  number: number,
+): SerializedStyles {
+  return css`padding-${direction}:${number}px; `
+}

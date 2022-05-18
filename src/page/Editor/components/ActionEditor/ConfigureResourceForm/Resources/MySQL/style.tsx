@@ -33,15 +33,6 @@ export const LabelTextSmallSizeCSS = css`
 export const BorderBottomCSS = css`
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
-
-export const FooterCSS = css`
-  width: 100%;
-  padding: 24px;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-`
-
 export const GridContainerCSS = css`
   display: grid;
   grid: auto/repeat(auto-fit, 152px minmax(280px, 1fr));
@@ -78,27 +69,6 @@ export const SwitchAreaCSS = css`
   display: flex;
   align-items: center;
 `
-
-export const BackAreaCSS = css`
-  position: relative;
-  padding-left: 16px;
-`
-
-export const BackTextCSS = css`
-  display: inline-block;
-  font-size: 14px;
-  line-height: 1.57;
-`
-
-export const BackIconCSS = css`
-  display: inline-block;
-  font-size: 12px;
-  line-height: 0;
-  position: absolute;
-  top: 5px;
-  left: 0;
-`
-
 export const SwitchDescriptionCSS = css`
   display: inline-block;
 `
