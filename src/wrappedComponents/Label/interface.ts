@@ -1,10 +1,13 @@
+export type LabelPositionType = "left" | "top" | "right"
+export type LabelAlignType = "left" | "right"
+
 export default interface LabelProps {
   label?: string
   required?: boolean
   hideLabel?: boolean
-  labelAlign?: "left" | "right"
+  labelAlign?: LabelAlignType
   labelCaption?: string
-  labelPosition?: "left" | "top"
+  labelPosition?: LabelPositionType
   labelWidth?: number
   labelWidthUnit?: "px" | "%" | "col"
   hidden?: boolean

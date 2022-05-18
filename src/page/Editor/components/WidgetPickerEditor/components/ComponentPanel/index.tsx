@@ -1,39 +1,46 @@
 import { FC, useState } from "react"
 import { Search } from "@illa-design/input"
-import { componentContainerCss, sessionListContainerCss } from "./style"
 import { SearchIcon } from "@illa-design/icon"
+import { componentContainerCss, sessionListContainerCss } from "./style"
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"
 import { Empty } from "./Empty"
-
-const defaultList: ComponentSessionProps[] = [
-  {
-    title: "global",
-    children: [
-      { id: "01", name: "component 01 ", icon: <SearchIcon /> },
-      { id: "02", name: "component 02", icon: <SearchIcon /> },
-      { id: "03", name: "component 03", icon: <SearchIcon /> },
-      { id: "04", name: "component 04 ", icon: <SearchIcon /> },
-      { id: "05", name: "component 05", icon: <SearchIcon /> },
-      { id: "06", name: "component 06", icon: <SearchIcon /> },
-    ],
-  },
-  {
-    title: "Common",
-    children: [
-      { id: "07", name: "component 01 ", icon: <SearchIcon /> },
-      { id: "08", name: "component 02", icon: <SearchIcon /> },
-      { id: "09", name: "component 03", icon: <SearchIcon /> },
-    ],
-  },
-  {
-    title: "session3",
-    children: [{ id: "01", name: "component 03 ", icon: <SearchIcon /> }],
-  },
-]
+import { widgetBuilder } from "@/wrappedComponents/WidgetBuilder"
 
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
+  const test = widgetBuilder("TEST_WIDGET").config as any
+  const defaultList: ComponentSessionProps[] = [
+    {
+      title: "global",
+      children: [
+        {
+          id: "01",
+          name: "container",
+          icon: <SearchIcon />,
+          type: "CONTAINER_WIDGET",
+        },
+        { id: "02", name: "test", icon: <SearchIcon />, ...test },
+        { id: "03", name: "component 03", icon: <SearchIcon /> },
+        { id: "04", name: "component 04 ", icon: <SearchIcon /> },
+        { id: "05", name: "component 05", icon: <SearchIcon /> },
+        { id: "06", name: "component 06", icon: <SearchIcon /> },
+      ],
+    },
+    {
+      title: "Common",
+      children: [
+        { id: "07", name: "component 01 ", icon: <SearchIcon /> },
+        { id: "08", name: "component 02", icon: <SearchIcon /> },
+        { id: "09", name: "component 03", icon: <SearchIcon /> },
+      ],
+    },
+    {
+      title: "session3",
+      children: [{ id: "01", name: "component 03 ", icon: <SearchIcon /> }],
+    },
+  ]
+
   const { className, componentList = defaultList } = props
 
   const [searchRes, setSearchRes] = useState<
@@ -46,7 +53,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
         borderColor={"purple"}
         variant={"fill"}
         placeholder={"search"}
-        radius={`20px`}
+        // radius={`20px`}
         onChange={(e) => {
           const res = getMatchComponent(e.target.value, componentList)
           setSearchRes(res)
