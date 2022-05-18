@@ -4,7 +4,7 @@ import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
 import { Select, Option } from "@illa-design/select"
-import { RESTAPIFormProps, RESTAPIFormValues } from "./interface"
+import { RESTAPIFormProps, RESTAPIFormValues, Params } from "./interface"
 import {
   FormCSS,
   GridContainerCSS,
@@ -28,6 +28,7 @@ import { ParamList } from "./ParamList"
 import { BasicAuth, OAuth2 } from "./Authentication"
 
 const ERROR_REQUIRED_MESSAGE = "This is required!"
+const EmptyField: Params = { key: "", value: "" }
 
 export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
   (props, ref) => {
@@ -40,9 +41,9 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
       defaultValues: {
         Name: "",
         BaseURL: "",
-        URLParameters: [],
-        Headers: [],
-        ExtraBodyValues: [],
+        URLParameters: [EmptyField],
+        Headers: [EmptyField],
+        ExtraBodyValues: [EmptyField],
         CookiesToForward: [],
         ForwardAllCookies: false,
         Authentication: "none",
@@ -68,7 +69,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
 
     const onSubmit: SubmitHandler<RESTAPIFormValues> = (data) => {
       console.log(data)
-      alert(JSON.stringify(data))
+      alert(JSON.stringify(data, null, 5))
     }
 
     const renderAuthConfig = () => {
@@ -136,27 +137,16 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
         <label css={[LabelTextCSS, LabelAlignSelfFlexStartCSS]}>
           URL Parameters
         </label>
-        <Controller
-          render={({ field }) => <ParamList {...field} />}
-          control={control}
-          name="URLParameters"
-        />
+        <ParamList control={control} name={"URLParameters"} />
 
         <label css={[LabelTextCSS, LabelAlignSelfFlexStartCSS]}>Headers</label>
-        <Controller
-          render={({ field }) => <ParamList {...field} />}
-          control={control}
-          name="Headers"
-        />
+        <ParamList control={control} name={"Headers"} />
 
         <label css={[LabelTextCSS, LabelAlignSelfFlexStartCSS]}>
           Extra Body Values
         </label>
-        <Controller
-          render={({ field }) => <ParamList {...field} />}
-          control={control}
-          name="ExtraBodyValues"
-        />
+        <ParamList control={control} name={"ExtraBodyValues"} />
+
         <dd css={[applyGridColIndex(2), DescriptionCSS]}>
           Extra body values are not passed for GET or HEAD requests
         </dd>

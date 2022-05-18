@@ -1,6 +1,7 @@
 import { HTMLAttributes } from "react"
-import { Params } from "../interface"
+import { Control } from "react-hook-form"
 
 export interface ParamListProps extends HTMLAttributes<HTMLDivElement> {
-  value?: Params[]
+  name: string,
+  control: Control,
 }
