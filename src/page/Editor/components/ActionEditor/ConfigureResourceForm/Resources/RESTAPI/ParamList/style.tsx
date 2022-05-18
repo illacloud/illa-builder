@@ -32,14 +32,14 @@ export const ParamItemValueCSS = css`
 `
 
 export const NewButtonCSS = css`
-  align-self: flex-start;
   display: flex;
   align-items: center;
-  padding: 8px !important;
+  align-self: flex-start;
+  padding: 8px;
 
   & svg {
     margin-right: 5px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 `
 

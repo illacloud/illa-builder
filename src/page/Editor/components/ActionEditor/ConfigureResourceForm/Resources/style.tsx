@@ -74,6 +74,30 @@ export const GroupTitleCSS = css`
   grid-column: span 2;
 `
 
+export const ActionTextCSS = css`
+  cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+  transition: color 0.2s ease-in-out;
+  justify-self: start;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-techPurple-03`)};
+  }
+`
+
+export const CheckboxCSS = css`
+  margin: -8px 0 8px;
+  justify-content: flex-start !important;
+
+  & > input {
+    margin: 0;
+  }
+`
+
 export const LabelTextVerticalCSS = css`
   flex-direction: column;
   align-items: normal;
@@ -84,11 +108,6 @@ export const LabelTextSmallSizeCSS = css`
   line-height: 1;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
-
-export const BorderBottomCSS = css`
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
-
 export const DisplayNoneCSS = css`
   display: none;
 `
@@ -105,13 +124,6 @@ export const ErrorMessageCSS = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-red-03`)};
   line-height: 1.57;
-  margin-top: -8px;
-`
-
-export const RequireTagCSS = css`
-  margin-right: 5px;
-  color: ${globalColor(`--${illaPrefix}-red-03`)};
-  line-height: 0;
 `
 
 export function applyMargin(
