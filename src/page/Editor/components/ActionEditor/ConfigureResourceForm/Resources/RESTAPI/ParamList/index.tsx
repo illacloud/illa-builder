@@ -1,8 +1,8 @@
 import { forwardRef, useState } from "react"
 import { Input } from "@illa-design/input"
-import { Button } from "@illa-design/button"
 import { DeleteIcon, AddIcon } from "@illa-design/icon"
-import { Params } from "../interface"
+import { useFieldArray, Controller } from "react-hook-form"
+import { ActionTextCSS } from "../../style"
 import {
   ParamListWrapperCSS,
   ParamItemCSS,
@@ -11,61 +11,73 @@ import {
   DeleteIconCSS,
   ParamItemValueCSS,
 } from "./style"
-
+import { Params } from "../interface"
 import { ParamListProps } from "./interface"
-import { ActionTextCSS } from "../../style"
+
+const EmptyField: Params = { key: "", value: "" }
 
 export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
   (props, ref) => {
-    const { ...restProps } = props
+    const { control, name, ...restProps } = props
+    const { fields, append, remove, update } = useFieldArray({
+      control,
+      name,
+    })
 
-    const [params, setParams] = useState<Params[]>([{ key: "", value: "" }])
-
-    const paramList = params.map(({ key, value }, index) => {
+    const paramList = fields.map((field, index) => {
       return (
-        /* todo: set unique key */
-        <div css={ParamItemCSS} key={index}>
-          <Input value={key} placeholder={"key"} css={ParamItemKeyCSS} />
-          <Input
-            value={value}
-            addonAfter={{
-              render: (
-                <DeleteIcon
-                  onClick={() => removeParamItem(index)}
-                  css={DeleteIconCSS}
-                />
-              ),
-            }}
-            placeholder={"value"}
-            css={ParamItemValueCSS}
+        <div css={ParamItemCSS} key={field.id}>
+          <Controller
+            render={({ field }) => (
+              <Input {...field} placeholder={"key"} css={ParamItemKeyCSS} />
+            )}
+            control={control}
+            name={`${name}.${index}.key`}
+          />
+          <Controller
+            render={({ field }) => (
+              <Input
+                {...field}
+                addonAfter={{
+                  render: (
+                    <DeleteIcon
+                      onClick={() => removeParamItem(index)}
+                      css={DeleteIconCSS}
+                    />
+                  ),
+                }}
+                placeholder={"value"}
+                css={ParamItemValueCSS}
+              />
+            )}
+            control={control}
+            name={`${name}.${index}.value`}
           />
         </div>
       )
     })
 
     function addParamItem() {
-      setParams([...params, { key: "", value: "" }])
+      append(EmptyField)
     }
 
     function removeParamItem(index: number) {
-      if (params.length === 1) {
+      if (fields.length === 1) {
+        update(index, EmptyField)
         return
       }
 
-      const paramsCopy = params.slice(0)
-      paramsCopy.splice(index, 1)
-      setParams(paramsCopy)
+      remove(index)
     }
 
     return (
       <div css={ParamListWrapperCSS} ref={ref} {...restProps}>
         {paramList}
-        <span css={[NewButtonCSS, ActionTextCSS]}
-          onClick={addParamItem}>
+        <span css={[NewButtonCSS, ActionTextCSS]} onClick={addParamItem}>
           <AddIcon />
           New
         </span>
-      </div >
+      </div>
     )
   },
 )
