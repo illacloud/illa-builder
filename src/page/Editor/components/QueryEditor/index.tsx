@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
 import { BuilderState } from "@/redux/reducers/interface"
 
-interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> { }
+interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const { className } = props
@@ -18,8 +18,8 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
       QueryEditor
       <div>drag:</div>
       <div>{dragValue.value}</div>
-
-      <Button onClick={() => dispatch({ type: 'incrementAsync_drag_saga' })}>incrementAsync_5s</Button>
+      <Button onClick={() => dispatch({ type: "GET_DATA" })}>getDate</Button>
+      <Button onClick={() => console.log(dragValue)}>showDate</Button>
     </div>
   )
 }

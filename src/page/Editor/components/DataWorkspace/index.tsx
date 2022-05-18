@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { BuilderState } from "@/redux/reducers/interface"
 import { EditorInput } from "@/components/EditorInput"
 
-interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> { }
+interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const { className } = props
@@ -18,9 +18,10 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
     <div className={className}>
       DataWorkspace
       <EditorInput mode="javascript" />
-
       <div>{demoValue.value.a}</div>
-      <button onClick={() => dispatch({ type: 'incrementAsync_demo_saga' })}>incrementAsync_1s</button>
+      <button onClick={() => dispatch({ type: "incrementAsync_demo_saga" })}>
+        incrementAsync_1s
+      </button>
     </div>
   )
 }
