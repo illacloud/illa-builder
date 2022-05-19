@@ -16,17 +16,14 @@ export const TestWidget: FC<TestWidgetProps> = (testWidgetProps) => {
   const { id, props } = testWidgetProps
 
   return (
-    <DraggableComponent {...testWidgetProps}>
-      <div
-        id={id}
-        style={{
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        Test Demo
-      </div>
-    </DraggableComponent>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      Test Demo
+    </div>
   )
 }
 
