@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { DropInfo, dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
-import { DraggableComponent } from "../DraggableComponent"
+import { DraggableComponent } from "@/wrappedComponents/DraggableComponent"
+import { widgetBuilder, WidgetTypeList } from "@/wrappedComponents/WidgetBuilder"
+import { getTargetOffset } from "@/wrappedComponents/utils"
 import { ContainerWidgetProps } from "./interface"
-import { widgetBuilder, WidgetTypeList } from "../WidgetBuilder"
-import { getTargetOffset } from "../utils"
 
 interface PanelDrag {
   type: string
