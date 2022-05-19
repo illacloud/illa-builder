@@ -4,6 +4,8 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ContainerCSS = css`
   flex: 1;
+  display: flex;
+  flex-direction: column;
 `
 
 export const HeaderCSS = css`
@@ -51,8 +53,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -179,4 +181,9 @@ export const DashBorderBottomCSS = css`
 export const GridHandlersCSS = css`
   display: grid;
   gap: 8px;
+`
+
+export const ConfigPanelCSS = css`
+  overflow: auto;
+  flex: 1;
 `

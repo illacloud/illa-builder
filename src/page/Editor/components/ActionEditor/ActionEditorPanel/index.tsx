@@ -18,10 +18,10 @@ import {
   MoreBtnCSS,
   RunBtnCSS,
   SectionTitleCSS,
+  ConfigPanelCSS
 } from "./style"
 import { TitleInput } from "./TitleInput"
-import { Transformer } from "./Transformer"
-import { MySQLPanel } from "./Resources/MySQL"
+import { MySQLPanel, RESTAPIPanel } from "./Resources"
 import { applyMarginSingle } from "../style"
 import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
 
@@ -64,6 +64,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <CaretRightIcon /> Run
         </Button>
       </header>
+
       <div css={[ActionCSS, applyMarginSingle("bottom", 8)]}>
         <label css={SectionTitleCSS}>Resource</label>
         <span css={FillingCSS} />
@@ -87,11 +88,16 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <PenIcon />
         </div>
       </div>
+
       <Divider />
-      <MySQLPanel />
-      <Transformer />
-      <Divider />
-      <EventHandler />
+
+      <div css={[ConfigPanelCSS]}>
+        <RESTAPIPanel />
+        {/* <MySQLPanel />
+            <Transformer />
+            <Divider />
+            <EventHandler /> */}
+      </div>
     </div>
   )
 }
