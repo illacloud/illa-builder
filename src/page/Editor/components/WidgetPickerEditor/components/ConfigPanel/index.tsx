@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from "react"
 import InspectPanel from "@/page/Editor/components/InspectPanel"
-import ConfigPanelProvider from "../../../InspectPanel/context"
+import ConfigPanelProvider from "@/page/Editor/components/InspectPanel/context"
 
 interface ConfigPanelProps extends HTMLAttributes<HTMLDivElement> {}
 
