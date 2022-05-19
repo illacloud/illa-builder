@@ -83,16 +83,4 @@ export const ImagePanelConfig: PanelConfig[] = [
       },
     ],
   },
-  {
-    id: "image-text",
-    groupName: "test",
-    children: [
-      {
-        id: "image-style-test",
-        labelName: "Radius",
-        attrName: "radius",
-        setterType: "SWITCH_SETTER",
-      },
-    ],
-  },
 ]

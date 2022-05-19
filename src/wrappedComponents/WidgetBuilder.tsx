@@ -3,6 +3,7 @@ import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
 import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
 import Text, { TEXT_WIDGET_CONFIG } from "./Text"
 import Image, { IMAGE_WIDGET_CONFIG } from "./Image"
+import Switch, { SWITCH_WIDGET_CONFIG } from "./Switch"
 
 const WidgetConfig = {
   CONTAINER_WIDGET: {
@@ -24,6 +25,10 @@ const WidgetConfig = {
   IMAGE_WIDGET: {
     widget: Image,
     config: IMAGE_WIDGET_CONFIG,
+  },
+  SWITCH_WIDGET: {
+    widget: Switch,
+    config: SWITCH_WIDGET_CONFIG,
   },
 
   // BUTTON_WIDGET: {

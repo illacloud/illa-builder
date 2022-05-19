@@ -2,8 +2,22 @@ import { Switch } from "@illa-design/switch"
 import { FC } from "react"
 import { SwitchProps } from "./interface"
 import LabelWrapper from "../LabelWrapper"
+import { withParser } from "../parserHOC"
 
-const WrappedSwitch: FC<SwitchProps> = (props) => {
+export const SWITCH_WIDGET_CONFIG = {
+  type: "SWITCH_WIDGET",
+  defaults: {
+    rows: 50,
+    columns: 500,
+    widgetName: "switch",
+    version: "0.0.1",
+    label: "Label",
+    labelAlign: "left",
+    labelPosition: "left",
+  },
+}
+
+export const WrappedSwitch: FC<SwitchProps> = (props) => {
   const {
     label,
     labelAlign,
@@ -15,7 +29,7 @@ const WrappedSwitch: FC<SwitchProps> = (props) => {
     defaultValue,
     disabled,
     required,
-    checkedBackgroundColor,
+    checkedBackgroundColor = "blue",
     tooltipText,
     onChange,
   } = props
@@ -41,4 +55,4 @@ const WrappedSwitch: FC<SwitchProps> = (props) => {
   )
 }
 
-export default WrappedSwitch
+export default withParser(WrappedSwitch)

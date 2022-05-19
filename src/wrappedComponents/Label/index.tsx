@@ -21,7 +21,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
 
   const renderLabelTitleRequired = useMemo(() => {
     return required ? <span css={labelRequiredCss}>*</span> : null
-  }, [])
+  }, [required])
 
   const renderLabelTitle = useMemo(() => {
     return (
@@ -34,7 +34,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
 
   const renderLabelCaption = useMemo(() => {
     return labelCaption ? <div css={labelCaptionCss}>{labelCaption}</div> : null
-  }, [])
+  }, [labelCaption])
 
   const formatLabelWidth = useMemo(() => {
     if (labelWidthUnit === "%" || labelWidthUnit === "px") {
