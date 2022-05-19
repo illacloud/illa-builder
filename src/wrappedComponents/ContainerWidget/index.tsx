@@ -5,7 +5,10 @@ import { v4 as uuidv4 } from "uuid"
 import { DropInfo, dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
 import { DraggableComponent } from "@/wrappedComponents/DraggableComponent"
-import { widgetBuilder, WidgetTypeList } from "@/wrappedComponents/WidgetBuilder"
+import {
+  widgetBuilder,
+  WidgetTypeList,
+} from "@/wrappedComponents/WidgetBuilder"
 import { getTargetOffset } from "@/wrappedComponents/utils"
 import { ContainerWidgetProps } from "./interface"
 
