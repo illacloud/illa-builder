@@ -1,17 +1,16 @@
 import { FC, useContext } from "react"
-import { applyBaseRadioGroupStyle } from "./style"
 import { RadioGroup } from "@illa-design/radio"
 import { BaseRadioGroupProps } from "./interface"
-import { ConfigPanelContext } from "../../InspectPanel/context"
+import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
+import { applySetterStyle } from "../style"
 
 const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
   const { defaultValue, options, isFullWidth, attrName } = props
 
-  const { componentDsl, tempProps, handleUpdateDsl } =
-    useContext(ConfigPanelContext)
+  const { tempProps, handleUpdateDsl } = useContext(ConfigPanelContext)
 
   return (
-    <div css={applyBaseRadioGroupStyle(isFullWidth)}>
+    <div css={applySetterStyle(isFullWidth)}>
       <RadioGroup
         onChange={(value) => handleUpdateDsl({ [attrName]: value })}
         value={tempProps[attrName] ?? defaultValue}

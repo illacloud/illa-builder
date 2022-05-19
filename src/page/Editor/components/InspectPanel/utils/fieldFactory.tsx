@@ -8,8 +8,8 @@ import Setter from "../setter"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
-  isInList: boolean = false,
   componentId: string,
+  isInList: boolean = false,
 ) => {
   const { id } = config
   return <Setter key={`${id}-${componentId}`} {...config} isInList={isInList} />
@@ -39,7 +39,7 @@ export const renderField = (
   if ((item as PanelFieldGroupConfig).groupName) {
     return renderPanelBar(item as PanelFieldGroupConfig, componentId)
   } else if ((item as PanelFieldConfig).setterType) {
-    return renderFieldAndLabel(item as PanelFieldConfig, isInList, componentId)
+    return renderFieldAndLabel(item as PanelFieldConfig, componentId, isInList)
   }
   return null
 }

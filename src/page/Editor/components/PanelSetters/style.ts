@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 
-export const applyBaseRadioGroupStyle = (
+export const applySetterStyle = (
   isFullWidth: boolean = false,
 ): SerializedStyles => {
   return isFullWidth

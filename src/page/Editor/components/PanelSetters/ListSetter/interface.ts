@@ -1,8 +1,8 @@
-import { BaseSetterProps } from "../interface"
-import { PanelFieldConfig } from "@/page/Editor/components/InspectPanel/interface"
+import {
+  PanelFieldConfig,
+  PanelLabelProps,
+} from "@/page/Editor/components/InspectPanel/interface"
 
-export interface ListSetterProps extends BaseSetterProps {
+export interface ListSetterProps extends PanelLabelProps {
   childrenSetter?: PanelFieldConfig[]
-  defaultValue?: any
-  attrName: string
 }

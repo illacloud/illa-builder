@@ -1,8 +1,7 @@
-export interface BaseInputSetterProps {
-  isFullWidth?: boolean
+import { BaseSetter } from "../interface"
+
+export interface BaseInputSetterProps extends BaseSetter {
   placeholder?: string
-  defaultValue?: string
   isInList?: boolean
   handleChange: (value: string | boolean, attrName?: string) => void
-  attrName: string
 }

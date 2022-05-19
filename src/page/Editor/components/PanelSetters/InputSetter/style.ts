@@ -1,17 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-
-export const applyBaseInputWrapperStyle = (
-  isFullWidth: boolean = false,
-): SerializedStyles => {
-  return isFullWidth
-    ? css`
-        width: 100%;
-        margin-top: 8px;
-      `
-    : css`
-        width: 184px;
-      `
-}
+import { applySetterStyle } from "../style"
 
 export const applyInputSetterWrapperStyle = (
   isFullWidth: boolean = false,
@@ -21,5 +9,5 @@ export const applyInputSetterWrapperStyle = (
     ? css`
         width: 100%;
       `
-    : applyBaseInputWrapperStyle(isFullWidth)
+    : applySetterStyle(isFullWidth)
 }

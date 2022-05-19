@@ -1,6 +1,5 @@
-import { PanelLabelProps } from "../InspectPanel/interface"
-
-export interface BaseSetterProps extends PanelLabelProps {
-  handleChange: (value: string | boolean, attrName?: string) => void
-  isInList?: boolean
+export interface BaseSetter {
+  isFullWidth?: boolean
+  defaultValue?: string
+  attrName: string
 }

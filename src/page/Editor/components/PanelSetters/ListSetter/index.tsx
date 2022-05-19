@@ -3,11 +3,10 @@ import PanelLabel from "@/page/Editor/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/Editor/components/InspectPanel/utils/fieldFactory"
 import { labelCss, listWrapperCss } from "./style"
-import { ConfigPanelContext } from "../../InspectPanel/context"
+import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 
 const ListSetter: FC<ListSetterProps> = (props) => {
-  const { labelName, labelDesc, childrenSetter, useCustomLabel, attrName } =
-    props
+  const { labelName, labelDesc, childrenSetter, useCustomLabel } = props
 
   const { componentDsl, tempProps, handleUpdateDsl } =
     useContext(ConfigPanelContext)
@@ -70,7 +69,7 @@ const ListSetter: FC<ListSetterProps> = (props) => {
       )}
       <div css={listWrapperCss}>
         {childrenSetter?.map((child, index) => {
-          return renderFieldAndLabel(child, true, componentDsl.id)
+          return renderFieldAndLabel(child, componentDsl.id, true)
         })}
       </div>
     </>

@@ -1,6 +1,5 @@
-import { BaseSetterProps } from "../interface"
+import { BaseSetter } from "../interface"
 
-export interface SwitchSetterProps extends BaseSetterProps {
-  canCustom?: boolean
-  defaultValue?: boolean
+export interface BaseSwitchProps extends BaseSetter {
+  options?: any
 }
