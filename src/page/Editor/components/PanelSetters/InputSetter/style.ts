@@ -1,24 +1,25 @@
 import { css, SerializedStyles } from "@emotion/react"
 
-export const applyInputSetterStyle = (isDouble?: boolean): SerializedStyles => {
-  return isDouble
-    ? css``
-    : css`
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 48px;
-      `
-}
-
-export const applyInputWrapperStyle = (
-  isDouble?: boolean,
+export const applyBaseInputWrapperStyle = (
+  isFullWidth: boolean = false,
 ): SerializedStyles => {
-  return isDouble
+  return isFullWidth
     ? css`
+        width: 100%;
         margin-top: 8px;
       `
     : css`
         width: 184px;
       `
+}
+
+export const applyInputSetterWrapperStyle = (
+  isFullWidth: boolean = false,
+  isInList: boolean = false,
+): SerializedStyles => {
+  return isInList
+    ? css`
+        width: 100%;
+      `
+    : applyBaseInputWrapperStyle(isFullWidth)
 }

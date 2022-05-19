@@ -18,8 +18,10 @@ export interface PanelHeaderActionProps {
 }
 
 export interface PanelLabelProps {
-  labelName: string
+  labelName?: string
   labelDesc?: string
+  isInList?: boolean
+  useCustomLabel?: boolean
 }
 
 export interface PanelBarProps {
@@ -28,16 +30,14 @@ export interface PanelBarProps {
   isOpened?: boolean
 }
 
-interface PanelLabel {
-  labelName: string
-  labelDesc?: string
-}
-
-export interface PanelFieldConfig extends PanelLabel {
+export interface PanelFieldConfig extends PanelLabelProps {
   id: string
-  type: SetterType
-  attrName?: string
+  setterType: SetterType
+  attrName: string
   childrenSetter?: PanelFieldConfig[]
+  options?: any
+  isFullWidth?: boolean
+  defaultValue?: any
   // events?:event[] // TODO:
 }
 
@@ -49,8 +49,4 @@ export interface PanelFieldGroupConfig {
 
 export type PanelConfig = PanelFieldConfig | PanelFieldGroupConfig
 
-export interface PanelSetterProps extends PanelLabel {
-  type: SetterType
-  attrName?: string
-  childrenSetter?: PanelFieldConfig[]
-}
+export interface PanelSetterProps extends Omit<PanelFieldConfig, "id"> {}

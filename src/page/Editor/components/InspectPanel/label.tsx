@@ -1,10 +1,10 @@
 import { FC } from "react"
 import { Tooltip } from "@illa-design/tooltip"
-import { baseLabelCss, labelTipsCss } from "./style"
+import { applyLabelStyle, labelTipsCss } from "./style"
 import { PanelLabelProps } from "./interface"
 
 const PanelLabel: FC<PanelLabelProps> = (props) => {
-  const { labelDesc, labelName } = props
+  const { labelDesc, labelName, isInList } = props
 
   return (
     <>
@@ -13,7 +13,7 @@ const PanelLabel: FC<PanelLabelProps> = (props) => {
           <span css={labelTipsCss}>{labelName}</span>
         </Tooltip>
       ) : (
-        <span css={baseLabelCss}>{labelName}</span>
+        <span css={applyLabelStyle(isInList)}>{labelName}</span>
       )}
     </>
   )

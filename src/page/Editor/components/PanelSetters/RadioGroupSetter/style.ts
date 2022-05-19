@@ -1,23 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 
-export const applyRadioGroupSetterStyle = (
-  isDouble?: boolean,
+export const applyBaseRadioGroupStyle = (
+  isFullWidth: boolean = false,
 ): SerializedStyles => {
-  return isDouble
-    ? css``
-    : css`
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 48px;
-      `
-}
-
-export const applyRadioGroupWrapperStyle = (
-  isDouble?: boolean,
-): SerializedStyles => {
-  return isDouble
+  return isFullWidth
     ? css`
+        width: 100%;
         margin-top: 8px;
       `
     : css`

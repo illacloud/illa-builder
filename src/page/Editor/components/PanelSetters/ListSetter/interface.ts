@@ -3,4 +3,6 @@ import { PanelFieldConfig } from "@/page/Editor/components/InspectPanel/interfac
 
 export interface ListSetterProps extends BaseSetterProps {
   childrenSetter?: PanelFieldConfig[]
+  defaultValue?: any
+  attrName: string
 }

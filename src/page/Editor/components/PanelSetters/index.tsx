@@ -1,16 +1,12 @@
-import InputSetter from "./InputSetter"
-import RadioGroupSetter from "./RadioGroupSetter"
 import SwitchSetter from "./SwitchSetter"
-import TextValueSetter from "./TextValueSetter"
-import AlignmentSetter from "./AlignmentSetter"
 import ListSetter from "./ListSetter"
+import BaseInput from "./InputSetter/baseInput"
+import BaseRadioGroupSetter from "./RadioGroupSetter/baseRadioGroup"
 
 const SetterTypeMapSetter = {
-  INPUT_SETTER: InputSetter,
-  RADIO_GROUP_SETTER: RadioGroupSetter,
+  INPUT_SETTER: BaseInput,
+  RADIO_GROUP_SETTER: BaseRadioGroupSetter,
   SWITCH_SETTER: SwitchSetter,
-  TEXT_VALUE_SETTER: TextValueSetter,
-  ALIGNMENT_SETTER: AlignmentSetter,
   LIST_SETTER: ListSetter,
 }
 

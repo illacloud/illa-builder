@@ -10,6 +10,7 @@ import { widgetBuilder } from "@/wrappedComponents/WidgetBuilder"
 
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
   const test = widgetBuilder("TEST_WIDGET").config as any
+  const textConfig = widgetBuilder("TEXT_WIDGET").config as any
   const defaultList: ComponentSessionProps[] = [
     {
       title: "global",
@@ -21,7 +22,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
           type: "CONTAINER_WIDGET",
         },
         { id: "02", name: "test", icon: <SearchIcon />, ...test },
-        { id: "03", name: "component 03", icon: <SearchIcon /> },
+        { id: "03", name: "Text", icon: <SearchIcon />, ...textConfig },
         { id: "04", name: "component 04 ", icon: <SearchIcon /> },
         { id: "05", name: "component 05", icon: <SearchIcon /> },
         { id: "06", name: "component 06", icon: <SearchIcon /> },

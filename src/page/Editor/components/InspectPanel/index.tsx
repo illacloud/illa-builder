@@ -1,22 +1,30 @@
-import { FC } from "react"
+import { FC, useContext, useMemo } from "react"
 import PanelHeader from "./header"
 import { Divider } from "@illa-design/divider"
 import { fieldFactory } from "./utils/fieldFactory"
-import { textPanelConfig } from "../../../../wrappedComponents/Text"
+// TODO: wait componentTypeMapConfig
+import { CONFIG } from "../../../../wrappedComponents/Text/panelConfig"
+import { ConfigPanelContext } from "./context"
 
 const InspectPanel: FC = () => {
-  //  TODO: wait for get component meta info for redux,and then get component displayName and id;
-  // const meta = getCurrentComponentMeta();
+  const { componentDsl } = useContext(ConfigPanelContext)
 
-  return (
+  //TODO: wait componentTypeMapConfig
+  const panelConfig = useMemo(() => {
+    return CONFIG
+  }, [])
+
+  return panelConfig && componentDsl ? (
     <div style={{ width: "100%" }}>
       <Divider />
       <PanelHeader
         meta={{ componentId: "testId", componentType: "testType" }}
       />
       <Divider />
-      <div>{fieldFactory(textPanelConfig)}</div>
+      <div>{fieldFactory(CONFIG, componentDsl.id)}</div>
     </div>
+  ) : (
+    <div>No components selected. Click on a component to select it.</div>
   )
 }
 

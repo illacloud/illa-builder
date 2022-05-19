@@ -1,25 +1,79 @@
-import { FC } from "react"
+import { FC, useCallback, useContext, useMemo } from "react"
 import PanelLabel from "@/page/Editor/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
-import { renderField } from "@/page/Editor/components/InspectPanel/utils/fieldFactory"
+import { renderFieldAndLabel } from "@/page/Editor/components/InspectPanel/utils/fieldFactory"
 import { labelCss, listWrapperCss } from "./style"
+import { ConfigPanelContext } from "../../InspectPanel/context"
 
 const ListSetter: FC<ListSetterProps> = (props) => {
-  const { labelName, labelDesc, childrenSetter } = props
+  const { labelName, labelDesc, childrenSetter, useCustomLabel, attrName } =
+    props
+
+  const { componentDsl, tempProps, handleUpdateDsl } =
+    useContext(ConfigPanelContext)
+
+  const getDslKeys = useMemo(() => {
+    const hadKeysMapped = new Map()
+    if (tempProps) {
+      const dslKeys = Object.keys(tempProps as Record<string, any>)
+      dslKeys.forEach((key: string) => {
+        const value = tempProps[key]
+        hadKeysMapped.set(key, value)
+      })
+    }
+    return hadKeysMapped
+  }, [tempProps])
+
+  const getDefaultValue = useMemo(() => {
+    if (childrenSetter) {
+      let defaultValues: Record<string, any> = {}
+      childrenSetter.forEach((child) => {
+        const childAttrName = child.attrName
+        const defaultValue = child.defaultValue
+        defaultValues = {
+          ...defaultValues,
+          [childAttrName]: defaultValue,
+        }
+      })
+      return defaultValues
+    }
+    return {}
+  }, [childrenSetter])
+
+  const getChildrenDefaultKeys = useMemo(() => {
+    if (childrenSetter) {
+      return childrenSetter.map((child) => {
+        return child.attrName
+      })
+    }
+    return []
+  }, [childrenSetter])
+
+  const canReset = useMemo(() => {
+    console.log("getDslKeys", getDslKeys)
+    return getChildrenDefaultKeys.some((key) => {
+      return getDslKeys.has(key) && getDslKeys.get(key) !== getDefaultValue[key]
+    })
+  }, [getDslKeys])
+
+  const onClickReset = useCallback(() => {
+    handleUpdateDsl(getDefaultValue)
+  }, [getDefaultValue, handleUpdateDsl])
 
   return (
-    <div>
-      <div css={labelCss}>
-        <PanelLabel labelName={labelName} labelDesc={labelDesc} />
-        <div>reset</div>
-      </div>
-
+    <>
+      {useCustomLabel && (
+        <div css={labelCss}>
+          <PanelLabel labelName={labelName} labelDesc={labelDesc} />
+          {canReset && <div onClick={onClickReset}>reset</div>}
+        </div>
+      )}
       <div css={listWrapperCss}>
         {childrenSetter?.map((child, index) => {
-          return renderField(child)
+          return renderFieldAndLabel(child, true, componentDsl.id)
         })}
       </div>
-    </div>
+    </>
   )
 }
 

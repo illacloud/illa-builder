@@ -1,8 +1,7 @@
-import { BaseSetterProps } from "../interface"
-
-export interface RadioGroupProps extends BaseSetterProps {
-  isDouble?: boolean
+export interface BaseRadioGroupProps {
+  isFullWidth?: boolean
   defaultValue?: any
   options?: any
-  canCustom?: boolean
+  handleChange: (value: string | boolean, attrName?: string) => void
+  attrName: string
 }

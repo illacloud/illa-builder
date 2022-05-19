@@ -1,14 +1,13 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import { MoreIcon } from "@illa-design/icon"
 import { panelHeaderWrapperCss, panelHeaderIconWrapperCss } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import ActionMenu from "./actionMenu"
 import { HeaderProps } from "./interface"
+import { ConfigPanelContext } from "./context"
 
 const PanelHeader: FC<HeaderProps> = (props) => {
-  //  TODO:
-  //  const {meta} = props;
-  //  const {componentType,componentId} = meta;
+  const { handleUpdateDsl } = useContext(ConfigPanelContext)
 
   return (
     <div css={panelHeaderWrapperCss}>

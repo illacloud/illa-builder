@@ -7,11 +7,29 @@ export const publicPaddingCss = css`
   box-sizing: border-box;
 `
 
+export function applyPaddingStyle(isInList?: boolean) {
+  return isInList
+    ? css`
+        flex: 2;
+      `
+    : css``
+}
+
 export const baseLabelCss = css`
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
 `
+
+export const ListLabelCss = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  font-weight: 400;
+  flex: 1;
+`
+
+export function applyLabelStyle(isInList?: boolean) {
+  return isInList ? ListLabelCss : baseLabelCss
+}
 
 export const labelTipsCss = css`
   ${baseLabelCss};
@@ -71,4 +89,16 @@ export const panelBarItemContentCss = css`
 export const panelBarItemAnimation: Variants = {
   enter: { height: "auto", opacity: 1 },
   exit: { height: 0, opacity: 0 },
+}
+
+export const applySetterWrapperStyle = (isFullWidth: boolean = false) => {
+  return isFullWidth
+    ? publicPaddingCss
+    : css`
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 48px;
+        ${publicPaddingCss};
+      `
 }

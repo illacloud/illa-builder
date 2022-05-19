@@ -92,6 +92,30 @@ function updateNode(
   }
 }
 
+// 测试用。
+function updateDslProps(dslState: DslState, targetId: string, newState: any) {
+  console.log("准备更新")
+  const current = dslState.root
+  const queue = new Array<DSLWidget>()
+  queue.push(current)
+  while (queue.length) {
+    const head = queue[queue.length - 1]
+
+    if (head.id === targetId) {
+      console.log("找到属性")
+      head.props = {
+        ...head.props,
+        ...newState,
+      }
+      return
+    }
+    queue.pop()
+    if (head.children && head.children.length) {
+      queue.push(...head.children)
+    }
+  }
+}
+
 const dslSlice = createSlice({
   name: "dsl",
   initialState,
@@ -128,6 +152,10 @@ const dslSlice = createSlice({
           const updateTextAction = action.payload
           updateNode(safeState, safeState.root!!, updateTextAction.newDslText)
           break
+        }
+        case DslActionName.updateDslProps: {
+          const { targetId, newState } = action.payload
+          updateDslProps(safeState, targetId, newState)
         }
       }
       return safeState

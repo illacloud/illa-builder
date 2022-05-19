@@ -1,6 +1,7 @@
 import { CONTAINER_WIDGET_CONFIG, ContainerWidget } from "./ContainerWidget"
 import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
 import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
+import { TEXT_WIDGET_CONFIG, Text } from "./Text"
 
 const WidgetConfig = {
   CONTAINER_WIDGET: {
@@ -15,6 +16,11 @@ const WidgetConfig = {
     widget: TestWidget,
     config: TEST_WIDGET_CONFIG,
   },
+  TEXT_WIDGET: {
+    widget: Text,
+    config: TEXT_WIDGET_CONFIG,
+  },
+
   // BUTTON_WIDGET: {
   //   widget: ButtonWidget,
   //   config: BUTTON_WIDGET_CONFIG,
