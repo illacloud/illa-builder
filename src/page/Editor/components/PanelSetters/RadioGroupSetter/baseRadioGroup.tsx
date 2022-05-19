@@ -14,8 +14,7 @@ const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
     <div css={applyBaseRadioGroupStyle(isFullWidth)}>
       <RadioGroup
         onChange={(value) => handleUpdateDsl({ [attrName]: value })}
-        value={tempProps[attrName]}
-        defaultValue={defaultValue}
+        value={tempProps[attrName] ?? defaultValue}
         options={options}
         type="button"
         size="small"

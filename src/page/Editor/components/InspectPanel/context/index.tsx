@@ -49,9 +49,13 @@ export function ConfigPanelProvider({ children }: Props) {
 
   const handleUpdateDsl = (value: any) => {
     if (isEmpty(tempState)) return
+    let oldProps: Record<string, any> = {}
+    if (!isEmpty(componentDsl)) {
+      oldProps = { ...componentDsl!.props }
+    }
     setTempState((prevState: any) => {
       const newState = { ...prevState }
-      const newProps = { ...newState.props, ...value }
+      const newProps = { ...oldProps, ...value }
       newState.props = newProps
       return newState
     })

@@ -18,8 +18,7 @@ const BaseInput: FC<BaseInputSetterProps> = (props) => {
     <div css={applyInputSetterWrapperStyle(isFullWidth, isInList)}>
       <Input
         placeholder={placeholder}
-        value={inputValue}
-        defaultValue={defaultValue}
+        value={inputValue ?? defaultValue}
         onChange={(value) => {
           setInputValue(value)
           handleUpdateDsl({ [attrName]: value })
