@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { illaPrefix, globalColor } from "@illa-design/theme"
+import { publicPaddingCss } from "@/page/Editor/components/InspectPanel/style"
 
 export const labelCss = css`
   display: flex;
@@ -16,4 +17,19 @@ export const listWrapperCss = css`
   border-radius: 8px;
   box-sizing: border-box;
   padding: 12px 0;
+`
+
+export const resetButtonCss = css`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`
+export const resetIconCss = css`
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+`
+
+export const listSetterWrapperCss = css`
+  ${publicPaddingCss};
 `

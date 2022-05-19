@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { illaPrefix, globalColor } from "@illa-design/theme"
+import { publicPaddingCss } from "@/page/Editor/components/InspectPanel/style"
 
 export const dynamicSwitchWrapperCss = css`
   display: flex;
@@ -33,8 +34,6 @@ export const applyCustomIconStyle = (isSelected: boolean = false) => {
 }
 
 export const labelCss = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 48px;
+  min-height: 48px;
+  ${publicPaddingCss}
 `

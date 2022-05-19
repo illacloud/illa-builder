@@ -2,14 +2,8 @@ import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
 
-const AlignmentOptionStyle = {
-  fontSize: "16px",
-  display: "flex",
-  alignItems: "center",
-}
-
 const OptionsStyle = {
-  width: "65px",
+  width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -106,6 +100,26 @@ export const SwitchPanelConfig: PanelConfig[] = [
         labelName: "Tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+      },
+    ],
+  },
+  {
+    id: "switch-validation",
+    groupName: "Validation",
+    children: [
+      {
+        id: "switch-validation-required",
+        labelName: "Required field",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLabel: true,
+        attrName: "required",
+      },
+      {
+        id: "switch-validation-hide-message",
+        labelName: "Hide validation message",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLabel: true,
+        attrName: "hideValidationMessage",
       },
     ],
   },

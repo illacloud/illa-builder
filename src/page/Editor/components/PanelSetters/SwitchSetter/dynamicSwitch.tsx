@@ -8,6 +8,7 @@ import {
   applyCustomIconStyle,
   customAndSwitchWrapperCss,
   dynamicSwitchWrapperCss,
+  labelCss,
 } from "./style"
 
 const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
@@ -23,7 +24,7 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const [customValue, setCustomValue] = useState(tempProps[customValueKey])
 
   return (
-    <div>
+    <div css={labelCss}>
       <div css={dynamicSwitchWrapperCss}>
         {useCustomLabel && (
           <PanelLabel labelName={labelName} labelDesc={labelDesc} />
@@ -51,7 +52,10 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           </div>
           {!selected && (
             <Switch
-              onChange={(value) => handleUpdateDsl({ [attrName]: value })}
+              onChange={(value) => {
+                console.log(value)
+                handleUpdateDsl({ [attrName]: value })
+              }}
               checked={tempProps[attrName] ?? defaultValue}
               colorScheme="purple"
             />
@@ -59,7 +63,7 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         </div>
       </div>
       {selected && (
-        <div>
+        <div style={{ marginBottom: "8px" }}>
           <Input
             value={customValue}
             onChange={(value) => {

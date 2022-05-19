@@ -40,7 +40,7 @@ const Setter: FC<PanelSetterProps> = (props) => {
   }, [Comp, isInList, props])
 
   return (
-    <div css={applySetterWrapperStyle(isFullWidth)}>
+    <div css={applySetterWrapperStyle(isFullWidth, useCustomLabel)}>
       {renderLabel}
       {renderSetter}
     </div>

@@ -91,8 +91,13 @@ export const panelBarItemAnimation: Variants = {
   exit: { height: 0, opacity: 0 },
 }
 
-export const applySetterWrapperStyle = (isFullWidth: boolean = false) => {
-  return isFullWidth
+export const applySetterWrapperStyle = (
+  isFullWidth: boolean = false,
+  useCustomLabel: boolean = false,
+) => {
+  return useCustomLabel
+    ? css``
+    : isFullWidth
     ? publicPaddingCss
     : css`
         display: flex;
