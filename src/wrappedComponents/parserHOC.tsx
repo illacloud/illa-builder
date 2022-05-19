@@ -6,6 +6,8 @@ function getDisplayName(WrappedComponent: FC<any>) {
 
 export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
   const ParseredComponent: FC<any> = (dsl) => {
+    // tips: this is parsers,when dsl version update,can add new parser to this
+    // and also can add some Component parser,when component structural changed
     const { props } = dsl
     return <WrappedComponent {...props} />
   }

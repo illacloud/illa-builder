@@ -1,4 +1,4 @@
-import { PanelConfig } from "../../page/Editor/components/InspectPanel/interface"
+import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import {
   HorizontalCenter,
   HorizontalEnd,
@@ -15,7 +15,7 @@ const AlignmentOptionStyle = {
   alignItems: "center",
 }
 
-export const CONFIG: PanelConfig[] = [
+export const TextPanelConfig: PanelConfig[] = [
   {
     id: "text-basic",
     groupName: "Basic",

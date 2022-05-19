@@ -2,6 +2,7 @@ import { CONTAINER_WIDGET_CONFIG, ContainerWidget } from "./ContainerWidget"
 import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
 import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
 import Text, { TEXT_WIDGET_CONFIG } from "./Text"
+import Image, { IMAGE_WIDGET_CONFIG } from "./Image"
 
 const WidgetConfig = {
   CONTAINER_WIDGET: {
@@ -19,6 +20,10 @@ const WidgetConfig = {
   TEXT_WIDGET: {
     widget: Text,
     config: TEXT_WIDGET_CONFIG,
+  },
+  IMAGE_WIDGET: {
+    widget: Image,
+    config: IMAGE_WIDGET_CONFIG,
   },
 
   // BUTTON_WIDGET: {

@@ -15,7 +15,6 @@ const InspectPanel: FC = () => {
     return panelBuilder(componentType)
   }, [componentDsl])
 
-    console.log(panelConfig)
   return panelConfig && componentDsl ? (
     <div style={{ width: "100%" }}>
       <Divider />
