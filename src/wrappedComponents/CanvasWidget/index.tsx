@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { CanvasWidgetProps } from "./interface"
-import { ContainerWidget } from "../ContainerWidget"
+import { ContainerWidget } from "@/wrappedComponents/ContainerWidget"
 
 export const CANVAS_WIDGET_CONFIG = {
   type: "CANVAS_WIDGET",
