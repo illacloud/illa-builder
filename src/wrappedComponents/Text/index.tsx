@@ -4,6 +4,7 @@ import { TextProps } from "./interface"
 import { applyTextCss, textContainerCss } from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { withParser } from "../parserHOC"
 
 const transLink: ShowdownExtension = {
   type: "output",
@@ -27,7 +28,7 @@ export const TEXT_WIDGET_CONFIG = {
 
 export const Text: FC<TextProps> = (props: TextProps) => {
   const {
-    value = `This is a text`,
+    value = "This is a text",
     disableMarkdown = false,
     horizontalAlign = "start",
     verticalAlign = "top",
@@ -57,5 +58,7 @@ export const Text: FC<TextProps> = (props: TextProps) => {
     </div>
   )
 }
+
+export default withParser(Text)
 
 Text.displayName = "Text"

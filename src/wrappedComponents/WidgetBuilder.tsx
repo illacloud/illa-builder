@@ -1,7 +1,7 @@
 import { CONTAINER_WIDGET_CONFIG, ContainerWidget } from "./ContainerWidget"
 import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
 import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
-import { TEXT_WIDGET_CONFIG, Text } from "./Text"
+import Text, { TEXT_WIDGET_CONFIG } from "./Text"
 
 const WidgetConfig = {
   CONTAINER_WIDGET: {
