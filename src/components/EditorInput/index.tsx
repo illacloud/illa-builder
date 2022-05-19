@@ -42,7 +42,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
         completeSingle: false,
       },
       extraKeys: { "Shift+Q": "autocomplete" },
-      placeholder: placeholder,
+      placeholder,
     })
 
     const ignoreStr = ",#,!,-,=,@,$,%,&,+,;,(,),*"
