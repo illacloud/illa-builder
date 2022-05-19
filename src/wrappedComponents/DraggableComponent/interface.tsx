@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react"
-import { WidgetType } from "../WidgetBuilder"
+import { WidgetType } from '@/wrappedComponents/WidgetBuilder'
 
 export interface BaseProps {
   id: string

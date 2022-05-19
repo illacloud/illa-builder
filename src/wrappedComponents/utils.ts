@@ -1,5 +1,8 @@
-import { BaseProps, DSLWidget } from "./DraggableComponent/interface"
 import { XYCoord } from "react-dnd"
+import {
+  BaseProps,
+  DSLWidget,
+} from "@/wrappedComponents/DraggableComponent/interface"
 
 export type WidgetConfig = {
   columns: number
