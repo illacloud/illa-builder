@@ -20,6 +20,17 @@ export const GridContainerCSS = css`
   overflow: auto;
 `
 
+export const GridRowContainerCSS = css`
+  grid-gap: 8px 16px;
+  grid-column: span 2;
+  grid: auto/repeat(auto-fit, 152px minmax(280px, 1fr));
+  display: grid;
+`
+
+export const GridRowCenterItemCSS = css`
+  align-items: center;
+`
+
 export function applyGridColIndex(index: number): SerializedStyles {
   return css`
     grid-column-start: ${index};
@@ -90,7 +101,6 @@ export const ActionTextCSS = css`
 `
 
 export const CheckboxCSS = css`
-  margin: -8px 0 8px;
   justify-content: flex-start !important;
 
   & > input {

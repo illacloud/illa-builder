@@ -35,7 +35,7 @@ export const NewButtonCSS = css`
   display: flex;
   align-items: center;
   align-self: flex-start;
-  padding: 8px;
+  padding-top: 8px!important;
 
   & svg {
     margin-right: 5px;

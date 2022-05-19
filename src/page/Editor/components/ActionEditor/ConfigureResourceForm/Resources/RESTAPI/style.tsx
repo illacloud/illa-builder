@@ -23,5 +23,4 @@ export const OAuth2Description = css`
   background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   padding: 8px 16px;
   border-radius: 8px;
-  margin: 8px 0;
 `
