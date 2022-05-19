@@ -85,7 +85,6 @@ export const QueryList: FC<QueryListProps> = (props) => {
     return new Set(queryItems.map((i) => i.name))
   }, [queryItems])
 
-
   function editName(id: string, name: string) {
     setEditingQueryItemId(id)
     setEditingName(name)

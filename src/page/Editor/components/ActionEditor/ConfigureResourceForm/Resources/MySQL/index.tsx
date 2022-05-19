@@ -7,15 +7,10 @@ import {
   UsernamePasswordCSS,
   SwitchDescriptionCSS,
   SwitchAreaCSS,
-  applyGridColIndex,
-  applyMargin,
-  applyPadding,
   DescriptionCSS,
   BorderBottomCSS,
   RequireTagCSS,
-  applyIllaColor,
   ErrorMessageCSS,
-  applyJustifyContent,
   LabelTextVerticalCSS,
   LabelTextSmallSizeCSS,
   FormContentCSS,
@@ -26,6 +21,13 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { InputNumber } from "@illa-design/input-number"
 import { MySQLFormValues, MySQLFormProps } from "./interface"
 import { InputUpload } from "./input-upload"
+import {
+  applyJustifyContent,
+  applyIllaColor,
+  applyPaddingSingle,
+  applyMarginSingle,
+  applyGridColIndex,
+} from "@/page/Editor/components/ActionEditor/style"
 
 const Error_REQUIRED_MESSAGE = "This is required!"
 
@@ -79,8 +81,8 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
           <div
             css={css(
               GridContainerCSS,
-              applyPadding("top", 8),
-              applyPadding("bottom", 8),
+              applyPaddingSingle("top", 8),
+              applyPaddingSingle("bottom", 8),
             )}
           >
             <label css={LabelTextCSS}>
@@ -183,7 +185,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
           <div
             css={css(
               GridContainerCSS,
-              applyPadding("bottom", 16),
+              applyPaddingSingle("bottom", 16),
               BorderBottomCSS,
             )}
           >
@@ -198,8 +200,8 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
           <div
             css={css(
               GridContainerCSS,
-              applyPadding("top", 16),
-              applyPadding("bottom", 16),
+              applyPaddingSingle("top", 16),
+              applyPaddingSingle("bottom", 16),
             )}
           >
             <label css={css(LabelTextCSS, applyIllaColor("grayBlue", "04"))}>
@@ -215,7 +217,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   setExpandSSH((expandSSH) => !expandSSH)
                 }}
               />
-              <div css={css(SwitchDescriptionCSS, applyMargin("left", 8))}>
+              <div
+                css={css(SwitchDescriptionCSS, applyMarginSingle("left", 8))}
+              >
                 <div css={LabelTextCSS}>
                   Useful to connect to private network
                 </div>
@@ -340,8 +344,8 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
           <div
             css={css(
               GridContainerCSS,
-              applyPadding("top", 16),
-              applyPadding("bottom", 8),
+              applyPaddingSingle("top", 16),
+              applyPaddingSingle("bottom", 8),
             )}
           >
             <label css={LabelTextCSS}>SSL options</label>
@@ -352,7 +356,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   setExpandSSL((expandSSL) => !expandSSL)
                 }}
               />
-              <div css={css(SwitchDescriptionCSS, applyMargin("left", 8))}>
+              <div
+                css={css(SwitchDescriptionCSS, applyMarginSingle("left", 8))}
+              >
                 <div css={LabelTextCSS}>SSL is used when available</div>
               </div>
             </div>

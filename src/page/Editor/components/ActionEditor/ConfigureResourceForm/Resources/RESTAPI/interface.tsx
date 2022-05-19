@@ -1,9 +1,7 @@
-export interface RESTAPIFormProps {
-
-}
+export interface RESTAPIFormProps {}
 
 export type Params = {
-  key: string,
+  key: string
   value: string
 }
 

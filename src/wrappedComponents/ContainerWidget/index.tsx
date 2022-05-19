@@ -6,7 +6,7 @@ import { DropInfo, dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
 import { DraggableComponent } from "../DraggableComponent"
 import { ContainerWidgetProps } from "./interface"
-import {widgetBuilder, WidgetTypeList} from "../WidgetBuilder"
+import { widgetBuilder, WidgetTypeList } from "../WidgetBuilder"
 import { getTargetOffset } from "../utils"
 
 interface PanelDrag {

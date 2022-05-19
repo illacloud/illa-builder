@@ -23,7 +23,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
   const targetRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const editor = CodeMirror(targetRef.current, {
+    const editor = CodeMirror(targetRef.current!, {
       mode: mode,
       lineNumbers: lineNumbers,
       autocapitalize: false,
@@ -39,7 +39,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
     })
 
     const ignoreStr = ",#,!,-,=,@,$,%,&,+,;,(,),*"
-    const ignoreToken = (text) => {
+    const ignoreToken = (text?: string[]) => {
       const ignore = ignoreStr.split(",")
       if (text && text[0]) {
         for (const pre in ignore) {
