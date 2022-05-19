@@ -3,13 +3,13 @@ import { DynamicSwitchProps } from "./interface"
 import { Switch } from "@illa-design/switch"
 import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 import PanelLabel from "@/page/Editor/components/InspectPanel/label"
-import { Input } from "@illa-design/input"
 import {
   applyCustomIconStyle,
   customAndSwitchWrapperCss,
   dynamicSwitchWrapperCss,
   labelCss,
 } from "./style"
+import BaseInput from "../InputSetter/baseInput"
 
 const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const { defaultValue, attrName, useCustomLabel, labelName, labelDesc } = props
@@ -20,8 +20,7 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const customValueKey = `${attrName}_custom`
 
   const customSelected = tempProps[customKey]
-  const [selected, setSelected] = useState(customSelected)
-  const [customValue, setCustomValue] = useState(tempProps[customValueKey])
+  const customValue = tempProps[customValueKey]
 
   return (
     <div css={labelCss}>
@@ -31,10 +30,16 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         )}
         <div css={customAndSwitchWrapperCss}>
           <div
-            css={applyCustomIconStyle(selected)}
+            css={applyCustomIconStyle(customSelected)}
             onClick={() => {
-              setSelected(!selected)
-              handleUpdateDsl({ [customKey]: !selected })
+              if (customSelected) {
+                handleUpdateDsl({
+                  [customKey]: false,
+                  [customValueKey]: "",
+                })
+                return
+              }
+              handleUpdateDsl({ [customKey]: !customSelected })
             }}
           >
             <svg
@@ -50,7 +55,7 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
               />
             </svg>
           </div>
-          {!selected && (
+          {!customSelected && (
             <Switch
               onChange={(value) => {
                 console.log(value)
@@ -62,18 +67,12 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           )}
         </div>
       </div>
-      {selected && (
+      {customSelected && (
         <div style={{ marginBottom: "8px" }}>
-          <Input
-            value={customValue}
-            onChange={(value) => {
-              setCustomValue(value)
-              //  run code then update dsl
-              //  { [customValueKey]: value,[attrName]:runCode(value) }
-              //
-              handleUpdateDsl({ [customValueKey]: value })
-            }}
-          />
+          {/*//  run code then update dsl*/}
+          {/*//  { [customValueKey]: value,[attrName]:runCode(value) }*/}
+          {/*//*/}
+          <BaseInput attrName={customValueKey} defaultValue={customValue} />
         </div>
       )}
     </div>
