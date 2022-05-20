@@ -18,6 +18,8 @@ function* incrementAsync() {
 }
 function* listener() {
   console.log("listener")
+  const state = yield select()
+  console.log(state)
 }
 function* watchIncrement() {
   yield takeEvery("increment_saga", increment)

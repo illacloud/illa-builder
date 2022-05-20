@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { BuilderState } from "@/redux/reducers/interface"
@@ -18,25 +18,33 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
     (state: BuilderState) => state.editor.present.demo,
   )
 
+  useEffect(() => {
+    console.log(demoValue.value.d)
+  }, [demoValue.value.d])
+
   return (
     <div className={className}>
       DataWorkspace
       <EditorInput mode="javascript" />
       <div>{demoValue.value.a}</div>
       <button
-        onClick={() =>
+        onClick={() => {
           dispatch(fetchUser())
             .unwrap()
             .then((originalPromiseResult) => {
               // 调试用，用来看调用顺序，暂时保留
               console.log(originalPromiseResult)
-              console.log(demoValue.value)
+              console.log(demoValue.value.d)
             })
-        }
+        }}
       >
         getData
       </button>
-      <button onClick={() => dispatch(changeDemoValueA())}>
+      <button
+        onClick={() => {
+          dispatch(changeDemoValueA())
+        }}
+      >
         changeDemoValueA
       </button>
       <button
