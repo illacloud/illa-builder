@@ -184,6 +184,6 @@ export const GridHandlersCSS = css`
 `
 
 export const ConfigPanelCSS = css`
-  overflow: auto;
   flex: 1;
+  overflow: auto;
 `

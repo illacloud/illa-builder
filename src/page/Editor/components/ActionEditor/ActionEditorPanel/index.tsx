@@ -18,7 +18,7 @@ import {
   MoreBtnCSS,
   RunBtnCSS,
   SectionTitleCSS,
-  ConfigPanelCSS
+  ConfigPanelCSS,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { MySQLPanel, RESTAPIPanel } from "./Resources"
@@ -65,33 +65,33 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         </Button>
       </header>
 
-      <div css={[ActionCSS, applyMarginSingle("bottom", 8)]}>
-        <label css={SectionTitleCSS}>Resource</label>
-        <span css={FillingCSS} />
-        <Select
-          options={modeOptions}
-          defaultValue={0}
-          css={[ActionSelectCSS, ModeSelectCSS]}
-        />
-        <Select
-          options={triggerOptions}
-          defaultValue={0}
-          css={[ActionSelectCSS, TriggerSelectCSS]}
-        />
-
-        <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
-          <Option onClick={createResource}>Create a new resouce</Option>
-          <Option>SQL</Option>
-          <Option>REST API</Option>
-        </Select>
-        <div css={EditIconCSS} onClick={editResource}>
-          <PenIcon />
-        </div>
-      </div>
-
-      <Divider />
-
       <div css={[ConfigPanelCSS]}>
+        <div css={[ActionCSS, applyMarginSingle("bottom", 8)]}>
+          <label css={SectionTitleCSS}>Resource</label>
+          <span css={FillingCSS} />
+          <Select
+            options={modeOptions}
+            defaultValue={0}
+            css={[ActionSelectCSS, ModeSelectCSS]}
+          />
+          <Select
+            options={triggerOptions}
+            defaultValue={0}
+            css={[ActionSelectCSS, TriggerSelectCSS]}
+          />
+
+          <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
+            <Option onClick={createResource}>Create a new resouce</Option>
+            <Option>SQL</Option>
+            <Option>REST API</Option>
+          </Select>
+          <div css={EditIconCSS} onClick={editResource}>
+            <PenIcon />
+          </div>
+        </div>
+
+        <Divider />
+
         <RESTAPIPanel />
         {/* <MySQLPanel />
             <Transformer />
