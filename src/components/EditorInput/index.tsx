@@ -18,7 +18,7 @@ import "codemirror/addon/edit/closebrackets"
 import { applyCMCss } from "./style"
 
 export const EditorInput: FC<EditorInputProps> = (props) => {
-  const { mode, lineNumbers = true, height = "auto" } = props
+  const { mode, lineNumbers = true, height = "auto", _css } = props
 
   const targetRef = useRef<HTMLDivElement>(null)
 
@@ -53,13 +53,13 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
       return false
     }
 
-    editor.on("change", function (editor, change) {
+    editor.on("change", function(editor, change) {
       // autocomplete
       if (change.origin == "+input") {
         var text = change.text
         // no hint
         if (!ignoreToken(text)) {
-          setTimeout(function () {
+          setTimeout(function() {
             editor.execCommand("autocomplete")
           }, 20)
         }
@@ -67,7 +67,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
     })
   }, [])
 
-  return <div ref={targetRef} css={applyCMCss(height)} />
+  return <div ref={targetRef} css={[applyCMCss(height), _css]} />
 }
 
 EditorInput.displayName = "EditorInput"
