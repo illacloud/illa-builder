@@ -10,7 +10,7 @@ export const ContainerCSS = css`
 
 export const PanelScrollCSS = css`
   overflow: auto;
-  height: 100%;
+  flex: 1;
 `
 
 export const HeaderCSS = css`
@@ -215,9 +215,4 @@ export const HandlerMoreIconCSS = css`
   font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
-`
-
-export const ConfigPanelCSS = css`
-  flex: 1;
-  overflow: auto;
 `
