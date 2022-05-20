@@ -8,6 +8,11 @@ export const ContainerCSS = css`
   flex-direction: column;
 `
 
+export const PanelScrollCSS = css`
+  overflow: auto;
+  height: 100%;
+`
+
 export const HeaderCSS = css`
   display: flex;
   align-items: center;
@@ -76,6 +81,11 @@ export const ActionCSS = css`
   display: flex;
   align-items: center;
   padding: 8px 16px;
+`
+
+export const ResourceBarCSS = css`
+  margin-top: 8px;
+  margin-bottom: 8px;
 `
 
 export const FillingCSS = css`
@@ -166,12 +176,21 @@ export const SectionTitleCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
+export const HandlerTitleCSS = css`
+  ${SectionTitleCSS};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+  padding: 16px 16px 0;
+`
+
 export const PanelPaddingCSS = css`
   padding: 8px 16px;
 `
 
 export const PanelSubBarCSS = css`
   padding: 13px 16px;
+`
+export const NewBtnCSS = css`
+  padding-left: 16px;
 `
 
 export const DashBorderBottomCSS = css`
@@ -181,6 +200,21 @@ export const DashBorderBottomCSS = css`
 export const GridHandlersCSS = css`
   display: grid;
   gap: 8px;
+  padding: 0 16px 8px;
+`
+
+export const HandlerMoreIconCSS = css`
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 0 9px;
+  box-sizing: border-box;
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
 `
 
 export const ConfigPanelCSS = css`

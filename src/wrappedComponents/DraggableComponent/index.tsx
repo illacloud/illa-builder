@@ -79,7 +79,7 @@ export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
 
   return (
     <div
-      key={id}
+      id={id}
       style={{
         height: height,
         width: width,
@@ -96,10 +96,11 @@ export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
         throttleDrag={1}
         keepRatio={false}
         draggable={id !== MAIN_CONTAINER_ID}
+        resizable={id !== MAIN_CONTAINER_ID}
         scalable={false}
         rotatable={false}
         origin={false}
-        renderDirections={["nw", "n", "ne", "w", "e", "sw", "s", "se"]}
+        renderDirections={id !== MAIN_CONTAINER_ID}
         onDragStart={(e) => {
           if (!isCurrentWidgetSelected) {
             selectWidget(id)

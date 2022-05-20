@@ -1,8 +1,7 @@
 import { FC } from "react"
-import { Button, ButtonGroup } from "@illa-design/button"
+import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
-import { Divider } from "@illa-design/divider"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
@@ -18,12 +17,11 @@ import {
   MoreBtnCSS,
   RunBtnCSS,
   SectionTitleCSS,
-  ConfigPanelCSS,
+  ResourceBarCSS,
+  PanelScrollCSS,
 } from "./style"
 import { TitleInput } from "./TitleInput"
-import { MySQLPanel, RESTAPIPanel } from "./Resources"
-import { applyMarginSingle } from "../style"
-import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { ResourcePanel } from "./ResourcePanel"
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, children, onEditResource, onCreateResource } = props
@@ -54,7 +52,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   return (
     <div className={className} css={ContainerCSS}>
-      <header css={[HeaderCSS, applyMarginSingle("bottom", 8)]}>
+      <header css={HeaderCSS}>
         <TitleInput />
         <span css={FillingCSS} />
         <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
@@ -65,8 +63,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         </Button>
       </header>
 
-      <div css={[ConfigPanelCSS]}>
-        <div css={[ActionCSS, applyMarginSingle("bottom", 8)]}>
+      <div css={PanelScrollCSS}>
+        <div css={[ActionCSS, ResourceBarCSS]}>
           <label css={SectionTitleCSS}>Resource</label>
           <span css={FillingCSS} />
           <Select
@@ -80,6 +78,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             css={[ActionSelectCSS, TriggerSelectCSS]}
           />
 
+
           <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
             <Option onClick={createResource}>Create a new resouce</Option>
             <Option>SQL</Option>
@@ -90,15 +89,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           </div>
         </div>
 
-        <Divider />
-
-        <RESTAPIPanel />
-        {/* <MySQLPanel />
-            <Transformer />
-            <Divider />
-            <EventHandler /> */}
-      </div>
-    </div>
+        <ResourcePanel />
+      </div >
+    </div >
   )
 }
 
