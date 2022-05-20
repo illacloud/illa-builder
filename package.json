@@ -28,6 +28,7 @@
     "codemirror": "^5.65.3",
     "framer-motion": "^6.3.0",
     "i18next": "^21.6.16",
+    "react-hook-form": "^7.30.0",
     "react": "^17.0.2",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",

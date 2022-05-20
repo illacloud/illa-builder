@@ -57,13 +57,13 @@ export const iconCss = css`
   )};
   &:hover {
     background-color: ${hexToRGBA(
-      globalColor(`--${illaPrefix}-brand-purple-07`),
+      globalColor(`--${illaPrefix}-techPurple-07`),
     )};
     cursor: grab;
   }
   &:hover {
     background-color: ${hexToRGBA(
-      globalColor(`--${illaPrefix}-brand-purple-07`),
+      globalColor(`--${illaPrefix}-techPurple-07`),
     )};
     cursor: grab;
   }
