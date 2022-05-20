@@ -12,13 +12,10 @@ const dragSlice = createSlice({
     increaseDragValue(state) {
       state.value++
     },
-    getDataSuccess(state, res) {
-      state.githubData = res.payload
-    },
   },
 })
 
-export const { increaseDragValue, getDataSuccess } = dragSlice.actions
+export const { increaseDragValue } = dragSlice.actions
 
 export default dragSlice.reducer
 

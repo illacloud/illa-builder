@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { BuilderState } from "@/redux/reducers/interface"
 import { EditorInput } from "@/components/EditorInput"
+import {
+  fetchUser,
+  changeDemoValueA,
+} from "@/redux/reducers/editorReducer/demoReducer.ts"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -19,8 +23,28 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       DataWorkspace
       <EditorInput mode="javascript" />
       <div>{demoValue.value.a}</div>
-      <button onClick={() => dispatch({ type: "incrementAsync_demo_saga" })}>
-        incrementAsync_1s
+      <button
+        onClick={() =>
+          dispatch(fetchUser())
+            .unwrap()
+            .then((originalPromiseResult) => {
+              // 调试用，用来看调用顺序，暂时保留
+              console.log(originalPromiseResult)
+              console.log(demoValue.value)
+            })
+        }
+      >
+        getData
+      </button>
+      <button onClick={() => dispatch(changeDemoValueA())}>
+        changeDemoValueA
+      </button>
+      <button
+        onClick={() => {
+          console.log(demoValue.value)
+        }}
+      >
+        show data
       </button>
     </div>
   )

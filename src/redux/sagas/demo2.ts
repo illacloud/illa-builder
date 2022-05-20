@@ -1,4 +1,4 @@
-import { all, put, takeEvery, takeLatest, delay } from "redux-saga/effects"
+import { all, put, takeLatest, delay } from "redux-saga/effects"
 import { changeDemoValueA } from "../reducers/editorReducer/demoReducer"
 
 function* incrementAsync() {
