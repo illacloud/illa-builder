@@ -1,5 +1,10 @@
 import { forwardRef, useState } from "react"
-import { useForm, Controller, SubmitHandler } from "react-hook-form"
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  FieldValues,
+} from "react-hook-form"
 import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
@@ -16,7 +21,6 @@ import {
   DescriptionCSS,
   SplitLineCSS,
   GroupTitleCSS,
-  EmptyFillingCSS,
   CheckboxCSS,
   ErrorMessageCSS,
   GridRowContainerCSS,
@@ -41,28 +45,13 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
       formState: { errors },
     } = useForm<RESTAPIFormValues>({
       defaultValues: {
-        Name: "",
-        BaseURL: "",
         URLParameters: [EmptyField],
         Headers: [EmptyField],
         ExtraBodyValues: [EmptyField],
-        CookiesToForward: [],
         ForwardAllCookies: false,
         Authentication: "none",
-        BasicAuthUsername: "",
-        BasicAuthPassword: "",
         UseClientCredentialsAuth: false,
-        OAuthCallbackURL: "",
         ShareOAuth2CredentialsBetweenUsers: false,
-        AuthorizationURL: "",
-        AccessTokenURL: "",
-        ClientId: "",
-        ClientSecret: "",
-        Scopes: "",
-        Audience: "",
-        AccessToken: "",
-        RefreshToken: "",
-        AccessTokenLifespan: 0,
         EnableAuthVerificationEndpoint: false,
       },
     })
@@ -70,7 +59,6 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
     const [authType, setAuthType] = useState("none")
 
     const onSubmit: SubmitHandler<RESTAPIFormValues> = (data) => {
-      console.log(data)
       alert(JSON.stringify(data, null, 5))
     }
 
