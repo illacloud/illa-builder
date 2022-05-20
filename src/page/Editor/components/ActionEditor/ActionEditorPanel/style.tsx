@@ -201,7 +201,7 @@ export const GridHandlersCSS = css`
   padding: 0 16px 8px;
 `
 
-export const HandleMoreIconCSS = css`
+export const HandlerMoreIconCSS = css`
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 0 9px;

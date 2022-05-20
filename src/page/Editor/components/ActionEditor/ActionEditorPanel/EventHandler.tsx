@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid"
 import {
   DashBorderBottomCSS,
   GridHandlersCSS,
-  HandleMoreIconCSS,
+  HandlerMoreIconCSS,
   HandlerTitleCSS,
   NewBtnCSS,
   PanelSubBarCSS,
@@ -29,7 +29,7 @@ export const EventHandler = () => {
               addonAfter={{
                 custom: true,
                 render: (
-                  <span css={HandleMoreIconCSS}>
+                  <span css={HandlerMoreIconCSS}>
                     <MoreIcon />
                   </span>
                 ),
