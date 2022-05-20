@@ -2230,7 +2230,7 @@
     jest-matcher-utils "^27.0.0"
     pretty-format "^27.0.0"
 
-"@types/js-cookie@^2.2.6", "@types/js-cookie@^2.x.x":
+"@types/js-cookie@^2.2.6":
   version "2.2.7"
   resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-2.2.7.tgz#226a9e31680835a6188e887f3988e60c04d3f6a3"
   integrity sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==
@@ -2535,25 +2535,6 @@ aggregate-error@^3.0.0:
   dependencies:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
-
-ahooks-v3-count@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ahooks-v3-count/-/ahooks-v3-count-1.0.0.tgz#ddeb392e009ad6e748905b3cbf63a9fd8262ca80"
-  integrity sha512-V7uUvAwnimu6eh/PED4mCDjE7tokeZQLKlxg9lCTMPhN+NjsSbtdacByVlR1oluXQzD3MOw55wylDmQo4+S9ZQ==
-
-ahooks@^3.3.12:
-  version "3.3.12"
-  resolved "https://registry.yarnpkg.com/ahooks/-/ahooks-3.3.12.tgz#e5f1b7136595366c873fb984715f6b9163d1a602"
-  integrity sha512-SrsANUKn7lD11KwJo5YzrGRxQaPe21hvKkrvqB0/JtcJGo2RKl5WvtGjVf5WgpaPaPp1Lw7p5AJssmFO8IS2bw==
-  dependencies:
-    "@types/js-cookie" "^2.x.x"
-    ahooks-v3-count "^1.0.0"
-    dayjs "^1.9.1"
-    intersection-observer "^0.12.0"
-    js-cookie "^2.x.x"
-    lodash "^4.17.21"
-    resize-observer-polyfill "^1.5.1"
-    screenfull "^5.0.0"
 
 ansi-colors@^4.1.1:
   version "4.1.2"
@@ -3942,7 +3923,7 @@ dayjs@1.10.7:
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
   integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
 
-dayjs@^1.10.4, dayjs@^1.10.7, dayjs@^1.9.1:
+dayjs@^1.10.4, dayjs@^1.10.7:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.2.tgz#fa0f5223ef0d6724b3d8327134890cfe3d72fbe5"
   integrity sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==
@@ -5530,11 +5511,6 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-intersection-observer@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.12.0.tgz#6c84628f67ce8698e5f9ccf857d97718745837aa"
-  integrity sha512-2Vkz8z46Dv401zTWudDGwO7KiGHNDkMv417T5ItcNYfmvHR/1qCTVBO9vwH8zZmQ0WkA/1ARwpysR9bsnop4NQ==
-
 is-accessor-descriptor@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/is-accessor-descriptor/-/is-accessor-descriptor-0.1.6.tgz#a9e12cb3ae8d876727eeef3843f8a0897b5c98d6"
@@ -6347,7 +6323,7 @@ jest@^27.4.1:
     import-local "^3.0.2"
     jest-cli "^27.5.1"
 
-js-cookie@^2.2.1, js-cookie@^2.x.x:
+js-cookie@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
   integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
@@ -8191,7 +8167,7 @@ scheduler@^0.20.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-screenfull@^5.0.0, screenfull@^5.1.0:
+screenfull@^5.1.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/screenfull/-/screenfull-5.2.0.tgz#6533d524d30621fc1283b9692146f3f13a93d1ba"
   integrity sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==

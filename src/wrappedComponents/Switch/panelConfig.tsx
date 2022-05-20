@@ -21,7 +21,6 @@ export const SwitchPanelConfig: PanelConfig[] = [
         attrName: "value",
         setterType: "INPUT_SETTER",
         placeholder: "false",
-        defaultValue: false,
       },
     ],
   },

@@ -7,7 +7,7 @@ import {
 import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
 import { isEmpty } from "lodash"
-import { useDebounceEffect } from "ahooks"
+import { useDebounce } from "react-use"
 
 interface Injected {
   componentDsl: any
@@ -61,7 +61,7 @@ export function ConfigPanelProvider({ children }: Props) {
     })
   }
 
-  useDebounceEffect(
+  useDebounce(
     () => {
       if (isEmpty(tempState) || !tempState) return
       const props = tempState.props
@@ -75,8 +75,8 @@ export function ConfigPanelProvider({ children }: Props) {
         }),
       )
     },
+    200,
     [tempState],
-    { leading: true, wait: 200 },
   )
 
   const value = {

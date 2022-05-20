@@ -24,7 +24,6 @@
     "@illa-design/react": "*",
     "@reduxjs/toolkit": "^1.8.1",
     "@uiw/react-codemirror": "^4.7.0",
-    "ahooks": "^3.3.12",
     "axios": "^0.26.1",
     "codemirror": "^5.65.3",
     "framer-motion": "^6.3.0",

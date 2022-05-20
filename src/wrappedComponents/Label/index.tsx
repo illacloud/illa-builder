@@ -49,6 +49,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     <label
       css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}
       ref={ref}
+      {...props}
     >
       {renderLabelTitle}
       {renderLabelCaption}
