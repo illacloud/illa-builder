@@ -20,6 +20,7 @@ import { applyCMCss } from "./style"
 
 export const EditorInput: FC<EditorInputProps> = (props) => {
   const {
+    _css,
     mode,
     lineNumbers = true,
     height = "auto",
@@ -74,7 +75,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
     })
   }, [])
 
-  return <div ref={targetRef} css={applyCMCss(height)} />
+  return <div ref={targetRef} css={css(applyCMCss(height), _css)} />
 }
 
 EditorInput.displayName = "EditorInput"
