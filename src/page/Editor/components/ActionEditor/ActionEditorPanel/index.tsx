@@ -1,8 +1,7 @@
 import { FC } from "react"
-import { Button, ButtonGroup } from "@illa-design/button"
+import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
-import { Divider } from "@illa-design/divider"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
@@ -18,12 +17,11 @@ import {
   MoreBtnCSS,
   RunBtnCSS,
   SectionTitleCSS,
+  ResourceBarCSS,
+  PanelScrollCSS,
 } from "./style"
 import { TitleInput } from "./TitleInput"
-import { Transformer } from "./Transformer"
-import { MySQLPanel } from "./Resources/MySQL"
-import { applyMarginSingle } from "../style"
-import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { ResourcePanel } from "./ResourcePanel"
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, children, onEditResource, onCreateResource } = props
@@ -54,7 +52,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   return (
     <div className={className} css={ContainerCSS}>
-      <header css={[HeaderCSS, applyMarginSingle("bottom", 8)]}>
+      <header css={HeaderCSS}>
         <TitleInput />
         <span css={FillingCSS} />
         <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
@@ -64,34 +62,32 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <CaretRightIcon /> Run
         </Button>
       </header>
-      <div css={[ActionCSS, applyMarginSingle("bottom", 8)]}>
-        <label css={SectionTitleCSS}>Resource</label>
-        <span css={FillingCSS} />
-        <Select
-          options={modeOptions}
-          defaultValue={0}
-          css={[ActionSelectCSS, ModeSelectCSS]}
-        />
-        <Select
-          options={triggerOptions}
-          defaultValue={0}
-          css={[ActionSelectCSS, TriggerSelectCSS]}
-        />
+      <div css={PanelScrollCSS}>
+        <div css={[ActionCSS, ResourceBarCSS]}>
+          <label css={SectionTitleCSS}>Resource</label>
+          <span css={FillingCSS} />
+          <Select
+            options={modeOptions}
+            defaultValue={0}
+            css={[ActionSelectCSS, ModeSelectCSS]}
+          />
+          <Select
+            options={triggerOptions}
+            defaultValue={0}
+            css={[ActionSelectCSS, TriggerSelectCSS]}
+          />
 
-        <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
-          <Option onClick={createResource}>Create a new resouce</Option>
-          <Option>SQL</Option>
-          <Option>REST API</Option>
-        </Select>
-        <div css={EditIconCSS} onClick={editResource}>
-          <PenIcon />
+          <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
+            <Option onClick={createResource}>Create a new resouce</Option>
+            <Option>SQL</Option>
+            <Option>REST API</Option>
+          </Select>
+          <div css={EditIconCSS} onClick={editResource}>
+            <PenIcon />
+          </div>
         </div>
+        <ResourcePanel />
       </div>
-      <Divider />
-      <MySQLPanel />
-      <Transformer />
-      <Divider />
-      <EventHandler />
     </div>
   )
 }

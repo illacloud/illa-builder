@@ -58,8 +58,13 @@ export const LabelTextCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
+export const ItemTextCSS = css`
+  ${LabelTextCSS};
+  justify-content: start;
+`
+
 export const RequiredLabelTextCSS = css`
-  ${LabelTextCSS}
+  ${LabelTextCSS};
   position: relative;
 
   &:before {
