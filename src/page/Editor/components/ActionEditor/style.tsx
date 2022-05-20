@@ -69,77 +69,8 @@ export function applyIllaColor(
   `
 }
 
-export function applyMarginSingle(
-  direction: Direction,
-  number: number,
-): SerializedStyles {
-  return css`margin-${direction}:${number}px; `
-}
-
-export function applyMargin(...args: number[]) {
-  switch (args.length) {
-    case 1:
-      return css`
-        margin: ${args[0]}px;
-      `
-    case 2:
-      return css`
-        margin: ${args[0]}px ${args[1]}px;
-      `
-    case 3:
-      return css`
-        margin: ${args[0]}px ${args[1]}px ${args[2]}px;
-      `
-    case 4:
-      return css`
-        margin: ${args[0]}px ${args[1]}px ${args[2]}px ${args[3]}px;
-      `
-    default:
-      return css`
-        margin: ${args[0]}px;
-      `
-  }
-}
-
-export function applyPadding(...args: number[]) {
-  switch (args.length) {
-    case 1:
-      return css`
-        padding: ${args[0]}px;
-      `
-    case 2:
-      return css`
-        padding: ${args[0]}px ${args[1]}px;
-      `
-    case 3:
-      return css`
-        padding: ${args[0]}px ${args[1]}px ${args[2]}px;
-      `
-    case 4:
-      return css`
-        padding: ${args[0]}px ${args[1]}px ${args[2]}px ${args[3]}px;
-      `
-    default:
-      return css`
-        padding: ${args[0]}px;
-      `
-  }
-}
-export function applyPaddingSingle(
-  direction: Direction,
-  number: number,
-): SerializedStyles {
-  return css`padding-${direction}:${number}px; `
-}
-
 export function applyGridColIndex(index: number): SerializedStyles {
   return css`
     grid-column-start: ${index};
-  `
-}
-
-export function applyJustifyContent(align: string): SerializedStyles {
-  return css`
-    justify-content: ${align};
   `
 }

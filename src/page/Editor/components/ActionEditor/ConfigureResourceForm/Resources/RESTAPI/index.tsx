@@ -5,6 +5,7 @@ import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
 import { Divider } from "@illa-design/divider"
 import { Select, Option } from "@illa-design/select"
+import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
 import { RESTAPIFormProps, RESTAPIFormValues, Params } from "./interface"
 import {
   FormCSS,
@@ -29,7 +30,6 @@ import {
 import { ParamList } from "./ParamList"
 import { BasicAuth, OAuth2 } from "./Authentication"
 
-const ERROR_REQUIRED_MESSAGE = "This is required!"
 const EmptyField: Params = { key: "", value: "" }
 
 export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(

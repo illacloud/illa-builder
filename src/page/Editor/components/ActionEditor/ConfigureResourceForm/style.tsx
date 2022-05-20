@@ -6,8 +6,6 @@ export const FormContainerCSS = css`
   padding-top: 16px;
 `
 
-export const FormContentWrapperCSS = css``
-
 export const FormFooterCSS = css`
   display: flex;
   padding: 24px;
