@@ -2,16 +2,16 @@ import { FC, useContext, useState } from "react"
 import { DynamicSwitchProps } from "./interface"
 import { Switch } from "@illa-design/switch"
 import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
-import PanelLabel from "@/page/Editor/components/InspectPanel/label"
+import { PanelLabel } from "@/page/Editor/components/InspectPanel/label"
 import {
   applyCustomIconStyle,
   customAndSwitchWrapperCss,
   dynamicSwitchWrapperCss,
   labelCss,
 } from "./style"
-import BaseInput from "../InputSetter/baseInput"
+import { BaseInput } from "../InputSetter/baseInput"
 
-const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
+export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const { defaultValue, attrName, useCustomLabel, labelName, labelDesc } = props
 
   const { tempProps, handleUpdateDsl } = useContext(ConfigPanelContext)
@@ -58,7 +58,6 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           {!customSelected && (
             <Switch
               onChange={(value) => {
-                console.log(value)
                 handleUpdateDsl({ [attrName]: value })
               }}
               checked={tempProps[attrName] ?? defaultValue}
@@ -69,7 +68,7 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
       </div>
       {customSelected && (
         <div style={{ marginBottom: "8px" }}>
-          {/*//  run code then update dsl*/}
+          {/*//  TODO:run code then update dsl*/}
           {/*//  { [customValueKey]: value,[attrName]:runCode(value) }*/}
           {/*//*/}
           <BaseInput attrName={customValueKey} defaultValue={customValue} />
@@ -79,4 +78,4 @@ const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   )
 }
 
-export default DynamicSwitchSetter
+DynamicSwitchSetter.displayName = "DynamicSwitchSetter"

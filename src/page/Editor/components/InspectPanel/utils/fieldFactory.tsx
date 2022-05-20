@@ -3,8 +3,8 @@ import {
   PanelFieldConfig,
   PanelFieldGroupConfig,
 } from "../interface"
-import PanelBar from "../bar"
-import Setter from "../setter"
+import { PanelBar } from "../bar"
+import { Setter } from "../setter"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,

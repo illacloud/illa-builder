@@ -55,4 +55,4 @@ export const WrappedSwitch: FC<SwitchProps> = (props) => {
   )
 }
 
-export default withParser(WrappedSwitch)
+export const WrappedSwitchWidget = withParser(WrappedSwitch)

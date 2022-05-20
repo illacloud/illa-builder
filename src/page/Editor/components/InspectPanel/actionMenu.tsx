@@ -4,7 +4,7 @@ import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
 
 const Item = Menu.Item
 
-const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
+export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const { componentId, componentType } = props
   const handleClickMenuItem = (key: string) => {
     switch (key) {
@@ -43,4 +43,4 @@ const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   )
 }
 
-export default ActionMenu
+ActionMenu.displayName = "ActionMenu"

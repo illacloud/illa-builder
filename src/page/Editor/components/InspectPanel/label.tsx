@@ -3,7 +3,7 @@ import { Tooltip } from "@illa-design/tooltip"
 import { applyLabelStyle, labelTipsCss } from "./style"
 import { PanelLabelProps } from "./interface"
 
-const PanelLabel: FC<PanelLabelProps> = (props) => {
+export const PanelLabel: FC<PanelLabelProps> = (props) => {
   const { labelDesc, labelName, isInList } = props
 
   return (
@@ -19,4 +19,4 @@ const PanelLabel: FC<PanelLabelProps> = (props) => {
   )
 }
 
-export default PanelLabel
+PanelLabel.displayName = "PanelLabel"

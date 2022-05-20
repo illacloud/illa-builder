@@ -10,7 +10,7 @@ import {
 import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 
-const PanelBar: FC<PanelBarProps> = (props) => {
+export const PanelBar: FC<PanelBarProps> = (props) => {
   const { title, children, isOpened = true } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
@@ -58,4 +58,4 @@ const PanelBar: FC<PanelBarProps> = (props) => {
   )
 }
 
-export default PanelBar
+PanelBar.displayName = "PanelBar"

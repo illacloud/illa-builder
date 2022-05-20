@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { illaPrefix, globalColor } from "@illa-design/theme"
 import { publicPaddingCss } from "@/page/Editor/components/InspectPanel/style"
 
@@ -13,7 +13,9 @@ export const customAndSwitchWrapperCss = css`
   align-items: center;
 `
 
-export const applyCustomIconStyle = (isSelected: boolean = false) => {
+export const applyCustomIconStyle = (
+  isSelected: boolean = false,
+): SerializedStyles => {
   const color = isSelected
     ? globalColor(`--${illaPrefix}-purple-01`)
     : globalColor(`--${illaPrefix}-grayBlue-06`)

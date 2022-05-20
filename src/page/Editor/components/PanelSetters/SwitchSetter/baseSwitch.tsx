@@ -4,7 +4,7 @@ import { Switch } from "@illa-design/switch"
 import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 import { applySetterStyle } from "../style"
 
-const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
+export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
   const { defaultValue, isFullWidth, attrName } = props
 
   const { tempProps, handleUpdateDsl } = useContext(ConfigPanelContext)
@@ -20,4 +20,4 @@ const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
   )
 }
 
-export default BaseSwitchSetter
+BaseSwitchSetter.displayName = "BaseSwitchSetter"

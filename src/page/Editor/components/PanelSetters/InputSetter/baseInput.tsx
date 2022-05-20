@@ -4,7 +4,7 @@ import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 
-const BaseInput: FC<BaseInputSetterProps> = (props) => {
+export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const { isFullWidth, placeholder, defaultValue, isInList, attrName } = props
 
   const { tempProps, handleUpdateDsl } = useContext(ConfigPanelContext)
@@ -28,4 +28,4 @@ const BaseInput: FC<BaseInputSetterProps> = (props) => {
   )
 }
 
-export default BaseInput
+BaseInput.displayName = "BaseInput"

@@ -1,5 +1,5 @@
 import { FC, useCallback, useContext, useMemo } from "react"
-import PanelLabel from "@/page/Editor/components/InspectPanel/label"
+import { PanelLabel } from "@/page/Editor/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/Editor/components/InspectPanel/utils/fieldFactory"
 import {
@@ -11,7 +11,7 @@ import {
 } from "./style"
 import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 
-const ListSetter: FC<ListSetterProps> = (props) => {
+export const ListSetter: FC<ListSetterProps> = (props) => {
   const { labelName, labelDesc, childrenSetter, useCustomLabel } = props
 
   const { componentDsl, tempProps, handleUpdateDsl } =
@@ -103,4 +103,4 @@ const ListSetter: FC<ListSetterProps> = (props) => {
   )
 }
 
-export default ListSetter
+ListSetter.displayName = "ListSetter"

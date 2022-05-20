@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useEffect, useState } from "react"
+import { createContext, ReactNode, useEffect, useState, FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
   getSelectedWidgetStates,
@@ -6,12 +6,13 @@ import {
 } from "@/redux/selectors/editorSelectors/dslSelectors"
 import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
 import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+// TODO: remove this,when add utils to system
 import { isEmpty } from "lodash"
 import { useDebounce } from "react-use"
 
 interface Injected {
-  componentDsl: any
-  tempProps: any
+  componentDsl: any // TODO:
+  tempProps: any // TODO:
   handleUpdateDsl: (value: any) => void
 }
 
@@ -21,7 +22,7 @@ interface Props {
   children?: ReactNode
 }
 
-export function ConfigPanelProvider({ children }: Props) {
+export const ConfigPanelProvider: FC<Props> = ({ children }) => {
   const componentDsl = useSelector((state) => {
     const componentId = getSelectedWidgetStates(state as any)
     return getWidgetStateById(state as any, componentId[0]) ?? null
@@ -92,4 +93,4 @@ export function ConfigPanelProvider({ children }: Props) {
   )
 }
 
-export default ConfigPanelProvider
+ConfigPanelProvider.displayName = "ConfigPanelProvider"

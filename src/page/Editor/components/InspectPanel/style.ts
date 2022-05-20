@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 
@@ -7,7 +7,7 @@ export const publicPaddingCss = css`
   box-sizing: border-box;
 `
 
-export function applyPaddingStyle(isInList?: boolean) {
+export function applyPaddingStyle(isInList?: boolean): SerializedStyles {
   return isInList
     ? css`
         flex: 2;
@@ -27,7 +27,7 @@ export const ListLabelCss = css`
   flex: 1;
 `
 
-export function applyLabelStyle(isInList?: boolean) {
+export function applyLabelStyle(isInList?: boolean): SerializedStyles {
   return isInList ? ListLabelCss : baseLabelCss
 }
 
@@ -66,7 +66,7 @@ export const panelBarTitleCss = css`
   font-size: 14px;
 `
 
-export function panelBarOpenedIconCss(isOpened: boolean) {
+export function panelBarOpenedIconCss(isOpened: boolean): SerializedStyles {
   const rotate = isOpened
     ? ""
     : css`
@@ -94,7 +94,7 @@ export const panelBarItemAnimation: Variants = {
 export const applySetterWrapperStyle = (
   isFullWidth: boolean = false,
   useCustomLabel: boolean = false,
-) => {
+): SerializedStyles => {
   return useCustomLabel
     ? css``
     : isFullWidth

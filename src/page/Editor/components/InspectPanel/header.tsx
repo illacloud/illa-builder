@@ -2,11 +2,11 @@ import { FC, useContext } from "react"
 import { MoreIcon } from "@illa-design/icon"
 import { panelHeaderWrapperCss, panelHeaderIconWrapperCss } from "./style"
 import { Trigger } from "@illa-design/trigger"
-import ActionMenu from "./actionMenu"
+import { ActionMenu } from "./actionMenu"
 import { HeaderProps } from "./interface"
 import { ConfigPanelContext } from "./context"
 
-const PanelHeader: FC<HeaderProps> = (props) => {
+export const PanelHeader: FC<HeaderProps> = (props) => {
   const { handleUpdateDsl } = useContext(ConfigPanelContext)
 
   return (
@@ -31,4 +31,4 @@ const PanelHeader: FC<HeaderProps> = (props) => {
   )
 }
 
-export default PanelHeader
+PanelHeader.displayName = "PanelHeader"
