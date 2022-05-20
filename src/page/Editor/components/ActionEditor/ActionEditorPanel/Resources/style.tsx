@@ -8,7 +8,6 @@ export const ConfigContainerCSS = css`
   flex-direction: column;
   gap: 16px;
   white-space: nowrap;
-  overflow: auto;
 `
 
 export const GridRowContainerCSS = css`
@@ -37,10 +36,9 @@ export const SplitLineCSS = css`
 
 export const LabelTextCSS = css`
   display: flex;
-  align-items: center;
   justify-content: end;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 32px;
   font-weight: 500;
   text-align: right;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};

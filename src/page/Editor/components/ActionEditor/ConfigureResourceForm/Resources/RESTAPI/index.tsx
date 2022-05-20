@@ -15,7 +15,6 @@ import {
   DescriptionCSS,
   SplitLineCSS,
   GroupTitleCSS,
-  EmptyFillingCSS,
   CheckboxCSS,
   ErrorMessageCSS,
   GridRowContainerCSS,

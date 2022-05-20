@@ -1,28 +1,33 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
 import { Divider } from "@illa-design/divider"
+import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
+import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
+import { Body } from "./Body"
 import {
   ConfigContainerCSS,
   DescriptionCSS,
   GridRowContainerCSS,
   LabelTextCSS,
-  applyGridColIndex
+  applyGridColIndex,
 } from "../style"
 import { ActionTypeCSS } from "./style"
 import { RESTAPIPanelProps } from "./interface"
-import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
-
 
 export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
+  const [method, setMethod] = useState("GET")
+  const hasBody = method.indexOf("GET") === -1
   return (
     <div css={ConfigContainerCSS}>
       <div css={GridRowContainerCSS}>
         <label css={LabelTextCSS}>Action Type</label>
         <div css={ActionTypeCSS}>
           <Select
-            value={"GET"}
-            options={["GET", "POST", "PUT", "DELETE", "PATCh"]}
+            value={method}
+            onChange={setMethod}
+            options={["GET", "POST", "PUT", "DELETE", "PATCH"]}
             size={"small"}
           />
           <Input
@@ -37,23 +42,31 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
 
       <div css={GridRowContainerCSS}>
         <label css={LabelTextCSS}>URL Parameters</label>
+        <FieldArray />
       </div>
 
       <div css={GridRowContainerCSS}>
         <label css={LabelTextCSS}>Headers</label>
+        <FieldArray />
       </div>
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Body</label>
-      </div>
+      {hasBody && (
+        <div css={GridRowContainerCSS}>
+          <label css={LabelTextCSS}>Body</label>
+          <Body />
+        </div>
+      )}
 
       <div css={GridRowContainerCSS}>
         <label css={LabelTextCSS}>Cookies</label>
+        <FieldArray />
       </div>
 
       <Transformer />
 
       <Divider />
+
+      <EventHandler />
     </div>
   )
 }
