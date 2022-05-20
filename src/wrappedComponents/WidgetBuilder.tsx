@@ -1,6 +1,9 @@
 import { CONTAINER_WIDGET_CONFIG, ContainerWidget } from "./ContainerWidget"
 import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
 import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
+import { TEXT_WIDGET_CONFIG, WrappedTextWidget } from "./Text"
+import { IMAGE_WIDGET_CONFIG, WrappedImageWidget } from "./Image"
+import { SWITCH_WIDGET_CONFIG, WrappedSwitchWidget } from "./Switch"
 
 const WidgetConfig = {
   CONTAINER_WIDGET: {
@@ -15,6 +18,19 @@ const WidgetConfig = {
     widget: TestWidget,
     config: TEST_WIDGET_CONFIG,
   },
+  TEXT_WIDGET: {
+    widget: WrappedTextWidget,
+    config: TEXT_WIDGET_CONFIG,
+  },
+  IMAGE_WIDGET: {
+    widget: WrappedImageWidget,
+    config: IMAGE_WIDGET_CONFIG,
+  },
+  SWITCH_WIDGET: {
+    widget: WrappedSwitchWidget,
+    config: SWITCH_WIDGET_CONFIG,
+  },
+
   // BUTTON_WIDGET: {
   //   widget: ButtonWidget,
   //   config: BUTTON_WIDGET_CONFIG,

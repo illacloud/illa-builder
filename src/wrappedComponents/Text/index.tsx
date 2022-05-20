@@ -4,6 +4,7 @@ import { TextProps } from "./interface"
 import { applyTextCss, textContainerCss } from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { withParser } from "../parserHOC"
 
 const transLink: ShowdownExtension = {
   type: "output",
@@ -11,16 +12,29 @@ const transLink: ShowdownExtension = {
   replace: `<a  href='$1' >$1</a>`,
 }
 
-export const Text: FC<TextProps> = (props) => {
+export const TEXT_WIDGET_CONFIG = {
+  type: "TEXT_WIDGET",
+  defaults: {
+    rows: 50,
+    columns: 500,
+    widgetName: "text",
+    version: "0.0.1",
+    value: "This is a text",
+    horizontalAlign: "start",
+    verticalAlign: "top",
+    disableMarkdown: false,
+  },
+}
+
+export const Text: FC<TextProps> = (props: TextProps) => {
   const {
-    value = `👏🏻 **welcome to illa-builder** <https://github.com/illa-family/illa-builder>`,
+    value = "This is a text",
     disableMarkdown = false,
     horizontalAlign = "start",
     verticalAlign = "top",
     linkColor = globalColor(`--${illaPrefix}-blue-05`),
-    backgroundColor,
+    backgroundColor = "",
     textColor = globalColor(`--${illaPrefix}-grayBlue-05`),
-    ...res
   } = props
 
   const alignCss = css`
@@ -29,7 +43,7 @@ export const Text: FC<TextProps> = (props) => {
   `
 
   return (
-    <div {...res} css={css(textContainerCss, alignCss)}>
+    <div css={css(textContainerCss, alignCss)}>
       {disableMarkdown ? (
         <MarkdownView
           css={css`
@@ -45,4 +59,6 @@ export const Text: FC<TextProps> = (props) => {
   )
 }
 
-Text.displayName = "Text"
+export const WrappedTextWidget = withParser(Text)
+
+WrappedTextWidget.displayName = "TextWidget"
