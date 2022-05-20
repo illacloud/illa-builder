@@ -1,8 +1,8 @@
 import { FC, HTMLAttributes, useRef } from "react"
 import { useSelector } from "react-redux"
 import { CanvasWidget } from "@/wrappedComponents/CanvasWidget"
+import { getEditorDsl } from "@/redux/selectors/editorSelectors/dslSelectors"
 import { CanvasStyle } from "./style"
-import { getEditorDsl } from "../../../../redux/selectors/editorSelectors/dslSelectors"
 
 interface CanvasContainerProps extends HTMLAttributes<HTMLDivElement> {}
 

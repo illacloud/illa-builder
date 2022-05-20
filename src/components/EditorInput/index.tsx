@@ -14,11 +14,18 @@ import "codemirror/addon/hint/show-hint.js"
 import "codemirror/addon/hint/javascript-hint.js"
 import "codemirror/addon/hint/sql-hint.js"
 import "codemirror/addon/edit/closebrackets"
+import "codemirror/addon/display/placeholder"
 
 import { applyCMCss } from "./style"
 
 export const EditorInput: FC<EditorInputProps> = (props) => {
-  const { mode, lineNumbers = true, height = "auto" } = props
+  const {
+    _css,
+    mode,
+    lineNumbers = true,
+    height = "auto",
+    placeholder = "input sth",
+  } = props
 
   const targetRef = useRef<HTMLDivElement>(null)
 
@@ -36,6 +43,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
         completeSingle: false,
       },
       extraKeys: { "Shift+Q": "autocomplete" },
+      placeholder,
     })
 
     const ignoreStr = ",#,!,-,=,@,$,%,&,+,;,(,),*"
@@ -67,7 +75,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
     })
   }, [])
 
-  return <div ref={targetRef} css={applyCMCss(height)} />
+  return <div ref={targetRef} css={css(applyCMCss(height), _css)} />
 }
 
 EditorInput.displayName = "EditorInput"
