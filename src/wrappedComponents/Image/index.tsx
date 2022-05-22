@@ -1,8 +1,8 @@
 import { Image } from "@illa-design/image"
 import { FC } from "react"
 import { WrappedImageProps } from "./interface"
-import { Tooltip } from "@illa-design/tooltip"
 import { withParser } from "../parserHOC"
+import { TooltipWrapper } from "../TooltipWrapper"
 
 export const IMAGE_WIDGET_CONFIG = {
   type: "IMAGE_WIDGET",
@@ -18,12 +18,10 @@ export const IMAGE_WIDGET_CONFIG = {
 export const WrappedImage: FC<WrappedImageProps> = (props) => {
   const { src, altText, radius, tooltipText, width, height } = props
   return (
-    <Tooltip
-      content={tooltipText}
+    <TooltipWrapper
+      tooltipText={tooltipText}
       disabled={!tooltipText}
       position="top"
-      showArrow={false}
-      autoFitPosition={false}
     >
       <Image
         fallbackSrc={src}
@@ -32,7 +30,7 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
         height={height}
         width={width}
       />
-    </Tooltip>
+    </TooltipWrapper>
   )
 }
 

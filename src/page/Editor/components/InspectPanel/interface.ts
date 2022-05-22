@@ -39,6 +39,8 @@ export interface PanelFieldConfig extends PanelLabelProps {
   isFullWidth?: boolean
   defaultValue?: any
   placeholder?: string
+  shown?: (value: any) => boolean
+  bindAttrName?: string
   // events?:event[] // TODO:
 }
 

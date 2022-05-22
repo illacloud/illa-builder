@@ -13,6 +13,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
   const textConfig = widgetBuilder("TEXT_WIDGET").config as any
   const imageConfig = widgetBuilder("IMAGE_WIDGET").config as any
   const switchConfig = widgetBuilder("SWITCH_WIDGET").config as any
+  const buttonConfig = widgetBuilder("BUTTON_WIDGET").config as any
   const defaultList: ComponentSessionProps[] = [
     {
       title: "global",
@@ -27,7 +28,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
         { id: "03", name: "Text", icon: <SearchIcon />, ...textConfig },
         { id: "04", name: "Image ", icon: <SearchIcon />, ...imageConfig },
         { id: "05", name: "Switch", icon: <SearchIcon />, ...switchConfig },
-        { id: "06", name: "component 06", icon: <SearchIcon /> },
+        { id: "06", name: "Button", icon: <SearchIcon />, ...buttonConfig },
       ],
     },
     {

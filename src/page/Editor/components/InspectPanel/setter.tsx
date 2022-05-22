@@ -1,8 +1,9 @@
-import { FC, useMemo } from "react"
+import { FC, useContext, useMemo } from "react"
 import { applyPaddingStyle, applySetterWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
 import { getSetterByType } from "../PanelSetters"
 import { PanelLabel } from "./label"
+import { ConfigPanelContext } from "./context"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -12,8 +13,18 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     labelName,
     labelDesc,
     useCustomLabel = false,
+    shown,
+    bindAttrName,
   } = props
   const Comp = getSetterByType(setterType)
+
+  const { tempProps } = useContext(ConfigPanelContext)
+
+  const canRenderSetter = useMemo(() => {
+    if (!bindAttrName || !shown) return true
+    const bindAttrNameValue = tempProps[bindAttrName]
+    return shown(bindAttrNameValue)
+  }, [shown, tempProps])
 
   const renderLabel = useMemo(() => {
     return !useCustomLabel && labelName ? (
@@ -33,12 +44,12 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     ) : null
   }, [Comp, isInList, props])
 
-  return (
+  return canRenderSetter ? (
     <div css={applySetterWrapperStyle(isFullWidth, useCustomLabel)}>
       {renderLabel}
       {renderSetter}
     </div>
-  )
+  ) : null
 }
 
 Setter.displayName = "Setter"

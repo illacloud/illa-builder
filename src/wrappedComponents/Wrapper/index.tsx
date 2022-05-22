@@ -10,7 +10,6 @@ export const Wrapper: FC<WrapperProps> = (props) => {
     align-items: center;
     width: ${w ?? "auto"};
     height: ${h ?? "auto"};
-    border: dashed 0.5px pink;
   `
 
   return (
