@@ -10,47 +10,53 @@ const OptionsStyle = {
   color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
-export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
+export const INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "radioGroup-options",
+    id: "input-options",
     groupName: "Options",
     children: [
       {
-        id: "radioGroup-basic-defaultValue",
+        id: "input-basic-defaultValue",
         labelName: "Default Value",
         attrName: "value",
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: "input-basic-placeholder",
+        labelName: "Placeholder",
+        attrName: "placeholder",
         setterType: "INPUT_SETTER",
       },
     ],
   },
   {
-    id: "radioGroup-label",
+    id: "input-label",
     groupName: "Label",
     children: [
       {
-        id: "radioGroup-label-label",
+        id: "input-label-label",
         labelName: "Label",
         attrName: "label",
         setterType: "INPUT_SETTER",
       },
       {
-        id: "radioGroup-label-caption",
+        id: "input-label-caption",
         labelName: "Caption",
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
       },
       {
-        id: "radioGroup-label-position",
+        id: "input-label-position",
         labelName: "Position",
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
           { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Top</div>, value: "top" },
+          { label: <div style={OptionsStyle}>Right</div>, value: "right" },
         ],
       },
       {
-        id: "radioGroup-label-alignment",
+        id: "input-label-alignment",
         labelName: "Alignment",
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
@@ -76,18 +82,48 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-validation",
+    id: "input-validation",
     groupName: "Validation",
     children: [
       {
-        id: "radioGroup-validation-required",
+        id: "input-validation-required",
         labelName: "Required field",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "required",
       },
       {
-        id: "radioGroup-validation-hide-message",
+        id: "input-validation-pattern",
+        labelName: "Pattern",
+        setterType: "INPUT_SETTER",
+        attrName: "pattern",
+      },
+      {
+        id: "input-validation-regex",
+        labelName: "Regex",
+        setterType: "INPUT_SETTER",
+        attrName: "regex",
+      },
+      {
+        id: "input-validation-max",
+        labelName: "Max length",
+        setterType: "INPUT_SETTER",
+        attrName: "maxLength",
+      },
+      {
+        id: "input-validation-min",
+        labelName: "min Length",
+        setterType: "INPUT_SETTER",
+        attrName: "minLength",
+      },
+      {
+        id: "input-validation-custom",
+        labelName: "Custom rule",
+        setterType: "INPUT_SETTER",
+        attrName: "custom rule",
+      },
+      {
+        id: "input-validation-hide-message",
         labelName: "Hide validation message",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
@@ -96,13 +132,21 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-interaction",
+    id: "input-interaction",
     groupName: "Interaction",
     children: [
       {
-        id: "radioGroup-interaction-disabled",
+        id: "input-interaction-disabled",
         labelName: "Disabled",
         attrName: "disabled",
+        setterType: "INPUT_SETTER",
+        placeholder: "false",
+        defaultValue: false,
+      },
+      {
+        id: "input-interaction-readonly",
+        labelName: "Readonly",
+        attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "false",
         defaultValue: false,
@@ -110,11 +154,37 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-Adornments",
+    id: "input-Adornments",
     groupName: "Adornments",
     children: [
       {
-        id: "radioGroup-adornments-tooltip",
+        id: "input-adornments-showClear",
+        labelName: "Show clear button",
+        attrName: "allowClear",
+        useCustomLabel: true,
+        setterType: "DYNAMIC_SWITCH_SETTER",
+      },
+      {
+        id: "input-adornments-showChartCount",
+        labelName: "Show character count",
+        attrName: "showCharacterCount",
+        useCustomLabel: true,
+        setterType: "DYNAMIC_SWITCH_SETTER",
+      },
+      {
+        id: "input-adornments-prefixText",
+        labelName: "Prefix text",
+        attrName: "prefixText",
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: "input-adornments-suffixText",
+        labelName: "Suffix text",
+        attrName: "suffixText",
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: "input-adornments-tooltip",
         labelName: "Tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
@@ -122,51 +192,15 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-layout",
+    id: "input-layout",
     groupName: "Layout",
     children: [
       {
-        id: "radioGroup-layout-hidden",
+        id: "input-layout-hidden",
         labelName: "Hidden",
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
-      },
-    ],
-  },
-  {
-    id: "radioGroup-style",
-    groupName: "Style",
-    children: [
-      {
-        id: "radioGroup-style-color",
-        labelName: "Color",
-        setterType: "INPUT_SETTER",
-        attrName: "checkedBackgroundColor",
-      },
-      {
-        id: "radioGroup-style-direction",
-        labelName: "Direction",
-        setterType: "RADIO_GROUP_SETTER",
-        attrName: "direction",
-        options: [
-          {
-            label: (
-              <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
-              </div>
-            ),
-            value: "vertical",
-          },
-          {
-            label: (
-              <div style={OptionsStyle}>
-                <AlignmentRightIcon />
-              </div>
-            ),
-            value: "horizontal",
-          },
-        ],
       },
     ],
   },

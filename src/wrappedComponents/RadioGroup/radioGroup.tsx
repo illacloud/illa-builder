@@ -42,4 +42,6 @@ const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
   )
 }
 
+WrappedRadioGroup.displayName = "RadioGroupWidget"
+
 export const RadioGroupWidget = withParser(WrappedRadioGroup)

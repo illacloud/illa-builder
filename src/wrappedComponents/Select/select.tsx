@@ -2,7 +2,7 @@ import { FC } from "react"
 import { SelectProps, WrappedSelectProps } from "./interface"
 import { Wrapper } from "../Wrapper"
 import { Select } from "@illa-design/select"
-import Label from "../Label"
+import LabelWrapper from "../LabelWrapper"
 import { withParser } from "../parserHOC"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
@@ -16,23 +16,27 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     labelWidthUnit,
     required,
     hidden,
+    tooltipText,
   } = props
   const selectProps: SelectProps = props
   return (
     <Wrapper>
-      <Label
+      <LabelWrapper
         label={label}
         labelAlign={labelAlign}
-        labelCaption={labelCaption}
-        labelPosition={labelPosition}
         labelWidth={labelWidth}
+        labelCaption={labelCaption}
         labelWidthUnit={labelWidthUnit}
+        labelPosition={labelPosition}
         required={required}
-        hidden={hidden}
-      />
-      <Select allowClear={showClear} {...selectProps} />
+        tooltipText={tooltipText}
+      >
+        <Select allowClear={showClear} {...selectProps} />
+      </LabelWrapper>
     </Wrapper>
   )
 }
+
+WrappedSelect.displayName = "SelectWidget"
 
 export const SelectWidget = withParser(WrappedSelect)

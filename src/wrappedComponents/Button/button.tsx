@@ -69,8 +69,6 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
   )
 }
 
+WrappedButton.displayName = "ButtonWidget"
+
 export const ButtonWidget = withParser(WrappedButton)
-
-ButtonWidget.displayName = "TextWidget"
-
-WrappedButton.displayName = "WrappedButton"

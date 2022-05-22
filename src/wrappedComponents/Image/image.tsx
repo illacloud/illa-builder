@@ -23,5 +23,6 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
   )
 }
 
+WrappedImage.displayName = "ImageWidget"
+
 export const ImageWidget = withParser(WrappedImage)
-ImageWidget.displayName = "ImageWidget"

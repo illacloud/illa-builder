@@ -10,7 +10,7 @@ const OptionsStyle = {
   color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
-export const SelectPanelConfig: PanelConfig[] = [
+export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "select-options",
     groupName: "Options",
@@ -116,7 +116,7 @@ export const SelectPanelConfig: PanelConfig[] = [
       {
         id: "select-interaction-readonly",
         labelName: "Readonly",
-        attrName: "readonly",
+        attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "false",
         defaultValue: false,

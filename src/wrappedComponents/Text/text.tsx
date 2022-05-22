@@ -45,6 +45,6 @@ export const Text: FC<TextProps> = (props: TextProps) => {
   )
 }
 
-export const TextWidget = withParser(Text)
+Text.displayName = "TextWidget"
 
-TextWidget.displayName = "TextWidget"
+export const TextWidget = withParser(Text)

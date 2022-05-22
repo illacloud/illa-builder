@@ -15,7 +15,7 @@ const AlignmentOptionStyle = {
   alignItems: "center",
 }
 
-export const TextPanelConfig: PanelConfig[] = [
+export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "text-basic",
     groupName: "Basic",

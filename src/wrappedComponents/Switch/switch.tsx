@@ -42,4 +42,6 @@ export const WrappedSwitch: FC<SwitchProps> = (props) => {
   )
 }
 
+WrappedSwitch.displayName = "SwitchWidget"
+
 export const SwitchWidget = withParser(WrappedSwitch)

@@ -8,7 +8,7 @@ const AlignmentOptionStyle = {
   alignItems: "center",
 }
 
-export const ButtonPanelConfig: PanelConfig[] = [
+export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "button-basic",
     groupName: "Basic",

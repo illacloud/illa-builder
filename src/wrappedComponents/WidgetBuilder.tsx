@@ -1,15 +1,28 @@
 import { CONTAINER_WIDGET_CONFIG, ContainerWidget } from "./ContainerWidget"
 import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
 import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
-import { TEXT_WIDGET_CONFIG, TextWidget, TextPanelConfig } from "./Text"
-import { IMAGE_WIDGET_CONFIG, ImageWidget, ImagePanelConfig } from "./Image"
-import { SWITCH_WIDGET_CONFIG, SwitchWidget, SwitchPanelConfig } from "./Switch"
-import { BUTTON_WIDGET_CONFIG, ButtonWidget, ButtonPanelConfig } from "./Button"
-import { SELECT_WIDGET_CONFIG, SelectWidget, SelectPanelConfig } from "./Select"
+import { TEXT_WIDGET_CONFIG, TextWidget, TEXT_PANEL_CONFIG } from "./Text"
+import { IMAGE_WIDGET_CONFIG, ImageWidget, IMAGE_PANEL_CONFIG } from "./Image"
+import {
+  SWITCH_WIDGET_CONFIG,
+  SwitchWidget,
+  SWITCH_PANEL_CONFIG,
+} from "./Switch"
+import {
+  BUTTON_WIDGET_CONFIG,
+  ButtonWidget,
+  BUTTON_PANEL_CONFIG,
+} from "./Button"
+import {
+  SELECT_WIDGET_CONFIG,
+  SelectWidget,
+  SELECT_PANEL_CONFIG,
+} from "./Select"
+import { INPUT_WIDGET_CONFIG, InputWidget, INPUT_PANEL_CONFIG } from "./Input"
 import { WidgetConfigs } from "./interface"
 import {
   RADIO_GROUP_WIDGET_CONFIG,
-  RadioGroupPanelConfig,
+  RADIO_GROUP_PANEL_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
 
@@ -32,32 +45,37 @@ const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
     widget: TextWidget,
     config: TEXT_WIDGET_CONFIG,
-    panelConfig: TextPanelConfig,
+    panelConfig: TEXT_PANEL_CONFIG,
   },
   IMAGE_WIDGET: {
     widget: ImageWidget,
     config: IMAGE_WIDGET_CONFIG,
-    panelConfig: ImagePanelConfig,
+    panelConfig: IMAGE_PANEL_CONFIG,
   },
   SWITCH_WIDGET: {
     widget: SwitchWidget,
     config: SWITCH_WIDGET_CONFIG,
-    panelConfig: SwitchPanelConfig,
+    panelConfig: SWITCH_PANEL_CONFIG,
   },
   BUTTON_WIDGET: {
     widget: ButtonWidget,
     config: BUTTON_WIDGET_CONFIG,
-    panelConfig: ButtonPanelConfig,
+    panelConfig: BUTTON_PANEL_CONFIG,
   },
   SELECT_WIDGET: {
     widget: SelectWidget,
     config: SELECT_WIDGET_CONFIG,
-    panelConfig: SelectPanelConfig,
+    panelConfig: SELECT_PANEL_CONFIG,
   },
   RADIO_GROUP_WIDGET: {
     widget: RadioGroupWidget,
     config: RADIO_GROUP_WIDGET_CONFIG,
-    panelConfig: RadioGroupPanelConfig,
+    panelConfig: RADIO_GROUP_PANEL_CONFIG,
+  },
+  INPUT_WIDGET: {
+    widget: InputWidget,
+    config: INPUT_WIDGET_CONFIG,
+    panelConfig: INPUT_PANEL_CONFIG,
   },
 }
 
