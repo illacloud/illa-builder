@@ -4,7 +4,7 @@ import { ComponentModel } from "@/wrappedComponents/interface"
 import { iconCss, itemContainerCss, nameCss } from "./style"
 
 export const ComponentItem: FC<ComponentModel> = (props) => {
-  const { name, icon, type = "", defaults, ...rest } = props
+  const { widgetName, icon, type = "", defaults, ...rest } = props
 
   const [dragCollectProps, dragRef, dragPreview] = useDrag(
     () => ({
@@ -30,7 +30,7 @@ export const ComponentItem: FC<ComponentModel> = (props) => {
   return (
     <div css={itemContainerCss} ref={dragRef}>
       <span css={iconCss}>{icon}</span>
-      <span css={nameCss}>{name}</span>
+      <span css={nameCss}>{widgetName}</span>
     </div>
   )
 }
