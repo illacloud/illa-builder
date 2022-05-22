@@ -21,8 +21,10 @@ export const TEXT_WIDGET_CONFIG = {
     version: "0.0.1",
     value: "This is a text",
     horizontalAlign: "start",
-    verticalAlign: "top",
+    verticalAlign: "start",
     disableMarkdown: false,
+    width: "200px",
+    height: "20px",
   },
 }
 
@@ -31,7 +33,7 @@ export const Text: FC<TextProps> = (props: TextProps) => {
     value = "This is a text",
     disableMarkdown = false,
     horizontalAlign = "start",
-    verticalAlign = "top",
+    verticalAlign = "start",
     linkColor = globalColor(`--${illaPrefix}-blue-05`),
     backgroundColor = "",
     textColor = globalColor(`--${illaPrefix}-grayBlue-05`),
