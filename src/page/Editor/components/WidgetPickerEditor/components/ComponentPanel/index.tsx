@@ -8,8 +8,8 @@ import { Empty } from "./Empty"
 import { buildComponentList } from "@/wrappedComponents/ComponentListBuilder"
 
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
-    const defaultList: ComponentSessionProps[] = buildComponentList()
-    const { className, componentList = defaultList } = props
+  const defaultList: ComponentSessionProps[] = buildComponentList()
+  const { className, componentList = defaultList } = props
 
   const [searchRes, setSearchRes] = useState<
     ComponentSessionProps[] | undefined
