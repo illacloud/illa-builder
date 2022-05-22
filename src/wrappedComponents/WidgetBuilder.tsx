@@ -5,6 +5,7 @@ import { TEXT_WIDGET_CONFIG, WrappedTextWidget } from "./Text"
 import { IMAGE_WIDGET_CONFIG, WrappedImageWidget } from "./Image"
 import { SWITCH_WIDGET_CONFIG, WrappedSwitchWidget } from "./Switch"
 import { BUTTON_WIDGET_CONFIG, WrappedButtonWidget } from "./Button"
+import { SELECT_WIDGET_CONFIG, WrappedSelectWidget } from "./Select"
 
 const WidgetConfig = {
   CONTAINER_WIDGET: {
@@ -34,6 +35,10 @@ const WidgetConfig = {
   BUTTON_WIDGET: {
     widget: WrappedButtonWidget,
     config: BUTTON_WIDGET_CONFIG,
+  },
+  SELECT_WIDGET: {
+    widget: WrappedSelectWidget,
+    config: SELECT_WIDGET_CONFIG,
   },
 
   // BUTTON_WIDGET: {
