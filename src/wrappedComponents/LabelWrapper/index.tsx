@@ -37,6 +37,7 @@ const LabelWrapper: FC<LabelWrapperProps> = (props) => {
           labelCaption={labelCaption}
           labelWidthUnit={labelWidthUnit}
           labelPosition={labelPosition}
+          hasTooltip={!!tooltipText}
         />
       </Tooltip>
 

@@ -11,4 +11,5 @@ export default interface LabelProps {
   labelWidth?: number
   labelWidthUnit?: "px" | "%" | "col"
   hidden?: boolean
+  hasTooltip?: boolean
 }
