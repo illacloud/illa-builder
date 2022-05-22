@@ -7,6 +7,11 @@ import { SWITCH_WIDGET_CONFIG, SwitchWidget, SwitchPanelConfig } from "./Switch"
 import { BUTTON_WIDGET_CONFIG, ButtonWidget, ButtonPanelConfig } from "./Button"
 import { SELECT_WIDGET_CONFIG, SelectWidget, SelectPanelConfig } from "./Select"
 import { WidgetConfigs } from "./interface"
+import {
+  RADIO_GROUP_WIDGET_CONFIG,
+  RadioGroupPanelConfig,
+  RadioGroupWidget,
+} from "./RadioGroup"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -48,6 +53,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: SelectWidget,
     config: SELECT_WIDGET_CONFIG,
     panelConfig: SelectPanelConfig,
+  },
+  RADIO_GROUP_WIDGET: {
+    widget: RadioGroupWidget,
+    config: RADIO_GROUP_WIDGET_CONFIG,
+    panelConfig: RadioGroupPanelConfig,
   },
 }
 
