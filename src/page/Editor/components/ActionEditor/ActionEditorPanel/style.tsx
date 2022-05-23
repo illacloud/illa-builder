@@ -3,12 +3,14 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ContainerCSS = css`
+  display: flex;
+  flex-direction: column;
   flex: 1;
 `
 
 export const PanelScrollCSS = css`
   overflow: auto;
-  height: 100%;
+  flex: 1;
 `
 
 export const HeaderCSS = css`
@@ -30,7 +32,7 @@ export const TitleContainerCSS = css`
   height: 32px;
   line-height: 32px;
   transition: all 0.2s ease-in-out;
-  padding: 0px 19px 0 16px;
+  padding: 0 19px 0 16px;
 
   &:hover {
     cursor: pointer;
@@ -207,10 +209,16 @@ export const HandlerMoreIconCSS = css`
   padding: 0 9px;
   box-sizing: border-box;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-left-width: 0;
   display: flex;
   align-items: center;
   height: 100%;
   font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
 `

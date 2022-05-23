@@ -78,7 +78,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           />
 
           <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
-            <Option onClick={createResource}>Create a new resouce</Option>
+            <Option onClick={createResource}>Create a new resource</Option>
             <Option>SQL</Option>
             <Option>REST API</Option>
           </Select>
