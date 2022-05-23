@@ -42,7 +42,8 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       </button>
       <button
         onClick={() => {
-          dispatch(changeDemoValueA())
+          // dispatch(changeDemoValueA())
+          dispatch({ type: "incrementAsync_demo_saga" })
         }}
       >
         changeDemoValueA
