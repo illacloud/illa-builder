@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { applySetterStyle } from "../style"
+import { applySetterStyle } from "@/page/Editor/components/PanelSetters/style"
 
 export const applyInputSetterWrapperStyle = (
   isFullWidth: boolean = false,

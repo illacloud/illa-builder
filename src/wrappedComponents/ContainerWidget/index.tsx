@@ -12,7 +12,7 @@ import {
 import { getTargetOffset } from "@/wrappedComponents/utils"
 import { ContainerWidgetProps } from "./interface"
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "../interface"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 interface PanelDrag {
   type: string

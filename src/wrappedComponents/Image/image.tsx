@@ -1,8 +1,8 @@
 import { Image } from "@illa-design/image"
 import { FC } from "react"
 import { WrappedImageProps } from "./interface"
-import { withParser } from "../parserHOC"
-import { TooltipWrapper } from "../TooltipWrapper"
+import { withParser } from "@/wrappedComponents/parserHOC"
+import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 export const WrappedImage: FC<WrappedImageProps> = (props) => {
   const { src, altText, radius, tooltipText, width, height } = props

@@ -2,7 +2,7 @@ import { FC } from "react"
 import { CanvasWidgetProps } from "./interface"
 import { ContainerWidget } from "@/wrappedComponents/ContainerWidget"
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "../interface"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 export const CANVAS_WIDGET_CONFIG: ComponentModel = {
   type: "CANVAS_WIDGET",

@@ -1,4 +1,4 @@
-import { BaseSetter } from "../interface"
+import { BaseSetter } from "@/page/Editor/components/PanelSetters/interface"
 import { PanelLabelProps } from "@/page/Editor/components/InspectPanel/interface"
 
 export interface BaseSwitchProps extends BaseSetter {

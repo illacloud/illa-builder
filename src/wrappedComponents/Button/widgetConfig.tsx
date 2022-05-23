@@ -1,6 +1,6 @@
 import { SearchIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ComponentModel } from "../interface"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 export const BUTTON_WIDGET_CONFIG: ComponentModel = {
   type: "BUTTON_WIDGET",

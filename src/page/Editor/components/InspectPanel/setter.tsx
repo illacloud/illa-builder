@@ -1,7 +1,7 @@
 import { FC, useContext, useMemo } from "react"
 import { applyPaddingStyle, applySetterWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
-import { getSetterByType } from "../PanelSetters"
+import { getSetterByType } from "@/page/Editor/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { ConfigPanelContext } from "./context"
 
