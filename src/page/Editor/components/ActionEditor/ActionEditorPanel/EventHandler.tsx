@@ -2,19 +2,36 @@ import { useState } from "react"
 import { Input } from "@illa-design/input"
 import { MoreIcon, PlusIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
+import { Dropdown } from "@illa-design/dropdown"
 import { v4 as uuid } from "uuid"
 import {
   DashBorderBottomCSS,
   GridHandlersCSS,
   HandlerMoreIconCSS,
   HandlerTitleCSS,
+  MoreListCSS,
+  MoreListItemCSS,
+  MoreListItemWarnCSS,
   NewBtnCSS,
   PanelSubBarCSS,
   SectionTitleCSS,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 
 export const EventHandler = () => {
-  const [handlerList, setHandlerList] = useState([{ key: uuid() }])
+  const [successHandlerList, setSuccessHandlerList] = useState([
+    { key: uuid() },
+  ])
+  const [failureHandlerList, setFailureHandlerList] = useState([
+    { key: uuid() },
+  ])
+
+  const dropList = (
+    <ul css={MoreListCSS}>
+      <li css={MoreListItemCSS}>Duplicate</li>
+      <li css={MoreListItemWarnCSS}>Delete</li>
+    </ul>
+  )
+
   return (
     <>
       <div>
@@ -23,15 +40,24 @@ export const EventHandler = () => {
           <label css={[SectionTitleCSS, DashBorderBottomCSS]}>Success</label>
         </div>
         <div css={GridHandlersCSS}>
-          {handlerList.map((item) => (
+          {successHandlerList.map((item) => (
             <Input
               key={item.key}
               addonAfter={{
                 custom: true,
                 render: (
-                  <span css={HandlerMoreIconCSS}>
-                    <MoreIcon />
-                  </span>
+                  <Dropdown
+                    dropList={dropList}
+                    trigger="click"
+                    triggerProps={{
+                      openDelay: 0,
+                      closeDelay: 0,
+                    }}
+                  >
+                    <span css={HandlerMoreIconCSS}>
+                      <MoreIcon />
+                    </span>
+                  </Dropdown>
                 ),
               }}
             />
@@ -44,7 +70,47 @@ export const EventHandler = () => {
             colorScheme="techPurple"
             leftIcon={<PlusIcon />}
             onClick={() => {
-              setHandlerList([...handlerList, { key: uuid() }])
+              setSuccessHandlerList([...successHandlerList, { key: uuid() }])
+            }}
+          >
+            New
+          </Button>
+        </div>
+        <div css={PanelSubBarCSS}>
+          <label css={[SectionTitleCSS, DashBorderBottomCSS]}>Failure</label>
+        </div>
+        <div css={GridHandlersCSS}>
+          {failureHandlerList.map((item) => (
+            <Input
+              key={item.key}
+              addonAfter={{
+                custom: true,
+                render: (
+                  <Dropdown
+                    dropList={dropList}
+                    trigger="click"
+                    triggerProps={{
+                      openDelay: 0,
+                      closeDelay: 0,
+                    }}
+                  >
+                    <span css={HandlerMoreIconCSS}>
+                      <MoreIcon />
+                    </span>
+                  </Dropdown>
+                ),
+              }}
+            />
+          ))}
+        </div>
+        <div css={NewBtnCSS}>
+          <Button
+            variant="text"
+            size="medium"
+            colorScheme="techPurple"
+            leftIcon={<PlusIcon />}
+            onClick={() => {
+              setFailureHandlerList([...failureHandlerList, { key: uuid() }])
             }}
           >
             New

@@ -61,13 +61,13 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
       return false
     }
 
-    editor.on("change", function(editor, change) {
+    editor.on("change", function (editor, change) {
       // autocomplete
       if (change.origin == "+input") {
         var text = change.text
         // no hint
         if (!ignoreToken(text)) {
-          setTimeout(function() {
+          setTimeout(function () {
             editor.execCommand("autocomplete")
           }, 20)
         }

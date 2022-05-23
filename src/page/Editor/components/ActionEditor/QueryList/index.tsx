@@ -272,12 +272,8 @@ export const QueryList: FC<QueryListProps> = (props) => {
           key={"duplicate"}
           title={"Duplicate"}
           css={DuplicateActionCSS}
-        ></MenuItem>
-        <MenuItem
-          key={"delete"}
-          title={"Delete"}
-          css={DeleteActionCSS}
-        ></MenuItem>
+        />
+        <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCSS} />
       </Menu>
     )),
   )

@@ -3,9 +3,9 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ContainerCSS = css`
-  flex: 1;
   display: flex;
   flex-direction: column;
+  flex: 1;
 `
 
 export const PanelScrollCSS = css`
@@ -20,7 +20,7 @@ export const HeaderCSS = css`
   height: 48px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   box-sizing: border-box;
-  `
+`
 
 export const TitleContainerCSS = css`
   display: flex;
@@ -32,17 +32,17 @@ export const TitleContainerCSS = css`
   height: 32px;
   line-height: 32px;
   transition: all 0.2s ease-in-out;
-  padding: 0px 19px 0 16px;
+  padding: 0 19px 0 16px;
 
   &:hover {
-  cursor: pointer;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    cursor: pointer;
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 
     & > svg {
       opacity: 1;
     }
   }
-  `
+`
 
 export const TitleInputContainerCSS = css`
   width: 280px;
@@ -55,13 +55,13 @@ export const TitleInputContainerCSS = css`
 
 export const TitleInputCSS = css`
   & > span {
-  border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
-      `
+`
 
 export const TitleCSS = css`
   display: inline-block;
@@ -75,7 +75,7 @@ export const TitleEditIconCSS = css`
   /* font-size: 14px; */
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  `
+`
 
 export const ActionCSS = css`
   display: flex;
@@ -98,7 +98,7 @@ export const HeaderButtonCSS = css`
   font-size: 14px !important;
 
   & * {
-  font-size: 14px !important;
+    font-size: 14px !important;
   }
 `
 
@@ -114,7 +114,7 @@ export const MoreBtnCSS = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}!important;
   }
-    `
+`
 
 export const RunBtnCSS = css`
   color: ${globalColor(`--${illaPrefix}-techPurple-02`)}!important;
@@ -123,14 +123,14 @@ export const RunBtnCSS = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-techPurple-06`)}!important;
   }
-    `
+`
 
 export const ActionSelectCSS = css`
   height: 32px;
   font-size: 14px;
 
   & > div {
-  padding: 0 16px;
+    padding: 0 16px;
   }
 `
 
@@ -167,20 +167,20 @@ export const EditIconCSS = css`
   &:hover > svg {
     color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   }
-    `
+`
 
 export const SectionTitleCSS = css`
   font-size: 14px;
   line-height: 1.57;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  `
+`
 
 export const HandlerTitleCSS = css`
   ${SectionTitleCSS};
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   padding: 16px 16px 0;
-  `
+`
 
 export const PanelPaddingCSS = css`
   padding: 8px 16px;
@@ -195,7 +195,7 @@ export const NewBtnCSS = css`
 
 export const DashBorderBottomCSS = css`
   border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
-  `
+`
 
 export const GridHandlersCSS = css`
   display: grid;
@@ -209,13 +209,42 @@ export const HandlerMoreIconCSS = css`
   padding: 0 9px;
   box-sizing: border-box;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-left-width: 0;
   display: flex;
   align-items: center;
   height: 100%;
   font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
-  `
+  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+`
+
+export const MoreListCSS = css`
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  width: 184px;
+`
+
+export const MoreListItemCSS = css`
+  padding: 5px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.57;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
+`
+
+export const MoreListItemWarnCSS = css`
+  ${MoreListItemCSS};
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+`
 
 export const MoreBtnMenuCSS = css`
   width: 180px;
@@ -223,8 +252,8 @@ export const MoreBtnMenuCSS = css`
 
 export const DuplicateActionCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
-  `
+`
 
 export const DeleteActionCSS = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
-  `
+`

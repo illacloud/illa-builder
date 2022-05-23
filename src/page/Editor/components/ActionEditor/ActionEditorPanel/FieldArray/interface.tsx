@@ -1,4 +1,4 @@
 export interface FieldArrayProps {
   autoNewField?: boolean
-  hasType?: boolean,
+  hasType?: boolean
 }
