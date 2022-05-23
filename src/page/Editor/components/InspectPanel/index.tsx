@@ -20,7 +20,7 @@ export const InspectPanel: FC = () => {
         meta={{ componentId: "testId", componentType: "testType" }}
       />
       <Divider />
-      <div style={{ maxHeight: "calc(100vh - 150px )", overflow: "scroll" }}>
+      <div style={{ maxHeight: "calc(100vh - 150px )", overflowY: "scroll" }}>
         {fieldFactory(panelConfig, componentDsl.id)}
       </div>
     </div>

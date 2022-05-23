@@ -1,8 +1,8 @@
 import { FC } from "react"
-import { ValidateMessageProps } from "./interface"
 import { invalidateMessageCss } from "./style"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { handleValidateCheck } from "./utils"
+import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
 
 export const InvalidMessage: FC<ValidateMessageProps> = (props) => {
   const { value, hideValidationMessage, customRule, ...res } = props
