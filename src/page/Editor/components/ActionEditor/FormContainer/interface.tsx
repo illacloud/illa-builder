@@ -1,4 +1,7 @@
-import { ApiType, DatabaseType } from "@/page/Editor/components/ActionEditor/interface"
+import {
+  ApiType,
+  DatabaseType,
+} from "@/page/Editor/components/ActionEditor/interface"
 export type ActionType = "select" | "configure" | "edit"
 
 export interface FormContainerProps {

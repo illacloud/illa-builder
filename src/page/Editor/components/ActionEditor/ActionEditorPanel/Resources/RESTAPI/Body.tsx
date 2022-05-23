@@ -48,7 +48,9 @@ export const Body: FC = (props) => {
           <>
             <dd css={DescriptionCSS}>
               Either a binary string, or an object:{" "}
-              <code css={DescriptionCodeCSS}>{`{data: binary string, filename?: string }`}</code>
+              <code
+                css={DescriptionCodeCSS}
+              >{`{data: binary string, filename?: string }`}</code>
             </dd>
             <EditorInput mode="javascript" />
           </>

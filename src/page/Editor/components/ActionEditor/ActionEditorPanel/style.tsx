@@ -252,8 +252,8 @@ export const MoreBtnMenuCSS = css`
 
 export const DuplicateActionCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
-  `
+`
 
 export const DeleteActionCSS = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
-  `
+`
