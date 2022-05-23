@@ -16,6 +16,7 @@ export interface WidgetConfigs {
 }
 
 export type ComponentModel = {
+  id?: string
   widgetName: string
   icon?: string | ReactNode // url
   type?: string //组件类型
