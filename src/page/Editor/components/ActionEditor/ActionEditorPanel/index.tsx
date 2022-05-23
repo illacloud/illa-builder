@@ -1,6 +1,7 @@
-import { FC, useMemo } from "react"
+import { FC, useMemo, useState } from "react"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
+import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
@@ -13,6 +14,7 @@ import {
   selectAllQueryItem,
 } from "@/redux/reducers/actionReducer/queryListReducer"
 import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
+import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
@@ -41,6 +43,9 @@ const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, onEditResource, onCreateResource } = props
+
+  const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
+
   const dispatch = useDispatch()
   const queryItems = useSelector(selectAllQueryItem)
   const currentQueryItemId = useSelector(getActionEditorQueryId)
@@ -65,6 +70,18 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     {
       label: "Run action automatically when inputs change",
       value: 1,
+    },
+  ]
+
+  // TODO: retrieve from created resource
+  const resourceOptions = [
+    {
+      label: "MySQL",
+      value: "MySQL",
+    },
+    {
+      label: "REST API",
+      value: "REST API",
     },
   ]
 
@@ -151,7 +168,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             closeOnClick: true,
             openDelay: 0,
             closeDelay: 0,
-            showArrow: false
+            showArrow: false,
           }}
         >
           <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
@@ -178,17 +195,24 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             css={[ActionSelectCSS, TriggerSelectCSS]}
           />
 
-          <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
-            <Option onClick={createResource}>Create a new resouce</Option>
-            <Option>SQL</Option>
-            <Option>REST API</Option>
+          <Select
+            css={[ActionSelectCSS, ResourceSelectCSS]}
+            value={resourceType}
+            onChange={setResourceType}
+          >
+            <Option onClick={createResource} isSelectOption={false}>Create a new resouce</Option>
+            {resourceOptions.map((o) => (
+              <Option value={o.value}>{o.label}</Option>
+            ))}
           </Select>
           <div css={EditIconCSS} onClick={editResource}>
             <PenIcon />
           </div>
         </div>
 
-        <ResourcePanel />
+        <Divider />
+
+        <ResourcePanel resourceType={resourceType} />
       </div>
     </div>
   )
