@@ -1,4 +1,5 @@
 import { FC, useState } from "react"
+import { v4 as uuidv4 } from "uuid"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
 import { EditorInput } from "@/components/EditorInput"
@@ -15,10 +16,11 @@ import {
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
   const { autoNewField, hasType } = props
+  // TOOD: omit _key when return data
   const getEmptyField = () => {
     return hasType
-      ? { key: "", type: "text", value: "" }
-      : { key: "", value: "" }
+      ? { key: "", type: "text", value: "", _key: uuidv4() }
+      : { key: "", value: "", _key: uuidv4() }
   }
   const [fields, setFields] = useState([getEmptyField()])
   const typeOptions = [
@@ -32,9 +34,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
     setFields(fieldsCopy)
   }
 
-  const fieldList = fields.map(({ key, value, type }, index) => {
+  const fieldList = fields.map(({ key, value, type, _key }, index) => {
     return (
-      <div css={FieldItemCSS} key={index}>
+      <div css={FieldItemCSS} key={_key}>
         {hasType ? (
           <>
             <EditorInput
