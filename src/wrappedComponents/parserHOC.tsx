@@ -12,7 +12,10 @@ export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
     const { hidden } = props
     // TODO: wait to add component parser and labelWrapper
     return (
-      <div hidden={hidden && hidden !== "false"}>
+      <div
+        hidden={hidden && hidden !== "false"}
+        style={{ height: "100%", width: "100%" }}
+      >
         <WrappedComponent {...props} />
       </div>
     )

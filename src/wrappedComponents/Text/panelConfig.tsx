@@ -48,7 +48,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-adornments-startAdornment",
         labelName: "Tooltip",
         labelDesc: "xxxxx",
-        attrName: "labelTooltips",
+        attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
     ],

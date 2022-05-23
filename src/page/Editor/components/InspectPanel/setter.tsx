@@ -18,7 +18,8 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   } = props
   const Comp = getSetterByType(setterType)
 
-  const { tempProps } = useContext(ConfigPanelContext)
+  const { tempProps, componentDsl, handleUpdateDsl } =
+    useContext(ConfigPanelContext)
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
@@ -39,7 +40,12 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   const renderSetter = useMemo(() => {
     return Comp ? (
       <div css={applyPaddingStyle(isInList)}>
-        <Comp {...props} />
+        <Comp
+          {...props}
+          tempProps={tempProps}
+          componentDsl={componentDsl}
+          handleUpdateDsl={handleUpdateDsl}
+        />
       </div>
     ) : null
   }, [Comp, isInList, props])
