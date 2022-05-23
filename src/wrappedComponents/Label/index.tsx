@@ -18,6 +18,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     required,
     hidden,
     hasTooltip = false,
+    ...rest
   } = props
 
   const renderLabelTitleRequired = useMemo(() => {
@@ -50,7 +51,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     <label
       css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}
       ref={ref}
-      {...props}
+      {...rest}
     >
       {renderLabelTitle}
       {renderLabelCaption}
