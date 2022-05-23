@@ -325,7 +325,12 @@ export const QueryList: FC<QueryListProps> = (props) => {
       <Dropdown
         dropList={newNewQueryOptions}
         trigger={"click"}
-        triggerProps={{ clickOutsideToClose: true, closeOnClick: false }}
+        triggerProps={{
+          clickOutsideToClose: true,
+          closeOnClick: true,
+          openDelay: 0,
+          closeDelay: 0,
+        }}
         onVisibleChange={(visible) => setNewQueryOptionsVisible(visible)}
       >
         <Button css={applyNewButtonCSS(newQueryOptionsVisible)} size={"medium"}>
