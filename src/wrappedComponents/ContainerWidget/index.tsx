@@ -11,22 +11,26 @@ import {
 } from "@/wrappedComponents/WidgetBuilder"
 import { getTargetOffset } from "@/wrappedComponents/utils"
 import { ContainerWidgetProps } from "./interface"
+import { SearchIcon } from "@illa-design/icon"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 interface PanelDrag {
   type: string
   props: any
 }
 
-export const CONTAINER_WIDGET_CONFIG = {
+export const CONTAINER_WIDGET_CONFIG: ComponentModel = {
   type: "CONTAINER_WIDGET",
+  widgetName: "Container",
+  version: "0.0.1",
+  icon: <SearchIcon />,
+  sessionType: "COMMON",
   defaults: {
-    version: "0.0.1",
     backgroundColor: "#FFFFFF",
     rows: 40,
     columns: 24,
     width: "100%",
     height: "100%",
-    widgetName: "Container",
     containerStyle: "card",
     borderColor: "transparent",
     borderWidth: "0",

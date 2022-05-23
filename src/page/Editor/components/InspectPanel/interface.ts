@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { SetterType } from "../PanelSetters"
+import { SetterType } from "@/page/Editor/components/PanelSetters"
 
 export enum ACTION_TYPE {
   VIEW_DOCUMENT = "VIEW_DOCUMENT",
@@ -39,6 +39,8 @@ export interface PanelFieldConfig extends PanelLabelProps {
   isFullWidth?: boolean
   defaultValue?: any
   placeholder?: string
+  shown?: (value: any) => boolean
+  bindAttrName?: string
   // events?:event[] // TODO:
 }
 

@@ -1,5 +1,5 @@
 export type HorizontalAlign = "start" | "center" | "end"
-export type VerticalAlign = "top" | "center" | "bottom"
+export type VerticalAlign = "start" | "center" | "end"
 
 export interface TextProps {
   value?: string

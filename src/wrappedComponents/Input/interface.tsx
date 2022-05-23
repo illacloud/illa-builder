@@ -1,5 +1,5 @@
-import { ValidateMessageProps } from "../InvalidMessage/interface"
-import LabelProps from "../Label/interface"
+import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
+import LabelProps from "@/wrappedComponents/Label/interface"
 import { ReactNode } from "react"
 
 export interface WrappedInputProps extends LabelProps, ValidateMessageProps {
@@ -13,4 +13,5 @@ export interface WrappedInputProps extends LabelProps, ValidateMessageProps {
   prefixText?: string
   suffixIcon?: ReactNode
   suffixText?: string
+  tooltipText?: string
 }

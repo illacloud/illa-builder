@@ -1,4 +1,4 @@
-import { ValidateCheckProps } from "./interface"
+import { ValidateCheckProps } from "@/wrappedComponents/InvalidMessage/interface"
 
 export const handleValidateCheck = (
   props?: ValidateCheckProps,

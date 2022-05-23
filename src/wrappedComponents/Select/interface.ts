@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
-import LabelProps from "../Label/interface"
+import LabelProps from "@/wrappedComponents/Label/interface"
 
-interface SelectProps {
+export interface SelectProps {
   options?: (
     | string
     | number
@@ -33,4 +33,5 @@ interface SelectProps {
 export interface WrappedSelectProps extends LabelProps, SelectProps {
   optionConfigureMode?: "dynamic" | "static"
   showClear?: boolean
+  tooltipText?: string
 }

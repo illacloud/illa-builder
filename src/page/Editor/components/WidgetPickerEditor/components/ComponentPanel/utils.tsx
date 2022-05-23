@@ -15,7 +15,7 @@ export function getMatchComponent(
   const newSessionList: ComponentSessionProps[] = []
   options?.forEach((session) => {
     const res = session.children.filter((component) =>
-      component.name.match(reg),
+      component.widgetName.match(reg),
     )
     if (res.length > 0) {
       newSessionList.push({ ...session, children: res })

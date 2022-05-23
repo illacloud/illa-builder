@@ -8,6 +8,7 @@ export const invalidateMessageCss = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-orange-03`)};
   font-size: 14px;
+
   svg {
     margin-right: 8px;
   }

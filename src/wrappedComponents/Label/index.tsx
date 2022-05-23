@@ -4,7 +4,7 @@ import {
   applyLabelStyle,
   labelCaptionCss,
   labelRequiredCss,
-  labelTitleCss,
+  applyLabelTitleStyle,
 } from "./styles"
 
 const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
@@ -17,6 +17,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     labelWidthUnit = "%",
     required,
     hidden,
+    hasTooltip = false,
   } = props
 
   const renderLabelTitleRequired = useMemo(() => {
@@ -25,12 +26,12 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
 
   const renderLabelTitle = useMemo(() => {
     return (
-      <span css={labelTitleCss}>
+      <span css={applyLabelTitleStyle(hasTooltip)}>
         {label}
         {renderLabelTitleRequired}
       </span>
     )
-  }, [label, renderLabelTitleRequired])
+  }, [label, renderLabelTitleRequired, hasTooltip])
 
   const renderLabelCaption = useMemo(() => {
     return labelCaption ? <div css={labelCaptionCss}>{labelCaption}</div> : null

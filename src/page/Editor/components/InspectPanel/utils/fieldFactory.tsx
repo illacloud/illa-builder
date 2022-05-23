@@ -2,9 +2,9 @@ import {
   PanelConfig,
   PanelFieldConfig,
   PanelFieldGroupConfig,
-} from "../interface"
-import { PanelBar } from "../bar"
-import { Setter } from "../setter"
+} from "@/page/Editor/components/InspectPanel/interface"
+import { PanelBar } from "@/page/Editor/components/InspectPanel/bar"
+import { Setter } from "@/page/Editor/components/InspectPanel/setter"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,

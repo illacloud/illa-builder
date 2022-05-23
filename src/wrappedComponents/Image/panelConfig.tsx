@@ -1,6 +1,6 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 
-export const ImagePanelConfig: PanelConfig[] = [
+export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "image-basic",
     groupName: "Basic",
