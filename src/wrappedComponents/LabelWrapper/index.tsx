@@ -1,8 +1,8 @@
-import Label from "../Label"
+import Label from "@/wrappedComponents/Label"
 import { FC, useMemo } from "react"
 import { LabelWrapperProps } from "./interface"
 import { applyLabelWrapperStyle } from "./style"
-import { TooltipWrapper } from "../TooltipWrapper"
+import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 const LabelWrapper: FC<LabelWrapperProps> = (props) => {
   const {

@@ -1,11 +1,11 @@
 import { FC, useMemo } from "react"
 import { WrappedButtonProps } from "./interface"
 import { Button } from "@illa-design/button"
-import { Wrapper } from "../Wrapper"
+import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { withParser } from "../parserHOC"
+import { withParser } from "@/wrappedComponents/parserHOC"
 import { applyButtonLayoutStyle } from "./style"
-import { TooltipWrapper } from "../TooltipWrapper"
+import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 export const WrappedButton: FC<WrappedButtonProps> = (props) => {
   const {

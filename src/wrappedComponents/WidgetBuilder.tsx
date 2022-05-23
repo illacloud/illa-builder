@@ -18,7 +18,7 @@ import {
   SelectWidget,
   SELECT_PANEL_CONFIG,
 } from "./Select"
-import { INPUT_WIDGET_CONFIG, InputWidget, INPUT_PANEL_CONFIG } from "./Input"
+// import { INPUT_WIDGET_CONFIG, InputWidget, INPUT_PANEL_CONFIG } from "./Input"
 import { WidgetConfigs } from "./interface"
 import {
   RADIO_GROUP_WIDGET_CONFIG,
@@ -72,11 +72,11 @@ const WidgetConfig: WidgetConfigs = {
     config: RADIO_GROUP_WIDGET_CONFIG,
     panelConfig: RADIO_GROUP_PANEL_CONFIG,
   },
-  INPUT_WIDGET: {
-    widget: InputWidget,
-    config: INPUT_WIDGET_CONFIG,
-    panelConfig: INPUT_PANEL_CONFIG,
-  },
+  // INPUT_WIDGET: {
+  //   widget: InputWidget,
+  //   config: INPUT_WIDGET_CONFIG,
+  //   panelConfig: INPUT_PANEL_CONFIG,
+  // },
 }
 
 export type WidgetType = keyof typeof WidgetConfig

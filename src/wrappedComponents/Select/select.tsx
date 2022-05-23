@@ -1,9 +1,9 @@
 import { FC } from "react"
 import { SelectProps, WrappedSelectProps } from "./interface"
-import { Wrapper } from "../Wrapper"
+import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { Select } from "@illa-design/select"
-import LabelWrapper from "../LabelWrapper"
-import { withParser } from "../parserHOC"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
+import { withParser } from "@/wrappedComponents/parserHOC"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   const { optionConfigureMode, showClear } = props

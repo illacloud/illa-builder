@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import LabelProps from "../Label/interface"
+import LabelProps from "@/wrappedComponents/Label/interface"
 
 export interface SelectProps {
   options?: (

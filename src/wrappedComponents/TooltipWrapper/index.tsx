@@ -1,7 +1,7 @@
 import { Tooltip } from "@illa-design/tooltip"
 import { FC } from "react"
 import { TooltipWrapperProps } from "./interface"
-import { Text } from "../Text"
+import { Text } from "@/wrappedComponents/Text"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const TooltipWrapper: FC<TooltipWrapperProps> = (props) => {

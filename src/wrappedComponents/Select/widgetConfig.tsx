@@ -1,5 +1,5 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "../interface"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 export const SELECT_WIDGET_CONFIG: ComponentModel = {
   type: "SELECT_WIDGET",

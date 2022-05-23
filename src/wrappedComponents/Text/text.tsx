@@ -4,7 +4,7 @@ import { TextProps } from "./interface"
 import { applyTextCss, textContainerCss } from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { withParser } from "../parserHOC"
+import { withParser } from "@/wrappedComponents/parserHOC"
 
 const transLink: ShowdownExtension = {
   type: "output",

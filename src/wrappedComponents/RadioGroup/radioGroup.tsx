@@ -1,8 +1,8 @@
 import { RadioGroup } from "@illa-design/radio"
 import { FC } from "react"
-import LabelWrapper from "../LabelWrapper"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedRadioGroupProps } from "./interface"
-import { withParser } from "../parserHOC"
+import { withParser } from "@/wrappedComponents/parserHOC"
 
 const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
   const {

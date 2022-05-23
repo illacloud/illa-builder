@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { TestWidgetProps } from "./interface"
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "../interface"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 export const TEST_WIDGET_CONFIG: ComponentModel = {
   type: "TEST_WIDGET",

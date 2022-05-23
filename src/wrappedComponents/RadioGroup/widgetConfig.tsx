@@ -1,5 +1,5 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "../interface"
+import { ComponentModel } from "@/wrappedComponents/interface"
 
 export const RADIO_GROUP_WIDGET_CONFIG: ComponentModel = {
   type: "RADIO_GROUP_WIDGET",
