@@ -55,6 +55,5 @@ export const middlePanelStyle = css`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - ${NAV_BAR_HEIGHT}px);
   overflow: hidden;
 `

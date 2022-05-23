@@ -1,5 +1,8 @@
-import { BaseProps, DSLWidget } from "./DraggableComponent/interface"
 import { XYCoord } from "react-dnd"
+import {
+  BaseProps,
+  DSLWidget,
+} from "@/wrappedComponents/DraggableComponent/interface"
 
 export type WidgetConfig = {
   columns: number
@@ -15,10 +18,10 @@ export const generateWidgetProps = (
     let { props, rows, columns, ...rest } = widgetConfig
     let { leftColumn, topRow, parentRowSpace, parentColumnSpace } = props
     if (widgetConfig.type === "CANVAS_WIDGET") {
-      columns =
-        (parent.rightColumn - parent.leftColumn) * parent.parentColumnSpace
+      // columns =
+      //   (parent.rightColumn - parent.leftColumn) * parent.parentColumnSpace
       parentColumnSpace = 1
-      rows = (parent.bottomRow - parent.topRow) * parent.parentRowSpace
+      //rows = (parent.bottomRow - parent.topRow) * parent.parentRowSpace
       parentRowSpace = 1
     }
     const sizes = {

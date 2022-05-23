@@ -6,6 +6,8 @@ export const ContainerCSS = css`
   display: flex;
   flex-direction: column;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 `
 
 export const PanelScrollCSS = css`
@@ -58,8 +60,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
