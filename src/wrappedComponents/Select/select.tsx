@@ -31,7 +31,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
         required={required}
         tooltipText={tooltipText}
       >
-        <Select allowClear={showClear} {...selectProps} />
+        <Select allowClear={showClear} {...selectProps} size="small" />
       </LabelWrapper>
     </Wrapper>
   )
