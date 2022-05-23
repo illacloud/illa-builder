@@ -79,6 +79,12 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
+      {
+        id: "select-label-labelWidth",
+        labelName: "Width(%)",
+        attrName: "labelWidth",
+        setterType: "INPUT_SETTER",
+      },
     ],
   },
   {

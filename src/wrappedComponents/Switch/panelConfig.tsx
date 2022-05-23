@@ -92,6 +92,12 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
+      {
+        id: "switch-label-labelWidth",
+        labelName: "Width(%)",
+        attrName: "labelWidth",
+        setterType: "INPUT_SETTER",
+      },
     ],
   },
   {

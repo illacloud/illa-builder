@@ -73,6 +73,12 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
+      {
+        id: "radioGroup-label-labelWidth",
+        labelName: "Width(%)",
+        attrName: "labelWidth",
+        setterType: "INPUT_SETTER",
+      },
     ],
   },
   {
