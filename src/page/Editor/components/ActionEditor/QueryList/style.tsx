@@ -34,8 +34,8 @@ export const applyNewButtonCSS = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-        `--${illaPrefix}-techPurple-06`,
-      )}!important;
+    `--${illaPrefix}-techPurple-06`,
+  )}!important;
     }
   `
 }
@@ -180,15 +180,16 @@ export function applyContextMenuCSS(
     position: fixed !important;
     top: ${top ?? 0}px;
     left: ${left ?? 0}px;
-    list-style: none;
     margin: 0;
     padding: 0;
     width: 184px;
-    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     border-radius: 8px;
-    border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
-  `
+    list-style: none;
+    z-index: 1;
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    `
 }
 
 export function applyContextMenuVisibleCSS(
@@ -247,8 +248,8 @@ export const SearchInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 

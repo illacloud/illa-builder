@@ -61,12 +61,6 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
         <label css={LabelTextCSS}>Cookies</label>
         <FieldArray />
       </div>
-
-      <Transformer />
-
-      <Divider />
-
-      <EventHandler />
     </div>
   )
 }

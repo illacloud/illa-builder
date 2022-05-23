@@ -46,7 +46,14 @@ export const EventHandler = () => {
               addonAfter={{
                 custom: true,
                 render: (
-                  <Dropdown dropList={dropList} trigger="click">
+                  <Dropdown
+                    dropList={dropList}
+                    trigger="click"
+                    triggerProps={{
+                      openDelay: 0,
+                      closeDelay: 0,
+                    }}
+                  >
                     <span css={HandlerMoreIconCSS}>
                       <MoreIcon />
                     </span>
@@ -79,7 +86,14 @@ export const EventHandler = () => {
               addonAfter={{
                 custom: true,
                 render: (
-                  <Dropdown dropList={dropList} trigger="click">
+                  <Dropdown
+                    dropList={dropList}
+                    trigger="click"
+                    triggerProps={{
+                      openDelay: 0,
+                      closeDelay: 0,
+                    }}
+                  >
                     <span css={HandlerMoreIconCSS}>
                       <MoreIcon />
                     </span>

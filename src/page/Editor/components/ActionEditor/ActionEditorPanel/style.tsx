@@ -245,3 +245,15 @@ export const MoreListItemWarnCSS = css`
   ${MoreListItemCSS};
   color: ${globalColor(`--${illaPrefix}-red-03`)};
 `
+
+export const MoreBtnMenuCSS = css`
+  width: 180px;
+`
+
+export const DuplicateActionCSS = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
+  `
+
+export const DeleteActionCSS = css`
+  color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
+  `

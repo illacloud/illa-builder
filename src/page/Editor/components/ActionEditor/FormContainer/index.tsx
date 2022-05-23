@@ -1,11 +1,10 @@
 import { Modal } from "@illa-design/modal"
 import { FC, useState, useMemo, useLayoutEffect } from "react"
+import { FormContainerProps, ActionType } from "./interface"
 import {
-  FormContainerProps,
   ApiType,
   DatabaseType,
-  ActionType,
-} from "./interface"
+} from "@/page/Editor/components/ActionEditor/interface"
 import { ModalCSS, CloseIconCSS, TitleCSS } from "./style"
 import { SelectResourceForm } from "../SelectResourceForm"
 import { ConfigureResourceForm } from "../ConfigureResourceForm"
@@ -14,7 +13,6 @@ import { CloseIcon } from "@illa-design/icon"
 export const FormContainer: FC<FormContainerProps> = (props) => {
   const {
     actionType: propActionType,
-    resourceType,
     databaseType,
     apiType,
     visible,

@@ -1,7 +1,20 @@
-import { FC } from "react"
+import { FC, useMemo, useState } from "react"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
+import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
+import { Dropdown } from "@illa-design/dropdown"
+import { Menu } from "@illa-design/menu"
+import { useSelector, useDispatch } from "react-redux"
+import { BuilderState } from "@/redux/reducers/interface"
+import {
+  addQueryItem,
+  removeQueryItem,
+  selectQueryItemById,
+  selectAllQueryItem,
+} from "@/redux/reducers/actionReducer/queryListReducer"
+import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
+import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
@@ -19,12 +32,30 @@ import {
   SectionTitleCSS,
   ResourceBarCSS,
   PanelScrollCSS,
+  MoreBtnMenuCSS,
+  DuplicateActionCSS,
+  DeleteActionCSS,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
 
+const { Item: MenuItem } = Menu
+
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
-  const { className, children, onEditResource, onCreateResource } = props
+  const { className, onEditResource, onCreateResource } = props
+
+  const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
+
+  const dispatch = useDispatch()
+  const queryItems = useSelector(selectAllQueryItem)
+  const currentQueryItemId = useSelector(getActionEditorQueryId)
+  const currentQueryItem = useSelector((state: BuilderState) =>
+    selectQueryItemById(state, currentQueryItemId),
+  )
+
+  const queryItemsNameSet = useMemo(() => {
+    return new Set(queryItems.map((i) => i.name))
+  }, [queryItems])
 
   const modeOptions = [
     { label: "SQL mode", value: 0 },
@@ -42,6 +73,18 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     },
   ]
 
+  // TODO: retrieve from created resource
+  const resourceOptions = [
+    {
+      label: "MySQL",
+      value: "MySQL",
+    },
+    {
+      label: "REST API",
+      value: "REST API",
+    },
+  ]
+
   function createResource() {
     onCreateResource && onCreateResource()
   }
@@ -50,14 +93,84 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onEditResource && onEditResource()
   }
 
+  function handleAction(key: string) {
+    if (key === "duplicate") {
+      duplicateQueryItem()
+    } else if (key === "delete") {
+      deleteQueryItem()
+    }
+  }
+
+  function duplicateQueryItem() {
+    // 获取当前选中的 queryItem
+    // 如果不存在则return
+    if (currentQueryItem) {
+      const { type } = currentQueryItem
+
+      dispatch(
+        addQueryItem({
+          type,
+          name: generateName(type),
+          isUpdated: Math.random() > 0.5,
+          isWarning: Math.random() > 0.5,
+          time: "0.7s",
+        }),
+      )
+    }
+  }
+
+  function deleteQueryItem() {
+    dispatch(removeQueryItem(currentQueryItemId))
+  }
+
+  function generateName(type: string) {
+    const length = queryItems.filter((i) => i.type === type).length
+    const prefix = type
+
+    const getUniqueName = (length: number): string => {
+      const name = `${prefix}${length + 1}`
+
+      if (queryItemsNameSet.has(name)) {
+        return getUniqueName(length + 1)
+      }
+
+      return name
+    }
+
+    return getUniqueName(length)
+  }
+
+  const moreActions = (
+    <Menu onClickMenuItem={handleAction} css={MoreBtnMenuCSS}>
+      <MenuItem
+        key={"duplicate"}
+        title={"Duplicate"}
+        css={DuplicateActionCSS}
+      />
+      <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCSS} />
+    </Menu>
+  )
+
   return (
     <div className={className} css={ContainerCSS}>
       <header css={HeaderCSS}>
         <TitleInput />
         <span css={FillingCSS} />
-        <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
-          <MoreIcon />
-        </Button>
+        <Dropdown
+          dropList={moreActions}
+          trigger={"click"}
+          triggerProps={{
+            clickOutsideToClose: true,
+            closeOnClick: true,
+            openDelay: 0,
+            closeDelay: 0,
+            showArrow: false,
+          }}
+        >
+          <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
+            <MoreIcon />
+          </Button>
+        </Dropdown>
         <Button css={[HeaderButtonCSS, RunBtnCSS]} size={"medium"}>
           <CaretRightIcon /> Run
         </Button>
@@ -76,16 +189,25 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             defaultValue={0}
             css={[ActionSelectCSS, TriggerSelectCSS]}
           />
-          <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
-            <Option onClick={createResource}>Create a new resource</Option>
-            <Option>SQL</Option>
-            <Option>REST API</Option>
+
+          <Select
+            css={[ActionSelectCSS, ResourceSelectCSS]}
+            value={resourceType}
+            onChange={setResourceType}
+          >
+            <Option onClick={createResource} isSelectOption={false}>
+              Create a new resource
+            </Option>
+            {resourceOptions.map((o) => (
+              <Option value={o.value}>{o.label}</Option>
+            ))}
           </Select>
           <div css={EditIconCSS} onClick={editResource}>
             <PenIcon />
           </div>
         </div>
-        <ResourcePanel />
+        <Divider />
+        <ResourcePanel resourceType={resourceType} />
       </div>
     </div>
   )
