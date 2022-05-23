@@ -6,8 +6,6 @@ export const ContainerCSS = css`
   display: flex;
   flex-direction: column;
   flex: 1;
-  display: flex;
-  flex-direction: column;
 `
 
 export const PanelScrollCSS = css`
@@ -60,8 +58,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
@@ -223,4 +221,27 @@ export const HandlerMoreIconCSS = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
+`
+
+export const MoreListCSS = css`
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  width: 184px;
+`
+
+export const MoreListItemCSS = css`
+  padding: 5px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.57;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
+`
+
+export const MoreListItemWarnCSS = css`
+  ${MoreListItemCSS};
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
 `

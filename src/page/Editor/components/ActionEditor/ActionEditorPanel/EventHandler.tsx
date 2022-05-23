@@ -9,14 +9,13 @@ import {
   GridHandlersCSS,
   HandlerMoreIconCSS,
   HandlerTitleCSS,
+  MoreListCSS,
+  MoreListItemCSS,
+  MoreListItemWarnCSS,
   NewBtnCSS,
   PanelSubBarCSS,
   SectionTitleCSS,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
-import {
-  NewQueryOptionsItemCSS,
-  NewQueryOptionsListCSS,
-} from "@/page/Editor/components/ActionEditor/QueryList/style"
 
 export const EventHandler = () => {
   const [successHandlerList, setSuccessHandlerList] = useState([
@@ -27,11 +26,9 @@ export const EventHandler = () => {
   ])
 
   const dropList = (
-    <ul>
-      <ul css={NewQueryOptionsListCSS}>
-        <li css={NewQueryOptionsItemCSS}>Duplicate</li>
-        <li css={NewQueryOptionsItemCSS}>Delete</li>
-      </ul>
+    <ul css={MoreListCSS}>
+      <li css={MoreListItemCSS}>Duplicate</li>
+      <li css={MoreListItemWarnCSS}>Delete</li>
     </ul>
   )
 
@@ -49,7 +46,7 @@ export const EventHandler = () => {
               addonAfter={{
                 custom: true,
                 render: (
-                  <Dropdown dropList={dropList}>
+                  <Dropdown dropList={dropList} trigger="click">
                     <span css={HandlerMoreIconCSS}>
                       <MoreIcon />
                     </span>
@@ -82,9 +79,11 @@ export const EventHandler = () => {
               addonAfter={{
                 custom: true,
                 render: (
-                  <span css={HandlerMoreIconCSS}>
-                    <MoreIcon />
-                  </span>
+                  <Dropdown dropList={dropList} trigger="click">
+                    <span css={HandlerMoreIconCSS}>
+                      <MoreIcon />
+                    </span>
+                  </Dropdown>
                 ),
               }}
             />

@@ -62,7 +62,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <CaretRightIcon /> Run
         </Button>
       </header>
-
       <div css={PanelScrollCSS}>
         <div css={[ActionCSS, ResourceBarCSS]}>
           <label css={SectionTitleCSS}>Resource</label>
@@ -77,8 +76,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             defaultValue={0}
             css={[ActionSelectCSS, TriggerSelectCSS]}
           />
-
-
           <Select css={[ActionSelectCSS, ResourceSelectCSS]}>
             <Option onClick={createResource}>Create a new resource</Option>
             <Option>SQL</Option>
@@ -88,10 +85,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             <PenIcon />
           </div>
         </div>
-
         <ResourcePanel />
-      </div >
-    </div >
+      </div>
+    </div>
   )
 }
 
