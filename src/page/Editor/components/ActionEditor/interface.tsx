@@ -9,3 +9,9 @@ export interface ActionEditorLayoutProps
   queryList: ReactNode
   actionEditorPanel: ReactNode
 }
+
+export type ApiType = "REST API"
+
+export type DatabaseType = "MySQL" | "Postgres" | "Redis"
+
+export type ResourceType = DatabaseType | ApiType

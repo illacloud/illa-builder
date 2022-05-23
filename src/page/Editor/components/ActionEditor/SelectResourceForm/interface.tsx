@@ -1,4 +1,4 @@
-import { ApiType, DatabaseType } from "../FormContainer/interface"
+import { ApiType, DatabaseType } from "@/page/Editor/components/ActionEditor/interface"
 
 export interface ApiItemProps {
   title: ApiType
