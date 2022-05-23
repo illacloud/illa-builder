@@ -1,6 +1,7 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
+import { colorSchemeOptions } from "../colorSchemeOptions"
 
 const OptionsStyle = {
   width: "77px",
@@ -8,6 +9,23 @@ const OptionsStyle = {
   alignItems: "center",
   justifyContent: "center",
   color: globalColor(`--${illaPrefix}-grayBlue-04`),
+}
+
+const bgOptionWrapperStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  height: "100%",
+}
+
+const colorBlockStyle = (backgroundColor: string) => {
+  return {
+    width: "18px",
+    height: "18px",
+    borderRadius: "4px",
+    backgroundColor,
+  }
 }
 
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
@@ -143,7 +161,9 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         id: "switch-style-radius",
         labelName: "Background",
         attrName: "checkedBackgroundColor",
-        setterType: "INPUT_SETTER",
+        setterType: "BASE_SELECT_SETTER",
+        defaultValue: "blue",
+        options: colorSchemeOptions,
       },
     ],
   },
