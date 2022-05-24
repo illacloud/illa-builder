@@ -1,25 +1,41 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import { WrappedInput } from "../index"
-
+import { WrappedEditableText } from "../index"
 import userEvent from "@testing-library/user-event"
-import { WrappedInputRefType } from "../interface"
-import { WrappedEditableText } from "../../EditableText"
-test("WrappedInput renders correctly", () => {
-  render(<WrappedInput placeholder={"input-placeholder"} />)
-  expect(screen.getByPlaceholderText("input-placeholder")).toBeInTheDocument()
+import React from "react"
+import { WrappedInputRefType } from "../../Input/interface"
+
+test("WrappedEditableText renders correctly", () => {
+  render(<WrappedEditableText value={"test-editable-text"} />)
+  expect(screen.getByText("test-editable-text")).toBeInTheDocument()
 })
 
-test("WrappedInput renders correctly when enter", async () => {
+test("WrappedEditableText renders with blur", () => {
+  render(
+    <WrappedEditableText
+      value={"test-editable-text"}
+      placeholder={"input-placeholder"}
+      label="input"
+    />,
+  )
+  expect(screen.getByText("test-editable-text")).toBeInTheDocument()
+  userEvent.click(screen.getByText("test-editable-text"))
+  expect(screen.getByPlaceholderText("input-placeholder")).toBeInTheDocument()
+  userEvent.click(screen.getByText("input"))
+  expect(screen.queryByPlaceholderText("input-placeholder")).toBe(null)
+})
+
+test("WrappedEditableText renders correctly when enter", async () => {
   const changeEvent = jest.fn()
   render(
-    <WrappedInput
+    <WrappedEditableText
       value={"test-editable-text"}
       placeholder={"input-placeholder"}
       onChange={changeEvent}
     />,
   )
 
+  userEvent.click(screen.getByText("test-editable-text"))
   expect(screen.getByPlaceholderText("input-placeholder")).toBeInTheDocument()
   await userEvent.type(
     screen.getByPlaceholderText("input-placeholder"),
@@ -28,9 +44,9 @@ test("WrappedInput renders correctly when enter", async () => {
   expect(changeEvent).toBeCalled()
 })
 
-test("WrappedInput renders correctly with prefix and suffix", async () => {
+test("WrappedEditableText renders correctly with prefix and suffix", async () => {
   render(
-    <WrappedInput
+    <WrappedEditableText
       value={"test-editable-text"}
       prefixIcon={<span>prefixIcon </span>}
       suffixIcon={<span>suffixIcon</span>}
@@ -38,17 +54,19 @@ test("WrappedInput renders correctly with prefix and suffix", async () => {
       suffixText={"suffixText"}
     />,
   )
+
+  userEvent.click(screen.getByText("test-editable-text"))
   expect(screen.getByText("prefixIcon")).toBeInTheDocument()
   expect(screen.getByText("suffixIcon")).toBeInTheDocument()
   expect(screen.getByText("prefixText")).toBeInTheDocument()
   expect(screen.getByText("suffixText")).toBeInTheDocument()
 })
 
-test("WrappedInpute enders with ref", () => {
+test("WrappedEditableText renders with ref", () => {
   let inputRef: WrappedInputRefType | null
   render(
     <div>
-      <WrappedInput
+      <WrappedEditableText
         value={"test-editable-text"}
         placeholder={"input-placeholder"}
         ref={(ref) => (inputRef = ref)}
@@ -62,6 +80,8 @@ test("WrappedInpute enders with ref", () => {
       </button>
     </div>,
   )
+  expect(screen.queryByPlaceholderText("input-placeholder")).toBe(null)
   fireEvent.click(screen.getByText("click up"))
+  expect(screen.queryByPlaceholderText("input-placeholder")).toBeInTheDocument()
   expect(screen.getByPlaceholderText("input-placeholder")).toHaveFocus()
 })

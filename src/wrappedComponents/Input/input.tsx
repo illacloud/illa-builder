@@ -1,65 +1,93 @@
-import { FC, useState } from "react"
-import { WrappedInputProps } from "./interface"
-import { Wrapper } from "@/wrappedComponents/Wrapper"
+import { forwardRef, useImperativeHandle, useRef, useState } from "react"
+import { WrappedInputProps, WrappedInputRefType } from "./interface"
+import Label from "../Label"
+import { Wrapper } from "../Wrapper"
 import { Input } from "@illa-design/input"
-import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
 import { inputContainerCss } from "./style"
-import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
-import { withParser } from "@/wrappedComponents/parserHOC"
-import LabelWrapper from "@/wrappedComponents/LabelWrapper"
+import { InvalidMessage } from "../InvalidMessage"
 
-export const WrappedInput: FC<WrappedInputProps> = (props) => {
-  const {
-    readOnly = true,
-    maxLength,
-    minLength,
-    pattern,
-    regex,
-    customRule,
-    required = true,
-    showCharacterCount = true,
-    defaultValue,
-    label,
-    labelAlign,
-    labelWidth,
-    labelPosition,
-    labelCaption,
-    labelWidthUnit,
-    tooltipText,
-    ...res
-  } = props
+export const WrappedInput = forwardRef<WrappedInputRefType, WrappedInputProps>(
+  (props, ref) => {
+    const {
+      showCharacterCount,
+      value,
+      onChange,
+      label,
+      labelPosition,
+      labelAlign,
+      labelCaption,
+      labelWidth,
+      labelWidthUnit,
+      pattern,
+      regex,
+      minLength,
+      maxLength,
+      required,
+      customRule,
+      hideValidationMessage,
+      prefixText,
+      prefixIcon,
+      suffixIcon,
+      suffixText,
+      ...res
+    } = props
 
-  const validateProps: ValidateMessageProps = props
-  const [currentValue, setCurrentValue] = useState(defaultValue)
+    const [currentValue, setCurrentValue] = useState(value)
+    const inputRef = useRef<HTMLInputElement>(null)
 
-  return (
-    <div>
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          _inputRef: inputRef.current,
+          validate: () => {}, // todo@aoao 未确定实现
+          focus: () => {
+            console.log(inputRef.current)
+            inputRef.current?.focus()
+          },
+        }
+      },
+      [],
+    )
+
+    return (
       <Wrapper w={"300px"}>
-        <LabelWrapper
+        <Label
           label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
           labelPosition={labelPosition}
-          required={required}
-          tooltipText={tooltipText}
-        >
-          <div css={inputContainerCss}>
-            <Input
-              onChange={(value) => {
-                setCurrentValue(value)
-              }}
-              {...res}
-              showCount={showCharacterCount}
-            />
-            <InvalidMessage value={currentValue} {...validateProps} />
-          </div>
-        </LabelWrapper>
+          labelAlign={labelAlign}
+          labelCaption={labelCaption}
+          labelWidth={labelWidth}
+          labelWidthUnit={labelWidthUnit}
+        />
+        <div css={inputContainerCss}>
+          <Input
+            onChange={(value) => {
+              setCurrentValue(value)
+              onChange && onChange(value)
+            }}
+            {...res}
+            addonAfter={{ render: suffixText }}
+            addonBefore={{ render: prefixText }}
+            suffix={{ render: suffixIcon }}
+            prefix={{ render: prefixIcon }}
+            showCount={showCharacterCount}
+            value={value}
+            inputRef={inputRef}
+          />
+          <InvalidMessage
+            value={currentValue}
+            pattern={pattern}
+            regex={regex}
+            minLength={minLength}
+            maxLength={maxLength}
+            required={required}
+            customRule={customRule}
+            hideValidationMessage={hideValidationMessage}
+          />
+        </div>
       </Wrapper>
-    </div>
-  )
-}
-export const InputWidget = withParser(WrappedInput)
-
+    )
+  },
+)
 WrappedInput.displayName = "WrappedInput"
