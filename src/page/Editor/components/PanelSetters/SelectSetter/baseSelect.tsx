@@ -18,8 +18,7 @@ export const BaseSelect: FC<BaseSelectSetterProps> = (props) => {
       <Select
         options={options}
         size="small"
-        value={tempProps[attrName]}
-        defaultValue={defaultValue}
+        value={tempProps[attrName] ?? defaultValue}
         onChange={(value) => {
           handleUpdateDsl({ [attrName]: value })
         }}
