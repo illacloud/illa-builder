@@ -199,7 +199,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
               Create a new resource
             </Option>
             {resourceOptions.map((o) => (
-              <Option value={o.value}>{o.label}</Option>
+              <Option key={o.label} value={o.value}>
+                {o.label}
+              </Option>
             ))}
           </Select>
           <div css={EditIconCSS} onClick={editResource}>

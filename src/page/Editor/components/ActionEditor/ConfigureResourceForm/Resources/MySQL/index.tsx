@@ -1,6 +1,11 @@
 import { useState, forwardRef } from "react"
 import { css } from "@emotion/react"
-import { useForm, Controller, SubmitHandler } from "react-hook-form"
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  UnpackNestedValue,
+} from "react-hook-form"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
 import { InputNumber } from "@illa-design/input-number"
@@ -28,6 +33,46 @@ import {
   SwitchAreaCSS,
   FormPaddingCSS,
 } from "./style"
+
+const dataTransform = (data: UnpackNestedValue<MySQLFormValues>) => {
+  const _data = {
+    kind: "mysql",
+    options: {
+      host: "",
+      port: "",
+      databaseName: "",
+      databaseUsername: "",
+      databasePassword: "",
+      ssl: false,
+      ssh: false,
+      advancedOptions: {
+        sshHost: "",
+        sshPort: "",
+        sshUsername: "",
+        sshPassword: "",
+        sshPrivateKey: "",
+        sshPassphrase: "",
+        serverCert: null,
+        clientKey: null,
+        clientCert: null,
+      },
+    },
+  }
+  Object.keys(_data.options).forEach((key) => {
+    // @ts-ignore
+    if (data[key] !== undefined) {
+      // @ts-ignore
+      _data.options[key] = data[key]
+    }
+  })
+  Object.keys(_data.options.advancedOptions).forEach((key) => {
+    if (data[key as keyof MySQLFormValues] !== undefined) {
+      // @ts-ignore
+      _data.options.advancedOptions[key] = data[key]
+    }
+  })
+  return _data
+}
 
 export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
   (props, ref) => {
@@ -60,7 +105,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
 
     const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
       data = { ...data, ssh: expandSSH, ssl: expandSSL }
-      alert(JSON.stringify(data, null, 2))
+      const _data = dataTransform(data)
+      console.log(_data)
+      alert(JSON.stringify(_data, null, 2))
     }
     return (
       <form onSubmit={handleSubmit(onSubmit)} css={FormCSS} ref={ref}>
