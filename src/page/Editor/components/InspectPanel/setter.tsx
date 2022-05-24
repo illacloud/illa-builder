@@ -1,5 +1,5 @@
 import { FC, useContext, useMemo } from "react"
-import { applyPaddingStyle, applySetterWrapperStyle } from "./style"
+import { applySetterWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
 import { getSetterByType } from "@/page/Editor/components/PanelSetters"
 import { PanelLabel } from "./label"
@@ -39,19 +39,17 @@ export const Setter: FC<PanelSetterProps> = (props) => {
 
   const renderSetter = useMemo(() => {
     return Comp ? (
-      <div css={applyPaddingStyle(isInList)}>
-        <Comp
-          {...props}
-          tempProps={tempProps}
-          componentDsl={componentDsl}
-          handleUpdateDsl={handleUpdateDsl}
-        />
-      </div>
+      <Comp
+        {...props}
+        tempProps={tempProps}
+        componentDsl={componentDsl}
+        handleUpdateDsl={handleUpdateDsl}
+      />
     ) : null
-  }, [Comp, isInList, props])
+  }, [Comp, props])
 
   return canRenderSetter ? (
-    <div css={applySetterWrapperStyle(isFullWidth, useCustomLabel)}>
+    <div css={applySetterWrapperStyle(isFullWidth, useCustomLabel, isInList)}>
       {renderLabel}
       {renderSetter}
     </div>

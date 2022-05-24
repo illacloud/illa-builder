@@ -1,5 +1,4 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
 
 const OptionsStyle = {
@@ -7,13 +6,12 @@ const OptionsStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
 export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "select-options",
-    groupName: "Options",
+    groupName: "OPTIONS",
     children: [
       {
         id: "select-basic-defaultValue",
@@ -31,7 +29,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-label",
-    groupName: "Label",
+    groupName: "LABEL",
     children: [
       {
         id: "select-label-label",
@@ -89,7 +87,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-validation",
-    groupName: "Validation",
+    groupName: "VALIDATION",
     children: [
       {
         id: "select-validation-required",
@@ -109,7 +107,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-interaction",
-    groupName: "Interaction",
+    groupName: "INTERACTION",
     children: [
       {
         id: "select-interaction-disabled",
@@ -131,7 +129,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-Adornments",
-    groupName: "Adornments",
+    groupName: "ADORNMENTS",
     children: [
       {
         id: "select-adornments-showClear",
@@ -162,7 +160,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "select-layout-hidden",

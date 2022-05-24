@@ -19,9 +19,9 @@ export const Text: FC<TextProps> = (props: TextProps) => {
     disableMarkdown = false,
     horizontalAlign = "start",
     verticalAlign = "start",
-    linkColor = globalColor(`--${illaPrefix}-blue-05`),
-    backgroundColor = "",
-    textColor = globalColor(`--${illaPrefix}-grayBlue-05`),
+    linkColor = "blue",
+    backgroundColor = "transparent",
+    textColor = "grayBlue",
     tooltipText,
   } = props
 
@@ -40,7 +40,11 @@ export const Text: FC<TextProps> = (props: TextProps) => {
         {disableMarkdown ? (
           <MarkdownView
             css={css`
-              ${applyTextCss(textColor, linkColor)}, ${alignCss}
+              ${applyTextCss(
+                textColor,
+                linkColor,
+                backgroundColor,
+              )}, ${alignCss}
             `}
             markdown={value}
             extensions={[transLink]}

@@ -21,6 +21,7 @@ export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
         options={options}
         type="button"
         size="small"
+        colorScheme="grayBlue"
       />
     </div>
   )

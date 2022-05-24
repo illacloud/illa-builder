@@ -1,109 +1,34 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-const bgOptionWrapperStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  width: "100%",
-  height: "100%",
-}
+export const colorSchemes = [
+  "blue",
+  "white",
+  "gray",
+  "red",
+  "green",
+  "yellow",
+  "orange",
+  "cyan",
+  "purple",
+]
 
-const colorBlockStyle = (backgroundColor: string) => {
-  return {
-    width: "18px",
-    height: "18px",
-    borderRadius: "4px",
-    backgroundColor,
-  }
-}
-
-// TODO: wait a color options builder
 export const colorSchemeOptions = [
+  { key: globalColor(`--${illaPrefix}-blue-01`), value: "blue" },
+  { key: globalColor(`--${illaPrefix}-white-01`), value: "white" },
+  { key: globalColor(`--${illaPrefix}-red-01`), value: "red" },
+  { key: globalColor(`--${illaPrefix}-green-01`), value: "green" },
   {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div style={colorBlockStyle(globalColor(`--${illaPrefix}-blue-01`))} />
-        <span>{globalColor(`--${illaPrefix}-blue-01`)}</span>
-      </div>
-    ),
-    value: "blue",
-  },
-  {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div style={colorBlockStyle(globalColor(`--${illaPrefix}-white-01`))} />
-        <span>{globalColor(`--${illaPrefix}-white-01`)}</span>
-      </div>
-    ),
-    value: "white",
-  },
-  {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div style={colorBlockStyle(globalColor(`--${illaPrefix}-gray-01`))} />
-        <span>{globalColor(`--${illaPrefix}-gray-01`)}</span>
-      </div>
-    ),
-    value: "gray",
-  },
-  {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div style={colorBlockStyle(globalColor(`--${illaPrefix}-red-01`))} />
-        <span>{globalColor(`--${illaPrefix}-red-01`)}</span>
-      </div>
-    ),
-    value: "red",
-  },
-  {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div
-          style={colorBlockStyle(globalColor(`--${illaPrefix}-orange-01`))}
-        />
-        <span>{globalColor(`--${illaPrefix}-orange-01`)}</span>
-      </div>
-    ),
-    value: "orange",
-  },
-  {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div
-          style={colorBlockStyle(globalColor(`--${illaPrefix}-yellow-01`))}
-        />
-        <span>{globalColor(`--${illaPrefix}-yellow-01`)}</span>
-      </div>
-    ),
+    key: globalColor(`--${illaPrefix}-yellow-01`),
     value: "yellow",
   },
   {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div style={colorBlockStyle(globalColor(`--${illaPrefix}-green-01`))} />
-        <span>{globalColor(`--${illaPrefix}-green-01`)}</span>
-      </div>
-    ),
-    value: "green",
+    key: globalColor(`--${illaPrefix}-orange-01`),
+    value: "orange",
   },
   {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div style={colorBlockStyle(globalColor(`--${illaPrefix}-cyan-01`))} />
-        <span>{globalColor(`--${illaPrefix}-cyan-01`)}</span>
-      </div>
-    ),
-    value: "cyan",
-  },
-  {
-    label: (
-      <div style={bgOptionWrapperStyle}>
-        <div
-          style={colorBlockStyle(globalColor(`--${illaPrefix}-purple-01`))}
-        />
-        <span>{globalColor(`--${illaPrefix}-purple-01`)}</span>
-      </div>
-    ),
+    key: globalColor(`--${illaPrefix}-purple-01`),
     value: "purple",
   },
+  { key: globalColor(`--${illaPrefix}-cyan-01`), value: "cyan" },
+  { key: globalColor(`--${illaPrefix}-gray-01`), value: "gray" },
 ]

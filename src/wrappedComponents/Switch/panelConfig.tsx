@@ -1,5 +1,4 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
 import { colorSchemeOptions } from "../colorSchemeOptions"
 
@@ -8,7 +7,6 @@ const OptionsStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
 const bgOptionWrapperStyle = {
@@ -31,7 +29,7 @@ const colorBlockStyle = (backgroundColor: string) => {
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "switch-basic",
-    groupName: "Basic",
+    groupName: "BASIC",
     children: [
       {
         id: "switch-basic-defaultValue",
@@ -44,7 +42,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-label",
-    groupName: "Label",
+    groupName: "LABEL",
     children: [
       {
         id: "switch-label-label",
@@ -102,7 +100,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-interaction",
-    groupName: "Interaction",
+    groupName: "INTERACTION",
     children: [
       {
         id: "switch-interaction-disabled",
@@ -116,7 +114,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-Adornments",
-    groupName: "Adornments",
+    groupName: "ADORNMENTS",
     children: [
       {
         id: "switch-adornments-tooltip",
@@ -128,7 +126,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-validation",
-    groupName: "Validation",
+    groupName: "VALIDATION",
     children: [
       {
         id: "switch-validation-required",
@@ -148,7 +146,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "switch-layout-hidden",
@@ -161,13 +159,13 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-style",
-    groupName: "Style",
+    groupName: "STYLE",
     children: [
       {
         id: "switch-style-radius",
         labelName: "Background",
         attrName: "checkedBackgroundColor",
-        setterType: "BASE_SELECT_SETTER",
+        setterType: "COLOR_SELECT_SETTER",
         defaultValue: "blue",
         options: colorSchemeOptions,
       },

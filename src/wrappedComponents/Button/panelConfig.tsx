@@ -11,7 +11,7 @@ const AlignmentOptionStyle = {
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "button-basic",
-    groupName: "Basic",
+    groupName: "BASIC",
     children: [
       {
         id: "button-basic-Text",
@@ -23,7 +23,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-interaction",
-    groupName: "Interaction",
+    groupName: "INTERACTION",
     children: [
       {
         id: "button-interaction-type",
@@ -69,7 +69,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-adornments",
-    groupName: "Adornments",
+    groupName: "ADORNMENTS",
     children: [
       {
         id: "button-adornments-tooltip",
@@ -81,7 +81,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "button-layout-alignment",
@@ -133,7 +133,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-style",
-    groupName: "Style",
+    groupName: "STYLE",
     children: [
       {
         id: "button-style-variant",
@@ -162,7 +162,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "button-style-bg",
             labelName: "Theme color",
-            setterType: "BASE_SELECT_SETTER",
+            setterType: "COLOR_SELECT_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",
             options: colorSchemeOptions,

@@ -7,7 +7,7 @@ import {
   VerticalCenter,
   VerticalTop,
 } from "./svg"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { colorSchemeOptions } from "../colorSchemeOptions"
 
 const AlignmentOptionStyle = {
   fontSize: "16px",
@@ -18,7 +18,7 @@ const AlignmentOptionStyle = {
 export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "text-basic",
-    groupName: "Basic",
+    groupName: "BASIC",
     children: [
       {
         id: "text-basic-inputModal",
@@ -42,7 +42,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "text-adornments",
-    groupName: "Adornments",
+    groupName: "ADORNMENTS",
     children: [
       {
         id: "text-adornments-startAdornment",
@@ -55,7 +55,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "text-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "text-layout-col",
@@ -92,7 +92,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "text-layout-row",
-        labelName: "verticalAlign",
+        labelName: "Vertical",
         setterType: "RADIO_GROUP_SETTER",
         attrName: "verticalAlign",
         defaultValue: "start",
@@ -133,7 +133,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "text-style",
-    groupName: "Style",
+    groupName: "STYLE",
     children: [
       {
         id: "text-style-list",
@@ -144,24 +144,20 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         useCustomLabel: true,
         childrenSetter: [
           {
-            id: "text-style-bg",
-            labelName: "Background",
-            setterType: "INPUT_SETTER",
-            attrName: "backGroundColor",
-          },
-          {
             id: "text-style-color",
             labelName: "Text",
-            setterType: "INPUT_SETTER",
+            setterType: "COLOR_SELECT_SETTER",
             attrName: "textColor",
-            defaultValue: globalColor(`--${illaPrefix}-grayBlue-05`),
+            defaultValue: "gray",
+            options: colorSchemeOptions,
           },
           {
             id: "text-style-link-color",
             labelName: "Links",
-            setterType: "INPUT_SETTER",
+            setterType: "COLOR_SELECT_SETTER",
             attrName: "linkColor",
-            defaultValue: globalColor(`--${illaPrefix}-blue-05`),
+            defaultValue: "blue",
+            options: colorSchemeOptions,
           },
         ],
       },
