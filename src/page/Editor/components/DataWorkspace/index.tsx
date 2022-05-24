@@ -6,7 +6,7 @@ import { EditorInput } from "@/components/EditorInput"
 import {
   fetchUser,
   changeDemoValueA,
-} from "@/redux/reducers/editorReducer/demoReducer.ts"
+} from "@/redux/reducers/editorReducer/demoReducer"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -17,10 +17,6 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const demoValue = useSelector(
     (state: BuilderState) => state.editor.present.demo,
   )
-
-  useEffect(() => {
-    console.log(demoValue.value.d)
-  }, [demoValue.value.d])
 
   return (
     <div className={className}>
