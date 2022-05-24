@@ -1,16 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit"
-import builderReducer from "./redux/reducers"
 import logger from "redux-logger"
-import createSagaMiddleware from "redux-saga"
-import { rootSaga } from "./redux/sagas/index"
-
-const sagaMiddleware = createSagaMiddleware()
+import editorReducer from "@/redux/editor"
+import actionReducer from "@/redux/action"
+import dashboardReducer from "@/redux/dashboard/dashboardSlice"
 
 const store = configureStore({
-  reducer: builderReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(sagaMiddleware, logger),
+  reducer: {
+    editor: editorReducer,
+    action: actionReducer,
+    dashboard: dashboardReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
-sagaMiddleware.run(rootSaga)
 
 export default store

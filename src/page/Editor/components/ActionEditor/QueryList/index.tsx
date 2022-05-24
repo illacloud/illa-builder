@@ -17,9 +17,9 @@ import {
   updateQueryItem,
   removeQueryItem,
   selectAllQueryItem,
-} from "@/redux/reducers/actionReducer/queryListReducer"
-import { updateQueryId } from "@/redux/reducers/actionReducer/editorReducer"
-import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
+} from "@/redux/action/actionList/queryListReducer"
+import { updateQueryId } from "@/redux/action/editor/editorReducer"
+import { getActionEditorQueryId } from "@/redux/editor/editorSeletor"
 import {
   QueryListContainerCSS,
   applyNewButtonCSS,
