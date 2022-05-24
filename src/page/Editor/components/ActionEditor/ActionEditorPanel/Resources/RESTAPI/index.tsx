@@ -1,9 +1,6 @@
 import { FC, useState } from "react"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
-import { Divider } from "@illa-design/divider"
-import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
-import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
 import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
 import { Body } from "./Body"
 import {
@@ -16,7 +13,7 @@ import {
 import { ActionTypeCSS } from "./style"
 import { RESTAPIPanelProps } from "./interface"
 
-export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
+export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
   const [method, setMethod] = useState("GET")
   const hasBody = method.indexOf("GET") === -1
   return (

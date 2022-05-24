@@ -130,12 +130,12 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function updateName() {
-    /* dispatch(
-     *   updateActionItem({
-     *     id: editingActionItemId,
-     *     changes: { name: editingName },
-     *   }),
-     * ) */
+    dispatch(
+      updateActionItem({
+        id: editingActionItemId,
+        name: editingName,
+      }),
+    )
     setEditingActionItemId("")
     setEditingName("")
   }

@@ -1,11 +1,11 @@
-import { FC, ReactNode, useState } from "react"
+import { FC, useState } from "react"
 import { Select } from "@illa-design/select"
 import { ContentType } from "./interface"
 import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
 import { EditorInput } from "@/components/EditorInput"
 import { BodyFieldCSS, DescriptionCodeCSS, DescriptionCSS } from "./style"
 
-export const Body: FC = (props) => {
+export const Body: FC = () => {
   const [bodyType, setBodyType] = useState<ContentType>("raw")
   const bodyTypeOptiosn = [
     {

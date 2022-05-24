@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from "react"
+import { FC, useState } from "react"
 import { ActionType } from "@/page/Editor/components/ActionEditor/FormContainer/interface"
 import { ActionList } from "@/page/Editor/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/Editor/components/ActionEditor/ActionEditorPanel"
@@ -7,8 +7,7 @@ import { FormContainer } from "./FormContainer"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
 
-export const ActionEditor: FC<ActionEditorProps> = (props) => {
-  const { className } = props
+export const ActionEditor: FC<ActionEditorProps> = () => {
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
 

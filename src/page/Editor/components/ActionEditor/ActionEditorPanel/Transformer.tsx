@@ -1,4 +1,3 @@
-import { FC, useState, useRef, useEffect } from "react"
 import {
   ActionCSS,
   DashBorderBottomCSS,

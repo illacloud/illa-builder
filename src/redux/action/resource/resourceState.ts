@@ -1,3 +1,3 @@
 export const ResourceInititalState = {}
 
-export interface ResourceItemState { }
+export interface ResourceItemState {}

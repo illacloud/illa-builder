@@ -11,11 +11,10 @@ import {
 } from "./style"
 import { TitleInputProps } from "./interface"
 
-export const TitleInput: FC<TitleInputProps> = (props) => {
+export const TitleInput: FC<TitleInputProps> = () => {
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const actionId = ""
-  const name = "";
+  const name = ""
   const [title, setTitle] = useState(name)
   const variants = {
     hidden: {
@@ -39,7 +38,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
     updateName()
   }
 
-  function updateName() { }
+  function updateName() {}
 
   const childrenNode = isEditing ? (
     <motion.div

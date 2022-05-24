@@ -1,4 +1,5 @@
 import { FC, useMemo, useState } from "react"
+import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
 import { Divider } from "@illa-design/divider"
@@ -6,6 +7,11 @@ import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useSelector, useDispatch } from "react-redux"
+import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import {
+  addActionItem,
+  removeActionItem,
+} from "@/redux/action/actionList/actionListSlice"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
 import {
@@ -35,10 +41,11 @@ const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, onEditResource, onCreateResource } = props
-
+  const dispatch = useDispatch()
   const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
-  const actionItems = [];
-
+  const actionItems = useSelector(selectAllActionItem)
+  const currentActionItem = null
+  const currentActionItemId = ""
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
   }, [actionItems])
@@ -90,23 +97,22 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   function duplicateActionItem() {
     // 获取当前选中的 actionItem
     // 如果不存在则return
-    /* if (currentActionItem) {
-     *   const { type } = currentActionItem
+    if (currentActionItem) {
+      const { type } = currentActionItem
 
-     *   dispatch(
-     *     addActionItem({
-     *       type,
-     *       name: generateName(type),
-     *       isUpdated: Math.random() > 0.5,
-     *       isWarning: Math.random() > 0.5,
-     *       time: "0.7s",
-     *     }),
-     *   )
-     * } */
+      dispatch(
+        addActionItem({
+          id: uuidV4(),
+          type,
+          name: generateName(type),
+          status: Math.random() > 0.5 ? "warning" : "",
+        }),
+      )
+    }
   }
 
   function deleteActionItem() {
-    /* dispatch(removeActionItem(currentActionItemId)) */
+    dispatch(removeActionItem(currentActionItemId))
   }
 
   function generateName(type: string) {

@@ -15,7 +15,7 @@ import {
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
-  const { autoNewField, hasType } = props
+  const { hasType } = props
   // TOOD: omit _key when return data
   const getEmptyField = () => {
     return hasType

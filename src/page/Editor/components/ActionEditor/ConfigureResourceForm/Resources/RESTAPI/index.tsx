@@ -1,10 +1,5 @@
 import { forwardRef, useState } from "react"
-import {
-  useForm,
-  Controller,
-  SubmitHandler,
-  FieldValues,
-} from "react-hook-form"
+import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
@@ -37,7 +32,7 @@ import { BasicAuth, OAuth2 } from "./Authentication"
 const EmptyField: Params = { key: "", value: "" }
 
 export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
-  (props, ref) => {
+  (_, ref) => {
     const {
       handleSubmit,
       control,
@@ -182,7 +177,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
         <div css={GridRowContainerCSS}>
           <label css={LabelTextCSS}>Authentication</label>
           <Controller
-            render={({ field }) => (
+            render={() => (
               <Select
                 size={"small"}
                 onChange={setAuthType}
