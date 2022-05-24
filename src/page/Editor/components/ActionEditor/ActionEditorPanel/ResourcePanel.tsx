@@ -5,7 +5,7 @@ import {
   RESTAPIPanel,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
-import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { EventHandler } from "./EventHandler"
 import { ResourcePanelProps } from "./interface"
 
 export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
