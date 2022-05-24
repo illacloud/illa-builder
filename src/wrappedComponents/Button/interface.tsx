@@ -1,3 +1,5 @@
+import { ButtonColorScheme } from "@illa-design/button/src"
+
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
 export interface WrappedButtonProps {
@@ -15,4 +17,5 @@ export interface WrappedButtonProps {
   loading?: boolean
   alignment?: alignmentType
   tooltipText?: string
+  colorScheme?: ButtonColorScheme
 }

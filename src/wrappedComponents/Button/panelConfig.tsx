@@ -1,6 +1,6 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { HorizontalCenter, HorizontalEnd, HorizontalStart } from "./svg"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const AlignmentOptionStyle = {
   fontSize: "16px",
@@ -161,24 +161,11 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: "button-style-bg",
-            labelName: "Background",
-            setterType: "INPUT_SETTER",
-            attrName: "backGroundColor",
-            defaultValue: globalColor(`--${illaPrefix}-blue-01`),
-          },
-          {
-            id: "button-style-labelColor",
-            labelName: "Label",
-            setterType: "INPUT_SETTER",
-            attrName: "textColor",
-            defaultValue: globalColor(`--${illaPrefix}-white-01`),
-          },
-          {
-            id: "button-style-border",
-            labelName: "Border",
-            setterType: "INPUT_SETTER",
-            attrName: "borderColor",
-            defaultValue: globalColor(`--${illaPrefix}-blue-01`),
+            labelName: "Theme color",
+            setterType: "BASE_SELECT_SETTER",
+            attrName: "colorScheme",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
           },
         ],
       },
