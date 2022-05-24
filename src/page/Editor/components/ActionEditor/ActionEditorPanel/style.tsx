@@ -209,7 +209,6 @@ export const HandlerMoreIconCSS = css`
   padding: 0 9px;
   box-sizing: border-box;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  border-left-width: 0;
   display: flex;
   align-items: center;
   height: 100%;
@@ -256,4 +255,40 @@ export const DuplicateActionCSS = css`
 
 export const DeleteActionCSS = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
+`
+
+export const HandlerItemWrapperCSS = css`
+  display: flex;
+  height: 32px;
+  font-size: 14px;
+  line-height: 1.57;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  cursor: pointer;
+`
+
+export const HandlerItemContentCSS = css`
+  flex: 1;
+  border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  padding: 5px 16px;
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  &:hover {
+    border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+  }
+`
+
+export const HandlerItemMoreCSS = css`
+  width: 32px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-left-width: 0;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
 `
