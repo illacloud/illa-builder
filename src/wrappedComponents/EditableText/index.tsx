@@ -1,10 +1,9 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react"
-
 import { WrapperEditableTextProps } from "./interface"
 import Label from "../Label"
 import { Wrapper } from "../Wrapper"
 import { Input } from "@illa-design/input"
-import { InvalidMessage } from "../InValidMessage"
+import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
 import { inputContainerCss, textCss } from "./style"
 import { PenIcon } from "@illa-design/icon"
 import { WrappedInputRefType } from "../Input/interface"

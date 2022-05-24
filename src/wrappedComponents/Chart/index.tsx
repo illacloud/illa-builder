@@ -72,7 +72,6 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
     } else {
       res = wrapDataset(datasets)
     }
-    console.log(11, res, xAxisValues)
     return [res.datasets, res.tooltips]
   }, [datasets, groupBy])
 

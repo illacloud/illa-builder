@@ -1,10 +1,11 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react"
 import { WrappedInputProps, WrappedInputRefType } from "./interface"
-import Label from "../Label"
-import { Wrapper } from "../Wrapper"
+import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { Input } from "@illa-design/input"
+import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
 import { inputContainerCss } from "./style"
-import { InvalidMessage } from "../InvalidMessage"
+import { withParser } from "@/wrappedComponents/parserHOC"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
 export const WrappedInput = forwardRef<WrappedInputRefType, WrappedInputProps>(
   (props, ref) => {
@@ -29,10 +30,13 @@ export const WrappedInput = forwardRef<WrappedInputRefType, WrappedInputProps>(
       prefixIcon,
       suffixIcon,
       suffixText,
-      ...res
+      tooltipText,
+      showClear,
+      defaultValue,
+      placeholder,
     } = props
 
-    const [currentValue, setCurrentValue] = useState(value)
+    const [currentValue, setCurrentValue] = useState(defaultValue)
     const inputRef = useRef<HTMLInputElement>(null)
 
     useImperativeHandle(
@@ -42,7 +46,6 @@ export const WrappedInput = forwardRef<WrappedInputRefType, WrappedInputProps>(
           _inputRef: inputRef.current,
           validate: () => {}, // todo@aoao 未确定实现
           focus: () => {
-            console.log(inputRef.current)
             inputRef.current?.focus()
           },
         }
@@ -51,43 +54,51 @@ export const WrappedInput = forwardRef<WrappedInputRefType, WrappedInputProps>(
     )
 
     return (
-      <Wrapper w={"300px"}>
-        <Label
-          label={label}
-          labelPosition={labelPosition}
-          labelAlign={labelAlign}
-          labelCaption={labelCaption}
-          labelWidth={labelWidth}
-          labelWidthUnit={labelWidthUnit}
-        />
-        <div css={inputContainerCss}>
-          <Input
-            onChange={(value) => {
-              setCurrentValue(value)
-              onChange && onChange(value)
-            }}
-            {...res}
-            addonAfter={{ render: suffixText }}
-            addonBefore={{ render: prefixText }}
-            suffix={{ render: suffixIcon }}
-            prefix={{ render: prefixIcon }}
-            showCount={showCharacterCount}
-            value={value}
-            inputRef={inputRef}
-          />
-          <InvalidMessage
-            value={currentValue}
-            pattern={pattern}
-            regex={regex}
-            minLength={minLength}
-            maxLength={maxLength}
+      <div>
+        <Wrapper w={"300px"}>
+          <LabelWrapper
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
             required={required}
-            customRule={customRule}
-            hideValidationMessage={hideValidationMessage}
-          />
-        </div>
-      </Wrapper>
+            tooltipText={tooltipText}
+          >
+            <div css={inputContainerCss}>
+              <Input
+                onChange={(value) => {
+                  setCurrentValue(value)
+                  onChange && onChange(value)
+                }}
+                placeholder={placeholder}
+                addonAfter={{ render: suffixText }}
+                addonBefore={{ render: prefixText }}
+                suffix={{ render: suffixIcon }}
+                prefix={{ render: prefixIcon }}
+                showCount={showCharacterCount}
+                allowClear={showClear}
+                value={value}
+                inputRef={inputRef}
+              />
+              <InvalidMessage
+                value={currentValue}
+                pattern={pattern}
+                regex={regex}
+                minLength={minLength}
+                maxLength={maxLength}
+                required={required}
+                customRule={customRule}
+                hideValidationMessage={hideValidationMessage}
+              />
+            </div>
+          </LabelWrapper>
+        </Wrapper>
+      </div>
     )
   },
 )
+export const InputWidget = withParser(WrappedInput)
+
 WrappedInput.displayName = "WrappedInput"
