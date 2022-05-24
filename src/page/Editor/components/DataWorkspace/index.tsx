@@ -1,14 +1,12 @@
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import { BuilderState } from "@/redux/reducers/interface"
-import {
-  changeDemoValueA,
-  changeDemoValueB,
-} from "@/redux/reducers/editorReducer/demoReducer"
-import { ActionCreators as UndoActionCreators } from "redux-undo"
-import { Button } from "@illa-design/button"
 import { EditorInput } from "@/components/EditorInput"
+import {
+  fetchUser,
+  changeDemoValueA,
+} from "@/redux/reducers/editorReducer/demoReducer.ts"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -20,24 +18,43 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
     (state: BuilderState) => state.editor.present.demo,
   )
 
+  useEffect(() => {
+    console.log(demoValue.value.d)
+  }, [demoValue.value.d])
+
   return (
     <div className={className}>
       DataWorkspace
-      <div>demo:</div>
-      <div>{demoValue.value.a}</div>
-      <Button onClick={() => dispatch(changeDemoValueA())}>
-        changeDemoValueA
-      </Button>
-      <div>{demoValue.value.b}</div>
-      <Button onClick={() => dispatch(changeDemoValueB())}>
-        changeDemoValueB
-      </Button>
-      <br />
-      <br />
-      <br />
-      <Button onClick={() => dispatch(UndoActionCreators.undo())}>undo</Button>
-      <Button onClick={() => dispatch(UndoActionCreators.redo())}>redo</Button>
       <EditorInput mode="javascript" />
+      <div>{demoValue.value.a}</div>
+      <button
+        onClick={() => {
+          dispatch(fetchUser())
+            .unwrap()
+            .then((originalPromiseResult) => {
+              // 调试用，用来看调用顺序，暂时保留
+              console.log(originalPromiseResult)
+              console.log(demoValue.value.d)
+            })
+        }}
+      >
+        getData
+      </button>
+      <button
+        onClick={() => {
+          // dispatch(changeDemoValueA())
+          dispatch({ type: "incrementAsync_demo_saga" })
+        }}
+      >
+        changeDemoValueA
+      </button>
+      <button
+        onClick={() => {
+          console.log(demoValue.value)
+        }}
+      >
+        show data
+      </button>
     </div>
   )
 }

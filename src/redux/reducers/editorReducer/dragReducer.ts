@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initValue: DragState = {
   value: 101,
+  githubData: {},
 }
 
 const dragSlice = createSlice({
@@ -20,4 +21,5 @@ export default dragSlice.reducer
 
 export interface DragState {
   value: number
+  githubData: any
 }

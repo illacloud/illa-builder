@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 
 const initValue: DemoState = {
   name: "demo name",
@@ -8,8 +8,26 @@ const initValue: DemoState = {
     c: {
       value: "demo value",
     },
+    d: {},
   },
 }
+
+const fn = () => {
+  return fetch("https://api.github.com/users/github", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      return res
+    })
+}
+export const fetchUser = createAsyncThunk(
+  "demo/fetchDemoData",
+  async (params, thunkAPI) => {
+    const response = await fn()
+    return response
+  },
+)
 
 const demoSlice = createSlice({
   name: "demo",
@@ -24,6 +42,12 @@ const demoSlice = createSlice({
     changeDemoValueC(state) {
       state.value.c.value = "demo C"
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUser.fulfilled, (state, action) => {
+      console.log("fetchUser.fulfilled")
+      state.value.d = action.payload
+    })
   },
 })
 
@@ -40,5 +64,6 @@ export interface DemoState {
     c: {
       value: string
     }
+    d: any
   }
 }
