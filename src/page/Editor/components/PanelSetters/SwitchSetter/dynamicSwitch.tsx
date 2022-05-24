@@ -5,9 +5,9 @@ import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/contex
 import { PanelLabel } from "@/page/Editor/components/InspectPanel/label"
 import {
   applyCustomIconStyle,
+  applyLabelWrapperStyle,
   customAndSwitchWrapperCss,
   dynamicSwitchWrapperCss,
-  labelCss,
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
 
@@ -23,7 +23,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const customValue = tempProps[customValueKey]
 
   return (
-    <div css={labelCss}>
+    <div css={applyLabelWrapperStyle(customSelected)}>
       <div css={dynamicSwitchWrapperCss}>
         {useCustomLabel && (
           <PanelLabel labelName={labelName} labelDesc={labelDesc} />

@@ -1,49 +1,14 @@
 import { FC, useState } from "react"
 import { Search } from "@illa-design/input"
-import { SearchIcon } from "@illa-design/icon"
 import { componentContainerCss, sessionListContainerCss } from "./style"
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"
 import { Empty } from "./Empty"
-import { widgetBuilder } from "@/wrappedComponents/WidgetBuilder"
+import { buildComponentList } from "@/wrappedComponents/ComponentListBuilder"
 
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
-  const test = widgetBuilder("TEST_WIDGET").config as any
-  const textConfig = widgetBuilder("TEXT_WIDGET").config as any
-  const imageConfig = widgetBuilder("IMAGE_WIDGET").config as any
-  const switchConfig = widgetBuilder("SWITCH_WIDGET").config as any
-  const defaultList: ComponentSessionProps[] = [
-    {
-      title: "global",
-      children: [
-        {
-          id: "01",
-          name: "container",
-          icon: <SearchIcon />,
-          type: "CONTAINER_WIDGET",
-        },
-        { id: "02", name: "test", icon: <SearchIcon />, ...test },
-        { id: "03", name: "Text", icon: <SearchIcon />, ...textConfig },
-        { id: "04", name: "Image ", icon: <SearchIcon />, ...imageConfig },
-        { id: "05", name: "Switch", icon: <SearchIcon />, ...switchConfig },
-        { id: "06", name: "component 06", icon: <SearchIcon /> },
-      ],
-    },
-    {
-      title: "Common",
-      children: [
-        { id: "07", name: "component 01 ", icon: <SearchIcon /> },
-        { id: "08", name: "component 02", icon: <SearchIcon /> },
-        { id: "09", name: "component 03", icon: <SearchIcon /> },
-      ],
-    },
-    {
-      title: "session3",
-      children: [{ id: "01", name: "component 03 ", icon: <SearchIcon /> }],
-    },
-  ]
-
+  const defaultList: ComponentSessionProps[] = buildComponentList()
   const { className, componentList = defaultList } = props
 
   const [searchRes, setSearchRes] = useState<

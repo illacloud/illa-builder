@@ -1,4 +1,4 @@
-import LabelProps from "../Label/interface"
+import LabelProps from "@/wrappedComponents/Label/interface"
 import { SwitchColorScheme } from "@illa-design/switch"
 
 export interface SwitchProps extends LabelProps {

@@ -10,7 +10,7 @@ const OptionsStyle = {
   color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
-export const SwitchPanelConfig: PanelConfig[] = [
+export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "switch-basic",
     groupName: "Basic",

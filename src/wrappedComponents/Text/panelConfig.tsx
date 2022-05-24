@@ -15,7 +15,7 @@ const AlignmentOptionStyle = {
   alignItems: "center",
 }
 
-export const TextPanelConfig: PanelConfig[] = [
+export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "text-basic",
     groupName: "Basic",
@@ -95,7 +95,7 @@ export const TextPanelConfig: PanelConfig[] = [
         labelName: "verticalAlign",
         setterType: "RADIO_GROUP_SETTER",
         attrName: "verticalAlign",
-        defaultValue: "top",
+        defaultValue: "start",
         options: [
           {
             label: (
@@ -103,7 +103,7 @@ export const TextPanelConfig: PanelConfig[] = [
                 <VerticalTop />
               </div>
             ),
-            value: "top",
+            value: "start",
           },
           {
             label: (
@@ -119,7 +119,7 @@ export const TextPanelConfig: PanelConfig[] = [
                 <VerticalBottom />
               </div>
             ),
-            value: "bottom",
+            value: "end",
           },
         ],
       },

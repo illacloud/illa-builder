@@ -7,12 +7,12 @@ import { HeaderProps } from "./interface"
 import { ConfigPanelContext } from "./context"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
-  const { handleUpdateDsl } = useContext(ConfigPanelContext)
+  const { componentDsl, handleUpdateDsl } = useContext(ConfigPanelContext)
 
   return (
     <div css={panelHeaderWrapperCss}>
       {/*  TODO: wait for editable component*/}
-      <div>Editable Title</div>
+      <div>{componentDsl.type}</div>
       <div css={panelHeaderIconWrapperCss}>
         <Trigger
           position="br"

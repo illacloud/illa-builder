@@ -1,3 +1,5 @@
+export type alignmentType = "start" | "center" | "end" | "fullWidth"
+
 export interface WrappedButtonProps {
   variant?: "fill" | "outline"
   text?: string
@@ -10,4 +12,7 @@ export interface WrappedButtonProps {
   borderColor?: string
   textColor?: string
   borderRadius?: string
+  loading?: boolean
+  alignment?: alignmentType
+  tooltipText?: string
 }

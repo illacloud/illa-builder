@@ -54,9 +54,17 @@ export function applyLabelStyle(
   }
 }
 
-export const labelTitleCss = css`
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
-`
+export const applyLabelTitleStyle = (hasTooltip: boolean) => {
+  const borderCss = hasTooltip
+    ? css`
+        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+      `
+    : css``
+  return css`
+    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    ${borderCss}
+  `
+}
 
 export const labelCaptionCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-04`)};

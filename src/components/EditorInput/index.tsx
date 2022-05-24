@@ -25,6 +25,8 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
     lineNumbers = true,
     height = "auto",
     placeholder = "input sth",
+    onChange,
+    onBlur,
   } = props
 
   const targetRef = useRef<HTMLDivElement>(null)
@@ -62,6 +64,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
     }
 
     editor.on("change", function (editor, change) {
+      onChange?.(editor.getValue())
       // autocomplete
       if (change.origin == "+input") {
         var text = change.text
@@ -72,6 +75,9 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
           }, 20)
         }
       }
+    })
+    editor.on("blur", function () {
+      onBlur?.()
     })
   }, [])
 

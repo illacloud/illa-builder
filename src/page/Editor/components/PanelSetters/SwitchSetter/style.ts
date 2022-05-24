@@ -6,6 +6,7 @@ export const dynamicSwitchWrapperCss = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 `
 
 export const customAndSwitchWrapperCss = css`
@@ -35,7 +36,22 @@ export const applyCustomIconStyle = (
   `
 }
 
-export const labelCss = css`
+const singleRowCss = css`
   min-height: 48px;
+  width: 100%;
   ${publicPaddingCss}
 `
+
+const doubleRowCss = css`
+  min-height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  ${publicPaddingCss}
+`
+
+export const applyLabelWrapperStyle = (
+  isCustom: boolean = false,
+): SerializedStyles => {
+  return isCustom ? singleRowCss : doubleRowCss
+}

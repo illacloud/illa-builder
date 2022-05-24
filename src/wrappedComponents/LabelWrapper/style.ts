@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { LabelPositionType } from "../Label/interface"
+import { LabelPositionType } from "@/wrappedComponents/Label/interface"
 
 export function applyLabelWrapperStyle(
   labelPosition?: LabelPositionType,
