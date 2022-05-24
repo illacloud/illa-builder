@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   getSelectedWidgetStates,
   getWidgetStateById,
-} from "@/redux/selectors/editorSelectors/dslSelectors"
-import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
-import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+} from "@/redux/editor/dslReducer/dslSelectors"
+import { dslActions } from "@/redux/editor/dslReducer"
+import { DslActionName } from "@/redux/editor/dslReducer/dsl-action"
 // TODO: remove this,when add utils to system
 import { isEmpty } from "lodash"
 import { useDebounce } from "react-use"

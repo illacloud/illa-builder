@@ -1,12 +1,10 @@
 import { CaseReducer, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit"
-import { DashboardState } from "@/redux/reducers/dashboard/dashboardState"
+import { DashboardState } from "@/redux/dashboard/dashboardState"
 
 export const incrementByAmountReducer: CaseReducer<
   DashboardState,
   PayloadAction<number>
-> = (state, action) => {
-  state.appsState.co += action.payload
-}
+> = (state, action) => {}
 
 export const fetchListReducer: CaseReducer<
   DashboardState,

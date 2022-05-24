@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { BuilderState } from "@/redux/reducers/interface"
 import { EditorInput } from "@/components/EditorInput"
-import {
-  fetchUser,
-  changeDemoValueA,
-} from "@/redux/reducers/editorReducer/demoReducer"
+import { fetchUser, changeDemoValueA } from "@/redux/editor/demoReducer"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 

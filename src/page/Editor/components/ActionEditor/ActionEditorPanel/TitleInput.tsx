@@ -7,8 +7,8 @@ import { BuilderState } from "@/redux/reducers/interface"
 import {
   updateQueryItem,
   selectQueryItemById,
-} from "@/redux/reducers/actionReducer/queryListReducer"
-import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
+} from "@/redux/action/actionList/queryListReducer"
+import { getActionEditorQueryId } from "@/redux/editor/editorSeletor"
 import {
   TitleContainerCSS,
   TitleEditIconCSS,

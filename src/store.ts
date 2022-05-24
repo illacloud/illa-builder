@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import editorReducer from "@/redux/reducers/editorReducer"
-import actionReducer from "@/redux/reducers/actionReducer"
-import dashboardReducer from "@/redux/reducers/dashboard/dashboardSlice"
+import editorReducer from "@/redux/editor"
+import actionReducer from "@/redux/action"
+import dashboardReducer from "@/redux/dashboard/dashboardSlice"
 
 const store = configureStore({
   reducer: {

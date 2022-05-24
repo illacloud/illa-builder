@@ -5,8 +5,8 @@ import { Frame } from "scenejs"
 import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
 import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
 import { useSelectWidget } from "@/page/Editor/hooks/useSelectWidget"
-import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
-import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
+import { dslActions } from "@/redux/editor/dslReducer"
+import { DslActionName } from "@/redux/editor/dslReducer/dsl-action"
 import { getPreviewMode } from "@/redux/selectors/editorSelectors/modeSelectors"
 import {
   getFocusedWidget,

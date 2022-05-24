@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { DashboardInitialState } from "@/redux/reducers/dashboard/dashboardState"
+import { DashboardInitialState } from "@/redux/dashboard/dashboardState"
 import {
   fetchList,
   fetchListReducer,
   incrementByAmountReducer,
-} from "@/redux/reducers/dashboard/dashboardReducer"
+} from "@/redux/dashboard/dashboardReducer"
 
 const dashboardSlice = createSlice({
   name: "dashboard",
