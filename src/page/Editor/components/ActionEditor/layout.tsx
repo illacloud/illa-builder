@@ -9,7 +9,7 @@ import {
 import { ActionEditorLayoutProps } from "./interface"
 
 export const ActionEditorLayout: FC<ActionEditorLayoutProps> = (props) => {
-  const { queryList, actionEditorPanel } = props
+  const { actionList, actionEditorPanel } = props
   const [containerHeight, setContainerHeight] = useState(300)
 
   const editorRef = useRef<HTMLDivElement>(null)
@@ -31,7 +31,7 @@ export const ActionEditorLayout: FC<ActionEditorLayoutProps> = (props) => {
         css={[ActionEditorContainer, applyContainerHeight(containerHeight)]}
         ref={editorRef}
       >
-        {queryList}
+        {actionList}
         {actionEditorPanel}
       </div>
     </div>

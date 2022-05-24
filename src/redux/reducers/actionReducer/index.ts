@@ -1,15 +1,12 @@
 import { combineReducers } from "redux"
-import queryListReducer, { QueryListState } from "./queryListReducer"
-import editorReducer, { EditorState } from "./editorReducer"
+import actionListReducer, { ActionListState } from "./actionListReducer"
 
 export interface ActionState {
-  editor: EditorState
-  queryList: QueryListState
+  actions: ActionListState
 }
 
 const actionReducer = combineReducers({
-  editor: editorReducer,
-  queryList: queryListReducer,
+  actions: actionListReducer,
 })
 
 export default actionReducer

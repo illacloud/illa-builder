@@ -8,12 +8,11 @@ import { Menu } from "@illa-design/menu"
 import { useSelector, useDispatch } from "react-redux"
 import { BuilderState } from "@/redux/reducers/interface"
 import {
-  addQueryItem,
-  removeQueryItem,
-  selectQueryItemById,
-  selectAllQueryItem,
-} from "@/redux/reducers/actionReducer/queryListReducer"
-import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
+  addActionItem,
+  removeActionItem,
+  selectActionItemById,
+  selectAllActionItem,
+} from "@/redux/reducers/actionReducer/actionListReducer"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
 import {
@@ -47,15 +46,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
 
   const dispatch = useDispatch()
-  const queryItems = useSelector(selectAllQueryItem)
-  const currentQueryItemId = useSelector(getActionEditorQueryId)
-  const currentQueryItem = useSelector((state: BuilderState) =>
-    selectQueryItemById(state, currentQueryItemId),
+  const actionItems = useSelector(selectAllActionItem)
+  const currentActionItemId = ""
+  const currentActionItem = useSelector((state: BuilderState) =>
+    selectActionItemById(state, currentActionItemId),
   )
 
-  const queryItemsNameSet = useMemo(() => {
-    return new Set(queryItems.map((i) => i.name))
-  }, [queryItems])
+  const actionItemsNameSet = useMemo(() => {
+    return new Set(actionItems.map((i) => i.name))
+  }, [actionItems])
 
   const modeOptions = [
     { label: "SQL mode", value: 0 },
@@ -95,20 +94,20 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   function handleAction(key: string) {
     if (key === "duplicate") {
-      duplicateQueryItem()
+      duplicateActionItem()
     } else if (key === "delete") {
-      deleteQueryItem()
+      deleteActionItem()
     }
   }
 
-  function duplicateQueryItem() {
-    // 获取当前选中的 queryItem
+  function duplicateActionItem() {
+    // 获取当前选中的 actionItem
     // 如果不存在则return
-    if (currentQueryItem) {
-      const { type } = currentQueryItem
+    if (currentActionItem) {
+      const { type } = currentActionItem
 
       dispatch(
-        addQueryItem({
+        addActionItem({
           type,
           name: generateName(type),
           isUpdated: Math.random() > 0.5,
@@ -119,18 +118,18 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     }
   }
 
-  function deleteQueryItem() {
-    dispatch(removeQueryItem(currentQueryItemId))
+  function deleteActionItem() {
+    dispatch(removeActionItem(currentActionItemId))
   }
 
   function generateName(type: string) {
-    const length = queryItems.filter((i) => i.type === type).length
+    const length = actionItems.filter((i) => i.type === type).length
     const prefix = type
 
     const getUniqueName = (length: number): string => {
       const name = `${prefix}${length + 1}`
 
-      if (queryItemsNameSet.has(name)) {
+      if (actionItemsNameSet.has(name)) {
         return getUniqueName(length + 1)
       }
 

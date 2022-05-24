@@ -2,7 +2,7 @@ import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const QueryListContainerCSS = css`
+export const ActionListContainerCSS = css`
   display: flex;
   flex-direction: column;
   width: 255px;
@@ -49,7 +49,7 @@ export const NewButtonIconCSS = css`
   margin-right: 8px;
 `
 
-export const QueryItemListCSS = css`
+export const ActionItemListCSS = css`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -57,7 +57,7 @@ export const QueryItemListCSS = css`
   overflow-y: auto;
 `
 
-export function applyQueryItemCSS(isSelected: boolean): SerializedStyles {
+export function applyActionItemCSS(isSelected: boolean): SerializedStyles {
   const backgroundColorCSS = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
@@ -76,12 +76,12 @@ export function applyQueryItemCSS(isSelected: boolean): SerializedStyles {
   `
 }
 
-export const QueryItemIconCSS = css`
+export const ActionItemIconCSS = css`
   position: relative;
   color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 
-export const QueryItemNameCSS = css`
+export const ActionItemNameCSS = css`
   flex: 1 1 0;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@ export const QueryItemNameCSS = css`
   margin-right: 8px;
 `
 
-export function applyQueryItemNameTextCSS(
+export function applyActionItemNameTextCSS(
   isWarning: boolean,
 ): SerializedStyles {
   const warningColor = css`
@@ -126,18 +126,18 @@ export const UpdatedIndicatorCSS = css`
   margin-left: 8px;
   flex: 0 0 6px;
 `
-export const QueryItemTimeCSS = css`
+export const ActionItemTimeCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 `
 
-export const NewQueryOptionsListCSS = css`
+export const NewActionOptionsListCSS = css`
   list-style: none;
   margin: 0;
   padding: 0;
   width: 220px;
 `
 
-export const NewQueryOptionsItemCSS = css`
+export const NewActionOptionsItemCSS = css`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -161,7 +161,7 @@ export const NoMatchFoundWrapperCSS = css`
   }
 `
 
-export const EmptyQueryListPlaceholderCSS = css`
+export const EmptyActionListPlaceholderCSS = css`
   display: flex;
   justify-content: center;
   align-items: center;
