@@ -1,8 +1,8 @@
 import { HTMLAttributes } from "react"
 
-export interface QueryListProps extends HTMLAttributes<HTMLDivElement> {}
+export interface ActionListProps extends HTMLAttributes<HTMLDivElement> { }
 
-export interface QueryItem {
+export interface ActionItem {
   id: string
   type: string
   name: string
@@ -12,5 +12,5 @@ export interface QueryItem {
 }
 
 export interface SearchHeaderProps {
-  updateQuery: (query: string) => void
+  updateAction: (action: string) => void
 }

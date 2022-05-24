@@ -16,7 +16,7 @@ import {
 } from "./style"
 
 export const SearchHeader: FC<SearchHeaderProps> = (props) => {
-  const { updateQuery } = props
+  const { updateAction } = props
   const [isSearch, setIsSearch] = useState(false)
 
   const MotionHeaderSearchInput = motion(
@@ -27,8 +27,8 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
           render: <SearchIcon size={"12px"} css={SearchInputIconCSS} />,
         }}
         placeholder={"Search"}
-        onChange={updateQuery}
-        onClear={() => updateQuery("")}
+        onChange={updateAction}
+        onClear={() => updateAction("")}
         css={SearchInputCSS}
         allowClear
       />
@@ -41,7 +41,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         ref={ref}
         onClick={() => {
           setIsSearch(false)
-          updateQuery("")
+          updateAction("")
         }}
         colorScheme={"white"}
         css={SearchInputCloseBtnCSS}
@@ -64,7 +64,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         animate={{ flex: 1 }}
         transition={{ duration: 0.4 }}
       >
-        Queries List
+        Action List
       </motion.span>
       <SearchIcon
         size={"12px"}

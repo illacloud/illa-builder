@@ -5,10 +5,9 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import { BuilderState } from "@/redux/reducers/interface"
 import {
-  updateQueryItem,
-  selectQueryItemById,
-} from "@/redux/reducers/actionReducer/queryListReducer"
-import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
+  updateActionItem,
+  selectActionItemById,
+} from "@/redux/reducers/actionReducer/actionListReducer"
 import {
   TitleContainerCSS,
   TitleEditIconCSS,
@@ -22,9 +21,9 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const dispatch = useDispatch()
-  const queryId = useSelector(getActionEditorQueryId)
+  const actionId = "";
   const { name } =
-    useSelector((state: BuilderState) => selectQueryItemById(state, queryId)) ??
+    useSelector((state: BuilderState) => selectActionItemById(state, actionId)) ??
     {}
   const [title, setTitle] = useState(name)
   const variants = {
@@ -50,7 +49,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   }
 
   function updateName() {
-    dispatch(updateQueryItem({ id: queryId, changes: { name: title } }))
+    dispatch(updateActionItem({ id: actionId, changes: { name: title } }))
   }
 
   const childrenNode = isEditing ? (
