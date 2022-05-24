@@ -1,6 +1,7 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
+import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
   width: "77px",
@@ -147,8 +148,10 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "radioGroup-style-color",
         labelName: "Color",
-        setterType: "INPUT_SETTER",
+        setterType: "BASE_SELECT_SETTER",
         attrName: "checkedBackgroundColor",
+        defaultValue: "blue",
+        options: colorSchemeOptions,
       },
       {
         id: "radioGroup-style-direction",

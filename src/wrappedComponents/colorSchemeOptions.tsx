@@ -17,6 +17,7 @@ const colorBlockStyle = (backgroundColor: string) => {
   }
 }
 
+// TODO: wait a color options builder
 export const colorSchemeOptions = [
   {
     label: (
