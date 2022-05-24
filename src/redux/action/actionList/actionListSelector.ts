@@ -1,6 +1,5 @@
-import { EditorState } from "@/redux/action/editor/editorReducer"
+import { RootState } from "@/store"
+import { createSelector } from "@reduxjs/toolkit"
+import { ActionListState } from "@/redux/action/actionList/actionListState"
 
-export interface ActionState {
-  editor: EditorState
-  queryList: QueryListState
-}
+export const selectAllActionItem = (state: RootState) => state.action.actionList

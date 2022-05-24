@@ -1,8 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import logger from "redux-logger"
 import editorReducer from "@/redux/editor"
-import actionReducer from "@/redux/action"
+import resourceReducer from "@/redux/action/resource/resourceSlice"
+import actionListReducer from "@/redux/action/actionList/actionListSlice"
 import dashboardReducer from "@/redux/dashboard/dashboardSlice"
+
+const actionReducer = combineReducers({
+  actionList: actionListReducer,
+  resource: resourceReducer,
+})
 
 const store = configureStore({
   reducer: {
@@ -14,3 +20,5 @@ const store = configureStore({
 })
 
 export default store
+
+export type RootState = ReturnType<typeof store.getState>

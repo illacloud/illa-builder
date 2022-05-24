@@ -6,13 +6,6 @@ import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useSelector, useDispatch } from "react-redux"
-import { BuilderState } from "@/redux/reducers/interface"
-import {
-  addActionItem,
-  removeActionItem,
-  selectActionItemById,
-  selectAllActionItem,
-} from "@/redux/reducers/actionReducer/actionListReducer"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
 import {
@@ -44,13 +37,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { className, onEditResource, onCreateResource } = props
 
   const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
-
-  const dispatch = useDispatch()
-  const actionItems = useSelector(selectAllActionItem)
-  const currentActionItemId = ""
-  const currentActionItem = useSelector((state: BuilderState) =>
-    selectActionItemById(state, currentActionItemId),
-  )
+  const actionItems = [];
 
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
@@ -103,23 +90,23 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   function duplicateActionItem() {
     // 获取当前选中的 actionItem
     // 如果不存在则return
-    if (currentActionItem) {
-      const { type } = currentActionItem
+    /* if (currentActionItem) {
+     *   const { type } = currentActionItem
 
-      dispatch(
-        addActionItem({
-          type,
-          name: generateName(type),
-          isUpdated: Math.random() > 0.5,
-          isWarning: Math.random() > 0.5,
-          time: "0.7s",
-        }),
-      )
-    }
+     *   dispatch(
+     *     addActionItem({
+     *       type,
+     *       name: generateName(type),
+     *       isUpdated: Math.random() > 0.5,
+     *       isWarning: Math.random() > 0.5,
+     *       time: "0.7s",
+     *     }),
+     *   )
+     * } */
   }
 
   function deleteActionItem() {
-    dispatch(removeActionItem(currentActionItemId))
+    /* dispatch(removeActionItem(currentActionItemId)) */
   }
 
   function generateName(type: string) {

@@ -2,6 +2,7 @@ import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
 import { motion } from "framer-motion"
 import { useClickAway } from "react-use"
 import { useDispatch, useSelector } from "react-redux"
+import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
@@ -12,12 +13,12 @@ import {
   EmptyStateIcon,
   RestApiIcon,
 } from "@illa-design/icon"
+import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import {
-  addActionItem,
   updateActionItem,
+  addActionItem,
   removeActionItem,
-  selectAllActionItem,
-} from "@/redux/reducers/actionReducer/actionListReducer"
+} from "@/redux/action/actionList/actionListSlice"
 import {
   ActionListContainerCSS,
   applyNewButtonCSS,
@@ -129,18 +130,23 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function updateName() {
-    dispatch(
-      updateActionItem({
-        id: editingActionItemId,
-        changes: { name: editingName },
-      }),
-    )
+    /* dispatch(
+     *   updateActionItem({
+     *     id: editingActionItemId,
+     *     changes: { name: editingName },
+     *   }),
+     * ) */
     setEditingActionItemId("")
     setEditingName("")
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
-    const { id, name, time, isWarning, isUpdated } = item
+    const { id, name, status } = item
+    const isWarning = status === "warning"
+    // TODO: isUpdated should a props
+    const isUpdated = false
+    // TODO: time should retrieve from ActionItem.network
+    const time = "0.7s"
     const icon = <RestApiIcon />
     const isSelected = id === selectedActionItemId
 
@@ -210,11 +216,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   function addAction() {
     dispatch(
       addActionItem({
+        id: uuidV4(),
         type: "action",
         name: generateName("action"),
-        isUpdated: Math.random() > 0.5,
-        isWarning: Math.random() > 0.5,
-        time: "0.7s",
+        status: Math.random() > 0.5 ? "warning" : "",
       }),
     )
   }
@@ -222,11 +227,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   function addTransformer() {
     dispatch(
       addActionItem({
+        id: uuidV4(),
         type: "transformer",
         name: generateName("transformer"),
-        isUpdated: Math.random() > 0.5,
-        isWarning: Math.random() > 0.5,
-        time: "0.7s",
+        status: Math.random() > 0.5 ? "warning" : "",
       }),
     )
   }
@@ -284,19 +288,18 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
   function duplicateActionItem() {
     setContextMenuVisible(false)
+
     const newActionItems = actionItems.slice(0)
     const targetItem = newActionItems.find((i) => i.id === actionActionItemId)
 
     if (targetItem) {
       const type = targetItem.type
-
       dispatch(
         addActionItem({
+          id: uuidV4(),
           type,
           name: generateName(type),
-          isUpdated: Math.random() > 0.5,
-          isWarning: Math.random() > 0.5,
-          time: "0.7s",
+          status: Math.random() > 0.5 ? "warning" : "",
         }),
       )
     }
