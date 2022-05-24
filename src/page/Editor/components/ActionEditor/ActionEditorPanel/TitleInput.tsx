@@ -21,10 +21,11 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const dispatch = useDispatch()
-  const actionId = "";
+  const actionId = ""
   const { name } =
-    useSelector((state: BuilderState) => selectActionItemById(state, actionId)) ??
-    {}
+    useSelector((state: BuilderState) =>
+      selectActionItemById(state, actionId),
+    ) ?? {}
   const [title, setTitle] = useState(name)
   const variants = {
     hidden: {

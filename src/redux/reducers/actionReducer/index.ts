@@ -6,7 +6,7 @@ export interface ActionState {
 }
 
 const actionReducer = combineReducers({
-  actions: actionListReducer
+  actions: actionListReducer,
 })
 
 export default actionReducer

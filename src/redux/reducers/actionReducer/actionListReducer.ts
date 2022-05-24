@@ -11,7 +11,7 @@ interface ResouceConfig {
   id: string
 }
 
-export interface ActionListState extends EntityState<ActionItem> { }
+export interface ActionListState extends EntityState<ActionItem> {}
 
 interface ActionItem {
   id: string
@@ -56,7 +56,7 @@ export const {
   selectAll: selectAllActionItem,
   selectById: selectActionItemById,
 } = actionListAdapter.getSelectors(
-  (state: BuilderState) => state.action.actions
+  (state: BuilderState) => state.action.actions,
 )
 
 export default actionListSlice.reducer

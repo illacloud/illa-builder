@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react"
 
-export interface ActionListProps extends HTMLAttributes<HTMLDivElement> { }
+export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {}
 
 export interface ActionItem {
   id: string

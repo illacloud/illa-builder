@@ -1,10 +1,10 @@
 import { Modal } from "@illa-design/modal"
 import { FC, useState, useMemo, useLayoutEffect } from "react"
+import { FormContainerProps, ActionType } from "./interface"
 import {
-  FormContainerProps,
-  ActionType,
-} from "./interface"
-import { ApiType, DatabaseType } from "@/page/Editor/components/ActionEditor/interface"
+  ApiType,
+  DatabaseType,
+} from "@/page/Editor/components/ActionEditor/interface"
 import { ModalCSS, CloseIconCSS, TitleCSS } from "./style"
 import { SelectResourceForm } from "../SelectResourceForm"
 import { ConfigureResourceForm } from "../ConfigureResourceForm"

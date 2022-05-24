@@ -50,7 +50,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
   const dispatch = useDispatch()
   const actionItems = useSelector(selectAllActionItem)
-  const selectedActionItemId = "";
+  const selectedActionItemId = ""
 
   const [newActionOptionsVisible, setNewActionOptionsVisible] = useState(false)
   const [action, setAction] = useState<string>("")
@@ -329,7 +329,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
         }}
         onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
       >
-        <Button css={applyNewButtonCSS(newActionOptionsVisible)} size={"medium"}>
+        <Button
+          css={applyNewButtonCSS(newActionOptionsVisible)}
+          size={"medium"}
+        >
           <span css={NewButtonTextCSS}>
             <AddIcon css={NewButtonIconCSS} />
             New
