@@ -3,21 +3,23 @@ import { UseFormRegisterReturn } from "react-hook-form"
 export interface MySQLFormProps {}
 
 export interface MySQLFormValues {
-  Name: string
-  Hostname: string
-  Port: number
-  Database: string
-  Username: string
-  Password: string
-  SSHHostname?: string
-  SSHPort?: number
-  SSHCredentials?: string
-  SSHPassword?: string
-  SSHPrivateKey?: string
-  SSHPassphrase?: string
-  SSLServerRootCertificate?: string
-  SSLClientKey?: string
-  SSLClientCertificate?: string
+  name: string
+  host: string
+  port: number
+  databaseName: string
+  databaseUsername: string
+  databasePassword: string
+  ssl: boolean
+  ssh: boolean
+  sshHost?: string
+  sshPort?: number
+  sshUsername?: string
+  sshPassword?: string
+  sshPrivateKey?: string
+  sshPassphrase?: string
+  serverCert?: string
+  clientKey?: string
+  clientCert?: string
 }
 
 export interface InputUploadProps {

@@ -13,7 +13,6 @@ import { CloseIcon } from "@illa-design/icon"
 export const FormContainer: FC<FormContainerProps> = (props) => {
   const {
     actionType: propActionType,
-    resourceType,
     databaseType,
     apiType,
     visible,

@@ -145,12 +145,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         key={"duplicate"}
         title={"Duplicate"}
         css={DuplicateActionCSS}
-      ></MenuItem>
-      <MenuItem
-        key={"delete"}
-        title={"Delete"}
-        css={DeleteActionCSS}
-      ></MenuItem>
+      />
+      <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCSS} />
     </Menu>
   )
 
@@ -178,7 +174,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           <CaretRightIcon /> Run
         </Button>
       </header>
-
       <div css={PanelScrollCSS}>
         <div css={[ActionCSS, ResourceBarCSS]}>
           <label css={SectionTitleCSS}>Resource</label>
@@ -200,7 +195,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             onChange={setResourceType}
           >
             <Option onClick={createResource} isSelectOption={false}>
-              Create a new resouce
+              Create a new resource
             </Option>
             {resourceOptions.map((o) => (
               <Option value={o.value}>{o.label}</Option>
@@ -210,9 +205,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             <PenIcon />
           </div>
         </div>
-
         <Divider />
-
         <ResourcePanel resourceType={resourceType} />
       </div>
     </div>

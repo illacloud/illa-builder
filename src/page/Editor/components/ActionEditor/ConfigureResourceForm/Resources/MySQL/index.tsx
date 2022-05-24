@@ -19,7 +19,6 @@ import {
   LabelTextSmallSizeCSS,
 } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/style"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
-
 import { MySQLFormValues, MySQLFormProps } from "./interface"
 import { InputUpload } from "./input-upload"
 import {
@@ -42,8 +41,10 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
       formState: { errors },
     } = useForm<MySQLFormValues>({
       defaultValues: {
-        Port: 3306,
-        SSHPort: 22,
+        port: 3306,
+        ssh: false,
+        ssl: false,
+        sshPort: 22,
       },
     })
 
@@ -52,13 +53,14 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
     let registerSSLClientKey
     let registerSSLServerRootCertificate
 
-    registerSSHPrivateKey = register("SSHPrivateKey")
-    registerSSLClientCertificate = register("SSLClientCertificate")
-    registerSSLClientKey = register("SSLClientKey")
-    registerSSLServerRootCertificate = register("SSLServerRootCertificate")
+    registerSSHPrivateKey = register("sshPrivateKey")
+    registerSSLClientCertificate = register("clientCert")
+    registerSSLClientKey = register("clientKey")
+    registerSSLServerRootCertificate = register("serverCert")
 
     const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
-      alert(JSON.stringify(data))
+      data = { ...data, ssh: expandSSH, ssl: expandSSL }
+      alert(JSON.stringify(data, null, 2))
     }
     return (
       <form onSubmit={handleSubmit(onSubmit)} css={FormCSS} ref={ref}>
@@ -70,7 +72,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <Input
                   {...field}
                   placeholder='i.e."Users DB(readonly)" or "Internal Admin API"'
-                  error={!!errors.Name}
+                  error={!!errors.name}
                   maxLength={200}
                 />
               )}
@@ -78,11 +80,11 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 required: ERROR_REQUIRED_MESSAGE,
               }}
               control={control}
-              name="Name"
+              name="name"
             />
-            {errors.Name && (
+            {errors.name && (
               <div css={[ErrorMessageCSS, applyGridColIndex(2)]}>
-                {errors.Name.message}
+                {errors.name.message}
               </div>
             )}
           </div>
@@ -94,12 +96,12 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   <Input
                     {...field}
                     placeholder="Hostname"
-                    error={!!errors.Hostname}
+                    error={!!errors.host}
                     maxLength={200}
                   />
                 )}
                 control={control}
-                name="Hostname"
+                name="host"
                 rules={{
                   required: ERROR_REQUIRED_MESSAGE,
                 }}
@@ -109,20 +111,20 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   <InputNumber
                     {...field}
                     placeholder="3306"
-                    error={!!errors.Port}
+                    error={!!errors.port}
                   />
                 )}
                 control={control}
-                name="Port"
+                name="port"
                 rules={{
                   required: ERROR_REQUIRED_MESSAGE,
                 }}
               />
             </div>
-            {(errors.Hostname || errors.Port) && (
+            {(errors.host || errors.port) && (
               <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                <div css={ErrorMessageCSS}>{errors.Hostname?.message}</div>
-                <div css={ErrorMessageCSS}>{errors.Port?.message}</div>
+                <div css={ErrorMessageCSS}>{errors.host?.message}</div>
+                <div css={ErrorMessageCSS}>{errors.port?.message}</div>
               </div>
             )}
           </div>
@@ -133,7 +135,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <Input {...field} placeholder="acme_production" />
               )}
               control={control}
-              name="Database"
+              name="databaseName"
             />
           </div>
           <div css={GridRowContainerCSS}>
@@ -144,7 +146,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   <Input {...field} placeholder="Username" />
                 )}
                 control={control}
-                name="Username"
+                name="databaseUsername"
               />
               <Controller
                 render={({ field }) => (
@@ -155,7 +157,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   />
                 )}
                 control={control}
-                name="Password"
+                name="databasePassword"
               />
             </div>
             <div css={[DescriptionCSS, applyGridColIndex(2)]}>
@@ -174,8 +176,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
             <div css={SwitchAreaCSS}>
               <Switch
                 colorScheme="techPurple"
-                onChange={() => {
-                  setExpandSSH((expandSSH) => !expandSSH)
+                checked={expandSSH}
+                onChange={(val) => {
+                  setExpandSSH(val)
                 }}
               />
               <div css={SwitchDescriptionCSS}>
@@ -196,36 +199,34 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                         {...field}
                         placeholder="eg.localhost"
                         maxLength={200}
-                        error={!!errors.SSHHostname}
+                        error={!!errors.sshHost}
                       />
                     )}
                     rules={{
                       required: ERROR_REQUIRED_MESSAGE,
                     }}
                     control={control}
-                    name="SSHHostname"
+                    name="sshHost"
                   />
                   <Controller
                     render={({ field }) => (
                       <InputNumber
                         {...field}
                         placeholder="22"
-                        error={!!errors.SSHPort}
+                        error={!!errors.sshPort}
                       />
                     )}
                     rules={{
                       required: ERROR_REQUIRED_MESSAGE,
                     }}
                     control={control}
-                    name="SSHPort"
+                    name="sshPort"
                   />
                 </div>
-                {(errors.SSHHostname || errors.SSHPort) && (
+                {(errors.sshHost || errors.sshPort) && (
                   <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                    <div css={ErrorMessageCSS}>
-                      {errors.SSHHostname?.message}
-                    </div>
-                    <div css={ErrorMessageCSS}>{errors.SSHPort?.message}</div>
+                    <div css={ErrorMessageCSS}>{errors.sshHost?.message}</div>
+                    <div css={ErrorMessageCSS}>{errors.sshPort?.message}</div>
                   </div>
                 )}
               </div>
@@ -237,14 +238,14 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                       <Input
                         {...field}
                         placeholder="eg.ec2-user"
-                        error={!!errors.SSHCredentials}
+                        error={!!errors.sshUsername}
                       />
                     )}
                     rules={{
                       required: ERROR_REQUIRED_MESSAGE,
                     }}
                     control={control}
-                    name="SSHCredentials"
+                    name="sshUsername"
                   />
                   <Controller
                     render={({ field }) => (
@@ -252,23 +253,23 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                         {...field}
                         placeholder="•••••••••"
                         invisibleButton={false}
-                        error={!!errors.SSHPassword}
+                        error={!!errors.sshPassword}
                       />
                     )}
                     rules={{
                       required: ERROR_REQUIRED_MESSAGE,
                     }}
                     control={control}
-                    name="SSHPassword"
+                    name="sshPassword"
                   />
                 </div>
-                {(errors.SSHCredentials || errors.SSHPassword) && (
+                {(errors.sshUsername || errors.sshPassword) && (
                   <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
                     <div css={ErrorMessageCSS}>
-                      {errors.SSHCredentials?.message}
+                      {errors.sshUsername?.message}
                     </div>
                     <div css={ErrorMessageCSS}>
-                      {errors.SSHPassword?.message}
+                      {errors.sshPassword?.message}
                     </div>
                   </div>
                 )}
@@ -277,7 +278,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <label css={LabelTextCSS}>Private Key</label>
                 <InputUpload
                   resetValue={() => {
-                    resetField("SSHPrivateKey")
+                    resetField("sshPrivateKey")
                   }}
                   registerValue={registerSSHPrivateKey}
                 />
@@ -293,11 +294,10 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                       {...field}
                       placeholder="•••••••••"
                       invisibleButton={false}
-                      error={!!errors.SSHPassword}
                     />
                   )}
                   control={control}
-                  name="SSHPassphrase"
+                  name="sshPassphrase"
                 />
               </div>
             </>
@@ -307,8 +307,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
             <div css={SwitchAreaCSS}>
               <Switch
                 colorScheme="techPurple"
-                onChange={() => {
-                  setExpandSSL((expandSSL) => !expandSSL)
+                checked={expandSSL}
+                onChange={(val) => {
+                  setExpandSSL(val)
                 }}
               />
               <div css={SwitchDescriptionCSS}>
@@ -322,7 +323,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <label css={LabelTextCSS}>Server Root Certificate</label>
                 <InputUpload
                   resetValue={() => {
-                    resetField("SSLServerRootCertificate")
+                    resetField("serverCert")
                   }}
                   registerValue={registerSSLServerRootCertificate}
                 />
@@ -331,7 +332,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <label css={LabelTextCSS}>Client Key</label>
                 <InputUpload
                   resetValue={() => {
-                    resetField("SSLClientKey")
+                    resetField("clientKey")
                   }}
                   registerValue={registerSSLClientKey}
                 />
@@ -340,7 +341,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <label css={LabelTextCSS}>Client Certificate</label>
                 <InputUpload
                   resetValue={() => {
-                    resetField("SSLClientCertificate")
+                    resetField("clientCert")
                   }}
                   registerValue={registerSSLClientCertificate}
                 />

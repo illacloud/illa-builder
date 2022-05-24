@@ -3,9 +3,9 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ContainerCSS = css`
-  flex: 1;
   display: flex;
   flex-direction: column;
+  flex: 1;
 `
 
 export const PanelScrollCSS = css`
@@ -32,7 +32,7 @@ export const TitleContainerCSS = css`
   height: 32px;
   line-height: 32px;
   transition: all 0.2s ease-in-out;
-  padding: 0px 19px 0 16px;
+  padding: 0 19px 0 16px;
 
   &:hover {
     cursor: pointer;
@@ -58,8 +58,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -209,12 +209,41 @@ export const HandlerMoreIconCSS = css`
   padding: 0 9px;
   box-sizing: border-box;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-left-width: 0;
   display: flex;
   align-items: center;
   height: 100%;
   font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+`
+
+export const MoreListCSS = css`
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  width: 184px;
+`
+
+export const MoreListItemCSS = css`
+  padding: 5px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.57;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
+`
+
+export const MoreListItemWarnCSS = css`
+  ${MoreListItemCSS};
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
 `
 
 export const MoreBtnMenuCSS = css`
