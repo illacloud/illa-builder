@@ -17,8 +17,8 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     required,
     hidden,
     tooltipText,
+    ...selectProps
   } = props
-  const selectProps: SelectProps = props
   return (
     <Wrapper>
       <LabelWrapper
