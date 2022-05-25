@@ -5,7 +5,8 @@ import { Button } from "@illa-design/button"
 import { DisplayNoneCSS } from "./style"
 
 export const InputUpload: FC<InputUploadProps> = (props) => {
-  const { resetValue, registerValue } = props
+  const { reset, register, name } = props
+  const registerValue = register(name)
   const [fileName, setFileName] = useState("")
   const uploadRef = useRef<HTMLInputElement | null>(null)
   const handleUpload = () => {
@@ -30,7 +31,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
         }}
         onClear={() => {
           setFileName("")
-          resetValue()
+          reset(name)
         }}
         allowClear
       />

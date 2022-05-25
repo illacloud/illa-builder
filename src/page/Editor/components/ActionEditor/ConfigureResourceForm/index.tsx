@@ -1,6 +1,6 @@
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace"
-import { FC, useRef, cloneElement } from "react"
-import { ConfigureResourceFormProps } from "./interface"
+import { FC, useRef, cloneElement, createRef } from "react"
+import { ConfigureResourceFormProps, ConnectionRef } from "./interface"
 import { MySQL, RESTAPI } from "./Resources"
 import {
   FormContainerCSS,
@@ -17,6 +17,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
 ) => {
   const { back, resouceType } = props
 
+  const connectionRef = useRef<ConnectionRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
   const renderResouceNode = () => {
@@ -26,7 +27,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
       // query
       "REST API": <RESTAPI />,
       // database
-      MySQL: <MySQL />,
+      MySQL: <MySQL connectionRef={connectionRef} />,
     }
 
     return cloneElement(nodeMap[resouceType], { ref: formRef }) || null
@@ -39,7 +40,6 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
   return (
     <div css={FormContainerCSS}>
       <div>{renderResouceNode()}</div>
-
       <div css={FormFooterCSS}>
         <Button
           variant="text"
@@ -54,7 +54,14 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
 
         <div css={FormFooterFilling} />
 
-        <Button size="medium" colorScheme="gray" type="button">
+        <Button
+          size="medium"
+          colorScheme="gray"
+          type="button"
+          onClick={() => {
+            connectionRef.current?.testConnection()
+          }}
+        >
           Test Connection
         </Button>
 

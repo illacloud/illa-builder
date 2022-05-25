@@ -94,7 +94,7 @@ export const FillingCSS = css`
 
 export const HeaderButtonCSS = css`
   box-sizing: border-box;
-  border-radius: 8px !important;
+  //border-radius: 8px !important;
   font-size: 14px !important;
 
   & * {
@@ -103,17 +103,19 @@ export const HeaderButtonCSS = css`
 `
 
 export const MoreBtnCSS = css`
-  width: 32px !important;
-  padding: 9px !important;
-  height: 32px !important;
+  //width: 32px !important;
+  //padding: 9px !important;
+  //height: 32px !important;
 
   margin-right: 8px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)}!important;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)}!important;
-
-  &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}!important;
-  }
+  // color: ${globalColor(`--${illaPrefix}-grayBlue-01`)}!important;
+  // background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)}!important;
+  //
+  // &:hover {
+  //   background-color: ${globalColor(
+    `--${illaPrefix}-grayBlue-08`,
+  )}!important;
+  // }
 `
 
 export const RunBtnCSS = css`
