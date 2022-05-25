@@ -1,29 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { DslState } from "./interface"
-import { DslActionName } from "./dsl-action"
-import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
+import { DslState } from "@/redux/editor/dsl/dslState"
 import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
+import { MAIN_CONTAINER_ID } from "@/page/Editor/constants"
+import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 
-const initialState = {
-  root: {
-    id: MAIN_CONTAINER_ID,
-    parentId: MAIN_CONTAINER_ID,
-    children: [],
-    type: "CANVAS_WIDGET",
-    widgetName: "Canvas",
-    props: {
-      version: "0.0.1",
-      height: "100%",
-      width: "100%",
-      leftColumn: "auto",
-      rightColumn: "auto",
-      topRow: "auto",
-      bottomRow: "auto",
-      position: "absolute",
-      dragDisabled: true,
-    },
-  },
-} as DslState
+export const DslActionName = {
+  AddFrame: "AddFrame",
+  AddItem: "AddItem",
+  UpdateItem: "UpdateItem",
+  updateDslProps: "UpdateDslProps",
+}
+export type DslAction = keyof typeof DslActionName
 
 function addNode(
   currentState: DslState,
@@ -116,54 +102,49 @@ function updateDslProps(dslState: DslState, targetId: string, newState: any) {
   }
 }
 
-const dslSlice = createSlice({
-  name: "dsl",
-  initialState,
-  reducers: {
-    dslActionHandler(state, action) {
-      let safeState = state
-      switch (action.payload?.type) {
-        case DslActionName.AddFrame: {
-          const addFrameAction = action.payload
-          if (addFrameAction.dslFrame.parentId == null) {
-            safeState = {
-              ...safeState,
-              root: addFrameAction.dslFrame,
-            }
-          } else {
-            safeState = addNode(
-              safeState,
-              addFrameAction.dslFrame.parentId,
-              addFrameAction.dslFrame,
-            )
-          }
-          break
+export const dslActionHandler: CaseReducer<
+  DslState,
+  PayloadAction<{
+    type: DslAction
+    widgetProps: any
+  }>
+> = (state, action) => {
+  let safeState = state
+  switch (action.payload?.type) {
+    case DslActionName.AddFrame: {
+      const addFrameAction = action.payload
+      if (addFrameAction.dslFrame.parentId == null) {
+        safeState = {
+          ...safeState,
+          root: addFrameAction.dslFrame,
         }
-        case DslActionName.AddItem: {
-          const addItemAction = action.payload
-          addNode2Layout(
-            addItemAction.dslText.parentId,
-            safeState.root!!,
-            addItemAction.dslText,
-          )
-          break
-        }
-        case DslActionName.UpdateItem: {
-          const updateTextAction = action.payload
-          updateNode(safeState, safeState.root!!, updateTextAction.newDslText)
-          break
-        }
-        case DslActionName.updateDslProps: {
-          const { targetId, newState } = action.payload
-          updateDslProps(safeState, targetId, newState)
-        }
+      } else {
+        safeState = addNode(
+          safeState,
+          addFrameAction.dslFrame.parentId,
+          addFrameAction.dslFrame,
+        )
       }
-      return safeState
-    },
-  },
-})
-
-export * from "./interface"
-export const { dslActionHandler } = dslSlice.actions
-export const dslActions = dslSlice.actions
-export default dslSlice.reducer
+      break
+    }
+    case DslActionName.AddItem: {
+      const addItemAction = action.payload
+      addNode2Layout(
+        addItemAction.dslText.parentId,
+        safeState.root!!,
+        addItemAction.dslText,
+      )
+      break
+    }
+    case DslActionName.UpdateItem: {
+      const updateTextAction = action.payload
+      updateNode(safeState, safeState.root!!, updateTextAction.newDslText)
+      break
+    }
+    case DslActionName.updateDslProps: {
+      const { targetId, newState } = action.payload
+      updateDslProps(safeState, targetId, newState)
+    }
+  }
+  return safeState
+}

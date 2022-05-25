@@ -5,13 +5,13 @@ import { Frame } from "scenejs"
 import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
 import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
 import { useSelectWidget } from "@/page/Editor/hooks/useSelectWidget"
-import { dslActions } from "@/redux/editor/dslReducer"
-import { DslActionName } from "@/redux/editor/dslReducer/dsl-action"
-import { getPreviewMode } from "@/redux/selectors/editorSelectors/modeSelectors"
+import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { DslActionName } from "@/redux/editor/dsl/dsl-action"
+import { getPreviewMode } from "@/redux/editor/mode/modeSelectors"
 import {
   getFocusedWidget,
   getWidgetStates,
-} from "@/redux/selectors/editorSelectors/widgetStateSelectors"
+} from "@/redux/editor/widgetStates/widgetStateSelectors"
 import { DraggableComponentProps } from "./interface"
 
 export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {

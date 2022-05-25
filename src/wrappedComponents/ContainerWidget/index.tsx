@@ -2,8 +2,8 @@ import { FC } from "react"
 import { DropTargetMonitor, useDrop } from "react-dnd"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
-import { DropInfo, dslActions } from "@/redux/editor/dslReducer"
-import { DslActionName } from "@/redux/editor/dslReducer/dsl-action"
+import { DropInfo, dslActions } from "@/redux/editor/dsl/dslSlice"
+import { DslActionName } from "@/redux/editor/dsl/dsl-action"
 import { DraggableComponent } from "@/wrappedComponents/DraggableComponent"
 import {
   widgetBuilder,
