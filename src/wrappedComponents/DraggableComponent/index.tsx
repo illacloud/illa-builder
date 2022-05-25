@@ -6,13 +6,12 @@ import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
 import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
 import { useSelectWidget } from "@/page/Editor/hooks/useSelectWidget"
 import { dslActions } from "@/redux/editor/dsl/dslSlice"
-import { DslActionName } from "@/redux/editor/dsl/dsl-action"
-import { getPreviewMode } from "@/redux/editor/mode/modeSelectors"
+import { DraggableComponentProps } from "./interface"
+import { getPreviewMode } from "@/redux/editor/mode/modeSelector"
 import {
   getFocusedWidget,
   getWidgetStates,
-} from "@/redux/editor/widgetStates/widgetStateSelectors"
-import { DraggableComponentProps } from "./interface"
+} from "@/redux/editor/widgetStates/widgetStateSelector"
 
 export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
   const {
@@ -146,8 +145,8 @@ export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
             )
             dispatch(
               dslActions.dslActionHandler({
-                type: DslActionName.UpdateItem,
-                newDslText: {
+                type: "UpdateItem",
+                dslFrame: {
                   ...currentProps,
                   props: {
                     ...currentProps.props,

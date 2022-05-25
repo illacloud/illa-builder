@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   getSelectedWidgetStates,
   getWidgetStateById,
-} from "@/redux/editor/dsl/dslSelectors"
+} from "@/redux/editor/dsl/dslSelector"
 import { dslActions } from "@/redux/editor/dsl/dslSlice"
-import { DslActionName } from "@/redux/editor/dsl/dsl-action"
 // TODO: remove this,when add utils to system
 import { isEmpty } from "lodash"
 import { useDebounce } from "react-use"
@@ -67,8 +66,7 @@ export const ConfigPanelProvider: FC<Props> = ({ children }) => {
       if (isEmpty(tempState) || !tempState) return
       const props = tempState.props
       dispatch(
-        dslActions.dslActionHandler({
-          type: DslActionName.updateDslProps,
+        dslActions.updateDslProps({
           targetId: tempState.id,
           newState: {
             ...props,
