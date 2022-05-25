@@ -2,18 +2,18 @@ import { FC, useContext, useMemo } from "react"
 import { PanelHeader } from "./header"
 import { Divider } from "@illa-design/divider"
 import { fieldFactory } from "./utils/fieldFactory"
-import { ConfigPanelContext } from "./context"
 import { panelBuilder } from "@/wrappedComponents/PanelBuilder"
+import { SelectedPanelContext } from "@/page/Editor/components/InspectPanel/context/selectedContext"
 
 export const InspectPanel: FC = () => {
-  const { componentDsl } = useContext(ConfigPanelContext)
+  const { configPanel } = useContext(SelectedPanelContext)
 
   const panelConfig = useMemo(() => {
-    const componentType = componentDsl.type
+    const componentType = configPanel.type
     return panelBuilder(componentType)
-  }, [componentDsl])
+  }, [configPanel])
 
-  return panelConfig && componentDsl ? (
+  return panelConfig ? (
     <div style={{ width: "100%" }}>
       <Divider />
       <PanelHeader
@@ -21,7 +21,7 @@ export const InspectPanel: FC = () => {
       />
       <Divider />
       <div style={{ maxHeight: "calc(100vh - 150px )", overflowY: "scroll" }}>
-        {fieldFactory(panelConfig, componentDsl.id)}
+        {fieldFactory(panelConfig, configPanel.id)}
       </div>
     </div>
   ) : (

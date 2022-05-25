@@ -10,15 +10,15 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     defaultValue,
     isInList,
     attrName,
-    tempProps,
+    panelConfig,
     handleUpdateDsl,
   } = props
 
-  const [inputValue, setInputValue] = useState(tempProps[attrName])
+  const [inputValue, setInputValue] = useState(panelConfig[attrName])
 
   useEffect(() => {
-    setInputValue(tempProps[attrName])
-  }, [tempProps[attrName]])
+    setInputValue(panelConfig[attrName])
+  }, [panelConfig[attrName]])
 
   return (
     <div css={applyInputSetterWrapperStyle(isFullWidth, isInList)}>

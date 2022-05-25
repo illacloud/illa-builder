@@ -13,6 +13,7 @@ import { getTargetOffset } from "@/wrappedComponents/utils"
 import { ContainerWidgetProps } from "./interface"
 import { SearchIcon } from "@illa-design/icon"
 import { ComponentModel } from "@/wrappedComponents/interface"
+import { inspectActions } from "@/redux/inspect/inspectSlice"
 
 interface PanelDrag {
   type: string
@@ -60,6 +61,8 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
         }
         if (item.type) {
           let monitorOffset = getTargetOffset(monitor?.getClientOffset(), id)
+          const widgetId = "dsl" + uuidv4()
+          //TODO: wait to add displayName to props
           dispatch(
             dslActions.dslActionHandler({
               type: "AddItem",
@@ -67,7 +70,18 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
                 ...item,
                 props: { ...item.props, ...monitorOffset },
                 parentId: id,
-                id: "dsl" + uuidv4(),
+                id: widgetId,
+              },
+            }),
+          )
+          dispatch(
+            inspectActions.updateWidgetPanelConfig({
+              id: widgetId,
+              value: {
+                ...item.props,
+                ...monitorOffset,
+                id: widgetId,
+                type: item.type,
               },
             }),
           )

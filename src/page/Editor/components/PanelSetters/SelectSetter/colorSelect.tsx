@@ -10,7 +10,8 @@ import { Trigger } from "@illa-design/trigger"
 import { ColorSelectSetterProps } from "./interface"
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
-  const { defaultValue, options, attrName, handleUpdateDsl, tempProps } = props
+  const { defaultValue, options, attrName, handleUpdateDsl, panelConfig } =
+    props
   const [menuVisible, setMenuVisible] = useState(false)
 
   const renderContent = useCallback((color: string = "transparent") => {
@@ -47,12 +48,12 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
   }, [renderContent, options, attrName, handleUpdateDsl])
 
   const translateValueToKey = useMemo(() => {
-    const value = tempProps[attrName]
+    const value = panelConfig[attrName]
     const key = options?.find(
       (item) => item.value === (value ?? defaultValue),
     )?.key
     return key ?? "transparent"
-  }, [tempProps, options])
+  }, [panelConfig, options])
 
   return (
     <Trigger

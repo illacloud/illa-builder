@@ -8,6 +8,7 @@ import modeReducer from "@/redux/editor/mode/modeSlice"
 import dragReducer from "@/redux/editor/dragReducer"
 import dslReducer from "@/redux/editor/dsl/dslSlice"
 import widgetStatesReducer from "@/redux/editor/widgetStates/widgetStatesSlice"
+import inspectReducer from "@/redux/inspect/inspectSlice"
 
 const editor = combineReducers({
   demo: demoReducer,
@@ -15,6 +16,7 @@ const editor = combineReducers({
   drag: dragReducer,
   dsl: dslReducer,
   widgetStates: widgetStatesReducer,
+  inspect: inspectReducer,
 })
 
 const actionReducer = combineReducers({

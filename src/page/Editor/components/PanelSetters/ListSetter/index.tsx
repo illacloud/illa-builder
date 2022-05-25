@@ -16,22 +16,21 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     labelDesc,
     childrenSetter,
     useCustomLabel,
-    tempProps,
-    componentDsl,
+    panelConfig,
     handleUpdateDsl,
   } = props
 
   const getDslKeys = useMemo(() => {
     const hadKeysMapped = new Map()
-    if (tempProps) {
-      const dslKeys = Object.keys(tempProps as Record<string, any>)
+    if (panelConfig) {
+      const dslKeys = Object.keys(panelConfig as Record<string, any>)
       dslKeys.forEach((key: string) => {
-        const value = tempProps[key]
+        const value = panelConfig[key]
         hadKeysMapped.set(key, value)
       })
     }
     return hadKeysMapped
-  }, [tempProps])
+  }, [panelConfig])
 
   const getDefaultValue = useMemo(() => {
     if (childrenSetter) {
@@ -87,9 +86,9 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
                   <path
                     d="M2.41057 3.5H8.53467C10.226 3.5 11.5972 4.87113 11.5972 6.5625V6.5625C11.5972 8.25387 10.226 9.625 8.53467 9.625H2.41052M2.41052 9.625L3.93745 7.875M2.41052 9.625L3.93745 11.375"
                     stroke="#1D2129"
-                    stroke-width="1.3125"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.3125"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </div>
@@ -99,8 +98,8 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
         </div>
       )}
       <div css={listWrapperCss}>
-        {childrenSetter?.map((child, index) => {
-          return renderFieldAndLabel(child, componentDsl.id, true)
+        {childrenSetter?.map((child) => {
+          return renderFieldAndLabel(child, panelConfig.id, true)
         })}
       </div>
     </div>

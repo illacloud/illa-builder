@@ -4,15 +4,15 @@ import { panelHeaderWrapperCss, panelHeaderIconWrapperCss } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { ActionMenu } from "./actionMenu"
 import { HeaderProps } from "./interface"
-import { ConfigPanelContext } from "./context"
+import { SelectedPanelContext } from "@/page/Editor/components/InspectPanel/context/selectedContext"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
-  const { componentDsl, handleUpdateDsl } = useContext(ConfigPanelContext)
+  const { configPanel } = useContext(SelectedPanelContext)
 
   return (
     <div css={panelHeaderWrapperCss}>
       {/*  TODO: wait for editable component*/}
-      <div>{componentDsl.type}</div>
+      <div>{configPanel.type}</div>
       <div css={panelHeaderIconWrapperCss}>
         <Trigger
           position="br"
