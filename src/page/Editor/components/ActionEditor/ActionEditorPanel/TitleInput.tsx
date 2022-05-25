@@ -35,10 +35,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
 
   function handleOnBlur() {
     setIsEditing(false)
-    updateName()
   }
-
-  function updateName() {}
 
   const childrenNode = isEditing ? (
     <motion.div
