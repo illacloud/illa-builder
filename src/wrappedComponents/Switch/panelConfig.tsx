@@ -1,5 +1,5 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { VerticalStart, VerticalEnd } from "@/wrappedComponents/svg"
+import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
@@ -58,7 +58,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <VerticalStart />
+                <HorizontalStart />
               </div>
             ),
             value: "left",
@@ -66,7 +66,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <VerticalEnd />
+                <HorizontalEnd />
               </div>
             ),
             value: "right",
