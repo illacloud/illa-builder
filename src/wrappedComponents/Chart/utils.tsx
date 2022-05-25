@@ -39,27 +39,38 @@ export const initData = (data?: object[]) => {
   }
 }
 
-const scheme = ["red", "purple", "orange", "yellow", "green", "blue", "cyan"]
+const scheme = [
+  "#165dff",
+  "#00b42a",
+  "#ff7d00",
+  "#f53f3f",
+  "#0fc6c2",
+  "#f77234",
+  "#f7ba1e",
+  "#722ed1",
+  "#fadc19",
+  "#d91ad9",
+  "#f5319d",
+]
 
 export const getDefaultColorScheme = (index: number) => {
-  return scheme[index % 7]
+  return scheme[index % scheme.length]
 }
 
 export const wrapDataset = (
   datasets?: DatasetConfig[],
   colorScheme?: string,
 ) => {
+  console.log("wrapPieDataset", datasets)
   const arr: ChartDataset[] = []
   const _map = new Map<string, string>()
   datasets?.map((set, index) => {
-    const _colorScheme = colorScheme ?? getDefaultColorScheme(index)
+    const _color = colorScheme ?? getDefaultColorScheme(index)
     const _set = {
       label: set.name ?? "",
       data: set.values ?? [],
-      backgroundColor:
-        set.lineColor ?? globalColor(`--${illaPrefix}-${_colorScheme}-03`),
-      borderColor:
-        set.lineColor ?? globalColor(`--${illaPrefix}-${_colorScheme}-03`),
+      backgroundColor: set.lineColor ?? _color,
+      borderColor: set.lineColor ?? _color,
       yAxisID: "yAxis",
     }
     arr.push(_set)
@@ -106,6 +117,7 @@ export const wrapDatasetByGroup = (
 }
 
 export const wrapPieDataset = (datasets?: DatasetConfig[]) => {
+  console.log("wrapPieDataset", datasets)
   if (!datasets || datasets.length === 0) return {}
   let tmp: (number | null)[] = []
   datasets.forEach((set) => {
@@ -120,7 +132,7 @@ export const wrapPieDataset = (datasets?: DatasetConfig[]) => {
   }
   const tooltipMap = new Map<string, string>()
   tooltipMap.set(datasets[0].name ?? "", datasets[0].toolTip ?? "")
-  return { datasets: [res] as any, tooltips: tooltipMap }
+  return { datasets: [res], tooltips: tooltipMap }
 }
 
 export const mergeArr = (arr1?: any[], arr2?: any[]) => {

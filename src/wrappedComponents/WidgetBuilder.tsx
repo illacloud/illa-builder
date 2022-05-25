@@ -30,6 +30,7 @@ import {
   EDITABLE_TEXT_WIDGET_CONFIG,
   EDITABLE_TEXT_PANEL_CONFIG,
 } from "./EditableText"
+import { CHART_PANEL_CONFIG, CHART_WIDGET_CONFIG, ChartWidget } from "./Chart"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -86,6 +87,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: EditableTextWidget,
     config: EDITABLE_TEXT_WIDGET_CONFIG,
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
+  },
+  CHART_WIDGET: {
+    widget: ChartWidget,
+    config: CHART_WIDGET_CONFIG,
+    panelConfig: CHART_PANEL_CONFIG,
   },
 }
 
