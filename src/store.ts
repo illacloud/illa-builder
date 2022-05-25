@@ -4,9 +4,9 @@ import actionReducer from "@/redux/action"
 import dashboardReducer from "@/redux/dashboard/dashboardSlice"
 import { combineReducers } from "redux"
 import demoReducer from "@/redux/editor/demoReducer"
-import modeReducer from "@/redux/editor/mode/modeReducer"
+import modeReducer from "@/redux/editor/mode/modeSlice"
 import dragReducer from "@/redux/editor/dragReducer"
-import dslReducer from "@/redux/editor/dsl"
+import dslReducer from "@/redux/editor/dsl/dslSlice"
 import widgetStatesReducer from "@/redux/editor/widgetStates/widgetStatesSlice"
 
 const editor = combineReducers({

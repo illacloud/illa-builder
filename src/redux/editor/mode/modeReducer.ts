@@ -1,25 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import { ModeState } from "@/redux/editor/mode/modeState"
 
-export interface ModeState {
-  isPreviewMode: boolean
+export const setPreviewMode: CaseReducer<ModeState, PayloadAction<boolean>> = (
+  state,
+  action,
+) => {
+  return {
+    ...state,
+    isPreviewMode: action.payload,
+  }
 }
-
-const initialState: ModeState = {
-  isPreviewMode: false,
-}
-
-const modeSlice = createSlice({
-  name: "mode",
-  initialState,
-  reducers: {
-    setPreviewMode(state, action) {
-      return {
-        ...state,
-        isPreviewMode: action.payload,
-      }
-    },
-  },
-})
-
-export const modeActions = modeSlice.actions
-export default modeSlice.reducer
