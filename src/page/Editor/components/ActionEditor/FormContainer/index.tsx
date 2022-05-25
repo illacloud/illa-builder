@@ -18,9 +18,7 @@ export const FormContainer: FC<FormContainerProps> = (props) => {
     visible,
     onCancel,
   } = props
-  const [configureType, setConfigureType] = useState<ApiType | DatabaseType>(
-    databaseType ?? apiType ?? "MySQL",
-  )
+  const [configureType, setConfigureType] = useState<ApiType | DatabaseType | string>()
   const [actionType, setActionType] = useState<ActionType>(propActionType)
   useLayoutEffect(() => {
     setActionType(propActionType)

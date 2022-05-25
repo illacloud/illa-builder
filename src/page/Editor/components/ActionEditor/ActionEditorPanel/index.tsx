@@ -47,7 +47,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
   } = props
   const dispatch = useAppDispatch()
-  const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
+  const [resourceType, setResourceType] = useState<ResourceType>("")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const actionItems = useSelector(selectAllActionItem)
   const activeActionItem = useMemo(() => {
@@ -72,24 +72,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     },
   ]
 
-  // TODO: retrieve from created resource
-  const resourceOptions = [
-    {
-      label: "MySQL",
-      value: "MySQL",
-    },
-    {
-      label: "REST API",
-      value: "REST API",
-    },
-  ]
-
   function createResource() {
     onCreateResource && onCreateResource()
   }
 
   function editResource() {
-    onEditResource && onEditResource()
+    resourceType && onEditResource && onEditResource()
   }
 
   function handleAction(key: string) {
@@ -103,8 +91,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function duplicateActionItem() {
-    // 获取当前选中的 actionItem
-    // 如果不存在则return
     if (activeActionItem) {
       const { type } = activeActionItem
       const id = uuidV4()
@@ -205,11 +191,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 <Option onClick={createResource} isSelectOption={false}>
                   Create a new resource
                 </Option>
-                {resourceOptions.map((o) => (
-                  <Option key={o.label} value={o.value}>
-                    {o.label}
-                  </Option>
-                ))}
               </Select>
               <div css={EditIconCSS} onClick={editResource}>
                 <PenIcon />
