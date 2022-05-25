@@ -3,6 +3,8 @@ import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 
 export interface ConfigureResourceFormProps {
   actionType: ActionType
-  resouceType: ResourceType
+  resourceId?: string
+  resourceType?: ResourceType
   back?: () => void
+  onSubmit?: () => void
 }

@@ -11,51 +11,63 @@ import { ConfigureResourceForm } from "../ConfigureResourceForm"
 import { CloseIcon } from "@illa-design/icon"
 
 export const FormContainer: FC<FormContainerProps> = (props) => {
-  const {
-    actionType: propActionType,
-    databaseType,
-    apiType,
-    visible,
-    onCancel,
-  } = props
-  const [configureType, setConfigureType] = useState<ApiType | DatabaseType | string>()
+  const { actionType: propActionType, visible, onCancel, resourceId } = props
+  const [configureType, setConfigureType] = useState<ApiType | DatabaseType>()
   const [actionType, setActionType] = useState<ActionType>(propActionType)
+
   useLayoutEffect(() => {
     setActionType(propActionType)
   }, [propActionType])
+
   const title =
     actionType === "select"
       ? "Select Resource Type"
       : `Configure ${configureType}`
 
-  const renderForm = useMemo(() => {
-    if (actionType === "select") {
-      return (
-        <SelectResourceForm
-          onSelect={(type) => {
-            setConfigureType(type)
-            setActionType("configure")
-          }}
-        />
-      )
-    }
-    if (actionType === "edit" || actionType === "configure") {
-      return (
-        <ConfigureResourceForm
-          actionType={actionType}
-          resouceType={configureType}
-          back={() => {
-            setActionType("select")
-          }}
-        />
-      )
-    }
-  }, [actionType])
-
   const handleClose = () => {
     onCancel && onCancel()
     setActionType(propActionType)
   }
+
+  const renderForm = useMemo(() => {
+    switch (actionType) {
+      case "select":
+        return (
+          <SelectResourceForm
+            onSelect={(type) => {
+              setConfigureType(type)
+              setActionType("configure")
+            }}
+          />
+        )
+      case "edit":
+        return (
+          <ConfigureResourceForm
+            key="edit"
+            actionType="edit"
+            resourceId={resourceId}
+            onSubmit={handleClose}
+            back={() => {
+              setActionType("select")
+            }}
+          />
+        )
+      case "configure":
+        return (
+          <ConfigureResourceForm
+            key="configure"
+            actionType="configure"
+            resourceType={configureType}
+            onSubmit={handleClose}
+            back={() => {
+              setActionType("select")
+            }}
+          />
+        )
+      default:
+        return null
+    }
+  }, [actionType, resourceId])
 
   return (
     <Modal

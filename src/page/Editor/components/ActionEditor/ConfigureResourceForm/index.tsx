@@ -1,5 +1,7 @@
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace"
 import { FC, useRef, cloneElement } from "react"
+import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { useSelector } from "react-redux"
 import { ConfigureResourceFormProps } from "./interface"
 import { MySQL, RESTAPI } from "./Resources"
 import {
@@ -15,25 +17,37 @@ import { PaginationPreIcon } from "@illa-design/icon"
 export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
   props,
 ) => {
-  const { back, resouceType } = props
+  const { resourceId, back, onSubmit, resourceType: resourceTypeProps } = props
+
+  const resource = useSelector(selectAllResource).find(
+    (i) => i.id === resourceId,
+  )
+  // if receive `resourceTypeProps` means add new
+  const resourceType = resourceTypeProps || resource?.type
 
   const formRef = useRef<HTMLFormElement>(null)
 
   const renderResouceNode = () => {
-    const nodeMap: {
-      [index: string]: EmotionJSX.Element
-    } = {
-      // query
-      "REST API": <RESTAPI />,
-      // database
-      MySQL: <MySQL />,
+    let node = null
+
+    switch (resourceType) {
+      case "REST API":
+        node = <RESTAPI resourceId={resourceId} />
+        break
+      case "MySQL":
+        node = <MySQL resourceId={resourceId} />
+        break
+      default:
+        node = <div>No Config</div>
+        break
     }
 
-    return cloneElement(nodeMap[resouceType], { ref: formRef }) || null
+    return cloneElement(node, { ref: formRef }) || null
   }
 
   function submitForm() {
     formRef.current?.requestSubmit()
+    onSubmit && onSubmit()
   }
 
   return (

@@ -1,6 +1,8 @@
 import { UseFormRegisterReturn } from "react-hook-form"
 
-export interface MySQLFormProps {}
+export interface MySQLFormProps {
+  resourceId?: string
+}
 
 export interface MySQLFormValues {
   name: string

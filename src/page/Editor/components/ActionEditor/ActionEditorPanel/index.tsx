@@ -6,8 +6,9 @@ import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { useAppDispatch } from "@/store"
 import {
   addActionItem,
@@ -47,9 +48,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
   } = props
   const dispatch = useAppDispatch()
-  const [resourceType, setResourceType] = useState<ResourceType>("")
+
+  const [resourceId, setResourceId] = useState("")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
+
   const actionItems = useSelector(selectAllActionItem)
+  const resourceList = useSelector(selectAllResource)
   const activeActionItem = useMemo(() => {
     if (!activeActionItemId) {
       return null
@@ -77,7 +81,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function editResource() {
-    resourceType && onEditResource && onEditResource()
+    resourceId && onEditResource && onEditResource(resourceId)
   }
 
   function handleAction(key: string) {
@@ -185,19 +189,25 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
               <Select
                 css={[ActionSelectCSS, ResourceSelectCSS]}
-                value={resourceType}
-                onChange={setResourceType}
+                value={resourceId}
+                onChange={setResourceId}
               >
                 <Option onClick={createResource} isSelectOption={false}>
                   Create a new resource
                 </Option>
+                {resourceList &&
+                  resourceList.map(({ id, name }) => (
+                    <Option value={id} key={id}>
+                      {name}
+                    </Option>
+                  ))}
               </Select>
               <div css={EditIconCSS} onClick={editResource}>
                 <PenIcon />
               </div>
             </div>
             <Divider />
-            <ResourcePanel resourceType={resourceType} />
+            <ResourcePanel resourceId={resourceId} />
           </>
         )}
       </div>

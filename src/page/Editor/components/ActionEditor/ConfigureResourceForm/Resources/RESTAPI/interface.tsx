@@ -1,4 +1,6 @@
-export interface RESTAPIFormProps {}
+export interface RESTAPIFormProps {
+  resourceId?: string
+}
 
 export type Params = {
   key: string

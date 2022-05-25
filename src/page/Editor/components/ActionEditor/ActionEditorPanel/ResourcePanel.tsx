@@ -4,12 +4,17 @@ import {
   MySQLPanel,
   RESTAPIPanel,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources"
+import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { useSelector } from "react-redux"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
 import { EventHandler } from "./EventHandler"
 import { ResourcePanelProps } from "./interface"
 
 export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
-  const { resourceType } = props
+  const { resourceId } = props
+
+  const resource = useSelector(selectAllResource).find((i) => i.id === resourceId);
+  const resourceType = resource?.type
 
   function renderResourceConfig() {
     switch (resourceType) {
