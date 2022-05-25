@@ -107,15 +107,18 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     // 如果不存在则return
     if (activeActionItem) {
       const { type } = activeActionItem
+      const id = uuidV4()
 
       dispatch(
         addActionItem({
-          id: uuidV4(),
+          id,
           type,
           name: generateName(type),
           status: Math.random() > 0.5 ? "warning" : "",
         }),
       )
+
+      setActiveActionItemId(id)
     }
   }
 
