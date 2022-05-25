@@ -46,7 +46,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
         handleUpdateDsl={handleUpdateDsl}
       />
     ) : null
-  }, [Comp, props])
+  }, [Comp, props, tempProps, componentDsl, handleUpdateDsl])
 
   return canRenderSetter ? (
     <div css={applySetterWrapperStyle(isFullWidth, useCustomLabel, isInList)}>

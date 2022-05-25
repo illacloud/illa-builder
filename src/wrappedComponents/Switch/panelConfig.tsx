@@ -1,29 +1,12 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
-import { colorSchemeOptions } from "../colorSchemeOptions"
+import { VerticalStart, VerticalEnd } from "@/wrappedComponents/svg"
+import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
   width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-}
-
-const bgOptionWrapperStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  width: "100%",
-  height: "100%",
-}
-
-const colorBlockStyle = (backgroundColor: string) => {
-  return {
-    width: "18px",
-    height: "18px",
-    borderRadius: "4px",
-    backgroundColor,
-  }
 }
 
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
@@ -75,7 +58,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
+                <VerticalStart />
               </div>
             ),
             value: "left",
@@ -83,7 +66,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentRightIcon />
+                <VerticalEnd />
               </div>
             ),
             value: "right",

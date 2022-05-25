@@ -1,5 +1,10 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { HorizontalCenter, HorizontalEnd, HorizontalStart } from "./svg"
+import {
+  HorizontalCenter,
+  HorizontalEnd,
+  HorizontalFullWidth,
+  HorizontalStart,
+} from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const AlignmentOptionStyle = {
@@ -116,7 +121,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={AlignmentOptionStyle}>
-                <HorizontalEnd />
+                <HorizontalFullWidth />
               </div>
             ),
             value: "fullWidth",

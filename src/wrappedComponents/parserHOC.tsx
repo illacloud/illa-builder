@@ -4,6 +4,7 @@ function getDisplayName(WrappedComponent: FC<any>) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component"
 }
 
+// TODO: wait to use a component,not a HOC
 export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
   const ParseredComponent: FC<any> = (dsl) => {
     // tips: this is parsers,when dsl version update,can add new parser to this

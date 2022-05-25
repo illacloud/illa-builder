@@ -3,11 +3,11 @@ import {
   HorizontalCenter,
   HorizontalEnd,
   HorizontalStart,
-  VerticalBottom,
+  VerticalStart,
   VerticalCenter,
-  VerticalTop,
-} from "./svg"
-import { colorSchemeOptions } from "../colorSchemeOptions"
+  VerticalEnd,
+} from "@/wrappedComponents/svg"
+import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const AlignmentOptionStyle = {
   fontSize: "16px",
@@ -100,7 +100,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={AlignmentOptionStyle}>
-                <VerticalTop />
+                <VerticalStart />
               </div>
             ),
             value: "start",
@@ -116,7 +116,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={AlignmentOptionStyle}>
-                <VerticalBottom />
+                <VerticalEnd />
               </div>
             ),
             value: "end",

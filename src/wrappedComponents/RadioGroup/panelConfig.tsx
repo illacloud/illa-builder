@@ -1,5 +1,5 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
+import { VerticalStart, VerticalEnd } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
@@ -57,7 +57,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
+                <VerticalStart />
               </div>
             ),
             value: "left",
@@ -65,7 +65,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentRightIcon />
+                <VerticalEnd />
               </div>
             ),
             value: "right",

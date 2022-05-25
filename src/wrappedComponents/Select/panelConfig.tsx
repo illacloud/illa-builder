@@ -1,5 +1,5 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
+import { VerticalStart, VerticalEnd } from "@/wrappedComponents/svg"
 
 const OptionsStyle = {
   width: "77px",
@@ -62,7 +62,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
+                <VerticalStart />
               </div>
             ),
             value: "left",
@@ -70,7 +70,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentRightIcon />
+                <VerticalEnd />
               </div>
             ),
             value: "right",
