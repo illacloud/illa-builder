@@ -1,14 +1,30 @@
-import React from "react"
+import { FC } from "react"
 import { Divider } from "@illa-design/divider"
-import { MySQLPanel } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources"
+import {
+  MySQLPanel,
+  RESTAPIPanel,
+} from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
-import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { EventHandler } from "./EventHandler"
+import { ResourcePanelProps } from "./interface"
 
-export const ResourcePanel = () => {
+export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
+  const { resourceType } = props
+
+  function renderResourceConfig() {
+    switch (resourceType) {
+      case "MySQL":
+        return <MySQLPanel />
+      case "REST API":
+        return <RESTAPIPanel />
+      default:
+        return null
+    }
+  }
+
   return (
     <>
-      <Divider />
-      <MySQLPanel />
+      {renderResourceConfig()}
       <Transformer />
       <Divider />
       <EventHandler />

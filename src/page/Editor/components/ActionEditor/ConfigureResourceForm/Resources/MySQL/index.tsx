@@ -1,6 +1,11 @@
 import { useState, forwardRef } from "react"
 import { css } from "@emotion/react"
-import { useForm, Controller, SubmitHandler } from "react-hook-form"
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  UnpackNestedValue,
+} from "react-hook-form"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
 import { InputNumber } from "@illa-design/input-number"
@@ -19,7 +24,6 @@ import {
   LabelTextSmallSizeCSS,
 } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/style"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
-
 import { MySQLFormValues, MySQLFormProps } from "./interface"
 import { InputUpload } from "./input-upload"
 import {
@@ -30,325 +34,361 @@ import {
   FormPaddingCSS,
 } from "./style"
 
-export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
-  (props, ref) => {
-    const [expandSSH, setExpandSSH] = useState(false)
-    const [expandSSL, setExpandSSL] = useState(false)
-    const {
-      handleSubmit,
-      control,
-      register,
-      resetField,
-      formState: { errors },
-    } = useForm<MySQLFormValues>({
-      defaultValues: {
-        Port: 3306,
-        SSHPort: 22,
+const dataTransform = (data: UnpackNestedValue<MySQLFormValues>) => {
+  const _data = {
+    kind: "mysql",
+    options: {
+      host: "",
+      port: "",
+      databaseName: "",
+      databaseUsername: "",
+      databasePassword: "",
+      ssl: false,
+      ssh: false,
+      advancedOptions: {
+        sshHost: "",
+        sshPort: "",
+        sshUsername: "",
+        sshPassword: "",
+        sshPrivateKey: "",
+        sshPassphrase: "",
+        serverCert: null,
+        clientKey: null,
+        clientCert: null,
       },
-    })
-
-    let registerSSHPrivateKey
-    let registerSSLClientCertificate
-    let registerSSLClientKey
-    let registerSSLServerRootCertificate
-
-    registerSSHPrivateKey = register("SSHPrivateKey")
-    registerSSLClientCertificate = register("SSLClientCertificate")
-    registerSSLClientKey = register("SSLClientKey")
-    registerSSLServerRootCertificate = register("SSLServerRootCertificate")
-
-    const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
-      alert(JSON.stringify(data))
+    },
+  }
+  Object.keys(_data.options).forEach((key) => {
+    // @ts-ignore
+    if (data[key] !== undefined) {
+      // @ts-ignore
+      _data.options[key] = data[key]
     }
-    return (
-      <form onSubmit={handleSubmit(onSubmit)} css={FormCSS} ref={ref}>
-        <div css={[GridContainerCSS, FormPaddingCSS]}>
-          <div css={GridRowContainerCSS}>
-            <label css={RequiredLabelTextCSS}>Name</label>
+  })
+  Object.keys(_data.options.advancedOptions).forEach((key) => {
+    if (data[key as keyof MySQLFormValues] !== undefined) {
+      // @ts-ignore
+      _data.options.advancedOptions[key] = data[key]
+    }
+  })
+  return _data
+}
+
+export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>((_, ref) => {
+  const [expandSSH, setExpandSSH] = useState(false)
+  const [expandSSL, setExpandSSL] = useState(false)
+  const {
+    handleSubmit,
+    control,
+    register,
+    resetField,
+    formState: { errors },
+  } = useForm<MySQLFormValues>({
+    defaultValues: {
+      port: 3306,
+      ssh: false,
+      ssl: false,
+      sshPort: 22,
+    },
+  })
+
+  let registerSSHPrivateKey
+  let registerSSLClientCertificate
+  let registerSSLClientKey
+  let registerSSLServerRootCertificate
+
+  registerSSHPrivateKey = register("sshPrivateKey")
+  registerSSLClientCertificate = register("clientCert")
+  registerSSLClientKey = register("clientKey")
+  registerSSLServerRootCertificate = register("serverCert")
+
+  const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
+    data = { ...data, ssh: expandSSH, ssl: expandSSL }
+    const _data = dataTransform(data)
+    console.log(_data)
+    alert(JSON.stringify(_data, null, 2))
+  }
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} css={FormCSS} ref={ref}>
+      <div css={[GridContainerCSS, FormPaddingCSS]}>
+        <div css={GridRowContainerCSS}>
+          <label css={RequiredLabelTextCSS}>Name</label>
+          <Controller
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder='i.e."Users DB(readonly)" or "Internal Admin API"'
+                error={!!errors.name}
+                maxLength={200}
+              />
+            )}
+            rules={{
+              required: ERROR_REQUIRED_MESSAGE,
+            }}
+            control={control}
+            name="name"
+          />
+          {errors.name && (
+            <div css={[ErrorMessageCSS, applyGridColIndex(2)]}>
+              {errors.name.message}
+            </div>
+          )}
+        </div>
+        <div css={GridRowContainerCSS}>
+          <label css={RequiredLabelTextCSS}>Hostname/Port</label>
+          <div css={HostnamePortCSS}>
             <Controller
               render={({ field }) => (
                 <Input
                   {...field}
-                  placeholder='i.e."Users DB(readonly)" or "Internal Admin API"'
-                  error={!!errors.Name}
+                  placeholder="Hostname"
+                  error={!!errors.host}
                   maxLength={200}
                 />
               )}
+              control={control}
+              name="host"
               rules={{
                 required: ERROR_REQUIRED_MESSAGE,
               }}
-              control={control}
-              name="Name"
             />
-            {errors.Name && (
-              <div css={[ErrorMessageCSS, applyGridColIndex(2)]}>
-                {errors.Name.message}
-              </div>
-            )}
-          </div>
-          <div css={GridRowContainerCSS}>
-            <label css={RequiredLabelTextCSS}>Hostname/Port</label>
-            <div css={HostnamePortCSS}>
-              <Controller
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Hostname"
-                    error={!!errors.Hostname}
-                    maxLength={200}
-                  />
-                )}
-                control={control}
-                name="Hostname"
-                rules={{
-                  required: ERROR_REQUIRED_MESSAGE,
-                }}
-              />
-              <Controller
-                render={({ field }) => (
-                  <InputNumber
-                    {...field}
-                    placeholder="3306"
-                    error={!!errors.Port}
-                  />
-                )}
-                control={control}
-                name="Port"
-                rules={{
-                  required: ERROR_REQUIRED_MESSAGE,
-                }}
-              />
-            </div>
-            {(errors.Hostname || errors.Port) && (
-              <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                <div css={ErrorMessageCSS}>{errors.Hostname?.message}</div>
-                <div css={ErrorMessageCSS}>{errors.Port?.message}</div>
-              </div>
-            )}
-          </div>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Database</label>
             <Controller
               render={({ field }) => (
-                <Input {...field} placeholder="acme_production" />
+                <InputNumber
+                  {...field}
+                  placeholder="3306"
+                  error={!!errors.port}
+                />
               )}
               control={control}
-              name="Database"
+              name="port"
+              rules={{
+                required: ERROR_REQUIRED_MESSAGE,
+              }}
             />
           </div>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Username/Password</label>
-            <div css={UsernamePasswordCSS}>
-              <Controller
-                render={({ field }) => (
-                  <Input {...field} placeholder="Username" />
-                )}
-                control={control}
-                name="Username"
-              />
-              <Controller
-                render={({ field }) => (
-                  <Password
-                    {...field}
-                    invisibleButton={false}
-                    placeholder="Password"
-                  />
-                )}
-                control={control}
-                name="Password"
-              />
+          {(errors.host || errors.port) && (
+            <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
+              <div css={ErrorMessageCSS}>{errors.host?.message}</div>
+              <div css={ErrorMessageCSS}>{errors.port?.message}</div>
             </div>
-            <div css={[DescriptionCSS, applyGridColIndex(2)]}>
-              Credentials will be encrypted & stored securely on our servers.
+          )}
+        </div>
+        <div css={GridRowContainerCSS}>
+          <label css={LabelTextCSS}>Database</label>
+          <Controller
+            render={({ field }) => (
+              <Input {...field} placeholder="acme_production" />
+            )}
+            control={control}
+            name="databaseName"
+          />
+        </div>
+        <div css={GridRowContainerCSS}>
+          <label css={LabelTextCSS}>Username/Password</label>
+          <div css={UsernamePasswordCSS}>
+            <Controller
+              render={({ field }) => (
+                <Input {...field} placeholder="Username" />
+              )}
+              control={control}
+              name="databaseUsername"
+            />
+            <Controller
+              render={({ field }) => (
+                <Password
+                  {...field}
+                  invisibleButton={false}
+                  placeholder="Password"
+                />
+              )}
+              control={control}
+              name="databasePassword"
+            />
+          </div>
+          <div css={[DescriptionCSS, applyGridColIndex(2)]}>
+            Credentials will be encrypted & stored securely on our servers.
+          </div>
+        </div>
+        <div css={GridRowContainerCSS}>
+          <label css={LabelTextCSS}>Connect Type</label>
+          <div css={ItemTextCSS}>
+            Cloud: PopSQL servers will securely connect to your database.
+          </div>
+        </div>
+        <h4 css={GroupTitleCSS}>Advanced Options</h4>
+        <div css={GridRowContainerCSS}>
+          <label css={LabelTextCSS}>Connect over SSH</label>
+          <div css={SwitchAreaCSS}>
+            <Switch
+              colorScheme="techPurple"
+              checked={expandSSH}
+              onChange={(val) => {
+                setExpandSSH(val)
+              }}
+            />
+            <div css={SwitchDescriptionCSS}>
+              <div css={LabelTextCSS}>Useful to connect to private network</div>
             </div>
           </div>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Connect Type</label>
-            <div css={ItemTextCSS}>
-              Cloud: PopSQL servers will securely connect to your database.
-            </div>
-          </div>
-          <h4 css={GroupTitleCSS}>Advanced Options</h4>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Connect over SSH</label>
-            <div css={SwitchAreaCSS}>
-              <Switch
-                colorScheme="techPurple"
-                onChange={() => {
-                  setExpandSSH((expandSSH) => !expandSSH)
-                }}
-              />
-              <div css={SwitchDescriptionCSS}>
-                <div css={LabelTextCSS}>
-                  Useful to connect to private network
-                </div>
-              </div>
-            </div>
-          </div>
-          {expandSSH && (
-            <>
-              <div css={GridRowContainerCSS}>
-                <label css={RequiredLabelTextCSS}>SSH Hostname/Port</label>
-                <div css={HostnamePortCSS}>
-                  <Controller
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        placeholder="eg.localhost"
-                        maxLength={200}
-                        error={!!errors.SSHHostname}
-                      />
-                    )}
-                    rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
-                    }}
-                    control={control}
-                    name="SSHHostname"
-                  />
-                  <Controller
-                    render={({ field }) => (
-                      <InputNumber
-                        {...field}
-                        placeholder="22"
-                        error={!!errors.SSHPort}
-                      />
-                    )}
-                    rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
-                    }}
-                    control={control}
-                    name="SSHPort"
-                  />
-                </div>
-                {(errors.SSHHostname || errors.SSHPort) && (
-                  <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                    <div css={ErrorMessageCSS}>
-                      {errors.SSHHostname?.message}
-                    </div>
-                    <div css={ErrorMessageCSS}>{errors.SSHPort?.message}</div>
-                  </div>
-                )}
-              </div>
-              <div css={GridRowContainerCSS}>
-                <label css={RequiredLabelTextCSS}>SSH Credentials</label>
-                <div css={UsernamePasswordCSS}>
-                  <Controller
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        placeholder="eg.ec2-user"
-                        error={!!errors.SSHCredentials}
-                      />
-                    )}
-                    rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
-                    }}
-                    control={control}
-                    name="SSHCredentials"
-                  />
-                  <Controller
-                    render={({ field }) => (
-                      <Password
-                        {...field}
-                        placeholder="•••••••••"
-                        invisibleButton={false}
-                        error={!!errors.SSHPassword}
-                      />
-                    )}
-                    rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
-                    }}
-                    control={control}
-                    name="SSHPassword"
-                  />
-                </div>
-                {(errors.SSHCredentials || errors.SSHPassword) && (
-                  <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                    <div css={ErrorMessageCSS}>
-                      {errors.SSHCredentials?.message}
-                    </div>
-                    <div css={ErrorMessageCSS}>
-                      {errors.SSHPassword?.message}
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Private Key</label>
-                <InputUpload
-                  resetValue={() => {
-                    resetField("SSHPrivateKey")
+        </div>
+        {expandSSH && (
+          <>
+            <div css={GridRowContainerCSS}>
+              <label css={RequiredLabelTextCSS}>SSH Hostname/Port</label>
+              <div css={HostnamePortCSS}>
+                <Controller
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="eg.localhost"
+                      maxLength={200}
+                      error={!!errors.sshHost}
+                    />
+                  )}
+                  rules={{
+                    required: ERROR_REQUIRED_MESSAGE,
                   }}
-                  registerValue={registerSSHPrivateKey}
+                  control={control}
+                  name="sshHost"
+                />
+                <Controller
+                  render={({ field }) => (
+                    <InputNumber
+                      {...field}
+                      placeholder="22"
+                      error={!!errors.sshPort}
+                    />
+                  )}
+                  rules={{
+                    required: ERROR_REQUIRED_MESSAGE,
+                  }}
+                  control={control}
+                  name="sshPort"
                 />
               </div>
-              <div css={GridRowContainerCSS}>
-                <label css={[LabelTextCSS, LabelTextVerticalCSS]}>
-                  <div>SSH passphrase</div>
-                  <div css={LabelTextSmallSizeCSS}>used if provided</div>
-                </label>
+              {(errors.sshHost || errors.sshPort) && (
+                <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
+                  <div css={ErrorMessageCSS}>{errors.sshHost?.message}</div>
+                  <div css={ErrorMessageCSS}>{errors.sshPort?.message}</div>
+                </div>
+              )}
+            </div>
+            <div css={GridRowContainerCSS}>
+              <label css={RequiredLabelTextCSS}>SSH Credentials</label>
+              <div css={UsernamePasswordCSS}>
+                <Controller
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="eg.ec2-user"
+                      error={!!errors.sshUsername}
+                    />
+                  )}
+                  rules={{
+                    required: ERROR_REQUIRED_MESSAGE,
+                  }}
+                  control={control}
+                  name="sshUsername"
+                />
                 <Controller
                   render={({ field }) => (
                     <Password
                       {...field}
                       placeholder="•••••••••"
                       invisibleButton={false}
-                      error={!!errors.SSHPassword}
+                      error={!!errors.sshPassword}
                     />
                   )}
+                  rules={{
+                    required: ERROR_REQUIRED_MESSAGE,
+                  }}
                   control={control}
-                  name="SSHPassphrase"
+                  name="sshPassword"
                 />
               </div>
-            </>
-          )}
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>SSL options</label>
-            <div css={SwitchAreaCSS}>
-              <Switch
-                colorScheme="techPurple"
-                onChange={() => {
-                  setExpandSSL((expandSSL) => !expandSSL)
+              {(errors.sshUsername || errors.sshPassword) && (
+                <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
+                  <div css={ErrorMessageCSS}>{errors.sshUsername?.message}</div>
+                  <div css={ErrorMessageCSS}>{errors.sshPassword?.message}</div>
+                </div>
+              )}
+            </div>
+            <div css={GridRowContainerCSS}>
+              <label css={LabelTextCSS}>Private Key</label>
+              <InputUpload
+                resetValue={() => {
+                  resetField("sshPrivateKey")
                 }}
+                registerValue={registerSSHPrivateKey}
               />
-              <div css={SwitchDescriptionCSS}>
-                <div css={LabelTextCSS}>SSL is used when available</div>
-              </div>
+            </div>
+            <div css={GridRowContainerCSS}>
+              <label css={[LabelTextCSS, LabelTextVerticalCSS]}>
+                <div>SSH passphrase</div>
+                <div css={LabelTextSmallSizeCSS}>used if provided</div>
+              </label>
+              <Controller
+                render={({ field }) => (
+                  <Password
+                    {...field}
+                    placeholder="•••••••••"
+                    invisibleButton={false}
+                  />
+                )}
+                control={control}
+                name="sshPassphrase"
+              />
+            </div>
+          </>
+        )}
+        <div css={GridRowContainerCSS}>
+          <label css={LabelTextCSS}>SSL options</label>
+          <div css={SwitchAreaCSS}>
+            <Switch
+              colorScheme="techPurple"
+              checked={expandSSL}
+              onChange={(val) => {
+                setExpandSSL(val)
+              }}
+            />
+            <div css={SwitchDescriptionCSS}>
+              <div css={LabelTextCSS}>SSL is used when available</div>
             </div>
           </div>
-          {expandSSL && (
-            <>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Server Root Certificate</label>
-                <InputUpload
-                  resetValue={() => {
-                    resetField("SSLServerRootCertificate")
-                  }}
-                  registerValue={registerSSLServerRootCertificate}
-                />
-              </div>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Client Key</label>
-                <InputUpload
-                  resetValue={() => {
-                    resetField("SSLClientKey")
-                  }}
-                  registerValue={registerSSLClientKey}
-                />
-              </div>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Client Certificate</label>
-                <InputUpload
-                  resetValue={() => {
-                    resetField("SSLClientCertificate")
-                  }}
-                  registerValue={registerSSLClientCertificate}
-                />
-              </div>
-            </>
-          )}
         </div>
-      </form>
-    )
-  },
-)
+        {expandSSL && (
+          <>
+            <div css={GridRowContainerCSS}>
+              <label css={LabelTextCSS}>Server Root Certificate</label>
+              <InputUpload
+                resetValue={() => {
+                  resetField("serverCert")
+                }}
+                registerValue={registerSSLServerRootCertificate}
+              />
+            </div>
+            <div css={GridRowContainerCSS}>
+              <label css={LabelTextCSS}>Client Key</label>
+              <InputUpload
+                resetValue={() => {
+                  resetField("clientKey")
+                }}
+                registerValue={registerSSLClientKey}
+              />
+            </div>
+            <div css={GridRowContainerCSS}>
+              <label css={LabelTextCSS}>Client Certificate</label>
+              <InputUpload
+                resetValue={() => {
+                  resetField("clientCert")
+                }}
+                registerValue={registerSSLClientCertificate}
+              />
+            </div>
+          </>
+        )}
+      </div>
+    </form>
+  )
+})

@@ -1,22 +1,24 @@
-import { EditorState } from "@/redux/action/editor/editorReducer"
-
-export interface ResourceConfig {
-  id: string
+type ActionType = "action" | "transformer"
+type ActionStatus = "warning" | string
+interface ActionConnectNetwork {
+  totalTime: number
+  prepareTime: number
+  frontendTime: number
+  backendTime: number
+  responseSize: number
 }
 
 export interface ActionItem {
   id: string
   name: string
-  type: "query" | "transformer"
-  isWarning?: boolean
-  isUpdated?: boolean
-  time?: string
-  resourceConfig?: ResourceConfig
+  resourceId?: string
+  type: ActionType
+  status?: ActionStatus
+  network?: ActionConnectNetwork
+  // TODO: should restrict by resource
+  config?: any
 }
 
-export interface ActionState {
-  editor: EditorState
-  queryList: QueryListState
-}
+export type ActionListState = ActionItem[]
 
-export const actionInitialItem = {} as ActionItem
+export const actionListInitialState: ActionListState = []

@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import actionReducer from "@/redux/action"
+import resourceReducer from "@/redux/action/resource/resourceSlice"
+import actionListReducer from "@/redux/action/actionList/actionListSlice"
 import dashboardReducer from "@/redux/dashboard/dashboardSlice"
-import { combineReducers } from "redux"
 import demoReducer from "@/redux/editor/demoReducer"
 import modeReducer from "@/redux/editor/mode/modeSlice"
 import dragReducer from "@/redux/editor/dragReducer"
@@ -17,6 +17,11 @@ const editor = combineReducers({
   widgetStates: widgetStatesReducer,
 })
 
+const actionReducer = combineReducers({
+  actionList: actionListReducer,
+  resource: resourceReducer,
+})
+
 const store = configureStore({
   reducer: {
     editor,
@@ -27,3 +32,5 @@ const store = configureStore({
 })
 
 export default store
+
+export type RootState = ReturnType<typeof store.getState>

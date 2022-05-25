@@ -1,10 +1,9 @@
+import {
+  ApiType,
+  DatabaseType,
+} from "@/page/Editor/components/ActionEditor/interface"
+
 export type ActionType = "select" | "configure" | "edit"
-
-export type ApiType = "REST API"
-
-export type DatabaseType = "MySQL" | "Postgres" | "Redis"
-
-export type ResourceType = DatabaseType | ApiType
 
 export interface FormContainerProps {
   actionType: ActionType

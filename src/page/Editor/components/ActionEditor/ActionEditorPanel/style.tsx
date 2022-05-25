@@ -3,12 +3,14 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ContainerCSS = css`
+  display: flex;
+  flex-direction: column;
   flex: 1;
 `
 
 export const PanelScrollCSS = css`
   overflow: auto;
-  height: 100%;
+  flex: 1;
 `
 
 export const HeaderCSS = css`
@@ -30,7 +32,7 @@ export const TitleContainerCSS = css`
   height: 32px;
   line-height: 32px;
   transition: all 0.2s ease-in-out;
-  padding: 0px 19px 0 16px;
+  padding: 0 19px 0 16px;
 
   &:hover {
     cursor: pointer;
@@ -213,4 +215,80 @@ export const HandlerMoreIconCSS = css`
   font-size: 14px;
   white-space: nowrap;
   cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+`
+
+export const MoreListCSS = css`
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  width: 184px;
+`
+
+export const MoreListItemCSS = css`
+  padding: 5px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.57;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
+`
+
+export const MoreListItemWarnCSS = css`
+  ${MoreListItemCSS};
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
+`
+
+export const MoreBtnMenuCSS = css`
+  width: 180px;
+`
+
+export const DuplicateActionCSS = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
+`
+
+export const DeleteActionCSS = css`
+  color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
+`
+
+export const HandlerItemWrapperCSS = css`
+  display: flex;
+  height: 32px;
+  font-size: 14px;
+  line-height: 1.57;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  cursor: pointer;
+`
+
+export const HandlerItemContentCSS = css`
+  flex: 1;
+  border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  padding: 5px 16px;
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  &:hover {
+    border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+  }
+`
+
+export const HandlerItemMoreCSS = css`
+  width: 32px;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  border-left-width: 0;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
 `

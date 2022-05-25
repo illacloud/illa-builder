@@ -1,7 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-type Direction = "left" | "right" | "top" | "bottom"
 type IllaColor =
   | "white"
   | "blackAlpha"

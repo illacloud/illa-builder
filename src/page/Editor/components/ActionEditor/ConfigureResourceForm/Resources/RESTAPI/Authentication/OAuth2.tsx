@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react"
+import { FC } from "react"
 import { Input } from "@illa-design/input"
 import { InputNumber } from "@illa-design/input-number"
 import { Checkbox } from "@illa-design/checkbox"

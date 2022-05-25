@@ -7,9 +7,7 @@ interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> {}
 export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const { className } = props
 
-  const dragValue = useSelector(
-    (state: BuilderState) => state.editor.present.drag,
-  )
+  const dragValue = useSelector((state: BuilderState) => state.editor.drag)
 
   return (
     <div className={className}>

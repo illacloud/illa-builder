@@ -1,17 +1,39 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { ActionItem } from "@/redux/action/actionList/actionListState"
+import {
+  ActionListState,
+  ActionItem,
+} from "@/redux/action/actionList/actionListState"
 
 export const addActionItemReducer: CaseReducer<
-  ActionState,
-  PayloadAction<string>
-> = (state, action) => {}
+  ActionListState,
+  PayloadAction<ActionItem>
+> = (state, action) => {
+  return [...state, action.payload]
+}
 
 export const updateActionItemReducer: CaseReducer<
-  ActionState,
-  PayloadAction<ActionItem>
-> = (state, action) => {}
+  ActionListState,
+  PayloadAction<Partial<ActionItem>>
+> = (state, action) => {
+  let targetActionIndex = state.findIndex(
+    (item: ActionItem) => item.id === action.payload.id,
+  )
+
+  state.splice(targetActionIndex, 1, {
+    ...state[targetActionIndex],
+    ...action.payload,
+  })
+
+  return state
+}
 
 export const removeActionItemReducer: CaseReducer<
-  ActionState,
+  ActionListState,
   PayloadAction<string>
-> = (state, action) => {}
+> = (state, action) => {
+  state.splice(
+    state.findIndex((item: ActionItem) => item.id === action.payload),
+    1,
+  )
+  return state
+}

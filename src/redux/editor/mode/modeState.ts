@@ -1,7 +1,7 @@
 export interface ModeState {
-    isPreviewMode: boolean
+  isPreviewMode: boolean
 }
 
 export const modeInitialState: ModeState = {
-    isPreviewMode: false,
+  isPreviewMode: false,
 }

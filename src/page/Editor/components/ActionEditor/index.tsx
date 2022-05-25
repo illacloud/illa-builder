@@ -1,21 +1,20 @@
-import { FC, useState, useRef } from "react"
-import { QueryList } from "./QueryList"
-import { ActionEditorPanel } from "./ActionEditorPanel"
+import { FC, useState } from "react"
+import { ActionType } from "@/page/Editor/components/ActionEditor/FormContainer/interface"
+import { ActionList } from "@/page/Editor/components/ActionEditor/ActionList"
+import { ActionEditorPanel } from "@/page/Editor/components/ActionEditor/ActionEditorPanel"
 import { ActionEditorPanelWrapper } from "./style"
 import { FormContainer } from "./FormContainer"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
-import { ActionType } from "@/page/Editor/components/ActionEditor/FormContainer/interface"
 
-export const ActionEditor: FC<ActionEditorProps> = (props) => {
-  const { className } = props
+export const ActionEditor: FC<ActionEditorProps> = () => {
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
 
   return (
     <div css={ActionEditorPanelWrapper}>
       <ActionEditorLayout
-        queryList={<QueryList />}
+        actionList={<ActionList />}
         actionEditorPanel={
           <ActionEditorPanel
             onCreateResource={() => {

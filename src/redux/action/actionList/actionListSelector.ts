@@ -1,6 +1,3 @@
-import { EditorState } from "@/redux/action/editor/editorReducer"
+import { RootState } from "@/store"
 
-export interface ActionState {
-  editor: EditorState
-  queryList: QueryListState
-}
+export const selectAllActionItem = (state: RootState) => state.action.actionList
