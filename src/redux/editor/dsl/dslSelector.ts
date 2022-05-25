@@ -1,10 +1,10 @@
 import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
 
-export const getEditorDsl = (state: any) => state.editor.present.dsl
+export const getEditorDsl = (state: any) => state.editor.dsl
 
 // 调试用。
 export const getSelectedWidgetStates = (state: any) =>
-  state.editor.present.widgetStates.selectedWidgets
+  state.editor.widgetStates.selectedWidgets
 
 // 调试用。
 export const getWidgetStateById = (state: any, id?: string) => {

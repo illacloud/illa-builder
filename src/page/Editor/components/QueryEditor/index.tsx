@@ -8,7 +8,7 @@ export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const { className } = props
 
   const dragValue = useSelector(
-    (state: BuilderState) => state.editor.present.drag,
+    (state: BuilderState) => state.editor.drag,
   )
 
   return (
