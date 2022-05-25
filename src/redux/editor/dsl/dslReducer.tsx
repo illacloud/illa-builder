@@ -79,8 +79,15 @@ function updateNode(
 }
 
 // 测试用。
-function updateDslProps(dslState: DslState, targetId: string, newState: any) {
+export const updateDslProps: CaseReducer<
+  DslState,
+  PayloadAction<{
+    targetId: string
+    newState: any
+  }>
+> = (dslState, action) => {
   console.log("准备更新")
+  const { targetId, newState } = action.payload
   const current = dslState.root
   const queue = new Array<DSLWidget>()
   queue.push(current)
@@ -106,7 +113,7 @@ export const dslActionHandler: CaseReducer<
   DslState,
   PayloadAction<{
     type: DslAction
-    widgetProps: any
+    dslFrame: DSLWidget
   }>
 > = (state, action) => {
   let safeState = state
@@ -130,20 +137,16 @@ export const dslActionHandler: CaseReducer<
     case DslActionName.AddItem: {
       const addItemAction = action.payload
       addNode2Layout(
-        addItemAction.dslText.parentId,
+        addItemAction.dslFrame.parentId,
         safeState.root!!,
-        addItemAction.dslText,
+        addItemAction.dslFrame,
       )
       break
     }
     case DslActionName.UpdateItem: {
       const updateTextAction = action.payload
-      updateNode(safeState, safeState.root!!, updateTextAction.newDslText)
+      updateNode(safeState, safeState.root!!, updateTextAction.dslFrame)
       break
-    }
-    case DslActionName.updateDslProps: {
-      const { targetId, newState } = action.payload
-      updateDslProps(safeState, targetId, newState)
     }
   }
   return safeState

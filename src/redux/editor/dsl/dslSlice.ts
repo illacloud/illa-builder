@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { DslInitialState } from "./dslState"
-import { dslActionHandler } from "./dslReducer"
+import { dslActionHandler, updateDslProps } from "./dslReducer"
 
 const dslSlice = createSlice({
   name: "dsl",
   initialState: DslInitialState,
   reducers: {
     dslActionHandler,
+    updateDslProps,
   },
 })
 
