@@ -11,4 +11,14 @@ export const globalStyle = css`
   * {
     outline: none !important;
   }
+
+  /*
+  *  Use a more-intuitive box-sizing model.
+  */
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 `

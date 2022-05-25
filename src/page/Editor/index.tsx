@@ -3,7 +3,7 @@ import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
-import { QueryEditor } from "./components/QueryEditor"
+import { ActionEditor } from "./components/ActionEditor"
 import {
   editorContainerStyle,
   leftPanelStyle,
@@ -28,7 +28,7 @@ export const Editor: FC = () => {
           <div css={contentStyle}>
             <div css={middlePanelStyle}>
               <CanvasContainer css={centerPanelStyle} />
-              <QueryEditor css={bottomPanelStyle} />
+              <ActionEditor css={bottomPanelStyle} />
             </div>
             <WidgetPickerEditor css={rightPanelStyle} />
           </div>

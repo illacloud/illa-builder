@@ -8,4 +8,6 @@ export interface EditorInputProps {
   lineNumbers?: boolean
   height?: string
   placeholder?: string
+  onChange?: (value: string) => void
+  onBlur?: () => void
 }
