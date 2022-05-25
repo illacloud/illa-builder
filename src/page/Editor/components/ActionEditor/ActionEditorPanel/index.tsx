@@ -8,9 +8,10 @@ import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useSelector, useDispatch } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { useAppDispatch } from "@/store"
 import {
   addActionItem,
-  removeActionItem,
+  removeActionItemThunk,
 } from "@/redux/action/actionList/actionListSlice"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
@@ -21,7 +22,6 @@ import {
   FillingCSS,
   HeaderButtonCSS,
   ActionSelectCSS,
-  ModeSelectCSS,
   TriggerSelectCSS,
   ResourceSelectCSS,
   EditIconCSS,
@@ -40,9 +40,15 @@ import { ResourcePanel } from "./ResourcePanel"
 const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
-  const { activeActionItemId, onEditResource, onCreateResource } = props
-  const dispatch = useDispatch()
+  const {
+    activeActionItemId,
+    setActiveActionItemId,
+    onEditResource,
+    onCreateResource,
+  } = props
+  const dispatch = useAppDispatch()
   const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
+  const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const actionItems = useSelector(selectAllActionItem)
   const activeActionItem = useMemo(() => {
     if (!activeActionItemId) {
@@ -54,11 +60,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
   }, [actionItems])
-
-  const modeOptions = [
-    { label: "SQL mode", value: 0 },
-    { label: "GUI mode", value: 1 },
-  ]
 
   const triggerOptions = [
     {
@@ -92,6 +93,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function handleAction(key: string) {
+    setMoreBtnMenuVisible(false)
+
     if (key === "duplicate") {
       duplicateActionItem()
     } else if (key === "delete") {
@@ -117,7 +120,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function deleteActionItem() {
-    dispatch(removeActionItem(activeActionItemId))
+    activeActionItem &&
+      dispatch(
+        removeActionItemThunk(activeActionItemId, (actionItems) => {
+          setActiveActionItemId(actionItems[actionItems.length - 1].id)
+        }),
+      )
   }
 
   function generateName(type: string) {
@@ -156,6 +164,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         <Dropdown
           dropList={moreActions}
           trigger={"click"}
+          popupVisible={moreBtnMenuVisible}
+          onVisibleChange={setMoreBtnMenuVisible}
           triggerProps={{
             clickOutsideToClose: true,
             closeOnClick: true,
@@ -178,11 +188,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             <div css={[ActionCSS, ResourceBarCSS]}>
               <label css={SectionTitleCSS}>Resource</label>
               <span css={FillingCSS} />
-              <Select
-                options={modeOptions}
-                defaultValue={0}
-                css={[ActionSelectCSS, ModeSelectCSS]}
-              />
               <Select
                 options={triggerOptions}
                 defaultValue={0}

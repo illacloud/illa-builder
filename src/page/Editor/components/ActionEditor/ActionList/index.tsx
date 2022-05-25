@@ -1,7 +1,7 @@
 import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
 import { motion } from "framer-motion"
 import { useClickAway } from "react-use"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { useAppDispatch } from "@/store"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
@@ -56,8 +56,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     setIsActionDirty,
   } = props
 
-  const appDispatch = useAppDispatch()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const actionItems = useSelector(selectAllActionItem)
 
   const [newActionOptionsVisible, setNewActionOptionsVisible] = useState(false)
@@ -269,7 +268,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }
   }
 
-  // TODO: subsrcibe?   // 1. subsrcibe 2. type?
   function deleteActionItem() {
     setContextMenuVisible(false)
     dispatch(

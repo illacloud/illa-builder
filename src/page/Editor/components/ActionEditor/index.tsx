@@ -27,6 +27,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
         actionEditorPanel={
           <ActionEditorPanel
             activeActionItemId={activeActionItemId}
+            setActiveActionItemId={setActiveActionItemId}
             onCreateResource={() => {
               setActionType("select")
               setFormVisible(true)
