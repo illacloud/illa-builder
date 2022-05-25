@@ -1,5 +1,8 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { ResourceListState, Resource } from "@/redux/action/resource/resourceState"
+import {
+  ResourceListState,
+  Resource,
+} from "@/redux/action/resource/resourceState"
 
 export const addResourceItemReducer: CaseReducer<
   ResourceListState,

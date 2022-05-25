@@ -10,9 +10,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const { className } = props
 
   const dispatch = useDispatch()
-  const demoValue = useSelector(
-    (state: any) => state.editor.demo,
-  )
+  const demoValue = useSelector((state: any) => state.editor.demo)
 
   return (
     <div className={className}>

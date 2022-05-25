@@ -1,6 +1,6 @@
 export interface Resource {
   id: string
-  name: string,
+  name: string
   type: "database" | "api"
   // TODO: restrict by resource type. e.g. MySQL config
   config: any
