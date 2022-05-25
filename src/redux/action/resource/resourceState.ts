@@ -6,4 +6,4 @@ export interface Resource {
   config: any
 }
 export type ResourceListState = Resource[]
-export const resourceInititalState: ResourceListState = []
+export const resourceInitialState: ResourceListState = []
