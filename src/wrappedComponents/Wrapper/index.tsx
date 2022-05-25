@@ -8,8 +8,8 @@ export const Wrapper: FC<WrapperProps> = (props) => {
   const sizeCss = css`
     display: flex;
     align-items: center;
-    width: ${w ?? "auto"};
-    height: ${h ?? "auto"};
+    width: ${w ?? "100%"};
+    height: ${h ?? "100%"};
   `
 
   return (

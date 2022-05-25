@@ -25,6 +25,11 @@ import {
   RADIO_GROUP_PANEL_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
+import {
+  EditableTextWidget,
+  EDITABLE_TEXT_WIDGET_CONFIG,
+  EDITABLE_TEXT_PANEL_CONFIG,
+} from "./EditableText"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -76,6 +81,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: InputWidget,
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
+  },
+  EDITABLE_TEXT_WIDGET: {
+    widget: EditableTextWidget,
+    config: EDITABLE_TEXT_WIDGET_CONFIG,
+    panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
   },
 }
 

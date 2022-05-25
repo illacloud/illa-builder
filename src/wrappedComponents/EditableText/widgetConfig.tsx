@@ -1,11 +1,11 @@
 import { ComponentModel } from "@/wrappedComponents/interface"
-import { SelectIcon } from "@/wrappedComponents/Select/svg"
+import { EditableTextIcon } from "@/wrappedComponents/EditableText/svg"
 
-export const SELECT_WIDGET_CONFIG: ComponentModel = {
-  type: "SELECT_WIDGET",
-  widgetName: "select",
+export const EDITABLE_TEXT_WIDGET_CONFIG: ComponentModel = {
+  type: "EDITABLE_TEXT_WIDGET",
+  widgetName: "editableText",
   version: "0.0.1",
-  icon: <SelectIcon />,
+  icon: <EditableTextIcon />,
   sessionType: "BASIC",
   defaults: {
     rows: 50,

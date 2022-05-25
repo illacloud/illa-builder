@@ -46,7 +46,12 @@ export const panelHeaderWrapperCss = css`
 `
 
 export const panelHeaderIconWrapperCss = css`
+  margin-left: 16px;
   cursor: pointer;
+  svg {
+    width: 14px;
+    height: 14px;
+  }
 `
 
 export const panelBarWrapperCss = css``
