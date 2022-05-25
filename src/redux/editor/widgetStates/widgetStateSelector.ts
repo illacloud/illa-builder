@@ -1,4 +1,6 @@
-export const getWidgetStates = (state: any) => state.editor.widgetStates
+import { RootState } from "@/store"
 
-export const getFocusedWidget = (state: any) =>
+export const getWidgetStates = (state: RootState) => state.editor.widgetStates
+
+export const getFocusedWidget = (state: RootState) =>
   state.editor.widgetStates.focusedWidget

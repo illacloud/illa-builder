@@ -1,13 +1,13 @@
 import { FC, HTMLAttributes } from "react"
 import { useSelector } from "react-redux"
-import { BuilderState } from "@/redux/reducers/interface"
+import { RootState } from "@/store"
 
 interface QueryEditorProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const QueryEditor: FC<QueryEditorProps> = (props) => {
   const { className } = props
 
-  const dragValue = useSelector((state: BuilderState) => state.editor.drag)
+  const dragValue = useSelector((state: RootState) => state.editor.drag)
 
   return (
     <div className={className}>
