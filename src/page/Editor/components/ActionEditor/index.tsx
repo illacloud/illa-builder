@@ -10,13 +10,23 @@ import { ActionEditorLayout } from "./layout"
 export const ActionEditor: FC<ActionEditorProps> = () => {
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
+  const [isActionDirty, setIsActionDirty] = useState(false)
+  const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
   return (
     <div css={ActionEditorPanelWrapper}>
       <ActionEditorLayout
-        actionList={<ActionList />}
+        actionList={
+          <ActionList
+            isActionDirty={isActionDirty}
+            setIsActionDirty={setIsActionDirty}
+            activeActionItemId={activeActionItemId}
+            setActiveActionItemId={setActiveActionItemId}
+          />
+        }
         actionEditorPanel={
           <ActionEditorPanel
+            activeActionItemId={activeActionItemId}
             onCreateResource={() => {
               setActionType("select")
               setFormVisible(true)

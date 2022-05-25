@@ -1,14 +1,10 @@
 import { HTMLAttributes } from "react"
 
-export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {}
-
-export interface ActionItem {
-  id: string
-  type: string
-  name: string
-  isWarning: boolean
-  isUpdated: boolean
-  time: string
+export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {
+  activeActionItemId: string
+  setActiveActionItemId: (id: string) => void
+  isActionDirty: boolean
+  setIsActionDirty: (dirty: boolean) => void
 }
 
 export interface SearchHeaderProps {

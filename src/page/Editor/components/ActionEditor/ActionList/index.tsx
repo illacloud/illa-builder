@@ -1,7 +1,8 @@
 import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
 import { motion } from "framer-motion"
 import { useClickAway } from "react-use"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { useAppDispatch } from "@/store"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
@@ -18,6 +19,7 @@ import {
   updateActionItem,
   addActionItem,
   removeActionItem,
+  removeActionItemThunk,
 } from "@/redux/action/actionList/actionListSlice"
 import {
   ActionListContainerCSS,
@@ -47,11 +49,16 @@ import { SearchHeader } from "./SearchHeader"
 const MenuItem = Menu.Item
 
 export const ActionList: FC<ActionListProps> = (props) => {
-  const { className } = props
+  const {
+    activeActionItemId = "",
+    setActiveActionItemId,
+    isActionDirty = false,
+    setIsActionDirty,
+  } = props
 
+  const appDispatch = useAppDispatch()
   const dispatch = useDispatch()
   const actionItems = useSelector(selectAllActionItem)
-  const selectedActionItemId = ""
 
   const [newActionOptionsVisible, setNewActionOptionsVisible] = useState(false)
   const [action, setAction] = useState<string>("")
@@ -143,12 +150,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const actionItemsList = matchedActionItems.map((item) => {
     const { id, name, status } = item
     const isWarning = status === "warning"
-    // TODO: isUpdated should a props
-    const isUpdated = false
     // TODO: time should retrieve from ActionItem.network
     const time = "0.7s"
     const icon = <RestApiIcon />
-    const isSelected = id === selectedActionItemId
+    const isSelected = id === activeActionItemId
 
     function renderName() {
       if (id === editingActionItemId) {
@@ -172,7 +177,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
           >
             {name}
           </span>
-          {isUpdated && <span css={UpdatedIndicatorCSS}></span>}
+          {isActionDirty && <span css={UpdatedIndicatorCSS}></span>}
         </span>
       )
     }
@@ -200,6 +205,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
     if (actionItems.length === 1) {
       editName(id, name)
     }
+
+    setActiveActionItemId(id)
   }
 
   const newNewActionOptions = (
@@ -214,23 +221,60 @@ export const ActionList: FC<ActionListProps> = (props) => {
   )
 
   function addAction() {
+    const id = uuidV4()
     dispatch(
       addActionItem({
-        id: uuidV4(),
+        id,
         type: "action",
         name: generateName("action"),
         status: Math.random() > 0.5 ? "warning" : "",
       }),
     )
+    setActiveActionItemId(id)
   }
 
   function addTransformer() {
+    const id = uuidV4()
     dispatch(
       addActionItem({
-        id: uuidV4(),
+        id,
         type: "transformer",
         name: generateName("transformer"),
         status: Math.random() > 0.5 ? "warning" : "",
+      }),
+    )
+    setActiveActionItemId(id)
+  }
+
+  function duplicateActionItem() {
+    setContextMenuVisible(false)
+
+    const newActionItems = actionItems.slice(0)
+    const targetItem = newActionItems.find((i) => i.id === actionActionItemId)
+
+    if (targetItem) {
+      const id = uuidV4()
+      const type = targetItem.type
+
+      dispatch(
+        addActionItem({
+          id,
+          type,
+          name: generateName(type),
+          status: Math.random() > 0.5 ? "warning" : "",
+        }),
+      )
+
+      setActiveActionItemId(id)
+    }
+  }
+
+  // TODO: subsrcibe?   // 1. subsrcibe 2. type?
+  function deleteActionItem() {
+    setContextMenuVisible(false)
+    dispatch(
+      removeActionItemThunk(actionActionItemId, (actionItems) => {
+        setActiveActionItemId(actionItems[actionItems.length - 1].id)
       }),
     )
   }
@@ -286,35 +330,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }
   }
 
-  function duplicateActionItem() {
-    setContextMenuVisible(false)
-
-    const newActionItems = actionItems.slice(0)
-    const targetItem = newActionItems.find((i) => i.id === actionActionItemId)
-
-    if (targetItem) {
-      const type = targetItem.type
-      dispatch(
-        addActionItem({
-          id: uuidV4(),
-          type,
-          name: generateName(type),
-          status: Math.random() > 0.5 ? "warning" : "",
-        }),
-      )
-    }
-
-    setActionActionItemId("")
-  }
-
-  function deleteActionItem() {
-    setContextMenuVisible(false)
-    dispatch(removeActionItem(actionActionItemId))
-    setActionActionItemId("")
-  }
-
   return (
-    <div className={className} css={ActionListContainerCSS}>
+    <div css={ActionListContainerCSS}>
       <SearchHeader updateAction={setAction} />
 
       <Dropdown

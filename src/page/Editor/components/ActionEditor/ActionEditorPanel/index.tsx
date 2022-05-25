@@ -40,12 +40,17 @@ import { ResourcePanel } from "./ResourcePanel"
 const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
-  const { className, onEditResource, onCreateResource } = props
+  const { activeActionItemId, onEditResource, onCreateResource } = props
   const dispatch = useDispatch()
   const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
   const actionItems = useSelector(selectAllActionItem)
-  const currentActionItem = null
-  const currentActionItemId = ""
+  const activeActionItem = useMemo(() => {
+    if (!activeActionItemId) {
+      return null
+    }
+
+    return actionItems.find((action) => action.id === activeActionItemId)
+  }, [actionItems, activeActionItemId])
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
   }, [actionItems])
@@ -97,8 +102,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   function duplicateActionItem() {
     // 获取当前选中的 actionItem
     // 如果不存在则return
-    if (currentActionItem) {
-      const { type } = currentActionItem
+    if (activeActionItem) {
+      const { type } = activeActionItem
 
       dispatch(
         addActionItem({
@@ -112,7 +117,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function deleteActionItem() {
-    dispatch(removeActionItem(currentActionItemId))
+    dispatch(removeActionItem(activeActionItemId))
   }
 
   function generateName(type: string) {
@@ -144,9 +149,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   )
 
   return (
-    <div className={className} css={ContainerCSS}>
+    <div css={ContainerCSS}>
       <header css={HeaderCSS}>
-        <TitleInput />
+        <TitleInput activeActionItem={activeActionItem} />
         <span css={FillingCSS} />
         <Dropdown
           dropList={moreActions}
@@ -168,40 +173,44 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         </Button>
       </header>
       <div css={PanelScrollCSS}>
-        <div css={[ActionCSS, ResourceBarCSS]}>
-          <label css={SectionTitleCSS}>Resource</label>
-          <span css={FillingCSS} />
-          <Select
-            options={modeOptions}
-            defaultValue={0}
-            css={[ActionSelectCSS, ModeSelectCSS]}
-          />
-          <Select
-            options={triggerOptions}
-            defaultValue={0}
-            css={[ActionSelectCSS, TriggerSelectCSS]}
-          />
+        {activeActionItem && (
+          <>
+            <div css={[ActionCSS, ResourceBarCSS]}>
+              <label css={SectionTitleCSS}>Resource</label>
+              <span css={FillingCSS} />
+              <Select
+                options={modeOptions}
+                defaultValue={0}
+                css={[ActionSelectCSS, ModeSelectCSS]}
+              />
+              <Select
+                options={triggerOptions}
+                defaultValue={0}
+                css={[ActionSelectCSS, TriggerSelectCSS]}
+              />
 
-          <Select
-            css={[ActionSelectCSS, ResourceSelectCSS]}
-            value={resourceType}
-            onChange={setResourceType}
-          >
-            <Option onClick={createResource} isSelectOption={false}>
-              Create a new resource
-            </Option>
-            {resourceOptions.map((o) => (
-              <Option key={o.label} value={o.value}>
-                {o.label}
-              </Option>
-            ))}
-          </Select>
-          <div css={EditIconCSS} onClick={editResource}>
-            <PenIcon />
-          </div>
-        </div>
-        <Divider />
-        <ResourcePanel resourceType={resourceType} />
+              <Select
+                css={[ActionSelectCSS, ResourceSelectCSS]}
+                value={resourceType}
+                onChange={setResourceType}
+              >
+                <Option onClick={createResource} isSelectOption={false}>
+                  Create a new resource
+                </Option>
+                {resourceOptions.map((o) => (
+                  <Option key={o.label} value={o.value}>
+                    {o.label}
+                  </Option>
+                ))}
+              </Select>
+              <div css={EditIconCSS} onClick={editResource}>
+                <PenIcon />
+              </div>
+            </div>
+            <Divider />
+            <ResourcePanel resourceType={resourceType} />
+          </>
+        )}
       </div>
     </div>
   )
