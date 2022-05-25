@@ -12,7 +12,7 @@ import {
 import { getTargetOffset } from "@/wrappedComponents/utils"
 import { ContainerWidgetProps } from "./interface"
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { ComponentModel, DragInfo } from "@/wrappedComponents/interface"
 import {
   getDragDetails,
   getWidgetStates,
@@ -61,7 +61,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
   const showDragLayer = isDragging || isResizing
   const { setDraggingNewWidget } = useDragWidget()
 
-  const [collectProps, dropTarget] = useDrop<PanelDrag, DropInfo, Object>(
+  const [collectProps, dropTarget] = useDrop<DragInfo>(
     () => ({
       accept: WidgetTypeList,
       drop: (item, monitor: DropTargetMonitor) => {

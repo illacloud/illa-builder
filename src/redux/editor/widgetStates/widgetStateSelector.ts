@@ -6,4 +6,4 @@ export const getFocusedWidget = (state: RootState) =>
   state.editor.widgetStates.focusedWidget
 
 export const getDragDetails = (state: RootState) =>
-    state.editor.widgetStates.dragDetails
+  state.editor.widgetStates.dragDetails

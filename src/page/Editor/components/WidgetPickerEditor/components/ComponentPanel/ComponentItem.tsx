@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useDrag } from "react-dnd"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { ComponentModel, DragInfo } from "@/wrappedComponents/interface"
 import { iconCss, itemContainerCss, nameCss } from "./style"
 import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
 
