@@ -58,8 +58,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -136,14 +136,10 @@ export const ActionSelectCSS = css`
   }
 `
 
-export const ModeSelectCSS = css`
-  max-width: 115px;
-  border-radius: 8px 0 0 8px !important;
-`
 export const TriggerSelectCSS = css`
   max-width: 313px;
   margin-right: 8px;
-  border-radius: 0 8px 8px 0px !important;
+  border-radius: 8px!important;
 `
 export const ResourceSelectContainerCSS = css``
 

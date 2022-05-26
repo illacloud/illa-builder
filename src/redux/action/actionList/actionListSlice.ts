@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { actionListInitialState } from "@/redux/action/actionList/actionListState"
+import { AppThunk } from "@/store"
+import {
+  actionListInitialState,
+  ActionListState,
+} from "@/redux/action/actionList/actionListState"
+import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import {
   addActionItemReducer,
   removeActionItemReducer,
@@ -23,3 +28,10 @@ export const {
   updateActionItemReducer: updateActionItem,
   removeActionItemReducer: removeActionItem,
 } = actionListSlice.actions
+
+export const removeActionItemThunk =
+  (id: string, cb: (actionItems: ActionListState) => void): AppThunk =>
+  (dispatch, getState) => {
+    dispatch(removeActionItem(id))
+    cb(selectAllActionItem(getState()))
+  }

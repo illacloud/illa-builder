@@ -1,7 +1,6 @@
 import { FC, HTMLAttributes, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { BuilderState } from "@/redux/reducers/interface"
 import { EditorInput } from "@/components/EditorInput"
 import { fetchUser, changeDemoValueA } from "@/redux/editor/demoReducer"
 
@@ -11,9 +10,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const { className } = props
 
   const dispatch = useDispatch()
-  const demoValue = useSelector(
-    (state: BuilderState) => state.editor.present.demo,
-  )
+  const demoValue = useSelector((state: any) => state.editor.demo)
 
   return (
     <div className={className}>

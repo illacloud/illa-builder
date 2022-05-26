@@ -10,18 +10,33 @@ import { ActionEditorLayout } from "./layout"
 export const ActionEditor: FC<ActionEditorProps> = () => {
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
+  const [resourceId, setResourceId] = useState("")
+  const [isActionDirty, setIsActionDirty] = useState(false)
+  const [activeActionItemId, setActiveActionItemId] = useState<string>("")
+
+  console.log({ FormResourceId: resourceId })
 
   return (
     <div css={ActionEditorPanelWrapper}>
       <ActionEditorLayout
-        actionList={<ActionList />}
+        actionList={
+          <ActionList
+            isActionDirty={isActionDirty}
+            setIsActionDirty={setIsActionDirty}
+            activeActionItemId={activeActionItemId}
+            setActiveActionItemId={setActiveActionItemId}
+          />
+        }
         actionEditorPanel={
           <ActionEditorPanel
+            activeActionItemId={activeActionItemId}
+            setActiveActionItemId={setActiveActionItemId}
             onCreateResource={() => {
               setActionType("select")
               setFormVisible(true)
             }}
-            onEditResource={() => {
+            onEditResource={(id: string) => {
+              setResourceId(id)
               setActionType("edit")
               setFormVisible(true)
             }}
@@ -32,6 +47,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
       <FormContainer
         visible={formVisible}
         actionType={actionType}
+        resourceId={resourceId}
         onCancel={() => setFormVisible(false)}
       />
     </div>

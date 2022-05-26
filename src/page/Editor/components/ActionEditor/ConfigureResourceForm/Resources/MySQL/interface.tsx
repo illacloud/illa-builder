@@ -3,6 +3,7 @@ import { RefObject } from "react"
 import { ConnectionRef } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/interface"
 
 export interface MySQLFormProps {
+  resourceId?: string
   connectionRef: RefObject<ConnectionRef>
 }
 

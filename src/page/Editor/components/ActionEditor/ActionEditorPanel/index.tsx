@@ -6,11 +6,13 @@ import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { useAppDispatch } from "@/store"
 import {
   addActionItem,
-  removeActionItem,
+  removeActionItemThunk,
 } from "@/redux/action/actionList/actionListSlice"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
@@ -21,7 +23,6 @@ import {
   FillingCSS,
   HeaderButtonCSS,
   ActionSelectCSS,
-  ModeSelectCSS,
   TriggerSelectCSS,
   ResourceSelectCSS,
   EditIconCSS,
@@ -41,20 +42,29 @@ import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
-  const { className, onEditResource, onCreateResource } = props
-  const dispatch = useDispatch()
-  const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
+  const {
+    activeActionItemId,
+    setActiveActionItemId,
+    onEditResource,
+    onCreateResource,
+  } = props
+  const dispatch = useAppDispatch()
+
+  const [resourceId, setResourceId] = useState("")
+  const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
+
   const actionItems = useSelector(selectAllActionItem)
-  const currentActionItem = null
-  const currentActionItemId = ""
+  const resourceList = useSelector(selectAllResource)
+  const activeActionItem = useMemo(() => {
+    if (!activeActionItemId) {
+      return null
+    }
+
+    return actionItems.find((action) => action.id === activeActionItemId)
+  }, [actionItems, activeActionItemId])
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
   }, [actionItems])
-
-  const modeOptions = [
-    { label: "SQL mode", value: 0 },
-    { label: "GUI mode", value: 1 },
-  ]
 
   const triggerOptions = [
     {
@@ -67,27 +77,17 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     },
   ]
 
-  // TODO: retrieve from created resource
-  const resourceOptions = [
-    {
-      label: "MySQL",
-      value: "MySQL",
-    },
-    {
-      label: "REST API",
-      value: "REST API",
-    },
-  ]
-
   function createResource() {
     onCreateResource && onCreateResource()
   }
 
   function editResource() {
-    onEditResource && onEditResource()
+    resourceId && onEditResource && onEditResource(resourceId)
   }
 
   function handleAction(key: string) {
+    setMoreBtnMenuVisible(false)
+
     if (key === "duplicate") {
       duplicateActionItem()
     } else if (key === "delete") {
@@ -96,24 +96,30 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function duplicateActionItem() {
-    // 获取当前选中的 actionItem
-    // 如果不存在则return
-    if (currentActionItem) {
-      const { type } = currentActionItem
+    if (activeActionItem) {
+      const { type } = activeActionItem
+      const id = uuidV4()
 
       dispatch(
         addActionItem({
-          id: uuidV4(),
+          id,
           type,
           name: generateName(type),
           status: Math.random() > 0.5 ? "warning" : "",
         }),
       )
+
+      setActiveActionItemId(id)
     }
   }
 
   function deleteActionItem() {
-    dispatch(removeActionItem(currentActionItemId))
+    activeActionItem &&
+      dispatch(
+        removeActionItemThunk(activeActionItemId, (actionItems) => {
+          setActiveActionItemId(actionItems[actionItems.length - 1].id)
+        }),
+      )
   }
 
   function generateName(type: string) {
@@ -145,13 +151,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   )
 
   return (
-    <div className={className} css={ContainerCSS}>
+    <div css={ContainerCSS}>
       <header css={HeaderCSS}>
-        <TitleInput />
+        <TitleInput activeActionItem={activeActionItem} />
         <span css={FillingCSS} />
         <Dropdown
           dropList={moreActions}
           trigger={"click"}
+          popupVisible={moreBtnMenuVisible}
+          onVisibleChange={setMoreBtnMenuVisible}
           triggerProps={{
             clickOutsideToClose: true,
             closeOnClick: true,
@@ -181,40 +189,40 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         </Button>
       </header>
       <div css={PanelScrollCSS}>
-        <div css={[ActionCSS, ResourceBarCSS]}>
-          <label css={SectionTitleCSS}>Resource</label>
-          <span css={FillingCSS} />
-          <Select
-            options={modeOptions}
-            defaultValue={0}
-            css={[ActionSelectCSS, ModeSelectCSS]}
-          />
-          <Select
-            options={triggerOptions}
-            defaultValue={0}
-            css={[ActionSelectCSS, TriggerSelectCSS]}
-          />
+        {activeActionItem && (
+          <>
+            <div css={[ActionCSS, ResourceBarCSS]}>
+              <label css={SectionTitleCSS}>Resource</label>
+              <span css={FillingCSS} />
+              <Select
+                options={triggerOptions}
+                defaultValue={0}
+                css={[ActionSelectCSS, TriggerSelectCSS]}
+              />
 
-          <Select
-            css={[ActionSelectCSS, ResourceSelectCSS]}
-            value={resourceType}
-            onChange={setResourceType}
-          >
-            <Option onClick={createResource} isSelectOption={false}>
-              Create a new resource
-            </Option>
-            {resourceOptions.map((o) => (
-              <Option key={o.label} value={o.value}>
-                {o.label}
-              </Option>
-            ))}
-          </Select>
-          <div css={EditIconCSS} onClick={editResource}>
-            <PenIcon />
-          </div>
-        </div>
-        <Divider />
-        <ResourcePanel resourceType={resourceType} />
+              <Select
+                css={[ActionSelectCSS, ResourceSelectCSS]}
+                value={resourceId}
+                onChange={setResourceId}
+              >
+                <Option onClick={createResource} isSelectOption={false}>
+                  Create a new resource
+                </Option>
+                {resourceList &&
+                  resourceList.map(({ id, name }) => (
+                    <Option value={id} key={id}>
+                      {name}
+                    </Option>
+                  ))}
+              </Select>
+              <div css={EditIconCSS} onClick={editResource}>
+                <PenIcon />
+              </div>
+            </div>
+            <Divider />
+            <ResourcePanel resourceId={resourceId} />
+          </>
+        )}
       </div>
     </div>
   )

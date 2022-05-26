@@ -6,6 +6,8 @@ export type ConnectionRef = {
 }
 export interface ConfigureResourceFormProps {
   actionType: ActionType
-  resouceType: ResourceType
+  resourceId?: string
+  resourceType?: ResourceType
   back?: () => void
+  onSubmit?: () => void
 }

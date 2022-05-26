@@ -2,8 +2,8 @@ import { FC } from "react"
 import { DropTargetMonitor, useDrop } from "react-dnd"
 import { useDispatch } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
-import { DropInfo, dslActions } from "@/redux/editor/dslReducer"
-import { DslActionName } from "@/redux/editor/dslReducer/dsl-action"
+import { DropInfo } from "@/redux/editor/dsl/dslState"
+import { dslActions } from "@/redux/editor/dsl/dslSlice"
 import { DraggableComponent } from "@/wrappedComponents/DraggableComponent"
 import {
   widgetBuilder,
@@ -62,8 +62,8 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
           let monitorOffset = getTargetOffset(monitor?.getClientOffset(), id)
           dispatch(
             dslActions.dslActionHandler({
-              type: DslActionName.AddItem,
-              dslText: {
+              type: "AddItem",
+              dslFrame: {
                 ...item,
                 props: { ...item.props, ...monitorOffset },
                 parentId: id,

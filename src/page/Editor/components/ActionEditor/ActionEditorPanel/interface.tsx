@@ -1,8 +1,11 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
+import { ActionItem } from "@/redux/action/actionList/actionListState"
 
 export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
-  onEditResource?: () => void
+  activeActionItemId: string
+  setActiveActionItemId: (id: string) => void
+  onEditResource?: (id: string) => void
   onCreateResource?: () => void
   children?: ReactNode
 }
@@ -10,8 +13,9 @@ export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
 export interface TitleInputProps
   extends Omit<HTMLAttributes<HTMLDataElement>, "title"> {
   title?: string
+  activeActionItem?: ActionItem | null
 }
 
 export interface ResourcePanelProps {
-  resourceType: ResourceType
+  resourceId: string
 }

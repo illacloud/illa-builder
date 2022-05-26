@@ -6,6 +6,11 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Divider } from "@illa-design/divider"
 import { Select, Option } from "@illa-design/select"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
+import { useSelector } from "react-redux"
+import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { useAppDispatch } from "@/store"
+import { resourceActions } from "@/redux/action/resource/resourceSlice"
+import { v4 as uuidV4 } from "uuid"
 import { RESTAPIFormProps, RESTAPIFormValues, Params } from "./interface"
 import {
   FormCSS,
@@ -32,7 +37,12 @@ import { BasicAuth, OAuth2 } from "./Authentication"
 const EmptyField: Params = { key: "", value: "" }
 
 export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
-  (_, ref) => {
+  (props, ref) => {
+    const { resourceId } = props
+    const dispatch = useAppDispatch()
+    const resourceConfig = useSelector(selectAllResource).find(
+      (i) => i.id === resourceId,
+    )
     const {
       handleSubmit,
       control,
@@ -40,7 +50,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
       formState: { errors },
     } = useForm<RESTAPIFormValues>({
       mode: "onBlur",
-      defaultValues: {
+      defaultValues: (resourceConfig?.config as RESTAPIFormValues) || {
         URLParameters: [EmptyField],
         Headers: [EmptyField],
         ExtraBodyValues: [EmptyField],
@@ -55,7 +65,14 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
     const [authType, setAuthType] = useState("none")
 
     const onSubmit: SubmitHandler<RESTAPIFormValues> = (data) => {
-      alert(JSON.stringify(data, null, 5))
+      dispatch(
+        resourceActions.addResourceItemReducer({
+          id: uuidV4(),
+          name: data.Name,
+          type: "REST API",
+          config: data,
+        }),
+      )
     }
 
     const renderAuthConfig = () => {

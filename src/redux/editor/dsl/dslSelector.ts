@@ -1,14 +1,13 @@
-import { BuilderState } from "@/redux/reducers/interface"
 import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
 
-export const getEditorDsl = (state: BuilderState) => state.editor.present.dsl
+export const getEditorDsl = (state: any) => state.editor.dsl
 
 // 调试用。
-export const getSelectedWidgetStates = (state: BuilderState) =>
-  state.editor.present.widgetStates.selectedWidgets
+export const getSelectedWidgetStates = (state: any) =>
+  state.editor.widgetStates.selectedWidgets
 
 // 调试用。
-export const getWidgetStateById = (state: BuilderState, id?: string) => {
+export const getWidgetStateById = (state: any, id?: string) => {
   const current = getEditorDsl(state).root
   const queue = new Array<DSLWidget>()
   queue.push(current)

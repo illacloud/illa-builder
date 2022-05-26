@@ -40,36 +40,36 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
         {hasType ? (
           <>
             <EditorInput
-              mode={"javascript"}
+              mode="javascript"
               lineNumbers={false}
-              height={"32px"}
+              height="32px"
               _css={FieldItemKeyCSS}
             />
             <Select
               value={type}
               options={typeOptions}
               css={FieldItemTypeCSS}
-              size={"small"}
+              size="small"
               onChange={(v) => updateType(index, v)}
             />
           </>
         ) : (
           <EditorInput
-            mode={"javascript"}
+            mode="javascript"
             lineNumbers={false}
-            height={"32px"}
+            height="32px"
             _css={FieldItemKeyCSS}
           />
         )}
 
         <EditorInput
-          mode={"javascript"}
+          mode="javascript"
           lineNumbers={false}
-          height={"32px"}
+          height="32px"
           _css={FieldItemValueCSS}
         />
         <div css={DeleteIconWrapper} onClick={() => removeField(index)}>
-          <DeleteIcon size={"12px"} />
+          <DeleteIcon size="12px" />
         </div>
       </div>
     )

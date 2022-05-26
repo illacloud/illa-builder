@@ -1,4 +1,4 @@
-import { useState, useImperativeHandle, forwardRef } from "react"
+import { useState, forwardRef, useImperativeHandle } from "react"
 import { css } from "@emotion/react"
 import {
   useForm,
@@ -10,6 +10,12 @@ import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/Editor/components/ActionEditor/style"
+import { useSelector } from "react-redux"
+import { useAppDispatch } from "@/store"
+import Api from "@/api/api"
+import { resourceActions } from "@/redux/action/resource/resourceSlice"
+import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { v4 as uuidV4 } from "uuid"
 import {
   GridContainerCSS,
   DescriptionCSS,
@@ -23,16 +29,8 @@ import {
   LabelTextVerticalCSS,
   LabelTextSmallSizeCSS,
 } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/style"
-import Api from "@/api/api"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
-import {
-  MySQLFormValues,
-  MySQLFormProps,
-  TestConnectionValues,
-  BaseOptions,
-  AdvancedOptions,
-  TestConnectionBaseValues,
-} from "./interface"
+import { MySQLFormValues, MySQLFormProps } from "./interface"
 import { InputUpload } from "./input-upload"
 import {
   HostnamePortCSS,
@@ -60,17 +58,12 @@ const dataTransform = (data: UnpackNestedValue<MySQLFormValues>) => {
         sshPassword: "",
         sshPrivateKey: "",
         sshPassphrase: "",
-        serverCert: "",
-        clientKey: "",
-        clientCert: "",
+        serverCert: null,
+        clientKey: null,
+        clientCert: null,
       },
     },
-  } /*
-  Object.keys(data).forEach((key)=>{
-    if(ReturnType<typeof key> in keyof TestConnectionBaseValues){
-
-    }
-  })*/
+  }
   Object.keys(_data.options).forEach((key) => {
     // @ts-ignore
     if (data[key] !== undefined && key !== "ssh" && key !== "ssl") {
@@ -89,7 +82,11 @@ const dataTransform = (data: UnpackNestedValue<MySQLFormValues>) => {
 
 export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
   (props, ref) => {
-    const { connectionRef } = props
+    const { resourceId, connectionRef } = props
+    const dispatch = useAppDispatch()
+    const resourceConfig = useSelector(selectAllResource).find(
+      (i) => i.id === resourceId,
+    )
     const [expandSSH, setExpandSSH] = useState(false)
     const [expandSSL, setExpandSSL] = useState(false)
     const {
@@ -97,20 +94,17 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
       control,
       register,
       resetField,
-      getValues,
       formState: { errors },
+      getValues,
     } = useForm<MySQLFormValues>({
       mode: "onBlur",
-      defaultValues: {
+      defaultValues: (resourceConfig?.config as MySQLFormValues) || {
         port: 3306,
         ssh: false,
         ssl: false,
         sshPort: 22,
       },
     })
-
-    // TODO
-    const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {}
 
     const testConnection = () => {
       let data = { ...getValues(), ssh: expandSSH, ssl: expandSSL }
@@ -124,6 +118,36 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
         return { testConnection }
       }
     })
+
+    const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
+      data = { ...data, ssh: expandSSH, ssl: expandSSL }
+      const _data = dataTransform(data)
+      console.log(_data)
+
+      // update
+      if (resourceId) {
+        dispatch(
+          resourceActions.updateResourceItemReducer({
+            id: resourceId,
+            ...resourceConfig,
+            name: data.name,
+            type: "MySQL",
+            config: data,
+          }),
+        )
+
+        return
+      }
+
+      dispatch(
+        resourceActions.addResourceItemReducer({
+          id: uuidV4(),
+          name: data.name,
+          type: "MySQL",
+          config: data,
+        }),
+      )
+    }
     return (
       <form onSubmit={handleSubmit(onSubmit)} css={FormCSS} ref={ref}>
         <div css={[GridContainerCSS, FormPaddingCSS]}>
@@ -340,8 +364,8 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <label css={LabelTextCSS}>Private Key</label>
                 <InputUpload
                   name="sshPrivateKey"
-                  reset={resetField}
                   register={register}
+                  reset={resetField}
                 />
               </div>
               <div css={GridRowContainerCSS}>
@@ -384,24 +408,24 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 <label css={LabelTextCSS}>Server Root Certificate</label>
                 <InputUpload
                   name="serverCert"
-                  reset={resetField}
                   register={register}
+                  reset={resetField}
                 />
               </div>
               <div css={GridRowContainerCSS}>
                 <label css={LabelTextCSS}>Client Key</label>
                 <InputUpload
                   name="clientKey"
-                  reset={resetField}
                   register={register}
+                  reset={resetField}
                 />
               </div>
               <div css={GridRowContainerCSS}>
                 <label css={LabelTextCSS}>Client Certificate</label>
                 <InputUpload
                   name="clientCert"
-                  reset={resetField}
                   register={register}
+                  reset={resetField}
                 />
               </div>
             </>
