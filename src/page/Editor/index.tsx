@@ -22,15 +22,15 @@ export const Editor: FC = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div css={editorContainerStyle}>
-        <DataWorkspace css={leftPanelStyle} />
-        <div css={mainPanelStyle}>
-          <PageNavBar css={navbarStyle} />
-          <div css={contentStyle}>
-            <div css={middlePanelStyle}>
-              <CanvasContainer css={centerPanelStyle} />
-              <ActionEditor css={bottomPanelStyle} />
-            </div>
-            <WidgetPickerEditor css={rightPanelStyle} />
+        <PageNavBar css={navbarStyle} />
+        <div css={contentStyle}>
+          <DataWorkspace css={leftPanelStyle} />
+          <div css={mainPanelStyle}>
+              <div css={middlePanelStyle}>
+                <CanvasContainer css={centerPanelStyle} />
+                <ActionEditor css={bottomPanelStyle} />
+              </div>
+              <WidgetPickerEditor css={rightPanelStyle} />
           </div>
         </div>
       </div>
