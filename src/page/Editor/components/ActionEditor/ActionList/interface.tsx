@@ -2,9 +2,11 @@ import { HTMLAttributes } from "react"
 
 export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {
   activeActionItemId: string
-  setActiveActionItemId: (id: string) => void
+  onAddActionItem: (id: string) => void
+  onDuplicateActionItem: (id: string) => void
+  onDeleteActionItem: (id: string) => void
+  onSelectActionItem: (id: string) => void
   isActionDirty: boolean
-  setIsActionDirty: (dirty: boolean) => void
 }
 
 export interface SearchHeaderProps {

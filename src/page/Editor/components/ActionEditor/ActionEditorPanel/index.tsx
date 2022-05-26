@@ -9,10 +9,7 @@ import { Menu } from "@illa-design/menu"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import {
-  addActionItem,
-  removeActionItem,
-} from "@/redux/action/actionList/actionListSlice"
+import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
@@ -42,9 +39,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     activeActionItemId,
     onEditResource,
     onCreateResource,
+    onDuplicateActionItem,
+    onDeleteActionItem,
   } = props
-  const dispatch = useDispatch()
 
+  const dispatch = useDispatch()
   const [resourceId, setResourceId] = useState("")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
 
@@ -96,7 +95,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       const id = uuidV4()
 
       dispatch(
-        addActionItem({
+        actionListActions.addActionItemReducer({
           id,
           type,
           name: generateName(type),
@@ -104,12 +103,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         }),
       )
 
-      setActiveActionItemId(id)
+      onDuplicateActionItem(id)
     }
   }
 
   function deleteActionItem() {
-    activeActionItem && dispatch(removeActionItem(activeActionItemId))
+    activeActionItem &&
+      dispatch(actionListActions.removeActionItemReducer(activeActionItemId))
+
+    onDeleteActionItem(activeActionItemId)
   }
 
   function generateName(type: string) {

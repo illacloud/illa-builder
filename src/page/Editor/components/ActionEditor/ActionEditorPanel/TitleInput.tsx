@@ -2,7 +2,7 @@ import { FC, useState, useRef, useEffect } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { AnimatePresence, motion } from "framer-motion"
-import { updateActionItem } from "@/redux/action/actionList/actionListSlice"
+import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import { useDispatch } from "react-redux"
 import {
   TitleContainerCSS,
@@ -42,7 +42,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
     setIsEditing(false)
     activeActionItem &&
       dispatch(
-        updateActionItem({
+        actionListActions.updateActionItemReducer({
           ...activeActionItem,
           name: title,
         }),

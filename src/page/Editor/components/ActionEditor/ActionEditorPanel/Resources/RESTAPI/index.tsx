@@ -16,6 +16,7 @@ import { RESTAPIPanelProps } from "./interface"
 export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
   const [method, setMethod] = useState("GET")
   const hasBody = method.indexOf("GET") === -1
+
   return (
     <div css={ConfigContainerCSS}>
       <div css={GridRowContainerCSS}>

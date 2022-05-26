@@ -5,7 +5,6 @@ import {
   useRef,
   MouseEvent,
   forwardRef,
-  useEffect,
 } from "react"
 import { motion } from "framer-motion"
 import { useClickAway } from "react-use"
@@ -22,11 +21,7 @@ import {
   RestApiIcon,
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
-import {
-  updateActionItem,
-  addActionItem,
-  removeActionItem,
-} from "@/redux/action/actionList/actionListSlice"
+import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import {
   ActionListContainerCSS,
   applyNewButtonCSS,
@@ -57,9 +52,11 @@ const MenuItem = Menu.Item
 export const ActionList: FC<ActionListProps> = (props) => {
   const {
     activeActionItemId = "",
-    setActiveActionItemId,
     isActionDirty = false,
-    setIsActionDirty,
+    onAddActionItem,
+    onDuplicateActionItem,
+    onDeleteActionItem,
+    onSelectActionItem,
   } = props
 
   const dispatch = useDispatch()
@@ -103,11 +100,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }, 0)
   }
 
-  useEffect(() => {
-    actionItems.length &&
-      setActiveActionItemId(actionItems[actionItems.length - 1].id)
-  }, [actionItems.length])
-
   function generateName(type: string) {
     const length = actionItems.filter((i) => i.type === type).length
     const prefix = type
@@ -147,7 +139,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
   function updateName() {
     dispatch(
-      updateActionItem({
+      actionListActions.updateActionItemReducer({
         id: editingActionItemId,
         name: editingName,
       }),
@@ -215,7 +207,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       editName(id, name)
     }
 
-    setActiveActionItemId(id)
+    onSelectActionItem(id)
   }
 
   const newNewActionOptions = (
@@ -230,25 +222,26 @@ export const ActionList: FC<ActionListProps> = (props) => {
   )
 
   function addAction() {
-    dispatch(
-      addActionItem({
-        id: uuidV4(),
-        type: "action",
-        name: generateName("action"),
-        status: Math.random() > 0.5 ? "warning" : "",
-      }),
-    )
+    addActionItem("action")
   }
 
   function addTransformer() {
+    addActionItem("transformer")
+  }
+
+  function addActionItem(type: "action" | "transformer") {
+    const id = uuidV4()
+
     dispatch(
-      addActionItem({
-        id: uuidV4(),
-        type: "transformer",
-        name: generateName("transformer"),
+      actionListActions.addActionItemReducer({
+        id,
+        type,
+        name: generateName(type),
         status: Math.random() > 0.5 ? "warning" : "",
       }),
     )
+
+    onAddActionItem(id)
   }
 
   function duplicateActionItem() {
@@ -259,21 +252,26 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
     if (targetItem) {
       const type = targetItem.type
+      const id = uuidV4()
 
       dispatch(
-        addActionItem({
-          id: uuidV4(),
+        actionListActions.addActionItemReducer({
+          id,
           type,
           name: generateName(type),
           status: Math.random() > 0.5 ? "warning" : "",
         }),
       )
+
+      onDuplicateActionItem(id)
     }
   }
 
   function deleteActionItem() {
     setContextMenuVisible(false)
-    dispatch(removeActionItem(actionActionItemId))
+    dispatch(actionListActions.removeActionItemReducer(actionActionItemId))
+
+    onDeleteActionItem(actionActionItemId)
   }
 
   const NoMatchFound = (

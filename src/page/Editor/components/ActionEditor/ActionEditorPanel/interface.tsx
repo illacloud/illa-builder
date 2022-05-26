@@ -6,6 +6,8 @@ export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
   activeActionItemId: string
   onEditResource?: (id: string) => void
   onCreateResource?: () => void
+  onDeleteActionItem: (id: string) => void
+  onDuplicateActionItem: (id: string) => void
   children?: ReactNode
 }
 
