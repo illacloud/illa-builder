@@ -35,7 +35,9 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   }, [name])
 
   const focusInput = () => {
-    inputRef.current && inputRef.current.focus()
+    setTimeout(() => {
+      inputRef.current && inputRef.current.focus()
+    })
   }
 
   function handleOnBlur() {
