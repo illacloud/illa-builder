@@ -5,13 +5,13 @@ import { Select } from "@illa-design/select"
 import { EditorInput } from "@/components/EditorInput"
 import { FieldArrayProps } from "./interface"
 import {
-  ActionTextCSS,
+  actionTextCss,
   DeleteIconWrapper,
-  FieldItemCSS,
-  FieldItemKeyCSS,
-  FieldItemValueCSS,
-  FieldItemTypeCSS,
-  NewButtonCSS,
+  fieldItemCss,
+  fieldItemKeyCss,
+  fieldItemValueCss,
+  fieldItemTypeCss,
+  newButtonCss,
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
@@ -36,19 +36,19 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
 
   const fieldList = fields.map(({ key, value, type, _key }, index) => {
     return (
-      <div css={FieldItemCSS} key={_key}>
+      <div css={fieldItemCss} key={_key}>
         {hasType ? (
           <>
             <EditorInput
               mode="javascript"
               lineNumbers={false}
               height="32px"
-              _css={FieldItemKeyCSS}
+              _css={fieldItemKeyCss}
             />
             <Select
               value={type}
               options={typeOptions}
-              css={FieldItemTypeCSS}
+              css={fieldItemTypeCss}
               size="small"
               onChange={(v) => updateType(index, v)}
             />
@@ -58,7 +58,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             mode="javascript"
             lineNumbers={false}
             height="32px"
-            _css={FieldItemKeyCSS}
+            _css={fieldItemKeyCss}
           />
         )}
 
@@ -66,7 +66,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           mode="javascript"
           lineNumbers={false}
           height="32px"
-          _css={FieldItemValueCSS}
+          _css={fieldItemValueCss}
         />
         <div css={DeleteIconWrapper} onClick={() => removeField(index)}>
           <DeleteIcon size="12px" />
@@ -93,7 +93,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
   return (
     <div>
       {fieldList}
-      <span css={[NewButtonCSS, ActionTextCSS]} onClick={addNewField}>
+      <span css={[newButtonCss, actionTextCss]} onClick={addNewField}>
         <AddIcon />
         New
       </span>

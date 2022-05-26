@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
 
-export const CMWrapperCSS = css`
+export const cMWrapperCss = css`
   padding: 8px 16px;
 `

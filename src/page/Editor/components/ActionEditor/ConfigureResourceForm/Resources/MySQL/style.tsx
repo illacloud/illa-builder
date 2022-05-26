@@ -1,30 +1,30 @@
 import { css } from "@emotion/react"
 
-export const DisplayNoneCSS = css`
+export const displayNoneCss = css`
   display: none;
 `
 
-export const HostnamePortCSS = css`
+export const hostnamePortCss = css`
   display: grid;
   grid-column-gap: 8px;
   grid-template-columns: 1fr 142px;
 `
 
-export const UsernamePasswordCSS = css`
+export const usernamePasswordCss = css`
   display: grid;
   grid-column-gap: 8px;
   grid-template-columns: 1fr 1fr;
 `
 
-export const SwitchAreaCSS = css`
+export const switchAreaCss = css`
   display: flex;
   align-items: center;
 `
-export const SwitchDescriptionCSS = css`
+export const switchDescriptionCss = css`
   display: inline-block;
   margin-left: 8px;
 `
 
-export const FormPaddingCSS = css`
+export const formPaddingCss = css`
   padding: 8px 0;
 `

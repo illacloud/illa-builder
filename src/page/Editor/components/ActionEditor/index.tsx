@@ -1,4 +1,6 @@
 import { FC, useState } from "react"
+import { useSelector } from "react-redux"
+import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { ActionType } from "@/page/Editor/components/ActionEditor/FormContainer/interface"
 import { ActionList } from "@/page/Editor/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/Editor/components/ActionEditor/ActionEditorPanel"
@@ -12,9 +14,26 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
   const [actionType, setActionType] = useState<ActionType>("select")
   const [resourceId, setResourceId] = useState("")
   const [isActionDirty, setIsActionDirty] = useState(false)
+
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
-  console.log({ FormResourceId: resourceId })
+  const actionItems = useSelector(selectAllActionItem)
+
+  function onDeleteActionItem(id: string) {
+    const { length } = actionItems
+
+    if (id !== activeActionItemId) {
+      return
+    }
+
+    const lastItemId = actionItems[length - 1].id
+
+    if (id === lastItemId && length > 1) {
+      setActiveActionItemId(actionItems[length - 2].id)
+    } else {
+      setActiveActionItemId(lastItemId)
+    }
+  }
 
   return (
     <div css={ActionEditorPanelWrapper}>
@@ -22,15 +41,18 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
         actionList={
           <ActionList
             isActionDirty={isActionDirty}
-            setIsActionDirty={setIsActionDirty}
             activeActionItemId={activeActionItemId}
-            setActiveActionItemId={setActiveActionItemId}
+            onSelectActionItem={setActiveActionItemId}
+            onAddActionItem={setActiveActionItemId}
+            onDuplicateActionItem={setActiveActionItemId}
+            onDeleteActionItem={onDeleteActionItem}
           />
         }
         actionEditorPanel={
           <ActionEditorPanel
             activeActionItemId={activeActionItemId}
-            setActiveActionItemId={setActiveActionItemId}
+            onDeleteActionItem={onDeleteActionItem}
+            onDuplicateActionItem={setActiveActionItemId}
             onCreateResource={() => {
               setActionType("select")
               setFormVisible(true)

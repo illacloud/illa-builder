@@ -4,13 +4,13 @@ import { InputNumber } from "@illa-design/input-number"
 import { Checkbox } from "@illa-design/checkbox"
 import { Controller } from "react-hook-form"
 import {
-  LabelTextCSS,
-  DescriptionCSS,
+  labelTextCss,
+  descriptionCss,
   applyGridColIndex,
-  ActionTextCSS,
-  CheckboxCSS,
-  GridRowContainerCSS,
-  GridRowCenterItemCSS,
+  actionTextCss,
+  checkboxCss,
+  gridRowContainerCss,
+  gridRowCenterItemCss,
 } from "../../style"
 import { OAuth2Props } from "./interface"
 import { OAuth2Description } from "../style"
@@ -22,9 +22,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
   return (
     <>
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Configuring OAuth 2.0</label>
-        <dd css={[DescriptionCSS, OAuth2Description]}>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Configuring OAuth 2.0</label>
+        <dd css={[descriptionCss, OAuth2Description]}>
           OAuth 2.0 is a complex spec. ILLA currently supports the server-side
           OAuth 2.0 authentication flow as well as the Client Credentials flow.
           In both cases, you must use the OAUTH2_TOKEN placeholder in order to
@@ -34,7 +34,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         </dd>
         <Controller
           render={({ field }) => (
-            <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+            <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
               Use client credentials auth
             </Checkbox>
           )}
@@ -44,8 +44,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       </div>
 
       {!isUseClientCredentialsAuth && (
-        <div css={GridRowContainerCSS}>
-          <label css={LabelTextCSS}>OAuth callback URL</label>
+        <div css={gridRowContainerCss}>
+          <label css={labelTextCss}>OAuth callback URL</label>
           <Controller
             render={({ field }) => (
               <Input
@@ -56,13 +56,13 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             control={control}
             name="OAuthCallbackURL"
           />
-          <button css={[applyGridColIndex(2), ActionTextCSS]}>
+          <button css={[applyGridColIndex(2), actionTextCss]}>
             Copy this URL to your application
           </button>
 
           <Controller
             render={({ field }) => (
-              <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+              <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
                 Share OAuth2.0 credentials between users
               </Checkbox>
             )}
@@ -72,8 +72,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         </div>
       )}
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Authorization URL</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Authorization URL</label>
         <Controller
           render={({ field }) => (
             <Input
@@ -86,8 +86,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         />
       </div>
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Access Token URL</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Access Token URL</label>
         <Controller
           render={({ field }) => (
             <Input
@@ -100,8 +100,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         />
       </div>
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Client ID</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Client ID</label>
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
@@ -109,8 +109,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         />
       </div>
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Client Secret</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Client Secret</label>
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
@@ -118,8 +118,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         />
       </div>
 
-      <div css={[GridRowContainerCSS, GridRowCenterItemCSS]}>
-        <label css={LabelTextCSS}>
+      <div css={[gridRowContainerCss, gridRowCenterItemCss]}>
+        <label css={labelTextCss}>
           Scopes (separated by <br />a space)
         </label>
         <Controller
@@ -129,8 +129,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         />
       </div>
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Audience</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Audience</label>
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
@@ -140,16 +140,16 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       {!isUseClientCredentialsAuth && (
         <>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Access Token</label>
+          <div css={gridRowContainerCss}>
+            <label css={labelTextCss}>Access Token</label>
             <Controller
               render={({ field }) => <Input {...field} />}
               control={control}
               name="AccessToken"
             />
           </div>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Refresh Token</label>
+          <div css={gridRowContainerCss}>
+            <label css={labelTextCss}>Refresh Token</label>
             <Controller
               render={({ field }) => <Input {...field} />}
               control={control}
@@ -159,8 +159,8 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         </>
       )}
 
-      <div css={[GridRowContainerCSS, GridRowCenterItemCSS]}>
-        <label css={LabelTextCSS}>
+      <div css={[gridRowContainerCss, gridRowCenterItemCss]}>
+        <label css={labelTextCss}>
           Access Token
           <br /> lifespan(optiinal)
         </label>
@@ -173,7 +173,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         />
         <Controller
           render={({ field }) => (
-            <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+            <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
               Enable an auth verification endpoint
             </Checkbox>
           )}

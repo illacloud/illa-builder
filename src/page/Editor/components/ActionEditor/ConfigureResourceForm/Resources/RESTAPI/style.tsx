@@ -1,20 +1,20 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const GridContainerGapCSS = css`
+export const gridContainerGapCss = css`
   gap: 8px;
 `
 
-export const LabelAlignSelfFlexStartCSS = css`
+export const labelAlignSelfFlexStartCss = css`
   align-self: flex-start;
   margin-top: 5px;
 `
 
-export const InputTagSmallSizeCSS = css`
+export const inputTagSmallSizeCss = css`
   height: 32px;
 `
 
-export const TopZIndexCSS = css`
+export const topZIndexCss = css`
   z-index: 3000;
 `
 

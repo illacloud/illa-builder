@@ -2,7 +2,7 @@ import { Input } from "@illa-design/input"
 import { useState, useRef, FC } from "react"
 import { InputUploadProps } from "./interface"
 import { Button } from "@illa-design/button"
-import { DisplayNoneCSS } from "./style"
+import { displayNoneCss } from "./style"
 
 export const InputUpload: FC<InputUploadProps> = (props) => {
   const { reset, register, name } = props
@@ -36,7 +36,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
         allowClear
       />
       <input
-        css={DisplayNoneCSS}
+        css={displayNoneCss}
         {...registerValue}
         ref={(e) => {
           registerValue.ref(e)

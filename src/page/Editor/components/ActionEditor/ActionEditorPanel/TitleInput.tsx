@@ -2,14 +2,14 @@ import { FC, useState, useRef, useEffect } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { AnimatePresence, motion } from "framer-motion"
-import { updateActionItem } from "@/redux/action/actionList/actionListSlice"
+import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import { useDispatch } from "react-redux"
 import {
-  TitleContainerCSS,
-  TitleEditIconCSS,
-  TitleCSS,
-  TitleInputContainerCSS,
-  TitleInputCSS,
+  titleContainerCss,
+  titleEditIconCss,
+  titleCss,
+  titleInputContainerCss,
+  titleInputCss,
 } from "./style"
 import { TitleInputProps } from "./interface"
 
@@ -35,14 +35,16 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   }, [name])
 
   const focusInput = () => {
-    inputRef.current && inputRef.current.focus()
+    setTimeout(() => {
+      inputRef.current && inputRef.current.focus()
+    })
   }
 
   function handleOnBlur() {
     setIsEditing(false)
     activeActionItem &&
       dispatch(
-        updateActionItem({
+        actionListActions.updateActionItemReducer({
           ...activeActionItem,
           name: title,
         }),
@@ -56,7 +58,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       exit={"hidden"}
       variants={variants}
       transition={{ duration: 0.2 }}
-      css={TitleInputContainerCSS}
+      css={titleInputContainerCss}
       onAnimationComplete={focusInput}
     >
       <Input
@@ -66,7 +68,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
         onChange={(v) => setTitle(v)}
         key={"input"}
         inputRef={inputRef}
-        css={TitleInputCSS}
+        css={titleInputCss}
       />
     </motion.div>
   ) : (
@@ -74,7 +76,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       onClick={() => {
         setIsEditing(true)
       }}
-      css={TitleContainerCSS}
+      css={titleContainerCss}
       initial={"hidden"}
       animate={"visible"}
       exit={"hidden"}
@@ -82,8 +84,8 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       transition={{ duration: 0.2 }}
       key={"title"}
     >
-      <span css={TitleCSS}>{title}</span>
-      <PenIcon css={TitleEditIconCSS} viewBox={"0 0 14 14"} />
+      <span css={titleCss}>{title}</span>
+      <PenIcon css={titleEditIconCss} viewBox={"0 0 14 14"} />
     </motion.div>
   )
 

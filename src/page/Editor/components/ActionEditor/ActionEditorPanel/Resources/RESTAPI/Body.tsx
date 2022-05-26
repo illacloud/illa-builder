@@ -3,7 +3,7 @@ import { Select } from "@illa-design/select"
 import { ContentType } from "./interface"
 import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
 import { EditorInput } from "@/components/EditorInput"
-import { BodyFieldCSS, DescriptionCodeCSS, DescriptionCSS } from "./style"
+import { bodyFieldCss, descriptionCodeCss, descriptionCss } from "./style"
 
 export const Body: FC = () => {
   const [bodyType, setBodyType] = useState<ContentType>("raw")
@@ -46,10 +46,10 @@ export const Body: FC = () => {
       case "binary":
         return (
           <>
-            <dd css={DescriptionCSS}>
+            <dd css={descriptionCss}>
               Either a binary string, or an object:{" "}
               <code
-                css={DescriptionCodeCSS}
+                css={descriptionCodeCss}
               >{`{data: binary string, filename?: string }`}</code>
             </dd>
             <EditorInput mode="javascript" />
@@ -62,7 +62,7 @@ export const Body: FC = () => {
   }
 
   return (
-    <div css={BodyFieldCSS}>
+    <div css={bodyFieldCss}>
       <Select
         value={bodyType}
         options={bodyTypeOptiosn}

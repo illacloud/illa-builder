@@ -5,7 +5,7 @@ import {
   ApiType,
   DatabaseType,
 } from "@/page/Editor/components/ActionEditor/interface"
-import { ModalCSS, CloseIconCSS, TitleCSS } from "./style"
+import { modalCss, closeIconCss, titleCss } from "./style"
 import { SelectResourceForm } from "../SelectResourceForm"
 import { ConfigureResourceForm } from "../ConfigureResourceForm"
 import { CloseIcon } from "@illa-design/icon"
@@ -71,19 +71,19 @@ export const FormContainer: FC<FormContainerProps> = (props) => {
 
   return (
     <Modal
-      _css={ModalCSS}
+      _css={modalCss}
       visible={visible}
       footer={false}
       closable={true}
       withoutPadding
       closeElement={
-        <div css={CloseIconCSS} onClick={handleClose}>
+        <div css={closeIconCss} onClick={handleClose}>
           <CloseIcon />
         </div>
       }
       onCancel={handleClose}
     >
-      <div css={TitleCSS}>{title}</div>
+      <div css={titleCss}>{title}</div>
       {renderForm}
     </Modal>
   )

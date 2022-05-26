@@ -6,30 +6,29 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Divider } from "@illa-design/divider"
 import { Select, Option } from "@illa-design/select"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import { useAppDispatch } from "@/store"
 import { resourceActions } from "@/redux/action/resource/resourceSlice"
 import { v4 as uuidV4 } from "uuid"
 import { RESTAPIFormProps, RESTAPIFormValues, Params } from "./interface"
 import {
-  FormCSS,
-  GridContainerCSS,
-  LabelTextCSS,
-  RequiredLabelTextCSS,
+  formCss,
+  gridContainerCss,
+  labelTextCss,
+  requiredLabelTextCss,
   applyGridColIndex,
-  DescriptionCSS,
-  SplitLineCSS,
-  GroupTitleCSS,
-  CheckboxCSS,
-  ErrorMessageCSS,
-  GridRowContainerCSS,
-  GridRowCenterItemCSS,
+  descriptionCss,
+  splitLineCss,
+  groupTitleCss,
+  checkboxCss,
+  errorMessageCss,
+  gridRowContainerCss,
+  gridRowCenterItemCss,
 } from "../style"
 import {
-  InputTagSmallSizeCSS,
-  LabelAlignSelfFlexStartCSS,
-  TopZIndexCSS,
+  inputTagSmallSizeCss,
+  labelAlignSelfFlexStartCss,
+  topZIndexCss,
 } from "./style"
 import { ParamList } from "./ParamList"
 import { BasicAuth, OAuth2 } from "./Authentication"
@@ -39,7 +38,7 @@ const EmptyField: Params = { key: "", value: "" }
 export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
   (props, ref) => {
     const { resourceId } = props
-    const dispatch = useAppDispatch()
+    const dispatch = useDispatch()
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.id === resourceId,
     )
@@ -91,10 +90,10 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
       <form
         ref={ref}
         onSubmit={handleSubmit(onSubmit)}
-        css={[FormCSS, GridContainerCSS]}
+        css={[formCss, gridContainerCss]}
       >
-        <div css={GridRowContainerCSS}>
-          <label css={RequiredLabelTextCSS}>Name</label>
+        <div css={gridRowContainerCss}>
+          <label css={requiredLabelTextCss}>Name</label>
           <Controller
             render={({ field }) => (
               <Input
@@ -111,21 +110,21 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
             name="Name"
           />
           {errors.Name && (
-            <div css={[ErrorMessageCSS, applyGridColIndex(2)]}>
+            <div css={[errorMessageCss, applyGridColIndex(2)]}>
               {errors.Name.message}
             </div>
           )}
-          <dd css={[applyGridColIndex(2), DescriptionCSS]}>
+          <dd css={[applyGridColIndex(2), descriptionCss]}>
             The name for resource when creating queries in the ILLA.
           </dd>
         </div>
 
-        <Divider css={SplitLineCSS} />
+        <Divider css={splitLineCss} />
 
-        <h4 css={GroupTitleCSS}>GENERAL</h4>
+        <h4 css={groupTitleCss}>GENERAL</h4>
 
-        <div css={GridRowContainerCSS}>
-          <label css={LabelTextCSS}>Base URL</label>
+        <div css={gridRowContainerCss}>
+          <label css={labelTextCss}>Base URL</label>
           <Controller
             render={({ field }) => (
               <Input
@@ -139,33 +138,33 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           />
         </div>
 
-        <div css={GridRowContainerCSS}>
-          <label css={[LabelTextCSS, LabelAlignSelfFlexStartCSS]}>
+        <div css={gridRowContainerCss}>
+          <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
             URL Parameters
           </label>
           <ParamList control={control} name={"URLParameters"} />
         </div>
 
-        <div css={GridRowContainerCSS}>
-          <label css={[LabelTextCSS, LabelAlignSelfFlexStartCSS]}>
+        <div css={gridRowContainerCss}>
+          <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
             Headers
           </label>
           <ParamList control={control} name={"Headers"} />
         </div>
 
-        <div css={GridRowContainerCSS}>
-          <label css={[LabelTextCSS, LabelAlignSelfFlexStartCSS]}>
+        <div css={gridRowContainerCss}>
+          <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
             Extra Body Values
           </label>
           <ParamList control={control} name={"ExtraBodyValues"} />
-          <dd css={[applyGridColIndex(2), DescriptionCSS]}>
+          <dd css={[applyGridColIndex(2), descriptionCss]}>
             Extra body values are not passed for GET or HEAD requests
           </dd>
         </div>
 
-        <div css={GridRowContainerCSS}>
-          <div css={[GridRowContainerCSS, GridRowCenterItemCSS]}>
-            <label css={LabelTextCSS}>
+        <div css={gridRowContainerCss}>
+          <div css={[gridRowContainerCss, gridRowCenterItemCss]}>
+            <label css={labelTextCss}>
               List Of Cookies To
               <br /> Forward
             </label>
@@ -174,7 +173,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
                 <InputTag
                   {...field}
                   size={"small"}
-                  _css={InputTagSmallSizeCSS}
+                  _css={inputTagSmallSizeCss}
                 />
               )}
               control={control}
@@ -183,7 +182,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           </div>
           <Controller
             render={({ field }) => (
-              <Checkbox css={[applyGridColIndex(2), CheckboxCSS]} {...field}>
+              <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
                 Forward All Cookies
               </Checkbox>
             )}
@@ -192,15 +191,15 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           />
         </div>
 
-        <div css={GridRowContainerCSS}>
-          <label css={LabelTextCSS}>Authentication</label>
+        <div css={gridRowContainerCss}>
+          <label css={labelTextCss}>Authentication</label>
           <Controller
             render={() => (
               <Select
                 size={"small"}
                 onChange={setAuthType}
                 value={authType}
-                triggerProps={{ _css: TopZIndexCSS }}
+                triggerProps={{ _css: topZIndexCss }}
               >
                 <Option value={"none"}>None</Option>
                 <Option value={"basic"}>Basic Auth</Option>

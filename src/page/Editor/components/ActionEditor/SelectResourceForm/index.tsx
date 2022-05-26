@@ -11,11 +11,11 @@ import {
   RedisIcon,
 } from "../assets/icons"
 import {
-  CategoryCSS,
-  ResourceListCSS,
-  ResourceItemCSS,
-  ResourceNameCSS,
-  SelectLayoutCSS,
+  categoryCss,
+  resourceListCss,
+  resourceItemCss,
+  resourceNameCss,
+  selectLayoutCss,
 } from "./style"
 
 const databaseList: DatabaseItemProps[] = [
@@ -28,37 +28,37 @@ const apiList: ApiItemProps[] = [{ title: "REST API", img: <RestApiIcon /> }]
 export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
   const { onSelect } = props
   return (
-    <div css={SelectLayoutCSS}>
+    <div css={selectLayoutCss}>
       <div>
-        <div css={CategoryCSS}>DATABASES</div>
-        <div css={ResourceListCSS()}>
+        <div css={categoryCss}>DATABASES</div>
+        <div css={resourceListCss()}>
           {databaseList.map((database) => (
             <div
               key={database.title}
-              css={ResourceItemCSS}
+              css={resourceItemCss}
               onClick={() => {
                 !database.draft && onSelect(database.title)
               }}
             >
               <div>{database.img}</div>
-              <div css={ResourceNameCSS}>{database.title}</div>
+              <div css={resourceNameCss}>{database.title}</div>
             </div>
           ))}
         </div>
       </div>
       <div>
-        <div css={CategoryCSS}>APIS</div>
-        <div css={ResourceListCSS(true)}>
+        <div css={categoryCss}>APIS</div>
+        <div css={resourceListCss(true)}>
           {apiList.map((api) => (
             <div
               key={api.title}
-              css={ResourceItemCSS}
+              css={resourceItemCss}
               onClick={() => {
                 !api.draft && onSelect(api.title)
               }}
             >
               <div>{api.img}</div>
-              <div css={ResourceNameCSS}>{api.title}</div>
+              <div css={resourceNameCss}>{api.title}</div>
             </div>
           ))}
         </div>

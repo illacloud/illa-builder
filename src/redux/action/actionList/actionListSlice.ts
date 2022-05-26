@@ -22,16 +22,4 @@ const actionListSlice = createSlice({
 })
 
 export default actionListSlice.reducer
-
-export const {
-  addActionItemReducer: addActionItem,
-  updateActionItemReducer: updateActionItem,
-  removeActionItemReducer: removeActionItem,
-} = actionListSlice.actions
-
-export const removeActionItemThunk =
-  (id: string, cb: (actionItems: ActionListState) => void): AppThunk =>
-  (dispatch, getState) => {
-    dispatch(removeActionItem(id))
-    cb(selectAllActionItem(getState()))
-  }
+export const actionListActions = actionListSlice.actions

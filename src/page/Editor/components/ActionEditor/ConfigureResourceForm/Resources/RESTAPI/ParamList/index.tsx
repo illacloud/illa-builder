@@ -2,14 +2,14 @@ import { forwardRef } from "react"
 import { Input } from "@illa-design/input"
 import { DeleteIcon, AddIcon } from "@illa-design/icon"
 import { useFieldArray, Controller } from "react-hook-form"
-import { ActionTextCSS } from "../../style"
+import { actionTextCss } from "../../style"
 import {
-  ParamListWrapperCSS,
-  ParamItemCSS,
-  ParamItemKeyCSS,
-  NewButtonCSS,
-  DeleteIconCSS,
-  ParamItemValueCSS,
+  paramListWrapperCss,
+  paramItemCss,
+  paramItemKeyCss,
+  newButtonCss,
+  deleteIconCss,
+  paramItemValueCss,
 } from "./style"
 import { Params } from "../interface"
 import { ParamListProps } from "./interface"
@@ -26,10 +26,10 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
 
     const paramList = fields.map((field, index) => {
       return (
-        <div css={ParamItemCSS} key={field.id}>
+        <div css={paramItemCss} key={field.id}>
           <Controller
             render={({ field }) => (
-              <Input {...field} placeholder={"key"} css={ParamItemKeyCSS} />
+              <Input {...field} placeholder={"key"} css={paramItemKeyCss} />
             )}
             control={control}
             name={`${name}.${index}.key`}
@@ -42,12 +42,12 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
                   render: (
                     <DeleteIcon
                       onClick={() => removeParamItem(index)}
-                      css={DeleteIconCSS}
+                      css={deleteIconCss}
                     />
                   ),
                 }}
                 placeholder={"value"}
-                css={ParamItemValueCSS}
+                css={paramItemValueCss}
               />
             )}
             control={control}
@@ -71,9 +71,9 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
     }
 
     return (
-      <div css={ParamListWrapperCSS} ref={ref} {...restProps}>
+      <div css={paramListWrapperCss} ref={ref} {...restProps}>
         {paramList}
-        <span css={[NewButtonCSS, ActionTextCSS]} onClick={addParamItem}>
+        <span css={[newButtonCss, actionTextCss]} onClick={addParamItem}>
           <AddIcon />
           New
         </span>

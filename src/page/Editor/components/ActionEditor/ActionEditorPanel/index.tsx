@@ -6,34 +6,28 @@ import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import { useAppDispatch } from "@/store"
-import {
-  addActionItem,
-  removeActionItemThunk,
-} from "@/redux/action/actionList/actionListSlice"
-import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
+import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import { ActionEditorPanelProps } from "./interface"
 import {
-  ContainerCSS,
-  HeaderCSS,
-  ActionCSS,
-  FillingCSS,
-  HeaderButtonCSS,
-  ActionSelectCSS,
-  TriggerSelectCSS,
-  ResourceSelectCSS,
-  EditIconCSS,
-  MoreBtnCSS,
-  RunBtnCSS,
-  SectionTitleCSS,
-  ResourceBarCSS,
-  PanelScrollCSS,
-  MoreBtnMenuCSS,
-  DuplicateActionCSS,
-  DeleteActionCSS,
+  containerCss,
+  headerCss,
+  actionCss,
+  fillingCss,
+  actionSelectCss,
+  triggerSelectCss,
+  resourceSelectCss,
+  editIconCss,
+  moreBtnCss,
+  sectionTitleCss,
+  resourceBarCss,
+  panelScrollCss,
+  moreBtnMenuCss,
+  duplicateActionCss,
+  deleteActionCss,
+  resourceOptionCss,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
@@ -44,12 +38,13 @@ const { Item: MenuItem } = Menu
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
     activeActionItemId,
-    setActiveActionItemId,
     onEditResource,
     onCreateResource,
+    onDuplicateActionItem,
+    onDeleteActionItem,
   } = props
-  const dispatch = useAppDispatch()
 
+  const dispatch = useDispatch()
   const [resourceId, setResourceId] = useState("")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
 
@@ -101,7 +96,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       const id = uuidV4()
 
       dispatch(
-        addActionItem({
+        actionListActions.addActionItemReducer({
           id,
           type,
           name: generateName(type),
@@ -109,17 +104,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         }),
       )
 
-      setActiveActionItemId(id)
+      onDuplicateActionItem(id)
     }
   }
 
   function deleteActionItem() {
     activeActionItem &&
-      dispatch(
-        removeActionItemThunk(activeActionItemId, (actionItems) => {
-          setActiveActionItemId(actionItems[actionItems.length - 1].id)
-        }),
-      )
+      dispatch(actionListActions.removeActionItemReducer(activeActionItemId))
+
+    onDeleteActionItem(activeActionItemId)
   }
 
   function generateName(type: string) {
@@ -140,21 +133,21 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   const moreActions = (
-    <Menu onClickMenuItem={handleAction} css={MoreBtnMenuCSS}>
+    <Menu onClickMenuItem={handleAction} css={moreBtnMenuCss}>
       <MenuItem
         key={"duplicate"}
         title={"Duplicate"}
-        css={DuplicateActionCSS}
+        css={duplicateActionCss}
       />
-      <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCSS} />
+      <MenuItem key={"delete"} title={"Delete"} css={deleteActionCss} />
     </Menu>
   )
 
   return (
-    <div css={ContainerCSS}>
-      <header css={HeaderCSS}>
+    <div css={containerCss}>
+      <header css={headerCss}>
         <TitleInput activeActionItem={activeActionItem} />
-        <span css={FillingCSS} />
+        <span css={fillingCss} />
         <Dropdown
           dropList={moreActions}
           trigger={"click"}
@@ -169,7 +162,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           }}
         >
           <Button
-            css={MoreBtnCSS}
+            css={moreBtnCss}
             buttonRadius="8px"
             size="medium"
             leftIcon={<MoreIcon />}
@@ -187,34 +180,38 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           Run
         </Button>
       </header>
-      <div css={PanelScrollCSS}>
+      <div css={panelScrollCss}>
         {activeActionItem && (
           <>
-            <div css={[ActionCSS, ResourceBarCSS]}>
-              <label css={SectionTitleCSS}>Resource</label>
-              <span css={FillingCSS} />
+            <div css={[actionCss, resourceBarCss]}>
+              <label css={sectionTitleCss}>Resource</label>
+              <span css={fillingCss} />
               <Select
                 options={triggerOptions}
                 defaultValue={0}
-                css={[ActionSelectCSS, TriggerSelectCSS]}
+                css={[actionSelectCss, triggerSelectCss]}
               />
 
               <Select
-                css={[ActionSelectCSS, ResourceSelectCSS]}
+                css={[actionSelectCss, resourceSelectCss]}
                 value={resourceId}
                 onChange={setResourceId}
               >
                 <Option onClick={createResource} isSelectOption={false}>
-                  Create a new resource
+                  <span css={resourceOptionCss} title="Create a new resource">
+                    Create a new resource
+                  </span>
                 </Option>
                 {resourceList &&
                   resourceList.map(({ id, name }) => (
                     <Option value={id} key={id}>
-                      {name}
+                      <span css={resourceOptionCss} title={name}>
+                        {name}
+                      </span>
                     </Option>
                   ))}
               </Select>
-              <div css={EditIconCSS} onClick={editResource}>
+              <div css={editIconCss} onClick={editResource}>
                 <PenIcon />
               </div>
             </div>

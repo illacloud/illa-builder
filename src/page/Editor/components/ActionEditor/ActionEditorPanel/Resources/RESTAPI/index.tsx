@@ -4,23 +4,24 @@ import { Input } from "@illa-design/input"
 import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
 import { Body } from "./Body"
 import {
-  ConfigContainerCSS,
-  DescriptionCSS,
-  GridRowContainerCSS,
-  LabelTextCSS,
+  configContainerCss,
+  descriptionCss,
+  gridRowContainerCss,
+  labelTextCss,
   applyGridColIndex,
 } from "../style"
-import { ActionTypeCSS } from "./style"
+import { actionTypeCss } from "./style"
 import { RESTAPIPanelProps } from "./interface"
 
 export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
   const [method, setMethod] = useState("GET")
   const hasBody = method.indexOf("GET") === -1
+
   return (
-    <div css={ConfigContainerCSS}>
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Action Type</label>
-        <div css={ActionTypeCSS}>
+    <div css={configContainerCss}>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Action Type</label>
+        <div css={actionTypeCss}>
           <Select
             value={method}
             onChange={setMethod}
@@ -32,30 +33,30 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
             addonBefore={{ render: "https://rest-sandbox.coinapi.io/" }}
           />
         </div>
-        <dd css={[applyGridColIndex(2), DescriptionCSS]}>
+        <dd css={[applyGridColIndex(2), descriptionCss]}>
           (GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.
         </dd>
       </div>
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>URL Parameters</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>URL Parameters</label>
         <FieldArray />
       </div>
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Headers</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Headers</label>
         <FieldArray />
       </div>
 
       {hasBody && (
-        <div css={GridRowContainerCSS}>
-          <label css={LabelTextCSS}>Body</label>
+        <div css={gridRowContainerCss}>
+          <label css={labelTextCss}>Body</label>
           <Body />
         </div>
       )}
 
-      <div css={GridRowContainerCSS}>
-        <label css={LabelTextCSS}>Cookies</label>
+      <div css={gridRowContainerCss}>
+        <label css={labelTextCss}>Cookies</label>
         <FieldArray />
       </div>
     </div>

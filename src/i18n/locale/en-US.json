@@ -3,5 +3,31 @@
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
+  },
+  "editor": {
+    "action": {
+      "actionList": {
+        "title": "Action List",
+        "placeholder": {
+          "search": "search"
+        },
+        "btn": {
+          "new": "new",
+          "close": "close"
+        },
+        "menu": {
+          "resourceAction": "Resource action",
+          "javascriptTransformer": "JavaScript transformer"
+        },
+        "contextMenu": {
+          "delete": "Delete",
+          "duplicate": "Duplicate"
+        },
+        "tips": {
+          "notFound": "Sorry, No Search result",
+          "empty": "Add a action to begin working with data from a connected resource."
+        }
+      }
+    }
   }
 }
