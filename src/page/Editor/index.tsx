@@ -1,7 +1,7 @@
 import { FC, useRef, useState } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
-import { PageNavBar, PanelConfigContext } from "./components/PageNavBar"
+import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { ActionEditor } from "./components/ActionEditor"
 import {
@@ -41,11 +41,11 @@ export const Editor: FC = () => {
 
   const switchPanelState = (state: PanelState) => {
     console.log(state, "config")
-    const c = config
+    // const c = config
     panelConfig.current[state] = !panelConfig.current[state]
-    c[state] = !c[state]
-    console.log(c, panelConfig, "config")
-    setConfig(c)
+    config[state] = !config[state]
+    // console.log(c, panelConfig, "config")
+    setConfig({ ...config })
   }
   console.log(panelConfig.current, "app")
 
