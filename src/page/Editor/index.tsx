@@ -6,15 +6,13 @@ import { DataWorkspace } from "./components/DataWorkspace"
 import { ActionEditor } from "./components/ActionEditor"
 import {
   editorContainerStyle,
-  leftPanelStyle,
-  rightPanelStyle,
   mainPanelStyle,
   navbarStyle,
   middlePanelStyle,
   centerPanelStyle,
-  bottomPanelStyle,
   contentStyle,
   applyLeftPanelStyle,
+  applyBottomPanelStyle, applyRightPanelStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { CanvasContainer } from "./components/CanvasContainer"
@@ -28,41 +26,32 @@ interface PanelConfigProps {
 export type PanelState = keyof PanelConfigProps
 
 export const Editor: FC = () => {
-  const panelConfig = useRef({
-    showLeftPanel: true,
-    showRightPanel: true,
-    showBottomPanel: true,
-  })
   const [config, setConfig] = useState({
     showLeftPanel: true,
     showRightPanel: true,
     showBottomPanel: true,
   })
+  const {showLeftPanel, showBottomPanel, showRightPanel} = config
 
   const switchPanelState = (state: PanelState) => {
-    console.log(state, "config")
-    // const c = config
-    panelConfig.current[state] = !panelConfig.current[state]
     config[state] = !config[state]
-    // console.log(c, panelConfig, "config")
     setConfig({ ...config })
   }
-  console.log(panelConfig.current, "app")
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div css={editorContainerStyle}>
         <PageNavBar css={navbarStyle} switchPanelState={switchPanelState} />
         <div css={contentStyle}>
-          <DataWorkspace
-            css={applyLeftPanelStyle(panelConfig.current.showLeftPanel)}
-          />
+          <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
           <div css={mainPanelStyle}>
             <div css={middlePanelStyle}>
               <CanvasContainer css={centerPanelStyle} />
-              <ActionEditor css={bottomPanelStyle} />
+              <ActionEditor
+                css={applyBottomPanelStyle(showBottomPanel)}
+              />
             </div>
-            <WidgetPickerEditor css={rightPanelStyle} />
+            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
           </div>
         </div>
       </div>

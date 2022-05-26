@@ -6,13 +6,11 @@ import dashboardReducer from "@/redux/dashboard/dashboardSlice"
 import modeReducer from "@/redux/editor/mode/modeSlice"
 import dslReducer from "@/redux/editor/dsl/dslSlice"
 import widgetStatesReducer from "@/redux/editor/widgetStates/widgetStatesSlice"
-import panelConfigReducer from "@/redux/editor/panelConfig/panelConfigSlice";
 
 const editor = combineReducers({
   mode: modeReducer,
   dsl: dslReducer,
   widgetStates: widgetStatesReducer,
-  panelConfig: panelConfigReducer,
 })
 
 const actionReducer = combineReducers({

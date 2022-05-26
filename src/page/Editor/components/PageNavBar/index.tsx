@@ -1,4 +1,4 @@
-import { createContext, FC, HTMLAttributes, useRef } from "react"
+import { FC, HTMLAttributes } from "react"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { MoreIcon, CaretRightIcon } from "@illa-design/icon"
 import { useTranslation } from "react-i18next"
@@ -30,11 +30,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { t, i18n } = useTranslation()
   const dispatch = useDispatch()
   const isPreviewMode = useSelector(getPreviewMode)
-  const panelConfig = useRef({
-    showLeftPanel: true,
-    showRightPanel: true,
-    showBottomPanel: true,
-  })
+
   const projectInfo = {
     name: "Sample App",
     description: "Add description",
