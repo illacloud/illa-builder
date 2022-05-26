@@ -27,6 +27,29 @@
           "notFound": "Sorry, No Search result",
           "empty": "Add a action to begin working with data from a connected resource."
         }
+      },
+      "panel": {
+        "option": {
+          "trigger": {
+            "manually": "Run action only when manually triggered",
+            "onChange": "Run action automatically when inputs change"
+          },
+          "resource": {
+            "new": "Create a new resource"
+          }
+        },
+        "btn": {
+          "run": "Run",
+          "disable": "Disable",
+          "enable": "Enable",
+          "new": "New"
+        },
+        "menu": {
+          "more": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          }
+        }
       }
     }
   }
