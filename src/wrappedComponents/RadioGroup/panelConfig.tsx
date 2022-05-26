@@ -130,23 +130,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
         options: ["vertical", "horizontal"],
-        // {
-        //   label: (
-        //     <div style={OptionsStyle}>
-        //       <AlignmentLeftIcon />
-        //     </div>
-        //   ),
-        //   value: "vertical",
-        // },
-        // {
-        //   label: (
-        //     <div style={OptionsStyle}>
-        //       <AlignmentRightIcon />
-        //     </div>
-        //   ),
-        //   value: "horizontal",
-        // },
-        // ],
       },
     ],
   },
