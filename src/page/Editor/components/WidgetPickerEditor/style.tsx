@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const colorListCss = css`
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayblue-09`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   border-radius: 4px;
   margin: 10px 20px;
   flex-grow: 1;

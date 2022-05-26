@@ -105,8 +105,8 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
           height: "100%",
         }}
       >
-        {showDragLayer ? (
-          <DragLayerComponent columnWidth={10} rowHeight={10} noPad />
+        {!showDragLayer ? (
+          <DragLayerComponent />
         ) : null}
         {children?.map((value) => {
           const { type } = value

@@ -1,5 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { PanelConfigContextProps } from "@/page/Editor/components/PageNavBar"
+import { SerializedStyles } from "@emotion/serialize"
 
 const NAV_BAR_HEIGHT = 35
 
@@ -58,3 +60,12 @@ export const middlePanelStyle = css`
   flex-direction: column;
   overflow: hidden;
 `
+
+export function applyLeftPanelStyle(display: boolean): SerializedStyles {
+  return css`
+    width: 280px;
+    height: 100%;
+    border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    display: ${display? 'unset': 'none'};
+  `
+}
