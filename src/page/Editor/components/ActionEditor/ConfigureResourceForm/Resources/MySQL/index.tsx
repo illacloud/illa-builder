@@ -16,27 +16,27 @@ import { resourceActions } from "@/redux/action/resource/resourceSlice"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { v4 as uuidV4 } from "uuid"
 import {
-  GridContainerCSS,
-  DescriptionCSS,
-  FormCSS,
-  LabelTextCSS,
-  RequiredLabelTextCSS,
-  ErrorMessageCSS,
-  GridRowContainerCSS,
-  GroupTitleCSS,
-  ItemTextCSS,
-  LabelTextVerticalCSS,
-  LabelTextSmallSizeCSS,
+  gridContainerCss,
+  descriptionCss,
+  formCss,
+  labelTextCss,
+  requiredLabelTextCss,
+  errorMessageCss,
+  gridRowContainerCss,
+  groupTitleCss,
+  itemTextCss,
+  labelTextVerticalCss,
+  labelTextSmallSizeCss,
 } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/style"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
 import { MySQLFormValues, MySQLFormProps } from "./interface"
 import { InputUpload } from "./input-upload"
 import {
-  HostnamePortCSS,
-  UsernamePasswordCSS,
-  SwitchDescriptionCSS,
-  SwitchAreaCSS,
-  FormPaddingCSS,
+  hostnamePortCss,
+  usernamePasswordCss,
+  switchDescriptionCss,
+  switchAreaCss,
+  formPaddingCss,
 } from "./style"
 
 const dataTransform = (data: UnpackNestedValue<MySQLFormValues>) => {
@@ -148,10 +148,10 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
       )
     }
     return (
-      <form onSubmit={handleSubmit(onSubmit)} css={FormCSS} ref={ref}>
-        <div css={[GridContainerCSS, FormPaddingCSS]}>
-          <div css={GridRowContainerCSS}>
-            <label css={RequiredLabelTextCSS}>Name</label>
+      <form onSubmit={handleSubmit(onSubmit)} css={formCss} ref={ref}>
+        <div css={[gridContainerCss, formPaddingCss]}>
+          <div css={gridRowContainerCss}>
+            <label css={requiredLabelTextCss}>Name</label>
             <Controller
               render={({ field }) => (
                 <Input
@@ -168,14 +168,14 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
               name="name"
             />
             {errors.name && (
-              <div css={[ErrorMessageCSS, applyGridColIndex(2)]}>
+              <div css={[errorMessageCss, applyGridColIndex(2)]}>
                 {errors.name.message}
               </div>
             )}
           </div>
-          <div css={GridRowContainerCSS}>
-            <label css={RequiredLabelTextCSS}>Hostname/Port</label>
-            <div css={HostnamePortCSS}>
+          <div css={gridRowContainerCss}>
+            <label css={requiredLabelTextCss}>Hostname/Port</label>
+            <div css={hostnamePortCss}>
               <Controller
                 render={({ field }) => (
                   <Input
@@ -207,14 +207,14 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
               />
             </div>
             {(errors.host || errors.port) && (
-              <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                <div css={ErrorMessageCSS}>{errors.host?.message}</div>
-                <div css={ErrorMessageCSS}>{errors.port?.message}</div>
+              <div css={css(hostnamePortCss, applyGridColIndex(2))}>
+                <div css={errorMessageCss}>{errors.host?.message}</div>
+                <div css={errorMessageCss}>{errors.port?.message}</div>
               </div>
             )}
           </div>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Database</label>
+          <div css={gridRowContainerCss}>
+            <label css={labelTextCss}>Database</label>
             <Controller
               render={({ field }) => (
                 <Input {...field} placeholder="acme_production" />
@@ -223,9 +223,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
               name="databaseName"
             />
           </div>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Username/Password</label>
-            <div css={UsernamePasswordCSS}>
+          <div css={gridRowContainerCss}>
+            <label css={labelTextCss}>Username/Password</label>
+            <div css={usernamePasswordCss}>
               <Controller
                 render={({ field }) => (
                   <Input {...field} placeholder="Username" />
@@ -245,20 +245,20 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                 name="databasePassword"
               />
             </div>
-            <div css={[DescriptionCSS, applyGridColIndex(2)]}>
+            <div css={[descriptionCss, applyGridColIndex(2)]}>
               Credentials will be encrypted & stored securely on our servers.
             </div>
           </div>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Connect Type</label>
-            <div css={ItemTextCSS}>
+          <div css={gridRowContainerCss}>
+            <label css={labelTextCss}>Connect Type</label>
+            <div css={itemTextCss}>
               Cloud: ILLA servers will securely connect to your database.
             </div>
           </div>
-          <h4 css={GroupTitleCSS}>Advanced Options</h4>
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>Connect over SSH</label>
-            <div css={SwitchAreaCSS}>
+          <h4 css={groupTitleCss}>Advanced Options</h4>
+          <div css={gridRowContainerCss}>
+            <label css={labelTextCss}>Connect over SSH</label>
+            <div css={switchAreaCss}>
               <Switch
                 colorScheme="techPurple"
                 checked={expandSSH}
@@ -266,8 +266,8 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   setExpandSSH(val)
                 }}
               />
-              <div css={SwitchDescriptionCSS}>
-                <div css={LabelTextCSS}>
+              <div css={switchDescriptionCss}>
+                <div css={labelTextCss}>
                   Useful to connect to private network
                 </div>
               </div>
@@ -275,9 +275,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
           </div>
           {expandSSH && (
             <>
-              <div css={GridRowContainerCSS}>
-                <label css={RequiredLabelTextCSS}>SSH Hostname/Port</label>
-                <div css={HostnamePortCSS}>
+              <div css={gridRowContainerCss}>
+                <label css={requiredLabelTextCss}>SSH Hostname/Port</label>
+                <div css={hostnamePortCss}>
                   <Controller
                     render={({ field }) => (
                       <Input
@@ -309,15 +309,15 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   />
                 </div>
                 {(errors.sshHost || errors.sshPort) && (
-                  <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                    <div css={ErrorMessageCSS}>{errors.sshHost?.message}</div>
-                    <div css={ErrorMessageCSS}>{errors.sshPort?.message}</div>
+                  <div css={css(hostnamePortCss, applyGridColIndex(2))}>
+                    <div css={errorMessageCss}>{errors.sshHost?.message}</div>
+                    <div css={errorMessageCss}>{errors.sshPort?.message}</div>
                   </div>
                 )}
               </div>
-              <div css={GridRowContainerCSS}>
-                <label css={RequiredLabelTextCSS}>SSH Credentials</label>
-                <div css={UsernamePasswordCSS}>
+              <div css={gridRowContainerCss}>
+                <label css={requiredLabelTextCss}>SSH Credentials</label>
+                <div css={usernamePasswordCss}>
                   <Controller
                     render={({ field }) => (
                       <Input
@@ -349,28 +349,28 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   />
                 </div>
                 {(errors.sshUsername || errors.sshPassword) && (
-                  <div css={css(HostnamePortCSS, applyGridColIndex(2))}>
-                    <div css={ErrorMessageCSS}>
+                  <div css={css(hostnamePortCss, applyGridColIndex(2))}>
+                    <div css={errorMessageCss}>
                       {errors.sshUsername?.message}
                     </div>
-                    <div css={ErrorMessageCSS}>
+                    <div css={errorMessageCss}>
                       {errors.sshPassword?.message}
                     </div>
                   </div>
                 )}
               </div>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Private Key</label>
+              <div css={gridRowContainerCss}>
+                <label css={labelTextCss}>Private Key</label>
                 <InputUpload
                   name="sshPrivateKey"
                   register={register}
                   reset={resetField}
                 />
               </div>
-              <div css={GridRowContainerCSS}>
-                <label css={[LabelTextCSS, LabelTextVerticalCSS]}>
+              <div css={gridRowContainerCss}>
+                <label css={[labelTextCss, labelTextVerticalCss]}>
                   <div>SSH passphrase</div>
-                  <div css={LabelTextSmallSizeCSS}>used if provided</div>
+                  <div css={labelTextSmallSizeCss}>used if provided</div>
                 </label>
                 <Controller
                   render={({ field }) => (
@@ -386,9 +386,9 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
               </div>
             </>
           )}
-          <div css={GridRowContainerCSS}>
-            <label css={LabelTextCSS}>SSL options</label>
-            <div css={SwitchAreaCSS}>
+          <div css={gridRowContainerCss}>
+            <label css={labelTextCss}>SSL options</label>
+            <div css={switchAreaCss}>
               <Switch
                 colorScheme="techPurple"
                 checked={expandSSL}
@@ -396,31 +396,31 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   setExpandSSL(val)
                 }}
               />
-              <div css={SwitchDescriptionCSS}>
-                <div css={LabelTextCSS}>SSL is used when available</div>
+              <div css={switchDescriptionCss}>
+                <div css={labelTextCss}>SSL is used when available</div>
               </div>
             </div>
           </div>
           {expandSSL && (
             <>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Server Root Certificate</label>
+              <div css={gridRowContainerCss}>
+                <label css={labelTextCss}>Server Root Certificate</label>
                 <InputUpload
                   name="serverCert"
                   register={register}
                   reset={resetField}
                 />
               </div>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Client Key</label>
+              <div css={gridRowContainerCss}>
+                <label css={labelTextCss}>Client Key</label>
                 <InputUpload
                   name="clientKey"
                   register={register}
                   reset={resetField}
                 />
               </div>
-              <div css={GridRowContainerCSS}>
-                <label css={LabelTextCSS}>Client Certificate</label>
+              <div css={gridRowContainerCss}>
+                <label css={labelTextCss}>Client Certificate</label>
                 <InputUpload
                   name="clientCert"
                   register={register}

@@ -1,10 +1,10 @@
 import { useState } from "react"
 import {
-  DashBorderBottomCSS,
-  GridHandlersCSS,
-  NewBtnCSS,
-  PanelSubBarCSS,
-  SectionTitleCSS,
+  dashBorderBottomCss,
+  gridHandlersCss,
+  newBtnCss,
+  panelSubBarCss,
+  sectionTitleCss,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { Button } from "@illa-design/button"
 import { PlusIcon } from "@illa-design/icon"
@@ -17,15 +17,15 @@ export const EventInstance = (props: EventInstanceProps) => {
   const [handlerList, setHandlerList] = useState([{ key: uuid() }])
   return (
     <>
-      <div css={PanelSubBarCSS}>
-        <label css={[SectionTitleCSS, DashBorderBottomCSS]}>{title}</label>
+      <div css={panelSubBarCss}>
+        <label css={[sectionTitleCss, dashBorderBottomCss]}>{title}</label>
       </div>
-      <div css={GridHandlersCSS}>
+      <div css={gridHandlersCss}>
         {handlerList.map((item) => (
           <HandlerItem key={item.key} content={"ILLA"} />
         ))}
       </div>
-      <div css={NewBtnCSS}>
+      <div css={newBtnCss}>
         <Button
           variant="text"
           size="medium"

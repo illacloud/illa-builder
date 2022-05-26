@@ -1,12 +1,12 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const ModalCSS = css`
+export const modalCss = css`
   width: 696px;
   border-radius: 8px;
 `
 
-export const TitleCSS = css`
+export const titleCss = css`
   font-size: 20px;
   font-weight: 500;
   line-height: 1.4;
@@ -15,7 +15,7 @@ export const TitleCSS = css`
   text-align: center;
 `
 
-export const CloseIconCSS = css`
+export const closeIconCss = css`
   position: absolute;
   line-height: 0;
   font-size: 14px;

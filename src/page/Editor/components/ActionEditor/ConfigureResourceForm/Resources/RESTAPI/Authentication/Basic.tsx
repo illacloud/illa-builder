@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Input, Password } from "@illa-design/input"
 import { Controller } from "react-hook-form"
-import { LabelTextCSS } from "../../style"
+import { labelTextCss } from "../../style"
 import { BasicAuthProps } from "./interface"
 
 export const BasicAuth: FC<BasicAuthProps> = (props) => {
@@ -9,7 +9,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
 
   return (
     <>
-      <label css={LabelTextCSS}>Basic Auth username</label>
+      <label css={labelTextCss}>Basic Auth username</label>
       <Controller
         render={({ field }) => (
           <Input {...field} placeholder="username" maxLength={200} />
@@ -18,7 +18,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
         name="BasicAuthUsername"
       />
 
-      <label css={LabelTextCSS}>Basic Auth password</label>
+      <label css={labelTextCss}>Basic Auth password</label>
       <Controller
         render={({ field }) => (
           <Password {...field} placeholder="password" maxLength={200} />

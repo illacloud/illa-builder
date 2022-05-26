@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const ConfigContainerCSS = css`
+export const configContainerCss = css`
   padding: 8px 16px;
   display: flex;
   flex-direction: column;
@@ -10,13 +10,13 @@ export const ConfigContainerCSS = css`
   white-space: nowrap;
 `
 
-export const GridRowContainerCSS = css`
+export const gridRowContainerCss = css`
   display: grid;
   grid: auto/repeat(auto-fit, 200px minmax(280px, 1fr));
   grid-gap: 8px 16px;
 `
 
-export const GridRowCenterItemCSS = css`
+export const gridRowCenterItemCss = css`
   align-items: center;
 `
 
@@ -26,7 +26,7 @@ export function applyGridColIndex(index: number): SerializedStyles {
   `
 }
 
-export const SplitLineCSS = css`
+export const splitLineCss = css`
   display: inline-block;
   grid-column: span 2;
   height: 1px;
@@ -34,7 +34,7 @@ export const SplitLineCSS = css`
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
-export const LabelTextCSS = css`
+export const labelTextCss = css`
   display: flex;
   justify-content: end;
   font-size: 14px;
@@ -44,8 +44,8 @@ export const LabelTextCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const RequiredLabelTextCSS = css`
-  ${LabelTextCSS}
+export const requiredLabelTextCss = css`
+  ${labelTextCss}
   position: relative;
 
   &:before {
@@ -57,7 +57,7 @@ export const RequiredLabelTextCSS = css`
   }
 `
 
-export const GroupTitleCSS = css`
+export const groupTitleCss = css`
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -69,7 +69,7 @@ export const GroupTitleCSS = css`
   grid-column: span 2;
 `
 
-export const ActionTextCSS = css`
+export const actionTextCss = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   transition: color 0.2s ease-in-out;
@@ -84,7 +84,7 @@ export const ActionTextCSS = css`
   }
 `
 
-export const CheckboxCSS = css`
+export const checkboxCss = css`
   justify-content: flex-start !important;
 
   & > input {
@@ -92,22 +92,22 @@ export const CheckboxCSS = css`
   }
 `
 
-export const LabelTextVerticalCSS = css`
+export const labelTextVerticalCss = css`
   flex-direction: column;
   align-items: normal;
 `
 
-export const LabelTextSmallSizeCSS = css`
+export const labelTextSmallSizeCss = css`
   font-size: 12px;
   line-height: 1;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
 
-export const DisplayNoneCSS = css`
+export const displayNoneCss = css`
   display: none;
 `
 
-export const DescriptionCSS = css`
+export const descriptionCss = css`
   display: grid;
   align-items: center;
   font-size: 14px;
@@ -116,7 +116,7 @@ export const DescriptionCSS = css`
   margin: 0;
 `
 
-export const ErrorMessageCSS = css`
+export const errorMessageCss = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-red-03`)};
   line-height: 1.57;

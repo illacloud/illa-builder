@@ -2,18 +2,18 @@ import chroma from "chroma-js"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const ContainerCSS = css`
+export const containerCss = css`
   display: flex;
   flex-direction: column;
   flex: 1;
 `
 
-export const PanelScrollCSS = css`
+export const panelScrollCss = css`
   overflow: auto;
   flex: 1;
 `
 
-export const HeaderCSS = css`
+export const headerCss = css`
   display: flex;
   align-items: center;
   padding: 8px 16px 8px 0;
@@ -22,7 +22,7 @@ export const HeaderCSS = css`
   box-sizing: border-box;
 `
 
-export const TitleContainerCSS = css`
+export const titleContainerCss = css`
   display: flex;
   align-items: center;
   width: 280px;
@@ -44,7 +44,7 @@ export const TitleContainerCSS = css`
   }
 `
 
-export const TitleInputContainerCSS = css`
+export const titleInputContainerCss = css`
   width: 280px;
   max-width: 280px;
   border-radius: 8px;
@@ -53,45 +53,45 @@ export const TitleInputContainerCSS = css`
   padding: 0px 19px 0 16px;
 `
 
-export const TitleInputCSS = css`
+export const titleInputCss = css`
   & > span {
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
-export const TitleCSS = css`
+export const titleCss = css`
   display: inline-block;
   max-width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
 `
 
-export const TitleEditIconCSS = css`
+export const titleEditIconCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   transition: all 0.2s ease-in-out;
   opacity: 0;
 `
 
-export const ActionCSS = css`
+export const actionCss = css`
   display: flex;
   align-items: center;
   padding: 8px 16px;
 `
 
-export const ResourceBarCSS = css`
+export const resourceBarCss = css`
   margin-top: 8px;
   margin-bottom: 8px;
 `
 
-export const FillingCSS = css`
+export const fillingCss = css`
   flex: 1;
 `
 
-export const HeaderButtonCSS = css`
+export const headerButtonCss = css`
   box-sizing: border-box;
   font-size: 14px !important;
 
@@ -100,11 +100,11 @@ export const HeaderButtonCSS = css`
   }
 `
 
-export const MoreBtnCSS = css`
+export const moreBtnCss = css`
   margin-right: 8px;
 `
 
-export const RunBtnCSS = css`
+export const runBtnCss = css`
   color: ${globalColor(`--${illaPrefix}-techPurple-02`)}!important;
   background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)}!important;
 
@@ -113,7 +113,7 @@ export const RunBtnCSS = css`
   }
 `
 
-export const ActionSelectCSS = css`
+export const actionSelectCss = css`
   height: 32px;
   font-size: 14px;
 
@@ -122,20 +122,20 @@ export const ActionSelectCSS = css`
   }
 `
 
-export const TriggerSelectCSS = css`
+export const triggerSelectCss = css`
   max-width: 313px;
   margin-right: 8px;
   border-radius: 8px !important;
 `
-export const ResourceSelectContainerCSS = css``
+export const resourceSelectContainerCss = css``
 
-export const ResourceSelectCSS = css`
+export const resourceSelectCss = css`
   min-width: 151px !important;
   max-width: 151px;
   border-radius: 8px 0 0 8px !important;
 `
 
-export const EditIconCSS = css`
+export const editIconCss = css`
   width: 32px;
   height: 32px;
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -153,41 +153,41 @@ export const EditIconCSS = css`
   }
 `
 
-export const SectionTitleCSS = css`
+export const sectionTitleCss = css`
   font-size: 14px;
   line-height: 1.57;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const HandlerTitleCSS = css`
-  ${SectionTitleCSS};
+export const handlerTitleCss = css`
+  ${sectionTitleCss};
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   padding: 16px 16px 0;
 `
 
-export const PanelPaddingCSS = css`
+export const panelPaddingCss = css`
   padding: 8px 16px;
 `
 
-export const PanelSubBarCSS = css`
+export const panelSubBarCss = css`
   padding: 13px 16px;
 `
-export const NewBtnCSS = css`
+export const newBtnCss = css`
   padding-left: 16px;
 `
 
-export const DashBorderBottomCSS = css`
+export const dashBorderBottomCss = css`
   border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 
-export const GridHandlersCSS = css`
+export const gridHandlersCss = css`
   display: grid;
   gap: 8px;
   padding: 0 16px 8px;
 `
 
-export const HandlerMoreIconCSS = css`
+export const handlerMoreIconCss = css`
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 0 9px;
@@ -206,14 +206,14 @@ export const HandlerMoreIconCSS = css`
   }
 `
 
-export const MoreListCSS = css`
+export const moreListCss = css`
   list-style: none;
   margin: 0;
   padding: 8px 0;
   width: 184px;
 `
 
-export const MoreListItemCSS = css`
+export const moreListItemCss = css`
   padding: 5px 16px;
   cursor: pointer;
   font-size: 14px;
@@ -224,24 +224,24 @@ export const MoreListItemCSS = css`
   }
 `
 
-export const MoreListItemWarnCSS = css`
-  ${MoreListItemCSS};
+export const moreListItemWarnCss = css`
+  ${moreListItemCss};
   color: ${globalColor(`--${illaPrefix}-red-03`)};
 `
 
-export const MoreBtnMenuCSS = css`
+export const moreBtnMenuCss = css`
   width: 180px;
 `
 
-export const DuplicateActionCSS = css`
+export const duplicateActionCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
 `
 
-export const DeleteActionCSS = css`
+export const deleteActionCss = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
 `
 
-export const HandlerItemWrapperCSS = css`
+export const handlerItemWrapperCss = css`
   display: flex;
   height: 32px;
   font-size: 14px;
@@ -250,7 +250,7 @@ export const HandlerItemWrapperCSS = css`
   cursor: pointer;
 `
 
-export const HandlerItemContentCSS = css`
+export const handlerItemContentCss = css`
   flex: 1;
   border-right: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   padding: 5px 16px;
@@ -262,7 +262,7 @@ export const HandlerItemContentCSS = css`
   }
 `
 
-export const HandlerItemMoreCSS = css`
+export const handlerItemMoreCss = css`
   width: 32px;
   height: 100%;
   display: inline-flex;

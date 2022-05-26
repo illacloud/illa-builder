@@ -1,10 +1,10 @@
 import {
-  ActionCSS,
-  DashBorderBottomCSS,
-  FillingCSS,
-  PanelPaddingCSS,
-  PanelSubBarCSS,
-  SectionTitleCSS,
+  actionCss,
+  dashBorderBottomCss,
+  fillingCss,
+  panelPaddingCss,
+  panelSubBarCss,
+  sectionTitleCss,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { RadioGroup } from "@illa-design/radio"
 import { EditorInput } from "@/components/EditorInput"
@@ -12,9 +12,9 @@ import { EditorInput } from "@/components/EditorInput"
 export const Transformer = () => {
   return (
     <>
-      <div css={[ActionCSS, PanelSubBarCSS]}>
-        <label css={[SectionTitleCSS, DashBorderBottomCSS]}>Transformer</label>
-        <span css={FillingCSS} />
+      <div css={[actionCss, panelSubBarCss]}>
+        <label css={[sectionTitleCss, dashBorderBottomCss]}>Transformer</label>
+        <span css={fillingCss} />
         <RadioGroup
           type="button"
           size="small"
@@ -22,7 +22,7 @@ export const Transformer = () => {
           defaultValue="Disable"
         />
       </div>
-      <div css={PanelPaddingCSS}>
+      <div css={panelPaddingCss}>
         <EditorInput mode="javascript" height="88px" />
       </div>
     </>

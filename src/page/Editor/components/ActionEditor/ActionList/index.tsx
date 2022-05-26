@@ -23,26 +23,26 @@ import {
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import {
-  ActionListContainerCSS,
-  applyNewButtonCSS,
-  NewButtonTextCSS,
-  NewButtonIconCSS,
-  NewActionOptionsListCSS,
-  NewActionOptionsItemCSS,
-  ActionItemListCSS,
-  applyActionItemCSS,
-  ActionItemNameCSS,
-  applyActionItemNameTextCSS,
-  ActionItemIconCSS,
-  ActionItemTimeCSS,
-  WarningIndicatorCSS,
-  UpdatedIndicatorCSS,
-  NoMatchFoundWrapperCSS,
-  EmptyActionListPlaceholderCSS,
-  applyContextMenuCSS,
-  DeleteActionCSS,
-  DuplicateActionCSS,
-  applyContextMenuVisibleCSS,
+  actionListContainerCss,
+  applynewButtonCss,
+  newButtonTextCss,
+  newButtonIconCss,
+  newActionOptionsListCss,
+  newActionOptionsItemCss,
+  actionItemListCss,
+  applyactionItemCss,
+  actionItemNameCss,
+  applyactionItemNameTextCss,
+  actionItemIconCss,
+  actionItemTimeCss,
+  warningIndicatorCss,
+  updatedIndicatorCss,
+  noMatchFoundWrapperCss,
+  emptyActionListPlaceholderCss,
+  applycontextMenuCss,
+  deleteActionCss,
+  duplicateActionCss,
+  applycontextMenuVisibleCss,
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
@@ -171,14 +171,14 @@ export const ActionList: FC<ActionListProps> = (props) => {
       }
 
       return (
-        <span css={ActionItemNameCSS} onDoubleClick={() => editName(id, name)}>
+        <span css={actionItemNameCss} onDoubleClick={() => editName(id, name)}>
           <span
-            css={applyActionItemNameTextCSS(isWarning ?? false)}
+            css={applyactionItemNameTextCss(isWarning ?? false)}
             title={name}
           >
             {name}
           </span>
-          {isActionDirty && <span css={UpdatedIndicatorCSS}></span>}
+          {isActionDirty && <span css={updatedIndicatorCss}></span>}
         </span>
       )
     }
@@ -186,18 +186,18 @@ export const ActionList: FC<ActionListProps> = (props) => {
     return (
       <li
         key={id}
-        css={applyActionItemCSS(isSelected)}
+        css={applyactionItemCss(isSelected)}
         onClick={() => onClickActionItem(id, name)}
         onContextMenu={(e) => showContextMenu(e, id)}
       >
-        <span css={ActionItemIconCSS}>
+        <span css={actionItemIconCss}>
           {icon}
           {isWarning && (
-            <WarningCircleIcon css={WarningIndicatorCSS} size={"8px"} />
+            <WarningCircleIcon css={warningIndicatorCss} size={"8px"} />
           )}
         </span>
         {renderName()}
-        <span css={ActionItemTimeCSS}>{time}</span>
+        <span css={actionItemTimeCss}>{time}</span>
       </li>
     )
   })
@@ -211,11 +211,11 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const newNewActionOptions = (
-    <ul css={NewActionOptionsListCSS}>
-      <li css={NewActionOptionsItemCSS} onClick={addAction}>
+    <ul css={newActionOptionsListCss}>
+      <li css={newActionOptionsItemCss} onClick={addAction}>
         Resource action
       </li>
-      <li css={NewActionOptionsItemCSS} onClick={addTransformer}>
+      <li css={newActionOptionsItemCss} onClick={addTransformer}>
         JavaScript transformer
       </li>
     </ul>
@@ -275,7 +275,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const NoMatchFound = (
-    <div css={NoMatchFoundWrapperCSS}>
+    <div css={noMatchFoundWrapperCss}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
       <span>Sorry, No Search result</span>
     </div>
@@ -288,7 +288,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       }
 
       return (
-        <span css={EmptyActionListPlaceholderCSS}>
+        <span css={emptyActionListPlaceholderCss}>
           Add a action to begin working with data from a connected resource.
         </span>
       )
@@ -301,8 +301,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
     forwardRef<HTMLDivElement>((_, ref) => (
       <Menu
         css={[
-          applyContextMenuCSS(contextMenuPosition.y, contextMenuPosition.x),
-          applyContextMenuVisibleCSS(contextMenuVisible),
+          applycontextMenuCss(contextMenuPosition.y, contextMenuPosition.x),
+          applycontextMenuVisibleCss(contextMenuVisible),
         ]}
         onClickMenuItem={handleAction}
         ref={ref}
@@ -310,9 +310,9 @@ export const ActionList: FC<ActionListProps> = (props) => {
         <MenuItem
           key={"duplicate"}
           title={"Duplicate"}
-          css={DuplicateActionCSS}
+          css={duplicateActionCss}
         />
-        <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCSS} />
+        <MenuItem key={"delete"} title={"Delete"} css={deleteActionCss} />
       </Menu>
     )),
   )
@@ -326,7 +326,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   return (
-    <div css={ActionListContainerCSS}>
+    <div css={actionListContainerCss}>
       <SearchHeader updateAction={setAction} />
 
       <Dropdown
@@ -341,17 +341,17 @@ export const ActionList: FC<ActionListProps> = (props) => {
         onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
       >
         <Button
-          css={applyNewButtonCSS(newActionOptionsVisible)}
+          css={applynewButtonCss(newActionOptionsVisible)}
           size={"medium"}
         >
-          <span css={NewButtonTextCSS}>
-            <AddIcon css={NewButtonIconCSS} />
+          <span css={newButtonTextCss}>
+            <AddIcon css={newButtonIconCss} />
             New
           </span>
         </Button>
       </Dropdown>
 
-      <ul css={ActionItemListCSS}>{renderActionItemList()}</ul>
+      <ul css={actionItemListCss}>{renderActionItemList()}</ul>
 
       <MotionContextMenu
         ref={contextMenuRef}

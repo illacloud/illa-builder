@@ -5,11 +5,11 @@ import { FC, useRef, cloneElement, createRef } from "react"
 import { ConfigureResourceFormProps, ConnectionRef } from "./interface"
 import { MySQL, RESTAPI } from "./Resources"
 import {
-  FormContainerCSS,
-  FormFooterCSS,
-  BackIconCSS,
+  formContainerCss,
+  formFooterCss,
+  backIconCss,
   FormFooterFilling,
-  CreateResourceBtnCSS,
+  createResourceBtnCss,
 } from "./style"
 import { Button } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
@@ -52,9 +52,9 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
   }
 
   return (
-    <div css={FormContainerCSS}>
+    <div css={formContainerCss}>
       <div>{renderResourceNode()}</div>
-      <div css={FormFooterCSS}>
+      <div css={formFooterCss}>
         <Button
           variant="text"
           size="medium"
@@ -62,7 +62,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
           type="button"
           onClick={back}
         >
-          <PaginationPreIcon css={BackIconCSS} />
+          <PaginationPreIcon css={backIconCss} />
           Back
         </Button>
 
@@ -82,7 +82,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
         <Button
           size="medium"
           colorScheme="techPurple"
-          css={CreateResourceBtnCSS}
+          css={createResourceBtnCss}
           onClick={submitForm}
         >
           Create Resource

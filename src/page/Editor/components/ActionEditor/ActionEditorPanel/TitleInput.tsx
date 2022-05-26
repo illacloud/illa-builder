@@ -5,11 +5,11 @@ import { AnimatePresence, motion } from "framer-motion"
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import { useDispatch } from "react-redux"
 import {
-  TitleContainerCSS,
-  TitleEditIconCSS,
-  TitleCSS,
-  TitleInputContainerCSS,
-  TitleInputCSS,
+  titleContainerCss,
+  titleEditIconCss,
+  titleCss,
+  titleInputContainerCss,
+  titleInputCss,
 } from "./style"
 import { TitleInputProps } from "./interface"
 
@@ -56,7 +56,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       exit={"hidden"}
       variants={variants}
       transition={{ duration: 0.2 }}
-      css={TitleInputContainerCSS}
+      css={titleInputContainerCss}
       onAnimationComplete={focusInput}
     >
       <Input
@@ -66,7 +66,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
         onChange={(v) => setTitle(v)}
         key={"input"}
         inputRef={inputRef}
-        css={TitleInputCSS}
+        css={titleInputCss}
       />
     </motion.div>
   ) : (
@@ -74,7 +74,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       onClick={() => {
         setIsEditing(true)
       }}
-      css={TitleContainerCSS}
+      css={titleContainerCss}
       initial={"hidden"}
       animate={"visible"}
       exit={"hidden"}
@@ -82,8 +82,8 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       transition={{ duration: 0.2 }}
       key={"title"}
     >
-      <span css={TitleCSS}>{title}</span>
-      <PenIcon css={TitleEditIconCSS} viewBox={"0 0 14 14"} />
+      <span css={titleCss}>{title}</span>
+      <PenIcon css={titleEditIconCss} viewBox={"0 0 14 14"} />
     </motion.div>
   )
 
