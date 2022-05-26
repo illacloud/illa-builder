@@ -27,6 +27,7 @@ export const HandlerItem = (props: HandlerItemProps) => {
         triggerProps={{
           openDelay: 0,
           closeDelay: 0,
+          showArrow: false,
         }}
       >
         <span css={HandlerItemMoreCSS}>
