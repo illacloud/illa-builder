@@ -1,8 +1,6 @@
 import {
   configureStore,
   combineReducers,
-  ThunkAction,
-  AnyAction,
 } from "@reduxjs/toolkit"
 import logger from "redux-logger"
 import resourceReducer from "@/redux/action/resource/resourceSlice"
@@ -11,7 +9,6 @@ import dashboardReducer from "@/redux/dashboard/dashboardSlice"
 import modeReducer from "@/redux/editor/mode/modeSlice"
 import dslReducer from "@/redux/editor/dsl/dslSlice"
 import widgetStatesReducer from "@/redux/editor/widgetStates/widgetStatesSlice"
-import { useDispatch } from "react-redux"
 
 const editor = combineReducers({
   mode: modeReducer,
@@ -36,12 +33,3 @@ const store = configureStore({
 export default store
 
 export type RootState = ReturnType<typeof store.getState>
-
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  AnyAction
->
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = () => useDispatch<AppDispatch>()

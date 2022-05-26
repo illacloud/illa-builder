@@ -6,28 +6,24 @@ import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import { useAppDispatch } from "@/store"
 import {
   addActionItem,
-  removeActionItemThunk,
+  removeActionItem,
 } from "@/redux/action/actionList/actionListSlice"
-import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
 import {
   ContainerCSS,
   HeaderCSS,
   ActionCSS,
   FillingCSS,
-  HeaderButtonCSS,
   ActionSelectCSS,
   TriggerSelectCSS,
   ResourceSelectCSS,
   EditIconCSS,
   MoreBtnCSS,
-  RunBtnCSS,
   SectionTitleCSS,
   ResourceBarCSS,
   PanelScrollCSS,
@@ -44,11 +40,10 @@ const { Item: MenuItem } = Menu
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
     activeActionItemId,
-    setActiveActionItemId,
     onEditResource,
     onCreateResource,
   } = props
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   const [resourceId, setResourceId] = useState("")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
@@ -114,12 +109,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function deleteActionItem() {
-    activeActionItem &&
-      dispatch(
-        removeActionItemThunk(activeActionItemId, (actionItems) => {
-          setActiveActionItemId(actionItems[actionItems.length - 1].id)
-        }),
-      )
+    activeActionItem && dispatch(removeActionItem(activeActionItemId))
   }
 
   function generateName(type: string) {

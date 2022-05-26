@@ -14,8 +14,6 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
   const [isActionDirty, setIsActionDirty] = useState(false)
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
-  console.log({ FormResourceId: resourceId })
-
   return (
     <div css={ActionEditorPanelWrapper}>
       <ActionEditorLayout
@@ -30,7 +28,6 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
         actionEditorPanel={
           <ActionEditorPanel
             activeActionItemId={activeActionItemId}
-            setActiveActionItemId={setActiveActionItemId}
             onCreateResource={() => {
               setActionType("select")
               setFormVisible(true)

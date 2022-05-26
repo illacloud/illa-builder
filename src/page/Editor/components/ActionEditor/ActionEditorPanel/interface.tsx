@@ -4,7 +4,6 @@ import { ActionItem } from "@/redux/action/actionList/actionListState"
 
 export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
   activeActionItemId: string
-  setActiveActionItemId: (id: string) => void
   onEditResource?: (id: string) => void
   onCreateResource?: () => void
   children?: ReactNode
