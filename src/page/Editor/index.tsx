@@ -6,13 +6,13 @@ import { DataWorkspace } from "./components/DataWorkspace"
 import { ActionEditor } from "./components/ActionEditor"
 import {
   editorContainerStyle,
-  mainPanelStyle,
   navbarStyle,
   middlePanelStyle,
   centerPanelStyle,
   contentStyle,
   applyLeftPanelStyle,
-  applyBottomPanelStyle, applyRightPanelStyle,
+  applyBottomPanelStyle,
+  applyRightPanelStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { CanvasContainer } from "./components/CanvasContainer"
@@ -31,7 +31,7 @@ export const Editor: FC = () => {
     showRightPanel: true,
     showBottomPanel: true,
   })
-  const {showLeftPanel, showBottomPanel, showRightPanel} = config
+  const { showLeftPanel, showBottomPanel, showRightPanel } = config
 
   const switchPanelState = (state: PanelState) => {
     config[state] = !config[state]
@@ -44,15 +44,11 @@ export const Editor: FC = () => {
         <PageNavBar css={navbarStyle} switchPanelState={switchPanelState} />
         <div css={contentStyle}>
           <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
-          <div css={mainPanelStyle}>
-            <div css={middlePanelStyle}>
-              <CanvasContainer css={centerPanelStyle} />
-              <ActionEditor
-                css={applyBottomPanelStyle(showBottomPanel)}
-              />
-            </div>
-            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
+          <div css={middlePanelStyle}>
+            <CanvasContainer css={centerPanelStyle} />
+            <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
           </div>
+          <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
         </div>
       </div>
     </DndProvider>

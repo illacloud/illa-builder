@@ -19,13 +19,6 @@ export const contentStyle = css`
   height: 100%;
 `
 
-export const mainPanelStyle = css`
-  display: flex;
-  height: 100%;
-  flex-direction: row;
-  flex-grow: 1;
-`
-
 export const navbarStyle = css`
   width: 100%;
   height: 48px;
