@@ -1,5 +1,6 @@
 import { FC, forwardRef, useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
 import { Button } from "@illa-design/button"
 import { SearchIcon } from "@illa-design/icon"
@@ -17,6 +18,7 @@ import {
 
 export const SearchHeader: FC<SearchHeaderProps> = (props) => {
   const { updateAction } = props
+  const { t } = useTranslation()
   const [isSearch, setIsSearch] = useState(false)
 
   const MotionHeaderSearchInput = motion(
@@ -26,7 +28,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         prefix={{
           render: <SearchIcon size={"12px"} css={searchInputIconCss} />,
         }}
-        placeholder={"Search"}
+        placeholder={t("editor.action.actionList.placeholder.search")}
         onChange={updateAction}
         onClear={() => updateAction("")}
         css={searchInputCss}
@@ -46,7 +48,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         colorScheme={"white"}
         css={searchInputCloseBtnCss}
       >
-        Close
+        {t("editor.action.actionList.btn.close")}
       </Button>
     )),
   )
@@ -64,7 +66,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         animate={{ flex: 1 }}
         transition={{ duration: 0.4 }}
       >
-        Action List
+        {t("editor.action.actionList.title")}
       </motion.span>
       <SearchIcon
         size={"12px"}

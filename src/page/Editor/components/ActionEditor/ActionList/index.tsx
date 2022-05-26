@@ -1,11 +1,4 @@
-import {
-  FC,
-  useState,
-  useMemo,
-  useRef,
-  MouseEvent,
-  forwardRef,
-} from "react"
+import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
 import { motion } from "framer-motion"
 import { useClickAway } from "react-use"
 import { useDispatch, useSelector } from "react-redux"
@@ -22,6 +15,7 @@ import {
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
+import { useTranslation } from "react-i18next"
 import {
   actionListContainerCss,
   applynewButtonCss,
@@ -60,6 +54,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   } = props
 
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const actionItems = useSelector(selectAllActionItem)
 
   const [newActionOptionsVisible, setNewActionOptionsVisible] = useState(false)
@@ -213,10 +208,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const newNewActionOptions = (
     <ul css={newActionOptionsListCss}>
       <li css={newActionOptionsItemCss} onClick={addAction}>
-        Resource action
+        {t("editor.action.actionList.menu.resourceAction")}
       </li>
       <li css={newActionOptionsItemCss} onClick={addTransformer}>
-        JavaScript transformer
+        {t("editor.action.actionList.menu.javascriptTransformer")}
       </li>
     </ul>
   )
@@ -277,7 +272,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const NoMatchFound = (
     <div css={noMatchFoundWrapperCss}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
-      <span>Sorry, No Search result</span>
+      <span>{t("editor.action.actionList.tips.notFound")}</span>
     </div>
   )
 
@@ -289,7 +284,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
       return (
         <span css={emptyActionListPlaceholderCss}>
-          Add a action to begin working with data from a connected resource.
+          {t("editor.action.actionList.tips.empty")}
         </span>
       )
     }
@@ -309,10 +304,14 @@ export const ActionList: FC<ActionListProps> = (props) => {
       >
         <MenuItem
           key={"duplicate"}
-          title={"Duplicate"}
+          title={t("editor.action.actionList.contextMenu.duplicate")}
           css={duplicateActionCss}
         />
-        <MenuItem key={"delete"} title={"Delete"} css={deleteActionCss} />
+        <MenuItem
+          key={"delete"}
+          title={t("editor.action.actionList.contextMenu.delete")}
+          css={deleteActionCss}
+        />
       </Menu>
     )),
   )
@@ -346,7 +345,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
         >
           <span css={newButtonTextCss}>
             <AddIcon css={newButtonIconCss} />
-            New
+            {t("editor.action.actionList.btn.new")}
           </span>
         </Button>
       </Dropdown>
