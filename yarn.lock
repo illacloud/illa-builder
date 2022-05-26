@@ -9340,6 +9340,11 @@ url@~0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
+use-bus@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/use-bus/-/use-bus-2.5.1.tgz#1bda5305d672f0e75d2cd4a0ef56149309485204"
+  integrity sha512-oqH9RuLDXZvuI45u93an5Qx8Lpuo7WEs7e/IqZRajXHsrHO1iJnRcbm5kdip6SjRQaqL2Bzna4vQntvD1qO+VQ==
+
 use-callback-ref@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.3.0.tgz#772199899b9c9a50526fedc4993fc7fa1f7e32d5"

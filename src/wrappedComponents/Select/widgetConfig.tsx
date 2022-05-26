@@ -14,5 +14,11 @@ export const SELECT_WIDGET_CONFIG: ComponentModel = {
     labelAlign: "left",
     labelPosition: "left",
     width: "200px",
+    value: "Option 1",
+    options: [
+      { id: "Option 1", label: "Option 1", value: "Option 1" },
+      { id: "Option 2", label: "Option 2", value: "Option 2" },
+      { id: "Option 3", label: "Option 3", value: "Option 3" },
+    ],
   },
 }

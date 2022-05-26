@@ -14,6 +14,12 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
     groupName: "OPTIONS",
     children: [
       {
+        id: "select-basic-options",
+        useCustomLabel: true,
+        attrName: "options",
+        setterType: "OPTION_LIST_SETTER",
+      },
+      {
         id: "select-basic-defaultValue",
         labelName: "Default Value",
         attrName: "value",
