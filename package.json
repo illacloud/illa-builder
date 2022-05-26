@@ -86,7 +86,7 @@
     "src/*",
     "illa-design/packages/*"
   ],
-  "packageManager": "yarn@1.22.17",
+  "packageManager": "yarn@1.22.19",
   "nyc": {
     "report-dir": "cypress-coverage",
     "reporter": [
