@@ -37,6 +37,7 @@ import {
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
+import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 
 const { Item: MenuItem } = Menu
 
@@ -167,12 +168,23 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             showArrow: false,
           }}
         >
-          <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
-            <MoreIcon />
-          </Button>
+          <Button
+            css={MoreBtnCSS}
+            buttonRadius="8px"
+            size="medium"
+            leftIcon={<MoreIcon />}
+            colorScheme="grayBlue"
+          />
         </Dropdown>
-        <Button css={[HeaderButtonCSS, RunBtnCSS]} size={"medium"}>
-          <CaretRightIcon /> Run
+        <Button
+          buttonRadius="8px"
+          size="medium"
+          colorScheme="techPurple"
+          backgroundColor={applyIllaColor("techPurple", "07")}
+          textColor={applyIllaColor("techPurple", "01")}
+          leftIcon={<CaretRightIcon />}
+        >
+          Run
         </Button>
       </header>
       <div css={PanelScrollCSS}>

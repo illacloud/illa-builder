@@ -5,6 +5,14 @@ import { chunkSplitPlugin } from "vite-plugin-chunk-split"
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://124.70.32.49:8999",
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [
     react({
       jsxImportSource: "@emotion/react",

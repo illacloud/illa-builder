@@ -1,8 +1,8 @@
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace"
-import { FC, useRef, cloneElement } from "react"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { useSelector } from "react-redux"
-import { ConfigureResourceFormProps } from "./interface"
+import { FC, useRef, cloneElement, createRef } from "react"
+import { ConfigureResourceFormProps, ConnectionRef } from "./interface"
 import { MySQL, RESTAPI } from "./Resources"
 import {
   FormContainerCSS,
@@ -25,9 +25,10 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
   // if receive `resourceTypeProps` means add new
   const resourceType = resourceTypeProps || resource?.type
 
+  const connectionRef = useRef<ConnectionRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
-  const renderResouceNode = () => {
+  const renderResourceNode = () => {
     let node = null
 
     switch (resourceType) {
@@ -35,7 +36,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
         node = <RESTAPI resourceId={resourceId} />
         break
       case "MySQL":
-        node = <MySQL resourceId={resourceId} />
+        node = <MySQL connectionRef={connectionRef} resourceId={resourceId} />
         break
       default:
         node = <div>No Config</div>
@@ -52,8 +53,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
 
   return (
     <div css={FormContainerCSS}>
-      <div>{renderResouceNode()}</div>
-
+      <div>{renderResourceNode()}</div>
       <div css={FormFooterCSS}>
         <Button
           variant="text"
@@ -68,7 +68,14 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
 
         <div css={FormFooterFilling} />
 
-        <Button size="medium" colorScheme="gray" type="button">
+        <Button
+          size="medium"
+          colorScheme="gray"
+          type="button"
+          onClick={() => {
+            connectionRef.current?.testConnection()
+          }}
+        >
           Test Connection
         </Button>
 

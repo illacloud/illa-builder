@@ -1,6 +1,9 @@
 import { ActionType } from "../FormContainer/interface"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 
+export type ConnectionRef = {
+  testConnection: () => void
+}
 export interface ConfigureResourceFormProps {
   actionType: ActionType
   resourceId?: string

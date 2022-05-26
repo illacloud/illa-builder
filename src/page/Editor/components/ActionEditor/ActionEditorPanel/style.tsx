@@ -58,8 +58,8 @@ export const TitleInputCSS = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
@@ -72,7 +72,6 @@ export const TitleCSS = css`
 
 export const TitleEditIconCSS = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-  /* font-size: 14px; */
   transition: all 0.2s ease-in-out;
   opacity: 0;
 `
@@ -94,7 +93,6 @@ export const FillingCSS = css`
 
 export const HeaderButtonCSS = css`
   box-sizing: border-box;
-  border-radius: 8px !important;
   font-size: 14px !important;
 
   & * {
@@ -103,17 +101,7 @@ export const HeaderButtonCSS = css`
 `
 
 export const MoreBtnCSS = css`
-  width: 32px !important;
-  padding: 9px !important;
-  height: 32px !important;
-
   margin-right: 8px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)}!important;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)}!important;
-
-  &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)}!important;
-  }
 `
 
 export const RunBtnCSS = css`
@@ -137,7 +125,7 @@ export const ActionSelectCSS = css`
 export const TriggerSelectCSS = css`
   max-width: 313px;
   margin-right: 8px;
-  border-radius: 8px!important;
+  border-radius: 8px !important;
 `
 export const ResourceSelectContainerCSS = css``
 

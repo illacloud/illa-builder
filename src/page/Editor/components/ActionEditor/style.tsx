@@ -59,13 +59,8 @@ export function applyResizerCSS(
   `
 }
 
-export function applyIllaColor(
-  color: IllaColor,
-  size: string,
-): SerializedStyles {
-  return css`
-    color: ${globalColor(`--${illaPrefix}-${color}-${size}`)};
-  `
+export function applyIllaColor(color: IllaColor, serialNumber: string): string {
+  return globalColor(`--${illaPrefix}-${color}-${serialNumber}`)
 }
 
 export function applyGridColIndex(index: number): SerializedStyles {

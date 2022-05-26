@@ -49,6 +49,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
       watch,
       formState: { errors },
     } = useForm<RESTAPIFormValues>({
+      mode: "onBlur",
       defaultValues: (resourceConfig?.config as RESTAPIFormValues) || {
         URLParameters: [EmptyField],
         Headers: [EmptyField],
