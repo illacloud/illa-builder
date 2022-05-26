@@ -135,6 +135,11 @@ export const resourceSelectCss = css`
   border-radius: 8px 0 0 8px !important;
 `
 
+export const resourceOptionCss = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
 export const editIconCss = css`
   width: 32px;
   height: 32px;

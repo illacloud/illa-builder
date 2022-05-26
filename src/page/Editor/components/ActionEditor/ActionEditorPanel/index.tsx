@@ -27,6 +27,7 @@ import {
   moreBtnMenuCss,
   duplicateActionCss,
   deleteActionCss,
+  resourceOptionCss,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
@@ -197,12 +198,16 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 onChange={setResourceId}
               >
                 <Option onClick={createResource} isSelectOption={false}>
-                  Create a new resource
+                  <span css={resourceOptionCss} title="Create a new resource">
+                    Create a new resource
+                  </span>
                 </Option>
                 {resourceList &&
                   resourceList.map(({ id, name }) => (
                     <Option value={id} key={id}>
-                      {name}
+                      <span css={resourceOptionCss} title={name}>
+                        {name}
+                      </span>
                     </Option>
                   ))}
               </Select>
