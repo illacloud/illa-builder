@@ -177,7 +177,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           />
         </Dropdown>
         <Button
-          // css={[HeaderButtonCSS, RunBtnCSS]}
           buttonRadius="8px"
           size="medium"
           colorScheme="techPurple"
