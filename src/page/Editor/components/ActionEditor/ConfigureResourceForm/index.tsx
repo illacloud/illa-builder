@@ -52,7 +52,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
           Back
         </Button>
 
-        <div css={FormFooterFilling}></div>
+        <div css={FormFooterFilling} />
 
         <Button size="medium" colorScheme="gray" type="button">
           Test Connection

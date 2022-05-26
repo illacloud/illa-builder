@@ -1,14 +1,32 @@
-import { configureStore } from "@reduxjs/toolkit"
-import builderReducer from "./redux/reducers"
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import createSagaMiddleware from "redux-saga"
+import resourceReducer from "@/redux/action/resource/resourceSlice"
+import actionListReducer from "@/redux/action/actionList/actionListSlice"
+import dashboardReducer from "@/redux/dashboard/dashboardSlice"
+import modeReducer from "@/redux/editor/mode/modeSlice"
+import dslReducer from "@/redux/editor/dsl/dslSlice"
+import widgetStatesReducer from "@/redux/editor/widgetStates/widgetStatesSlice"
 
-const sagaMiddleware = createSagaMiddleware()
+const editor = combineReducers({
+  mode: modeReducer,
+  dsl: dslReducer,
+  widgetStates: widgetStatesReducer,
+})
+
+const actionReducer = combineReducers({
+  actionList: actionListReducer,
+  resource: resourceReducer,
+})
 
 const store = configureStore({
-  reducer: builderReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(sagaMiddleware, logger),
+  reducer: {
+    editor,
+    action: actionReducer,
+    dashboard: dashboardReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
 
 export default store
+
+export type RootState = ReturnType<typeof store.getState>

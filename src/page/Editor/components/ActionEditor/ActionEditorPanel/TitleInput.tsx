@@ -2,13 +2,6 @@ import { FC, useState, useRef, useEffect } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { AnimatePresence, motion } from "framer-motion"
-import { useSelector, useDispatch } from "react-redux"
-import { BuilderState } from "@/redux/reducers/interface"
-import {
-  updateQueryItem,
-  selectQueryItemById,
-} from "@/redux/reducers/actionReducer/queryListReducer"
-import { getActionEditorQueryId } from "@/redux/selectors/actionSelector/editorSeletor"
 import {
   TitleContainerCSS,
   TitleEditIconCSS,
@@ -18,14 +11,10 @@ import {
 } from "./style"
 import { TitleInputProps } from "./interface"
 
-export const TitleInput: FC<TitleInputProps> = (props) => {
+export const TitleInput: FC<TitleInputProps> = () => {
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const dispatch = useDispatch()
-  const queryId = useSelector(getActionEditorQueryId)
-  const { name } =
-    useSelector((state: BuilderState) => selectQueryItemById(state, queryId)) ??
-    {}
+  const name = ""
   const [title, setTitle] = useState(name)
   const variants = {
     hidden: {
@@ -46,11 +35,6 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
 
   function handleOnBlur() {
     setIsEditing(false)
-    updateName()
-  }
-
-  function updateName() {
-    dispatch(updateQueryItem({ id: queryId, changes: { name: title } }))
   }
 
   const childrenNode = isEditing ? (

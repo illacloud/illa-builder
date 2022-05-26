@@ -5,14 +5,13 @@ import { Frame } from "scenejs"
 import { MAIN_CONTAINER_ID } from "@/page/Editor/constants/dragConfig"
 import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
 import { useSelectWidget } from "@/page/Editor/hooks/useSelectWidget"
-import { dslActions } from "@/redux/reducers/editorReducer/dslReducer"
-import { DslActionName } from "@/redux/reducers/editorReducer/dslReducer/dsl-action"
-import { getPreviewMode } from "@/redux/selectors/editorSelectors/modeSelectors"
+import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { DraggableComponentProps } from "./interface"
+import { getPreviewMode } from "@/redux/editor/mode/modeSelector"
 import {
   getFocusedWidget,
   getWidgetStates,
-} from "@/redux/selectors/editorSelectors/widgetStateSelectors"
-import { DraggableComponentProps } from "./interface"
+} from "@/redux/editor/widgetStates/widgetStateSelector"
 
 export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
   const {
@@ -146,8 +145,8 @@ export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
             )
             dispatch(
               dslActions.dslActionHandler({
-                type: DslActionName.UpdateItem,
-                newDslText: {
+                type: "UpdateItem",
+                dslFrame: {
                   ...currentProps,
                   props: {
                     ...currentProps.props,
@@ -166,6 +165,9 @@ export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
             target.style.cssText += new Frame(
               "transform: translateX(0px) translateY(0px)",
             ).toCSS()
+            setDraggingState({
+              isDragging: false,
+            })
           }
         }}
       />
