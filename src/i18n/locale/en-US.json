@@ -49,6 +49,82 @@
             "delete": "Delete",
             "duplicate": "Duplicate"
           }
+        },
+        "label": {
+          "resource": "Resource",
+          "transformer": "Transformer",
+          "success": "Success",
+          "failure": "Failure",
+          "eventHandler": "Event Handler"
+        }
+      },
+      "form": {
+        "title": {
+          "select": "Select Resource Type",
+          "database": "DATABASES",
+          "api": "APIS"
+        },
+        "btn": {
+          "back": "Back",
+          "testConnection": "Test Connection",
+          "createResource": "Create Resource"
+        }
+      },
+      "resource": {
+        "mySql": {
+          "name": "MySQL"
+        },
+        "postgres": { "name": "Postgres" },
+        "redis": { "name": "Redis" },
+        "restApi": {
+          "name": "REST API",
+          "label": {
+            "actionType": "Action Type",
+            "urlParameters": "URL Parameters",
+            "headers": "Headers",
+            "cookies": "Cookies",
+            "body": "Body",
+            "extraBodyValues": "Extra Body Values",
+            "listOfCookiesToForward": "List Of Cookies To Forward",
+            "forwardAllCookies": "Forward All Cookies",
+            "baseUrl": "Base URL",
+            "name": "Name",
+            "authentication": "Authentication",
+            "basicAuthUsername": "Basic Auth username",
+            "basicAuthPassword": "Basic Auth password",
+            "configureOAuth2": "Configuring OAuth 2.0",
+            "useClientCredentialsAuth": "Use client credentials auth",
+            "oAuthCallbackUrl": "OAuth callback URL",
+            "copyUrlToApplication": "Copy this URL to your application",
+            "shareOAuth2CredentialsBetweenUsers": "Share OAuth2.0 credentials between users",
+            "authorizationUrl": "Authorization URL",
+            "accessTokenUrl": "Access Token URL",
+            "clientId": "Client ID",
+            "clientSecret": "Client Secret",
+            "scopes": "Scopes (separated by a space)",
+            "audience": "Audience",
+            "accessToken": "Access Token",
+            "refreshToken": "Refresh Token",
+            "accessTokenLifespan": "Access Token lifespan(optiinal)",
+            "enableAuthVerificationEndpoint": "Enable an auth verification endpoint"
+          },
+          "tips": {
+            "getReqAutoRun": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "name": "The name for resource when creating queries in the ILLA.",
+            "extraBodyValues": "Extra body values are not passed for GET or HEAD requests",
+            "configureOAuth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "actionUrlPath": "api/v2/endpoint.json",
+            "baseUrl": "Use the absolute URL (e.g https://example.com)",
+            "username": "username",
+            "password": "password",
+            "oAuthCallbackUrl": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+            "accessTokenUrl": "https://www.googleapis.com/oauth2/v4/token",
+            "accessTokenLifespan": "Token Lifespan in seconds"
+          }
         }
       }
     }

@@ -190,7 +190,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         {activeActionItem && (
           <>
             <div css={[actionCss, resourceBarCss]}>
-              <label css={sectionTitleCss}>Resource</label>
+              <label css={sectionTitleCss}>
+                {t("editor.action.panel.label.resource")}
+              </label>
               <span css={fillingCss} />
               <Select
                 options={triggerOptions}

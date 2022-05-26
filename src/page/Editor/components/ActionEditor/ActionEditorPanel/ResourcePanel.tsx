@@ -13,7 +13,9 @@ import { ResourcePanelProps } from "./interface"
 export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
   const { resourceId } = props
 
-  const resource = useSelector(selectAllResource).find((i) => i.id === resourceId);
+  const resource = useSelector(selectAllResource).find(
+    (i) => i.id === resourceId,
+  )
   const resourceType = resource?.type
 
   function renderResourceConfig() {

@@ -1,5 +1,6 @@
 import { EmotionJSX } from "@emotion/react/types/jsx-namespace"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { FC, useRef, cloneElement, createRef } from "react"
 import { ConfigureResourceFormProps, ConnectionRef } from "./interface"
@@ -18,6 +19,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
   props,
 ) => {
   const { resourceId, back, onSubmit, resourceType: resourceTypeProps } = props
+  const { t } = useTranslation()
 
   const resource = useSelector(selectAllResource).find(
     (i) => i.id === resourceId,
@@ -63,7 +65,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
           onClick={back}
         >
           <PaginationPreIcon css={backIconCss} />
-          Back
+          {t("editor.action.form.btn.back")}
         </Button>
 
         <div css={FormFooterFilling} />
@@ -76,7 +78,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
             connectionRef.current?.testConnection()
           }}
         >
-          Test Connection
+          {t("editor.action.form.btn.testConnection")}
         </Button>
 
         <Button
@@ -85,7 +87,7 @@ export const ConfigureResourceForm: FC<ConfigureResourceFormProps> = (
           css={createResourceBtnCss}
           onClick={submitForm}
         >
-          Create Resource
+          {t("editor.action.form.btn.createResource")}
         </Button>
       </div>
     </div>

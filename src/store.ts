@@ -1,7 +1,4 @@
-import {
-  configureStore,
-  combineReducers,
-} from "@reduxjs/toolkit"
+import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import logger from "redux-logger"
 import resourceReducer from "@/redux/action/resource/resourceSlice"
 import actionListReducer from "@/redux/action/actionList/actionListSlice"

@@ -9,6 +9,7 @@ import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { resourceActions } from "@/redux/action/resource/resourceSlice"
+import { useTranslation } from "react-i18next"
 import { v4 as uuidV4 } from "uuid"
 import { RESTAPIFormProps, RESTAPIFormValues, Params } from "./interface"
 import {
@@ -39,6 +40,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
   (props, ref) => {
     const { resourceId } = props
     const dispatch = useDispatch()
+    const { t } = useTranslation()
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.id === resourceId,
     )
@@ -93,12 +95,16 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
         css={[formCss, gridContainerCss]}
       >
         <div css={gridRowContainerCss}>
-          <label css={requiredLabelTextCss}>Name</label>
+          <label css={requiredLabelTextCss}>
+            {t("editor.action.resource.restApi.label.name")}
+          </label>
           <Controller
             render={({ field }) => (
               <Input
                 {...field}
-                placeholder='i.e."Users DB(readonly)" or "Internal Admin API"'
+                placeholder={t(
+                  "editor.action.resource.restApi.placeholder.name",
+                )}
                 error={!!errors.Name}
                 maxLength={200}
               />
@@ -115,21 +121,21 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
             </div>
           )}
           <dd css={[applyGridColIndex(2), descriptionCss]}>
-            The name for resource when creating queries in the ILLA.
+            {t("editor.action.resource.restApi.tips.name")}
           </dd>
         </div>
 
-        <Divider css={splitLineCss} />
-
-        <h4 css={groupTitleCss}>GENERAL</h4>
-
         <div css={gridRowContainerCss}>
-          <label css={labelTextCss}>Base URL</label>
+          <label css={labelTextCss}>
+            {t("editor.action.resource.restApi.label.baseUrl")}
+          </label>
           <Controller
             render={({ field }) => (
               <Input
                 {...field}
-                placeholder="Use the absolute URL (e.g https://example.com)"
+                placeholder={t(
+                  "editor.action.resource.restApi.placeholder.baseUrl",
+                )}
                 maxLength={200}
               />
             )}
@@ -140,33 +146,32 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
 
         <div css={gridRowContainerCss}>
           <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
-            URL Parameters
+            {t("editor.action.resource.restApi.label.urlParameters")}
           </label>
           <ParamList control={control} name={"URLParameters"} />
         </div>
 
         <div css={gridRowContainerCss}>
           <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
-            Headers
+            {t("editor.action.resource.restApi.label.headers")}
           </label>
           <ParamList control={control} name={"Headers"} />
         </div>
 
         <div css={gridRowContainerCss}>
           <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
-            Extra Body Values
+            {t("editor.action.resource.restApi.label.extraBodyValues")}
           </label>
           <ParamList control={control} name={"ExtraBodyValues"} />
           <dd css={[applyGridColIndex(2), descriptionCss]}>
-            Extra body values are not passed for GET or HEAD requests
+            {t("editor.action.resource.restApi.tips.extraBodyValues")}
           </dd>
         </div>
 
         <div css={gridRowContainerCss}>
           <div css={[gridRowContainerCss, gridRowCenterItemCss]}>
             <label css={labelTextCss}>
-              List Of Cookies To
-              <br /> Forward
+              {t("editor.action.resource.restApi.label.listOfCookiesToForward")}
             </label>
             <Controller
               render={({ field }) => (
@@ -183,7 +188,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           <Controller
             render={({ field }) => (
               <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
-                Forward All Cookies
+                {t("editor.action.resource.restApi.label.forwardAllCookies")}
               </Checkbox>
             )}
             control={control}
@@ -192,7 +197,9 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
         </div>
 
         <div css={gridRowContainerCss}>
-          <label css={labelTextCss}>Authentication</label>
+          <label css={labelTextCss}>
+            {t("editor.action.resource.restApi.label.authentication")}
+          </label>
           <Controller
             render={() => (
               <Select

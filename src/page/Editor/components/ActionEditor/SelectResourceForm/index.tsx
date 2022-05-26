@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
 import {
   SelectResourceFormProps,
   DatabaseItemProps,
@@ -17,20 +18,31 @@ import {
   resourceNameCss,
   selectLayoutCss,
 } from "./style"
-
-const databaseList: DatabaseItemProps[] = [
-  { title: "Postgres", img: <PostgresIcon />, draft: true },
-  { title: "MySQL", img: <MysqlIcon /> },
-  { title: "Redis", img: <RedisIcon />, draft: true },
-]
-const apiList: ApiItemProps[] = [{ title: "REST API", img: <RestApiIcon /> }]
-
 export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
   const { onSelect } = props
+  const { t } = useTranslation()
+
+  const databaseList: DatabaseItemProps[] = [
+    {
+      title: t("editor.action.resource.postgres.name"),
+      img: <PostgresIcon />,
+      draft: true,
+    },
+    { title: t("editor.action.resource.mySql.name"), img: <MysqlIcon /> },
+    {
+      title: t("editor.action.resource.redis"),
+      img: <RedisIcon />,
+      draft: true,
+    },
+  ]
+  const apiList: ApiItemProps[] = [
+    { title: t("editor.action.resource.restApi.name"), img: <RestApiIcon /> },
+  ]
+
   return (
     <div css={selectLayoutCss}>
       <div>
-        <div css={categoryCss}>DATABASES</div>
+        <div css={categoryCss}>{t("editor.action.form.title.database")}</div>
         <div css={resourceListCss()}>
           {databaseList.map((database) => (
             <div
@@ -47,7 +59,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
         </div>
       </div>
       <div>
-        <div css={categoryCss}>APIS</div>
+        <div css={categoryCss}>{t("editor.action.form.title.api")}</div>
         <div css={resourceListCss(true)}>
           {apiList.map((api) => (
             <div
