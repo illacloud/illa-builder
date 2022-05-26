@@ -10,8 +10,7 @@ import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/Editor/components/ActionEditor/style"
-import { useSelector } from "react-redux"
-import { useAppDispatch } from "@/store"
+import { useDispatch, useSelector } from "react-redux"
 import Api from "@/api/api"
 import { resourceActions } from "@/redux/action/resource/resourceSlice"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
@@ -83,7 +82,7 @@ const dataTransform = (data: UnpackNestedValue<MySQLFormValues>) => {
 export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
   (props, ref) => {
     const { resourceId, connectionRef } = props
-    const dispatch = useAppDispatch()
+    const dispatch = useDispatch()
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.id === resourceId,
     )

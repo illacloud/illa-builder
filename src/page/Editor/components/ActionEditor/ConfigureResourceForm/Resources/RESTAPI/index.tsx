@@ -6,9 +6,8 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Divider } from "@illa-design/divider"
 import { Select, Option } from "@illa-design/select"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import { useAppDispatch } from "@/store"
 import { resourceActions } from "@/redux/action/resource/resourceSlice"
 import { v4 as uuidV4 } from "uuid"
 import { RESTAPIFormProps, RESTAPIFormValues, Params } from "./interface"
@@ -39,7 +38,7 @@ const EmptyField: Params = { key: "", value: "" }
 export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
   (props, ref) => {
     const { resourceId } = props
-    const dispatch = useAppDispatch()
+    const dispatch = useDispatch()
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.id === resourceId,
     )
