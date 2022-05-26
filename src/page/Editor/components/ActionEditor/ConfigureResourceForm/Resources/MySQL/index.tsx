@@ -8,6 +8,7 @@ import {
 } from "react-hook-form"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
+import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/Editor/components/ActionEditor/style"
 import { useDispatch, useSelector } from "react-redux"
@@ -27,6 +28,7 @@ import {
   itemTextCss,
   labelTextVerticalCss,
   labelTextSmallSizeCss,
+  splitLineCss,
 } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/style"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
 import { MySQLFormValues, MySQLFormProps } from "./interface"
@@ -255,6 +257,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
               Cloud: ILLA servers will securely connect to your database.
             </div>
           </div>
+          <Divider css={splitLineCss} />
           <h4 css={groupTitleCss}>Advanced Options</h4>
           <div css={gridRowContainerCss}>
             <label css={labelTextCss}>Connect over SSH</label>
