@@ -165,6 +165,9 @@ export const DraggableComponent: FC<DraggableComponentProps> = (baseProps) => {
             target.style.cssText += new Frame(
               "transform: translateX(0px) translateY(0px)",
             ).toCSS()
+            setDraggingState({
+              isDragging: false,
+            })
           }
         }}
       />

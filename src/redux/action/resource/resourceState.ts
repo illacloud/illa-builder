@@ -9,4 +9,4 @@ export interface Resource {
   config: MySQLFormValues | RESTAPIFormValues
 }
 export type ResourceListState = Resource[]
-export const resourceInititalState: ResourceListState = []
+export const resourceInitialState: ResourceListState = []
