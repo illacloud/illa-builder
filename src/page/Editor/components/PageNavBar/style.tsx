@@ -31,4 +31,15 @@ export const viewControlStyle = css`
 
 export const informationStyle = css`
   margin-left: 24px;
+  font-size: 12px;
+  line-height: 18px;
+`
+
+export const nameStyle = css`
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
+export const descriptionStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `

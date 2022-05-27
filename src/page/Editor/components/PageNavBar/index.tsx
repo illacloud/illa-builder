@@ -3,7 +3,8 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { MoreIcon, CaretRightIcon } from "@illa-design/icon"
 import { useTranslation } from "react-i18next"
 import {
-  informationStyle,
+  descriptionStyle,
+  informationStyle, nameStyle,
   navBarStyle,
   rowCenter,
   viewControlStyle,
@@ -41,8 +42,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={rowCenter}>
         <IllaLogoIcon />
         <section css={informationStyle}>
-          <div>{projectInfo.name}</div>
-          <div>{projectInfo.description}</div>
+          <div css={nameStyle}>{projectInfo.name}</div>
+          <div css={descriptionStyle}>{projectInfo.description}</div>
         </section>
       </div>
       <div css={viewControlStyle}>
