@@ -21,3 +21,7 @@ export interface ResourcePanelProps {
   activeActionItemId?: string | null
   onChange?: (config: Pick<ActionItem, "config">) => void
 }
+
+export type triggerRunRef = {
+  onRun: () => void
+}

@@ -67,7 +67,7 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
       onChange?.(editor.getValue())
       // autocomplete
       if (change.origin == "+input") {
-        var text = change.text
+        const text = change.text
         // no hint
         if (!ignoreToken(text)) {
           setTimeout(function () {
