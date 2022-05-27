@@ -12,9 +12,16 @@ import {
 import { BaseInput } from "../InputSetter/baseInput"
 
 export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
-  const { defaultValue, attrName, useCustomLabel, labelName, labelDesc } = props
-
-  const { tempProps, handleUpdateDsl } = useContext(ConfigPanelContext)
+  const {
+    defaultValue,
+    attrName,
+    useCustomLabel,
+    labelName,
+    labelDesc,
+    tempProps,
+    handleUpdateDsl,
+    componentDsl,
+  } = props
 
   const customKey = `is_${attrName}_custom`
   const customValueKey = `${attrName}_custom`
@@ -71,7 +78,13 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           {/*//  TODO:run code then update dsl*/}
           {/*//  { [customValueKey]: value,[attrName]:runCode(value) }*/}
           {/*//*/}
-          <BaseInput attrName={customValueKey} defaultValue={customValue} />
+          <BaseInput
+            attrName={customValueKey}
+            defaultValue={customValue}
+            handleUpdateDsl={handleUpdateDsl}
+            tempProps={tempProps}
+            componentDsl={componentDsl}
+          />
         </div>
       )}
     </div>

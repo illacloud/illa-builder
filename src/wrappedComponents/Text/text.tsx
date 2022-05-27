@@ -5,6 +5,7 @@ import { applyTextCss, textContainerCss } from "./style"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { withParser } from "@/wrappedComponents/parserHOC"
+import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 const transLink: ShowdownExtension = {
   type: "output",
@@ -18,9 +19,10 @@ export const Text: FC<TextProps> = (props: TextProps) => {
     disableMarkdown = false,
     horizontalAlign = "start",
     verticalAlign = "start",
-    linkColor = globalColor(`--${illaPrefix}-blue-05`),
-    backgroundColor = "",
-    textColor = globalColor(`--${illaPrefix}-grayBlue-05`),
+    linkColor = "blue",
+    backgroundColor = "transparent",
+    textColor = "grayBlue",
+    tooltipText,
   } = props
 
   const alignCss = css`
@@ -29,19 +31,29 @@ export const Text: FC<TextProps> = (props: TextProps) => {
   `
 
   return (
-    <div css={css(textContainerCss, alignCss)}>
-      {disableMarkdown ? (
-        <MarkdownView
-          css={css`
-            ${applyTextCss(textColor, linkColor)}, ${alignCss}
-          `}
-          markdown={value}
-          extensions={[transLink]}
-        />
-      ) : (
-        <div css={applyTextCss(textColor)}>{value}</div>
-      )}
-    </div>
+    <TooltipWrapper
+      tooltipText={tooltipText}
+      position="tl"
+      disabled={!tooltipText}
+    >
+      <div css={css(textContainerCss, alignCss)}>
+        {disableMarkdown ? (
+          <MarkdownView
+            css={css`
+              ${applyTextCss(
+                textColor,
+                linkColor,
+                backgroundColor,
+              )}, ${alignCss}
+            `}
+            markdown={value}
+            extensions={[transLink]}
+          />
+        ) : (
+          <div css={applyTextCss(textColor)}>{value}</div>
+        )}
+      </div>
+    </TooltipWrapper>
   )
 }
 

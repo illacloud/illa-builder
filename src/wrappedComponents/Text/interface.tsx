@@ -9,4 +9,5 @@ export interface TextProps {
   backgroundColor?: string
   textColor?: string
   linkColor?: string
+  tooltipText?: string
 }

@@ -1,19 +1,18 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
+import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
+import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
   width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
 export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "radioGroup-options",
-    groupName: "Options",
+    groupName: "OPTIONS",
     children: [
       {
         id: "radioGroup-basic-defaultValue",
@@ -25,7 +24,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "radioGroup-label",
-    groupName: "Label",
+    groupName: "LABEL",
     children: [
       {
         id: "radioGroup-label-label",
@@ -58,7 +57,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
+                <HorizontalStart />
               </div>
             ),
             value: "left",
@@ -66,18 +65,24 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentRightIcon />
+                <HorizontalEnd />
               </div>
             ),
             value: "right",
           },
         ],
       },
+      {
+        id: "radioGroup-label-labelWidth",
+        labelName: "Width(%)",
+        attrName: "labelWidth",
+        setterType: "INPUT_SETTER",
+      },
     ],
   },
   {
     id: "radioGroup-validation",
-    groupName: "Validation",
+    groupName: "VALIDATION",
     children: [
       {
         id: "radioGroup-validation-required",
@@ -97,7 +102,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "radioGroup-interaction",
-    groupName: "Interaction",
+    groupName: "INTERACTION",
     children: [
       {
         id: "radioGroup-interaction-disabled",
@@ -111,7 +116,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "radioGroup-Adornments",
-    groupName: "Adornments",
+    groupName: "ADORNMENTS",
     children: [
       {
         id: "radioGroup-adornments-tooltip",
@@ -119,11 +124,18 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
+      {
+        id: "radioGroup-style-direction",
+        labelName: "Alignment",
+        setterType: "RADIO_GROUP_SETTER",
+        attrName: "direction",
+        options: ["vertical", "horizontal"],
+      },
     ],
   },
   {
     id: "radioGroup-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "radioGroup-layout-hidden",
@@ -136,37 +148,15 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "radioGroup-style",
-    groupName: "Style",
+    groupName: "STYLE",
     children: [
       {
         id: "radioGroup-style-color",
         labelName: "Color",
-        setterType: "INPUT_SETTER",
+        setterType: "COLOR_SELECT_SETTER",
         attrName: "checkedBackgroundColor",
-      },
-      {
-        id: "radioGroup-style-direction",
-        labelName: "Direction",
-        setterType: "RADIO_GROUP_SETTER",
-        attrName: "direction",
-        options: [
-          {
-            label: (
-              <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
-              </div>
-            ),
-            value: "vertical",
-          },
-          {
-            label: (
-              <div style={OptionsStyle}>
-                <AlignmentRightIcon />
-              </div>
-            ),
-            value: "horizontal",
-          },
-        ],
+        defaultValue: "blue",
+        options: colorSchemeOptions,
       },
     ],
   },
