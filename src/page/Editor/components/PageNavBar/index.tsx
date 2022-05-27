@@ -41,7 +41,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <IllaLogoIcon />
+        <IllaLogoIcon width={"34px"} />
         <section css={informationStyle}>
           <div css={nameStyle}>{projectInfo.name}</div>
           <div css={descriptionStyle}>{projectInfo.description}</div>
