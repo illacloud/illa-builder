@@ -121,7 +121,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
             </div>
           )}
           <dd css={[applyGridColIndex(2), descriptionCss]}>
-            {t("editor.action.resource.restApi.tips.name")}
+            {t("editor.action.resource.restApi.tip.name")}
           </dd>
         </div>
 
@@ -164,7 +164,7 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
           </label>
           <ParamList control={control} name={"ExtraBodyValues"} />
           <dd css={[applyGridColIndex(2), descriptionCss]}>
-            {t("editor.action.resource.restApi.tips.extraBodyValues")}
+            {t("editor.action.resource.restApi.tip.extraBodyValues")}
           </dd>
         </div>
 

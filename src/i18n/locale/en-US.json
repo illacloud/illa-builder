@@ -4,6 +4,9 @@
   "description": {
     "part1": "This is an example without namespaces."
   },
+  "btn": {
+    "chooseFile": "Choose a file"
+  },
   "editor": {
     "action": {
       "actionList": {
@@ -68,17 +71,55 @@
           "back": "Back",
           "testConnection": "Test Connection",
           "createResource": "Create Resource"
+        },
+        "validate": {
+          "required": "{name} is required!"
         }
       },
       "resource": {
         "mySql": {
-          "name": "MySQL"
+          "name": "MySQL",
+          "label": {
+            "name": "Name",
+            "hostname/port": "Hostname/Port",
+            "database": "Database",
+            "username/password": "Username/Password",
+            "connectType": "Connect Type",
+            "connectOverSsh": "Connect over SSH",
+            "sshHostnamePort": "SSH Hostname/Port",
+            "sshCredentials": "SSH Credentials",
+            "privateKey": "Private Key",
+            "sshPassphrase": "SSH passphrase",
+            "sslOptions": "SSL options",
+            "serverRootCertificate": "Server Root Certificate",
+            "clientKey": "Client Key",
+            "clientCertificate": "Client Certificate"
+          },
+          "tip": {
+            "username/password": "Credentials will be encrypted & stored securely on our servers.",
+            "connectType": "Cloud: ILLA servers will securely connect to your database.",
+            "connectOverSsh": "Useful to connect to private network",
+            "sslOptions": "SSL is used when available",
+            "sshPassphrase": "used if provided"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "Hostname",
+            "database": "acme_production",
+            "username": "Username",
+            "password": "Password",
+            "sshHostnamePort": "e.g.localhost",
+            "sshCredentials": "e.g.ec2-user",
+            "privateKey": "e.g.path/to/root.crt",
+            "serverRootCertificate": "e.g.path/to/root.crt",
+            "clientKey": "e.g.path/to/root.crt",
+            "clientCertificate": "e.g.path/to/root.crt"
+          }
         },
-        "postgres": { "name": "Postgres" },
-        "redis": { "name": "Redis" },
         "restApi": {
           "name": "REST API",
           "label": {
+            "name": "Name",
             "actionType": "Action Type",
             "urlParameters": "URL Parameters",
             "headers": "Headers",
@@ -88,7 +129,6 @@
             "listOfCookiesToForward": "List Of Cookies To Forward",
             "forwardAllCookies": "Forward All Cookies",
             "baseUrl": "Base URL",
-            "name": "Name",
             "authentication": "Authentication",
             "basicAuthUsername": "Basic Auth username",
             "basicAuthPassword": "Basic Auth password",
@@ -108,7 +148,7 @@
             "accessTokenLifespan": "Access Token lifespan(optiinal)",
             "enableAuthVerificationEndpoint": "Enable an auth verification endpoint"
           },
-          "tips": {
+          "tip": {
             "getReqAutoRun": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
             "name": "The name for resource when creating queries in the ILLA.",
             "extraBodyValues": "Extra body values are not passed for GET or HEAD requests",
@@ -125,7 +165,9 @@
             "accessTokenUrl": "https://www.googleapis.com/oauth2/v4/token",
             "accessTokenLifespan": "Token Lifespan in seconds"
           }
-        }
+        },
+        "postgres": { "name": "Postgres" },
+        "redis": { "name": "Redis" }
       }
     }
   }

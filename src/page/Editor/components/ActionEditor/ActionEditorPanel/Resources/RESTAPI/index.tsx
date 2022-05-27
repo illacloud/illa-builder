@@ -40,7 +40,7 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
           />
         </div>
         <dd css={[applyGridColIndex(2), descriptionCss]}>
-          {t("editor.action.resource.restApi.tips.getReqAutoRun")}
+          {t("editor.action.resource.restApi.tip.getReqAutoRun")}
         </dd>
       </div>
 

@@ -30,7 +30,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
     },
     { title: t("editor.action.resource.mySql.name"), img: <MysqlIcon /> },
     {
-      title: t("editor.action.resource.redis"),
+      title: t("editor.action.resource.redis.name"),
       img: <RedisIcon />,
       draft: true,
     },

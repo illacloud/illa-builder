@@ -29,7 +29,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           {t("editor.action.resource.restApi.label.configureOAuth2")}
         </label>
         <dd css={[descriptionCss, OAuth2Description]}>
-          {t("editor.action.resource.restApi.tips.configureOAuth2")}
+          {t("editor.action.resource.restApi.tip.configureOAuth2")}
         </dd>
         <Controller
           render={({ field }) => (

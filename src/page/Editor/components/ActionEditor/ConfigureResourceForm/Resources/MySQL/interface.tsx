@@ -43,4 +43,5 @@ export interface InputUploadProps {
   name: keyof MySQLFormValues
   register: UseFormRegister<MySQLFormValues>
   reset: UseFormResetField<MySQLFormValues>
+  placeholder?: string
 }
