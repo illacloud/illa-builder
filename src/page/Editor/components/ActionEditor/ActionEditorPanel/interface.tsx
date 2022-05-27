@@ -17,5 +17,5 @@ export interface TitleInputProps
 }
 
 export interface ResourcePanelProps {
-  resourceId: string
+  resourceId?: string
 }

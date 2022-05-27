@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
+import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 import { ActionEditorPanelProps } from "./interface"
 import {
   containerCss,
@@ -20,7 +21,7 @@ import {
   actionSelectCss,
   triggerSelectCss,
   resourceSelectCss,
-  editIconCss,
+  applyEditIconCss,
   moreBtnCss,
   sectionTitleCss,
   resourceBarCss,
@@ -32,7 +33,6 @@ import {
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
-import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 
 const { Item: MenuItem } = Menu
 
@@ -47,7 +47,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [resourceId, setResourceId] = useState("")
+  const [resourceId, setResourceId] = useState("preset_REST API")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
 
   const actionItems = useSelector(selectAllActionItem)
@@ -213,6 +213,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                     {t("editor.action.panel.option.resource.new")}
                   </span>
                 </Option>
+                <Divider />
+                <Option value={"preset_REST API"}>
+                  <span
+                    css={resourceOptionCss}
+                    title={t("editor.action.panel.option.resource.restQuery")}
+                  >
+                    {t("editor.action.panel.option.resource.restQuery")}
+                  </span>
+                </Option>
                 {resourceList &&
                   resourceList.map(({ id, name }) => (
                     <Option value={id} key={id}>
@@ -222,7 +231,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                     </Option>
                   ))}
               </Select>
-              <div css={editIconCss} onClick={editResource}>
+              <div css={applyEditIconCss(!resourceId)} onClick={editResource}>
                 <PenIcon />
               </div>
             </div>

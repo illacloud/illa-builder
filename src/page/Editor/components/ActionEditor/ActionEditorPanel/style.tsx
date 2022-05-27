@@ -1,5 +1,5 @@
 import chroma from "chroma-js"
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const containerCss = css`
@@ -58,8 +58,8 @@ export const titleInputCss = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -140,23 +140,32 @@ export const resourceOptionCss = css`
   text-overflow: ellipsis;
 `
 
-export const editIconCss = css`
-  width: 32px;
-  height: 32px;
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  border-radius: 0 8px 8px 0;
-  box-sizing: border-box;
-  cursor: pointer;
+export function applyEditIconCss(disabled: boolean): SerializedStyles {
+  const hoverCss = disabled
+    ? ""
+    : css`
+        &:hover > svg {
+          color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+        }
+      `
 
-  & > svg {
-    margin: 8px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  }
+  const cursorCss = disabled ? "cursor: not-allowed;" : "cursor: pointer;"
 
-  &:hover > svg {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
-  }
-`
+  return css`
+    width: 32px;
+    height: 32px;
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    border-radius: 0 8px 8px 0;
+    box-sizing: border-box;
+
+    ${cursorCss}
+    ${hoverCss}
+    & > svg {
+      margin: 8px;
+      color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    }
+  `
+}
 
 export const sectionTitleCss = css`
   font-size: 14px;

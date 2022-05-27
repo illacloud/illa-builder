@@ -13,10 +13,16 @@ import { ResourcePanelProps } from "./interface"
 export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
   const { resourceId } = props
 
-  const resource = useSelector(selectAllResource).find(
-    (i) => i.id === resourceId,
-  )
-  const resourceType = resource?.type
+  const resourceType = (function getResourceType() {
+    if (resourceId?.indexOf("preset") !== -1) {
+      return resourceId?.split("_")[1]
+    }
+
+    const resource = useSelector(selectAllResource).find(
+      (i) => i.id === resourceId,
+    )
+    return resource?.type
+  })()
 
   function renderResourceConfig() {
     switch (resourceType) {
@@ -38,3 +44,5 @@ export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
     </>
   )
 }
+
+ResourcePanel.displayName = "ResourcePanel"
