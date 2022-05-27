@@ -1,4 +1,8 @@
-import { UseFormRegister, UseFormResetField } from "react-hook-form"
+import {
+  UseFormRegister,
+  UseFormResetField,
+  UseFormSetValue,
+} from "react-hook-form"
 import { RefObject } from "react"
 import { ConnectionRef } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/interface"
 
@@ -43,5 +47,6 @@ export interface InputUploadProps {
   name: keyof MySQLFormValues
   register: UseFormRegister<MySQLFormValues>
   reset: UseFormResetField<MySQLFormValues>
+  setValue: UseFormSetValue<MySQLFormValues>
   placeholder?: string
 }
