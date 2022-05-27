@@ -34,8 +34,9 @@ export const Editor: FC = () => {
   const { showLeftPanel, showBottomPanel, showRightPanel } = config
 
   const switchPanelState = (state: PanelState) => {
-    config[state] = !config[state]
-    setConfig({ ...config })
+    const newConfig = config
+    newConfig[state] = !newConfig[state]
+    setConfig({ ...newConfig })
   }
 
   return (
