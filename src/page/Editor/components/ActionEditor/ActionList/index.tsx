@@ -232,7 +232,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
         id,
         type,
         name: generateName(type),
-        status: Math.random() > 0.5 ? "warning" : "",
       }),
     )
 
@@ -254,7 +253,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
           id,
           type,
           name: generateName(type),
-          status: Math.random() > 0.5 ? "warning" : "",
         }),
       )
 

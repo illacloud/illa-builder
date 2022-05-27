@@ -43,6 +43,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               mode="javascript"
               lineNumbers={false}
               height="32px"
+              placeholder="key"
               _css={fieldItemKeyCss}
             />
             <Select
@@ -58,6 +59,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             mode="javascript"
             lineNumbers={false}
             height="32px"
+            placeholder="key"
             _css={fieldItemKeyCss}
           />
         )}
@@ -66,6 +68,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           mode="javascript"
           lineNumbers={false}
           height="32px"
+          placeholder="value"
           _css={fieldItemValueCss}
         />
         <div css={DeleteIconWrapper} onClick={() => removeField(index)}>

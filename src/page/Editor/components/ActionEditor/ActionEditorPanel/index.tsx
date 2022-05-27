@@ -74,6 +74,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     },
   ]
 
+  function runAction() { }
+
   function createResource() {
     onCreateResource && onCreateResource()
   }
@@ -102,7 +104,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           id,
           type,
           name: generateName(type),
-          status: Math.random() > 0.5 ? "warning" : "",
         }),
       )
 
@@ -182,6 +183,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           backgroundColor={applyIllaColor("techPurple", "07")}
           textColor={applyIllaColor("techPurple", "01")}
           leftIcon={<CaretRightIcon />}
+          onClick={runAction}
         >
           {t("editor.action.panel.btn.run")}
         </Button>
