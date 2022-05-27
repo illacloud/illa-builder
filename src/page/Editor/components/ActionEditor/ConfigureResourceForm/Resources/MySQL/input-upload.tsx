@@ -6,7 +6,13 @@ import { Button } from "@illa-design/button"
 import { displayNoneCss } from "./style"
 
 export const InputUpload: FC<InputUploadProps> = (props) => {
-  const { reset, register, name, setValue,placeholder = "e.g.path/to/root.crt" } = props
+  const {
+    reset,
+    register,
+    name,
+    setValue,
+    placeholder = "e.g.path/to/root.crt",
+  } = props
   const { t } = useTranslation()
   const registerValue = register(name)
   const [fileName, setFileName] = useState("")

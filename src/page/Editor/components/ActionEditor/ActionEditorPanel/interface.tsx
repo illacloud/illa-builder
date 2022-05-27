@@ -1,5 +1,4 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionItem } from "@/redux/action/actionList/actionListState"
 
 export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
@@ -19,4 +18,8 @@ export interface TitleInputProps
 
 export interface ResourcePanelProps {
   resourceId: string
+}
+
+export type triggerRunRef = {
+  onRun: () => void
 }

@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react"
+import { FC, useMemo, useState, useRef } from "react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
-import { ActionEditorPanelProps } from "./interface"
+import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
   containerCss,
   headerCss,
@@ -49,7 +49,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const dispatch = useDispatch()
   const [resourceId, setResourceId] = useState("")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
-
+  const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
   const resourceList = useSelector(selectAllResource)
   const activeActionItem = useMemo(() => {
@@ -182,6 +182,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           backgroundColor={applyIllaColor("techPurple", "07")}
           textColor={applyIllaColor("techPurple", "01")}
           leftIcon={<CaretRightIcon />}
+          onClick={() => {
+            triggerRunRef.current?.onRun()
+          }}
         >
           {t("editor.action.panel.btn.run")}
         </Button>
@@ -227,7 +230,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
               </div>
             </div>
             <Divider />
-            <ResourcePanel resourceId={resourceId} />
+            <ResourcePanel ref={triggerRunRef} resourceId={resourceId} />
           </>
         )}
       </div>
