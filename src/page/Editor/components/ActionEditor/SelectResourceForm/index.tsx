@@ -27,16 +27,26 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
       title: t("editor.action.resource.postgres.name"),
       img: <PostgresIcon />,
       draft: true,
+      type: "Postgres",
     },
-    { title: t("editor.action.resource.mySql.name"), img: <MysqlIcon /> },
+    {
+      title: t("editor.action.resource.mySql.name"),
+      img: <MysqlIcon />,
+      type: "MySQL",
+    },
     {
       title: t("editor.action.resource.redis.name"),
       img: <RedisIcon />,
       draft: true,
+      type: "Redis",
     },
   ]
   const apiList: ApiItemProps[] = [
-    { title: t("editor.action.resource.restApi.name"), img: <RestApiIcon /> },
+    {
+      title: t("editor.action.resource.restApi.name"),
+      img: <RestApiIcon />,
+      type: "REST API",
+    },
   ]
 
   return (
@@ -49,7 +59,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
               key={database.title}
               css={resourceItemCss}
               onClick={() => {
-                !database.draft && onSelect(database.title)
+                !database.draft && onSelect(database.type)
               }}
             >
               <div>{database.img}</div>
@@ -66,7 +76,7 @@ export const SelectResourceForm: FC<SelectResourceFormProps> = (props) => {
               key={api.title}
               css={resourceItemCss}
               onClick={() => {
-                !api.draft && onSelect(api.title)
+                !api.draft && onSelect(api.type)
               }}
             >
               <div>{api.img}</div>

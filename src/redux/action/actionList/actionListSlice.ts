@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {
-  actionListInitialState,
-  ActionListState,
-} from "@/redux/action/actionList/actionListState"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { actionListInitialState } from "@/redux/action/actionList/actionListState"
 import {
   addActionItemReducer,
   removeActionItemReducer,

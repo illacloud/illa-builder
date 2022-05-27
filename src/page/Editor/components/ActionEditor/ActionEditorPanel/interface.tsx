@@ -17,7 +17,7 @@ export interface TitleInputProps
 }
 
 export interface ResourcePanelProps {
-  resourceId: string
+  resourceId?: string
 }
 
 export type triggerRunRef = {

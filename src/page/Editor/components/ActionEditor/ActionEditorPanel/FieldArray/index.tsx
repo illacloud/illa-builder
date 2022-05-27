@@ -15,8 +15,8 @@ import {
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
-  const { hasType } = props
-  // TOOD: omit _key when return data
+  const { hasType, value, onChange } = props
+
   const getEmptyField = () => {
     return hasType
       ? { key: "", type: "text", value: "", _key: uuidv4() }
@@ -28,10 +28,16 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
     { value: "file", label: "File" },
   ]
 
-  function updateType(index: number, value: string) {
+  function updateField(
+    index: number,
+    field: "key" | "type" | "value",
+    value: string,
+  ) {
     const fieldsCopy = [...fields]
-    fieldsCopy[index].type = value
+    fieldsCopy[index][field] = value
     setFields(fieldsCopy)
+
+    onChange && onChange(fields.map(({ _key, ...rest }) => rest))
   }
 
   const fieldList = fields.map(({ key, value, type, _key }, index) => {
@@ -43,14 +49,16 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               mode="javascript"
               lineNumbers={false}
               height="32px"
+              placeholder="key"
               _css={fieldItemKeyCss}
+              onChange={(v) => updateField(index, "key", v)}
             />
             <Select
               value={type}
               options={typeOptions}
               css={fieldItemTypeCss}
               size="small"
-              onChange={(v) => updateType(index, v)}
+              onChange={(v) => updateField(index, "type", v)}
             />
           </>
         ) : (
@@ -58,7 +66,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             mode="javascript"
             lineNumbers={false}
             height="32px"
+            placeholder="key"
             _css={fieldItemKeyCss}
+            onChange={(v) => updateField(index, "key", v)}
           />
         )}
 
@@ -66,7 +76,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           mode="javascript"
           lineNumbers={false}
           height="32px"
+          placeholder="value"
           _css={fieldItemValueCss}
+          onChange={(v) => updateField(index, "value", v)}
         />
         <div css={DeleteIconWrapper} onClick={() => removeField(index)}>
           <DeleteIcon size="12px" />

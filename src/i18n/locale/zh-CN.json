@@ -38,7 +38,8 @@
             "onChange": "自动触发"
           },
           "resource": {
-            "new": "新家资源"
+            "new": "新家资源",
+            "restQuery": "RESTQuery(restapi)"
           }
         },
         "btn": {

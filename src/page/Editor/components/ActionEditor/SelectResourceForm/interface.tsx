@@ -4,15 +4,17 @@ import {
 } from "@/page/Editor/components/ActionEditor/interface"
 
 export interface ApiItemProps {
-  title: ApiType
+  title: string
   img: JSX.Element
   draft?: boolean
+  type: ApiType
 }
 
 export interface DatabaseItemProps {
-  title: DatabaseType
+  title: string
   img: JSX.Element
   draft?: boolean
+  type: DatabaseType
 }
 
 export interface SelectResourceFormProps {

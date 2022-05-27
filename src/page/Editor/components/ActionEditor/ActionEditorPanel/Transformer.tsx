@@ -9,7 +9,6 @@ import {
 import { useTranslation } from "react-i18next"
 import { RadioGroup } from "@illa-design/radio"
 import { EditorInput } from "@/components/EditorInput"
-import { rightPanelStyle } from "@/page/Editor/style"
 
 export const Transformer = () => {
   const { t } = useTranslation()

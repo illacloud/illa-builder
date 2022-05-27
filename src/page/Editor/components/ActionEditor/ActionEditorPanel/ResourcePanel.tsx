@@ -55,7 +55,17 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     const resource = useSelector(selectAllResource).find(
       (i) => i.id === resourceId,
     )
-    const resourceType = resource?.type
+
+  const resourceType = (function getResourceType() {
+    if (resourceId?.indexOf("preset") !== -1) {
+      return resourceId?.split("_")[1]
+    }
+
+    const resource = useSelector(selectAllResource).find(
+      (i) => i.id === resourceId,
+    )
+    return resource?.type
+  })()
 
     function renderResourceConfig() {
       switch (resourceType) {

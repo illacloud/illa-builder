@@ -38,7 +38,8 @@
             "onChange": "Run action automatically when inputs change"
           },
           "resource": {
-            "new": "Create a new resource"
+            "new": "Create a new resource",
+            "restQuery": "RESTQuery(restapi)"
           }
         },
         "btn": {
