@@ -1,13 +1,19 @@
-import { FC, useContext, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Input } from "@illa-design/input"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
-import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
-  const { isFullWidth, placeholder, defaultValue, isInList, attrName } = props
+  const {
+    isFullWidth,
+    placeholder,
+    defaultValue,
+    isInList,
+    attrName,
+    tempProps,
+    handleUpdateDsl,
+  } = props
 
-  const { tempProps, handleUpdateDsl } = useContext(ConfigPanelContext)
   const [inputValue, setInputValue] = useState(tempProps[attrName])
 
   useEffect(() => {

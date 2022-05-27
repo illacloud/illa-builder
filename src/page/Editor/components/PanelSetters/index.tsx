@@ -3,6 +3,8 @@ import { BaseInput } from "./InputSetter/baseInput"
 import { BaseRadioGroupSetter } from "./RadioGroupSetter/baseRadioGroup"
 import { BaseSwitchSetter } from "./SwitchSetter/baseSwitch"
 import { DynamicSwitchSetter } from "./SwitchSetter/dynamicSwitch"
+import { BaseSelect } from "./SelectSetter/baseSelect"
+import { ColorSelectSetter } from "./SelectSetter/colorSelect"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -10,6 +12,8 @@ const SetterTypeMapSetter = {
   SWITCH_SETTER: BaseSwitchSetter,
   LIST_SETTER: ListSetter,
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
+  BASE_SELECT_SETTER: BaseSelect,
+  COLOR_SELECT_SETTER: ColorSelectSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter
