@@ -238,7 +238,10 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
               </div>
             </div>
             <Divider />
-            <ResourcePanel resourceId={resourceId} />
+            <ResourcePanel
+              resourceId={resourceId}
+              activeActionItem={activeActionItem}
+            />
           </>
         )}
       </div>

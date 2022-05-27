@@ -18,4 +18,6 @@ export interface TitleInputProps
 
 export interface ResourcePanelProps {
   resourceId?: string
+  activeActionItemId?: string | null
+  onChange?: (config: Pick<ActionItem, "config">) => void
 }

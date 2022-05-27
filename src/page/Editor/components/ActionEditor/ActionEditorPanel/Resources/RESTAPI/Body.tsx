@@ -1,11 +1,13 @@
 import { FC, useState } from "react"
 import { Select } from "@illa-design/select"
-import { ContentType } from "./interface"
+import { BodyParams, ContentType } from "./interface"
 import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
 import { EditorInput } from "@/components/EditorInput"
 import { bodyFieldCss, descriptionCodeCss, descriptionCss } from "./style"
+import { BodyProps } from "./interface"
 
-export const Body: FC = () => {
+export const Body: FC<BodyProps> = (props) => {
+  const { value, onChange } = props
   const [bodyType, setBodyType] = useState<ContentType>("raw")
   const bodyTypeOptiosn = [
     {
@@ -38,11 +40,23 @@ export const Body: FC = () => {
     switch (bodyType) {
       case "json":
       case "x-www-form-urlencoded":
-        return <FieldArray />
+        return <FieldArray value={value as BodyParams[]} onChange={onChange} />
       case "form-data":
-        return <FieldArray hasType />
+        return (
+          <FieldArray
+            hasType
+            value={value as BodyParams[]}
+            onChange={onChange}
+          />
+        )
       case "raw":
-        return <EditorInput mode="javascript" />
+        return (
+          <EditorInput
+            mode="javascript"
+            value={value as string}
+            onChange={onChange}
+          />
+        )
       case "binary":
         return (
           <>
@@ -52,7 +66,11 @@ export const Body: FC = () => {
                 css={descriptionCodeCss}
               >{`{data: binary string, filename?: string }`}</code>
             </dd>
-            <EditorInput mode="javascript" />
+            <EditorInput
+              mode="javascript"
+              value={value as string}
+              onChange={onChange}
+            />
           </>
         )
       case "none":

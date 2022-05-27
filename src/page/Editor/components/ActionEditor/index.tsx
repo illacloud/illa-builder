@@ -8,13 +8,13 @@ import { ActionEditorPanelWrapper } from "./style"
 import { FormContainer } from "./FormContainer"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
+import { ActionEditorContext } from "./context"
 
 export const ActionEditor: FC<ActionEditorProps> = () => {
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
   const [resourceId, setResourceId] = useState("")
   const [isActionDirty, setIsActionDirty] = useState(false)
-
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
   const actionItems = useSelector(selectAllActionItem)
@@ -36,43 +36,50 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
   }
 
   return (
-    <div css={ActionEditorPanelWrapper}>
-      <ActionEditorLayout
-        actionList={
-          <ActionList
-            isActionDirty={isActionDirty}
-            activeActionItemId={activeActionItemId}
-            onSelectActionItem={setActiveActionItemId}
-            onAddActionItem={setActiveActionItemId}
-            onDuplicateActionItem={setActiveActionItemId}
-            onDeleteActionItem={onDeleteActionItem}
-          />
-        }
-        actionEditorPanel={
-          <ActionEditorPanel
-            activeActionItemId={activeActionItemId}
-            onDeleteActionItem={onDeleteActionItem}
-            onDuplicateActionItem={setActiveActionItemId}
-            onCreateResource={() => {
-              setActionType("select")
-              setFormVisible(true)
-            }}
-            onEditResource={(id: string) => {
-              setResourceId(id)
-              setActionType("edit")
-              setFormVisible(true)
-            }}
-          />
-        }
-      />
+    <ActionEditorContext.Provider
+      value={{
+        activeActionItemId,
+        resourceId,
+      }}
+    >
+      <div css={ActionEditorPanelWrapper}>
+        <ActionEditorLayout
+          actionList={
+            <ActionList
+              isActionDirty={isActionDirty}
+              activeActionItemId={activeActionItemId}
+              onSelectActionItem={setActiveActionItemId}
+              onAddActionItem={setActiveActionItemId}
+              onDuplicateActionItem={setActiveActionItemId}
+              onDeleteActionItem={onDeleteActionItem}
+            />
+          }
+          actionEditorPanel={
+            <ActionEditorPanel
+              activeActionItemId={activeActionItemId}
+              onDeleteActionItem={onDeleteActionItem}
+              onDuplicateActionItem={setActiveActionItemId}
+              onCreateResource={() => {
+                setActionType("select")
+                setFormVisible(true)
+              }}
+              onEditResource={(id: string) => {
+                setResourceId(id)
+                setActionType("edit")
+                setFormVisible(true)
+              }}
+            />
+          }
+        />
 
-      <FormContainer
-        visible={formVisible}
-        actionType={actionType}
-        resourceId={resourceId}
-        onCancel={() => setFormVisible(false)}
-      />
-    </div>
+        <FormContainer
+          visible={formVisible}
+          actionType={actionType}
+          resourceId={resourceId}
+          onCancel={() => setFormVisible(false)}
+        />
+      </div>
+    </ActionEditorContext.Provider>
   )
 }
 

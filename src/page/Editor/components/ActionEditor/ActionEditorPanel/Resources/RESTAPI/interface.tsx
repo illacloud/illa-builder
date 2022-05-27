@@ -7,20 +7,31 @@ export type ContentType =
   | "binary"
   | "none"
 
-interface Params {
+export interface Params {
   key: string
   value: string
 }
-interface BodyParams extends Params {
+
+export interface BodyParams extends Params {
   type?: "text" | "file"
 }
 
-export interface RESTAPIPanelProps {
-  methed?: HTTPMethod
+export interface BodyProps {
+  value?: BodyParams[] | string
+  onChange?: (newValue: BodyParams[] | string) => void
+}
+
+export interface RESTAPIPanelConfig {
+  method?: HTTPMethod
   path?: string
   URLParameters?: Params[]
   Headers?: Params[]
   ContentType?: ContentType
-  Body?: BodyParams[]
+  Body?: BodyParams[] | string
   Cookies?: Params[]
+}
+
+export interface RESTAPIPanelProps {
+  config?: RESTAPIPanelConfig
+  onChange?: (config: RESTAPIPanelConfig) => void
 }

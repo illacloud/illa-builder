@@ -1,8 +1,13 @@
-import { FC, useState } from "react"
+import { FC, useState, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
+import { RESTAPIFormValues } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/RESTAPI/interface"
 import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
+import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
+import { useSelector } from "react-redux"
+import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { Body } from "./Body"
 import {
   configContainerCss,
@@ -12,11 +17,38 @@ import {
   applyGridColIndex,
 } from "../style"
 import { actionTypeCss } from "./style"
-import { RESTAPIPanelProps } from "./interface"
+import {
+  RESTAPIPanelProps,
+  Params,
+  BodyParams,
+  RESTAPIPanelConfig,
+} from "./interface"
 
-export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
+export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
+  const { onChange } = props
   const { t } = useTranslation()
-  const [method, setMethod] = useState("GET")
+  const { activeActionItemId } = useContext(ActionEditorContext)
+  const action =
+    useSelector(selectAllActionItem).find(
+      ({ id }) => id === activeActionItemId,
+    ) ?? null
+  const resourceId = action?.resourceId
+  const resource =
+    useSelector(selectAllResource).find(({ id }) => id === resourceId) ?? null
+
+  const config = action?.config?.general as RESTAPIPanelConfig
+  const resourceConfig = resource?.config as RESTAPIFormValues
+  const baseURL = resourceConfig?.BaseURL
+
+  const [method, setMethod] = useState(config?.method ?? "GET")
+  const [path, setPath] = useState(config?.path)
+  const [urlParameters, setUrlParameters] = useState<Params[]>(
+    config?.URLParameters ?? [],
+  )
+  const [headers, setHeaders] = useState<Params[]>(config?.Headers ?? [])
+  const [body, setBody] = useState<BodyParams[]>(config?.Body ?? [])
+  const [cookies, setCookies] = useState<Params[]>(config?.Cookies ?? [])
+
   const hasBody = method.indexOf("GET") === -1
 
   return (
@@ -33,10 +65,12 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
             size={"small"}
           />
           <Input
+            value={path}
+            onChange={setPath}
             placeholder={t(
               "editor.action.resource.restApi.placeholder.actionUrlPath",
             )}
-            addonBefore={{ render: "https://rest-sandbox.coinapi.io/" }}
+            addonBefore={{ render: baseURL ?? null }}
           />
         </div>
         <dd css={[applyGridColIndex(2), descriptionCss]}>
@@ -48,14 +82,14 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
         <label css={labelTextCss}>
           {t("editor.action.resource.restApi.label.urlParameters")}
         </label>
-        <FieldArray />
+        <FieldArray value={urlParameters} onChange={setUrlParameters} />
       </div>
 
       <div css={gridRowContainerCss}>
         <label css={labelTextCss}>
           {t("editor.action.resource.restApi.label.headers")}
         </label>
-        <FieldArray />
+        <FieldArray value={headers} onChange={setHeaders} />
       </div>
 
       {hasBody && (
@@ -63,7 +97,7 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
           <label css={labelTextCss}>
             {t("editor.action.resource.restApi.label.body")}
           </label>
-          <Body />
+          <Body value={body} onChange={setBody} />
         </div>
       )}
 
@@ -71,7 +105,7 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = () => {
         <label css={labelTextCss}>
           {t("editor.action.resource.restApi.label.cookies")}
         </label>
-        <FieldArray />
+        <FieldArray value={cookies} onChange={setCookies} />
       </div>
     </div>
   )

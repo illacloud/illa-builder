@@ -1,3 +1,4 @@
+import { RESTAPIPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/RESTAPI/interface"
 type ActionType = "action" | "transformer"
 type ActionStatus = "warning" | string
 interface ActionConnectNetwork {
@@ -8,6 +9,24 @@ interface ActionConnectNetwork {
   responseSize: number
 }
 
+interface ActionItemConfig {
+  general: RESTAPIPanelConfig
+  trigger?: "manual" | "change"
+  mode?: "gui" | "plain"
+  transfomer: Transformer
+  eventHandler: EventHandler
+}
+
+interface Transformer {
+  enable: boolean
+  value: string
+}
+
+interface EventHandler {
+  success?: string[]
+  failure?: string[]
+}
+
 export interface ActionItem {
   id: string
   name: string
@@ -15,8 +34,7 @@ export interface ActionItem {
   type: ActionType
   status?: ActionStatus
   network?: ActionConnectNetwork
-  // TODO: should restrict by resource
-  config?: any
+  config?: ActionItemConfig
 }
 
 export type ActionListState = ActionItem[]

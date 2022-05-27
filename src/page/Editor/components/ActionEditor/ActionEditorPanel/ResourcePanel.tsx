@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import { Divider } from "@illa-design/divider"
 import {
   MySQLPanel,
@@ -12,17 +12,16 @@ import { ResourcePanelProps } from "./interface"
 
 export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
   const { resourceId } = props
+  let resourceType: string
+  let resource
+  const allResource = useSelector(selectAllResource)
 
-  const resourceType = (function getResourceType() {
-    if (resourceId?.indexOf("preset") !== -1) {
-      return resourceId?.split("_")[1]
-    }
-
-    const resource = useSelector(selectAllResource).find(
-      (i) => i.id === resourceId,
-    )
-    return resource?.type
-  })()
+  if (resourceId?.indexOf("preset") !== -1) {
+    resourceType = resourceId?.split("_")[1] ?? ""
+  } else {
+    resource = allResource.find((i) => i.id === resourceId)
+    resourceType = resource?.type ?? ""
+  }
 
   function renderResourceConfig() {
     switch (resourceType) {
