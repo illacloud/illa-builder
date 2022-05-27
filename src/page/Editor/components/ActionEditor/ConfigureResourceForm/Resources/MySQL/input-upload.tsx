@@ -1,11 +1,13 @@
 import { Input } from "@illa-design/input"
+import { useTranslation } from "react-i18next"
 import { useState, useRef, FC } from "react"
 import { InputUploadProps } from "./interface"
 import { Button } from "@illa-design/button"
 import { displayNoneCss } from "./style"
 
 export const InputUpload: FC<InputUploadProps> = (props) => {
-  const { reset, register, name, setValue } = props
+  const { reset, register, name, setValue,placeholder = "e.g.path/to/root.crt" } = props
+  const { t } = useTranslation()
   const registerValue = register(name)
   const [fileName, setFileName] = useState("")
   const uploadRef = useRef<HTMLInputElement | null>(null)
@@ -19,7 +21,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
   return (
     <div>
       <Input
-        placeholder="e.g.path/to/root.crt"
+        placeholder={placeholder}
         value={fileName}
         suffix={{
           render: (
@@ -29,7 +31,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
               onClick={handleUpload}
               type="button"
             >
-              Choose a File
+              {t("btn.chooseFile")}
             </Button>
           ),
         }}

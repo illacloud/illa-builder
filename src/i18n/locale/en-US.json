@@ -4,6 +4,9 @@
   "description": {
     "part1": "This is an example without namespaces."
   },
+  "btn": {
+    "chooseFile": "Choose a file"
+  },
   "editor": {
     "action": {
       "actionList": {
@@ -27,6 +30,150 @@
           "notFound": "Sorry, No Search result",
           "empty": "Add a action to begin working with data from a connected resource."
         }
+      },
+      "panel": {
+        "option": {
+          "trigger": {
+            "manually": "Run action only when manually triggered",
+            "onChange": "Run action automatically when inputs change"
+          },
+          "resource": {
+            "new": "Create a new resource"
+          }
+        },
+        "btn": {
+          "run": "Run",
+          "saveAndRun": "Save&Run",
+          "disable": "Disable",
+          "enable": "Enable",
+          "new": "New"
+        },
+        "menu": {
+          "more": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          }
+        },
+        "label": {
+          "resource": "Resource",
+          "transformer": "Transformer",
+          "success": "Success",
+          "failure": "Failure",
+          "eventHandler": "Event Handler"
+        }
+      },
+      "form": {
+        "title": {
+          "select": "Select Resource Type",
+          "database": "DATABASES",
+          "api": "APIS"
+        },
+        "btn": {
+          "back": "Back",
+          "testConnection": "Test Connection",
+          "createResource": "Create Resource"
+        },
+        "validate": {
+          "required": "{name} is required!"
+        }
+      },
+      "resource": {
+        "mySql": {
+          "name": "MySQL",
+          "label": {
+            "name": "Name",
+            "hostname/port": "Hostname/Port",
+            "database": "Database",
+            "username/password": "Username/Password",
+            "connectType": "Connect Type",
+            "connectOverSsh": "Connect over SSH",
+            "sshHostnamePort": "SSH Hostname/Port",
+            "sshCredentials": "SSH Credentials",
+            "privateKey": "Private Key",
+            "sshPassphrase": "SSH passphrase",
+            "sslOptions": "SSL options",
+            "serverRootCertificate": "Server Root Certificate",
+            "clientKey": "Client Key",
+            "clientCertificate": "Client Certificate"
+          },
+          "tip": {
+            "username/password": "Credentials will be encrypted & stored securely on our servers.",
+            "connectType": "Cloud: ILLA servers will securely connect to your database.",
+            "connectOverSsh": "Useful to connect to private network",
+            "sslOptions": "SSL is used when available",
+            "sshPassphrase": "used if provided"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "Hostname",
+            "database": "acme_production",
+            "username": "Username",
+            "password": "Password",
+            "sshHostnamePort": "e.g.localhost",
+            "sshCredentials": "e.g.ec2-user",
+            "privateKey": "e.g.path/to/root.crt",
+            "serverRootCertificate": "e.g.path/to/root.crt",
+            "clientKey": "e.g.path/to/root.crt",
+            "clientCertificate": "e.g.path/to/root.crt"
+          }
+        },
+        "restApi": {
+          "name": "REST API",
+          "label": {
+            "name": "Name",
+            "actionType": "Action Type",
+            "urlParameters": "URL Parameters",
+            "headers": "Headers",
+            "cookies": "Cookies",
+            "body": "Body",
+            "extraBodyValues": "Extra Body Values",
+            "listOfCookiesToForward": "List Of Cookies To Forward",
+            "forwardAllCookies": "Forward All Cookies",
+            "baseUrl": "Base URL",
+            "authentication": "Authentication",
+            "basicAuthUsername": "Basic Auth username",
+            "basicAuthPassword": "Basic Auth password",
+            "configureOAuth2": "Configuring OAuth 2.0",
+            "useClientCredentialsAuth": "Use client credentials auth",
+            "oAuthCallbackUrl": "OAuth callback URL",
+            "copyUrlToApplication": "Copy this URL to your application",
+            "shareOAuth2CredentialsBetweenUsers": "Share OAuth2.0 credentials between users",
+            "authorizationUrl": "Authorization URL",
+            "accessTokenUrl": "Access Token URL",
+            "clientId": "Client ID",
+            "clientSecret": "Client Secret",
+            "scopes": "Scopes (separated by a space)",
+            "audience": "Audience",
+            "accessToken": "Access Token",
+            "refreshToken": "Refresh Token",
+            "accessTokenLifespan": "Access Token lifespan(optiinal)",
+            "enableAuthVerificationEndpoint": "Enable an auth verification endpoint"
+          },
+          "tip": {
+            "getReqAutoRun": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "name": "The name for resource when creating queries in the ILLA.",
+            "extraBodyValues": "Extra body values are not passed for GET or HEAD requests",
+            "configureOAuth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "actionUrlPath": "api/v2/endpoint.json",
+            "baseUrl": "Use the absolute URL (e.g https://example.com)",
+            "username": "username",
+            "password": "password",
+            "oAuthCallbackUrl": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+            "accessTokenUrl": "https://www.googleapis.com/oauth2/v4/token",
+            "accessTokenLifespan": "Token Lifespan in seconds"
+          },
+          "option": {
+            "Authentication": {
+              "basicAuth": "Basic Auth"
+            }
+          }
+        },
+        "postgres": { "name": "Postgres" },
+        "redis": { "name": "Redis" }
       }
     }
   }

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import {
   dashBorderBottomCss,
   gridHandlersCss,
@@ -15,6 +16,8 @@ import { EventInstanceProps } from "./interface"
 export const EventInstance = (props: EventInstanceProps) => {
   const { title } = props
   const [handlerList, setHandlerList] = useState([{ key: uuid() }])
+  const { t } = useTranslation()
+
   return (
     <>
       <div css={panelSubBarCss}>
@@ -35,7 +38,7 @@ export const EventInstance = (props: EventInstanceProps) => {
             setHandlerList([...handlerList, { key: uuid() }])
           }}
         >
-          New
+          {t("editor.action.panel.btn.new")}
         </Button>
       </div>
     </>

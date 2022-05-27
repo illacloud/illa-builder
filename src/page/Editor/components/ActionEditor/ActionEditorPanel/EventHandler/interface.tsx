@@ -1,5 +1,5 @@
 export interface EventInstanceProps {
-  title: "Success" | "Failure"
+  title: string
 }
 
 export interface HandlerItemProps {

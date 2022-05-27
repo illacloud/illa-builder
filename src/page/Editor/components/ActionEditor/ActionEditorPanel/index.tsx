@@ -6,6 +6,7 @@ import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
@@ -44,6 +45,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onDeleteActionItem,
   } = props
 
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const [resourceId, setResourceId] = useState("")
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
@@ -63,11 +65,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   const triggerOptions = [
     {
-      label: "Run action only when manually triggered",
+      label: t("editor.action.panel.option.trigger.manually"),
       value: 0,
     },
     {
-      label: "Run action automatically when inputs change",
+      label: t("editor.action.panel.option.trigger.onChange"),
       value: 1,
     },
   ]
@@ -136,10 +138,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     <Menu onClickMenuItem={handleAction} css={moreBtnMenuCss}>
       <MenuItem
         key={"duplicate"}
-        title={"Duplicate"}
+        title={t("editor.action.panel.menu.more.duplicate")}
         css={duplicateActionCss}
       />
-      <MenuItem key={"delete"} title={"Delete"} css={deleteActionCss} />
+      <MenuItem
+        key={"delete"}
+        title={t("editor.action.panel.menu.more.delete")}
+        css={deleteActionCss}
+      />
     </Menu>
   )
 
@@ -177,14 +183,16 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           textColor={applyIllaColor("techPurple", "01")}
           leftIcon={<CaretRightIcon />}
         >
-          Run
+          {t("editor.action.panel.btn.run")}
         </Button>
       </header>
       <div css={panelScrollCss}>
         {activeActionItem && (
           <>
             <div css={[actionCss, resourceBarCss]}>
-              <label css={sectionTitleCss}>Resource</label>
+              <label css={sectionTitleCss}>
+                {t("editor.action.panel.label.resource")}
+              </label>
               <span css={fillingCss} />
               <Select
                 options={triggerOptions}
@@ -198,8 +206,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 onChange={setResourceId}
               >
                 <Option onClick={createResource} isSelectOption={false}>
-                  <span css={resourceOptionCss} title="Create a new resource">
-                    Create a new resource
+                  <span
+                    css={resourceOptionCss}
+                    title={t("editor.action.panel.option.resource.new")}
+                  >
+                    {t("editor.action.panel.option.resource.new")}
                   </span>
                 </Option>
                 {resourceList &&

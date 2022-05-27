@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
 import { InputNumber } from "@illa-design/input-number"
 import { Checkbox } from "@illa-design/checkbox"
@@ -17,25 +18,25 @@ import { OAuth2Description } from "../style"
 
 export const OAuth2: FC<OAuth2Props> = (props) => {
   const { control, watch } = props
+  const { t } = useTranslation()
 
   const isUseClientCredentialsAuth = watch("UseClientCredentialsAuth")
 
   return (
     <>
       <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>Configuring OAuth 2.0</label>
+        <label css={labelTextCss}>
+          {t("editor.action.resource.restApi.label.configureOAuth2")}
+        </label>
         <dd css={[descriptionCss, OAuth2Description]}>
-          OAuth 2.0 is a complex spec. ILLA currently supports the server-side
-          OAuth 2.0 authentication flow as well as the Client Credentials flow.
-          In both cases, you must use the OAUTH2_TOKEN placeholder in order to
-          inform ILLA where to place the OAuth access token in the API request.
-          A common location for this is as a header such as Authorization:
-          Bearer OAUTH2_TOKEN.
+          {t("editor.action.resource.restApi.tip.configureOAuth2")}
         </dd>
         <Controller
           render={({ field }) => (
             <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
-              Use client credentials auth
+              {t(
+                "editor.action.resource.restApi.label.useClientCredentialsAuth",
+              )}
             </Checkbox>
           )}
           control={control}
@@ -45,25 +46,31 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       {!isUseClientCredentialsAuth && (
         <div css={gridRowContainerCss}>
-          <label css={labelTextCss}>OAuth callback URL</label>
+          <label css={labelTextCss}>
+            {t("editor.action.resource.restApi.label.oAuthCallbackUrl")}
+          </label>
           <Controller
             render={({ field }) => (
               <Input
                 {...field}
-                placeholder="https://oauth.retool.com/oauth/user/oauthcallback"
+                placeholder={t(
+                  "editor.action.resource.restApi.placeholder.oAuthCallbackUrl",
+                )}
               />
             )}
             control={control}
             name="OAuthCallbackURL"
           />
           <button css={[applyGridColIndex(2), actionTextCss]}>
-            Copy this URL to your application
+            {t("editor.action.resource.restApi.label.copyUrlToApplication")}
           </button>
 
           <Controller
             render={({ field }) => (
               <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
-                Share OAuth2.0 credentials between users
+                {t(
+                  "editor.action.resource.restApi.label.shareOAuth2CredentialsBetweenUsers",
+                )}
               </Checkbox>
             )}
             control={control}
@@ -73,12 +80,16 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       )}
 
       <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>Authorization URL</label>
+        <label css={labelTextCss}>
+          {t("editor.action.resource.restApi.label.authorizationUrl")}
+        </label>
         <Controller
           render={({ field }) => (
             <Input
               {...field}
-              placeholder="https://accounts.google.com/o/oauth2/v2/auth"
+              placeholder={t(
+                "editor.action.resource.restApi.placeholder.authorizationUrl",
+              )}
             />
           )}
           control={control}
@@ -87,12 +98,16 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       </div>
 
       <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>Access Token URL</label>
+        <label css={labelTextCss}>
+          {t("editor.action.resource.restApi.label.accessTokenUrl")}
+        </label>
         <Controller
           render={({ field }) => (
             <Input
               {...field}
-              placeholder="https://www.googleapis.com/oauth2/v4/token"
+              placeholder={t(
+                "editor.action.resource.restApi.placeholder.accessTokenUrl",
+              )}
             />
           )}
           control={control}
@@ -101,7 +116,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       </div>
 
       <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>Client ID</label>
+        <label css={labelTextCss}>
+          {t("editor.action.resource.restApi.label.clientId")}
+        </label>
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
@@ -110,7 +127,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       </div>
 
       <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>Client Secret</label>
+        <label css={labelTextCss}>
+          {t("editor.action.resource.restApi.label.clientSecret")}
+        </label>
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
@@ -120,7 +139,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={[gridRowContainerCss, gridRowCenterItemCss]}>
         <label css={labelTextCss}>
-          Scopes (separated by <br />a space)
+          {t("editor.action.resource.restApi.label.scopes")}
         </label>
         <Controller
           render={({ field }) => <Input {...field} />}
@@ -130,7 +149,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       </div>
 
       <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>Audience</label>
+        <label css={labelTextCss}>
+          {t("editor.action.resource.restApi.label.audience")}
+        </label>
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
@@ -141,7 +162,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       {!isUseClientCredentialsAuth && (
         <>
           <div css={gridRowContainerCss}>
-            <label css={labelTextCss}>Access Token</label>
+            <label css={labelTextCss}>
+              {t("editor.action.resource.restApi.label.accessToken")}
+            </label>
             <Controller
               render={({ field }) => <Input {...field} />}
               control={control}
@@ -149,7 +172,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             />
           </div>
           <div css={gridRowContainerCss}>
-            <label css={labelTextCss}>Refresh Token</label>
+            <label css={labelTextCss}>
+              {t("editor.action.resource.restApi.label.refreshToken")}
+            </label>
             <Controller
               render={({ field }) => <Input {...field} />}
               control={control}
@@ -161,12 +186,16 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={[gridRowContainerCss, gridRowCenterItemCss]}>
         <label css={labelTextCss}>
-          Access Token
-          <br /> lifespan(optiinal)
+          {t("editor.action.resource.restApi.label.accessTokenLifespan")}
         </label>
         <Controller
           render={({ field }) => (
-            <InputNumber {...field} placeholder={"Token Lifespan in seconds"} />
+            <InputNumber
+              {...field}
+              placeholder={t(
+                "editor.action.resource.restApi.placeholder.accessTokenLifespan",
+              )}
+            />
           )}
           control={control}
           name="AccessTokenLifespan"
@@ -174,7 +203,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <Controller
           render={({ field }) => (
             <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
-              Enable an auth verification endpoint
+              {t(
+                "editor.action.resource.restApi.label.enableAuthVerificationEndpoint",
+              )}
             </Checkbox>
           )}
           control={control}
