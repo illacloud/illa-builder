@@ -209,7 +209,11 @@ export const RESTAPI = forwardRef<HTMLFormElement, RESTAPIFormProps>(
                 triggerProps={{ _css: topZIndexCss }}
               >
                 <Option value={"none"}>None</Option>
-                <Option value={"basic"}>Basic Auth</Option>
+                <Option value={"basic"}>
+                  {t(
+                    "editor.action.resource.restApi.option.Authentication.basicAuth",
+                  )}
+                </Option>
                 <Option value={"OAuth2"}>OAuth 2.0</Option>
               </Select>
             )}

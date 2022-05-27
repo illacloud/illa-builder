@@ -43,6 +43,7 @@
         },
         "btn": {
           "run": "Run",
+          "saveAndRun": "Save&Run",
           "disable": "Disable",
           "enable": "Enable",
           "new": "New"
@@ -164,6 +165,11 @@
             "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
             "accessTokenUrl": "https://www.googleapis.com/oauth2/v4/token",
             "accessTokenLifespan": "Token Lifespan in seconds"
+          },
+          "option": {
+            "Authentication": {
+              "basicAuth": "Basic Auth"
+            }
           }
         },
         "postgres": { "name": "Postgres" },
