@@ -20,3 +20,5 @@ export const BugIcon = createIcon({
     </>
   ),
 })
+
+BugIcon.displayName = "BugIcon"

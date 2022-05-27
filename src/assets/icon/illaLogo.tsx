@@ -21,3 +21,5 @@ export const IllaLogoIcon = createIcon({
     </>
   ),
 })
+
+IllaLogoIcon.displayName = "IllaLogoIcon"

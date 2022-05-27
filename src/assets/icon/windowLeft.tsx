@@ -23,3 +23,5 @@ export const WindowLeftIcon = createIcon({
     </>
   ),
 })
+
+WindowLeftIcon.displayName = "WindowLeftIcon"

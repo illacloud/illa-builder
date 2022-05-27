@@ -23,3 +23,5 @@ export const WindowBottomIcon = createIcon({
     </>
   ),
 })
+
+WindowBottomIcon.displayName = "WindowBottomIcon"
