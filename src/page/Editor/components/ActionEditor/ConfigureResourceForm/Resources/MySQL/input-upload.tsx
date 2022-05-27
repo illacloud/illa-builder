@@ -5,12 +5,16 @@ import { Button } from "@illa-design/button"
 import { displayNoneCss } from "./style"
 
 export const InputUpload: FC<InputUploadProps> = (props) => {
-  const { reset, register, name } = props
+  const { reset, register, name, setValue } = props
   const registerValue = register(name)
   const [fileName, setFileName] = useState("")
   const uploadRef = useRef<HTMLInputElement | null>(null)
   const handleUpload = () => {
     uploadRef.current?.click()
+  }
+  const reader = new FileReader()
+  reader.onload = function () {
+    this.result && setValue(name, this.result as string)
   }
   return (
     <div>
@@ -47,6 +51,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
           const files = event.target.files
           if (files) {
             setFileName(files[0].name)
+            reader.readAsText(files[0])
           }
         }}
         type="file"

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { AppThunk } from "@/store"
 import {
   actionListInitialState,
   ActionListState,

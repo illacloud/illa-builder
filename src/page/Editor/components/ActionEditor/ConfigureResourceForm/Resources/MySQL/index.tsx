@@ -97,6 +97,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
       resetField,
       formState: { errors },
       getValues,
+      setValue,
     } = useForm<MySQLFormValues>({
       mode: "onBlur",
       defaultValues: (resourceConfig?.config as MySQLFormValues) || {
@@ -122,8 +123,6 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
 
     const onSubmit: SubmitHandler<MySQLFormValues> = (data) => {
       data = { ...data, ssh: expandSSH, ssl: expandSSL }
-      const _data = dataTransform(data)
-      console.log(_data)
 
       // update
       if (resourceId) {
@@ -368,6 +367,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   name="sshPrivateKey"
                   register={register}
                   reset={resetField}
+                  setValue={setValue}
                 />
               </div>
               <div css={gridRowContainerCss}>
@@ -412,6 +412,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   name="serverCert"
                   register={register}
                   reset={resetField}
+                  setValue={setValue}
                 />
               </div>
               <div css={gridRowContainerCss}>
@@ -420,6 +421,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   name="clientKey"
                   register={register}
                   reset={resetField}
+                  setValue={setValue}
                 />
               </div>
               <div css={gridRowContainerCss}>
@@ -428,6 +430,7 @@ export const MySQL = forwardRef<HTMLFormElement, MySQLFormProps>(
                   name="clientCert"
                   register={register}
                   reset={resetField}
+                  setValue={setValue}
                 />
               </div>
             </>
