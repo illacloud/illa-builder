@@ -8,7 +8,7 @@ import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
 
 export const ActionEditor: FC<ActionEditorProps> = (props) => {
-    const {className}=props
+  const { className } = props
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
 

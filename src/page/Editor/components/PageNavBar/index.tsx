@@ -4,7 +4,8 @@ import { MoreIcon, CaretRightIcon } from "@illa-design/icon"
 import { useTranslation } from "react-i18next"
 import {
   descriptionStyle,
-  informationStyle, nameStyle,
+  informationStyle,
+  nameStyle,
   navBarStyle,
   rowCenter,
   viewControlStyle,

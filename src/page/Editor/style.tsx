@@ -29,7 +29,7 @@ export function applyLeftPanelStyle(display: boolean): SerializedStyles {
     width: 280px;
     height: 100%;
     border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${display? '': 'display: none'};
+    ${display ? "" : "display: none"};
   `
 }
 
@@ -42,7 +42,7 @@ export function applyBottomPanelStyle(display: boolean): SerializedStyles {
   return css`
     width: 100%;
     border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${display? '': 'display: none'};
+    ${display ? "" : "display: none"};
   `
 }
 export function applyRightPanelStyle(display: boolean): SerializedStyles {
@@ -50,7 +50,7 @@ export function applyRightPanelStyle(display: boolean): SerializedStyles {
     width: 320px;
     height: 100%;
     border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    ${display? '': 'display: none'};
+    ${display ? "" : "display: none"};
   `
 }
 

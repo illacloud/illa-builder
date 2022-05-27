@@ -1,12 +1,10 @@
-export const IllaLogoIcon = () => {
-  return (
-    <svg
-      width="34"
-      height="16"
-      viewBox="0 0 34 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+import { createIcon } from "@illa-design/icon"
+
+export const IllaLogoIcon = createIcon({
+  title: "IllaLogoIcon",
+  viewBox: "0 0 34 16",
+  path: (
+    <>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -20,6 +18,6 @@ export const IllaLogoIcon = () => {
         d="M29.6 8.022a3.6 3.6 0 1 1 0-.022v.022zm0 7.124A8 8 0 1 1 34 8v8h-4.4v-.854z"
         fill="#654AEC"
       />
-    </svg>
-  )
-}
+    </>
+  ),
+})
