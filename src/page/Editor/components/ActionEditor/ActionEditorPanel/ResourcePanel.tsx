@@ -1,15 +1,21 @@
-import { forwardRef, useState, useImperativeHandle } from "react"
+import Api from "@/api/api"
+import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
 import {
   MySQLPanel,
   RESTAPIPanel,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources"
+import { RESTAPIPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/RESTAPI/interface"
+import { MySQLPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/MySQL/interface"
+import { ActionItemConfig } from "@/redux/action/actionList/actionListState"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import { useSelector } from "react-redux"
+import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { actionListActions } from "@/redux/action/actionList/actionListSlice"
+import { useSelector, useDispatch } from "react-redux"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
+import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { EventHandler } from "./EventHandler"
 import { ResourcePanelProps, triggerRunRef } from "./interface"
-import Api from "@/api/api"
 
 const dataTransform = (data: any) => {
   const _data = {
@@ -32,26 +38,45 @@ const dataTransform = (data: any) => {
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
     const { resourceId } = props
+    const { activeActionItemId } = useContext(ActionEditorContext)
     let resourceType: string
     let resource
+    const activeActionItem = useSelector(selectAllActionItem).find(
+      ({ id }) => id === activeActionItemId,
+    )
     const allResource = useSelector(selectAllResource)
-    const [params, setParams] = useState({
+    const dispatch = useDispatch()
+
+    const [params, setParams] = useState<
+      Pick<ActionItemConfig, "general" | "transformer" | "eventHandler">
+    >({
       general: {},
-      transformer: "",
-      eventHandlers: [],
+      transformer: {
+        value: "",
+        enable: false,
+      },
+      eventHandler: {},
     })
 
     resource = useSelector(selectAllResource).find((i) => i.id === resourceId)
 
-    // different resource has different params, so define the type any
-    const onParamsChange = (value: any) => {
-      console.log(value, "val")
+    const onParamsChange = (value: RESTAPIPanelConfig | MySQLPanelConfig) => {
       setParams({ ...params, general: value })
     }
 
     const onRunAndSave = () => {
       const _data = dataTransform(params)
       Api.post("/api/v1/actions/:id/run", _data)
+
+      dispatch(
+        actionListActions.updateActionItemReducer({
+          ...activeActionItem,
+          config: {
+            ...activeActionItem?.config,
+            ...params,
+          },
+        }),
+      )
     }
 
     useImperativeHandle(ref, () => {
@@ -68,9 +93,9 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     function renderResourceConfig() {
       switch (resourceType) {
         case "MySQL":
-          return <MySQLPanel onParamsChange={onParamsChange} />
+          return <MySQLPanel onChange={onParamsChange} />
         case "REST API":
-          return <RESTAPIPanel />
+          return <RESTAPIPanel onChange={onParamsChange} />
         default:
           return null
       }

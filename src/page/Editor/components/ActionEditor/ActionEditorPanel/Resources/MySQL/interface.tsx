@@ -1,3 +1,7 @@
 export interface MySQLPanelProps {
-  onParamsChange: (value: any) => void
+  onChange: (value: any) => void
+}
+
+export interface MySQLPanelConfig {
+  query?: string
 }

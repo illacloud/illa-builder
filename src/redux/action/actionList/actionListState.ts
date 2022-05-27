@@ -1,4 +1,5 @@
 import { RESTAPIPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/RESTAPI/interface"
+import { MySQLPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/MySQL/interface"
 type ActionType = "action" | "transformer"
 type ActionStatus = "warning" | string
 interface ActionConnectNetwork {
@@ -9,11 +10,11 @@ interface ActionConnectNetwork {
   responseSize: number
 }
 
-interface ActionItemConfig {
-  general: RESTAPIPanelConfig
+export interface ActionItemConfig {
+  general: RESTAPIPanelConfig | MySQLPanelConfig
   trigger?: "manual" | "change"
   mode?: "gui" | "plain"
-  transfomer: Transformer
+  transformer: Transformer
   eventHandler: EventHandler
 }
 

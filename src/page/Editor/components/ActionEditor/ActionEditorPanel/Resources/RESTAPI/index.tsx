@@ -40,16 +40,23 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
   const resourceConfig = resource?.config as RESTAPIFormValues
   const baseURL = resourceConfig?.BaseURL
 
-  const [method, setMethod] = useState(config?.method ?? "GET")
-  const [path, setPath] = useState(config?.path)
-  const [urlParameters, setUrlParameters] = useState<Params[]>(
-    config?.URLParameters ?? [],
-  )
-  const [headers, setHeaders] = useState<Params[]>(config?.Headers ?? [])
-  const [body, setBody] = useState<BodyParams[]>(config?.Body ?? [])
-  const [cookies, setCookies] = useState<Params[]>(config?.Cookies ?? [])
+  const [params, setParams] = useState({
+    method: config?.method ?? "GET",
+    path: config?.path,
+    URLParameters: config?.URLParameters ?? [],
+    Headers: config?.Headers ?? [],
+    Body: config?.Body ?? [],
+    Cookies: config?.Cookies ?? [],
+  })
 
-  const hasBody = method.indexOf("GET") === -1
+  const hasBody = params.method.indexOf("GET") === -1
+
+  function updateField(field: string) {
+    return (v: any) => {
+      setParams({ ...params, [field]: v })
+      onChange && onChange(params)
+    }
+  }
 
   return (
     <div css={configContainerCss}>
@@ -59,14 +66,14 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
         </label>
         <div css={actionTypeCss}>
           <Select
-            value={method}
-            onChange={setMethod}
+            value={params.method}
+            onChange={updateField("method")}
             options={["GET", "POST", "PUT", "DELETE", "PATCH"]}
             size={"small"}
           />
           <Input
-            value={path}
-            onChange={setPath}
+            value={params.path}
+            onChange={updateField("path")}
             placeholder={t(
               "editor.action.resource.restApi.placeholder.actionUrlPath",
             )}
@@ -82,14 +89,17 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
         <label css={labelTextCss}>
           {t("editor.action.resource.restApi.label.urlParameters")}
         </label>
-        <FieldArray value={urlParameters} onChange={setUrlParameters} />
+        <FieldArray
+          value={params.URLParameters}
+          onChange={updateField("URLParameter")}
+        />
       </div>
 
       <div css={gridRowContainerCss}>
         <label css={labelTextCss}>
           {t("editor.action.resource.restApi.label.headers")}
         </label>
-        <FieldArray value={headers} onChange={setHeaders} />
+        <FieldArray value={params.Headers} onChange={updateField("Headers")} />
       </div>
 
       {hasBody && (
@@ -97,7 +107,7 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
           <label css={labelTextCss}>
             {t("editor.action.resource.restApi.label.body")}
           </label>
-          <Body value={body} onChange={setBody} />
+          <Body value={params.Body} onChange={updateField("Body")} />
         </div>
       )}
 
@@ -105,7 +115,7 @@ export const RESTAPIPanel: FC<RESTAPIPanelProps> = (props) => {
         <label css={labelTextCss}>
           {t("editor.action.resource.restApi.label.cookies")}
         </label>
-        <FieldArray value={cookies} onChange={setCookies} />
+        <FieldArray value={params.Cookies} onChange={updateField("Cookies")} />
       </div>
     </div>
   )
