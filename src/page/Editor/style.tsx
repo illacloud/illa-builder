@@ -1,8 +1,6 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-const NAV_BAR_HEIGHT = 35
-
 export const editorContainerStyle = css`
   display: flex;
   flex-direction: row;

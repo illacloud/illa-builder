@@ -3,7 +3,6 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
-import { Divider } from "@illa-design/divider"
 import { Select, Option } from "@illa-design/select"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
 import { useDispatch, useSelector } from "react-redux"
@@ -19,8 +18,6 @@ import {
   requiredLabelTextCss,
   applyGridColIndex,
   descriptionCss,
-  splitLineCss,
-  groupTitleCss,
   checkboxCss,
   errorMessageCss,
   gridRowContainerCss,

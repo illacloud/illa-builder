@@ -1,8 +1,7 @@
-import { EmotionJSX } from "@emotion/react/types/jsx-namespace"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { FC, useRef, cloneElement, createRef } from "react"
+import { FC, useRef, cloneElement } from "react"
 import { ConfigureResourceFormProps, ConnectionRef } from "./interface"
 import { MySQL, RESTAPI } from "./Resources"
 import {

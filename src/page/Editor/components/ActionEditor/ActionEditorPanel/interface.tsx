@@ -1,5 +1,4 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionItem } from "@/redux/action/actionList/actionListState"
 
 export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
