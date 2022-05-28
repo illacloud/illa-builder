@@ -3,5 +3,14 @@
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
-  }
+  },
+  "apps": "Apps",
+  "resources": "Resources",
+  "create_new": "Create New",
+  "share": "Share",
+  "edit": "Edit",
+  "rename": "Rename",
+  "duplicate": "Duplicate",
+  "move_to_trash": "Move to trash",
+  "network_error": "Network Error"
 }

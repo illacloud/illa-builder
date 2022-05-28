@@ -3,5 +3,14 @@
   "title": "欢迎来到艾拉云",
   "description": {
     "part1": "这是一个示例。"
-  }
+  },
+  "apps": "应用",
+  "resources": "资源",
+  "create_new": "创建",
+  "share": "分享",
+  "edit": "编辑",
+  "rename": "重命名",
+  "duplicate": "复制",
+  "move_to_trash": "移到回收站",
+  "network_error": "网络错误"
 }

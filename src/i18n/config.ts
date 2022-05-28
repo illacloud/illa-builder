@@ -16,7 +16,7 @@ export const resources = {
   },
 } as const
 
-use(initReactI18next).init({
+await use(initReactI18next).init({
   lng: "en",
   fallbackLng: "en",
   debug: true,

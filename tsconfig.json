@@ -18,7 +18,11 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client"
+    ]
   },
   "include": [
     "./src/**/*.tsx",
