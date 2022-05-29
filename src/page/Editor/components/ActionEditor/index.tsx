@@ -7,12 +7,13 @@ import { FormContainer } from "./FormContainer"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
 
-export const ActionEditor: FC<ActionEditorProps> = () => {
+export const ActionEditor: FC<ActionEditorProps> = (props) => {
+  const { className } = props
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
 
   return (
-    <div css={ActionEditorPanelWrapper}>
+    <div css={ActionEditorPanelWrapper} className={className}>
       <ActionEditorLayout
         actionList={<ActionList />}
         actionEditorPanel={

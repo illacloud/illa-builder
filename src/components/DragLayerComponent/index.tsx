@@ -2,9 +2,7 @@ import { HTMLAttributes } from "react"
 import { applyDragLayer } from "./style"
 
 export interface DragLayerProps extends HTMLAttributes<HTMLDivElement> {
-  rowHeight: number
-  columnWidth: number
-  noPad: boolean
+  noPad?: boolean
 }
 
 export function DragLayerComponent(props: DragLayerProps) {

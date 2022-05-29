@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { DropTargetMonitor, useDrop } from "react-dnd"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
 import { DropInfo } from "@/redux/editor/dsl/dslState"
 import { dslActions } from "@/redux/editor/dsl/dslSlice"
@@ -12,7 +12,13 @@ import {
 import { getTargetOffset } from "@/wrappedComponents/utils"
 import { ContainerWidgetProps } from "./interface"
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { ComponentModel, DragInfo } from "@/wrappedComponents/interface"
+import {
+  getDragDetails,
+  getWidgetStates,
+} from "@/redux/editor/widgetStates/widgetStateSelector"
+import { DragLayerComponent } from "@/components/DragLayerComponent"
+import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
 import { inspectActions } from "@/redux/inspect/inspectSlice"
 
 interface PanelDrag {
@@ -40,9 +46,7 @@ export const CONTAINER_WIDGET_CONFIG: ComponentModel = {
   },
 }
 
-export const ContainerWidget: FC<ContainerWidgetProps> = (
-  containerWidgetProps,
-) => {
+export const ContainerWidget: FC<ContainerWidgetProps> = (containerWidgetProps) => {
   const {
     children,
     props,
@@ -51,14 +55,19 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
     props: { topRow, leftColumn },
   } = containerWidgetProps
   const dispatch = useDispatch()
+  const { isDragging, isResizing } = useSelector(getWidgetStates)
+  const { draggedOn } = useSelector(getDragDetails)
+  const showDragLayer = isDragging || isResizing
+  const { setDraggingNewWidget } = useDragWidget()
 
-  const [collectProps, dropTarget] = useDrop<PanelDrag, DropInfo, Object>(
+  const [collectProps, dropTarget] = useDrop<DragInfo>(
     () => ({
       accept: WidgetTypeList,
       drop: (item, monitor: DropTargetMonitor) => {
         if (monitor.getDropResult<DropInfo>()?.hasDropped) {
           return monitor.getDropResult<DropInfo>()!!
         }
+        setDraggingNewWidget(false, undefined)
         if (item.type) {
           let monitorOffset = getTargetOffset(monitor?.getClientOffset(), id)
           const widgetId = "dsl" + uuidv4()
@@ -108,6 +117,7 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
           height: "100%",
         }}
       >
+        {showDragLayer ? <DragLayerComponent /> : null}
         {children?.map((value) => {
           const { type } = value
           const child = widgetBuilder(type)

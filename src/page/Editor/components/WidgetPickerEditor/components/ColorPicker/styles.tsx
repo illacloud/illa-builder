@@ -25,7 +25,7 @@ export const slideAndLumpContainerCss = css`
   align-items: center;
   justify-content: center;
   padding-bottom: 21px;
-  border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const titleCss = css`
@@ -35,16 +35,16 @@ export const titleCss = css`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   box-sizing: border-box;
   padding: 0 12px;
-  color: ${globalColor(`--${illaPrefix}-grayblue-01`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
   margin-bottom: 8px;
 `
 
 export const sessionTitleCss = css`
   width: 100%;
-  color: ${globalColor(`--${illaPrefix}-grayblue-01`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
   font-size: 12px;
   padding: 10px 0 0 8px;
   box-sizing: border-box;
@@ -53,7 +53,7 @@ export const sessionTitleCss = css`
 export const slideCss = css`
   margin-top: 9.6px;
   box-sizing: border-box;
-  border: solid 1px ${globalColor(`--${illaPrefix}-grayblue-07`)}; ;
+  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-07`)}; ;
 `
 
 export const commonSlidePointCss = css`
@@ -126,7 +126,7 @@ export const colorInputContainerCss = css`
 export const labelCss = css`
   margin-right: 5px;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-grayblue-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const swatchContainerCss = css`
@@ -145,7 +145,7 @@ export const colorInputCss = css`
   font-size: 12px;
 
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-grayblue-09`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
 
@@ -195,7 +195,7 @@ export function applyColorSwatchCss(colorStr?: string) {
   const borderCss =
     colorStr?.toLowerCase() === "#ffffff"
       ? css`
-          border: solid 1px ${globalColor(`--${illaPrefix}-grayblue-08`)};
+          border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
         `
       : css`
           border: solid 1px ${colorStr};

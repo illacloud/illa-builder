@@ -2,6 +2,7 @@ import { DslState } from "@/redux/editor/dsl/dslState"
 import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
 import { MAIN_CONTAINER_ID } from "@/page/Editor/constants"
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import { DslActionHandlerPayload } from "./dslPayload"
 
 export const DslActionName = {
   AddFrame: "AddFrame",
@@ -108,10 +109,7 @@ export const updateDslProps: CaseReducer<
 
 export const dslActionHandler: CaseReducer<
   DslState,
-  PayloadAction<{
-    type: DslAction
-    dslFrame: DSLWidget
-  }>
+  PayloadAction<DslActionHandlerPayload>
 > = (state, action) => {
   let safeState = state
   switch (action.payload?.type) {
