@@ -74,6 +74,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
           }
           actionEditorPanel={
             <ActionEditorPanel
+              key={activeActionItemId}
               isActionDirty={isActionDirty}
               onDeleteActionItem={onDeleteActionItem}
               onDuplicateActionItem={updateActiveActionItemId}
