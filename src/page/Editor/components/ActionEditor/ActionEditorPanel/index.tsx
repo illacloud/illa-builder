@@ -39,12 +39,14 @@ const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
+    isActionDirty,
     onEditResource,
     onChangeResource,
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
     onChange,
+    onSave,
   } = props
 
   const { activeActionItemId } = useContext(ActionEditorContext)
@@ -187,10 +189,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           textColor={applyIllaColor("techPurple", "01")}
           leftIcon={<CaretRightIcon />}
           onClick={() => {
-            triggerRunRef.current?.onRun()
+            isActionDirty
+              ? triggerRunRef.current?.saveAndRun()
+              : triggerRunRef.current?.run()
           }}
         >
-          {t("editor.action.panel.btn.run")}
+          {isActionDirty
+            ? t("editor.action.panel.btn.saveAndRun")
+            : t("editor.action.panel.btn.run")}
         </Button>
       </header>
       <div css={panelScrollCss}>
@@ -250,6 +256,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
               ref={triggerRunRef}
               resourceId={resourceId}
               onChange={onChange}
+              onSave={onSave}
             />
           </>
         )}

@@ -74,6 +74,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
           }
           actionEditorPanel={
             <ActionEditorPanel
+              isActionDirty={isActionDirty}
               onDeleteActionItem={onDeleteActionItem}
               onDuplicateActionItem={updateActiveActionItemId}
               onCreateResource={() => {
@@ -87,6 +88,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
               }}
               onChangeResource={setResourceId}
               onChange={() => setIsActionDirty(true)}
+              onSave={() => setIsActionDirty(false)}
             />
           }
         />

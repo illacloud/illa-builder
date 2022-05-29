@@ -37,7 +37,7 @@ const dataTransform = (data: any) => {
 
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
-    const { resourceId, onChange } = props
+    const { resourceId, onChange, onSave } = props
     const { activeActionItemId } = useContext(ActionEditorContext)
     let resourceType: string
     let resource
@@ -65,9 +65,13 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       onChange && onChange()
     }
 
-    const onRunAndSave = () => {
+    const run = () => {
       const _data = dataTransform(params)
       Api.post("/api/v1/actions/:id/run", _data)
+    }
+
+    const saveAndRun = () => {
+      run()
 
       dispatch(
         actionListActions.updateActionItemReducer({
@@ -79,10 +83,12 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           },
         }),
       )
+
+      onSave && onSave()
     }
 
     useImperativeHandle(ref, () => {
-      return { onRun: onRunAndSave }
+      return { run, saveAndRun }
     })
 
     if (resourceId?.indexOf("preset") !== -1) {
