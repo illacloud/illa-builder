@@ -1,4 +1,13 @@
-import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
+import {
+  FC,
+  useState,
+  useMemo,
+  useRef,
+  MouseEvent,
+  forwardRef,
+  useContext,
+} from "react"
+import { useTranslation } from "react-i18next"
 import { motion } from "framer-motion"
 import { useClickAway } from "react-use"
 import { useDispatch, useSelector } from "react-redux"
@@ -15,7 +24,7 @@ import {
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
-import { useTranslation } from "react-i18next"
+import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import {
   actionListContainerCss,
   applynewButtonCss,
@@ -45,7 +54,6 @@ const MenuItem = Menu.Item
 
 export const ActionList: FC<ActionListProps> = (props) => {
   const {
-    activeActionItemId = "",
     isActionDirty = false,
     onAddActionItem,
     onDuplicateActionItem,
@@ -53,6 +61,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     onSelectActionItem,
   } = props
 
+  const { activeActionItemId } = useContext(ActionEditorContext)
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const actionItems = useSelector(selectAllActionItem)

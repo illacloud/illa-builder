@@ -29,10 +29,20 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
     const lastItemId = actionItems[length - 1].id
 
     if (id === lastItemId && length > 1) {
-      setActiveActionItemId(actionItems[length - 2].id)
+      updateActiveActionItemId(actionItems[length - 2].id)
     } else {
-      setActiveActionItemId(lastItemId)
+      updateActiveActionItemId(lastItemId)
     }
+  }
+
+  function updateActiveActionItemId(id: string) {
+    setActiveActionItemId(id)
+
+    const resourceId =
+      actionItems.find(({ id: actionItemId }) => id === actionItemId)
+        ?.resourceId ?? "preset_REST API"
+
+    setResourceId(resourceId)
   }
 
   return (
@@ -47,18 +57,16 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
           actionList={
             <ActionList
               isActionDirty={isActionDirty}
-              activeActionItemId={activeActionItemId}
-              onSelectActionItem={setActiveActionItemId}
-              onAddActionItem={setActiveActionItemId}
-              onDuplicateActionItem={setActiveActionItemId}
+              onSelectActionItem={updateActiveActionItemId}
+              onAddActionItem={updateActiveActionItemId}
+              onDuplicateActionItem={updateActiveActionItemId}
               onDeleteActionItem={onDeleteActionItem}
             />
           }
           actionEditorPanel={
             <ActionEditorPanel
-              activeActionItemId={activeActionItemId}
               onDeleteActionItem={onDeleteActionItem}
-              onDuplicateActionItem={setActiveActionItemId}
+              onDuplicateActionItem={updateActiveActionItemId}
               onCreateResource={() => {
                 setActionType("select")
                 setFormVisible(true)

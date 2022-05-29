@@ -39,7 +39,6 @@ const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
-    activeActionItemId,
     onEditResource,
     onChangeResource,
     onCreateResource,
@@ -47,6 +46,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onDeleteActionItem,
   } = props
 
+  const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { resourceId } = useContext(ActionEditorContext)

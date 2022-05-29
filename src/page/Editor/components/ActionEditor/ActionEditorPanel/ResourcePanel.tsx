@@ -71,6 +71,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       dispatch(
         actionListActions.updateActionItemReducer({
           ...activeActionItem,
+          resourceId,
           config: {
             ...activeActionItem?.config,
             ...params,
