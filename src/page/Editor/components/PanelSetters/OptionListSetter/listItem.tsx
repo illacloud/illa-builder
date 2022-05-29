@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useRef, useState } from "react"
 import { DragItem, ListItemProps } from "./interface"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { Identifier } from "dnd-core"
@@ -12,12 +12,27 @@ import {
 } from "./style"
 import { MoreIcon } from "@illa-design/icon"
 import useBus, { dispatch } from "use-bus"
+import { ActionMenu } from "@/page/Editor/components/PanelSetters/OptionListSetter/ActionMenu"
 
 export const ListItem: FC<ListItemProps> = (props) => {
-  const { id, label, value, disabled, index, handleUpdateDsl, moveItem } = props
+  const {
+    id,
+    label,
+    value,
+    disabled,
+    index,
+    handleUpdateItem,
+    moveItem,
+    handleCopyItem,
+    handleDeleteItem,
+  } = props
 
   const [modalVisible, setModalVisible] = useState(false)
+  const [actionMenuVisible, setActionMenuVisible] = useState(false)
+
   const ref = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLDivElement>(null)
+  const moreIconRef = useRef<HTMLDivElement>(null)
 
   const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
     accept: "OPTION_ITEM",
@@ -74,6 +89,14 @@ export const ListItem: FC<ListItemProps> = (props) => {
     setModalVisible(true)
   }, [])
 
+  const handleOpenActionMenu = useCallback(() => {
+    setActionMenuVisible(true)
+  }, [])
+
+  const handleCloseActionMenu = useCallback(() => {
+    setActionMenuVisible(false)
+  }, [])
+
   useBus(`CLOSE_LIST_ALL_MODAL`, handleCloseModal, [handleCloseModal])
   useBus(`OPEN_LIST_ITEM_MODAL_${index}`, handleOpenModal, [
     handleOpenModal,
@@ -89,31 +112,31 @@ export const ListItem: FC<ListItemProps> = (props) => {
 
   return (
     <div ref={ref} style={{ opacity }}>
-      <Trigger
-        colorScheme="white"
-        popupVisible={modalVisible}
-        content={
-          <Modal
-            title="Editor Options"
-            label={label}
-            value={value}
-            index={index}
-            disabled={disabled}
-            handleUpdateDsl={handleUpdateDsl}
-          />
-        }
-        trigger="click"
-        showArrow={false}
-        position="left"
-        clickOutsideToClose
-        onVisibleChange={(visible) => {
-          if (!visible) {
-            setModalVisible(visible)
+      <div css={optionListItemCss}>
+        <Trigger
+          colorScheme="white"
+          popupVisible={modalVisible}
+          content={
+            <Modal
+              title="Editor Options"
+              label={label}
+              value={value}
+              index={index}
+              disabled={disabled}
+              handleUpdateItem={handleUpdateItem}
+              handleCloseModal={handleCloseModal}
+            />
           }
-        }}
-      >
-        <div css={optionListItemCss} onClick={handleClickItemBody}>
-          <div css={labelNameAndIconCss}>
+          trigger="click"
+          showArrow={false}
+          position="left"
+          clickOutsideToClose
+        >
+          <div
+            css={labelNameAndIconCss}
+            ref={triggerRef}
+            onClick={handleClickItemBody}
+          >
             <span css={movableIconWrapperCss} className="movableIconWrapper">
               <svg
                 width="16"
@@ -132,11 +155,29 @@ export const ListItem: FC<ListItemProps> = (props) => {
             </span>
             <span css={labelNameWrapper}>{label || value || "No label"}</span>
           </div>
-          <div>
+        </Trigger>
+        <Trigger
+          colorScheme="white"
+          popupVisible={actionMenuVisible}
+          content={
+            <ActionMenu
+              index={index}
+              handleCopyItem={handleCopyItem}
+              handleDeleteItem={handleDeleteItem}
+              handleCloseMode={handleCloseActionMenu}
+            />
+          }
+          trigger="click"
+          showArrow={false}
+          position="bottom"
+          clickOutsideToClose
+          closeOnClick
+        >
+          <div ref={moreIconRef} onClick={handleOpenActionMenu}>
             <MoreIcon />
           </div>
-        </div>
-      </Trigger>
+        </Trigger>
+      </div>
     </div>
   )
 }

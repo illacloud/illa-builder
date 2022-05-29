@@ -11,23 +11,30 @@ import {
 import { ModalProps } from "./interface"
 import { Input } from "@illa-design/input"
 import { CloseIcon } from "@illa-design/icon"
-import { dispatch } from "use-bus"
 
 export const Modal: FC<ModalProps> = (props) => {
-  const { title, label, value, index, handleUpdateDsl, disabled } = props
+  const {
+    title,
+    label,
+    value,
+    index,
+    handleUpdateItem,
+    disabled,
+    handleCloseModal,
+  } = props
 
   const [labelValue, setLabelValue] = useState(label)
   const [optionValue, setOptionValue] = useState(value)
   const [disabledValue, setDisabledValue] = useState(disabled ?? "")
 
   const handleClickCloseIcon = useCallback(() => {
-    dispatch(`CLOSE_LIST_ITEM_MODAL_${index}`)
-  }, [index])
+    handleCloseModal()
+  }, [handleCloseModal])
 
   const handleChangeValue = useCallback(
     (value) => {
       setOptionValue(value)
-      handleUpdateDsl(index, {
+      handleUpdateItem(index, {
         value: value,
       })
     },
@@ -37,7 +44,7 @@ export const Modal: FC<ModalProps> = (props) => {
   const handleChangeLabel = useCallback(
     (value) => {
       setLabelValue(value)
-      handleUpdateDsl(index, {
+      handleUpdateItem(index, {
         label: value,
       })
     },
@@ -47,7 +54,7 @@ export const Modal: FC<ModalProps> = (props) => {
   const handleChangeDisabled = useCallback(
     (value) => {
       setDisabledValue(value)
-      handleUpdateDsl(index, {
+      handleUpdateItem(index, {
         disabled: value && value !== "false",
       })
     },
