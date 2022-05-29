@@ -2,11 +2,11 @@ import Api from "@/api/api"
 import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
 import {
-  MySQLPanel,
-  RESTAPIPanel,
-} from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources"
-import { RESTAPIPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/RESTAPI/interface"
-import { MySQLPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/MySQL/interface"
+  RESTAPIParamValues,
+  RESTAPIParam,
+  MySQLParamValues,
+  MySQLParam,
+} from "@/page/Editor/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/action/actionList/actionListState"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
@@ -60,7 +60,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     resource = useSelector(selectAllResource).find((i) => i.id === resourceId)
 
-    const onParamsChange = (value: RESTAPIPanelConfig | MySQLPanelConfig) => {
+    const onParamsChange = (value: RESTAPIParamValues | MySQLParamValues) => {
       setParams({ ...params, general: value })
     }
 
@@ -93,9 +93,9 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     function renderResourceConfig() {
       switch (resourceType) {
         case "MySQL":
-          return <MySQLPanel onChange={onParamsChange} />
+          return <MySQLParam onChange={onParamsChange} />
         case "REST API":
-          return <RESTAPIPanel onChange={onParamsChange} />
+          return <RESTAPIParam onChange={onParamsChange} />
         default:
           return null
       }

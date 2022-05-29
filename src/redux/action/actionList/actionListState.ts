@@ -1,5 +1,7 @@
-import { RESTAPIPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/RESTAPI/interface"
-import { MySQLPanelConfig } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Resources/MySQL/interface"
+import {
+  RESTAPIParamValues,
+  MySQLParamValues,
+} from "@/page/Editor/components/ActionEditor/Resource"
 type ActionType = "action" | "transformer"
 type ActionStatus = "warning" | string
 interface ActionConnectNetwork {
@@ -11,7 +13,7 @@ interface ActionConnectNetwork {
 }
 
 export interface ActionItemConfig {
-  general: RESTAPIPanelConfig | MySQLPanelConfig
+  general: RESTAPIParamValues | MySQLParamValues
   trigger?: "manual" | "change"
   mode?: "gui" | "plain"
   transformer: Transformer

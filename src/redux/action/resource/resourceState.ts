@@ -1,12 +1,14 @@
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
-import { RESTAPIFormValues } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/RESTAPI/interface"
-import { MySQLFormValues } from "@/page/Editor/components/ActionEditor/ConfigureResourceForm/Resources/MySQL/interface"
+import {
+  RESTAPIConfigureValues,
+  MySQLConfigureValues,
+} from "@/page/Editor/components/ActionEditor/Resource"
 
 export interface Resource {
   id: string
   name: string
   type?: ResourceType
-  config: MySQLFormValues | RESTAPIFormValues
+  config: MySQLConfigureValues | RESTAPIConfigureValues
 }
 export type ResourceListState = Resource[]
 export const resourceInitialState: ResourceListState = []

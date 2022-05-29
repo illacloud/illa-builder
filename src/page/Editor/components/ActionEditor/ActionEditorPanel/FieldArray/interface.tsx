@@ -1,4 +1,4 @@
-interface ValueType {
+export interface ValueType {
   key: string
   value: string
   type?: "text" | "file"

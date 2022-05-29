@@ -1,11 +1,11 @@
 import { FC, useState } from "react"
 import { useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
-import { ActionType } from "@/page/Editor/components/ActionEditor/FormContainer/interface"
+import { ActionType } from "@/page/Editor/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/Editor/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/Editor/components/ActionEditor/ActionEditorPanel"
 import { ActionEditorPanelWrapper } from "./style"
-import { FormContainer } from "./FormContainer"
+import { ResourceForm } from "./ResourceForm"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
 import { ActionEditorContext } from "./context"
@@ -72,7 +72,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
           }
         />
 
-        <FormContainer
+        <ResourceForm
           visible={formVisible}
           actionType={actionType}
           resourceId={resourceId}

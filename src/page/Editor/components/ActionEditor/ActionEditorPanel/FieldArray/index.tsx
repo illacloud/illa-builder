@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
 import { EditorInput } from "@/components/EditorInput"
-import { FieldArrayProps } from "./interface"
+import { FieldArrayProps, ValueType } from "./interface"
 import {
   actionTextCss,
   DeleteIconWrapper,
@@ -37,7 +37,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
     fieldsCopy[index][field] = value
     setFields(fieldsCopy)
 
-    onChange && onChange(fields.map(({ _key, ...rest }) => rest))
+    onChange && onChange(fields.map(({ _key, ...rest }) => rest as ValueType))
   }
 
   const fieldList = fields.map(({ key, value, type, _key }, index) => {
