@@ -1,11 +1,21 @@
 import { Image } from "@illa-design/image"
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { WrappedImageProps } from "./interface"
 import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 export const WrappedImage: FC<WrappedImageProps> = (props) => {
   const { src, altText, radius, tooltipText, width, height } = props
+
+  const finalRadius = useMemo(() => {
+    const reg = /^\d+$/
+    const pattern = new RegExp(reg)
+    if (pattern.test(radius)) {
+      return radius + "px"
+    }
+    return radius
+  }, [radius])
+
   return (
     <TooltipWrapper
       tooltipText={tooltipText}
@@ -15,7 +25,7 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
       <Image
         fallbackSrc={src}
         alt={altText}
-        radius={radius}
+        radius={finalRadius}
         height={height}
         width={width}
       />
