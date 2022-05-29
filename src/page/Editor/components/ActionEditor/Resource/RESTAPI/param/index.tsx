@@ -50,8 +50,11 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   function updateField(field: string) {
     return (v: any) => {
-      setParams({ ...params, [field]: v })
-      onChange && onChange(params)
+      setParams((preParam) => {
+        const newParam = { ...preParam, [field]: v }
+        onChange && onChange(newParam)
+        return newParam
+      })
     }
   }
 
