@@ -10,7 +10,7 @@ export interface ApiError {
 }
 
 const axios = Axios.create({
-  baseURL: "https://cd2a3fdb-1414-43eb-8835-5098bdecc4c9.mock.pstmn.io",
+  baseURL: `https://${import.meta.env.BASE_URL}`,
   headers: {
     "Content-Encoding": "gzip",
     "Content-Type": "application/json",

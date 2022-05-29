@@ -43,7 +43,8 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "scenejs": "^1.6.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "ws": "^8.7.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -82,7 +83,8 @@
     "typescript": "^4.6.3",
     "vite": "^2.9.9",
     "vite-plugin-chunk-split": "^0.2.2",
-    "vite-plugin-istanbul": "^2.5.1"
+    "vite-plugin-istanbul": "^2.5.1",
+    "@types/ws": "^8.5.3"
   },
   "workspaces": [
     "src/*",
