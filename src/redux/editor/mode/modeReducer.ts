@@ -5,8 +5,5 @@ export const setPreviewMode: CaseReducer<ModeState, PayloadAction<boolean>> = (
   state,
   action,
 ) => {
-  return {
-    ...state,
-    isPreviewMode: action.payload,
-  }
+  state.isPreviewMode = action.payload
 }

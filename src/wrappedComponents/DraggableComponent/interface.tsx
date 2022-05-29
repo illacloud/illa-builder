@@ -3,12 +3,11 @@ import { WidgetType } from "@/wrappedComponents/WidgetBuilder"
 
 export interface BaseProps {
   id: string
-  type: WidgetType
   widgetName: string
+  type: WidgetType
   parentId: string
   props: {
     // WidgetPosition
-    version: string
     leftColumn?: number | string
     rightColumn?: number | string
     topRow?: number | string

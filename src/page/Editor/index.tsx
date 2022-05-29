@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useRef, useState } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { PageNavBar } from "./components/PageNavBar"
@@ -6,32 +6,50 @@ import { DataWorkspace } from "./components/DataWorkspace"
 import { ActionEditor } from "./components/ActionEditor"
 import {
   editorContainerStyle,
-  leftPanelStyle,
-  rightPanelStyle,
-  mainPanelStyle,
   navbarStyle,
   middlePanelStyle,
   centerPanelStyle,
-  bottomPanelStyle,
   contentStyle,
+  applyLeftPanelStyle,
+  applyBottomPanelStyle,
+  applyRightPanelStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { CanvasContainer } from "./components/CanvasContainer"
 
+interface PanelConfigProps {
+  showLeftPanel: boolean
+  showRightPanel: boolean
+  showBottomPanel: boolean
+}
+
+export type PanelState = keyof PanelConfigProps
+
 export const Editor: FC = () => {
+  const [config, setConfig] = useState({
+    showLeftPanel: true,
+    showRightPanel: true,
+    showBottomPanel: true,
+  })
+  const { showLeftPanel, showBottomPanel, showRightPanel } = config
+
+  const switchPanelState = (state: PanelState) => {
+    const newConfig = config
+    newConfig[state] = !newConfig[state]
+    setConfig({ ...newConfig })
+  }
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div css={editorContainerStyle}>
-        <DataWorkspace css={leftPanelStyle} />
-        <div css={mainPanelStyle}>
-          <PageNavBar css={navbarStyle} />
-          <div css={contentStyle}>
-            <div css={middlePanelStyle}>
-              <CanvasContainer css={centerPanelStyle} />
-              <ActionEditor css={bottomPanelStyle} />
-            </div>
-            <WidgetPickerEditor css={rightPanelStyle} />
+        <PageNavBar css={navbarStyle} switchPanelState={switchPanelState} />
+        <div css={contentStyle}>
+          <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+          <div css={middlePanelStyle}>
+            <CanvasContainer css={centerPanelStyle} />
+            <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
           </div>
+          <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
         </div>
       </div>
     </DndProvider>

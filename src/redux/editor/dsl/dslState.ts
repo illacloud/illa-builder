@@ -18,7 +18,6 @@ export const DslInitialState: DslState = {
     type: "CANVAS_WIDGET",
     widgetName: "Canvas",
     props: {
-      version: "0.0.1",
       height: "100%",
       width: "100%",
       leftColumn: "auto",

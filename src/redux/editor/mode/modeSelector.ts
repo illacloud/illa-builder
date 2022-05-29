@@ -1,1 +1,4 @@
-export const getPreviewMode = (state: any) => state.editor.mode.isPreviewMode
+import { RootState } from "@/store"
+
+export const getPreviewMode = (state: RootState) =>
+  state.editor.mode.isPreviewMode
