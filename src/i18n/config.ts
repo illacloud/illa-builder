@@ -1,4 +1,4 @@
-import { use } from "i18next"
+import i18n from "i18next"
 import zhCN from "./locale/zh-CN.json"
 import enUS from "./locale/en-US.json"
 import { initReactI18next } from "react-i18next"
@@ -16,12 +16,17 @@ export const resources = {
   },
 } as const
 
-await use(initReactI18next).init({
-  lng: "en",
-  fallbackLng: "en",
-  debug: true,
-  interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
-  },
-  resources,
-})
+i18n
+  .use(initReactI18next)
+  .init({
+    lng: "en",
+    fallbackLng: "en",
+    debug: false,
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
+    resources,
+  })
+  .then()
+
+export default i18n
