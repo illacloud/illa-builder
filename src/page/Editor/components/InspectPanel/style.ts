@@ -88,13 +88,20 @@ export const panelBarItemAnimation: Variants = {
 
 export const applySetterWrapperStyle = (
   isFullWidth: boolean = false,
+  hasLabel: boolean = true,
   useCustomLabel: boolean = false,
   isInList: boolean = false,
 ): SerializedStyles => {
   if (useCustomLabel) return css``
 
   return isFullWidth
-    ? publicPaddingCss
+    ? css`
+        ${publicPaddingCss};
+        height: ${hasLabel ? "auto" : "48px"};
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      `
     : css`
         display: flex;
         align-items: center;

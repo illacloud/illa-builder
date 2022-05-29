@@ -2,17 +2,9 @@ import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 
 const OptionsStyle = {
-  width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-}
-
-const optionModalStyle = {
-  width: "123px",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
 }
 
 export const SELECT_PANEL_CONFIG: PanelConfig[] = [
@@ -22,16 +14,17 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "select-options-mode",
+        isFullWidth: true,
         attrName: "optionMode",
         setterType: "RADIO_GROUP_SETTER",
         defaultValue: "manual",
         options: [
           {
-            label: <div style={optionModalStyle}>Manual</div>,
+            label: "Manual",
             value: "manual",
           },
           {
-            label: <div style={optionModalStyle}>Mapped</div>,
+            label: "Mapped",
             value: "mapped",
           },
         ],
@@ -42,7 +35,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "options",
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: "optionMode",
-        shown: (value) => value === "manual",
+        shown: (value) => !value || value === "manual",
       },
       {
         id: "select-option-data-sources",
@@ -100,8 +93,8 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
-          { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Right</div>, value: "right" },
+          { label: "Left", value: "left" },
+          { label: "Right", value: "right" },
         ],
       },
       {

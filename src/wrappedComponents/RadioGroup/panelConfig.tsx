@@ -3,7 +3,6 @@ import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
-  width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -44,8 +43,8 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
-          { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Top</div>, value: "top" },
+          { label: "Left", value: "left" },
+          { label: "Top", value: "top" },
         ],
       },
       {

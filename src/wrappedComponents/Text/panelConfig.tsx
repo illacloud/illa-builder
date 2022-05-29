@@ -10,7 +10,6 @@ import {
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const AlignmentOptionStyle = {
-  fontSize: "16px",
   display: "flex",
   alignItems: "center",
 }

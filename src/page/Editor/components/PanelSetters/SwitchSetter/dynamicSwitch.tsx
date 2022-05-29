@@ -84,6 +84,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             handleUpdateDsl={handleUpdateDsl}
             panelConfig={panelConfig}
             handleUpdateConfigPanel={handleUpdateConfigPanel}
+            isFullWidth
           />
         </div>
       )}
