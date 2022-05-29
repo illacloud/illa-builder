@@ -124,13 +124,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
-      {
-        id: "radioGroup-style-direction",
-        labelName: "Alignment",
-        setterType: "RADIO_GROUP_SETTER",
-        attrName: "direction",
-        options: ["vertical", "horizontal"],
-      },
     ],
   },
   {
@@ -143,6 +136,13 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+      },
+      {
+        id: "radioGroup-style-direction",
+        labelName: "Alignment",
+        setterType: "RADIO_GROUP_SETTER",
+        attrName: "direction",
+        options: ["vertical", "horizontal"],
       },
     ],
   },

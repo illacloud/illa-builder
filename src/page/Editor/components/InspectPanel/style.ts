@@ -11,6 +11,9 @@ export const baseLabelCss = css`
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export const ListLabelCss = css`

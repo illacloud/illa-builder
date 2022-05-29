@@ -59,8 +59,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "text-layout-col",
-        labelName: "Horizontal",
+        labelName: "Horizontal alignment",
         attrName: "horizontalAlign",
+        labelDesc: "xxxxxxx",
         setterType: "RADIO_GROUP_SETTER",
         defaultValue: "start",
         options: [
@@ -92,8 +93,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "text-layout-row",
-        labelName: "Vertical",
+        labelName: "Vertical alignment",
         setterType: "RADIO_GROUP_SETTER",
+        labelDesc: "xxxxxxx",
         attrName: "verticalAlign",
         defaultValue: "start",
         options: [

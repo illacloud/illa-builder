@@ -14,4 +14,5 @@ export interface WrappedInputProps extends LabelProps, ValidateMessageProps {
   suffixIcon?: ReactNode
   suffixText?: string
   tooltipText?: string
+  handleUpdateDsl: (value: Record<string, string>) => void
 }

@@ -8,6 +8,7 @@ import {
 } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { ColorSelectSetterProps } from "./interface"
+import chroma from "chroma-js"
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
   const {
@@ -25,7 +26,9 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
       <>
         <div css={colorSelectPreviewColorCss(color)} />
         <div css={colorSelectPreviewNameCss}>
-          {color !== "transparent" ? color.toLocaleUpperCase() : color}
+          {color !== "transparent"
+            ? chroma(color).hex().toLocaleUpperCase()
+            : color}
         </div>
       </>
     )
