@@ -14,6 +14,51 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     groupName: "OPTIONS",
     children: [
       {
+        id: "radioGroup-options-mode",
+        isFullWidth: true,
+        attrName: "optionMode",
+        setterType: "RADIO_GROUP_SETTER",
+        defaultValue: "manual",
+        options: [
+          {
+            label: "Manual",
+            value: "manual",
+          },
+          {
+            label: "Mapped",
+            value: "mapped",
+          },
+        ],
+      },
+      {
+        id: "radioGroup-basic-options",
+        useCustomLabel: true,
+        attrName: "options",
+        setterType: "OPTION_LIST_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => !value || value === "manual",
+      },
+      {
+        id: "radioGroup-option-data-sources",
+        labelName: "data sources",
+        isFullWidth: true,
+        attrName: "dataSources",
+        setterType: "INPUT_SETTER",
+        defaultValue: "[]",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
+      },
+      {
+        id: "radioGroup-option-mapped",
+        labelName: "Mapped Option",
+        useCustomLabel: true,
+        isFullWidth: true,
+        attrName: "mappedOption",
+        setterType: "OPTION_MAPPED_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
+      },
+      {
         id: "radioGroup-basic-defaultValue",
         labelName: "Default Value",
         attrName: "value",

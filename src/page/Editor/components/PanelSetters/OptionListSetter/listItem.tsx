@@ -131,6 +131,11 @@ export const ListItem: FC<ListItemProps> = (props) => {
           showArrow={false}
           position="left"
           clickOutsideToClose
+          onVisibleChange={(visible) => {
+            if (!visible) {
+              setModalVisible(false)
+            }
+          }}
         >
           <div
             css={labelNameAndIconCss}
@@ -171,7 +176,11 @@ export const ListItem: FC<ListItemProps> = (props) => {
           showArrow={false}
           position="bottom"
           clickOutsideToClose
-          closeOnClick
+          onVisibleChange={(visible) => {
+            if (!visible) {
+              setActionMenuVisible(false)
+            }
+          }}
         >
           <div ref={moreIconRef} onClick={handleOpenActionMenu}>
             <MoreIcon />

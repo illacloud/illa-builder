@@ -1,5 +1,6 @@
 import { SearchIcon } from "@illa-design/icon"
 import { ComponentModel } from "@/wrappedComponents/interface"
+import { v4 } from "uuid"
 
 export const RADIO_GROUP_WIDGET_CONFIG: ComponentModel = {
   type: "RADIO_GROUP_WIDGET",
@@ -13,7 +14,12 @@ export const RADIO_GROUP_WIDGET_CONFIG: ComponentModel = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    width: "200px",
+    width: "500px",
     direction: "horizontal",
+    options: [
+      { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },
+      { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },
+      { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },
+    ],
   },
 }
