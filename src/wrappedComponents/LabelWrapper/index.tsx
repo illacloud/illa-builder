@@ -14,6 +14,7 @@ const LabelWrapper: FC<LabelWrapperProps> = (props) => {
     labelCaption,
     labelWidthUnit,
     tooltipText,
+    required,
   } = props
 
   const labelToolTipsPosition = useMemo(
@@ -36,6 +37,7 @@ const LabelWrapper: FC<LabelWrapperProps> = (props) => {
           labelWidthUnit={labelWidthUnit}
           labelPosition={labelPosition}
           hasTooltip={!!tooltipText}
+          required={required}
         />
       </TooltipWrapper>
 

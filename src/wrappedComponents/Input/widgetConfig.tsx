@@ -13,6 +13,6 @@ export const INPUT_WIDGET_CONFIG: ComponentModel = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    width: "200px",
+    width: "400px",
   },
 }
