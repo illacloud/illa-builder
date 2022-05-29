@@ -4,4 +4,5 @@ export interface BaseSetter {
   attrName: string
   panelConfig: Record<string, any>
   handleUpdateDsl: (value: Record<string, any>) => void
+  handleUpdateConfigPanel: (value: Record<string, any>) => void
 }

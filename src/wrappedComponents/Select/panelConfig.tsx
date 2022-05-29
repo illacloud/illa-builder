@@ -8,16 +8,61 @@ const OptionsStyle = {
   justifyContent: "center",
 }
 
+const optionModalStyle = {
+  width: "123px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+}
+
 export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "select-options",
     groupName: "OPTIONS",
     children: [
       {
+        id: "select-options-mode",
+        attrName: "optionMode",
+        setterType: "RADIO_GROUP_SETTER",
+        defaultValue: "manual",
+        options: [
+          {
+            label: <div style={optionModalStyle}>Manual</div>,
+            value: "manual",
+          },
+          {
+            label: <div style={optionModalStyle}>Mapped</div>,
+            value: "mapped",
+          },
+        ],
+      },
+      {
         id: "select-basic-options",
         useCustomLabel: true,
         attrName: "options",
         setterType: "OPTION_LIST_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "manual",
+      },
+      {
+        id: "select-option-data-sources",
+        labelName: "data sources",
+        isFullWidth: true,
+        attrName: "dataSources",
+        setterType: "INPUT_SETTER",
+        defaultValue: "[]",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
+      },
+      {
+        id: "select-option-mapped",
+        labelName: "Mapped Option",
+        useCustomLabel: true,
+        isFullWidth: true,
+        attrName: "mappedOption",
+        setterType: "OPTION_MAPPED_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
       },
       {
         id: "select-basic-defaultValue",

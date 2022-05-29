@@ -10,8 +10,14 @@ import { Trigger } from "@illa-design/trigger"
 import { ColorSelectSetterProps } from "./interface"
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
-  const { defaultValue, options, attrName, handleUpdateDsl, panelConfig } =
-    props
+  const {
+    defaultValue,
+    options,
+    attrName,
+    panelConfig,
+    handleUpdateDsl,
+    handleUpdateConfigPanel,
+  } = props
   const [menuVisible, setMenuVisible] = useState(false)
 
   const renderContent = useCallback((color: string = "transparent") => {
@@ -35,6 +41,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
               css={colorSelectMenuItemWrapperCss}
               key={key}
               onClick={() => {
+                handleUpdateConfigPanel({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
                 setMenuVisible(false)
               }}
@@ -45,7 +52,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
         })}
       </div>
     )
-  }, [renderContent, options, attrName, handleUpdateDsl])
+  }, [renderContent, options, attrName, handleUpdateConfigPanel])
 
   const translateValueToKey = useMemo(() => {
     const value = panelConfig[attrName]

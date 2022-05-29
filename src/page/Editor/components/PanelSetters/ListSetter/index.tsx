@@ -17,7 +17,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     childrenSetter,
     useCustomLabel,
     panelConfig,
-    handleUpdateDsl,
+    handleUpdateConfigPanel,
   } = props
 
   const getDslKeys = useMemo(() => {
@@ -58,15 +58,14 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
   }, [childrenSetter])
 
   const canReset = useMemo(() => {
-    console.log("getDslKeys", getDslKeys)
     return getChildrenDefaultKeys.some((key) => {
       return getDslKeys.has(key) && getDslKeys.get(key) !== getDefaultValue[key]
     })
   }, [getDslKeys])
 
   const onClickReset = useCallback(() => {
-    handleUpdateDsl(getDefaultValue)
-  }, [getDefaultValue, handleUpdateDsl])
+    handleUpdateConfigPanel(getDefaultValue)
+  }, [getDefaultValue, handleUpdateConfigPanel])
 
   return (
     <div css={listSetterWrapperCss}>

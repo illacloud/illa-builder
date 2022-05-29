@@ -2,20 +2,22 @@ import { FC, useCallback, useContext } from "react"
 import { AddIcon } from "@illa-design/icon"
 import { addIconCss, optionListHeaderCss, headerActionButtonCss } from "./style"
 import { HeaderProps } from "./interface"
-import { ChildrenPanelContext } from "@/page/Editor/components/InspectPanel/context/childrenConfigContext"
+import { OptionListSetterContext } from "./context/optionListContext"
 import { dispatch } from "use-bus"
+import { v4 } from "uuid"
 
 export const OptionListHeader: FC<HeaderProps> = (props) => {
   const { labelName } = props
 
-  const { configPanel, handleAddItemToDslAsync } =
-    useContext(ChildrenPanelContext)
+  const { configPanel, handleAddItemToDslAsync } = useContext(
+    OptionListSetterContext,
+  )
 
   const handleClickNewButton = useCallback(() => {
     const length = configPanel.length
     handleAddItemToDslAsync({
       value: `Option ${length + 1}`,
-      id: `Option ${length + 1}`,
+      id: `option-${v4()}`,
       label: `Option ${length + 1}`,
     }).then(() => {
       dispatch("CLOSE_LIST_ALL_MODAL")

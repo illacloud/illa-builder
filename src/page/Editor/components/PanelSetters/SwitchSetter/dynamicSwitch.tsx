@@ -18,6 +18,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     labelName,
     labelDesc,
     panelConfig,
+    handleUpdateConfigPanel,
     handleUpdateDsl,
   } = props
 
@@ -38,13 +39,13 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             css={applyCustomIconStyle(customSelected)}
             onClick={() => {
               if (customSelected) {
-                handleUpdateDsl({
+                handleUpdateConfigPanel({
                   [customKey]: false,
                   [customValueKey]: "",
                 })
                 return
               }
-              handleUpdateDsl({ [customKey]: !customSelected })
+              handleUpdateConfigPanel({ [customKey]: !customSelected })
             }}
           >
             <svg
@@ -63,6 +64,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           {!customSelected && (
             <Switch
               onChange={(value) => {
+                handleUpdateConfigPanel({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
               }}
               checked={panelConfig[attrName] ?? defaultValue}
@@ -81,6 +83,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             defaultValue={customValue}
             handleUpdateDsl={handleUpdateDsl}
             panelConfig={panelConfig}
+            handleUpdateConfigPanel={handleUpdateConfigPanel}
           />
         </div>
       )}

@@ -1,8 +1,5 @@
-import { createContext, ReactNode, useEffect, useState, FC } from "react"
+import { createContext, ReactNode, FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
-// TODO: remove this,when add utils to system
-import { isEmpty } from "lodash"
-import { useDebounce } from "react-use"
 import { getWidgetInspectBySelectId } from "@/redux/inspect/inspectSelector"
 import { inspectActions } from "@/redux/inspect/inspectSlice"
 import { dslActions } from "@/redux/editor/dsl/dslSlice"
@@ -10,6 +7,7 @@ import { dslActions } from "@/redux/editor/dsl/dslSlice"
 interface Injected {
   configPanel: Record<string, any>
   handleUpdateDsl: (value: any) => void
+  handleUpdateConfigPanel: (value: Record<string, any>) => void
 }
 
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
@@ -21,60 +19,33 @@ interface Props {
 // TODO: only support single select,wait to multi
 export const SelectedProvider: FC<Props> = ({ children }) => {
   const panelConfig = useSelector(getWidgetInspectBySelectId) ?? {}
-  const [tempConfig, setTempConfig] = useState(panelConfig)
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (!isEmpty(panelConfig) && isEmpty(tempConfig)) {
-      setTempConfig(panelConfig)
-      return
-    }
-    if (
-      !isEmpty(panelConfig) &&
-      !isEmpty(tempConfig) &&
-      tempConfig.id !== panelConfig.id
-    ) {
-      setTempConfig(panelConfig)
-    }
-  }, [panelConfig, tempConfig])
-
-  const handleUpdateDsl = (value: Record<string, any>) => {
-    if (isEmpty(tempConfig)) return
-    let oldConfig: Record<string, any> = {}
-    if (!isEmpty(panelConfig)) {
-      oldConfig = { ...panelConfig }
-    }
-    setTempConfig({ ...oldConfig, ...value })
+  const handleUpdateConfigPanel = (value: Record<string, any>) => {
+    dispatch(
+      inspectActions.updateWidgetPanelConfig({
+        id: panelConfig.id,
+        value,
+      }),
+    )
   }
 
-  useDebounce(
-    () => {
-      if (isEmpty(tempConfig)) return
-      dispatch(
-        inspectActions.updateWidgetPanelConfig({
-          id: tempConfig.id,
-          value: {
-            ...tempConfig,
-          },
-        }),
-      )
-      dispatch(
-        dslActions.updateDslProps({
-          targetId: tempConfig.id,
-          newState: {
-            ...tempConfig,
-          },
-        }),
-      )
-    },
-    200,
-    [tempConfig],
-  )
+  const handleUpdateDsl = (value: Record<string, any>) => {
+    dispatch(
+      dslActions.updateDslProps({
+        targetId: panelConfig.id,
+        newState: {
+          ...value,
+        },
+      }),
+    )
+  }
 
   const value = {
-    configPanel: tempConfig ?? {},
+    configPanel: panelConfig,
     handleUpdateDsl: handleUpdateDsl,
+    handleUpdateConfigPanel,
   }
 
   return (

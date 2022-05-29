@@ -1,10 +1,12 @@
 import { FC, useCallback, useContext } from "react"
-import { ChildrenPanelContext } from "@/page/Editor/components/InspectPanel/context/childrenConfigContext"
+import { OptionListSetterContext } from "./context/optionListContext"
 import { ListItem } from "./listItem"
+import { v4 } from "uuid"
 
 export const ListBody: FC = () => {
-  const { configPanel, handleUpdateDsl, widgetId } =
-    useContext(ChildrenPanelContext)
+  const { configPanel, handleUpdateDsl, widgetId } = useContext(
+    OptionListSetterContext,
+  )
 
   if (!configPanel || !Array.isArray(configPanel)) return null
 
@@ -15,6 +17,26 @@ export const ListBody: FC = () => {
         ...newConfigPanel[index],
         ...value,
       }
+      handleUpdateDsl(newConfigPanel)
+    },
+    [configPanel, handleUpdateDsl],
+  )
+
+  const handleCopyItem = useCallback(
+    (index) => {
+      const newConfigPanel = [...configPanel]
+      const newItem = { ...newConfigPanel[index] }
+      newItem.id = `option-${v4()}`
+      newConfigPanel.splice(index + 1, 0, newItem)
+      handleUpdateDsl(newConfigPanel)
+    },
+    [configPanel, handleUpdateDsl],
+  )
+
+  const handleDeleteItem = useCallback(
+    (index) => {
+      const newConfigPanel = [...configPanel]
+      newConfigPanel.splice(index, 1)
       handleUpdateDsl(newConfigPanel)
     },
     [configPanel, handleUpdateDsl],
@@ -44,7 +66,9 @@ export const ListBody: FC = () => {
             index={index}
             id={id}
             moveItem={moveItem}
-            handleUpdateDsl={handleUpdateItem}
+            handleUpdateItem={handleUpdateItem}
+            handleCopyItem={handleCopyItem}
+            handleDeleteItem={handleDeleteItem}
           />
         )
       })}

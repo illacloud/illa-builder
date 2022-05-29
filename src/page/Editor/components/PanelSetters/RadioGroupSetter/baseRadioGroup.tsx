@@ -11,12 +11,16 @@ export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
     attrName,
     panelConfig,
     handleUpdateDsl,
+    handleUpdateConfigPanel,
   } = props
 
   return (
     <div css={applySetterStyle(isFullWidth)}>
       <RadioGroup
-        onChange={(value) => handleUpdateDsl({ [attrName]: value })}
+        onChange={(value) => {
+          handleUpdateConfigPanel({ [attrName]: value })
+          handleUpdateDsl({ [attrName]: value })
+        }}
         value={panelConfig[attrName] ?? defaultValue}
         options={options}
         type="button"

@@ -6,6 +6,7 @@ import { DynamicSwitchSetter } from "./SwitchSetter/dynamicSwitch"
 import { BaseSelect } from "./SelectSetter/baseSelect"
 import { ColorSelectSetter } from "./SelectSetter/colorSelect"
 import { OptionListSetter } from "@/page/Editor/components/PanelSetters/OptionListSetter"
+import { MappedOptionSetter } from "@/page/Editor/components/PanelSetters/MappedOptionSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -16,6 +17,7 @@ const SetterTypeMapSetter = {
   BASE_SELECT_SETTER: BaseSelect,
   COLOR_SELECT_SETTER: ColorSelectSetter,
   OPTION_LIST_SETTER: OptionListSetter,
+  OPTION_MAPPED_SETTER: MappedOptionSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

@@ -2,19 +2,21 @@ import { FC } from "react"
 import { OptionListHeader } from "./header"
 import { ListBody } from "./body"
 import { OptionListSetterProps } from "./interface"
-import { ChildrenPanelProvider } from "@/page/Editor/components/InspectPanel/context/childrenConfigContext"
+import { OptionListSetterProvider } from "./context/optionListContext"
 import { ListCss } from "./style"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
-  const { attrName, panelConfig, handleUpdateDsl } = props
+  const { attrName, panelConfig, handleUpdateDsl, handleUpdateConfigPanel } =
+    props
 
   return (
-    <ChildrenPanelProvider
+    <OptionListSetterProvider
       panelConfig={panelConfig}
       attrName={attrName}
       handleUpdateAllDsl={handleUpdateDsl}
+      handleUpdateAllConfigPanel={handleUpdateConfigPanel}
     >
       <div css={ListCss}>
         <OptionListHeader labelName="label" />
@@ -22,7 +24,7 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
           <ListBody />
         </DndProvider>
       </div>
-    </ChildrenPanelProvider>
+    </OptionListSetterProvider>
   )
 }
 
