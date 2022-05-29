@@ -1,5 +1,8 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { BuilderInfo } from "@/redux/builderInfo/builderState"
+import {
+  BuilderInfo,
+  ConnectionError,
+} from "@/redux/builderInfo/builderInfoState"
 
 export const updateLanguageReducer: CaseReducer<
   BuilderInfo,
@@ -16,8 +19,8 @@ export const updateConnectLoadingReducer: CaseReducer<
   BuilderInfo,
   PayloadAction<boolean>
 > = (state, action) => {
-  state.connectStatus = {
-    ...state.connectStatus,
+  state.connection = {
+    ...state.connection,
     loading: action.payload,
   }
   return state
@@ -25,10 +28,10 @@ export const updateConnectLoadingReducer: CaseReducer<
 
 export const updateConnectErrorReducer: CaseReducer<
   BuilderInfo,
-  PayloadAction<boolean>
+  PayloadAction<ConnectionError>
 > = (state, action) => {
-  state.connectStatus = {
-    ...state.connectStatus,
+  state.connection = {
+    ...state.connection,
     error: action.payload,
   }
   return state

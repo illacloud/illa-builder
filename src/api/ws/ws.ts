@@ -1,7 +1,5 @@
 import WebSocket from "ws"
 import { Api } from "@/api/base"
-import store from "@/store"
-import { builderInfoActions } from "@/redux/builderInfo/builderSlice"
 
 export type RoomType = "dashboard" | "app"
 
@@ -14,25 +12,25 @@ function generateDashboardWs(roomId: string): WebSocket {
     `ws://${import.meta.env.BASE_URL}/room/dashboard/${roomId}`,
   )
   ws.on("close", () => {
-    store.dispatch(builderInfoActions.updateConnectErrorReducer(true))
-    Room.roomMap.delete(roomId)
+    Connection.roomMap.delete(roomId)
   })
+  ws.on("message", () => {})
   return ws
 }
 
 function generateAppWs(roomId: string): WebSocket {
   let ws = new WebSocket(`ws://${import.meta.env.BASE_URL}/room/app/${roomId}`)
   ws.on("close", () => {
-    store.dispatch(builderInfoActions.updateConnectErrorReducer(true))
-    Room.roomMap.delete(roomId)
+    Connection.roomMap.delete(roomId)
   })
+  ws.on("message", () => {})
   return ws
 }
 
-export class Room {
+export class Connection {
   static roomMap: Map<string, WebSocket> = new Map()
 
-  static enterRoom(type: RoomType) {
+  static enterRoom(type: RoomType, loading: () => {}, errorState: () => {}) {
     Api.request<Room>(
       {
         url: "/room",
@@ -55,14 +53,10 @@ export class Room {
           }
         }
       },
+      (response) => {},
       () => {},
-      () => {},
-      (loading: boolean) => {
-        store.dispatch(builderInfoActions.updateConnectLoadingReducer(loading))
-      },
-      (errorState: boolean) => {
-        store.dispatch(builderInfoActions.updateConnectErrorReducer(errorState))
-      },
+      loading,
+      errorState,
     )
   }
 
@@ -70,7 +64,6 @@ export class Room {
     let ws = this.roomMap.get(roomId)
     if (ws != undefined) {
       ws.close()
-      this.roomMap.delete(roomId)
     }
   }
 }

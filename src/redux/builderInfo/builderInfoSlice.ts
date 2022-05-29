@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { BuilderInfoInitialState } from "@/redux/builderInfo/builderState"
+import { BuilderInfoInitialState } from "@/redux/builderInfo/builderInfoState"
 import {
   updateConnectErrorReducer,
   updateConnectLoadingReducer,
   updateLanguageReducer,
-} from "@/redux/builderInfo/builderReducer"
+} from "@/redux/builderInfo/builderInfoReducer"
 
 const builderInfoSlice = createSlice({
   name: "builderInfo",

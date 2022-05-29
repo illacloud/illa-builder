@@ -19,7 +19,7 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import "@/i18n/config"
 import "@/api/base"
 import i18n from "@/i18n/config"
-import { getBuilderInfo } from "@/redux/builderInfo/builderSelector"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {

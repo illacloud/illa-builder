@@ -11,7 +11,7 @@ import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
-import builderInfoReducer from "@/redux/builderInfo/builderSlice"
+import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 
 const editorReducer = combineReducers({
   mode: modeReducer,
