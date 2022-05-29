@@ -1,5 +1,6 @@
 import { FC, useState } from "react"
 import { useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { ActionType } from "@/page/Editor/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/Editor/components/ActionEditor/ActionList"
@@ -11,6 +12,7 @@ import { ActionEditorLayout } from "./layout"
 import { ActionEditorContext } from "./context"
 
 export const ActionEditor: FC<ActionEditorProps> = () => {
+  const { t } = useTranslation()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
   const [resourceId, setResourceId] = useState("preset_REST API")
@@ -36,8 +38,15 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
   }
 
   function updateActiveActionItemId(id: string) {
-    setActiveActionItemId(id)
+    if (
+      isActionDirty &&
+      !confirm(t("editor.action.actionList.message.confirmSwitch"))
+    ) {
+      return
+    }
 
+    setIsActionDirty(false)
+    setActiveActionItemId(id)
     const resourceId =
       actionItems.find(({ id: actionItemId }) => id === actionItemId)
         ?.resourceId ?? "preset_REST API"
@@ -77,6 +86,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
                 setFormVisible(true)
               }}
               onChangeResource={setResourceId}
+              onChange={() => setIsActionDirty(true)}
             />
           }
         />

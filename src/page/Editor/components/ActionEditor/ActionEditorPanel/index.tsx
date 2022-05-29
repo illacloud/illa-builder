@@ -44,6 +44,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
+    onChange,
   } = props
 
   const { activeActionItemId } = useContext(ActionEditorContext)
@@ -245,7 +246,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
               </div>
             </div>
             <Divider />
-            <ResourcePanel ref={triggerRunRef} resourceId={resourceId} />
+            <ResourcePanel
+              ref={triggerRunRef}
+              resourceId={resourceId}
+              onChange={onChange}
+            />
           </>
         )}
       </div>

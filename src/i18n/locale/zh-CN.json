@@ -29,6 +29,9 @@
         "tips": {
           "notFound": "Sorry, No Search result",
           "empty": "Add a action to begin working with data from a connected resource."
+        },
+        "message": {
+          "confirmSwitch": "您没有保存查询。确定要放弃更改吗？"
         }
       },
       "panel": {

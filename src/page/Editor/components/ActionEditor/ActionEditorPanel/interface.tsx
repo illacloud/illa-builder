@@ -1,13 +1,15 @@
 import { HTMLAttributes, ReactNode } from "react"
 import { ActionItem } from "@/redux/action/actionList/actionListState"
 
-export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
+export interface ActionEditorPanelProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   onEditResource?: (id: string) => void
   onChangeResource?: (id: string) => void
   onCreateResource?: () => void
   onDeleteActionItem: (id: string) => void
   onDuplicateActionItem: (id: string) => void
   children?: ReactNode
+  onChange: () => void
 }
 
 export interface TitleInputProps
@@ -19,7 +21,7 @@ export interface TitleInputProps
 export interface ResourcePanelProps {
   resourceId?: string
   activeActionItemId?: string | null
-  onChange?: (config: Pick<ActionItem, "config">) => void
+  onChange?: () => void
 }
 
 export type triggerRunRef = {

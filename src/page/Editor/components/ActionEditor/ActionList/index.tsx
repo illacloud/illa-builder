@@ -182,7 +182,9 @@ export const ActionList: FC<ActionListProps> = (props) => {
           >
             {name}
           </span>
-          {isActionDirty && <span css={updatedIndicatorCss}></span>}
+          {isActionDirty && isSelected && (
+            <span css={updatedIndicatorCss}></span>
+          )}
         </span>
       )
     }

@@ -29,6 +29,9 @@
         "tips": {
           "notFound": "Sorry, No Search result",
           "empty": "Add a action to begin working with data from a connected resource."
+        },
+        "message": {
+          "confirmSwitch": "You did not save your query. Are you sure you want to discard changes?"
         }
       },
       "panel": {

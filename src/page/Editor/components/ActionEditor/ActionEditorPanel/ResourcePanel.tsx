@@ -37,7 +37,7 @@ const dataTransform = (data: any) => {
 
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
-    const { resourceId } = props
+    const { resourceId, onChange } = props
     const { activeActionItemId } = useContext(ActionEditorContext)
     let resourceType: string
     let resource
@@ -62,6 +62,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     const onParamsChange = (value: RESTAPIParamValues | MySQLParamValues) => {
       setParams({ ...params, general: value })
+      onChange && onChange()
     }
 
     const onRunAndSave = () => {
