@@ -34,4 +34,5 @@ export interface WrappedSelectProps extends LabelProps, SelectProps {
   optionConfigureMode?: "dynamic" | "static"
   showClear?: boolean
   tooltipText?: string
+  handleUpdateDsl: (value: Record<string, any>) => void
 }

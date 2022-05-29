@@ -7,11 +7,13 @@ import { BaseSelect } from "./SelectSetter/baseSelect"
 import { ColorSelectSetter } from "./SelectSetter/colorSelect"
 import { OptionListSetter } from "@/page/Editor/components/PanelSetters/OptionListSetter"
 import { MappedOptionSetter } from "@/page/Editor/components/PanelSetters/MappedOptionSetter"
+import { SearchSelectSetter } from "@/page/Editor/components/PanelSetters/SelectSetter/searchSelect"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
   RADIO_GROUP_SETTER: BaseRadioGroupSetter,
   SWITCH_SETTER: BaseSwitchSetter,
+  SEARCH_SWITCH_SETTER: SearchSelectSetter,
   LIST_SETTER: ListSetter,
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
   BASE_SELECT_SETTER: BaseSelect,
