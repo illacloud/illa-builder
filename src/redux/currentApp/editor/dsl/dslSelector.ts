@@ -1,11 +1,11 @@
 import { RootState } from "@/store"
 import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
 
-export const getEditorDsl = (state: RootState) => state.editor.dsl
+export const getEditorDsl = (state: RootState) => state.currentApp.editor.dsl
 
 // 调试用。
 export const getSelectedWidgetStates = (state: RootState) =>
-  state.editor.widgetStates.selectedWidgets
+  state.currentApp.editor.widgetStates.selectedWidgets
 
 // 调试用。
 export const getWidgetStateById = (state: RootState, id?: string) => {
