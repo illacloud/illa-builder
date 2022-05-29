@@ -8,32 +8,32 @@ export type Params = {
 }
 
 export interface RESTAPIConfigureValues {
-  Name: string
-  BaseURL?: string
-  URLParameters?: Params[]
-  Headers?: Params[]
-  ExtraBodyValues?: Params[]
-  CookiesToForward?: string[]
-  ForwardAllCookies?: boolean
-  Authentication?: string
-  BasicAuthUsername?: string
-  BasicAuthPassword?: string
-  UseClientCredentialsAuth?: boolean
-  OAuthCallbackURL?: string
-  ShareOAuth2CredentialsBetweenUsers?: boolean
-  AuthorizationURL?: string
-  AccessTokenURL?: string
-  ClientId?: string
-  ClientSecret?: string
-  Scopes?: string
-  Audience?: string
-  AccessToken?: string
-  RefreshToken?: string
-  AccessTokenLifespan?: number
-  EnableAuthVerificationEndpoint?: boolean
+  name: string
+  baseURL?: string
+  urlParams?: Params[]
+  headers?: Params[]
+  body?: Params[]
+  cookiesToForward?: string[]
+  forwardAllCookies?: boolean
+  authentication?: string
+  basicUsername?: string
+  basicPassword?: string
+  oauth2UseClientCredentialsAuth?: boolean
+  oauth2CallbackUrl?: string
+  oauthAuthUrl?: string
+  oauth2AccessTokenUrl?: string
+  oauth2ClientId?: string
+  oauth2ClientSecret?: string
+  oauth2Scope?: string
+  oauth2Audience?: string
+  oauth2AccessToken?: string
+  oauth2RefreshToken?: string
+  oauth2AccessTokenLifespanSeconds?: number
+  oauth2ShareUserCredentials?: boolean
 }
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
+
 export type ContentType =
   | "json"
   | "raw"

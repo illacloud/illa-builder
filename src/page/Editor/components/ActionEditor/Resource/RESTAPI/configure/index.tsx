@@ -54,15 +54,15 @@ export const RESTAPIConfigure = forwardRef<
     formState: { errors },
   } = useForm<RESTAPIConfigureValues>({
     mode: "onBlur",
-    defaultValues: (resourceConfig?.config as RESTAPIConfigureValues) || {
-      URLParameters: [EmptyField],
-      Headers: [EmptyField],
-      ExtraBodyValues: [EmptyField],
-      ForwardAllCookies: false,
-      Authentication: "none",
-      UseClientCredentialsAuth: false,
-      ShareOAuth2CredentialsBetweenUsers: false,
-      EnableAuthVerificationEndpoint: false,
+    defaultValues: {
+      urlParams: [EmptyField],
+      headers: [EmptyField],
+      body: [EmptyField],
+      forwardAllCookies: false,
+      authentication: "none",
+      oauth2UseClientCredentialsAuth: false,
+      oauth2ShareUserCredentials: false,
+      ...(resourceConfig?.config as RESTAPIConfigureValues),
     },
   })
 
@@ -72,7 +72,7 @@ export const RESTAPIConfigure = forwardRef<
     dispatch(
       resourceActions.addResourceItemReducer({
         id: uuidV4(),
-        name: data.Name,
+        name: data.name,
         type: "REST API",
         config: data,
       }),
@@ -106,7 +106,7 @@ export const RESTAPIConfigure = forwardRef<
             <Input
               {...field}
               placeholder={t("editor.action.resource.restApi.placeholder.name")}
-              error={!!errors.Name}
+              error={!!errors.name}
               maxLength={200}
             />
           )}
@@ -114,11 +114,11 @@ export const RESTAPIConfigure = forwardRef<
             required: ERROR_REQUIRED_MESSAGE,
           }}
           control={control}
-          name="Name"
+          name="name"
         />
-        {errors.Name && (
+        {errors.name && (
           <div css={[errorMessageCss, applyGridColIndex(2)]}>
-            {errors.Name.message}
+            {errors.name.message}
           </div>
         )}
         <dd css={[applyGridColIndex(2), descriptionCss]}>
@@ -141,7 +141,7 @@ export const RESTAPIConfigure = forwardRef<
             />
           )}
           control={control}
-          name="BaseURL"
+          name="baseURL"
         />
       </div>
 
@@ -149,21 +149,21 @@ export const RESTAPIConfigure = forwardRef<
         <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
           {t("editor.action.resource.restApi.label.urlParameters")}
         </label>
-        <ParamList control={control} name={"URLParameters"} />
+        <ParamList control={control} name={"urlParams"} />
       </div>
 
       <div css={gridRowContainerCss}>
         <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
           {t("editor.action.resource.restApi.label.headers")}
         </label>
-        <ParamList control={control} name={"Headers"} />
+        <ParamList control={control} name={"headers"} />
       </div>
 
       <div css={gridRowContainerCss}>
         <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
           {t("editor.action.resource.restApi.label.extraBodyValues")}
         </label>
-        <ParamList control={control} name={"ExtraBodyValues"} />
+        <ParamList control={control} name={"body"} />
         <dd css={[applyGridColIndex(2), descriptionCss]}>
           {t("editor.action.resource.restApi.tip.extraBodyValues")}
         </dd>
@@ -179,7 +179,7 @@ export const RESTAPIConfigure = forwardRef<
               <InputTag {...field} size={"small"} _css={inputTagSmallSizeCss} />
             )}
             control={control}
-            name="CookiesToForward"
+            name="cookiesToForward"
           />
         </div>
         <Controller
@@ -189,7 +189,7 @@ export const RESTAPIConfigure = forwardRef<
             </Checkbox>
           )}
           control={control}
-          name="ForwardAllCookies"
+          name="forwardAllCookies"
         />
       </div>
 
@@ -215,7 +215,7 @@ export const RESTAPIConfigure = forwardRef<
             </Select>
           )}
           control={control}
-          name="Authentication"
+          name="authentication"
         />
       </div>
 

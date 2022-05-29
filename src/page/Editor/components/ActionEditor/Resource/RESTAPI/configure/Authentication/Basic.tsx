@@ -25,7 +25,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
           />
         )}
         control={control}
-        name="BasicAuthUsername"
+        name="basicUsername"
       />
 
       <label css={labelTextCss}>
@@ -42,7 +42,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
           />
         )}
         control={control}
-        name="BasicAuthPassword"
+        name="basicPassword"
       />
     </>
   )

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
 import { InputNumber } from "@illa-design/input-number"
@@ -40,7 +40,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             </Checkbox>
           )}
           control={control}
-          name="UseClientCredentialsAuth"
+          name="oauth2UseClientCredentialsAuth"
         />
       </div>
 
@@ -59,7 +59,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
               />
             )}
             control={control}
-            name="OAuthCallbackURL"
+            name="oauth2CallbackUrl"
           />
           <button css={[applyGridColIndex(2), actionTextCss]}>
             {t("editor.action.resource.restApi.label.copyUrlToApplication")}
@@ -74,7 +74,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
               </Checkbox>
             )}
             control={control}
-            name="ShareOAuth2CredentialsBetweenUsers"
+            name="oauth2ShareUserCredentials"
           />
         </div>
       )}
@@ -93,7 +93,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             />
           )}
           control={control}
-          name="AuthorizationURL"
+          name="oauthAuthUrl"
         />
       </div>
 
@@ -111,7 +111,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             />
           )}
           control={control}
-          name="AccessTokenURL"
+          name="oauth2AccessTokenUrl"
         />
       </div>
 
@@ -122,7 +122,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
-          name="ClientId"
+          name="oauth2ClientId"
         />
       </div>
 
@@ -133,7 +133,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
-          name="ClientSecret"
+          name="oauth2ClientSecret"
         />
       </div>
 
@@ -144,7 +144,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
-          name="Scopes"
+          name="oauth2Scope"
         />
       </div>
 
@@ -155,7 +155,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <Controller
           render={({ field }) => <Input {...field} />}
           control={control}
-          name="Audience"
+          name="oauth2Audience"
         />
       </div>
 
@@ -168,7 +168,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             <Controller
               render={({ field }) => <Input {...field} />}
               control={control}
-              name="AccessToken"
+              name="oauth2AccessToken"
             />
           </div>
           <div css={gridRowContainerCss}>
@@ -178,7 +178,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             <Controller
               render={({ field }) => <Input {...field} />}
               control={control}
-              name="RefreshToken"
+              name="oauth2RefreshToken"
             />
           </div>
         </>
@@ -198,18 +198,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             />
           )}
           control={control}
-          name="AccessTokenLifespan"
-        />
-        <Controller
-          render={({ field }) => (
-            <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
-              {t(
-                "editor.action.resource.restApi.label.enableAuthVerificationEndpoint",
-              )}
-            </Checkbox>
-          )}
-          control={control}
-          name="EnableAuthVerificationEndpoint"
+          name="oauth2AccessTokenLifespanSeconds"
         />
       </div>
     </>
