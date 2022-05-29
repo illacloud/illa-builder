@@ -63,6 +63,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     return new Set(actionItems.map((i) => i.name))
   }, [actionItems])
 
+  const isResourceEditable = resourceId && resourceId.indexOf("preset") === -1
+
   const triggerOptions = [
     {
       label: t("editor.action.panel.option.trigger.manually"),
@@ -79,7 +81,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function editResource() {
-    resourceId && onEditResource && onEditResource(resourceId)
+    isResourceEditable && onEditResource && onEditResource(resourceId)
   }
 
   function handleAction(key: string) {
@@ -233,7 +235,10 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                     </Option>
                   ))}
               </Select>
-              <div css={applyEditIconCss(!resourceId)} onClick={editResource}>
+              <div
+                css={applyEditIconCss(!isResourceEditable)}
+                onClick={editResource}
+              >
                 <PenIcon />
               </div>
             </div>
