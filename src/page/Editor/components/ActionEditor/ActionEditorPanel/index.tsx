@@ -1,4 +1,4 @@
-import { FC, useMemo, useState, useRef } from "react"
+import { FC, useMemo, useState, useRef, useContext } from "react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
@@ -12,6 +12,7 @@ import { selectAllActionItem } from "@/redux/action/actionList/actionListSelecto
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
+import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
   containerCss,
@@ -40,6 +41,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
     activeActionItemId,
     onEditResource,
+    onChangeResource,
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
@@ -47,7 +49,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [resourceId, setResourceId] = useState("preset_REST API")
+  const { resourceId } = useContext(ActionEditorContext)
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
@@ -207,7 +209,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
               <Select
                 css={[actionSelectCss, resourceSelectCss]}
                 value={resourceId}
-                onChange={setResourceId}
+                onChange={onChangeResource}
               >
                 <Option onClick={createResource} isSelectOption={false}>
                   <span

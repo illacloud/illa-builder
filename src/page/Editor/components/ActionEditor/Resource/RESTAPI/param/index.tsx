@@ -25,12 +25,11 @@ import {
 export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { onChange } = props
   const { t } = useTranslation()
-  const { activeActionItemId } = useContext(ActionEditorContext)
+  const { activeActionItemId, resourceId } = useContext(ActionEditorContext)
   const action =
     useSelector(selectAllActionItem).find(
       ({ id }) => id === activeActionItemId,
     ) ?? null
-  const resourceId = action?.resourceId
   const resource =
     useSelector(selectAllResource).find(({ id }) => id === resourceId) ?? null
 

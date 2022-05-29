@@ -13,7 +13,7 @@ import { ActionEditorContext } from "./context"
 export const ActionEditor: FC<ActionEditorProps> = () => {
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
-  const [resourceId, setResourceId] = useState("")
+  const [resourceId, setResourceId] = useState("preset_REST API")
   const [isActionDirty, setIsActionDirty] = useState(false)
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
@@ -68,6 +68,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
                 setActionType("edit")
                 setFormVisible(true)
               }}
+              onChangeResource={setResourceId}
             />
           }
         />
