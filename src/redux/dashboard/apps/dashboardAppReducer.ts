@@ -1,0 +1,68 @@
+import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import {
+  AddDashboardAppPayload,
+  RenameDashboardAppPayload,
+} from "@/redux/dashboard/apps/dashboardAppPayload"
+import {
+  DashboardApp,
+  DashboardAppsState,
+} from "@/redux/dashboard/apps/dashboardAppState"
+
+export const updateDashboardAppListReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<DashboardApp[]>
+> = (state, action) => {
+  state.list = action.payload
+  return state
+}
+
+export const addDashboardAppReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<AddDashboardAppPayload>
+> = (state, action) => {
+  let payload = action.payload
+  if (payload.index == undefined) {
+    state.list.push(payload.app)
+  } else {
+    let list = state.list
+    state.list = [
+      ...list.splice(0, payload.index),
+      payload.app,
+      ...list.splice(payload.index, list.length),
+    ]
+  }
+  return state
+}
+
+export const removeDashboardAppReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<string>
+> = (state, action) => {
+  let index = state.list.findIndex((element, index) => {
+    return element.appId == action.payload
+  })
+  if (index != -1) {
+    let list = state.list
+    state.list = [
+      ...list.splice(0, index),
+      ...list.splice(index + 1, list.length),
+    ]
+  }
+  return state
+}
+
+export const renameDashboardAppReducer: CaseReducer<
+  DashboardAppsState,
+  PayloadAction<RenameDashboardAppPayload>
+> = (state, action) => {
+  let index = state.list.findIndex((element, index) => {
+    return element.appId == action.payload.appId
+  })
+  if (index != -1) {
+    state.list[index] = {
+      ...state.list[index],
+      appName: action.payload.newName,
+    }
+  }
+  return state
+}

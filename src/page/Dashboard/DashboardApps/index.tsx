@@ -12,15 +12,18 @@ import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
 import { LoadingIcon, MoreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
-import { DashboardApp } from "@/redux/dashboard/apps/appState"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { Empty } from "@illa-design/empty"
 import { useDispatch, useSelector } from "react-redux"
-import { getDashboardApps } from "@/redux/dashboard/apps/appSelector"
+import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { Result } from "@illa-design/result"
-import appSlice from "@/redux/dashboard/apps/appSlice"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useNavigate } from "react-router-dom"
 import { Api } from "@/api/base"
+import { Tooltip } from "@illa-design/tooltip"
+import { Notification } from "@illa-design/notification"
+import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -33,6 +36,8 @@ export const DashboardApps: FC = () => {
   const [loading, setLoading] = useState(false)
   const [errorState, setErrorState] = useState(false)
 
+  const [createLoading, setCreateNewLoading] = useState(false)
+
   useEffect(() => {
     Api.request<DashboardApp[]>(
       {
@@ -40,7 +45,9 @@ export const DashboardApps: FC = () => {
         method: "GET",
       },
       (response) => {
-        dispatch(appSlice.actions.updateAppListReducer(response.data))
+        dispatch(
+          dashboardAppActions.updateDashboardAppListReducer(response.data),
+        )
       },
       (response) => {},
       (error) => {},
@@ -58,7 +65,37 @@ export const DashboardApps: FC = () => {
       <div css={applyListTitleContainerCss}>
         <span css={applyListTitleCss}>{t("apps")}</span>
         <Button colorScheme="gray">{t("share")}</Button>
-        <Button _css={applyMenuButtonCss} colorScheme="techPurple">
+        <Button
+          _css={applyMenuButtonCss}
+          loading={createLoading}
+          colorScheme="techPurple"
+          onClick={() => {
+            Api.request<DashboardApp>(
+              {
+                url: "/dashboard/app",
+                method: "POST",
+              },
+              (response) => {
+                dispatch(
+                  dashboardAppActions.addDashboardAppReducer({
+                    app: response.data,
+                  }),
+                )
+                navigate(`/editor/${response.data.appId}`)
+              },
+              (response) => {},
+              (error) => {},
+              (loading) => {
+                setCreateNewLoading(loading)
+              },
+              (errorState) => {
+                if (errorState) {
+                  Notification.error({ title: t("create_fail") })
+                }
+              },
+            )
+          }}
+        >
           {t("create_new")}
         </Button>
       </div>
@@ -76,18 +113,28 @@ export const DashboardApps: FC = () => {
                   <div css={applyItemExtraContainer}>
                     <Button
                       colorScheme="techPurple"
-                      onChange={() => {
-                        navigate(`editor/${item.appId}`)
+                      onClick={() => {
+                        navigate(`/editor/${item.appId}`)
                       }}
                     >
                       {t("edit")}
                     </Button>
-                    <Button
-                      _css={applyItemMenuButtonCss}
-                      colorScheme="grayBlue"
-                      leftIcon={<MoreIcon />}
-                      onClick={() => {}}
-                    />
+                    <Tooltip
+                      trigger="click"
+                      colorScheme="white"
+                      showArrow={false}
+                      position="br"
+                      withoutPadding
+                      clickOutsideToClose
+                      closeOnInnerClick
+                      content={<DashboardItemMenu appId={item.appId} />}
+                    >
+                      <Button
+                        _css={applyItemMenuButtonCss}
+                        colorScheme="grayBlue"
+                        leftIcon={<MoreIcon />}
+                      />
+                    </Tooltip>
                   </div>
                 }
               >

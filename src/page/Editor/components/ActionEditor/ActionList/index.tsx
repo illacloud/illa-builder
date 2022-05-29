@@ -13,12 +13,12 @@ import {
   EmptyStateIcon,
   RestApiIcon,
 } from "@illa-design/icon"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import {
   updateActionItem,
   addActionItem,
   removeActionItem,
-} from "@/redux/action/actionList/actionListSlice"
+} from "@/redux/currentApp/action/actionList/actionListSlice"
 import {
   ActionListContainerCSS,
   applyNewButtonCSS,

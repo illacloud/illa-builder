@@ -1,13 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import resourceReducer from "@/redux/action/resource/resourceSlice"
-import actionListReducer from "@/redux/action/actionList/actionListSlice"
-import modeReducer from "@/redux/editor/mode/modeSlice"
-import dslReducer from "@/redux/editor/dsl/dslSlice"
-import widgetStatesReducer from "@/redux/editor/widgetStates/widgetStatesSlice"
+import resourceReducer from "@/redux/currentApp/action/resource/resourceSlice"
+import actionListReducer from "@/redux/currentApp/action/actionList/actionListSlice"
+import modeReducer from "@/redux/currentApp/editor/mode/modeSlice"
+import dslReducer from "@/redux/currentApp/editor/dsl/dslSlice"
+import widgetStatesReducer from "@/redux/currentApp/editor/widgetStates/widgetStatesSlice"
 
-import appSlice from "@/redux/dashboard/apps/appSlice"
-import resourceSlice from "@/redux/dashboard/resources/resourceSlice"
+import dashboardResourceReducer from "@/redux/dashboard/resources/dashboardResourceSlice"
+import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
+import currentUserReducer from "@/redux/currentUser/currentUserSlice"
+import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
+import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 
 const editorReducer = combineReducers({
   mode: modeReducer,
@@ -20,16 +23,23 @@ const actionReducer = combineReducers({
   resource: resourceReducer,
 })
 
+const appReducer = combineReducers({
+  editor: editorReducer,
+  action: actionReducer,
+  appInfo: appInfoReducer,
+})
+
 const dashboardReducer = combineReducers({
-  resources: resourceSlice.reducer,
-  apps: appSlice.reducer,
+  dashboardResources: dashboardResourceReducer,
+  dashboardApps: dashboardAppReducer,
 })
 
 const store = configureStore({
   reducer: {
-    editor: editorReducer,
-    action: actionReducer,
+    currentApp: appReducer,
     dashboard: dashboardReducer,
+    currentUser: currentUserReducer,
+    liveFamily: liveFamilyReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })

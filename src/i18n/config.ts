@@ -25,5 +25,3 @@ await use(initReactI18next).init({
   },
   resources,
 })
-
-// export default i18n

@@ -2,8 +2,8 @@ import { FC } from "react"
 import { DropTargetMonitor, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
-import { DropInfo } from "@/redux/editor/dsl/dslState"
-import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { DropInfo } from "@/redux/currentApp/editor/dsl/dslState"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 import { DraggableComponent } from "@/wrappedComponents/DraggableComponent"
 import {
   widgetBuilder,
@@ -16,7 +16,7 @@ import { ComponentModel, DragInfo } from "@/wrappedComponents/interface"
 import {
   getDragDetails,
   getWidgetStates,
-} from "@/redux/editor/widgetStates/widgetStateSelector"
+} from "@/redux/currentApp/editor/widgetStates/widgetStateSelector"
 import { DragLayerComponent } from "@/components/DragLayerComponent"
 import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
 
