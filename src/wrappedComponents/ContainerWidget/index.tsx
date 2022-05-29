@@ -46,7 +46,9 @@ export const CONTAINER_WIDGET_CONFIG: ComponentModel = {
   },
 }
 
-export const ContainerWidget: FC<ContainerWidgetProps> = (containerWidgetProps) => {
+export const ContainerWidget: FC<ContainerWidgetProps> = (
+  containerWidgetProps,
+) => {
   const {
     children,
     props,
