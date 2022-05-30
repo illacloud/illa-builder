@@ -14,7 +14,7 @@ export const handlers = [
       ctx.status(200),
       ctx.json({
         status: "success",
-        message: "",
+        message: "Mock Run success!",
         data: {
           id: [
             "1",

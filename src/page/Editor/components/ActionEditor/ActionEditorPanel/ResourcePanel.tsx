@@ -1,6 +1,13 @@
 import Api from "@/api/api"
-import { forwardRef, useState, useImperativeHandle, useContext } from "react"
+import {
+  forwardRef,
+  useState,
+  useImperativeHandle,
+  useContext,
+  useRef,
+} from "react"
 import { Divider } from "@illa-design/divider"
+import { Alert } from "@illa-design/alert"
 import {
   RESTAPIParamValues,
   RESTAPIParam,
@@ -57,7 +64,9 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       },
       eventHandler: {},
     })
-
+    const [result, setResult] = useState<any>()
+    console.log("res", result)
+    const [showAlert, setShowAlert] = useState(false)
     resource = useSelector(selectAllResource).find((i) => i.id === resourceId)
 
     const onParamsChange = (value: RESTAPIParamValues | MySQLParamValues) => {
@@ -67,7 +76,12 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     const run = () => {
       const _data = dataTransform(params)
-      Api.post("/api/v1/actions/:id/run", _data)
+      Api.post("/api/v1/actions/:id/run", _data).then((data) => {
+        if (!showAlert) {
+          setShowAlert(true)
+        }
+        setResult(data)
+      })
     }
 
     const saveAndRun = () => {
@@ -115,6 +129,12 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
         <Transformer />
         <Divider />
         <EventHandler />
+        {showAlert && (
+          <Alert
+            type={result?.status === "success" ? "success" : "error"}
+            content={result?.message}
+          />
+        )}
       </>
     )
   },

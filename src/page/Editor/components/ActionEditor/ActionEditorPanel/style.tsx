@@ -11,6 +11,7 @@ export const containerCss = css`
 export const panelScrollCss = css`
   overflow: auto;
   flex: 1;
+  position: relative;
 `
 
 export const headerCss = css`
