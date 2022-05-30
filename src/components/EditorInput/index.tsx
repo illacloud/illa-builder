@@ -1,4 +1,5 @@
 import { useEffect, useRef, forwardRef, ForwardedRef, useState } from "react"
+import ReactDOM from "react-dom"
 import { css } from "@emotion/react"
 import { EditorInputProps } from "./interface"
 
@@ -18,10 +19,12 @@ import "codemirror/addon/display/placeholder"
 
 import { applyCMCss } from "./style"
 
-import { Trigger } from "@illa-design/trigger"
+import { Trigger, customPositionType } from "@illa-design/trigger"
+import { ACList } from "./autoComplete/list"
+import { ACItem } from "./autoComplete/item"
 
 // TODO
-// import "./modes"
+import "./modes"
 
 export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
@@ -36,6 +39,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
     } = props
 
     const [triggerVisible, setTriggerVisible] = useState<boolean>(false)
+    const [triggerPosition, setTriggerPosition] = useState<customPositionType>()
 
     const cmRef = useRef<HTMLDivElement>(null)
 
@@ -51,16 +55,70 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         autoCloseBrackets: true,
         hintOptions: {
           completeSingle: false,
+          // tables: {
+          //   table1: ['name', 'score', 'birthDate'],
+          //   table2: ['name', 'population', 'size']
+          // }
         },
         extraKeys: { "Shift+Q": "autocomplete" },
-        placeholder,
+        placeholder
       })
 
       editor.on("change", handleChange)
-      editor.on("blur", handleblur)
+      editor.on("blur", handleBlur)
+
+      CodeMirror.registerHelper("hint", "javascript", (editor: CodeMirror.Editor) => {
+        const cursor = editor.getCursor()
+        const line = editor.getLine(cursor.line)
+        const end = cursor.ch
+        const start = end
+        if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
+          return {
+            // list: [{
+            //   text: 'custom-hint',
+            //   displayText: "你好呀",
+            //   displayInfo: "提示信息1",
+            //   render: renderCustomHint
+            // }],
+            list: listHintData(),
+            from: CodeMirror.Pos(cursor.line, start),
+            to: CodeMirror.Pos(cursor.line, end),
+          }
+        }
+      })
+
+      return () => {
+        editor.off("change", handleChange)
+        editor.off("blur", handleBlur)
+      }
     }, [])
 
-    const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,(),{}"
+    const listHintData = () => {
+      return [
+        {
+          text: 'aaa',
+          type: 'String',
+          render: renderCustomHint
+        },
+        {
+          text: 'bbb',
+          type: "Number",
+          render: renderCustomHint
+        }
+      ]
+    }
+
+    const renderCustomHint = (element: HTMLElement, self: any, data: any) => {
+      let div = document.createElement("div");
+      ReactDOM.render(<ACItem type={data.type} content={data.text} />, div)
+      console.log(element)
+      console.log(self)
+      console.log(data)
+      element.appendChild(div);
+    }
+
+    // const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,(),{}"
+    const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,()"
     const ignoreToken = (text?: string[]) => {
       const ignore = ignoreStr.split(",")
       if (text && text[0]) {
@@ -91,40 +149,46 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         }
       }
       // {{ }}
-      const cursor = editor.getCursor()
-      const line = editor.getLine(cursor.line)
-      if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
-        setTriggerVisible(true)
-      }
+      // const cursor = editor.getCursor()
+      // const line = editor.getLine(cursor.line)
+      // if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
+      //   setTriggerVisible(true)
+      //   const cursorPosition = editor.cursorCoords(true, "page")
+      //   setTriggerPosition({
+      //     x: cursorPosition.left - editor.defaultCharWidth(),
+      //     y: cursorPosition.top + editor.defaultTextHeight()
+      //   })
+      // }
     }
 
-    const handleblur = () => {
+    const handleBlur = () => {
       onBlur?.()
     }
 
-    const tryUpdatePopupVisible = (value: boolean) => {
-      if (triggerVisible !== value && !value) {
-        setTriggerVisible(value)
-      }
-    }
+    // const tryUpdatePopupVisible = (value: boolean) => {
+    //   if (triggerVisible !== value && !value) {
+    //     setTriggerVisible(value)
+    //   }
+    // }
 
     return (
-      <Trigger
-        trigger="click"
-        position="br"
-        colorScheme="white"
-        showArrow={false}
-        autoAlignPopupWidth
-        closeOnClick={false}
-        clickOutsideToClose
-        popupVisible={triggerVisible}
-        onVisibleChange={tryUpdatePopupVisible}
-        content={<div>123</div>}
-      >
-        <div ref={ref}>
-          <div ref={cmRef} css={css(applyCMCss(height), _css)} />
-        </div>
-      </Trigger>
+      // <Trigger
+      //   trigger="click"
+      //   position="bl"
+      //   colorScheme="white"
+      //   showArrow={false}
+      //   closeOnClick={false}
+      //   clickOutsideToClose
+      //   popupVisible={triggerVisible}
+      //   onVisibleChange={tryUpdatePopupVisible}
+      //   content={<ACList />}
+      //   customPosition={triggerPosition}
+      // >
+      //   <div ref={ref}>
+      //     <div ref={cmRef} css={css(applyCMCss(height), _css)} />
+      //   </div>
+      // </Trigger>
+      <div ref={cmRef} css={css(applyCMCss(height), _css)} />
     )
   },
 )
