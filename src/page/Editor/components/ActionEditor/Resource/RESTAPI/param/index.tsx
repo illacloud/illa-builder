@@ -8,14 +8,14 @@ import { useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import {
-  configContainerCss,
-  descriptionCss,
-  gridRowContainerCss,
-  labelTextCss,
+  configContainerStyle,
+  descriptionStyle,
+  paramGridRowContainerStyle,
+  labelTextStyle,
   applyGridColIndex,
 } from "@/page/Editor/components/ActionEditor/Resource/style"
 import { Body } from "./Body"
-import { actionTypeCss } from "./style"
+import { actionTypeStyle } from "./style"
 import {
   RESTAPIParamProps,
   RESTAPIConfigureValues,
@@ -59,12 +59,12 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   }
 
   return (
-    <div css={configContainerCss}>
-      <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>
+    <div css={configContainerStyle}>
+      <div css={paramGridRowContainerStyle}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.actionType")}
         </label>
-        <div css={actionTypeCss}>
+        <div css={actionTypeStyle}>
           <Select
             value={params.method}
             onChange={updateField("method")}
@@ -80,13 +80,13 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             addonBefore={{ render: baseURL ?? null }}
           />
         </div>
-        <dd css={[applyGridColIndex(2), descriptionCss]}>
+        <dd css={[applyGridColIndex(2), descriptionStyle]}>
           {t("editor.action.resource.restApi.tip.getReqAutoRun")}
         </dd>
       </div>
 
-      <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>
+      <div css={paramGridRowContainerStyle}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.urlParameters")}
         </label>
         <FieldArray
@@ -95,24 +95,24 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
         />
       </div>
 
-      <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>
+      <div css={paramGridRowContainerStyle}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.headers")}
         </label>
         <FieldArray value={params.Headers} onChange={updateField("Headers")} />
       </div>
 
       {hasBody && (
-        <div css={gridRowContainerCss}>
-          <label css={labelTextCss}>
+        <div css={paramGridRowContainerStyle}>
+          <label css={labelTextStyle}>
             {t("editor.action.resource.restApi.label.body")}
           </label>
           <Body value={params.Body} onChange={updateField("Body")} />
         </div>
       )}
 
-      <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>
+      <div css={paramGridRowContainerStyle}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.cookies")}
         </label>
         <FieldArray value={params.Cookies} onChange={updateField("Cookies")} />

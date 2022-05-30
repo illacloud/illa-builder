@@ -12,11 +12,11 @@ import {
   ApiItemProps,
 } from "./interface"
 import {
-  categoryCss,
-  resourceListCss,
-  resourceItemCss,
-  resourceNameCss,
-  selectLayoutCss,
+  categoryStyle,
+  resourceListStyle,
+  resourceItemStyle,
+  resourceNameStyle,
+  selectLayoutStyle,
 } from "./style"
 
 export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
@@ -51,37 +51,37 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
   ]
 
   return (
-    <div css={selectLayoutCss}>
+    <div css={selectLayoutStyle}>
       <div>
-        <div css={categoryCss}>{t("editor.action.form.title.database")}</div>
-        <div css={resourceListCss()}>
+        <div css={categoryStyle}>{t("editor.action.form.title.database")}</div>
+        <div css={resourceListStyle()}>
           {databaseList.map((database) => (
             <div
               key={database.title}
-              css={resourceItemCss}
+              css={resourceItemStyle}
               onClick={() => {
                 !database.draft && onSelect(database.type)
               }}
             >
               <div>{database.img}</div>
-              <div css={resourceNameCss}>{database.title}</div>
+              <div css={resourceNameStyle}>{database.title}</div>
             </div>
           ))}
         </div>
       </div>
       <div>
-        <div css={categoryCss}>{t("editor.action.form.title.api")}</div>
-        <div css={resourceListCss(true)}>
+        <div css={categoryStyle}>{t("editor.action.form.title.api")}</div>
+        <div css={resourceListStyle(true)}>
           {apiList.map((api) => (
             <div
               key={api.title}
-              css={resourceItemCss}
+              css={resourceItemStyle}
               onClick={() => {
                 !api.draft && onSelect(api.type)
               }}
             >
               <div>{api.img}</div>
-              <div css={resourceNameCss}>{api.title}</div>
+              <div css={resourceNameStyle}>{api.title}</div>
             </div>
           ))}
         </div>

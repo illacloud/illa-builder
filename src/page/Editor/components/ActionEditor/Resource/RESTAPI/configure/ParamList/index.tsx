@@ -2,15 +2,15 @@ import { forwardRef } from "react"
 import { Input } from "@illa-design/input"
 import { DeleteIcon, AddIcon } from "@illa-design/icon"
 import { useFieldArray, Controller } from "react-hook-form"
-import { actionTextCss } from "@/page/Editor/components/ActionEditor/Resource/style"
+import { actionTextStyle } from "@/page/Editor/components/ActionEditor/Resource/style"
 import { Params } from "@/page/Editor/components/ActionEditor/Resource/RESTAPI"
 import {
-  paramListWrapperCss,
-  paramItemCss,
-  paramItemKeyCss,
-  newButtonCss,
-  deleteIconCss,
-  paramItemValueCss,
+  paramListWrapperStyle,
+  paramItemStyle,
+  paramItemKeyStyle,
+  newButtonStyle,
+  deleteIconStyle,
+  paramItemValueStyle,
 } from "./style"
 import { ParamListProps } from "./interface"
 
@@ -26,10 +26,10 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
 
     const paramList = fields.map((field, index) => {
       return (
-        <div css={paramItemCss} key={field.id}>
+        <div css={paramItemStyle} key={field.id}>
           <Controller
             render={({ field }) => (
-              <Input {...field} placeholder={"key"} css={paramItemKeyCss} />
+              <Input {...field} placeholder={"key"} css={paramItemKeyStyle} />
             )}
             control={control}
             name={`${name}.${index}.key`}
@@ -42,12 +42,12 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
                   render: (
                     <DeleteIcon
                       onClick={() => removeParamItem(index)}
-                      css={deleteIconCss}
+                      css={deleteIconStyle}
                     />
                   ),
                 }}
                 placeholder={"value"}
-                css={paramItemValueCss}
+                css={paramItemValueStyle}
               />
             )}
             control={control}
@@ -71,9 +71,9 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
     }
 
     return (
-      <div css={paramListWrapperCss} ref={ref} {...restProps}>
+      <div css={paramListWrapperStyle} ref={ref} {...restProps}>
         {paramList}
-        <span css={[newButtonCss, actionTextCss]} onClick={addParamItem}>
+        <span css={[newButtonStyle, actionTextStyle]} onClick={addParamItem}>
           <AddIcon />
           New
         </span>

@@ -1,10 +1,10 @@
 import {
-  actionCss,
-  fillingCss,
-  panelPaddingCss,
-  panelSubBarCss,
-  radioBtnStyle,
-  sectionTitleCss,
+  actionStyle,
+  fillingStyle,
+  panelPaddingStyle,
+  panelSubBarStyle,
+  sectionTitleStyle,
+    radioBtnStyle
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { useTranslation } from "react-i18next"
 import { RadioGroup } from "@illa-design/radio"
@@ -15,25 +15,24 @@ export const Transformer = () => {
 
   return (
     <>
-      <div css={[actionCss, panelSubBarCss]}>
-        <label css={sectionTitleCss}>
+      <div css={[actionStyle, panelSubBarStyle]}>
+        <label css={sectionTitleStyle}>
           {t("editor.action.panel.label.transformer")}
         </label>
-        <span css={fillingCss} />
-        <div css={radioBtnStyle}>
-          <RadioGroup
-            type="button"
-            size="small"
-            options={[
-              t("editor.action.panel.btn.disable"),
-              t("editor.action.panel.btn.enable"),
-            ]}
-            colorScheme="grayBlue"
-            defaultValue="Disable"
-          />
-        </div>
+        <span css={fillingStyle} />
+          <div css={radioBtnStyle}>
+        <RadioGroup
+          type="button"
+          size="small"
+          options={[
+            t("editor.action.panel.btn.disable"),
+            t("editor.action.panel.btn.enable"),
+          ]}
+          defaultValue="Disable"
+        />
+          </div>
       </div>
-      <div css={panelPaddingCss}>
+      <div css={panelPaddingStyle}>
         <EditorInput mode="javascript" height="88px" />
       </div>
     </>

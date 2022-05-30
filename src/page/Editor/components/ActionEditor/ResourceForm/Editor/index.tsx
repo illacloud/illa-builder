@@ -10,11 +10,11 @@ import {
 } from "@/page/Editor/components/ActionEditor/Resource"
 import { ResourceFormEditorProps, ConnectionRef } from "./interface"
 import {
-  formContainerCss,
-  formFooterCss,
-  backIconCss,
+  formContainerStyle,
+  formFooterStyle,
+  backIconStyle,
   FormFooterFilling,
-  createResourceBtnCss,
+  createResourceBtnStyle,
 } from "./style"
 
 export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
@@ -59,9 +59,9 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   }
 
   return (
-    <div css={formContainerCss}>
+    <div css={formContainerStyle}>
       <div>{renderResourceNode()}</div>
-      <div css={formFooterCss}>
+      <div css={formFooterStyle}>
         <Button
           variant="text"
           size="medium"
@@ -69,7 +69,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           type="button"
           onClick={back}
         >
-          <PaginationPreIcon css={backIconCss} />
+          <PaginationPreIcon css={backIconStyle} />
           {t("editor.action.form.btn.back")}
         </Button>
 
@@ -89,7 +89,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         <Button
           size="medium"
           colorScheme="techPurple"
-          css={createResourceBtnCss}
+          css={createResourceBtnStyle}
           onClick={submitForm}
         >
           {t("editor.action.form.btn.createResource")}

@@ -15,22 +15,23 @@ import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
-  containerCss,
-  headerCss,
-  actionCss,
-  fillingCss,
-  actionSelectCss,
-  triggerSelectCss,
-  resourceSelectCss,
-  applyEditIconCss,
-  moreBtnCss,
-  sectionTitleCss,
-  resourceBarCss,
-  panelScrollCss,
-  moreBtnMenuCss,
-  duplicateActionCss,
-  deleteActionCss,
-  resourceOptionCss,
+  containerStyle,
+  headerStyle,
+  actionStyle,
+  fillingStyle,
+  actionSelectStyle,
+  triggerSelectStyle,
+  resourceSelectStyle,
+  applyEditIconStyle,
+  moreBtnStyle,
+  sectionTitleStyle,
+  resourceBarStyle,
+  panelScrollStyle,
+  moreBtnMenuStyle,
+  duplicateActionStyle,
+  deleteActionStyle,
+  resourceOptionStyle,
+  resourceBarTitleStyle,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
@@ -141,25 +142,25 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   const moreActions = (
-    <Menu onClickMenuItem={handleAction} css={moreBtnMenuCss}>
+    <Menu onClickMenuItem={handleAction} css={moreBtnMenuStyle}>
       <MenuItem
         key={"duplicate"}
         title={t("editor.action.panel.menu.more.duplicate")}
-        css={duplicateActionCss}
+        css={duplicateActionStyle}
       />
       <MenuItem
         key={"delete"}
         title={t("editor.action.panel.menu.more.delete")}
-        css={deleteActionCss}
+        css={deleteActionStyle}
       />
     </Menu>
   )
 
   return (
-    <div css={containerCss}>
-      <header css={headerCss}>
+    <div css={containerStyle}>
+      <header css={headerStyle}>
         <TitleInput activeActionItem={activeActionItem} />
-        <span css={fillingCss} />
+        <span css={fillingStyle} />
         <Dropdown
           dropList={moreActions}
           trigger={"click"}
@@ -174,7 +175,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           }}
         >
           <Button
-            css={moreBtnCss}
+            css={moreBtnStyle}
             buttonRadius="8px"
             size="medium"
             leftIcon={<MoreIcon />}
@@ -199,28 +200,31 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             : t("editor.action.panel.btn.run")}
         </Button>
       </header>
-      <div css={panelScrollCss}>
+      <div css={panelScrollStyle}>
         {activeActionItem && (
           <>
-            <div css={[actionCss, resourceBarCss]}>
-              <label css={sectionTitleCss}>
+            <div css={[actionStyle, resourceBarStyle]}>
+              <label css={[sectionTitleStyle, resourceBarTitleStyle]}>
                 {t("editor.action.panel.label.resource")}
               </label>
-              <span css={fillingCss} />
+              <span css={fillingStyle} />
               <Select
                 options={triggerOptions}
                 defaultValue={0}
-                css={[actionSelectCss, triggerSelectCss]}
+                css={[actionSelectStyle, triggerSelectStyle]}
               />
 
               <Select
-                css={[actionSelectCss, resourceSelectCss]}
+                css={[actionSelectStyle, resourceSelectStyle]}
                 value={resourceId}
                 onChange={onChangeResource}
+                triggerProps={{
+                  autoAlignPopupWidth: false,
+                }}
               >
                 <Option onClick={createResource} isSelectOption={false}>
                   <span
-                    css={resourceOptionCss}
+                    css={resourceOptionStyle}
                     title={t("editor.action.panel.option.resource.new")}
                   >
                     {t("editor.action.panel.option.resource.new")}
@@ -229,7 +233,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 <Divider />
                 <Option value={"preset_REST API"}>
                   <span
-                    css={resourceOptionCss}
+                    css={resourceOptionStyle}
                     title={t("editor.action.panel.option.resource.restQuery")}
                   >
                     {t("editor.action.panel.option.resource.restQuery")}
@@ -238,14 +242,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 {resourceList &&
                   resourceList.map(({ id, name }) => (
                     <Option value={id} key={id}>
-                      <span css={resourceOptionCss} title={name}>
+                      <span css={resourceOptionStyle} title={name}>
                         {name}
                       </span>
                     </Option>
                   ))}
               </Select>
               <div
-                css={applyEditIconCss(!isResourceEditable)}
+                css={applyEditIconStyle(!isResourceEditable)}
                 onClick={editResource}
               >
                 <PenIcon />

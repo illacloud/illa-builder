@@ -1,12 +1,12 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const fieldArrayWrapperCss = css`
+export const fieldArrayWrapperStyle = css`
   display: flex;
   flex-direction: column;
 `
 
-export const fieldItemCss = css`
+export const fieldItemStyle = css`
   display: flex;
   align-items: center;
 
@@ -15,7 +15,7 @@ export const fieldItemCss = css`
   }
 `
 
-export const fieldItemKeyCss = css`
+export const fieldItemKeyStyle = css`
   width: 160px;
 
   & > .CodeMirror {
@@ -24,7 +24,7 @@ export const fieldItemKeyCss = css`
   }
 `
 
-export const fieldItemTypeCss = css`
+export const fieldItemTypeStyle = css`
   width: 120px !important;
   border-radius: 0 !important;
   & > div {
@@ -33,7 +33,7 @@ export const fieldItemTypeCss = css`
   }
 `
 
-export const fieldItemValueCss = css`
+export const fieldItemValueStyle = css`
   flex: 1;
 
   & > .CodeMirror {
@@ -41,7 +41,7 @@ export const fieldItemValueCss = css`
   }
 `
 
-export const newButtonCss = css`
+export const newButtonStyle = css`
   display: flex;
   align-items: center;
   align-self: flex-start;
@@ -70,7 +70,7 @@ export const DeleteIconWrapper = css`
   }
 `
 
-export const actionTextCss = css`
+export const actionTextStyle = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   transition: color 0.2s ease-in-out;

@@ -26,26 +26,26 @@ import { selectAllActionItem } from "@/redux/action/actionList/actionListSelecto
 import { actionListActions } from "@/redux/action/actionList/actionListSlice"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import {
-  actionListContainerCss,
-  applynewButtonCss,
-  newButtonTextCss,
-  newButtonIconCss,
-  newActionOptionsListCss,
-  newActionOptionsItemCss,
-  actionItemListCss,
-  applyactionItemCss,
-  actionItemNameCss,
-  applyactionItemNameTextCss,
-  actionItemIconCss,
-  actionItemTimeCss,
-  warningIndicatorCss,
-  updatedIndicatorCss,
-  noMatchFoundWrapperCss,
-  emptyActionListPlaceholderCss,
-  applycontextMenuCss,
-  deleteActionCss,
-  duplicateActionCss,
-  applycontextMenuVisibleCss,
+  actionListContainerStyle,
+  applynewButtonStyle,
+  newButtonTextStyle,
+  newButtonIconStyle,
+  newActionOptionsListStyle,
+  newActionOptionsItemStyle,
+  actionItemListStyle,
+  applyactionItemStyle,
+  actionItemNameStyle,
+  applyactionItemNameTextStyle,
+  actionItemIconStyle,
+  actionItemTimeStyle,
+  warningIndicatorStyle,
+  updatedIndicatorStyle,
+  noMatchFoundWrapperStyle,
+  emptyActionListPlaceholderStyle,
+  applycontextMenuStyle,
+  deleteActionStyle,
+  duplicateActionStyle,
+  applycontextMenuVisibleStyle,
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
@@ -175,15 +175,18 @@ export const ActionList: FC<ActionListProps> = (props) => {
       }
 
       return (
-        <span css={actionItemNameCss} onDoubleClick={() => editName(id, name)}>
+        <span
+          css={actionItemNameStyle}
+          onDoubleClick={() => editName(id, name)}
+        >
           <span
-            css={applyactionItemNameTextCss(isWarning ?? false)}
+            css={applyactionItemNameTextStyle(isWarning ?? false)}
             title={name}
           >
             {name}
           </span>
           {isActionDirty && isSelected && (
-            <span css={updatedIndicatorCss}></span>
+            <span css={updatedIndicatorStyle}></span>
           )}
         </span>
       )
@@ -192,18 +195,18 @@ export const ActionList: FC<ActionListProps> = (props) => {
     return (
       <li
         key={id}
-        css={applyactionItemCss(isSelected)}
+        css={applyactionItemStyle(isSelected)}
         onClick={() => onClickActionItem(id, name)}
         onContextMenu={(e) => showContextMenu(e, id)}
       >
-        <span css={actionItemIconCss}>
+        <span css={actionItemIconStyle}>
           {icon}
           {isWarning && (
-            <WarningCircleIcon css={warningIndicatorCss} size={"8px"} />
+            <WarningCircleIcon css={warningIndicatorStyle} size={"8px"} />
           )}
         </span>
         {renderName()}
-        <span css={actionItemTimeCss}>{time}</span>
+        <span css={actionItemTimeStyle}>{time}</span>
       </li>
     )
   })
@@ -217,11 +220,11 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const newNewActionOptions = (
-    <ul css={newActionOptionsListCss}>
-      <li css={newActionOptionsItemCss} onClick={addAction}>
+    <ul css={newActionOptionsListStyle}>
+      <li css={newActionOptionsItemStyle} onClick={addAction}>
         {t("editor.action.actionList.menu.resourceAction")}
       </li>
-      <li css={newActionOptionsItemCss} onClick={addTransformer}>
+      <li css={newActionOptionsItemStyle} onClick={addTransformer}>
         {t("editor.action.actionList.menu.javascriptTransformer")}
       </li>
     </ul>
@@ -279,7 +282,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const NoMatchFound = (
-    <div css={noMatchFoundWrapperCss}>
+    <div css={noMatchFoundWrapperStyle}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
       <span>{t("editor.action.actionList.tips.notFound")}</span>
     </div>
@@ -292,7 +295,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       }
 
       return (
-        <span css={emptyActionListPlaceholderCss}>
+        <span css={emptyActionListPlaceholderStyle}>
           {t("editor.action.actionList.tips.empty")}
         </span>
       )
@@ -305,8 +308,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
     forwardRef<HTMLDivElement>((_, ref) => (
       <Menu
         css={[
-          applycontextMenuCss(contextMenuPosition.y, contextMenuPosition.x),
-          applycontextMenuVisibleCss(contextMenuVisible),
+          applycontextMenuStyle(contextMenuPosition.y, contextMenuPosition.x),
+          applycontextMenuVisibleStyle(contextMenuVisible),
         ]}
         onClickMenuItem={handleAction}
         ref={ref}
@@ -314,12 +317,12 @@ export const ActionList: FC<ActionListProps> = (props) => {
         <MenuItem
           key={"duplicate"}
           title={t("editor.action.actionList.contextMenu.duplicate")}
-          css={duplicateActionCss}
+          css={duplicateActionStyle}
         />
         <MenuItem
           key={"delete"}
           title={t("editor.action.actionList.contextMenu.delete")}
-          css={deleteActionCss}
+          css={deleteActionStyle}
         />
       </Menu>
     )),
@@ -334,7 +337,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   return (
-    <div css={actionListContainerCss}>
+    <div css={actionListContainerStyle}>
       <SearchHeader updateAction={setAction} />
 
       <Dropdown
@@ -349,17 +352,17 @@ export const ActionList: FC<ActionListProps> = (props) => {
         onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
       >
         <Button
-          css={applynewButtonCss(newActionOptionsVisible)}
+          css={applynewButtonStyle(newActionOptionsVisible)}
           size={"medium"}
         >
-          <span css={newButtonTextCss}>
-            <AddIcon css={newButtonIconCss} />
+          <span css={newButtonTextStyle}>
+            <AddIcon css={newButtonIconStyle} />
             {t("editor.action.actionList.btn.new")}
           </span>
         </Button>
       </Dropdown>
 
-      <ul css={actionItemListCss}>{renderActionItemList()}</ul>
+      <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
 
       <MotionContextMenu
         ref={contextMenuRef}

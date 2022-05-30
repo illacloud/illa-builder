@@ -5,13 +5,13 @@ import { Select } from "@illa-design/select"
 import { EditorInput } from "@/components/EditorInput"
 import { FieldArrayProps, ValueType } from "./interface"
 import {
-  actionTextCss,
+  actionTextStyle,
   DeleteIconWrapper,
-  fieldItemCss,
-  fieldItemKeyCss,
-  fieldItemValueCss,
-  fieldItemTypeCss,
-  newButtonCss,
+  fieldItemStyle,
+  fieldItemKeyStyle,
+  fieldItemValueStyle,
+  fieldItemTypeStyle,
+  newButtonStyle,
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
@@ -42,7 +42,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
 
   const fieldList = fields.map(({ key, value, type, _key }, index) => {
     return (
-      <div css={fieldItemCss} key={_key}>
+      <div css={fieldItemStyle} key={_key}>
         {hasType ? (
           <>
             <EditorInput
@@ -50,13 +50,13 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               lineNumbers={false}
               height="32px"
               placeholder="key"
-              _css={fieldItemKeyCss}
+              _css={fieldItemKeyStyle}
               onChange={(v) => updateField(index, "key", v)}
             />
             <Select
               value={type}
               options={typeOptions}
-              css={fieldItemTypeCss}
+              css={fieldItemTypeStyle}
               size="small"
               onChange={(v) => updateField(index, "type", v)}
             />
@@ -67,7 +67,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             lineNumbers={false}
             height="32px"
             placeholder="key"
-            _css={fieldItemKeyCss}
+            _css={fieldItemKeyStyle}
             onChange={(v) => updateField(index, "key", v)}
           />
         )}
@@ -77,7 +77,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           lineNumbers={false}
           height="32px"
           placeholder="value"
-          _css={fieldItemValueCss}
+          _css={fieldItemValueStyle}
           onChange={(v) => updateField(index, "value", v)}
         />
         <div css={DeleteIconWrapper} onClick={() => removeField(index)}>
@@ -105,7 +105,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
   return (
     <div>
       {fieldList}
-      <span css={[newButtonCss, actionTextCss]} onClick={addNewField}>
+      <span css={[newButtonStyle, actionTextStyle]} onClick={addNewField}>
         <AddIcon />
         New
       </span>

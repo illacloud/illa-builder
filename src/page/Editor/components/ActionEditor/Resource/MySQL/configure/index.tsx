@@ -18,28 +18,28 @@ import { resourceActions } from "@/redux/action/resource/resourceSlice"
 import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import { v4 as uuidV4 } from "uuid"
 import {
-  gridContainerCss,
-  descriptionCss,
-  formCss,
-  labelTextCss,
-  requiredLabelTextCss,
-  errorMessageCss,
-  gridRowContainerCss,
-  groupTitleCss,
-  itemTextCss,
-  labelTextVerticalCss,
-  labelTextSmallSizeCss,
-  splitLineCss,
+  gridContainerStyle,
+  descriptionStyle,
+  formStyle,
+  labelTextStyle,
+  requiredLabelTextStyle,
+  errorMessageStyle,
+  gridRowContainerStyle,
+  groupTitleStyle,
+  itemTextStyle,
+  labelTextVerticalStyle,
+  labelTextSmallSizeStyle,
+  splitLineStyle,
 } from "@/page/Editor/components/ActionEditor/Resource/style"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
 import { MySQLConfigureValues, MySQLConfigureProps } from "../interface"
 import { InputUpload } from "./input-upload"
 import {
-  hostnamePortCss,
-  usernamePasswordCss,
-  switchDescriptionCss,
-  switchAreaCss,
-  formPaddingCss,
+  hostnamePortStyle,
+  usernamePasswordStyle,
+  switchDescriptionStyle,
+  switchAreaStyle,
+  formPaddingStyle,
 } from "./style"
 
 const dataTransform = (data: UnpackNestedValue<MySQLConfigureValues>) => {
@@ -151,10 +151,10 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       )
     }
     return (
-      <form onSubmit={handleSubmit(onSubmit)} css={formCss} ref={ref}>
-        <div css={[gridContainerCss, formPaddingCss]}>
-          <div css={gridRowContainerCss}>
-            <label css={requiredLabelTextCss}>
+      <form onSubmit={handleSubmit(onSubmit)} css={formStyle} ref={ref}>
+        <div css={[gridContainerStyle, formPaddingStyle]}>
+          <div css={gridRowContainerStyle}>
+            <label css={requiredLabelTextStyle}>
               {t("editor.action.resource.mySql.label.name")}
             </label>
             <Controller
@@ -175,16 +175,16 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               name="name"
             />
             {errors.name && (
-              <div css={[errorMessageCss, applyGridColIndex(2)]}>
+              <div css={[errorMessageStyle, applyGridColIndex(2)]}>
                 {errors.name.message}
               </div>
             )}
           </div>
-          <div css={gridRowContainerCss}>
-            <label css={requiredLabelTextCss}>
+          <div css={gridRowContainerStyle}>
+            <label css={requiredLabelTextStyle}>
               {t("editor.action.resource.mySql.label.hostname/port")}
             </label>
-            <div css={hostnamePortCss}>
+            <div css={hostnamePortStyle}>
               <Controller
                 render={({ field }) => (
                   <Input
@@ -218,14 +218,14 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               />
             </div>
             {(errors.host || errors.port) && (
-              <div css={css(hostnamePortCss, applyGridColIndex(2))}>
-                <div css={errorMessageCss}>{errors.host?.message}</div>
-                <div css={errorMessageCss}>{errors.port?.message}</div>
+              <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                <div css={errorMessageStyle}>{errors.host?.message}</div>
+                <div css={errorMessageStyle}>{errors.port?.message}</div>
               </div>
             )}
           </div>
-          <div css={gridRowContainerCss}>
-            <label css={labelTextCss}>
+          <div css={gridRowContainerStyle}>
+            <label css={labelTextStyle}>
               {t("editor.action.resource.mySql.label.database")}
             </label>
             <Controller
@@ -241,11 +241,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               name="databaseName"
             />
           </div>
-          <div css={gridRowContainerCss}>
-            <label css={labelTextCss}>
+          <div css={gridRowContainerStyle}>
+            <label css={labelTextStyle}>
               {t("editor.action.resource.mySql.label.username/password")}
             </label>
-            <div css={usernamePasswordCss}>
+            <div css={usernamePasswordStyle}>
               <Controller
                 render={({ field }) => (
                   <Input
@@ -272,25 +272,25 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 name="databasePassword"
               />
             </div>
-            <div css={[descriptionCss, applyGridColIndex(2)]}>
+            <div css={[descriptionStyle, applyGridColIndex(2)]}>
               {t("editor.action.resource.mySql.tip.username/password")}
             </div>
           </div>
-          <div css={gridRowContainerCss}>
-            <label css={labelTextCss}>
+          <div css={gridRowContainerStyle}>
+            <label css={labelTextStyle}>
               {t("editor.action.resource.mySql.label.connectType")}
             </label>
-            <div css={itemTextCss}>
+            <div css={itemTextStyle}>
               {t("editor.action.resource.mySql.tip.connectType")}
             </div>
           </div>
-          <Divider css={splitLineCss} />
-          <h4 css={groupTitleCss}>Advanced Options</h4>
-          <div css={gridRowContainerCss}>
-            <label css={labelTextCss}>
+          <Divider css={splitLineStyle} />
+          <h4 css={groupTitleStyle}>Advanced Options</h4>
+          <div css={gridRowContainerStyle}>
+            <label css={labelTextStyle}>
               {t("editor.action.resource.mySql.label.connectOverSsh")}
             </label>
-            <div css={switchAreaCss}>
+            <div css={switchAreaStyle}>
               <Switch
                 colorScheme="techPurple"
                 checked={expandSSH}
@@ -298,8 +298,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   setExpandSSH(val)
                 }}
               />
-              <div css={switchDescriptionCss}>
-                <div css={labelTextCss}>
+              <div css={switchDescriptionStyle}>
+                <div css={labelTextStyle}>
                   {t("editor.action.resource.mySql.tip.connectOverSsh")}
                 </div>
               </div>
@@ -307,11 +307,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
           </div>
           {expandSSH && (
             <>
-              <div css={gridRowContainerCss}>
-                <label css={requiredLabelTextCss}>
+              <div css={gridRowContainerStyle}>
+                <label css={requiredLabelTextStyle}>
                   {t("editor.action.resource.mySql.label.sshHostnamePort")}
                 </label>
-                <div css={hostnamePortCss}>
+                <div css={hostnamePortStyle}>
                   <Controller
                     render={({ field }) => (
                       <Input
@@ -345,17 +345,17 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   />
                 </div>
                 {(errors.sshHost || errors.sshPort) && (
-                  <div css={css(hostnamePortCss, applyGridColIndex(2))}>
-                    <div css={errorMessageCss}>{errors.sshHost?.message}</div>
-                    <div css={errorMessageCss}>{errors.sshPort?.message}</div>
+                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                    <div css={errorMessageStyle}>{errors.sshHost?.message}</div>
+                    <div css={errorMessageStyle}>{errors.sshPort?.message}</div>
                   </div>
                 )}
               </div>
-              <div css={gridRowContainerCss}>
-                <label css={requiredLabelTextCss}>
+              <div css={gridRowContainerStyle}>
+                <label css={requiredLabelTextStyle}>
                   {t("editor.action.resource.mySql.label.sshCredentials")}
                 </label>
-                <div css={usernamePasswordCss}>
+                <div css={usernamePasswordStyle}>
                   <Controller
                     render={({ field }) => (
                       <Input
@@ -389,18 +389,18 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   />
                 </div>
                 {(errors.sshUsername || errors.sshPassword) && (
-                  <div css={css(hostnamePortCss, applyGridColIndex(2))}>
-                    <div css={errorMessageCss}>
+                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                    <div css={errorMessageStyle}>
                       {errors.sshUsername?.message}
                     </div>
-                    <div css={errorMessageCss}>
+                    <div css={errorMessageStyle}>
                       {errors.sshPassword?.message}
                     </div>
                   </div>
                 )}
               </div>
-              <div css={gridRowContainerCss}>
-                <label css={labelTextCss}>
+              <div css={gridRowContainerStyle}>
+                <label css={labelTextStyle}>
                   {t("editor.action.resource.mySql.label.privateKey")}
                 </label>
                 <InputUpload
@@ -413,10 +413,10 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   )}
                 />
               </div>
-              <div css={gridRowContainerCss}>
-                <label css={[labelTextCss, labelTextVerticalCss]}>
+              <div css={gridRowContainerStyle}>
+                <label css={[labelTextStyle, labelTextVerticalStyle]}>
                   <div>SSH passphrase</div>
-                  <div css={labelTextSmallSizeCss}>
+                  <div css={labelTextSmallSizeStyle}>
                     {t("editor.action.resource.mySql.tip.sshPassphrase")}
                   </div>
                 </label>
@@ -434,11 +434,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               </div>
             </>
           )}
-          <div css={gridRowContainerCss}>
-            <label css={labelTextCss}>
+          <div css={gridRowContainerStyle}>
+            <label css={labelTextStyle}>
               {t("editor.action.resource.mySql.label.sslOptions")}
             </label>
-            <div css={switchAreaCss}>
+            <div css={switchAreaStyle}>
               <Switch
                 colorScheme="techPurple"
                 checked={expandSSL}
@@ -446,8 +446,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   setExpandSSL(val)
                 }}
               />
-              <div css={switchDescriptionCss}>
-                <div css={labelTextCss}>
+              <div css={switchDescriptionStyle}>
+                <div css={labelTextStyle}>
                   {t("editor.action.resource.mySql.tip.sslOptions")}
                 </div>
               </div>
@@ -455,8 +455,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
           </div>
           {expandSSL && (
             <>
-              <div css={gridRowContainerCss}>
-                <label css={labelTextCss}>
+              <div css={gridRowContainerStyle}>
+                <label css={labelTextStyle}>
                   {t(
                     "editor.action.resource.mySql.label.serverRootCertificate",
                   )}
@@ -471,8 +471,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   )}
                 />
               </div>
-              <div css={gridRowContainerCss}>
-                <label css={labelTextCss}>
+              <div css={gridRowContainerStyle}>
+                <label css={labelTextStyle}>
                   {t("editor.action.resource.mySql.label.clientKey")}
                 </label>
                 <InputUpload
@@ -485,8 +485,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   )}
                 />
               </div>
-              <div css={gridRowContainerCss}>
-                <label css={labelTextCss}>
+              <div css={gridRowContainerStyle}>
+                <label css={labelTextStyle}>
                   {t("editor.action.resource.mySql.label.clientCertificate")}
                 </label>
                 <InputUpload
