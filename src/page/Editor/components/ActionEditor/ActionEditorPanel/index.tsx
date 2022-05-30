@@ -7,11 +7,11 @@ import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useSelector, useDispatch } from "react-redux"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import {
   addActionItem,
   removeActionItem,
-} from "@/redux/action/actionList/actionListSlice"
+} from "@/redux/currentApp/action/actionList/actionListSlice"
 import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 import { ActionEditorPanelProps } from "./interface"
 import {

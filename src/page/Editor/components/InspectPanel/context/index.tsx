@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   getSelectedWidgetStates,
   getWidgetStateById,
-} from "@/redux/editor/dsl/dslSelector"
-import { dslActions } from "@/redux/editor/dsl/dslSlice"
+} from "@/redux/currentApp/editor/dsl/dslSelector"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 // TODO: remove this,when add utils to system
 import { isEmpty } from "lodash"
 import { useDebounce } from "react-use"

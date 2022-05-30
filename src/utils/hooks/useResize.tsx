@@ -1,14 +1,7 @@
-// thx appsmith
-import { useState, useEffect, MutableRefObject } from "react"
+import React, { useState, useEffect, MutableRefObject } from "react"
 import { isFunction } from "@illa-design/system"
 import { unFocus } from "@/utils/helpers"
 
-/**
- * use vertical resize
- *
- * @param ref
- * @param onChange
- */
 export const useResize = (
   direction: "horizontal" | "vertical",
   ref: MutableRefObject<HTMLElement | null>,
@@ -25,7 +18,6 @@ export const useResize = (
   const [originHeight, setOriginHeight] = useState<number>(0)
   const [originWidth, setOriginWidth] = useState<number>(0)
 
-  // saving min/max-height/width
   useEffect(() => {
     const { minHeight, maxHeight, minWidth, maxWidth } =
       window.getComputedStyle(ref.current!)
@@ -38,7 +30,6 @@ export const useResize = (
     MAX_WIDTH = parsePX2Number(maxWidth)
   })
 
-  // registering event listeners
   useEffect(() => {
     document.addEventListener("mouseup", onMouseUp)
     document.addEventListener("mousemove", onMouseMove)
@@ -51,11 +42,6 @@ export const useResize = (
     }
   }, [resizing, position])
 
-  /**
-   * passing the event to touch start on mouse down
-   *
-   * @param event
-   */
   const onMouseDown = (event: React.MouseEvent) => {
     const eventWithTouches = Object.assign({}, event, {
       touches: [{ clientX: event.clientX, clientY: event.clientY }],
@@ -64,9 +50,6 @@ export const useResize = (
     onTouchStart(eventWithTouches)
   }
 
-  /**
-   * sets resizing and position on touch start
-   */
   const onTouchStart = (
     event:
       | React.TouchEvent

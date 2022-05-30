@@ -19,9 +19,9 @@ import {
 } from "@/assets/icon"
 import { ZoomControl } from "@/page/Editor/components/PageNavBar/ZoomControl"
 import { useDispatch, useSelector } from "react-redux"
-import { getPreviewMode } from "@/redux/editor/mode/modeSelector"
-import { modeActions } from "@/redux/editor/mode/modeSlice"
 import { PanelState } from "@/page/Editor"
+import { getPreviewMode } from "@/redux/currentApp/editor/mode/modeSelector"
+import { modeActions } from "@/redux/currentApp/editor/mode/modeSlice"
 
 interface PageNavBarProps extends HTMLAttributes<HTMLDivElement> {
   switchPanelState: (config: PanelState) => void
