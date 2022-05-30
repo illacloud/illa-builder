@@ -83,7 +83,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
       <MotionHeaderSearchInput
         initial={{ width: 0 }}
         animate={{ width: "auto" }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.2 }}
         exit={{ width: 0, opacity: 0 }}
       />
       <MotionHeaderSearchCloseBtn
