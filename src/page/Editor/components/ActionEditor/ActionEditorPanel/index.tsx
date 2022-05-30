@@ -218,6 +218,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 css={[actionSelectStyle, resourceSelectStyle]}
                 value={resourceId}
                 onChange={onChangeResource}
+                triggerProps={{
+                  autoAlignPopupWidth: false,
+                }}
               >
                 <Option onClick={createResource} isSelectOption={false}>
                   <span
