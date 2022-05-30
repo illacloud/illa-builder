@@ -13,9 +13,9 @@ import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/Editor/components/ActionEditor/style"
 import { useDispatch, useSelector } from "react-redux"
-import Api from "@/api/api"
-import { resourceActions } from "@/redux/action/resource/resourceSlice"
-import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { Api } from "@/api/base"
+import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
+import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { v4 as uuidV4 } from "uuid"
 import {
   gridContainerStyle,
@@ -114,7 +114,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       let data = { ...getValues(), ssh: expandSSH, ssl: expandSSL }
       const _data = dataTransform(data)
       alert(JSON.stringify(_data, null, 2))
-      Api.post("/api/v1/resources/testConnection", _data)
+      Api.request({
+        url: "/api/v1/resources/testConnection",
+        method: "POST",
+        data: _data,
+      })
     }
 
     useImperativeHandle(connectionRef, () => {
