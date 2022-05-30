@@ -4,12 +4,12 @@ import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { SliceCaseReducers } from "@reduxjs/toolkit/src/createSlice"
 
 const currentUserSlice = createSlice<
-  CurrentUser | undefined,
-  SliceCaseReducers<CurrentUser | undefined>,
+  CurrentUser | null,
+  SliceCaseReducers<CurrentUser | null>,
   "currentUser"
 >({
   name: "currentUser",
-  initialState: undefined,
+  initialState: null,
   reducers: {
     updateCurrentUserReducer,
   },

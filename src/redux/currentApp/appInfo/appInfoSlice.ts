@@ -4,12 +4,12 @@ import { AppInfo } from "@/redux/currentApp/appInfo/appInfoState"
 import { updateAppInfoReducer } from "@/redux/currentApp/appInfo/appInfoReducer"
 
 const appInfoSlice = createSlice<
-  AppInfo | undefined,
-  SliceCaseReducers<AppInfo | undefined>,
+  AppInfo | null,
+  SliceCaseReducers<AppInfo | null>,
   "appInfo"
 >({
   name: "appInfo",
-  initialState: undefined,
+  initialState: null,
   reducers: { updateAppInfoReducer },
 })
 
