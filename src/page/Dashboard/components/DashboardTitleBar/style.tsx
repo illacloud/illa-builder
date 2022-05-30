@@ -1,11 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 
-export const applyContainerCss: SerializedStyles = css`
+export const containerStyle: SerializedStyles = css`
   box-sizing: border-box;
   width: 100%;
 `
 
-export const applyNavBarLogoContainerCss: SerializedStyles = css`
+export const navBarLogoContainerStyle: SerializedStyles = css`
   padding-left: 16px;
   padding-right: 24px;
   display: inline-flex;
@@ -15,7 +15,7 @@ export const applyNavBarLogoContainerCss: SerializedStyles = css`
   width: 74px;
 `
 
-export const applyNavBarAvatarContainerCss: SerializedStyles = css`
+export const navBarAvatarContainerStyle: SerializedStyles = css`
   padding-left: 16px;
   padding-right: 16px;
   display: inline-flex;
@@ -26,6 +26,6 @@ export const applyNavBarAvatarContainerCss: SerializedStyles = css`
   flex-direction: row;
 `
 
-export const applyExpandCss: SerializedStyles = css`
+export const expandStyle: SerializedStyles = css`
   margin-left: 8px;
 `

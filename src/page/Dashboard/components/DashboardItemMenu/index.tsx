@@ -4,17 +4,17 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Input } from "@illa-design/input"
 import {
-  applyTriggerContentContainerCss,
-  applyTriggerContentItem,
+  triggerContentContainerCss,
+  applyTriggerContentItemStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { t } = useTranslation()
   return (
-    <div css={applyTriggerContentContainerCss}>
+    <div css={triggerContentContainerCss}>
       <div
-        css={applyTriggerContentItem(
+        css={applyTriggerContentItemStyle(
           globalColor(`--${illaPrefix}-techPurple-01`),
         )}
         onClick={() => {
@@ -28,7 +28,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         {t("rename")}
       </div>
       <div
-        css={applyTriggerContentItem(
+        css={applyTriggerContentItemStyle(
           globalColor(`--${illaPrefix}-grayBlue-02`),
         )}
         onClick={() => {}}
@@ -36,7 +36,9 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
         {t("duplicate")}
       </div>
       <div
-        css={applyTriggerContentItem(globalColor(`--${illaPrefix}-red-03`))}
+        css={applyTriggerContentItemStyle(
+          globalColor(`--${illaPrefix}-red-03`),
+        )}
         onClick={() => {}}
       >
         {t("move_to_trash")}

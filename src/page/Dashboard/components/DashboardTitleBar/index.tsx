@@ -1,9 +1,9 @@
 import { FC } from "react"
 import {
-  applyContainerCss,
-  applyExpandCss,
-  applyNavBarAvatarContainerCss,
-  applyNavBarLogoContainerCss,
+  containerStyle,
+  expandStyle,
+  navBarAvatarContainerStyle,
+  navBarLogoContainerStyle,
 } from "./style"
 import { TabPane, Tabs } from "@illa-design/tabs"
 import { useTranslation } from "react-i18next"
@@ -32,7 +32,7 @@ export const DashboardTitleBar: FC = () => {
   return (
     <Tabs
       prefix={
-        <div css={applyNavBarLogoContainerCss} key="prefix">
+        <div css={navBarLogoContainerStyle} key="prefix">
           <Logo
             onClick={() => {
               navigate("/")
@@ -41,16 +41,16 @@ export const DashboardTitleBar: FC = () => {
         </div>
       }
       suffix={
-        <div css={applyNavBarAvatarContainerCss} key="suffix">
+        <div css={navBarAvatarContainerStyle} key="suffix">
           <Avatar size="small" />
           <DownIcon
-            css={applyExpandCss}
+            css={expandStyle}
             color={globalColor(`--${illaPrefix}-grayBlue-05`)}
           />
         </div>
       }
       activeKey={t(pathList[pathList.length - 1])}
-      css={applyContainerCss}
+      css={containerStyle}
       withoutContent
       colorScheme="grayBlue"
       size="large"

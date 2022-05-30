@@ -1,11 +1,11 @@
 import { FC, useEffect, useState } from "react"
 import {
-  applyAppsContainerCss,
-  applyItemExtraContainer,
-  applyItemMenuButtonCss,
-  applyListTitleContainerCss,
-  applyListTitleCss,
-  applyMenuButtonCss,
+  appsContainerStyle,
+  itemExtraContainerStyle,
+  itemMenuButtonStyle,
+  listTitleContainerStyle,
+  listTitleStyle,
+  menuButtonStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
@@ -61,12 +61,12 @@ export const DashboardApps: FC = () => {
   }, [])
 
   return (
-    <div css={applyAppsContainerCss}>
-      <div css={applyListTitleContainerCss}>
-        <span css={applyListTitleCss}>{t("apps")}</span>
+    <div css={appsContainerStyle}>
+      <div css={listTitleContainerStyle}>
+        <span css={listTitleStyle}>{t("apps")}</span>
         <Button colorScheme="gray">{t("share")}</Button>
         <Button
-          _css={applyMenuButtonCss}
+          _css={menuButtonStyle}
           loading={createLoading}
           colorScheme="techPurple"
           onClick={() => {
@@ -110,7 +110,7 @@ export const DashboardApps: FC = () => {
             return (
               <ListItem
                 extra={
-                  <div css={applyItemExtraContainer}>
+                  <div css={itemExtraContainerStyle}>
                     <Button
                       colorScheme="techPurple"
                       onClick={() => {
@@ -130,7 +130,7 @@ export const DashboardApps: FC = () => {
                       content={<DashboardItemMenu appId={item.appId} />}
                     >
                       <Button
-                        _css={applyItemMenuButtonCss}
+                        _css={itemMenuButtonStyle}
                         colorScheme="grayBlue"
                         leftIcon={<MoreIcon />}
                       />
