@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const componentContainerCss = css`
   padding: 16px 16px;
-  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayblue-08`)};
+  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   width: 100%;
 `
 
@@ -52,7 +52,7 @@ export const iconCss = css`
   justify-content: center;
   align-items: center;
   background-color: ${hexToRGBA(
-    globalColor(`--${illaPrefix}-grayblue-09`),
+    globalColor(`--${illaPrefix}-grayBlue-09`),
     0.5,
   )};
   &:hover {
@@ -72,7 +72,7 @@ export const iconCss = css`
 
 export const nameCss = css`
   font-size: 12px;
-  color: ${globalColor(`--${illaPrefix}-grayblue-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   max-lines: 2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -98,7 +98,7 @@ export const emptyCss = css`
 `
 
 export const emptyTipCss = css`
-  color: ${globalColor(`--${illaPrefix}-grayblue-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   margin-top: 4px;
   font-size: 14px;
 `

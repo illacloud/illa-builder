@@ -6,8 +6,8 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Select, Option } from "@illa-design/select"
 import { ERROR_REQUIRED_MESSAGE } from "@/page/Editor/constants"
 import { useDispatch, useSelector } from "react-redux"
-import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import { resourceActions } from "@/redux/action/resource/resourceSlice"
+import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidV4 } from "uuid"
 import {
@@ -27,11 +27,7 @@ import {
   RESTAPIConfigureValues,
   Params,
 } from "../interface"
-import {
-  inputTagSmallSizeStyle,
-  labelAlignSelfFlexStartStyle,
-  topZIndexStyle,
-} from "./style"
+import { inputTagSmallSizeStyle, topZIndexStyle } from "./style"
 import { ParamList } from "./ParamList"
 import { BasicAuth, OAuth2 } from "./Authentication"
 

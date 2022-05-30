@@ -1,19 +1,18 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
+import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
+import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
   width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "switch-basic",
-    groupName: "Basic",
+    groupName: "BASIC",
     children: [
       {
         id: "switch-basic-defaultValue",
@@ -26,7 +25,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-label",
-    groupName: "Label",
+    groupName: "LABEL",
     children: [
       {
         id: "switch-label-label",
@@ -59,7 +58,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
+                <HorizontalStart />
               </div>
             ),
             value: "left",
@@ -67,18 +66,24 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentRightIcon />
+                <HorizontalEnd />
               </div>
             ),
             value: "right",
           },
         ],
       },
+      {
+        id: "switch-label-labelWidth",
+        labelName: "Width(%)",
+        attrName: "labelWidth",
+        setterType: "INPUT_SETTER",
+      },
     ],
   },
   {
     id: "switch-interaction",
-    groupName: "Interaction",
+    groupName: "INTERACTION",
     children: [
       {
         id: "switch-interaction-disabled",
@@ -92,7 +97,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-Adornments",
-    groupName: "Adornments",
+    groupName: "ADORNMENTS",
     children: [
       {
         id: "switch-adornments-tooltip",
@@ -104,7 +109,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-validation",
-    groupName: "Validation",
+    groupName: "VALIDATION",
     children: [
       {
         id: "switch-validation-required",
@@ -124,7 +129,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "switch-layout-hidden",
@@ -137,13 +142,15 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-style",
-    groupName: "Style",
+    groupName: "STYLE",
     children: [
       {
         id: "switch-style-radius",
         labelName: "Background",
         attrName: "checkedBackgroundColor",
-        setterType: "INPUT_SETTER",
+        setterType: "COLOR_SELECT_SETTER",
+        defaultValue: "blue",
+        options: colorSchemeOptions,
       },
     ],
   },

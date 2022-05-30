@@ -5,8 +5,8 @@ import { Input } from "@illa-design/input"
 import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { useSelector } from "react-redux"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
-import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
+import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import {
   configContainerStyle,
   descriptionStyle,

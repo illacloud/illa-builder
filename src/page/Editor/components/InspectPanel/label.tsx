@@ -9,7 +9,12 @@ export const PanelLabel: FC<PanelLabelProps> = (props) => {
   return (
     <>
       {labelDesc ? (
-        <Tooltip content={labelDesc} trigger="hover">
+        <Tooltip
+          content={labelDesc}
+          trigger="hover"
+          position="left"
+          maxWidth="240px"
+        >
           <span css={labelTipsCss}>{labelName}</span>
         </Tooltip>
       ) : (

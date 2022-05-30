@@ -1,13 +1,11 @@
-import { FC, useContext } from "react"
+import { FC } from "react"
 import { BaseSwitchProps } from "./interface"
 import { Switch } from "@illa-design/switch"
-import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
-import { applySetterStyle } from "../style"
+import { applySetterStyle } from "@/page/Editor/components/PanelSetters/style"
 
 export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
-  const { defaultValue, isFullWidth, attrName } = props
-
-  const { tempProps, handleUpdateDsl } = useContext(ConfigPanelContext)
+  const { defaultValue, isFullWidth, attrName, tempProps, handleUpdateDsl } =
+    props
 
   return (
     <div css={applySetterStyle(isFullWidth)}>

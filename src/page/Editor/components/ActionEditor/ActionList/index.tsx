@@ -22,8 +22,8 @@ import {
   EmptyStateIcon,
   RestApiIcon,
 } from "@illa-design/icon"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/action/actionList/actionListSlice"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
+import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import {
   actionListContainerStyle,

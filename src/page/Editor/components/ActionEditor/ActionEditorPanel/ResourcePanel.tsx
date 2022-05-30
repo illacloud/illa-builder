@@ -1,11 +1,5 @@
-import Api from "@/api/api"
-import {
-  forwardRef,
-  useState,
-  useImperativeHandle,
-  useContext,
-  useRef,
-} from "react"
+import { Api } from "@/api/base"
+import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
 import { Alert } from "@illa-design/alert"
 import {
@@ -14,10 +8,10 @@ import {
   MySQLParamValues,
   MySQLParam,
 } from "@/page/Editor/components/ActionEditor/Resource"
-import { ActionItemConfig } from "@/redux/action/actionList/actionListState"
-import { selectAllResource } from "@/redux/action/resource/resourceSelector"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/action/actionList/actionListSlice"
+import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionListState"
+import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
+import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
 import { useSelector, useDispatch } from "react-redux"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
@@ -76,12 +70,19 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     const run = () => {
       const _data = dataTransform(params)
-      Api.post("/api/v1/actions/:id/run", _data).then((data) => {
-        if (!showAlert) {
-          setShowAlert(true)
-        }
-        setResult(data)
-      })
+      Api.request(
+        {
+          url: "/api/v1/actions/:id/run",
+          method: "POST",
+          data: _data,
+        },
+        /*        (data) => {
+          if (!showAlert) {
+            setShowAlert(true)
+          }
+          setResult(data)
+        },*/
+      )
     }
 
     const saveAndRun = () => {

@@ -1,19 +1,17 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { AlignmentLeftIcon, AlignmentRightIcon } from "./svg"
+import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 
 const OptionsStyle = {
   width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  color: globalColor(`--${illaPrefix}-grayBlue-04`),
 }
 
 export const INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "input-options",
-    groupName: "Options",
+    groupName: "OPTIONS",
     children: [
       {
         id: "input-basic-defaultValue",
@@ -31,7 +29,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "input-label",
-    groupName: "Label",
+    groupName: "LABEL",
     children: [
       {
         id: "input-label-label",
@@ -52,7 +50,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Right</div>, value: "right" },
+          { label: <div style={OptionsStyle}>Top</div>, value: "top" },
         ],
       },
       {
@@ -64,7 +62,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
+                <HorizontalStart />
               </div>
             ),
             value: "left",
@@ -72,18 +70,84 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
           {
             label: (
               <div style={OptionsStyle}>
-                <AlignmentRightIcon />
+                <HorizontalEnd />
               </div>
             ),
             value: "right",
           },
         ],
       },
+      {
+        id: "select-label-labelWidth",
+        labelName: "Width(%)",
+        attrName: "labelWidth",
+        setterType: "INPUT_SETTER",
+      },
+    ],
+  },
+  {
+    id: "input-interaction",
+    groupName: "INTERACTION",
+    children: [
+      {
+        id: "input-interaction-disabled",
+        labelName: "Disabled",
+        attrName: "disabled",
+        setterType: "INPUT_SETTER",
+        placeholder: "false",
+        defaultValue: false,
+      },
+      {
+        id: "input-interaction-readonly",
+        labelName: "Readonly",
+        attrName: "readOnly",
+        setterType: "INPUT_SETTER",
+        placeholder: "false",
+        defaultValue: false,
+      },
+    ],
+  },
+  {
+    id: "input-Adornments",
+    groupName: "ADORNMENTS",
+    children: [
+      {
+        id: "input-adornments-showClear",
+        labelName: "Show clear button",
+        attrName: "allowClear",
+        useCustomLabel: true,
+        setterType: "DYNAMIC_SWITCH_SETTER",
+      },
+      {
+        id: "input-adornments-showChartCount",
+        labelName: "Show character count",
+        attrName: "showCharacterCount",
+        useCustomLabel: true,
+        setterType: "DYNAMIC_SWITCH_SETTER",
+      },
+      {
+        id: "input-adornments-prefixText",
+        labelName: "Prefix text",
+        attrName: "prefixText",
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: "input-adornments-suffixText",
+        labelName: "Suffix text",
+        attrName: "suffixText",
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: "input-adornments-tooltip",
+        labelName: "Tooltip",
+        attrName: "tooltipText",
+        setterType: "INPUT_SETTER",
+      },
     ],
   },
   {
     id: "input-validation",
-    groupName: "Validation",
+    groupName: "VALIDATION",
     children: [
       {
         id: "input-validation-required",
@@ -132,68 +196,8 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "input-interaction",
-    groupName: "Interaction",
-    children: [
-      {
-        id: "input-interaction-disabled",
-        labelName: "Disabled",
-        attrName: "disabled",
-        setterType: "INPUT_SETTER",
-        placeholder: "false",
-        defaultValue: false,
-      },
-      {
-        id: "input-interaction-readonly",
-        labelName: "Readonly",
-        attrName: "readOnly",
-        setterType: "INPUT_SETTER",
-        placeholder: "false",
-        defaultValue: false,
-      },
-    ],
-  },
-  {
-    id: "input-Adornments",
-    groupName: "Adornments",
-    children: [
-      {
-        id: "input-adornments-showClear",
-        labelName: "Show clear button",
-        attrName: "allowClear",
-        useCustomLabel: true,
-        setterType: "DYNAMIC_SWITCH_SETTER",
-      },
-      {
-        id: "input-adornments-showChartCount",
-        labelName: "Show character count",
-        attrName: "showCharacterCount",
-        useCustomLabel: true,
-        setterType: "DYNAMIC_SWITCH_SETTER",
-      },
-      {
-        id: "input-adornments-prefixText",
-        labelName: "Prefix text",
-        attrName: "prefixText",
-        setterType: "INPUT_SETTER",
-      },
-      {
-        id: "input-adornments-suffixText",
-        labelName: "Suffix text",
-        attrName: "suffixText",
-        setterType: "INPUT_SETTER",
-      },
-      {
-        id: "input-adornments-tooltip",
-        labelName: "Tooltip",
-        attrName: "tooltipText",
-        setterType: "INPUT_SETTER",
-      },
-    ],
-  },
-  {
     id: "input-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "input-layout-hidden",

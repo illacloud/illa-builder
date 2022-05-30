@@ -3,7 +3,7 @@ import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "image-basic",
-    groupName: "Basic",
+    groupName: "BASIC",
     children: [
       {
         id: "image-basic-source",
@@ -37,7 +37,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   // },
   {
     id: "image-adornments",
-    groupName: "Adornments",
+    groupName: "ADORNMENTS",
     children: [
       {
         id: "image-adornments-tooltip",
@@ -49,7 +49,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "image-layout",
-    groupName: "Layout",
+    groupName: "LAYOUT",
     children: [
       {
         id: "image-layout-height",
@@ -73,7 +73,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "image-style",
-    groupName: "Style",
+    groupName: "STYLE",
     children: [
       {
         id: "image-style-radius",

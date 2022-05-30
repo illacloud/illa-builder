@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { PanelLabel } from "@/page/Editor/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/Editor/components/InspectPanel/utils/fieldFactory"
@@ -9,13 +9,17 @@ import {
   resetButtonCss,
   resetIconCss,
 } from "./style"
-import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 
 export const ListSetter: FC<ListSetterProps> = (props) => {
-  const { labelName, labelDesc, childrenSetter, useCustomLabel } = props
-
-  const { componentDsl, tempProps, handleUpdateDsl } =
-    useContext(ConfigPanelContext)
+  const {
+    labelName,
+    labelDesc,
+    childrenSetter,
+    useCustomLabel,
+    tempProps,
+    componentDsl,
+    handleUpdateDsl,
+  } = props
 
   const getDslKeys = useMemo(() => {
     const hadKeysMapped = new Map()

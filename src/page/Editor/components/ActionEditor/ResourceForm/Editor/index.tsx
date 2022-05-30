@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { selectAllResource } from "@/redux/action/resource/resourceSelector"
+import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import {
   MySQLConfigure,
   RESTAPIConfigure,
