@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
 import { Input } from "@illa-design/input"
 import { InputUploadProps } from "../interface"
-import { displayNoneCss } from "./style"
+import { displayNoneStyle } from "./style"
 
 export const InputUpload: FC<InputUploadProps> = (props) => {
   const {
@@ -48,7 +48,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
         allowClear
       />
       <input
-        css={displayNoneCss}
+        css={displayNoneStyle}
         {...registerValue}
         ref={(e) => {
           registerValue.ref(e)

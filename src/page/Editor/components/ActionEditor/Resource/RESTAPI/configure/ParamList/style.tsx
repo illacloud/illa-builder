@@ -1,12 +1,12 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const paramListWrapperCss = css`
+export const paramListWrapperStyle = css`
   display: flex;
   flex-direction: column;
 `
 
-export const paramItemCss = css`
+export const paramItemStyle = css`
   display: flex;
 
   & + & {
@@ -14,7 +14,7 @@ export const paramItemCss = css`
   }
 `
 
-export const paramItemKeyCss = css`
+export const paramItemKeyStyle = css`
   width: 169px !important;
 
   & > span {
@@ -23,14 +23,14 @@ export const paramItemKeyCss = css`
   }
 `
 
-export const paramItemValueCss = css`
+export const paramItemValueStyle = css`
   & > span {
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
   }
 `
 
-export const newButtonCss = css`
+export const newButtonStyle = css`
   display: flex;
   align-items: center;
   align-self: flex-start;
@@ -42,7 +42,7 @@ export const newButtonCss = css`
   }
 `
 
-export const deleteIconCss = css`
+export const deleteIconStyle = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 

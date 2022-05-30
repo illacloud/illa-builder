@@ -11,16 +11,16 @@ import { resourceActions } from "@/redux/action/resource/resourceSlice"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidV4 } from "uuid"
 import {
-  formCss,
-  gridContainerCss,
-  labelTextCss,
-  requiredLabelTextCss,
+  formStyle,
+  gridContainerStyle,
+  labelTextStyle,
+  requiredLabelTextStyle,
   applyGridColIndex,
-  descriptionCss,
-  checkboxCss,
-  errorMessageCss,
-  gridRowContainerCss,
-  gridRowCenterItemCss,
+  descriptionStyle,
+  checkboxStyle,
+  errorMessageStyle,
+  gridRowContainerStyle,
+  gridRowCenterItemStyle,
 } from "@/page/Editor/components/ActionEditor/Resource/style"
 import {
   RESTAPIConfigureProps,
@@ -28,9 +28,9 @@ import {
   Params,
 } from "../interface"
 import {
-  inputTagSmallSizeCss,
-  labelAlignSelfFlexStartCss,
-  topZIndexCss,
+  inputTagSmallSizeStyle,
+  labelAlignSelfFlexStartStyle,
+  topZIndexStyle,
 } from "./style"
 import { ParamList } from "./ParamList"
 import { BasicAuth, OAuth2 } from "./Authentication"
@@ -95,10 +95,10 @@ export const RESTAPIConfigure = forwardRef<
     <form
       ref={ref}
       onSubmit={handleSubmit(onSubmit)}
-      css={[formCss, gridContainerCss]}
+      css={[formStyle, gridContainerStyle]}
     >
-      <div css={gridRowContainerCss}>
-        <label css={requiredLabelTextCss}>
+      <div css={gridRowContainerStyle}>
+        <label css={requiredLabelTextStyle}>
           {t("editor.action.resource.restApi.label.name")}
         </label>
         <Controller
@@ -117,17 +117,17 @@ export const RESTAPIConfigure = forwardRef<
           name="name"
         />
         {errors.name && (
-          <div css={[errorMessageCss, applyGridColIndex(2)]}>
+          <div css={[errorMessageStyle, applyGridColIndex(2)]}>
             {errors.name.message}
           </div>
         )}
-        <dd css={[applyGridColIndex(2), descriptionCss]}>
+        <dd css={[applyGridColIndex(2), descriptionStyle]}>
           {t("editor.action.resource.restApi.tip.name")}
         </dd>
       </div>
 
-      <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>
+      <div css={gridRowContainerStyle}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.baseUrl")}
         </label>
         <Controller
@@ -145,38 +145,42 @@ export const RESTAPIConfigure = forwardRef<
         />
       </div>
 
-      <div css={gridRowContainerCss}>
-        <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
+      <div css={gridRowContainerStyle}>
+        <label css={[labelTextStyle, labelAlignSelfFlexStartStyle]}>
           {t("editor.action.resource.restApi.label.urlParameters")}
         </label>
         <ParamList control={control} name={"urlParams"} />
       </div>
 
-      <div css={gridRowContainerCss}>
-        <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
+      <div css={gridRowContainerStyle}>
+        <label css={[labelTextStyle, labelAlignSelfFlexStartStyle]}>
           {t("editor.action.resource.restApi.label.headers")}
         </label>
         <ParamList control={control} name={"headers"} />
       </div>
 
-      <div css={gridRowContainerCss}>
-        <label css={[labelTextCss, labelAlignSelfFlexStartCss]}>
+      <div css={gridRowContainerStyle}>
+        <label css={[labelTextStyle, labelAlignSelfFlexStartStyle]}>
           {t("editor.action.resource.restApi.label.extraBodyValues")}
         </label>
         <ParamList control={control} name={"body"} />
-        <dd css={[applyGridColIndex(2), descriptionCss]}>
+        <dd css={[applyGridColIndex(2), descriptionStyle]}>
           {t("editor.action.resource.restApi.tip.extraBodyValues")}
         </dd>
       </div>
 
-      <div css={gridRowContainerCss}>
-        <div css={[gridRowContainerCss, gridRowCenterItemCss]}>
-          <label css={labelTextCss}>
+      <div css={gridRowContainerStyle}>
+        <div css={[gridRowContainerStyle, gridRowCenterItemStyle]}>
+          <label css={labelTextStyle}>
             {t("editor.action.resource.restApi.label.listOfCookiesToForward")}
           </label>
           <Controller
             render={({ field }) => (
-              <InputTag {...field} size={"small"} _css={inputTagSmallSizeCss} />
+              <InputTag
+                {...field}
+                size={"small"}
+                _css={inputTagSmallSizeStyle}
+              />
             )}
             control={control}
             name="cookiesToForward"
@@ -184,7 +188,7 @@ export const RESTAPIConfigure = forwardRef<
         </div>
         <Controller
           render={({ field }) => (
-            <Checkbox css={[applyGridColIndex(2), checkboxCss]} {...field}>
+            <Checkbox css={[applyGridColIndex(2), checkboxStyle]} {...field}>
               {t("editor.action.resource.restApi.label.forwardAllCookies")}
             </Checkbox>
           )}
@@ -193,8 +197,8 @@ export const RESTAPIConfigure = forwardRef<
         />
       </div>
 
-      <div css={gridRowContainerCss}>
-        <label css={labelTextCss}>
+      <div css={gridRowContainerStyle}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.authentication")}
         </label>
         <Controller
@@ -203,7 +207,7 @@ export const RESTAPIConfigure = forwardRef<
               size={"small"}
               onChange={setAuthType}
               value={authType}
-              triggerProps={{ _css: topZIndexCss }}
+              triggerProps={{ _css: topZIndexStyle }}
             >
               <Option value={"none"}>None</Option>
               <Option value={"basic"}>

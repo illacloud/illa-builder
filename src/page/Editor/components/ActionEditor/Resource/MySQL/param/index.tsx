@@ -1,11 +1,11 @@
 import { EditorInput } from "@/components/EditorInput"
 import { MySQLParamProps } from "../interface"
-import { panelPaddingCss } from "./style"
+import { panelPaddingStyle } from "./style"
 
 export const MySQLParam = (props: MySQLParamProps) => {
   const { onChange } = props
   return (
-    <div css={panelPaddingCss}>
+    <div css={panelPaddingStyle}>
       <EditorInput
         onChange={(value) => {
           onChange && onChange({ query: value })

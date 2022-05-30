@@ -1,4 +1,4 @@
-import { handlerTitleCss } from "../style"
+import { handlerTitleStyle } from "../style"
 import { EventInstance } from "./EventInstance"
 import { useTranslation } from "react-i18next"
 
@@ -8,7 +8,7 @@ export const EventHandler = () => {
   return (
     <>
       <div>
-        <div css={handlerTitleCss}>
+        <div css={handlerTitleStyle}>
           {t("editor.action.panel.label.eventHandler")}
         </div>
         <EventInstance title={t("editor.action.panel.label.success")} />

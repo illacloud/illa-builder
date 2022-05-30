@@ -6,14 +6,14 @@ import { Button } from "@illa-design/button"
 import { SearchIcon } from "@illa-design/icon"
 import { SearchHeaderProps } from "./interface"
 import {
-  searchHeaderCss,
-  searchHeaderInputCss,
-  searchHeaderTitleCss,
-  searchHeaderTitleTextCss,
-  searchHeaderTitleIconCss,
-  searchInputCss,
-  searchInputIconCss,
-  searchInputCloseBtnCss,
+  searchHeaderStyle,
+  searchHeaderInputStyle,
+  searchHeaderTitleStyle,
+  searchHeaderTitleTextStyle,
+  searchHeaderTitleIconStyle,
+  searchInputStyle,
+  searchInputIconStyle,
+  searchInputCloseBtnStyle,
 } from "./style"
 
 export const SearchHeader: FC<SearchHeaderProps> = (props) => {
@@ -26,12 +26,12 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
       <Input
         ref={ref}
         prefix={{
-          render: <SearchIcon size={"12px"} css={searchInputIconCss} />,
+          render: <SearchIcon size={"12px"} css={searchInputIconStyle} />,
         }}
         placeholder={t("editor.action.actionList.placeholder.search")}
         onChange={updateAction}
         onClear={() => updateAction("")}
-        css={searchInputCss}
+        css={searchInputStyle}
         allowClear
       />
     )),
@@ -46,7 +46,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
           updateAction("")
         }}
         colorScheme={"white"}
-        css={searchInputCloseBtnCss}
+        css={searchInputCloseBtnStyle}
       >
         {t("editor.action.actionList.btn.close")}
       </Button>
@@ -55,13 +55,13 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
 
   const searchTitle = (
     <motion.div
-      css={[searchHeaderCss, searchHeaderTitleCss]}
+      css={[searchHeaderStyle, searchHeaderTitleStyle]}
       key={"search-title"}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, display: "none" }}
     >
       <motion.span
-        css={searchHeaderTitleTextCss}
+        css={searchHeaderTitleTextStyle}
         initial={{ flex: 0, width: 25, overflow: "hidden" }}
         animate={{ flex: 1 }}
         transition={{ duration: 0.4 }}
@@ -71,14 +71,14 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
       <SearchIcon
         size={"12px"}
         onClick={() => setIsSearch(true)}
-        css={searchHeaderTitleIconCss}
+        css={searchHeaderTitleIconStyle}
       />
     </motion.div>
   )
 
   const searchInput = (
     <motion.div
-      css={[searchHeaderCss, searchHeaderInputCss]}
+      css={[searchHeaderStyle, searchHeaderInputStyle]}
       key={"search-input"}
       exit={{ opacity: 0, display: "none" }}
     >

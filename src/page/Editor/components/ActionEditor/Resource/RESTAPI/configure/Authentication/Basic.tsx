@@ -2,7 +2,7 @@ import { FC } from "react"
 import { Input, Password } from "@illa-design/input"
 import { useTranslation } from "react-i18next"
 import { Controller } from "react-hook-form"
-import { labelTextCss } from "@/page/Editor/components/ActionEditor/Resource/style"
+import { labelTextStyle } from "@/page/Editor/components/ActionEditor/Resource/style"
 import { BasicAuthProps } from "./interface"
 
 export const BasicAuth: FC<BasicAuthProps> = (props) => {
@@ -11,7 +11,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
 
   return (
     <>
-      <label css={labelTextCss}>
+      <label css={labelTextStyle}>
         {t("editor.action.resource.restApi.label.basicAuthUsername")}
       </label>
       <Controller
@@ -28,7 +28,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
         name="basicUsername"
       />
 
-      <label css={labelTextCss}>
+      <label css={labelTextStyle}>
         {t("editor.action.resource.restApi.label.basicAuthPassword")}
       </label>
       <Controller

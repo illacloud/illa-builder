@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import {
-  dashBorderBottomCss,
-  gridHandlersCss,
-  newBtnCss,
-  panelSubBarCss,
-  sectionTitleCss,
+  dashBorderBottomStyle,
+  gridHandlersStyle,
+  newBtnStyle,
+  panelSubBarStyle,
+  sectionTitleStyle,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { Button } from "@illa-design/button"
 import { PlusIcon } from "@illa-design/icon"
@@ -20,15 +20,15 @@ export const EventInstance = (props: EventInstanceProps) => {
 
   return (
     <>
-      <div css={panelSubBarCss}>
-        <label css={[sectionTitleCss, dashBorderBottomCss]}>{title}</label>
+      <div css={panelSubBarStyle}>
+        <label css={[sectionTitleStyle, dashBorderBottomStyle]}>{title}</label>
       </div>
-      <div css={gridHandlersCss}>
+      <div css={gridHandlersStyle}>
         {handlerList.map((item) => (
           <HandlerItem key={item.key} content={"ILLA"} />
         ))}
       </div>
-      <div css={newBtnCss}>
+      <div css={newBtnStyle}>
         <Button
           variant="text"
           size="medium"

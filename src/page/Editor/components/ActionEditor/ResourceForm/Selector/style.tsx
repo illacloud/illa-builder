@@ -2,7 +2,7 @@ import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const categoryCss = css`
+export const categoryStyle = css`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.57;
@@ -11,7 +11,7 @@ export const categoryCss = css`
   padding-top: 8px;
 `
 
-export function resourceListCss(last?: boolean): SerializedStyles {
+export function resourceListStyle(last?: boolean): SerializedStyles {
   return css`
     display: grid;
     grid-gap: 8px 24px;
@@ -21,7 +21,7 @@ export function resourceListCss(last?: boolean): SerializedStyles {
   `
 }
 
-export const resourceItemCss = css`
+export const resourceItemStyle = css`
   border-radius: 8px;
   border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
@@ -36,7 +36,7 @@ export const resourceItemCss = css`
   }
 `
 
-export const resourceNameCss = css`
+export const resourceNameStyle = css`
   margin-top: 8px;
   font-size: 14px;
   font-family: HelveticaNeue;
@@ -45,7 +45,7 @@ export const resourceNameCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-01`)}; ;
 `
 
-export const selectLayoutCss = css`
+export const selectLayoutStyle = css`
   overflow: auto;
   padding: 0 24px 24px;
   max-height: 812px;

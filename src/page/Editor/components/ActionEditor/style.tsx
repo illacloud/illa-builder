@@ -38,7 +38,7 @@ export function applyContainerHeight(height: number): SerializedStyles {
   })
 }
 
-export function applyresizerCss(
+export function applyresizerStyle(
   isResizing: boolean,
   bottom: number,
 ): SerializedStyles {

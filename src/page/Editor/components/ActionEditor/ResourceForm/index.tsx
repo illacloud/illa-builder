@@ -8,7 +8,7 @@ import {
 import { ResourceFormSelector } from "./Selector"
 import { ResourceFormEditor } from "./Editor"
 import { ResourceFormProps, ActionType } from "./interface"
-import { modalCss, closeIconCss, titleCss } from "./style"
+import { modalStyle, closeIconStyle, titleStyle } from "./style"
 
 export const ResourceForm: FC<ResourceFormProps> = (props) => {
   const { actionType: propActionType, visible, onCancel, resourceId } = props
@@ -71,19 +71,19 @@ export const ResourceForm: FC<ResourceFormProps> = (props) => {
 
   return (
     <Modal
-      _css={modalCss}
+      _css={modalStyle}
       visible={visible}
       footer={false}
       closable={true}
       withoutPadding
       closeElement={
-        <div css={closeIconCss} onClick={handleClose}>
+        <div css={closeIconStyle} onClick={handleClose}>
           <CloseIcon />
         </div>
       }
       onCancel={handleClose}
     >
-      <div css={titleCss}>{title}</div>
+      <div css={titleStyle}>{title}</div>
       {renderForm}
     </Modal>
   )
