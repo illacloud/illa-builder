@@ -7,6 +7,7 @@ export const actionListContainerStyle = css`
   flex-direction: column;
   width: 255px;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  position: relative;
 `
 
 export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
@@ -34,8 +35,8 @@ export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-        `--${illaPrefix}-techPurple-06`,
-      )}!important;
+    `--${illaPrefix}-techPurple-06`,
+  )}!important;
     }
   `
 }
@@ -233,6 +234,7 @@ export const searchHeaderTitleStyle = css`
 
 export const searchHeaderTitleTextStyle = css`
   white-space: nowrap;
+  flex: 1;
 `
 
 export const searchHeaderTitleIconStyle = css`
@@ -248,8 +250,8 @@ export const searchInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -258,6 +260,7 @@ export const searchInputIconStyle = css`
 `
 
 export const searchInputCloseBtnStyle = css`
+  flex: 0 0 45px;
   & > span {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
