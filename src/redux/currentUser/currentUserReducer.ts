@@ -6,4 +6,5 @@ export const updateCurrentUserReducer: CaseReducer<
   PayloadAction<CurrentUser | null>
 > = (state, action) => {
   state = action.payload
+  return state
 }

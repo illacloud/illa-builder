@@ -5,6 +5,5 @@ export const updateAppInfoReducer: CaseReducer<
   AppInfo | null,
   PayloadAction<AppInfo | null>
 > = (state, action) => {
-  state = action.payload
-  return state
+  return action.payload
 }

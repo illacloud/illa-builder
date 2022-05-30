@@ -13,7 +13,6 @@ export const updateDashboardResourceListReducer: CaseReducer<
   PayloadAction<DashboardResource[]>
 > = (state, action) => {
   state.list = action.payload
-  return state
 }
 
 export const addDashboardResourceReducer: CaseReducer<
@@ -24,14 +23,8 @@ export const addDashboardResourceReducer: CaseReducer<
   if (payload.index == undefined) {
     state.list.push(payload.resource)
   } else {
-    let list = state.list
-    state.list = [
-      ...list.splice(0, payload.index),
-      payload.resource,
-      ...list.splice(payload.index, list.length),
-    ]
+    state.list.splice(payload.index, 0, payload.resource)
   }
-  return state
 }
 
 export const removeDashboardResourceReducer: CaseReducer<
@@ -42,13 +35,8 @@ export const removeDashboardResourceReducer: CaseReducer<
     return element.resourceId == action.payload
   })
   if (index != -1) {
-    let list = state.list
-    state.list = [
-      ...list.splice(0, index),
-      ...list.splice(index + 1, list.length),
-    ]
+    state.list.splice(index, 1)
   }
-  return state
 }
 
 export const updateDashboardResourceReducer: CaseReducer<
@@ -61,5 +49,4 @@ export const updateDashboardResourceReducer: CaseReducer<
   if (index != -1) {
     state.list[index] = action.payload.newResource
   }
-  return state
 }

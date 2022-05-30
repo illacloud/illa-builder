@@ -13,7 +13,6 @@ export const updateDashboardAppListReducer: CaseReducer<
   PayloadAction<DashboardApp[]>
 > = (state, action) => {
   state.list = action.payload
-  return state
 }
 
 export const addDashboardAppReducer: CaseReducer<
@@ -24,14 +23,8 @@ export const addDashboardAppReducer: CaseReducer<
   if (payload.index == undefined) {
     state.list.push(payload.app)
   } else {
-    let list = state.list
-    state.list = [
-      ...list.splice(0, payload.index),
-      payload.app,
-      ...list.splice(payload.index, list.length),
-    ]
+    state.list.splice(payload.index, 0, payload.app)
   }
-  return state
 }
 
 export const removeDashboardAppReducer: CaseReducer<
@@ -42,13 +35,8 @@ export const removeDashboardAppReducer: CaseReducer<
     return element.appId == action.payload
   })
   if (index != -1) {
-    let list = state.list
-    state.list = [
-      ...list.splice(0, index),
-      ...list.splice(index + 1, list.length),
-    ]
+    state.list.splice(index, 1)
   }
-  return state
 }
 
 export const renameDashboardAppReducer: CaseReducer<
@@ -64,5 +52,4 @@ export const renameDashboardAppReducer: CaseReducer<
       appName: action.payload.newName,
     }
   }
-  return state
 }

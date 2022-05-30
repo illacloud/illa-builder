@@ -7,7 +7,6 @@ export const updateLiveFamilyListReducer: CaseReducer<
   PayloadAction<Presence[]>
 > = (state, action) => {
   state.others = action.payload
-  return state
 }
 
 export const addPresenceReducer: CaseReducer<
@@ -15,16 +14,10 @@ export const addPresenceReducer: CaseReducer<
   PayloadAction<AddPresencePayload>
 > = (state, action) => {
   if (action.payload.index != undefined) {
-    let list = state.others
-    state.others = [
-      ...list.splice(0, action.payload.index),
-      action.payload.presence,
-      ...list.splice(action.payload.index, list.length),
-    ]
+    state.others.splice(action.payload.index, 0, action.payload.presence)
   } else {
-    state.others = [...state.others, action.payload.presence]
+    state.others.push(action.payload.presence)
   }
-  return state
 }
 
 export const removePresenceReducer: CaseReducer<
@@ -35,13 +28,8 @@ export const removePresenceReducer: CaseReducer<
     return element.userId == action.payload
   })
   if (index != -1) {
-    let list = state.others
-    state.others = [
-      ...list.splice(0, index),
-      ...list.splice(index + 1, list.length),
-    ]
+    state.others.splice(index, 1)
   }
-  return state
 }
 
 export const updatePresenceReducer: CaseReducer<
@@ -54,5 +42,4 @@ export const updatePresenceReducer: CaseReducer<
   if (index != -1) {
     state.others[index] = action.payload
   }
-  return state
 }
