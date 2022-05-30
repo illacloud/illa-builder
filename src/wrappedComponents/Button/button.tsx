@@ -15,32 +15,32 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
     rightIcon,
     disabled,
     submit,
-    backgroundColor = globalColor(`--${illaPrefix}-blue-01`),
-    borderColor,
-    textColor,
     borderRadius,
     loading,
     alignment = "fullWidth",
     tooltipText,
+    colorScheme,
   } = props
 
-  const _textColor = useMemo(() => {
-    return (
-      textColor ??
-      (variant === "outline"
-        ? globalColor(`--${illaPrefix}-blue-01`)
-        : globalColor(`--${illaPrefix}-white-01`))
-    )
-  }, [variant, textColor])
+  // TODOS : P1,wait PM
 
-  const _borderColor = useMemo(() => {
-    return (
-      borderColor ??
-      (variant === "outline"
-        ? globalColor(`--${illaPrefix}-blue-01`)
-        : undefined)
-    )
-  }, [variant, borderColor])
+  // const _textColor = useMemo(() => {
+  //   return (
+  //     textColor ??
+  //     (variant === "outline"
+  //       ? globalColor(`--${illaPrefix}-blue-01`)
+  //       : globalColor(`--${illaPrefix}-white-01`))
+  //   )
+  // }, [variant, textColor])
+  //
+  // const _borderColor = useMemo(() => {
+  //   return (
+  //     borderColor ??
+  //     (variant === "outline"
+  //       ? globalColor(`--${illaPrefix}-blue-01`)
+  //       : undefined)
+  //   )
+  // }, [variant, borderColor])
 
   return (
     <TooltipWrapper
@@ -56,9 +56,10 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
             autoFullVertically
             autoFullHorizontal
             buttonRadius={borderRadius}
-            borderColor={_borderColor}
-            backgroundColor={backgroundColor}
-            textColor={_textColor}
+            // borderColor={_borderColor}
+            // backgroundColor={backgroundColor}
+            // textColor={_textColor}
+            colorScheme={colorScheme}
             loading={loading}
           >
             {text}

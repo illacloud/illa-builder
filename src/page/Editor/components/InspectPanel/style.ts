@@ -7,14 +7,6 @@ export const publicPaddingCss = css`
   box-sizing: border-box;
 `
 
-export function applyPaddingStyle(isInList?: boolean): SerializedStyles {
-  return isInList
-    ? css`
-        flex: 2;
-      `
-    : css``
-}
-
 export const baseLabelCss = css`
   font-size: 14px;
   font-weight: 500;
@@ -24,7 +16,6 @@ export const baseLabelCss = css`
 export const ListLabelCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-weight: 400;
-  flex: 1;
 `
 
 export function applyLabelStyle(isInList?: boolean): SerializedStyles {
@@ -75,6 +66,7 @@ export function panelBarOpenedIconCss(isOpened: boolean): SerializedStyles {
   return css`
     font-size: 8px;
     transition: transform 200ms;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     ${rotate}
   `
 }
@@ -94,16 +86,17 @@ export const panelBarItemAnimation: Variants = {
 export const applySetterWrapperStyle = (
   isFullWidth: boolean = false,
   useCustomLabel: boolean = false,
+  isInList: boolean = false,
 ): SerializedStyles => {
-  return useCustomLabel
-    ? css``
-    : isFullWidth
+  if (useCustomLabel) return css``
+
+  return isFullWidth
     ? publicPaddingCss
     : css`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 48px;
+        height: ${isInList ? "40px" : "48px"};
         ${publicPaddingCss};
       `
 }

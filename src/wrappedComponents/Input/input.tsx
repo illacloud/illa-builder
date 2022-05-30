@@ -34,7 +34,7 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
 
   return (
     <div>
-      <Wrapper w={"300px"}>
+      <Wrapper w="100%">
         <LabelWrapper
           label={label}
           labelAlign={labelAlign}

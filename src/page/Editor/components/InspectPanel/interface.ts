@@ -44,9 +44,20 @@ export interface PanelFieldConfig extends PanelLabelProps {
   // events?:event[] // TODO:
 }
 
+type GroupName =
+  | "BASIC"
+  | "OPTIONS"
+  | "INTERACTION"
+  | "LABEL"
+  | "ADORNMENTS"
+  | "VALIDATION"
+  | "LAYOUT"
+  | "STYLE"
+  | "OTHER"
+
 export interface PanelFieldGroupConfig {
   id: string
-  groupName: string
+  groupName: GroupName
   children: PanelFieldConfig[]
 }
 

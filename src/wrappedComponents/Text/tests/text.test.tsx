@@ -8,9 +8,9 @@ test("Text renders correctly", () => {
 })
 
 test("Text renders with textColor", () => {
-  render(<Text value="hello builder" textColor="#ffb3b3" />)
+  render(<Text value="hello builder" textColor="purple" />)
   expect(screen.getByText("hello builder")).toHaveStyle({
-    color: "rgb(255, 179, 179)",
+    color: "#dfb2fc",
   })
 })
 
@@ -19,7 +19,7 @@ test("Text renders with markdown", () => {
     <Text
       value="**hello builder**<https://github.com/illa-family/illa-builder>"
       disableMarkdown={true}
-      linkColor="#ffb3b3"
+      linkColor="purple"
     />,
   )
   expect(screen.getByText("hello builder")).toHaveStyle({
@@ -28,7 +28,7 @@ test("Text renders with markdown", () => {
   expect(
     screen.getByText("https://github.com/illa-family/illa-builder"),
   ).toHaveStyle({
-    color: "rgb(255, 179, 179)",
+    color: "#dfb2fc",
   })
 })
 

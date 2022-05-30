@@ -1,32 +1,50 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit"
+import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import resourceReducer from "@/redux/action/resource/resourceSlice"
-import actionListReducer from "@/redux/action/actionList/actionListSlice"
-import dashboardReducer from "@/redux/dashboard/dashboardSlice"
-import modeReducer from "@/redux/editor/mode/modeSlice"
-import dslReducer from "@/redux/editor/dsl/dslSlice"
-import widgetStatesReducer from "@/redux/editor/widgetStates/widgetStatesSlice"
+import resourceReducer from "@/redux/currentApp/action/resource/resourceSlice"
+import actionListReducer from "@/redux/currentApp/action/actionList/actionListSlice"
+import modeReducer from "@/redux/currentApp/editor/mode/modeSlice"
+import dslReducer from "@/redux/currentApp/editor/dsl/dslSlice"
+import widgetStatesReducer from "@/redux/currentApp/editor/widgetStates/widgetStatesSlice"
 
-const editor = combineReducers({
+import dashboardResourceReducer from "@/redux/dashboard/resources/dashboardResourceSlice"
+import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
+import currentUserReducer from "@/redux/currentUser/currentUserSlice"
+import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
+import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
+import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
+
+const editorReducer = combineReducers({
   mode: modeReducer,
   dsl: dslReducer,
   widgetStates: widgetStatesReducer,
 })
 
-const action = combineReducers({
+const actionReducer = combineReducers({
   actionList: actionListReducer,
   resource: resourceReducer,
 })
 
+const appReducer = combineReducers({
+  editor: editorReducer,
+  action: actionReducer,
+  appInfo: appInfoReducer,
+})
+
+const dashboardReducer = combineReducers({
+  dashboardResources: dashboardResourceReducer,
+  dashboardApps: dashboardAppReducer,
+})
+
 const store = configureStore({
   reducer: {
-    editor,
-    action,
+    currentApp: appReducer,
     dashboard: dashboardReducer,
+    currentUser: currentUserReducer,
+    liveFamily: liveFamilyReducer,
+    builderInfo: builderInfoReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
 
 export default store
-
 export type RootState = ReturnType<typeof store.getState>

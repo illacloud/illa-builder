@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react"
+import { useEffect, useRef, forwardRef, ForwardedRef, useState } from "react"
 import { css } from "@emotion/react"
 import { EditorInputProps } from "./interface"
 
@@ -18,37 +18,49 @@ import "codemirror/addon/display/placeholder"
 
 import { applyCMCss } from "./style"
 
-export const EditorInput: FC<EditorInputProps> = (props) => {
-  const {
-    _css,
-    mode,
-    lineNumbers = true,
-    height = "auto",
-    placeholder = "input sth",
-    onChange,
-    onBlur,
-  } = props
+import { Trigger } from "@illa-design/trigger"
 
-  const targetRef = useRef<HTMLDivElement>(null)
+// TODO
+// import "./modes"
 
-  useEffect(() => {
-    const editor = CodeMirror(targetRef.current!, {
-      mode: mode,
-      lineNumbers: lineNumbers,
-      autocapitalize: false,
-      autofocus: false,
-      matchBrackets: true,
-      // viewportMargin: Infinity,
-      tabSize: 2,
-      autoCloseBrackets: true,
-      hintOptions: {
-        completeSingle: false,
-      },
-      extraKeys: { "Shift+Q": "autocomplete" },
-      placeholder,
-    })
+export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
+  (props, ref: ForwardedRef<HTMLDivElement>) => {
+    const {
+      _css,
+      mode,
+      lineNumbers = true,
+      height = "auto",
+      placeholder = "input sth",
+      onChange,
+      onBlur,
+    } = props
 
-    const ignoreStr = ",#,!,-,=,@,$,%,&,+,;,(,),*"
+    const [triggerVisible, setTriggerVisible] = useState<boolean>(false)
+
+    const cmRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+      const editor = CodeMirror(cmRef.current!, {
+        mode: mode,
+        lineNumbers: lineNumbers,
+        autocapitalize: false,
+        autofocus: false,
+        matchBrackets: true,
+        // viewportMargin: Infinity,
+        tabSize: 2,
+        autoCloseBrackets: true,
+        hintOptions: {
+          completeSingle: false,
+        },
+        extraKeys: { "Shift+Q": "autocomplete" },
+        placeholder,
+      })
+
+      editor.on("change", handleChange)
+      editor.on("blur", handleblur)
+    }, [])
+
+    const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,(),{}"
     const ignoreToken = (text?: string[]) => {
       const ignore = ignoreStr.split(",")
       if (text && text[0]) {
@@ -62,26 +74,59 @@ export const EditorInput: FC<EditorInputProps> = (props) => {
       }
       return false
     }
-
-    editor.on("change", function (editor, change) {
+    const handleChange = (
+      editor: CodeMirror.Editor,
+      change: CodeMirror.EditorChange,
+    ) => {
+      // callback
       onChange?.(editor.getValue())
       // autocomplete
       if (change.origin == "+input") {
-        const text = change.text
+        let text = change.text
         // no hint
         if (!ignoreToken(text)) {
-          setTimeout(function () {
+          setTimeout(function() {
             editor.execCommand("autocomplete")
           }, 20)
         }
       }
-    })
-    editor.on("blur", function () {
-      onBlur?.()
-    })
-  }, [])
+      // {{ }}
+      const cursor = editor.getCursor()
+      const line = editor.getLine(cursor.line)
+      if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
+        setTriggerVisible(true)
+      }
+    }
 
-  return <div ref={targetRef} css={css(applyCMCss(height), _css)} />
-}
+    const handleblur = () => {
+      onBlur?.()
+    }
+
+    const tryUpdatePopupVisible = (value: boolean) => {
+      if (triggerVisible !== value && !value) {
+        setTriggerVisible(value)
+      }
+    }
+
+    return (
+      <Trigger
+        trigger="click"
+        position="br"
+        colorScheme="white"
+        showArrow={false}
+        autoAlignPopupWidth
+        closeOnClick={false}
+        clickOutsideToClose
+        popupVisible={triggerVisible}
+        onVisibleChange={tryUpdatePopupVisible}
+        content={<div>123</div>}
+      >
+        <div ref={ref}>
+          <div ref={cmRef} css={css(applyCMCss(height), _css)} />
+        </div>
+      </Trigger>
+    )
+  },
+)
 
 EditorInput.displayName = "EditorInput"
