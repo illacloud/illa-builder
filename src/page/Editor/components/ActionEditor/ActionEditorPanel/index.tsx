@@ -31,6 +31,7 @@ import {
   duplicateActionStyle,
   deleteActionStyle,
   resourceOptionStyle,
+  resourceBarTitleStyle,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
@@ -203,7 +204,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         {activeActionItem && (
           <>
             <div css={[actionStyle, resourceBarStyle]}>
-              <label css={sectionTitleStyle}>
+              <label css={[sectionTitleStyle, resourceBarTitleStyle]}>
                 {t("editor.action.panel.label.resource")}
               </label>
               <span css={fillingStyle} />

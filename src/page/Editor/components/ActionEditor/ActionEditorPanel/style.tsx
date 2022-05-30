@@ -58,8 +58,8 @@ export const titleInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -85,6 +85,10 @@ export const actionStyle = css`
 export const resourceBarStyle = css`
   margin-top: 8px;
   margin-bottom: 8px;
+`
+
+export const resourceBarTitleStyle = css`
+  margin-right: 16px;
 `
 
 export const fillingStyle = css`
