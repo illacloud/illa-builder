@@ -31,7 +31,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   const formRef = useRef<HTMLFormElement>(null)
 
   const renderResourceNode = () => {
-    let node = null
+    let node: JSX.Element
 
     switch (resourceType) {
       case "REST API":

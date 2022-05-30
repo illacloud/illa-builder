@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import {
-  dashBorderBottomCss,
   gridHandlersCss,
   newBtnCss,
   panelSubBarCss,
@@ -21,7 +20,7 @@ export const EventInstance = (props: EventInstanceProps) => {
   return (
     <>
       <div css={panelSubBarCss}>
-        <label css={[sectionTitleCss, dashBorderBottomCss]}>{title}</label>
+        <label css={sectionTitleCss}>{title}</label>
       </div>
       <div css={gridHandlersCss}>
         {handlerList.map((item) => (

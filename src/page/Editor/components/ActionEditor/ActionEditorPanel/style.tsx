@@ -290,3 +290,7 @@ export const handlerItemMoreCss = css`
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
+
+export const radioBtnStyle = css`
+  width: 184px;
+`
