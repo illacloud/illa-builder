@@ -10,7 +10,7 @@ import { selectAllResource } from "@/redux/action/resource/resourceSelector"
 import {
   configContainerStyle,
   descriptionStyle,
-  gridRowContainerStyle,
+  paramGridRowContainerStyle,
   labelTextStyle,
   applyGridColIndex,
 } from "@/page/Editor/components/ActionEditor/Resource/style"
@@ -60,7 +60,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   return (
     <div css={configContainerStyle}>
-      <div css={gridRowContainerStyle}>
+      <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.actionType")}
         </label>
@@ -85,7 +85,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
         </dd>
       </div>
 
-      <div css={gridRowContainerStyle}>
+      <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.urlParameters")}
         </label>
@@ -95,7 +95,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
         />
       </div>
 
-      <div css={gridRowContainerStyle}>
+      <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.headers")}
         </label>
@@ -103,7 +103,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       </div>
 
       {hasBody && (
-        <div css={gridRowContainerStyle}>
+        <div css={paramGridRowContainerStyle}>
           <label css={labelTextStyle}>
             {t("editor.action.resource.restApi.label.body")}
           </label>
@@ -111,7 +111,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
         </div>
       )}
 
-      <div css={gridRowContainerStyle}>
+      <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.cookies")}
         </label>

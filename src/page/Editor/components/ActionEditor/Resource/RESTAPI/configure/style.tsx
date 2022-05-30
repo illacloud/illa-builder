@@ -5,11 +5,6 @@ export const gridContainerGapStyle = css`
   gap: 8px;
 `
 
-export const labelAlignSelfFlexStartStyle = css`
-  align-self: flex-start;
-  margin-top: 5px;
-`
-
 export const inputTagSmallSizeStyle = css`
   height: 32px;
 `

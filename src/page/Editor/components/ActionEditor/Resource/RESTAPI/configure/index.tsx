@@ -146,21 +146,21 @@ export const RESTAPIConfigure = forwardRef<
       </div>
 
       <div css={gridRowContainerStyle}>
-        <label css={[labelTextStyle, labelAlignSelfFlexStartStyle]}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.urlParameters")}
         </label>
         <ParamList control={control} name={"urlParams"} />
       </div>
 
       <div css={gridRowContainerStyle}>
-        <label css={[labelTextStyle, labelAlignSelfFlexStartStyle]}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.headers")}
         </label>
         <ParamList control={control} name={"headers"} />
       </div>
 
       <div css={gridRowContainerStyle}>
-        <label css={[labelTextStyle, labelAlignSelfFlexStartStyle]}>
+        <label css={labelTextStyle}>
           {t("editor.action.resource.restApi.label.extraBodyValues")}
         </label>
         <ParamList control={control} name={"body"} />

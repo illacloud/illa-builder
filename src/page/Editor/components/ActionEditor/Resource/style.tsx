@@ -55,10 +55,9 @@ export const splitLineStyle = css`
 
 export const labelTextStyle = css`
   display: flex;
-  align-items: center;
   justify-content: end;
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 32px;
   font-weight: 500;
   text-align: right;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
