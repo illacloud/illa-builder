@@ -30,7 +30,12 @@ function generateAppWs(roomId: string): WebSocket {
 export class Connection {
   static roomMap: Map<string, WebSocket> = new Map()
 
-  static enterRoom(type: RoomType, loading: () => {}, errorState: () => {}) {
+  static enterRoom(
+    type: RoomType,
+    loading: (loading: boolean) => void,
+    errorState: (errorState: boolean) => void,
+    getRoom: (room: Room) => void,
+  ) {
     Api.request<Room>(
       {
         url: "/room",
@@ -52,6 +57,7 @@ export class Connection {
             break
           }
         }
+        getRoom(response.data)
       },
       (response) => {},
       () => {},
