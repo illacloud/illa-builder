@@ -11,3 +11,5 @@ export const IllaApp: FC = () => {
     </div>
   )
 }
+
+IllaApp.displayName = "IllaApp"

@@ -163,3 +163,5 @@ export const DashboardApps: FC = () => {
     </div>
   )
 }
+
+DashboardApps.displayName = "DashboardApps"

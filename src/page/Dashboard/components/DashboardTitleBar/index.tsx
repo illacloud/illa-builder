@@ -71,3 +71,5 @@ export const DashboardTitleBar: FC = () => {
     </Tabs>
   )
 }
+
+DashboardTitleBar.displayName = "DashboardTitleBar"

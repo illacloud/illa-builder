@@ -46,3 +46,5 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     </div>
   )
 }
+
+DashboardItemMenu.displayName = "DashboardItemMenu"
