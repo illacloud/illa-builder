@@ -1,4 +1,5 @@
 import { FC, useState, useContext } from "react"
+import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
@@ -82,7 +83,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             addonBefore={{ render: baseURL ?? null }}
           />
         </div>
-        <dd css={[applyGridColIndex(2), descriptionStyle]}>
+        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
           {t("editor.action.resource.rest_api.tip.get_req_auto_run")}
         </dd>
       </div>

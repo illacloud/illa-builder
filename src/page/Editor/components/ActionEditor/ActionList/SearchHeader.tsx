@@ -1,4 +1,5 @@
 import { FC, forwardRef, useState, useMemo } from "react"
+import { css } from "@emotion/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
@@ -55,7 +56,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
 
   const searchTitle = (
     <motion.div
-      css={[searchHeaderStyle, searchHeaderTitleStyle]}
+      css={css(searchHeaderStyle, searchHeaderTitleStyle)}
       key={"search-title"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -74,7 +75,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
 
   const searchInput = (
     <motion.div
-      css={[searchHeaderStyle, searchHeaderInputStyle]}
+      css={css(searchHeaderStyle, searchHeaderInputStyle)}
       key={"search-input"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

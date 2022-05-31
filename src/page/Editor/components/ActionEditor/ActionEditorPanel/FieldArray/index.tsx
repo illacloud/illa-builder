@@ -1,4 +1,5 @@
 import { FC, useState } from "react"
+import { css } from "@emotion/react"
 import { v4 as uuidv4 } from "uuid"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
@@ -105,7 +106,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
   return (
     <div>
       {fieldList}
-      <span css={[newButtonStyle, actionTextStyle]} onClick={addNewField}>
+      <span css={css(newButtonStyle, actionTextStyle)} onClick={addNewField}>
         <AddIcon />
         New
       </span>

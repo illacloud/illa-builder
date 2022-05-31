@@ -1,3 +1,4 @@
+import { css } from "@emotion/react"
 import { forwardRef } from "react"
 import { Input } from "@illa-design/input"
 import { DeleteIcon, AddIcon } from "@illa-design/icon"
@@ -73,7 +74,7 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
     return (
       <div css={paramListWrapperStyle} ref={ref} {...restProps}>
         {paramList}
-        <span css={[newButtonStyle, actionTextStyle]} onClick={addParamItem}>
+        <span css={css(newButtonStyle, actionTextStyle)} onClick={addParamItem}>
           <AddIcon />
           New
         </span>

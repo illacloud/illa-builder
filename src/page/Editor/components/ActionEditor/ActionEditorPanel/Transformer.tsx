@@ -1,3 +1,4 @@
+import { css } from "@emotion/react"
 import {
   actionStyle,
   dashBorderBottomStyle,
@@ -15,8 +16,8 @@ export const Transformer = () => {
 
   return (
     <>
-      <div css={[actionStyle, panelSubBarStyle]}>
-        <label css={[sectionTitleStyle, dashBorderBottomStyle]}>
+      <div css={css(actionStyle, panelSubBarStyle)}>
+        <label css={css(sectionTitleStyle, dashBorderBottomStyle)}>
           {t("editor.action.panel.label.transformer")}
         </label>
         <span css={fillingStyle} />

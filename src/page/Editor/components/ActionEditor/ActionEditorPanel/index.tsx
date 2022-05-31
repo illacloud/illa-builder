@@ -1,4 +1,5 @@
 import { FC, useMemo, useState, useRef, useContext } from "react"
+import { css } from "@emotion/react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
@@ -203,19 +204,19 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       <div css={panelScrollStyle}>
         {activeActionItem && (
           <>
-            <div css={[actionStyle, resourceBarStyle]}>
-              <label css={[sectionTitleStyle, resourceBarTitleStyle]}>
+            <div css={css(actionStyle, resourceBarStyle)}>
+              <label css={css(sectionTitleStyle, resourceBarTitleStyle)}>
                 {t("editor.action.panel.label.resource")}
               </label>
               <span css={fillingStyle} />
               <Select
                 options={triggerOptions}
                 defaultValue={0}
-                css={[actionSelectStyle, triggerSelectStyle]}
+                css={css(actionSelectStyle, triggerSelectStyle)}
               />
 
               <Select
-                css={[actionSelectStyle, resourceSelectStyle]}
+                css={css(actionSelectStyle, resourceSelectStyle)}
                 value={resourceId}
                 onChange={onChangeResource}
                 triggerProps={{

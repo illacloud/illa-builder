@@ -1,3 +1,4 @@
+import { css } from "@emotion/react"
 import { handlerTitleStyle } from "../style"
 import { EventInstance } from "./EventInstance"
 import { useTranslation } from "react-i18next"
