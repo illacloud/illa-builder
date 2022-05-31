@@ -10,7 +10,7 @@ export interface ApiError {
 }
 
 const axios = Axios.create({
-  baseURL: `https://${import.meta.env.BASE_URL}`,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     "Content-Encoding": "gzip",
     "Content-Type": "application/json",

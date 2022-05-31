@@ -8,20 +8,9 @@ export interface ConnectionError {
 export interface BuilderInfo {
   version: string
   language: string
-  connection: {
-    loading: boolean
-    error: ConnectionError
-  }
 }
 
 export const BuilderInfoInitialState: BuilderInfo = {
   version: "0.0.0",
   language: "English",
-  connection: {
-    loading: false,
-    error: {
-      errorState: false,
-      room: undefined,
-    },
-  },
 }
