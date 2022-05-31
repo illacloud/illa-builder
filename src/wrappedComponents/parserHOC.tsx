@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useDispatch } from "react-redux"
-import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 
 function getDisplayName(WrappedComponent: FC<any>) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component"

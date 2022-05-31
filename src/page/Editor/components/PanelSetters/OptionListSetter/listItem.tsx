@@ -118,7 +118,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
           popupVisible={modalVisible}
           content={
             <Modal
-              title="Editor Options"
+              title="Edit Options"
               label={label}
               value={value}
               index={index}

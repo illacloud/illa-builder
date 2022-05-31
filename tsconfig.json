@@ -17,8 +17,17 @@
     "jsxImportSource": "@emotion/react",
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ]
+    },
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client"
+    ]
   },
   "include": [
     "./src/**/*.tsx",

@@ -1,8 +1,8 @@
 import { createContext, ReactNode, FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getWidgetInspectBySelectId } from "@/redux/inspect/inspectSelector"
-import { inspectActions } from "@/redux/inspect/inspectSlice"
-import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { getWidgetInspectBySelectId } from "@/redux/currentApp/editor/inspect/inspectSelector"
+import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 
 interface Injected {
   configPanel: Record<string, any>

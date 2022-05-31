@@ -61,6 +61,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: "Horizontal alignment",
         attrName: "horizontalAlign",
         labelDesc: "xxxxxxx",
+        isFullWidth: true,
         setterType: "RADIO_GROUP_SETTER",
         defaultValue: "start",
         options: [
@@ -94,6 +95,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-layout-row",
         labelName: "Vertical alignment",
         setterType: "RADIO_GROUP_SETTER",
+        isFullWidth: true,
         labelDesc: "xxxxxxx",
         attrName: "verticalAlign",
         defaultValue: "start",
