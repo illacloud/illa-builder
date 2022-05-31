@@ -53,7 +53,7 @@ export const DashboardApps: FC = () => {
                     app: response.data,
                   }),
                 )
-                navigate(`/editor/${response.data.appId}`)
+                navigate(`/app/${response.data.appId}`)
               },
               (response) => {},
               (error) => {},

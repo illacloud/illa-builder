@@ -52,7 +52,7 @@ function App() {
             <Route path="resources" element={<DashboardResources />} />
           </Route>
           <Route index element={<Navigate to="/dashboard" />} />
-          <Route path="editor/:editor" element={<Editor />} />
+          <Route path="app/:app" element={<Editor />} />
           <Route path="403" element={<Page403 />} />
           <Route path="500" element={<Page500 />} />
           <Route path="*" element={<Page404 />} />
