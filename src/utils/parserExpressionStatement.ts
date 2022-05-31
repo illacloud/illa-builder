@@ -65,54 +65,17 @@ export const getDynamicBindings = (
   return { stringSegments: stringSegments, jsSnippets: paths }
 }
 
-export enum EvaluationScriptType {
-  EXPRESSION = "EXPRESSION",
-  ANONYMOUS_FUNCTION = "ANONYMOUS_FUNCTION",
-  ASYNC_ANONYMOUS_FUNCTION = "ASYNC_ANONYMOUS_FUNCTION",
-  TRIGGERS = "TRIGGERS",
-}
-
 export const ScriptTemplate = "<<string>>"
 
-export const EvaluationScripts: Record<EvaluationScriptType, string> = {
-  [EvaluationScriptType.EXPRESSION]: `
+export const getScriptToEval = (userScript: string): string => {
+  const script = `
   function closedFunction () {
     const result = ${ScriptTemplate}
     return result;
   }
   closedFunction.call({})
-  `,
-  [EvaluationScriptType.ANONYMOUS_FUNCTION]: `
-  function callback (script) {
-    const userFunction = script;
-    const result = userFunction?.apply(THIS_CONTEXT, ARGUMENTS);
-    return result;
-  }
-  callback(${ScriptTemplate})
-  `,
-  [EvaluationScriptType.ASYNC_ANONYMOUS_FUNCTION]: `
-  async function callback (script) {
-    const userFunction = script;
-    const result = await userFunction?.apply(THIS_CONTEXT, ARGUMENTS);
-    return result;
-  }
-  callback(${ScriptTemplate})
-  `,
-  [EvaluationScriptType.TRIGGERS]: `
-  async function closedFunction () {
-    const result = await ${ScriptTemplate};
-    return result;
-  }
-  closedFunction.call(THIS_CONTEXT);
-  `,
-}
-
-export const getScriptToEval = (
-  userScript: string,
-  type: EvaluationScriptType,
-): string => {
-  // Using replace here would break scripts with replacement patterns (ex: $&, $$)
-  const buffer = EvaluationScripts[type].split(ScriptTemplate)
+  `
+  const buffer = script.split(ScriptTemplate)
   return `${buffer[0]}${userScript}${buffer[1]}`
 }
 
@@ -129,12 +92,11 @@ export function evalScript(script: string) {
     }
 
     for (const entity in GlobalData) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore: No types available
       self[entity] = GlobalData[entity]
     }
 
-    const userScript = getScriptToEval(script, EvaluationScriptType.EXPRESSION)
+    const userScript = getScriptToEval(script)
 
     try {
       result = eval(userScript)
@@ -142,7 +104,6 @@ export function evalScript(script: string) {
       console.log(e)
     } finally {
       for (const entity in GlobalData) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore: No types available
         delete self[entity]
       }
