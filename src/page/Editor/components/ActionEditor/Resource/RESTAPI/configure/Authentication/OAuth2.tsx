@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
 import { InputNumber } from "@illa-design/input-number"

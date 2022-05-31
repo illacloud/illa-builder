@@ -31,7 +31,9 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       ({ id }) => id === activeActionItemId,
     ) ?? null
   const resource =
-    useSelector(selectAllResource).find(({ id }) => id === resourceId) ?? null
+    useSelector(selectAllResource).find(
+      ({ resourceId: id }) => id === resourceId,
+    ) ?? null
 
   const config = action?.config?.general as RESTAPIParamValues
   const resourceConfig = resource?.config as RESTAPIConfigureValues

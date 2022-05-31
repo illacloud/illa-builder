@@ -88,7 +88,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const { t } = useTranslation()
     const dispatch = useDispatch()
     const resourceConfig = useSelector(selectAllResource).find(
-      (i) => i.id === resourceId,
+      (i) => i.resourceId === resourceId,
     )
     const [expandSSH, setExpandSSH] = useState(false)
     const [expandSSL, setExpandSSL] = useState(false)
@@ -134,10 +134,12 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       if (resourceId) {
         dispatch(
           resourceActions.updateResourceItemReducer({
-            id: resourceId,
+            resourceId,
             ...resourceConfig,
-            name: data.name,
-            type: "MySQL",
+            resourceName: data.name,
+            resourceType: "MySQL",
+            dbName: "",
+            created: Date.now().toString(),
             config: data,
           }),
         )
@@ -147,9 +149,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
 
       dispatch(
         resourceActions.addResourceItemReducer({
-          id: uuidV4(),
-          name: data.name,
-          type: "MySQL",
+          resourceId: uuidV4(),
+          resourceName: data.name,
+          resourceType: "MySQL",
+          dbName: "",
+          created: Date.now().toString(),
           config: data,
         }),
       )
