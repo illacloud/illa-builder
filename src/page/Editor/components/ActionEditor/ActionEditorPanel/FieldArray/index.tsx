@@ -3,20 +3,20 @@ import { v4 as uuidv4 } from "uuid"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Select } from "@illa-design/select"
 import { EditorInput } from "@/components/EditorInput"
-import { FieldArrayProps } from "./interface"
+import { FieldArrayProps, ValueType } from "./interface"
 import {
-  ActionTextCSS,
+  actionTextStyle,
   DeleteIconWrapper,
-  FieldItemCSS,
-  FieldItemKeyCSS,
-  FieldItemValueCSS,
-  FieldItemTypeCSS,
-  NewButtonCSS,
+  fieldItemStyle,
+  fieldItemKeyStyle,
+  fieldItemValueStyle,
+  fieldItemTypeStyle,
+  newButtonStyle,
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
-  const { hasType } = props
-  // TOOD: omit _key when return data
+  const { hasType, value, onChange } = props
+
   const getEmptyField = () => {
     return hasType
       ? { key: "", type: "text", value: "", _key: uuidv4() }
@@ -28,29 +28,37 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
     { value: "file", label: "File" },
   ]
 
-  function updateType(index: number, value: string) {
+  function updateField(
+    index: number,
+    field: "key" | "type" | "value",
+    value: string,
+  ) {
     const fieldsCopy = [...fields]
-    fieldsCopy[index].type = value
+    fieldsCopy[index][field] = value
     setFields(fieldsCopy)
+
+    onChange && onChange(fields.map(({ _key, ...rest }) => rest as ValueType))
   }
 
   const fieldList = fields.map(({ key, value, type, _key }, index) => {
     return (
-      <div css={FieldItemCSS} key={_key}>
+      <div css={fieldItemStyle} key={_key}>
         {hasType ? (
           <>
             <EditorInput
               mode="javascript"
               lineNumbers={false}
               height="32px"
-              _css={FieldItemKeyCSS}
+              placeholder="key"
+              _css={fieldItemKeyStyle}
+              onChange={(v) => updateField(index, "key", v)}
             />
             <Select
               value={type}
               options={typeOptions}
-              css={FieldItemTypeCSS}
+              css={fieldItemTypeStyle}
               size="small"
-              onChange={(v) => updateType(index, v)}
+              onChange={(v) => updateField(index, "type", v)}
             />
           </>
         ) : (
@@ -58,7 +66,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             mode="javascript"
             lineNumbers={false}
             height="32px"
-            _css={FieldItemKeyCSS}
+            placeholder="key"
+            _css={fieldItemKeyStyle}
+            onChange={(v) => updateField(index, "key", v)}
           />
         )}
 
@@ -66,7 +76,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           mode="javascript"
           lineNumbers={false}
           height="32px"
-          _css={FieldItemValueCSS}
+          placeholder="value"
+          _css={fieldItemValueStyle}
+          onChange={(v) => updateField(index, "value", v)}
         />
         <div css={DeleteIconWrapper} onClick={() => removeField(index)}>
           <DeleteIcon size="12px" />
@@ -93,7 +105,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
   return (
     <div>
       {fieldList}
-      <span css={[NewButtonCSS, ActionTextCSS]} onClick={addNewField}>
+      <span css={[newButtonStyle, actionTextStyle]} onClick={addNewField}>
         <AddIcon />
         New
       </span>

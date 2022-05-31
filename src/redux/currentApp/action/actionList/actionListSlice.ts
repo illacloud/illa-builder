@@ -16,10 +16,5 @@ const actionListSlice = createSlice({
   },
 })
 
-export const {
-  addActionItemReducer: addActionItem,
-  updateActionItemReducer: updateActionItem,
-  removeActionItemReducer: removeActionItem,
-} = actionListSlice.actions
-
+export const actionListActions = actionListSlice.actions
 export default actionListSlice.reducer

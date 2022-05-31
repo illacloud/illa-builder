@@ -1,3 +1,7 @@
+import {
+  RESTAPIParamValues,
+  MySQLParamValues,
+} from "@/page/Editor/components/ActionEditor/Resource"
 type ActionType = "action" | "transformer"
 type ActionStatus = "warning" | string
 interface ActionConnectNetwork {
@@ -8,6 +12,24 @@ interface ActionConnectNetwork {
   responseSize: number
 }
 
+export interface ActionItemConfig {
+  general: RESTAPIParamValues | MySQLParamValues
+  trigger?: "manual" | "change"
+  mode?: "gui" | "plain"
+  transformer: Transformer
+  eventHandler: EventHandler
+}
+
+interface Transformer {
+  enable: boolean
+  value: string
+}
+
+interface EventHandler {
+  success?: string[]
+  failure?: string[]
+}
+
 export interface ActionItem {
   id: string
   name: string
@@ -15,8 +37,7 @@ export interface ActionItem {
   type: ActionType
   status?: ActionStatus
   network?: ActionConnectNetwork
-  // TODO: should restrict by resource
-  config?: any
+  config?: ActionItemConfig
 }
 
 export type ActionListState = ActionItem[]

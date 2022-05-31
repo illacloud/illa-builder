@@ -2,19 +2,24 @@ import { FC, useState, useRef, useEffect } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { AnimatePresence, motion } from "framer-motion"
+import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { useDispatch } from "react-redux"
 import {
-  TitleContainerCSS,
-  TitleEditIconCSS,
-  TitleCSS,
-  TitleInputContainerCSS,
-  TitleInputCSS,
+  titleContainerStyle,
+  titleEditIconStyle,
+  titleStyle,
+  titleInputContainerStyle,
+  titleInputStyle,
 } from "./style"
 import { TitleInputProps } from "./interface"
 
-export const TitleInput: FC<TitleInputProps> = () => {
+export const TitleInput: FC<TitleInputProps> = (props) => {
+  const { activeActionItem } = props
+  const dispatch = useDispatch()
+  const name = activeActionItem?.name || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const name = ""
+
   const [title, setTitle] = useState(name)
   const variants = {
     hidden: {
@@ -30,11 +35,20 @@ export const TitleInput: FC<TitleInputProps> = () => {
   }, [name])
 
   const focusInput = () => {
-    inputRef.current && inputRef.current.focus()
+    setTimeout(() => {
+      inputRef.current && inputRef.current.focus()
+    })
   }
 
   function handleOnBlur() {
     setIsEditing(false)
+    activeActionItem &&
+      dispatch(
+        actionListActions.updateActionItemReducer({
+          ...activeActionItem,
+          name: title,
+        }),
+      )
   }
 
   const childrenNode = isEditing ? (
@@ -44,7 +58,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
       exit={"hidden"}
       variants={variants}
       transition={{ duration: 0.2 }}
-      css={TitleInputContainerCSS}
+      css={titleInputContainerStyle}
       onAnimationComplete={focusInput}
     >
       <Input
@@ -54,7 +68,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
         onChange={(v) => setTitle(v)}
         key={"input"}
         inputRef={inputRef}
-        css={TitleInputCSS}
+        css={titleInputStyle}
       />
     </motion.div>
   ) : (
@@ -62,7 +76,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
       onClick={() => {
         setIsEditing(true)
       }}
-      css={TitleContainerCSS}
+      css={titleContainerStyle}
       initial={"hidden"}
       animate={"visible"}
       exit={"hidden"}
@@ -70,8 +84,8 @@ export const TitleInput: FC<TitleInputProps> = () => {
       transition={{ duration: 0.2 }}
       key={"title"}
     >
-      <span css={TitleCSS}>{title}</span>
-      <PenIcon css={TitleEditIconCSS} viewBox={"0 0 14 14"} />
+      <span css={titleStyle}>{title}</span>
+      <PenIcon css={titleEditIconStyle} viewBox={"0 0 14 14"} />
     </motion.div>
   )
 

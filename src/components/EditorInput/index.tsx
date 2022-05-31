@@ -85,7 +85,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         let text = change.text
         // no hint
         if (!ignoreToken(text)) {
-          setTimeout(function () {
+          setTimeout(function() {
             editor.execCommand("autocomplete")
           }, 20)
         }
