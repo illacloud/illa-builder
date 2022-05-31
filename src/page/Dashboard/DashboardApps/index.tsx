@@ -151,9 +151,16 @@ export const DashboardApps: FC = () => {
           }}
         />
       )}
-      {!loading && !errorState && appsList && appsList.length == 0 && <Empty />}
+      {!loading && !errorState && appsList && appsList.length == 0 && (
+        <Empty paddingVertical="120px" />
+      )}
       {!loading && errorState && (
-        <Result status="error" title={t("network_error")} />
+        <Result
+          paddingVertical="120px"
+          status="error"
+          title={t("network_error")}
+          extra={<Button colorScheme="techPurple">{t("retry")}</Button>}
+        />
       )}
       {loading && (
         <div css={loadingBoxStyle}>
