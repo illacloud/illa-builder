@@ -8,9 +8,17 @@ import {
 } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { ColorSelectSetterProps } from "./interface"
+import chroma from "chroma-js"
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
-  const { defaultValue, options, attrName, handleUpdateDsl, tempProps } = props
+  const {
+    defaultValue,
+    options,
+    attrName,
+    panelConfig,
+    handleUpdateDsl,
+    handleUpdatePanelConfig,
+  } = props
   const [menuVisible, setMenuVisible] = useState(false)
 
   const renderContent = useCallback((color: string = "transparent") => {
@@ -18,7 +26,9 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
       <>
         <div css={colorSelectPreviewColorCss(color)} />
         <div css={colorSelectPreviewNameCss}>
-          {color !== "transparent" ? color.toLocaleUpperCase() : color}
+          {color !== "transparent"
+            ? chroma(color).hex().toLocaleUpperCase()
+            : color}
         </div>
       </>
     )
@@ -34,6 +44,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
               css={colorSelectMenuItemWrapperCss}
               key={key}
               onClick={() => {
+                handleUpdatePanelConfig({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
                 setMenuVisible(false)
               }}
@@ -44,15 +55,15 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
         })}
       </div>
     )
-  }, [renderContent, options, attrName, handleUpdateDsl])
+  }, [renderContent, options, attrName, handleUpdatePanelConfig])
 
   const translateValueToKey = useMemo(() => {
-    const value = tempProps[attrName]
+    const value = panelConfig[attrName]
     const key = options?.find(
       (item) => item.value === (value ?? defaultValue),
     )?.key
     return key ?? "transparent"
-  }, [tempProps, options])
+  }, [panelConfig, options])
 
   return (
     <Trigger

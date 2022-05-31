@@ -6,6 +6,14 @@ import svgr from "vite-plugin-svgr"
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://124.70.32.49:8999",
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [
     react({
       jsxImportSource: "@emotion/react",

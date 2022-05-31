@@ -18,7 +18,7 @@ export const WrappedSwitch: FC<SwitchProps> = (props) => {
     required,
     checkedBackgroundColor = "blue",
     tooltipText,
-    onChange,
+    handleUpdateDsl,
   } = props
   return (
     <LabelWrapper
@@ -35,7 +35,9 @@ export const WrappedSwitch: FC<SwitchProps> = (props) => {
         checked={value}
         disabled={disabled}
         colorScheme={checkedBackgroundColor}
-        onChange={onChange}
+        onChange={(value) => {
+          handleUpdateDsl({ value })
+        }}
         defaultChecked={defaultValue}
       />
     </LabelWrapper>

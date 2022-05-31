@@ -3,7 +3,6 @@ import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
-  width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -14,6 +13,51 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     id: "radioGroup-options",
     groupName: "OPTIONS",
     children: [
+      {
+        id: "radioGroup-options-mode",
+        isFullWidth: true,
+        attrName: "optionMode",
+        setterType: "RADIO_GROUP_SETTER",
+        defaultValue: "manual",
+        options: [
+          {
+            label: "Manual",
+            value: "manual",
+          },
+          {
+            label: "Mapped",
+            value: "mapped",
+          },
+        ],
+      },
+      {
+        id: "radioGroup-basic-options",
+        useCustomLabel: true,
+        attrName: "options",
+        setterType: "OPTION_LIST_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => !value || value === "manual",
+      },
+      {
+        id: "radioGroup-option-data-sources",
+        labelName: "data sources",
+        isFullWidth: true,
+        attrName: "dataSources",
+        setterType: "INPUT_SETTER",
+        defaultValue: "[]",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
+      },
+      {
+        id: "radioGroup-option-mapped",
+        labelName: "Mapped Option",
+        useCustomLabel: true,
+        isFullWidth: true,
+        attrName: "mappedOption",
+        setterType: "OPTION_MAPPED_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
+      },
       {
         id: "radioGroup-basic-defaultValue",
         labelName: "Default Value",
@@ -44,8 +88,8 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
-          { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Top</div>, value: "top" },
+          { label: "Left", value: "left" },
+          { label: "Top", value: "top" },
         ],
       },
       {
@@ -124,13 +168,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
-      {
-        id: "radioGroup-style-direction",
-        labelName: "Alignment",
-        setterType: "RADIO_GROUP_SETTER",
-        attrName: "direction",
-        options: ["vertical", "horizontal"],
-      },
     ],
   },
   {
@@ -143,6 +180,13 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+      },
+      {
+        id: "radioGroup-style-direction",
+        labelName: "Alignment",
+        setterType: "RADIO_GROUP_SETTER",
+        attrName: "direction",
+        options: ["vertical", "horizontal"],
       },
     ],
   },

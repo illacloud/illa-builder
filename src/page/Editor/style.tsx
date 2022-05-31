@@ -2,8 +2,6 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 
-const NAV_BAR_HEIGHT = 35
-
 export const editorContainerStyle = css`
   display: flex;
   flex-direction: column;
@@ -45,6 +43,7 @@ export function applyBottomPanelStyle(display: boolean): SerializedStyles {
     ${display ? "" : "display: none"};
   `
 }
+
 export function applyRightPanelStyle(display: boolean): SerializedStyles {
   return css`
     width: 320px;

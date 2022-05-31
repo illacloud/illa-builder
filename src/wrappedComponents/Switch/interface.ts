@@ -8,5 +8,5 @@ export interface SwitchProps extends LabelProps {
   required: boolean
   checkedBackgroundColor: SwitchColorScheme
   tooltipText: string
-  onChange: (value: boolean) => void
+  handleUpdateDsl: (value: Record<string, boolean>) => void
 }

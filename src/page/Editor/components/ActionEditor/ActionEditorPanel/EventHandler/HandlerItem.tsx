@@ -1,35 +1,36 @@
 import { MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import {
-  HandlerItemContentCSS,
-  HandlerItemMoreCSS,
-  HandlerItemWrapperCSS,
-  MoreListItemCSS,
-  MoreListCSS,
-  MoreListItemWarnCSS,
+  handlerItemContentStyle,
+  handlerItemMoreStyle,
+  handlerItemWrapperStyle,
+  moreListItemStyle,
+  moreListStyle,
+  moreListItemWarnStyle,
 } from "../style"
 import { HandlerItemProps } from "./interface"
 
 export const HandlerItem = (props: HandlerItemProps) => {
   const { content } = props
   const dropList = (
-    <ul css={MoreListCSS}>
-      <li css={MoreListItemCSS}>Duplicate</li>
-      <li css={MoreListItemWarnCSS}>Delete</li>
+    <ul css={moreListStyle}>
+      <li css={moreListItemStyle}>Duplicate</li>
+      <li css={moreListItemWarnStyle}>Delete</li>
     </ul>
   )
   return (
-    <div role="button" css={HandlerItemWrapperCSS}>
-      <span css={HandlerItemContentCSS}>{content}</span>
+    <div role="button" css={handlerItemWrapperStyle}>
+      <span css={handlerItemContentStyle}>{content}</span>
       <Dropdown
         dropList={dropList}
         trigger="click"
         triggerProps={{
           openDelay: 0,
           closeDelay: 0,
+          showArrow: false,
         }}
       >
-        <span css={HandlerItemMoreCSS}>
+        <span css={handlerItemMoreStyle}>
           <MoreIcon />
         </span>
       </Dropdown>

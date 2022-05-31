@@ -16,9 +16,10 @@ const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
     value,
     defaultValue,
     disabled,
-    options = ["A", "B", "C"],
+    options,
     direction,
     checkedBackgroundColor,
+    handleUpdateDsl,
   } = props
   return (
     <LabelWrapper
@@ -37,6 +38,9 @@ const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
         options={options}
         direction={direction}
         colorScheme={checkedBackgroundColor}
+        onChange={(value) => {
+          handleUpdateDsl({ value })
+        }}
       />
     </LabelWrapper>
   )

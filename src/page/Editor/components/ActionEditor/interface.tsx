@@ -15,3 +15,8 @@ export type ApiType = "REST API"
 export type DatabaseType = "MySQL" | "Postgres" | "Redis"
 
 export type ResourceType = DatabaseType | ApiType
+
+export interface ActionEditorContextProps {
+  activeActionItemId: string
+  resourceId: string
+}
