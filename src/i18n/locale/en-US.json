@@ -6,7 +6,7 @@
   "description": {
     "part1": "This is an example without namespaces."
   },
-    "apps": "Apps",
+  "apps": "Apps",
   "resources": "Resources",
   "create_new": "Create New",
   "share": "Share",
