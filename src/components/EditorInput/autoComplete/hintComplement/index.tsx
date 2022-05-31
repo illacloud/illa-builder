@@ -15,15 +15,9 @@ import { ArrayIcon } from "../icon"
 import { Tag } from "@illa-design/tag"
 
 export const HintComplement: FC<HintComplementProps> = (props) => {
-  const { ele, index } = props
+  const { ele, index, showTrigger } = props
 
-  useEffect(() => {
-    console.log(ele)
-  }, [ele])
-
-  useEffect(() => {
-    console.log(index)
-  }, [index])
+  console.log("showTrigger", showTrigger)
 
   return (
     <Trigger

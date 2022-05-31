@@ -9,7 +9,7 @@ import {
   ComponentIcon,
   NullIcon,
 } from "./icon"
-import { contentCss, itemCss, typeCss } from "./styles"
+import { contentStyle, itemStyle, typeStyle } from "./styles"
 
 export const ACItem = forwardRef<HTMLDivElement, ACItemProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
@@ -35,10 +35,10 @@ export const ACItem = forwardRef<HTMLDivElement, ACItemProps>(
     }
 
     return (
-      <div css={itemCss} ref={ref} {...rest}>
+      <div css={itemStyle} ref={ref} {...rest}>
         {IconEle()}
-        <span css={contentCss}>{content}</span>
-        <span css={typeCss}>{type}</span>
+        <span css={contentStyle}>{content}</span>
+        <span css={typeStyle}>{type}</span>
       </div>
     )
   },

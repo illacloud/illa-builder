@@ -41,7 +41,6 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
     // const [triggerPosition, setTriggerPosition] = useState<customPositionType>()
 
     const [currentHintIndex, setCurrentHintIndex] = useState<number>(0)
-    let testValue = 0
 
     const cmRef = useRef<HTMLDivElement>(null)
 
@@ -81,9 +80,9 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       editor.on("change", handleChange)
       editor.on("blur", handleBlur)
 
-      editor.on("beforeSelectionChange", (cm, obj) => {
-        console.log(obj)
-      })
+      // editor.on("beforeSelectionChange", (cm, obj) => {
+      //   console.log(obj)
+      // })
 
       // editor.on("renderLine", (cm, handle, ele) => {
       //   console.log(cm)
@@ -126,16 +125,8 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       }
     }, [])
 
-    useEffect(() => {
-      console.log(currentHintIndex)
-    }, [currentHintIndex])
-
     const changeCurrentHintIndex = (change: 1 | -1) => {
-      // setCurrentHintIndex(currentHintIndex + change)
-      // setCurrentHintIndex(currentHintIndex + 1)
-      // console.log(currentHintIndex + change)
-      // setCurrentHintIndex(currentHintIndex + change)
-      testValue = testValue + change
+      setCurrentHintIndex((currentHintIndex) => currentHintIndex + change)
     }
 
     const listHintData = () => {
@@ -162,7 +153,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         <HintComplement
           ele={<ACItem type={data.type} content={data.text} />}
           // index={currentHintIndex}
-          index={testValue}
+          showTrigger={data.index === currentHintIndex}
         />,
         div,
       )
