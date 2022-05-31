@@ -5,17 +5,14 @@ import "codemirror/mode/sql/sql"
 import "codemirror/addon/hint/sql-hint"
 
 CodeMirror.defineMode("sql-js", function (config) {
-  return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, "sql"),
-    {
-      open: "{{",
-      close: "}}",
-      mode: CodeMirror.getMode(config, {
-        name: "javascript",
-      })
-    },
-  );
-});
+  return CodeMirror.multiplexingMode(CodeMirror.getMode(config, "sql"), {
+    open: "{{",
+    close: "}}",
+    mode: CodeMirror.getMode(config, {
+      name: "javascript",
+    }),
+  })
+})
 
 CodeMirror.defineMode("text-js", (config, parserConfig) => ({
   token: (stream, state) => {

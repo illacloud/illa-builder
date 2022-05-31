@@ -17,11 +17,10 @@ import "codemirror/addon/hint/sql-hint.js"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 
-import { applyCMCss } from "./style"
+import { applyCMStyle } from "./style"
 
-import { Trigger, customPositionType } from "@illa-design/trigger"
-import { ACList } from "./autoComplete/list"
 import { ACItem } from "./autoComplete/item"
+import { HintComplement } from "./autoComplete/hintComplement"
 
 // TODO
 import "./modes"
@@ -38,8 +37,11 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       onBlur,
     } = props
 
-    const [triggerVisible, setTriggerVisible] = useState<boolean>(false)
-    const [triggerPosition, setTriggerPosition] = useState<customPositionType>()
+    // const [triggerVisible, setTriggerVisible] = useState<boolean>(false)
+    // const [triggerPosition, setTriggerPosition] = useState<customPositionType>()
+
+    const [currentHintIndex, setCurrentHintIndex] = useState<number>(0)
+    let testValue = 0
 
     const cmRef = useRef<HTMLDivElement>(null)
 
@@ -55,37 +57,68 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         autoCloseBrackets: true,
         hintOptions: {
           completeSingle: false,
-          // tables: {
-          //   table1: ['name', 'score', 'birthDate'],
-          //   table2: ['name', 'population', 'size']
-          // }
+          extraKeys: {
+            Up: (cm: CodeMirror.Editor, handle: any) => {
+              handle.moveFocus(-1)
+              changeCurrentHintIndex(-1)
+              // if (this.active.isHeader === true) {
+              //   handle.moveFocus(-1);
+              // }
+            },
+            Down: (cm: CodeMirror.Editor, handle: any) => {
+              handle.moveFocus(1)
+              changeCurrentHintIndex(1)
+              // if (this.active.isHeader === true) {
+              //   handle.moveFocus(1);
+              // }
+            },
+          },
+          // container: testContainer()
         },
-        extraKeys: { "Shift+Q": "autocomplete" },
-        placeholder
+        placeholder,
       })
 
       editor.on("change", handleChange)
       editor.on("blur", handleBlur)
 
-      CodeMirror.registerHelper("hint", "javascript", (editor: CodeMirror.Editor) => {
-        const cursor = editor.getCursor()
-        const line = editor.getLine(cursor.line)
-        const end = cursor.ch
-        const start = end
-        if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
-          return {
-            // list: [{
-            //   text: 'custom-hint',
-            //   displayText: "你好呀",
-            //   displayInfo: "提示信息1",
-            //   render: renderCustomHint
-            // }],
-            list: listHintData(),
-            from: CodeMirror.Pos(cursor.line, start),
-            to: CodeMirror.Pos(cursor.line, end),
-          }
-        }
+      editor.on("beforeSelectionChange", (cm, obj) => {
+        console.log(obj)
       })
+
+      // editor.on("renderLine", (cm, handle, ele) => {
+      //   console.log(cm)
+      //   console.log(handle)
+      //   console.log(ele)
+      // })
+
+      CodeMirror.registerHelper(
+        "hint",
+        "javascript",
+        (editor: CodeMirror.Editor, hintOptions) => {
+          console.log(hintOptions)
+          const cursor = editor.getCursor()
+          const line = editor.getLine(cursor.line)
+          const end = cursor.ch
+          const start = end
+          if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
+            const hint = {
+              // list: [{
+              //   text: 'custom-hint',
+              //   displayText: "你好呀",
+              //   displayInfo: "提示信息1",
+              //   render: renderCustomHint
+              // }],
+              list: listHintData(),
+              from: CodeMirror.Pos(cursor.line, start),
+              to: CodeMirror.Pos(cursor.line, end),
+            }
+            // CodeMirror.on(hint, "pick", (selected) => {
+            //   console.log("selected", selected)
+            // })
+            return hint
+          }
+        },
+      )
 
       return () => {
         editor.off("change", handleChange)
@@ -93,28 +126,50 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       }
     }, [])
 
+    useEffect(() => {
+      console.log(currentHintIndex)
+    }, [currentHintIndex])
+
+    const changeCurrentHintIndex = (change: 1 | -1) => {
+      // setCurrentHintIndex(currentHintIndex + change)
+      // setCurrentHintIndex(currentHintIndex + 1)
+      // console.log(currentHintIndex + change)
+      // setCurrentHintIndex(currentHintIndex + change)
+      testValue = testValue + change
+    }
+
     const listHintData = () => {
       return [
         {
-          text: 'aaa',
-          type: 'String',
-          render: renderCustomHint
+          text: "aaa",
+          type: "String",
+          index: 0,
+          render: renderCustomHint,
         },
         {
-          text: 'bbb',
+          text: "bbb",
           type: "Number",
-          render: renderCustomHint
-        }
+          index: 1,
+          render: renderCustomHint,
+        },
       ]
     }
 
     const renderCustomHint = (element: HTMLElement, self: any, data: any) => {
-      let div = document.createElement("div");
-      ReactDOM.render(<ACItem type={data.type} content={data.text} />, div)
-      console.log(element)
-      console.log(self)
-      console.log(data)
-      element.appendChild(div);
+      let div = document.createElement("div")
+      // ReactDOM.render(<ACItem type={data.type} content={data.text} />, div)
+      ReactDOM.render(
+        <HintComplement
+          ele={<ACItem type={data.type} content={data.text} />}
+          // index={currentHintIndex}
+          index={testValue}
+        />,
+        div,
+      )
+      // console.log(element)
+      // console.log(self)
+      // console.log(data)
+      element.appendChild(div)
     }
 
     // const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,(),{}"
@@ -185,10 +240,10 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       //   customPosition={triggerPosition}
       // >
       //   <div ref={ref}>
-      //     <div ref={cmRef} css={css(applyCMCss(height), _css)} />
+      //     <div ref={cmRef} css={css(applyCMStyle(height), _css)} />
       //   </div>
       // </Trigger>
-      <div ref={cmRef} css={css(applyCMCss(height), _css)} />
+      <div ref={cmRef} css={css(applyCMStyle(height), _css)} />
     )
   },
 )

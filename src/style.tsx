@@ -1,4 +1,5 @@
 import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const globalStyle = css`
   body {
@@ -20,5 +21,14 @@ export const globalStyle = css`
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+`
+
+export const codemirrorGlobalStyle = css`
+  .CodeMirror-hints {
+    padding: 0;
+  }
+  li.CodeMirror-hint-active {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `

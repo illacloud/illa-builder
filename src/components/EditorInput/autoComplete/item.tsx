@@ -1,15 +1,19 @@
 import { forwardRef, ForwardedRef } from "react"
 import { ACItemProps } from "./interface"
-import { StringIcon, NumberIcon, ArrayIcon, FunctionIcon, ObjectIcon, ComponentIcon, NullIcon } from './icon'
-import { contentCss, itemCss, typeCss } from './styles'
+import {
+  StringIcon,
+  NumberIcon,
+  ArrayIcon,
+  FunctionIcon,
+  ObjectIcon,
+  ComponentIcon,
+  NullIcon,
+} from "./icon"
+import { contentCss, itemCss, typeCss } from "./styles"
 
 export const ACItem = forwardRef<HTMLDivElement, ACItemProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
-    const {
-      type,
-      content,
-      ...rest
-    } = props
+    const { type, content, ...rest } = props
 
     const IconEle = () => {
       switch (type) {
@@ -37,5 +41,5 @@ export const ACItem = forwardRef<HTMLDivElement, ACItemProps>(
         <span css={typeCss}>{type}</span>
       </div>
     )
-  }
+  },
 )

@@ -1,14 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyTypeIcon(
-  type: string
-): SerializedStyles {
+export function applyTypeIcon(type: string): SerializedStyles {
   let typeStyle
   switch (type) {
-    case 'string':
-      typeStyle = css`
-      `
+    case "string":
+      typeStyle = css``
   }
   return css`
     width: 14px;

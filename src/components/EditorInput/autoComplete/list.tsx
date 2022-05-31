@@ -1,12 +1,10 @@
 import { forwardRef, ForwardedRef, useEffect, useRef } from "react"
 import { ACListProps } from "./interface"
-import { ACItem } from './item'
+import { ACItem } from "./item"
 
 export const ACList = forwardRef<HTMLDivElement, ACListProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
-    const {
-      ...rest
-    } = props
+    const { ...rest } = props
 
     const listRef = useRef<HTMLDivElement>(null)
     listRef.current?.focus()
@@ -30,8 +28,11 @@ export const ACList = forwardRef<HTMLDivElement, ACListProps>(
         <ACItem type="Function" content="closeModal" />
         <ACItem type="Object" content="emailPreview.value" />
         <ACItem type="Component" content="button" />
-        <ACItem type="Null" content="emailPreview.valueemailPreview.valueemailPreview.valueemailPreview.value" />
+        <ACItem
+          type="Null"
+          content="emailPreview.valueemailPreview.valueemailPreview.valueemailPreview.value"
+        />
       </div>
     )
-  }
+  },
 )

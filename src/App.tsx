@@ -1,6 +1,7 @@
 import { Global } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import { globalStyle } from "./style"
+import { globalStyle, codemirrorGlobalStyle } from "./style"
+import { css } from "@emotion/react"
 import { DashboardApps } from "@/page/Dashboard/components/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/components/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
@@ -13,7 +14,7 @@ import "./i18n/config"
 function App() {
   return (
     <BrowserRouter>
-      <Global styles={globalStyle} />
+      <Global styles={css(globalStyle, codemirrorGlobalStyle)} />
       <Routes>
         <Route path="dashboard" element={<IllaApp />}>
           <Route index element={<DashboardApps />} />
