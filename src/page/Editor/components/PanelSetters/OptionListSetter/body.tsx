@@ -4,58 +4,58 @@ import { ListItem } from "./listItem"
 import { v4 } from "uuid"
 
 export const ListBody: FC = () => {
-  const { configPanel, handleUpdateDsl, widgetId } = useContext(
+  const { options, handleUpdateDsl, widgetId } = useContext(
     OptionListSetterContext,
   )
 
-  if (!configPanel || !Array.isArray(configPanel)) return null
+    if (!options || !Array.isArray(options)) return null
 
   const handleUpdateItem = useCallback(
     (index: number, value: Record<string, any>) => {
-      const newConfigPanel = [...configPanel]
-      newConfigPanel[index] = {
-        ...newConfigPanel[index],
+      const newOptions = [...options]
+      newOptions[index] = {
+        ...newOptions[index],
         ...value,
       }
-      handleUpdateDsl(newConfigPanel)
+      handleUpdateDsl(newOptions)
     },
-    [configPanel, handleUpdateDsl],
+    [options, handleUpdateDsl],
   )
 
   const handleCopyItem = useCallback(
     (index) => {
-      const newConfigPanel = [...configPanel]
-      const newItem = { ...newConfigPanel[index] }
+      const newOptions = [...options]
+      const newItem = { ...newOptions[index] }
       newItem.id = `option-${v4()}`
-      newConfigPanel.splice(index + 1, 0, newItem)
-      handleUpdateDsl(newConfigPanel)
+      newOptions.splice(index + 1, 0, newItem)
+      handleUpdateDsl(newOptions)
     },
-    [configPanel, handleUpdateDsl],
+    [options, handleUpdateDsl],
   )
 
   const handleDeleteItem = useCallback(
     (index) => {
-      const newConfigPanel = [...configPanel]
-      newConfigPanel.splice(index, 1)
-      handleUpdateDsl(newConfigPanel)
+      const newOptions = [...options]
+      newOptions.splice(index, 1)
+      handleUpdateDsl(newOptions)
     },
-    [configPanel, handleUpdateDsl],
+    [options, handleUpdateDsl],
   )
 
   const moveItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
-      const dragConfigItem = configPanel[dragIndex]
-      const newConfigPanel = [...configPanel]
-      newConfigPanel.splice(dragIndex, 1)
-      newConfigPanel.splice(hoverIndex, 0, dragConfigItem)
-      handleUpdateDsl(newConfigPanel)
+      const dragOptionItem = options[dragIndex]
+      const newOptions = [...options]
+      newOptions.splice(dragIndex, 1)
+      newOptions.splice(hoverIndex, 0, dragOptionItem)
+      handleUpdateDsl(newOptions)
     },
-    [configPanel, handleUpdateDsl],
+    [options, handleUpdateDsl],
   )
 
   return (
     <>
-      {configPanel.map((item, index) => {
+      {options.map((item, index) => {
         const { label, value, disabled, id } = item
         return (
           <ListItem

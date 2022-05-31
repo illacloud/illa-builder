@@ -6,14 +6,14 @@ import { panelBuilder } from "@/wrappedComponents/PanelBuilder"
 import { SelectedPanelContext } from "@/page/Editor/components/InspectPanel/context/selectedContext"
 
 export const InspectPanel: FC = () => {
-  const { configPanel } = useContext(SelectedPanelContext)
+  const { panelConfig } = useContext(SelectedPanelContext)
 
-  const panelConfig = useMemo(() => {
-    const componentType = configPanel.type
+  const builderPanelConfig = useMemo(() => {
+    const componentType = panelConfig.type
     return panelBuilder(componentType)
-  }, [configPanel])
+  }, [panelConfig])
 
-  return panelConfig ? (
+  return builderPanelConfig ? (
     <div style={{ width: "100%" }}>
       <Divider />
       <PanelHeader
@@ -21,7 +21,7 @@ export const InspectPanel: FC = () => {
       />
       <Divider />
       <div style={{ maxHeight: "calc(100vh - 150px )", overflowY: "scroll" }}>
-        {fieldFactory(panelConfig, configPanel.id)}
+        {fieldFactory(builderPanelConfig, panelConfig.id)}
       </div>
     </div>
   ) : (

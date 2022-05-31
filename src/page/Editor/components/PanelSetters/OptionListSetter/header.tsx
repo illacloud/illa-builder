@@ -9,12 +9,12 @@ import { v4 } from "uuid"
 export const OptionListHeader: FC<HeaderProps> = (props) => {
   const { labelName } = props
 
-  const { configPanel, handleAddItemToDslAsync } = useContext(
+  const { options, handleAddItemToDslAsync } = useContext(
     OptionListSetterContext,
   )
 
   const handleClickNewButton = useCallback(() => {
-    const length = configPanel.length
+    const length = options.length
     handleAddItemToDslAsync({
       value: `Option ${length + 1}`,
       id: `option-${v4()}`,
@@ -23,7 +23,7 @@ export const OptionListHeader: FC<HeaderProps> = (props) => {
       dispatch("CLOSE_LIST_ALL_MODAL")
       dispatch(`OPEN_LIST_ITEM_MODAL_${length}`)
     })
-  }, [configPanel, handleAddItemToDslAsync])
+  }, [options, handleAddItemToDslAsync])
 
   return (
     <div css={optionListHeaderCss}>

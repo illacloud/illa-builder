@@ -5,9 +5,9 @@ import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
 import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 
 interface Injected {
-  configPanel: Record<string, any>
+  panelConfig: Record<string, any>
   handleUpdateDsl: (value: any) => void
-  handleUpdateConfigPanel: (value: Record<string, any>) => void
+  handleUpdatePanelConfig: (value: Record<string, any>) => void
 }
 
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
@@ -22,7 +22,7 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
 
   const dispatch = useDispatch()
 
-  const handleUpdateConfigPanel = (value: Record<string, any>) => {
+  const handleUpdatePanelConfig = (value: Record<string, any>) => {
     dispatch(
       inspectActions.updateWidgetPanelConfig({
         id: panelConfig.id,
@@ -43,9 +43,9 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
   }
 
   const value = {
-    configPanel: panelConfig,
+    panelConfig,
     handleUpdateDsl: handleUpdateDsl,
-    handleUpdateConfigPanel,
+    handleUpdatePanelConfig,
   }
 
   return (

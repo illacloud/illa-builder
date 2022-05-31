@@ -10,14 +10,14 @@ export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
     attrName,
     panelConfig,
     handleUpdateDsl,
-    handleUpdateConfigPanel,
+    handleUpdatePanelConfig,
   } = props
 
   return (
     <div css={applySetterStyle(isFullWidth)}>
       <Switch
         onChange={(value) => {
-          handleUpdateConfigPanel({ [attrName]: value })
+          handleUpdatePanelConfig({ [attrName]: value })
           handleUpdateDsl({ [attrName]: value })
         }}
         checked={panelConfig[attrName] ?? defaultValue}
