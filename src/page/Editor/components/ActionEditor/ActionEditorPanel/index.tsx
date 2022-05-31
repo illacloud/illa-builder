@@ -77,7 +77,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       value: 0,
     },
     {
-      label: t("editor.action.panel.option.trigger.onChange"),
+      label: t("editor.action.panel.option.trigger.on_change"),
       value: 1,
     },
   ]
@@ -196,7 +196,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           }}
         >
           {isActionDirty
-            ? t("editor.action.panel.btn.saveAndRun")
+            ? t("editor.action.panel.btn.save_and_run")
             : t("editor.action.panel.btn.run")}
         </Button>
       </header>
@@ -234,9 +234,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 <Option value={"preset_REST API"}>
                   <span
                     css={resourceOptionStyle}
-                    title={t("editor.action.panel.option.resource.restQuery")}
+                    title={t("editor.action.panel.option.resource.rest_query")}
                   >
-                    {t("editor.action.panel.option.resource.restQuery")}
+                    {t("editor.action.panel.option.resource.rest_query")}
                   </span>
                 </Option>
                 {resourceList &&

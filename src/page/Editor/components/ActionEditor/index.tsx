@@ -40,7 +40,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
   function updateActiveActionItemId(id: string) {
     if (
       isActionDirty &&
-      !confirm(t("editor.action.actionList.message.confirmSwitch"))
+      !confirm(t("editor.action.action_list.message.confirm_switch"))
     ) {
       return
     }

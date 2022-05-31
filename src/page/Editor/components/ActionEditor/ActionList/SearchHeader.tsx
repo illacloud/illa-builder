@@ -28,7 +28,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         prefix={{
           render: <SearchIcon size={"12px"} css={searchInputIconStyle} />,
         }}
-        placeholder={t("editor.action.actionList.placeholder.search")}
+        placeholder={t("editor.action.action_list.placeholder.search")}
         onChange={updateAction}
         onClear={() => updateAction("")}
         css={searchInputStyle}
@@ -48,7 +48,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         colorScheme={"white"}
         css={searchInputCloseBtnStyle}
       >
-        {t("editor.action.actionList.btn.close")}
+        {t("editor.action.action_list.btn.close")}
       </Button>
     )),
   )
@@ -62,7 +62,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
       exit={{ opacity: 0, position: "absolute" }}
     >
       <span css={searchHeaderTitleTextStyle}>
-        {t("editor.action.actionList.title")}
+        {t("editor.action.action_list.title")}
       </span>
       <SearchIcon
         size={"12px"}

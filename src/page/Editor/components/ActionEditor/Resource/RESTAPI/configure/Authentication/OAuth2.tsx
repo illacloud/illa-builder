@@ -26,16 +26,16 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
     <>
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.configureOAuth2")}
+          {t("editor.action.resource.rest_api.label.configure_oauth2")}
         </label>
         <dd css={[descriptionStyle, OAuth2Description]}>
-          {t("editor.action.resource.restApi.tip.configureOAuth2")}
+          {t("editor.action.resource.rest_api.tip.configure_oauth2")}
         </dd>
         <Controller
           render={({ field }) => (
             <Checkbox css={[applyGridColIndex(2), checkboxStyle]} {...field}>
               {t(
-                "editor.action.resource.restApi.label.useClientCredentialsAuth",
+                "editor.action.resource.rest_api.label.use_client_credentials_auth",
               )}
             </Checkbox>
           )}
@@ -47,14 +47,14 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
       {!isUseClientCredentialsAuth && (
         <div css={gridRowContainerStyle}>
           <label css={labelTextStyle}>
-            {t("editor.action.resource.restApi.label.oAuthCallbackUrl")}
+            {t("editor.action.resource.rest_api.label.oauth_callback_url")}
           </label>
           <Controller
             render={({ field }) => (
               <Input
                 {...field}
                 placeholder={t(
-                  "editor.action.resource.restApi.placeholder.oAuthCallbackUrl",
+                  "editor.action.resource.rest_api.placeholder.oauth_callback_url",
                 )}
               />
             )}
@@ -62,14 +62,14 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             name="oauth2CallbackUrl"
           />
           <button css={[applyGridColIndex(2), actionTextStyle]}>
-            {t("editor.action.resource.restApi.label.copyUrlToApplication")}
+            {t("editor.action.resource.rest_api.label.copy_url_to_application")}
           </button>
 
           <Controller
             render={({ field }) => (
               <Checkbox css={[applyGridColIndex(2), checkboxStyle]} {...field}>
                 {t(
-                  "editor.action.resource.restApi.label.shareOAuth2CredentialsBetweenUsers",
+                  "editor.action.resource.rest_api.label.share_oauth2_credentials_between_users",
                 )}
               </Checkbox>
             )}
@@ -81,14 +81,14 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.authorizationUrl")}
+          {t("editor.action.resource.rest_api.label.authorization_url")}
         </label>
         <Controller
           render={({ field }) => (
             <Input
               {...field}
               placeholder={t(
-                "editor.action.resource.restApi.placeholder.authorizationUrl",
+                "editor.action.resource.rest_api.placeholder.authorization_url",
               )}
             />
           )}
@@ -99,14 +99,14 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.accessTokenUrl")}
+          {t("editor.action.resource.rest_api.label.access_token_url")}
         </label>
         <Controller
           render={({ field }) => (
             <Input
               {...field}
               placeholder={t(
-                "editor.action.resource.restApi.placeholder.accessTokenUrl",
+                "editor.action.resource.rest_api.placeholder.access_token_url",
               )}
             />
           )}
@@ -117,7 +117,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.clientId")}
+          {t("editor.action.resource.rest_api.label.client_id")}
         </label>
         <Controller
           render={({ field }) => <Input {...field} />}
@@ -128,7 +128,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.clientSecret")}
+          {t("editor.action.resource.rest_api.label.client_secret")}
         </label>
         <Controller
           render={({ field }) => <Input {...field} />}
@@ -139,7 +139,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={[gridRowContainerStyle, gridRowCenterItemStyle]}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.scopes")}
+          {t("editor.action.resource.rest_api.label.scopes")}
         </label>
         <Controller
           render={({ field }) => <Input {...field} />}
@@ -150,7 +150,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.audience")}
+          {t("editor.action.resource.rest_api.label.audience")}
         </label>
         <Controller
           render={({ field }) => <Input {...field} />}
@@ -163,7 +163,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
-              {t("editor.action.resource.restApi.label.accessToken")}
+              {t("editor.action.resource.rest_api.label.access_token")}
             </label>
             <Controller
               render={({ field }) => <Input {...field} />}
@@ -173,7 +173,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           </div>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
-              {t("editor.action.resource.restApi.label.refreshToken")}
+              {t("editor.action.resource.rest_api.label.refresh_token")}
             </label>
             <Controller
               render={({ field }) => <Input {...field} />}
@@ -186,14 +186,14 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
 
       <div css={[gridRowContainerStyle, gridRowCenterItemStyle]}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.accessTokenLifespan")}
+          {t("editor.action.resource.rest_api.label.access_token_lifespan")}
         </label>
         <Controller
           render={({ field }) => (
             <InputNumber
               {...field}
               placeholder={t(
-                "editor.action.resource.restApi.placeholder.accessTokenLifespan",
+                "editor.action.resource.rest_api.placeholder.access_token_lifespan",
               )}
             />
           )}

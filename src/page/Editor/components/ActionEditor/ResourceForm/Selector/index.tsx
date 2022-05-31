@@ -44,7 +44,7 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
   ]
   const apiList: ApiItemProps[] = [
     {
-      title: t("editor.action.resource.restApi.name"),
+      title: t("editor.action.resource.rest_api.name"),
       img: <RestApiIcon />,
       type: "REST API",
     },

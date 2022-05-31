@@ -9,7 +9,7 @@ export const EventHandler = () => {
     <>
       <div>
         <div css={handlerTitleStyle}>
-          {t("editor.action.panel.label.eventHandler")}
+          {t("editor.action.panel.label.event_handler")}
         </div>
         <EventInstance title={t("editor.action.panel.label.success")} />
         <EventInstance title={t("editor.action.panel.label.failure")} />
