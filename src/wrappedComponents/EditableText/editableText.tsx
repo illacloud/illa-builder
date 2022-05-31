@@ -46,7 +46,9 @@ export const WrappedEditableText = forwardRef<
 
   const [currentValue, setCurrentValue] = useState(defaultValue)
   useEffect(() => {
-    setCurrentValue(value)
+    if (value != undefined) {
+      setCurrentValue(value)
+    }
   }, [value])
   const inputRef = useRef<HTMLInputElement>(null)
   const [focus, setFocus] = useState(false)
@@ -124,4 +126,4 @@ export const WrappedEditableText = forwardRef<
 })
 
 export const EditableTextWidget = withParser(WrappedEditableText)
-WrappedEditableText.displayName = "WrappedInput"
+WrappedEditableText.displayName = "WrappedEditableText"

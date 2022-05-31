@@ -49,7 +49,8 @@ export const formatPropsToChartOptions = (
               const _tip = toolTips.get(context.dataset.label) ?? ""
               const _map = {
                 x: context.label,
-                y: context.parsed.y,
+                y:
+                  context.parsed.y ?? percentageFormat(context.parsed, context),
                 datasetLabel: context.dataset.label,
               }
               return removeSubstitution(_tip, _map)
