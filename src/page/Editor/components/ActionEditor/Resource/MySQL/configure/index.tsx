@@ -115,7 +115,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       const _data = dataTransform(data)
       alert(JSON.stringify(_data, null, 2))
       Api.request({
-        url: "/api/v1/resources/testConnection",
+        url: "/resources/testConnection",
         method: "POST",
         data: _data,
       })

@@ -66,7 +66,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     const run = () => {
       const _data = dataTransform(params)
       Api.request({
-        url: "/api/v1/actions/:id/run",
+        url: "/actions/:id/run",
         method: "POST",
         data: _data,
       })

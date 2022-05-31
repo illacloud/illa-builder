@@ -1,7 +1,7 @@
 import { rest } from "msw"
 
 export const handlers = [
-  rest.post("/api/v1/resources/testConnection", (req, res, ctx) => {
+  rest.post("/resources/testConnection", (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -9,7 +9,7 @@ export const handlers = [
       }),
     )
   }),
-  rest.post("/api/v1/actions/:id/run", (req, res, ctx) => {
+  rest.post("/actions/:id/run", (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -152,6 +152,44 @@ export const handlers = [
             "2019-03-05",
           ],
         },
+      }),
+    )
+  }),
+
+  rest.get("/dashboard/apps", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          appId: "1",
+          appName: "Test App 1",
+          appActivity: "activity",
+        },
+        {
+          appId: "2",
+          appName: "Test App 2",
+          appActivity: "activity2",
+        },
+      ]),
+    )
+  }),
+
+  rest.post("/dashboard/apps", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        appId: "1",
+        appName: "Test App 1",
+        appActivity: "activity",
+      }),
+    )
+  }),
+
+  rest.get("/room", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        roomId: "1",
       }),
     )
   }),
