@@ -20,8 +20,8 @@ import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useNavigate } from "react-router-dom"
 import { Api } from "@/api/base"
 import { Tooltip } from "@illa-design/tooltip"
-import { Notification } from "@illa-design/notification"
 import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
+import { Message } from "@illa-design/message"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -62,7 +62,7 @@ export const DashboardApps: FC = () => {
               },
               (errorState) => {
                 if (errorState) {
-                  Notification.error({ title: t("create_fail") })
+                  Message.error({ content: t("create_fail") })
                 }
               },
             )
