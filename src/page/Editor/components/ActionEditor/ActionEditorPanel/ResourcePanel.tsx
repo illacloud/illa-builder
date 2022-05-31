@@ -58,6 +58,10 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       },
       eventHandler: {},
     })
+
+    resource = useSelector(selectAllResource).find(
+      (i) => i.resourceId === resourceId,
+    )
     const [result, setResult] = useState<any>()
     console.log("res", result)
     const [showAlert, setShowAlert] = useState(false)
@@ -109,8 +113,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     if (resourceId?.indexOf("preset") !== -1) {
       resourceType = resourceId?.split("_")[1] ?? ""
     } else {
-      resource = allResource.find((i) => i.id === resourceId)
-      resourceType = resource?.type ?? ""
+      resource = allResource.find((i) => i.resourceId === resourceId)
+      resourceType = resource?.resourceType ?? ""
     }
 
     function renderResourceConfig() {

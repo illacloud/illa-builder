@@ -22,10 +22,10 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   const { t } = useTranslation()
 
   const resource = useSelector(selectAllResource).find(
-    (i) => i.id === resourceId,
+    (i) => i.resourceId === resourceId,
   )
   // if receive `resourceTypeProps` means add new
-  const resourceType = resourceTypeProps || resource?.type
+  const resourceType = resourceTypeProps || resource?.resourceType
 
   const connectionRef = useRef<ConnectionRef>(null)
   const formRef = useRef<HTMLFormElement>(null)

@@ -41,7 +41,7 @@ export const RESTAPIConfigure = forwardRef<
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const resourceConfig = useSelector(selectAllResource).find(
-    (i) => i.id === resourceId,
+    (i) => i.resourceId === resourceId,
   )
   const {
     handleSubmit,
@@ -67,9 +67,11 @@ export const RESTAPIConfigure = forwardRef<
   const onSubmit: SubmitHandler<RESTAPIConfigureValues> = (data) => {
     dispatch(
       resourceActions.addResourceItemReducer({
-        id: uuidV4(),
-        name: data.name,
-        type: "REST API",
+        resourceId: uuidV4(),
+        resourceName: data.name,
+        resourceType: "REST API",
+        dbName: "",
+        created: Date.now().toString(),
         config: data,
       }),
     )

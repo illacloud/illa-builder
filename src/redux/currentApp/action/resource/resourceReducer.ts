@@ -15,7 +15,9 @@ export const updateResourceItemReducer: CaseReducer<
   ResourceListState,
   PayloadAction<Resource>
 > = (state, action) => {
-  const targetIndex = state.findIndex((i) => i.id === action.payload.id)
+  const targetIndex = state.findIndex(
+    (i) => i.resourceId === action.payload.resourceId,
+  )
 
   state.splice(targetIndex, 1, {
     ...state[targetIndex],

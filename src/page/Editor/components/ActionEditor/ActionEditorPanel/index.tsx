@@ -240,7 +240,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                   </span>
                 </Option>
                 {resourceList &&
-                  resourceList.map(({ id, name }) => (
+                  resourceList.map(({ resourceId: id, resourceName: name }) => (
                     <Option value={id} key={id}>
                       <span css={resourceOptionStyle} title={name}>
                         {name}
