@@ -10,14 +10,14 @@ import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
 export const WrappedInput: FC<WrappedInputProps> = (props) => {
   const {
-    readOnly = true,
+    readOnly,
     maxLength,
     minLength,
     pattern,
     regex,
     customRule,
-    required = true,
-    showCharacterCount = true,
+    required,
+    showCharacterCount,
     defaultValue,
     label,
     labelAlign,

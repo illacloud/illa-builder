@@ -2,7 +2,6 @@ import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 
 const OptionsStyle = {
-  width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -13,6 +12,51 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
     id: "select-options",
     groupName: "OPTIONS",
     children: [
+      {
+        id: "select-options-mode",
+        isFullWidth: true,
+        attrName: "optionMode",
+        setterType: "RADIO_GROUP_SETTER",
+        defaultValue: "manual",
+        options: [
+          {
+            label: "Manual",
+            value: "manual",
+          },
+          {
+            label: "Mapped",
+            value: "mapped",
+          },
+        ],
+      },
+      {
+        id: "select-basic-options",
+        useCustomLabel: true,
+        attrName: "options",
+        setterType: "OPTION_LIST_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => !value || value === "manual",
+      },
+      {
+        id: "select-option-data-sources",
+        labelName: "data sources",
+        isFullWidth: true,
+        attrName: "dataSources",
+        setterType: "INPUT_SETTER",
+        defaultValue: "[]",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
+      },
+      {
+        id: "select-option-mapped",
+        labelName: "Mapped Option",
+        useCustomLabel: true,
+        isFullWidth: true,
+        attrName: "mappedOption",
+        setterType: "OPTION_MAPPED_SETTER",
+        bindAttrName: "optionMode",
+        shown: (value) => value === "mapped",
+      },
       {
         id: "select-basic-defaultValue",
         labelName: "Default Value",
@@ -49,8 +93,8 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
-          { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Right</div>, value: "right" },
+          { label: "Left", value: "left" },
+          { label: "Right", value: "right" },
         ],
       },
       {

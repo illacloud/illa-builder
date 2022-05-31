@@ -2,7 +2,6 @@ import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 
 const OptionsStyle = {
-  width: "77px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -49,8 +48,8 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
-          { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Top</div>, value: "top" },
+          { label: "Left", value: "left" },
+          { label: "Top", value: "top" },
         ],
       },
       {
@@ -159,14 +158,17 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "input-validation-pattern",
         labelName: "Pattern",
-        setterType: "INPUT_SETTER",
+        setterType: "SEARCH_SWITCH_SETTER",
         attrName: "pattern",
+        options: ["Email", "URL", "Regex"],
       },
       {
         id: "input-validation-regex",
         labelName: "Regex",
         setterType: "INPUT_SETTER",
         attrName: "regex",
+        bindAttrName: "pattern",
+        shown: (value) => value === "Regex",
       },
       {
         id: "input-validation-max",

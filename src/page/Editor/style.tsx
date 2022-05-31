@@ -45,6 +45,7 @@ export function applyBottomPanelStyle(display: boolean): SerializedStyles {
     ${display ? "" : "display: none"};
   `
 }
+
 export function applyRightPanelStyle(display: boolean): SerializedStyles {
   return css`
     width: 320px;

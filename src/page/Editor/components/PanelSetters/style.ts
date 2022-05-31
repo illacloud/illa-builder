@@ -9,8 +9,9 @@ export const applySetterStyle = (
         margin-top: 8px;
       `
     : css`
-        min-width: 184px;
+        width: 184px;
         display: flex;
         justify-content: end;
+        flex: none;
       `
 }
