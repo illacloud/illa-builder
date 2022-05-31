@@ -6,8 +6,8 @@ export const inputContainerCss = css`
   flex-direction: column;
   flex-grow: 1;
   padding: 4px 0;
+  width: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
 export const textCss = css`

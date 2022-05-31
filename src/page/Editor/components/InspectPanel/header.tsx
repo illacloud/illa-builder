@@ -5,6 +5,7 @@ import { Trigger } from "@illa-design/trigger"
 import { ActionMenu } from "./actionMenu"
 import { HeaderProps } from "./interface"
 import { SelectedPanelContext } from "@/page/Editor/components/InspectPanel/context/selectedContext"
+import { WrappedEditableText } from "@/wrappedComponents/EditableText"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
   const { panelConfig } = useContext(SelectedPanelContext)
@@ -13,6 +14,7 @@ export const PanelHeader: FC<HeaderProps> = (props) => {
     <div css={panelHeaderWrapperCss}>
       {/*  TODO: wait for editable component*/}
       <div>{panelConfig.type}</div>
+      <WrappedEditableText defaultValue={panelConfig.type} />
       <div css={panelHeaderIconWrapperCss}>
         <Trigger
           position="br"

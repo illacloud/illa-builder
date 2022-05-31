@@ -51,20 +51,14 @@ export const iconCss = css`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: ${hexToRGBA(
-    globalColor(`--${illaPrefix}-grayBlue-09`),
-    0.5,
-  )};
+  border-radius: 4px;
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   &:hover {
-    background-color: ${hexToRGBA(
-      globalColor(`--${illaPrefix}-techPurple-07`),
-    )};
+    background-color: ${hexToRGBA(globalColor(`--${illaPrefix}-grayBlue-08`))};
     cursor: grab;
   }
   &:hover {
-    background-color: ${hexToRGBA(
-      globalColor(`--${illaPrefix}-techPurple-07`),
-    )};
+    background-color: ${hexToRGBA(globalColor(`--${illaPrefix}-grayBlue-08`))};
     cursor: grab;
   }
   transition: all 200ms;

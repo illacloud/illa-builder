@@ -9,7 +9,6 @@ export interface WrappedInputProps extends LabelProps, ValidateMessageProps {
   showCharacterCount?: boolean
   showClear?: boolean
   value?: string
-  tooltipText?: string
   defaultValue?: string
   prefixIcon?: ReactNode
   prefixText?: string

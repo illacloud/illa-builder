@@ -1,11 +1,11 @@
 import { ComponentModel } from "@/wrappedComponents/interface"
-import { SwitchIcon } from "./svg"
+import { EditableTextIcon } from "@/wrappedComponents/EditableText/svg"
 
-export const SWITCH_WIDGET_CONFIG: ComponentModel = {
-  type: "SWITCH_WIDGET",
-  widgetName: "switch",
+export const EDITABLE_TEXT_WIDGET_CONFIG: ComponentModel = {
+  type: "EDITABLE_TEXT_WIDGET",
+  widgetName: "editableText",
   version: "0.0.1",
-  icon: <SwitchIcon />,
+  icon: <EditableTextIcon />,
   sessionType: "BASIC",
   defaults: {
     rows: 50,
