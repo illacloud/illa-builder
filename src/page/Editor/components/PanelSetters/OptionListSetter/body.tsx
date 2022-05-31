@@ -8,7 +8,7 @@ export const ListBody: FC = () => {
     OptionListSetterContext,
   )
 
-    if (!options || !Array.isArray(options)) return null
+  if (!options || !Array.isArray(options)) return null
 
   const handleUpdateItem = useCallback(
     (index: number, value: Record<string, any>) => {
