@@ -11,7 +11,10 @@ export default defineConfig({
       jsxImportSource: "@emotion/react",
       jsxRuntime: "automatic",
       babel: {
-        plugins: ["@emotion/babel-plugin"],
+        plugins: [
+          "@emotion/babel-plugin",
+          "babel-plugin-transform-import-meta",
+        ],
         compact: false,
       },
       // Exclude storybook stories
