@@ -255,6 +255,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
           openDelay: 0,
           closeDelay: 0,
         }}
+        popupVisible={newActionOptionsVisible}
         onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
       >
         <div css={newBtnContainerStyle}>
