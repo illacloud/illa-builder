@@ -14,19 +14,6 @@ export interface ActionEditorPanelProps
   onSave?: () => void
 }
 
-export interface TitleInputProps
-  extends Omit<HTMLAttributes<HTMLDataElement>, "title"> {
-  title?: string
-  activeActionItem?: ActionItem | null
-}
-
-export interface ResourcePanelProps {
-  resourceId?: string
-  activeActionItemId?: string | null
-  onChange?: () => void
-  onSave?: () => void
-}
-
 export type triggerRunRef = {
   run: () => void
   saveAndRun: () => void

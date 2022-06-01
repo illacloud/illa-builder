@@ -1,4 +1,6 @@
 import { css } from "@emotion/react"
+import { useTranslation } from "react-i18next"
+import { RadioGroup } from "@illa-design/radio"
 import {
   actionStyle,
   dashBorderBottomStyle,
@@ -7,8 +9,6 @@ import {
   panelSubBarStyle,
   sectionTitleStyle,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
-import { useTranslation } from "react-i18next"
-import { RadioGroup } from "@illa-design/radio"
 import { EditorInput } from "@/components/EditorInput"
 
 export const Transformer = () => {

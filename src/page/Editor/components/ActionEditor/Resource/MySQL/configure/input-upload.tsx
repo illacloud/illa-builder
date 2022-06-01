@@ -21,7 +21,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
     uploadRef.current?.click()
   }
   const reader = new FileReader()
-  reader.onload = function() {
+  reader.onload = function () {
     this.result && setValue(name, this.result as string)
   }
   return (
