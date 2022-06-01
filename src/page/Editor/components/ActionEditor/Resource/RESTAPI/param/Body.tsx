@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { Select } from "@illa-design/select"
-import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/FieldArray"
+import { FieldArray } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
 import { EditorInput } from "@/components/EditorInput"
 import { BodyParams, BodyProps, ContentType } from "../interface"
 import { bodyFieldStyle, descriptionCodeStyle, descriptionStyle } from "./style"

@@ -7,7 +7,7 @@ import {
   moreListItemStyle,
   moreListStyle,
   moreListItemWarnStyle,
-} from "../style"
+} from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { HandlerItemProps } from "./interface"
 
 export const HandlerItem = (props: HandlerItemProps) => {

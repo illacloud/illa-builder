@@ -8,10 +8,10 @@ import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionLis
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
+import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor/Transformer"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
-import { ResourceParams } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceParams"
-import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { ResourceParams } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourceParams"
+import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor/EventHandler"
 import { triggerRunRef } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/interface"
 import { ResourcePanelProps } from "./interface"
 
