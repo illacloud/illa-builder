@@ -19,15 +19,19 @@ export const DashboardTitleBar: FC = () => {
   let location = useLocation()
   let pathList = location.pathname.split("/")
   const tabs: {
+    key: string
     title: string
   }[] = [
     {
+      key: "apps",
       title: t("apps"),
     },
     {
+      key: "resources",
       title: t("resources"),
     },
   ]
+  console.log(t`${pathList[pathList.length - 1]}`)
   return (
     <Tabs
       prefix={
@@ -48,24 +52,24 @@ export const DashboardTitleBar: FC = () => {
           />
         </div>
       }
-      activeKey={t(pathList[pathList.length - 1])}
+      activeKey={pathList[pathList.length - 1]}
       css={containerStyle}
       withoutContent
       colorScheme="grayBlue"
       size="large"
       onChange={(key) => {
         switch (key) {
-          case t("apps"):
+          case "apps":
             navigate("./apps")
             break
-          case t("resources"):
+          case "resources":
             navigate("./resources")
             break
         }
       }}
     >
       {tabs.map((item) => {
-        return <TabPane title={item.title} key={item.title} />
+        return <TabPane title={item.title} key={item.key} />
       })}
     </Tabs>
   )

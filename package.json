@@ -85,8 +85,7 @@
     "vite": "^2.9.9",
     "vite-plugin-chunk-split": "^0.2.2",
     "vite-plugin-istanbul": "^2.5.1",
-    "@types/ws": "^8.5.3",
-    "babel-plugin-transform-import-meta": "^2.1.1"
+    "@types/ws": "^8.5.3"
   },
   "workspaces": [
     "src/*",
