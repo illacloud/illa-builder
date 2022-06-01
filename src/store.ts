@@ -5,6 +5,7 @@ import actionListReducer from "@/redux/currentApp/action/actionList/actionListSl
 import modeReducer from "@/redux/currentApp/editor/mode/modeSlice"
 import dslReducer from "@/redux/currentApp/editor/dsl/dslSlice"
 import widgetStatesReducer from "@/redux/currentApp/editor/widgetStates/widgetStatesSlice"
+import inspectReducer from "@/redux/currentApp/editor/inspect/inspectSlice"
 
 import dashboardResourceReducer from "@/redux/dashboard/resources/dashboardResourceSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -17,6 +18,7 @@ const editorReducer = combineReducers({
   mode: modeReducer,
   dsl: dslReducer,
   widgetStates: widgetStatesReducer,
+  inspect: inspectReducer,
 })
 
 const actionReducer = combineReducers({

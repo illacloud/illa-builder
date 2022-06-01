@@ -21,7 +21,6 @@ export const headerStyle = css`
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   box-sizing: border-box;
 `
-
 export const actionStyle = css`
   display: flex;
   align-items: center;

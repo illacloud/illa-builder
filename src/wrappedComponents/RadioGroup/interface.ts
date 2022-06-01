@@ -18,4 +18,5 @@ export interface WrappedRadioGroupProps<T> extends LabelProps {
   direction: "vertical" | "horizontal"
   tooltipText: string
   checkedBackgroundColor: RadioColorScheme
+  handleUpdateDsl: (value: Record<string, any>) => void
 }

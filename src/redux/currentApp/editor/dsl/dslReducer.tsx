@@ -79,7 +79,6 @@ function updateNode(
   }
 }
 
-// 测试用。
 export const updateDslProps: CaseReducer<
   DslState,
   PayloadAction<{
@@ -87,7 +86,6 @@ export const updateDslProps: CaseReducer<
     newState: any
   }>
 > = (dslState, action) => {
-  console.log("准备更新")
   const { targetId, newState } = action.payload
   const current = dslState.root
   const queue = new Array<DSLWidget>()
@@ -96,7 +94,6 @@ export const updateDslProps: CaseReducer<
     const head = queue[queue.length - 1]
 
     if (head.id === targetId) {
-      console.log("找到属性")
       head.props = {
         ...head.props,
         ...newState,

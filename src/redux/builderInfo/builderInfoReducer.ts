@@ -14,25 +14,3 @@ export const updateLanguageReducer: CaseReducer<
   }
   return state
 }
-
-export const updateConnectLoadingReducer: CaseReducer<
-  BuilderInfo,
-  PayloadAction<boolean>
-> = (state, action) => {
-  state.connection = {
-    ...state.connection,
-    loading: action.payload,
-  }
-  return state
-}
-
-export const updateConnectErrorReducer: CaseReducer<
-  BuilderInfo,
-  PayloadAction<ConnectionError>
-> = (state, action) => {
-  state.connection = {
-    ...state.connection,
-    error: action.payload,
-  }
-  return state
-}

@@ -11,6 +11,7 @@ const options = [
 ]
 
 test("Text renders correctly", () => {
+  const handleChange = jest.fn()
   render(
     <WrappedSelect
       required={true}
@@ -20,6 +21,7 @@ test("Text renders correctly", () => {
       labelPosition="left"
       readOnly={true}
       options={options}
+      handleUpdateDsl={handleChange}
     />,
   )
   expect(screen.getByText("Beijing")).toBeInTheDocument()

@@ -39,3 +39,10 @@ export const menuButtonStyle: SerializedStyles = css`
 export const itemMenuButtonStyle: SerializedStyles = css`
   margin-left: 4px;
 `
+
+export const loadingBoxStyle = css`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 120px;
+`
