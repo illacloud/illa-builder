@@ -2,19 +2,19 @@ import { FC, useRef, useState } from "react"
 import { Alert } from "@illa-design/alert"
 import { SuccessIcon, CloseIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
-import { ActionResultProps } from "./interface"
+import { EditorInput } from "@/components/EditorInput"
+import {
+  actionEditorPanelLayoutWrapper,
+  applyContainerHeight,
+  applyResizerStyle,
+} from "@/page/Editor/components/ActionEditor/style"
 import {
   resAlertBgcStyle,
   resCloseIconStyle,
   resStatusStyle,
   resTitleStyle,
-} from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
-import { EditorInput } from "@/components/EditorInput"
-import {
-  ActionEditorPanelLayoutWrapper,
-  applyContainerHeight,
-  applyResizerStyle,
-} from "@/page/Editor/components/ActionEditor/style"
+} from "./style"
+import { ActionResultProps } from "./interface"
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
   const layerRef = useRef<HTMLDivElement>(null)
@@ -26,7 +26,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
 
   const resizer = useResize("vertical", layerRef, onHeightChange)
   return (
-    <div css={ActionEditorPanelLayoutWrapper}>
+    <div css={actionEditorPanelLayoutWrapper}>
       <div
         onMouseDown={resizer.onMouseDown}
         onTouchStart={resizer.onTouchStart}

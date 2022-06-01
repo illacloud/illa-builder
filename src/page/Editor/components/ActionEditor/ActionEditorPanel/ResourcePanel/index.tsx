@@ -1,18 +1,19 @@
-import { Api } from "@/api/base"
+import { useSelector, useDispatch } from "react-redux"
 import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
 import { Alert } from "@illa-design/alert"
+import { Api } from "@/api/base"
 import { ParamValues } from "@/page/Editor/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionListState"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { useSelector, useDispatch } from "react-redux"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { ResourceParams } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceParams"
 import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
-import { triggerRunRef,ResourcePanelProps } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/interface"
+import { triggerRunRef } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/interface"
+import { ResourcePanelProps } from "./interface"
 
 const dataTransform = (data: any) => {
   const _data = {
@@ -58,6 +59,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     resource = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
+
+    // TODO add type
     const [result, setResult] = useState<any>()
     const [showAlert, setShowAlert] = useState(false)
 

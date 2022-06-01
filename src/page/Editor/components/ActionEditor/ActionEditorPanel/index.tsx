@@ -36,7 +36,7 @@ import {
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
-import { ActionResult } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ActionResult"
+import { ActionResult } from "./ActionResult"
 
 const { Item: MenuItem } = Menu
 
