@@ -25,12 +25,14 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
     const {
       _css,
       mode,
+      value,
       lineNumbers = true,
       height = "auto",
       placeholder = "input sth",
       onChange,
       value,
       onBlur,
+      ...otherProps
     } = props
 
     const [triggerVisible, setTriggerVisible] = useState<boolean>(false)
@@ -119,7 +121,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         onVisibleChange={tryUpdatePopupVisible}
         content={<div>123</div>}
       >
-        <div ref={ref}>
+        <div ref={ref} {...otherProps}>
           <div ref={cmRef} css={css(applyCMCss(height), _css)} />
         </div>
       </Trigger>
