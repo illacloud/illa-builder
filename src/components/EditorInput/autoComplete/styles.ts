@@ -4,8 +4,8 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const itemStyle = css`
   display: flex;
   align-items: center;
-  height: 22px;
-  margin-top: 2px;
+  height: 24px;
+  min-width: 287px;
 `
 
 export const contentStyle = css`

@@ -14,28 +14,28 @@ CodeMirror.defineMode("sql-js", function (config) {
   })
 })
 
-CodeMirror.defineMode("text-js", (config, parserConfig) => ({
-  token: (stream, state) => {
-    const cmCustomCheckStreamFn = (streamWrapper) => {
-      const reg = /\{\{.*?\}\}/g
-      const targetStr = streamWrapper.match(reg) || ""
-      if (targetStr[0]?.length && streamWrapper.match(targetStr[0])) {
-        return "test-style"
-      }
-      // const customKeyWords = [['BEGIN', 'begin-style'], ['END', 'end-style']];
-      // for (let i = 0; i < customKeyWords.length; i++) {
-      //   // console.log(streamWrapper.match(customKeyWords[i][0]))
-      //   if (streamWrapper.match(customKeyWords[i][0])) { return customKeyWords[i][1]; }
-      // }
-      return ""
-    }
+// CodeMirror.defineMode("text-js", (config, parserConfig) => ({
+//   token: (stream, state) => {
+//     const cmCustomCheckStreamFn = (streamWrapper) => {
+//       const reg = /\{\{.*?\}\}/g
+//       const targetStr = streamWrapper.match(reg) || ""
+//       if (targetStr[0]?.length && streamWrapper.match(targetStr[0])) {
+//         return "test-style"
+//       }
+//       // const customKeyWords = [['BEGIN', 'begin-style'], ['END', 'end-style']];
+//       // for (let i = 0; i < customKeyWords.length; i++) {
+//       //   // console.log(streamWrapper.match(customKeyWords[i][0]))
+//       //   if (streamWrapper.match(customKeyWords[i][0])) { return customKeyWords[i][1]; }
+//       // }
+//       return ""
+//     }
 
-    // console.log(stream)
+//     // console.log(stream)
 
-    const ret = cmCustomCheckStreamFn(stream)
-    if (ret.length > 0) return ret
+//     const ret = cmCustomCheckStreamFn(stream)
+//     if (ret.length > 0) return ret
 
-    stream.next()
-    return null
-  },
-}))
+//     stream.next()
+//     return null
+//   },
+// }))

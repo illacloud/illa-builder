@@ -1,7 +1,6 @@
-import { FC, useEffect } from "react"
+import { FC, Fragment, useEffect } from "react"
 import { HintComplementProps } from "./interface"
 
-import { Trigger } from "@illa-design/trigger"
 import {
   mainTitleStyle,
   contentAreaStyle,
@@ -15,42 +14,32 @@ import { ArrayIcon } from "../icon"
 import { Tag } from "@illa-design/tag"
 
 export const HintComplement: FC<HintComplementProps> = (props) => {
-  const { ele, index, showTrigger } = props
+  const { index } = props
 
-  console.log("showTrigger", showTrigger)
+  useEffect(() => {
+    console.log("index", index)
+  }, [index])
 
   return (
-    <Trigger
-      position="left"
-      colorScheme="white"
-      showArrow={false}
-      content={
-        <div>
-          <div css={mainTitleStyle}>
-            <div css={contentAreaStyle}>
-              <div css={css(titleTextStyle, mainTextHeightStyle)}>
-                bccInput.value
-              </div>
-              <div css={css(containerTextStyle, infoTextHeightStyle)}>
-                valueCurrent value entered in the
-              </div>
-            </div>
-            <ArrayIcon _css={mainTextHeightStyle} />
+    <Fragment>
+      <div css={mainTitleStyle}>
+        <div css={contentAreaStyle}>
+          <div css={css(titleTextStyle, mainTextHeightStyle)}>
+            bccInput.value
           </div>
-          <div css={mainTitleStyle}>
-            <div css={contentAreaStyle}>
-              <div css={css(titleTextStyle, mainTextHeightStyle)}>
-                Evaluates to
-              </div>
-              <Tag>"Hello"</Tag>
-            </div>
-            <div css={css(containerTextStyle, mainTextHeightStyle)}>String</div>
+          <div css={css(containerTextStyle, infoTextHeightStyle)}>
+            valueCurrent value entered in the
           </div>
         </div>
-      }
-      popupVisible={true}
-    >
-      {ele}
-    </Trigger>
+        <ArrayIcon _css={mainTextHeightStyle} />
+      </div>
+      <div css={mainTitleStyle}>
+        <div css={contentAreaStyle}>
+          <div css={css(titleTextStyle, mainTextHeightStyle)}>Evaluates to</div>
+          <Tag>"Hello"</Tag>
+        </div>
+        <div css={css(containerTextStyle, mainTextHeightStyle)}>String</div>
+      </div>
+    </Fragment>
   )
 }

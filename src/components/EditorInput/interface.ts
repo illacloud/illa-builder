@@ -1,13 +1,16 @@
-import { SerializedStyles } from "@emotion/react"
+import { HTMLAttributes } from "react"
+import CodeMirror from "codemirror"
 
-type EditorMode = "javascript" | "sql" | "text-js"
+type EditorMode = "javascript" | "sql" | "sql-js"
 
-export interface EditorInputProps {
-  _css?: SerializedStyles
+export interface EditorInputProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   mode: EditorMode
   lineNumbers?: boolean
   height?: string
   placeholder?: string
+  cmValue?: CodeMirror.EditorConfiguration["value"]
+  readOnly?: boolean
   onChange?: (value: string) => void
   onBlur?: () => void
 }

@@ -1,6 +1,12 @@
-import { useEffect, useRef, forwardRef, ForwardedRef, useState } from "react"
+import {
+  useEffect,
+  useRef,
+  forwardRef,
+  ForwardedRef,
+  useState,
+  Fragment,
+} from "react"
 import ReactDOM from "react-dom"
-import { css } from "@emotion/react"
 import { EditorInputProps } from "./interface"
 
 import CodeMirror from "codemirror"
@@ -17,28 +23,39 @@ import "codemirror/addon/hint/sql-hint.js"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 
-import { applyCMStyle } from "./style"
+import { applyCMStyle, applyHintBodyStyle, hintBodyTriggerStyle } from "./style"
 
 import { ACItem } from "./autoComplete/item"
 import { HintComplement } from "./autoComplete/hintComplement"
 
-// TODO
+import { Trigger } from "@illa-design/trigger"
+
 import "./modes"
 
 export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
-  (props, ref: ForwardedRef<HTMLDivElement>) => {
+  (props, ref) => {
     const {
-      _css,
+      className,
       mode,
       lineNumbers = true,
       height = "auto",
       placeholder = "input sth",
+      cmValue = "",
+      readOnly,
       onChange,
       onBlur,
     } = props
-
-    // const [triggerVisible, setTriggerVisible] = useState<boolean>(false)
-    // const [triggerPosition, setTriggerPosition] = useState<customPositionType>()
+    interface hintBodyParamsProps {
+      show: boolean
+      top: number
+      left: number
+    }
+    const [hintBodyParams, setHintBodyParams] = useState<hintBodyParamsProps>({
+      show: false,
+      top: 0,
+      left: 0,
+    })
+    const [showHintTrigger, setShowHintTrigger] = useState<boolean>(false)
 
     const [currentHintIndex, setCurrentHintIndex] = useState<number>(0)
 
@@ -46,6 +63,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
 
     useEffect(() => {
       const editor = CodeMirror(cmRef.current!, {
+        value: cmValue,
         mode: mode,
         lineNumbers: lineNumbers,
         autocapitalize: false,
@@ -72,41 +90,26 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
               // }
             },
           },
-          // container: testContainer()
+          container: document.getElementById("hintBody"),
         },
         placeholder,
+        readOnly: readOnly && "nocursor",
       })
 
       editor.on("change", handleChange)
       editor.on("blur", handleBlur)
 
-      // editor.on("beforeSelectionChange", (cm, obj) => {
-      //   console.log(obj)
-      // })
-
-      // editor.on("renderLine", (cm, handle, ele) => {
-      //   console.log(cm)
-      //   console.log(handle)
-      //   console.log(ele)
-      // })
-
       CodeMirror.registerHelper(
         "hint",
         "javascript",
-        (editor: CodeMirror.Editor, hintOptions) => {
-          console.log(hintOptions)
+        (editor: CodeMirror.Editor) => {
+          // console.log(hintOptions)
           const cursor = editor.getCursor()
           const line = editor.getLine(cursor.line)
           const end = cursor.ch
           const start = end
           if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
             const hint = {
-              // list: [{
-              //   text: 'custom-hint',
-              //   displayText: "你好呀",
-              //   displayInfo: "提示信息1",
-              //   render: renderCustomHint
-              // }],
               list: listHintData(),
               from: CodeMirror.Pos(cursor.line, start),
               to: CodeMirror.Pos(cursor.line, end),
@@ -148,22 +151,10 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
 
     const renderCustomHint = (element: HTMLElement, self: any, data: any) => {
       let div = document.createElement("div")
-      // ReactDOM.render(<ACItem type={data.type} content={data.text} />, div)
-      ReactDOM.render(
-        <HintComplement
-          ele={<ACItem type={data.type} content={data.text} />}
-          // index={currentHintIndex}
-          showTrigger={data.index === currentHintIndex}
-        />,
-        div,
-      )
-      // console.log(element)
-      // console.log(self)
-      // console.log(data)
+      ReactDOM.render(<ACItem type={data.type} content={data.text} />, div)
       element.appendChild(div)
     }
 
-    // const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,(),{}"
     const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,()"
     const ignoreToken = (text?: string[]) => {
       const ignore = ignoreStr.split(",")
@@ -195,46 +186,39 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         }
       }
       // {{ }}
-      // const cursor = editor.getCursor()
-      // const line = editor.getLine(cursor.line)
-      // if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
-      //   setTriggerVisible(true)
-      //   const cursorPosition = editor.cursorCoords(true, "page")
-      //   setTriggerPosition({
-      //     x: cursorPosition.left - editor.defaultCharWidth(),
-      //     y: cursorPosition.top + editor.defaultTextHeight()
-      //   })
-      // }
+      const cursor = editor.getCursor()
+      const line = editor.getLine(cursor.line)
+      if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
+        const cursorPosition = editor.cursorCoords(true, "page")
+        setHintBodyParams({
+          show: true,
+          top: cursorPosition.top + editor.defaultTextHeight(),
+          left: cursorPosition.left - editor.defaultCharWidth(),
+        })
+        setShowHintTrigger(true)
+      }
     }
 
     const handleBlur = () => {
       onBlur?.()
+      setShowHintTrigger(false)
     }
 
-    // const tryUpdatePopupVisible = (value: boolean) => {
-    //   if (triggerVisible !== value && !value) {
-    //     setTriggerVisible(value)
-    //   }
-    // }
-
     return (
-      // <Trigger
-      //   trigger="click"
-      //   position="bl"
-      //   colorScheme="white"
-      //   showArrow={false}
-      //   closeOnClick={false}
-      //   clickOutsideToClose
-      //   popupVisible={triggerVisible}
-      //   onVisibleChange={tryUpdatePopupVisible}
-      //   content={<ACList />}
-      //   customPosition={triggerPosition}
-      // >
-      //   <div ref={ref}>
-      //     <div ref={cmRef} css={css(applyCMStyle(height), _css)} />
-      //   </div>
-      // </Trigger>
-      <div ref={cmRef} css={css(applyCMStyle(height), _css)} />
+      <Fragment>
+        <div ref={cmRef} css={applyCMStyle(height)} className={className} />
+        <Trigger
+          _css={hintBodyTriggerStyle}
+          trigger="hover"
+          position="right"
+          colorScheme="white"
+          showArrow={false}
+          content={<HintComplement index={currentHintIndex} />}
+          popupVisible={showHintTrigger}
+        >
+          <div id="hintBody" css={applyHintBodyStyle(hintBodyParams)}></div>
+        </Trigger>
+      </Fragment>
     )
   },
 )
