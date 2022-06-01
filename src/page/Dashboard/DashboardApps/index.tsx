@@ -32,6 +32,7 @@ export const DashboardApps: FC = () => {
   const appsList: DashboardApp[] = useSelector(getDashboardApps)
 
   const [createLoading, setCreateNewLoading] = useState(false)
+
   return (
     <div css={appsContainerStyle}>
       <div css={listTitleContainerStyle}>

@@ -1,17 +1,18 @@
-import { Api } from "@/api/base"
 import { forwardRef, useState, useImperativeHandle, useContext } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { Api } from "@/api/base"
 import { Divider } from "@illa-design/divider"
 import { ParamValues } from "@/page/Editor/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionListState"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { useSelector, useDispatch } from "react-redux"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
-import { ResourceParams } from "./ResourceParams"
-import { EventHandler } from "./EventHandler"
-import { ResourcePanelProps, triggerRunRef } from "./interface"
+import { ResourceParams } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceParams"
+import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { triggerRunRef } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/interface"
+import { ResourcePanelProps } from "./interface"
 
 const dataTransform = (data: any) => {
   const _data = {

@@ -1,4 +1,5 @@
 import { FC, useMemo, useState, useRef, useContext } from "react"
+import { css } from "@emotion/react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
@@ -13,6 +14,7 @@ import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSe
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
 import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
+import { generateName } from "@/page/Editor/components/ActionEditor/utils"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
   containerStyle,
@@ -109,7 +111,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         actionListActions.addActionItemReducer({
           id,
           type,
-          name: generateName(type),
+          name: generateName(type, actionItems, actionItemsNameSet),
         }),
       )
 
@@ -122,23 +124,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       dispatch(actionListActions.removeActionItemReducer(activeActionItemId))
 
     onDeleteActionItem(activeActionItemId)
-  }
-
-  function generateName(type: string) {
-    const length = actionItems.filter((i) => i.type === type).length
-    const prefix = type
-
-    const getUniqueName = (length: number): string => {
-      const name = `${prefix}${length + 1}`
-
-      if (actionItemsNameSet.has(name)) {
-        return getUniqueName(length + 1)
-      }
-
-      return name
-    }
-
-    return getUniqueName(length)
   }
 
   const moreActions = (
@@ -203,19 +188,19 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       <div css={panelScrollStyle}>
         {activeActionItem && (
           <>
-            <div css={[actionStyle, resourceBarStyle]}>
-              <label css={[sectionTitleStyle, resourceBarTitleStyle]}>
+            <div css={css(actionStyle, resourceBarStyle)}>
+              <label css={css(sectionTitleStyle, resourceBarTitleStyle)}>
                 {t("editor.action.panel.label.resource")}
               </label>
               <span css={fillingStyle} />
               <Select
                 options={triggerOptions}
                 defaultValue={0}
-                css={[actionSelectStyle, triggerSelectStyle]}
+                css={css(actionSelectStyle, triggerSelectStyle)}
               />
 
               <Select
-                css={[actionSelectStyle, resourceSelectStyle]}
+                css={css(actionSelectStyle, resourceSelectStyle)}
                 value={resourceId}
                 onChange={onChangeResource}
                 triggerProps={{

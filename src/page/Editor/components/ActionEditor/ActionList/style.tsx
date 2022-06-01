@@ -68,6 +68,7 @@ export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
     cursor: pointer;
     padding: 9px 16px;
     height: 40px;
+    user-select: none;
 
     &:hover {
       ${backgroundcolorStyle}

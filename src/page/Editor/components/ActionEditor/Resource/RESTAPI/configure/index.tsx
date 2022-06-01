@@ -1,4 +1,5 @@
 import { forwardRef, useState } from "react"
+import { css } from "@emotion/react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
@@ -93,7 +94,7 @@ export const RESTAPIConfigure = forwardRef<
     <form
       ref={ref}
       onSubmit={handleSubmit(onSubmit)}
-      css={[formStyle, gridContainerStyle]}
+      css={css(formStyle, gridContainerStyle)}
     >
       <div css={gridRowContainerStyle}>
         <label css={requiredLabelTextStyle}>
@@ -117,11 +118,11 @@ export const RESTAPIConfigure = forwardRef<
           name="name"
         />
         {errors.name && (
-          <div css={[errorMessageStyle, applyGridColIndex(2)]}>
+          <div css={css(errorMessageStyle, applyGridColIndex(2))}>
             {errors.name.message}
           </div>
         )}
-        <dd css={[applyGridColIndex(2), descriptionStyle]}>
+        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
           {t("editor.action.resource.rest_api.tip.name")}
         </dd>
       </div>
@@ -164,13 +165,13 @@ export const RESTAPIConfigure = forwardRef<
           {t("editor.action.resource.rest_api.label.extra_body_values")}
         </label>
         <ParamList control={control} name={"body"} />
-        <dd css={[applyGridColIndex(2), descriptionStyle]}>
+        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
           {t("editor.action.resource.rest_api.tip.extra_body_values")}
         </dd>
       </div>
 
       <div css={gridRowContainerStyle}>
-        <div css={[gridRowContainerStyle, gridRowCenterItemStyle]}>
+        <div css={css(gridRowContainerStyle, gridRowCenterItemStyle)}>
           <label css={labelTextStyle}>
             {t(
               "editor.action.resource.rest_api.label.list_of_cookies_to_forward",
@@ -190,7 +191,7 @@ export const RESTAPIConfigure = forwardRef<
         </div>
         <Controller
           render={({ field }) => (
-            <Checkbox css={[applyGridColIndex(2), checkboxStyle]} {...field}>
+            <Checkbox css={css(applyGridColIndex(2), checkboxStyle)} {...field}>
               {t("editor.action.resource.rest_api.label.forward_all_cookies")}
             </Checkbox>
           )}

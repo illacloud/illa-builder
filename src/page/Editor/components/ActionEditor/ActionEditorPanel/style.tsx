@@ -1,6 +1,6 @@
-import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import chroma from "chroma-js"
 
 export const containerStyle = css`
   display: flex;
@@ -11,6 +11,7 @@ export const containerStyle = css`
 export const panelScrollStyle = css`
   overflow: auto;
   flex: 1;
+  user-select: none;
 `
 
 export const headerStyle = css`
@@ -55,7 +56,7 @@ export const titleInputContainerStyle = css`
 
 export const titleInputStyle = css`
   & > span {
-    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)} !important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
         .alpha(0.2)
@@ -109,11 +110,13 @@ export const moreBtnStyle = css`
 `
 
 export const runBtnStyle = css`
-  color: ${globalColor(`--${illaPrefix}-techPurple-02`)}!important;
-  background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)}!important;
+  color: ${globalColor(`--${illaPrefix}-techPurple-02`)} !important;
+  background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)} !important;
 
   &:hover {
-    background-color: ${globalColor(`--${illaPrefix}-techPurple-06`)}!important;
+    background-color: ${globalColor(
+      `--${illaPrefix}-techPurple-06`,
+    )} !important;
   }
 `
 
@@ -164,7 +167,7 @@ export function applyEditIconStyle(disabled: boolean): SerializedStyles {
 
     ${cursorStyle}
     ${hoverStyle}
-    & > svg {
+      & > svg {
       margin: 8px;
       color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     }
@@ -219,6 +222,7 @@ export const handlerMoreIconStyle = css`
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
@@ -237,6 +241,7 @@ export const moreListItemStyle = css`
   font-size: 14px;
   line-height: 1.57;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
@@ -252,11 +257,11 @@ export const moreBtnMenuStyle = css`
 `
 
 export const duplicateActionStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)} !important;
 `
 
 export const deleteActionStyle = css`
-  color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
+  color: ${globalColor(`--${illaPrefix}-red-03`)} !important;
 `
 
 export const handlerItemWrapperStyle = css`
@@ -275,6 +280,7 @@ export const handlerItemContentStyle = css`
   border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+
   &:hover {
     border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
   }
@@ -290,6 +296,7 @@ export const handlerItemMoreStyle = css`
   border-bottom-right-radius: 8px;
   border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-left-width: 0;
+
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }

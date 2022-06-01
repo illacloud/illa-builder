@@ -160,7 +160,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     }
     return (
       <form onSubmit={handleSubmit(onSubmit)} css={formStyle} ref={ref}>
-        <div css={[gridContainerStyle, formPaddingStyle]}>
+        <div css={css(gridContainerStyle, formPaddingStyle)}>
           <div css={gridRowContainerStyle}>
             <label css={requiredLabelTextStyle}>
               {t("editor.action.resource.mySql.label.name")}
@@ -183,7 +183,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               name="name"
             />
             {errors.name && (
-              <div css={[errorMessageStyle, applyGridColIndex(2)]}>
+              <div css={css(errorMessageStyle, applyGridColIndex(2))}>
                 {errors.name.message}
               </div>
             )}
@@ -280,7 +280,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 name="databasePassword"
               />
             </div>
-            <div css={[descriptionStyle, applyGridColIndex(2)]}>
+            <div css={css(descriptionStyle, applyGridColIndex(2))}>
               {t("editor.action.resource.mySql.tip.username_password")}
             </div>
           </div>
@@ -422,7 +422,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 />
               </div>
               <div css={gridRowContainerStyle}>
-                <label css={[labelTextStyle, labelTextVerticalStyle]}>
+                <label css={css(labelTextStyle, labelTextVerticalStyle)}>
                   <div>SSH passphrase</div>
                   <div css={labelTextSmallSizeStyle}>
                     {t("editor.action.resource.mySql.tip.ssh_passphrase")}

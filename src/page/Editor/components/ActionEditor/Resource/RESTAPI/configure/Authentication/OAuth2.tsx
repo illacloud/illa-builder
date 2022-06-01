@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
 import { InputNumber } from "@illa-design/input-number"
@@ -20,7 +21,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
   const { control, watch } = props
   const { t } = useTranslation()
 
-  const isUseClientCredentialsAuth = watch("UseClientCredentialsAuth")
+  const isUseClientCredentialsAuth = watch("oauth2UseClientCredentialsAuth")
 
   return (
     <>
@@ -28,12 +29,12 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         <label css={labelTextStyle}>
           {t("editor.action.resource.rest_api.label.configure_oauth2")}
         </label>
-        <dd css={[descriptionStyle, OAuth2Description]}>
+        <dd css={css(descriptionStyle, OAuth2Description)}>
           {t("editor.action.resource.rest_api.tip.configure_oauth2")}
         </dd>
         <Controller
           render={({ field }) => (
-            <Checkbox css={[applyGridColIndex(2), checkboxStyle]} {...field}>
+            <Checkbox css={css(applyGridColIndex(2), checkboxStyle)} {...field}>
               {t(
                 "editor.action.resource.rest_api.label.use_client_credentials_auth",
               )}
@@ -61,13 +62,16 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
             control={control}
             name="oauth2CallbackUrl"
           />
-          <button css={[applyGridColIndex(2), actionTextStyle]}>
+          <button css={css(applyGridColIndex(2), actionTextStyle)}>
             {t("editor.action.resource.rest_api.label.copy_url_to_application")}
           </button>
 
           <Controller
             render={({ field }) => (
-              <Checkbox css={[applyGridColIndex(2), checkboxStyle]} {...field}>
+              <Checkbox
+                css={css(applyGridColIndex(2), checkboxStyle)}
+                {...field}
+              >
                 {t(
                   "editor.action.resource.rest_api.label.share_oauth2_credentials_between_users",
                 )}
@@ -137,7 +141,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         />
       </div>
 
-      <div css={[gridRowContainerStyle, gridRowCenterItemStyle]}>
+      <div css={css(gridRowContainerStyle, gridRowCenterItemStyle)}>
         <label css={labelTextStyle}>
           {t("editor.action.resource.rest_api.label.scopes")}
         </label>
@@ -184,7 +188,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         </>
       )}
 
-      <div css={[gridRowContainerStyle, gridRowCenterItemStyle]}>
+      <div css={css(gridRowContainerStyle, gridRowCenterItemStyle)}>
         <label css={labelTextStyle}>
           {t("editor.action.resource.rest_api.label.access_token_lifespan")}
         </label>
