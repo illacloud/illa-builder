@@ -25,4 +25,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ["@emotion/react/jsx-dev-runtime"],
   },
+  build: {
+    sourcemap: true,
+  },
 })

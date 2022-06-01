@@ -39,4 +39,7 @@ export default defineConfig({
       "@assets": resolve(__dirname, "src/assets"),
     },
   },
+  build: {
+    sourcemap: true,
+  },
 })
