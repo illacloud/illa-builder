@@ -11,6 +11,7 @@ export const containerStyle = css`
 export const panelScrollStyle = css`
   overflow: auto;
   flex: 1;
+  user-select: none;
 `
 
 export const headerStyle = css`
