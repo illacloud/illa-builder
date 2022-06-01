@@ -28,7 +28,6 @@ export const DashboardTitleBar: FC = () => {
       title: t("resources"),
     },
   ]
-  const activeTab: string = pathList[pathList.length - 1]
   return (
     <Tabs
       prefix={
@@ -49,7 +48,7 @@ export const DashboardTitleBar: FC = () => {
           />
         </div>
       }
-      activeKey={activeTab}
+      activeKey={t(pathList[pathList.length - 1])}
       css={containerStyle}
       withoutContent
       colorScheme="grayBlue"
