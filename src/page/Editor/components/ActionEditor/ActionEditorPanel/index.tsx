@@ -14,6 +14,7 @@ import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSe
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
 import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
+import { generateName } from "@/page/Editor/components/ActionEditor/utils"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
   containerStyle,
@@ -110,7 +111,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         actionListActions.addActionItemReducer({
           id,
           type,
-          name: generateName(type),
+          name: generateName(type, actionItems, actionItemsNameSet),
         }),
       )
 
@@ -123,23 +124,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       dispatch(actionListActions.removeActionItemReducer(activeActionItemId))
 
     onDeleteActionItem(activeActionItemId)
-  }
-
-  function generateName(type: string) {
-    const length = actionItems.filter((i) => i.type === type).length
-    const prefix = type
-
-    const getUniqueName = (length: number): string => {
-      const name = `${prefix}${length + 1}`
-
-      if (actionItemsNameSet.has(name)) {
-        return getUniqueName(length + 1)
-      }
-
-      return name
-    }
-
-    return getUniqueName(length)
   }
 
   const moreActions = (
