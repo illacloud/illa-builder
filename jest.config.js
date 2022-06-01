@@ -24,6 +24,7 @@ module.exports = {
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",
+      useESM: true,
     },
   },
   preset: "ts-jest",

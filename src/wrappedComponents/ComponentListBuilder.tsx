@@ -10,7 +10,6 @@ export type SessionType = keyof typeof sessionTypeMapSessionName
 const sessionTypeMapSessionName = {
   BASIC: "Basic",
   COMMON: "Common",
-  // GLOBAL: "Global",
 }
 
 const getListItemConfig = (type: WidgetType): ComponentModel => {

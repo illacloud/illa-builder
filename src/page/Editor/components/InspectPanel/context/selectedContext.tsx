@@ -2,7 +2,6 @@ import { createContext, ReactNode, FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getWidgetInspectBySelectId } from "@/redux/currentApp/editor/inspect/inspectSelector"
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
-import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 
 interface Injected {
   panelConfig: Record<string, any>
@@ -31,16 +30,7 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
     )
   }
 
-  const handleUpdateDsl = (value: Record<string, any>) => {
-    dispatch(
-      dslActions.updateDslProps({
-        targetId: panelConfig.id,
-        newState: {
-          ...value,
-        },
-      }),
-    )
-  }
+  const handleUpdateDsl = (value: Record<string, any>) => {}
 
   const value = {
     panelConfig,

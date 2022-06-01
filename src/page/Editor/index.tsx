@@ -15,7 +15,6 @@ import {
   applyRightPanelStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
-import { CanvasContainer } from "./components/CanvasContainer"
 import { Connection, Room } from "@/api/ws/ws"
 
 interface PanelConfigProps {
@@ -64,7 +63,7 @@ export const Editor: FC = () => {
         <div css={contentStyle}>
           <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
           <div css={middlePanelStyle}>
-            <CanvasContainer css={centerPanelStyle} />
+            <div css={centerPanelStyle} />
             <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
           </div>
           <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />

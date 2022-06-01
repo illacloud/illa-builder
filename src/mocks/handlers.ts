@@ -1,9 +1,9 @@
 import { rest } from "msw"
 
-const baseURL = import.meta.env.VITE_API_BASE_URL
+const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 export const handlers = [
-  rest.post("/resources/testConnection", (req, res, ctx) => {
+  rest.post(`${baseUrl}/resources/testConnection`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -11,7 +11,7 @@ export const handlers = [
       }),
     )
   }),
-  rest.post("/actions/:id/run", (req, res, ctx) => {
+  rest.post(`${baseUrl}/actions/:id/run`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -158,10 +158,9 @@ export const handlers = [
     )
   }),
 
-  rest.get(`${baseURL}/dashboard/apps`, (req, res, ctx) => {
+  rest.get(`${baseUrl}/dashboard/apps`, (req, res, ctx) => {
     const headers = req.headers
     const url = req.url
-    console.log(req, url, headers, "get headers")
     return res(
       ctx.status(200),
       ctx.json([
@@ -179,7 +178,7 @@ export const handlers = [
     )
   }),
 
-  rest.post(`${baseURL}/dashboard/apps`, (req, res, ctx) => {
+  rest.post(`${baseUrl}/dashboard/apps`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -190,7 +189,7 @@ export const handlers = [
     )
   }),
 
-  rest.get(`${baseURL}/room`, (req, res, ctx) => {
+  rest.get(`${baseUrl}/room`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

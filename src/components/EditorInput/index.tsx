@@ -1,4 +1,4 @@
-import { useEffect, useRef, forwardRef, ForwardedRef, useState } from "react"
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react"
 import { css } from "@emotion/react"
 import { EditorInputProps } from "./interface"
 
@@ -20,9 +20,6 @@ import { applyCMCss } from "./style"
 
 import { Trigger } from "@illa-design/trigger"
 
-// TODO
-// import "./modes"
-
 export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
     const {
@@ -32,6 +29,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       height = "auto",
       placeholder = "input sth",
       onChange,
+      value,
       onBlur,
     } = props
 

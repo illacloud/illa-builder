@@ -86,7 +86,7 @@ export const DashboardApps: FC = () => {
                     <Button
                       colorScheme="techPurple"
                       onClick={() => {
-                        navigate(`/editor/${item.appId}`)
+                        navigate(`/app/${item.appId}`)
                       }}
                     >
                       {t("edit")}

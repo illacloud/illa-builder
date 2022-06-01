@@ -1,5 +1,6 @@
 interface ImportMetaEnv {
-  readonly VITE_API_BASE_URL: string
+  VITE_API_BASE_URL: string
+  VITE_WS_BASE_URL: string
 }
 
 interface ImportMeta {

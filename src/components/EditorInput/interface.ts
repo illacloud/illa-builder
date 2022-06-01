@@ -5,6 +5,7 @@ type EditorMode = "javascript" | "sql" | "text-js"
 export interface EditorInputProps {
   _css?: SerializedStyles
   mode: EditorMode
+  value?: string
   lineNumbers?: boolean
   height?: string
   placeholder?: string
