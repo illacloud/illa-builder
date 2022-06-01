@@ -3,6 +3,7 @@ module.exports = {
   coverageDirectory: "./jest-coverage/",
   coverageReporters: ["lcov"],
   collectCoverage: true,
+  coverageProvider: "v8",
   collectCoverageFrom: [
     "./src/**/*.(ts|tsx)",
     "!./src/**/*.test.(ts|tsx)",
