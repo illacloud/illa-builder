@@ -21,7 +21,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
   const { control, watch } = props
   const { t } = useTranslation()
 
-  const isUseClientCredentialsAuth = watch("UseClientCredentialsAuth")
+  const isUseClientCredentialsAuth = watch("oauth2UseClientCredentialsAuth")
 
   return (
     <>
