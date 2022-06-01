@@ -5,7 +5,6 @@ import { selectAllActionItem } from "@/redux/currentApp/action/actionList/action
 import { ActionType } from "@/page/Editor/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/Editor/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/Editor/components/ActionEditor/ActionEditorPanel"
-import { ActionEditorPanelWrapper } from "./style"
 import { ResourceForm } from "./ResourceForm"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
@@ -61,7 +60,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
         resourceId,
       }}
     >
-      <div css={ActionEditorPanelWrapper}>
+      <div>
         <ActionEditorLayout
           actionList={
             <ActionList

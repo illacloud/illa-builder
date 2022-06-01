@@ -16,21 +16,19 @@ type IllaColor =
   | "techPink"
   | "techPurple"
 
-export const ActionEditorContainer = css`
+export const actionEditorContainer = css`
   display: flex;
   height: 100%;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   min-height: 300px;
 `
 
-export const ActionEditorPanelLayoutWrapper = css`
+export const actionEditorPanelLayoutWrapper = css`
   display: flex;
   flex-direction: column;
   position: relative;
   flex: 0 0 auto;
 `
-
-export const ActionEditorPanelWrapper = css``
 
 export function applyContainerHeight(height: number): SerializedStyles {
   return css({
@@ -38,7 +36,7 @@ export function applyContainerHeight(height: number): SerializedStyles {
   })
 }
 
-export function applyresizerStyle(
+export function applyResizerStyle(
   isResizing: boolean,
   bottom: number,
 ): SerializedStyles {

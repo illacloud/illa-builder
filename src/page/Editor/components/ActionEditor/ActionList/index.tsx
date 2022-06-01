@@ -17,9 +17,8 @@ import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/conte
 import { generateName } from "@/page/Editor/components/ActionEditor/utils"
 import {
   actionListContainerStyle,
-  applynewButtonStyle,
+  newBtnContainerStyle,
   newButtonTextStyle,
-  newButtonIconStyle,
   newActionOptionsListStyle,
   newActionOptionsItemStyle,
   actionItemListStyle,
@@ -258,15 +257,20 @@ export const ActionList: FC<ActionListProps> = (props) => {
         }}
         onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
       >
-        <Button
-          css={applynewButtonStyle(newActionOptionsVisible)}
-          size={"medium"}
-        >
-          <span css={newButtonTextStyle}>
-            <AddIcon css={newButtonIconStyle} />
-            {t("editor.action.action_list.btn.new")}
-          </span>
-        </Button>
+        <div css={newBtnContainerStyle}>
+          <Button
+            autoFullHorizontal
+            colorScheme="techPurple"
+            variant="light"
+            buttonRadius="8px"
+            size={"medium"}
+            leftIcon={<AddIcon />}
+          >
+            <span css={newButtonTextStyle}>
+              {t("editor.action.action_list.btn.new")}
+            </span>
+          </Button>
+        </div>
       </Dropdown>
 
       <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
