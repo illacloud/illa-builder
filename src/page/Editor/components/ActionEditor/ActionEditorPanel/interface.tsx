@@ -1,17 +1,19 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
 
-export interface ActionEditorPanelProps extends HTMLAttributes<HTMLDivElement> {
-  onEditResource?: () => void
+export interface ActionEditorPanelProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  isActionDirty?: boolean
+  onEditResource?: (id: string) => void
+  onChangeResource?: (id: string) => void
   onCreateResource?: () => void
+  onDeleteActionItem: (id: string) => void
+  onDuplicateActionItem: (id: string) => void
   children?: ReactNode
+  onChange?: () => void
+  onSave?: () => void
 }
 
-export interface TitleInputProps
-  extends Omit<HTMLAttributes<HTMLDataElement>, "title"> {
-  title?: string
-}
-
-export interface ResourcePanelProps {
-  resourceType: ResourceType
+export type triggerRunRef = {
+  run: () => void
+  saveAndRun: () => void
 }

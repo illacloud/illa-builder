@@ -6,7 +6,6 @@ import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { withParser } from "@/wrappedComponents/parserHOC"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
-  const { optionConfigureMode, showClear } = props
   const {
     label,
     labelAlign,
@@ -17,6 +16,8 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     required,
     hidden,
     tooltipText,
+    showClear,
+    handleUpdateDsl,
     ...selectProps
   } = props
   return (
@@ -31,7 +32,14 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
         required={required}
         tooltipText={tooltipText}
       >
-        <Select allowClear={showClear} {...selectProps} size="small" />
+        <Select
+          allowClear={showClear}
+          {...selectProps}
+          size="small"
+          onChange={(value) => {
+            handleUpdateDsl({ value })
+          }}
+        />
       </LabelWrapper>
     </Wrapper>
   )

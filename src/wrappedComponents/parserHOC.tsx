@@ -1,4 +1,6 @@
 import { FC } from "react"
+import { useDispatch } from "react-redux"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 
 function getDisplayName(WrappedComponent: FC<any>) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component"
@@ -11,13 +13,26 @@ export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
     // and also can add some Component parser,when component structural changed
     const { props } = dsl
     const { hidden } = props
+    const dispatch = useDispatch()
+
+    const handleUpdateDsl = (value: Record<string, any>) => {
+      console.log(dsl)
+      dispatch(
+        dslActions.updateDslProps({
+          targetId: dsl.id,
+          newState: {
+            ...value,
+          },
+        }),
+      )
+    }
     // TODO: wait to add component parser and labelWrapper
     return (
       <div
         hidden={hidden && hidden !== "false"}
         style={{ height: "100%", width: "100%" }}
       >
-        <WrappedComponent {...props} />
+        <WrappedComponent {...props} handleUpdateDsl={handleUpdateDsl} />
       </div>
     )
   }

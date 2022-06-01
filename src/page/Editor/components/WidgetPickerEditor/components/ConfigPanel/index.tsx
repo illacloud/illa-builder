@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from "react"
 import { InspectPanel } from "@/page/Editor/components/InspectPanel"
-import { ConfigPanelProvider } from "@/page/Editor/components/InspectPanel/context"
+import { SelectedProvider } from "@/page/Editor/components/InspectPanel/context/selectedContext"
 
 interface ConfigPanelProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -9,9 +9,9 @@ export const ConfigPanel: FC<ConfigPanelProps> = (props) => {
 
   return (
     <div className={className} style={{ width: "100%" }}>
-      <ConfigPanelProvider>
+      <SelectedProvider>
         <InspectPanel />
-      </ConfigPanelProvider>
+      </SelectedProvider>
     </div>
   )
 }

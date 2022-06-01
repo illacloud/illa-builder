@@ -2,8 +2,8 @@ import { FC } from "react"
 import { DropTargetMonitor, useDrop } from "react-dnd"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidv4 } from "uuid"
-import { DropInfo } from "@/redux/editor/dsl/dslState"
-import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { DropInfo } from "@/redux/currentApp/editor/dsl/dslState"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 import { DraggableComponent } from "@/wrappedComponents/DraggableComponent"
 import {
   widgetBuilder,
@@ -16,9 +16,10 @@ import { ComponentModel, DragInfo } from "@/wrappedComponents/interface"
 import {
   getDragDetails,
   getWidgetStates,
-} from "@/redux/editor/widgetStates/widgetStateSelector"
+} from "@/redux/currentApp/editor/widgetStates/widgetStateSelector"
 import { DragLayerComponent } from "@/components/DragLayerComponent"
 import { useDragWidget } from "@/page/Editor/hooks/useDragWidget"
+import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
 
 interface PanelDrag {
   type: string
@@ -71,6 +72,8 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
         setDraggingNewWidget(false, undefined)
         if (item.type) {
           let monitorOffset = getTargetOffset(monitor?.getClientOffset(), id)
+          const widgetId = "dsl" + uuidv4()
+          //TODO: wait to add displayName to props
           dispatch(
             dslActions.dslActionHandler({
               type: "AddItem",
@@ -78,7 +81,19 @@ export const ContainerWidget: FC<ContainerWidgetProps> = (
                 ...item,
                 props: { ...item.props, ...monitorOffset },
                 parentId: id,
-                id: "dsl" + uuidv4(),
+                id: widgetId,
+              },
+            }),
+          )
+          // TODO:wait to use initWidgetPanelConfig
+          dispatch(
+            inspectActions.updateWidgetPanelConfig({
+              id: widgetId,
+              value: {
+                ...item.props,
+                ...monitorOffset,
+                id: widgetId,
+                type: item.type,
               },
             }),
           )

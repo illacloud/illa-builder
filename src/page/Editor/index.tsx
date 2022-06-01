@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { PageNavBar } from "./components/PageNavBar"
@@ -16,6 +16,7 @@ import {
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { CanvasContainer } from "./components/CanvasContainer"
+import { Connection, Room } from "@/api/ws/ws"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -31,6 +32,7 @@ export const Editor: FC = () => {
     showRightPanel: true,
     showBottomPanel: true,
   })
+  const [room, setRoom] = useState<Room>()
   const { showLeftPanel, showBottomPanel, showRightPanel } = config
 
   const switchPanelState = (state: PanelState) => {
@@ -38,6 +40,22 @@ export const Editor: FC = () => {
     newConfig[state] = !newConfig[state]
     setConfig({ ...newConfig })
   }
+
+  useEffect(() => {
+    Connection.enterRoom(
+      "app",
+      (loading) => {},
+      (errorState) => {},
+      (room) => {
+        setRoom(room)
+      },
+    )
+    return () => {
+      if (room !== undefined) {
+        Connection.leaveRoom(room.roomId)
+      }
+    }
+  }, [])
 
   return (
     <DndProvider backend={HTML5Backend}>

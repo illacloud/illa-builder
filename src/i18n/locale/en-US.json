@@ -5,5 +5,192 @@
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
+  },
+  "apps": "Apps",
+  "resources": "Resources",
+  "create_new": "Create New",
+  "share": "Share",
+  "rename": "Rename",
+  "duplicate": "Duplicate",
+  "move_to_trash": "Move to trash",
+  "network_error": "Network Error",
+  "create_fail": "Create fail",
+  "remove_fail": "Remove fail",
+  "btn": {
+    "choose_file": "Choose a file"
+  },
+  "editor": {
+    "action": {
+      "action_list": {
+        "title": "Action List",
+        "placeholder": {
+          "search": "search"
+        },
+        "btn": {
+          "new": "new",
+          "close": "close"
+        },
+        "menu": {
+          "resource_action": "Resource action",
+          "javascript_transformer": "JavaScript transformer"
+        },
+        "contextMenu": {
+          "delete": "Delete",
+          "duplicate": "Duplicate"
+        },
+        "tips": {
+          "not_found": "Sorry, No Search result",
+          "empty": "Add a action to begin working with data from a connected resource."
+        },
+        "message": {
+          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?"
+        }
+      },
+      "panel": {
+        "option": {
+          "trigger": {
+            "manually": "Run action only when manually triggered",
+            "on_change": "Run action automatically when inputs change"
+          },
+          "resource": {
+            "new": "Create a new resource",
+            "rest_query": "RESTQuery(restapi)"
+          }
+        },
+        "btn": {
+          "run": "Run",
+          "save_and_run": "Save&Run",
+          "disable": "Disable",
+          "enable": "Enable",
+          "new": "New"
+        },
+        "menu": {
+          "more": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          }
+        },
+        "label": {
+          "resource": "Resource",
+          "transformer": "Transformer",
+          "success": "Success",
+          "failure": "Failure",
+          "event_handler": "Event Handler"
+        }
+      },
+      "form": {
+        "title": {
+          "select": "Select Resource Type",
+          "database": "DATABASES",
+          "api": "APIS"
+        },
+        "btn": {
+          "back": "Back",
+          "test_connection": "Test Connection",
+          "create_resource": "Create Resource"
+        },
+        "validate": {
+          "required": "{name} is required!"
+        }
+      },
+      "resource": {
+        "mySql": {
+          "name": "MySQL",
+          "label": {
+            "name": "Name",
+            "hostname_port": "Hostname/Port",
+            "database": "Database",
+            "username_password": "Username/Password",
+            "connect_type": "Connect Type",
+            "connect_over_ssh": "Connect over SSH",
+            "ssh_hostname_port": "SSH Hostname/Port",
+            "ssh_credentials": "SSH Credentials",
+            "private_key": "Private Key",
+            "ssh_passphrase": "SSH passphrase",
+            "ssl_options": "SSL options",
+            "server_root_certificate": "Server Root Certificate",
+            "client_key": "Client Key",
+            "client_certificate": "Client Certificate"
+          },
+          "tip": {
+            "username_password": "Credentials will be encrypted & stored securely on our servers.",
+            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "connect_over_ssh": "Useful to connect to private network",
+            "ssl_options": "SSL is used when available",
+            "ssh_passphrase": "used if provided"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "Hostname",
+            "database": "acme_production",
+            "username": "Username",
+            "password": "Password",
+            "ssh_hostname_port": "e.g.localhost",
+            "ssh_credentials": "e.g.ec2-user",
+            "private_key": "e.g.path/to/root.crt",
+            "server_root_certificate": "e.g.path/to/root.crt",
+            "client_key": "e.g.path/to/root.crt",
+            "client_certificate": "e.g.path/to/root.crt"
+          }
+        },
+        "rest_api": {
+          "name": "REST API",
+          "label": {
+            "name": "Name",
+            "action_type": "Action Type",
+            "url_parameters": "URL Parameters",
+            "headers": "Headers",
+            "cookies": "Cookies",
+            "body": "Body",
+            "extra_body_values": "Extra Body Values",
+            "list_of_cookies_to_forward": "List Of Cookies To Forward",
+            "forward_all_cookies": "Forward All Cookies",
+            "base_url": "Base URL",
+            "authentication": "Authentication",
+            "basic_auth_username": "Basic Auth username",
+            "basic_auth_password": "Basic Auth password",
+            "configure_oauth2": "Configuring OAuth 2.0",
+            "use_client_credentials_auth": "Use client credentials auth",
+            "oauth_callback_url": "OAuth callback URL",
+            "copy_url_to_application": "Copy this URL to your application",
+            "share_oauth2_credentials_between_users": "Share OAuth2.0 credentials between users",
+            "authorization_url": "Authorization URL",
+            "access_token_url": "Access Token URL",
+            "client_id": "Client ID",
+            "client_secret": "Client Secret",
+            "scopes": "Scopes (separated by a space)",
+            "audience": "Audience",
+            "access_token": "Access Token",
+            "refresh_token": "Refresh Token",
+            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+          },
+          "tip": {
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "name": "The name for resource when creating queries in the ILLA.",
+            "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
+            "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "action_url_path": "api/v2/endpoint.json",
+            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "username": "username",
+            "password": "password",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "access_token_lifespan": "Token Lifespan in seconds"
+          },
+          "option": {
+            "authentication": {
+              "basicAuth": "Basic Auth"
+            }
+          }
+        },
+        "postgres": { "name": "Postgres" },
+        "redis": { "name": "Redis" }
+      }
+    }
   }
 }
