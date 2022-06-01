@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import {
   dashBorderBottomStyle,
@@ -21,7 +22,9 @@ export const EventInstance = (props: EventInstanceProps) => {
   return (
     <>
       <div css={panelSubBarStyle}>
-        <label css={[sectionTitleStyle, dashBorderBottomStyle]}>{title}</label>
+        <label css={css(sectionTitleStyle, dashBorderBottomStyle)}>
+          {title}
+        </label>
       </div>
       <div css={gridHandlersStyle}>
         {handlerList.map((item) => (

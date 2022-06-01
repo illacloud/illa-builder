@@ -49,13 +49,7 @@ export const Body: FC<BodyProps> = (props) => {
           />
         )
       case "raw":
-        return (
-          <EditorInput
-            mode="javascript"
-            value={value as string}
-            onChange={onChange}
-          />
-        )
+        return <EditorInput mode="javascript" onChange={onChange} />
       case "binary":
         return (
           <>
@@ -65,11 +59,7 @@ export const Body: FC<BodyProps> = (props) => {
                 css={descriptionCodeStyle}
               >{`{data: binary string, filename?: string }`}</code>
             </dd>
-            <EditorInput
-              mode="javascript"
-              value={value as string}
-              onChange={onChange}
-            />
+            <EditorInput mode="javascript" onChange={onChange} />
           </>
         )
       case "none":

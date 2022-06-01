@@ -1,3 +1,6 @@
+import { css } from "@emotion/react"
+import { useTranslation } from "react-i18next"
+import { RadioGroup } from "@illa-design/radio"
 import {
   actionStyle,
   dashBorderBottomStyle,
@@ -6,8 +9,6 @@ import {
   panelSubBarStyle,
   sectionTitleStyle,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
-import { useTranslation } from "react-i18next"
-import { RadioGroup } from "@illa-design/radio"
 import { EditorInput } from "@/components/EditorInput"
 
 export const Transformer = () => {
@@ -15,8 +16,8 @@ export const Transformer = () => {
 
   return (
     <>
-      <div css={[actionStyle, panelSubBarStyle]}>
-        <label css={[sectionTitleStyle, dashBorderBottomStyle]}>
+      <div css={css(actionStyle, panelSubBarStyle)}>
+        <label css={css(sectionTitleStyle, dashBorderBottomStyle)}>
           {t("editor.action.panel.label.transformer")}
         </label>
         <span css={fillingStyle} />
