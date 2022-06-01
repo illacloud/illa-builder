@@ -2,12 +2,7 @@ import { Api } from "@/api/base"
 import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
 import { Alert } from "@illa-design/alert"
-import {
-  RESTAPIParamValues,
-  RESTAPIParam,
-  MySQLParamValues,
-  MySQLParam,
-} from "@/page/Editor/components/ActionEditor/Resource"
+import { ParamValues } from "@/page/Editor/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionListState"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
@@ -15,6 +10,7 @@ import { actionListActions } from "@/redux/currentApp/action/actionList/actionLi
 import { useSelector, useDispatch } from "react-redux"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
+import { ResourceParams } from "./ResourceParams"
 import { EventHandler } from "./EventHandler"
 import { ResourcePanelProps, triggerRunRef } from "./interface"
 import { ActionResult } from "./ActionResult"
@@ -66,7 +62,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     const [result, setResult] = useState<any>()
     const [showAlert, setShowAlert] = useState(false)
 
-    const onParamsChange = (value: RESTAPIParamValues | MySQLParamValues) => {
+    const onParamsChange = (value: ParamValues) => {
       setParams({ ...params, general: value })
       onChange && onChange()
     }
@@ -116,21 +112,10 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       resourceType = resource?.resourceType ?? ""
     }
 
-    function renderResourceConfig() {
-      switch (resourceType) {
-        case "MySQL":
-          return <MySQLParam onChange={onParamsChange} />
-        case "REST API":
-          return <RESTAPIParam onChange={onParamsChange} />
-        default:
-          return null
-      }
-    }
-
     return (
       <>
         <div>
-          {renderResourceConfig()}
+          <ResourceParams resourceType={resourceType} onChange={onParamsChange} />
           <Transformer />
           <Divider />
           <EventHandler />

@@ -1,4 +1,5 @@
 import { FC, forwardRef, useState, useMemo } from "react"
+import { css } from "@emotion/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
@@ -28,7 +29,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         prefix={{
           render: <SearchIcon size={"12px"} css={searchInputIconStyle} />,
         }}
-        placeholder={t("editor.action.actionList.placeholder.search")}
+        placeholder={t("editor.action.action_list.placeholder.search")}
         onChange={updateAction}
         onClear={() => updateAction("")}
         css={searchInputStyle}
@@ -48,21 +49,21 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
         colorScheme={"white"}
         css={searchInputCloseBtnStyle}
       >
-        {t("editor.action.actionList.btn.close")}
+        {t("editor.action.action_list.btn.close")}
       </Button>
     )),
   )
 
   const searchTitle = (
     <motion.div
-      css={[searchHeaderStyle, searchHeaderTitleStyle]}
+      css={css(searchHeaderStyle, searchHeaderTitleStyle)}
       key={"search-title"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, position: "absolute" }}
     >
       <span css={searchHeaderTitleTextStyle}>
-        {t("editor.action.actionList.title")}
+        {t("editor.action.action_list.title")}
       </span>
       <SearchIcon
         size={"12px"}
@@ -74,7 +75,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
 
   const searchInput = (
     <motion.div
-      css={[searchHeaderStyle, searchHeaderInputStyle]}
+      css={css(searchHeaderStyle, searchHeaderInputStyle)}
       key={"search-input"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

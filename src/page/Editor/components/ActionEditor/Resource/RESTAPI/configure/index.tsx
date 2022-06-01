@@ -1,4 +1,5 @@
 import { forwardRef, useState } from "react"
+import { css } from "@emotion/react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
@@ -93,17 +94,19 @@ export const RESTAPIConfigure = forwardRef<
     <form
       ref={ref}
       onSubmit={handleSubmit(onSubmit)}
-      css={[formStyle, gridContainerStyle]}
+      css={css(formStyle, gridContainerStyle)}
     >
       <div css={gridRowContainerStyle}>
         <label css={requiredLabelTextStyle}>
-          {t("editor.action.resource.restApi.label.name")}
+          {t("editor.action.resource.rest_api.label.name")}
         </label>
         <Controller
           render={({ field }) => (
             <Input
               {...field}
-              placeholder={t("editor.action.resource.restApi.placeholder.name")}
+              placeholder={t(
+                "editor.action.resource.rest_api.placeholder.name",
+              )}
               error={!!errors.name}
               maxLength={200}
             />
@@ -115,25 +118,25 @@ export const RESTAPIConfigure = forwardRef<
           name="name"
         />
         {errors.name && (
-          <div css={[errorMessageStyle, applyGridColIndex(2)]}>
+          <div css={css(errorMessageStyle, applyGridColIndex(2))}>
             {errors.name.message}
           </div>
         )}
-        <dd css={[applyGridColIndex(2), descriptionStyle]}>
-          {t("editor.action.resource.restApi.tip.name")}
+        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
+          {t("editor.action.resource.rest_api.tip.name")}
         </dd>
       </div>
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.baseUrl")}
+          {t("editor.action.resource.rest_api.label.base_url")}
         </label>
         <Controller
           render={({ field }) => (
             <Input
               {...field}
               placeholder={t(
-                "editor.action.resource.restApi.placeholder.baseUrl",
+                "editor.action.resource.rest_api.placeholder.base_url",
               )}
               maxLength={200}
             />
@@ -145,32 +148,34 @@ export const RESTAPIConfigure = forwardRef<
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.urlParameters")}
+          {t("editor.action.resource.rest_api.label.url_parameters")}
         </label>
         <ParamList control={control} name={"urlParams"} />
       </div>
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.headers")}
+          {t("editor.action.resource.rest_api.label.headers")}
         </label>
         <ParamList control={control} name={"headers"} />
       </div>
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.extraBodyValues")}
+          {t("editor.action.resource.rest_api.label.extra_body_values")}
         </label>
         <ParamList control={control} name={"body"} />
-        <dd css={[applyGridColIndex(2), descriptionStyle]}>
-          {t("editor.action.resource.restApi.tip.extraBodyValues")}
+        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
+          {t("editor.action.resource.rest_api.tip.extra_body_values")}
         </dd>
       </div>
 
       <div css={gridRowContainerStyle}>
-        <div css={[gridRowContainerStyle, gridRowCenterItemStyle]}>
+        <div css={css(gridRowContainerStyle, gridRowCenterItemStyle)}>
           <label css={labelTextStyle}>
-            {t("editor.action.resource.restApi.label.listOfCookiesToForward")}
+            {t(
+              "editor.action.resource.rest_api.label.list_of_cookies_to_forward",
+            )}
           </label>
           <Controller
             render={({ field }) => (
@@ -186,8 +191,8 @@ export const RESTAPIConfigure = forwardRef<
         </div>
         <Controller
           render={({ field }) => (
-            <Checkbox css={[applyGridColIndex(2), checkboxStyle]} {...field}>
-              {t("editor.action.resource.restApi.label.forwardAllCookies")}
+            <Checkbox css={css(applyGridColIndex(2), checkboxStyle)} {...field}>
+              {t("editor.action.resource.rest_api.label.forward_all_cookies")}
             </Checkbox>
           )}
           control={control}
@@ -197,7 +202,7 @@ export const RESTAPIConfigure = forwardRef<
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.authentication")}
+          {t("editor.action.resource.rest_api.label.authentication")}
         </label>
         <Controller
           render={() => (
@@ -210,7 +215,7 @@ export const RESTAPIConfigure = forwardRef<
               <Option value={"none"}>None</Option>
               <Option value={"basic"}>
                 {t(
-                  "editor.action.resource.restApi.option.Authentication.basicAuth",
+                  "editor.action.resource.rest_api.option.authentication.basicAuth",
                 )}
               </Option>
               <Option value={"OAuth2"}>OAuth 2.0</Option>

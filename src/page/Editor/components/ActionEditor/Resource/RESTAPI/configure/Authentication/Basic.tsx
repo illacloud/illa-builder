@@ -12,14 +12,14 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
   return (
     <>
       <label css={labelTextStyle}>
-        {t("editor.action.resource.restApi.label.basicAuthUsername")}
+        {t("editor.action.resource.rest_api.label.basic_auth_username")}
       </label>
       <Controller
         render={({ field }) => (
           <Input
             {...field}
             placeholder={t(
-              "editor.action.resource.restApi.placeholder.username",
+              "editor.action.resource.rest_api.placeholder.username",
             )}
             maxLength={200}
           />
@@ -29,14 +29,14 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
       />
 
       <label css={labelTextStyle}>
-        {t("editor.action.resource.restApi.label.basicAuthPassword")}
+        {t("editor.action.resource.rest_api.label.basic_auth_password")}
       </label>
       <Controller
         render={({ field }) => (
           <Password
             {...field}
             placeholder={t(
-              "editor.action.resource.restApi.placeholder.password",
+              "editor.action.resource.rest_api.placeholder.password",
             )}
             maxLength={200}
           />

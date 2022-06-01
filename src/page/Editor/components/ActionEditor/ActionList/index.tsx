@@ -221,10 +221,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const newNewActionOptions = (
     <ul css={newActionOptionsListStyle}>
       <li css={newActionOptionsItemStyle} onClick={addAction}>
-        {t("editor.action.actionList.menu.resourceAction")}
+        {t("editor.action.action_list.menu.resource_action")}
       </li>
       <li css={newActionOptionsItemStyle} onClick={addTransformer}>
-        {t("editor.action.actionList.menu.javascriptTransformer")}
+        {t("editor.action.action_list.menu.javascript_transformer")}
       </li>
     </ul>
   )
@@ -283,7 +283,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const NoMatchFound = (
     <div css={noMatchFoundWrapperStyle}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
-      <span>{t("editor.action.actionList.tips.notFound")}</span>
+      <span>{t("editor.action.action_list.tips.not_found")}</span>
     </div>
   )
 
@@ -295,7 +295,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
       return (
         <span css={emptyActionListPlaceholderStyle}>
-          {t("editor.action.actionList.tips.empty")}
+          {t("editor.action.action_list.tips.empty")}
         </span>
       )
     }
@@ -315,12 +315,12 @@ export const ActionList: FC<ActionListProps> = (props) => {
       >
         <MenuItem
           key={"duplicate"}
-          title={t("editor.action.actionList.contextMenu.duplicate")}
+          title={t("editor.action.action_list.contextMenu.duplicate")}
           css={duplicateActionStyle}
         />
         <MenuItem
           key={"delete"}
-          title={t("editor.action.actionList.contextMenu.delete")}
+          title={t("editor.action.action_list.contextMenu.delete")}
           css={deleteActionStyle}
         />
       </Menu>
@@ -360,7 +360,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
             leftIcon={<AddIcon />}
           >
             <span css={newButtonTextStyle}>
-              {t("editor.action.actionList.btn.new")}
+              {t("editor.action.action_list.btn.new")}
             </span>
           </Button>
         </div>

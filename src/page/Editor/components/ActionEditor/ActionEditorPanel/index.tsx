@@ -1,4 +1,5 @@
 import { FC, useMemo, useState, useRef, useContext } from "react"
+import { css } from "@emotion/react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
@@ -77,7 +78,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       value: 0,
     },
     {
-      label: t("editor.action.panel.option.trigger.onChange"),
+      label: t("editor.action.panel.option.trigger.on_change"),
       value: 1,
     },
   ]
@@ -195,26 +196,26 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           }}
         >
           {isActionDirty
-            ? t("editor.action.panel.btn.saveAndRun")
+            ? t("editor.action.panel.btn.save_and_run")
             : t("editor.action.panel.btn.run")}
         </Button>
       </header>
       <div css={panelScrollStyle}>
         {activeActionItem && (
           <>
-            <div css={[actionStyle, resourceBarStyle]}>
-              <label css={[sectionTitleStyle, resourceBarTitleStyle]}>
+            <div css={css(actionStyle, resourceBarStyle)}>
+              <label css={css(sectionTitleStyle, resourceBarTitleStyle)}>
                 {t("editor.action.panel.label.resource")}
               </label>
               <span css={fillingStyle} />
               <Select
                 options={triggerOptions}
                 defaultValue={0}
-                css={[actionSelectStyle, triggerSelectStyle]}
+                css={css(actionSelectStyle, triggerSelectStyle)}
               />
 
               <Select
-                css={[actionSelectStyle, resourceSelectStyle]}
+                css={css(actionSelectStyle, resourceSelectStyle)}
                 value={resourceId}
                 onChange={onChangeResource}
                 triggerProps={{
@@ -233,9 +234,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
                 <Option value={"preset_REST API"}>
                   <span
                     css={resourceOptionStyle}
-                    title={t("editor.action.panel.option.resource.restQuery")}
+                    title={t("editor.action.panel.option.resource.rest_query")}
                   >
-                    {t("editor.action.panel.option.resource.restQuery")}
+                    {t("editor.action.panel.option.resource.rest_query")}
                   </span>
                 </Option>
                 {resourceList &&

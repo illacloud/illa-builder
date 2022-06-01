@@ -1,4 +1,5 @@
 import { FC, useState, useContext } from "react"
+import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
@@ -64,7 +65,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     <div css={configContainerStyle}>
       <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.actionType")}
+          {t("editor.action.resource.rest_api.label.action_type")}
         </label>
         <div css={actionTypeStyle}>
           <Select
@@ -77,19 +78,19 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             value={params.path}
             onChange={updateField("path")}
             placeholder={t(
-              "editor.action.resource.restApi.placeholder.actionUrlPath",
+              "editor.action.resource.rest_api.placeholder.action_url_path",
             )}
             addonBefore={{ render: baseURL ?? null }}
           />
         </div>
-        <dd css={[applyGridColIndex(2), descriptionStyle]}>
-          {t("editor.action.resource.restApi.tip.getReqAutoRun")}
+        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
+          {t("editor.action.resource.rest_api.tip.get_req_auto_run")}
         </dd>
       </div>
 
       <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.urlParameters")}
+          {t("editor.action.resource.rest_api.label.url_parameters")}
         </label>
         <FieldArray
           value={params.URLParameters}
@@ -99,7 +100,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
       <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.headers")}
+          {t("editor.action.resource.rest_api.label.headers")}
         </label>
         <FieldArray value={params.Headers} onChange={updateField("Headers")} />
       </div>
@@ -107,7 +108,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       {hasBody && (
         <div css={paramGridRowContainerStyle}>
           <label css={labelTextStyle}>
-            {t("editor.action.resource.restApi.label.body")}
+            {t("editor.action.resource.rest_api.label.body")}
           </label>
           <Body value={params.Body} onChange={updateField("Body")} />
         </div>
@@ -115,7 +116,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
       <div css={paramGridRowContainerStyle}>
         <label css={labelTextStyle}>
-          {t("editor.action.resource.restApi.label.cookies")}
+          {t("editor.action.resource.rest_api.label.cookies")}
         </label>
         <FieldArray value={params.Cookies} onChange={updateField("Cookies")} />
       </div>

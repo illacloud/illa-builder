@@ -17,11 +17,11 @@
   "create_fail": "创建失败",
   "remove_fail": "删除失败",
   "btn": {
-    "chooseFile": "Choose a file"
+    "choose_file": "Choose a file"
   },
   "editor": {
     "action": {
-      "actionList": {
+      "action_list": {
         "title": "Action List",
         "placeholder": {
           "search": "search"
@@ -31,35 +31,35 @@
           "close": "close"
         },
         "menu": {
-          "resourceAction": "Resource action",
-          "javascriptTransformer": "JavaScript transformer"
+          "resource_action": "Resource action",
+          "javascript_transformer": "JavaScript transformer"
         },
         "contextMenu": {
           "delete": "删除",
           "duplicate": "复制"
         },
         "tips": {
-          "notFound": "Sorry, No Search result",
+          "not_found": "Sorry, No Search result",
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
-          "confirmSwitch": "您没有保存查询。确定要放弃更改吗？"
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
         }
       },
       "panel": {
         "option": {
           "trigger": {
             "manually": "手动触发",
-            "onChange": "自动触发"
+            "on_change": "自动触发"
           },
           "resource": {
             "new": "新家资源",
-            "restQuery": "RESTQuery(restapi)"
+            "rest_query": "RESTQuery(restapi)"
           }
         },
         "btn": {
           "run": "运行",
-          "saveAndRun": "保存&运行",
+          "save_and_run": "保存&运行",
           "disable": "禁用",
           "enable": "使用",
           "new": "新增"
@@ -75,7 +75,7 @@
           "transformer": "转换器",
           "success": "成功",
           "failure": "失败",
-          "eventHandler": "Event Handler"
+          "event_handler": "Event Handler"
         }
       },
       "form": {
@@ -86,8 +86,8 @@
         },
         "btn": {
           "back": "后退",
-          "testConnection": "测试连接",
-          "createResource": "创建资源"
+          "test_connection": "测试连接",
+          "create_resource": "创建资源"
         },
         "validate": {
           "required": "{name} is required!"
@@ -98,26 +98,26 @@
           "name": "MySQL",
           "label": {
             "name": "名称",
-            "hostname/port": "主机/端口",
+            "hostname_port": "主机/端口",
             "database": "数据库名称",
-            "username/password": "用户名/密码",
-            "connectType": "Connect Type",
-            "connectOverSsh": "通过 SSH 连接",
-            "sshHostnamePort": "SSH 主机名/端口",
-            "sshCredentials": "SSH 凭证",
-            "privateKey": "私钥",
-            "sshPassphrase": "SSH 密码",
-            "sslOptions": "SSL 选项",
-            "serverRootCertificate": "服务器根证书",
-            "clientKey": "客户端密钥",
-            "clientCertificate": "客户端证书"
+            "username_password": "用户名/密码",
+            "connect_type": "Connect Type",
+            "connect_over_ssh": "通过 SSH 连接",
+            "ssh_hostname_port": "SSH 主机名/端口",
+            "ssh_credentials": "SSH 凭证",
+            "private_key": "私钥",
+            "ssh_passphrase": "SSH 密码",
+            "ssl_options": "SSL 选项",
+            "server_root_certificate": "服务器根证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书"
           },
           "tip": {
-            "username/password": "Credentials will be encrypted & stored securely on our servers.",
-            "connectType": "Cloud: ILLA servers will securely connect to your database.",
-            "connectOverSsh": "用于连接到专用网络",
-            "sslOptions": "SSL is used when available",
-            "sshPassphrase": "used if provided"
+            "username_password": "Credentials will be encrypted & stored securely on our servers.",
+            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "connect_over_ssh": "用于连接到专用网络",
+            "ssl_options": "SSL is used when available",
+            "ssh_passphrase": "used if provided"
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
@@ -125,65 +125,65 @@
             "database": "acme_production",
             "username": "用户名",
             "password": "密码",
-            "sshHostnamePort": "e.g.localhost",
-            "sshCredentials": "e.g.ec2-user",
-            "privateKey": "e.g.path/to/root.crt",
-            "serverRootCertificate": "e.g.path/to/root.crt",
-            "clientKey": "e.g.path/to/root.crt",
-            "clientCertificate": "e.g.path/to/root.crt"
+            "ssh_hostname_port": "e.g.localhost",
+            "ssh_credentials": "e.g.ec2-user",
+            "private_key": "e.g.path/to/root.crt",
+            "server_root_certificate": "e.g.path/to/root.crt",
+            "client_key": "e.g.path/to/root.crt",
+            "client_certificate": "e.g.path/to/root.crt"
           }
         },
-        "restApi": {
+        "rest_api": {
           "name": "REST API",
           "label": {
             "name": "名称",
-            "actionType": "请求方法",
-            "urlParameters": "URL参数",
+            "action_type": "请求方法",
+            "url_parameters": "URL参数",
             "headers": "头部字段",
             "cookies": "Cookies",
             "body": "载荷",
-            "extraBodyValues": "载荷",
-            "listOfCookiesToForward": "要转发的 cookie 列表",
-            "forwardAllCookies": "转发所有Cookies",
-            "baseUrl": "基础URL",
+            "extra_body_values": "载荷",
+            "list_of_cookies_to_forward": "要转发的 cookie 列表",
+            "forward_all_cookies": "转发所有Cookies",
+            "base_url": "基础URL",
             "authentication": "API认证",
-            "basicAuthUsername": "基础认证用户名",
-            "basicAuthPassword": "基础认证密码",
-            "configureOAuth2": "配置OAuth 2.0",
-            "useClientCredentialsAuth": "使用客户端凭据身份验证",
-            "oAuthCallbackUrl": "OAuth回调URL",
-            "copyUrlToApplication": "复制URL",
-            "shareOAuth2CredentialsBetweenUsers": "在用户之间共享 OAuth2.0 凭据",
-            "authorizationUrl": "授权网址",
-            "accessTokenUrl": "访问令牌",
-            "clientId": "客户编号",
-            "clientSecret": "客户密码",
+            "basic_auth_username": "基础认证用户名",
+            "basic_auth_password": "基础认证密码",
+            "configure_oauth2": "配置OAuth 2.0",
+            "use_client_credentials_auth": "使用客户端凭据身份验证",
+            "oauth_callback_url": "OAuth回调URL",
+            "copy_url_to_application": "复制URL",
+            "share_oauth2_credentials_between_users": "在用户之间共享 OAuth2.0 凭据",
+            "authorization_url": "授权网址",
+            "access_token_url": "访问令牌",
+            "client_id": "客户编号",
+            "client_secret": "客户密码",
             "scopes": "范围（以空格分隔）",
             "audience": "观众",
-            "accessToken": "Access Token",
-            "refreshToken": "Refresh Token",
-            "accessTokenLifespan": "Access Token lifespan(optiinal)",
-            "enableAuthVerificationEndpoint": "Enable an auth verification endpoint"
+            "access_token": "Access Token",
+            "refresh_token": "Refresh Token",
+            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
           },
           "tip": {
-            "getReqAutoRun": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
             "name": "The name for resource when creating queries in the ILLA.",
-            "extraBodyValues": "Extra body values are not passed for GET or HEAD requests",
-            "configureOAuth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
+            "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
+            "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "actionUrlPath": "api/v2/endpoint.json",
-            "baseUrl": "Use the absolute URL (e.g https://example.com)",
+            "action_url_path": "api/v2/endpoint.json",
+            "base_url": "Use the absolute URL (e.g https://example.com)",
             "username": "用户名",
             "password": "密码",
-            "oAuthCallbackUrl": "https://oauth.retool.com/oauth/user/oauthcallback",
-            "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
-            "accessTokenUrl": "https://www.googleapis.com/oauth2/v4/token",
-            "accessTokenLifespan": "Token Lifespan in seconds"
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "access_token_lifespan": "Token Lifespan in seconds"
           },
           "option": {
-            "Authentication": {
+            "authentication": {
               "basicAuth": "基础认证"
             }
           }

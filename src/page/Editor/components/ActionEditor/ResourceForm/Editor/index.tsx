@@ -83,7 +83,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
             connectionRef.current?.testConnection()
           }}
         >
-          {t("editor.action.form.btn.testConnection")}
+          {t("editor.action.form.btn.test_connection")}
         </Button>
 
         <Button
@@ -92,7 +92,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           css={createResourceBtnStyle}
           onClick={submitForm}
         >
-          {t("editor.action.form.btn.createResource")}
+          {t("editor.action.form.btn.create_resource")}
         </Button>
       </div>
     </div>

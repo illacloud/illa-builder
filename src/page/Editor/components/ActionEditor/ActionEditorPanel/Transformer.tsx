@@ -1,3 +1,4 @@
+import { css } from "@emotion/react"
 import {
   actionStyle,
   fillingStyle,
@@ -15,7 +16,7 @@ export const Transformer = () => {
 
   return (
     <>
-      <div css={[actionStyle, panelSubBarStyle]}>
+      <div css={css(actionStyle, panelSubBarStyle)}>
         <label css={sectionTitleStyle}>
           {t("editor.action.panel.label.transformer")}
         </label>
