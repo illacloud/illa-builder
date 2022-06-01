@@ -1,5 +1,4 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { ActionItem } from "@/redux/currentApp/action/actionList/actionListState"
 
 export interface ActionEditorPanelProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {

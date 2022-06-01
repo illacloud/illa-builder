@@ -16,7 +16,7 @@ import {
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
-  const { hasType, value, onChange } = props
+  const { hasType, onChange } = props
 
   const getEmptyField = () => {
     return hasType
@@ -41,7 +41,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
     onChange && onChange(fields.map(({ _key, ...rest }) => rest as ValueType))
   }
 
-  const fieldList = fields.map(({ key, value, type, _key }, index) => {
+  const fieldList = fields.map(({ type, _key }, index) => {
     return (
       <div css={fieldItemStyle} key={_key}>
         {hasType ? (
