@@ -10,10 +10,9 @@ import { actionListActions } from "@/redux/currentApp/action/actionList/actionLi
 import { useSelector, useDispatch } from "react-redux"
 import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
-import { ResourceParams } from "./ResourceParams"
-import { EventHandler } from "./EventHandler"
-import { ResourcePanelProps, triggerRunRef } from "./interface"
-import { ActionResult } from "./ActionResult"
+import { ResourceParams } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceParams"
+import { EventHandler } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { triggerRunRef,ResourcePanelProps } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/interface"
 
 const dataTransform = (data: any) => {
   const _data = {

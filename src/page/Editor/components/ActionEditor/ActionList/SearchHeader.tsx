@@ -106,3 +106,5 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
     [isSearch],
   )
 }
+
+SearchHeader.displayName = "AcionListSearchHeader"

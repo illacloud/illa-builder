@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, MouseEvent } from "react"
 
 export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {
   onAddActionItem: (id: string) => void
@@ -10,4 +10,11 @@ export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {
 
 export interface SearchHeaderProps {
   updateAction: (action: string) => void
+}
+
+export interface ContextMenuProps {
+  id?: string
+  contextMenuEvent?: MouseEvent
+  onDuplicate?: () => void
+  onDelete?: () => void
 }

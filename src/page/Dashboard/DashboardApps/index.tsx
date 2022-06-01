@@ -50,8 +50,8 @@ export const DashboardApps: FC = () => {
           dashboardAppActions.updateDashboardAppListReducer(response.data),
         )
       },
-      (response) => { },
-      (error) => { },
+      (response) => {},
+      (error) => {},
       (loading) => {
         setLoading(loading)
       },
@@ -84,8 +84,8 @@ export const DashboardApps: FC = () => {
                 )
                 navigate(`/editor/${response.data.appId}`)
               },
-              (response) => { },
-              (error) => { },
+              (response) => {},
+              (error) => {},
               (loading) => {
                 setCreateNewLoading(loading)
               },
