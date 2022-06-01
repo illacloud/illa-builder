@@ -8,9 +8,12 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { ActionType } from "@/redux/currentApp/action/actionList/actionListState"
+import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { generateName } from "@/page/Editor/components/ActionEditor/utils"
 import { ResoucreEditor } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor"
+import { TransformerEditor } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/TransformerEditor"
 import { TitleInput } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/TitleInput"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
@@ -25,6 +28,36 @@ import {
 import { ActionResult } from "./ActionResult"
 
 const { Item: MenuItem } = Menu
+
+function renderEditor(
+  type: ActionType | undefined,
+  props: Partial<ActionEditorPanelProps>,
+) {
+  const {
+    onEditResource,
+    onChangeResource,
+    onCreateResource,
+    onChange,
+    onSave,
+  } = props
+
+  switch (type) {
+    case "resource":
+      return (
+        <ResoucreEditor
+          onChangeParam={onChange}
+          onSaveParam={onSave}
+          onCreateResource={onCreateResource}
+          onEditResource={onEditResource}
+          onChangeResource={onChangeResource}
+        />
+      )
+    case "transformer":
+      return <TransformerEditor />
+    default:
+      return null
+  }
+}
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
@@ -41,7 +74,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { resourceId } = useContext(ActionEditorContext)
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
@@ -52,19 +84,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
     return actionItems.find((action) => action.id === activeActionItemId)
   }, [actionItems, activeActionItemId])
+
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
   }, [actionItems])
 
-  const isResourceEditable = resourceId && resourceId.indexOf("preset") === -1
-
-  function createResource() {
-    onCreateResource && onCreateResource()
-  }
-
-  function editResource() {
-    isResourceEditable && onEditResource && onEditResource(resourceId)
-  }
+  const actionType = activeActionItem?.type
 
   function handleAction(key: string) {
     setMoreBtnMenuVisible(false)
@@ -158,15 +183,16 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             : t("editor.action.panel.btn.run")}
         </Button>
       </header>
+
       {activeActionItem && (
         <>
-          <ResoucreEditor
-            onChangeParam={onChange}
-            onSaveParam={onSave}
-            onCreateResource={createResource}
-            onEditResource={editResource}
-            onChangeResource={onChangeResource}
-          />
+          {renderEditor(actionType, {
+            onChange,
+            onSave,
+            onCreateResource,
+            onEditResource,
+            onChangeResource,
+          })}
           <ActionResult />
         </>
       )}

@@ -21,6 +21,7 @@ export const actionEditorContainer = css`
   height: 100%;
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   min-height: 300px;
+  overflow: auto;
 `
 
 export const actionEditorPanelLayoutWrapper = css`

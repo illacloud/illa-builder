@@ -2,7 +2,7 @@ import {
   RESTAPIParamValues,
   MySQLParamValues,
 } from "@/page/Editor/components/ActionEditor/Resource"
-type ActionType = "action" | "transformer"
+export type ActionType = "resource" | "transformer"
 type ActionStatus = "warning" | string
 interface ActionConnectNetwork {
   totalTime: number

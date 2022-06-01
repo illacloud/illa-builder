@@ -100,7 +100,7 @@ export const ResoucreEditor: FC<ResourceEditorProps> = (props) => {
         </Select>
         <div
           css={applyEditIconStyle(!isResourceEditable)}
-          onClick={onEditResource}
+          onClick={() => onEditResource && onEditResource(resourceId)}
         >
           <PenIcon />
         </div>
