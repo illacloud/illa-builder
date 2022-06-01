@@ -8,7 +8,7 @@ import {
   ObjectIcon,
   ComponentIcon,
   NullIcon,
-} from "./icon"
+} from "@illa-design/icon"
 import { contentStyle, itemStyle, typeStyle } from "./styles"
 
 export const ACItem = forwardRef<HTMLDivElement, ACItemProps>(

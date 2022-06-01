@@ -1,7 +1,5 @@
 import { HTMLAttributes } from "react"
 
-export interface ACListProps extends HTMLAttributes<HTMLDivElement> {}
-
 type itemType =
   | "String"
   | "Number"

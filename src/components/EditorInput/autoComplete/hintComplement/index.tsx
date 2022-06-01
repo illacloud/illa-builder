@@ -1,6 +1,6 @@
 import { FC, Fragment, useEffect } from "react"
 import { HintComplementProps } from "./interface"
-
+import { ArrayIcon } from "@illa-design/icon"
 import {
   mainTitleStyle,
   contentAreaStyle,
@@ -10,7 +10,6 @@ import {
   infoTextHeightStyle,
 } from "./styles"
 import { css } from "@emotion/react"
-import { ArrayIcon } from "../icon"
 import { Tag } from "@illa-design/tag"
 
 export const HintComplement: FC<HintComplementProps> = (props) => {
