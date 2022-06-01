@@ -55,11 +55,11 @@ export const titleInputContainerStyle = css`
 
 export const titleInputStyle = css`
   & > span {
-    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)} !important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
