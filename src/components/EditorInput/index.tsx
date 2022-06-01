@@ -25,7 +25,6 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
     const {
       _css,
       mode,
-      value,
       lineNumbers = true,
       height = "auto",
       placeholder = "input sth",
