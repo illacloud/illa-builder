@@ -10,15 +10,16 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     defaultValue,
     isInList,
     attrName,
-    tempProps,
+    panelConfig,
     handleUpdateDsl,
+    handleUpdatePanelConfig,
   } = props
 
-  const [inputValue, setInputValue] = useState(tempProps[attrName])
+  const [inputValue, setInputValue] = useState(panelConfig[attrName])
 
   useEffect(() => {
-    setInputValue(tempProps[attrName])
-  }, [tempProps[attrName]])
+    setInputValue(panelConfig[attrName])
+  }, [panelConfig[attrName]])
 
   return (
     <div css={applyInputSetterWrapperStyle(isFullWidth, isInList)}>
@@ -27,6 +28,8 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         value={inputValue ?? defaultValue}
         onChange={(value) => {
           setInputValue(value)
+          handleUpdatePanelConfig({ [attrName]: value })
+          // TODO： calc dsl and then to update props
           handleUpdateDsl({ [attrName]: value })
         }}
       />

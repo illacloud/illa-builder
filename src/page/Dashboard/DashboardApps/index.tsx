@@ -5,6 +5,7 @@ import {
   itemMenuButtonStyle,
   listTitleContainerStyle,
   listTitleStyle,
+  loadingBoxStyle,
   menuButtonStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
@@ -72,7 +73,7 @@ export const DashboardApps: FC = () => {
           onClick={() => {
             Api.request<DashboardApp>(
               {
-                url: "/dashboard/app",
+                url: "/dashboard/apps",
                 method: "POST",
               },
               (response) => {
@@ -155,10 +156,12 @@ export const DashboardApps: FC = () => {
         <Result status="error" title={t("network_error")} />
       )}
       {loading && (
-        <LoadingIcon
-          spin
-          color={globalColor(`--${illaPrefix}-techPurple-01`)}
-        />
+        <div css={loadingBoxStyle}>
+          <LoadingIcon
+            spin
+            color={globalColor(`--${illaPrefix}-techPurple-01`)}
+          />
+        </div>
       )}
     </div>
   )

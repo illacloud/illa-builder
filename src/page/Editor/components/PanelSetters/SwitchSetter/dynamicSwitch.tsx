@@ -1,7 +1,6 @@
-import { FC, useContext, useState } from "react"
+import { FC } from "react"
 import { DynamicSwitchProps } from "./interface"
 import { Switch } from "@illa-design/switch"
-import { ConfigPanelContext } from "@/page/Editor/components/InspectPanel/context"
 import { PanelLabel } from "@/page/Editor/components/InspectPanel/label"
 import {
   applyCustomIconStyle,
@@ -18,16 +17,16 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     useCustomLabel,
     labelName,
     labelDesc,
-    tempProps,
+    panelConfig,
+    handleUpdatePanelConfig,
     handleUpdateDsl,
-    componentDsl,
   } = props
 
   const customKey = `is_${attrName}_custom`
   const customValueKey = `${attrName}_custom`
 
-  const customSelected = tempProps[customKey]
-  const customValue = tempProps[customValueKey]
+  const customSelected = panelConfig[customKey]
+  const customValue = panelConfig[customValueKey]
 
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
@@ -40,13 +39,13 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             css={applyCustomIconStyle(customSelected)}
             onClick={() => {
               if (customSelected) {
-                handleUpdateDsl({
+                handleUpdatePanelConfig({
                   [customKey]: false,
                   [customValueKey]: "",
                 })
                 return
               }
-              handleUpdateDsl({ [customKey]: !customSelected })
+              handleUpdatePanelConfig({ [customKey]: !customSelected })
             }}
           >
             <svg
@@ -65,9 +64,10 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           {!customSelected && (
             <Switch
               onChange={(value) => {
+                handleUpdatePanelConfig({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
               }}
-              checked={tempProps[attrName] ?? defaultValue}
+              checked={panelConfig[attrName] ?? defaultValue}
               colorScheme="purple"
             />
           )}
@@ -82,8 +82,9 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             attrName={customValueKey}
             defaultValue={customValue}
             handleUpdateDsl={handleUpdateDsl}
-            tempProps={tempProps}
-            componentDsl={componentDsl}
+            panelConfig={panelConfig}
+            handleUpdatePanelConfig={handleUpdatePanelConfig}
+            isFullWidth
           />
         </div>
       )}

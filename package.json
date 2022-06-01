@@ -7,8 +7,9 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {
-    "dev": "yarn build-all && vite",
-    "build": "vite build",
+    "dev": "yarn build-all && vite --mode cloud",
+    "build": "vite build --mode cloud",
+    "build-self": "vite build --mode self",
     "build-all": "yarn turbo run build",
     "preview": "vite preview",
     "test": "npx patch-package && yarn build-all && npx jest && npx cypress run-ct -b chrome",
@@ -41,6 +42,7 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "scenejs": "^1.6.0",
+    "use-bus": "^2.5.1",
     "uuid": "^8.3.2",
     "ws": "^8.7.0"
   },

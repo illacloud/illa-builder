@@ -12,12 +12,12 @@ import {
 } from "./style"
 import {
   BugIcon,
-  IllaLogoIcon,
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-} from "@/assets/icon"
+} from "@illa-design/icon"
 import { ZoomControl } from "@/page/Editor/components/PageNavBar/ZoomControl"
+import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import { useDispatch, useSelector } from "react-redux"
 import { PanelState } from "@/page/Editor"
 import { getPreviewMode } from "@/redux/currentApp/editor/mode/modeSelector"
@@ -41,7 +41,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <IllaLogoIcon width={"34px"} />
+        <Logo width={"34px"} />
         <section css={informationStyle}>
           <div css={nameStyle}>{projectInfo.name}</div>
           <div css={descriptionStyle}>{projectInfo.description}</div>
