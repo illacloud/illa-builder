@@ -1,4 +1,4 @@
-import { FC, useMemo, useState, useRef, useContext } from "react"
+import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
@@ -32,6 +32,7 @@ const { Item: MenuItem } = Menu
 function renderEditor(
   type: ActionType | undefined,
   props: Partial<ActionEditorPanelProps>,
+  ref: Ref<triggerRunRef>,
 ) {
   const {
     onEditResource,
@@ -45,6 +46,7 @@ function renderEditor(
     case "resource":
       return (
         <ResoucreEditor
+          ref={ref}
           onChangeParam={onChange}
           onSaveParam={onSave}
           onCreateResource={onCreateResource}
@@ -53,7 +55,13 @@ function renderEditor(
         />
       )
     case "transformer":
-      return <TransformerEditor />
+      return (
+        <TransformerEditor
+          ref={ref}
+          onChangeParam={onChange}
+          onSaveParam={onSave}
+        />
+      )
     default:
       return null
   }
@@ -183,16 +191,19 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             : t("editor.action.panel.btn.run")}
         </Button>
       </header>
-
       {activeActionItem && (
         <>
-          {renderEditor(actionType, {
-            onChange,
-            onSave,
-            onCreateResource,
-            onEditResource,
-            onChangeResource,
-          })}
+          {renderEditor(
+            actionType,
+            {
+              onChange,
+              onSave,
+              onCreateResource,
+              onEditResource,
+              onChangeResource,
+            },
+            triggerRunRef,
+          )}
           <ActionResult />
         </>
       )}
