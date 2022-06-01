@@ -10,44 +10,13 @@ export const actionListContainerStyle = css`
   position: relative;
 `
 
-export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
-  const activeStyle = css`
-    background-color: ${globalColor(`--${illaPrefix}-techPurple-05`)}!important;
-  `
-
-  return css`
-    background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)}!important;
-    color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
-    justify-content: center;
-    font-size: 14px;
-    margin: 0 16px 8px 16px;
-    border-radius: 8px !important;
-    line-height: 32px;
-    flex-shrink: 0;
-
-    ${isActive && activeStyle}
-
-    transition: background-color .2s ease-in-out;
-
-    & > * {
-      font-size: 14px !important;
-    }
-
-    &:hover {
-      background-color: ${globalColor(
-    `--${illaPrefix}-techPurple-06`,
-  )}!important;
-    }
-  `
-}
+export const newBtnContainerStyle = css`
+  margin: 0 16px 8px 16px;
+`
 
 export const newButtonTextStyle = css`
   display: flex;
   align-items: center;
-`
-
-export const newButtonIconStyle = css`
-  margin-right: 8px;
 `
 
 export const actionItemListStyle = css`
@@ -250,8 +219,8 @@ export const searchInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 

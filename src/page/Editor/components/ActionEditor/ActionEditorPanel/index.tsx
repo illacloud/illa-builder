@@ -186,8 +186,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           buttonRadius="8px"
           size="medium"
           colorScheme="techPurple"
-          backgroundColor={applyIllaColor("techPurple", "07")}
-          textColor={applyIllaColor("techPurple", "01")}
+          variant="light"
           leftIcon={<CaretRightIcon />}
           onClick={() => {
             isActionDirty

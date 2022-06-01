@@ -17,6 +17,7 @@ import { Transformer } from "@/page/Editor/components/ActionEditor/ActionEditorP
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { EventHandler } from "./EventHandler"
 import { ResourcePanelProps, triggerRunRef } from "./interface"
+import { ActionResult } from "./ActionResult"
 
 const dataTransform = (data: any) => {
   const _data = {
@@ -63,9 +64,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       (i) => i.resourceId === resourceId,
     )
     const [result, setResult] = useState<any>()
-    console.log("res", result)
     const [showAlert, setShowAlert] = useState(false)
-    resource = useSelector(selectAllResource).find((i) => i.id === resourceId)
 
     const onParamsChange = (value: RESTAPIParamValues | MySQLParamValues) => {
       setParams({ ...params, general: value })
@@ -80,12 +79,12 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           method: "POST",
           data: _data,
         },
-        /*        (data) => {
+        (data) => {
           if (!showAlert) {
             setShowAlert(true)
           }
-          setResult(data)
-        },*/
+          setResult(data.data)
+        },
       )
     }
 
@@ -130,16 +129,19 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     return (
       <>
-        {renderResourceConfig()}
-        <Transformer />
-        <Divider />
-        <EventHandler />
-        {showAlert && (
-          <Alert
-            type={result?.status === "success" ? "success" : "error"}
-            content={result?.message}
-          />
-        )}
+        <div>
+          {renderResourceConfig()}
+          <Transformer />
+          <Divider />
+          <EventHandler />
+          {showAlert && (
+            <Alert
+              type={result?.status === "success" ? "success" : "error"}
+              title={result?.message}
+            />
+          )}
+          <ActionResult />
+        </div>
       </>
     )
   },

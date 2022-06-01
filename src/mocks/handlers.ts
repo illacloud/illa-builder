@@ -13,8 +13,9 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        status: "success",
-        message: "Mock Run success!",
+        status: "error",
+        message:
+          "This is the base URL of the API. Please read the https://docs.coinapi.io/ for more information on how to use the API.",
         data: {
           id: [
             "1",

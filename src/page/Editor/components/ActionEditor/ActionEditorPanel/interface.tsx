@@ -31,3 +31,5 @@ export type triggerRunRef = {
   run: () => void
   saveAndRun: () => void
 }
+
+export interface ActionResultProps {}

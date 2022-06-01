@@ -59,8 +59,8 @@ export const titleInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
@@ -298,4 +298,30 @@ export const handlerItemMoreStyle = css`
 
 export const radioBtnStyle = css`
   width: 184px;
+`
+
+export const resStatusStyle = css`
+  background-color: ${globalColor(`--${illaPrefix}-green-07`)};
+  color: ${globalColor(`--${illaPrefix}-green-03`)};
+  border-radius: 50%;
+  font-size: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+`
+
+export const resTitleStyle = css`
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-gray-01`)};
+`
+
+export const resAlertBgcStyle = css`
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+`
+
+export const resCloseIconStyle = css`
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `

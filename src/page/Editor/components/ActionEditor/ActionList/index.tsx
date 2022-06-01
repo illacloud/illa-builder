@@ -27,9 +27,8 @@ import { actionListActions } from "@/redux/currentApp/action/actionList/actionLi
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import {
   actionListContainerStyle,
-  applynewButtonStyle,
+  newBtnContainerStyle,
   newButtonTextStyle,
-  newButtonIconStyle,
   newActionOptionsListStyle,
   newActionOptionsItemStyle,
   actionItemListStyle,
@@ -351,15 +350,20 @@ export const ActionList: FC<ActionListProps> = (props) => {
         }}
         onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
       >
-        <Button
-          css={applynewButtonStyle(newActionOptionsVisible)}
-          size={"medium"}
-        >
-          <span css={newButtonTextStyle}>
-            <AddIcon css={newButtonIconStyle} />
-            {t("editor.action.actionList.btn.new")}
-          </span>
-        </Button>
+        <div css={newBtnContainerStyle}>
+          <Button
+            autoFullHorizontal
+            colorScheme="techPurple"
+            variant="light"
+            buttonRadius="8px"
+            size={"medium"}
+            leftIcon={<AddIcon />}
+          >
+            <span css={newButtonTextStyle}>
+              {t("editor.action.actionList.btn.new")}
+            </span>
+          </Button>
+        </div>
       </Dropdown>
 
       <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
