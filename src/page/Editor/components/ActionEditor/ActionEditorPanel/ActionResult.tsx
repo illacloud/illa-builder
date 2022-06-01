@@ -11,6 +11,7 @@ import {
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { EditorInput } from "@/components/EditorInput"
 import {
+  ActionEditorPanelLayoutWrapper,
   applyContainerHeight,
   applyResizerStyle,
 } from "@/page/Editor/components/ActionEditor/style"
@@ -25,7 +26,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
 
   const resizer = useResize("vertical", layerRef, onHeightChange)
   return (
-    <div>
+    <div css={ActionEditorPanelLayoutWrapper}>
       <div
         onMouseDown={resizer.onMouseDown}
         onTouchStart={resizer.onTouchStart}

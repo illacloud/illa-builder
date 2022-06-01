@@ -115,7 +115,10 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     return (
       <>
         <div>
-          <ResourceParams resourceType={resourceType} onChange={onParamsChange} />
+          <ResourceParams
+            resourceType={resourceType}
+            onChange={onParamsChange}
+          />
           <Transformer />
           <Divider />
           <EventHandler />
@@ -125,7 +128,6 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
               title={result?.message}
             />
           )}
-          <ActionResult />
         </div>
       </>
     )

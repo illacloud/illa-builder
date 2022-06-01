@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
@@ -36,6 +35,7 @@ import {
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
+import { ActionResult } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ActionResult"
 
 const { Item: MenuItem } = Menu
 
@@ -265,6 +265,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           </>
         )}
       </div>
+      <ActionResult />
     </div>
   )
 }
