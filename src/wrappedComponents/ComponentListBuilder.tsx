@@ -3,7 +3,7 @@ import {
   ComponentSessionProps,
   TypeMapComponent,
 } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
-import { ComponentModel } from "./interface"
+import { WidgetCardInfo, WidgetConfig } from "./interface"
 
 export type SessionType = keyof typeof sessionTypeMapSessionName
 
@@ -12,23 +12,23 @@ const sessionTypeMapSessionName = {
   COMMON: "Common",
 }
 
-const getListItemConfig = (type: WidgetType): ComponentModel => {
+const getListItemConfig = (type: WidgetType): WidgetConfig => {
   return widgetBuilder(type).config
 }
 
-const translateChildren = (componentConfigs: ComponentModel[]) => {
+const translateChildren = (componentConfigs: WidgetConfig[]) => {
   const sessionConfigs: TypeMapComponent = {
     BASIC: [],
     COMMON: [],
   }
   componentConfigs.forEach((item) => {
-    const { sessionType = "BASIC", type, widgetName } = item
+    const { sessionType = "BASIC", type, displayName } = item
     if (!sessionConfigs[sessionType]) {
       sessionConfigs[sessionType] = []
     }
-    const childrenConfig = {
+    const childrenConfig: WidgetCardInfo = {
       ...item,
-      id: `${sessionType}-${type}-${widgetName}`,
+      id: `${sessionType}-${type}-${displayName}`,
     }
     sessionConfigs[sessionType].push(childrenConfig)
   })
@@ -37,8 +37,8 @@ const translateChildren = (componentConfigs: ComponentModel[]) => {
 
 export const BuildSessionTypeMapComponentConfig = (): TypeMapComponent => {
   const componentConfigs = WidgetTypeList.map((item) => {
-    return getListItemConfig(item) as ComponentModel
-  }) as ComponentModel[]
+    return getListItemConfig(item) as WidgetConfig
+  }) as WidgetConfig[]
   return translateChildren(componentConfigs)
 }
 

@@ -1,16 +1,15 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
 import { v4 } from "uuid"
 
-export const SELECT_WIDGET_CONFIG: ComponentModel = {
+export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "SELECT_WIDGET",
-  widgetName: "select",
-  version: "0.0.1",
+  displayName: "select",
   icon: <SearchIcon />,
   sessionType: "BASIC",
+  w: 100,
+  h: 20,
   defaults: {
-    rows: 50,
-    columns: 500,
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
