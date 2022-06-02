@@ -1,10 +1,10 @@
-import { useState, forwardRef, useImperativeHandle } from "react"
+import { forwardRef, useImperativeHandle, useState } from "react"
 import { css } from "@emotion/react"
 import {
-  useForm,
   Controller,
   SubmitHandler,
   UnpackNestedValue,
+  useForm,
 } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Input, Password } from "@illa-design/input"
@@ -18,28 +18,27 @@ import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlic
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { v4 as uuidV4 } from "uuid"
 import {
-  gridContainerStyle,
   descriptionStyle,
-  formStyle,
-  labelTextStyle,
-  requiredLabelTextStyle,
   errorMessageStyle,
+  formStyle,
+  gridContainerStyle,
   gridRowContainerStyle,
   groupTitleStyle,
   itemTextStyle,
-  labelTextVerticalStyle,
   labelTextSmallSizeStyle,
+  labelTextStyle,
+  labelTextVerticalStyle,
+  requiredLabelTextStyle,
   splitLineStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
-import { ERROR_REQUIRED_MESSAGE } from "@/page/App/constants"
-import { MySQLConfigureValues, MySQLConfigureProps } from "../interface"
+import { MySQLConfigureProps, MySQLConfigureValues } from "../interface"
 import { InputUpload } from "./input-upload"
 import {
-  hostnamePortStyle,
-  usernamePasswordStyle,
-  switchDescriptionStyle,
-  switchAreaStyle,
   formPaddingStyle,
+  hostnamePortStyle,
+  switchAreaStyle,
+  switchDescriptionStyle,
+  usernamePasswordStyle,
 } from "./style"
 
 const dataTransform = (data: UnpackNestedValue<MySQLConfigureValues>) => {
@@ -177,7 +176,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 />
               )}
               rules={{
-                required: ERROR_REQUIRED_MESSAGE,
+                required: t("editor.action.form.required"),
               }}
               control={control}
               name="name"
@@ -207,7 +206,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 control={control}
                 name="host"
                 rules={{
-                  required: ERROR_REQUIRED_MESSAGE,
+                  required: t("editor.action.form.required"),
                 }}
               />
               <Controller
@@ -221,7 +220,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 control={control}
                 name="port"
                 rules={{
-                  required: ERROR_REQUIRED_MESSAGE,
+                  required: t("editor.action.form.required"),
                 }}
               />
             </div>
@@ -332,7 +331,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
+                      required: t("editor.action.form.required"),
                     }}
                     control={control}
                     name="sshHost"
@@ -346,7 +345,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
+                      required: t("editor.action.form.required"),
                     }}
                     control={control}
                     name="sshPort"
@@ -375,7 +374,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
+                      required: t("editor.action.form.required"),
                     }}
                     control={control}
                     name="sshUsername"
@@ -390,7 +389,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: ERROR_REQUIRED_MESSAGE,
+                      required: t("editor.action.form.required"),
                     }}
                     control={control}
                     name="sshPassword"

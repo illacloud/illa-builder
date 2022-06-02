@@ -5,7 +5,6 @@ import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
 import { Select, Option } from "@illa-design/select"
-import { ERROR_REQUIRED_MESSAGE } from "@/page/App/constants"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
@@ -112,7 +111,7 @@ export const RESTAPIConfigure = forwardRef<
             />
           )}
           rules={{
-            required: ERROR_REQUIRED_MESSAGE,
+            required: t("editor.action.form.required"),
           }}
           control={control}
           name="name"

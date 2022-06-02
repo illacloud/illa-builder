@@ -80,6 +80,7 @@
         }
       },
       "form": {
+        "required": "这是必填项",
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
