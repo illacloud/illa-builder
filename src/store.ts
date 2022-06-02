@@ -6,7 +6,6 @@ import modeReducer from "@/redux/currentApp/editor/mode/modeSlice"
 import dslReducer from "@/redux/currentApp/editor/dsl/dslSlice"
 import widgetStatesReducer from "@/redux/currentApp/editor/widgetStates/widgetStatesSlice"
 import inspectReducer from "@/redux/currentApp/editor/inspect/inspectSlice"
-
 import dashboardResourceReducer from "@/redux/dashboard/resources/dashboardResourceSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"

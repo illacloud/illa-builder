@@ -24,7 +24,7 @@ import {
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { ResourceEditorProps } from "./interface"
 
-export const ResoucreEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
+export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
   (props, ref) => {
     const {
       onChangeResource,
@@ -117,4 +117,4 @@ export const ResoucreEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
   },
 )
 
-ResoucreEditor.displayName = "ResourceEditor"
+ResourceEditor.displayName = "ResourceEditor"

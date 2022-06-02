@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const resStatusStyle = css`
@@ -26,3 +26,10 @@ export const resCloseIconStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `
+
+export function applyResContainerStyle(maxHeight: number): SerializedStyles {
+  return css`
+    min-height: 182px;
+    max-height: ${maxHeight}px;
+  `
+}

@@ -66,7 +66,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     const onParamsChange = (value: ParamValues) => {
       setParams({ ...params, general: value })
-      onChange && onChange()
+      onChange?.()
     }
 
     const run = () => {
@@ -100,7 +100,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
         }),
       )
 
-      onSave && onSave()
+      onSave?.()
     }
 
     useImperativeHandle(ref, () => {

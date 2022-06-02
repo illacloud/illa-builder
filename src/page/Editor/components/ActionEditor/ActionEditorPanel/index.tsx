@@ -1,4 +1,12 @@
-import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
+import {
+  FC,
+  useMemo,
+  useState,
+  useRef,
+  useContext,
+  useEffect,
+  Ref,
+} from "react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
@@ -11,7 +19,7 @@ import { actionListActions } from "@/redux/currentApp/action/actionList/actionLi
 import { ActionType } from "@/redux/currentApp/action/actionList/actionListState"
 import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
 import { generateName } from "@/page/Editor/components/ActionEditor/utils"
-import { ResoucreEditor } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor"
+import { ResourceEditor } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor"
 import { TransformerEditor } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/TransformerEditor"
 import { TitleInput } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/TitleInput"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
@@ -44,7 +52,7 @@ function renderEditor(
   switch (type) {
     case "resource":
       return (
-        <ResoucreEditor
+        <ResourceEditor
           ref={ref}
           onChangeParam={onChange}
           onSaveParam={onSave}
@@ -82,6 +90,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
+  const [actionResVisible, setActionResVisible] = useState(true)
   const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
   const activeActionItem = useMemo(() => {
@@ -203,7 +212,13 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             },
             triggerRunRef,
           )}
-          <ActionResult />
+          {actionResVisible && (
+            <ActionResult
+              onChange={(val) => {
+                setActionResVisible(val)
+              }}
+            />
+          )}
         </>
       )}
     </div>
