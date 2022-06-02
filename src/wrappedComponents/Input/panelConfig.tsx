@@ -160,7 +160,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: "Pattern",
         setterType: "SEARCH_SWITCH_SETTER",
         attrName: "pattern",
-        options: ["email", "url", "regex"],
+        options: ["Email", "URL", "Regex"],
       },
       {
         id: "input-validation-regex",
@@ -168,7 +168,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "regex",
         bindAttrName: "pattern",
-        shown: (value) => value === "regex",
+        shown: (value) => value === "Regex",
       },
       {
         id: "input-validation-max",

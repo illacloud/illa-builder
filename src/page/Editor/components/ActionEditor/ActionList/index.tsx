@@ -1,84 +1,74 @@
-import { FC, useState, useMemo, useRef, MouseEvent, forwardRef } from "react"
-import { motion } from "framer-motion"
-import { useClickAway } from "react-use"
+import { FC, useState, useMemo, useRef, MouseEvent, useContext } from "react"
+import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
-import { Menu } from "@illa-design/menu"
 import {
   AddIcon,
   WarningCircleIcon,
   EmptyStateIcon,
   RestApiIcon,
 } from "@illa-design/icon"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
+import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
+import { generateName } from "@/page/Editor/components/ActionEditor/utils"
 import {
-  updateActionItem,
-  addActionItem,
-  removeActionItem,
-} from "@/redux/action/actionList/actionListSlice"
-import {
-  ActionListContainerCSS,
-  applyNewButtonCSS,
-  NewButtonTextCSS,
-  NewButtonIconCSS,
-  NewActionOptionsListCSS,
-  NewActionOptionsItemCSS,
-  ActionItemListCSS,
-  applyActionItemCSS,
-  ActionItemNameCSS,
-  applyActionItemNameTextCSS,
-  ActionItemIconCSS,
-  ActionItemTimeCSS,
-  WarningIndicatorCSS,
-  UpdatedIndicatorCSS,
-  NoMatchFoundWrapperCSS,
-  EmptyActionListPlaceholderCSS,
-  applyContextMenuCSS,
-  DeleteActionCSS,
-  DuplicateActionCSS,
-  applyContextMenuVisibleCSS,
+  actionListContainerStyle,
+  applynewButtonStyle,
+  newButtonTextStyle,
+  newButtonIconStyle,
+  newActionOptionsListStyle,
+  newActionOptionsItemStyle,
+  actionItemListStyle,
+  applyactionItemStyle,
+  actionItemNameStyle,
+  applyactionItemNameTextStyle,
+  actionItemIconStyle,
+  actionItemTimeStyle,
+  warningIndicatorStyle,
+  updatedIndicatorStyle,
+  noMatchFoundWrapperStyle,
+  emptyActionListPlaceholderStyle,
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
-
-const MenuItem = Menu.Item
+import { ContextMenu } from "./ContextMenu"
 
 export const ActionList: FC<ActionListProps> = (props) => {
-  const { className } = props
+  const {
+    isActionDirty = false,
+    onAddActionItem,
+    onDuplicateActionItem,
+    onDeleteActionItem,
+    onSelectActionItem,
+  } = props
 
+  const { activeActionItemId } = useContext(ActionEditorContext)
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const actionItems = useSelector(selectAllActionItem)
-  const selectedActionItemId = ""
 
   const [newActionOptionsVisible, setNewActionOptionsVisible] = useState(false)
-  const [action, setAction] = useState<string>("")
+  const [query, setQuery] = useState<string>("")
   const [editingName, setEditingName] = useState("")
   const [editingActionItemId, setEditingActionItemId] = useState("")
-  const [actionActionItemId, setActionActionItemId] = useState("")
-
-  const [contextMenuVisible, setContextMenuVisible] = useState(false)
-  const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 })
+  const [contextMenuActionId, setContextMenuActionId] = useState("")
+  const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const contextMenuRef = useRef<HTMLDivElement | null>(null)
-
-  useClickAway(contextMenuRef, () => {
-    setContextMenuVisible(false)
-    setActionActionItemId("")
-  })
 
   const matchedActionItems = useMemo(() => {
-    if (action === "") {
+    if (query === "") {
       return actionItems
     }
 
     return actionItems.filter(({ name }) =>
-      name.toLowerCase().includes(action.toLowerCase()),
+      name.toLowerCase().includes(query.toLowerCase()),
     )
-  }, [actionItems, action])
+  }, [actionItems, query])
 
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
@@ -92,46 +82,9 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }, 0)
   }
 
-  function generateName(type: string) {
-    const length = actionItems.filter((i) => i.type === type).length
-    const prefix = type
-
-    const getUniqueName = (length: number): string => {
-      const name = `${prefix}${length + 1}`
-
-      if (actionItemsNameSet.has(name)) {
-        return getUniqueName(length + 1)
-      }
-
-      return name
-    }
-
-    return getUniqueName(length)
-  }
-
-  function showContextMenu(event: MouseEvent, id: string) {
-    event.preventDefault()
-
-    let offset = 0
-    const { clientX, clientY } = event
-    const OFFSET_THRESHOLD = 10
-    const contextMenuRect = contextMenuRef.current?.getBoundingClientRect()
-    const viewportHeight = window.innerHeight
-    const contextMenuBottom = clientY + (contextMenuRect?.height ?? 0)
-
-    if (contextMenuBottom > viewportHeight) {
-      offset = contextMenuBottom - viewportHeight + OFFSET_THRESHOLD
-    }
-
-    setContextMenuPosition({ x: clientX, y: clientY - offset })
-
-    setActionActionItemId(id)
-    setContextMenuVisible(true)
-  }
-
   function updateName() {
     dispatch(
-      updateActionItem({
+      actionListActions.updateActionItemReducer({
         id: editingActionItemId,
         name: editingName,
       }),
@@ -143,12 +96,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const actionItemsList = matchedActionItems.map((item) => {
     const { id, name, status } = item
     const isWarning = status === "warning"
-    // TODO: isUpdated should a props
-    const isUpdated = false
     // TODO: time should retrieve from ActionItem.network
     const time = "0.7s"
     const icon = <RestApiIcon />
-    const isSelected = id === selectedActionItemId
+    const isSelected = id === activeActionItemId
 
     function renderName() {
       if (id === editingActionItemId) {
@@ -165,14 +116,19 @@ export const ActionList: FC<ActionListProps> = (props) => {
       }
 
       return (
-        <span css={ActionItemNameCSS} onDoubleClick={() => editName(id, name)}>
+        <span
+          css={actionItemNameStyle}
+          onDoubleClick={() => editName(id, name)}
+        >
           <span
-            css={applyActionItemNameTextCSS(isWarning ?? false)}
+            css={applyactionItemNameTextStyle(isWarning ?? false)}
             title={name}
           >
             {name}
           </span>
-          {isUpdated && <span css={UpdatedIndicatorCSS}></span>}
+          {isActionDirty && isSelected && (
+            <span css={updatedIndicatorStyle}></span>
+          )}
         </span>
       )
     }
@@ -180,18 +136,21 @@ export const ActionList: FC<ActionListProps> = (props) => {
     return (
       <li
         key={id}
-        css={applyActionItemCSS(isSelected)}
+        css={applyactionItemStyle(isSelected)}
         onClick={() => onClickActionItem(id, name)}
-        onContextMenu={(e) => showContextMenu(e, id)}
+        onContextMenu={(e: MouseEvent) => {
+          setContextMenuActionId(id)
+          setContextMenuEvent(e)
+        }}
       >
-        <span css={ActionItemIconCSS}>
+        <span css={actionItemIconStyle}>
           {icon}
           {isWarning && (
-            <WarningCircleIcon css={WarningIndicatorCSS} size={"8px"} />
+            <WarningCircleIcon css={warningIndicatorStyle} size={"8px"} />
           )}
         </span>
         {renderName()}
-        <span css={ActionItemTimeCSS}>{time}</span>
+        <span css={actionItemTimeStyle}>{time}</span>
       </li>
     )
   })
@@ -200,122 +159,93 @@ export const ActionList: FC<ActionListProps> = (props) => {
     if (actionItems.length === 1) {
       editName(id, name)
     }
+
+    onSelectActionItem(id)
   }
 
   const newNewActionOptions = (
-    <ul css={NewActionOptionsListCSS}>
-      <li css={NewActionOptionsItemCSS} onClick={addAction}>
-        Resource action
+    <ul css={newActionOptionsListStyle}>
+      <li css={newActionOptionsItemStyle} onClick={addAction}>
+        {t("editor.action.action_list.menu.resource_action")}
       </li>
-      <li css={NewActionOptionsItemCSS} onClick={addTransformer}>
-        JavaScript transformer
+      <li css={newActionOptionsItemStyle} onClick={addTransformer}>
+        {t("editor.action.action_list.menu.javascript_transformer")}
       </li>
     </ul>
   )
 
   function addAction() {
-    dispatch(
-      addActionItem({
-        id: uuidV4(),
-        type: "action",
-        name: generateName("action"),
-        status: Math.random() > 0.5 ? "warning" : "",
-      }),
-    )
+    addActionItem("action")
   }
 
   function addTransformer() {
+    addActionItem("transformer")
+  }
+
+  function addActionItem(type: "action" | "transformer") {
+    const id = uuidV4()
+
     dispatch(
-      addActionItem({
-        id: uuidV4(),
-        type: "transformer",
-        name: generateName("transformer"),
-        status: Math.random() > 0.5 ? "warning" : "",
+      actionListActions.addActionItemReducer({
+        id,
+        type,
+        name: generateName(type, actionItems, actionItemsNameSet),
       }),
     )
+
+    onAddActionItem(id)
+  }
+
+  function onDuplicate() {
+    const newActionItems = actionItems.slice(0)
+    const targetItem = newActionItems.find((i) => i.id === contextMenuActionId)
+
+    if (targetItem) {
+      const type = targetItem.type
+      const id = uuidV4()
+
+      dispatch(
+        actionListActions.addActionItemReducer({
+          id,
+          type,
+          name: generateName(type, actionItems, actionItemsNameSet),
+        }),
+      )
+
+      onDuplicateActionItem(id)
+    }
+  }
+
+  function onDelete() {
+    dispatch(actionListActions.removeActionItemReducer(contextMenuActionId))
+    onDeleteActionItem(contextMenuActionId)
   }
 
   const NoMatchFound = (
-    <div css={NoMatchFoundWrapperCSS}>
+    <div css={noMatchFoundWrapperStyle}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
-      <span>Sorry, No Search result</span>
+      <span>{t("editor.action.action_list.tips.not_found")}</span>
     </div>
   )
 
   const renderActionItemList = () => {
     if (matchedActionItems.length === 0) {
-      if (action !== "") {
+      if (query !== "") {
         return NoMatchFound
       }
 
       return (
-        <span css={EmptyActionListPlaceholderCSS}>
-          Add a action to begin working with data from a connected resource.
+        <span css={emptyActionListPlaceholderStyle}>
+          {t("editor.action.action_list.tips.empty")}
         </span>
       )
     }
 
     return actionItemsList
   }
-
-  const MotionContextMenu = motion(
-    forwardRef<HTMLDivElement>((_, ref) => (
-      <Menu
-        css={[
-          applyContextMenuCSS(contextMenuPosition.y, contextMenuPosition.x),
-          applyContextMenuVisibleCSS(contextMenuVisible),
-        ]}
-        onClickMenuItem={handleAction}
-        ref={ref}
-      >
-        <MenuItem
-          key={"duplicate"}
-          title={"Duplicate"}
-          css={DuplicateActionCSS}
-        />
-        <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCSS} />
-      </Menu>
-    )),
-  )
-
-  function handleAction(key: string) {
-    if (key === "duplicate") {
-      duplicateActionItem()
-    } else if (key === "delete") {
-      deleteActionItem()
-    }
-  }
-
-  function duplicateActionItem() {
-    setContextMenuVisible(false)
-
-    const newActionItems = actionItems.slice(0)
-    const targetItem = newActionItems.find((i) => i.id === actionActionItemId)
-
-    if (targetItem) {
-      const type = targetItem.type
-      dispatch(
-        addActionItem({
-          id: uuidV4(),
-          type,
-          name: generateName(type),
-          status: Math.random() > 0.5 ? "warning" : "",
-        }),
-      )
-    }
-
-    setActionActionItemId("")
-  }
-
-  function deleteActionItem() {
-    setContextMenuVisible(false)
-    dispatch(removeActionItem(actionActionItemId))
-    setActionActionItemId("")
-  }
-
   return (
-    <div className={className} css={ActionListContainerCSS}>
-      <SearchHeader updateAction={setAction} />
+    <div css={actionListContainerStyle}>
+      <SearchHeader updateAction={setQuery} />
 
       <Dropdown
         dropList={newNewActionOptions}
@@ -329,23 +259,22 @@ export const ActionList: FC<ActionListProps> = (props) => {
         onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
       >
         <Button
-          css={applyNewButtonCSS(newActionOptionsVisible)}
+          css={applynewButtonStyle(newActionOptionsVisible)}
           size={"medium"}
         >
-          <span css={NewButtonTextCSS}>
-            <AddIcon css={NewButtonIconCSS} />
-            New
+          <span css={newButtonTextStyle}>
+            <AddIcon css={newButtonIconStyle} />
+            {t("editor.action.action_list.btn.new")}
           </span>
         </Button>
       </Dropdown>
 
-      <ul css={ActionItemListCSS}>{renderActionItemList()}</ul>
+      <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
 
-      <MotionContextMenu
-        ref={contextMenuRef}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.2 }}
+      <ContextMenu
+        onDelete={onDelete}
+        onDuplicate={onDuplicate}
+        contextMenuEvent={contextMenuEvent}
       />
     </div>
   )

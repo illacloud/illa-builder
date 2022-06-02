@@ -8,7 +8,7 @@ import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
-  const { attrName, panelConfig, handleUpdateDsl, handleUpdateConfigPanel } =
+  const { attrName, panelConfig, handleUpdateDsl, handleUpdatePanelConfig } =
     props
 
   return (
@@ -16,7 +16,7 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
       panelConfig={panelConfig}
       attrName={attrName}
       handleUpdateAllDsl={handleUpdateDsl}
-      handleUpdateAllConfigPanel={handleUpdateConfigPanel}
+      handleUpdateAllPanelConfig={handleUpdatePanelConfig}
     >
       <div css={ListCss}>
         <OptionListHeader labelName="label" />

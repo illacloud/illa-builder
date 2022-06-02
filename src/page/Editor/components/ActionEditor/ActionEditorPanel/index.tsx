@@ -1,4 +1,5 @@
-import { FC, useMemo, useState } from "react"
+import { FC, useMemo, useState, useRef, useContext } from "react"
+import { css } from "@emotion/react"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Select, Option } from "@illa-design/select"
@@ -6,33 +7,33 @@ import { Divider } from "@illa-design/divider"
 import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
-import { useSelector, useDispatch } from "react-redux"
-import { selectAllActionItem } from "@/redux/action/actionList/actionListSelector"
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
+import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { applyIllaColor } from "@/page/Editor/components/ActionEditor/style"
+import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
+import { generateName } from "@/page/Editor/components/ActionEditor/utils"
+import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
-  addActionItem,
-  removeActionItem,
-} from "@/redux/action/actionList/actionListSlice"
-import { ResourceType } from "@/page/Editor/components/ActionEditor/interface"
-import { ActionEditorPanelProps } from "./interface"
-import {
-  ContainerCSS,
-  HeaderCSS,
-  ActionCSS,
-  FillingCSS,
-  HeaderButtonCSS,
-  ActionSelectCSS,
-  ModeSelectCSS,
-  TriggerSelectCSS,
-  ResourceSelectCSS,
-  EditIconCSS,
-  MoreBtnCSS,
-  RunBtnCSS,
-  SectionTitleCSS,
-  ResourceBarCSS,
-  PanelScrollCSS,
-  MoreBtnMenuCSS,
-  DuplicateActionCSS,
-  DeleteActionCSS,
+  containerStyle,
+  headerStyle,
+  actionStyle,
+  fillingStyle,
+  actionSelectStyle,
+  triggerSelectStyle,
+  resourceSelectStyle,
+  applyEditIconStyle,
+  moreBtnStyle,
+  sectionTitleStyle,
+  resourceBarStyle,
+  panelScrollStyle,
+  moreBtnMenuStyle,
+  duplicateActionStyle,
+  deleteActionStyle,
+  resourceOptionStyle,
+  resourceBarTitleStyle,
 } from "./style"
 import { TitleInput } from "./TitleInput"
 import { ResourcePanel } from "./ResourcePanel"
@@ -40,41 +41,46 @@ import { ResourcePanel } from "./ResourcePanel"
 const { Item: MenuItem } = Menu
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
-  const { className, onEditResource, onCreateResource } = props
+  const {
+    isActionDirty,
+    onEditResource,
+    onChangeResource,
+    onCreateResource,
+    onDuplicateActionItem,
+    onDeleteActionItem,
+    onChange,
+    onSave,
+  } = props
+
+  const { activeActionItemId } = useContext(ActionEditorContext)
+  const { t } = useTranslation()
   const dispatch = useDispatch()
-  const [resourceType, setResourceType] = useState<ResourceType>("MySQL")
+  const { resourceId } = useContext(ActionEditorContext)
+  const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
+  const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
-  const currentActionItem = null
-  const currentActionItemId = ""
+  const resourceList = useSelector(selectAllResource)
+  const activeActionItem = useMemo(() => {
+    if (!activeActionItemId) {
+      return null
+    }
+
+    return actionItems.find((action) => action.id === activeActionItemId)
+  }, [actionItems, activeActionItemId])
   const actionItemsNameSet = useMemo(() => {
     return new Set(actionItems.map((i) => i.name))
   }, [actionItems])
 
-  const modeOptions = [
-    { label: "SQL mode", value: 0 },
-    { label: "GUI mode", value: 1 },
-  ]
+  const isResourceEditable = resourceId && resourceId.indexOf("preset") === -1
 
   const triggerOptions = [
     {
-      label: "Run action only when manually triggered",
+      label: t("editor.action.panel.option.trigger.manually"),
       value: 0,
     },
     {
-      label: "Run action automatically when inputs change",
+      label: t("editor.action.panel.option.trigger.on_change"),
       value: 1,
-    },
-  ]
-
-  // TODO: retrieve from created resource
-  const resourceOptions = [
-    {
-      label: "MySQL",
-      value: "MySQL",
-    },
-    {
-      label: "REST API",
-      value: "REST API",
     },
   ]
 
@@ -83,10 +89,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function editResource() {
-    onEditResource && onEditResource()
+    isResourceEditable && onEditResource && onEditResource(resourceId)
   }
 
   function handleAction(key: string) {
+    setMoreBtnMenuVisible(false)
+
     if (key === "duplicate") {
       duplicateActionItem()
     } else if (key === "delete") {
@@ -95,62 +103,54 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function duplicateActionItem() {
-    // 获取当前选中的 actionItem
-    // 如果不存在则return
-    if (currentActionItem) {
-      const { type } = currentActionItem
+    if (activeActionItem) {
+      const { type } = activeActionItem
+      const id = uuidV4()
 
       dispatch(
-        addActionItem({
-          id: uuidV4(),
+        actionListActions.addActionItemReducer({
+          id,
           type,
-          name: generateName(type),
-          status: Math.random() > 0.5 ? "warning" : "",
+          name: generateName(type, actionItems, actionItemsNameSet),
         }),
       )
+
+      onDuplicateActionItem(id)
     }
   }
 
   function deleteActionItem() {
-    dispatch(removeActionItem(currentActionItemId))
-  }
+    activeActionItem &&
+      dispatch(actionListActions.removeActionItemReducer(activeActionItemId))
 
-  function generateName(type: string) {
-    const length = actionItems.filter((i) => i.type === type).length
-    const prefix = type
-
-    const getUniqueName = (length: number): string => {
-      const name = `${prefix}${length + 1}`
-
-      if (actionItemsNameSet.has(name)) {
-        return getUniqueName(length + 1)
-      }
-
-      return name
-    }
-
-    return getUniqueName(length)
+    onDeleteActionItem(activeActionItemId)
   }
 
   const moreActions = (
-    <Menu onClickMenuItem={handleAction} css={MoreBtnMenuCSS}>
+    <Menu onClickMenuItem={handleAction} css={moreBtnMenuStyle}>
       <MenuItem
         key={"duplicate"}
-        title={"Duplicate"}
-        css={DuplicateActionCSS}
+        title={t("editor.action.panel.menu.more.duplicate")}
+        css={duplicateActionStyle}
       />
-      <MenuItem key={"delete"} title={"Delete"} css={DeleteActionCSS} />
+      <MenuItem
+        key={"delete"}
+        title={t("editor.action.panel.menu.more.delete")}
+        css={deleteActionStyle}
+      />
     </Menu>
   )
 
   return (
-    <div className={className} css={ContainerCSS}>
-      <header css={HeaderCSS}>
-        <TitleInput />
-        <span css={FillingCSS} />
+    <div css={containerStyle}>
+      <header css={headerStyle}>
+        <TitleInput activeActionItem={activeActionItem} />
+        <span css={fillingStyle} />
         <Dropdown
           dropList={moreActions}
           trigger={"click"}
+          popupVisible={moreBtnMenuVisible}
+          onVisibleChange={setMoreBtnMenuVisible}
           triggerProps={{
             clickOutsideToClose: true,
             closeOnClick: true,
@@ -159,49 +159,96 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             showArrow: false,
           }}
         >
-          <Button css={[HeaderButtonCSS, MoreBtnCSS]} size={"medium"}>
-            <MoreIcon />
-          </Button>
+          <Button
+            css={moreBtnStyle}
+            buttonRadius="8px"
+            size="medium"
+            leftIcon={<MoreIcon />}
+            colorScheme="grayBlue"
+          />
         </Dropdown>
-        <Button css={[HeaderButtonCSS, RunBtnCSS]} size={"medium"}>
-          <CaretRightIcon /> Run
+        <Button
+          buttonRadius="8px"
+          size="medium"
+          colorScheme="techPurple"
+          backgroundColor={applyIllaColor("techPurple", "07")}
+          textColor={applyIllaColor("techPurple", "01")}
+          leftIcon={<CaretRightIcon />}
+          onClick={() => {
+            isActionDirty
+              ? triggerRunRef.current?.saveAndRun()
+              : triggerRunRef.current?.run()
+          }}
+        >
+          {isActionDirty
+            ? t("editor.action.panel.btn.save_and_run")
+            : t("editor.action.panel.btn.run")}
         </Button>
       </header>
-      <div css={PanelScrollCSS}>
-        <div css={[ActionCSS, ResourceBarCSS]}>
-          <label css={SectionTitleCSS}>Resource</label>
-          <span css={FillingCSS} />
-          <Select
-            options={modeOptions}
-            defaultValue={0}
-            css={[ActionSelectCSS, ModeSelectCSS]}
-          />
-          <Select
-            options={triggerOptions}
-            defaultValue={0}
-            css={[ActionSelectCSS, TriggerSelectCSS]}
-          />
+      <div css={panelScrollStyle}>
+        {activeActionItem && (
+          <>
+            <div css={css(actionStyle, resourceBarStyle)}>
+              <label css={css(sectionTitleStyle, resourceBarTitleStyle)}>
+                {t("editor.action.panel.label.resource")}
+              </label>
+              <span css={fillingStyle} />
+              <Select
+                options={triggerOptions}
+                defaultValue={0}
+                css={css(actionSelectStyle, triggerSelectStyle)}
+              />
 
-          <Select
-            css={[ActionSelectCSS, ResourceSelectCSS]}
-            value={resourceType}
-            onChange={setResourceType}
-          >
-            <Option onClick={createResource} isSelectOption={false}>
-              Create a new resource
-            </Option>
-            {resourceOptions.map((o) => (
-              <Option key={o.label} value={o.value}>
-                {o.label}
-              </Option>
-            ))}
-          </Select>
-          <div css={EditIconCSS} onClick={editResource}>
-            <PenIcon />
-          </div>
-        </div>
-        <Divider />
-        <ResourcePanel resourceType={resourceType} />
+              <Select
+                css={css(actionSelectStyle, resourceSelectStyle)}
+                value={resourceId}
+                onChange={onChangeResource}
+                triggerProps={{
+                  autoAlignPopupWidth: false,
+                }}
+              >
+                <Option onClick={createResource} isSelectOption={false}>
+                  <span
+                    css={resourceOptionStyle}
+                    title={t("editor.action.panel.option.resource.new")}
+                  >
+                    {t("editor.action.panel.option.resource.new")}
+                  </span>
+                </Option>
+                <Divider />
+                <Option value={"preset_REST API"}>
+                  <span
+                    css={resourceOptionStyle}
+                    title={t("editor.action.panel.option.resource.rest_query")}
+                  >
+                    {t("editor.action.panel.option.resource.rest_query")}
+                  </span>
+                </Option>
+                {resourceList &&
+                  resourceList.map(({ resourceId: id, resourceName: name }) => (
+                    <Option value={id} key={id}>
+                      <span css={resourceOptionStyle} title={name}>
+                        {name}
+                      </span>
+                    </Option>
+                  ))}
+              </Select>
+              <div
+                css={applyEditIconStyle(!isResourceEditable)}
+                onClick={editResource}
+              >
+                <PenIcon />
+              </div>
+            </div>
+            <Divider />
+            <ResourcePanel
+              ref={triggerRunRef}
+              resourceId={resourceId}
+              onChange={onChange}
+              onSave={onSave}
+            />
+          </>
+        )}
       </div>
     </div>
   )

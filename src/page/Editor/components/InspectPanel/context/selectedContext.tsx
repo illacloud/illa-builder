@@ -1,15 +1,15 @@
-import { createContext, ReactNode, FC, useCallback, useContext } from "react"
+import { createContext, ReactNode, FC, useContext, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getWidgetInspectBySelectId } from "@/redux/inspect/inspectSelector"
-import { inspectActions } from "@/redux/inspect/inspectSlice"
-import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { getWidgetInspectBySelectId } from "@/redux/currentApp/editor/inspect/inspectSelector"
+import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 import { getDynamicValue } from "@/utils/parserExpressionStatement"
 import { GLOBAL_DATA_CONTEXT } from "@/page/Editor/context/globalDataProvider"
 
 interface Injected {
-  configPanel: Record<string, any>
+  panelConfig: Record<string, any>
   handleUpdateDsl: (value: any) => void
-  handleUpdateConfigPanel: (value: Record<string, any>) => void
+  handleUpdatePanelConfig: (value: Record<string, any>) => void
 }
 
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
@@ -27,7 +27,7 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
   // TODO: @WeiChen wait new drag and drop
-  const handleUpdateConfigPanel = useCallback(
+  const handleUpdatePanelConfig = useCallback(
     (value: Record<string, any>) => {
       dispatch(
         inspectActions.updateWidgetPanelConfig({
@@ -56,9 +56,9 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
   }
 
   const value = {
-    configPanel: panelConfig,
-    handleUpdateDsl: handleUpdateDsl,
-    handleUpdateConfigPanel,
+    panelConfig,
+    handleUpdateDsl,
+    handleUpdatePanelConfig,
   }
 
   return (
@@ -68,4 +68,4 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
   )
 }
 
-SelectedProvider.displayName = "SingleSelectContext"
+SelectedProvider.displayName = "SelectedProvider"

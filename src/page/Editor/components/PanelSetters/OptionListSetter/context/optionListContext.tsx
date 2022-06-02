@@ -8,7 +8,7 @@ interface configItem {
 }
 
 interface Injected {
-  configPanel: configItem[]
+  options: configItem[]
   handleUpdateDsl: (value: configItem[]) => void
   handleAddItemToDsl: (value: configItem) => void
   handleAddItemToDslAsync: (value: configItem) => Promise<void>
@@ -20,7 +20,7 @@ export const OptionListSetterContext = createContext<Injected>({} as Injected)
 interface Props {
   panelConfig: any
   attrName: string
-  handleUpdateAllConfigPanel: (value: any) => void
+  handleUpdateAllPanelConfig: (value: any) => void
   handleUpdateAllDsl: (value: any) => void
   children?: ReactNode
 }
@@ -30,34 +30,34 @@ export const OptionListSetterProvider: FC<Props> = ({
   panelConfig,
   attrName,
   handleUpdateAllDsl,
-  handleUpdateAllConfigPanel,
+  handleUpdateAllPanelConfig,
 }) => {
-  const childrenPanelConfig = panelConfig[attrName] as configItem[]
+  const options = panelConfig[attrName] as configItem[]
 
   const handleUpdate = (value: configItem[]) => {
-    const newChildrenPanelConfig = value
-    handleUpdateAllConfigPanel({ [attrName]: newChildrenPanelConfig })
-    handleUpdateAllDsl({ [attrName]: newChildrenPanelConfig })
+    const newOptions = value
+    handleUpdateAllPanelConfig({ [attrName]: newOptions })
+    handleUpdateAllDsl({ [attrName]: newOptions })
   }
 
   const handleAddItem = (value: configItem) => {
-    const newChildrenPanelConfig = [...childrenPanelConfig]
-    newChildrenPanelConfig.push(value)
-    handleUpdateAllConfigPanel({ [attrName]: newChildrenPanelConfig })
+    const newOptions = [...options]
+    newOptions.push(value)
+    handleUpdateAllPanelConfig({ [attrName]: newOptions })
     // TODO: calc data to update dsl
-    handleUpdateAllDsl({ [attrName]: newChildrenPanelConfig })
+    handleUpdateAllDsl({ [attrName]: newOptions })
   }
 
   const handleAddItemAsync = async (value: configItem) => {
-    const newChildrenPanelConfig = [...childrenPanelConfig]
-    newChildrenPanelConfig.push(value)
-    handleUpdateAllConfigPanel({ [attrName]: newChildrenPanelConfig })
-    handleUpdateAllDsl({ [attrName]: newChildrenPanelConfig })
+    const newOptions = [...options]
+    newOptions.push(value)
+    handleUpdateAllPanelConfig({ [attrName]: newOptions })
+    handleUpdateAllDsl({ [attrName]: newOptions })
   }
 
   const value = {
     widgetId: panelConfig.id,
-    configPanel: childrenPanelConfig ?? [],
+    options: options ?? [],
     handleUpdateDsl: handleUpdate,
     handleAddItemToDsl: handleAddItem,
     handleAddItemToDslAsync: handleAddItemAsync,

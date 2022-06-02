@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
-import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 import { GLOBAL_DATA_CONTEXT } from "@/page/Editor/context/globalDataProvider"
 
 function getDisplayName(WrappedComponent: FC<any>) {

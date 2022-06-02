@@ -17,7 +17,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
     attrName,
     panelConfig,
     handleUpdateDsl,
-    handleUpdateConfigPanel,
+    handleUpdatePanelConfig,
   } = props
   const [menuVisible, setMenuVisible] = useState(false)
 
@@ -44,7 +44,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
               css={colorSelectMenuItemWrapperCss}
               key={key}
               onClick={() => {
-                handleUpdateConfigPanel({ [attrName]: value })
+                handleUpdatePanelConfig({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
                 setMenuVisible(false)
               }}
@@ -55,7 +55,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
         })}
       </div>
     )
-  }, [renderContent, options, attrName, handleUpdateConfigPanel])
+  }, [renderContent, options, attrName, handleUpdatePanelConfig])
 
   const translateValueToKey = useMemo(() => {
     const value = panelConfig[attrName]

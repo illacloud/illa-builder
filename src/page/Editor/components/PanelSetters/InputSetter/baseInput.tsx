@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from "react"
 import { Input } from "@illa-design/input"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
-import { getDynamicValue } from "@/utils/parserExpressionStatement"
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
@@ -13,7 +12,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     attrName,
     panelConfig,
     handleUpdateDsl,
-    handleUpdateConfigPanel,
+    handleUpdatePanelConfig,
   } = props
 
   const [inputValue, setInputValue] = useState(panelConfig[attrName])
@@ -29,9 +28,9 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         value={inputValue ?? defaultValue}
         onChange={(value) => {
           setInputValue(value)
-          handleUpdateConfigPanel({ [attrName]: value })
-
-          // handleUpdateDsl({ [attrName]: res })
+          handleUpdatePanelConfig({ [attrName]: value })
+          // TODO： calc dsl and then to update props
+          // handleUpdateDsl({ [attrName]: value })
         }}
       />
     </div>

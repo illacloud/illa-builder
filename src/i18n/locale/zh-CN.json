@@ -5,5 +5,196 @@
   "title": "欢迎来到艾拉云",
   "description": {
     "part1": "这是一个示例。"
+  },
+  "apps": "应用",
+  "resources": "资源",
+  "create_new": "创建",
+  "share": "分享",
+  "rename": "重命名",
+  "duplicate": "复制",
+  "move_to_trash": "移到回收站",
+  "network_error": "网络错误",
+  "create_fail": "创建失败",
+  "remove_fail": "删除失败",
+  "btn": {
+    "choose_file": "Choose a file"
+  },
+  "editor": {
+    "action": {
+      "action_list": {
+        "title": "Action List",
+        "placeholder": {
+          "search": "search"
+        },
+        "btn": {
+          "new": "new",
+          "close": "close"
+        },
+        "menu": {
+          "resource_action": "Resource action",
+          "javascript_transformer": "JavaScript transformer"
+        },
+        "contextMenu": {
+          "delete": "删除",
+          "duplicate": "复制"
+        },
+        "tips": {
+          "not_found": "Sorry, No Search result",
+          "empty": "Add a action to begin working with data from a connected resource."
+        },
+        "message": {
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
+        }
+      },
+      "panel": {
+        "option": {
+          "trigger": {
+            "manually": "手动触发",
+            "on_change": "自动触发"
+          },
+          "resource": {
+            "new": "新家资源",
+            "rest_query": "RESTQuery(restapi)"
+          }
+        },
+        "btn": {
+          "run": "运行",
+          "save_and_run": "保存&运行",
+          "disable": "禁用",
+          "enable": "使用",
+          "new": "新增"
+        },
+        "menu": {
+          "more": {
+            "delete": "删除",
+            "duplicate": "复制"
+          }
+        },
+        "label": {
+          "resource": "Resource",
+          "transformer": "转换器",
+          "success": "成功",
+          "failure": "失败",
+          "event_handler": "Event Handler"
+        }
+      },
+      "form": {
+        "title": {
+          "select": "Select Resource Type",
+          "database": "DATABASES",
+          "api": "APIS"
+        },
+        "btn": {
+          "back": "后退",
+          "test_connection": "测试连接",
+          "create_resource": "创建资源"
+        },
+        "validate": {
+          "required": "{name} is required!"
+        }
+      },
+      "resource": {
+        "mySql": {
+          "name": "MySQL",
+          "label": {
+            "name": "名称",
+            "hostname_port": "主机/端口",
+            "database": "数据库名称",
+            "username_password": "用户名/密码",
+            "connect_type": "Connect Type",
+            "connect_over_ssh": "通过 SSH 连接",
+            "ssh_hostname_port": "SSH 主机名/端口",
+            "ssh_credentials": "SSH 凭证",
+            "private_key": "私钥",
+            "ssh_passphrase": "SSH 密码",
+            "ssl_options": "SSL 选项",
+            "server_root_certificate": "服务器根证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书"
+          },
+          "tip": {
+            "username_password": "Credentials will be encrypted & stored securely on our servers.",
+            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "connect_over_ssh": "用于连接到专用网络",
+            "ssl_options": "SSL is used when available",
+            "ssh_passphrase": "used if provided"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "主机名",
+            "database": "acme_production",
+            "username": "用户名",
+            "password": "密码",
+            "ssh_hostname_port": "e.g.localhost",
+            "ssh_credentials": "e.g.ec2-user",
+            "private_key": "e.g.path/to/root.crt",
+            "server_root_certificate": "e.g.path/to/root.crt",
+            "client_key": "e.g.path/to/root.crt",
+            "client_certificate": "e.g.path/to/root.crt"
+          }
+        },
+        "rest_api": {
+          "name": "REST API",
+          "label": {
+            "name": "名称",
+            "action_type": "请求方法",
+            "url_parameters": "URL参数",
+            "headers": "头部字段",
+            "cookies": "Cookies",
+            "body": "载荷",
+            "extra_body_values": "载荷",
+            "list_of_cookies_to_forward": "要转发的 cookie 列表",
+            "forward_all_cookies": "转发所有Cookies",
+            "base_url": "基础URL",
+            "authentication": "API认证",
+            "basic_auth_username": "基础认证用户名",
+            "basic_auth_password": "基础认证密码",
+            "configure_oauth2": "配置OAuth 2.0",
+            "use_client_credentials_auth": "使用客户端凭据身份验证",
+            "oauth_callback_url": "OAuth回调URL",
+            "copy_url_to_application": "复制URL",
+            "share_oauth2_credentials_between_users": "在用户之间共享 OAuth2.0 凭据",
+            "authorization_url": "授权网址",
+            "access_token_url": "访问令牌",
+            "client_id": "客户编号",
+            "client_secret": "客户密码",
+            "scopes": "范围（以空格分隔）",
+            "audience": "观众",
+            "access_token": "Access Token",
+            "refresh_token": "Refresh Token",
+            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+          },
+          "tip": {
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "name": "The name for resource when creating queries in the ILLA.",
+            "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
+            "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "action_url_path": "api/v2/endpoint.json",
+            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "username": "用户名",
+            "password": "密码",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "access_token_lifespan": "Token Lifespan in seconds"
+          },
+          "option": {
+            "authentication": {
+              "basicAuth": "基础认证"
+            }
+          }
+        },
+        "postgres": {
+          "name": "Postgres"
+        },
+        "redis": {
+          "name": "Redis"
+        }
+      }
+    }
   }
 }

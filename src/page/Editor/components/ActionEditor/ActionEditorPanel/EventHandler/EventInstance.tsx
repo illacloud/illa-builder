@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { css } from "@emotion/react"
+import { useTranslation } from "react-i18next"
 import {
-  DashBorderBottomCSS,
-  GridHandlersCSS,
-  NewBtnCSS,
-  PanelSubBarCSS,
-  SectionTitleCSS,
+  dashBorderBottomStyle,
+  gridHandlersStyle,
+  newBtnStyle,
+  panelSubBarStyle,
+  sectionTitleStyle,
 } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
 import { Button } from "@illa-design/button"
 import { PlusIcon } from "@illa-design/icon"
@@ -15,17 +17,21 @@ import { EventInstanceProps } from "./interface"
 export const EventInstance = (props: EventInstanceProps) => {
   const { title } = props
   const [handlerList, setHandlerList] = useState([{ key: uuid() }])
+  const { t } = useTranslation()
+
   return (
     <>
-      <div css={PanelSubBarCSS}>
-        <label css={[SectionTitleCSS, DashBorderBottomCSS]}>{title}</label>
+      <div css={panelSubBarStyle}>
+        <label css={css(sectionTitleStyle, dashBorderBottomStyle)}>
+          {title}
+        </label>
       </div>
-      <div css={GridHandlersCSS}>
+      <div css={gridHandlersStyle}>
         {handlerList.map((item) => (
           <HandlerItem key={item.key} content={"ILLA"} />
         ))}
       </div>
-      <div css={NewBtnCSS}>
+      <div css={newBtnStyle}>
         <Button
           variant="text"
           size="medium"
@@ -35,7 +41,7 @@ export const EventInstance = (props: EventInstanceProps) => {
             setHandlerList([...handlerList, { key: uuid() }])
           }}
         >
-          New
+          {t("editor.action.panel.btn.new")}
         </Button>
       </div>
     </>
