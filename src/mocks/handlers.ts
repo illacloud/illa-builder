@@ -1,7 +1,9 @@
 import { rest } from "msw"
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL
+
 export const handlers = [
-  rest.post("/api/v1/resources/testConnection", (req, res, ctx) => {
+  rest.post(`${baseUrl}/resources/testConnection`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -9,7 +11,7 @@ export const handlers = [
       }),
     )
   }),
-  rest.post("/api/v1/actions/:id/run", (req, res, ctx) => {
+  rest.post(`${baseUrl}/actions/:id/run`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -153,6 +155,46 @@ export const handlers = [
             "2019-03-05",
           ],
         },
+      }),
+    )
+  }),
+
+  rest.get(`${baseUrl}/dashboard/apps`, (req, res, ctx) => {
+    const headers = req.headers
+    const url = req.url
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          appId: "1",
+          appName: "Test App 1",
+          appActivity: "activity",
+        },
+        {
+          appId: "2",
+          appName: "Test App 2",
+          appActivity: "activity2",
+        },
+      ]),
+    )
+  }),
+
+  rest.post(`${baseUrl}/dashboard/apps`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        appId: "1",
+        appName: "Test App 1",
+        appActivity: "activity",
+      }),
+    )
+  }),
+
+  rest.get(`${baseUrl}/room`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        roomId: "1",
       }),
     )
   }),
