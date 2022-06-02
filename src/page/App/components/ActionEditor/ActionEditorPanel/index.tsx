@@ -42,7 +42,7 @@ function renderEditor(
   } = props
 
   switch (type) {
-    case "resource":
+    case "action":
       return (
         <ResoucreEditor
           ref={ref}

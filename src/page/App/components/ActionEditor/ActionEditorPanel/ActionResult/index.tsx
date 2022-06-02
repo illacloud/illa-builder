@@ -7,7 +7,7 @@ import {
   actionEditorPanelLayoutWrapper,
   applyContainerHeight,
   applyResizerStyle,
-} from "@/page/Editor/components/ActionEditor/style"
+} from "@/page/App/components/ActionEditor/style"
 import {
   resAlertBgcStyle,
   resCloseIconStyle,

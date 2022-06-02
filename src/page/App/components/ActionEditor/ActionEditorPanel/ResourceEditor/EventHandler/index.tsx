@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { handlerTitleStyle } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
+import { handlerTitleStyle } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
 import { EventInstance } from "./EventInstance"
 
 export const EventHandler = () => {

@@ -174,14 +174,14 @@ export const ActionList: FC<ActionListProps> = (props) => {
   )
 
   function addAction() {
-    addActionItem("resource")
+    addActionItem("action")
   }
 
   function addTransformer() {
     addActionItem("transformer")
   }
 
-  function addActionItem(type: "resource" | "transformer") {
+  function addActionItem(type: "action" | "transformer") {
     const id = uuidV4()
 
     dispatch(

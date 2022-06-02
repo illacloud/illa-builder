@@ -6,9 +6,9 @@ import { Select, Option } from "@illa-design/select"
 import { PenIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
-import { ResourcePanel } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourcePanel"
-import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
-import { triggerRunRef } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/interface"
+import { ResourcePanel } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourcePanel"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
+import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import {
   actionStyle,
   fillingStyle,
@@ -21,7 +21,7 @@ import {
   resourceOptionStyle,
   resourceBarTitleStyle,
   panelScrollStyle,
-} from "@/page/Editor/components/ActionEditor/ActionEditorPanel/style"
+} from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
 import { ResourceEditorProps } from "./interface"
 
 export const ResoucreEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
