@@ -3,7 +3,7 @@ import {
   ComponentSessionProps,
   TypeMapComponent,
 } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
-import { CardInfo, WidgetConfig } from "./interface"
+import { WidgetCardInfo, WidgetConfig } from "./interface"
 
 export type SessionType = keyof typeof sessionTypeMapSessionName
 
@@ -26,7 +26,7 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
     if (!sessionConfigs[sessionType]) {
       sessionConfigs[sessionType] = []
     }
-    const childrenConfig: CardInfo = {
+    const childrenConfig: WidgetCardInfo = {
       ...item,
       id: `${sessionType}-${type}-${displayName}`,
     }

@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react"
-import { CardInfo } from "@/wrappedComponents/interface"
+import { WidgetCardInfo } from "@/wrappedComponents/interface"
 import { SessionType } from "@/wrappedComponents/ComponentListBuilder"
 
 export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
@@ -8,11 +8,11 @@ export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
 
 export type ComponentSessionProps = {
   title: string
-  children: CardInfo[]
+  children: WidgetCardInfo[]
 }
 
 export type TypeMapComponent = {
-  [key in SessionType]: CardInfo[]
+  [key in SessionType]: WidgetCardInfo[]
 }
 
-export interface ComponentItemProps extends CardInfo {}
+export interface ComponentItemProps extends WidgetCardInfo {}

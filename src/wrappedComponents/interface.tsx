@@ -23,14 +23,14 @@ export interface BaseWidgetInfo {
   sessionType?: SessionType
 }
 
-export interface CardInfo extends DraggableWrapperShape, BaseWidgetInfo {
+export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
   id: string
   defaults?: {
     [key: string]: any
   }
 }
 
-export type WidgetConfig = Omit<CardInfo, "id">
+export type WidgetConfig = Omit<WidgetCardInfo, "id">
 
 export interface BaseDSL
   extends DraggableWrapperShape,
