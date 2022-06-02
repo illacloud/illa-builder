@@ -31,7 +31,6 @@ export const DashboardTitleBar: FC = () => {
       title: t("resources"),
     },
   ]
-  console.log(t`${pathList[pathList.length - 1]}`)
   return (
     <Tabs
       prefix={

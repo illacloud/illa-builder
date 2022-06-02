@@ -73,7 +73,7 @@ export const DashboardApps: FC = () => {
         </Button>
       </div>
       <Divider direction="horizontal" />
-      {appsList.length != 0 && (
+      {appsList.length !== 0 && (
         <List
           size="medium"
           data={appsList}
@@ -123,7 +123,7 @@ export const DashboardApps: FC = () => {
           }}
         />
       )}
-      {appsList && appsList.length == 0 && <Empty paddingVertical="120px" />}
+      {appsList.length == 0 && <Empty paddingVertical="120px" />}
     </div>
   )
 }
