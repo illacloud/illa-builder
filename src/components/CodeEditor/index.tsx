@@ -34,6 +34,33 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     // [TODO] autocomplete
   }
 
+  const handleAutocompleteKeyup = (cm: CodeMirror.Editor, event: KeyboardEvent) => {
+    console.log(cm, event)
+    const key = event.key;
+    // if (isModifierKey(key)) return;
+    const cursor = cm.getCursor();
+    const line = cm.getLine(cursor.line);
+    let showAutocomplete = false;
+    /* Check if the character before cursor is completable to show autocomplete which backspacing */
+    if (key === "/") {
+      showAutocomplete = true;
+    } else if (event.code === "Backspace") {
+      const prevChar = line[cursor.ch - 1];
+      showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar);
+    } else if (key === "{") {
+      /* Autocomplete for { should show up only when a user attempts to write {{}} and not a code block. */
+      const prevChar = line[cursor.ch - 2];
+      showAutocomplete = prevChar === "{";
+    } else if (key.length == 1) {
+      showAutocomplete = /[a-zA-Z_0-9.]/.test(key);
+      /* Autocomplete should be triggered only for characters that make up valid variable names */
+    }
+    // showAutocomplete && this.handleAutocompleteVisibility(cm);
+  };
+
+
+
+
   useEffect(() => {
     const editor = CodeMirror(codeTargetRef.current!, {
       mode: EditorModes[mode],
@@ -44,14 +71,15 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       matchBrackets: true,
       autoCloseBrackets: true,
       tabSize: 2,
-      hintOptions: {
-        completeSingle: false,
-        container: document.getElementById("hintBody"),
-      },
+      // hintOptions: {
+      //   completeSingle: false,
+      //   container: document.getElementById("hintBody"),
+      // },
     })
 
     editor.on("change", handleChange)
     editor.on("blur", handleBlur)
+    editor.on("keyup", handleAutocompleteKeyup)
 
     return () => {
       editor.off("change", handleChange)
