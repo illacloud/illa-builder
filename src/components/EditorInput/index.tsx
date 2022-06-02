@@ -1,11 +1,4 @@
-import {
-  useEffect,
-  useRef,
-  forwardRef,
-  ForwardedRef,
-  useState,
-  Fragment,
-} from "react"
+import { useEffect, useRef, forwardRef, useState } from "react"
 import ReactDOM from "react-dom"
 import { EditorInputProps, HintBodyParamsProps } from "./interface"
 
@@ -44,6 +37,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       readOnly,
       onChange,
       onBlur,
+      ...otherProps
     } = props
 
     const [hintBodyParams, setHintBodyParams] = useState<HintBodyParamsProps>({
@@ -204,7 +198,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
     }
 
     return (
-      <Fragment>
+      <>
         <div ref={cmRef} css={applyCMStyle(height)} className={className} />
         <Trigger
           _css={hintBodyTriggerStyle}
@@ -217,7 +211,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         >
           <div id="hintBody" css={applyHintBodyStyle(hintBodyParams)} />
         </Trigger>
-      </Fragment>
+      </>
     )
   },
 )

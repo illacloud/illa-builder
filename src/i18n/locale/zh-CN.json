@@ -13,9 +13,10 @@
   "rename": "重命名",
   "duplicate": "复制",
   "move_to_trash": "移到回收站",
-  "network_error": "网络错误",
+  "network_error": "网络异常",
   "create_fail": "创建失败",
   "remove_fail": "删除失败",
+  "retry": "重试",
   "btn": {
     "choose_file": "Choose a file"
   },
@@ -79,6 +80,7 @@
         }
       },
       "form": {
+        "required": "这是必填项",
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
@@ -188,8 +190,12 @@
             }
           }
         },
-        "postgres": { "name": "Postgres" },
-        "redis": { "name": "Redis" }
+        "postgres": {
+          "name": "Postgres"
+        },
+        "redis": {
+          "name": "Redis"
+        }
       }
     }
   }

@@ -1,7 +1,7 @@
 import {
   RESTAPIParamValues,
   MySQLParamValues,
-} from "@/page/Editor/components/ActionEditor/Resource"
+} from "@/page/App/components/ActionEditor/Resource"
 type ActionType = "action" | "transformer"
 type ActionStatus = "warning" | string
 interface ActionConnectNetwork {

@@ -2,7 +2,7 @@ import { widgetBuilder, WidgetType, WidgetTypeList } from "./WidgetBuilder"
 import {
   ComponentSessionProps,
   TypeMapComponent,
-} from "@/page/Editor/components/WidgetPickerEditor/components/ComponentPanel/interface"
+} from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
 import { ComponentModel } from "./interface"
 
 export type SessionType = keyof typeof sessionTypeMapSessionName
@@ -10,7 +10,6 @@ export type SessionType = keyof typeof sessionTypeMapSessionName
 const sessionTypeMapSessionName = {
   BASIC: "Basic",
   COMMON: "Common",
-  // GLOBAL: "Global",
 }
 
 const getListItemConfig = (type: WidgetType): ComponentModel => {
