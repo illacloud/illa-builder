@@ -1,4 +1,4 @@
-import { useEffect, useRef, forwardRef, ForwardedRef, useState } from "react"
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react"
 import { css } from "@emotion/react"
 import { EditorInputProps } from "./interface"
 
@@ -20,9 +20,6 @@ import { applyCMCss } from "./style"
 
 import { Trigger } from "@illa-design/trigger"
 
-// TODO
-// import "./modes"
-
 export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
     const {
@@ -32,7 +29,9 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       height = "auto",
       placeholder = "input sth",
       onChange,
+      value,
       onBlur,
+      ...otherProps
     } = props
 
     const [triggerVisible, setTriggerVisible] = useState<boolean>(false)
@@ -121,7 +120,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
         onVisibleChange={tryUpdatePopupVisible}
         content={<div>123</div>}
       >
-        <div ref={ref}>
+        <div ref={ref} {...otherProps}>
           <div ref={cmRef} css={css(applyCMCss(height), _css)} />
         </div>
       </Trigger>

@@ -16,6 +16,7 @@
   "network_error": "Network Error",
   "create_fail": "Create fail",
   "remove_fail": "Remove fail",
+  "retry": "Retry",
   "btn": {
     "choose_file": "Choose a file"
   },

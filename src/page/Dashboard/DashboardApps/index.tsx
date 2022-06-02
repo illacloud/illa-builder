@@ -1,65 +1,37 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import {
   appsContainerStyle,
   itemExtraContainerStyle,
   itemMenuButtonStyle,
   listTitleContainerStyle,
   listTitleStyle,
-  loadingBoxStyle,
   menuButtonStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
-import { LoadingIcon, MoreIcon } from "@illa-design/icon"
+import { MoreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { Empty } from "@illa-design/empty"
 import { useDispatch, useSelector } from "react-redux"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
-import { Result } from "@illa-design/result"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useNavigate } from "react-router-dom"
 import { Api } from "@/api/base"
 import { Tooltip } from "@illa-design/tooltip"
-import { Notification } from "@illa-design/notification"
 import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
+import { Message } from "@illa-design/message"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
-
-  const appsList: DashboardApp[] = useSelector(getDashboardApps)
   let navigate = useNavigate()
 
-  const [loading, setLoading] = useState(false)
-  const [errorState, setErrorState] = useState(false)
+  const appsList: DashboardApp[] = useSelector(getDashboardApps)
 
   const [createLoading, setCreateNewLoading] = useState(false)
-
-  useEffect(() => {
-    Api.request<DashboardApp[]>(
-      {
-        url: "/dashboard/apps",
-        method: "GET",
-      },
-      (response) => {
-        dispatch(
-          dashboardAppActions.updateDashboardAppListReducer(response.data),
-        )
-      },
-      (response) => {},
-      (error) => {},
-      (loading) => {
-        setLoading(loading)
-      },
-      (errorState) => {
-        setErrorState(errorState)
-      },
-    )
-  }, [])
 
   return (
     <div css={appsContainerStyle}>
@@ -82,7 +54,7 @@ export const DashboardApps: FC = () => {
                     app: response.data,
                   }),
                 )
-                navigate(`/editor/${response.data.appId}`)
+                navigate(`/app/${response.data.appId}`)
               },
               (response) => {},
               (error) => {},
@@ -91,7 +63,7 @@ export const DashboardApps: FC = () => {
               },
               (errorState) => {
                 if (errorState) {
-                  Notification.error({ title: t("create_fail") })
+                  Message.error({ content: t("create_fail") })
                 }
               },
             )
@@ -101,7 +73,7 @@ export const DashboardApps: FC = () => {
         </Button>
       </div>
       <Divider direction="horizontal" />
-      {!loading && !errorState && appsList && appsList.length != 0 && (
+      {appsList.length !== 0 && (
         <List
           size="medium"
           data={appsList}
@@ -115,7 +87,7 @@ export const DashboardApps: FC = () => {
                     <Button
                       colorScheme="techPurple"
                       onClick={() => {
-                        navigate(`/editor/${item.appId}`)
+                        navigate(`/app/${item.appId}`)
                       }}
                     >
                       {t("edit")}
@@ -151,18 +123,7 @@ export const DashboardApps: FC = () => {
           }}
         />
       )}
-      {!loading && !errorState && appsList && appsList.length == 0 && <Empty />}
-      {!loading && errorState && (
-        <Result status="error" title={t("network_error")} />
-      )}
-      {loading && (
-        <div css={loadingBoxStyle}>
-          <LoadingIcon
-            spin
-            color={globalColor(`--${illaPrefix}-techPurple-01`)}
-          />
-        </div>
-      )}
+      {appsList.length == 0 && <Empty paddingVertical="120px" />}
     </div>
   )
 }

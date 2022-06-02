@@ -1,8 +1,6 @@
 import { FC, ReactNode } from "react"
 import { SessionType } from "./ComponentListBuilder"
-import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
-import { WidgetType } from "@/wrappedComponents/WidgetBuilder"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface SizeProps {
   w?: number | string
@@ -27,10 +25,4 @@ export type ComponentModel = {
   defaults?: {
     [key: string]: any
   }
-}
-
-export interface DragInfo extends DSLWidget {
-  props: {
-    [key: string]: any
-  } & DSLWidget["props"]
 }

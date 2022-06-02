@@ -1,4 +1,4 @@
-import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 
 const OptionsStyle = {
