@@ -8,13 +8,15 @@ import { SelectedPanelContext } from "@/page/Editor/components/InspectPanel/cont
 import { WrappedEditableText } from "@/wrappedComponents/EditableText"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
-  const { panelConfig } = useContext(SelectedPanelContext)
-
+  const { panelConfig, handleUpdateDsl, handleUpdatePanelConfig } =
+    useContext(SelectedPanelContext)
+  console.log("PanelHeader", panelConfig)
   return (
     <div css={panelHeaderWrapperCss}>
-      {/*  TODO: wait for editable component*/}
-      <div>{panelConfig.type}</div>
-      <WrappedEditableText defaultValue={panelConfig.type} />
+      <WrappedEditableText
+        handleUpdateDsl={(value) => handleUpdateDsl({ type: value })}
+        defaultValue={panelConfig.type}
+      />
       <div css={panelHeaderIconWrapperCss}>
         <Trigger
           position="br"

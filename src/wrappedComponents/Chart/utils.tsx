@@ -1,8 +1,7 @@
-import { DatasetConfig } from "./interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ChartDataset } from "chart.js"
+import { COLOR_SCHEME, DataObject, DatasetConfig } from "./interface"
+import { ChartType } from "chart.js"
 
-const DEFAULT_TOOLTIP = "  %{x}: %{y}"
+const DEFAULT_TOOLTIP = "%{fullData.name} %{x}: %{y}"
 
 export const initData = (data?: object[]) => {
   if (!data || data.length === 0) return {}
@@ -20,13 +19,19 @@ export const initData = (data?: object[]) => {
       }
     })
   })
+  let datasetsIndex = 0
   Object.keys(obj).forEach((attr) => {
     if (obj && typeof obj[attr] == "number") {
       _dataSet.push({
+        key: attr,
         values: _dataMap[attr],
         name: attr,
-        toolTip: attr + DEFAULT_TOOLTIP,
+        lineColor: getDefaultColorScheme(datasetsIndex),
+        aggregationMethod: "NONE",
+        hidden: false,
+        toolTip: DEFAULT_TOOLTIP,
       })
+      datasetsIndex++
     }
     allAttr.push(attr)
   })
@@ -39,91 +44,93 @@ export const initData = (data?: object[]) => {
   }
 }
 
-const scheme = [
-  "#165dff",
-  "#00b42a",
-  "#ff7d00",
-  "#f53f3f",
-  "#0fc6c2",
-  "#f77234",
-  "#f7ba1e",
-  "#722ed1",
-  "#fadc19",
-  "#d91ad9",
-  "#f5319d",
-]
-
 export const getDefaultColorScheme = (index: number) => {
-  return scheme[index % scheme.length]
+  return COLOR_SCHEME[index % COLOR_SCHEME.length]
 }
 
-export const wrapDataset = (
+export const wrapData = (
+  data?: DataObject[],
+  xAxisValues?: string,
   datasets?: DatasetConfig[],
-  colorScheme?: string,
+  type: ChartType = "line",
 ) => {
-  console.log("wrapPieDataset", datasets)
-  const arr: ChartDataset[] = []
-  const _map = new Map<string, string>()
-  datasets?.map((set, index) => {
-    const _color = colorScheme ?? getDefaultColorScheme(index)
-    const _set = {
-      label: set.name ?? "",
-      data: set.values ?? [],
-      backgroundColor: set.lineColor ?? _color,
+  const toolTipMap = new Map()
+  const wrappedDatasets = datasets?.map((set, index) => {
+    toolTipMap.set(set.name ?? "", set.toolTip ?? "")
+    const _color = getDefaultColorScheme(index)
+    return {
+      type: (set.type ?? type) as any,
+      label: set.name,
+      data: data?.filter((value) => set.key && value[set.key]),
       borderColor: set.lineColor ?? _color,
-      yAxisID: "yAxis",
+      backgroundColor: set.lineColor ?? _color,
+      strokeColor: set.lineColor ?? _color,
+      parsing: {
+        yAxisKey: set.key,
+        xAxisKey: xAxisValues,
+      },
     }
-    arr.push(_set)
-    _map.set(set.name ?? "", set.toolTip ?? "")
   })
-  return { datasets: arr as any, tooltips: _map }
+  console.log("wrapData", JSON.parse(JSON.stringify(wrappedDatasets ?? {})))
+  return { datasets: [...(wrappedDatasets ?? [])], tooltips: toolTipMap }
 }
 
-export const wrapDatasetByGroup = (
-  data?: object[],
+export const wrapDataWithGroupBy = (
+  data?: DataObject[],
+  xAxisValues?: string,
   datasets?: DatasetConfig[],
-  groups?: string[],
+  type?: ChartType,
   groupBy?: string,
+  groups?: string[],
 ) => {
-  if (!data) return {}
-  const map: { [key: string]: DatasetConfig[] } = {}
-  // const _groups = dataMap.current ? dataMap.current[groupBy] : []
-  groups?.forEach((group: string) => {
-    map[group] = []
-    datasets?.map((set) => {
-      const _value = set.values?.map((value, index) => {
-        const obj = data[index]
-        if (obj[groupBy as keyof typeof obj] === group) {
-          return value
-        }
-        return null
-      })
-      map[group].push({
-        values: _value ?? [],
-        name: `${set.name} (${group})`,
+  console.log("wrapDataWithGroupBy", data)
+  if (!data) return
+  const _group = Array.from(new Set(groups))
+  const _data: DataObject[] = []
+  const _datasets: DatasetConfig[] = []
+  const datasetKeys = datasets?.map((value) => value.key)
+  _group?.forEach((group, index) => {
+    const datasetsWithGroup = datasets?.map((set) => {
+      return {
+        key: group + set.key,
+        name: `${set.name}-${group}`,
+        type: set.type ?? type,
+        lineColor: getDefaultColorScheme(index),
         toolTip: set.toolTip,
+      }
+    })
+    if (datasetsWithGroup) _datasets.push(...datasetsWithGroup)
+    data?.forEach((obj) => {
+      datasetKeys?.map((key) => {
+        if (groupBy && obj[groupBy] === group) {
+          _data.push({ ...obj, [group + key]: key ? obj[key] : null })
+        } else {
+          _data.push({ ...obj })
+        }
       })
     })
   })
-  const dataset: ChartDataset[] = []
-  let _map = new Map<string, string>()
-  let index = 0
-  Object.values(map).forEach((value) => {
-    const res = wrapDataset(value, getDefaultColorScheme(index++))
-    dataset.push(...res.datasets)
-    _map = new Map([..._map, ...res.tooltips])
-  })
-  return { datasets: dataset as any, tooltips: _map }
+  return wrapData(_data, xAxisValues, _datasets, type)
+}
+
+// todo@aoao no Aggregation method in chartJS
+export function aggregationDatasets(
+  data?: DataObject[],
+  type: string = "None",
+) {
+  switch (type) {
+    case "None":
+      return data
+  }
 }
 
 export const wrapPieDataset = (datasets?: DatasetConfig[]) => {
-  console.log("wrapPieDataset", datasets)
   if (!datasets || datasets.length === 0) return {}
   let tmp: (number | null)[] = []
   datasets.forEach((set) => {
     tmp = mergeArr(tmp, set.values)
   })
-  const res: ChartDataset = {
+  const res = {
     label: datasets[0].name ?? "",
     data: tmp ?? [],
     backgroundColor: tmp?.map((_, index) => getDefaultColorScheme(index)) ?? [],
@@ -145,6 +152,7 @@ export const removeSubstitution = (
   str: string,
   map: { x: string; y: string; datasetLabel: string },
 ) => {
+  console.log(map)
   return str
     .replace("%{x}", map.x)
     .replace("%{y}", map.y)

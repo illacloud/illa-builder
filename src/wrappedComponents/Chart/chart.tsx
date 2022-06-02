@@ -1,5 +1,6 @@
-import { DATAType, testData, testJson, WrappedChartProps } from "./interface"
-import { FC, useEffect, useMemo, useRef } from "react"
+import { WrappedChartProps } from "./interface"
+import { FC, useEffect, useMemo, useRef, useState } from "react"
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,8 +18,8 @@ import {
 import { Line, Bar, Pie, Scatter } from "react-chartjs-2"
 import {
   initData,
-  wrapDataset,
-  wrapDatasetByGroup,
+  wrapData,
+  wrapDataWithGroupBy,
   wrapPieDataset,
 } from "./utils"
 import { Wrapper } from "../Wrapper"
@@ -26,9 +27,7 @@ import "chartjs-adapter-moment"
 import ChartDataLabels from "chartjs-plugin-datalabels"
 import { formatPropsToChartOptions } from "./formatData"
 import { withParser } from "@/wrappedComponents/parserHOC"
-import { withData } from "@/wrappedComponents/Chart/dataManager"
 
-export const DATA: DATAType = {}
 ChartJS.register(ArcElement, Tooltip, Legend, Title)
 ChartJS.register(
   CategoryScale,
@@ -42,60 +41,67 @@ ChartJS.register(
 )
 export const WrappedChart: FC<WrappedChartProps> = (props) => {
   const {
-    data = testData,
+    data,
     legendPosition = "bottom",
     title = "Chart",
     xTitle = "x-title",
     yTitle = "y-title",
     groupBy,
     datasets,
-    type = "Line",
+    type = "line",
     xType = "category",
     xAxisValues,
     initConfigByData,
     chartJson,
+    configType = "UIForm",
   } = props
 
   const dataMap = useRef<{ [key: string]: any }>()
+  const [state, setState] = useState(Date.now())
 
-  const [_dataSets, _tooltips] = useMemo(() => {
-    if (!datasets) return [[]]
-    let res
-    if (type === "Pie") {
-      res = wrapPieDataset(datasets)
-    } else if (groupBy && groupBy?.length > 0 && datasets) {
-      const _groups = dataMap.current ? dataMap.current[groupBy] : []
-      res = wrapDatasetByGroup(data, datasets, _groups, groupBy)
-    } else {
-      res = wrapDataset(datasets)
-    }
-    console.log(res)
-    return [res.datasets, res.tooltips]
-  }, [datasets, groupBy])
-
+  console.log("WrappedChart", props)
   useEffect(() => {
     const res = initData(data)
     initConfigByData &&
       initConfigByData(res.xAxis, res.groupBy, res.datasets, res.dataMap)
     dataMap.current = res.dataMap
-  }, [])
+  }, [data])
 
   const _Chart = useMemo(() => {
     switch (type) {
-      case "Line":
+      case "line":
         return Line
-      case "Bar":
+      case "bar":
         return Bar
-      case "Pie":
+      case "pie":
         return Pie
-      case "ScatterPlot":
+      case "scatter":
         return Scatter
       default:
         return Line
     }
   }, [type])
 
-  const _options: ChartJS.ChartOptions = useMemo(() => {
+  const [_datasets, _tooltips] = useMemo(() => {
+    let res
+    if (groupBy) {
+      const groups = dataMap.current ? dataMap.current[groupBy] : []
+      res = wrapDataWithGroupBy(
+        data,
+        xAxisValues,
+        datasets,
+        type,
+        groupBy,
+        groups,
+      )
+    } else {
+      res = wrapData(data, xAxisValues, datasets, type)
+    }
+    setState(Date.now())
+    return [{ datasets: res?.datasets ?? [] }, res?.tooltips]
+  }, [data, xAxisValues, datasets, type, dataMap.current, groupBy])
+
+  const _options: any = useMemo(() => {
     return formatPropsToChartOptions(
       type,
       title,
@@ -120,21 +126,28 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
   }, [])
 
   return (
-    <Wrapper w={"400px"}>
-      {chartJson ? (
-        <canvas ref={ref} id={"mychartjs"} width="400" height="400" />
+    <Wrapper w={"500px"}>
+      <span>{xAxisValues}</span>
+      {configType === "JSON" ? (
+        <canvas ref={ref} id={"my-chart-js"} width="400" height="400" />
       ) : (
-        <_Chart
-          data={{
-            labels: xAxisValues,
-            datasets: _dataSets,
-          }}
-          options={_options}
-        />
+        <>
+          {type === "pie" ? (
+            <Pie
+              data={{
+                labels: dataMap.current ? dataMap.current["date"] : [],
+                datasets: wrapPieDataset(datasets).datasets ?? [],
+              }}
+              options={_options}
+            />
+          ) : (
+            <_Chart redraw data={_datasets} options={_options} />
+          )}
+        </>
       )}
     </Wrapper>
   )
 }
 
-export const ChartWidget = withData()
+export const ChartWidget = withParser(WrappedChart)
 WrappedChart.displayName = "ChartWidget"

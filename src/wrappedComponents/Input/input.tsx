@@ -34,6 +34,7 @@ export const WrappedInput = forwardRef<WrappedInputRefType, WrappedInputProps>(
       showClear,
       defaultValue,
       placeholder,
+      handleUpdateDsl,
     } = props
 
     const [currentValue, setCurrentValue] = useState(defaultValue)
@@ -53,46 +54,47 @@ export const WrappedInput = forwardRef<WrappedInputRefType, WrappedInputProps>(
     )
 
     return (
-        <Wrapper w={"300px"}>
-          <LabelWrapper
-            label={label}
-            labelAlign={labelAlign}
-            labelWidth={labelWidth}
-            labelCaption={labelCaption}
-            labelWidthUnit={labelWidthUnit}
-            labelPosition={labelPosition}
-            required={required}
-            tooltipText={tooltipText}
-          >
-            <div css={inputContainerCss}>
-              <Input
-                onChange={(value) => {
-                  setCurrentValue(value)
-                  onChange && onChange(value)
-                }}
-                placeholder={placeholder}
-                addonAfter={{ render: suffixText }}
-                addonBefore={{ render: prefixText }}
-                suffix={{ render: suffixIcon }}
-                prefix={{ render: prefixIcon }}
-                showCount={showCharacterCount}
-                allowClear={showClear}
-                value={value}
-                inputRef={inputRef}
-              />
-              <InvalidMessage
-                value={currentValue}
-                pattern={pattern}
-                regex={regex}
-                minLength={minLength}
-                maxLength={maxLength}
-                required={required}
-                customRule={customRule}
-                hideValidationMessage={hideValidationMessage}
-              />
-            </div>
-          </LabelWrapper>
-        </Wrapper>
+      <Wrapper w={"300px"}>
+        <LabelWrapper
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          required={required}
+          tooltipText={tooltipText}
+        >
+          <div css={inputContainerCss}>
+            <Input
+              onChange={(value) => {
+                handleUpdateDsl({ value })
+                setCurrentValue(value)
+                onChange && onChange(value)
+              }}
+              placeholder={placeholder}
+              addonAfter={{ render: suffixText }}
+              addonBefore={{ render: prefixText }}
+              suffix={{ render: suffixIcon }}
+              prefix={{ render: prefixIcon }}
+              showCount={showCharacterCount}
+              allowClear={showClear}
+              value={value}
+              inputRef={inputRef}
+            />
+            <InvalidMessage
+              value={currentValue}
+              pattern={pattern}
+              regex={regex}
+              minLength={minLength}
+              maxLength={maxLength}
+              required={required}
+              customRule={customRule}
+              hideValidationMessage={hideValidationMessage}
+            />
+          </div>
+        </LabelWrapper>
+      </Wrapper>
     )
   },
 )

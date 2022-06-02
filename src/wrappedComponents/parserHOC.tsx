@@ -36,7 +36,6 @@ export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
       </div>
     )
   }
-
   ParseredComponent.displayName = `withParser(${getDisplayName(
     WrappedComponent,
   )})`

@@ -1,145 +1,185 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import {
-  AlignmentLeftIcon,
-  AlignmentRightIcon,
-} from "@/wrappedComponents/Input/svg"
+  defaultChartData,
+  defaultChartData02,
+  LEGEND_POSITION,
+  XAXISTYPE,
+} from "@/wrappedComponents/Chart/interface"
 
-const OptionsStyle = {
-  width: "77px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: globalColor(`--${illaPrefix}-grayBlue-04`),
-}
+export const CHART_DATASET_CONFIG: PanelConfig[] = [
+  {
+    id: "chart-title",
+    isFullWidth: true,
+    labelName: "Title",
+    attrName: "title", // todo@aoao
+    setterType: "INPUT_SETTER",
+  },
+  {
+    id: "chart-xAxisTitle",
+    isFullWidth: true,
+    labelName: "xAxisTitle",
+    attrName: "xTitle",
+    setterType: "INPUT_SETTER",
+  },
+
+  {
+    id: "chart-xAxisType",
+    labelName: "X-axis type",
+    attrName: "xAxisType",
+    isFullWidth: true,
+    setterType: "SELECT_SETTER",
+    options: XAXISTYPE,
+  },
+  {
+    id: "chart-yAxisTitle",
+    isFullWidth: true,
+    labelName: "yAxisTitle",
+    attrName: "yTitle",
+    setterType: "INPUT_SETTER",
+  },
+  {
+    id: "chart-legend-position",
+    labelName: "Legend position",
+    attrName: "type",
+    setterType: "RADIO_GROUP_SETTER",
+    options: LEGEND_POSITION, // @todo 等晨哥把方位抽出
+  },
+]
 
 export const CHART_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "editable-text-options",
-    groupName: "Options",
+    id: "chart-data",
+    groupName: "DATA",
     children: [
       {
-        id: "editable-text-basic-defaultValue",
-        labelName: "Default Value",
-        attrName: "value", // todo@aoao
-        setterType: "INPUT_SETTER",
-      },
-      {
-        id: "editable-text-basic-placeholder",
-        labelName: "Placeholder",
-        attrName: "placeholder",
-        setterType: "INPUT_SETTER",
-      },
-    ],
-  },
-  {
-    id: "editable-text-label",
-    groupName: "Label",
-    children: [
-      {
-        id: "editable-text-label-label",
-        labelName: "Label",
-        attrName: "label",
-        setterType: "INPUT_SETTER",
-      },
-      {
-        id: "editable-text-label-caption",
-        labelName: "Caption",
-        attrName: "labelCaption",
-        setterType: "INPUT_SETTER",
-      },
-      {
-        id: "editable-text-label-position",
-        labelName: "Position",
-        attrName: "labelPosition",
-        setterType: "RADIO_GROUP_SETTER",
-        options: [
-          { label: <div style={OptionsStyle}>Left</div>, value: "left" },
-          { label: <div style={OptionsStyle}>Right</div>, value: "right" },
-        ],
-      },
-      {
-        id: "editable-text-label-alignment",
-        labelName: "Alignment",
-        attrName: "labelAlign",
+        id: "chart-data-config-type",
+        isFullWidth: true,
+        attrName: "configType",
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: (
-              <div style={OptionsStyle}>
-                <AlignmentLeftIcon />
-              </div>
-            ),
-            value: "left",
+            label: "UI Form",
+            value: "UIForm",
           },
           {
-            label: (
-              <div style={OptionsStyle}>
-                <AlignmentRightIcon />
-              </div>
-            ),
-            value: "right",
+            label: "Chart JSON",
+            value: "JSON",
           },
         ],
       },
+      {
+        id: "chart-data-source",
+        labelName: "Data source",
+        isFullWidth: true,
+        useCustomLabel: true,
+        attrName: "dataSource",
+        setterType: "CHART_DATA_SETTER",
+        options: [
+          {
+            label: "value01",
+            value: "value01",
+          },
+          {
+            label: "value02",
+            value: "value02",
+          },
+        ],
+        bindAttrName: ["configType", "type"],
+        shown: (value) => {
+          return value["configType"] === "UIForm"
+        },
+      },
+      // {
+      //   id: "chart-type",
+      //   labelName: "Chart type",
+      //   isFullWidth: true,
+      //   attrName: "type",
+      //   setterType: "SELECT_SETTER",
+      //   options: [
+      //     {
+      //       label: "Line chart",
+      //       value: "Line",
+      //     },
+      //     {
+      //       label: "Bar chart",
+      //       value: "Bar",
+      //     },
+      //     {
+      //       label: "Pie chart",
+      //       value: "Pie",
+      //     },
+      //     {
+      //       label: "ScatterPlot",
+      //       value: "ScatterPlot",
+      //     },
+      //   ],
+      //   bindAttrName: "configType",
+      //   shown: (value) => value === "UIForm",
+      // },
+      // {
+      //   id: "chart-xAxisValues",
+      //   labelName: "X-axis values",
+      //   useCustomLabel: true,
+      //   attrName: "xAxisValues",
+      //   setterType: "DYNAMIC_SELECT_SETTER",
+      //   bindAttrName: ["configType", "type"],
+      //   shown: (value) => {
+      //     return value["configType"] === "UIForm" && value["type"] !== "Pie"
+      //   },
+      // },
+      // {
+      //   id: "chart-groupBy",
+      //   labelName: "Group by",
+      //   useCustomLabel: true,
+      //   isFullWidth: true,
+      //   attrName: "groupBy",
+      //   setterType: "DYNAMIC_SELECT_SETTER",
+      //   bindAttrName: ["configType", "type"],
+      //   shown: (value) => {
+      //     return value["configType"] === "UIForm" && value["type"] !== "Pie"
+      //   },
+      // },
+      // {
+      //   id: "chart-value-labels",
+      //   labelName: "Value labels",
+      //   useCustomLabel: true,
+      //   isFullWidth: true,
+      //   attrName: "groupBy",
+      //   setterType: "DYNAMIC_SELECT_SETTER",
+      //   bindAttrName: ["configType", "type"],
+      //   shown: (value) => {
+      //     return value["configType"] === "UIForm" && value["type"] === "Pie"
+      //   },
+      // },
+      // {
+      //   id: "chart-datasets",
+      //   labelName: "datasets",
+      //   isFullWidth: true,
+      //   attrName: "type",
+      //   setterType: "CHART_DATASETS_LIST_SETTER", // todo @aoao
+      //   options: ["value1", "value2", "value3"],
+      //   bindAttrName: "configType",
+      //   shown: (value) => value === "UIForm",
+      // },
+      {
+        id: "chart-data",
+        labelName: "data",
+        isFullWidth: true,
+        attrName: "chartJson",
+        setterType: "TEXTAREA_SETTER", // todo @aoao
+        bindAttrName: ["configType", "type"],
+        shown: (value) => {
+          return value["configType"] === "JSON"
+        },
+      },
     ],
   },
   {
-    id: "editable-text-validation",
-    groupName: "Validation",
+    id: "chart-interaction",
+    groupName: "INTERACTION",
     children: [
       {
-        id: "editable-text-validation-required",
-        labelName: "Required field",
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
-        attrName: "required",
-      },
-      {
-        id: "editable-text-validation-pattern",
-        labelName: "Pattern",
-        setterType: "INPUT_SETTER",
-        attrName: "pattern",
-      },
-      {
-        id: "editable-text-validation-regex",
-        labelName: "Regex",
-        setterType: "INPUT_SETTER",
-        attrName: "regex",
-      },
-      {
-        id: "editable-text-validation-max",
-        labelName: "Max length",
-        setterType: "INPUT_SETTER",
-        attrName: "maxLength",
-      },
-      {
-        id: "editable-text-validation-min",
-        labelName: "min Length",
-        setterType: "INPUT_SETTER",
-        attrName: "minLength",
-      },
-      {
-        id: "editable-text-validation-custom",
-        labelName: "Custom rule",
-        setterType: "INPUT_SETTER",
-        attrName: "custom rule",
-      },
-      {
-        id: "editable-text-validation-hide-message",
-        labelName: "Hide validation message",
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
-        attrName: "hideValidationMessage",
-      },
-    ],
-  },
-  {
-    id: "editable-text-interaction",
-    groupName: "Interaction",
-    children: [
-      {
-        id: "editable-text-interaction-disabled",
+        id: "chart-interaction-disabled",
         labelName: "Disabled",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
@@ -147,7 +187,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         defaultValue: false,
       },
       {
-        id: "editable-text-interaction-readonly",
+        id: "chart-interaction-readonly",
         labelName: "Readonly",
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
@@ -157,53 +197,45 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "editable-text-Adornments",
-    groupName: "Adornments",
+    id: "chart-layout",
+    groupName: "LAYOUT",
     children: [
       {
-        id: "editable-text-adornments-showClear",
-        labelName: "Show clear button",
-        attrName: "allowClear",
-        useCustomLabel: true,
-        setterType: "DYNAMIC_SWITCH_SETTER",
-      },
-      {
-        id: "editable-text-adornments-showChartCount",
-        labelName: "Show character count",
-        attrName: "showCharacterCount",
-        useCustomLabel: true,
-        setterType: "DYNAMIC_SWITCH_SETTER",
-      },
-      {
-        id: "editable-text-adornments-prefixText",
-        labelName: "Prefix text",
-        attrName: "prefixText",
+        id: "chart-title",
+        isFullWidth: true,
+        labelName: "Title",
+        attrName: "title", // todo@aoao
         setterType: "INPUT_SETTER",
       },
       {
-        id: "editable-text-adornments-suffixText",
-        labelName: "Suffix text",
-        attrName: "suffixText",
+        id: "chart-xAxisTitle",
+        isFullWidth: true,
+        labelName: "xAxisTitle",
+        attrName: "xTitle",
+        setterType: "INPUT_SETTER",
+      },
+
+      {
+        id: "chart-xAxisType",
+        labelName: "X-axis type",
+        attrName: "xAxisType",
+        isFullWidth: true,
+        setterType: "SELECT_SETTER",
+        options: XAXISTYPE,
+      },
+      {
+        id: "chart-yAxisTitle",
+        isFullWidth: true,
+        labelName: "yAxisTitle",
+        attrName: "yTitle",
         setterType: "INPUT_SETTER",
       },
       {
-        id: "editable-text-adornments-tooltip",
-        labelName: "Tooltip",
-        attrName: "tooltipText",
-        setterType: "INPUT_SETTER",
-      },
-    ],
-  },
-  {
-    id: "editable-text-layout",
-    groupName: "Layout",
-    children: [
-      {
-        id: "editable-text-layout-hidden",
-        labelName: "Hidden",
-        setterType: "INPUT_SETTER",
-        attrName: "hidden",
-        placeholder: "false",
+        id: "chart-legend-position",
+        labelName: "Legend position",
+        attrName: "type",
+        setterType: "RADIO_GROUP_SETTER",
+        options: LEGEND_POSITION, // @todo 等晨哥把方位抽出
       },
     ],
   },

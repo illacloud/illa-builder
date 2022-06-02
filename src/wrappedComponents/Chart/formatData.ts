@@ -1,7 +1,8 @@
-import { ChartType, LegendPosition } from "./interface"
-import { removeSubstitution } from "./utils"
+import { ChartType } from "chart.js"
+import { LegendPosition } from "./interface"
+import { removeSubstitution } from "@/wrappedComponents/Chart/utils"
 
-const isPie = (type: ChartType) => type === "Pie"
+const isPie = (type: ChartType) => type === "pie"
 
 export const formatPropsToChartOptions = (
   type: ChartType,
@@ -32,6 +33,9 @@ export const formatPropsToChartOptions = (
         },
       },
     },
+    parsing: {
+      xAxisKey: "id",
+    },
     plugins: {
       datalabels: {
         formatter: (value: any, ctx: any) => {
@@ -43,7 +47,6 @@ export const formatPropsToChartOptions = (
         position: "nearest",
         usePointStyle: false,
         callbacks: {
-          title: () => null,
           label: function (context: any) {
             if (toolTips) {
               const _tip = toolTips.get(context.dataset.label) ?? ""
@@ -56,6 +59,7 @@ export const formatPropsToChartOptions = (
               return removeSubstitution(_tip, _map)
             }
           },
+          title: () => null,
         },
       },
       legend: {

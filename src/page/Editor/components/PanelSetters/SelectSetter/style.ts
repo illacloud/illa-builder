@@ -49,3 +49,22 @@ export const colorSelectMenuItemWrapperCss = css`
     background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
   }
 `
+export const dynamicSelectStyle: SerializedStyles = css`
+  padding: 0 16px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`
+export const dynamicSelectHeaderStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+`
+
+export const useTypeTextStyle: SerializedStyles = css`
+  size: 14px;
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+`

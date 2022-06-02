@@ -39,8 +39,8 @@ export interface PanelFieldConfig extends PanelLabelProps {
   isFullWidth?: boolean
   defaultValue?: any
   placeholder?: string
-  shown?: (value: any) => boolean
-  bindAttrName?: string
+  shown?: (value: any | { [attrName: string]: any }) => boolean
+  bindAttrName?: string | string[]
   // events?:event[] // TODO:
 }
 
@@ -54,6 +54,7 @@ type GroupName =
   | "LAYOUT"
   | "STYLE"
   | "OTHER"
+  | "DATA"
 
 export interface PanelFieldGroupConfig {
   id: string

@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from "react"
-import { Input } from "@illa-design/input"
+import { FC, useContext, useEffect, useState } from "react"
+import { TextArea } from "@illa-design/input"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 
-export const BaseInput: FC<BaseInputSetterProps> = (props) => {
+export const TextAreaInput: FC<BaseInputSetterProps> = (props) => {
   const {
     isFullWidth,
     placeholder,
@@ -18,19 +18,18 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const [inputValue, setInputValue] = useState(panelConfig[attrName])
 
   useEffect(() => {
-    setInputValue(panelConfig[attrName])
+    setInputValue(handleUpdatePanelConfig[attrName])
   }, [panelConfig[attrName]])
 
   return (
     <div css={applyInputSetterWrapperStyle(isFullWidth, isInList)}>
-      <Input
+      <TextArea
         borderColor={"techPurple"}
         placeholder={placeholder}
         value={inputValue ?? defaultValue}
+        autoSize={{ maxRows: 10, minRows: 10 }}
         onChange={(value) => {
           setInputValue(value)
-          handleUpdatePanelConfig({ [attrName]: value })
-          // TODO： calc dsl and then to update props
           handleUpdateDsl({ [attrName]: value })
         }}
       />
@@ -38,4 +37,4 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   )
 }
 
-BaseInput.displayName = "BaseInput"
+TextAreaInput.displayName = "TextAreaInput"

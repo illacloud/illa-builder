@@ -45,6 +45,7 @@ export const renderField = (
 }
 
 export function fieldFactory(panelConfig: PanelConfig[], componentId: string) {
+  console.log(panelConfig)
   if (!componentId || !panelConfig || !panelConfig.length) return null
   return panelConfig.map((item: PanelConfig) => renderField(item, componentId))
 }

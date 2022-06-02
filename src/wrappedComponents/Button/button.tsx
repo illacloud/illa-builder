@@ -15,11 +15,13 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
     rightIcon,
     disabled,
     submit,
+    textColor,
     borderRadius,
     loading,
     alignment = "fullWidth",
     tooltipText,
     colorScheme,
+    shape,
   } = props
 
   // TODOS : P1,wait PM
@@ -42,6 +44,7 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
   //   )
   // }, [variant, borderColor])
 
+
   return (
     <TooltipWrapper
       tooltipText={tooltipText}
@@ -61,6 +64,7 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
             // textColor={_textColor}
             colorScheme={colorScheme}
             loading={loading}
+            shape={shape}
           >
             {text}
           </Button>

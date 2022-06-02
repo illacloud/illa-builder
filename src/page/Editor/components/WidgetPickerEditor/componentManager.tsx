@@ -6,7 +6,7 @@ import { ConfigPanel } from "./components/ConfigPanel"
 function ComponentsManager() {
   return (
     <div css={componentPanelCss}>
-      <Tabs variant="text" defaultActiveKey="Insert">
+      <Tabs colorScheme="grayBlue" variant="text" defaultActiveKey="Insert">
         <TabPane title="Frame" key="Frame">
           Frame
         </TabPane>
