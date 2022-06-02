@@ -97,6 +97,14 @@
         }
       },
       "resource": {
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+          },
+          "tip": {
+            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+          }
+        },
         "mySql": {
           "name": "MySQL",
           "label": {

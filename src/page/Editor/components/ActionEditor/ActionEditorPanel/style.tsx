@@ -5,6 +5,7 @@ export const containerStyle = css`
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow: auto;
 `
 
 export const panelScrollStyle = css`
