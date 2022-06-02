@@ -76,6 +76,9 @@
           "success": "Success",
           "failure": "Failure",
           "event_handler": "Event Handler"
+        },
+        "tips": {
+          "transformer": "Enable transformers to transform the result of the query to a different format."
         }
       },
       "form": {

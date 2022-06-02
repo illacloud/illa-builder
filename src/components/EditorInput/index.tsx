@@ -31,6 +31,8 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       lineNumbers = true,
       height = "auto",
       placeholder = "input sth",
+      readOnly,
+      value = "",
       onChange,
       onBlur,
     } = props
@@ -41,13 +43,15 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
 
     useEffect(() => {
       const editor = CodeMirror(cmRef.current!, {
-        mode: mode,
-        lineNumbers: lineNumbers,
+        mode,
+        lineNumbers,
         autocapitalize: false,
         autofocus: false,
         matchBrackets: true,
         // viewportMargin: Infinity,
         tabSize: 2,
+        readOnly,
+        value: value,
         autoCloseBrackets: true,
         hintOptions: {
           completeSingle: false,

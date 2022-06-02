@@ -49,7 +49,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
             </div>
           }
         />
-        <EditorInput mode="javascript" />
+        <EditorInput mode="application/json" />
       </div>
     </div>
   )
