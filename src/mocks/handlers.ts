@@ -1,4 +1,5 @@
 import { rest } from "msw"
+import { v4 as uuidV4 } from "uuid"
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL
 
@@ -155,6 +156,18 @@ export const handlers = [
             "2019-03-05",
           ],
         },
+      }),
+    )
+  }),
+
+  rest.post(`${baseUrl}/actions`, (req, res, ctx) => {
+    const data = req.body
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        actionId: uuidV4(),
+        ...data,
       }),
     )
   }),
