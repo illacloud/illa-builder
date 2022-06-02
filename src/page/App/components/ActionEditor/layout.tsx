@@ -3,9 +3,9 @@ import { css } from "@emotion/react"
 import { useResize } from "@/utils/hooks/useResize"
 import {
   applyContainerHeight,
-  applyresizerStyle,
-  ActionEditorContainer,
-  ActionEditorPanelLayoutWrapper,
+  applyResizerStyle,
+  actionEditorContainer,
+  actionEditorPanelLayoutWrapper,
 } from "./style"
 import { ActionEditorLayoutProps } from "./interface"
 
@@ -21,15 +21,15 @@ export const ActionEditorLayout: FC<ActionEditorLayoutProps> = (props) => {
   const resizer = useResize("vertical", editorRef, onHeightChange)
 
   return (
-    <div css={ActionEditorPanelLayoutWrapper}>
+    <div css={actionEditorPanelLayoutWrapper}>
       <div
         onMouseDown={resizer.onMouseDown}
         onTouchStart={resizer.onTouchStart}
         onTouchEnd={resizer.onMouseUp}
-        css={applyresizerStyle(resizer.resizing, containerHeight)}
+        css={applyResizerStyle(resizer.resizing, containerHeight)}
       />
       <div
-        css={css(ActionEditorContainer, applyContainerHeight(containerHeight))}
+        css={css(actionEditorContainer, applyContainerHeight(containerHeight))}
         ref={editorRef}
       >
         {actionList}

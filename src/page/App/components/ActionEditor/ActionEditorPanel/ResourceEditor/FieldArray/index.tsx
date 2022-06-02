@@ -51,7 +51,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               lineNumbers={false}
               height="32px"
               placeholder="key"
-              _css={fieldItemKeyStyle}
+              css={fieldItemKeyStyle}
               onChange={(v) => updateField(index, "key", v)}
             />
             <Select
@@ -68,7 +68,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             lineNumbers={false}
             height="32px"
             placeholder="key"
-            _css={fieldItemKeyStyle}
+            css={fieldItemKeyStyle}
             onChange={(v) => updateField(index, "key", v)}
           />
         )}
@@ -78,7 +78,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           lineNumbers={false}
           height="32px"
           placeholder="value"
-          _css={fieldItemValueStyle}
+          css={fieldItemValueStyle}
           onChange={(v) => updateField(index, "value", v)}
         />
         <div css={DeleteIconWrapper} onClick={() => removeField(index)}>

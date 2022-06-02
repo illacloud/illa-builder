@@ -10,6 +10,10 @@ export const actionListContainerStyle = css`
   position: relative;
 `
 
+export const newBtnContainerStyle = css`
+  margin: 0 16px 8px 16px;
+`
+
 export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
   const activeStyle = css`
     background-color: ${globalColor(`--${illaPrefix}-techPurple-05`)}!important;
@@ -44,10 +48,6 @@ export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
 export const newButtonTextStyle = css`
   display: flex;
   align-items: center;
-`
-
-export const newButtonIconStyle = css`
-  margin-right: 8px;
 `
 
 export const actionItemListStyle = css`

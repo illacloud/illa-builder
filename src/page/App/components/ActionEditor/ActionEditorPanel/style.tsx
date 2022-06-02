@@ -6,12 +6,14 @@ export const containerStyle = css`
   display: flex;
   flex-direction: column;
   flex: 1;
+  overflow: auto;
 `
 
 export const panelScrollStyle = css`
   overflow: auto;
   flex: 1;
   user-select: none;
+  position: relative;
 `
 
 export const headerStyle = css`
@@ -300,4 +302,34 @@ export const handlerItemMoreStyle = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
+`
+
+export const radioBtnStyle = css`
+  width: 184px;
+`
+
+export const resStatusStyle = css`
+  background-color: ${globalColor(`--${illaPrefix}-green-07`)};
+  color: ${globalColor(`--${illaPrefix}-green-03`)};
+  border-radius: 50%;
+  font-size: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+`
+
+export const resTitleStyle = css`
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-gray-01`)};
+`
+
+export const resAlertBgcStyle = css`
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+`
+
+export const resCloseIconStyle = css`
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 `

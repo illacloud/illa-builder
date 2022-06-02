@@ -1,16 +1,17 @@
-import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Api } from "@/api/base"
+import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
+import { Alert } from "@illa-design/alert"
+import { Api } from "@/api/base"
 import { ParamValues } from "@/page/App/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionListState"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { Transformer } from "@/page/App/components/ActionEditor/ActionEditorPanel/Transformer"
+import { Transformer } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/Transformer"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
-import { ResourceParams } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceParams"
-import { EventHandler } from "@/page/App/components/ActionEditor/ActionEditorPanel/EventHandler"
+import { ResourceParams } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourceParams"
+import { EventHandler } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/EventHandler"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import { ResourcePanelProps } from "./interface"
 
@@ -59,6 +60,10 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       (i) => i.resourceId === resourceId,
     )
 
+    // TODO add type
+    const [result, setResult] = useState<any>()
+    const [showAlert, setShowAlert] = useState(false)
+
     const onParamsChange = (value: ParamValues) => {
       setParams({ ...params, general: value })
       onChange && onChange()
@@ -66,11 +71,19 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     const run = () => {
       const _data = dataTransform(params)
-      Api.request({
-        url: "/actions/:id/run",
-        method: "POST",
-        data: _data,
-      })
+      Api.request(
+        {
+          url: "/api/v1/actions/:id/run",
+          method: "POST",
+          data: _data,
+        },
+        (data) => {
+          if (!showAlert) {
+            setShowAlert(true)
+          }
+          setResult(data.data)
+        },
+      )
     }
 
     const saveAndRun = () => {
@@ -103,10 +116,21 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
     return (
       <>
-        <ResourceParams resourceType={resourceType} onChange={onParamsChange} />
-        <Transformer />
-        <Divider />
-        <EventHandler />
+        <div>
+          <ResourceParams
+            resourceType={resourceType}
+            onChange={onParamsChange}
+          />
+          <Transformer />
+          <Divider />
+          <EventHandler />
+          {showAlert && (
+            <Alert
+              type={result?.status === "success" ? "success" : "error"}
+              title={result?.message}
+            />
+          )}
+        </div>
       </>
     )
   },

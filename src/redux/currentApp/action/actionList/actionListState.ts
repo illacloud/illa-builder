@@ -2,8 +2,11 @@ import {
   RESTAPIParamValues,
   MySQLParamValues,
 } from "@/page/App/components/ActionEditor/Resource"
-type ActionType = "action" | "transformer"
+
+export type ActionType = "action" | "transformer"
+
 type ActionStatus = "warning" | string
+
 interface ActionConnectNetwork {
   totalTime: number
   prepareTime: number
@@ -13,11 +16,11 @@ interface ActionConnectNetwork {
 }
 
 export interface ActionItemConfig {
-  general: RESTAPIParamValues | MySQLParamValues
+  general: RESTAPIParamValues | MySQLParamValues | string
   trigger?: "manual" | "change"
   mode?: "gui" | "plain"
-  transformer: Transformer
-  eventHandler: EventHandler
+  transformer?: Transformer
+  eventHandler?: EventHandler
 }
 
 interface Transformer {
