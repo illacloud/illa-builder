@@ -1,4 +1,5 @@
 import { FC, useState, useMemo, useRef, MouseEvent, useContext } from "react"
+import { Api } from "@/api/base"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidV4 } from "uuid"
@@ -13,6 +14,7 @@ import {
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { ActionType } from "@/redux/currentApp/action/actionList/actionListState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import {
@@ -181,18 +183,24 @@ export const ActionList: FC<ActionListProps> = (props) => {
     addActionItem("transformer")
   }
 
-  function addActionItem(type: "action" | "transformer") {
+  function addActionItem(type: ActionType) {
     const id = uuidV4()
 
-    dispatch(
-      actionListActions.addActionItemReducer({
-        id,
-        type,
-        name: generateName(type, actionItems, actionItemsNameSet),
-      }),
+    Api.request(
+      {
+        url: "/actions",
+        method: "POST",
+        data: {
+          name: generateName(type, actionItems, actionItemsNameSet),
+          type,
+          resourceId: "",
+        },
+      },
+      ({ data }) => {
+        dispatch(actionListActions.addActionItemReducer(data))
+        onAddActionItem(id)
+      },
     )
-
-    onAddActionItem(id)
   }
 
   function onDuplicate() {
