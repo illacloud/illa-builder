@@ -1,5 +1,4 @@
 import { forwardRef, ForwardedRef } from "react"
-import { ACItemProps } from "./interface"
 import {
   StringIcon,
   NumberIcon,
@@ -10,36 +9,40 @@ import {
   NullIcon,
 } from "@illa-design/icon"
 import { contentStyle, itemStyle, typeStyle } from "./styles"
+import { AutoCompleteItemProps, AutoCompleteItemType } from "./interface"
 
-export const ACItem = forwardRef<HTMLDivElement, ACItemProps>(
-  (props, ref: ForwardedRef<HTMLDivElement>) => {
-    const { type, content, ...rest } = props
+const IconEle = (type: AutoCompleteItemType) => {
+  switch (type) {
+    case "String":
+      return <StringIcon />
+    case "Number":
+      return <NumberIcon />
+    case "Array":
+      return <ArrayIcon />
+    case "Function":
+      return <FunctionIcon />
+    case "Object":
+      return <ObjectIcon />
+    case "Component":
+      return <ComponentIcon />
+    case "Null":
+      return <NullIcon />
+  }
+}
 
-    const IconEle = () => {
-      switch (type) {
-        case "String":
-          return <StringIcon />
-        case "Number":
-          return <NumberIcon />
-        case "Array":
-          return <ArrayIcon />
-        case "Function":
-          return <FunctionIcon />
-        case "Object":
-          return <ObjectIcon />
-        case "Component":
-          return <ComponentIcon />
-        case "Null":
-          return <NullIcon />
-      }
-    }
+export const AutoCompleteItem = forwardRef<
+  HTMLDivElement,
+  AutoCompleteItemProps
+>((props, ref: ForwardedRef<HTMLDivElement>) => {
+  const { type, content, ...rest } = props
 
-    return (
-      <div css={itemStyle} ref={ref} {...rest}>
-        {IconEle()}
-        <span css={contentStyle}>{content}</span>
-        <span css={typeStyle}>{type}</span>
-      </div>
-    )
-  },
-)
+  return (
+    <div css={itemStyle} ref={ref} {...rest}>
+      {IconEle(type)}
+      <span css={contentStyle}>{content}</span>
+      <span css={typeStyle}>{type}</span>
+    </div>
+  )
+})
+
+AutoCompleteItem.displayName = "AutoCompleteItem"

@@ -1,5 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { HintBodyParamsProps } from "./interface"
 
 export function applyCMStyle(height: string): SerializedStyles {
   return css`
@@ -14,7 +15,9 @@ export function applyCMStyle(height: string): SerializedStyles {
   `
 }
 
-export function applyHintBodyStyle(params: any): SerializedStyles {
+export function applyHintBodyStyle(
+  params: HintBodyParamsProps,
+): SerializedStyles {
   return css`
     position: absolute;
     top: ${params.top}px;

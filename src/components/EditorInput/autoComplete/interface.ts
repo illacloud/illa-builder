@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react"
 
-type itemType =
+export type AutoCompleteItemType =
   | "String"
   | "Number"
   | "Array"
@@ -8,7 +8,7 @@ type itemType =
   | "Object"
   | "Component"
   | "Null"
-export interface ACItemProps extends HTMLAttributes<HTMLDivElement> {
-  type: itemType
+export interface AutoCompleteItemProps extends HTMLAttributes<HTMLDivElement> {
+  type: AutoCompleteItemType
   content: string
 }

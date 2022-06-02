@@ -7,7 +7,7 @@ import {
   Fragment,
 } from "react"
 import ReactDOM from "react-dom"
-import { EditorInputProps } from "./interface"
+import { EditorInputProps, HintBodyParamsProps } from "./interface"
 
 import CodeMirror from "codemirror"
 import "codemirror/lib/codemirror.css"
@@ -25,8 +25,8 @@ import "codemirror/addon/display/placeholder"
 
 import { applyCMStyle, applyHintBodyStyle, hintBodyTriggerStyle } from "./style"
 
-import { ACItem } from "./autoComplete/item"
-import { HintComplement } from "./autoComplete/hintComplement"
+import { AutoCompleteItem } from "./autoComplete/item"
+import { HintComplement } from "./autoComplete/HintComplement"
 
 import { Trigger } from "@illa-design/trigger"
 
@@ -45,12 +45,8 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       onChange,
       onBlur,
     } = props
-    interface hintBodyParamsProps {
-      show: boolean
-      top: number
-      left: number
-    }
-    const [hintBodyParams, setHintBodyParams] = useState<hintBodyParamsProps>({
+
+    const [hintBodyParams, setHintBodyParams] = useState<HintBodyParamsProps>({
       show: false,
       top: 0,
       left: 0,
@@ -151,7 +147,10 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
 
     const renderCustomHint = (element: HTMLElement, self: any, data: any) => {
       let div = document.createElement("div")
-      ReactDOM.render(<ACItem type={data.type} content={data.text} />, div)
+      ReactDOM.render(
+        <AutoCompleteItem type={data.type} content={data.text} />,
+        div,
+      )
       element.appendChild(div)
     }
 
@@ -216,7 +215,7 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
           content={<HintComplement index={currentHintIndex} />}
           popupVisible={showHintTrigger}
         >
-          <div id="hintBody" css={applyHintBodyStyle(hintBodyParams)}></div>
+          <div id="hintBody" css={applyHintBodyStyle(hintBodyParams)} />
         </Trigger>
       </Fragment>
     )

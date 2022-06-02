@@ -14,3 +14,9 @@ export interface EditorInputProps
   onChange?: (value: string) => void
   onBlur?: () => void
 }
+
+export interface HintBodyParamsProps {
+  show: boolean
+  top: number
+  left: number
+}

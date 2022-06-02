@@ -1,5 +1,4 @@
-import { FC, Fragment, useEffect } from "react"
-import { HintComplementProps } from "./interface"
+import { FC } from "react"
 import { ArrayIcon } from "@illa-design/icon"
 import {
   mainTitleStyle,
@@ -12,15 +11,13 @@ import {
 import { css } from "@emotion/react"
 import { Tag } from "@illa-design/tag"
 
+import { HintComplementProps } from "./interface"
+
 export const HintComplement: FC<HintComplementProps> = (props) => {
   const { index } = props
 
-  useEffect(() => {
-    console.log("index", index)
-  }, [index])
-
   return (
-    <Fragment>
+    <>
       <div css={mainTitleStyle}>
         <div css={contentAreaStyle}>
           <div css={css(titleTextStyle, mainTextHeightStyle)}>
@@ -39,6 +36,8 @@ export const HintComplement: FC<HintComplementProps> = (props) => {
         </div>
         <div css={css(containerTextStyle, mainTextHeightStyle)}>String</div>
       </div>
-    </Fragment>
+    </>
   )
 }
+
+HintComplement.displayName = "HintComplement"
