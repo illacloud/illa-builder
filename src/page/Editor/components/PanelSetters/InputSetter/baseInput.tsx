@@ -13,6 +13,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     panelConfig,
     handleUpdateDsl,
     handleUpdatePanelConfig,
+    handleUpdateItem,
   } = props
 
   const [inputValue, setInputValue] = useState(panelConfig[attrName])
@@ -32,6 +33,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
           handleUpdatePanelConfig({ [attrName]: value })
           // TODO： calc dsl and then to update props
           handleUpdateDsl({ [attrName]: value })
+          handleUpdateItem && handleUpdateItem({ [attrName]: value })
         }}
       />
     </div>

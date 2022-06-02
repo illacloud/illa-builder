@@ -32,6 +32,7 @@ export const DatasetsListProvider: FC<Props> = ({
   const handleUpdate = (value: DatasetConfig[]) => {
     const newOptions = value
     handleUpdateAllPanelConfig({ [attrName]: newOptions })
+    console.log("handleUpdate", attrName, newOptions)
     handleUpdateAllDsl({ [attrName]: newOptions })
   }
 

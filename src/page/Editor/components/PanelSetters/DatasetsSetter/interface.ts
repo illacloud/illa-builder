@@ -30,6 +30,7 @@ export interface ModalProps
   > {
   title: string
   handleCloseModal: () => void
+  name?: string
 }
 
 export interface OptionListSetterProps extends BaseSetter {}

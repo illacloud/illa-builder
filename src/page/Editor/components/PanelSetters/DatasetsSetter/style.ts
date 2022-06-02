@@ -31,7 +31,6 @@ export const addIconCss = css`
 `
 
 export const ListCss = css`
-  margin: 0 16px;
   border-radius: 8px;
 `
 
@@ -113,7 +112,7 @@ export const modalHeaderCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   font-size: 16px;
   font-weight: 500;
-
+  ${publicPaddingCss}
   span {
     display: flex;
     align-items: center;

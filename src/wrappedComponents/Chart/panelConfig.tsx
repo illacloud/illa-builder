@@ -1,5 +1,6 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import {
+  CHART_TYPE,
   defaultChartData,
   defaultChartData02,
   LEGEND_POSITION,
@@ -8,41 +9,40 @@ import {
 
 export const CHART_DATASET_CONFIG: PanelConfig[] = [
   {
+    id: "dataset-name",
+    labelName: "Dataset name",
+    attrName: "name",
+    setterType: "INPUT_SETTER",
+    isInPop: true,
+  },
+  {
     id: "chart-title",
-    isFullWidth: true,
-    labelName: "Title",
-    attrName: "title", // todo@aoao
-    setterType: "INPUT_SETTER",
+    labelName: "Dataset values",
+    attrName: "Dataset name",
+    setterType: "INPUT_SETTER", /// TextArea
+    isInPop: true,
   },
   {
-    id: "chart-xAxisTitle",
-    isFullWidth: true,
-    labelName: "xAxisTitle",
-    attrName: "xTitle",
-    setterType: "INPUT_SETTER",
-  },
-
-  {
-    id: "chart-xAxisType",
-    labelName: "X-axis type",
-    attrName: "xAxisType",
-    isFullWidth: true,
+    id: "chart-title",
+    labelName: "Aggregation method",
+    attrName: "aggregationMethod",
     setterType: "SELECT_SETTER",
-    options: XAXISTYPE,
+    isInPop: true,
   },
   {
-    id: "chart-yAxisTitle",
-    isFullWidth: true,
-    labelName: "yAxisTitle",
-    attrName: "yTitle",
-    setterType: "INPUT_SETTER",
-  },
-  {
-    id: "chart-legend-position",
-    labelName: "Legend position",
+    id: "chart-title",
+    labelName: "Type",
     attrName: "type",
-    setterType: "RADIO_GROUP_SETTER",
-    options: LEGEND_POSITION, // @todo 等晨哥把方位抽出
+    setterType: "SELECT_SETTER",
+    options: CHART_TYPE,
+    isInPop: true,
+  },
+  {
+    id: "chart-title",
+    labelName: "Tooltip",
+    attrName: "aggregationMethod",
+    setterType: "INPUT_SETTER",
+    isInPop: true,
   },
 ]
 

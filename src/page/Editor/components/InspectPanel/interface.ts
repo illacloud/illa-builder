@@ -41,6 +41,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   placeholder?: string
   shown?: (value: any | { [attrName: string]: any }) => boolean
   bindAttrName?: string | string[]
+  isInPop?: boolean
   // events?:event[] // TODO:
 }
 

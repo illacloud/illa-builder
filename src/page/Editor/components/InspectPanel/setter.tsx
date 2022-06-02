@@ -4,6 +4,7 @@ import { PanelSetterProps } from "./interface"
 import { getSetterByType } from "@/page/Editor/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/Editor/components/InspectPanel/context/selectedContext"
+import { PopPanelContext } from "@/page/Editor/components/InspectPanel/context/popPanelContext"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -15,11 +16,13 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     useCustomLabel = false,
     shown,
     bindAttrName,
+    isInPop,
   } = props
   const Comp = getSetterByType(setterType)
 
   const { panelConfig, handleUpdateDsl, handleUpdatePanelConfig } =
     useContext(SelectedPanelContext)
+  const { popPanelConfig, handleUpdateItem } = useContext(PopPanelContext)
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
@@ -47,12 +50,22 @@ export const Setter: FC<PanelSetterProps> = (props) => {
 
   const renderSetter = useMemo(() => {
     return Comp ? (
-      <Comp
-        {...props}
-        panelConfig={panelConfig}
-        handleUpdateDsl={handleUpdateDsl}
-        handleUpdatePanelConfig={handleUpdatePanelConfig}
-      />
+      isInPop ? (
+        <Comp
+          {...props}
+          panelConfig={popPanelConfig}
+          handleUpdatePanelConfig={() => {}}
+          handleUpdateDsl={() => {}}
+          handleUpdateItem={handleUpdateItem}
+        />
+      ) : (
+        <Comp
+          {...props}
+          panelConfig={panelConfig}
+          handleUpdateDsl={handleUpdateDsl}
+          handleUpdatePanelConfig={handleUpdatePanelConfig}
+        />
+      )
     ) : null
   }, [Comp, props, panelConfig, handleUpdateDsl, handleUpdatePanelConfig])
 

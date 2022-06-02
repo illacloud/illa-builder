@@ -121,10 +121,12 @@ export const ListItem: FC<ListItemProps> = (props) => {
     <div ref={ref} style={{ opacity }}>
       <div css={optionListItemCss}>
         <Trigger
+          withoutPadding
           colorScheme="white"
           popupVisible={modalVisible}
           content={
             <ModalV2
+              name={label}
               title={label}
               label={label}
               value={value}

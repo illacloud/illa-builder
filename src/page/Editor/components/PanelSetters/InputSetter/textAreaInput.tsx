@@ -18,7 +18,7 @@ export const TextAreaInput: FC<BaseInputSetterProps> = (props) => {
   const [inputValue, setInputValue] = useState(panelConfig[attrName])
 
   useEffect(() => {
-    setInputValue(handleUpdatePanelConfig[attrName])
+    setInputValue(panelConfig[attrName])
   }, [panelConfig[attrName]])
 
   return (
