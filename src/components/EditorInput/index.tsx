@@ -1,6 +1,7 @@
 import { useEffect, useRef, forwardRef, useState } from "react"
 import ReactDOM from "react-dom"
-import { EditorInputProps, HintBodyParamsProps } from "./interface"
+
+import { Trigger } from "@illa-design/trigger"
 
 import CodeMirror from "codemirror"
 import "codemirror/lib/codemirror.css"
@@ -21,7 +22,7 @@ import { applyCMStyle, applyHintBodyStyle, hintBodyTriggerStyle } from "./style"
 import { AutoCompleteItem } from "./autoComplete/item"
 import { HintComplement } from "./autoComplete/HintComplement"
 
-import { Trigger } from "@illa-design/trigger"
+import { EditorInputProps, HintBodyParamsProps } from "./interface"
 
 import "./modes"
 

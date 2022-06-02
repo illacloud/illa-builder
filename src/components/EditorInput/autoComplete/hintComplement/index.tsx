@@ -1,5 +1,9 @@
 import { FC } from "react"
 import { ArrayIcon } from "@illa-design/icon"
+import { css } from "@emotion/react"
+import { Tag } from "@illa-design/tag"
+
+import { HintComplementProps } from "./interface"
 import {
   mainTitleStyle,
   contentAreaStyle,
@@ -8,10 +12,6 @@ import {
   mainTextHeightStyle,
   infoTextHeightStyle,
 } from "./styles"
-import { css } from "@emotion/react"
-import { Tag } from "@illa-design/tag"
-
-import { HintComplementProps } from "./interface"
 
 export const HintComplement: FC<HintComplementProps> = (props) => {
   const { index } = props
