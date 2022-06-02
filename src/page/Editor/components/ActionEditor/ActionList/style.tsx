@@ -93,7 +93,9 @@ export const actionItemNameStyle = css`
   margin-right: 8px;
 `
 
-export function applyactionItemNameTextStyle(isWarning: boolean): SerializedStyles {
+export function applyactionItemNameTextStyle(
+  isWarning: boolean,
+): SerializedStyles {
   const warningColor = css`
     color: ${globalColor(`--${illaPrefix}-red-03`)};
   `
@@ -172,7 +174,10 @@ export const emptyActionListPlaceholderStyle = css`
   border: 2px dashed ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 
-export function applycontextMenuStyle(top?: number, left?: number): SerializedStyles {
+export function applycontextMenuStyle(
+  top?: number,
+  left?: number,
+): SerializedStyles {
   return css`
     position: fixed !important;
     top: ${top ?? 0}px;

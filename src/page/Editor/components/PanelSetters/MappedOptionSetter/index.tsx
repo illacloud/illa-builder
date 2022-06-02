@@ -24,7 +24,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
 
   const handleUpdate = (value: Partial<configItem>) => {
     const newChildrenPanelConfig = { ...childrenPanelConfig, ...value }
-      handleUpdatePanelConfig({ [attrName]: newChildrenPanelConfig })
+    handleUpdatePanelConfig({ [attrName]: newChildrenPanelConfig })
     // handleUpdateDsl({ [attrName]: newChildrenPanelConfig })
   }
 
