@@ -13,7 +13,6 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
         break
       }
       case "Delete": {
-        //  TODO: wait to do smt
         handleDeleteItem(index)
         break
       }

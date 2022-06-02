@@ -1,11 +1,18 @@
 import { Image } from "@illa-design/image"
-import { FC, useMemo } from "react"
+import { FC, useMemo, forwardRef, useImperativeHandle } from "react"
 import { WrappedImageProps } from "./interface"
 import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
-export const WrappedImage: FC<WrappedImageProps> = (props) => {
-  const { src, altText, radius, tooltipText, width, height } = props
+export const WrappedImage: FC<WrappedImageProps> = forwardRef((props, ref) => {
+  const { src, altText, radius, tooltipText, width, height, handleUpdateDsl } =
+    props
+
+  useImperativeHandle(ref, () => ({
+    setImageUrl: (src: string) => {
+      handleUpdateDsl({ src })
+    },
+  }))
 
   const finalRadius = useMemo(() => {
     const reg = /^\d+$/
@@ -31,7 +38,7 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
       />
     </TooltipWrapper>
   )
-}
+})
 
 WrappedImage.displayName = "ImageWidget"
 

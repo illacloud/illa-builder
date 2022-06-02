@@ -2,20 +2,43 @@ const DATA_BIND_REGEX = /{{([\s\S]*?)}}/
 
 const isDynamicValue = (value: string): boolean => DATA_BIND_REGEX.test(value)
 
+export enum EvaluationScriptType {
+  EXPRESSION = "EXPRESSION",
+  ASYNC_ANONYMOUS_FUNCTION = "ASYNC_ANONYMOUS_FUNCTION",
+}
+
+export const ScriptTemplate = "<<string>>"
+
+export const EvaluationScripts: Record<EvaluationScriptType, string> = {
+  [EvaluationScriptType.EXPRESSION]: `
+  function closedFunction () {
+    const result = ${ScriptTemplate}
+    return result;
+  }
+  closedFunction.call(THIS_CONTEXT)
+  `,
+  [EvaluationScriptType.ASYNC_ANONYMOUS_FUNCTION]: `
+  async function callback (script) {
+    const userFunction = script;
+    const result = await userFunction?.apply(THIS_CONTEXT, ARGUMENTS);
+    return result;
+  }
+  callback(${ScriptTemplate})
+  `,
+}
+
 function getDynamicStringSegments(dynamicString: string): string[] {
   let stringSegments: string[] = []
-  const indexOfDoubleParanStart = dynamicString.indexOf("{{")
-  if (indexOfDoubleParanStart === -1) {
+  const indexOfDoubleParenStart = dynamicString.indexOf("{{")
+  if (indexOfDoubleParenStart === -1) {
     return [dynamicString]
   }
-  //{{}}{{}}}
-  const firstString = dynamicString.substring(0, indexOfDoubleParanStart)
+  const firstString = dynamicString.substring(0, indexOfDoubleParenStart)
   if (firstString) stringSegments.push(firstString)
   let rest = dynamicString.substring(
-    indexOfDoubleParanStart,
+    indexOfDoubleParenStart,
     dynamicString.length,
   )
-  //{{}}{{}}}
   let sum = 0
   for (let i = 0; i <= rest.length - 1; i++) {
     const char = rest[i]
@@ -44,7 +67,6 @@ function getDynamicStringSegments(dynamicString: string): string[] {
 export const getDynamicBindings = (
   dynamicString: string,
 ): { stringSegments: string[]; jsSnippets: string[] } => {
-  // Protect against bad string parse
   if (!dynamicString || typeof dynamicString !== "string") {
     return { stringSegments: [], jsSnippets: [] }
   }
@@ -65,42 +87,60 @@ export const getDynamicBindings = (
   return { stringSegments: stringSegments, jsSnippets: paths }
 }
 
-export const ScriptTemplate = "<<string>>"
-
-export const getScriptToEval = (userScript: string): string => {
-  const script = `
-  function closedFunction () {
-    const result = ${ScriptTemplate}
-    return result;
-  }
-  closedFunction.call({})
-  `
-  const buffer = script.split(ScriptTemplate)
+export const getScriptToEval = (
+  userScript: string,
+  isTriggerBased: boolean = false,
+): string => {
+  const scriptType = getScriptType(isTriggerBased)
+  const buffer = EvaluationScripts[scriptType].split(ScriptTemplate)
   return `${buffer[0]}${userScript}${buffer[1]}`
 }
 
-export function evalScript(script: string) {
+const createGlobalData = (
+  dataTree: Record<string, any>,
+  context?: Record<string, any>,
+) => {
+  const GLOBAL_DATA: Record<string, any> = {}
+  GLOBAL_DATA.THIS_CONTEXT = {}
+  if (context) {
+    GLOBAL_DATA.THIS_CONTEXT = context
+  }
+  Object.keys(dataTree).forEach((datum) => {
+    GLOBAL_DATA[datum] = dataTree[datum]
+  })
+
+  return GLOBAL_DATA
+}
+
+const getScriptType = (isTriggerBased = false): EvaluationScriptType => {
+  let scriptType = EvaluationScriptType.EXPRESSION
+  if (isTriggerBased) {
+    scriptType = EvaluationScriptType.ASYNC_ANONYMOUS_FUNCTION
+  }
+  return scriptType
+}
+
+function evalScript(
+  script: string,
+  dataTree: Record<string, any>,
+  isTriggerBased: boolean,
+): any {
   return (function () {
     let result: any
 
-    // TODO: wait to a build GLOBAL_DATA function.
-    const GlobalData = {
-      builder: {
-        user: "weichen",
-        email: "weichen@illasolft.com",
-      },
-    }
+    const GlobalData = createGlobalData(dataTree)
 
     for (const entity in GlobalData) {
       // @ts-ignore: No types available
       self[entity] = GlobalData[entity]
     }
 
-    const userScript = getScriptToEval(script)
+    const userScript = getScriptToEval(script, isTriggerBased)
 
     try {
       result = eval(userScript)
     } catch (e) {
+      // TODO: add error handler
       console.log(e)
     } finally {
       for (const entity in GlobalData) {
@@ -112,12 +152,16 @@ export function evalScript(script: string) {
   })()
 }
 
-export const getDynamicValue = (dynamicBinding: string) => {
+export const getDynamicValue = (
+  dynamicBinding: string,
+  dataTree: Record<string, any>,
+  isTriggerBased: boolean = false,
+) => {
   const { jsSnippets, stringSegments } = getDynamicBindings(dynamicBinding)
   if (stringSegments.length) {
     const values = jsSnippets.map((jsSnippet, index) => {
       if (jsSnippet) {
-        return evalScript(jsSnippet)
+        return evalScript(jsSnippet, dataTree, isTriggerBased)
       } else {
         return stringSegments[index]
       }
@@ -125,7 +169,7 @@ export const getDynamicValue = (dynamicBinding: string) => {
     if (stringSegments.length === 1) {
       return values[0]
     }
-    // TODO: wait to add type transform
+    // TODO: add values handler.
     return values.join("")
   }
 }

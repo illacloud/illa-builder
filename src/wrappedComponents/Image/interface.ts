@@ -5,4 +5,5 @@ export interface WrappedImageProps {
   radius: string
   width: string
   height: string
+  handleUpdateDsl: (value: Record<string, string>) => void
 }

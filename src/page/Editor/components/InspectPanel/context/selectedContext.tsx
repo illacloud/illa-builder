@@ -1,8 +1,10 @@
-import { createContext, ReactNode, FC } from "react"
+import { createContext, ReactNode, FC, useCallback, useContext } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getWidgetInspectBySelectId } from "@/redux/inspect/inspectSelector"
 import { inspectActions } from "@/redux/inspect/inspectSlice"
 import { dslActions } from "@/redux/editor/dsl/dslSlice"
+import { getDynamicValue } from "@/utils/parserExpressionStatement"
+import { GLOBAL_DATA_CONTEXT } from "@/page/Editor/context/globalDataProvider"
 
 interface Injected {
   configPanel: Record<string, any>
@@ -16,20 +18,31 @@ interface Props {
   children?: ReactNode
 }
 
-// TODO: only support single select,wait to multi
+// TODO: @WeiChen only support single select,wait to multi
 export const SelectedProvider: FC<Props> = ({ children }) => {
   const panelConfig = useSelector(getWidgetInspectBySelectId) ?? {}
 
   const dispatch = useDispatch()
 
-  const handleUpdateConfigPanel = (value: Record<string, any>) => {
-    dispatch(
-      inspectActions.updateWidgetPanelConfig({
-        id: panelConfig.id,
-        value,
-      }),
-    )
-  }
+  const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
+
+  // TODO: @WeiChen wait new drag and drop
+  const handleUpdateConfigPanel = useCallback(
+    (value: Record<string, any>) => {
+      dispatch(
+        inspectActions.updateWidgetPanelConfig({
+          id: panelConfig.id,
+          value,
+        }),
+      )
+      // TODO: @WeiChen test case,wait new drag and drop
+      Object.keys(value).forEach((key) => {
+        const dynamicValue = getDynamicValue(value[key], globalData)
+        console.log("dynamicValue", dynamicValue)
+      })
+    },
+    [dispatch, globalData],
+  )
 
   const handleUpdateDsl = (value: Record<string, any>) => {
     dispatch(

@@ -16,6 +16,7 @@ import {
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { CanvasContainer } from "./components/CanvasContainer"
+import { GlobalDataProvider } from "@/page/Editor/context/globalDataProvider"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -41,17 +42,19 @@ export const Editor: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div css={editorContainerStyle}>
-        <PageNavBar css={navbarStyle} switchPanelState={switchPanelState} />
-        <div css={contentStyle}>
-          <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
-          <div css={middlePanelStyle}>
-            <CanvasContainer css={centerPanelStyle} />
-            <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+      <GlobalDataProvider>
+        <div css={editorContainerStyle}>
+          <PageNavBar css={navbarStyle} switchPanelState={switchPanelState} />
+          <div css={contentStyle}>
+            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+            <div css={middlePanelStyle}>
+              <CanvasContainer css={centerPanelStyle} />
+              <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+            </div>
+            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
           </div>
-          <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
         </div>
-      </div>
+      </GlobalDataProvider>
     </DndProvider>
   )
 }
