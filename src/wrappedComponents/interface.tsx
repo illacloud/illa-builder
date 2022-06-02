@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react"
 import { SessionType } from "./ComponentListBuilder"
-import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface SizeProps {
   w?: number | string

@@ -2,7 +2,7 @@ import { DashboardResource } from "@/redux/dashboard/resources/dashboardResource
 import {
   RESTAPIConfigureValues,
   MySQLConfigureValues,
-} from "@/page/Editor/components/ActionEditor/Resource"
+} from "@/page/App/components/ActionEditor/Resource"
 
 export interface Resource extends DashboardResource {
   config: MySQLConfigureValues | RESTAPIConfigureValues
