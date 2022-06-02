@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, useState } from "react"
 
 import { EditorInput } from "@/components/EditorInput"
 
@@ -10,7 +10,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   return (
     <div className={className}>
       DataWorkspace
-      <EditorInput mode="javascript" />
+      <EditorInput mode="sql-js" lineNumbers={false} />
     </div>
   )
 }

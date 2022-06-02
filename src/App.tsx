@@ -1,6 +1,6 @@
-import { Global } from "@emotion/react"
+import { Global, css } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import { globalStyle } from "./style"
+import { globalStyle, codemirrorGlobalStyle } from "./style"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
@@ -44,7 +44,7 @@ function App() {
   return (
     <BrowserRouter>
       <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>
-        <Global styles={globalStyle} />
+        <Global styles={css(globalStyle, codemirrorGlobalStyle)} />
         <Routes>
           <Route path="dashboard" element={<IllaApp />}>
             <Route index element={<Navigate to="./apps" />} />
