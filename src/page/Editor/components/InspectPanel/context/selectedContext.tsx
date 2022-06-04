@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { getWidgetInspectBySelectId } from "@/redux/currentApp/editor/inspect/inspectSelector"
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
 import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
-import { getDynamicValue } from "@/utils/parserExpressionStatement"
 import { GLOBAL_DATA_CONTEXT } from "@/page/Editor/context/globalDataProvider"
 
 interface Injected {
@@ -35,13 +34,8 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
           value,
         }),
       )
-      // TODO: @WeiChen test case,wait new drag and drop
-      Object.keys(value).forEach((key) => {
-        const dynamicValue = getDynamicValue(value[key], globalData)
-        console.log("dynamicValue", dynamicValue)
-      })
     },
-    [dispatch, globalData],
+    [dispatch, globalData, panelConfig],
   )
 
   const handleUpdateDsl = (value: Record<string, any>) => {
