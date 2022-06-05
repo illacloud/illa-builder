@@ -2,9 +2,20 @@ import { FC, useContext, useEffect, useRef } from "react"
 import { useDispatch } from "react-redux"
 import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 import { GLOBAL_DATA_CONTEXT } from "@/page/Editor/context/globalDataProvider"
+import { EventsInProps } from "@/wrappedComponents/DraggableComponent/interface"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 
 function getDisplayName(WrappedComponent: FC<any>) {
   return WrappedComponent.displayName || WrappedComponent.name || "Component"
+}
+
+const getEventScripts = (events: EventsInProps[], eventType: string) => {
+  const filterEvents = events.filter((event) => {
+    return event.eventType === eventType
+  })
+  return filterEvents.map((event) => {
+    return event
+  })
 }
 
 // TODO: wait to use a component,not a HOC
@@ -14,14 +25,33 @@ export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
     // and also can add some Component parser,when component structural changed
     const { props } = dsl
     const { hidden } = props
-    const ref = useRef()
+    const ref = useRef<Record<string, any>>()
     const dispatch = useDispatch()
 
-    const { handleUpdateGlobalData } = useContext(GLOBAL_DATA_CONTEXT)
+    const { handleUpdateGlobalData, globalData } =
+      useContext(GLOBAL_DATA_CONTEXT)
+
+    const getOnChangeEventScripts = () => {
+      const { events } = props
+      if (events) {
+        return getEventScripts(events, "onChange")
+      }
+      return []
+    }
+
+    const handleOnChange = () => {
+      getOnChangeEventScripts().forEach((scriptObj) => {
+        const { enabled, script } = scriptObj
+        if (!enabled) {
+          evaluateDynamicString("events", script, globalData)
+        }
+        if (enabled && evaluateDynamicString("events", enabled, globalData))
+          evaluateDynamicString("events", script, globalData)
+      })
+    }
 
     //TODO: @weichen wait new dsl action
     const handleUpdateDsl = (value: Record<string, any>) => {
-      console.log(dsl)
       dispatch(
         dslActions.updateDslProps({
           targetId: dsl.id,
@@ -33,10 +63,11 @@ export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
     }
 
     useEffect(() => {
+      console.log("ref.current", ref.current)
       if (ref.current) {
         // TODO:@weichen the key use widgetDisplayName
         const widgetName = dsl.id.split("-").join("")
-        handleUpdateGlobalData(widgetName, ref.current)
+        handleUpdateGlobalData(widgetName, { ...ref.current, type: "widget" })
       }
     }, [])
 
@@ -49,6 +80,7 @@ export function withParser<T>(WrappedComponent: FC<T>): FC<T> {
           {...props}
           handleUpdateDsl={handleUpdateDsl}
           ref={ref}
+          handleOnChange={handleOnChange}
         />
       </div>
     )

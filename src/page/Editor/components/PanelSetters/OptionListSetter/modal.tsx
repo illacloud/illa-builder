@@ -2,15 +2,13 @@ import { FC, useCallback, useState } from "react"
 import {
   labelAndInputWrapperCss,
   listWrapperCss,
-  modalCloseIconCss,
-  modalHeaderCss,
   modalInputWrapperCss,
   modalLabelCss,
   modalWrapperCss,
 } from "./style"
 import { ModalProps } from "./interface"
 import { Input } from "@illa-design/input"
-import { CloseIcon } from "@illa-design/icon"
+import ModalHeader from "@/page/Editor/components/PanelSetters/PublicComponent/Modal/header"
 
 export const Modal: FC<ModalProps> = (props) => {
   const {
@@ -63,12 +61,7 @@ export const Modal: FC<ModalProps> = (props) => {
 
   return (
     <div css={modalWrapperCss}>
-      <div css={modalHeaderCss}>
-        <span>{title}</span>
-        <span onClick={handleClickCloseIcon} css={modalCloseIconCss}>
-          <CloseIcon />
-        </span>
-      </div>
+      <ModalHeader title={title} handleCloseModal={handleCloseModal} />
       <div css={listWrapperCss}>
         <div css={labelAndInputWrapperCss}>
           <span css={modalLabelCss}>Value</span>

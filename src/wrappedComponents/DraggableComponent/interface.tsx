@@ -1,6 +1,12 @@
 import { HTMLAttributes } from "react"
 import { WidgetType } from "@/wrappedComponents/WidgetBuilder"
 
+export interface EventsInProps {
+  script: string
+  eventType: string
+  enabled?: string
+}
+
 export interface BaseProps {
   id: string
   widgetName: string
@@ -33,6 +39,7 @@ export interface BaseProps {
       | "relative"
       | "static"
       | "sticky"
+    events?: EventsInProps[]
   }
 }
 

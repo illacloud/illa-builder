@@ -4,38 +4,48 @@ import { getWidgetInspectBySelectId } from "@/redux/currentApp/editor/inspect/in
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
 import { dslActions } from "@/redux/currentApp/editor/dsl/dslSlice"
 import { GLOBAL_DATA_CONTEXT } from "@/page/Editor/context/globalDataProvider"
+import { BaseEventItem } from "@/page/Editor/components/PanelSetters/EventHandlerSetter/interface"
 
 interface Injected {
   panelConfig: Record<string, any>
-  handleUpdateDsl: (value: any) => void
+  handleUpdateDsl: (value: Record<string, any>) => void
   handleUpdatePanelConfig: (value: Record<string, any>) => void
 }
 
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
 
 interface Props {
+  event?: BaseEventItem
+  handleUpdateItemPanelConfig?: (value: Record<string, any>) => void
+  handleUpdateItemDsl?: (value: Record<string, any>) => void
   children?: ReactNode
 }
 
 // TODO: @WeiChen only support single select,wait to multi
-export const SelectedProvider: FC<Props> = ({ children }) => {
-  const panelConfig = useSelector(getWidgetInspectBySelectId) ?? {}
+export const SelectedProvider: FC<Props> = ({
+                                              event,
+                                              children,
+                                              handleUpdateItemPanelConfig,
+                                              handleUpdateItemDsl,
+                                            }) => {
+  //  FIXME: wait Trigger fix,Not advisable method,because react-redux can't use in @illa-design/Trigger,and Trigger is mount to HTML.body,not App,so can't use
+  const panelConfig = event ?? useSelector(getWidgetInspectBySelectId) ?? {}
+  const dispatch = !event ? useDispatch() : () => {
+  }
 
-  const dispatch = useDispatch()
-
-  const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
+  const {globalData} = useContext(GLOBAL_DATA_CONTEXT)
 
   // TODO: @WeiChen wait new drag and drop
   const handleUpdatePanelConfig = useCallback(
-    (value: Record<string, any>) => {
-      dispatch(
-        inspectActions.updateWidgetPanelConfig({
-          id: panelConfig.id,
-          value,
-        }),
-      )
-    },
-    [dispatch, globalData, panelConfig],
+      (value: Record<string, any>) => {
+        dispatch(
+            inspectActions.updateWidgetPanelConfig({
+              id: panelConfig.id,
+              value,
+            }),
+        )
+      },
+      [globalData, panelConfig],
   )
 
   const handleUpdateDsl = (value: Record<string, any>) => {
@@ -51,8 +61,9 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
 
   const value = {
     panelConfig,
-    handleUpdateDsl,
-    handleUpdatePanelConfig,
+    handleUpdateDsl: handleUpdateItemDsl ?? handleUpdateDsl,
+    handleUpdatePanelConfig:
+      handleUpdateItemPanelConfig ?? handleUpdatePanelConfig,
   }
 
   return (

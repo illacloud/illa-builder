@@ -1,10 +1,22 @@
 import { Switch } from "@illa-design/switch"
-import { FC } from "react"
+import { FC, forwardRef, useImperativeHandle } from "react"
 import { SwitchProps } from "./interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { withParser } from "@/wrappedComponents/parserHOC"
 
-export const WrappedSwitch: FC<SwitchProps> = (props) => {
+export const WrappedSwitch: FC<SwitchProps> = forwardRef((props, ref) => {
+  useImperativeHandle(ref, () => ({
+    setValue: (value: boolean) => {
+      handleUpdateDsl({ value })
+    },
+    clearValue: () => {
+      handleUpdateDsl({ value: undefined })
+    },
+    toggleValue: () => {
+      handleUpdateDsl({ value: !props.value })
+    },
+  }))
+
   const {
     label,
     labelAlign,
@@ -19,6 +31,7 @@ export const WrappedSwitch: FC<SwitchProps> = (props) => {
     checkedBackgroundColor = "blue",
     tooltipText,
     handleUpdateDsl,
+    handleOnChange,
   } = props
   return (
     <LabelWrapper
@@ -36,13 +49,14 @@ export const WrappedSwitch: FC<SwitchProps> = (props) => {
         disabled={disabled}
         colorScheme={checkedBackgroundColor}
         onChange={(value) => {
+          handleOnChange()
           handleUpdateDsl({ value })
         }}
         defaultChecked={defaultValue}
       />
     </LabelWrapper>
   )
-}
+})
 
 WrappedSwitch.displayName = "SwitchWidget"
 

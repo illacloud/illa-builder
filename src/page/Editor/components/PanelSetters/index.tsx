@@ -8,6 +8,8 @@ import { ColorSelectSetter } from "./SelectSetter/colorSelect"
 import { OptionListSetter } from "@/page/Editor/components/PanelSetters/OptionListSetter"
 import { MappedOptionSetter } from "@/page/Editor/components/PanelSetters/MappedOptionSetter"
 import { SearchSelectSetter } from "@/page/Editor/components/PanelSetters/SelectSetter/searchSelect"
+import { EventHandlerSetter } from "@/page/Editor/components/PanelSetters/EventHandlerSetter"
+import { EventTargetSelect } from "@/page/Editor/components/PanelSetters/SelectSetter/eventTargetSelect"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -20,6 +22,8 @@ const SetterTypeMapSetter = {
   COLOR_SELECT_SETTER: ColorSelectSetter,
   OPTION_LIST_SETTER: OptionListSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,
+  EVENT_HANDLER_SETTER: EventHandlerSetter,
+  EVENT_TARGET_SELECT_SETTER: EventTargetSelect,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter
