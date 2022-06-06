@@ -9,6 +9,7 @@ import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
+import configReducer from "@/redux/currentApp/config/configSlice"
 
 const editorReducer = combineReducers({
   inspect: inspectReducer,
@@ -20,6 +21,7 @@ const actionReducer = combineReducers({
 })
 
 const appReducer = combineReducers({
+  config: configReducer,
   editor: editorReducer,
   action: actionReducer,
   appInfo: appInfoReducer,
