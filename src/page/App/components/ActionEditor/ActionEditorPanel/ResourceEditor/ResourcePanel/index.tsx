@@ -40,7 +40,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     let resourceType: string
     let resource
     const activeActionItem = useSelector(selectAllActionItem).find(
-      ({ id }) => id === activeActionItemId,
+      ({ actionId: id }) => id === activeActionItemId,
     )
     const allResource = useSelector(selectAllResource)
     const dispatch = useDispatch()

@@ -66,13 +66,13 @@ export const ActionList: FC<ActionListProps> = (props) => {
       return actionItems
     }
 
-    return actionItems.filter(({ name }) =>
-      name.toLowerCase().includes(query.toLowerCase()),
+    return actionItems.filter(({ displayName }) =>
+      displayName.toLowerCase().includes(query.toLowerCase()),
     )
   }, [actionItems, query])
 
   const actionItemsNameSet = useMemo(() => {
-    return new Set(actionItems.map((i) => i.name))
+    return new Set(actionItems.map((i) => i.displayName))
   }, [actionItems])
 
   function editName(id: string, name: string) {
@@ -86,8 +86,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
   function updateName() {
     dispatch(
       actionListActions.updateActionItemReducer({
-        id: editingActionItemId,
-        name: editingName,
+        actionId: editingActionItemId,
+        displayName: editingName,
       }),
     )
     setEditingActionItemId("")
@@ -95,7 +95,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
-    const { id, name, status } = item
+    const { actionId: id, displayName: name, status } = item
     const isWarning = status === "warning"
     // TODO: time should retrieve from ActionItem.network
     const time = "0.7s"
@@ -191,21 +191,23 @@ export const ActionList: FC<ActionListProps> = (props) => {
         url: "/actions",
         method: "POST",
         data: {
-          name: generateName(type, actionItems, actionItemsNameSet),
+          displayName: generateName(type, actionItems, actionItemsNameSet),
           type,
           resourceId: "",
         },
       },
       ({ data }) => {
         dispatch(actionListActions.addActionItemReducer(data))
-        onAddActionItem(id)
+        onAddActionItem(data?.actionId)
       },
     )
   }
 
   function onDuplicate() {
     const newActionItems = actionItems.slice(0)
-    const targetItem = newActionItems.find((i) => i.id === contextMenuActionId)
+    const targetItem = newActionItems.find(
+      (i) => i.actionId === contextMenuActionId,
+    )
 
     if (targetItem) {
       const type = targetItem.type
@@ -213,9 +215,9 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
       dispatch(
         actionListActions.addActionItemReducer({
-          id,
+          actionId: id,
           type,
-          name: generateName(type, actionItems, actionItemsNameSet),
+          displayName: generateName(type, actionItems, actionItemsNameSet),
         }),
       )
 

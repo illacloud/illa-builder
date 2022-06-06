@@ -90,11 +90,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       return null
     }
 
-    return actionItems.find((action) => action.id === activeActionItemId)
+    return actionItems.find((action) => action.actionId === activeActionItemId)
   }, [actionItems, activeActionItemId])
 
   const actionItemsNameSet = useMemo(() => {
-    return new Set(actionItems.map((i) => i.name))
+    return new Set(actionItems.map((i) => i.displayName))
   }, [actionItems])
 
   const actionType = activeActionItem?.type
