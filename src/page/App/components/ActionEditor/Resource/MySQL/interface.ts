@@ -9,6 +9,8 @@ import { ConnectionRef } from "@/page/App/components/ActionEditor/ResourceForm/E
 export interface MySQLConfigureProps {
   resourceId?: string
   connectionRef: RefObject<ConnectionRef>
+  onSubmit?: (data: any) => void
+  onTestConnection?: (data: any) => void
 }
 
 export type MySQLConfigureValues = BaseOptions & AdvancedOptions
