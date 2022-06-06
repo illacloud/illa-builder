@@ -63,6 +63,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
     (jsString: string, keyInDataTree: string) => {
       // const res: Array<any> = []
       const realJS = getComputedValue(jsString)
+      console.log("realJS", realJS)
       const res = evaluateDynamicString(keyInDataTree, realJS, {
         ...GLOBAL_DATA,
         dataOptions: realDataSources,
@@ -75,8 +76,11 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
   const calcData = useMemo(() => {
     const options: configItem[] = []
     const keyInDataTree = panelConfig.id
-    const realLabelValue = getRealValue(labelValue, keyInDataTree)
-    const realOptionValue = getRealValue(optionValue, keyInDataTree)
+    const realLabelValue = getRealValue(labelValue || "{{item}}", keyInDataTree)
+    const realOptionValue = getRealValue(
+      optionValue || "{{item}}",
+      keyInDataTree,
+    )
     const realDisabledValue = getRealValue(disabledValue, keyInDataTree)
     const maxLength = Math.max(
       realLabelValue.length,
@@ -113,6 +117,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
           <div css={modalInputWrapperCss}>
             <Input
               value={optionValue}
+              placeholder="{{item}}"
               onChange={(value) => {
                 setOptionValue(value)
                 handleUpdate({ value })
@@ -125,6 +130,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
           <div css={modalInputWrapperCss}>
             <Input
               value={labelValue}
+              placeholder="{{item}}"
               onChange={(value) => {
                 setLabelValue(value)
                 handleUpdate({ label: value })
