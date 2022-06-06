@@ -2,7 +2,7 @@ import { FC } from "react"
 import { iconCss, itemContainerCss, nameCss } from "./style"
 import { ComponentItemProps } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
 // TODO:@longbo 要删除的
-import { generatorBaseDSL } from "@/utils/generators/generatorBaseDSL"
+// import { generatorBaseDSL } from "@/utils/generators/generatorBaseDSL"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
   const { displayName, icon, id, ...partialDragInfo } = props
@@ -17,7 +17,7 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
           ...partialDragInfo,
         }
         // TODO:@longbo drop 的时候掉这个方法
-        // dragAndDropParser(fullDragInfo)
+        // generatorBaseDSL(fullDragInfo)
       }}
     >
       <span css={iconCss}>{icon}</span>

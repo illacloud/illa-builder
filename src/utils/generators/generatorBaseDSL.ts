@@ -24,7 +24,7 @@ export const generatorBaseDSL = (
   }
   let childrenNodeDSL: BaseDSL[] = []
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
-    widgetInfo.childrenNode.map((childNode: any) => {
+    widgetInfo.childrenNode.map((childNode) => {
       if (!childrenNodeDSL) childrenNodeDSL = []
       childrenNodeDSL.push(generatorBaseDSL(childNode))
     })
