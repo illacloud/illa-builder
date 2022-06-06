@@ -1,7 +1,6 @@
 import { FC, useRef, useState, useContext } from "react"
 import { css } from "@emotion/react"
-import { Alert } from "@illa-design/alert"
-import { SuccessIcon, CloseIcon } from "@illa-design/icon"
+import { RightIcon, CloseIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
 import { EditorInput } from "@/components/EditorInput"
 import {
@@ -9,20 +8,24 @@ import {
   applyContainerHeight,
   applyResizerStyle,
 } from "@/page/App/components/ActionEditor/style"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import {
-  resAlertBgcStyle,
   resCloseIconStyle,
   applyResContainerStyle,
-  resStatusStyle,
+  resHeaderStyle,
   resTitleStyle,
+  resContentStyle,
+  resStatusIconStyle,
+  resSuccessStatusIconStyle,
 } from "./style"
 import { ActionResultProps } from "./interface"
-import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
+  const { onClose } = props
+
   const layerRef = useRef<HTMLDivElement>(null)
   const [containerHeight, setContainerHeight] = useState(182)
-  const { onChange } = props
+  const [title, setTitle] = useState("Ran successfully")
   const { editorHeight } = useContext(ActionEditorContext)
   const onHeightChange = (height: number) => {
     setContainerHeight(height)
@@ -44,27 +47,21 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           applyContainerHeight(containerHeight),
         )}
       >
-        <Alert
-          _css={resAlertBgcStyle}
-          icon={
-            <div css={resStatusStyle}>
-              <SuccessIcon />
-            </div>
-          }
-          title={<span css={resTitleStyle}>action ran successfully</span>}
-          closable
-          closeElement={
-            <div
-              css={resCloseIconStyle}
-              onClick={() => {
-                onChange?.(false)
-              }}
-            >
-              <CloseIcon />
-            </div>
-          }
+        <div css={resHeaderStyle}>
+          <RightIcon
+            css={css(resStatusIconStyle, resSuccessStatusIconStyle)}
+            size="10px"
+          />
+          <span css={resTitleStyle}>{title}</span>
+          <CloseIcon css={resCloseIconStyle} onClick={onClose} />
+        </div>
+
+        <EditorInput
+          mode="application/json"
+          lineNumbers={false}
+          readOnly
+          css={resContentStyle}
         />
-        <EditorInput mode="application/json" lineNumbers={false} readOnly />
       </div>
     </div>
   )

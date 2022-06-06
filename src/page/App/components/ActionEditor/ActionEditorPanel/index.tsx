@@ -116,9 +116,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
       dispatch(
         actionListActions.addActionItemReducer({
-          id,
+          actionId: id,
           type,
-          name: generateName(type, actionItems, actionItemsNameSet),
+          displayName: generateName(type, actionItems, actionItemsNameSet),
         }),
       )
 
@@ -206,8 +206,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           )}
           {actionResVisible && (
             <ActionResult
-              onChange={(val) => {
-                setActionResVisible(val)
+              onClose={() => {
+                setActionResVisible(false)
               }}
             />
           )}
