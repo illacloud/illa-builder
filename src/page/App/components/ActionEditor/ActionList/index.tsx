@@ -184,8 +184,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function addActionItem(type: ActionType) {
-    const id = uuidV4()
-
     Api.request(
       {
         url: "/actions",
