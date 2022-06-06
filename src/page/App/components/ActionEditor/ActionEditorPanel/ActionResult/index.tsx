@@ -17,7 +17,7 @@ import {
   resTitleStyle,
 } from "./style"
 import { ActionResultProps } from "./interface"
-import { ActionEditorContext } from "@/page/Editor/components/ActionEditor/context"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
   const layerRef = useRef<HTMLDivElement>(null)

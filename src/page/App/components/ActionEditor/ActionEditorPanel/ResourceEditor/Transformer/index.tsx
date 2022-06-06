@@ -11,7 +11,7 @@ import {
   radioBtnStyle,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
 import { EditorInput } from "@/components/EditorInput"
-import { disableTransformerStyle } from "@/page/Editor/components/ActionEditor/ActionEditorPanel/Transformer/style"
+import { disableTransformerStyle } from "@/page/App/components/ActionEditor/ActionEditorPanel/Transformer/style"
 
 export const Transformer = () => {
   const { t } = useTranslation()
