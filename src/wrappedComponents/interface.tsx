@@ -25,7 +25,7 @@ export interface BaseWidgetInfo {
 
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
   id: string
-  childrenNode?: BaseDSL[]
+  childrenNode?: WidgetCardInfo[]
   defaults?: {
     [key: string]: any
   }
