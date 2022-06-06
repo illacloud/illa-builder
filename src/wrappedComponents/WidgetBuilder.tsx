@@ -22,6 +22,11 @@ import {
   RADIO_GROUP_WIDGET_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
+import {
+  DATE_PANEL_CONFIG,
+  DATE_WIDGET_CONFIG,
+  DateWidget,
+} from "@/wrappedComponents/Date"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -58,6 +63,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: InputWidget,
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
+  },
+  DATE_WIDGET: {
+    widget: DateWidget,
+    config: DATE_WIDGET_CONFIG,
+    panelConfig: DATE_PANEL_CONFIG,
   },
 }
 
