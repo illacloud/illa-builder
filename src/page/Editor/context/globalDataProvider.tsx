@@ -1,5 +1,6 @@
 import { createContext, ReactNode, FC, useState, useEffect } from "react"
 import { NotificationType, Notification } from "@illa-design/notification"
+import { isValidUrlScheme } from "@/utils/typeHelper"
 
 interface Injected {
   globalData: { [key: string]: any }
@@ -55,10 +56,14 @@ const runScript = (script: string) => {
 
 // {{goToURL("https://www.baidu.com",true)}}
 const goToURL = (url: string, isNewTab?: boolean) => {
+  let finalURL = url
+  if (!isValidUrlScheme(finalURL)) {
+    finalURL = `https://${finalURL}`
+  }
   if (isNewTab) {
-    window.open(url)
+    window.open(finalURL, "_blank")
   } else {
-    window.location.href = url
+    window.location.assign(finalURL)
   }
 }
 

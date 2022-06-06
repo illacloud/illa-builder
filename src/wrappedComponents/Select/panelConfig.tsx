@@ -43,7 +43,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         isFullWidth: true,
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
-        defaultValue: "[]",
+        defaultValue: "{{[]}}",
         bindAttrName: "optionMode",
         shown: (value) => value === "mapped",
       },

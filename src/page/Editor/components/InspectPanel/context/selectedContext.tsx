@@ -23,29 +23,28 @@ interface Props {
 
 // TODO: @WeiChen only support single select,wait to multi
 export const SelectedProvider: FC<Props> = ({
-                                              event,
-                                              children,
-                                              handleUpdateItemPanelConfig,
-                                              handleUpdateItemDsl,
-                                            }) => {
+  event,
+  children,
+  handleUpdateItemPanelConfig,
+  handleUpdateItemDsl,
+}) => {
   //  FIXME: wait Trigger fix,Not advisable method,because react-redux can't use in @illa-design/Trigger,and Trigger is mount to HTML.body,not App,so can't use
   const panelConfig = event ?? useSelector(getWidgetInspectBySelectId) ?? {}
-  const dispatch = !event ? useDispatch() : () => {
-  }
+  const dispatch = !event ? useDispatch() : () => {}
 
-  const {globalData} = useContext(GLOBAL_DATA_CONTEXT)
+  const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
   // TODO: @WeiChen wait new drag and drop
   const handleUpdatePanelConfig = useCallback(
-      (value: Record<string, any>) => {
-        dispatch(
-            inspectActions.updateWidgetPanelConfig({
-              id: panelConfig.id,
-              value,
-            }),
-        )
-      },
-      [globalData, panelConfig],
+    (value: Record<string, any>) => {
+      dispatch(
+        inspectActions.updateWidgetPanelConfig({
+          id: panelConfig.id,
+          value,
+        }),
+      )
+    },
+    [globalData, panelConfig],
   )
 
   const handleUpdateDsl = (value: Record<string, any>) => {

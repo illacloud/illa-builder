@@ -35,3 +35,29 @@ export function isWidget(entity: Record<string, any>) {
     typeof entity === "object" && "TYPE" in entity && entity.TYPE === "WIDGET"
   )
 }
+
+export function isURL(str: string) {
+  const pattern = new RegExp(
+    "^((blob:)?https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i",
+  ) // fragment locator
+  return !!pattern.test(str)
+}
+
+export const isValidUrlScheme = (url: string): boolean => {
+  return (
+    // Standard http call
+    url.startsWith("http://") ||
+    // Secure http call
+    url.startsWith("https://") ||
+    // Mail url to directly open email app prefilled
+    url.startsWith("mailto:") ||
+    // Tel url to directly open phone app prefilled
+    url.startsWith("tel:")
+  )
+}
