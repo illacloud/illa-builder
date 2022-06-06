@@ -4,4 +4,5 @@ export interface ResourceEditorProps {
   onEditResource?: (resourceId: string) => void
   onChangeParam?: () => void
   onSaveParam?: () => void
+  onRun?: (result: any) => void
 }

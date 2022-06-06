@@ -33,6 +33,7 @@ export const resTitleStyle = css`
 `
 
 export const resContentStyle = css`
+  overflow: auto;
   & .CodeMirror {
     border: 0;
   }
@@ -53,6 +54,9 @@ export const resCloseIconStyle = css`
 
 export function applyResContainerStyle(maxHeight: number): SerializedStyles {
   return css`
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     min-height: 182px;
     max-height: ${maxHeight}px;
   `

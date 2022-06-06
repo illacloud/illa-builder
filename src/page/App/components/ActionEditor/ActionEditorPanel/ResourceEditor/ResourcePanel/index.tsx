@@ -35,7 +35,7 @@ const dataTransform = (data: any) => {
 
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
-    const { resourceId, onChange, onSave } = props
+    const { resourceId, onChange, onSave, onRun } = props
     const { activeActionItemId } = useContext(ActionEditorContext)
     let resourceType: string
     let resource
@@ -73,7 +73,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       const _data = dataTransform(params)
       Api.request(
         {
-          url: "/api/v1/actions/:id/run",
+          url: "/actions/:id/run",
           method: "POST",
           data: _data,
         },
@@ -82,6 +82,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
             setShowAlert(true)
           }
           setResult(data.data)
+          onRun && onRun(data.data)
         },
       )
     }
@@ -128,6 +129,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
             <Alert
               type={result?.status === "success" ? "success" : "error"}
               title={result?.message}
+              closable
             />
           )}
         </div>

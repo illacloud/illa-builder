@@ -3,4 +3,5 @@ export interface ResourcePanelProps {
   activeActionItemId?: string | null
   onChange?: () => void
   onSave?: () => void
+  onRun?: (result: any) => void
 }

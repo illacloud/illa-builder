@@ -30,16 +30,12 @@ const { Item: MenuItem } = Menu
 
 function renderEditor(
   type: ActionType | undefined,
-  props: Partial<ActionEditorPanelProps>,
   ref: Ref<triggerRunRef>,
+  onSaveParam: () => void,
+  onRun: (result: any) => void,
+  props: Partial<ActionEditorPanelProps>,
 ) {
-  const {
-    onEditResource,
-    onChangeResource,
-    onCreateResource,
-    onChange,
-    onSave,
-  } = props
+  const { onEditResource, onChangeResource, onCreateResource, onChange } = props
 
   switch (type) {
     case "action":
@@ -47,7 +43,8 @@ function renderEditor(
         <ResourceEditor
           ref={ref}
           onChangeParam={onChange}
-          onSaveParam={onSave}
+          onSaveParam={onSaveParam}
+          onRun={onRun}
           onCreateResource={onCreateResource}
           onEditResource={onEditResource}
           onChangeResource={onChangeResource}
@@ -58,7 +55,7 @@ function renderEditor(
         <TransformerEditor
           ref={ref}
           onChangeParam={onChange}
-          onSaveParam={onSave}
+          onSaveParam={onSaveParam}
         />
       )
     default:
@@ -82,7 +79,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
-  const [actionResVisible, setActionResVisible] = useState(true)
+  const [actionResVisible, setActionResVisible] = useState(false)
+  const [result, setResult] = useState()
   const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
   const activeActionItem = useMemo(() => {
@@ -148,6 +146,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     </Menu>
   )
 
+  function onSaveParam() {
+    onSave && onSave()
+  }
+
+  function onRun(result: any) {
+    setActionResVisible(true)
+    setResult(JSON.stringify(result.data, null, "····"))
+  }
+
   return (
     <div css={containerStyle}>
       <header css={headerStyle}>
@@ -193,19 +200,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       </header>
       {activeActionItem && (
         <>
-          {renderEditor(
-            actionType,
-            {
-              onChange,
-              onSave,
-              onCreateResource,
-              onEditResource,
-              onChangeResource,
-            },
-            triggerRunRef,
-          )}
+          {renderEditor(actionType, triggerRunRef, onSaveParam, onRun, {
+            onChange,
+            onCreateResource,
+            onEditResource,
+            onChangeResource,
+          })}
           {actionResVisible && (
             <ActionResult
+              result={result}
               onClose={() => {
                 setActionResVisible(false)
               }}
