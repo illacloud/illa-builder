@@ -15,6 +15,7 @@ CodeMirror.defineMode(EditorModes.TEXT_JS, function (config) {
     {
       open: "{{",
       close: "}}",
+      parseDelimiters: true,
       mode: CodeMirror.getMode(config, {
         name: "javascript",
       }),
@@ -28,6 +29,7 @@ CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
     {
       open: "{{",
       close: "}}",
+      parseDelimiters: true,
       mode: CodeMirror.getMode(config, {
         name: "javascript",
       }),

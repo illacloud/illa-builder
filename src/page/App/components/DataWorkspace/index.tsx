@@ -13,6 +13,10 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
     <div className={className}>
       DataWorkspace
       <EditorInput mode="sql-js" />
+      <EditorInput mode="javascript" />
+      <EditorInput mode="sql" />
+      <CodeEditor mode="SQL" />
+      <CodeEditor mode="JAVASCRIPT" />
       <CodeEditor mode="TEXT_JS" />
       <CodeEditor mode="SQL_JS" />
     </div>

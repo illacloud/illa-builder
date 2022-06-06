@@ -11,7 +11,7 @@ export enum EditorModes {
 
 export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  mode: "TEXT_JS" | "SQL_JS"
+  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT"
   value?: string
   lineNumbers?: boolean
   height?: string
