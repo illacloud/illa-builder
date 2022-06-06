@@ -10,7 +10,8 @@ import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
 import { ActionEditorContext } from "./context"
 
-export const ActionEditor: FC<ActionEditorProps> = () => {
+export const ActionEditor: FC<ActionEditorProps> = (props) => {
+  const { className } = props
   const { t } = useTranslation()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
@@ -62,7 +63,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
         editorHeight,
       }}
     >
-      <div>
+      <div className={className}>
         <ActionEditorLayout
           updateEditorHeight={(val: number) => {
             setEditorHeight(val)
