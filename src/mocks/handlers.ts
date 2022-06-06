@@ -4,14 +4,6 @@ import { v4 as uuidV4 } from "uuid"
 const baseUrl = import.meta.env.VITE_API_BASE_URL
 
 export const handlers = [
-  rest.post(`${baseUrl}/resources/testConnection`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        message: "Mock Test Connection Success!",
-      }),
-    )
-  }),
   rest.post(`${baseUrl}/actions/:id/run`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -170,6 +162,39 @@ export const handlers = [
         ...data,
       }),
     )
+  }),
+
+  rest.post(`${baseUrl}/resources`, (req, res, ctx) => {
+    const data = req.body
+
+    return res(
+      ctx.delay(1000),
+      ctx.status(200),
+      ctx.json({
+        resourceId: uuidV4(),
+        ...data,
+      }),
+    )
+  }),
+
+  rest.put(`${baseUrl}/resources/:resourceId`, (req, res, ctx) => {
+    const { resourceId } = req.params
+    const data = req.body
+
+    return res(
+      ctx.delay(1000),
+      ctx.status(200),
+      ctx.json({
+        resourceId,
+        ...data,
+      }),
+    )
+  }),
+
+  rest.post(`${baseUrl}/resources/testConnection`, (req, res, ctx) => {
+    return Math.random() > 0.2
+      ? res(ctx.delay(500), ctx.status(200), ctx.text("Connection success!"))
+      : res(ctx.delay(1000), ctx.status(400), ctx.text("Connection fail."))
   }),
 
   rest.get(`${baseUrl}/dashboard/apps`, (req, res, ctx) => {

@@ -7,11 +7,8 @@ import { Switch } from "@illa-design/switch"
 import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
-import { useDispatch, useSelector } from "react-redux"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
+import { useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
-import { v4 as uuidV4 } from "uuid"
 import {
   descriptionStyle,
   errorMessageStyle,
@@ -64,10 +61,10 @@ const advancedOptionSet = new Set([
 const dataTransform = (data: MySQLConfigureValues) => {
   let options: {
     [x: string]:
-      | string
-      | number
-      | boolean
-      | { [x: string]: string | number | boolean }
+    | string
+    | number
+    | boolean
+    | { [x: string]: string | number | boolean }
   } = {}
   let advanced: { [x: string]: string | number | boolean } = {}
   Object.keys(data).forEach((key) => {
@@ -86,9 +83,8 @@ const dataTransform = (data: MySQLConfigureValues) => {
 
 export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
   (props, ref) => {
-    const { resourceId, connectionRef } = props
+    const { resourceId, connectionRef, onSubmit, onTestConnection } = props
     const { t } = useTranslation()
-    const dispatch = useDispatch()
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
@@ -119,12 +115,15 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
         ssl: expandSSL,
       }
       const _data = dataTransform(data)
-      alert(JSON.stringify(_data, null, 2))
-      Api.request({
-        url: "/resources/testConnection",
-        method: "POST",
-        data: _data,
-      })
+
+      onTestConnection &&
+        onTestConnection({
+          resourceName: data.name,
+          resourceType: "MySQL",
+          dbName: "",
+          created: Date.now().toString(),
+          config: _data,
+        })
     }
 
     useImperativeHandle(connectionRef, () => {
@@ -133,38 +132,20 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       }
     })
 
-    const onSubmit: SubmitHandler<MySQLConfigureValues> = (data) => {
+    const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
       data = { ...data, ssh: expandSSH, ssl: expandSSL }
 
-      // update
-      if (resourceId) {
-        dispatch(
-          resourceActions.updateResourceItemReducer({
-            resourceId,
-            ...resourceConfig,
-            resourceName: data.name,
-            resourceType: "MySQL",
-            dbName: "",
-            created: Date.now().toString(),
-            config: data,
-          }),
-        )
-        return
-      }
-
-      dispatch(
-        resourceActions.addResourceItemReducer({
-          resourceId: uuidV4(),
+      onSubmit &&
+        onSubmit({
           resourceName: data.name,
           resourceType: "MySQL",
           dbName: "",
           created: Date.now().toString(),
           config: data,
-        }),
-      )
+        })
     }
     return (
-      <form onSubmit={handleSubmit(onSubmit)} css={formStyle} ref={ref}>
+      <form onSubmit={handleSubmit(submitForm)} css={formStyle} ref={ref}>
         <div css={css(gridContainerStyle, formPaddingStyle)}>
           <div css={gridRowContainerStyle}>
             <label css={requiredLabelTextStyle}>
