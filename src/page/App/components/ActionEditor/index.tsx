@@ -28,10 +28,10 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
       return
     }
 
-    const lastItemId = actionItems[length - 1].id
+    const lastItemId = actionItems[length - 1].actionId
 
     if (id === lastItemId && length > 1) {
-      updateActiveActionItemId(actionItems[length - 2].id)
+      updateActiveActionItemId(actionItems[length - 2].actionId)
     } else {
       updateActiveActionItemId(lastItemId)
     }
@@ -48,7 +48,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
     setIsActionDirty(false)
     setActiveActionItemId(id)
     const resourceId =
-      actionItems.find(({ id: actionItemId }) => id === actionItemId)
+      actionItems.find(({ actionId: actionItemId }) => id === actionItemId)
         ?.resourceId ?? "preset_REST API"
 
     setResourceId(resourceId)

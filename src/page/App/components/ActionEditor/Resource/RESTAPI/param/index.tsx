@@ -29,7 +29,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { activeActionItemId, resourceId } = useContext(ActionEditorContext)
   const action =
     useSelector(selectAllActionItem).find(
-      ({ id }) => id === activeActionItemId,
+      ({ actionId: id }) => id === activeActionItemId,
     ) ?? null
   const resource =
     useSelector(selectAllResource).find(

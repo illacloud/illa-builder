@@ -16,7 +16,7 @@ import { TitleInputProps } from "./interface"
 export const TitleInput: FC<TitleInputProps> = (props) => {
   const { activeActionItem } = props
   const dispatch = useDispatch()
-  const name = activeActionItem?.name || ""
+  const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -46,7 +46,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       dispatch(
         actionListActions.updateActionItemReducer({
           ...activeActionItem,
-          name: title,
+          displayName: title,
         }),
       )
   }

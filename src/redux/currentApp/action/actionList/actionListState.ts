@@ -34,8 +34,8 @@ interface EventHandler {
 }
 
 export interface ActionItem {
-  id: string
-  name: string
+  actionId: string
+  displayName: string
   resourceId?: string
   type: ActionType
   status?: ActionStatus
