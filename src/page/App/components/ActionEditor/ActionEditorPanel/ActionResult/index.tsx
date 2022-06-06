@@ -21,7 +21,7 @@ import {
 import { ActionResultProps } from "./interface"
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose } = props
+  const { onClose, result } = props
 
   const layerRef = useRef<HTMLDivElement>(null)
   const [containerHeight, setContainerHeight] = useState(182)
@@ -56,12 +56,13 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
         </div>
 
-        <EditorInput
-          mode="application/json"
-          lineNumbers={false}
-          readOnly
-          css={resContentStyle}
-        />
+        <pre css={resContentStyle}>{result}</pre>
+        {/* <EditorInput
+            mode="application/json"
+            lineNumbers={false}
+            readOnly
+            css={resContentStyle}
+            /> */}
       </div>
     </div>
   )

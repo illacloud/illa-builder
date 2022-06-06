@@ -32,6 +32,7 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
       onEditResource,
       onChangeParam,
       onSaveParam,
+      onRun,
     } = props
 
     const { t } = useTranslation()
@@ -111,6 +112,7 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
           resourceId={resourceId}
           onChange={onChangeParam}
           onSave={onSaveParam}
+          onRun={onRun}
         />
       </div>
     )
