@@ -1,4 +1,4 @@
-import { FC, useRef, cloneElement } from "react"
+import { FC, useRef, cloneElement, RefObject } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
@@ -8,6 +8,7 @@ import {
   MySQLConfigure,
   RESTAPIConfigure,
 } from "@/page/App/components/ActionEditor/Resource"
+import { ResourceType } from "@/page/App/components/ActionEditor/interface"
 import { ResourceFormEditorProps, ConnectionRef } from "./interface"
 import {
   formContainerStyle,
@@ -16,6 +17,32 @@ import {
   FormFooterFilling,
   createResourceBtnStyle,
 } from "./style"
+
+const renderResourceNode = (
+  resourceType: ResourceType | undefined,
+  connectionRef: RefObject<ConnectionRef>,
+  formRef: RefObject<HTMLFormElement>,
+  props: ResourceFormEditorProps,
+) => {
+  let node: JSX.Element
+  const { resourceId } = props
+
+  switch (resourceType) {
+    case "REST API":
+      node = <RESTAPIConfigure resourceId={resourceId} />
+      break
+    case "MySQL":
+      node = (
+        <MySQLConfigure connectionRef={connectionRef} resourceId={resourceId} />
+      )
+      break
+    default:
+      node = <div>No Config</div>
+      break
+  }
+
+  return cloneElement(node, { ref: formRef }) || null
+}
 
 export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   const { resourceId, back, onSubmit, resourceType: resourceTypeProps } = props
@@ -30,29 +57,6 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   const connectionRef = useRef<ConnectionRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
-  const renderResourceNode = () => {
-    let node: JSX.Element
-
-    switch (resourceType) {
-      case "REST API":
-        node = <RESTAPIConfigure resourceId={resourceId} />
-        break
-      case "MySQL":
-        node = (
-          <MySQLConfigure
-            connectionRef={connectionRef}
-            resourceId={resourceId}
-          />
-        )
-        break
-      default:
-        node = <div>No Config</div>
-        break
-    }
-
-    return cloneElement(node, { ref: formRef }) || null
-  }
-
   function submitForm() {
     formRef.current?.requestSubmit()
     onSubmit && onSubmit()
@@ -60,7 +64,9 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
 
   return (
     <div css={formContainerStyle}>
-      <div>{renderResourceNode()}</div>
+      <div>
+        {renderResourceNode(resourceType, connectionRef, formRef, props)}
+      </div>
       <div css={formFooterStyle}>
         <Button
           variant="text"
