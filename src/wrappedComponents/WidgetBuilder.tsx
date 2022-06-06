@@ -66,6 +66,5 @@ export type WidgetType = keyof typeof WidgetConfig
 export const WidgetTypeList = Object.keys(WidgetConfig)
 
 export const widgetBuilder = (type: WidgetType) => {
-  const start = performance.now()
   return WidgetConfig[type]
 }

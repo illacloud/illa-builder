@@ -1,4 +1,5 @@
-import { FC, useRef, useState } from "react"
+import { FC, useRef, useState, useContext } from "react"
+import { css } from "@emotion/react"
 import { Alert } from "@illa-design/alert"
 import { SuccessIcon, CloseIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
@@ -11,15 +12,18 @@ import {
 import {
   resAlertBgcStyle,
   resCloseIconStyle,
+  applyResContainerStyle,
   resStatusStyle,
   resTitleStyle,
 } from "./style"
 import { ActionResultProps } from "./interface"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
   const layerRef = useRef<HTMLDivElement>(null)
   const [containerHeight, setContainerHeight] = useState(182)
-
+  const { onChange } = props
+  const { editorHeight } = useContext(ActionEditorContext)
   const onHeightChange = (height: number) => {
     setContainerHeight(height)
   }
@@ -33,7 +37,13 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         onTouchEnd={resizer.onMouseUp}
         css={applyResizerStyle(resizer.resizing, containerHeight)}
       />
-      <div ref={layerRef} css={applyContainerHeight(containerHeight)}>
+      <div
+        ref={layerRef}
+        css={css(
+          applyResContainerStyle(editorHeight - 120),
+          applyContainerHeight(containerHeight),
+        )}
+      >
         <Alert
           _css={resAlertBgcStyle}
           icon={
@@ -44,12 +54,17 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           title={<span css={resTitleStyle}>action ran successfully</span>}
           closable
           closeElement={
-            <div css={resCloseIconStyle}>
+            <div
+              css={resCloseIconStyle}
+              onClick={() => {
+                onChange?.(false)
+              }}
+            >
               <CloseIcon />
             </div>
           }
         />
-        <EditorInput mode="javascript" />
+        <EditorInput mode="application/json" lineNumbers={false} readOnly />
       </div>
     </div>
   )

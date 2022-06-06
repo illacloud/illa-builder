@@ -1,1 +1,3 @@
-export interface ActionResultProps {}
+export interface ActionResultProps {
+  onChange?: (val: boolean) => void
+}

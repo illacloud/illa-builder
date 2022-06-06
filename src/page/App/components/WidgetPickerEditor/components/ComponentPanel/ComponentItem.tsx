@@ -1,14 +1,14 @@
 import { FC } from "react"
-import { ComponentModel } from "@/wrappedComponents/interface"
 import { iconCss, itemContainerCss, nameCss } from "./style"
+import { ComponentItemProps } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
 
-export const ComponentItem: FC<ComponentModel> = (props) => {
-  const { widgetName, icon } = props
+export const ComponentItem: FC<ComponentItemProps> = (props) => {
+  const { displayName, icon, id, ...dragInfo } = props
 
   return (
     <div css={itemContainerCss} onDragStart={() => {}}>
       <span css={iconCss}>{icon}</span>
-      <span css={nameCss}>{widgetName}</span>
+      <span css={nameCss}>{displayName}</span>
     </div>
   )
 }

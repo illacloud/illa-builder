@@ -22,4 +22,4 @@ export const ComponentSession: FC<ComponentSessionProps> = (props) => {
   )
 }
 
-ComponentSession.displayName = "ComponentPanel"
+ComponentSession.displayName = "ComponentSession"

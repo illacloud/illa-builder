@@ -16,6 +16,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
   const [actionType, setActionType] = useState<ActionType>("select")
   const [resourceId, setResourceId] = useState("preset_REST API")
   const [isActionDirty, setIsActionDirty] = useState(false)
+  const [editorHeight, setEditorHeight] = useState(300)
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
   const actionItems = useSelector(selectAllActionItem)
@@ -58,10 +59,14 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
       value={{
         activeActionItemId,
         resourceId,
+        editorHeight,
       }}
     >
       <div>
         <ActionEditorLayout
+          updateEditorHeight={(val: number) => {
+            setEditorHeight(val)
+          }}
           actionList={
             <ActionList
               isActionDirty={isActionDirty}

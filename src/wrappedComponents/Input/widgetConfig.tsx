@@ -1,15 +1,14 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
 
-export const INPUT_WIDGET_CONFIG: ComponentModel = {
+export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   type: "INPUT_WIDGET",
-  widgetName: "input",
-  version: "0.0.1",
+  displayName: "input",
   icon: <SearchIcon />,
   sessionType: "BASIC",
+  w: 100,
+  h: 10,
   defaults: {
-    rows: 50,
-    columns: 500,
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",

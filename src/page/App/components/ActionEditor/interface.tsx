@@ -8,6 +8,7 @@ export interface ActionEditorLayoutProps
   extends HTMLAttributes<HTMLDivElement> {
   actionList: ReactNode
   actionEditorPanel: ReactNode
+  updateEditorHeight?: (val: number) => void
 }
 
 export type ApiType = "REST API"
@@ -19,4 +20,5 @@ export type ResourceType = DatabaseType | ApiType
 export interface ActionEditorContextProps {
   activeActionItemId: string
   resourceId: string
+  editorHeight: number
 }
