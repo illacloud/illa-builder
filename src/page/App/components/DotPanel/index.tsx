@@ -1,11 +1,26 @@
 import { FC, ReactNode, useEffect, useRef, useState } from "react"
-import { DotPanelProps } from "@/page/App/components/DotPanel/interface"
+import {
+  DotPanelProps,
+  DropCollectedInfo,
+  DropPanelInfo,
+} from "@/page/App/components/DotPanel/interface"
 import {
   applyScaleStyle,
   dotRowsStyle,
   dotStyle,
 } from "@/page/App/components/DotPanel/style"
 import useWindowSize from "react-use/lib/useWindowSize"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  getUnitSize,
+  isOpenBottomPanel,
+  isOpenLeftPanel,
+  isOpenRightPanel,
+} from "@/redux/currentApp/config/configSelector"
+import { useDrop } from "react-dnd"
+import { BaseDSL } from "@/wrappedComponents/interface"
+import { mergeRefs } from "@illa-design/system"
+import { configActions } from "@/redux/currentApp/config/configSlice"
 
 function renderDotSquare(rows: number, columns: number): ReactNode {
   let rowsDot: ReactNode[] = []
@@ -27,6 +42,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const { scale = 100, ...otherProps } = props
 
   const canvasRef = useRef<HTMLDivElement>(null)
+
+  const dispatch = useDispatch()
+
   // window
   const { width, height } = useWindowSize()
 
@@ -38,11 +56,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const [blockRows, setBlockRows] = useState(0)
 
   // block field
-  const unitHeight = 8
-  const [unitWidth, setUnitWidth] = useState<number>()
+  const unitHeight = useSelector(getUnitSize).unitHeight
+  const unitWidth = useSelector(getUnitSize).unitWidth
 
   // other field
   const [showDot, setShowDot] = useState(true)
+
+  const bottomPanelOpenState = useSelector(isOpenBottomPanel)
+  const leftPanelOpenState = useSelector(isOpenLeftPanel)
+  const rightPanelOpenState = useSelector(isOpenRightPanel)
 
   useEffect(() => {
     if (canvasRef.current != null) {
@@ -57,21 +79,36 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [height])
+  }, [height, bottomPanelOpenState])
 
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
       const finalBlockWidth =
         container.getBoundingClientRect().width / blockColumns
-      setUnitWidth(finalBlockWidth)
+      dispatch(configActions.updateUnitWidth(finalBlockWidth))
       setCanvasWidth(container.getBoundingClientRect().width)
     }
-  }, [width])
+  }, [width, leftPanelOpenState, rightPanelOpenState])
+
+  const [collectedInfo, dropTarget] = useDrop<
+    BaseDSL,
+    DropPanelInfo,
+    DropCollectedInfo
+  >(
+    () => ({
+      accept: ["components"],
+      drop: (item, monitor) => {
+        return {}
+      },
+      hover: (item, monitor) => {},
+    }),
+    [],
+  )
 
   return (
     <div
-      ref={canvasRef}
+      ref={mergeRefs(canvasRef, dropTarget)}
       css={applyScaleStyle(scale, canvasHeight)}
       {...otherProps}
     >

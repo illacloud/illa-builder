@@ -33,3 +33,10 @@ export const updateBottomPanel: CaseReducer<
   }
   return state
 }
+
+export const updateUnitWidth: CaseReducer<
+  ConfigState,
+  PayloadAction<number>
+> = (state, action) => {
+  state.unitSize.unitWidth = action.payload
+}

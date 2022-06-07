@@ -17,7 +17,9 @@ export function applyScaleStyle(
   }
   const trans = scale / 100.0
   return css`
-    padding: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 6px;
     box-sizing: border-box;
     width: 100%;
     min-width: 948px;

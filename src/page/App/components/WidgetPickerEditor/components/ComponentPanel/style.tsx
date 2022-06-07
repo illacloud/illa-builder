@@ -39,10 +39,20 @@ export const componentListContainerCss = css`
 
 export const itemContainerCss = css`
   display: inline-flex;
+  position: relative;
   flex-direction: column;
   margin-bottom: 16px;
   justify-content: center;
   align-items: center;
+`
+
+export const dragPreviewStyle = css`
+  position: absolute;
+  background: transparent;
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 1px;
 `
 
 export const iconCss = css`
@@ -55,18 +65,21 @@ export const iconCss = css`
     globalColor(`--${illaPrefix}-grayBlue-09`),
     0.5,
   )};
+
   &:hover {
     background-color: ${hexToRGBA(
       globalColor(`--${illaPrefix}-techPurple-07`),
     )};
     cursor: grab;
   }
+
   &:hover {
     background-color: ${hexToRGBA(
       globalColor(`--${illaPrefix}-techPurple-07`),
     )};
     cursor: grab;
   }
+
   transition: all 200ms;
 `
 

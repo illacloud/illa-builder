@@ -4,6 +4,7 @@ import {
   updateBottomPanel,
   updateLeftPanel,
   updateRightPanel,
+  updateUnitWidth,
 } from "@/redux/currentApp/config/configReducer"
 
 const configSlice = createSlice({
@@ -13,6 +14,7 @@ const configSlice = createSlice({
     updateLeftPanel,
     updateRightPanel,
     updateBottomPanel,
+    updateUnitWidth,
   },
 })
 
