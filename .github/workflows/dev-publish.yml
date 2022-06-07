@@ -122,7 +122,9 @@ jobs:
         run: echo "Publishing docker image..."
 
       - name: Build Static Page
-        run: yarn build
+        run: |
+          yarn build
+          echo "builder.illafamily.com" > "dist/CNAME"
 
 
       - name: Deploy storybook to Github Pages
