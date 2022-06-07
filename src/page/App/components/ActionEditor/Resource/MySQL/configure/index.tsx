@@ -61,10 +61,10 @@ const advancedOptionSet = new Set([
 const dataTransform = (data: MySQLConfigureValues) => {
   let options: {
     [x: string]:
-    | string
-    | number
-    | boolean
-    | { [x: string]: string | number | boolean }
+      | string
+      | number
+      | boolean
+      | { [x: string]: string | number | boolean }
   } = {}
   let advanced: { [x: string]: string | number | boolean } = {}
   Object.keys(data).forEach((key) => {

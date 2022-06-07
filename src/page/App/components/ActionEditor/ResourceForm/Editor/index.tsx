@@ -88,7 +88,6 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         ({ data }) => {
           dispatch(resourceActions.updateResourceItemReducer(data))
           onSubmit && onSubmit()
-          // enhancer ?
         },
         () => {},
         () => {},

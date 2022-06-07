@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next"
 import { css } from "@emotion/react"
 import { RightIcon, CloseIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
-import { EditorInput } from "@/components/EditorInput"
 import { motion } from "framer-motion"
 import {
   actionEditorPanelLayoutWrapper,
@@ -93,14 +92,8 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           <span css={resTitleStyle}>{title}</span>
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
         </div>
-
+        {/* TODO:@Spike use InputEditor to display result */}
         <pre css={resContentStyle}>{result}</pre>
-        {/* <EditorInput
-        mode="application/json"
-        lineNumbers={false}
-        readOnly
-        css={resContentStyle}
-        /> */}
       </div>
     </motion.div>
   )
