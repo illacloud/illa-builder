@@ -1,28 +1,71 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const resStatusStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-green-07`)};
-  color: ${globalColor(`--${illaPrefix}-green-03`)};
-  border-radius: 50%;
-  font-size: 12px;
-  display: inline-flex;
-  justify-content: center;
+export const resHeaderStyle = css`
+  height: 56px;
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  display: flex;
   align-items: center;
-  width: 16px;
-  height: 16px;
+  padding: 16px;
+`
+
+export const resStatusIconStyle = css`
+  width: 24px;
+  height: 24px;
+`
+
+export const resSuccessStatusIconStyle = css`
+  & path {
+    fill: ${globalColor(`--${illaPrefix}-green-07`)};
+
+    &:last-child {
+      fill: ${globalColor(`--${illaPrefix}-green-03`)};
+    }
+  }
+`
+export const resFailStatusIconStyle = css`
+  & path {
+    fill: ${globalColor(`--${illaPrefix}-orange-07`)};
+
+    &:last-child {
+      fill: ${globalColor(`--${illaPrefix}-orange-03`)};
+    }
+  }
 `
 
 export const resTitleStyle = css`
   font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-gray-01`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  margin-left: 10px;
+  flex: 1;
 `
 
-export const resAlertBgcStyle = css`
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+export const resContentStyle = css`
+  overflow: auto;
+  & .CodeMirror {
+    border: 0;
+  }
 `
 
 export const resCloseIconStyle = css`
-  font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  cursor: pointer;
+  padding: 8px;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  box-sizing: content-box;
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  }
 `
+
+export function applyResContainerStyle(maxHeight: number): SerializedStyles {
+  return css`
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 182px;
+    max-height: ${maxHeight}px;
+  `
+}

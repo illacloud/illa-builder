@@ -1,4 +1,5 @@
 import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
+import { AnimatePresence } from "framer-motion"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
@@ -11,7 +12,7 @@ import { actionListActions } from "@/redux/currentApp/action/actionList/actionLi
 import { ActionType } from "@/redux/currentApp/action/actionList/actionListState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
-import { ResoucreEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
+import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
 import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
@@ -24,30 +25,28 @@ import {
   duplicateActionStyle,
   deleteActionStyle,
 } from "./style"
+import { ActionEditorPanelContext } from "./context"
 import { ActionResult } from "./ActionResult"
 
 const { Item: MenuItem } = Menu
 
 function renderEditor(
   type: ActionType | undefined,
-  props: Partial<ActionEditorPanelProps>,
   ref: Ref<triggerRunRef>,
+  onSaveParam: () => void,
+  onRun: (result: any) => void,
+  props: Partial<ActionEditorPanelProps>,
 ) {
-  const {
-    onEditResource,
-    onChangeResource,
-    onCreateResource,
-    onChange,
-    onSave,
-  } = props
+  const { onEditResource, onChangeResource, onCreateResource, onChange } = props
 
   switch (type) {
     case "action":
       return (
-        <ResoucreEditor
+        <ResourceEditor
           ref={ref}
           onChangeParam={onChange}
-          onSaveParam={onSave}
+          onSaveParam={onSaveParam}
+          onRun={onRun}
           onCreateResource={onCreateResource}
           onEditResource={onEditResource}
           onChangeResource={onChangeResource}
@@ -58,7 +57,7 @@ function renderEditor(
         <TransformerEditor
           ref={ref}
           onChangeParam={onChange}
-          onSaveParam={onSave}
+          onSaveParam={onSaveParam}
         />
       )
     default:
@@ -81,7 +80,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
   const dispatch = useDispatch()
+
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
+  const [actionResVisible, setActionResVisible] = useState(false)
+  const [isRuning, setIsRuning] = useState(false)
+  const [result, setResult] = useState<string>()
+  const [duration, setDuaraion] = useState<string>()
+
+  const runningIntervalRef = useRef<NodeJS.Timer>()
   const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
   const activeActionItem = useMemo(() => {
@@ -89,11 +95,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       return null
     }
 
-    return actionItems.find((action) => action.id === activeActionItemId)
+    return actionItems.find((action) => action.actionId === activeActionItemId)
   }, [actionItems, activeActionItemId])
 
   const actionItemsNameSet = useMemo(() => {
-    return new Set(actionItems.map((i) => i.name))
+    return new Set(actionItems.map((i) => i.displayName))
   }, [actionItems])
 
   const actionType = activeActionItem?.type
@@ -115,9 +121,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
       dispatch(
         actionListActions.addActionItemReducer({
-          id,
+          actionId: id,
           type,
-          name: generateName(type, actionItems, actionItemsNameSet),
+          displayName: generateName(type, actionItems, actionItemsNameSet),
         }),
       )
 
@@ -146,6 +152,31 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       />
     </Menu>
   )
+
+  function onSaveParam() {
+    onSave?.()
+  }
+
+  function onRun(result: any) {
+    setActionResVisible(true)
+    setResult(JSON.stringify(result.data, null, "····"))
+  }
+
+  function onLoadingActionResult(loading: boolean) {
+    setIsRuning(loading)
+
+    if (loading) {
+      clearInterval(runningIntervalRef.current)
+      const start = Date.now()
+      runningIntervalRef.current = setInterval(() => {
+        const duration = ((Date.now() - start) / 1000).toFixed(1)
+        setDuaraion(`${duration}s`)
+      }, 50)
+    } else {
+      clearInterval(runningIntervalRef.current)
+      setDuaraion("")
+    }
+  }
 
   return (
     <div css={containerStyle}>
@@ -179,31 +210,43 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           colorScheme="techPurple"
           variant="light"
           leftIcon={<CaretRightIcon />}
+          loading={isRuning}
+          disabled={isRuning}
           onClick={() => {
+            setActionResVisible(false)
             isActionDirty
               ? triggerRunRef.current?.saveAndRun()
               : triggerRunRef.current?.run()
           }}
         >
-          {isActionDirty
+          {isRuning
+            ? duration
+            : isActionDirty
             ? t("editor.action.panel.btn.save_and_run")
             : t("editor.action.panel.btn.run")}
         </Button>
       </header>
+
       {activeActionItem && (
         <>
-          {renderEditor(
-            actionType,
-            {
+          <ActionEditorPanelContext.Provider value={{ onLoadingActionResult }}>
+            {renderEditor(actionType, triggerRunRef, onSaveParam, onRun, {
               onChange,
-              onSave,
               onCreateResource,
               onEditResource,
               onChangeResource,
-            },
-            triggerRunRef,
-          )}
-          <ActionResult />
+            })}
+          </ActionEditorPanelContext.Provider>
+          <AnimatePresence>
+            {actionResVisible && (
+              <ActionResult
+                result={result}
+                onClose={() => {
+                  setActionResVisible(false)
+                }}
+              />
+            )}
+          </AnimatePresence>
         </>
       )}
     </div>

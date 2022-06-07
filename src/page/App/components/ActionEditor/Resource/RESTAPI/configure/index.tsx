@@ -5,11 +5,9 @@ import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
 import { Select, Option } from "@illa-design/select"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
-import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
 import { useTranslation } from "react-i18next"
-import { v4 as uuidV4 } from "uuid"
 import {
   formStyle,
   gridContainerStyle,
@@ -37,8 +35,7 @@ export const RESTAPIConfigure = forwardRef<
   HTMLFormElement,
   RESTAPIConfigureProps
 >((props, ref) => {
-  const { resourceId } = props
-  const dispatch = useDispatch()
+  const { resourceId, onSubmit } = props
   const { t } = useTranslation()
   const resourceConfig = useSelector(selectAllResource).find(
     (i) => i.resourceId === resourceId,
@@ -64,17 +61,14 @@ export const RESTAPIConfigure = forwardRef<
 
   const [authType, setAuthType] = useState("none")
 
-  const onSubmit: SubmitHandler<RESTAPIConfigureValues> = (data) => {
-    dispatch(
-      resourceActions.addResourceItemReducer({
-        resourceId: uuidV4(),
-        resourceName: data.name,
-        resourceType: "REST API",
-        dbName: "",
-        created: Date.now().toString(),
-        config: data,
-      }),
-    )
+  const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
+    onSubmit?.({
+      resourceName: data.name,
+      resourceType: "REST API",
+      dbName: "",
+      created: Date.now().toString(),
+      config: data,
+    })
   }
 
   const renderAuthConfig = () => {
@@ -92,7 +86,7 @@ export const RESTAPIConfigure = forwardRef<
   return (
     <form
       ref={ref}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(submitForm)}
       css={css(formStyle, gridContainerStyle)}
     >
       <div css={gridRowContainerStyle}>

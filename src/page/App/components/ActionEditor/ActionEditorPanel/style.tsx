@@ -178,14 +178,14 @@ export function applyEditIconStyle(disabled: boolean): SerializedStyles {
 
 export const sectionTitleStyle = css`
   font-size: 14px;
-  line-height: 1.57;
+  line-height: 22px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const handlerTitleStyle = css`
   ${sectionTitleStyle};
-  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   padding: 16px 16px 0;
 `
 

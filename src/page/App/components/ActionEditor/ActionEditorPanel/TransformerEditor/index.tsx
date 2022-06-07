@@ -17,7 +17,7 @@ export const TransformerEditor = forwardRef<
   const dispatch = useDispatch()
   const { activeActionItemId } = useContext(ActionEditorContext)
   const activeActionItem = useSelector(selectAllActionItem).find(
-    ({ id }) => id === activeActionItemId,
+    ({ actionId: id }) => id === activeActionItemId,
   )
   const { onChangeParam, onSaveParam } = props
 

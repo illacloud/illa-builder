@@ -10,12 +10,14 @@ import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
 import { ActionEditorContext } from "./context"
 
-export const ActionEditor: FC<ActionEditorProps> = () => {
+export const ActionEditor: FC<ActionEditorProps> = (props) => {
+  const { className } = props
   const { t } = useTranslation()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
   const [resourceId, setResourceId] = useState("preset_REST API")
   const [isActionDirty, setIsActionDirty] = useState(false)
+  const [editorHeight, setEditorHeight] = useState(300)
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
   const actionItems = useSelector(selectAllActionItem)
@@ -27,10 +29,10 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
       return
     }
 
-    const lastItemId = actionItems[length - 1].id
+    const lastItemId = actionItems[length - 1].actionId
 
     if (id === lastItemId && length > 1) {
-      updateActiveActionItemId(actionItems[length - 2].id)
+      updateActiveActionItemId(actionItems[length - 2].actionId)
     } else {
       updateActiveActionItemId(lastItemId)
     }
@@ -47,7 +49,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
     setIsActionDirty(false)
     setActiveActionItemId(id)
     const resourceId =
-      actionItems.find(({ id: actionItemId }) => id === actionItemId)
+      actionItems.find(({ actionId: actionItemId }) => id === actionItemId)
         ?.resourceId ?? "preset_REST API"
 
     setResourceId(resourceId)
@@ -58,10 +60,14 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
       value={{
         activeActionItemId,
         resourceId,
+        editorHeight,
       }}
     >
-      <div>
+      <div className={className}>
         <ActionEditorLayout
+          updateEditorHeight={(val: number) => {
+            setEditorHeight(val)
+          }}
           actionList={
             <ActionList
               isActionDirty={isActionDirty}

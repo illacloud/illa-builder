@@ -1,7 +1,7 @@
-import { HTMLAttributes } from "react"
 import CodeMirror from "codemirror"
+import { HTMLAttributes } from "react"
 
-type EditorMode = "javascript" | "sql" | "sql-js"
+type EditorMode = "javascript" | "sql" | "sql-js" | "application/json"
 
 export interface EditorInputProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
