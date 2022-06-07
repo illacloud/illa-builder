@@ -23,7 +23,15 @@ export const resSuccessStatusIconStyle = css`
     }
   }
 `
-export const resFailStatusIconStyle = css``
+export const resFailStatusIconStyle = css`
+  & path {
+    fill: ${globalColor(`--${illaPrefix}-orange-07`)};
+
+    &:last-child {
+      fill: ${globalColor(`--${illaPrefix}-orange-03`)};
+    }
+  }
+`
 
 export const resTitleStyle = css`
   font-weight: 500;
