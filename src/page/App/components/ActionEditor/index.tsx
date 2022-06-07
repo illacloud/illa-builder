@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"

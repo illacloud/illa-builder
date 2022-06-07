@@ -2,7 +2,7 @@ import { FC, useState, useRef, useEffect } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { AnimatePresence, motion } from "framer-motion"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { actionListActions } from "@/redux/currentApp/action/actionSlice"
 import { useDispatch } from "react-redux"
 import {
   titleContainerStyle,

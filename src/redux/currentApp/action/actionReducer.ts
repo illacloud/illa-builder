@@ -2,7 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ActionListState,
   ActionItem,
-} from "@/redux/currentApp/action/actionList/actionListState"
+} from "@/redux/currentApp/action/actionState"
 
 export const addActionItemReducer: CaseReducer<
   ActionListState,

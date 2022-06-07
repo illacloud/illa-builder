@@ -1,8 +1,8 @@
 import { forwardRef, useImperativeHandle, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector, useDispatch } from "react-redux"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionListActions } from "@/redux/currentApp/action/actionSlice"
 import { EditorInput } from "@/components/EditorInput"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
@@ -22,7 +22,7 @@ export const TransformerEditor = forwardRef<
   const { onChangeParam, onSaveParam } = props
 
   // TODO: eval transformer
-  const run = () => {}
+  const run = () => { }
 
   const saveAndRun = () => {
     run()

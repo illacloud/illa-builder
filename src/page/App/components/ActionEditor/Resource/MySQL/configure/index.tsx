@@ -8,7 +8,7 @@ import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import {
   descriptionStyle,
   errorMessageStyle,
@@ -61,10 +61,10 @@ const advancedOptionSet = new Set([
 const dataTransform = (data: MySQLConfigureValues) => {
   let options: {
     [x: string]:
-      | string
-      | number
-      | boolean
-      | { [x: string]: string | number | boolean }
+    | string
+    | number
+    | boolean
+    | { [x: string]: string | number | boolean }
   } = {}
   let advanced: { [x: string]: string | number | boolean } = {}
   Object.keys(data).forEach((key) => {

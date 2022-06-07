@@ -12,12 +12,9 @@ import {
   EmptyStateIcon,
   RestApiIcon,
 } from "@illa-design/icon"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import {
-  ActionItem,
-  ActionType,
-} from "@/redux/currentApp/action/actionList/actionListState"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionListActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem, ActionType } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import {

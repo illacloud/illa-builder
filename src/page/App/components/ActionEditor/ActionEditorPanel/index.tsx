@@ -7,9 +7,9 @@ import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { ActionType } from "@/redux/currentApp/action/actionList/actionListState"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionListActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
@@ -222,8 +222,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           {isRuning
             ? duration
             : isActionDirty
-            ? t("editor.action.panel.btn.save_and_run")
-            : t("editor.action.panel.btn.run")}
+              ? t("editor.action.panel.btn.save_and_run")
+              : t("editor.action.panel.btn.run")}
         </Button>
       </header>
 

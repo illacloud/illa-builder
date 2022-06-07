@@ -5,9 +5,9 @@ import { Button } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { Notification } from "@illa-design/notification"
 import { Api } from "@/api/base"
-import { Resource } from "@/redux/currentApp/action/resource/resourceState"
-import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { Resource } from "@/redux/currentApp/resource/resourceState"
+import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import {
   MySQLConfigure,
   RESTAPIConfigure,
@@ -89,8 +89,8 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           dispatch(resourceActions.updateResourceItemReducer(data))
           onSubmit && onSubmit()
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => setCreateBtnLoading(loading),
       )
       return
@@ -106,8 +106,8 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         dispatch(resourceActions.addResourceItemReducer(data))
         onSubmit && onSubmit()
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => setCreateBtnLoading(loading),
     )
   }
@@ -125,7 +125,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
       ({ data }) => {
         Notification.error({ title: <span>{data}</span> })
       },
-      () => {},
+      () => { },
       (loading) => setTestConnectionLoading(loading),
     )
   }

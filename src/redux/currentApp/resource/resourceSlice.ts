@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { resourceInitialState } from "@/redux/currentApp/action/resource/resourceState"
+import { resourceInitialState } from "@/redux/currentApp/resource/resourceState"
 import {
   addResourceItemReducer,
   updateResourceItemReducer,
-} from "@/redux/currentApp/action/resource/resourceReducer"
+} from "@/redux/currentApp/resource/resourceReducer"
 
 const resourceSlice = createSlice({
   name: "actionList",
