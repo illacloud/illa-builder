@@ -1,14 +1,17 @@
 import LabelProps from "@/wrappedComponents/Label/interface"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
-import { InputBorderColor } from "@illa-design/input"
 import { ReactNode } from "react"
+import { InputBorderColor } from "@illa-design/input"
 
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
-export interface WrappedDateProps extends LabelProps, ValidateMessageProps {
-  value?: string
+export interface WrappedDateRangeProps
+  extends LabelProps,
+    Omit<ValidateMessageProps, "value"> {
+  value?: string[]
   defaultValue?: string
-  placeholder?: string
+  startPlaceholder?: string
+  endPlaceholder?: string
   dateFormat?: string
   tooltipText?: string
   disabled?: boolean

@@ -27,6 +27,11 @@ import {
   DATE_WIDGET_CONFIG,
   DateWidget,
 } from "@/wrappedComponents/Date"
+import {
+  DATE_RANGE_PANEL_CONFIG,
+  DATE_RANGE_WIDGET_CONFIG,
+  DateRangeWidget,
+} from "@/wrappedComponents/DateRange"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -68,6 +73,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: DateWidget,
     config: DATE_WIDGET_CONFIG,
     panelConfig: DATE_PANEL_CONFIG,
+  },
+  DATE_RANGE_WIDGET: {
+    widget: DateRangeWidget,
+    config: DATE_RANGE_WIDGET_CONFIG,
+    panelConfig: DATE_RANGE_PANEL_CONFIG,
   },
 }
 

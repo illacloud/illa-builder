@@ -8,6 +8,7 @@ import { ColorSelectSetter } from "./SelectSetter/colorSelect"
 import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListSetter"
 import { MappedOptionSetter } from "@/page/App/components/PanelSetters/MappedOptionSetter"
 import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/searchSelect"
+import { DateRangeValueSetter } from "@/page/App/components/PanelSetters/DateRangeValueSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -20,6 +21,7 @@ const SetterTypeMapSetter = {
   COLOR_SELECT_SETTER: ColorSelectSetter,
   OPTION_LIST_SETTER: OptionListSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,
+  DATE_RANGE_VALUE_SETTER: DateRangeValueSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter
