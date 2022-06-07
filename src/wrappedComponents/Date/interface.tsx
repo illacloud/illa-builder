@@ -1,7 +1,7 @@
 import LabelProps from "@/wrappedComponents/Label/interface"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
-import { ReactNode } from "react"
 import { InputBorderColor } from "@illa-design/input"
+import { ReactNode } from "react"
 
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
