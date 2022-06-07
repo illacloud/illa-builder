@@ -1,4 +1,5 @@
 import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
+import { AnimatePresence } from "framer-motion"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
@@ -24,8 +25,8 @@ import {
   duplicateActionStyle,
   deleteActionStyle,
 } from "./style"
+import { ActionEditorPanelContext } from "./context"
 import { ActionResult } from "./ActionResult"
-import { AnimatePresence } from "framer-motion"
 
 const { Item: MenuItem } = Menu
 
@@ -79,9 +80,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
   const dispatch = useDispatch()
+
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const [actionResVisible, setActionResVisible] = useState(false)
-  const [result, setResult] = useState()
+  const [isRuning, setIsRuning] = useState(false)
+  const [result, setResult] = useState<string>()
+  const [duration, setDuaraion] = useState<string>()
+
+  const runningIntervalRef = useRef<NodeJS.Timer>()
   const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
   const activeActionItem = useMemo(() => {
@@ -156,6 +162,22 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     setResult(JSON.stringify(result.data, null, "····"))
   }
 
+  function onLoadingActionResult(loading: boolean) {
+    setIsRuning(loading)
+
+    if (loading) {
+      clearInterval(runningIntervalRef.current)
+      const start = Date.now()
+      runningIntervalRef.current = setInterval(() => {
+        const duration = ((Date.now() - start) / 1000).toFixed(1)
+        setDuaraion(`${duration}s`)
+      }, 50)
+    } else {
+      clearInterval(runningIntervalRef.current)
+      setDuaraion("")
+    }
+  }
+
   return (
     <div css={containerStyle}>
       <header css={headerStyle}>
@@ -188,25 +210,33 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           colorScheme="techPurple"
           variant="light"
           leftIcon={<CaretRightIcon />}
+          loading={isRuning}
+          disabled={isRuning}
           onClick={() => {
+            setActionResVisible(false)
             isActionDirty
               ? triggerRunRef.current?.saveAndRun()
               : triggerRunRef.current?.run()
           }}
         >
-          {isActionDirty
-            ? t("editor.action.panel.btn.save_and_run")
-            : t("editor.action.panel.btn.run")}
+          {isRuning
+            ? duration
+            : isActionDirty
+              ? t("editor.action.panel.btn.save_and_run")
+              : t("editor.action.panel.btn.run")}
         </Button>
       </header>
+
       {activeActionItem && (
         <>
-          {renderEditor(actionType, triggerRunRef, onSaveParam, onRun, {
-            onChange,
-            onCreateResource,
-            onEditResource,
-            onChangeResource,
-          })}
+          <ActionEditorPanelContext.Provider value={{ onLoadingActionResult }}>
+            {renderEditor(actionType, triggerRunRef, onSaveParam, onRun, {
+              onChange,
+              onCreateResource,
+              onEditResource,
+              onChangeResource,
+            })}
+          </ActionEditorPanelContext.Provider>
           <AnimatePresence>
             {actionResVisible && (
               <ActionResult

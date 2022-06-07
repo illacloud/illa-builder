@@ -12,6 +12,7 @@ import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ResourceParams } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourceParams"
 import { EventHandler } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/EventHandler"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
+import { ActionEditorPanelContext } from "@/page/App/components/ActionEditor/ActionEditorPanel/context"
 import { ResourcePanelProps } from "./interface"
 
 const dataTransform = (data: any) => {
@@ -35,14 +36,17 @@ const dataTransform = (data: any) => {
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
     const { resourceId, onChange, onSave, onRun } = props
+
     const { activeActionItemId } = useContext(ActionEditorContext)
-    let resourceType: string
-    let resource
+    const { onLoadingActionResult } = useContext(ActionEditorPanelContext)
     const activeActionItem = useSelector(selectAllActionItem).find(
       ({ actionId: id }) => id === activeActionItemId,
     )
     const allResource = useSelector(selectAllResource)
     const dispatch = useDispatch()
+
+    let resourceType: string
+    let resource
 
     const [params, setParams] = useState<
       Pick<ActionItemConfig, "general" | "transformer" | "eventHandler">
@@ -68,12 +72,17 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       const _data = dataTransform(params)
       Api.request(
         {
-          url: "/actions/:id/run",
+          url: `/actions/${activeActionItemId}/run`,
           method: "POST",
           data: _data,
         },
         (data) => {
           onRun && onRun(data.data)
+        },
+        () => { },
+        () => { },
+        (loading) => {
+          onLoadingActionResult && onLoadingActionResult(loading)
         },
       )
     }
