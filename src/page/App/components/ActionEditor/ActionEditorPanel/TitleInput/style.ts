@@ -6,17 +6,17 @@ export const titleContainerStyle = css`
   display: flex;
   align-items: center;
   width: 280px;
-  max-width: 280px;
   border-radius: 8px;
   box-sizing: border-box;
   height: 32px;
   line-height: 32px;
   transition: all 0.2s ease-in-out;
-  padding: 0 19px 0 16px;
+  margin: 0 19px 0 16px;
 
   &:hover {
     cursor: pointer;
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    padding: 0 16px;
 
     & > svg {
       opacity: 1;
@@ -30,16 +30,18 @@ export const titleInputContainerStyle = css`
   border-radius: 8px;
   box-sizing: border-box;
   height: 32px;
-  padding: 0px 19px 0 16px;
+  margin: 0 19px 0 16px;
 `
 
 export const titleInputStyle = css`
+  width: 280px !important;
+
   & > span {
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
