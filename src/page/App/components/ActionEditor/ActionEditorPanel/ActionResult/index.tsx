@@ -4,6 +4,7 @@ import { css } from "@emotion/react"
 import { RightIcon, CloseIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
 import { EditorInput } from "@/components/EditorInput"
+import { motion } from "framer-motion"
 import {
   actionEditorPanelLayoutWrapper,
   applyContainerHeight,
@@ -47,7 +48,7 @@ function renderStatusNode(status: ActionRestultStatus) {
 }
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose, result, status = "success" } = props
+  const { onClose, result, status = "success", className } = props
   const { t } = useTranslation()
   const { editorHeight } = useContext(ActionEditorContext)
   const resultContainerRef = useRef<HTMLDivElement>(null)
@@ -66,7 +67,14 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
       : t("editor.action.result.title.error")
 
   return (
-    <div css={actionEditorPanelLayoutWrapper}>
+    <motion.div
+      css={actionEditorPanelLayoutWrapper}
+      className={className}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    >
       <div
         onMouseDown={resizer.onMouseDown}
         onTouchStart={resizer.onTouchStart}
@@ -88,13 +96,13 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
 
         <pre css={resContentStyle}>{result}</pre>
         {/* <EditorInput
-            mode="application/json"
-            lineNumbers={false}
-            readOnly
-            css={resContentStyle}
-            /> */}
+        mode="application/json"
+        lineNumbers={false}
+        readOnly
+        css={resContentStyle}
+        /> */}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

@@ -25,6 +25,7 @@ import {
   deleteActionStyle,
 } from "./style"
 import { ActionResult } from "./ActionResult"
+import { AnimatePresence } from "framer-motion"
 
 const { Item: MenuItem } = Menu
 
@@ -206,14 +207,16 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             onEditResource,
             onChangeResource,
           })}
-          {actionResVisible && (
-            <ActionResult
-              result={result}
-              onClose={() => {
-                setActionResVisible(false)
-              }}
-            />
-          )}
+          <AnimatePresence>
+            {actionResVisible && (
+              <ActionResult
+                result={result}
+                onClose={() => {
+                  setActionResVisible(false)
+                }}
+              />
+            )}
+          </AnimatePresence>
         </>
       )}
     </div>
