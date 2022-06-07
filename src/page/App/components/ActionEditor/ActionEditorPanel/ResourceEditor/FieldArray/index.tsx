@@ -1,13 +1,14 @@
 import { FC, useState } from "react"
 import { css } from "@emotion/react"
+import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
-import { AddIcon, DeleteIcon } from "@illa-design/icon"
+import { PlusIcon, DeleteIcon } from "@illa-design/icon"
+import { Button } from "@illa-design/button"
 import { Select } from "@illa-design/select"
 import { EditorInput } from "@/components/EditorInput"
 import { FieldArrayProps, ValueType } from "./interface"
 import {
-  actionTextStyle,
-  DeleteIconWrapper,
+  deleteIconWrapperStyle,
   fieldItemStyle,
   fieldItemKeyStyle,
   fieldItemValueStyle,
@@ -17,6 +18,8 @@ import {
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
   const { hasType, onChange } = props
+
+  const { t } = useTranslation()
 
   const getEmptyField = () => {
     return hasType
@@ -81,7 +84,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           css={fieldItemValueStyle}
           onChange={(v) => updateField(index, "value", v)}
         />
-        <div css={DeleteIconWrapper} onClick={() => removeField(index)}>
+        <div css={deleteIconWrapperStyle} onClick={() => removeField(index)}>
           <DeleteIcon size="12px" />
         </div>
       </div>
@@ -106,10 +109,16 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
   return (
     <div>
       {fieldList}
-      <span css={css(newButtonStyle, actionTextStyle)} onClick={addNewField}>
-        <AddIcon />
-        New
-      </span>
+      <Button
+        variant="text"
+        size="medium"
+        colorScheme="techPurple"
+        leftIcon={<PlusIcon />}
+        css={css(newButtonStyle)}
+        onClick={addNewField}
+      >
+        {t("editor.action.panel.btn.new")}
+      </Button>
     </div>
   )
 }
