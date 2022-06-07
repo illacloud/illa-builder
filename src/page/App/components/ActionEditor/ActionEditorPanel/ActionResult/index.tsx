@@ -1,6 +1,7 @@
 import { FC, useRef, useState, useContext } from "react"
+import { useTranslation } from "react-i18next"
 import { css } from "@emotion/react"
-import { RightIcon, CloseIcon } from "@illa-design/icon"
+import { RightIcon, CloseIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
 import { EditorInput } from "@/components/EditorInput"
 import {
@@ -17,21 +18,53 @@ import {
   resContentStyle,
   resStatusIconStyle,
   resSuccessStatusIconStyle,
+  resFailStatusIconStyle,
 } from "./style"
-import { ActionResultProps } from "./interface"
+import { ActionResultProps, ActionRestultStatus } from "./interface"
+
+const CONTAINER_DEFAULT_HEIGHT = 180
+
+function renderStatusNode(status: ActionRestultStatus) {
+  switch (status) {
+    case "success": {
+      return (
+        <RightIcon
+          css={css(resStatusIconStyle, resSuccessStatusIconStyle)}
+          size="10px"
+        />
+      )
+    }
+
+    case "error": {
+      return (
+        <WarningCircleIcon
+          css={css(resStatusIconStyle, resFailStatusIconStyle)}
+          size="10px"
+        />
+      )
+    }
+  }
+}
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose, result } = props
-
-  const layerRef = useRef<HTMLDivElement>(null)
-  const [containerHeight, setContainerHeight] = useState(182)
-  const [title, setTitle] = useState("Ran successfully")
+  const { onClose, result, status = "success" } = props
+  const { t } = useTranslation()
   const { editorHeight } = useContext(ActionEditorContext)
+  const resultContainerRef = useRef<HTMLDivElement>(null)
+  const [containerHeight, setContainerHeight] = useState(
+    CONTAINER_DEFAULT_HEIGHT,
+  )
+
   const onHeightChange = (height: number) => {
     setContainerHeight(height)
   }
 
-  const resizer = useResize("vertical", layerRef, onHeightChange)
+  const resizer = useResize("vertical", resultContainerRef, onHeightChange)
+  const title =
+    status === "success"
+      ? t("editor.action.result.title.success")
+      : t("editor.action.result.title.error")
+
   return (
     <div css={actionEditorPanelLayoutWrapper}>
       <div
@@ -41,17 +74,14 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         css={applyResizerStyle(resizer.resizing, containerHeight)}
       />
       <div
-        ref={layerRef}
+        ref={resultContainerRef}
         css={css(
           applyResContainerStyle(editorHeight - 120),
           applyContainerHeight(containerHeight),
         )}
       >
         <div css={resHeaderStyle}>
-          <RightIcon
-            css={css(resStatusIconStyle, resSuccessStatusIconStyle)}
-            size="10px"
-          />
+          {renderStatusNode(status)}
           <span css={resTitleStyle}>{title}</span>
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
         </div>

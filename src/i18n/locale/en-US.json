@@ -204,6 +204,12 @@
         },
         "postgres": { "name": "Postgres" },
         "redis": { "name": "Redis" }
+      },
+      "result": {
+        "title": {
+          "success": "Query ran successfully",
+          "error": "Query ran fail"
+        }
       }
     }
   }
