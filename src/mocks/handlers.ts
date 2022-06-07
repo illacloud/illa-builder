@@ -6,6 +6,7 @@ const baseUrl = import.meta.env.VITE_API_BASE_URL
 export const handlers = [
   rest.post(`${baseUrl}/actions/:id/run`, (req, res, ctx) => {
     return res(
+      ctx.delay(10000 * Math.random()),
       ctx.status(200),
       ctx.json({
         status: "error",
