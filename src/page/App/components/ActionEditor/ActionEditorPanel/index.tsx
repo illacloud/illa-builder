@@ -8,7 +8,7 @@ import { Menu } from "@illa-design/menu"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
@@ -120,7 +120,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       const id = uuidV4()
 
       dispatch(
-        actionListActions.addActionItemReducer({
+        actionActions.addActionItemReducer({
           actionId: id,
           type,
           displayName: generateName(type, actionItems, actionItemsNameSet),
@@ -133,7 +133,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   function deleteActionItem() {
     activeActionItem &&
-      dispatch(actionListActions.removeActionItemReducer(activeActionItemId))
+      dispatch(actionActions.removeActionItemReducer(activeActionItemId))
 
     onDeleteActionItem(activeActionItemId)
   }

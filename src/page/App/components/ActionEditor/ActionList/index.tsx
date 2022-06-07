@@ -13,7 +13,7 @@ import {
   RestApiIcon,
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionItem, ActionType } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
@@ -85,7 +85,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
   function updateName() {
     dispatch(
-      actionListActions.updateActionItemReducer({
+      actionActions.updateActionItemReducer({
         actionId: editingActionItemId,
         displayName: editingName,
       }),
@@ -195,7 +195,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
         },
       },
       ({ data }: { data: ActionItem }) => {
-        dispatch(actionListActions.addActionItemReducer(data))
+        dispatch(actionActions.addActionItemReducer(data))
         onAddActionItem(data?.actionId)
       },
     )
@@ -212,7 +212,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       const id = uuidV4()
 
       dispatch(
-        actionListActions.addActionItemReducer({
+        actionActions.addActionItemReducer({
           actionId: id,
           type,
           displayName: generateName(type, actionItems, actionItemsNameSet),
@@ -224,7 +224,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function onDelete() {
-    dispatch(actionListActions.removeActionItemReducer(contextMenuActionId))
+    dispatch(actionActions.removeActionItemReducer(contextMenuActionId))
     onDeleteActionItem(contextMenuActionId)
   }
 
