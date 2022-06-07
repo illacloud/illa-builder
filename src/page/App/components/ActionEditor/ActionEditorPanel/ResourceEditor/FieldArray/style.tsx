@@ -42,7 +42,7 @@ export const fieldItemValueStyle = css`
 `
 
 export const newButtonStyle = css`
-  margin-top: 8px !important;
+  margin-top: 8px;
 `
 
 export const deleteIconWrapperStyle = css`

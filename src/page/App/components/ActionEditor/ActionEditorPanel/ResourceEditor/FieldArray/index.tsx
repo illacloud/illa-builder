@@ -114,7 +114,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
         size="medium"
         colorScheme="techPurple"
         leftIcon={<PlusIcon />}
-        css={css(newButtonStyle)}
+        _css={newButtonStyle}
         onClick={addNewField}
       >
         {t("editor.action.panel.btn.new")}
