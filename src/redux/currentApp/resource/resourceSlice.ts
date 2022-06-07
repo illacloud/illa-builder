@@ -6,7 +6,7 @@ import {
 } from "@/redux/currentApp/resource/resourceReducer"
 
 const resourceSlice = createSlice({
-  name: "actionList",
+  name: "resource",
   initialState: resourceInitialState,
   reducers: {
     addResourceItemReducer,
