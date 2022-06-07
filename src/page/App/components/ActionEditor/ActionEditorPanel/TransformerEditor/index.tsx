@@ -22,7 +22,7 @@ export const TransformerEditor = forwardRef<
   const { onChangeParam, onSaveParam } = props
 
   // TODO: eval transformer
-  const run = () => { }
+  const run = () => {}
 
   const saveAndRun = () => {
     run()
