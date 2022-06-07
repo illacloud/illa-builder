@@ -90,8 +90,8 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           onSubmit && onSubmit()
           // enhancer ?
         },
-        () => { },
-        () => { },
+        () => {},
+        () => {},
         (loading) => setCreateBtnLoading(loading),
       )
       return
@@ -107,8 +107,8 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         dispatch(resourceActions.addResourceItemReducer(data))
         onSubmit && onSubmit()
       },
-      () => { },
-      () => { },
+      () => {},
+      () => {},
       (loading) => setCreateBtnLoading(loading),
     )
   }
@@ -126,7 +126,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
       ({ data }) => {
         Notification.error({ title: <span>{data}</span> })
       },
-      () => { },
+      () => {},
       (loading) => setTestConnectionLoading(loading),
     )
   }

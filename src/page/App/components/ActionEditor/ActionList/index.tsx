@@ -14,7 +14,10 @@ import {
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
 import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { ActionType } from "@/redux/currentApp/action/actionList/actionListState"
+import {
+  ActionItem,
+  ActionType,
+} from "@/redux/currentApp/action/actionList/actionListState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import {
@@ -194,7 +197,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
           resourceId: "",
         },
       },
-      ({ data }) => {
+      ({ data }: { data: ActionItem }) => {
         dispatch(actionListActions.addActionItemReducer(data))
         onAddActionItem(data?.actionId)
       },
