@@ -62,14 +62,13 @@ export const RESTAPIConfigure = forwardRef<
   const [authType, setAuthType] = useState("none")
 
   const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
-    onSubmit &&
-      onSubmit({
-        resourceName: data.name,
-        resourceType: "REST API",
-        dbName: "",
-        created: Date.now().toString(),
-        config: data,
-      })
+    onSubmit?.({
+      resourceName: data.name,
+      resourceType: "REST API",
+      dbName: "",
+      created: Date.now().toString(),
+      config: data,
+    })
   }
 
   const renderAuthConfig = () => {
