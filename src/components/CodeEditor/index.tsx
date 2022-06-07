@@ -15,7 +15,7 @@ import "codemirror/addon/lint/lint"
 import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
-import {bindingMarker} from "@/components/CodeEditor/markHelpers";
+import { bindingMarker } from "@/components/CodeEditor/markHelpers"
 
 export enum AutocompleteDataType {
   OBJECT = "OBJECT",
@@ -85,10 +85,15 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     cm: CodeMirror.Editor,
     event: KeyboardEvent,
   ) => {
-    console.log(cm, event)
-    const modeName = cm.getModeAt(cm.getCursor()).name;
-    console.log(modeName, 'modeName')
-    cm.showHint()
+    console.log(cm, event, cm.getMode())
+    const modeName = cm.getModeAt(cm.getCursor()).name
+    console.log(modeName, "modeName")
+    cm.showHint({
+      hint: CodeMirror.hint.sql,
+      completeSingle: false, // 是否立即补全
+    });
+    // CodeMirror.showHint(cm, CodeMirror.hint.javascript)
+    // cm.simpleHint
     const key = event.key
     // if (isModifierKey(key)) return;
     const cursor = cm.getCursor()
@@ -124,10 +129,36 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   const updateMarkings = (
-      editor: CodeMirror.Editor,
-      marking: Array<(editor: CodeMirror.Editor) => void>,
+    editor: CodeMirror.Editor,
+    marking: Array<(editor: CodeMirror.Editor) => void>,
   ) => {
-    marking.forEach((helper) => helper(editor));
+    marking.forEach((helper) => helper(editor))
+  }
+  CodeMirror.commands.autocomplete = function (cm) {
+    const doc = cm.getDoc()
+    const POS = doc.getCursor()
+    const mode = CodeMirror.innerMode(cm.getMode(), cm.getTokenAt(POS).state)
+      .mode.name
+    const modeName = cm.getModeAt(cm.getCursor()).name
+    console.log(mode, POS, modeName,"autocomplete")
+    if (mode == "sql") {
+      CodeMirror.showHint(cm, CodeMirror.hint.sql, {
+        tables: {
+          "table1": [ "col_A", "col_B", "col_C" ],
+          "table2": [ "other_columns1", "other_columns2" ]
+        },
+        completeSingle: false,
+        disableKeywords: false,
+      })
+      // cm.showHint({
+      //   hint: CodeMirror.hint.sql,
+      //   completeSingle: false, // 是否立即补全
+      // });
+    } else if (mode == "javascript") {
+      CodeMirror.showHint(cm, CodeMirror.hint.javascript, {
+        completeSingle: false,
+      })
+    }
   }
 
   useEffect(() => {
@@ -140,14 +171,18 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       matchBrackets: true,
       autoCloseBrackets: true,
       tabSize: 2,
-      // hintOptions: {
-      //   completeSingle: false,
-      // },
+      hintOptions: {
+        completeSingle: false,
+      },
     })
 
     editor.on("change", handleChange)
     editor.on("blur", handleBlur)
-    editor.on("keyup", handleAutocompleteKeyup)
+    // editor.on("keyup", handleAutocompleteKeyup)
+    editor.on("keyup", (cm) => {
+      //cm.showHint()
+      cm.execCommand("autocomplete")
+    })
 
     updateMarkings(editor, [bindingMarker])
     return () => {
