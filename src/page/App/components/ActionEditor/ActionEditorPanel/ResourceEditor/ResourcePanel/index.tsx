@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux"
 import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
-import { Alert } from "@illa-design/alert"
 import { Api } from "@/api/base"
 import { ParamValues } from "@/page/App/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionListState"
@@ -60,10 +59,6 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       (i) => i.resourceId === resourceId,
     )
 
-    // TODO add type
-    const [result, setResult] = useState<any>()
-    const [showAlert, setShowAlert] = useState(false)
-
     const onParamsChange = (value: ParamValues) => {
       setParams({ ...params, general: value })
       onChange?.()
@@ -78,10 +73,6 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           data: _data,
         },
         (data) => {
-          if (!showAlert) {
-            setShowAlert(true)
-          }
-          setResult(data.data)
           onRun && onRun(data.data)
         },
       )
@@ -125,13 +116,6 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           <Transformer />
           <Divider />
           <EventHandler />
-          {showAlert && (
-            <Alert
-              type={result?.status === "success" ? "success" : "error"}
-              title={result?.message}
-              closable
-            />
-          )}
         </div>
       </>
     )
