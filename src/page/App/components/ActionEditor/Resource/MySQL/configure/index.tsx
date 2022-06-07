@@ -61,10 +61,10 @@ const advancedOptionSet = new Set([
 const dataTransform = (data: MySQLConfigureValues) => {
   let options: {
     [x: string]:
-      | string
-      | number
-      | boolean
-      | { [x: string]: string | number | boolean }
+    | string
+    | number
+    | boolean
+    | { [x: string]: string | number | boolean }
   } = {}
   let advanced: { [x: string]: string | number | boolean } = {}
   Object.keys(data).forEach((key) => {
@@ -115,15 +115,13 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
         ssl: expandSSL,
       }
       const _data = dataTransform(data)
-
-      onTestConnection &&
-        onTestConnection({
-          resourceName: data.name,
-          resourceType: "MySQL",
-          dbName: "",
-          created: Date.now().toString(),
-          config: _data,
-        })
+      onTestConnection?.({
+        resourceName: data.name,
+        resourceType: "MySQL",
+        dbName: "",
+        created: Date.now().toString(),
+        config: _data,
+      })
     }
 
     useImperativeHandle(connectionRef, () => {
