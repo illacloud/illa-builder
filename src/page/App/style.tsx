@@ -10,14 +10,15 @@ export const editorContainerStyle = css`
 `
 
 export const contentStyle = css`
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   flex-grow: 1;
   width: 100%;
-  height: 100%;
 `
 
 export const navbarStyle = css`
+  box-sizing: border-box;
   width: 100%;
   height: 48px;
 `
@@ -26,6 +27,7 @@ export function applyLeftPanelStyle(display: boolean): SerializedStyles {
   return css`
     width: 280px;
     height: 100%;
+    box-sizing: border-box;
     border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${display ? "" : "display: none"};
   `
@@ -38,6 +40,7 @@ export const centerPanelStyle = css`
 
 export function applyBottomPanelStyle(display: boolean): SerializedStyles {
   return css`
+    box-sizing: border-box;
     width: 100%;
     border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${display ? "" : "display: none"};
@@ -46,6 +49,7 @@ export function applyBottomPanelStyle(display: boolean): SerializedStyles {
 
 export function applyRightPanelStyle(display: boolean): SerializedStyles {
   return css`
+    box-sizing: border-box;
     width: 320px;
     height: 100%;
     border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -55,6 +59,7 @@ export function applyRightPanelStyle(display: boolean): SerializedStyles {
 
 export const middlePanelStyle = css`
   flex-grow: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;

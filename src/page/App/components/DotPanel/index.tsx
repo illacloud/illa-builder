@@ -18,7 +18,7 @@ import {
   isOpenRightPanel,
 } from "@/redux/currentApp/config/configSelector"
 import { useDrop } from "react-dnd"
-import { BaseDSL } from "@/wrappedComponents/interface"
+import { BaseDSL, WidgetCardInfo } from "@/wrappedComponents/interface"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
 
@@ -92,7 +92,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   }, [width, leftPanelOpenState, rightPanelOpenState])
 
   const [collectedInfo, dropTarget] = useDrop<
-    BaseDSL,
+    Partial<WidgetCardInfo>,
     DropPanelInfo,
     DropCollectedInfo
   >(
@@ -101,7 +101,25 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       drop: (item, monitor) => {
         return {}
       },
-      hover: (item, monitor) => {},
+      hover: (item, monitor) => {
+        const monitorRect = monitor.getSourceClientOffset()
+        const canvasRect = canvasRef.current?.getBoundingClientRect()
+        const canvasScrollLeft = canvasRef.current?.scrollLeft
+        const canvasScrollTop = canvasRef.current?.scrollTop
+        if (
+          monitorRect != null &&
+          canvasRect != null &&
+          canvasScrollLeft != null &&
+          canvasScrollTop != null
+        ) {
+          const relativePositionX =
+            monitorRect.x - canvasRect.x + canvasScrollLeft
+          const relativePositionY =
+            monitorRect.y - canvasRect.y + canvasScrollTop
+          console.log(canvasRect.x, canvasRect.y)
+          // console.log(relativePositionX, relativePositionY)
+        }
+      },
     }),
     [],
   )
