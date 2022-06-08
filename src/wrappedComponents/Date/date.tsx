@@ -34,11 +34,16 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
 
   const [currentValue, setCurrentValue] = useState(value ?? defaultValue)
 
-  const checkRange = useCallback((current) => {
-    const beforeMinDate = minDate ? !!current?.isBefore(dayjs(minDate)) : false
-    const afterMaxDate = maxDate ? !!current?.isAfter(dayjs(maxDate)) : false
-    return beforeMinDate || afterMaxDate
-  }, [])
+  const checkRange = useCallback(
+    (current) => {
+      const beforeMinDate = minDate
+        ? !!current?.isBefore(dayjs(minDate))
+        : false
+      const afterMaxDate = maxDate ? !!current?.isAfter(dayjs(maxDate)) : false
+      return beforeMinDate || afterMaxDate
+    },
+    [minDate, maxDate],
+  )
 
   return (
     <TooltipWrapper
