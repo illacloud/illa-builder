@@ -18,9 +18,10 @@ import {
   isOpenRightPanel,
 } from "@/redux/currentApp/config/configSelector"
 import { useDrop } from "react-dnd"
-import { BaseDSL, WidgetCardInfo } from "@/wrappedComponents/interface"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
+import * as Console from "console"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 function renderDotSquare(rows: number, columns: number): ReactNode {
   let rowsDot: ReactNode[] = []
@@ -92,7 +93,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   }, [width, leftPanelOpenState, rightPanelOpenState])
 
   const [collectedInfo, dropTarget] = useDrop<
-    Partial<WidgetCardInfo>,
+    ComponentNode,
     DropPanelInfo,
     DropCollectedInfo
   >(
@@ -102,7 +103,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         return {}
       },
       hover: (item, monitor) => {
-        const monitorRect = monitor.getSourceClientOffset()
+        const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
         const canvasScrollTop = canvasRef.current?.scrollTop
@@ -112,12 +113,11 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasScrollLeft != null &&
           canvasScrollTop != null
         ) {
+          console.log(monitorRect.x, monitorRect.y)
           const relativePositionX =
             monitorRect.x - canvasRect.x + canvasScrollLeft
           const relativePositionY =
             monitorRect.y - canvasRect.y + canvasScrollTop
-          console.log(canvasRect.x, canvasRect.y)
-          // console.log(relativePositionX, relativePositionY)
         }
       },
     }),

@@ -10,9 +10,11 @@ import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/currentApp/config/configSlice"
+import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 
 const editorReducer = combineReducers({
   inspect: inspectReducer,
+  components: componentsReducer,
 })
 
 const actionReducer = combineReducers({
