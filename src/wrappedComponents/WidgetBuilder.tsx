@@ -27,6 +27,7 @@ import {
   DATE_WIDGET_CONFIG,
   DateWidget,
 } from "@/wrappedComponents/Date"
+import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
