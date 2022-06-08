@@ -45,4 +45,4 @@ export interface ActionItem {
 
 export type ActionListState = ActionItem[]
 
-export const actionListInitialState: ActionListState = []
+export const actionInitialState: ActionListState = []

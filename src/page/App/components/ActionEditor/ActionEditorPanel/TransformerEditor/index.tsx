@@ -1,8 +1,8 @@
 import { forwardRef, useImperativeHandle, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector, useDispatch } from "react-redux"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { EditorInput } from "@/components/EditorInput"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
@@ -28,7 +28,7 @@ export const TransformerEditor = forwardRef<
     run()
 
     dispatch(
-      actionListActions.updateActionItemReducer({
+      actionActions.updateActionItemReducer({
         ...activeActionItem,
         config: {
           ...activeActionItem?.config,

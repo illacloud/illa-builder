@@ -3,10 +3,10 @@ import { forwardRef, useState, useImperativeHandle, useContext } from "react"
 import { Divider } from "@illa-design/divider"
 import { Api } from "@/api/base"
 import { ParamValues } from "@/page/App/components/ActionEditor/Resource"
-import { ActionItemConfig } from "@/redux/currentApp/action/actionList/actionListState"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { ActionItemConfig } from "@/redux/currentApp/action/actionState"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Transformer } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/Transformer"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ResourceParams } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourceParams"
@@ -91,7 +91,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       run()
 
       dispatch(
-        actionListActions.updateActionItemReducer({
+        actionActions.updateActionItemReducer({
           ...activeActionItem,
           resourceId,
           config: {

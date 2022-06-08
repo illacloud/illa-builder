@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from "react"
+import { FC, useState, useRef, useEffect } from "react"
 import { css } from "@emotion/react"
 import { useResize } from "@/utils/hooks/useResize"
 import {
@@ -12,13 +12,16 @@ import { ActionEditorLayoutProps } from "./interface"
 export const ActionEditorLayout: FC<ActionEditorLayoutProps> = (props) => {
   const { actionList, actionEditorPanel, updateEditorHeight } = props
   const [containerHeight, setContainerHeight] = useState(300)
-  updateEditorHeight?.(containerHeight)
   const editorRef = useRef<HTMLDivElement>(null)
   const onHeightChange = (height: number) => {
     setContainerHeight(height)
   }
 
   const resizer = useResize("vertical", editorRef, onHeightChange)
+
+  useEffect(() => {
+    updateEditorHeight?.(containerHeight)
+  }, [containerHeight])
 
   return (
     <div css={actionEditorPanelLayoutWrapper}>
