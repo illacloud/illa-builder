@@ -2,7 +2,7 @@ import { FC, HTMLAttributes } from "react"
 
 import { EditorInput } from "@/components/EditorInput"
 import { CodeEditor } from "@/components/CodeEditor"
-import { EditorModes } from "@/components/CodeEditor/interface"
+import { CodeInput } from "@/components/CodeInput"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -13,12 +13,10 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
     <div className={className}>
       DataWorkspace
       <EditorInput mode="sql-js" />
-      <EditorInput mode="javascript" />
       <EditorInput mode="sql" />
-      <CodeEditor mode="SQL" />
       <CodeEditor mode="JAVASCRIPT" />
-      <CodeEditor mode="TEXT_JS" />
       <CodeEditor mode="SQL_JS" />
+        <CodeInput mode="javascript" />
     </div>
   )
 }
