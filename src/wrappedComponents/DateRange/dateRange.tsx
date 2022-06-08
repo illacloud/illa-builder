@@ -1,20 +1,22 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useMemo } from "react"
 import dayjs from "dayjs"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
-import { DatePicker } from "@illa-design/date-picker"
+import { DateRangePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
-import { inputContainerCss } from "./style"
-import { WrappedDateProps } from "./interface"
+import { invalidMessage } from "@/wrappedComponents/InvalidMessage/utils"
 import LabelWrapper from "../LabelWrapper"
+import { inputContainerCss } from "./style"
+import { WrappedDateRangeProps } from "./interface"
 
-export const WrappedDate: FC<WrappedDateProps> = (props) => {
+export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const {
     value,
     tooltipText,
     dateFormat,
-    placeholder,
+    startPlaceholder,
+    endPlaceholder,
     showClear,
     label,
     labelAlign,
@@ -29,10 +31,19 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
     disabled,
     maxDate,
     readOnly,
+    customRule,
     hideValidationMessage,
   } = props
 
-  const [currentValue, setCurrentValue] = useState(value ?? defaultValue)
+  const _placeholder = [startPlaceholder ?? "", endPlaceholder ?? ""]
+
+  const _customValue = useMemo(() => {
+    if (customRule) {
+      return customRule
+    } else if (required && !value) {
+      return invalidMessage.get("required")
+    }
+  }, [customRule, required, value])
 
   const checkRange = useCallback(
     (current) => {
@@ -63,25 +74,22 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
           tooltipText={tooltipText}
         >
           <div css={inputContainerCss}>
-            <DatePicker
+            <DateRangePicker
               colorScheme={colorScheme}
-              defaultValue={defaultValue}
+              defaultValue={defaultValue ? [defaultValue] : undefined}
               format={dateFormat}
               value={value}
               readOnly={readOnly}
               disabled={disabled}
-              placeholder={placeholder}
+              placeholder={_placeholder}
               allowClear={showClear}
               disabledDate={checkRange}
               // todo @aoao handleUpdateDsl?
-              onClear={() => setCurrentValue("")}
-              onChange={(value) => {
-                setCurrentValue(value)
-              }}
+              // onClear={() => }
+              // onChange={(value) => {}}
             />
             <InvalidMessage
-              value={currentValue}
-              required={required}
+              customRule={_customValue}
               hideValidationMessage={hideValidationMessage}
             />
           </div>
@@ -91,6 +99,6 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
   )
 }
 
-WrappedDate.displayName = "WrappedDate"
+WrappedDateRange.displayName = "WrappedDateRange"
 
-export const DateWidget = withParser(WrappedDate)
+export const DateRangeWidget = withParser(WrappedDateRange)
