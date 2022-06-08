@@ -78,7 +78,7 @@ export const forgotPwdStyle: SerializedStyles = css`
   margin-right: 8px;
 `
 
-export const forgotPwdContainer: SerializedStyles = css`
+export const forgotPwdContainerStyle: SerializedStyles = css`
   display: flex;
   align-items: center;
   justify-content: space-between;

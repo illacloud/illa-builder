@@ -18,7 +18,7 @@ import {
   errorIconStyle,
   checkboxTextStyle,
   forgotPwdStyle,
-  forgotPwdContainer,
+  forgotPwdContainerStyle,
 } from "@/page/User/style"
 import { TextLink } from "@/page/User/components/TextLink"
 import { LoginFields } from "./interface"
@@ -90,7 +90,7 @@ export const Login: FC = () => {
           </div>
         </section>
         <section css={gridItemStyle}>
-          <div css={forgotPwdContainer}>
+          <div css={forgotPwdContainerStyle}>
             <label css={formLabelStyle}>
               {t("user.sign_in.fields.password")}
             </label>

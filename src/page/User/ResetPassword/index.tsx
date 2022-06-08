@@ -175,4 +175,4 @@ export const ResetPassword: FC = () => {
   )
 }
 
-ResetPassword.displayName = "Login"
+ResetPassword.displayName = "ResetPassword"

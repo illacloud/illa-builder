@@ -224,4 +224,4 @@ export const Register: FC = () => {
   )
 }
 
-Register.displayName = "Login"
+Register.displayName = "Register"
