@@ -27,6 +27,7 @@ export function applyLeftPanelStyle(display: boolean): SerializedStyles {
   return css`
     width: 280px;
     height: 100%;
+    min-width: 280px;
     box-sizing: border-box;
     border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${display ? "" : "display: none"};
@@ -51,6 +52,7 @@ export function applyRightPanelStyle(display: boolean): SerializedStyles {
   return css`
     box-sizing: border-box;
     width: 320px;
+    min-width: 320px;
     height: 100%;
     border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${display ? "" : "display: none"};
@@ -59,6 +61,7 @@ export function applyRightPanelStyle(display: boolean): SerializedStyles {
 
 export const middlePanelStyle = css`
   flex-grow: 1;
+  min-width: 960px;
   height: 100%;
   display: flex;
   flex-direction: column;
