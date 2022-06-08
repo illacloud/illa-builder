@@ -18,7 +18,6 @@ import {
   isOpenRightPanel,
 } from "@/redux/currentApp/config/configSelector"
 import { useDrop } from "react-dnd"
-import { BaseDSL, WidgetCardInfo } from "@/wrappedComponents/interface"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
 import * as Console from "console"

@@ -1,6 +1,6 @@
-import { BaseDSL } from "@/wrappedComponents/interface"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export interface UpdateComponentPayload {
   displayName: string
-  baseDSL: BaseDSL
+  baseDSL: ComponentNode
 }

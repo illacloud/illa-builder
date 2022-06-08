@@ -1,11 +1,13 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { ComponentsState } from "@/redux/currentApp/editor/components/componentsState"
-import { BaseDSL } from "@/wrappedComponents/interface"
+import {
+  ComponentNode,
+  ComponentsState,
+} from "@/redux/currentApp/editor/components/componentsState"
 import { UpdateComponentPayload } from "@/redux/currentApp/editor/components/componentsPayload"
 
 export const addComponentReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<BaseDSL>
+  PayloadAction<ComponentNode>
 > = (state, action) => {}
 
 export const removeComponentReducer: CaseReducer<

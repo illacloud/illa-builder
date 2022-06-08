@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { dragPreviewStyle, iconCss, itemContainerCss, nameCss } from "./style"
 import { ComponentItemProps } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
 import { useDrag } from "react-dnd"
@@ -7,9 +7,18 @@ import {
   DropPanelInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
   const { displayName, icon, ...partialDragInfo } = props
+
+  const componentNode = useMemo(() => {
+    const fullDragInfo = {
+      displayName,
+      ...partialDragInfo,
+    }
+    return generateComponentNode(fullDragInfo)
+  }, [displayName, partialDragInfo])
 
   const [collectedInfo, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
@@ -18,7 +27,7 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
   >(
     () => ({
       type: "components",
-      item: {} as ComponentNode,
+      item: componentNode,
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
