@@ -8,16 +8,28 @@ import {
   JSTransformerIcon,
 } from "@illa-design/icon"
 
-export interface ResourceDataItem {
-  nameKey:
+export type ActionTypeCategory = "databases" | "apis" | "jsTransformer"
+
+export type ActionType =
+  | "MySQL"
+  | "Postgres"
+  | "Redis"
+  | "MongoDB"
+  | "RESTAPI"
+  | "transformer"
+
+type ActionTypeNameKey =
   | "mySql"
   | "postgres"
   | "redis"
   | "mongo_db"
   | "rest_api"
   | "js_transformer"
+
+export interface ResourceDataItem {
+  nameKey: ActionTypeNameKey
   icon: ReactElement
-  type: string
+  type: ActionType
   isDraft?: boolean
 }
 
@@ -59,6 +71,6 @@ export const jsTransformer: ResourceDataItem[] = [
   {
     nameKey: "js_transformer",
     icon: <JSTransformerIcon />,
-    type: "JSTransformer",
+    type: "transformer",
   },
 ]

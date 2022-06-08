@@ -13,10 +13,11 @@ import {
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { ActionItem, ActionType } from "@/redux/currentApp/action/actionState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
+import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
 import {
   actionListContainerStyle,
   newBtnContainerStyle,
@@ -55,6 +56,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [editingActionItemId, setEditingActionItemId] = useState("")
   const [contextMenuActionId, setContextMenuActionId] = useState("")
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
+  const [newActionLoading, setNewActionLoading] = useState(false)
   const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -162,15 +164,16 @@ export const ActionList: FC<ActionListProps> = (props) => {
     onSelectActionItem(id)
   }
 
-  function addAction() {
-    addActionItem("action")
-  }
+  function onAddAction(info: ActionInfo) {
+    const { category, type, resourceId = "" } = info
+    setActionGeneratorVisible(false)
 
-  function addTransformer() {
-    addActionItem("transformer")
-  }
+    let actionTemplate
 
-  function addActionItem(type: ActionType) {
+    if (category === "jsTransformer") {
+      actionTemplate = { transformer: "" }
+    }
+
     Api.request(
       {
         url: "/actions",
@@ -178,12 +181,18 @@ export const ActionList: FC<ActionListProps> = (props) => {
         data: {
           displayName: generateName(type, actionItems, actionItemsNameSet),
           type,
-          resourceId: "",
+          resourceId,
+          actionTemplate,
         },
       },
       ({ data }: { data: ActionItem }) => {
         dispatch(actionActions.addActionItemReducer(data))
         onAddActionItem(data?.actionId)
+      },
+      () => { },
+      () => { },
+      (loading) => {
+        setNewActionLoading(loading)
       },
     )
   }
@@ -249,6 +258,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
           buttonRadius="8px"
           size={"medium"}
           leftIcon={<AddIcon />}
+          loading={newActionLoading}
+          disabled={newActionLoading}
           onClick={() => setActionGeneratorVisible(true)}
         >
           <span css={newButtonTextStyle}>
@@ -268,6 +279,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       <ActionGenerator
         visible={actionGeneratorVisible}
         onClose={() => setActionGeneratorVisible(false)}
+        onAddAction={onAddAction}
       />
     </div>
   )

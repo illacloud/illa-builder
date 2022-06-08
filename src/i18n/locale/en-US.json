@@ -22,6 +22,11 @@
   },
   "editor": {
     "action": {
+      "type": {
+        "database": "Databases",
+        "api": "Apis",
+        "js_transformer": "Javascript Transformer"
+      },
       "action_list": {
         "title": "Action List",
         "placeholder": {

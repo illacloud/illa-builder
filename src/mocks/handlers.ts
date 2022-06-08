@@ -157,6 +157,7 @@ export const handlers = [
     const data = req.body
 
     return res(
+      ctx.delay(Math.random() * 3000),
       ctx.status(200),
       ctx.json({
         actionId: uuidV4(),

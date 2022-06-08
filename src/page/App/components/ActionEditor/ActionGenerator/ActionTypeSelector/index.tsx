@@ -21,12 +21,16 @@ import {
 } from "./style"
 
 const Card: FC<ActionTypeSelectorCardProps> = function(props) {
-  const { icon, nameKey, isDraft } = props
+  const { icon, nameKey, isDraft, category, type, onSelect } = props
   const { t } = useTranslation()
   const draftTip = t("editor.action.resource.label.comming_soon")
 
   return (
-    <div css={applyResourceItemStyle(isDraft)} data-draft-tip={draftTip}>
+    <div
+      css={applyResourceItemStyle(isDraft)}
+      data-draft-tip={draftTip}
+      onClick={() => !isDraft && onSelect?.({ type, category })}
+    >
       {cloneElement(icon, { css: resourceIconStyle })}
       <span css={resourceNameStyle}>
         {t(`editor.action.resource.${nameKey}.name`)}
@@ -36,13 +40,19 @@ const Card: FC<ActionTypeSelectorCardProps> = function(props) {
 }
 
 const List: FC<ActionTypeSelectorListProps> = function(props) {
-  const { title, list = [] } = props
+  const { title, list = [], onSelect, category } = props
+
   return (
     <div>
       <span css={categoryStyle}>{title}</span>
       <div css={resourceListStyle}>
         {list.map((prop) => (
-          <Card key={prop.nameKey} {...prop} />
+          <Card
+            key={prop.nameKey}
+            onSelect={onSelect}
+            category={category}
+            {...prop}
+          />
         ))}
       </div>
     </div>
@@ -54,6 +64,23 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = function(
 ) {
   const { onSelect } = props
   const { t } = useTranslation()
+  const lists = [
+    {
+      title: t("editor.action.type.database"),
+      list: databases,
+      category: "databases" as const,
+    },
+    {
+      title: t("editor.action.type.api"),
+      list: apis,
+      category: "apis" as const,
+    },
+    {
+      title: t("editor.action.type.js_transformer"),
+      list: jsTransformer,
+      category: "jsTransformer" as const,
+    },
+  ]
 
   return (
     <div css={containerStyle}>
@@ -61,13 +88,9 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = function(
         {t("editor.action.action_list.action_generator.selector.title")}
       </div>
 
-      <List title="Databases" key="Databases" list={databases} />
-      <List title="Apis" key="Apis" list={apis} />
-      <List
-        title="Javascript Transformer"
-        key="Javascript Transformer"
-        list={jsTransformer}
-      />
+      {lists.map((l) => (
+        <List key={l.title} {...l} onSelect={onSelect} />
+      ))}
     </div>
   )
 }
