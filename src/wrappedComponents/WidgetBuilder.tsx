@@ -28,6 +28,7 @@ import {
   DateWidget,
 } from "@/wrappedComponents/Date"
 import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
+import { DOT_LINE_SQUARE_CONFIG } from "@/page/App/components/DotPanel/widgetConfig"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -69,6 +70,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: DateWidget,
     config: DATE_WIDGET_CONFIG,
     panelConfig: DATE_PANEL_CONFIG,
+  },
+  DOT_LINE_SQUARE: {
+    widget: DottedLineSquare,
+    config: DOT_LINE_SQUARE_CONFIG,
+    panelConfig: [],
   },
 }
 

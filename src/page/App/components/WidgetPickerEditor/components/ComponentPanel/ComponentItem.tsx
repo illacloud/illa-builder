@@ -9,7 +9,7 @@ import {
 } from "@/page/App/components/DotPanel/interface"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
-  const { displayName, icon, id, ...partialDragInfo } = props
+  const { displayName, icon, ...partialDragInfo } = props
 
   const fullDragInfo = {
     displayName,

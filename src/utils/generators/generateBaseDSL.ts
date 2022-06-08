@@ -1,7 +1,5 @@
 import { BaseDSL, WidgetCardInfo } from "@/wrappedComponents/interface"
 import { WidgetTypeList } from "@/wrappedComponents/WidgetBuilder"
-import { v4 } from "uuid"
-import store from "@/store"
 
 export const generateBaseDSL = (
   widgetInfo: Partial<WidgetCardInfo>,
@@ -29,16 +27,8 @@ export const generateBaseDSL = (
       childrenNodeDSL.push(generateBaseDSL(childNode))
     })
   }
-  // const state = store.getState()
-  // TODO: dsl selector写在 selector 里: const getWidgetMapCountSelector = createSelector([getDSLSelector],(DSL)=>{
-  //   横向遍历统组件情况
-  //  })
-  // const widgetMapCount = getWidgetMapCountsSelector(state)
-  // const count = widgetMapCount[widgetInfo.type]
   const { defaults, w, h, displayName, type } = widgetInfo
-  // const DSLDisplayName = `${widgetInfo.displayName}${count+1}`
   baseDSL = {
-    id: v4(),
     w,
     h,
     type,

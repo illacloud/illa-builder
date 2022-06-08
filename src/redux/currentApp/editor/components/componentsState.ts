@@ -1,9 +1,23 @@
-import { BaseDSL } from "@/wrappedComponents/interface"
+export interface ComponentNode {
+  displayName: string
+  parentNode: string | null
+  childrenNode: string[] | null
+  type: string
+  h: number
+  w: number
+  // default -1
+  x: number
+  // default -1
+  y: number
+  props: {
+    [key: string]: any
+  } | null
+}
 
 export interface ComponentsState {
-  rootDsl: BaseDSL
+  rootDsl: ComponentNode | null
 }
 
 export const ComponentsInitialState = {
-  map: new Map(),
+  rootDsl: null,
 }

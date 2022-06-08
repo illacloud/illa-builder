@@ -24,7 +24,6 @@ export interface BaseWidgetInfo {
 }
 
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
-  id: string
   childrenNode?: WidgetCardInfo[]
   defaults?: {
     [key: string]: any
@@ -36,7 +35,7 @@ export type WidgetConfig = Omit<WidgetCardInfo, "id">
 export interface BaseDSL
   extends DraggableWrapperShape,
     Omit<BaseWidgetInfo, "icon" | "sessionType"> {
-  id: string
+  parentNode?: BaseDSL
   childrenNode?: BaseDSL[]
   props?: {
     [key: string]: any

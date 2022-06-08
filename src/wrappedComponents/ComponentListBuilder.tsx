@@ -10,6 +10,7 @@ export type SessionType = keyof typeof sessionTypeMapSessionName
 const sessionTypeMapSessionName = {
   BASIC: "Basic",
   COMMON: "Common",
+  EDITOR: "Editor",
 }
 
 const getListItemConfig = (type: WidgetType): WidgetConfig => {
@@ -20,15 +21,15 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
   const sessionConfigs: TypeMapComponent = {
     BASIC: [],
     COMMON: [],
+    EDITOR: [],
   }
   componentConfigs.forEach((item) => {
-    const { sessionType = "BASIC", type, displayName } = item
+    const { sessionType = "BASIC" } = item
     if (!sessionConfigs[sessionType]) {
       sessionConfigs[sessionType] = []
     }
     const childrenConfig: WidgetCardInfo = {
       ...item,
-      id: `${sessionType}-${type}-${displayName}`,
     }
     sessionConfigs[sessionType].push(childrenConfig)
   })
