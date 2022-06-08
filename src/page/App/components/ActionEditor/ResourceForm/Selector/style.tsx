@@ -11,7 +11,7 @@ export const categoryStyle = css`
   padding-top: 8px;
 `
 
-export function resourceListStyle(last?: boolean): SerializedStyles {
+export function applyResourceListStyle(last?: boolean): SerializedStyles {
   return css`
     display: grid;
     grid-gap: 8px 24px;
@@ -29,6 +29,7 @@ export const resourceItemStyle = css`
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+
   &:hover {
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
     background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};

@@ -13,7 +13,7 @@ import {
 } from "./interface"
 import {
   categoryStyle,
-  resourceListStyle,
+  applyResourceListStyle,
   resourceItemStyle,
   resourceNameStyle,
   selectLayoutStyle,
@@ -25,15 +25,15 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
 
   const databaseList: DatabaseItemProps[] = [
     {
+      title: t("editor.action.resource.mySql.name"),
+      img: <MysqlIcon />,
+      type: "MySQL",
+    },
+    {
       title: t("editor.action.resource.postgres.name"),
       img: <PostgresIcon />,
       draft: true,
       type: "Postgres",
-    },
-    {
-      title: t("editor.action.resource.mySql.name"),
-      img: <MysqlIcon />,
-      type: "MySQL",
     },
     {
       title: t("editor.action.resource.redis.name"),
@@ -54,7 +54,7 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
     <div css={selectLayoutStyle}>
       <div>
         <div css={categoryStyle}>{t("editor.action.form.title.database")}</div>
-        <div css={resourceListStyle()}>
+        <div css={applyResourceListStyle()}>
           {databaseList.map((database) => (
             <div
               key={database.title}
@@ -71,7 +71,7 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
       </div>
       <div>
         <div css={categoryStyle}>{t("editor.action.form.title.api")}</div>
-        <div css={resourceListStyle(true)}>
+        <div css={applyResourceListStyle(true)}>
           {apiList.map((api) => (
             <div
               key={api.title}
