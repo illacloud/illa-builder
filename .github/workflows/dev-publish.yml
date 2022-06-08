@@ -112,17 +112,13 @@ jobs:
           yarn cypress info
           yarn test
 
-      - name: Publish to Codecov
-        uses: codecov/codecov-action@v3.1.0
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
-
       - name: Publish docker image
         run: echo "Publishing docker image..."
 
       - name: Build Static Page
-        run: yarn build
+        run: |
+          yarn build
+          echo "builder.illafamily.com" > "dist/CNAME"
 
 
       - name: Deploy storybook to Github Pages

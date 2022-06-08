@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
@@ -10,7 +10,8 @@ import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
 import { ActionEditorContext } from "./context"
 
-export const ActionEditor: FC<ActionEditorProps> = () => {
+export const ActionEditor: FC<ActionEditorProps> = (props) => {
+  const { className } = props
   const { t } = useTranslation()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
@@ -28,10 +29,10 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
       return
     }
 
-    const lastItemId = actionItems[length - 1].id
+    const lastItemId = actionItems[length - 1].actionId
 
     if (id === lastItemId && length > 1) {
-      updateActiveActionItemId(actionItems[length - 2].id)
+      updateActiveActionItemId(actionItems[length - 2].actionId)
     } else {
       updateActiveActionItemId(lastItemId)
     }
@@ -48,7 +49,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
     setIsActionDirty(false)
     setActiveActionItemId(id)
     const resourceId =
-      actionItems.find(({ id: actionItemId }) => id === actionItemId)
+      actionItems.find(({ actionId: actionItemId }) => id === actionItemId)
         ?.resourceId ?? "preset_REST API"
 
     setResourceId(resourceId)
@@ -62,7 +63,7 @@ export const ActionEditor: FC<ActionEditorProps> = () => {
         editorHeight,
       }}
     >
-      <div>
+      <div className={className}>
         <ActionEditorLayout
           updateEditorHeight={(val: number) => {
             setEditorHeight(val)

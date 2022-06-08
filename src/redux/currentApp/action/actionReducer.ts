@@ -2,7 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ActionListState,
   ActionItem,
-} from "@/redux/currentApp/action/actionList/actionListState"
+} from "@/redux/currentApp/action/actionState"
 
 export const addActionItemReducer: CaseReducer<
   ActionListState,
@@ -16,7 +16,7 @@ export const updateActionItemReducer: CaseReducer<
   PayloadAction<Partial<ActionItem>>
 > = (state, action) => {
   let targetActionIndex = state.findIndex(
-    (item: ActionItem) => item.id === action.payload.id,
+    (item: ActionItem) => item.actionId === action.payload.actionId,
   )
 
   state.splice(targetActionIndex, 1, {
@@ -32,7 +32,7 @@ export const removeActionItemReducer: CaseReducer<
   PayloadAction<string>
 > = (state, action) => {
   state.splice(
-    state.findIndex((item: ActionItem) => item.id === action.payload),
+    state.findIndex((item: ActionItem) => item.actionId === action.payload),
     1,
   )
   return state

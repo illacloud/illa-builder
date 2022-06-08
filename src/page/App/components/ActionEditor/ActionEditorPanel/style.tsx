@@ -185,7 +185,7 @@ export const sectionTitleStyle = css`
 
 export const handlerTitleStyle = css`
   ${sectionTitleStyle};
-  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   padding: 16px 16px 0;
 `
 

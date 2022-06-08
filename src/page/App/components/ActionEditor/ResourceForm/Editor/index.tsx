@@ -1,13 +1,18 @@
-import { FC, useRef, cloneElement } from "react"
+import { FC, useRef, cloneElement, RefObject, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Button } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { Notification } from "@illa-design/notification"
+import { Api } from "@/api/base"
+import { Resource } from "@/redux/currentApp/resource/resourceState"
+import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import {
   MySQLConfigure,
   RESTAPIConfigure,
 } from "@/page/App/components/ActionEditor/Resource"
+import { ResourceType } from "@/page/App/components/ActionEditor/interface"
 import { ResourceFormEditorProps, ConnectionRef } from "./interface"
 import {
   formContainerStyle,
@@ -17,10 +22,45 @@ import {
   createResourceBtnStyle,
 } from "./style"
 
+const renderResourceNode = (
+  resourceType: ResourceType | undefined,
+  connectionRef: RefObject<ConnectionRef>,
+  formRef: RefObject<HTMLFormElement>,
+  onSubmitForm: (data: any) => void,
+  onTestConnection: (data: any) => void,
+  props: ResourceFormEditorProps,
+) => {
+  let node: JSX.Element
+  const { resourceId } = props
+
+  switch (resourceType) {
+    case "REST API":
+      node = (
+        <RESTAPIConfigure resourceId={resourceId} onSubmit={onSubmitForm} />
+      )
+      break
+    case "MySQL":
+      node = (
+        <MySQLConfigure
+          connectionRef={connectionRef}
+          resourceId={resourceId}
+          onSubmit={onSubmitForm}
+          onTestConnection={onTestConnection}
+        />
+      )
+      break
+    default:
+      node = <div>No Config</div>
+      break
+  }
+
+  return cloneElement(node, { ref: formRef }) || null
+}
+
 export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   const { resourceId, back, onSubmit, resourceType: resourceTypeProps } = props
   const { t } = useTranslation()
-
+  const dispatch = useDispatch()
   const resource = useSelector(selectAllResource).find(
     (i) => i.resourceId === resourceId,
   )
@@ -30,37 +70,78 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   const connectionRef = useRef<ConnectionRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
-  const renderResourceNode = () => {
-    let node: JSX.Element
-
-    switch (resourceType) {
-      case "REST API":
-        node = <RESTAPIConfigure resourceId={resourceId} />
-        break
-      case "MySQL":
-        node = (
-          <MySQLConfigure
-            connectionRef={connectionRef}
-            resourceId={resourceId}
-          />
-        )
-        break
-      default:
-        node = <div>No Config</div>
-        break
-    }
-
-    return cloneElement(node, { ref: formRef }) || null
-  }
+  const [createBtnLoading, setCreateBtnLoading] = useState(false)
+  const [testConnectionLoading, setTestConnectionLoading] = useState(false)
 
   function submitForm() {
     formRef.current?.requestSubmit()
-    onSubmit && onSubmit()
+  }
+
+  function onSubmitForm(data: any, resourceId?: string) {
+    if (resourceId) {
+      Api.request<Resource>(
+        {
+          url: `/resources/${resourceId}`,
+          method: "PUT",
+          data,
+        },
+        ({ data }) => {
+          dispatch(resourceActions.updateResourceItemReducer(data))
+          onSubmit && onSubmit()
+        },
+        () => {},
+        () => {},
+        (loading) => setCreateBtnLoading(loading),
+      )
+      return
+    }
+
+    Api.request<Resource>(
+      {
+        url: "/resources",
+        method: "POST",
+        data,
+      },
+      ({ data }) => {
+        dispatch(resourceActions.addResourceItemReducer(data))
+        onSubmit && onSubmit()
+      },
+      () => {},
+      () => {},
+      (loading) => setCreateBtnLoading(loading),
+    )
+  }
+
+  function onTestConnection(data: any) {
+    Api.request<string>(
+      {
+        url: "/resources/testConnection",
+        method: "POST",
+        data,
+      },
+      ({ data }) => {
+        Notification.success({ title: <span>{data}</span> })
+      },
+      ({ data }) => {
+        Notification.error({ title: <span>{data}</span> })
+      },
+      () => {},
+      (loading) => setTestConnectionLoading(loading),
+    )
   }
 
   return (
     <div css={formContainerStyle}>
-      <div>{renderResourceNode()}</div>
+      <div>
+        {renderResourceNode(
+          resourceType,
+          connectionRef,
+          formRef,
+          onSubmitForm,
+          onTestConnection,
+          props,
+        )}
+      </div>
       <div css={formFooterStyle}>
         <Button
           variant="text"
@@ -82,6 +163,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           onClick={() => {
             connectionRef.current?.testConnection()
           }}
+          loading={testConnectionLoading}
         >
           {t("editor.action.form.btn.test_connection")}
         </Button>
@@ -91,8 +173,11 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           colorScheme="techPurple"
           css={createResourceBtnStyle}
           onClick={submitForm}
+          loading={createBtnLoading}
         >
-          {t("editor.action.form.btn.create_resource")}
+          {resourceId
+            ? t("editor.action.form.btn.save_changes")
+            : t("editor.action.form.btn.create_resource")}
         </Button>
       </div>
     </div>

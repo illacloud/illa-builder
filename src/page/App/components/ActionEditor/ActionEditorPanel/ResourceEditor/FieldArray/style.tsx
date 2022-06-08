@@ -42,18 +42,10 @@ export const fieldItemValueStyle = css`
 `
 
 export const newButtonStyle = css`
-  display: flex;
-  align-items: center;
-  align-self: flex-start;
-  padding-top: 8px !important;
-
-  & svg {
-    margin-right: 5px;
-    margin-bottom: 2px;
-  }
+  margin-top: 8px;
 `
 
-export const DeleteIconWrapper = css`
+export const deleteIconWrapperStyle = css`
   align-items: center;
   display: flex;
   height: 32px;
@@ -67,20 +59,5 @@ export const DeleteIconWrapper = css`
 
   &:hover {
     color: ${globalColor(`--${illaPrefix}-red-05`)};
-  }
-`
-
-export const actionTextStyle = css`
-  cursor: pointer;
-  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
-  transition: color 0.2s ease-in-out;
-  justify-self: start;
-  background-color: transparent;
-  border: 0;
-  padding: 0;
-  margin: 0;
-
-  &:hover {
-    color: ${globalColor(`--${illaPrefix}-techPurple-03`)};
   }
 `

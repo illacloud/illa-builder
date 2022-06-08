@@ -202,7 +202,8 @@
         "btn": {
           "back": "后退",
           "test_connection": "测试连接",
-          "create_resource": "创建资源"
+          "create_resource": "创建资源",
+          "save_changes": "保存修改"
         },
         "validate": {
           "required": "{name} is required!"
@@ -316,6 +317,12 @@
         },
         "redis": {
           "name": "Redis"
+        }
+      },
+      "result": {
+        "title": {
+          "success": "Query ran successfully",
+          "error": "Query ran fail"
         }
       }
     }

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { Select, Option } from "@illa-design/select"
 import { PenIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import { ResourcePanel } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourcePanel"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
@@ -32,6 +32,7 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
       onEditResource,
       onChangeParam,
       onSaveParam,
+      onRun,
     } = props
 
     const { t } = useTranslation()
@@ -111,6 +112,7 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
           resourceId={resourceId}
           onChange={onChangeParam}
           onSave={onSaveParam}
+          onRun={onRun}
         />
       </div>
     )

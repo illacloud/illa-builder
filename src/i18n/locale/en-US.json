@@ -202,7 +202,8 @@
         "btn": {
           "back": "Back",
           "test_connection": "Test Connection",
-          "create_resource": "Create Resource"
+          "create_resource": "Create Resource",
+          "save_changes": "Save Changes"
         },
         "validate": {
           "required": "{name} is required!"
@@ -313,6 +314,12 @@
         },
         "postgres": { "name": "Postgres" },
         "redis": { "name": "Redis" }
+      },
+      "result": {
+        "title": {
+          "success": "Query ran successfully",
+          "error": "Query ran fail"
+        }
       }
     }
   }
