@@ -22,6 +22,7 @@ import { BaseDSL, WidgetCardInfo } from "@/wrappedComponents/interface"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
 import * as Console from "console"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 function renderDotSquare(rows: number, columns: number): ReactNode {
   let rowsDot: ReactNode[] = []
@@ -93,7 +94,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   }, [width, leftPanelOpenState, rightPanelOpenState])
 
   const [collectedInfo, dropTarget] = useDrop<
-    Partial<WidgetCardInfo>,
+    ComponentNode,
     DropPanelInfo,
     DropCollectedInfo
   >(
