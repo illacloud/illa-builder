@@ -18,7 +18,6 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "value",
         setterType: "DATE_RANGE_VALUE_SETTER",
         isFullWidth: true,
-        labelName: "",
         useCustomLabel: true,
       },
       {
@@ -106,7 +105,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "select-label-labelWidth",
+        id: "date-range-label-labelWidth",
         labelName: "Width(%)",
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
@@ -161,24 +160,24 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "input-validation",
+    id: "date-range-validation",
     groupName: "VALIDATION",
     children: [
       {
-        id: "input-validation-required",
+        id: "date-range-validation-required",
         labelName: "Required field",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "required",
       },
       {
-        id: "input-validation-custom",
+        id: "date-range-validation-custom",
         labelName: "Custom rule",
         setterType: "INPUT_SETTER",
         attrName: "customRule",
       },
       {
-        id: "input-validation-hide-message",
+        id: "date-range-validation-hide-message",
         labelName: "Hide validation message",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,

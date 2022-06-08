@@ -4,18 +4,18 @@ import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseIn
 import { DateRangeValueSetterProps } from "./interface"
 import { setterContainerStyle } from "./style"
 
+const START_DATE_KEY = "start-date"
+const END_DATE_KEY = "end-date"
+
 export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
   const { attrName, panelConfig, handleUpdateDsl, handleUpdatePanelConfig } =
     props
 
-  const startDateKey = "start-date"
-  const endDateKey = "end-date"
-
   const [values, setValues] = useState<string[]>(panelConfig[attrName])
 
   useEffect(() => {
-    setValues([panelConfig[startDateKey], panelConfig[endDateKey]])
-  }, [panelConfig[startDateKey], panelConfig[endDateKey]])
+    setValues([panelConfig[START_DATE_KEY], panelConfig[END_DATE_KEY]])
+  }, [panelConfig[START_DATE_KEY], panelConfig[END_DATE_KEY]])
 
   useEffect(() => {
     handleUpdateDsl({ [attrName]: values })
@@ -24,20 +24,20 @@ export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
   return (
     <>
       <div css={setterContainerStyle}>
-        <PanelLabel labelName={"Start date"} />
+        <PanelLabel labelName="Start date" />
         <BaseInput
           defaultValue={panelConfig[attrName]?.[0]}
-          attrName={startDateKey}
+          attrName={START_DATE_KEY}
           panelConfig={panelConfig}
           handleUpdateDsl={handleUpdateDsl}
           handleUpdatePanelConfig={handleUpdatePanelConfig}
         />
       </div>
       <div css={setterContainerStyle}>
-        <PanelLabel labelName={"End date"} />
+        <PanelLabel labelName="End date" />
         <BaseInput
           defaultValue={panelConfig[attrName]?.[1]}
-          attrName={endDateKey}
+          attrName={END_DATE_KEY}
           panelConfig={panelConfig}
           handleUpdateDsl={handleUpdateDsl}
           handleUpdatePanelConfig={handleUpdatePanelConfig}

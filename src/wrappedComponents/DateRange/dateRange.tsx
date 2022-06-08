@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import dayjs from "dayjs"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { withParser } from "@/wrappedComponents/parserHOC"
@@ -45,6 +45,12 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
     }
   }, [customRule, required, value])
 
+  const checkRange = useCallback((current) => {
+    const beforeMinDate = minDate ? !!current?.isBefore(dayjs(minDate)) : false
+    const afterMaxDate = maxDate ? !!current?.isAfter(dayjs(maxDate)) : false
+    return beforeMinDate || afterMaxDate
+  }, [])
+
   return (
     <TooltipWrapper
       tooltipText={tooltipText}
@@ -72,17 +78,10 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
               disabled={disabled}
               placeholder={_placeholder}
               allowClear={showClear}
-              disabledDate={(current) => {
-                const beforeMinDate = minDate
-                  ? !!current?.isBefore(dayjs(minDate))
-                  : false
-                const afterMaxDate = maxDate
-                  ? !!current?.isAfter(dayjs(maxDate))
-                  : false
-                return beforeMinDate || afterMaxDate
-              }}
+              disabledDate={checkRange}
+              // todo @aoao handleUpdateDsl?
               // onClear={() => }
-              onChange={(value) => {}}
+              // onChange={(value) => {}}
             />
             <InvalidMessage
               customRule={_customValue}
