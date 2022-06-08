@@ -20,6 +20,116 @@
   "btn": {
     "choose_file": "Choose a file"
   },
+  "user": {
+    "sign_up": {
+      "title": "Sign up",
+      "fields": {
+        "username": "Username",
+        "email": "Email",
+        "verify": "Verification code",
+        "password": "Password"
+      },
+      "actions": {
+        "send": "Send code",
+        "create": "Create Account"
+      },
+      "description": {
+        "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+        "subscribe": "I am willing to receive the updates and news about ILLA"
+      },
+      "placeholder": {
+        "username": "Enter your username",
+        "email": "Enter your email",
+        "verify": "Please enter verification code",
+        "password": "Create a password(6~20 characters)"
+      },
+      "error_message": {
+        "username": {
+          "require":"Please enter username",
+          "length": "The username must be 3~15 characters"
+        },
+        "email": {
+          "require":"Please enter your email",
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "An account with that email address already exists."
+        },
+        "password": {
+          "require":"Please enter password",
+          "length": "The password must be 6~20 characters"
+        },
+        "verify": {
+          "require": "Please enter verification code",
+          "invalid": "Invalid verification code",
+          "expired": "Verification code expired"
+        }
+      }
+    },
+    "sign_in": {
+      "title": "Welcome to back",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "actions": {
+        "login": "Sign in"
+      },
+      "description": {
+        "register": "New user? <0>Create an account</0>",
+        "forgot_password": "Forgot Password?",
+        "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>"
+      },
+      "placeholder": {
+        "email": "Enter your email",
+        "password": "Enter your password(6~20 characters)"
+      },
+      "error_message": {
+        "email": {
+          "require":"Please enter your email",
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account."
+        },
+        "password": {
+          "require":"Please enter password",
+          "locked": "Too many bad attempts， please reset your password or try again after 1 hour",
+          "incorrect": "Incorrect email or password",
+          "length": "The password must be 6~20 characters"
+        }
+      }
+    },
+    "forgot_password": {
+      "title": "Reset Password",
+      "fields": {
+        "email": "Email",
+        "password": "New Password",
+        "verify": "Verification code"
+      },
+      "actions": {
+        "send": "Send code",
+        "reset": "Reset"
+      },
+      "placeholder": {
+        "email": "Enter your email",
+        "verify": "Please enter verification code",
+        "password": "Enter your new password(6~20 characters)"
+      },
+      "error_message": {
+        "email": {
+          "require":"Please enter your email",
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account."
+        },
+        "verify": {
+          "require": "Please enter verification code",
+          "invalid": "Invalid verification code",
+          "expired": "Verification code expired"
+        },
+        "password": {
+          "require":"Please enter password",
+          "length": "The password must be 6~20 characters"
+        }
+      }
+    }
+  },
   "editor": {
     "action": {
       "action_list": {

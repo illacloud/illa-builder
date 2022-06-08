@@ -5,6 +5,10 @@ import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
 import { Editor } from "@/page/App"
+import { UserLogin } from "@/page/User"
+import { Register } from "@/page/User/Register"
+import { Login } from "@/page/User/Login"
+import { ResetPassword } from "@/page/User/ResetPassword"
 import { Page404 } from "@/page/status/404"
 import { Page403 } from "@/page/status/403"
 import { Page500 } from "@/page/status/500"
@@ -50,6 +54,12 @@ function App() {
             <Route index element={<Navigate to="./apps" />} />
             <Route path="apps" element={<DashboardApps />} />
             <Route path="resources" element={<DashboardResources />} />
+          </Route>
+          <Route path="user" element={<UserLogin />}>
+            <Route index element={<Navigate to="./login" />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="forgotPassword" element={<ResetPassword />} />
           </Route>
           <Route index element={<Navigate to="/dashboard" />} />
           <Route path="app/:app" element={<Editor />} />
