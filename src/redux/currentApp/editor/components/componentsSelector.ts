@@ -1,10 +1,10 @@
 import { RootState } from "@/store"
-import { BaseDSL } from "@/wrappedComponents/interface"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export function searchDsl(
-  children: BaseDSL[],
+  children: ComponentNode[],
   displayName: string,
-): BaseDSL | null {
+): ComponentNode | null {
   children.forEach((value, index, array) => {
     if (value.displayName == displayName) {
       return value
@@ -18,6 +18,6 @@ export function searchDsl(
 }
 
 export const getBaseDSL = (state: RootState, displayName: string) => {
-  const map: Map<string, BaseDSL> = state.currentApp.editor.components.map
-  map.forEach((value, key) => {})
+  // const map: Map<string, ComponentNode> = state.currentApp.editor.components.map
+  // map.forEach((value, key) => {})
 }

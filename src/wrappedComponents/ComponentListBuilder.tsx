@@ -24,11 +24,12 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
     EDITOR: [],
   }
   componentConfigs.forEach((item) => {
-    const { sessionType = "BASIC" } = item
+    const { sessionType = "BASIC", type, displayName } = item
     if (!sessionConfigs[sessionType]) {
       sessionConfigs[sessionType] = []
     }
     const childrenConfig: WidgetCardInfo = {
+      id: `${sessionType}-${type}-${displayName}`,
       ...item,
     }
     sessionConfigs[sessionType].push(childrenConfig)
