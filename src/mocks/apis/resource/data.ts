@@ -20,7 +20,7 @@ export const SINGLE_RESTAPI_RESOURCE = {
   lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
 }
 
-const MYSQL_RESOURCES = Array.from({ length: 30 }, (_, index) => {
+const MYSQL_RESOURCES = Array.from({ length: 15 }, (_, index) => {
   return {
     ...SINGLE_MYSQL_RESOURCE,
     resourceId: uuidV4(),

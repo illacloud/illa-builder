@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { css } from "@emotion/react"
 import { useSelector } from "react-redux"
-import { AddIcon, CaretLeftIcon } from "@illa-design/icon"
+import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import { ResourceIcon } from "./ResourceIcon"
@@ -34,14 +34,15 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
-
-  if (resourceList.length === 0) {
-    onCreateResource?.(resourceType)
-  }
-
   const [selectedResourceId, setSelectedResourceId] = useState<string>(
     defaultSelectedResourceId || (resourceList[0]?.resourceId ?? ""),
   )
+
+  useEffect(() => {
+    if (resourceList.length === 0) {
+      onCreateResource?.(resourceType)
+    }
+  }, [])
 
   useEffect(() => {
     setSelectedResourceId(defaultSelectedResourceId)
@@ -73,7 +74,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
 
       <div css={footerStyle}>
         <Button
-          leftIcon={<CaretLeftIcon />}
+          leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
           onClick={onBack}

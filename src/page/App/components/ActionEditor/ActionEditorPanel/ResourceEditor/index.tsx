@@ -82,14 +82,6 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
               </span>
             </Option>
             <Divider />
-            <Option value={"preset_REST API"}>
-              <span
-                css={resourceOptionStyle}
-                title={t("editor.action.panel.option.resource.rest_query")}
-              >
-                {t("editor.action.panel.option.resource.rest_query")}
-              </span>
-            </Option>
             {resourceList &&
               resourceList.map(({ resourceId: id, resourceName: name }) => (
                 <Option value={id} key={id}>

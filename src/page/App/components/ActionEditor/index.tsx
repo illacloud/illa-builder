@@ -25,18 +25,6 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
   const actionItems = useSelector(selectAllActionItem)
 
-  useEffect(() => {
-    Api.request(
-      {
-        method: "GET",
-        url: "/resources",
-      },
-      ({ data }) => {
-        dispatch(resourceActions.addResourceListReducer(data))
-      },
-    )
-  })
-
   function onDeleteActionItem(id: string) {
     const { length } = actionItems
 
@@ -63,12 +51,27 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
     setIsActionDirty(false)
     setActiveActionItemId(id)
+  }
+
+  useEffect(() => {
+    Api.request(
+      {
+        method: "GET",
+        url: "/resources",
+      },
+      ({ data }) => {
+        dispatch(resourceActions.addResourceListReducer(data))
+      },
+    )
+  }, [])
+
+  useEffect(() => {
     const resourceId =
-      actionItems.find(({ actionId: actionItemId }) => id === actionItemId)
-        ?.resourceId ?? "preset_REST API"
+      actionItems.find(({ actionId }) => activeActionItemId === actionId)
+        ?.resourceId ?? ""
 
     setResourceId(resourceId)
-  }
+  }, [activeActionItemId, actionItems])
 
   return (
     <ActionEditorContext.Provider
