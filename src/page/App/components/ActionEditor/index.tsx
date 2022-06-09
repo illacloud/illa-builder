@@ -1,7 +1,9 @@
-import { FC, useState } from "react"
-import { useSelector } from "react-redux"
+import { FC, useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
+import { Api } from "@/api/base"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
@@ -13,6 +15,7 @@ import { ActionEditorContext } from "./context"
 export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
   const [resourceId, setResourceId] = useState("preset_REST API")
@@ -21,6 +24,18 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
 
   const actionItems = useSelector(selectAllActionItem)
+
+  useEffect(() => {
+    Api.request(
+      {
+        method: "GET",
+        url: "/resources",
+      },
+      ({ data }) => {
+        dispatch(resourceActions.addResourceListReducer(data))
+      },
+    )
+  })
 
   function onDeleteActionItem(id: string) {
     const { length } = actionItems

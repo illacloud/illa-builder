@@ -1,7 +1,6 @@
 import {
   ResourceDataItem,
   ActionTypeCategory,
-  ActionType,
 } from "@/page/App/components/ActionEditor/Resource"
 
 export interface ActionTypeSelectorProps {
@@ -21,6 +20,6 @@ export interface ActionTypeSelectorCardProps extends ResourceDataItem {
 }
 
 export interface ActionTypeInfo {
-  type: ActionType
-  category: ActionTypeCategory
+  type: string
+  category?: ActionTypeCategory
 }

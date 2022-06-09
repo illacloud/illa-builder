@@ -12,10 +12,10 @@ import {
 } from "./interface"
 import {
   containerStyle,
+  titleStyle,
   categoryStyle,
   applyResourceItemStyle,
   resourceListStyle,
-  titleStyle,
   resourceNameStyle,
   resourceIconStyle,
 } from "./style"

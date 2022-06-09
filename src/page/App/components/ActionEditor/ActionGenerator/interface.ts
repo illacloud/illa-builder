@@ -9,3 +9,5 @@ export interface ActionGeneratorProps {
   onClose: () => void
   onAddAction?: (info: ActionInfo) => void
 }
+
+export type ActionGeneratorSteps = "type" | "resource" | "resource-create"

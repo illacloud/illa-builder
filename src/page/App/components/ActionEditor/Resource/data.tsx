@@ -11,11 +11,11 @@ import {
 export type ActionTypeCategory = "databases" | "apis" | "jsTransformer"
 
 export type ActionType =
-  | "MySQL"
-  | "Postgres"
-  | "Redis"
-  | "MongoDB"
-  | "RESTAPI"
+  | "mysql"
+  | "postgres"
+  | "redis"
+  | "mongodb"
+  | "restapi"
   | "transformer"
 
 type ActionTypeNameKey =
@@ -37,25 +37,25 @@ export const databases: ResourceDataItem[] = [
   {
     nameKey: "mySql",
     icon: <MySqlIcon />,
-    type: "MySQL",
+    type: "mysql",
   },
   {
     nameKey: "postgres",
     icon: <PostgresIcon />,
     isDraft: true,
-    type: "Postgres",
+    type: "postgres",
   },
   {
     nameKey: "redis",
     icon: <RedisIcon />,
     isDraft: true,
-    type: "Redis",
+    type: "redis",
   },
   {
     nameKey: "mongo_db",
     icon: <MongoDbIcon />,
     isDraft: true,
-    type: "MongoDB",
+    type: "mongodb",
   },
 ]
 
@@ -63,7 +63,7 @@ export const apis: ResourceDataItem[] = [
   {
     nameKey: "rest_api",
     icon: <RestApiIcon />,
-    type: "RESTAPI",
+    type: "restapi",
   },
 ]
 

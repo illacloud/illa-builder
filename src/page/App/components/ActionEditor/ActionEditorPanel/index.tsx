@@ -9,7 +9,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
@@ -31,7 +30,7 @@ import { ActionResult } from "./ActionResult"
 const { Item: MenuItem } = Menu
 
 function renderEditor(
-  type: ActionType | undefined,
+  type: string,
   ref: Ref<triggerRunRef>,
   onSaveParam: () => void,
   onRun: (result: any) => void,
@@ -40,7 +39,8 @@ function renderEditor(
   const { onEditResource, onChangeResource, onCreateResource, onChange } = props
 
   switch (type) {
-    case "action":
+    case "restapi":
+    case "mysql":
       return (
         <ResourceEditor
           ref={ref}
@@ -222,8 +222,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           {isRuning
             ? duration
             : isActionDirty
-            ? t("editor.action.panel.btn.save_and_run")
-            : t("editor.action.panel.btn.run")}
+              ? t("editor.action.panel.btn.save_and_run")
+              : t("editor.action.panel.btn.run")}
         </Button>
       </header>
 
