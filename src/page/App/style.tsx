@@ -15,6 +15,7 @@ export const contentStyle = css`
   flex-direction: row;
   flex-grow: 1;
   width: 100%;
+  overflow: auto;
 `
 
 export const navbarStyle = css`
