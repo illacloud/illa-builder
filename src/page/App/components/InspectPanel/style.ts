@@ -110,3 +110,22 @@ export const applySetterWrapperStyle = (
         ${publicPaddingCss};
       `
 }
+
+export const unselectedTipWrapperStyle = css`
+  width: 100%;
+  height: 319px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const unselectedTipIconStyle = css`
+  font-size: 30px;
+`
+
+export const unselectedTipTextStyle = css`
+  margin-top: 4px;
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+`
