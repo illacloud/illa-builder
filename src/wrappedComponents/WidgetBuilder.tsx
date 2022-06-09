@@ -39,6 +39,11 @@ import {
 } from "@/wrappedComponents/DateRange"
 import { RateWidget } from "@/wrappedComponents/Rate/rate"
 import { RATE_PANEL_CONFIG, RATE_WIDGET_CONFIG } from "@/wrappedComponents/Rate"
+import {
+  BAR_PROGRESS_PANEL_CONFIG,
+  BAR_PROGRESS_WIDGET_CONFIG,
+  BarProgressWidget,
+} from "@/wrappedComponents/BarProgress"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -95,6 +100,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: RateWidget,
     config: RATE_WIDGET_CONFIG,
     panelConfig: RATE_PANEL_CONFIG,
+  },
+  BAR_PROGRESS_WIDGET: {
+    widget: BarProgressWidget,
+    config: BAR_PROGRESS_WIDGET_CONFIG,
+    panelConfig: BAR_PROGRESS_PANEL_CONFIG,
   },
 }
 
