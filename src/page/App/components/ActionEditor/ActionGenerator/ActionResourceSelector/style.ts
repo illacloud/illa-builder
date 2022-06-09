@@ -4,7 +4,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const containerStyle = css`
   display: flex;
   flex-direction: column;
-  min-height: ;
 `
 
 export const titleStyle = css`
@@ -19,7 +18,7 @@ export const listStyle = css`
   margin-top: 16px;
   overflow: auto;
   max-height: 550px;
-  flex: 1;
+  height: 550px;
 `
 
 export const footerStyle = css`

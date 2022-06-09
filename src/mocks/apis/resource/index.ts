@@ -10,6 +10,7 @@ export default [
 
   rest.post(`${baseUrl}/resources`, (req, res, ctx) => {
     const data = req.body
+    const dateStr = new Date().toISOString()
 
     return res(
       ctx.delay(1000),
@@ -18,6 +19,8 @@ export default [
         ...SINGLE_MYSQL_RESOURCE,
         resourceId: uuidV4(),
         ...data,
+        createdAt: dateStr,
+        lastModifiedAt: dateStr,
       }),
     )
   }),
@@ -25,13 +28,15 @@ export default [
   rest.put(`${baseUrl}/resources/:resourceId`, (req, res, ctx) => {
     const { resourceId } = req.params
     const data = req.body
+    const dateStr = new Date().toISOString()
 
     return res(
       ctx.delay(1000),
       ctx.status(200),
       ctx.json({
-        resourceId,
         ...data,
+        resourceId,
+        lastModifiedAt: dateStr,
       }),
     )
   }),

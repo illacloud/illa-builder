@@ -28,9 +28,17 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
     onCreateResource,
     defaultSelectedResourceId = "",
   } = props
-  const resourceList = useSelector(selectAllResource).filter(
-    (r) => r.resourceType === resourceType,
-  )
+  const resourceList = useSelector(selectAllResource)
+    .filter((r) => r.resourceType === resourceType)
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
+
+  if (resourceList.length === 0) {
+    onCreateResource?.(resourceType)
+  }
+
   const [selectedResourceId, setSelectedResourceId] = useState<string>(
     defaultSelectedResourceId || (resourceList[0]?.resourceId ?? ""),
   )

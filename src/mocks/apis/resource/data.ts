@@ -36,4 +36,4 @@ const RESTAPI_RESOURCES = Array.from({ length: 30 }, (_, index) => {
   }
 })
 
-export const ALL_RESOURCE = [...MYSQL_RESOURCES, ...RESTAPI_RESOURCES]
+export const ALL_RESOURCE = [...MYSQL_RESOURCES]

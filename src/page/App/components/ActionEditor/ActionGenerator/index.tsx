@@ -1,5 +1,7 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import { Modal } from "@illa-design/modal"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import { ActionTypeSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionResourceSelector"
 import { ActionTypeInfo } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector/interface"
@@ -39,6 +41,7 @@ function renderStep(
   props: ActionGeneratorProps,
   setStep: (step: ActionGeneratorSteps) => void,
   setResourceType: (resourceType: string) => void,
+  resourceList = [],
 ) {
   const { onAddAction } = props
   const [defaultSelectedResourceId, setDefaultSelectedResourceId] = useState("")
@@ -76,7 +79,7 @@ function renderStep(
           actionType="configure"
           resourceType={resourceType}
           back={() => {
-            setStep("resource")
+            setStep(resourceList.length > 0 ? "resource" : "type")
           }}
           onSubmit={(resourceId) => {
             setStep("resource")
@@ -91,6 +94,13 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
   const { visible, onClose } = props
   const [step, setStep] = useState<ActionGeneratorSteps>("type")
   const [resourceType, setResourceType] = useState<string>("")
+  const resourceList = useSelector(selectAllResource).filter(
+    (r) => r.resourceType === resourceType,
+  )
+
+  useEffect(() => {
+    setStep("type")
+  }, [visible])
 
   return (
     <Modal
@@ -102,7 +112,14 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
       withoutPadding
       onCancel={onClose}
     >
-      {renderStep(step, resourceType, props, setStep, setResourceType)}
+      {renderStep(
+        step,
+        resourceType,
+        props,
+        setStep,
+        setResourceType,
+        resourceList,
+      )}
     </Modal>
   )
 }
