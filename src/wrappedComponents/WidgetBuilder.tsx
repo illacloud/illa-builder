@@ -28,10 +28,17 @@ import {
   DateWidget,
 } from "@/wrappedComponents/Date"
 import {
+  DATE_TIME_PANEL_CONFIG,
+  DATE_TIME_WIDGET_CONFIG,
+  DateTimeWidget,
+} from "@/wrappedComponents/DateTime"
+import {
   DATE_RANGE_PANEL_CONFIG,
   DATE_RANGE_WIDGET_CONFIG,
   DateRangeWidget,
 } from "@/wrappedComponents/DateRange"
+import { RateWidget } from "@/wrappedComponents/Rate/rate"
+import { RATE_PANEL_CONFIG, RATE_WIDGET_CONFIG } from "@/wrappedComponents/Rate"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -78,6 +85,16 @@ const WidgetConfig: WidgetConfigs = {
     widget: DateRangeWidget,
     config: DATE_RANGE_WIDGET_CONFIG,
     panelConfig: DATE_RANGE_PANEL_CONFIG,
+  },
+  DATE_TIME_WIDGET: {
+    widget: DateTimeWidget,
+    config: DATE_TIME_WIDGET_CONFIG,
+    panelConfig: DATE_TIME_PANEL_CONFIG,
+  },
+  RATE_WIDGET: {
+    widget: RateWidget,
+    config: RATE_WIDGET_CONFIG,
+    panelConfig: RATE_PANEL_CONFIG,
   },
 }
 
