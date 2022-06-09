@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { css } from "@emotion/react"
 import { useSelector } from "react-redux"
 import { AddIcon, CaretLeftIcon } from "@illa-design/icon"
@@ -21,13 +21,23 @@ import {
 export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
   props,
 ) => {
-  const { resourceType, onBack, onCreateAction } = props
+  const {
+    resourceType,
+    onBack,
+    onCreateAction,
+    onCreateResource,
+    defaultSelectedResourceId = "",
+  } = props
   const resourceList = useSelector(selectAllResource).filter(
     (r) => r.resourceType === resourceType,
   )
   const [selectedResourceId, setSelectedResourceId] = useState<string>(
-    resourceList[0]?.resourceId ?? "",
+    defaultSelectedResourceId || (resourceList[0]?.resourceId ?? ""),
   )
+
+  useEffect(() => {
+    setSelectedResourceId(defaultSelectedResourceId)
+  }, [defaultSelectedResourceId])
 
   return (
     <div css={containerStyle}>
@@ -63,7 +73,13 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
           Back
         </Button>
         <ButtonGroup spacing="8px">
-          <Button leftIcon={<AddIcon />} colorScheme="gray">
+          <Button
+            leftIcon={<AddIcon />}
+            colorScheme="gray"
+            onClick={() => {
+              onCreateResource?.(resourceType)
+            }}
+          >
             New Resource
           </Button>
           <Button

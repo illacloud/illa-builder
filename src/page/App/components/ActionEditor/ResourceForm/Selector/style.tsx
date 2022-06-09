@@ -11,6 +11,14 @@ export const categoryStyle = css`
   padding-top: 8px;
 `
 
+export const categoryTitleStyle = css`
+  padding: 24px 0 16px 0;
+  font-size: 20px;
+  font-weight: 5000;
+  text-align: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
 export function applyResourceListStyle(last?: boolean): SerializedStyles {
   return css`
     display: grid;

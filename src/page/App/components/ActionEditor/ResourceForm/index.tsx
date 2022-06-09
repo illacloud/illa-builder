@@ -83,7 +83,6 @@ export const ResourceForm: FC<ResourceFormProps> = (props) => {
       }
       onCancel={handleClose}
     >
-      <div css={titleStyle}>{title}</div>
       {renderForm}
     </Modal>
   )

@@ -1,7 +1,14 @@
 import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const formContainerStyle = css`
-  padding-top: 16px;
+export const formContainerStyle = css``
+
+export const formTitleStyle = css`
+  padding: 24px 0 16px 0;
+  font-size: 20px;
+  font-weight: 5000;
+  text-align: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const formFooterStyle = css`
@@ -10,7 +17,7 @@ export const formFooterStyle = css`
   max-height: 80px;
 `
 
-export const FormFooterFilling = css`
+export const formFooterFilling = css`
   flex: 1;
 `
 

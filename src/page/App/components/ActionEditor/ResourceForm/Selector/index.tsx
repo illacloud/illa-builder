@@ -13,6 +13,7 @@ import {
 } from "./interface"
 import {
   categoryStyle,
+  categoryTitleStyle,
   applyResourceListStyle,
   resourceItemStyle,
   resourceNameStyle,
@@ -27,31 +28,32 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
     {
       title: t("editor.action.resource.mySql.name"),
       img: <MysqlIcon />,
-      type: "MySQL",
+      type: "mysql",
     },
     {
       title: t("editor.action.resource.postgres.name"),
       img: <PostgresIcon />,
       draft: true,
-      type: "Postgres",
+      type: "postgres",
     },
     {
       title: t("editor.action.resource.redis.name"),
       img: <RedisIcon />,
       draft: true,
-      type: "Redis",
+      type: "redis",
     },
   ]
   const apiList: ApiItemProps[] = [
     {
       title: t("editor.action.resource.rest_api.name"),
       img: <RestApiIcon />,
-      type: "REST API",
+      type: "restapi",
     },
   ]
 
   return (
     <div css={selectLayoutStyle}>
+      <div css={categoryTitleStyle}>Select Resource Type</div>
       <div>
         <div css={categoryStyle}>{t("editor.action.form.title.database")}</div>
         <div css={applyResourceListStyle()}>

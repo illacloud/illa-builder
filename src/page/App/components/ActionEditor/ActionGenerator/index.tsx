@@ -2,11 +2,10 @@ import { FC, useState } from "react"
 import { Modal } from "@illa-design/modal"
 import { ActionTypeSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionResourceSelector"
-import { ActionResourceCreator } from "@/page/App/components/ActionEditor/ActionGenerator/ActionResourceCreator"
 import { ActionTypeInfo } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector/interface"
+import { ResourceFormEditor } from "@/page/App/components/ActionEditor/ResourceForm/Editor"
 import { modalStyle } from "./style"
 import { ActionGeneratorProps, ActionGeneratorSteps } from "./interface"
-import resource from "@/mocks/apis/resource"
 
 function onSelectActionType(
   info: ActionTypeInfo,
@@ -42,6 +41,7 @@ function renderStep(
   setResourceType: (resourceType: string) => void,
 ) {
   const { onAddAction } = props
+  const [defaultSelectedResourceId, setDefaultSelectedResourceId] = useState("")
 
   switch (step) {
     case "type":
@@ -60,13 +60,30 @@ function renderStep(
             setStep("type")
             setResourceType("")
           }}
+          onCreateResource={(resourceType) => {
+            setResourceType(resourceType)
+            setStep("resource-create")
+          }}
           onCreateAction={(resourceType, resourceId) => {
             onAddAction?.({ type: resourceType, resourceId })
           }}
+          defaultSelectedResourceId={defaultSelectedResourceId}
         />
       )
     case "resource-create":
-      return <ActionResourceCreator />
+      return (
+        <ResourceFormEditor
+          actionType="configure"
+          resourceType={resourceType}
+          back={() => {
+            setStep("resource")
+          }}
+          onSubmit={(resourceId) => {
+            setStep("resource")
+            setDefaultSelectedResourceId(resourceId)
+          }}
+        />
+      )
   }
 }
 
