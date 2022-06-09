@@ -7,7 +7,7 @@ import {
 export const addResourceListReducer: CaseReducer<
   ResourceListState,
   PayloadAction<Resource[]>
-> = (state, action) => {
+> = (_, action) => {
   return action.payload
 }
 

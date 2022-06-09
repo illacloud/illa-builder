@@ -4,7 +4,7 @@ import { baseUrl } from "@/mocks/config"
 import { ALL_RESOURCE, SINGLE_MYSQL_RESOURCE } from "./data"
 
 export default [
-  rest.get(`${baseUrl}/resources`, (req, res, ctx) => {
+  rest.get(`${baseUrl}/resources`, (_, res, ctx) => {
     return res(ctx.delay(1000), ctx.status(200), ctx.json(ALL_RESOURCE))
   }),
 
@@ -18,7 +18,7 @@ export default [
       ctx.json({
         ...SINGLE_MYSQL_RESOURCE,
         resourceId: uuidV4(),
-        ...data,
+        ...(data as Object),
         createdAt: dateStr,
         lastModifiedAt: dateStr,
       }),
@@ -34,7 +34,7 @@ export default [
       ctx.delay(1000),
       ctx.status(200),
       ctx.json({
-        ...data,
+        ...(data as Object),
         resourceId,
         lastModifiedAt: dateStr,
       }),
@@ -52,7 +52,7 @@ export default [
     )
   }),
 
-  rest.post(`${baseUrl}/resources/testConnection`, (req, res, ctx) => {
+  rest.post(`${baseUrl}/resources/testConnection`, (_, res, ctx) => {
     return Math.random() > 0.2
       ? res(ctx.delay(500), ctx.status(200), ctx.text("Connection success!"))
       : res(ctx.delay(1000), ctx.status(400), ctx.text("Connection fail."))

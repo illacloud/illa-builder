@@ -189,8 +189,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
         dispatch(actionActions.addActionItemReducer(data))
         onAddActionItem(data?.actionId)
       },
-      () => { },
-      () => { },
+      () => {},
+      () => {},
       (loading) => {
         setNewActionLoading(loading)
       },

@@ -53,7 +53,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
       <div css={titleStyle}>Choose a resource</div>
 
       <div css={listStyle}>
-        {resourceList.map((r, index) => (
+        {resourceList.map((r) => (
           <div
             key={r.resourceId}
             css={css(
@@ -102,3 +102,5 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
     </div>
   )
 }
+
+ActionResourceSelector.displayName = "ActionResourceSelector"

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
+import { Resource } from "@/redux/currentApp/resource/resourceState"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
@@ -59,7 +60,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         method: "GET",
         url: "/resources",
       },
-      ({ data }) => {
+      ({ data }: { data: Resource[] }) => {
         dispatch(resourceActions.addResourceListReducer(data))
       },
     )

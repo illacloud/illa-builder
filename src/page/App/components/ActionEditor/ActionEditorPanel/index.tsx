@@ -102,7 +102,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     return new Set(actionItems.map((i) => i.displayName))
   }, [actionItems])
 
-  const actionType = activeActionItem?.type
+  const actionType = activeActionItem?.type ?? ""
 
   function handleAction(key: string) {
     setMoreBtnMenuVisible(false)
@@ -222,8 +222,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           {isRuning
             ? duration
             : isActionDirty
-              ? t("editor.action.panel.btn.save_and_run")
-              : t("editor.action.panel.btn.run")}
+            ? t("editor.action.panel.btn.save_and_run")
+            : t("editor.action.panel.btn.run")}
         </Button>
       </header>
 

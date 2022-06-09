@@ -6,8 +6,9 @@ import { ActionTypeSelector } from "@/page/App/components/ActionEditor/ActionGen
 import { ActionResourceSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionResourceSelector"
 import { ActionTypeInfo } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector/interface"
 import { ResourceFormEditor } from "@/page/App/components/ActionEditor/ResourceForm/Editor"
-import { modalStyle } from "./style"
+import { Resource } from "@/redux/currentApp/resource/resourceState"
 import { ActionGeneratorProps, ActionGeneratorSteps } from "./interface"
+import { modalStyle } from "./style"
 
 function onSelectActionType(
   info: ActionTypeInfo,
@@ -41,7 +42,7 @@ function renderStep(
   props: ActionGeneratorProps,
   setStep: (step: ActionGeneratorSteps) => void,
   setResourceType: (resourceType: string) => void,
-  resourceList = [],
+  resourceList: Resource[],
 ) {
   const { onAddAction } = props
   const [defaultSelectedResourceId, setDefaultSelectedResourceId] = useState("")
@@ -90,7 +91,7 @@ function renderStep(
   }
 }
 
-export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
+export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
   const [step, setStep] = useState<ActionGeneratorSteps>("type")
   const [resourceType, setResourceType] = useState<string>("")
