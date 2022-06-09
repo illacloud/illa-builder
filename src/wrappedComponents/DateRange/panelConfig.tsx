@@ -1,6 +1,7 @@
 import { HorizontalEnd, HorizontalStart } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
 
 const OptionsStyle = {
   display: "flex",
@@ -11,7 +12,7 @@ const OptionsStyle = {
 export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "date-range-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "date-range-basic-start-date",
@@ -22,33 +23,33 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "date-basic-Format",
-        labelName: "Format",
+        labelName: i18n.t("editor.inspect.setter_label.format"),
         attrName: "dateFormat",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-basic-start-placeholder",
-        labelName: "Start placeholder",
+        labelName: i18n.t("editor.inspect.setter_label.start_placeholder"),
         attrName: "startPlaceholder",
         isFullWidth: true,
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-basic-end-placeholder",
-        labelName: "End placeholder",
+        labelName: i18n.t("editor.inspect.setter_label.end_placeholder"),
         attrName: "endPlaceholder",
         isFullWidth: true,
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-basic-max-date",
-        labelName: "Max date",
+        labelName: i18n.t("editor.inspect.setter_label.max_date"),
         attrName: "maxDate",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-basic-min-date",
-        labelName: "Min date",
+        labelName: i18n.t("editor.inspect.setter_label.min_date"),
         attrName: "minDate",
         setterType: "INPUT_SETTER",
       },
@@ -56,23 +57,23 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-range-label",
-    groupName: "LABEL",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "date-range-label-label",
-        labelName: "Label",
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-label-caption",
-        labelName: "Caption",
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-label-position",
-        labelName: "Position",
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -82,7 +83,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "date-range-label-alignment",
-        labelName: "Alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -106,7 +107,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "date-range-label-labelWidth",
-        labelName: "Width(%)",
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
       },
@@ -114,26 +115,26 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-range-interaction",
-    groupName: "INTERACTION",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       // eventHandle @aoao
       {
         id: "date-range-interaction-loading",
-        labelName: "Loading",
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
         labelDesc: "xxxxx",
         attrName: "loading",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-interaction-disabled",
-        labelName: "Disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-interaction-readonly",
-        labelName: "Read only",
+        labelName: i18n.t("editor.inspect.setter_label.read_only"),
         labelDesc: "xxxxx",
         attrName: "readonly",
         setterType: "INPUT_SETTER",
@@ -142,18 +143,18 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-range-adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "date-range-adornments-showClear",
-        labelName: "Show clear button",
+        labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "showClear",
         useCustomLabel: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
       },
       {
         id: "date-range-adornments-tooltip",
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
@@ -161,24 +162,26 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-range-validation",
-    groupName: "VALIDATION",
+    groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
         id: "date-range-validation-required",
-        labelName: "Required field",
+        labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "required",
       },
       {
         id: "date-range-validation-custom",
-        labelName: "Custom rule",
+        labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "customRule",
       },
       {
         id: "date-range-validation-hide-message",
-        labelName: "Hide validation message",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.hide_validation_message",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "hideValidationMessage",
@@ -187,31 +190,31 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-range-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "date-range-layout-hidden",
         setterType: "INPUT_SETTER",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
       },
     ],
   },
   {
     id: "date-range-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "date-range-style-list",
         setterType: "LIST_SETTER",
         isFullWidth: true,
-        labelName: "Color",
+        labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "color",
         useCustomLabel: true,
         childrenSetter: [
           {
             id: "date-range-style",
-            labelName: "Theme color",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",

@@ -10,7 +10,7 @@ import { ComponentItem } from "./ComponentItem"
 export const ComponentSession: FC<ComponentSessionProps> = (props) => {
   const { title, children } = props
 
-  return (
+  return children.length > 0 ? (
     <div css={sessionContainerCss}>
       <span css={sessionTitleCss}>{title}</span>
       <div css={componentListContainerCss}>
@@ -19,7 +19,7 @@ export const ComponentSession: FC<ComponentSessionProps> = (props) => {
         ))}
       </div>
     </div>
-  )
+  ) : null
 }
 
 ComponentSession.displayName = "ComponentSession"

@@ -14,7 +14,7 @@ const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
   RADIO_GROUP_SETTER: BaseRadioGroupSetter,
   SWITCH_SETTER: BaseSwitchSetter,
-  SEARCH_SWITCH_SETTER: SearchSelectSetter,
+  SEARCH_SELECT_SETTER: SearchSelectSetter,
   LIST_SETTER: ListSetter,
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
   BASE_SELECT_SETTER: BaseSelect,

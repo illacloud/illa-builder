@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react"
-import { SessionType } from "./ComponentListBuilder"
+import { NewSessionType } from "./ComponentListBuilder"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { WidgetType } from "@/wrappedComponents/WidgetBuilder"
 
@@ -18,9 +18,10 @@ export interface DraggableWrapperShape {
 
 export interface BaseWidgetInfo {
   displayName: string
+  widgetName: string
   icon: ReactNode
   type: WidgetType
-  sessionType?: SessionType
+  sessionType?: NewSessionType
 }
 
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
@@ -35,7 +36,7 @@ export type WidgetConfig = Omit<WidgetCardInfo, "id">
 
 export interface BaseDSL
   extends DraggableWrapperShape,
-    Omit<BaseWidgetInfo, "icon" | "sessionType"> {
+    Omit<BaseWidgetInfo, "icon" | "sessionType" | "widgetName"> {
   id: string
   childrenNode?: BaseDSL[]
   props?: {
