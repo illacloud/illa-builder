@@ -1,4 +1,4 @@
-import { ActionItem } from "@/redux/currentApp/action/actionList/actionListState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export function generateName(
   type: string,

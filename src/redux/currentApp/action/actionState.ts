@@ -34,8 +34,8 @@ interface EventHandler {
 }
 
 export interface ActionItem {
-  id: string
-  name: string
+  actionId: string
+  displayName: string
   resourceId?: string
   type: ActionType
   status?: ActionStatus
@@ -45,4 +45,4 @@ export interface ActionItem {
 
 export type ActionListState = ActionItem[]
 
-export const actionListInitialState: ActionListState = []
+export const actionInitialState: ActionListState = []

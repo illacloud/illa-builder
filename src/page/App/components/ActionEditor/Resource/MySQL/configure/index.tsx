@@ -1,22 +1,14 @@
 import { forwardRef, useImperativeHandle, useState } from "react"
 import { css } from "@emotion/react"
-import {
-  Controller,
-  SubmitHandler,
-  UnpackNestedValue,
-  useForm,
-} from "react-hook-form"
+import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
 import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
-import { useDispatch, useSelector } from "react-redux"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
-import { v4 as uuidV4 } from "uuid"
+import { useSelector } from "react-redux"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import {
   descriptionStyle,
   errorMessageStyle,
@@ -31,7 +23,12 @@ import {
   requiredLabelTextStyle,
   splitLineStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
-import { MySQLConfigureProps, MySQLConfigureValues } from "../interface"
+import {
+  MySQLConfigureProps,
+  MySQLConfigureValues,
+  AdvancedOptions,
+  TestConnectionBaseValues,
+} from "../interface"
 import { InputUpload } from "./input-upload"
 import {
   formPaddingStyle,
@@ -41,51 +38,53 @@ import {
   usernamePasswordStyle,
 } from "./style"
 
-const dataTransform = (data: UnpackNestedValue<MySQLConfigureValues>) => {
-  const _data = {
-    kind: "mysql",
-    options: {
-      host: "",
-      port: "",
-      databaseName: "",
-      databaseUsername: "",
-      databasePassword: "",
-      ssl: false,
-      ssh: false,
-      advancedOptions: {
-        sshHost: "",
-        sshPort: "",
-        sshUsername: "",
-        sshPassword: "",
-        sshPrivateKey: "",
-        sshPassphrase: "",
-        serverCert: null,
-        clientKey: null,
-        clientCert: null,
-      },
-    },
-  }
-  Object.keys(_data.options).forEach((key) => {
-    // @ts-ignore
-    if (data[key] !== undefined && key !== "ssh" && key !== "ssl") {
-      // @ts-ignore
-      _data.options[key] = data[key] + ""
+const baseOptionSet = new Set([
+  "host",
+  "port",
+  "databaseName",
+  "databaseUsername",
+  "databasePassword",
+  "ssl",
+  "ssh",
+])
+const advancedOptionSet = new Set([
+  "sshHost",
+  "sshPort",
+  "sshUsername",
+  "sshPassword",
+  "sshPrivateKey",
+  "sshPassphrase",
+  "serverCert",
+  "clientKey",
+  "clientCert",
+])
+const dataTransform = (data: MySQLConfigureValues) => {
+  let options: {
+    [x: string]:
+      | string
+      | number
+      | boolean
+      | { [x: string]: string | number | boolean }
+  } = {}
+  let advanced: { [x: string]: string | number | boolean } = {}
+  Object.keys(data).forEach((key) => {
+    if (baseOptionSet.has(key)) {
+      options[key as keyof TestConnectionBaseValues] =
+        data[key as keyof MySQLConfigureValues]
+    }
+    if (advancedOptionSet.has(key)) {
+      advanced[key as keyof AdvancedOptions] =
+        data[key as keyof MySQLConfigureValues]
     }
   })
-  Object.keys(_data.options.advancedOptions).forEach((key) => {
-    if (data[key as keyof MySQLConfigureValues] !== undefined) {
-      // @ts-ignore
-      _data.options.advancedOptions[key] = data[key] + ""
-    }
-  })
-  return _data
+  options.advancedOptions = advanced
+  return { kind: "mysql", options }
 }
 
 export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
   (props, ref) => {
-    const { resourceId, connectionRef } = props
+    const { resourceId, connectionRef, onSubmit, onTestConnection } = props
     const { t } = useTranslation()
-    const dispatch = useDispatch()
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
@@ -110,13 +109,18 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     })
 
     const testConnection = () => {
-      let data = { ...getValues(), ssh: expandSSH, ssl: expandSSL }
+      let data: MySQLConfigureValues = {
+        ...getValues(),
+        ssh: expandSSH,
+        ssl: expandSSL,
+      }
       const _data = dataTransform(data)
-      alert(JSON.stringify(_data, null, 2))
-      Api.request({
-        url: "/resources/testConnection",
-        method: "POST",
-        data: _data,
+      onTestConnection?.({
+        resourceName: data.name,
+        resourceType: "MySQL",
+        dbName: "",
+        created: Date.now().toString(),
+        config: _data,
       })
     }
 
@@ -126,39 +130,20 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       }
     })
 
-    const onSubmit: SubmitHandler<MySQLConfigureValues> = (data) => {
+    const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
       data = { ...data, ssh: expandSSH, ssl: expandSSL }
 
-      // update
-      if (resourceId) {
-        dispatch(
-          resourceActions.updateResourceItemReducer({
-            resourceId,
-            ...resourceConfig,
-            resourceName: data.name,
-            resourceType: "MySQL",
-            dbName: "",
-            created: Date.now().toString(),
-            config: data,
-          }),
-        )
-
-        return
-      }
-
-      dispatch(
-        resourceActions.addResourceItemReducer({
-          resourceId: uuidV4(),
+      onSubmit &&
+        onSubmit({
           resourceName: data.name,
           resourceType: "MySQL",
           dbName: "",
           created: Date.now().toString(),
           config: data,
-        }),
-      )
+        })
     }
     return (
-      <form onSubmit={handleSubmit(onSubmit)} css={formStyle} ref={ref}>
+      <form onSubmit={handleSubmit(submitForm)} css={formStyle} ref={ref}>
         <div css={css(gridContainerStyle, formPaddingStyle)}>
           <div css={gridRowContainerStyle}>
             <label css={requiredLabelTextStyle}>

@@ -19,8 +19,8 @@ import "codemirror/addon/display/placeholder"
 
 import { applyCMStyle, applyHintBodyStyle, hintBodyTriggerStyle } from "./style"
 
-import { AutoCompleteItem } from "./autoComplete/item"
-import { HintComplement } from "./autoComplete/HintComplement"
+import { AutoCompleteItem } from "./AutoComplete/item"
+import { HintComplement } from "./AutoComplete/HintComplement"
 
 import { EditorInputProps, HintBodyParamsProps } from "./interface"
 

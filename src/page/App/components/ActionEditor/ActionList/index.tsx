@@ -1,4 +1,5 @@
 import { FC, useState, useMemo, useRef, MouseEvent, useContext } from "react"
+import { Api } from "@/api/base"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidV4 } from "uuid"
@@ -11,8 +12,9 @@ import {
   EmptyStateIcon,
   RestApiIcon,
 } from "@illa-design/icon"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem, ActionType } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import {
@@ -64,13 +66,13 @@ export const ActionList: FC<ActionListProps> = (props) => {
       return actionItems
     }
 
-    return actionItems.filter(({ name }) =>
-      name.toLowerCase().includes(query.toLowerCase()),
+    return actionItems.filter(({ displayName }) =>
+      displayName.toLowerCase().includes(query.toLowerCase()),
     )
   }, [actionItems, query])
 
   const actionItemsNameSet = useMemo(() => {
-    return new Set(actionItems.map((i) => i.name))
+    return new Set(actionItems.map((i) => i.displayName))
   }, [actionItems])
 
   function editName(id: string, name: string) {
@@ -83,9 +85,9 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
   function updateName() {
     dispatch(
-      actionListActions.updateActionItemReducer({
-        id: editingActionItemId,
-        name: editingName,
+      actionActions.updateActionItemReducer({
+        actionId: editingActionItemId,
+        displayName: editingName,
       }),
     )
     setEditingActionItemId("")
@@ -93,7 +95,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
-    const { id, name, status } = item
+    const { actionId: id, displayName: name, status } = item
     const isWarning = status === "warning"
     // TODO: time should retrieve from ActionItem.network
     const time = "0.7s"
@@ -181,33 +183,39 @@ export const ActionList: FC<ActionListProps> = (props) => {
     addActionItem("transformer")
   }
 
-  function addActionItem(type: "action" | "transformer") {
-    const id = uuidV4()
-
-    dispatch(
-      actionListActions.addActionItemReducer({
-        id,
-        type,
-        name: generateName(type, actionItems, actionItemsNameSet),
-      }),
+  function addActionItem(type: ActionType) {
+    Api.request(
+      {
+        url: "/actions",
+        method: "POST",
+        data: {
+          displayName: generateName(type, actionItems, actionItemsNameSet),
+          type,
+          resourceId: "",
+        },
+      },
+      ({ data }: { data: ActionItem }) => {
+        dispatch(actionActions.addActionItemReducer(data))
+        onAddActionItem(data?.actionId)
+      },
     )
-
-    onAddActionItem(id)
   }
 
   function onDuplicate() {
     const newActionItems = actionItems.slice(0)
-    const targetItem = newActionItems.find((i) => i.id === contextMenuActionId)
+    const targetItem = newActionItems.find(
+      (i) => i.actionId === contextMenuActionId,
+    )
 
     if (targetItem) {
       const type = targetItem.type
       const id = uuidV4()
 
       dispatch(
-        actionListActions.addActionItemReducer({
-          id,
+        actionActions.addActionItemReducer({
+          actionId: id,
           type,
-          name: generateName(type, actionItems, actionItemsNameSet),
+          displayName: generateName(type, actionItems, actionItemsNameSet),
         }),
       )
 
@@ -216,7 +224,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function onDelete() {
-    dispatch(actionListActions.removeActionItemReducer(contextMenuActionId))
+    dispatch(actionActions.removeActionItemReducer(contextMenuActionId))
     onDeleteActionItem(contextMenuActionId)
   }
 

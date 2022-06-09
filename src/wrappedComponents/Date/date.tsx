@@ -1,10 +1,10 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
+import dayjs from "dayjs"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { DatePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
-import dayjs from "dayjs"
 import { inputContainerCss } from "./style"
 import { WrappedDateProps } from "./interface"
 import LabelWrapper from "../LabelWrapper"
@@ -34,6 +34,17 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
 
   const [currentValue, setCurrentValue] = useState(value ?? defaultValue)
 
+  const checkRange = useCallback(
+    (current) => {
+      const beforeMinDate = minDate
+        ? !!current?.isBefore(dayjs(minDate))
+        : false
+      const afterMaxDate = maxDate ? !!current?.isAfter(dayjs(maxDate)) : false
+      return beforeMinDate || afterMaxDate
+    },
+    [minDate, maxDate],
+  )
+
   return (
     <TooltipWrapper
       tooltipText={tooltipText}
@@ -61,12 +72,8 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
               disabled={disabled}
               placeholder={placeholder}
               allowClear={showClear}
-              disabledDate={(current) =>
-                current
-                  ? current.isBefore(dayjs(minDate)) ||
-                    current.isAfter(dayjs(maxDate))
-                  : false
-              }
+              disabledDate={checkRange}
+              // todo @aoao handleUpdateDsl?
               onClear={() => setCurrentValue("")}
               onChange={(value) => {
                 setCurrentValue(value)

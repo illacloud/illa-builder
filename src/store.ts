@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import resourceReducer from "@/redux/currentApp/action/resource/resourceSlice"
-import actionListReducer from "@/redux/currentApp/action/actionList/actionListSlice"
+import resourceReducer from "@/redux/currentApp/resource/resourceSlice"
+import actionReducer from "@/redux/currentApp/action/actionSlice"
 import inspectReducer from "@/redux/currentApp/editor/inspect/inspectSlice"
 import dashboardResourceReducer from "@/redux/dashboard/resources/dashboardResourceSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -17,15 +17,11 @@ const editorReducer = combineReducers({
   components: componentsReducer,
 })
 
-const actionReducer = combineReducers({
-  actionList: actionListReducer,
-  resource: resourceReducer,
-})
-
 const appReducer = combineReducers({
   config: configReducer,
   editor: editorReducer,
   action: actionReducer,
+  resource: resourceReducer,
   appInfo: appInfoReducer,
 })
 

@@ -23,4 +23,5 @@ export interface WrappedDateProps extends LabelProps, ValidateMessageProps {
   colorScheme?: InputBorderColor
   minDate?: string
   maxDate?: string
+  handleUpdateDsl?: (value: Record<string, string>) => void
 }

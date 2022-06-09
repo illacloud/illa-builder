@@ -10,6 +10,6 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
   h: 50,
   defaults: {
     defaultValue: "2022-06-01",
-    dateFormat: "MMM d, yyyy",
+    dateFormat: "YYYY-MM-DD",
   },
 }

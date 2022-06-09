@@ -10,5 +10,5 @@ export interface ResourceFormEditorProps {
   resourceId?: string
   resourceType?: ResourceType
   back?: () => void
-  onSubmit?: () => void
+  onSubmit?: (data?: any) => void
 }

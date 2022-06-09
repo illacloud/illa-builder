@@ -77,6 +77,9 @@
           "success": "Success",
           "failure": "Failure",
           "event_handler": "Event Handler"
+        },
+        "tips": {
+          "transformer": "Enable transformers to transform the result of the query to a different format."
         }
       },
       "form": {
@@ -89,7 +92,8 @@
         "btn": {
           "back": "Back",
           "test_connection": "Test Connection",
-          "create_resource": "Create Resource"
+          "create_resource": "Create Resource",
+          "save_changes": "Save Changes"
         },
         "validate": {
           "required": "{name} is required!"
@@ -200,6 +204,12 @@
         },
         "postgres": { "name": "Postgres" },
         "redis": { "name": "Redis" }
+      },
+      "result": {
+        "title": {
+          "success": "Query ran successfully",
+          "error": "Query ran fail"
+        }
       }
     }
   }
