@@ -1,13 +1,13 @@
 import { FC, useCallback, useState } from "react"
-import { WrappedDateTimeProps } from "./interface"
+import dayjs from "dayjs"
+import { DatePicker } from "@illa-design/date-picker"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
-import { DatePicker } from "@illa-design/date-picker"
-import LabelWrapper from "../LabelWrapper"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
-import dayjs from "dayjs"
 import { inputContainerCss } from "./style"
+import { WrappedDateTimeProps } from "./interface"
+import LabelWrapper from "../LabelWrapper"
 
 export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
   const {
@@ -76,7 +76,9 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
               placeholder={placeholder}
               allowClear={showClear}
               disabledDate={checkRange}
-              onClear={() => setCurrentValue(undefined)}
+              onClear={() => {
+                setCurrentValue(undefined)
+              }}
               onChange={(value) => {
                 setCurrentValue(value)
               }}
