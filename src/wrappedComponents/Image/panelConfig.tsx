@@ -8,7 +8,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "image-basic-source",
         labelName: "Image Source",
-        attrName: "src",
+        attrName: "fallbackSrc",
         setterType: "INPUT_SETTER",
         defaultValue: "https://placekitten.com/400/300",
       },
@@ -17,7 +17,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         labelName: "Alt Text",
         labelDesc:
           "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
-        attrName: "altText",
+        attrName: "alt",
         setterType: "INPUT_SETTER",
       },
     ],

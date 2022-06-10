@@ -5,8 +5,15 @@ import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 export const WrappedImage: FC<WrappedImageProps> = forwardRef((props, ref) => {
-  const { src, altText, radius, tooltipText, width, height, handleUpdateDsl } =
-    props
+  const {
+    fallbackSrc,
+    alt,
+    radius,
+    tooltipText,
+    width,
+    height,
+    handleUpdateDsl,
+  } = props
 
   useImperativeHandle(ref, () => ({
     setImageUrl: (src: string) => {
@@ -17,7 +24,7 @@ export const WrappedImage: FC<WrappedImageProps> = forwardRef((props, ref) => {
   const finalRadius = useMemo(() => {
     const reg = /^\d+$/
     const pattern = new RegExp(reg)
-    if (pattern.test(radius)) {
+    if (radius && pattern.test(radius)) {
       return radius + "px"
     }
     return radius
@@ -30,8 +37,8 @@ export const WrappedImage: FC<WrappedImageProps> = forwardRef((props, ref) => {
       position="top"
     >
       <Image
-        fallbackSrc={src}
-        alt={altText}
+        fallbackSrc={fallbackSrc}
+        alt={alt}
         radius={finalRadius}
         height={height}
         width={width}

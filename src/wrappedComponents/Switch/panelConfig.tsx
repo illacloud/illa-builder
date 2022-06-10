@@ -16,7 +16,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-basic-defaultValue",
         labelName: "Default Value",
-        attrName: "value",
+        attrName: "checked",
         setterType: "INPUT_SETTER",
         placeholder: "false",
       },
@@ -304,7 +304,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-style-radius",
         labelName: "Background",
-        attrName: "checkedBackgroundColor",
+        attrName: "colorScheme",
         setterType: "COLOR_SELECT_SETTER",
         defaultValue: "blue",
         options: colorSchemeOptions,

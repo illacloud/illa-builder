@@ -4,7 +4,7 @@ import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedRadioGroupProps } from "./interface"
 import { withParser } from "@/wrappedComponents/parserHOC"
 
-export const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
+export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props) => {
   const {
     label,
     labelPosition,
@@ -18,7 +18,7 @@ export const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
     disabled,
     options,
     direction,
-    checkedBackgroundColor,
+    colorScheme,
     handleUpdateDsl,
   } = props
   return (
@@ -37,7 +37,7 @@ export const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
         disabled={disabled}
         options={options}
         direction={direction}
-        colorScheme={checkedBackgroundColor}
+        colorScheme={colorScheme}
         onChange={(value) => {
           handleUpdateDsl({ value })
         }}
