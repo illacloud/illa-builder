@@ -52,10 +52,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       Pick<ActionItemConfig, "general" | "transformer" | "eventHandler">
     >({
       general: {},
-      transformer: {
-        value: "",
-        enable: false,
-      },
+      transformer: "",
       eventHandler: {},
     })
 
@@ -94,7 +91,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
         actionActions.updateActionItemReducer({
           ...activeActionItem,
           resourceId,
-          config: {
+          actionTemplate: {
             ...activeActionItem?.config,
             ...params,
           },

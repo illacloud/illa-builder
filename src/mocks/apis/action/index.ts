@@ -4,7 +4,7 @@ import { baseUrl } from "@/mocks/config"
 import { ACTION_RUN_RESULT, ALL_ACTION } from "./data"
 
 export default [
-  rest.get(`${baseUrl}/actions`, (req, res, ctx) => {
+  rest.get(`${baseUrl}/actions`, (_, res, ctx) => {
     return res(ctx.delay(1000), ctx.status(200), ctx.json(ALL_ACTION))
   }),
 
