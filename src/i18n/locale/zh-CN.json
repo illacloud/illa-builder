@@ -309,7 +309,13 @@
         "horizontal_alignment": "Horizontal alignment",
         "vertical_alignment": "Vertical alignment",
         "links_color": "Links",
-        "background_color": "Background"
+        "background_color": "Background",
+        "icon": "Icon",
+        "max_count": "Max count",
+        "allow_half": "Allow half",
+        "allow_clear": "Allow clear",
+        "time_format": "Time format",
+        "step_size": "Step size"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -346,6 +352,12 @@
     },
     "switch": {
       "name": "Switch"
+    },
+    "rate": {
+      "name": "Rate"
+    },
+    "date_time": {
+      "name": "Datetime"
     }
   }
 }
