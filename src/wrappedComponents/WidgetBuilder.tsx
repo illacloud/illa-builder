@@ -25,6 +25,11 @@ import {
   RADIO_GROUP_PANEL_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
+import {
+  CHECKBOX_GROUP_PANEL_CONFIG,
+  CHECKBOX_GROUP_WIDGET_CONFIG,
+  CheckboxWidget,
+} from "@/wrappedComponents/CheckboxGroup"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -76,6 +81,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: InputWidget,
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
+  },
+  CHECKBOX_GROUP_WIDGET: {
+    widget: CheckboxWidget,
+    config: CHECKBOX_GROUP_WIDGET_CONFIG,
+    panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
   },
 }
 
