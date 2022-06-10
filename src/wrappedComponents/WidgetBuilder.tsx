@@ -25,6 +25,11 @@ import {
   RADIO_GROUP_PANEL_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
+import {
+  TIMELINE_PANEL_CONFIG,
+  TIMELINE_WIDGET_CONFIG,
+  TimelineWidget,
+} from "@/wrappedComponents/Timeline"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -76,6 +81,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: InputWidget,
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
+  },
+  TIMELINE_WIDGET: {
+    widget: TimelineWidget,
+    config: TIMELINE_WIDGET_CONFIG,
+    panelConfig: TIMELINE_PANEL_CONFIG,
   },
 }
 
