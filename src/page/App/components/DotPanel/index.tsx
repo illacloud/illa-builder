@@ -216,7 +216,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        // setShowDot(false)
+        setShowDot(false)
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
@@ -307,6 +307,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow),
           )
 
+          // reduce render
           const currentDottedLine = searchDsl(
             store.getState().currentApp.editor.components.rootDsl,
             item.displayName,
