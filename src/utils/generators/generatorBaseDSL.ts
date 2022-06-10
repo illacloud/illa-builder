@@ -1,7 +1,6 @@
 import { BaseDSL, WidgetCardInfo } from "@/wrappedComponents/interface"
 import { WidgetTypeList } from "@/wrappedComponents/WidgetBuilder"
 import { v4 } from "uuid"
-import store from "@/store"
 
 export const generatorBaseDSL = (
   widgetInfo: Partial<WidgetCardInfo>,

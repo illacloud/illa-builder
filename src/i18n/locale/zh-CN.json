@@ -232,6 +232,120 @@
           "error": "Query ran fail"
         }
       }
+    },
+    "widget_picker": {
+      "tab_title": "Insert",
+      "search_placeholder": "search",
+      "sessions": {
+        "commonly": "Commonly components",
+        "inputs": "Inputs",
+        "selects": "Select inputs",
+        "calendar": "Calendar inputs",
+        "presentation": "Presentation",
+        "data": "Data",
+        "container": "Container and form",
+        "navigation": "Navigation"
+      }
+    },
+    "inspect": {
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it.",
+      "setter_group": {
+        "basic": "BASIC",
+        "label": "LABEL",
+        "adornments": "ADORNMENTS",
+        "interaction": "INTERACTION",
+        "layout": "LAYOUT",
+        "style": "STYLE",
+        "validation": "VALIDATION",
+        "options": "OPTIONS"
+      },
+      "setter_label": {
+        "text": "Text",
+        "type": "Type",
+        "submit_form": "Submit form",
+        "loading": "Loading",
+        "disabled": "Disabled",
+        "tooltip": "Tooltip",
+        "align": "Align",
+        "hidden": "Hidden",
+        "variant": "Variant",
+        "color": "Color",
+        "theme_color": "Theme color",
+        "default_value": "Default value",
+        "format": "Format",
+        "placeholder": "Placeholder",
+        "max_date": "Max date",
+        "min_date": "Min date",
+        "label": "Label",
+        "caption": "Caption",
+        "label_position": "Position",
+        "label_alignment": "Alignment",
+        "label_width": "Width(%)",
+        "read_only": "Read only",
+        "show_clear_button": "Show clear button",
+        "required_field": "Required field",
+        "custom_rule": "Custom rule",
+        "hide_validation_message": "Hide validation message",
+        "start_placeholder": "Start placeholder",
+        "end_placeholder": "End placeholder",
+        "image_source": "Image source",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "img_height": "Height",
+        "img_width": "Width",
+        "radius": "Radius",
+        "show_character_count": "Show character count",
+        "prefix_text": "Prefix text",
+        "suffix_text": "Suffix text",
+        "pattern": "Pattern",
+        "regex": "Regex",
+        "max_length": "Max length",
+        "min_length": "Min Length",
+        "data_sources": "Data sources",
+        "mapped_option": "Mapped Option",
+        "value": "Value",
+        "horizontal_alignment": "Horizontal alignment",
+        "vertical_alignment": "Vertical alignment",
+        "links_color": "Links",
+        "background_color": "Background"
+      },
+      "setter_default_value": {
+        "solid": "Solid",
+        "outline": "Outline"
+      }
+    }
+  },
+  "widget": {
+    "text": {
+      "name": "Text",
+      "default_value": "This is a text"
+    },
+    "button": {
+      "name": "Button",
+      "default_text": "Button"
+    },
+    "date": {
+      "name": "Date"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "image": {
+      "name": "Image"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "radio_group": {
+      "name": "Radio group"
+    },
+    "select": {
+      "name": "Select"
+    },
+    "switch": {
+      "name": "Switch"
     }
   }
 }

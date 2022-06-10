@@ -1,6 +1,7 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalEnd, HorizontalStart } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
+import i18n from "@/i18n/config"
 
 const OptionsStyle = {
   display: "flex",
@@ -11,36 +12,36 @@ const OptionsStyle = {
 export const DATE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "date-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "date-basic-DefaultValue",
-        labelName: "Default value",
+        labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-basic-Format",
-        labelName: "Format",
+        labelName: i18n.t("editor.inspect.setter_label.format"),
         attrName: "dateFormat",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-basic-placeholder",
-        labelName: "Placeholder",
+        labelName: i18n.t("editor.inspect.setter_label.placeholder"),
         attrName: "placeholder",
         isFullWidth: true,
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-basic-max-date",
-        labelName: "Max date",
+        labelName: i18n.t("editor.inspect.setter_label.max_date"),
         attrName: "maxDate",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-basic-min-date",
-        labelName: "Min date",
+        labelName: i18n.t("editor.inspect.setter_label.min_date"),
         attrName: "minDate",
         setterType: "INPUT_SETTER",
       },
@@ -48,23 +49,23 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-label",
-    groupName: "LABEL",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "date-label-label",
-        labelName: "Label",
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-label-caption",
-        labelName: "Caption",
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-label-position",
-        labelName: "Position",
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -74,7 +75,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "date-label-alignment",
-        labelName: "Alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -98,7 +99,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-label-labelWidth",
-        labelName: "Width(%)",
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
       },
@@ -106,26 +107,26 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-interaction",
-    groupName: "INTERACTION",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       // eventHandle @aoao
       {
         id: "date-interaction-loading",
-        labelName: "Loading",
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
         labelDesc: "xxxxx",
         attrName: "loading",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-interaction-disabled",
-        labelName: "Disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-interaction-readonly",
-        labelName: "Read only",
+        labelName: i18n.t("editor.inspect.setter_label.read_only"),
         labelDesc: "xxxxx",
         attrName: "readonly",
         setterType: "INPUT_SETTER",
@@ -134,18 +135,18 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "date-adornments-showClear",
-        labelName: "Show clear button",
+        labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "showClear",
         useCustomLabel: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
       },
       {
         id: "date-adornments-tooltip",
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
@@ -153,24 +154,26 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "input-validation",
-    groupName: "VALIDATION",
+    groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
         id: "input-validation-required",
-        labelName: "Required field",
+        labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "required",
       },
       {
         id: "input-validation-custom",
-        labelName: "Custom rule",
+        labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "custom rule",
       },
       {
         id: "input-validation-hide-message",
-        labelName: "Hide validation message",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.hide_validation_message",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "hideValidationMessage",
@@ -179,31 +182,31 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "date-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "date-layout-hidden",
         setterType: "INPUT_SETTER",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
       },
     ],
   },
   {
     id: "date-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "date-style-list",
         setterType: "LIST_SETTER",
         isFullWidth: true,
-        labelName: "Color",
+        labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "color",
         useCustomLabel: true,
         childrenSetter: [
           {
             id: "date-style-bg",
-            labelName: "Theme color",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",
