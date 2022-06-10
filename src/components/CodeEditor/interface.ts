@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react"
+import { EditorConfiguration } from "codemirror"
 
 export enum EditorModes {
   TEXT = "text/plain",
@@ -19,4 +20,22 @@ export interface CodeEditorProps
   placeholder?: string
   onBlur?: () => void
   onChange?: (value: string) => void
+}
+
+export enum AutocompleteDataType {
+  OBJECT = "OBJECT",
+  NUMBER = "NUMBER",
+  ARRAY = "ARRAY",
+  FUNCTION = "FUNCTION",
+  BOOLEAN = "BOOLEAN",
+  STRING = "STRING",
+  UNKNOWN = "UNKNOWN",
+}
+
+export type FieldEntityInformation = {
+  entityName?: string
+  expectedType?: AutocompleteDataType
+  entityType?: "ACTION" | "WIDGET" | "JSACTION"
+  entityId?: string
+  propertyPath?: string
 }

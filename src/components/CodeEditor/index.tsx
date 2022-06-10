@@ -1,41 +1,24 @@
 import { FC, useEffect, useMemo, useRef, useState } from "react"
-import { CodeEditorProps, EditorModes } from "./interface"
-
+import { Global } from "@emotion/react"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/theme/duotone-light.css"
 import "codemirror/addon/edit/matchbrackets"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
-
 import "codemirror/addon/display/autorefresh"
 import "codemirror/addon/tern/tern.css"
 import "codemirror/addon/lint/lint"
 import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
-import { bindingMarker } from "@/components/CodeEditor/markHelpers"
-import { Global } from "@emotion/react"
-import { codemirrorStyle } from "./style"
-import { applyCMStyle } from "@/components/EditorInput/style";
-
-export enum AutocompleteDataType {
-  OBJECT = "OBJECT",
-  NUMBER = "NUMBER",
-  ARRAY = "ARRAY",
-  FUNCTION = "FUNCTION",
-  BOOLEAN = "BOOLEAN",
-  STRING = "STRING",
-  UNKNOWN = "UNKNOWN",
-}
-
-export type FieldEntityInformation = {
-  entityName?: string
-  expectedType?: AutocompleteDataType
-  entityType?: "ACTION" | "WIDGET" | "JSACTION"
-  entityId?: string
-  propertyPath?: string
-}
+import {
+  CodeEditorProps,
+  EditorModes,
+  FieldEntityInformation,
+} from "./interface"
+import { applyCodeEditorStyle, codemirrorStyle } from "./style"
+import { bindingMarker } from "./markHelpers"
 
 export type Hinter = {
   showHint: (
@@ -53,13 +36,13 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     mode = "TEXT_JS",
     placeholder = "input sth",
     value,
-    defaultValue,
     height = "auto",
     onBlur,
     onChange,
     ...otherProps
   } = props
   const codeTargetRef = useRef<HTMLDivElement>(null)
+  const [editor, setEditor] = useState<Editor>()
   const [hinters, setHinters] = useState<Hinter[]>([])
   const [hinterOpen, setHinterOpen] = useState<boolean>()
 
@@ -70,8 +53,14 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     // callback
     onChange?.(editor.getValue())
-    // [TODO] autocomplete
   }
+
+  useEffect(() => {
+    const currentValue = editor?.getValue()
+    if (value && value !== currentValue) {
+      editor?.setValue(value)
+    }
+  }, [value])
 
   const handleAutocompleteVisibility = (cm: CodeMirror.Editor) => {
     // if (!isFocused) return;
@@ -116,19 +105,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
       /* Autocomplete should be triggered only for characters that make up valid variable names */
     }
-    showAutocomplete && handleAutocompleteVisibility(cm)
-  }
-
-  const handleEditorFocus = (cm: CodeMirror.Editor) => {
-    // setState({ isFocused: true });
-    if (!cm.state.completionActive) {
-      const entityInformation: FieldEntityInformation = {}
-      hinters
-        .filter((hinter) => hinter.fireOnFocus)
-        .forEach(
-          (hinter) => hinter.showHint && hinter.showHint(cm, entityInformation),
-        )
-    }
   }
 
   const updateMarkings = (
@@ -138,7 +114,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     marking.forEach((helper) => helper(editor))
   }
 
-  CodeMirror.commands.autocomplete = function (cm) {
+  CodeMirror.commands.autocomplete = (cm) => {
     const doc = cm.getDoc()
     const POS = doc.getCursor()
     const mode = CodeMirror.innerMode(cm.getMode(), cm.getTokenAt(POS).state)
@@ -153,52 +129,57 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         // },
         completeSingle: false,
       })
-      // cm.showHint({
-      //   hint: CodeMirror.hint.sql,
-      //   completeSingle: false, // 是否立即补全
-      // });
     } else if (mode == "javascript") {
-      CodeMirror.showHint(cm, CodeMirror.hint.javascript, {
-        completeSingle: false,
+      cm.showHint({
+        hint: CodeMirror.hint.javascript,
+        completeSingle: false, // 是否立即补全
       })
     }
   }
 
   useEffect(() => {
-    console.log(codeTargetRef.current, "codeTargetRef.current")
-    const editor = CodeMirror(codeTargetRef.current!, {
-      mode: EditorModes[mode],
-      placeholder,
-      lineNumbers: mode !== "TEXT_JS",
-      autocapitalize: false,
-      autofocus: false,
-      matchBrackets: true,
-      autoCloseBrackets: true,
-      tabSize: 2,
-      hintOptions: {
-        completeSingle: false,
-      },
-    })
+    console.log(editor, codeTargetRef, "editor")
+    if (!editor) {
+      const editor = CodeMirror(codeTargetRef.current!, {
+        mode: EditorModes[mode],
+        placeholder,
+        lineNumbers: mode !== "TEXT_JS",
+        autocapitalize: false,
+        autofocus: false,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        tabSize: 2,
+        value: value ?? "",
+        hintOptions: {
+          completeSingle: false,
+        },
+      })
 
-    editor.on("change", handleChange)
-    editor.on("blur", handleBlur)
-    // editor.on("keyup", handleAutocompleteKeyup)
-    editor.on("keyup", (cm) => {
-      //cm.showHint()
-      cm.execCommand("autocomplete")
-    })
+      editor.on("change", handleChange)
+      editor.on("blur", handleBlur)
+      // editor.on("keyup", handleAutocompleteKeyup)
+      editor.on("keyup", (cm) => {
+        cm.execCommand("autocomplete")
+      })
+      setEditor(editor)
+      // updateMarkings(editor, [bindingMarker])
+    }
 
-    // updateMarkings(editor, [bindingMarker])
     return () => {
-      editor.off("change", handleChange)
-      editor.off("blur", handleBlur)
+      editor?.off("change", handleChange)
+      editor?.off("blur", handleBlur)
     }
   }, [])
 
   return (
     <div>
       <Global styles={codemirrorStyle} />
-      <div className={className} ref={codeTargetRef} css={applyCMStyle(height)} {...otherProps}>
+      <div
+        className={className}
+        ref={codeTargetRef}
+        css={applyCodeEditorStyle(height)}
+        {...otherProps}
+      >
         <div id="hintBody" />
       </div>
     </div>
