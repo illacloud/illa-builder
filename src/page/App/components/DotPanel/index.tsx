@@ -32,6 +32,8 @@ import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShad
 import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { calcConstrainedMinPoint } from "framer-motion/types/gestures/drag/utils/constraints"
+import store from "@/store"
+import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 
 function calculateDragPosition(
   canvasRect: DOMRect,
@@ -280,11 +282,24 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.h,
             edgeWidth,
           )
+
+          // reduce render
+          const currentDrag =
+            store.getState().currentApp.editor.dragShadow.map[item.displayName]
+          if (currentDrag !== null && currentDrag !== undefined) {
+            if (
+              renderX == currentDrag.renderX &&
+              renderY == currentDrag.renderY
+            ) {
+              return
+            }
+          }
+
           // set shadow
           const renderDragShadow = {
             displayName: item.displayName,
-            renderX: renderX,
-            renderY: renderY,
+            renderX,
+            renderY,
             w: item.w * unitWidth,
             h: item.h * unitHeight,
             isConflict: false,
@@ -293,6 +308,18 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow),
           )
 
+          const currentDottedLine = searchDsl(
+            store.getState().currentApp.editor.components.rootDsl,
+            item.displayName,
+          )
+          if (currentDottedLine != null) {
+            if (
+              squareX == currentDottedLine.x &&
+              squareY == currentDottedLine.y
+            ) {
+              return
+            }
+          }
           // set dotted line
           const newItem = {
             ...item,
@@ -302,7 +329,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           newItem.x = squareX
           newItem.y = squareY
           dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
-          console.log("dotted line", newItem)
         }
       },
     }),

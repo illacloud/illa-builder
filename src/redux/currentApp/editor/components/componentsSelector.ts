@@ -14,7 +14,11 @@ export function searchDsl(
     const childrenNode = rootNode.childrenNode
     if (childrenNode != null) {
       Object.keys(childrenNode).map((key) => {
-        searchDsl(childrenNode[key], displayName)
+        if (key == displayName) {
+          return childrenNode[key]
+        } else {
+          return searchDsl(childrenNode[key], displayName)
+        }
       })
     }
   }
