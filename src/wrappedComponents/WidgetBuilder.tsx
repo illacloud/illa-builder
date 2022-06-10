@@ -30,6 +30,11 @@ import {
   TIMELINE_WIDGET_CONFIG,
   TimelineWidget,
 } from "@/wrappedComponents/Timeline"
+import {
+  NUMBER_INPUT_PANEL_CONFIG,
+  NUMBER_INPUT_WIDGET_CONFIG,
+  NumberInputWidget,
+} from "@/wrappedComponents/NumberInput"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -87,6 +92,11 @@ const WidgetConfig: WidgetConfigs = {
     config: TIMELINE_WIDGET_CONFIG,
     panelConfig: TIMELINE_PANEL_CONFIG,
   },
+  NUMBER_INPUT_WIDGET: {
+    widget: NumberInputWidget,
+    config: NUMBER_INPUT_WIDGET_CONFIG,
+    panelConfig: NUMBER_INPUT_PANEL_CONFIG,
+  },
 }
 
 export type WidgetType = keyof typeof WidgetConfig
@@ -94,6 +104,5 @@ export type WidgetType = keyof typeof WidgetConfig
 export const WidgetTypeList = Object.keys(WidgetConfig)
 
 export const widgetBuilder = (type: WidgetType) => {
-  const start = performance.now()
   return WidgetConfig[type]
 }
