@@ -6,8 +6,11 @@ import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"
 import { Empty } from "./Empty"
 import { buildComponentList } from "@/wrappedComponents/ComponentListBuilder"
+import { useTranslation } from "react-i18next"
 
 export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
+  const { t } = useTranslation()
+
   const defaultList: ComponentSessionProps[] = buildComponentList()
   const { className, componentList = defaultList } = props
 
@@ -19,8 +22,8 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
     <div className={className} css={componentContainerCss}>
       <Search
         borderColor={"purple"}
-        variant={"fill"}
-        placeholder={"search"}
+        variant="fill"
+        placeholder={t("editor.widget_picker.search_placeholder")}
         // radius={`20px`}
         onChange={(e) => {
           const res = getMatchComponent(e.target.value, componentList)

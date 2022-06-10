@@ -9,9 +9,9 @@ export const ResourceParams: FC<ResourceParamsProps> = (props) => {
   const { resourceType, onChange } = props
 
   switch (resourceType) {
-    case "MySQL":
+    case "mysql":
       return <MySQLParam onChange={onChange} />
-    case "REST API":
+    case "restapi":
       return <RESTAPIParam onChange={onChange} />
     default:
       return null

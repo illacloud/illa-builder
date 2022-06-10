@@ -18,8 +18,9 @@ import {
   formContainerStyle,
   formFooterStyle,
   backIconStyle,
-  FormFooterFilling,
+  formFooterFillingStyle,
   createResourceBtnStyle,
+  formTitleStyle,
 } from "./style"
 
 const renderResourceNode = (
@@ -34,12 +35,12 @@ const renderResourceNode = (
   const { resourceId } = props
 
   switch (resourceType) {
-    case "REST API":
+    case "restapi":
       node = (
         <RESTAPIConfigure resourceId={resourceId} onSubmit={onSubmitForm} />
       )
       break
-    case "MySQL":
+    case "mysql":
       node = (
         <MySQLConfigure
           connectionRef={connectionRef}
@@ -87,10 +88,10 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         },
         ({ data }) => {
           dispatch(resourceActions.updateResourceItemReducer(data))
-          onSubmit && onSubmit()
+          onSubmit?.(resourceId)
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => setCreateBtnLoading(loading),
       )
       return
@@ -104,10 +105,10 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
       },
       ({ data }) => {
         dispatch(resourceActions.addResourceItemReducer(data))
-        onSubmit && onSubmit()
+        onSubmit?.(data.resourceId)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => setCreateBtnLoading(loading),
     )
   }
@@ -125,13 +126,14 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
       ({ data }) => {
         Notification.error({ title: <span>{data}</span> })
       },
-      () => {},
+      () => { },
       (loading) => setTestConnectionLoading(loading),
     )
   }
 
   return (
     <div css={formContainerStyle}>
+      <div css={formTitleStyle}>Configure</div>
       <div>
         {renderResourceNode(
           resourceType,
@@ -154,7 +156,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           {t("editor.action.form.btn.back")}
         </Button>
 
-        <div css={FormFooterFilling} />
+        <div css={formFooterFillingStyle} />
 
         <Button
           size="medium"

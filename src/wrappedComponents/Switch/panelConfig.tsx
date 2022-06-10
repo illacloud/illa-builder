@@ -1,6 +1,7 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
+import i18n from "@/i18n/config"
 
 const OptionsStyle = {
   display: "flex",
@@ -11,11 +12,11 @@ const OptionsStyle = {
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "switch-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "switch-basic-defaultValue",
-        labelName: "Default Value",
+        labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
         placeholder: "false",
@@ -24,23 +25,23 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-label",
-    groupName: "LABEL",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "switch-label-label",
-        labelName: "Label",
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
       },
       {
         id: "switch-label-caption",
-        labelName: "Caption",
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
       },
       {
         id: "switch-label-position",
-        labelName: "Position",
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -50,7 +51,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "switch-label-alignment",
-        labelName: "Alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -74,7 +75,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "switch-label-labelWidth",
-        labelName: "Width(%)",
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
       },
@@ -82,11 +83,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-interaction",
-    groupName: "INTERACTION",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
         id: "switch-interaction-disabled",
-        labelName: "Disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "false",
@@ -96,11 +97,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-Adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "switch-adornments-tooltip",
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
@@ -108,18 +109,20 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-validation",
-    groupName: "VALIDATION",
+    groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
         id: "switch-validation-required",
-        labelName: "Required field",
+        labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "required",
       },
       {
         id: "switch-validation-hide-message",
-        labelName: "Hide validation message",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.hide_validation_message",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "hideValidationMessage",
@@ -128,11 +131,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "switch-layout-hidden",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
@@ -141,11 +144,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "switch-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "switch-style-radius",
-        labelName: "Background",
+        labelName: i18n.t("editor.inspect.setter_label.background_color"),
         attrName: "checkedBackgroundColor",
         setterType: "COLOR_SELECT_SETTER",
         defaultValue: "blue",

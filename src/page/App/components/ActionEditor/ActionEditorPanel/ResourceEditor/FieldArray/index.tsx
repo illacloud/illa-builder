@@ -1,5 +1,4 @@
 import { FC, useState } from "react"
-import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
 import { PlusIcon, DeleteIcon } from "@illa-design/icon"
