@@ -22,6 +22,11 @@
   },
   "editor": {
     "action": {
+      "type": {
+        "database": "Databases",
+        "api": "Apis",
+        "js_transformer": "Javascript Transformer"
+      },
       "action_list": {
         "title": "Action List",
         "placeholder": {
@@ -45,6 +50,11 @@
         },
         "message": {
           "confirm_switch": "You did not save your query. Are you sure you want to discard changes?"
+        },
+        "action_generator": {
+          "selector": {
+            "title": "Select action type"
+          }
         }
       },
       "panel": {
@@ -107,6 +117,12 @@
           "tip": {
             "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
           }
+        },
+        "js_transformer": {
+          "name": "Transformer"
+        },
+        "label": {
+          "comming_soon": "Comming Soon"
         },
         "mySql": {
           "name": "MySQL",
@@ -203,7 +219,8 @@
           }
         },
         "postgres": { "name": "Postgres" },
-        "redis": { "name": "Redis" }
+        "redis": { "name": "Redis" },
+        "mongo_db": { "name": "MongoDB" }
       },
       "result": {
         "title": {

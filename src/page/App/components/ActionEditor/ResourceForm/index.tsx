@@ -1,28 +1,19 @@
 import { FC, useState, useMemo, useLayoutEffect } from "react"
 import { CloseIcon } from "@illa-design/icon"
 import { Modal } from "@illa-design/modal"
-import {
-  ApiType,
-  DatabaseType,
-} from "@/page/App/components/ActionEditor/interface"
 import { ResourceFormSelector } from "./Selector"
 import { ResourceFormEditor } from "./Editor"
 import { ResourceFormProps, ActionType } from "./interface"
-import { modalStyle, closeIconStyle, titleStyle } from "./style"
+import { modalStyle, closeIconStyle } from "./style"
 
 export const ResourceForm: FC<ResourceFormProps> = (props) => {
   const { actionType: propActionType, visible, onCancel, resourceId } = props
-  const [configureType, setConfigureType] = useState<ApiType | DatabaseType>()
+  const [configureType, setConfigureType] = useState<string>()
   const [actionType, setActionType] = useState<ActionType>(propActionType)
 
   useLayoutEffect(() => {
     setActionType(propActionType)
   }, [propActionType])
-
-  const title =
-    actionType === "select"
-      ? "Select Resource Type"
-      : `Configure ${configureType}`
 
   const handleClose = () => {
     onCancel && onCancel()
@@ -83,7 +74,6 @@ export const ResourceForm: FC<ResourceFormProps> = (props) => {
       }
       onCancel={handleClose}
     >
-      <div css={titleStyle}>{title}</div>
       {renderForm}
     </Modal>
   )

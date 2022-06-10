@@ -4,6 +4,13 @@ import {
   Resource,
 } from "@/redux/currentApp/resource/resourceState"
 
+export const addResourceListReducer: CaseReducer<
+  ResourceListState,
+  PayloadAction<Resource[]>
+> = (_, action) => {
+  return action.payload
+}
+
 export const addResourceItemReducer: CaseReducer<
   ResourceListState,
   PayloadAction<Resource>
