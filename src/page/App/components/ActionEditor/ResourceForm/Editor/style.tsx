@@ -6,7 +6,7 @@ export const formContainerStyle = css``
 export const formTitleStyle = css`
   padding: 24px 0 16px 0;
   font-size: 20px;
-  font-weight: 5000;
+  font-weight: 500;
   text-align: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
