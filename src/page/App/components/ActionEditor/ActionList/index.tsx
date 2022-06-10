@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
-import { Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
 import {
   AddIcon,
@@ -14,15 +13,15 @@ import {
 } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { ActionItem, ActionType } from "@/redux/currentApp/action/actionState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
+import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
+import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
 import {
   actionListContainerStyle,
   newBtnContainerStyle,
   newButtonTextStyle,
-  newActionOptionsListStyle,
-  newActionOptionsItemStyle,
   actionItemListStyle,
   applyactionItemStyle,
   actionItemNameStyle,
@@ -52,11 +51,12 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const { t } = useTranslation()
   const actionItems = useSelector(selectAllActionItem)
 
-  const [newActionOptionsVisible, setNewActionOptionsVisible] = useState(false)
   const [query, setQuery] = useState<string>("")
   const [editingName, setEditingName] = useState("")
   const [editingActionItemId, setEditingActionItemId] = useState("")
   const [contextMenuActionId, setContextMenuActionId] = useState("")
+  const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
+  const [newActionLoading, setNewActionLoading] = useState(false)
   const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -164,26 +164,16 @@ export const ActionList: FC<ActionListProps> = (props) => {
     onSelectActionItem(id)
   }
 
-  const newNewActionOptions = (
-    <ul css={newActionOptionsListStyle}>
-      <li css={newActionOptionsItemStyle} onClick={addAction}>
-        {t("editor.action.action_list.menu.resource_action")}
-      </li>
-      <li css={newActionOptionsItemStyle} onClick={addTransformer}>
-        {t("editor.action.action_list.menu.javascript_transformer")}
-      </li>
-    </ul>
-  )
+  function onAddAction(info: ActionInfo) {
+    const { category, type, resourceId = "" } = info
+    setActionGeneratorVisible(false)
 
-  function addAction() {
-    addActionItem("action")
-  }
+    let actionTemplate
 
-  function addTransformer() {
-    addActionItem("transformer")
-  }
+    if (category === "jsTransformer") {
+      actionTemplate = { transformer: "" }
+    }
 
-  function addActionItem(type: ActionType) {
     Api.request(
       {
         url: "/actions",
@@ -191,12 +181,18 @@ export const ActionList: FC<ActionListProps> = (props) => {
         data: {
           displayName: generateName(type, actionItems, actionItemsNameSet),
           type,
-          resourceId: "",
+          resourceId,
+          actionTemplate,
         },
       },
       ({ data }: { data: ActionItem }) => {
         dispatch(actionActions.addActionItemReducer(data))
         onAddActionItem(data?.actionId)
+      },
+      () => {},
+      () => {},
+      (loading) => {
+        setNewActionLoading(loading)
       },
     )
   }
@@ -254,33 +250,23 @@ export const ActionList: FC<ActionListProps> = (props) => {
     <div css={actionListContainerStyle}>
       <SearchHeader updateAction={setQuery} />
 
-      <Dropdown
-        dropList={newNewActionOptions}
-        trigger={"click"}
-        triggerProps={{
-          clickOutsideToClose: true,
-          closeOnClick: true,
-          openDelay: 0,
-          closeDelay: 0,
-        }}
-        popupVisible={newActionOptionsVisible}
-        onVisibleChange={(visible) => setNewActionOptionsVisible(visible)}
-      >
-        <div css={newBtnContainerStyle}>
-          <Button
-            autoFullHorizontal
-            colorScheme="techPurple"
-            variant="light"
-            buttonRadius="8px"
-            size={"medium"}
-            leftIcon={<AddIcon />}
-          >
-            <span css={newButtonTextStyle}>
-              {t("editor.action.action_list.btn.new")}
-            </span>
-          </Button>
-        </div>
-      </Dropdown>
+      <div css={newBtnContainerStyle}>
+        <Button
+          autoFullHorizontal
+          colorScheme="techPurple"
+          variant="light"
+          buttonRadius="8px"
+          size={"medium"}
+          leftIcon={<AddIcon />}
+          loading={newActionLoading}
+          disabled={newActionLoading}
+          onClick={() => setActionGeneratorVisible(true)}
+        >
+          <span css={newButtonTextStyle}>
+            {t("editor.action.action_list.btn.new")}
+          </span>
+        </Button>
+      </div>
 
       <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
 
@@ -288,6 +274,12 @@ export const ActionList: FC<ActionListProps> = (props) => {
         onDelete={onDelete}
         onDuplicate={onDuplicate}
         contextMenuEvent={contextMenuEvent}
+      />
+
+      <ActionGenerator
+        visible={actionGeneratorVisible}
+        onClose={() => setActionGeneratorVisible(false)}
+        onAddAction={onAddAction}
       />
     </div>
   )

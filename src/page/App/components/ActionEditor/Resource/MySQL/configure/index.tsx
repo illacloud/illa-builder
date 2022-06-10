@@ -136,7 +136,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       onSubmit &&
         onSubmit({
           resourceName: data.name,
-          resourceType: "MySQL",
+          resourceType: "mysql",
           dbName: "",
           created: Date.now().toString(),
           config: data,

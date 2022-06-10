@@ -2,23 +2,23 @@ import { FC, useMemo } from "react"
 import { dragPreviewStyle, iconCss, itemContainerCss, nameCss } from "./style"
 import { ComponentItemProps } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
 import { useDrag } from "react-dnd"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import {
   DragCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
-  const { displayName, icon, ...partialDragInfo } = props
+  const { widgetName, icon, id, ...partialDragInfo } = props
 
   const componentNode = useMemo(() => {
     const fullDragInfo = {
-      displayName,
+      widgetName,
       ...partialDragInfo,
     }
     return generateComponentNode(fullDragInfo)
-  }, [displayName, partialDragInfo])
+  }, [widgetName, partialDragInfo])
 
   const [collectedInfo, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
@@ -39,7 +39,7 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
     <div css={itemContainerCss} ref={dragRef}>
       <div css={dragPreviewStyle} ref={dragPreviewRef} />
       <span css={iconCss}>{icon}</span>
-      <span css={nameCss}>{displayName}</span>
+      <span css={nameCss}>{widgetName}</span>
     </div>
   )
 }

@@ -64,8 +64,7 @@ export const RESTAPIConfigure = forwardRef<
   const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
     onSubmit?.({
       resourceName: data.name,
-      resourceType: "REST API",
-      dbName: "",
+      resourceType: "restapi",
       created: Date.now().toString(),
       config: data,
     })

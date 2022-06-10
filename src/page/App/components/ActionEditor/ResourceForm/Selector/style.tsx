@@ -11,7 +11,15 @@ export const categoryStyle = css`
   padding-top: 8px;
 `
 
-export function resourceListStyle(last?: boolean): SerializedStyles {
+export const categoryTitleStyle = css`
+  padding: 24px 0 16px 0;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
+export function applyResourceListStyle(last?: boolean): SerializedStyles {
   return css`
     display: grid;
     grid-gap: 8px 24px;
@@ -29,6 +37,7 @@ export const resourceItemStyle = css`
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+
   &:hover {
     box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
     background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};

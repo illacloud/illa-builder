@@ -4,6 +4,7 @@ import { Divider } from "@illa-design/divider"
 import { fieldFactory } from "./utils/fieldFactory"
 import { panelBuilder } from "@/wrappedComponents/PanelBuilder"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { Empty } from "@/page/App/components/InspectPanel/empty"
 
 export const InspectPanel: FC = () => {
   const { panelConfig } = useContext(SelectedPanelContext)
@@ -25,7 +26,7 @@ export const InspectPanel: FC = () => {
       </div>
     </div>
   ) : (
-    <div>No components selected. Click on a component to select it.</div>
+    <Empty />
   )
 }
 

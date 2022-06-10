@@ -38,6 +38,7 @@ export const generateComponentNode = (
     type,
     displayName,
     parentNode: null,
+    // TODO weichen fix
     childrenNode: childrenNodeDSL.length > 0 ? childrenNodeDSL : null,
     props: defaults ?? {},
   }

@@ -13,7 +13,8 @@ import {
 } from "./interface"
 import {
   categoryStyle,
-  resourceListStyle,
+  categoryTitleStyle,
+  applyResourceListStyle,
   resourceItemStyle,
   resourceNameStyle,
   selectLayoutStyle,
@@ -25,36 +26,37 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
 
   const databaseList: DatabaseItemProps[] = [
     {
+      title: t("editor.action.resource.mySql.name"),
+      img: <MysqlIcon />,
+      type: "mysql",
+    },
+    {
       title: t("editor.action.resource.postgres.name"),
       img: <PostgresIcon />,
       draft: true,
-      type: "Postgres",
-    },
-    {
-      title: t("editor.action.resource.mySql.name"),
-      img: <MysqlIcon />,
-      type: "MySQL",
+      type: "postgres",
     },
     {
       title: t("editor.action.resource.redis.name"),
       img: <RedisIcon />,
       draft: true,
-      type: "Redis",
+      type: "redis",
     },
   ]
   const apiList: ApiItemProps[] = [
     {
       title: t("editor.action.resource.rest_api.name"),
       img: <RestApiIcon />,
-      type: "REST API",
+      type: "restapi",
     },
   ]
 
   return (
     <div css={selectLayoutStyle}>
+      <div css={categoryTitleStyle}>Select Resource Type</div>
       <div>
         <div css={categoryStyle}>{t("editor.action.form.title.database")}</div>
-        <div css={resourceListStyle()}>
+        <div css={applyResourceListStyle()}>
           {databaseList.map((database) => (
             <div
               key={database.title}
@@ -71,7 +73,7 @@ export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
       </div>
       <div>
         <div css={categoryStyle}>{t("editor.action.form.title.api")}</div>
-        <div css={resourceListStyle(true)}>
+        <div css={applyResourceListStyle(true)}>
           {apiList.map((api) => (
             <div
               key={api.title}
