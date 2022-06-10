@@ -25,6 +25,11 @@ import {
   RADIO_GROUP_PANEL_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
+import {
+  SEGMENTED_CONTROL_PANEL_CONFIG,
+  SEGMENTED_CONTROL_WIDGET_CONFIG,
+  SegmentedControlWidget,
+} from "@/wrappedComponents/SegmentedControl"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -76,6 +81,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: InputWidget,
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
+  },
+  SEGMENTED_CONTROL_WIDGET: {
+    widget: SegmentedControlWidget,
+    config: SEGMENTED_CONTROL_WIDGET_CONFIG,
+    panelConfig: SEGMENTED_CONTROL_PANEL_CONFIG,
   },
 }
 
