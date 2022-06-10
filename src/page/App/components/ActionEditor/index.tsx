@@ -1,7 +1,10 @@
-import { FC, useState } from "react"
-import { useSelector } from "react-redux"
+import { FC, useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
+import { Api } from "@/api/base"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
+import { Resource } from "@/redux/currentApp/resource/resourceState"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
@@ -13,6 +16,7 @@ import { ActionEditorContext } from "./context"
 export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
   const [resourceId, setResourceId] = useState("preset_REST API")
@@ -48,12 +52,34 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
     setIsActionDirty(false)
     setActiveActionItemId(id)
+  }
+
+  useEffect(() => {
+    Api.request(
+      {
+        method: "GET",
+        url: "/resources",
+      },
+      ({ data }: { data: Resource[] }) => {
+        dispatch(resourceActions.addResourceListReducer(data))
+      },
+      () => {
+        // TODO: handle error
+      },
+      () => { },
+      () => {
+        // TODO: handle loading
+      },
+    )
+  }, [])
+
+  useEffect(() => {
     const resourceId =
-      actionItems.find(({ actionId: actionItemId }) => id === actionItemId)
-        ?.resourceId ?? "preset_REST API"
+      actionItems.find(({ actionId }) => activeActionItemId === actionId)
+        ?.resourceId ?? ""
 
     setResourceId(resourceId)
-  }
+  }, [activeActionItemId, actionItems])
 
   return (
     <ActionEditorContext.Provider

@@ -22,6 +22,11 @@
   },
   "editor": {
     "action": {
+      "type": {
+        "database": "Databases",
+        "api": "Apis",
+        "js_transformer": "Javascript Transformer"
+      },
       "action_list": {
         "title": "Action List",
         "placeholder": {
@@ -45,6 +50,11 @@
         },
         "message": {
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
+        },
+        "action_generator": {
+          "selector": {
+            "title": "Select action type"
+          }
         }
       },
       "panel": {
@@ -107,6 +117,12 @@
           "tip": {
             "external_reference": "您可以创建对已定义变量的外部引用。 例如，{{ transformer2.value }}"
           }
+        },
+        "js_transformer": {
+          "name": "Transformer"
+        },
+        "label": {
+          "comming_soon": "Comming Soon"
         },
         "mySql": {
           "name": "MySQL",
@@ -207,7 +223,8 @@
         },
         "redis": {
           "name": "Redis"
-        }
+        },
+        "mongo_db": { "name": "MongoDB" }
       },
       "result": {
         "title": {
