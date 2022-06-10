@@ -30,7 +30,7 @@ import { ActionResult } from "./ActionResult"
 const { Item: MenuItem } = Menu
 
 function renderEditor(
-  type: string,
+  actionType: string,
   ref: Ref<triggerRunRef>,
   onSaveParam: () => void,
   onRun: (result: any) => void,
@@ -38,7 +38,7 @@ function renderEditor(
 ) {
   const { onEditResource, onChangeResource, onCreateResource, onChange } = props
 
-  switch (type) {
+  switch (actionType) {
     case "restapi":
     case "mysql":
       return (
@@ -102,7 +102,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     return new Set(actionItems.map((i) => i.displayName))
   }, [actionItems])
 
-  const actionType = activeActionItem?.type ?? ""
+  const actionType = activeActionItem?.actionType ?? ""
 
   function handleAction(key: string) {
     setMoreBtnMenuVisible(false)
@@ -116,14 +116,18 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   function duplicateActionItem() {
     if (activeActionItem) {
-      const { type } = activeActionItem
+      const { actionType } = activeActionItem
       const id = uuidV4()
 
       dispatch(
         actionActions.addActionItemReducer({
           actionId: id,
-          type,
-          displayName: generateName(type, actionItems, actionItemsNameSet),
+          actionType,
+          displayName: generateName(
+            actionType,
+            actionItems,
+            actionItemsNameSet,
+          ),
         }),
       )
 
@@ -222,8 +226,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           {isRuning
             ? duration
             : isActionDirty
-            ? t("editor.action.panel.btn.save_and_run")
-            : t("editor.action.panel.btn.run")}
+              ? t("editor.action.panel.btn.save_and_run")
+              : t("editor.action.panel.btn.run")}
         </Button>
       </header>
 

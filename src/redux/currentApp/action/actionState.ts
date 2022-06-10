@@ -37,7 +37,7 @@ export interface ActionItem {
   actionId: string
   displayName: string
   resourceId?: string
-  type: ActionType
+  actionType: string
   status?: ActionStatus
   network?: ActionConnectNetwork
   config?: ActionItemConfig

@@ -5,12 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Input } from "@illa-design/input"
-import {
-  AddIcon,
-  WarningCircleIcon,
-  EmptyStateIcon,
-  RestApiIcon,
-} from "@illa-design/icon"
+import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -18,6 +13,7 @@ import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
 import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
+import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
 import {
   actionListContainerStyle,
   newBtnContainerStyle,
@@ -95,11 +91,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
-    const { actionId: id, displayName: name, status } = item
+    const { actionId: id, displayName: name, status, actionType } = item
     const isWarning = status === "warning"
     // TODO: time should retrieve from ActionItem.network
     const time = "0.7s"
-    const icon = <RestApiIcon />
     const isSelected = id === activeActionItemId
 
     function renderName() {
@@ -145,7 +140,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
         }}
       >
         <span css={actionItemIconStyle}>
-          {icon}
+          <ActionTypeIcon actionType={actionType} />
           {isWarning && (
             <WarningCircleIcon css={warningIndicatorStyle} size={"8px"} />
           )}
@@ -165,7 +160,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function onAddAction(info: ActionInfo) {
-    const { category, type, resourceId = "" } = info
+    const { category, actionType, resourceId = "" } = info
     setActionGeneratorVisible(false)
 
     let actionTemplate
@@ -179,8 +174,12 @@ export const ActionList: FC<ActionListProps> = (props) => {
         url: "/actions",
         method: "POST",
         data: {
-          displayName: generateName(type, actionItems, actionItemsNameSet),
-          type,
+          displayName: generateName(
+            actionType,
+            actionItems,
+            actionItemsNameSet,
+          ),
+          actionType,
           resourceId,
           actionTemplate,
         },
@@ -189,8 +188,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
         dispatch(actionActions.addActionItemReducer(data))
         onAddActionItem(data?.actionId)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => {
         setNewActionLoading(loading)
       },
@@ -204,14 +203,18 @@ export const ActionList: FC<ActionListProps> = (props) => {
     )
 
     if (targetItem) {
-      const type = targetItem.type
+      const actionType = targetItem.actionType
       const id = uuidV4()
 
       dispatch(
         actionActions.addActionItemReducer({
           actionId: id,
-          type,
-          displayName: generateName(type, actionItems, actionItemsNameSet),
+          actionType,
+          displayName: generateName(
+            actionType,
+            actionItems,
+            actionItemsNameSet,
+          ),
         }),
       )
 

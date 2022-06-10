@@ -20,8 +20,8 @@ import {
   resourceIconStyle,
 } from "./style"
 
-const Card: FC<ActionTypeSelectorCardProps> = function (props) {
-  const { icon, nameKey, isDraft, category, type, onSelect } = props
+const Card: FC<ActionTypeSelectorCardProps> = function(props) {
+  const { icon, nameKey, isDraft, category, actionType, onSelect } = props
   const { t } = useTranslation()
   const draftTip = t("editor.action.resource.label.comming_soon")
 
@@ -29,7 +29,7 @@ const Card: FC<ActionTypeSelectorCardProps> = function (props) {
     <div
       css={applyResourceItemStyle(isDraft)}
       data-draft-tip={draftTip}
-      onClick={() => !isDraft && onSelect?.({ type, category })}
+      onClick={() => !isDraft && onSelect?.({ actionType, category })}
     >
       {cloneElement(icon, { css: resourceIconStyle })}
       <span css={resourceNameStyle}>
@@ -39,7 +39,7 @@ const Card: FC<ActionTypeSelectorCardProps> = function (props) {
   )
 }
 
-const List: FC<ActionTypeSelectorListProps> = function (props) {
+const List: FC<ActionTypeSelectorListProps> = function(props) {
   const { title, list = [], onSelect, category } = props
 
   return (
@@ -59,7 +59,7 @@ const List: FC<ActionTypeSelectorListProps> = function (props) {
   )
 }
 
-export const ActionTypeSelector: FC<ActionTypeSelectorProps> = function (
+export const ActionTypeSelector: FC<ActionTypeSelectorProps> = function(
   props,
 ) {
   const { onSelect } = props

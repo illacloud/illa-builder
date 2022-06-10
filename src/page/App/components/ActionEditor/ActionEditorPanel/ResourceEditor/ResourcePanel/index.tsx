@@ -79,8 +79,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
         (data) => {
           onRun && onRun(data.data)
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => {
           onLoadingActionResult?.(loading)
         },
@@ -108,12 +108,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       return { run, saveAndRun }
     })
 
-    if (resourceId?.indexOf("preset") !== -1) {
-      resourceType = resourceId?.split("_")[1] ?? ""
-    } else {
-      resource = allResource.find((i) => i.resourceId === resourceId)
-      resourceType = resource?.resourceType ?? ""
-    }
+    resource = allResource.find((i) => i.resourceId === resourceId)
+    resourceType = resource?.resourceType ?? ""
 
     return (
       <>

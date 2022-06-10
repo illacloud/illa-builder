@@ -16,7 +16,7 @@ function onSelectActionType(
   setStep: (step: ActionGeneratorSteps) => void,
   setResourceType: (resourceType: string) => void,
 ) {
-  const { category, type } = info
+  const { category, actionType } = info
   const { onAddAction } = props
 
   switch (category) {
@@ -27,7 +27,7 @@ function onSelectActionType(
     case "apis":
     case "databases": {
       // check if has resource, to create if not, to list if has
-      setResourceType(type)
+      setResourceType(actionType)
       setStep("resource")
       break
     }
@@ -69,7 +69,7 @@ function renderStep(
             setStep("resource-create")
           }}
           onCreateAction={(resourceType, resourceId) => {
-            onAddAction?.({ type: resourceType, resourceId })
+            onAddAction?.({ actionType: resourceType, resourceId })
           }}
           defaultSelectedResourceId={defaultSelectedResourceId}
         />
@@ -91,7 +91,7 @@ function renderStep(
   }
 }
 
-export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
+export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
   const { visible, onClose } = props
   const [step, setStep] = useState<ActionGeneratorSteps>("type")
   const [resourceType, setResourceType] = useState<string>("")
