@@ -31,7 +31,6 @@ import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
-import { calcConstrainedMinPoint } from "framer-motion/types/gestures/drag/utils/constraints"
 import store from "@/store"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 
@@ -76,9 +75,9 @@ function calculateXY(
   y: number,
   unitWidth: number,
   unitHeight: number,
-  edgeWidth: number,
 ): [l: number, t: number] {
-  return [x * unitWidth + edgeWidth, y * unitHeight + edgeWidth]
+  console.log("unit", unitWidth, unitHeight, x, y)
+  return [x * unitWidth + 1, y * unitHeight + 1]
 }
 
 function renderDotSquare(blockRows: number, blockColumns: number): ReactNode {
@@ -114,7 +113,7 @@ function renderChildren(
     const h = item.h * unitHeight
     const w = item.w * unitWidth
 
-    const [l, t] = calculateXY(item.x, item.y, unitWidth, unitHeight, edgeWidth)
+    const [l, t] = calculateXY(item.x, item.y, unitWidth, unitHeight)
 
     switch (item.containerType) {
       case "EDITOR_DOT_PANEL":
@@ -166,7 +165,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const unitWidth = useSelector(getUnitSize).unitWidth
 
   // other field
-  const [showDot, setShowDot] = useState(false)
+  const [showDot, setShowDot] = useState(true)
 
   const bottomPanelOpenState = useSelector(isOpenBottomPanel)
   const leftPanelOpenState = useSelector(isOpenLeftPanel)
@@ -217,7 +216,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        setShowDot(false)
+        // setShowDot(false)
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
