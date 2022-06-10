@@ -1,13 +1,10 @@
 import { FC, useState, useMemo, useRef, MouseEvent, useContext } from "react"
-import { Api } from "@/api/base"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
 import { Input } from "@illa-design/input"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
@@ -33,15 +30,16 @@ import { ContextMenu } from "./ContextMenu"
 
 export const ActionList: FC<ActionListProps> = (props) => {
   const {
-    isActionDirty = false,
+    loading,
+    isActionDirty,
     onAddActionItem,
     onDuplicateActionItem,
     onDeleteActionItem,
+    onUpdateActionItem,
     onSelectActionItem,
   } = props
 
   const { t } = useTranslation()
-  const dispatch = useDispatch()
   const actionItems = useSelector(selectAllActionItem)
   const { activeActionItemId } = useContext(ActionEditorContext)
 
@@ -50,7 +48,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [editingActionItemId, setEditingActionItemId] = useState("")
   const [contextMenuActionId, setContextMenuActionId] = useState("")
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const [newActionLoading, setNewActionLoading] = useState(false)
   const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -65,10 +62,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
     )
   }, [actionItems, query])
 
-  const actionItemsNameSet = useMemo(() => {
-    return new Set(actionItems.map((i) => i.displayName))
-  }, [actionItems])
-
   function editName(id: string, name: string) {
     setEditingActionItemId(id)
     setEditingName(name)
@@ -78,29 +71,46 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function updateName() {
-    Api.request(
-      {
-        url: `/actions/${editingActionItemId}`,
-        method: "PUT",
-        data: {
-          displayName: editingName,
-        },
-      },
-      ({ data }: { data: ActionItem }) => {
-        dispatch(
-          actionActions.updateActionItemReducer({
-            ...data,
-          }),
-        )
-        setEditingActionItemId("")
-        setEditingName("")
-      },
-      () => { },
-      () => { },
-      (loading) => {
-        setNewActionLoading(loading)
-      },
-    )
+    onUpdateActionItem(editingActionItemId, {
+      displayName: editingName,
+    })
+    setEditingActionItemId("")
+    setEditingName("")
+  }
+
+  function onClickActionItem(id: string, name: string) {
+    if (actionItems.length === 1) {
+      editName(id, name)
+    }
+
+    onSelectActionItem(id)
+  }
+
+  function onAddAction(info: ActionInfo) {
+    const { category, actionType, resourceId = "" } = info
+
+    setActionGeneratorVisible(false)
+
+    let actionTemplate
+
+    if (category === "jsTransformer") {
+      actionTemplate = { transformer: "" }
+    }
+
+    onAddActionItem({
+      displayName: generateName(actionType, actionItems),
+      actionType,
+      resourceId,
+      actionTemplate,
+    })
+  }
+
+  function onDuplicate() {
+    onDuplicateActionItem(contextMenuActionId)
+  }
+
+  function onDelete() {
+    onDeleteActionItem(contextMenuActionId)
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
@@ -161,104 +171,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
     )
   })
 
-  function onClickActionItem(id: string, name: string) {
-    if (actionItems.length === 1) {
-      editName(id, name)
-    }
-
-    onSelectActionItem(id)
-  }
-
-  function onAddAction(info: ActionInfo) {
-    const { category, actionType, resourceId = "" } = info
-    setActionGeneratorVisible(false)
-
-    let actionTemplate
-
-    if (category === "jsTransformer") {
-      actionTemplate = { transformer: "" }
-    }
-
-    Api.request(
-      {
-        url: "/actions",
-        method: "POST",
-        data: {
-          displayName: generateName(
-            actionType,
-            actionItems,
-            actionItemsNameSet,
-          ),
-          actionType,
-          resourceId,
-          actionTemplate,
-        },
-      },
-      ({ data }: { data: ActionItem }) => {
-        dispatch(actionActions.addActionItemReducer(data))
-        onAddActionItem(data?.actionId)
-      },
-      () => { },
-      () => { },
-      (loading) => {
-        setNewActionLoading(loading)
-      },
-    )
-  }
-
-  function onDuplicate() {
-    const targetItem = actionItems.find(
-      (i) => i.actionId === contextMenuActionId,
-    )
-
-    if (targetItem) {
-      const actionType = targetItem.actionType
-      const { actionId, ...duplicateActionData } = targetItem
-
-      Api.request(
-        {
-          url: "/actions",
-          method: "POST",
-          data: {
-            ...duplicateActionData,
-            displayName: generateName(
-              actionType,
-              actionItems,
-              actionItemsNameSet,
-            ),
-          },
-        },
-        ({ data }: { data: ActionItem }) => {
-          dispatch(actionActions.addActionItemReducer(data))
-          onDuplicateActionItem(data?.actionId)
-        },
-        () => { },
-        () => { },
-        (loading) => {
-          setNewActionLoading(loading)
-        },
-      )
-    }
-  }
-
-  function onDelete() {
-    Api.request(
-      {
-        url: `/actions/${contextMenuActionId}`,
-        method: "DELETE",
-      },
-      ({ data }: { data: { actionId: string } }) => {
-        dispatch(actionActions.removeActionItemReducer(data?.actionId))
-        onDeleteActionItem(data?.actionId)
-      },
-      () => { },
-      () => { },
-      (loading) => {
-        setNewActionLoading(loading)
-      },
-    )
-  }
-
   const NoMatchFound = (
     <div css={noMatchFoundWrapperStyle}>
       <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
@@ -294,8 +206,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
           buttonRadius="8px"
           size={"medium"}
           leftIcon={<AddIcon />}
-          loading={newActionLoading}
-          disabled={newActionLoading}
+          loading={loading}
+          disabled={loading}
           onClick={() => setActionGeneratorVisible(true)}
         >
           <span css={newButtonTextStyle}>

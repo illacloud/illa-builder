@@ -16,10 +16,10 @@ interface ActionConnectNetwork {
 }
 
 export interface ActionItemConfig {
-  general: RESTAPIParamValues | MySQLParamValues | string
+  general?: RESTAPIParamValues | MySQLParamValues | string
   trigger?: "manual" | "change"
   mode?: "gui" | "plain"
-  transformer?: Transformer
+  transformer?: string
   eventHandler?: EventHandler
 }
 
@@ -41,6 +41,7 @@ export interface ActionItem {
   status?: ActionStatus
   network?: ActionConnectNetwork
   config?: ActionItemConfig
+  actionTemplate?: ActionItemConfig
 }
 
 export type ActionListState = ActionItem[]

@@ -2,8 +2,6 @@ import { FC, useState, useRef, useEffect } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { AnimatePresence, motion } from "framer-motion"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { useDispatch } from "react-redux"
 import {
   titleContainerStyle,
   titleEditIconStyle,
@@ -14,8 +12,7 @@ import {
 import { TitleInputProps } from "./interface"
 
 export const TitleInput: FC<TitleInputProps> = (props) => {
-  const { activeActionItem } = props
-  const dispatch = useDispatch()
+  const { activeActionItem, onChange } = props
   const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -42,13 +39,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
 
   function handleOnBlur() {
     setIsEditing(false)
-    activeActionItem &&
-      dispatch(
-        actionActions.updateActionItemReducer({
-          ...activeActionItem,
-          displayName: title,
-        }),
-      )
+    onChange?.(title)
   }
 
   const childrenNode = isEditing ? (

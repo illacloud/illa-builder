@@ -1,10 +1,7 @@
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 
-export function generateName(
-  actionType: string,
-  actionItems: ActionItem[],
-  actionItemsNameSet: Set<string>,
-) {
+export function generateName(actionType: string, actionItems: ActionItem[]) {
+  const actionItemsNameSet = new Set(actionItems.map((i) => i.displayName))
   const length = actionItems.filter((i) => i.actionType === actionType).length
   const prefix = actionType
 
