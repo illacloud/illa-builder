@@ -2,7 +2,7 @@ import { WrappedRadioGroup } from "../index"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
-test("Radiogroup renders correctly", () => {
+test("RadioGroup renders correctly", () => {
   const handleUpdateDSL = jest.fn()
   render(
     <WrappedRadioGroup
