@@ -16,7 +16,8 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       <EditorInput mode="sql" />
       <CodeEditor mode="JAVASCRIPT" />
       <CodeEditor mode="SQL_JS" />
-        <CodeInput mode="javascript" />
+      <CodeInput mode="javascript" />
+      <CodeInput mode="sql" />
     </div>
   )
 }

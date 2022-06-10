@@ -7,6 +7,7 @@ export interface CodeInputProps
   mode: EditorModes
   value?: string
   lineNumbers?: boolean
+  readOnly?: boolean
   height?: string
   placeholder?: string
   onBlur?: () => void
