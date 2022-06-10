@@ -2,22 +2,28 @@ import { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export function searchDsl(
-  children: ComponentNode[],
+  rootNode: ComponentNode | null,
   displayName: string,
 ): ComponentNode | null {
-  children.forEach((value, index, array) => {
-    if (value.displayName == displayName) {
-      return value
-    } else {
-      if (value.childrenNode != undefined) {
-        return searchDsl(value.childrenNode, displayName)
-      }
+  if (rootNode == null) {
+    return null
+  }
+  if (rootNode.displayName == displayName) {
+    return rootNode
+  } else {
+    if (rootNode.childrenNode != null) {
+      rootNode.childrenNode.forEach((item) => {
+        searchDsl(item, displayName)
+      })
     }
-  })
+  }
   return null
 }
 
-export const getBaseDSL = (state: RootState, displayName: string) => {
-  // const map: Map<string, ComponentNode> = state.currentApp.editor.components.map
-  // map.forEach((value, key) => {})
+export const getComponentNode = (state: RootState, displayName: string) => {
+  return searchDsl(state.currentApp.editor.components.rootDsl, displayName)
+}
+
+export const getCanvas = (state: RootState) => {
+  return state.currentApp.editor.components.rootDsl
 }

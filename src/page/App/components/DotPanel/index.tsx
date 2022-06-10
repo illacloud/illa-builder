@@ -1,12 +1,14 @@
-import { FC, ReactNode, useEffect, useRef, useState } from "react"
+import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react"
 import {
   DotPanelProps,
   DropCollectedInfo,
-  DropPanelInfo,
+  DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import {
+  applyChildrenContainerStyle,
+  applyDotRowsStyle,
+  applyDragShadowPosition,
   applyScaleStyle,
-  dotRowsStyle,
   dotStyle,
 } from "@/page/App/components/DotPanel/style"
 import useWindowSize from "react-use/lib/useWindowSize"
@@ -20,18 +22,22 @@ import {
 import { useDrop } from "react-dnd"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
-import * as Console from "console"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { DragShadowSquare } from "@/page/App/components/DragShadowSquare"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
+import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
+import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 
-function renderDotSquare(rows: number, columns: number): ReactNode {
+function renderDotSquare(blockRows: number, blockColumns: number): ReactNode {
   let rowsDot: ReactNode[] = []
-  for (let i = 0; i < rows; i++) {
+  for (let i = 0; i < blockRows + 1; i++) {
     let columnsDot: ReactNode[] = []
-    for (let j = 0; j < columns; j++) {
+    for (let j = 0; j < blockColumns + 1; j++) {
       columnsDot.push(<span key={`column: ${i},${j}`} css={dotStyle} />)
     }
     rowsDot.push(
-      <div key={`row: ${i}`} css={dotRowsStyle}>
+      <div key={`row: ${i}`} css={applyDotRowsStyle(i == blockRows)}>
         {columnsDot}
       </div>,
     )
@@ -39,8 +45,15 @@ function renderDotSquare(rows: number, columns: number): ReactNode {
   return <>{rowsDot}</>
 }
 
+function renderChildren(childrenNode: ComponentNode[] | null): ReactNode {
+  if (childrenNode == null) {
+    return null
+  }
+  return <></>
+}
+
 export const DotPanel: FC<DotPanelProps> = (props) => {
-  const { scale = 100, ...otherProps } = props
+  const { componentNode, ...otherProps } = props
 
   const canvasRef = useRef<HTMLDivElement>(null)
 
@@ -67,6 +80,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const leftPanelOpenState = useSelector(isOpenLeftPanel)
   const rightPanelOpenState = useSelector(isOpenRightPanel)
 
+  // drag shadow
+  const dragShadowMap = useSelector(getDragShadowMap)
+
+  // calculate height
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
@@ -74,35 +91,52 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         return
       }
       const finalBlockRows = Math.ceil(
-        (container.getBoundingClientRect().height - edgeWidth * 2) / unitHeight,
+        (container.getBoundingClientRect().height - edgeWidth) / unitHeight,
       )
-      const finalHeight = finalBlockRows * unitHeight
+      const finalHeight = finalBlockRows * unitHeight + 2
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
   }, [height, bottomPanelOpenState])
 
+  // calculate width
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
       const finalBlockWidth =
-        container.getBoundingClientRect().width / blockColumns
+        (container.getBoundingClientRect().width -
+          edgeWidth * 2 -
+          (blockColumns + 1) * 2) /
+          blockColumns +
+        2
       dispatch(configActions.updateUnitWidth(finalBlockWidth))
-      setCanvasWidth(container.getBoundingClientRect().width)
+      setCanvasWidth(container.getBoundingClientRect().width - edgeWidth * 2)
     }
   }, [width, leftPanelOpenState, rightPanelOpenState])
 
   const [collectedInfo, dropTarget] = useDrop<
     ComponentNode,
-    DropPanelInfo,
+    DropResultInfo,
     DropCollectedInfo
   >(
     () => ({
       accept: ["components"],
       drop: (item, monitor) => {
-        return {}
+        if (!monitor.isOver({ shallow: true })) {
+          return
+        }
+        const newItem = {
+          ...item,
+        } as ComponentNode
+        newItem.containerType = "EDITOR_SCALE_SQUARE"
+        newItem.parentNode = componentNode.displayName
+        dispatch(componentsActions.updateDropComponent(newItem))
+        return {} as DropResultInfo
       },
       hover: (item, monitor) => {
+        if (!monitor.isOver({ shallow: true })) {
+          return
+        }
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
@@ -113,24 +147,81 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasScrollLeft != null &&
           canvasScrollTop != null
         ) {
-          console.log(monitorRect.x, monitorRect.y)
           const relativePositionX =
             monitorRect.x - canvasRect.x + canvasScrollLeft
           const relativePositionY =
             monitorRect.y - canvasRect.y + canvasScrollTop
+
+          // panel position
+          const centerX = Math.floor(relativePositionX / unitWidth)
+          const centerY = Math.floor(relativePositionY / unitHeight)
+          const squareX = centerX - Math.floor(item.w / 2)
+          const squareY = centerY - Math.floor(item.h / 2)
+
+          // real position
+          const renderX = relativePositionX - (item.w * unitWidth) / 2
+          const renderY = relativePositionY - (item.h * unitHeight) / 2
+
+          // set shadow
+          const renderDragShadow = {
+            displayName: item.displayName,
+            renderX: renderX,
+            renderY: renderY,
+            width: item.w * unitWidth,
+            height: item.h * unitHeight,
+            isConflict: false,
+          } as DragShadow
+          dispatch(
+            dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow),
+          )
+
+          // set dotted line
+          const newItem = {
+            ...item,
+          } as ComponentNode
+          newItem.parentNode = componentNode.displayName
+          newItem.containerType = "EDITOR_DOTTED_LINE_SQUARE"
+          newItem.x = squareX
+          newItem.y = squareY
+          dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
         }
       },
     }),
-    [],
+    [unitWidth, unitHeight],
   )
+
+  const dragShadows = useMemo<ReactNode[]>(() => {
+    const list: ReactNode[] = []
+    Object.keys(dragShadowMap).map((value, index, array) => {
+      const item = dragShadowMap[value]
+      list.push(
+        <DragShadowSquare
+          css={applyDragShadowPosition(item.renderY, item.renderX)}
+          height={item.height}
+          width={item.width}
+        />,
+      )
+    })
+    return list
+  }, [dragShadowMap])
 
   return (
     <div
       ref={mergeRefs(canvasRef, dropTarget)}
-      css={applyScaleStyle(scale, canvasHeight)}
+      css={applyScaleStyle(canvasHeight)}
       {...otherProps}
     >
-      {showDot && renderDotSquare(blockRows + 1, blockColumns + 1)}
+      {showDot && (
+        <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+          {renderDotSquare(blockRows, blockColumns)}
+        </div>
+      )}
+      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+        {renderChildren(componentNode.childrenNode)}
+      </div>
+      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+        {dragShadows}
+      </div>
     </div>
   )
 }

@@ -39,6 +39,7 @@
     "react-router-dom": "^6.3.0",
     "react-showdown": "^2.3.1",
     "redux": "^4.2.0",
+    "immer": "^9.0.14",
     "redux-logger": "^3.0.6",
     "scenejs": "^1.6.0",
     "use-bus": "^2.5.1",

@@ -1,11 +1,13 @@
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { HTMLAttributes } from "react"
 
 export interface DotPanelProps extends HTMLAttributes<HTMLDivElement> {
+  componentNode: ComponentNode
   scale?: number
 }
 
 // return when drop trigger
-export interface DropPanelInfo {}
+export interface DropResultInfo {}
 
 // return when drop collect trigger
 export interface DropCollectedInfo {}

@@ -4,7 +4,7 @@ import { ComponentItemProps } from "@/page/App/components/WidgetPickerEditor/com
 import { useDrag } from "react-dnd"
 import {
   DragCollectedInfo,
-  DropPanelInfo,
+  DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { generateComponentNode } from "@/utils/generators/generateComponentNode"
@@ -22,7 +22,7 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
 
   const [collectedInfo, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
-    DropPanelInfo,
+    DropResultInfo,
     DragCollectedInfo
   >(
     () => ({
