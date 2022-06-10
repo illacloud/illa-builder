@@ -15,7 +15,10 @@ export const addComponentReducer: CaseReducer<
   } else {
     const parentNode = searchDsl(state.rootDsl, addNode.parentNode)
     if (parentNode != null) {
-      parentNode.childrenNode?.push(addNode)
+      if (parentNode.childrenNode == null) {
+        parentNode.childrenNode = {}
+      }
+      parentNode.childrenNode[addNode.displayName] = addNode
     }
   }
 }
@@ -30,9 +33,9 @@ export const removeComponentReducer: CaseReducer<
   } else {
     const parentNode = searchDsl(state.rootDsl, removeNode.parentNode)
     if (parentNode != null) {
-      const index = parentNode.childrenNode?.indexOf(removeNode)
-      if (index !== undefined) {
-        parentNode.childrenNode?.splice(index, 1)
+      const children = parentNode.childrenNode
+      if (children != null) {
+        delete children[removeNode.displayName]
       }
     }
   }
@@ -49,31 +52,9 @@ export const addOrUpdateComponentReducer: CaseReducer<
     const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
     if (parentNode != null) {
       if (parentNode.childrenNode == null) {
-        parentNode.childrenNode = []
+        parentNode.childrenNode = {}
       }
-      const index = parentNode.childrenNode.indexOf(dealNode)
-      if (index !== -1) {
-        parentNode.childrenNode[index] = dealNode
-      } else {
-        parentNode.childrenNode.push(dealNode)
-      }
-    }
-  }
-}
-
-export const updateDropComponent: CaseReducer<
-  ComponentsState,
-  PayloadAction<ComponentNode>
-> = (state, action) => {
-  const dealNode = action.payload
-  if (state.rootDsl == null || dealNode.parentNode == null) {
-    return
-  }
-  const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
-  if (parentNode != null && parentNode.childrenNode != null) {
-    const index = parentNode.childrenNode.indexOf(dealNode)
-    if (index != -1) {
-      parentNode.childrenNode[index].containerType = "EDITOR_SCALE_SQUARE"
+      parentNode.childrenNode[dealNode.displayName] = dealNode
     }
   }
 }

@@ -11,9 +11,10 @@ export function searchDsl(
   if (rootNode.displayName == displayName) {
     return rootNode
   } else {
-    if (rootNode.childrenNode != null) {
-      rootNode.childrenNode.forEach((item) => {
-        searchDsl(item, displayName)
+    const childrenNode = rootNode.childrenNode
+    if (childrenNode != null) {
+      Object.keys(childrenNode).map((key) => {
+        searchDsl(childrenNode[key], displayName)
       })
     }
   }

@@ -1,7 +1,8 @@
 import { DottedLineSquareProps } from "@/page/App/components/DottedLineSquare/interface"
 import { FC } from "react"
-import { dottedContainer } from "./style"
+import { applyDottedContainer } from "@/page/App/components/DottedLineSquare/style"
 
 export const DottedLineSquare: FC<DottedLineSquareProps> = (props) => {
-  return <div css={dottedContainer} />
+  const { w, h, ...otherProps } = props
+  return <div css={applyDottedContainer(w, h)} {...otherProps} />
 }

@@ -6,7 +6,9 @@ export type ContainerType =
 export interface ComponentNode {
   displayName: string
   parentNode: string | null
-  childrenNode: ComponentNode[] | null
+  childrenNode: {
+    [key: string]: ComponentNode
+  } | null
   type: string | null
   containerType: ContainerType
   h: number

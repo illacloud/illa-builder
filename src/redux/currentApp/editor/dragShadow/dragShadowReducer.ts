@@ -10,3 +10,10 @@ export const addOrUpdateDragShadowReducer: CaseReducer<
 > = (state, action) => {
   state.map[action.payload.displayName] = action.payload
 }
+
+export const removeDragShadowReducer: CaseReducer<
+  DragShadowState,
+  PayloadAction<string>
+> = (state, action) => {
+  delete state.map[action.payload]
+}

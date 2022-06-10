@@ -3,12 +3,12 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export function applyDragShadowSquareStyle(
   isConflict: boolean,
-  height: number,
-  width: number,
+  h: number,
+  w: number,
 ) {
   return css`
-    height: ${height}px;
-    width: ${width}px;
+    height: ${h}px;
+    width: ${w}px;
     border-radius: 2px;
     background: ${isConflict
       ? globalColor(`--${illaPrefix}-red-03`)

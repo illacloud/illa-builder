@@ -1,12 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { DragShadowInitialState } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
-import { addOrUpdateDragShadowReducer } from "@/redux/currentApp/editor/dragShadow/dragShadowReducer"
+import {
+  addOrUpdateDragShadowReducer,
+  removeDragShadowReducer,
+} from "@/redux/currentApp/editor/dragShadow/dragShadowReducer"
 
 const dragShadowSlice = createSlice({
   name: "dragShadow",
   initialState: DragShadowInitialState,
   reducers: {
     addOrUpdateDragShadowReducer,
+    removeDragShadowReducer,
   },
 })
 

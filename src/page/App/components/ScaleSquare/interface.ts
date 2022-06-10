@@ -3,4 +3,6 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 
 export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   componentNode: ComponentNode
+  h: number
+  w: number
 }

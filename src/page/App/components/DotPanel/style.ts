@@ -52,10 +52,7 @@ export function applyChildrenContainerStyle(
   `
 }
 
-export function applyDragShadowPosition(
-  t: number,
-  l: number,
-): SerializedStyles {
+export function applyDragObjectStyle(t: number, l: number): SerializedStyles {
   return css`
     position: absolute;
     top: ${t}px;

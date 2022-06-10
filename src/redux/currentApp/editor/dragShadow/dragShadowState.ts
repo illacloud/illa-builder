@@ -3,8 +3,8 @@ export interface DragShadow {
   displayName: string
   renderX: number
   renderY: number
-  width: number
-  height: number
+  w: number
+  h: number
 }
 
 export interface DragShadowState {
