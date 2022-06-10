@@ -2,7 +2,6 @@ import { FC, useState, useMemo, useRef, MouseEvent, useContext } from "react"
 import { Api } from "@/api/base"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
-import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { Input } from "@illa-design/input"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
@@ -23,7 +22,6 @@ import {
   actionItemNameStyle,
   applyactionItemNameTextStyle,
   actionItemIconStyle,
-  actionItemTimeStyle,
   warningIndicatorStyle,
   updatedIndicatorStyle,
   noMatchFoundWrapperStyle,
@@ -42,10 +40,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
     onSelectActionItem,
   } = props
 
-  const { activeActionItemId } = useContext(ActionEditorContext)
-  const dispatch = useDispatch()
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const actionItems = useSelector(selectAllActionItem)
+  const { activeActionItemId } = useContext(ActionEditorContext)
 
   const [query, setQuery] = useState<string>("")
   const [editingName, setEditingName] = useState("")
@@ -80,21 +78,34 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function updateName() {
-    dispatch(
-      actionActions.updateActionItemReducer({
-        actionId: editingActionItemId,
-        displayName: editingName,
-      }),
+    Api.request(
+      {
+        url: `/actions/${editingActionItemId}`,
+        method: "PUT",
+        data: {
+          displayName: editingName,
+        },
+      },
+      ({ data }: { data: ActionItem }) => {
+        dispatch(
+          actionActions.updateActionItemReducer({
+            ...data,
+          }),
+        )
+        setEditingActionItemId("")
+        setEditingName("")
+      },
+      () => { },
+      () => { },
+      (loading) => {
+        setNewActionLoading(loading)
+      },
     )
-    setEditingActionItemId("")
-    setEditingName("")
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
     const { actionId: id, displayName: name, status, actionType } = item
     const isWarning = status === "warning"
-    // TODO: time should retrieve from ActionItem.network
-    const time = "0.7s"
     const isSelected = id === activeActionItemId
 
     function renderName() {
@@ -146,7 +157,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
           )}
         </span>
         {renderName()}
-        <span css={actionItemTimeStyle}>{time}</span>
       </li>
     )
   })
@@ -197,34 +207,56 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function onDuplicate() {
-    const newActionItems = actionItems.slice(0)
-    const targetItem = newActionItems.find(
+    const targetItem = actionItems.find(
       (i) => i.actionId === contextMenuActionId,
     )
 
     if (targetItem) {
       const actionType = targetItem.actionType
-      const id = uuidV4()
+      const { actionId, ...duplicateActionData } = targetItem
 
-      dispatch(
-        actionActions.addActionItemReducer({
-          actionId: id,
-          actionType,
-          displayName: generateName(
-            actionType,
-            actionItems,
-            actionItemsNameSet,
-          ),
-        }),
+      Api.request(
+        {
+          url: "/actions",
+          method: "POST",
+          data: {
+            ...duplicateActionData,
+            displayName: generateName(
+              actionType,
+              actionItems,
+              actionItemsNameSet,
+            ),
+          },
+        },
+        ({ data }: { data: ActionItem }) => {
+          dispatch(actionActions.addActionItemReducer(data))
+          onDuplicateActionItem(data?.actionId)
+        },
+        () => { },
+        () => { },
+        (loading) => {
+          setNewActionLoading(loading)
+        },
       )
-
-      onDuplicateActionItem(id)
     }
   }
 
   function onDelete() {
-    dispatch(actionActions.removeActionItemReducer(contextMenuActionId))
-    onDeleteActionItem(contextMenuActionId)
+    Api.request(
+      {
+        url: `/actions/${contextMenuActionId}`,
+        method: "DELETE",
+      },
+      ({ data }: { data: { actionId: string } }) => {
+        dispatch(actionActions.removeActionItemReducer(data?.actionId))
+        onDeleteActionItem(data?.actionId)
+      },
+      () => { },
+      () => { },
+      (loading) => {
+        setNewActionLoading(loading)
+      },
+    )
   }
 
   const NoMatchFound = (
@@ -249,6 +281,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
     return actionItemsList
   }
+
   return (
     <div css={actionListContainerStyle}>
       <SearchHeader updateAction={setQuery} />

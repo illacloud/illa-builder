@@ -4,7 +4,7 @@ import { baseUrl } from "@/mocks/config"
 import { ACTION_RUN_RESULT } from "./data"
 
 export default [
-  rest.post(`${baseUrl}/actions/:id/run`, (_, res, ctx) => {
+  rest.post(`${baseUrl}/actions/:actionId/run`, (_, res, ctx) => {
     return res(
       ctx.delay(10000 * Math.random()),
       ctx.status(200),
@@ -21,6 +21,31 @@ export default [
       ctx.json({
         actionId: uuidV4(),
         ...(data as Object),
+      }),
+    )
+  }),
+
+  rest.put(`${baseUrl}/actions/:actionId`, (req, res, ctx) => {
+    const { actionId } = req.params
+    const data = req.body
+
+    return res(
+      ctx.delay(1000),
+      ctx.status(200),
+      ctx.json({
+        actionId,
+        ...(data as Object),
+      }),
+    )
+  }),
+
+  rest.delete(`${baseUrl}/actions/:actionId`, (req, res, ctx) => {
+    const { actionId } = req.params
+    return res(
+      ctx.delay(1000),
+      ctx.status(200),
+      ctx.json({
+        actionId,
       }),
     )
   }),
