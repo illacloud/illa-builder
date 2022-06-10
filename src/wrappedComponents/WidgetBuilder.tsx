@@ -35,6 +35,11 @@ import {
   NUMBER_INPUT_WIDGET_CONFIG,
   NumberInputWidget,
 } from "@/wrappedComponents/NumberInput"
+import {
+  CHECKBOX_GROUP_PANEL_CONFIG,
+  CHECKBOX_GROUP_WIDGET_CONFIG,
+  CheckboxWidget,
+} from "@/wrappedComponents/CheckboxGroup"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -96,6 +101,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: NumberInputWidget,
     config: NUMBER_INPUT_WIDGET_CONFIG,
     panelConfig: NUMBER_INPUT_PANEL_CONFIG,
+  },
+  CHECKBOX_GROUP_WIDGET: {
+    widget: CheckboxWidget,
+    config: CHECKBOX_GROUP_WIDGET_CONFIG,
+    panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
   },
 }
 
