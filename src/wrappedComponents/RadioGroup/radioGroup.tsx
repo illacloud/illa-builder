@@ -4,7 +4,7 @@ import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedRadioGroupProps } from "./interface"
 import { withParser } from "@/wrappedComponents/parserHOC"
 
-const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
+export const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
   const {
     label,
     labelPosition,

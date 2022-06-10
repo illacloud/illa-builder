@@ -12,6 +12,6 @@ export interface WrappedSegmentedControlProps
       | "colorScheme"
     >,
     LabelProps {
-  tooltipText: string
+  tooltipText?: string
   handleUpdateDsl: (value: Record<string, any>) => void
 }

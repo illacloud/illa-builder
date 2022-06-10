@@ -3,9 +3,9 @@ import LabelProps from "@/wrappedComponents/Label/interface"
 import { RadioColorScheme } from "@illa-design/radio"
 
 export interface WrappedRadioGroupProps<T> extends LabelProps {
-  value: T
-  defaultValue: T
-  disabled: boolean
+  value?: T
+  defaultValue?: T
+  disabled?: boolean
   options: (
     | string
     | number
@@ -15,8 +15,8 @@ export interface WrappedRadioGroupProps<T> extends LabelProps {
         disabled?: boolean
       }
   )[]
-  direction: "vertical" | "horizontal"
-  tooltipText: string
-  checkedBackgroundColor: RadioColorScheme
+  direction?: "vertical" | "horizontal"
+  tooltipText?: string
+  checkedBackgroundColor?: RadioColorScheme
   handleUpdateDsl: (value: Record<string, any>) => void
 }

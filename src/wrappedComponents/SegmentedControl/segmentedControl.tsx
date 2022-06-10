@@ -4,7 +4,9 @@ import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedSegmentedControlProps } from "./interface"
 import { withParser } from "@/wrappedComponents/parserHOC"
 
-const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (props) => {
+export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
+  props,
+) => {
   const {
     label,
     labelPosition,

@@ -4,7 +4,7 @@ import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedCheckboxGroupProps } from "./interface"
 import { withParser } from "@/wrappedComponents/parserHOC"
 
-const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
+export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   const {
     label,
     labelPosition,
