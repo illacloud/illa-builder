@@ -1,6 +1,5 @@
 import { FC, HTMLAttributes } from "react"
 
-import { EditorInput } from "@/components/EditorInput"
 import { CodeEditor } from "@/components/CodeEditor"
 import { CodeInput } from "@/components/CodeInput"
 
@@ -11,13 +10,11 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
 
   return (
     <div className={className}>
-      DataWorkspace
-      <EditorInput mode="sql-js" />
-      <EditorInput mode="sql" />
       <CodeEditor mode="JAVASCRIPT" />
+      <CodeEditor mode="SQL" />
       <CodeEditor mode="SQL_JS" />
-      <CodeInput mode="javascript" />
-      <CodeInput mode="sql" />
+      <CodeEditor mode="TEXT_JS" />
+      <CodeEditor mode="TEXT_SQL" />
     </div>
   )
 }

@@ -3,7 +3,6 @@ import { CodeEditorProps, EditorModes } from "./interface"
 
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
-import "codemirror/theme/duotone-dark.css"
 import "codemirror/theme/duotone-light.css"
 import "codemirror/addon/edit/matchbrackets"
 import "codemirror/addon/edit/closebrackets"
@@ -16,6 +15,9 @@ import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
 import { bindingMarker } from "@/components/CodeEditor/markHelpers"
+import { Global } from "@emotion/react"
+import { codemirrorStyle } from "./style"
+import { applyCMStyle } from "@/components/EditorInput/style";
 
 export enum AutocompleteDataType {
   OBJECT = "OBJECT",
@@ -52,6 +54,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     placeholder = "input sth",
     value,
     defaultValue,
+    height = "auto",
     onBlur,
     onChange,
     ...otherProps
@@ -91,7 +94,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     cm.showHint({
       hint: CodeMirror.hint.sql,
       completeSingle: false, // 是否立即补全
-    });
+    })
     // CodeMirror.showHint(cm, CodeMirror.hint.javascript)
     // cm.simpleHint
     const key = event.key
@@ -134,21 +137,21 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   ) => {
     marking.forEach((helper) => helper(editor))
   }
+
   CodeMirror.commands.autocomplete = function (cm) {
     const doc = cm.getDoc()
     const POS = doc.getCursor()
     const mode = CodeMirror.innerMode(cm.getMode(), cm.getTokenAt(POS).state)
       .mode.name
     const modeName = cm.getModeAt(cm.getCursor()).name
-    console.log(mode, POS, modeName,"autocomplete")
+    console.log(mode, POS, modeName, "autocomplete")
     if (mode == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-        tables: {
-          "table1": [ "col_A", "col_B", "col_C" ],
-          "table2": [ "other_columns1", "other_columns2" ]
-        },
+        // tables: {
+        //   table1: ["col_A", "col_B", "col_C"],
+        //   table2: ["other_columns1", "other_columns2"],
+        // },
         completeSingle: false,
-        disableKeywords: false,
       })
       // cm.showHint({
       //   hint: CodeMirror.hint.sql,
@@ -162,6 +165,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   useEffect(() => {
+    console.log(codeTargetRef.current, "codeTargetRef.current")
     const editor = CodeMirror(codeTargetRef.current!, {
       mode: EditorModes[mode],
       placeholder,
@@ -184,7 +188,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       cm.execCommand("autocomplete")
     })
 
-    updateMarkings(editor, [bindingMarker])
+    // updateMarkings(editor, [bindingMarker])
     return () => {
       editor.off("change", handleChange)
       editor.off("blur", handleBlur)
@@ -192,8 +196,11 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }, [])
 
   return (
-    <div className={className} ref={codeTargetRef} {...otherProps}>
-      <div id="hintBody" />
+    <div>
+      <Global styles={codemirrorStyle} />
+      <div className={className} ref={codeTargetRef} css={applyCMStyle(height)} {...otherProps}>
+        <div id="hintBody" />
+      </div>
     </div>
   )
 }

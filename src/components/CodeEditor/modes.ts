@@ -15,10 +15,12 @@ CodeMirror.defineMode(EditorModes.TEXT_JS, function (config) {
     {
       open: "{{",
       close: "}}",
-      parseDelimiters: true,
       mode: CodeMirror.getMode(config, {
-        name: "javascript",
+        name: "application/javascript",
       }),
+      delimStyle: "illa-expression",
+      innerStyle: "illa-expression",
+      parseDelimiters: true,
     },
   )
 })
@@ -29,10 +31,28 @@ CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
     {
       open: "{{",
       close: "}}",
-      parseDelimiters: true,
       mode: CodeMirror.getMode(config, {
-        name: "javascript",
+        name: "application/javascript",
       }),
+      delimStyle: "illa-expression",
+      innerStyle: "illa-expression",
+      parseDelimiters: true,
+    },
+  )
+})
+
+CodeMirror.defineMode(EditorModes.TEXT_SQL, function (config) {
+  return CodeMirror.multiplexingMode(
+    CodeMirror.getMode(config, EditorModes.TEXT),
+    {
+      open: "{{",
+      close: "}}",
+      mode: CodeMirror.getMode(config, {
+        name: "text/x-mssql",
+      }),
+      delimStyle: "illa-expression",
+      innerStyle: "illa-expression",
+      parseDelimiters: true,
     },
   )
 })

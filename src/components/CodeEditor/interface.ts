@@ -6,12 +6,13 @@ export enum EditorModes {
   JSON = "application/json",
   JAVASCRIPT = "javascript",
   TEXT_JS = "text-js",
+  TEXT_SQL = "text-sql",
   SQL_JS = "sql-js",
 }
 
 export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT"
+  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT" | "TEXT_SQL"
   value?: string
   lineNumbers?: boolean
   height?: string
