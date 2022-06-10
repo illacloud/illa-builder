@@ -63,6 +63,13 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       ({ data }: { data: Resource[] }) => {
         dispatch(resourceActions.addResourceListReducer(data))
       },
+      () => {
+        // TODO: handle error
+      },
+      () => { },
+      () => {
+        // TODO: handle loading
+      },
     )
   }, [])
 
