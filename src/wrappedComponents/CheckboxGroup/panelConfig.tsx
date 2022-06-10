@@ -1,6 +1,5 @@
 import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
-import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 
 const OptionsStyle = {
   display: "flex",
