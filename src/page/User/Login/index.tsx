@@ -6,6 +6,7 @@ import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"
 import { Button } from "@illa-design/button"
 import { WarningCircleIcon } from "@illa-design/icon"
+import { EMAIL_FORMAT } from "@/constants/regExp"
 import {
   formLabelStyle,
   formTitleStyle,
@@ -73,8 +74,7 @@ export const Login: FC = () => {
               rules={{
                 required: t("user.sign_in.error_message.email.require"),
                 pattern: {
-                  value:
-                    /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/,
+                  value: EMAIL_FORMAT,
                   message: t(
                     "user.sign_in.error_message.email.invalid_pattern",
                   ),

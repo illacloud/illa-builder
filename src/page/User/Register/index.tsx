@@ -6,6 +6,7 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Button } from "@illa-design/button"
 import { Link } from "@illa-design/link"
 import { WarningCircleIcon } from "@illa-design/icon"
+import { EMAIL_FORMAT } from "@/constants/regExp"
 import {
   formLabelStyle,
   formTitleStyle,
@@ -18,7 +19,6 @@ import {
   checkboxTextStyle,
 } from "@/page/User/style"
 import { TextLink } from "@/page/User/components/TextLink"
-
 import { RegisterFields } from "./interface"
 
 export const Register: FC = () => {
@@ -93,8 +93,7 @@ export const Register: FC = () => {
               rules={{
                 required: t("user.sign_up.error_message.email.require"),
                 pattern: {
-                  value:
-                    /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/,
+                  value: EMAIL_FORMAT,
                   message: t(
                     "user.sign_up.error_message.email.invalid_pattern",
                   ),
