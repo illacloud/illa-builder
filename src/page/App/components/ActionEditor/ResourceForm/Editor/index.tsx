@@ -18,7 +18,7 @@ import {
   formContainerStyle,
   formFooterStyle,
   backIconStyle,
-  formFooterFilling,
+  formFooterFillingStyle,
   createResourceBtnStyle,
   formTitleStyle,
 } from "./style"
@@ -156,7 +156,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           {t("editor.action.form.btn.back")}
         </Button>
 
-        <div css={formFooterFilling} />
+        <div css={formFooterFillingStyle} />
 
         <Button
           size="medium"

@@ -17,7 +17,7 @@ export const formFooterStyle = css`
   max-height: 80px;
 `
 
-export const formFooterFilling = css`
+export const formFooterFillingStyle = css`
   flex: 1;
 `
 
