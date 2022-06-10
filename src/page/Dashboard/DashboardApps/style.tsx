@@ -46,3 +46,7 @@ export const loadingBoxStyle = css`
   width: 100%;
   padding-top: 120px;
 `
+
+export const hoverableStyle = css`
+  cursor: pointer;
+`

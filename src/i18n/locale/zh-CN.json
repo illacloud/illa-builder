@@ -6,9 +6,11 @@
   "description": {
     "part1": "这是一个示例。"
   },
-  "apps": "应用",
+  "apps": "项目",
+  "allApps": "所有项目",
   "resources": "资源",
   "create_new": "创建",
+  "create_new_app": "创建项目",
   "share": "分享",
   "rename": "重命名",
   "duplicate": "复制",
@@ -224,7 +226,9 @@
         "redis": {
           "name": "Redis"
         },
-        "mongo_db": { "name": "MongoDB" }
+        "mongo_db": {
+          "name": "MongoDB"
+        }
       },
       "result": {
         "title": {
@@ -358,6 +362,27 @@
     },
     "date_time": {
       "name": "Datetime"
+    }
+  },
+  "ACCOUNT": "账号",
+  "PASSWORD": "密码",
+  "SETTING": "设置",
+  "Setting": "设置",
+  "Logout": "退出登录",
+  "link_copied": "链接已复制",
+  "dashboard": {
+    "app": {
+      "duplicate_fail": "复制失败",
+      "rename_fail": "重命名失败",
+      "duplicate_placeholder": "请输入项目名称",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败"
+    },
+    "resources": {
+      "trash_confirm_title": "确认",
+      "trash_confirm_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败"
     }
   }
 }

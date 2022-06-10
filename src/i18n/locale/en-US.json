@@ -7,8 +7,10 @@
     "part1": "This is an example without namespaces."
   },
   "apps": "Apps",
+  "all_apps": "All Apps",
   "resources": "Resources",
   "create_new": "Create New",
+  "create_new_app": "Create New",
   "share": "Share",
   "rename": "Rename",
   "duplicate": "Duplicate",
@@ -218,9 +220,15 @@
             }
           }
         },
-        "postgres": { "name": "Postgres" },
-        "redis": { "name": "Redis" },
-        "mongo_db": { "name": "MongoDB" }
+        "postgres": {
+          "name": "Postgres"
+        },
+        "redis": {
+          "name": "Redis"
+        },
+        "mongo_db": {
+          "name": "MongoDB"
+        }
       },
       "result": {
         "title": {
@@ -354,6 +362,27 @@
     },
     "date_time": {
       "name": "Datetime"
+    }
+  },
+  "ACCOUNT": "ACCOUNT",
+  "PASSWORD": "PASSWORD",
+  "SETTING": "SETTING",
+  "Setting": "Setting",
+  "Logout": "Logout",
+  "link_copied": "Link Copied!",
+  "dashboard": {
+    "app": {
+      "rename_fail": "Rename fail",
+      "duplicate_fail": "Duplicate fail",
+      "duplicate_placeholder": "Enter your app name here",
+      "trash_success": "Delete successfully",
+      "trash_failure": "Delete failure"
+    },
+    "resources": {
+      "trash_confirm_title": "Are you sure?",
+      "trash_confirm_content": "This will break Apps and Query Library queries that use this resource",
+      "trash_success": "Delete successfully",
+      "trash_failure": "Delete failure"
     }
   }
 }
