@@ -40,6 +40,11 @@ import {
   CHECKBOX_GROUP_WIDGET_CONFIG,
   CheckboxWidget,
 } from "@/wrappedComponents/CheckboxGroup"
+import {
+  SEGMENTED_CONTROL_PANEL_CONFIG,
+  SEGMENTED_CONTROL_WIDGET_CONFIG,
+  SegmentedControlWidget,
+} from "@/wrappedComponents/SegmentedControl"
 
 const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
@@ -106,6 +111,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: CheckboxWidget,
     config: CHECKBOX_GROUP_WIDGET_CONFIG,
     panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
+  },
+  SEGMENTED_CONTROL_WIDGET: {
+    widget: SegmentedControlWidget,
+    config: SEGMENTED_CONTROL_WIDGET_CONFIG,
+    panelConfig: SEGMENTED_CONTROL_PANEL_CONFIG,
   },
 }
 
