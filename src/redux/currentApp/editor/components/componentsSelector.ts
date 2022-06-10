@@ -3,26 +3,25 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 
 export function searchDsl(
   rootNode: ComponentNode | null,
-  displayName: string,
+  findDisplayName: string,
 ): ComponentNode | null {
   if (rootNode == null) {
     return null
   }
-  if (rootNode.displayName == displayName) {
+  if (rootNode.displayName == findDisplayName) {
     return rootNode
   } else {
     const childrenNode = rootNode.childrenNode
+    let returnNode: ComponentNode | null = null
     if (childrenNode != null) {
-      Object.keys(childrenNode).map((key) => {
-        if (key == displayName) {
-          return childrenNode[key]
-        } else {
-          return searchDsl(childrenNode[key], displayName)
-        }
+      Object.keys(childrenNode).forEach((key) => {
+        returnNode = searchDsl(childrenNode[key], findDisplayName)
       })
+      return returnNode
+    } else {
+      return null
     }
   }
-  return null
 }
 
 export const getComponentNode = (state: RootState, displayName: string) => {
