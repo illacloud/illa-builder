@@ -74,7 +74,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const unitWidth = useSelector(getUnitSize).unitWidth
 
   // other field
-  const [showDot, setShowDot] = useState(true)
+  const [showDot, setShowDot] = useState(false)
 
   const bottomPanelOpenState = useSelector(isOpenBottomPanel)
   const leftPanelOpenState = useSelector(isOpenLeftPanel)
@@ -131,12 +131,14 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         newItem.containerType = "EDITOR_SCALE_SQUARE"
         newItem.parentNode = componentNode.displayName
         dispatch(componentsActions.updateDropComponent(newItem))
+        setShowDot(false)
         return {} as DropResultInfo
       },
       hover: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
+        setShowDot(true)
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
