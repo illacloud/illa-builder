@@ -5,7 +5,6 @@ import { DotPanel } from "@/page/App/components/DotPanel"
 import { useSelector } from "react-redux"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
@@ -19,6 +18,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   )
 }
 
+// current root must be dot panel
 function applyCanvasTree(
   componentNode: ComponentNode | null,
 ): ReactNode | null {
@@ -27,9 +27,12 @@ function applyCanvasTree(
   }
   switch (componentNode.containerType) {
     case "EDITOR_DOT_PANEL":
-      return <DotPanel componentNode={componentNode} />
-    case "EDITOR_SCALE_SQUARE":
-      return <ScaleSquare componentNode={componentNode} />
+      return (
+        <DotPanel
+          key={componentNode.displayName}
+          componentNode={componentNode}
+        />
+      )
     default:
       return null
   }

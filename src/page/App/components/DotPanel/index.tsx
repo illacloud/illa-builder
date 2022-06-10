@@ -314,6 +314,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       const item = dragShadowMap[value]
       return (
         <DragShadowSquare
+          key={item.displayName}
           css={applyDragObjectStyle(item.renderY, item.renderX)}
           h={item.h}
           w={item.w}
