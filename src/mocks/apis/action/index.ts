@@ -1,9 +1,13 @@
 import { rest } from "msw"
 import { v4 as uuidV4 } from "uuid"
 import { baseUrl } from "@/mocks/config"
-import { ACTION_RUN_RESULT } from "./data"
+import { ACTION_RUN_RESULT, ALL_ACTION } from "./data"
 
 export default [
+  rest.get(`${baseUrl}/actions`, (req, res, ctx) => {
+    return res(ctx.delay(1000), ctx.status(200), ctx.json(ALL_ACTION))
+  }),
+
   rest.post(`${baseUrl}/actions/:actionId/run`, (_, res, ctx) => {
     return res(
       ctx.delay(10000 * Math.random()),

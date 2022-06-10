@@ -1,3 +1,5 @@
+import { transform } from "framer-motion"
+
 export const ACTION_RUN_RESULT = {
   status: "error",
   message:
@@ -126,3 +128,55 @@ export const ACTION_RUN_RESULT = {
     ],
   },
 }
+
+const REST_API_ACTION = {
+  actionId: "56761ce5-fdf2-4fbf-875a-b5dbe026560c",
+  resourceId: "restapi",
+  actionType: "restapi",
+  displayName: "REST-API",
+  actionTemplate: {
+    curl: "",
+    enableTransformer: false,
+    transformer:
+      "// type your code here\n// example: return formatDataAsArray(data).filter(row => row.quantity > 20)\nreturn data",
+    events: [],
+  },
+  createdBy: "1f221b62-568b-448c-989easdqwe2",
+  lastModifiedBy: "1f221b62-568b-448c-989easdqwe2",
+  createdAt: "2022-06-06T12:00:30.780+00:00",
+  lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
+}
+
+const MYSQL_ACTION = {
+  actionId: "56761ce5-fdf2-4fbf-875a-b5dbe026560b",
+  resourceId: "mysql",
+  actionType: "mysql",
+  displayName: "MYSQL",
+  actionTemplate: {
+    mode: "sql",
+    query: "select * from users limit 100",
+    enableTransformer: false,
+    transformer:
+      "// The variable 'data' allows you to reference the request's data in the transformer. \n// example: return data.find(element => element.isError)\nreturn data.error",
+    events: [],
+  },
+  createdBy: "1f221b62-568b-448c-989easdqwe2",
+  lastModifiedBy: "1f221b62-568b-448c-989easdqwe2",
+  createdAt: "2022-06-06T12:00:30.780+00:00",
+  lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
+}
+
+const TRANSFORMER_ACTION = {
+  actionId: "56761ce5-fdf2-4fbf-875a-b5dbe026560d",
+  actionType: "transformer",
+  displayName: "Transformer",
+  actionTemplate: {
+    transformer:
+      "// type your code here\n// example: return formatDataAsArray(data).filter(row => row.quantity > 20)\nreturn data",
+  },
+  createdBy: "1f221b62-568b-448c-989easdqwe2",
+  lastModifiedBy: "1f221b62-568b-448c-989easdqwe2",
+  createdAt: "2022-06-06T12:00:30.780+00:00",
+  lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
+}
+export const ALL_ACTION = [REST_API_ACTION, MYSQL_ACTION, TRANSFORMER_ACTION]

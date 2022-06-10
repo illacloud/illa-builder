@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
 import { Resource } from "@/redux/currentApp/resource/resourceState"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
@@ -62,6 +64,23 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       },
       ({ data }: { data: Resource[] }) => {
         dispatch(resourceActions.addResourceListReducer(data))
+      },
+      () => {
+        // TODO: handle error
+      },
+      () => { },
+      () => {
+        // TODO: handle loading
+      },
+    )
+
+    Api.request(
+      {
+        method: "GET",
+        url: "/actions",
+      },
+      ({ data }: { data: ActionItem[] }) => {
+        dispatch(actionActions.addActionListReducer(data))
       },
       () => {
         // TODO: handle error
