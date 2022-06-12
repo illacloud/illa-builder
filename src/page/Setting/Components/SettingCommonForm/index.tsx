@@ -19,7 +19,7 @@ import {
 } from "./styles"
 
 export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
-  const { paramData } = props
+  const { paramData, onSubmit } = props
 
   return (
     <div css={settingBodyStyle}>
@@ -41,12 +41,13 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                           style={{ width: 280 }}
                           disabled={contentItem.disabled}
                           value={contentItem.value}
+                          onChange={contentItem.onChange}
                         />
-                        {false && (
+                        {contentItem.showError && (
                           <div css={errorLineStyle}>
                             <WarningCircleIcon />
                             <span css={errorTextStyle}>
-                              Please enter your username
+                              {contentItem.errorMsg}
                             </span>
                           </div>
                         )}
@@ -57,6 +58,7 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                         style={{ width: 280 }}
                         options={contentItem.selectOptions}
                         defaultValue={contentItem.defaultSelectValue}
+                        onChange={contentItem.onChange}
                       />
                     )}
                     {contentItem.type === "button" && (
@@ -66,6 +68,7 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                           size="large"
                           fullWidth
                           disabled={contentItem.disabled}
+                          onClick={onSubmit}
                         >
                           {contentItem.value}
                         </Button>

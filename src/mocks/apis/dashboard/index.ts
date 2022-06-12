@@ -98,4 +98,16 @@ export default [
       }),
     )
   }),
+
+  rest.patch(`${baseUrl}/api/v1/users/username`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        userId: "04813000-438f-468e-a8c1-d34518b6c2fa",
+        userName: "Zhanjiao Deng",
+        email: "dengzhanjiao@illasoft.com",
+        createdAt: "2022-06-06T12:00:30.780+00:00",
+      }),
+    )
+  }),
 ]

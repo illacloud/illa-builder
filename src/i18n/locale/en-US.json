@@ -384,5 +384,27 @@
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure"
     }
+  },
+  "setting": {
+    "account": {
+      "username": "Username",
+      "empty_username": "Please enter your username",
+      "error_username": "Username must be 3～15 characters",
+      "save": "Save Changes",
+      "save_fail": "Save fail"
+    },
+    "password": {
+      "current_password": "Old password",
+      "new_password": "New password",
+      "confirm_password": "Confirm password",
+      "empty_password": "Please enter your password",
+      "error_format_password": "Password must be 3～15 characters",
+      "error_match_password": "Passwords do not match",
+      "submit_button": "Submit"
+    },
+    "other": {
+      "language": "Language",
+      "save": "Save Changes"
+    }
   }
 }

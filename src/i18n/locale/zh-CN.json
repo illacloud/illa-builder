@@ -384,5 +384,27 @@
       "trash_success": "删除成功",
       "trash_failure": "删除失败"
     }
+  },
+  "setting": {
+    "account": {
+      "username": "用户名",
+      "empty_username": "用户名不能为空",
+      "error_username": "用户名须为3～15个字符",
+      "save": "保存",
+      "save_fail": "保存失败"
+    },
+    "password": {
+      "current_password": "旧密码",
+      "new_password": "新密码",
+      "confirm_password": "确认新密码",
+      "empty_password": "密码不能为空",
+      "error_format_password": "密码须为3～20个字符",
+      "error_match_password": "密码不匹配",
+      "submit_button": "提交"
+    },
+    "other": {
+      "language": "语言",
+      "save": "保存"
+    }
   }
 }

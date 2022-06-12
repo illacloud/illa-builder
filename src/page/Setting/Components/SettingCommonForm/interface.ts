@@ -1,11 +1,12 @@
-import { HTMLAttributes } from "react"
-
 export type contentItemType = {
   type: string
   disabled?: boolean
   value?: string
   selectOptions?: string[]
   defaultSelectValue?: string
+  showError?: boolean
+  errorMsg?: string
+  onChange?: (value: string) => void
 }
 
 export type paramDataType = {
@@ -14,6 +15,7 @@ export type paramDataType = {
   content: contentItemType[]
 }
 
-export interface SettingCommonFormProps extends HTMLAttributes<HTMLDivElement> {
+export interface SettingCommonFormProps {
   paramData: paramDataType[]
+  onSubmit: () => void
 }
