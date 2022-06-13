@@ -6,7 +6,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 
-export function postDottedSquareData(
+export function updateDottedLineSquareData(
   componentNode: ComponentNode,
   dispatch: Dispatch,
   squareX: number,
@@ -33,7 +33,7 @@ export function postDottedSquareData(
   dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
 }
 
-export function postDragShadowData(
+export function updateDragShadowData(
   componentNode: ComponentNode,
   dispatch: Dispatch,
   renderX: number,
@@ -62,7 +62,7 @@ export function postDragShadowData(
   dispatch(dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow))
 }
 
-export function postDottedLineSquare(
+export function updateScaleSquare(
   componentNode: ComponentNode,
   dispatch: Dispatch,
   squareX: number,

@@ -32,9 +32,9 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { RootState } from "@/store"
 import { calculateDragPosition, calculateXY } from "./calc"
 import {
-  postDottedLineSquare,
-  postDottedSquareData,
-  postDragShadowData,
+  updateDottedLineSquareData,
+  updateDragShadowData,
+  updateScaleSquare,
 } from "@/page/App/components/DotPanel/post"
 
 function renderDotSquare(blockRows: number, blockColumns: number): ReactNode {
@@ -198,9 +198,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.h,
             edgeWidth,
           )
-          postDottedLineSquare(item, dispatch, squareX, squareY)
+          updateScaleSquare(item, dispatch, squareX, squareY)
           // remove drag
-          dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
+          dispatch(
+            dragShadowActions.removeDragShadowReducer(
+              componentNode.displayName,
+            ),
+          )
         }
         return {} as DropResultInfo
       },
@@ -233,7 +237,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             edgeWidth,
           )
 
-          postDragShadowData(
+          updateDragShadowData(
             item,
             dispatch,
             renderX,
@@ -242,7 +246,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             unitHeight,
           )
 
-          postDottedSquareData(item, dispatch, squareX, squareY)
+          updateDottedLineSquareData(item, dispatch, squareX, squareY)
         }
       },
     }),
