@@ -32,7 +32,7 @@ export const WrappedCircleProgress: FC<WrappedCircleProgressProps> = (
       <Wrapper alignment="fullWidth">
         <div css={applyContainerCss(alignment)}>
           <Progress
-            type={"circle"}
+            type="circle"
             percent={value}
             showText={showText}
             color={color}

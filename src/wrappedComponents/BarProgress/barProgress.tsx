@@ -43,7 +43,7 @@ export const WrappedBarProgress: FC<WrappedDateProps> = (props) => {
           tooltipText={tooltipText}
         >
           <Progress
-            type={"line"}
+            type="line"
             percent={value}
             showText={showText}
             color={color}
