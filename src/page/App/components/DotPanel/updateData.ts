@@ -1,16 +1,14 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { Dispatch } from "redux"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import store from "@/store"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
-import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 
 export function updateDottedLineSquareData(
   componentNode: ComponentNode,
-  dispatch: Dispatch,
   squareX: number,
   squareY: number,
+  parentDisplayName: string,
+  dispatchFn: (componentNode: ComponentNode) => void,
 ) {
   // reduce render
   const currentDottedLine = searchDsl(
@@ -26,20 +24,20 @@ export function updateDottedLineSquareData(
   const newItem = {
     ...componentNode,
   } as ComponentNode
-  newItem.parentNode = componentNode.displayName
+  newItem.parentNode = parentDisplayName
   newItem.containerType = "EDITOR_DOTTED_LINE_SQUARE"
   newItem.x = squareX
   newItem.y = squareY
-  dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+  dispatchFn?.(newItem)
 }
 
 export function updateDragShadowData(
   componentNode: ComponentNode,
-  dispatch: Dispatch,
   renderX: number,
   renderY: number,
   unitWidth: number,
   unitHeight: number,
+  dispatchFn: (renderDragShadow: DragShadow) => void,
 ) {
   // reduce render
   const currentDrag =
@@ -59,23 +57,24 @@ export function updateDragShadowData(
     h: componentNode.h * unitHeight,
     isConflict: false,
   } as DragShadow
-  dispatch(dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow))
+  dispatchFn?.(renderDragShadow)
 }
 
 export function updateScaleSquare(
   componentNode: ComponentNode,
-  dispatch: Dispatch,
   squareX: number,
   squareY: number,
+  parentDisplayName: string,
+  dispatchFn: (componentNode: ComponentNode) => void,
 ) {
   // set scale square
   const newItem = {
     ...componentNode,
   } as ComponentNode
-  newItem.parentNode = componentNode.displayName
+  newItem.parentNode = parentDisplayName
   newItem.containerType = "EDITOR_SCALE_SQUARE"
   newItem.x = squareX
   newItem.y = squareY
   // add component
-  dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+  dispatchFn?.(newItem)
 }

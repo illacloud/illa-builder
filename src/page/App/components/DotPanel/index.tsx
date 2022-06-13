@@ -36,6 +36,7 @@ import {
   updateDragShadowData,
   updateScaleSquare,
 } from "@/page/App/components/DotPanel/updateData"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 function renderDotSquare(blockRows: number, blockColumns: number): ReactNode {
   let rowsDot: ReactNode[] = []
@@ -198,13 +199,17 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.h,
             edgeWidth,
           )
-          updateScaleSquare(item, dispatch, squareX, squareY)
-          // remove drag
-          dispatch(
-            dragShadowActions.removeDragShadowReducer(
-              componentNode.displayName,
-            ),
+          updateScaleSquare(
+            item,
+            squareX,
+            squareY,
+            componentNode.displayName,
+            (newItem) => {
+              dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+            },
           )
+          // remove drag
+          dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
         }
         return {} as DropResultInfo
       },
@@ -236,17 +241,29 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.h,
             edgeWidth,
           )
-
           updateDragShadowData(
             item,
-            dispatch,
             renderX,
             renderY,
             unitWidth,
             unitHeight,
+            (renderDragShadow) => {
+              dispatch(
+                dragShadowActions.addOrUpdateDragShadowReducer(
+                  renderDragShadow,
+                ),
+              )
+            },
           )
-
-          updateDottedLineSquareData(item, dispatch, squareX, squareY)
+          updateDottedLineSquareData(
+            item,
+            squareX,
+            squareY,
+            componentNode.displayName,
+            (newItem) => {
+              dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+            },
+          )
         }
       },
     }),
