@@ -45,24 +45,25 @@ function calculateDragPosition(
   componentH: number,
   edgeWidth: number,
 ): DragPosition {
+  // mouse position
   const relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft
   const relativeY = monitorRect.y - canvasRect.y + canvasScrollTop
 
+  // middle calc position
+  const centerX = (relativeX - edgeWidth) / unitWidth
+  const centerY = (relativeY - edgeWidth) / unitHeight
+
   // panel position
-  const centerX = Math.floor((relativeX - edgeWidth) / unitWidth)
-  const centerY = Math.floor((relativeY - edgeWidth) / unitHeight)
-  const squareX = centerX - Math.floor(componentW / 2)
-  const squareY = centerY - Math.floor(componentH / 2)
+  const squareX = Math.floor(centerX - componentW / 2)
+  const squareY = Math.floor(centerY - componentH / 2)
 
   // real position
-  const renderX = relativeX - (componentW * unitWidth) / 2
-  const renderY = relativeY - (componentH * unitHeight) / 2
+  const renderX = relativeX - (componentW * unitWidth) / 2 - edgeWidth
+  const renderY = relativeY - (componentH * unitHeight) / 2 - edgeWidth
 
   return {
     relativeX,
     relativeY,
-    centerX,
-    centerY,
     squareX,
     squareY,
     renderX,
@@ -76,7 +77,6 @@ function calculateXY(
   unitWidth: number,
   unitHeight: number,
 ): [l: number, t: number] {
-  console.log("unit", unitWidth, unitHeight, x, y)
   return [x * unitWidth + 1, y * unitHeight + 1]
 }
 

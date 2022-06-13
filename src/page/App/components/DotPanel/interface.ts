@@ -9,8 +9,6 @@ export interface DotPanelProps extends HTMLAttributes<HTMLDivElement> {
 export interface DragPosition {
   relativeX: number
   relativeY: number
-  centerX: number
-  centerY: number
   squareX: number
   squareY: number
   renderX: number

@@ -16,13 +16,13 @@ import {
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection, Room } from "@/api/ws/ws"
-import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { useSelector } from "react-redux"
 import {
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/currentApp/config/configSelector"
+import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
