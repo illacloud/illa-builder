@@ -1,7 +1,6 @@
 import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react"
 import {
   DotPanelProps,
-  DragPosition,
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
@@ -21,65 +20,22 @@ import {
   isOpenRightPanel,
   isShowDot,
 } from "@/redux/currentApp/config/configSelector"
-import { useDrop, XYCoord } from "react-dnd"
+import { useDrop } from "react-dnd"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { DragShadowSquare } from "@/page/App/components/DragShadowSquare"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
-import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
-import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-import store, { RootState } from "@/store"
-
-function calculateDragPosition(
-  canvasRect: DOMRect,
-  monitorRect: XYCoord,
-  canvasScrollLeft: number,
-  canvasScrollTop: number,
-  unitWidth: number,
-  unitHeight: number,
-  componentW: number,
-  componentH: number,
-  edgeWidth: number,
-): DragPosition {
-  // mouse position
-  const relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft
-  const relativeY = monitorRect.y - canvasRect.y + canvasScrollTop
-
-  // middle calc position
-  const centerX = (relativeX - edgeWidth) / unitWidth
-  const centerY = (relativeY - edgeWidth) / unitHeight
-
-  // panel position
-  const squareX = Math.floor(centerX - componentW / 2)
-  const squareY = Math.floor(centerY - componentH / 2)
-
-  // real position
-  const renderX = relativeX - (componentW * unitWidth) / 2 - edgeWidth
-  const renderY = relativeY - (componentH * unitHeight) / 2 - edgeWidth
-
-  return {
-    relativeX,
-    relativeY,
-    squareX,
-    squareY,
-    renderX,
-    renderY,
-  } as DragPosition
-}
-
-function calculateXY(
-  x: number,
-  y: number,
-  unitWidth: number,
-  unitHeight: number,
-): [l: number, t: number] {
-  return [x * unitWidth + 1, y * unitHeight + 1]
-}
+import { RootState } from "@/store"
+import { calculateDragPosition, calculateXY } from "./calc"
+import {
+  postDottedLineSquare,
+  postDottedSquareData,
+  postDragShadowData,
+} from "@/page/App/components/DotPanel/post"
 
 function renderDotSquare(blockRows: number, blockColumns: number): ReactNode {
   let rowsDot: ReactNode[] = []
@@ -218,7 +174,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
+        // set dot show
         dispatch(configActions.updateShowDot(false))
+        // calc data
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
@@ -240,20 +198,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.h,
             edgeWidth,
           )
-          // set scale line
-          const newItem = {
-            ...item,
-          } as ComponentNode
-          newItem.parentNode = componentNode.displayName
-          newItem.containerType = "EDITOR_SCALE_SQUARE"
-          newItem.x = squareX
-          newItem.y = squareY
+          postDottedLineSquare(item, dispatch, squareX, squareY)
           // remove drag
-          dispatch(
-            dragShadowActions.removeDragShadowReducer(newItem.displayName),
-          )
-          // add component
-          dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+          dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
         }
         return {} as DropResultInfo
       },
@@ -261,7 +208,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
+        // set dot show
         dispatch(configActions.updateShowDot(true))
+        // calc data
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
@@ -284,53 +233,16 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             edgeWidth,
           )
 
-          // reduce render
-          const currentDrag =
-            store.getState().currentApp.editor.dragShadow.map[item.displayName]
-          if (currentDrag !== null && currentDrag !== undefined) {
-            if (
-              renderX == currentDrag.renderX &&
-              renderY == currentDrag.renderY
-            ) {
-              return
-            }
-          }
-
-          // set shadow
-          const renderDragShadow = {
-            displayName: item.displayName,
+          postDragShadowData(
+            item,
+            dispatch,
             renderX,
             renderY,
-            w: item.w * unitWidth,
-            h: item.h * unitHeight,
-            isConflict: false,
-          } as DragShadow
-          dispatch(
-            dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow),
+            unitWidth,
+            unitHeight,
           )
 
-          // reduce render
-          const currentDottedLine = searchDsl(
-            store.getState().currentApp.editor.components.rootDsl,
-            item.displayName,
-          )
-          if (currentDottedLine != null) {
-            if (
-              squareX == currentDottedLine.x &&
-              squareY == currentDottedLine.y
-            ) {
-              return
-            }
-          }
-          // set dotted line
-          const newItem = {
-            ...item,
-          } as ComponentNode
-          newItem.parentNode = componentNode.displayName
-          newItem.containerType = "EDITOR_DOTTED_LINE_SQUARE"
-          newItem.x = squareX
-          newItem.y = squareY
-          dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+          postDottedSquareData(item, dispatch, squareX, squareY)
         }
       },
     }),
