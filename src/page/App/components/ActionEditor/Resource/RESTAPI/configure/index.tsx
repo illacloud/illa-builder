@@ -31,6 +31,10 @@ import { BasicAuth, OAuth2 } from "./Authentication"
 
 const EmptyField: Params = { key: "", value: "" }
 
+const getOptions = (data: RESTAPIConfigureProps) => {
+  return data
+}
+
 export const RESTAPIConfigure = forwardRef<
   HTMLFormElement,
   RESTAPIConfigureProps
@@ -63,10 +67,9 @@ export const RESTAPIConfigure = forwardRef<
 
   const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
     onSubmit?.({
-      resourceName: data.name,
+      resourceName: data.resourceName,
       resourceType: "restapi",
-      created: Date.now().toString(),
-      config: data,
+      options: getOptions(data),
     })
   }
 
@@ -99,7 +102,7 @@ export const RESTAPIConfigure = forwardRef<
               placeholder={t(
                 "editor.action.resource.rest_api.placeholder.name",
               )}
-              error={!!errors.name}
+              error={!!errors.resourceName}
               maxLength={200}
             />
           )}
@@ -107,11 +110,11 @@ export const RESTAPIConfigure = forwardRef<
             required: t("editor.action.form.required"),
           }}
           control={control}
-          name="name"
+          name="resourceName"
         />
-        {errors.name && (
+        {errors.resourceName && (
           <div css={css(errorMessageStyle, applyGridColIndex(2))}>
-            {errors.name.message}
+            {errors.resourceName.message}
           </div>
         )}
         <dd css={css(applyGridColIndex(2), descriptionStyle)}>
