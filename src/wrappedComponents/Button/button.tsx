@@ -3,7 +3,6 @@ import { WrappedButtonProps } from "./interface"
 import { Button } from "@illa-design/button"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { applyButtonLayoutStyle } from "./style"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
@@ -72,4 +71,4 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
 
 WrappedButton.displayName = "ButtonWidget"
 
-export const ButtonWidget = withParser(WrappedButton)
+export const ButtonWidget = WrappedButton

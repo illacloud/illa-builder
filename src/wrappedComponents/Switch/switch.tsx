@@ -2,7 +2,6 @@ import { Switch } from "@illa-design/switch"
 import { FC } from "react"
 import { SwitchProps } from "./interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 
 export const WrappedSwitch: FC<SwitchProps> = (props) => {
   const {
@@ -46,4 +45,4 @@ export const WrappedSwitch: FC<SwitchProps> = (props) => {
 
 WrappedSwitch.displayName = "SwitchWidget"
 
-export const SwitchWidget = withParser(WrappedSwitch)
+export const SwitchWidget = WrappedSwitch
