@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ComponentNode,
   ComponentsState,
+  updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 
@@ -56,5 +57,19 @@ export const addOrUpdateComponentReducer: CaseReducer<
       }
       parentNode.childrenNode[dealNode.displayName] = dealNode
     }
+  }
+}
+
+export const updateComponentPropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<updateComponentPropsPayload>
+> = (state, action) => {
+  const { displayName, newProps } = action.payload
+  const node = searchDsl(state.rootDsl, displayName)
+  if (!node) return
+  const oldProps = node.props || {}
+  node.props = {
+    ...oldProps,
+    ...newProps,
   }
 }

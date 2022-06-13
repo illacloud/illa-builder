@@ -37,6 +37,7 @@ import {
   updateScaleSquare,
 } from "@/page/App/components/DotPanel/updateData"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
 
 function renderDotSquare(blockRows: number, blockColumns: number): ReactNode {
   let rowsDot: ReactNode[] = []
@@ -210,6 +211,21 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           )
           // remove drag
           dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
+          dispatch(
+            inspectActions.addWidgetPanelConfig({
+              displayName: item.displayName,
+              defaultProps: item.props
+                ? {
+                    widgetType: item.type || "",
+                    widgetDisplayName: item.displayName,
+                    ...item.props,
+                  }
+                : {
+                    widgetType: item.type || "",
+                    widgetDisplayName: item.displayName,
+                  },
+            }),
+          )
         }
         return {} as DropResultInfo
       },

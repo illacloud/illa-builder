@@ -39,3 +39,8 @@ export const ComponentsInitialState: ComponentsState = {
     y: -1,
   } as ComponentNode,
 }
+
+export interface updateComponentPropsPayload {
+  displayName: string
+  newProps: Record<string, any>
+}

@@ -12,7 +12,7 @@ export const PanelHeader: FC<HeaderProps> = (props) => {
   return (
     <div css={panelHeaderWrapperCss}>
       {/*  TODO: wait for editable component*/}
-      <div>{panelConfig.type}</div>
+      <div>{panelConfig.widgetDisplayName}</div>
       <div css={panelHeaderIconWrapperCss}>
         <Trigger
           position="br"
