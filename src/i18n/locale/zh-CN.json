@@ -97,7 +97,8 @@
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
-          "api": "APIS"
+          "api": "APIS",
+          "configure": "配置 {{name}}"
         },
         "btn": {
           "back": "后退",
@@ -124,7 +125,7 @@
         "label": {
           "comming_soon": "Comming Soon"
         },
-        "mySql": {
+        "my_sql": {
           "name": "MySQL",
           "label": {
             "name": "名称",

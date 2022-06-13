@@ -61,6 +61,17 @@ const renderResourceNode = (
   return cloneElement(node, { ref: formRef }) || null
 }
 
+const getResourceTypeNameKey = (resourceType: string) => {
+  switch (resourceType) {
+    case "restapi":
+      return "rest_api"
+    case "mysql":
+      return "my_sql"
+    default:
+      return ""
+  }
+}
+
 export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   const { resourceId, back, onSubmit, resourceType: resourceTypeProps } = props
   const { t } = useTranslation()
@@ -76,6 +87,11 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
 
   const [createBtnLoading, setCreateBtnLoading] = useState(false)
   const [testConnectionLoading, setTestConnectionLoading] = useState(false)
+
+  const resourceTypeNameKey = getResourceTypeNameKey(resourceType as string)
+  const resourceTitle = resourceTypeNameKey
+    ? t(`editor.action.resource.${resourceTypeNameKey}.name`)
+    : ""
 
   function submitForm() {
     formRef.current?.requestSubmit()
@@ -136,7 +152,9 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
 
   return (
     <div css={formContainerStyle}>
-      <div css={formTitleStyle}>Configure</div>
+      <div css={formTitleStyle}>
+        {t("editor.action.form.title.configure", { name: resourceTitle })}
+      </div>
       <div>
         {renderResourceNode(
           resourceType,

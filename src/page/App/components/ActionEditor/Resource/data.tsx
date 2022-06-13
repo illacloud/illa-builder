@@ -19,7 +19,7 @@ export type ActionType =
   | "transformer"
 
 type ActionTypeNameKey =
-  | "mySql"
+  | "my_sql"
   | "postgres"
   | "redis"
   | "mongo_db"
@@ -35,7 +35,7 @@ export interface ResourceDataItem {
 
 export const databases: ResourceDataItem[] = [
   {
-    nameKey: "mySql",
+    nameKey: "my_sql",
     icon: <MySqlIcon />,
     actionType: "mysql",
   },
