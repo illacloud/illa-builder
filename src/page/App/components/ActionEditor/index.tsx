@@ -146,10 +146,13 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   }
 
   useEffect(() => {
+    const controller = new AbortController()
+
     Api.request(
       {
         method: "GET",
         url: "/resources",
+        signal: controller.signal,
       },
       ({ data }: { data: Resource[] }) => {
         dispatch(resourceActions.addResourceListReducer(data))
@@ -167,6 +170,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       {
         method: "GET",
         url: "/actions",
+        signal: controller.signal,
       },
       ({ data }: { data: ActionItem[] }) => {
         dispatch(actionActions.addActionListReducer(data))
@@ -183,6 +187,10 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         setActionListLoading(loading)
       },
     )
+
+    return () => {
+      controller.abort()
+    }
   }, [])
 
   useEffect(() => {
