@@ -12,13 +12,7 @@ export const TransformWidget: FC<TransformWidgetProps> = (props) => {
     if (!type) return null
     const COMP = widgetBuilder(type).widget
     if (!COMP) return null
-    return (
-      <COMP
-        {...componentNodeProps}
-        {...otherProps}
-        handleUpdateDsl={handleUpdateDsl}
-      />
-    )
+    return <COMP {...componentNodeProps} handleUpdateDsl={handleUpdateDsl} />
   }, [componentNode])
 
   return ChildComponent

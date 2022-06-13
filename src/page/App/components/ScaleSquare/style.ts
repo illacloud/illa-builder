@@ -2,6 +2,25 @@ import { css, SerializedStyles } from "@emotion/react"
 import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+export type PointerPosition = "tl" | "tr" | "bl" | "br"
+export type BarPosition = "l" | "r" | "t" | "b"
+
+function getStateColor(scaleSquareType: ScaleSquareType): string {
+  let stateColor: string
+  switch (scaleSquareType) {
+    case "error":
+      stateColor = globalColor(`--${illaPrefix}-red-03`)
+      break
+    case "normal":
+      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
+      break
+    default:
+      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
+      break
+  }
+  return stateColor
+}
+
 export function applyScaleSquareContainerStyle(
   h: number,
   w: number,
@@ -15,25 +34,50 @@ export function applyScaleSquareContainerStyle(
 
 export function applySquarePointerStyle(
   scaleSquareType: ScaleSquareType,
+  pointerPosition: PointerPosition,
 ): SerializedStyles {
-  let stateColor: string
-  switch (scaleSquareType) {
-    case "error":
-      stateColor = globalColor(`--${illaPrefix}-red-03`)
+  let positionStyle: SerializedStyles
+  switch (pointerPosition) {
+    case "tl":
+      positionStyle = css`
+        top: 0;
+        left: 0;
+      `
       break
-    case "normal":
-      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
+    case "tr":
+      positionStyle = css`
+        top: 0;
+        right: 0;
+      `
+      break
+    case "bl":
+      positionStyle = css`
+        bottom: 0;
+        left: 0;
+      `
+      break
+    case "br":
+      positionStyle = css`
+        bottom: 0;
+        right: 0;
+      `
       break
     default:
-      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
+      positionStyle = css``
       break
   }
 
+  let stateColor = getStateColor(scaleSquareType)
+
   return css`
+    ${positionStyle};
     box-sizing: border-box;
+    background: ${globalColor(`--${illaPrefix}-white-01`)};
     border: 1px ${stateColor};
     height: 4px;
     width: 4px;
+    position: absolute;
+
     &:hover {
       background: ${stateColor};
     }
@@ -42,28 +86,63 @@ export function applySquarePointerStyle(
 
 export function applyBarPointerStyle(
   scaleSquareType: ScaleSquareType,
+  barPosition: BarPosition,
 ): SerializedStyles {
-  let stateColor: string
-  switch (scaleSquareType) {
-    case "error":
-      stateColor = globalColor(`--${illaPrefix}-red-03`)
+  let stateColor = getStateColor(scaleSquareType)
+
+  let barPositionStyle: SerializedStyles
+  switch (barPosition) {
+    case "t":
+      barPositionStyle = css`
+        top: 0;
+        left: 50%;
+        right: 50%;
+        margin: auto;
+      `
       break
-    case "normal":
-      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
+    case "b":
+      barPositionStyle = css`
+        bottom: 0;
+      `
       break
-    default:
-      stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
+    case "l":
+      barPositionStyle = css`
+        left: 0;
+      `
+      break
+    case "r":
+      barPositionStyle = css`
+        right: 0;
+      `
       break
   }
 
   return css`
     box-sizing: border-box;
     border-radius: 2px;
+    position: absolute;
     border: 1px ${stateColor};
+    background: ${globalColor(`--${illaPrefix}-white-01`)};
     height: 4px;
     width: 18px;
+
     &:hover {
       background: ${stateColor};
     }
+  `
+}
+
+export function applyTransformWidgetStyle(
+  scaleSquareType: ScaleSquareType,
+): SerializedStyles {
+  let stateColor = getStateColor(scaleSquareType)
+  return css`
+    box-sizing: border-box;
+    border: 1px ${stateColor};
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 1px;
+    padding: 3px;
   `
 }

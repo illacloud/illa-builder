@@ -6,6 +6,7 @@ import {
 } from "@/page/App/components/DotPanel/interface"
 import {
   applyChildrenContainerStyle,
+  applyDotContainerStyle,
   applyDotRowsStyle,
   applyDragObjectStyle,
   applyScaleStyle,
@@ -29,7 +30,7 @@ import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShado
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { calculateDragPosition, calculateXY } from "./calc"
 import {
   updateDottedLineSquareData,
@@ -38,22 +39,6 @@ import {
 } from "@/page/App/components/DotPanel/updateData"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
-
-function renderDotSquare(blockRows: number, blockColumns: number): ReactNode {
-  let rowsDot: ReactNode[] = []
-  for (let i = 0; i < blockRows + 1; i++) {
-    let columnsDot: ReactNode[] = []
-    for (let j = 0; j < blockColumns + 1; j++) {
-      columnsDot.push(<span key={`column: ${i},${j}`} css={dotStyle} />)
-    }
-    rowsDot.push(
-      <div key={`row: ${i}`} css={applyDotRowsStyle(i == blockRows)}>
-        {columnsDot}
-      </div>,
-    )
-  }
-  return <>{rowsDot}</>
-}
 
 function renderChildren(
   childrenNode: {
@@ -109,7 +94,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const dispatch = useDispatch()
 
   // window
-  const { width, height } = useWindowSize()
+  const { width: windowWidth, height: windowHeight } = useWindowSize()
 
   // canvas field
   const edgeWidth = 6
@@ -148,7 +133,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [height, bottomPanelOpenState])
+  }, [windowHeight, bottomPanelOpenState])
 
   // calculate width
   useEffect(() => {
@@ -163,7 +148,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       dispatch(configActions.updateUnitWidth(finalBlockWidth))
       setCanvasWidth(container.getBoundingClientRect().width - edgeWidth * 2)
     }
-  }, [width, leftPanelOpenState, rightPanelOpenState])
+  }, [windowWidth, leftPanelOpenState, rightPanelOpenState])
 
   const [collectedInfo, dropTarget] = useDrop<
     ComponentNode,
@@ -233,8 +218,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        // set dot show
-        dispatch(configActions.updateShowDot(true))
+        if (store.getState().currentApp.config.showDot == false) {
+          dispatch(configActions.updateShowDot(true))
+        }
         // calc data
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
@@ -300,17 +286,31 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     })
   }, [dragShadowMap])
 
+  const dotSpace = useMemo<ReactNode[]>(() => {
+    let rowsDot: ReactNode[] = []
+    for (let i = 0; i < blockRows + 1; i++) {
+      let columnsDot: ReactNode[] = []
+      for (let j = 0; j < blockColumns + 1; j++) {
+        columnsDot.push(<span key={`column: ${i},${j}`} css={dotStyle} />)
+      }
+      rowsDot.push(
+        <div key={`row: ${i}`} css={applyDotRowsStyle(i == blockRows)}>
+          {columnsDot}
+        </div>,
+      )
+    }
+    return rowsDot
+  }, [windowHeight, windowWidth])
+
   return (
     <div
       ref={mergeRefs(canvasRef, dropTarget)}
       css={applyScaleStyle(canvasHeight)}
       {...otherProps}
     >
-      {showDot && (
-        <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
-          {renderDotSquare(blockRows, blockColumns)}
-        </div>
-      )}
+      <div css={applyDotContainerStyle(showDot, canvasWidth, canvasHeight)}>
+        {dotSpace}
+      </div>
       <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
         {renderChildren(componentNode.childrenNode, unitWidth, unitHeight)}
       </div>
