@@ -23,7 +23,7 @@ export interface TestConnectionValues {
 }
 
 export interface BaseOptions {
-  name: string
+  resourceName: string
   host: string
   port: number
   databaseName: string

@@ -23,12 +23,7 @@ import {
   requiredLabelTextStyle,
   splitLineStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
-import {
-  MySQLConfigureProps,
-  MySQLConfigureValues,
-  AdvancedOptions,
-  TestConnectionBaseValues,
-} from "../interface"
+import { MySQLConfigureProps, MySQLConfigureValues } from "../interface"
 import { InputUpload } from "./input-upload"
 import {
   formPaddingStyle,
@@ -38,47 +33,31 @@ import {
   usernamePasswordStyle,
 } from "./style"
 
-const baseOptionSet = new Set([
-  "host",
-  "port",
-  "databaseName",
-  "databaseUsername",
-  "databasePassword",
-  "ssl",
-  "ssh",
-])
-const advancedOptionSet = new Set([
-  "sshHost",
-  "sshPort",
-  "sshUsername",
-  "sshPassword",
-  "sshPrivateKey",
-  "sshPassphrase",
-  "serverCert",
-  "clientKey",
-  "clientCert",
-])
-const dataTransform = (data: MySQLConfigureValues) => {
-  let options: {
-    [x: string]:
-      | string
-      | number
-      | boolean
-      | { [x: string]: string | number | boolean }
-  } = {}
-  let advanced: { [x: string]: string | number | boolean } = {}
-  Object.keys(data).forEach((key) => {
-    if (baseOptionSet.has(key)) {
-      options[key as keyof TestConnectionBaseValues] =
-        data[key as keyof MySQLConfigureValues]
-    }
-    if (advancedOptionSet.has(key)) {
-      advanced[key as keyof AdvancedOptions] =
-        data[key as keyof MySQLConfigureValues]
-    }
-  })
-  options.advancedOptions = advanced
-  return { kind: "mysql", options }
+function getOptions(
+  data: MySQLConfigureValues,
+  enableSSH: boolean,
+  enableSSL: boolean,
+) {
+  const {
+    host,
+    port,
+    databaseName,
+    databaseUsername,
+    databasePassword,
+    resourceName,
+    ...advancedOptions
+  } = data
+
+  return {
+    host,
+    port,
+    databaseName,
+    databaseUsername,
+    databasePassword,
+    ssh: enableSSH,
+    ssl: enableSSL,
+    advancedOptions,
+  }
 }
 
 export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
@@ -88,8 +67,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
-    const [expandSSH, setExpandSSH] = useState(false)
-    const [expandSSL, setExpandSSL] = useState(false)
+    const [enableSSH, setEnableSSH] = useState(false)
+    const [enableSSL, setEnableSSL] = useState(false)
     const {
       handleSubmit,
       control,
@@ -102,25 +81,16 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       mode: "onBlur",
       defaultValues: (resourceConfig?.config as MySQLConfigureValues) || {
         port: 3306,
-        ssh: false,
-        ssl: false,
-        sshPort: 22,
       },
     })
 
     const testConnection = () => {
-      let data: MySQLConfigureValues = {
-        ...getValues(),
-        ssh: expandSSH,
-        ssl: expandSSL,
-      }
-      const _data = dataTransform(data)
+      const data = getValues()
+
       onTestConnection?.({
-        resourceName: data.name,
+        resourceName: data.resourceName,
         resourceType: "MySQL",
-        dbName: "",
-        created: Date.now().toString(),
-        config: _data,
+        options: getOptions(data, enableSSH, enableSSL),
       })
     }
 
@@ -131,15 +101,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     })
 
     const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
-      data = { ...data, ssh: expandSSH, ssl: expandSSL }
-
       onSubmit &&
         onSubmit({
-          resourceName: data.name,
+          resourceName: data.resourceName,
           resourceType: "mysql",
-          dbName: "",
-          created: Date.now().toString(),
-          config: data,
+          options: getOptions(data, enableSSH, enableSSL),
         })
     }
     return (
@@ -156,7 +122,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   placeholder={t(
                     "editor.action.resource.mySql.placeholder.name",
                   )}
-                  error={!!errors.name}
+                  error={!!errors.resourceName}
                   maxLength={200}
                 />
               )}
@@ -164,11 +130,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 required: t("editor.action.form.required"),
               }}
               control={control}
-              name="name"
+              name="resourceName"
             />
-            {errors.name && (
+            {errors.resourceName && (
               <div css={css(errorMessageStyle, applyGridColIndex(2))}>
-                {errors.name.message}
+                {errors.resourceName.message}
               </div>
             )}
           </div>
@@ -285,9 +251,9 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             <div css={switchAreaStyle}>
               <Switch
                 colorScheme="techPurple"
-                checked={expandSSH}
+                checked={enableSSH}
                 onChange={(val) => {
-                  setExpandSSH(val)
+                  setEnableSSH(val)
                 }}
               />
               <div css={switchDescriptionStyle}>
@@ -297,7 +263,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               </div>
             </div>
           </div>
-          {expandSSH && (
+          {enableSSH && (
             <>
               <div css={gridRowContainerStyle}>
                 <label css={requiredLabelTextStyle}>
@@ -433,9 +399,9 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             <div css={switchAreaStyle}>
               <Switch
                 colorScheme="techPurple"
-                checked={expandSSL}
+                checked={enableSSL}
                 onChange={(val) => {
-                  setExpandSSL(val)
+                  setEnableSSL(val)
                 }}
               />
               <div css={switchDescriptionStyle}>
@@ -445,7 +411,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               </div>
             </div>
           </div>
-          {expandSSL && (
+          {enableSSL && (
             <>
               <div css={gridRowContainerStyle}>
                 <label css={labelTextStyle}>
