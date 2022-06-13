@@ -196,8 +196,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           {isRuning
             ? duration
             : isActionDirty
-              ? t("editor.action.panel.btn.save_and_run")
-              : t("editor.action.panel.btn.run")}
+            ? t("editor.action.panel.btn.save_and_run")
+            : t("editor.action.panel.btn.run")}
         </Button>
       </header>
 
