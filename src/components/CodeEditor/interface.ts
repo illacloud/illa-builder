@@ -39,3 +39,9 @@ export type FieldEntityInformation = {
   entityId?: string
   propertyPath?: string
 }
+
+export interface ResultPreview {
+  state?: "default" | "error"
+  type?: "Object" | "String" | "Boolean" | "Number"
+  content?: string
+}

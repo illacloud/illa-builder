@@ -1,5 +1,5 @@
 import { FC, useEffect, useMemo, useRef, useState } from "react"
-import { Global } from "@emotion/react"
+import { css, Global } from "@emotion/react"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/theme/duotone-light.css"
@@ -13,12 +13,14 @@ import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
 import {
+  ResultPreview,
   CodeEditorProps,
   EditorModes,
   FieldEntityInformation,
 } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
-import { bindingMarker } from "./markHelpers"
+import { Trigger } from "@illa-design/trigger"
+import { CodePreview } from "@/components/CodeEditor/CodePreview"
 
 export type Hinter = {
   showHint: (
@@ -45,20 +47,36 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const [editor, setEditor] = useState<Editor>()
   const [hinters, setHinters] = useState<Hinter[]>([])
   const [hinterOpen, setHinterOpen] = useState<boolean>()
+  const [preview, setPreview] = useState<ResultPreview>()
+  const [previewVisible, setPreviewVisible] = useState<boolean>()
+
+  const handleFocus = () => {
+    setPreviewVisible(true)
+  }
 
   const handleBlur = (instance: Editor, event: FocusEvent) => {
     onBlur?.()
+    setPreviewVisible(false)
   }
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     // callback
     onChange?.(editor.getValue())
+    setPreview({
+      state: "default",
+      type: "String",
+      content: editor?.getValue(),
+    })
   }
 
   useEffect(() => {
     const currentValue = editor?.getValue()
     if (value && value !== currentValue) {
       editor?.setValue(value)
+      setPreview({
+        type: "String",
+        content: editor?.getValue(),
+      })
     }
   }, [value])
 
@@ -156,6 +174,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
 
       editor.on("change", handleChange)
+      editor.on("focus", handleFocus)
       editor.on("blur", handleBlur)
       // editor.on("keyup", handleAutocompleteKeyup)
       editor.on("keyup", (cm) => {
@@ -168,20 +187,36 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     return () => {
       editor?.off("change", handleChange)
       editor?.off("blur", handleBlur)
+      editor?.off("focus", handleFocus)
     }
   }, [])
 
   return (
     <div>
       <Global styles={codemirrorStyle} />
-      <div
-        className={className}
-        ref={codeTargetRef}
-        css={applyCodeEditorStyle(height)}
-        {...otherProps}
+      <Trigger
+        _css={css`
+          padding: 0;
+        `}
+        position="bl"
+        autoAlignPopupWidth
+        withoutPadding
+        popupVisible={previewVisible}
+        content={<CodePreview preview={preview} />}
+        showArrow={false}
+        colorScheme="white"
       >
-        <div id="hintBody" />
-      </div>
+        <div>
+          <div
+            className={className}
+            ref={codeTargetRef}
+            css={applyCodeEditorStyle(height)}
+            {...otherProps}
+          >
+            <div id="hintBody" />
+          </div>
+        </div>
+      </Trigger>
     </div>
   )
 }
