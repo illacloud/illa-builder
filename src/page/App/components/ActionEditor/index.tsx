@@ -22,7 +22,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const dispatch = useDispatch()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
-  const [resourceId, setResourceId] = useState("preset_REST API")
+  const [resourceId, setResourceId] = useState("")
   const [isActionDirty, setIsActionDirty] = useState(false)
   const [editorHeight, setEditorHeight] = useState(300)
   const [actionListLoading, setActionListLoading] = useState(false)
