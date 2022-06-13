@@ -2,7 +2,8 @@ import { FC } from "react"
 import { ScaleSquareProps } from "@/page/App/components/ScaleSquare/interface"
 import {
   applyBarPointerStyle,
-  applyScaleSquareContainerStyle,
+  applyInnerStyle,
+  applyOuterStyle,
   applySquarePointerStyle,
   applyTransformWidgetStyle,
 } from "@/page/App/components/ScaleSquare/style"
@@ -16,11 +17,11 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const dispatch = useDispatch()
   return (
     <div
-      css={applyScaleSquareContainerStyle(h, w)}
+      css={applyOuterStyle(h, w)}
+      className={className}
       onClick={() => {
         dispatch(configActions.updateSelectedComponent([componentNode]))
       }}
-      className={className}
       {...otherProps}
     >
       <div css={applyTransformWidgetStyle(scaleSquareState)}>
@@ -30,6 +31,10 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       <div css={applySquarePointerStyle(scaleSquareState, "tr")} />
       <div css={applySquarePointerStyle(scaleSquareState, "bl")} />
       <div css={applySquarePointerStyle(scaleSquareState, "br")} />
+      <div css={applyBarPointerStyle(scaleSquareState, "l")} />
+      <div css={applyBarPointerStyle(scaleSquareState, "t")} />
+      <div css={applyBarPointerStyle(scaleSquareState, "r")} />
+      <div css={applyBarPointerStyle(scaleSquareState, "b")} />
     </div>
   )
 }
