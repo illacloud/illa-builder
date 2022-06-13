@@ -47,6 +47,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
           updateAction("")
         }}
         colorScheme={"white"}
+        size="small"
         css={searchInputCloseBtnStyle}
       >
         {t("editor.action.action_list.btn.close")}
