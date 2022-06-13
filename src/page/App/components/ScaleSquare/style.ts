@@ -4,6 +4,5 @@ export function applyScaleSquareContainer(h: number, w: number) {
   return css`
     height: ${h}px;
     width: ${w}px;
-    background: #00cb40;
   `
 }

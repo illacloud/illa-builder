@@ -9,8 +9,8 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.radio_group.name"),
   icon: <SearchIcon />,
   sessionType: "SELECT",
-  w: 100,
-  h: 20,
+  w: 10,
+  h: 5,
   defaults: {
     label: "Label",
     labelAlign: "left",
