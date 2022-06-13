@@ -39,7 +39,10 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
 
   function handleOnBlur() {
     setIsEditing(false)
-    onChange?.(title)
+
+    if (title !== name) {
+      onChange?.(title)
+    }
   }
 
   const childrenNode = isEditing ? (
