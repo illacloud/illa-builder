@@ -18,6 +18,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     <div
       css={applyScaleSquareContainerStyle(h, w)}
       onClick={() => {
+        console.log("我我我我我")
         dispatch(configActions.updateSelectedComponent([componentNode]))
       }}
       {...otherProps}

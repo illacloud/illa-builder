@@ -329,13 +329,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       <div css={applyDotContainerStyle(showDot, canvasWidth, canvasHeight)}>
         {dotSpace}
       </div>
-      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
-        {componentTree}
-      </div>
-      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+      <div css={applyDotContainerStyle(showDot, canvasWidth, canvasHeight)}>
         {dottedLineSquares}
       </div>
       <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+        {componentTree}
+      </div>
+      <div css={applyDotContainerStyle(showDot, canvasWidth, canvasHeight)}>
         {dragShadows}
       </div>
     </div>
