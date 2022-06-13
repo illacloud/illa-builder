@@ -3,7 +3,7 @@ import { widgetBuilder } from "@/wrappedComponents/WidgetBuilder"
 import { TransformWidgetProps } from "@/wrappedComponents/TransformWidget/interface"
 
 export const TransformWidget: FC<TransformWidgetProps> = (props) => {
-  const { componentNode } = props
+  const { componentNode, ...otherProps } = props
 
   const handleUpdateDsl = (value: Record<string, any>) => {}
 
@@ -12,7 +12,13 @@ export const TransformWidget: FC<TransformWidgetProps> = (props) => {
     if (!type) return null
     const COMP = widgetBuilder(type).widget
     if (!COMP) return null
-    return <COMP {...componentNodeProps} handleUpdateDsl={handleUpdateDsl} />
+    return (
+      <COMP
+        {...componentNodeProps}
+        {...otherProps}
+        handleUpdateDsl={handleUpdateDsl}
+      />
+    )
   }, [componentNode])
 
   return ChildComponent
