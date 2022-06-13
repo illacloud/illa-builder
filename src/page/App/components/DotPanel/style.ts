@@ -52,6 +52,19 @@ export function applyChildrenContainerStyle(
   `
 }
 
+export function applyDotContainerStyle(
+  showDot: boolean,
+  width: number | null,
+  height?: number | null,
+): SerializedStyles {
+  return css`
+    visibility: ${showDot ? "visible" : "hidden"};
+    position: absolute;
+    width: ${width}px;
+    height: ${height}px;
+  `
+}
+
 export function applyDragObjectStyle(t: number, l: number): SerializedStyles {
   return css`
     position: absolute;
