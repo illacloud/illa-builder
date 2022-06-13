@@ -31,8 +31,8 @@ import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
-import store from "@/store"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import store from "@/store"
 
 function calculateDragPosition(
   canvasRect: DOMRect,
