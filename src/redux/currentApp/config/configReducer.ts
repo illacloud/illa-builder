@@ -1,5 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ConfigState } from "@/redux/currentApp/config/configState"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -39,4 +40,18 @@ export const updateUnitWidth: CaseReducer<
   PayloadAction<number>
 > = (state, action) => {
   state.unitSize.unitWidth = action.payload
+}
+
+export const updateSelectedComponent: CaseReducer<
+  ConfigState,
+  PayloadAction<ComponentNode[]>
+> = (state, action) => {
+  state.selectedComponents = action.payload
+}
+
+export const updateShowDot: CaseReducer<ConfigState, PayloadAction<boolean>> = (
+  state,
+  action,
+) => {
+  state.showDot = action.payload
 }

@@ -19,6 +19,7 @@ import {
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
+  isShowDot,
 } from "@/redux/currentApp/config/configSelector"
 import { useDrop, XYCoord } from "react-dnd"
 import { mergeRefs } from "@illa-design/system"
@@ -32,7 +33,7 @@ import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShad
 import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-import store from "@/store"
+import store, { RootState } from "@/store"
 
 function calculateDragPosition(
   canvasRect: DOMRect,
@@ -102,7 +103,6 @@ function renderChildren(
   } | null,
   unitWidth: number,
   unitHeight: number,
-  edgeWidth: number,
 ): ReactNode[] | null {
   if (childrenNode == null) {
     return null
@@ -165,7 +165,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const unitWidth = useSelector(getUnitSize).unitWidth
 
   // other field
-  const [showDot, setShowDot] = useState(true)
+  const showDot = useSelector<RootState, boolean>(isShowDot, (pre, after) => {
+    return pre === after
+  })
 
   const bottomPanelOpenState = useSelector(isOpenBottomPanel)
   const leftPanelOpenState = useSelector(isOpenLeftPanel)
@@ -216,7 +218,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        setShowDot(false)
+        dispatch(configActions.updateShowDot(false))
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
@@ -259,7 +261,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        setShowDot(true)
+        dispatch(configActions.updateShowDot(true))
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft
@@ -361,12 +363,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         </div>
       )}
       <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
-        {renderChildren(
-          componentNode.childrenNode,
-          unitWidth,
-          unitHeight,
-          edgeWidth,
-        )}
+        {renderChildren(componentNode.childrenNode, unitWidth, unitHeight)}
       </div>
       <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
         {dragShadows}

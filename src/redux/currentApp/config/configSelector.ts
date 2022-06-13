@@ -15,3 +15,11 @@ export const isOpenRightPanel = (state: RootState) => {
 export const getUnitSize = (state: RootState) => {
   return state.currentApp.config.unitSize
 }
+
+export const isShowDot = (state: RootState) => {
+  return state.currentApp.config.showDot
+}
+
+export const getSelectedComponents = (state: RootState) => {
+  return state.currentApp.config.selectedComponents
+}
