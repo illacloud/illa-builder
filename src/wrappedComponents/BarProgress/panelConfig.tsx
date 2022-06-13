@@ -1,6 +1,7 @@
 import { HorizontalEnd, HorizontalStart } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
 
 const OptionsStyle = {
   display: "flex",
@@ -15,7 +16,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "bar-progress-basic-Value",
-        labelName: "Value",
+        labelName: i18n.t("editor.inspect.setter_label.value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
       },
@@ -27,19 +28,19 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "bar-progress-label-label",
-        labelName: "Label",
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
       },
       {
         id: "bar-progress-label-caption",
-        labelName: "Caption",
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
       },
       {
         id: "bar-progress-label-position",
-        labelName: "Position",
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -49,7 +50,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "bar-progress-label-alignment",
-        labelName: "Alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -73,7 +74,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "bar-progress-label-labelWidth",
-        labelName: "Width(%)",
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
       },
@@ -85,13 +86,13 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "bar-progress-adornments-showText",
-        labelName: "Hidde value label",
+        labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
         attrName: "showText",
         setterType: "SWITCH_SETTER",
       },
       {
         id: "bar-progress-adornments-tooltip",
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
@@ -104,7 +105,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "bar-progress-layout-hidden",
         setterType: "INPUT_SETTER",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
         defaultValue: false,
       },
@@ -118,13 +119,13 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         id: "bar-progress-style-list",
         setterType: "LIST_SETTER",
         isFullWidth: true,
-        labelName: "Styles",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
         useCustomLabel: true,
         childrenSetter: [
           {
             id: "bar-progress-color",
-            labelName: "Color",
+            labelName: i18n.t("editor.inspect.setter_label.color"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "color",
             defaultValue: "blue",
@@ -132,7 +133,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "bar-progress-trailColor",
-            labelName: "Trail color",
+            labelName: i18n.t("editor.inspect.setter_label.trail_color"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "trailColor",
             defaultValue: "gray",
@@ -140,7 +141,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "bar-progress-strokeWidth",
-            labelName: "Stroke width",
+            labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
             setterType: "INPUT_SETTER",
             attrName: "strokeWidth",
             defaultValue: "4px",
