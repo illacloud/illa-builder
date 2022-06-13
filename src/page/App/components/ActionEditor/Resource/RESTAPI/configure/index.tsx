@@ -31,7 +31,7 @@ import { BasicAuth, OAuth2 } from "./Authentication"
 
 const EmptyField: Params = { key: "", value: "" }
 
-const getOptions = (data: RESTAPIConfigureProps) => {
+const getOptions = (data: RESTAPIConfigureValues) => {
   return data
 }
 
@@ -59,7 +59,8 @@ export const RESTAPIConfigure = forwardRef<
       authentication: "none",
       oauth2UseClientCredentialsAuth: false,
       oauth2ShareUserCredentials: false,
-      ...(resourceConfig?.config as RESTAPIConfigureValues),
+      resourceName: resourceConfig?.resourceName,
+      ...resourceConfig?.options,
     },
   })
 

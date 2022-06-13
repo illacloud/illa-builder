@@ -33,33 +33,6 @@ import {
   usernamePasswordStyle,
 } from "./style"
 
-function getOptions(
-  data: MySQLConfigureValues,
-  enableSSH: boolean,
-  enableSSL: boolean,
-) {
-  const {
-    host,
-    port,
-    databaseName,
-    databaseUsername,
-    databasePassword,
-    resourceName,
-    ...advancedOptions
-  } = data
-
-  return {
-    host,
-    port,
-    databaseName,
-    databaseUsername,
-    databasePassword,
-    ssh: enableSSH,
-    ssl: enableSSL,
-    advancedOptions,
-  }
-}
-
 export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
   (props, ref) => {
     const { resourceId, connectionRef, onSubmit, onTestConnection } = props
@@ -79,18 +52,22 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       setValue,
     } = useForm<MySQLConfigureValues>({
       mode: "onBlur",
-      defaultValues: (resourceConfig?.config as MySQLConfigureValues) || {
+      defaultValues: {
+        resourceName: resourceConfig?.resourceName,
+        ...resourceConfig?.options,
+      } || {
         port: 3306,
       },
     })
 
     const testConnection = () => {
       const data = getValues()
+      const { resourceName, ...options } = data
 
       onTestConnection?.({
-        resourceName: data.resourceName,
+        resourceName: resourceName,
         resourceType: "MySQL",
-        options: getOptions(data, enableSSH, enableSSL),
+        options,
       })
     }
 
@@ -101,11 +78,12 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     })
 
     const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
+      const { resourceName, ...options } = data
       onSubmit &&
         onSubmit({
-          resourceName: data.resourceName,
+          resourceName: resourceName,
           resourceType: "mysql",
-          options: getOptions(data, enableSSH, enableSSL),
+          options,
         })
     }
     return (
@@ -278,36 +256,41 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                           "editor.action.resource.mySql.placeholder.ssh_hostname_port",
                         )}
                         maxLength={200}
-                        error={!!errors.sshHost}
+                        error={!!errors.advancedOptions?.sshHost}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshHost"
+                    name="advancedOptions.sshHost"
                   />
                   <Controller
                     render={({ field }) => (
                       <InputNumber
                         {...field}
                         placeholder="22"
-                        error={!!errors.sshPort}
+                        error={!!errors.advancedOptions?.sshPort}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshPort"
+                    name="advancedOptions.sshPort"
                   />
                 </div>
-                {(errors.sshHost || errors.sshPort) && (
-                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                    <div css={errorMessageStyle}>{errors.sshHost?.message}</div>
-                    <div css={errorMessageStyle}>{errors.sshPort?.message}</div>
-                  </div>
-                )}
+                {(errors.advancedOptions?.sshHost ||
+                  errors.advancedOptions?.sshPort) && (
+                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshHost?.message}
+                      </div>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshPort?.message}
+                      </div>
+                    </div>
+                  )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={requiredLabelTextStyle}>
@@ -321,14 +304,14 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         placeholder={t(
                           "editor.action.resource.mySql.placeholder.ssh_credentials",
                         )}
-                        error={!!errors.sshUsername}
+                        error={!!errors.advancedOptions?.sshUsername}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshUsername"
+                    name="advancedOptions.sshUsername"
                   />
                   <Controller
                     render={({ field }) => (
@@ -336,33 +319,34 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         {...field}
                         placeholder="•••••••••"
                         invisibleButton={false}
-                        error={!!errors.sshPassword}
+                        error={!!errors.advancedOptions?.sshPassword}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshPassword"
+                    name="advancedOptions.sshPassword"
                   />
                 </div>
-                {(errors.sshUsername || errors.sshPassword) && (
-                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                    <div css={errorMessageStyle}>
-                      {errors.sshUsername?.message}
+                {(errors.advancedOptions?.sshUsername ||
+                  errors.advancedOptions?.sshPassword) && (
+                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshUsername?.message}
+                      </div>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshPassword?.message}
+                      </div>
                     </div>
-                    <div css={errorMessageStyle}>
-                      {errors.sshPassword?.message}
-                    </div>
-                  </div>
-                )}
+                  )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={labelTextStyle}>
                   {t("editor.action.resource.mySql.label.private_key")}
                 </label>
                 <InputUpload
-                  name="sshPrivateKey"
+                  name="advancedOptions.sshPrivateKey"
                   register={register}
                   reset={resetField}
                   setValue={setValue}
@@ -387,7 +371,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     />
                   )}
                   control={control}
-                  name="sshPassphrase"
+                  name="advancedOptions.sshPassphrase"
                 />
               </div>
             </>
@@ -420,7 +404,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   )}
                 </label>
                 <InputUpload
-                  name="serverCert"
+                  name="advancedOptions.serverCert"
                   register={register}
                   reset={resetField}
                   setValue={setValue}
@@ -434,7 +418,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   {t("editor.action.resource.mySql.label.client_key")}
                 </label>
                 <InputUpload
-                  name="clientKey"
+                  name="advancedOptions.clientKey"
                   register={register}
                   reset={resetField}
                   setValue={setValue}
@@ -448,7 +432,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   {t("editor.action.resource.mySql.label.client_certificate")}
                 </label>
                 <InputUpload
-                  name="clientCert"
+                  name="advancedOptions.clientCert"
                   register={register}
                   reset={resetField}
                   setValue={setValue}

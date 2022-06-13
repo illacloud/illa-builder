@@ -13,16 +13,7 @@ export interface MySQLConfigureProps {
   onTestConnection?: (data: any) => void
 }
 
-export type MySQLConfigureValues = BaseOptions & AdvancedOptions
-
-export type TestConnectionBaseValues = Omit<BaseOptions, "name">
-
-export interface TestConnectionValues {
-  kind: "mysql"
-  options: TestConnectionBaseValues & { advancedOptions: AdvancedOptions }
-}
-
-export interface BaseOptions {
+export interface MySQLConfigureValues {
   resourceName: string
   host: string
   port: number
@@ -31,6 +22,7 @@ export interface BaseOptions {
   databasePassword: string
   ssl: boolean
   ssh: boolean
+  advancedOptions: AdvancedOptions
 }
 
 export interface AdvancedOptions {
@@ -46,7 +38,10 @@ export interface AdvancedOptions {
 }
 
 export interface InputUploadProps {
-  name: keyof MySQLConfigureValues
+  name: `advancedOptions.${keyof Pick<
+    AdvancedOptions,
+    "sshPrivateKey" | "serverCert" | "clientKey" | "clientCert"
+  >}`
   register: UseFormRegister<MySQLConfigureValues>
   reset: UseFormResetField<MySQLConfigureValues>
   setValue: UseFormSetValue<MySQLConfigureValues>

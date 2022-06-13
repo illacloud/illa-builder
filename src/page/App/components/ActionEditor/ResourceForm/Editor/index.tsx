@@ -27,7 +27,7 @@ const renderResourceNode = (
   resourceType: ResourceType | undefined,
   connectionRef: RefObject<ConnectionRef>,
   formRef: RefObject<HTMLFormElement>,
-  onSubmitForm: (data: any) => void,
+  onSubmitForm: (data: any, resourceId?: string) => void,
   onTestConnection: (data: any) => void,
   props: ResourceFormEditorProps,
 ) => {
@@ -37,7 +37,10 @@ const renderResourceNode = (
   switch (resourceType) {
     case "restapi":
       node = (
-        <RESTAPIConfigure resourceId={resourceId} onSubmit={onSubmitForm} />
+        <RESTAPIConfigure
+          resourceId={resourceId}
+          onSubmit={(data) => onSubmitForm(data, resourceId)}
+        />
       )
       break
     case "mysql":
@@ -45,7 +48,7 @@ const renderResourceNode = (
         <MySQLConfigure
           connectionRef={connectionRef}
           resourceId={resourceId}
-          onSubmit={onSubmitForm}
+          onSubmit={(data) => onSubmitForm(data, resourceId)}
           onTestConnection={onTestConnection}
         />
       )
@@ -90,8 +93,8 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           dispatch(resourceActions.updateResourceItemReducer(data))
           onSubmit?.(resourceId)
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => setCreateBtnLoading(loading),
       )
       return
@@ -107,8 +110,8 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         dispatch(resourceActions.addResourceItemReducer(data))
         onSubmit?.(data.resourceId)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => setCreateBtnLoading(loading),
     )
   }
@@ -126,7 +129,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
       ({ data }) => {
         Notification.error({ title: <span>{data}</span> })
       },
-      () => {},
+      () => { },
       (loading) => setTestConnectionLoading(loading),
     )
   }
