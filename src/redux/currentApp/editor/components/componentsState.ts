@@ -7,6 +7,7 @@ export interface ComponentNode {
   displayName: string
   parentNode: string | null
   error: boolean
+  isDragging: boolean
   childrenNode: {
     [key: string]: ComponentNode
   } | null

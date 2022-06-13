@@ -12,11 +12,13 @@ import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
 import configReducer from "@/redux/currentApp/config/configSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
+import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 
 const editorReducer = combineReducers({
   inspect: inspectReducer,
   components: componentsReducer,
   dragShadow: dragShadowReducer,
+  dottedLineSquare: dottedLineSquareReducer,
 })
 
 const appReducer = combineReducers({

@@ -28,8 +28,6 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { DragShadowSquare } from "@/page/App/components/DragShadowSquare"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
-import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
-import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import store, { RootState } from "@/store"
 import { calculateDragPosition, calculateXY } from "./calc"
 import {
@@ -38,52 +36,10 @@ import {
   updateScaleSquare,
 } from "@/page/App/components/DotPanel/updateData"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-
-function renderChildren(
-  childrenNode: {
-    [key: string]: any
-  } | null,
-  unitWidth: number,
-  unitHeight: number,
-): ReactNode[] | null {
-  if (childrenNode == null) {
-    return null
-  }
-  return Object.keys(childrenNode).map<ReactNode>((key) => {
-    const item = childrenNode[key]
-
-    const h = item.h * unitHeight
-    const w = item.w * unitWidth
-
-    const [l, t] = calculateXY(item.x, item.y, unitWidth, unitHeight)
-
-    switch (item.containerType) {
-      case "EDITOR_DOT_PANEL":
-        return <DotPanel componentNode={item} key={item.displayName} />
-      case "EDITOR_DOTTED_LINE_SQUARE":
-        return (
-          <DottedLineSquare
-            css={applyDragObjectStyle(t, l)}
-            h={h}
-            w={w}
-            key={item.displayName}
-          />
-        )
-      case "EDITOR_SCALE_SQUARE":
-        return (
-          <ScaleSquare
-            key={item.displayName}
-            css={applyDragObjectStyle(t, l)}
-            componentNode={item}
-            h={h}
-            w={w}
-          />
-        )
-      default:
-        return null
-    }
-  })
-}
+import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
+import { ScaleSquare } from "@/page/App/components/ScaleSquare"
+import { getDottedLineSquareMap } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSelector"
+import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 
 export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
@@ -117,6 +73,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   // drag shadow
   const dragShadowMap = useSelector(getDragShadowMap)
+  // dotted line square
+  const dottedLineSquareMap = useSelector(getDottedLineSquareMap)
 
   // calculate height
   useEffect(() => {
@@ -193,9 +151,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
               dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
             },
           )
-          // remove drag
-          dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
         }
+        // remove dotted line square
+        dispatch(
+          dottedLineSquareActions.removeDottedLineSquareReducer(
+            item.displayName,
+          ),
+        )
+        // remove drag
+        dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
         return {} as DropResultInfo
       },
       hover: (item, monitor) => {
@@ -245,9 +209,14 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item,
             squareX,
             squareY,
-            componentNode.displayName,
+            unitWidth,
+            unitHeight,
             (newItem) => {
-              dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+              dispatch(
+                dottedLineSquareActions.addOrUpdateDottedLineSquareReducer(
+                  newItem,
+                ),
+              )
             },
           )
         }
@@ -286,6 +255,71 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     return rowsDot
   }, [windowHeight, windowWidth])
 
+  const componentTree = useMemo<ReactNode>(() => {
+    const childrenNode = componentNode.childrenNode
+    if (childrenNode == null) {
+      return null
+    }
+    return Object.keys(childrenNode).map<ReactNode>((key) => {
+      const item = childrenNode[key]
+
+      const h = item.h * unitHeight
+      const w = item.w * unitWidth
+
+      const [l, t] = calculateXY(item.x, item.y, unitWidth, unitHeight)
+
+      switch (item.containerType) {
+        case "EDITOR_DOT_PANEL":
+          return <DotPanel componentNode={item} key={item.displayName} />
+        case "EDITOR_DOTTED_LINE_SQUARE":
+          return (
+            <DottedLineSquare
+              css={applyDragObjectStyle(t, l)}
+              h={h}
+              w={w}
+              key={item.displayName}
+            />
+          )
+        case "EDITOR_SCALE_SQUARE":
+          return (
+            <ScaleSquare
+              key={item.displayName}
+              css={applyDragObjectStyle(t, l)}
+              componentNode={item}
+              h={h}
+              w={w}
+            />
+          )
+        default:
+          return null
+      }
+    })
+  }, [componentNode.childrenNode])
+
+  const dottedLineSquares = useMemo<ReactNode[]>(() => {
+    return Object.keys(dottedLineSquareMap).map<ReactNode>(
+      (value, index, array) => {
+        const item = dottedLineSquareMap[value]
+        const h = item.h
+        const w = item.w
+        const [l, t] = calculateXY(
+          item.squareX,
+          item.squareY,
+          unitWidth,
+          unitHeight,
+        )
+        return (
+          <DottedLineSquare
+            css={applyDragObjectStyle(t, l)}
+            h={h}
+            w={w}
+            key={item.displayName}
+          />
+        )
+      },
+    )
+  }, [dottedLineSquareMap])
+
   return (
     <div
       ref={mergeRefs(canvasRef, dropTarget)}
@@ -296,7 +330,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         {dotSpace}
       </div>
       <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
-        {renderChildren(componentNode.childrenNode, unitWidth, unitHeight)}
+        {componentTree}
+      </div>
+      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+        {dottedLineSquares}
       </div>
       <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
         {dragShadows}
