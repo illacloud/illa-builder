@@ -253,7 +253,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       )
     }
     return rowsDot
-  }, [windowHeight, windowWidth])
+  }, [windowHeight, windowWidth, canvasHeight, canvasWidth])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
