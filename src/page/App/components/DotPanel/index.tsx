@@ -42,7 +42,6 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { getDottedLineSquareMap } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSelector"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
-import { addOrUpdateWidgetPanelConfig } from "@/redux/currentApp/editor/inspect/inspectReducer"
 
 export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
