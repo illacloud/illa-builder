@@ -8,7 +8,7 @@ import {
 } from "./style"
 import { ModalProps } from "./interface"
 import { Input } from "@illa-design/input"
-import ModalHeader from "@/page/App/components/PanelSetters/PublicComponent/Modal/header"
+import { ModalHeader } from "@/page/App/components/PanelSetters/PublicComponent/Modal/header"
 
 export const Modal: FC<ModalProps> = (props) => {
   const {

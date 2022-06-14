@@ -1,11 +1,11 @@
 import { FC, useCallback } from "react"
-import ListItem from "./item"
+import { ListItem } from "./item"
 import { v4 } from "uuid"
 import { ListProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/interface"
 import { BaseEventItem } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { transformEvent } from "@/page/App/components/PanelSetters/EventHandlerSetter/utils"
 
-const List: FC<ListProps> = (props) => {
+export const List: FC<ListProps> = (props) => {
   const { events, dslEvents, handleUpdate, childrenSetter } = props
 
   const handleCopyItem = useCallback(
@@ -69,4 +69,4 @@ const List: FC<ListProps> = (props) => {
   )
 }
 
-export default List
+List.displayName = "EventHandlerList"

@@ -1,11 +1,11 @@
 import { FC, useMemo } from "react"
-import { modalCss } from "./style"
+import { modalStyle } from "./style"
 import { IEventHandleProps } from "./interface"
-import ModalHeader from "@/page/App/components/PanelSetters/PublicComponent/Modal/header"
+import { ModalHeader } from "@/page/App/components/PanelSetters/PublicComponent/Modal/header"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 
-const EventHandle: FC<IEventHandleProps> = (props) => {
+export const EventHandle: FC<IEventHandleProps> = (props) => {
   const { event, handleCloseModal, childrenSetter, handleUpdateItem } = props
 
   const formattingTitle = useMemo(
@@ -17,7 +17,7 @@ const EventHandle: FC<IEventHandleProps> = (props) => {
   )
 
   return (
-    <div css={modalCss}>
+    <div css={modalStyle}>
       <ModalHeader
         title={formattingTitle}
         handleCloseModal={handleCloseModal}
@@ -34,4 +34,4 @@ const EventHandle: FC<IEventHandleProps> = (props) => {
   )
 }
 
-export default EventHandle
+EventHandle.displayName = "EventHandle"

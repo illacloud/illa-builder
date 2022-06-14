@@ -1,7 +1,7 @@
 import { FC } from "react"
 
-const ListEmpty: FC = () => {
+export const ListEmpty: FC = () => {
   return <div>Empty</div>
 }
 
-export default ListEmpty
+ListEmpty.displayName = "ListEmpty"

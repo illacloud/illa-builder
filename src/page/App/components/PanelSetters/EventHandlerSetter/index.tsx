@@ -1,6 +1,6 @@
 import { FC, useCallback } from "react"
-import { eventHandlerSetterWrapperCss } from "./style"
-import List from "./List"
+import { eventHandlerSetterWrapperStyle } from "./style"
+import { List } from "./List"
 import { EventHandlerSetterHeader } from "@/page/App/components/PanelSetters/EventHandlerSetter/header"
 import {
   BaseEventItem,
@@ -45,10 +45,8 @@ export const EventHandlerSetter: FC<EventHandlerSetterProps> = (props) => {
     [handleUpdatePanelConfig, handleUpdateDsl],
   )
 
-  console.log("events", events)
-
   return (
-    <div css={eventHandlerSetterWrapperCss}>
+    <div css={eventHandlerSetterWrapperStyle}>
       <EventHandlerSetterHeader
         labelName={labelName}
         labelDesc={labelDesc}
@@ -64,3 +62,5 @@ export const EventHandlerSetter: FC<EventHandlerSetterProps> = (props) => {
     </div>
   )
 }
+
+EventHandlerSetter.displayName = "EventHandlerSetter"

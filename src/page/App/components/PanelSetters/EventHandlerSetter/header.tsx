@@ -1,8 +1,8 @@
 import { FC, useCallback } from "react"
 import {
-  fontButtonCss,
-  fontButtonWrapperCss,
-  headerWrapperCss,
+  fontButtonStyle,
+  fontButtonWrapperStyle,
+  headerWrapperStyle,
 } from "@/page/App/components/PanelSetters/EventHandlerSetter/style"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { AddIcon } from "@illa-design/icon"
@@ -34,14 +34,16 @@ export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = (
   }, [events, handleAddItemAsync])
 
   return (
-    <div css={headerWrapperCss}>
+    <div css={headerWrapperStyle}>
       <PanelLabel labelName={labelName} labelDesc={labelDesc} />
-      <div css={fontButtonWrapperCss}>
+      <div css={fontButtonWrapperStyle}>
         <AddIcon />
-        <span css={fontButtonCss} onClick={handleClickNewButton}>
+        <span css={fontButtonStyle} onClick={handleClickNewButton}>
           New
         </span>
       </div>
     </div>
   )
 }
+
+EventHandlerSetterHeader.displayName = "EventHandlerSetterHeader"

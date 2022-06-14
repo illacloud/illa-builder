@@ -1,14 +1,14 @@
 import { FC, useCallback, useEffect, useState } from "react"
 import {
-  listItemActionContentCss,
-  listItemCss,
-  listItemFuncContentCss,
-  listItemTitleWrapperCss,
-  moreIconCss,
+  listItemActionContentStyle,
+  listItemStyle,
+  listItemFuncContentStyle,
+  listItemTitleWrapperStyle,
+  moreIconStyle,
 } from "./style"
 import { MoreIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
-import EventHandle from "../Edit"
+import { EventHandle } from "../Edit"
 import useBus from "use-bus"
 import {
   BaseEventItem,
@@ -25,7 +25,7 @@ const formatFuncContent = (event: BaseEventItem) => {
   return `${method}()`
 }
 
-const ListItem: FC<ListItemProps> = (props) => {
+export const ListItem: FC<ListItemProps> = (props) => {
   const {
     index,
     event,
@@ -37,13 +37,13 @@ const ListItem: FC<ListItemProps> = (props) => {
   const [visible, setVisible] = useState<boolean>(false)
   const [actionMenuVisible, setActionMenuVisible] = useState(false)
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setVisible(true)
-  }
+  }, [])
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setVisible(false)
-  }
+  }, [])
 
   const handleCloseActionMenu = useCallback(() => {
     setActionMenuVisible(false)
@@ -97,13 +97,6 @@ const ListItem: FC<ListItemProps> = (props) => {
     }
   }, [])
 
-  useEffect(() => {
-    console.log("22222")
-    return () => {
-      console.log("卸载了")
-    }
-  }, [])
-
   const finalHandleUpdateItem = useCallback(
     (value: Record<string, any>) => {
       let finalValue = { ...event, ...value }
@@ -117,7 +110,7 @@ const ListItem: FC<ListItemProps> = (props) => {
   )
 
   return (
-    <div css={listItemCss}>
+    <div css={listItemStyle}>
       <Trigger
         trigger="click"
         content={
@@ -135,12 +128,14 @@ const ListItem: FC<ListItemProps> = (props) => {
         clickOutsideToClose
         popupVisible={visible}
         onVisibleChange={(visible) => {
-          if (!visible) handleCloseModal()
+          if (!visible) {
+            handleCloseModal()
+          }
         }}
       >
-        <div css={listItemTitleWrapperCss} onClick={handleOpenModal}>
-          <span css={listItemActionContentCss}>{event.event}</span>
-          <span css={listItemFuncContentCss}>{formatFuncContent(event)}</span>
+        <div css={listItemTitleWrapperStyle} onClick={handleOpenModal}>
+          <span css={listItemActionContentStyle}>{event.event}</span>
+          <span css={listItemFuncContentStyle}>{formatFuncContent(event)}</span>
         </div>
       </Trigger>
       <Trigger
@@ -165,7 +160,7 @@ const ListItem: FC<ListItemProps> = (props) => {
         }}
       >
         <div
-          css={moreIconCss}
+          css={moreIconStyle}
           onClick={() => {
             setActionMenuVisible(true)
           }}
@@ -176,5 +171,4 @@ const ListItem: FC<ListItemProps> = (props) => {
     </div>
   )
 }
-
-export default ListItem
+ListItem.displayName = "EventHandlerListItem"

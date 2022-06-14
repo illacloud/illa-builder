@@ -63,7 +63,6 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
     (jsString: string, keyInDataTree: string) => {
       // const res: Array<any> = []
       const realJS = getComputedValue(jsString)
-      console.log("realJS", realJS)
       const res = evaluateDynamicString(keyInDataTree, realJS, {
         ...GLOBAL_DATA,
         dataOptions: realDataSources,
@@ -98,7 +97,6 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
         disabled,
       })
     }
-    console.log(options)
     return options
   }, [getRealValue, labelValue, optionValue, disabledValue])
 

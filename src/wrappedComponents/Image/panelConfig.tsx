@@ -22,7 +22,6 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
       },
     ],
   },
-  ,
   // {
   //   id: "image-Interaction",
   //   groupName: i18n.t("editor.inspect.setter_group.interaction")

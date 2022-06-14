@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const listItemCss = css`
+export const listItemStyle = css`
   width: 100%;
   height: 32px;
   border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
@@ -19,7 +19,7 @@ export const listItemCss = css`
   cursor: pointer;
 `
 
-export const listItemTitleWrapperCss = css`
+export const listItemTitleWrapperStyle = css`
   display: flex;
   align-items: center;
   height: 100%;
@@ -30,13 +30,13 @@ export const listItemTitleWrapperCss = css`
   }
 `
 
-export const listItemActionContentCss = css`
+export const listItemActionContentStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   margin-left: 16px;
   margin-right: 12px;
 `
 
-export const listItemFuncContentCss = css`
+export const listItemFuncContentStyle = css`
   max-width: 200px;
   display: inline-block;
   overflow: hidden;
@@ -44,7 +44,7 @@ export const listItemFuncContentCss = css`
   white-space: nowrap;
 `
 
-export const moreIconCss = css`
+export const moreIconStyle = css`
   width: 32px;
   height: 32px;
   display: flex;

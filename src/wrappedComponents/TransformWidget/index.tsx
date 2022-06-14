@@ -25,13 +25,15 @@ export const TransformWidget: FC<TransformWidgetProps> = (props) => {
 
   useEffect(() => {
     if (ref.current) {
-      const widgetName = componentNode.displayName
-      handleUpdateGlobalData(widgetName, { ...ref.current, type: "widget" })
+      handleUpdateGlobalData(componentNode.displayName, {
+        ...ref.current,
+        type: "widget",
+      })
     }
   }, [])
 
   const getOnChangeEventScripts = () => {
-    if (componentNode.props && componentNode.props.events) {
+    if (componentNode.props?.events) {
       return getEventScripts(componentNode.props.events, "onChange")
     }
     return []
