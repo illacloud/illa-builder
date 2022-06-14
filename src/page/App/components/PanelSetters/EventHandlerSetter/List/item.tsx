@@ -25,6 +25,34 @@ const formatFuncContent = (event: BaseEventItem) => {
   return `${method}()`
 }
 
+const typeMappedMethod: Record<EventType, { type: EventType; method: string }> =
+  {
+    datasource: {
+      type: "datasource",
+      method: "trigger",
+    },
+    script: {
+      type: "script",
+      method: "run",
+    },
+    state: {
+      type: "state",
+      method: "setState",
+    },
+    openUrl: {
+      type: "openUrl",
+      method: "openUrl",
+    },
+    showNotification: {
+      type: "showNotification",
+      method: "showNotification",
+    },
+    widget: {
+      type: "widget",
+      method: "",
+    },
+  }
+
 export const ListItem: FC<ListItemProps> = (props) => {
   const {
     index,
@@ -62,38 +90,10 @@ export const ListItem: FC<ListItemProps> = (props) => {
   const calcTypeRealValue = useCallback<
     (type: EventType) => Partial<BaseEventItem>
   >((type: EventType) => {
-    if (type === "datasource") {
-      return {
-        type: "datasource",
-        method: "trigger",
-      }
-    }
-    if (type === "script") {
-      return {
-        type: "script",
-        method: "run",
-      }
-    }
-    if (type === "state") {
-      return {
-        type: "state",
-        method: "setState",
-      }
-    }
-    if (type === "openUrl") {
-      return {
-        type: "openUrl",
-        method: "openUrl",
-      }
-    }
-    if (type === "showNotification") {
-      return {
-        type: "showNotification",
-        method: "showNotification",
-      }
-    }
+    if (typeMappedMethod[type]) return typeMappedMethod[type]
     return {
       type,
+      method: "",
     }
   }, [])
 
