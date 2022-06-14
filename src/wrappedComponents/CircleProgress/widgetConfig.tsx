@@ -8,8 +8,8 @@ export const CIRCLE_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.circle_progress.name"),
   icon: <CircleProgressIcon />,
   sessionType: "PRESENTATION",
-  w: 100,
-  h: 50,
+  w: 10,
+  h: 10,
   defaults: {
     value: 50,
     strokeWidth: "4px",
