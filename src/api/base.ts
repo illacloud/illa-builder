@@ -17,6 +17,13 @@ const axios = Axios.create({
   },
 })
 
+// axios.interceptors.response.use((res) => {
+//   console.log(res)
+//   // if (res?.data?.errorCode === 401) {
+//   //   window.location.href = "/user/login"
+//   // }
+// })
+
 export class Api {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
@@ -36,6 +43,7 @@ export class Api {
         success?.(response)
       })
       .catch((error: AxiosError<ErrorResp, RequestBody>) => {
+        console.log("error:" + error)
         loading?.(false)
         errorState?.(true)
         if (error.response) {

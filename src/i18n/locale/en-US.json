@@ -76,7 +76,7 @@
       "description": {
         "register": "New user? <0>Create an account</0>",
         "forgot_password": "Forgot Password?",
-        "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>"
+        "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>"
       },
       "placeholder": {
         "email": "Enter your email",

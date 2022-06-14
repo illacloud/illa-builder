@@ -3,10 +3,11 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
-import { Checkbox } from "@illa-design/checkbox"
+import { Message } from "@illa-design/message"
 import { Button } from "@illa-design/button"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { EMAIL_FORMAT } from "@/constants/regExp"
+import { Api } from "@/api/base"
 import {
   formLabelStyle,
   formTitleStyle,
@@ -35,8 +36,17 @@ export const Login: FC = () => {
     mode: "onBlur",
   })
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
-    console.log(data)
+    Api.request(
+      { method: "POST", url: "/auth/signin", data },
+      () => {
+        Message.success("Success!")
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
   }
+
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
       <header css={gridItemStyle}>
@@ -137,20 +147,7 @@ export const Login: FC = () => {
           </div>
         </section>
       </section>
-      <section css={gridItemStyle}>
-        <div>
-          <Checkbox colorScheme="techPurple">
-            <span css={checkboxTextStyle}>
-              <Trans
-                i18nKey="user.sign_in.description.policy"
-                t={t}
-                components={[<TextLink />, <TextLink />]}
-              />
-            </span>
-          </Checkbox>
-        </div>
-      </section>
-      <section>
+      <section css={gridFormFieldStyle}>
         <Button
           colorScheme="techPurple"
           size="large"
@@ -159,6 +156,13 @@ export const Login: FC = () => {
         >
           {t("user.sign_in.actions.login")}
         </Button>
+        <span css={checkboxTextStyle}>
+          <Trans
+            i18nKey="user.sign_in.description.policy"
+            t={t}
+            components={[<TextLink />, <TextLink />]}
+          />
+        </span>
       </section>
     </form>
   )

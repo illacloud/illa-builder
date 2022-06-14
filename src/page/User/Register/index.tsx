@@ -1,12 +1,15 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"
 import { Button } from "@illa-design/button"
 import { Link } from "@illa-design/link"
+import { Message } from "@illa-design/message"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { EMAIL_FORMAT } from "@/constants/regExp"
+import { Api } from "@/api/base"
 import {
   formLabelStyle,
   formTitleStyle,
@@ -23,16 +26,35 @@ import { RegisterFields } from "./interface"
 
 export const Register: FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const [verificationToken, setVerificationToken] = useState("")
   const {
     control,
     handleSubmit,
     trigger,
+    getValues,
     formState: { errors },
   } = useForm<RegisterFields>({
     mode: "onBlur",
+    defaultValues: {
+      isSubscribe: true,
+    },
   })
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
-    console.log(data)
+    Api.request(
+      {
+        method: "POST",
+        url: "/auth/signup",
+        data: {
+          verificationToken,
+          ...data,
+        },
+      },
+      () => {
+        Message.success("Success!")
+        navigate("/user/login")
+      },
+    )
   }
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
@@ -128,7 +150,19 @@ export const Register: FC = () => {
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
-                            // TODO send verify code
+                            Api.request<{ verificationToken: string }>(
+                              {
+                                method: "POST",
+                                url: "/auth/verification",
+                                data: { email: getValues("email") },
+                              },
+                              (res) => {
+                                setVerificationToken(res.data.verificationToken)
+                              },
+                              () => {},
+                              () => {},
+                              () => {},
+                            )
                           }
                         }}
                       >
@@ -191,25 +225,24 @@ export const Register: FC = () => {
       </section>
       <section css={gridItemStyle}>
         <div>
-          <Checkbox colorScheme="techPurple">
-            <span css={checkboxTextStyle}>
-              <Trans
-                i18nKey="user.sign_up.description.policy"
-                t={t}
-                components={[<TextLink />, <TextLink />]}
-              />
-            </span>
-          </Checkbox>
-        </div>
-        <div>
-          <Checkbox colorScheme="techPurple">
-            <span css={checkboxTextStyle}>
-              {t("user.sign_up.description.subscribe")}
-            </span>
-          </Checkbox>
+          <Controller
+            name="isSubscribe"
+            control={control}
+            render={({ field }) => (
+              <Checkbox
+                {...field}
+                checked={field.value}
+                colorScheme="techPurple"
+              >
+                <span css={checkboxTextStyle}>
+                  {t("user.sign_up.description.subscribe")}
+                </span>
+              </Checkbox>
+            )}
+          />
         </div>
       </section>
-      <section>
+      <section css={gridFormFieldStyle}>
         <Button
           colorScheme="techPurple"
           size="large"
@@ -218,6 +251,13 @@ export const Register: FC = () => {
         >
           {t("user.sign_up.actions.create")}
         </Button>
+        <span css={checkboxTextStyle}>
+          <Trans
+            i18nKey="user.sign_up.description.policy"
+            t={t}
+            components={[<TextLink />, <TextLink />]}
+          />
+        </span>
       </section>
     </form>
   )

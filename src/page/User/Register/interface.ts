@@ -3,4 +3,5 @@ export interface RegisterFields {
   email: string
   verify: string
   password: string
+  isSubscribe: boolean
 }
