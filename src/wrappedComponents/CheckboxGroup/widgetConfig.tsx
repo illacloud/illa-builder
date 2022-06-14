@@ -1,16 +1,16 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
 import { v4 } from "uuid"
 
-export const CHECKBOX_GROUP_WIDGET_CONFIG: ComponentModel = {
+export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   type: "CHECKBOX_GROUP_WIDGET",
   widgetName: "checkbox",
-  version: "0.0.1",
+  displayName: "checkboxGroup",
   icon: <SearchIcon />,
-  sessionType: "BASIC",
+  sessionType: "SELECT",
+  w: 10,
+  h: 5,
   defaults: {
-    rows: 50,
-    columns: 500,
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",

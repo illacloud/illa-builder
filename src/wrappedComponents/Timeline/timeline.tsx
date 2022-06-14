@@ -1,6 +1,5 @@
 import { Timeline, TimelineItem } from "@illa-design/timeline"
 import { FC, useMemo } from "react"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { WrappedTimelineProps } from "@/wrappedComponents/Timeline/interface"
 
 export const WrappedTimeline: FC<WrappedTimelineProps> = (props) => {
@@ -30,4 +29,4 @@ export const WrappedTimeline: FC<WrappedTimelineProps> = (props) => {
 
 WrappedTimeline.displayName = "WrappedTimeline"
 
-export const TimelineWidget = withParser(WrappedTimeline)
+export const TimelineWidget = WrappedTimeline

@@ -1,13 +1,15 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
 import { v4 } from "uuid"
 
-export const SEGMENTED_CONTROL_WIDGET_CONFIG: ComponentModel = {
+export const SEGMENTED_CONTROL_WIDGET_CONFIG: WidgetConfig = {
   type: "SEGMENTED_CONTROL_WIDGET",
   widgetName: "segmentedControl",
-  version: "0.0.1",
+  displayName: "segmentControl",
+  w: 10,
+  h: 5,
   icon: <SearchIcon />,
-  sessionType: "BASIC",
+  sessionType: "PRESENTATION",
   defaults: {
     rows: 50,
     columns: 500,

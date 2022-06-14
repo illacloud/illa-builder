@@ -1,12 +1,14 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
 
-export const NUMBER_INPUT_WIDGET_CONFIG: ComponentModel = {
+export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
   type: "NUMBER_INPUT_WIDGET",
   widgetName: "number input",
-  version: "0.0.1",
+  displayName: "numberInput",
   icon: <SearchIcon />,
-  sessionType: "BASIC",
+  sessionType: "INPUTS",
+  w: 10,
+  h: 5,
   defaults: {
     label: "Label",
     labelAlign: "left",

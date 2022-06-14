@@ -2,7 +2,6 @@ import { RadioGroup } from "@illa-design/radio"
 import { FC } from "react"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedSegmentedControlProps } from "./interface"
-import { withParser } from "@/wrappedComponents/parserHOC"
 
 export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
   props,
@@ -51,4 +50,4 @@ export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
 
 WrappedSegmentedControl.displayName = "WrappedSegmentedControl"
 
-export const SegmentedControlWidget = withParser(WrappedSegmentedControl)
+export const SegmentedControlWidget = WrappedSegmentedControl

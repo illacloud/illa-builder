@@ -34,16 +34,6 @@ export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
 
 export type WidgetConfig = Omit<WidgetCardInfo, "id">
 
-export interface BaseDSL
-  extends DraggableWrapperShape,
-    Omit<BaseWidgetInfo, "icon" | "sessionType" | "widgetName"> {
-  id: string
-  childrenNode?: BaseDSL[]
-  props?: {
-    [key: string]: any
-  }
-}
-
 export interface EventsInProps {
   script: string
   eventType: string

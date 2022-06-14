@@ -1,7 +1,6 @@
 import { InputNumber, LoadingIcon } from "@illa-design/react"
 import { FC, useEffect, useMemo, useState } from "react"
 import { WrappedNumberInputProps } from "@/wrappedComponents/NumberInput/interface"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
 const parserThousand = (value: number | string) =>
@@ -84,4 +83,4 @@ export const WrappedInputNumber: FC<WrappedNumberInputProps> = (props) => {
   )
 }
 
-export const NumberInputWidget = withParser(WrappedInputNumber)
+export const NumberInputWidget = WrappedInputNumber

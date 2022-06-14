@@ -1,4 +1,4 @@
-import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 
 const baseWidgetName = "timeline"
 export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [

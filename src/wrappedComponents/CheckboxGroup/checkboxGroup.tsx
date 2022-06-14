@@ -2,7 +2,6 @@ import { CheckboxGroup } from "@illa-design/checkbox"
 import { FC } from "react"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedCheckboxGroupProps } from "./interface"
-import { withParser } from "@/wrappedComponents/parserHOC"
 
 export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   const {
@@ -46,4 +45,4 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
 
 WrappedCheckbox.displayName = "RadioGroupWidget"
 
-export const CheckboxWidget = withParser(WrappedCheckbox)
+export const CheckboxWidget = WrappedCheckbox
