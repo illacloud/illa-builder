@@ -1,4 +1,4 @@
-import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   HorizontalCenter,
   HorizontalEnd,
@@ -6,6 +6,7 @@ import {
   HorizontalStart,
 } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
+import i18n from "@/i18n/config"
 
 const AlignmentOptionStyle = {
   fontSize: "16px",
@@ -16,11 +17,11 @@ const AlignmentOptionStyle = {
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "button-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "button-basic-Text",
-        labelName: "Text",
+        labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "text",
         setterType: "INPUT_SETTER",
       },
@@ -28,11 +29,11 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-interaction",
-    groupName: "INTERACTION",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
         id: "button-interaction-type",
-        labelName: "Type",
+        labelName: i18n.t("editor.inspect.setter_label.type"),
         labelDesc: "xxxxx",
         attrName: "submit",
         setterType: "RADIO_GROUP_SETTER",
@@ -43,7 +44,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "button-interaction-formId",
-        labelName: "Submit Form",
+        labelName: i18n.t("editor.inspect.setter_label.submit_form"),
         labelDesc: "xxxxx",
         attrName: "formId",
         setterType: "INPUT_SETTER",
@@ -52,7 +53,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "button-interaction-loading",
-        labelName: "Loading",
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
         labelDesc: "xxxxx",
         attrName: "loading",
         setterType: "INPUT_SETTER",
@@ -63,7 +64,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "button-interaction-disabled",
-        labelName: "Disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
@@ -74,11 +75,11 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "button-adornments-tooltip",
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
@@ -86,12 +87,12 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "button-layout-alignment",
         setterType: "RADIO_GROUP_SETTER",
-        labelName: "Align",
+        labelName: i18n.t("editor.inspect.setter_label.align"),
         attrName: "alignment",
         options: [
           {
@@ -131,27 +132,35 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-layout-hidden",
         setterType: "INPUT_SETTER",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
       },
     ],
   },
   {
     id: "button-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "button-style-variant",
         setterType: "RADIO_GROUP_SETTER",
-        labelName: "Variant",
+        labelName: i18n.t("editor.inspect.setter_label.variant"),
         attrName: "variant",
         options: [
           {
-            label: <div style={AlignmentOptionStyle}>Solid</div>,
+            label: (
+              <div style={AlignmentOptionStyle}>
+                {i18n.t("editor.inspect.setter_default_value.solid")}
+              </div>
+            ),
             value: "fill",
           },
           {
-            label: <div style={AlignmentOptionStyle}>Outline</div>,
+            label: (
+              <div style={AlignmentOptionStyle}>
+                {i18n.t("editor.inspect.setter_default_value.outline")}
+              </div>
+            ),
             value: "outline",
           },
         ],
@@ -160,13 +169,13 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         id: "button-style-list",
         setterType: "LIST_SETTER",
         isFullWidth: true,
-        labelName: "Color",
+        labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "color",
         useCustomLabel: true,
         childrenSetter: [
           {
             id: "button-style-bg",
-            labelName: "Theme color",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",

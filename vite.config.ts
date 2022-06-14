@@ -6,14 +6,6 @@ import svgr from "vite-plugin-svgr"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://124.70.32.49:8999",
-        changeOrigin: true,
-      },
-    },
-  },
   plugins: [
     react({
       jsxImportSource: "@emotion/react",
@@ -36,7 +28,8 @@ export default defineConfig({
       customSplitting: {
         "react-vendor": ["react", "react-dom"],
         "design-libs": ["@illa-design/react"],
-        "editor-page": [/src\/page\/Editor/],
+        "app-page": [/src\/page\/App/],
+        "dashboard-page": [/src\/page\/Dashboard/],
         "setting-page": [/src\/page\/Setting/],
       },
     }),
@@ -46,5 +39,8 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
       "@assets": resolve(__dirname, "src/assets"),
     },
+  },
+  build: {
+    sourcemap: true,
   },
 })

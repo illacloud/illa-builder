@@ -1,34 +1,33 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import resourceReducer from "@/redux/currentApp/action/resource/resourceSlice"
-import actionListReducer from "@/redux/currentApp/action/actionList/actionListSlice"
-import modeReducer from "@/redux/currentApp/editor/mode/modeSlice"
-import dslReducer from "@/redux/currentApp/editor/dsl/dslSlice"
-import widgetStatesReducer from "@/redux/currentApp/editor/widgetStates/widgetStatesSlice"
+import resourceReducer from "@/redux/currentApp/resource/resourceSlice"
+import actionReducer from "@/redux/currentApp/action/actionSlice"
 import inspectReducer from "@/redux/currentApp/editor/inspect/inspectSlice"
-
 import dashboardResourceReducer from "@/redux/dashboard/resources/dashboardResourceSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
 import liveFamilyReducer from "@/redux/liveFamily/liveFamilySlice"
 import appInfoReducer from "@/redux/currentApp/appInfo/appInfoSlice"
 import builderInfoReducer from "@/redux/builderInfo/builderInfoSlice"
+import configReducer from "@/redux/currentApp/config/configSlice"
+import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
+import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
+import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 
 const editorReducer = combineReducers({
-  mode: modeReducer,
-  dsl: dslReducer,
-  widgetStates: widgetStatesReducer,
   inspect: inspectReducer,
-})
-
-const actionReducer = combineReducers({
-  actionList: actionListReducer,
-  resource: resourceReducer,
+  components: componentsReducer,
+  dragShadow: dragShadowReducer,
+  dottedLineSquare: dottedLineSquareReducer,
 })
 
 const appReducer = combineReducers({
+  // not sync
+  config: configReducer,
+  // sync
   editor: editorReducer,
   action: actionReducer,
+  resource: resourceReducer,
   appInfo: appInfoReducer,
 })
 

@@ -2,7 +2,6 @@ import { Switch } from "@illa-design/switch"
 import { FC, forwardRef, useImperativeHandle } from "react"
 import { SwitchProps } from "./interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 
 export const WrappedSwitch: FC<SwitchProps> = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
@@ -60,4 +59,4 @@ export const WrappedSwitch: FC<SwitchProps> = forwardRef((props, ref) => {
 
 WrappedSwitch.displayName = "SwitchWidget"
 
-export const SwitchWidget = withParser(WrappedSwitch)
+export const SwitchWidget = WrappedSwitch

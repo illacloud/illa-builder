@@ -1,17 +1,18 @@
 import { SearchIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
+import i18n from "@/i18n/config"
 
-export const BUTTON_WIDGET_CONFIG: ComponentModel = {
+export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   type: "BUTTON_WIDGET",
-  widgetName: "button",
-  version: "0.0.1",
+  displayName: "button",
+  widgetName: i18n.t("widget.button.name"),
   icon: <SearchIcon />,
-  sessionType: "BASIC",
+  sessionType: "PRESENTATION",
+  w: 10,
+  h: 5,
   defaults: {
-    rows: 50,
-    columns: 500,
-    text: "Button",
+    text: i18n.t("widget.button.default_text"),
     variant: "fill",
     submit: false,
     width: "200px",

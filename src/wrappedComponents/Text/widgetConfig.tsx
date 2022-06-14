@@ -1,20 +1,19 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
+import i18n from "@/i18n/config"
 
-export const TEXT_WIDGET_CONFIG: ComponentModel = {
+export const TEXT_WIDGET_CONFIG: WidgetConfig = {
+  displayName: "Text",
+  widgetName: i18n.t("widget.text.name"),
+  h: 5,
+  w: 10,
   type: "TEXT_WIDGET",
-  widgetName: "text",
-  version: "0.0.1",
   icon: <SearchIcon />,
-  sessionType: "BASIC",
+  sessionType: "PRESENTATION",
   defaults: {
-    rows: 50,
-    columns: 500,
     value: "This is a text",
     horizontalAlign: "start",
     verticalAlign: "start",
     disableMarkdown: false,
-    width: "200px",
-    height: "20px",
   },
 }

@@ -1,15 +1,16 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
+import i18n from "@/i18n/config"
 
-export const IMAGE_WIDGET_CONFIG: ComponentModel = {
+export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   type: "IMAGE_WIDGET",
-  widgetName: "image",
-  version: "0.0.1",
+  displayName: "Image",
+  widgetName: i18n.t("widget.image.name"),
   icon: <SearchIcon />,
-  sessionType: "BASIC",
+  sessionType: "PRESENTATION",
+  h: 15,
+  w: 10,
   defaults: {
-    rows: 50,
-    columns: 500,
     src: "https://placekitten.com/400/300",
   },
 }

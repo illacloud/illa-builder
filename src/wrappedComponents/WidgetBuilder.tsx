@@ -1,47 +1,56 @@
-import { CONTAINER_WIDGET_CONFIG, ContainerWidget } from "./ContainerWidget"
-import { TEST_WIDGET_CONFIG, TestWidget } from "./TestWidget"
-import { CANVAS_WIDGET_CONFIG, CanvasWidget } from "./CanvasWidget"
-import { TEXT_WIDGET_CONFIG, TextWidget, TEXT_PANEL_CONFIG } from "./Text"
-import { IMAGE_WIDGET_CONFIG, ImageWidget, IMAGE_PANEL_CONFIG } from "./Image"
+import { TEXT_PANEL_CONFIG, TEXT_WIDGET_CONFIG, TextWidget } from "./Text"
+import { IMAGE_PANEL_CONFIG, IMAGE_WIDGET_CONFIG, ImageWidget } from "./Image"
 import {
+  SWITCH_PANEL_CONFIG,
   SWITCH_WIDGET_CONFIG,
   SwitchWidget,
-  SWITCH_PANEL_CONFIG,
 } from "./Switch"
 import {
+  BUTTON_PANEL_CONFIG,
   BUTTON_WIDGET_CONFIG,
   ButtonWidget,
-  BUTTON_PANEL_CONFIG,
 } from "./Button"
 import {
+  SELECT_PANEL_CONFIG,
   SELECT_WIDGET_CONFIG,
   SelectWidget,
-  SELECT_PANEL_CONFIG,
 } from "./Select"
-import { INPUT_WIDGET_CONFIG, InputWidget, INPUT_PANEL_CONFIG } from "./Input"
+import { INPUT_PANEL_CONFIG, INPUT_WIDGET_CONFIG, InputWidget } from "./Input"
 import { WidgetConfigs } from "./interface"
 import {
-  RADIO_GROUP_WIDGET_CONFIG,
   RADIO_GROUP_PANEL_CONFIG,
+  RADIO_GROUP_WIDGET_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
+import {
+  DATE_PANEL_CONFIG,
+  DATE_WIDGET_CONFIG,
+  DateWidget,
+} from "@/wrappedComponents/Date"
+import {
+  DATE_TIME_PANEL_CONFIG,
+  DATE_TIME_WIDGET_CONFIG,
+  DateTimeWidget,
+} from "@/wrappedComponents/DateTime"
+import {
+  DATE_RANGE_PANEL_CONFIG,
+  DATE_RANGE_WIDGET_CONFIG,
+  DateRangeWidget,
+} from "@/wrappedComponents/DateRange"
+import { RateWidget } from "@/wrappedComponents/Rate/rate"
+import { RATE_PANEL_CONFIG, RATE_WIDGET_CONFIG } from "@/wrappedComponents/Rate"
+import {
+  BAR_PROGRESS_PANEL_CONFIG,
+  BAR_PROGRESS_WIDGET_CONFIG,
+  BarProgressWidget,
+} from "@/wrappedComponents/BarProgress"
+import {
+  CIRCLE_PROGRESS_PANEL_CONFIG,
+  CIRCLE_PROGRESS_WIDGET_CONFIG,
+  CircleProgressWidget,
+} from "@/wrappedComponents/CircleProgress"
 
 const WidgetConfig: WidgetConfigs = {
-  CONTAINER_WIDGET: {
-    widget: ContainerWidget,
-    config: CONTAINER_WIDGET_CONFIG,
-    panelConfig: [],
-  },
-  CANVAS_WIDGET: {
-    widget: CanvasWidget,
-    config: CANVAS_WIDGET_CONFIG,
-    panelConfig: [],
-  },
-  TEST_WIDGET: {
-    widget: TestWidget,
-    config: TEST_WIDGET_CONFIG,
-    panelConfig: [],
-  },
   TEXT_WIDGET: {
     widget: TextWidget,
     config: TEXT_WIDGET_CONFIG,
@@ -77,6 +86,36 @@ const WidgetConfig: WidgetConfigs = {
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
   },
+  DATE_WIDGET: {
+    widget: DateWidget,
+    config: DATE_WIDGET_CONFIG,
+    panelConfig: DATE_PANEL_CONFIG,
+  },
+  DATE_RANGE_WIDGET: {
+    widget: DateRangeWidget,
+    config: DATE_RANGE_WIDGET_CONFIG,
+    panelConfig: DATE_RANGE_PANEL_CONFIG,
+  },
+  DATE_TIME_WIDGET: {
+    widget: DateTimeWidget,
+    config: DATE_TIME_WIDGET_CONFIG,
+    panelConfig: DATE_TIME_PANEL_CONFIG,
+  },
+  RATE_WIDGET: {
+    widget: RateWidget,
+    config: RATE_WIDGET_CONFIG,
+    panelConfig: RATE_PANEL_CONFIG,
+  },
+  BAR_PROGRESS_WIDGET: {
+    widget: BarProgressWidget,
+    config: BAR_PROGRESS_WIDGET_CONFIG,
+    panelConfig: BAR_PROGRESS_PANEL_CONFIG,
+  },
+  CIRCLE_PROGRESS_WIDGET: {
+    widget: CircleProgressWidget,
+    config: CIRCLE_PROGRESS_WIDGET_CONFIG,
+    panelConfig: CIRCLE_PROGRESS_PANEL_CONFIG,
+  },
 }
 
 export type WidgetType = keyof typeof WidgetConfig
@@ -84,6 +123,5 @@ export type WidgetType = keyof typeof WidgetConfig
 export const WidgetTypeList = Object.keys(WidgetConfig)
 
 export const widgetBuilder = (type: WidgetType) => {
-  const start = performance.now()
   return WidgetConfig[type]
 }
