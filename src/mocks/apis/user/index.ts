@@ -5,8 +5,8 @@ import { SIGN_UP_RESULT, SIGN_IN_RESULT } from "./data"
 export default [
   rest.post(`${baseUrl}/auth/signin`, (_, res, ctx) => {
     return res(
-      ctx.cookie("refresh_token", "eyJ2", { httpOnly: true, maxAge: -1 }),
-      ctx.cookie("access_token", "eyJ1", { httpOnly: true, maxAge: -1 }),
+      ctx.cookie("refresh_token", "eyJ2", { httpOnly: true, maxAge: 200 }),
+      ctx.cookie("access_token", "eyJ1", { httpOnly: true, maxAge: 200 }),
       ctx.status(200),
       ctx.json(SIGN_IN_RESULT),
     )
