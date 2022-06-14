@@ -17,10 +17,18 @@ export const updateWidgetPanelConfig: CaseReducer<
   }
 }
 
-export const addWidgetPanelConfig: CaseReducer<
+export const addOrUpdateWidgetPanelConfig: CaseReducer<
   InspectState,
   PayloadAction<addInspectPayload>
 > = (state, action) => {
   const { displayName, defaultProps } = action.payload
-  state[displayName] = defaultProps
+  if (!defaultProps.widgetType || !defaultProps.widgetDisplayName) return
+  if (!state[displayName]) {
+    state[displayName] = defaultProps
+    return
+  }
+  state[displayName] = {
+    ...state[displayName],
+    ...defaultProps,
+  }
 }
