@@ -1,20 +1,13 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  MysqlIcon,
-  PostgresIcon,
-  RestApiIcon,
-  RedisIcon,
-} from "@/page/App/components/ActionEditor/assets/icons"
-import {
-  ResourceFormSelectorProps,
-  DatabaseItemProps,
-  ApiItemProps,
-} from "./interface"
+import { databases, apis } from "@/page/App/components/ActionEditor/Resource"
+import { ResourceFormSelectorProps } from "./interface"
 import {
   categoryStyle,
-  resourceListStyle,
-  resourceItemStyle,
+  categoryTitleStyle,
+  applyResourceListStyle,
+  applyResourceItemStyle,
+  resourceIconStyle,
   resourceNameStyle,
   selectLayoutStyle,
 } from "./style"
@@ -22,66 +15,47 @@ import {
 export const ResourceFormSelector: FC<ResourceFormSelectorProps> = (props) => {
   const { onSelect } = props
   const { t } = useTranslation()
-
-  const databaseList: DatabaseItemProps[] = [
-    {
-      title: t("editor.action.resource.postgres.name"),
-      img: <PostgresIcon />,
-      draft: true,
-      type: "Postgres",
-    },
-    {
-      title: t("editor.action.resource.mySql.name"),
-      img: <MysqlIcon />,
-      type: "MySQL",
-    },
-    {
-      title: t("editor.action.resource.redis.name"),
-      img: <RedisIcon />,
-      draft: true,
-      type: "Redis",
-    },
-  ]
-  const apiList: ApiItemProps[] = [
-    {
-      title: t("editor.action.resource.rest_api.name"),
-      img: <RestApiIcon />,
-      type: "REST API",
-    },
-  ]
+  const draftTip = t("editor.action.resource.label.comming_soon")
 
   return (
     <div css={selectLayoutStyle}>
+      <div css={categoryTitleStyle}>Select Resource Type</div>
       <div>
         <div css={categoryStyle}>{t("editor.action.form.title.database")}</div>
-        <div css={resourceListStyle()}>
-          {databaseList.map((database) => (
+        <div css={applyResourceListStyle()}>
+          {databases.map((database) => (
             <div
-              key={database.title}
-              css={resourceItemStyle}
+              key={database.nameKey}
+              css={applyResourceItemStyle(database.isDraft)}
               onClick={() => {
-                !database.draft && onSelect(database.type)
+                !database.isDraft && onSelect(database.actionType)
               }}
+              data-draft-tip={draftTip}
             >
-              <div>{database.img}</div>
-              <div css={resourceNameStyle}>{database.title}</div>
+              <span css={resourceIconStyle}>{database.icon}</span>
+              <div css={resourceNameStyle}>
+                {t(`editor.action.resource.${database.nameKey}.name`)}
+              </div>
             </div>
           ))}
         </div>
       </div>
       <div>
         <div css={categoryStyle}>{t("editor.action.form.title.api")}</div>
-        <div css={resourceListStyle(true)}>
-          {apiList.map((api) => (
+        <div css={applyResourceListStyle(true)}>
+          {apis.map((api) => (
             <div
-              key={api.title}
-              css={resourceItemStyle}
+              key={api.nameKey}
+              css={applyResourceItemStyle(api.isDraft)}
               onClick={() => {
-                !api.draft && onSelect(api.type)
+                !api.isDraft && onSelect(api.actionType)
               }}
+              data-draft-tip={draftTip}
             >
-              <div>{api.img}</div>
-              <div css={resourceNameStyle}>{api.title}</div>
+              <span css={resourceIconStyle}>{api.icon}</span>
+              <div css={resourceNameStyle}>
+                {t(`editor.action.resource.${api.nameKey}.name`)}
+              </div>
             </div>
           ))}
         </div>

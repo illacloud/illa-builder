@@ -10,6 +10,10 @@ export const actionListContainerStyle = css`
   position: relative;
 `
 
+export const newBtnContainerStyle = css`
+  margin: 0 16px 8px 16px;
+`
+
 export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
   const activeStyle = css`
     background-color: ${globalColor(`--${illaPrefix}-techPurple-05`)}!important;
@@ -46,10 +50,6 @@ export const newButtonTextStyle = css`
   align-items: center;
 `
 
-export const newButtonIconStyle = css`
-  margin-right: 8px;
-`
-
 export const actionItemListStyle = css`
   list-style: none;
   margin: 0;
@@ -59,9 +59,14 @@ export const actionItemListStyle = css`
 `
 
 export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
-  const backgroundcolorStyle = css`
+  const backgroundColorStyle = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
+
+  const selectedBackgroundColorStyle = css`
+    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+  `
+
   return css`
     display: flex;
     align-items: center;
@@ -71,15 +76,16 @@ export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
     user-select: none;
 
     &:hover {
-      ${backgroundcolorStyle}
+      ${backgroundColorStyle}
     }
 
-    ${isSelected && backgroundcolorStyle}
+    ${isSelected && selectedBackgroundColorStyle}
   `
 }
 
 export const actionItemIconStyle = css`
   position: relative;
+  display: flex;
   color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 

@@ -8,6 +8,7 @@ import {
   VerticalEnd,
 } from "@/wrappedComponents/svg"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
+import i18n from "@/i18n/config"
 
 const AlignmentOptionStyle = {
   display: "flex",
@@ -17,11 +18,11 @@ const AlignmentOptionStyle = {
 export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "text-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "text-basic-inputModal",
-        labelName: "Value",
+        labelName: i18n.t("editor.inspect.setter_label.value"),
         attrName: "disableMarkdown",
         setterType: "RADIO_GROUP_SETTER",
         defaultValue: false,
@@ -41,11 +42,11 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "text-adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "text-adornments-startAdornment",
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         labelDesc: "xxxxx",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
@@ -54,11 +55,11 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "text-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "text-layout-col",
-        labelName: "Horizontal alignment",
+        labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
         attrName: "horizontalAlign",
         labelDesc: "xxxxxxx",
         isFullWidth: true,
@@ -93,7 +94,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "text-layout-row",
-        labelName: "Vertical alignment",
+        labelName: i18n.t("editor.inspect.setter_label.vertical_alignment"),
         setterType: "RADIO_GROUP_SETTER",
         isFullWidth: true,
         labelDesc: "xxxxxxx",
@@ -128,7 +129,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "text-layout-hidden",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
       },
@@ -136,19 +137,19 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "text-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "text-style-list",
         setterType: "LIST_SETTER",
         isFullWidth: true,
-        labelName: "Color",
+        labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "color",
         useCustomLabel: true,
         childrenSetter: [
           {
             id: "text-style-color",
-            labelName: "Text",
+            labelName: i18n.t("editor.inspect.setter_label.text"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "textColor",
             defaultValue: "gray",
@@ -156,7 +157,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "text-style-link-color",
-            labelName: "Links",
+            labelName: i18n.t("editor.inspect.setter_label.links_color"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "linkColor",
             defaultValue: "blue",

@@ -5,7 +5,6 @@ import { Input } from "@illa-design/input"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
 import { inputContainerCss } from "./style"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
 export const WrappedInput: FC<WrappedInputProps> = (props) => {
@@ -60,6 +59,6 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
     </div>
   )
 }
-export const InputWidget = withParser(WrappedInput)
+export const InputWidget = WrappedInput
 
 WrappedInput.displayName = "WrappedInput"

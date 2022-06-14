@@ -3,11 +3,11 @@ import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
-import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/FieldArray"
+import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { useSelector } from "react-redux"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import {
   configContainerStyle,
   descriptionStyle,
@@ -29,7 +29,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { activeActionItemId, resourceId } = useContext(ActionEditorContext)
   const action =
     useSelector(selectAllActionItem).find(
-      ({ id }) => id === activeActionItemId,
+      ({ actionId: id }) => id === activeActionItemId,
     ) ?? null
   const resource =
     useSelector(selectAllResource).find(

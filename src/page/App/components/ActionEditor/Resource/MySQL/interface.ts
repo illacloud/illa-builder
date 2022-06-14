@@ -9,19 +9,12 @@ import { ConnectionRef } from "@/page/App/components/ActionEditor/ResourceForm/E
 export interface MySQLConfigureProps {
   resourceId?: string
   connectionRef: RefObject<ConnectionRef>
+  onSubmit?: (data: any) => void
+  onTestConnection?: (data: any) => void
 }
 
-export type MySQLConfigureValues = BaseOptions & AdvancedOptions
-
-export type TestConnectionBaseValues = Omit<BaseOptions, "name">
-
-export interface TestConnectionValues {
-  kind: "mysql"
-  options: TestConnectionBaseValues & { advancedOptions: AdvancedOptions }
-}
-
-export interface BaseOptions {
-  name: string
+export interface MySQLConfigureValues {
+  resourceName: string
   host: string
   port: number
   databaseName: string
@@ -29,6 +22,7 @@ export interface BaseOptions {
   databasePassword: string
   ssl: boolean
   ssh: boolean
+  advancedOptions: AdvancedOptions
 }
 
 export interface AdvancedOptions {
@@ -44,7 +38,10 @@ export interface AdvancedOptions {
 }
 
 export interface InputUploadProps {
-  name: keyof MySQLConfigureValues
+  name: `advancedOptions.${keyof Pick<
+    AdvancedOptions,
+    "sshPrivateKey" | "serverCert" | "clientKey" | "clientCert"
+  >}`
   register: UseFormRegister<MySQLConfigureValues>
   reset: UseFormResetField<MySQLConfigureValues>
   setValue: UseFormSetValue<MySQLConfigureValues>

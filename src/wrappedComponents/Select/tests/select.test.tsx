@@ -14,16 +14,14 @@ test("Text renders correctly", () => {
   const handleChange = jest.fn()
   render(
     <WrappedSelect
-      required={true}
-      defaultValue={"Beijing"}
+      required
+      defaultValue="Beijing"
       label="select"
-      placeholder={"test-WrappedSelect"}
+      placeholder="test-WrappedSelect"
       labelPosition="left"
-      readOnly={true}
       options={options}
       handleUpdateDsl={handleChange}
     />,
   )
   expect(screen.getByText("Beijing")).toBeInTheDocument()
-  expect(screen.getByPlaceholderText("test-WrappedSelect")).toBeDisabled()
 })

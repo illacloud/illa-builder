@@ -16,7 +16,7 @@ export const IllaApp: FC = () => {
   useEffect(() => {
     Api.request<DashboardApp[]>(
       {
-        url: "/dashboard/apps",
+        url: "/api/v1/apps",
         method: "GET",
       },
       (response) => {
@@ -29,7 +29,7 @@ export const IllaApp: FC = () => {
     )
     Api.request<DashboardResource[]>(
       {
-        url: "/dashboard/resources",
+        url: "/api/v1/resources",
         method: "GET",
       },
       (response) => {

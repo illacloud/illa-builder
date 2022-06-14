@@ -1,5 +1,6 @@
 export interface RESTAPIConfigureProps {
   resourceId?: string
+  onSubmit?: (data: any) => void
 }
 
 export type Params = {
@@ -8,7 +9,7 @@ export type Params = {
 }
 
 export interface RESTAPIConfigureValues {
-  name: string
+  resourceName: string
   baseURL?: string
   urlParams?: Params[]
   headers?: Params[]

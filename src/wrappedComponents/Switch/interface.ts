@@ -1,12 +1,11 @@
 import LabelProps from "@/wrappedComponents/Label/interface"
-import { SwitchColorScheme } from "@illa-design/switch"
+import { SwitchProps } from "@illa-design/switch"
 
-export interface SwitchProps extends LabelProps {
-  value: boolean
-  defaultValue: boolean
-  disabled: boolean
-  required: boolean
-  checkedBackgroundColor: SwitchColorScheme
-  tooltipText: string
-  handleUpdateDsl: (value: Record<string, boolean>) => void
+export interface WrappedSwitchProps
+  extends Pick<SwitchProps, "checked" | "disabled" | "colorScheme">,
+    LabelProps {
+  required?: boolean
+  tooltipText?: string
+  handleOnChange: () => void
+  handleUpdateDsl: (value: Record<string, boolean | undefined>) => void
 }

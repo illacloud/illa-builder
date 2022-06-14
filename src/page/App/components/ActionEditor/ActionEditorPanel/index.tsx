@@ -1,44 +1,66 @@
-import { FC, useMemo, useState, useRef, useContext } from "react"
-import { css } from "@emotion/react"
-import { v4 as uuidV4 } from "uuid"
+import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
+import { AnimatePresence } from "framer-motion"
 import { Button } from "@illa-design/button"
-import { Select, Option } from "@illa-design/select"
-import { Divider } from "@illa-design/divider"
-import { CaretRightIcon, MoreIcon, PenIcon } from "@illa-design/icon"
+import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionList/actionListSelector"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
-import { actionListActions } from "@/redux/currentApp/action/actionList/actionListSlice"
-import { applyIllaColor } from "@/page/App/components/ActionEditor/style"
+import { useSelector } from "react-redux"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
-import { generateName } from "@/page/App/components/ActionEditor/utils"
+import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
+import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
+import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
 import { ActionEditorPanelProps, triggerRunRef } from "./interface"
 import {
   containerStyle,
   headerStyle,
-  actionStyle,
   fillingStyle,
-  actionSelectStyle,
-  triggerSelectStyle,
-  resourceSelectStyle,
-  applyEditIconStyle,
   moreBtnStyle,
-  sectionTitleStyle,
-  resourceBarStyle,
-  panelScrollStyle,
   moreBtnMenuStyle,
   duplicateActionStyle,
   deleteActionStyle,
-  resourceOptionStyle,
-  resourceBarTitleStyle,
 } from "./style"
-import { TitleInput } from "./TitleInput"
-import { ResourcePanel } from "./ResourcePanel"
+import { ActionEditorPanelContext } from "./context"
+import { ActionResult } from "./ActionResult"
 
 const { Item: MenuItem } = Menu
+
+function renderEditor(
+  actionType: string,
+  ref: Ref<triggerRunRef>,
+  onSaveParam: () => void,
+  onRun: (result: any) => void,
+  props: Partial<ActionEditorPanelProps>,
+) {
+  const { onEditResource, onChangeResource, onCreateResource, onChange } = props
+
+  switch (actionType) {
+    case "restapi":
+    case "mysql":
+      return (
+        <ResourceEditor
+          ref={ref}
+          onChangeParam={onChange}
+          onSaveParam={onSaveParam}
+          onRun={onRun}
+          onCreateResource={onCreateResource}
+          onEditResource={onEditResource}
+          onChangeResource={onChangeResource}
+        />
+      )
+    case "transformer":
+      return (
+        <TransformerEditor
+          ref={ref}
+          onChangeParam={onChange}
+          onSaveParam={onSaveParam}
+        />
+      )
+    default:
+      return null
+  }
+}
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
@@ -48,82 +70,41 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
+    onUpdateActionItem,
     onChange,
     onSave,
   } = props
 
   const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const { resourceId } = useContext(ActionEditorContext)
+
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
+  const [actionResVisible, setActionResVisible] = useState(false)
+  const [isRuning, setIsRuning] = useState(false)
+  const [result, setResult] = useState<string>()
+  const [duration, setDuaraion] = useState<string>()
+
+  const runningIntervalRef = useRef<NodeJS.Timer>()
   const triggerRunRef = useRef<triggerRunRef>(null)
   const actionItems = useSelector(selectAllActionItem)
-  const resourceList = useSelector(selectAllResource)
   const activeActionItem = useMemo(() => {
     if (!activeActionItemId) {
       return null
     }
 
-    return actionItems.find((action) => action.id === activeActionItemId)
+    return actionItems.find((action) => action.actionId === activeActionItemId)
   }, [actionItems, activeActionItemId])
-  const actionItemsNameSet = useMemo(() => {
-    return new Set(actionItems.map((i) => i.name))
-  }, [actionItems])
 
-  const isResourceEditable = resourceId && resourceId.indexOf("preset") === -1
-
-  const triggerOptions = [
-    {
-      label: t("editor.action.panel.option.trigger.manually"),
-      value: 0,
-    },
-    {
-      label: t("editor.action.panel.option.trigger.on_change"),
-      value: 1,
-    },
-  ]
-
-  function createResource() {
-    onCreateResource && onCreateResource()
-  }
-
-  function editResource() {
-    isResourceEditable && onEditResource && onEditResource(resourceId)
-  }
+  const actionType = activeActionItem?.actionType ?? ""
 
   function handleAction(key: string) {
     setMoreBtnMenuVisible(false)
 
     if (key === "duplicate") {
-      duplicateActionItem()
+      onDuplicateActionItem()
     } else if (key === "delete") {
-      deleteActionItem()
+      onDeleteActionItem()
     }
-  }
-
-  function duplicateActionItem() {
-    if (activeActionItem) {
-      const { type } = activeActionItem
-      const id = uuidV4()
-
-      dispatch(
-        actionListActions.addActionItemReducer({
-          id,
-          type,
-          name: generateName(type, actionItems, actionItemsNameSet),
-        }),
-      )
-
-      onDuplicateActionItem(id)
-    }
-  }
-
-  function deleteActionItem() {
-    activeActionItem &&
-      dispatch(actionListActions.removeActionItemReducer(activeActionItemId))
-
-    onDeleteActionItem(activeActionItemId)
   }
 
   const moreActions = (
@@ -141,10 +122,40 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     </Menu>
   )
 
+  function onSaveParam() {
+    onSave?.()
+  }
+
+  function onRun(result: any) {
+    setActionResVisible(true)
+    setResult(JSON.stringify(result.data, null, "····"))
+  }
+
+  function onLoadingActionResult(loading: boolean) {
+    setIsRuning(loading)
+
+    if (loading) {
+      clearInterval(runningIntervalRef.current)
+      const start = Date.now()
+      runningIntervalRef.current = setInterval(() => {
+        const duration = ((Date.now() - start) / 1000).toFixed(1)
+        setDuaraion(`${duration}s`)
+      }, 50)
+    } else {
+      clearInterval(runningIntervalRef.current)
+      setDuaraion("")
+    }
+  }
+
   return (
     <div css={containerStyle}>
       <header css={headerStyle}>
-        <TitleInput activeActionItem={activeActionItem} />
+        <TitleInput
+          activeActionItem={activeActionItem}
+          onChange={(name) =>
+            onUpdateActionItem(activeActionItemId, { displayName: name })
+          }
+        />
         <span css={fillingStyle} />
         <Dropdown
           dropList={moreActions}
@@ -171,85 +182,47 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           buttonRadius="8px"
           size="medium"
           colorScheme="techPurple"
-          backgroundColor={applyIllaColor("techPurple", "07")}
-          textColor={applyIllaColor("techPurple", "01")}
+          variant="light"
           leftIcon={<CaretRightIcon />}
+          loading={isRuning}
+          disabled={isRuning}
           onClick={() => {
+            setActionResVisible(false)
             isActionDirty
               ? triggerRunRef.current?.saveAndRun()
               : triggerRunRef.current?.run()
           }}
         >
-          {isActionDirty
+          {isRuning
+            ? duration
+            : isActionDirty
             ? t("editor.action.panel.btn.save_and_run")
             : t("editor.action.panel.btn.run")}
         </Button>
       </header>
-      <div css={panelScrollStyle}>
-        {activeActionItem && (
-          <>
-            <div css={css(actionStyle, resourceBarStyle)}>
-              <label css={css(sectionTitleStyle, resourceBarTitleStyle)}>
-                {t("editor.action.panel.label.resource")}
-              </label>
-              <span css={fillingStyle} />
-              <Select
-                options={triggerOptions}
-                defaultValue={0}
-                css={css(actionSelectStyle, triggerSelectStyle)}
-              />
 
-              <Select
-                css={css(actionSelectStyle, resourceSelectStyle)}
-                value={resourceId}
-                onChange={onChangeResource}
-                triggerProps={{
-                  autoAlignPopupWidth: false,
+      {activeActionItem && (
+        <>
+          <ActionEditorPanelContext.Provider value={{ onLoadingActionResult }}>
+            {renderEditor(actionType, triggerRunRef, onSaveParam, onRun, {
+              onChange,
+              onCreateResource,
+              onEditResource,
+              onChangeResource,
+            })}
+          </ActionEditorPanelContext.Provider>
+          <AnimatePresence>
+            {actionResVisible && (
+              <ActionResult
+                result={result}
+                onClose={() => {
+                  setActionResVisible(false)
                 }}
-              >
-                <Option onClick={createResource} isSelectOption={false}>
-                  <span
-                    css={resourceOptionStyle}
-                    title={t("editor.action.panel.option.resource.new")}
-                  >
-                    {t("editor.action.panel.option.resource.new")}
-                  </span>
-                </Option>
-                <Divider />
-                <Option value={"preset_REST API"}>
-                  <span
-                    css={resourceOptionStyle}
-                    title={t("editor.action.panel.option.resource.rest_query")}
-                  >
-                    {t("editor.action.panel.option.resource.rest_query")}
-                  </span>
-                </Option>
-                {resourceList &&
-                  resourceList.map(({ resourceId: id, resourceName: name }) => (
-                    <Option value={id} key={id}>
-                      <span css={resourceOptionStyle} title={name}>
-                        {name}
-                      </span>
-                    </Option>
-                  ))}
-              </Select>
-              <div
-                css={applyEditIconStyle(!isResourceEditable)}
-                onClick={editResource}
-              >
-                <PenIcon />
-              </div>
-            </div>
-            <Divider />
-            <ResourcePanel
-              ref={triggerRunRef}
-              resourceId={resourceId}
-              onChange={onChange}
-              onSave={onSave}
-            />
-          </>
-        )}
-      </div>
+              />
+            )}
+          </AnimatePresence>
+        </>
+      )}
     </div>
   )
 }

@@ -1,22 +1,17 @@
-import {
-  ApiType,
-  DatabaseType,
-} from "@/page/App/components/ActionEditor/interface"
-
 export interface ApiItemProps {
   title: string
   img: JSX.Element
   draft?: boolean
-  type: ApiType
+  type: string
 }
 
 export interface DatabaseItemProps {
   title: string
   img: JSX.Element
   draft?: boolean
-  type: DatabaseType
+  type: string
 }
 
 export interface ResourceFormSelectorProps {
-  onSelect: (type: ApiType | DatabaseType) => void
+  onSelect: (type: string) => void
 }

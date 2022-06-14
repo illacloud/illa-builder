@@ -9,7 +9,7 @@ export enum ACTION_TYPE {
 }
 
 export interface HeaderProps {
-  meta: any // TODO: wait meta interface
+  // meta: any // TODO: wait meta interface
 }
 
 export interface PanelHeaderActionProps {
@@ -44,23 +44,16 @@ export interface PanelFieldConfig extends PanelLabelProps {
   // events?:event[] // TODO:
 }
 
-type GroupName =
-  | "BASIC"
-  | "OPTIONS"
-  | "INTERACTION"
-  | "LABEL"
-  | "ADORNMENTS"
-  | "VALIDATION"
-  | "LAYOUT"
-  | "STYLE"
-  | "OTHER"
-
 export interface PanelFieldGroupConfig {
   id: string
-  groupName: GroupName
+  groupName: string
   children: PanelFieldConfig[]
 }
 
 export type PanelConfig = PanelFieldConfig | PanelFieldGroupConfig
 
 export interface PanelSetterProps extends Omit<PanelFieldConfig, "id"> {}
+
+export interface SelectedPanelProps {
+  selectedDisplayNames: string[]
+}

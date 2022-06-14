@@ -5,11 +5,9 @@ import { Input } from "@illa-design/input"
 import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
 import { Select, Option } from "@illa-design/select"
-import { useDispatch, useSelector } from "react-redux"
-import { selectAllResource } from "@/redux/currentApp/action/resource/resourceSelector"
-import { resourceActions } from "@/redux/currentApp/action/resource/resourceSlice"
+import { useSelector } from "react-redux"
+import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
 import { useTranslation } from "react-i18next"
-import { v4 as uuidV4 } from "uuid"
 import {
   formStyle,
   gridContainerStyle,
@@ -33,12 +31,15 @@ import { BasicAuth, OAuth2 } from "./Authentication"
 
 const EmptyField: Params = { key: "", value: "" }
 
+const getOptions = (data: RESTAPIConfigureValues) => {
+  return data
+}
+
 export const RESTAPIConfigure = forwardRef<
   HTMLFormElement,
   RESTAPIConfigureProps
 >((props, ref) => {
-  const { resourceId } = props
-  const dispatch = useDispatch()
+  const { resourceId, onSubmit } = props
   const { t } = useTranslation()
   const resourceConfig = useSelector(selectAllResource).find(
     (i) => i.resourceId === resourceId,
@@ -58,23 +59,19 @@ export const RESTAPIConfigure = forwardRef<
       authentication: "none",
       oauth2UseClientCredentialsAuth: false,
       oauth2ShareUserCredentials: false,
-      ...(resourceConfig?.config as RESTAPIConfigureValues),
+      resourceName: resourceConfig?.resourceName,
+      ...resourceConfig?.options,
     },
   })
 
   const [authType, setAuthType] = useState("none")
 
-  const onSubmit: SubmitHandler<RESTAPIConfigureValues> = (data) => {
-    dispatch(
-      resourceActions.addResourceItemReducer({
-        resourceId: uuidV4(),
-        resourceName: data.name,
-        resourceType: "REST API",
-        dbName: "",
-        created: Date.now().toString(),
-        config: data,
-      }),
-    )
+  const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
+    onSubmit?.({
+      resourceName: data.resourceName,
+      resourceType: "restapi",
+      options: getOptions(data),
+    })
   }
 
   const renderAuthConfig = () => {
@@ -92,7 +89,7 @@ export const RESTAPIConfigure = forwardRef<
   return (
     <form
       ref={ref}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(submitForm)}
       css={css(formStyle, gridContainerStyle)}
     >
       <div css={gridRowContainerStyle}>
@@ -106,7 +103,7 @@ export const RESTAPIConfigure = forwardRef<
               placeholder={t(
                 "editor.action.resource.rest_api.placeholder.name",
               )}
-              error={!!errors.name}
+              error={!!errors.resourceName}
               maxLength={200}
             />
           )}
@@ -114,11 +111,11 @@ export const RESTAPIConfigure = forwardRef<
             required: t("editor.action.form.required"),
           }}
           control={control}
-          name="name"
+          name="resourceName"
         />
-        {errors.name && (
+        {errors.resourceName && (
           <div css={css(errorMessageStyle, applyGridColIndex(2))}>
-            {errors.name.message}
+            {errors.resourceName.message}
           </div>
         )}
         <dd css={css(applyGridColIndex(2), descriptionStyle)}>

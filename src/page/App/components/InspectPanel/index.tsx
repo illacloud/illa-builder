@@ -1,31 +1,22 @@
-import { FC, useContext, useMemo } from "react"
-import { PanelHeader } from "./header"
-import { Divider } from "@illa-design/divider"
-import { fieldFactory } from "./utils/fieldFactory"
-import { panelBuilder } from "@/wrappedComponents/PanelBuilder"
-import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { FC, useMemo } from "react"
+import { useSelector } from "react-redux"
+import { SelectedPanel } from "./selectedPanel"
+import { Empty } from "./empty"
+import { getSelectedComponentsDisplayName } from "@/redux/currentApp/config/configSelector"
 
 export const InspectPanel: FC = () => {
-  const { panelConfig } = useContext(SelectedPanelContext)
+  const selectedComponentsDisplayNames = useSelector(
+    getSelectedComponentsDisplayName,
+  )
 
-  const builderPanelConfig = useMemo(() => {
-    const componentType = panelConfig.type
-    return panelBuilder(componentType)
-  }, [panelConfig])
+  const isNotSelected = useMemo(() => {
+    return selectedComponentsDisplayNames.length === 0
+  }, [selectedComponentsDisplayNames])
 
-  return builderPanelConfig ? (
-    <div style={{ width: "100%" }}>
-      <Divider />
-      <PanelHeader
-        meta={{ componentId: "testId", componentType: "testType" }}
-      />
-      <Divider />
-      <div style={{ maxHeight: "calc(100vh - 150px )", overflowY: "scroll" }}>
-        {fieldFactory(builderPanelConfig, panelConfig.id)}
-      </div>
-    </div>
+  return isNotSelected ? (
+    <Empty />
   ) : (
-    <div>No components selected. Click on a component to select it.</div>
+    <SelectedPanel selectedDisplayNames={selectedComponentsDisplayNames} />
   )
 }
 

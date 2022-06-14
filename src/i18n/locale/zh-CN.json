@@ -6,9 +6,11 @@
   "description": {
     "part1": "这是一个示例。"
   },
-  "apps": "应用",
+  "apps": "项目",
+  "allApps": "所有项目",
   "resources": "资源",
   "create_new": "创建",
+  "create_new_app": "创建项目",
   "share": "分享",
   "rename": "重命名",
   "duplicate": "复制",
@@ -22,6 +24,11 @@
   },
   "editor": {
     "action": {
+      "type": {
+        "database": "Databases",
+        "api": "Apis",
+        "js_transformer": "Javascript Transformer"
+      },
       "action_list": {
         "title": "Action List",
         "placeholder": {
@@ -45,6 +52,11 @@
         },
         "message": {
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
+        },
+        "action_generator": {
+          "selector": {
+            "title": "Select action type"
+          }
         }
       },
       "panel": {
@@ -77,6 +89,9 @@
           "success": "成功",
           "failure": "失败",
           "event_handler": "Event Handler"
+        },
+        "tips": {
+          "transformer": "Enable transformers to transform the result of the query to a different format."
         }
       },
       "form": {
@@ -84,19 +99,35 @@
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
-          "api": "APIS"
+          "api": "APIS",
+          "configure": "配置 {{name}}"
         },
         "btn": {
           "back": "后退",
           "test_connection": "测试连接",
-          "create_resource": "创建资源"
+          "create_resource": "创建资源",
+          "save_changes": "保存修改"
         },
         "validate": {
           "required": "{name} is required!"
         }
       },
       "resource": {
-        "mySql": {
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+          },
+          "tip": {
+            "external_reference": "您可以创建对已定义变量的外部引用。 例如，{{ transformer2.value }}"
+          }
+        },
+        "js_transformer": {
+          "name": "Transformer"
+        },
+        "label": {
+          "comming_soon": "Comming Soon"
+        },
+        "my_sql": {
           "name": "MySQL",
           "label": {
             "name": "名称",
@@ -195,8 +226,216 @@
         },
         "redis": {
           "name": "Redis"
+        },
+        "mongo_db": {
+          "name": "MongoDB"
+        }
+      },
+      "result": {
+        "title": {
+          "success": "Query ran successfully",
+          "error": "Query ran fail"
         }
       }
+    },
+    "widget_picker": {
+      "tab_title": "Insert",
+      "search_placeholder": "search",
+      "sessions": {
+        "commonly": "Commonly components",
+        "inputs": "Inputs",
+        "selects": "Select inputs",
+        "calendar": "Calendar inputs",
+        "presentation": "Presentation",
+        "data": "Data",
+        "container": "Container and form",
+        "navigation": "Navigation"
+      }
+    },
+    "inspect": {
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it.",
+      "setter_group": {
+        "basic": "BASIC",
+        "label": "LABEL",
+        "adornments": "ADORNMENTS",
+        "interaction": "INTERACTION",
+        "layout": "LAYOUT",
+        "style": "STYLE",
+        "validation": "VALIDATION",
+        "options": "OPTIONS"
+      },
+      "setter_label": {
+        "text": "Text",
+        "type": "Type",
+        "submit_form": "Submit form",
+        "loading": "Loading",
+        "disabled": "Disabled",
+        "tooltip": "Tooltip",
+        "align": "Align",
+        "hidden": "Hidden",
+        "variant": "Variant",
+        "color": "Color",
+        "theme_color": "Theme color",
+        "default_value": "Default value",
+        "format": "Format",
+        "placeholder": "Placeholder",
+        "max_date": "Max date",
+        "min_date": "Min date",
+        "label": "Label",
+        "caption": "Caption",
+        "label_position": "Position",
+        "label_alignment": "Alignment",
+        "label_width": "Width(%)",
+        "read_only": "Read only",
+        "show_clear_button": "Show clear button",
+        "required_field": "Required field",
+        "custom_rule": "Custom rule",
+        "hide_validation_message": "Hide validation message",
+        "start_placeholder": "Start placeholder",
+        "end_placeholder": "End placeholder",
+        "image_source": "Image source",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "img_height": "Height",
+        "img_width": "Width",
+        "radius": "Radius",
+        "show_character_count": "Show character count",
+        "prefix_text": "Prefix text",
+        "suffix_text": "Suffix text",
+        "pattern": "Pattern",
+        "regex": "Regex",
+        "max_length": "Max length",
+        "min_length": "Min Length",
+        "data_sources": "Data sources",
+        "mapped_option": "Mapped Option",
+        "value": "Value",
+        "horizontal_alignment": "Horizontal alignment",
+        "vertical_alignment": "Vertical alignment",
+        "links_color": "Links",
+        "background_color": "Background",
+        "icon": "Icon",
+        "max_count": "Max count",
+        "allow_half": "Allow half",
+        "allow_clear": "Allow clear",
+        "time_format": "Time format",
+        "step_size": "Step size",
+        "hide_value_label": "Hide value label",
+        "styles": "Styles",
+        "trail_color": "Trail color",
+        "stroke_width": "Stroke width",
+        "decimal_place": "Decimal place",
+        "minimum": "Minimum",
+        "maximum": "Maximum",
+        "thousand_separator": "Thousand separator",
+        "items": "Items",
+        "direction": "Direction",
+        "pending": "Pending",
+        "event_handler": "Event handler",
+        "event": "Event",
+        "action": "Action",
+        "trigger_query": "Trigger query",
+        "control_component": "Control component",
+        "run_script": "Run script",
+        "go_to_url": "Go to URL",
+        "show_notification": "Show notification",
+        "set_temporary_state": "Set temporary state"
+      },
+      "setter_default_value": {
+        "solid": "Solid",
+        "outline": "Outline"
+      }
+    }
+  },
+  "widget": {
+    "text": {
+      "name": "Text",
+      "default_value": "This is a text"
+    },
+    "button": {
+      "name": "Button",
+      "default_text": "Button"
+    },
+    "date": {
+      "name": "Date"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "image": {
+      "name": "Image"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "radio_group": {
+      "name": "Radio group"
+    },
+    "select": {
+      "name": "Select"
+    },
+    "switch": {
+      "name": "Switch"
+    },
+    "rate": {
+      "name": "Rate"
+    },
+    "date_time": {
+      "name": "Datetime"
+    },
+    "circle_progress": {
+      "name": "Circle Progress"
+    },
+    "bar_progress": {
+      "name": "Bar Progress"
+    }
+  },
+  "Setting": "设置",
+  "Logout": "退出登录",
+  "link_copied": "链接已复制",
+  "dashboard": {
+    "app": {
+      "duplicate_fail": "复制失败",
+      "rename_fail": "重命名失败",
+      "duplicate_placeholder": "请输入项目名称",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败"
+    },
+    "resources": {
+      "table_name": "资源名",
+      "table_type": "数据库类型",
+      "table_dbname": "数据库名",
+      "table_ctime": "创建时间",
+      "trash_confirm_title": "确认",
+      "trash_confirm_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败"
+    }
+  },
+  "setting": {
+    "account": {
+      "title": "账号",
+      "username": "用户名",
+      "empty_username": "用户名不能为空",
+      "error_username": "用户名须为3～15个字符",
+      "save": "保存",
+      "save_fail": "保存失败"
+    },
+    "password": {
+      "title": "密码",
+      "current_password": "旧密码",
+      "new_password": "新密码",
+      "confirm_password": "确认新密码",
+      "empty_password": "密码不能为空",
+      "error_format_password": "密码须为3～20个字符",
+      "error_match_password": "密码不匹配",
+      "submit_button": "提交"
+    },
+    "other": {
+      "title": "设置",
+      "language": "语言",
+      "save": "保存"
     }
   }
 }

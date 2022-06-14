@@ -1,28 +1,41 @@
 import { FC, ReactNode } from "react"
-import { SessionType } from "./ComponentListBuilder"
+import { NewSessionType } from "./ComponentListBuilder"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-
-export interface SizeProps {
-  w?: number | string
-  h?: number | string
-}
+import { WidgetType } from "@/wrappedComponents/WidgetBuilder"
 
 export interface WidgetConfigs {
   [key: string]: {
     widget: FC<any>
-    config: ComponentModel
+    config: WidgetConfig
     panelConfig: PanelConfig[]
   }
 }
 
-export type ComponentModel = {
-  id?: string
+export interface DraggableWrapperShape {
+  w: number
+  h: number
+}
+
+export interface BaseWidgetInfo {
+  displayName: string
   widgetName: string
-  icon?: string | ReactNode // url
-  type?: string // 组件类型
-  version: string
-  sessionType?: SessionType
+  icon: ReactNode
+  type: WidgetType
+  sessionType?: NewSessionType
+}
+
+export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
+  id: string
+  childrenNode?: WidgetCardInfo[]
   defaults?: {
     [key: string]: any
   }
+}
+
+export type WidgetConfig = Omit<WidgetCardInfo, "id">
+
+export interface EventsInProps {
+  script: string
+  eventType: string
+  enabled?: string
 }

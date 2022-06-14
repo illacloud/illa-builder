@@ -1,30 +1,30 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
 
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "image-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "image-basic-source",
-        labelName: "Image Source",
-        attrName: "src",
+        attrName: "fallbackSrc",
+        labelName: i18n.t("editor.inspect.setter_label.image_source"),
         setterType: "INPUT_SETTER",
         defaultValue: "https://placekitten.com/400/300",
       },
       {
         id: "image-basic-alt-text",
-        labelName: "Alt Text",
-        labelDesc:
-          "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
-        attrName: "altText",
+        labelName: i18n.t("editor.inspect.setter_label.alt_text"),
+        labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
+        attrName: "alt",
         setterType: "INPUT_SETTER",
       },
     ],
   },
   // {
   //   id: "image-Interaction",
-  //   groupName: "Interaction",
+  //   groupName: i18n.t("editor.inspect.setter_group.interaction")
   //   children: [
   //     {
   //       id: "image-interaction-event",
@@ -37,11 +37,11 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   // },
   {
     id: "image-adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "image-adornments-tooltip",
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
@@ -49,23 +49,23 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "image-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "image-layout-height",
-        labelName: "Height",
+        labelName: i18n.t("editor.inspect.setter_label.img_height"),
         attrName: "height",
         setterType: "INPUT_SETTER",
       },
       {
         id: "image-layout-width",
-        labelName: "Width",
+        labelName: i18n.t("editor.inspect.setter_label.img_width"),
         attrName: "width",
         setterType: "INPUT_SETTER",
       },
       {
         id: "image-layout-hidden",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
         setterType: "INPUT_SETTER",
       },
@@ -73,11 +73,11 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "image-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "image-style-radius",
-        labelName: "Radius",
+        labelName: i18n.t("editor.inspect.setter_label.radius"),
         attrName: "radius",
         setterType: "INPUT_SETTER",
       },

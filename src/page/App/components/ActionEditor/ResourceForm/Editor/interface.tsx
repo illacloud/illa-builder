@@ -1,5 +1,4 @@
 import { ActionType } from "../interface"
-import { ResourceType } from "@/page/App/components/ActionEditor/interface"
 
 export type ConnectionRef = {
   testConnection: () => void
@@ -8,7 +7,7 @@ export type ConnectionRef = {
 export interface ResourceFormEditorProps {
   actionType: ActionType
   resourceId?: string
-  resourceType?: ResourceType
+  resourceType?: string
   back?: () => void
-  onSubmit?: () => void
+  onSubmit?: (resourceId: string) => void
 }

@@ -22,6 +22,53 @@ import {
   RADIO_GROUP_WIDGET_CONFIG,
   RadioGroupWidget,
 } from "./RadioGroup"
+import {
+  DATE_PANEL_CONFIG,
+  DATE_WIDGET_CONFIG,
+  DateWidget,
+} from "@/wrappedComponents/Date"
+import {
+  DATE_TIME_PANEL_CONFIG,
+  DATE_TIME_WIDGET_CONFIG,
+  DateTimeWidget,
+} from "@/wrappedComponents/DateTime"
+import {
+  DATE_RANGE_PANEL_CONFIG,
+  DATE_RANGE_WIDGET_CONFIG,
+  DateRangeWidget,
+} from "@/wrappedComponents/DateRange"
+import { RateWidget } from "@/wrappedComponents/Rate/rate"
+import { RATE_PANEL_CONFIG, RATE_WIDGET_CONFIG } from "@/wrappedComponents/Rate"
+import {
+  BAR_PROGRESS_PANEL_CONFIG,
+  BAR_PROGRESS_WIDGET_CONFIG,
+  BarProgressWidget,
+} from "@/wrappedComponents/BarProgress"
+import {
+  CIRCLE_PROGRESS_PANEL_CONFIG,
+  CIRCLE_PROGRESS_WIDGET_CONFIG,
+  CircleProgressWidget,
+} from "@/wrappedComponents/CircleProgress"
+import {
+  TIMELINE_PANEL_CONFIG,
+  TIMELINE_WIDGET_CONFIG,
+  TimelineWidget,
+} from "@/wrappedComponents/Timeline"
+import {
+  NUMBER_INPUT_PANEL_CONFIG,
+  NUMBER_INPUT_WIDGET_CONFIG,
+  NumberInputWidget,
+} from "@/wrappedComponents/NumberInput"
+import {
+  CHECKBOX_GROUP_PANEL_CONFIG,
+  CHECKBOX_GROUP_WIDGET_CONFIG,
+  CheckboxWidget,
+} from "@/wrappedComponents/CheckboxGroup"
+import {
+  SEGMENTED_CONTROL_PANEL_CONFIG,
+  SEGMENTED_CONTROL_WIDGET_CONFIG,
+  SegmentedControlWidget,
+} from "@/wrappedComponents/SegmentedControl"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -59,6 +106,56 @@ const WidgetConfig: WidgetConfigs = {
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
   },
+  DATE_WIDGET: {
+    widget: DateWidget,
+    config: DATE_WIDGET_CONFIG,
+    panelConfig: DATE_PANEL_CONFIG,
+  },
+  DATE_RANGE_WIDGET: {
+    widget: DateRangeWidget,
+    config: DATE_RANGE_WIDGET_CONFIG,
+    panelConfig: DATE_RANGE_PANEL_CONFIG,
+  },
+  DATE_TIME_WIDGET: {
+    widget: DateTimeWidget,
+    config: DATE_TIME_WIDGET_CONFIG,
+    panelConfig: DATE_TIME_PANEL_CONFIG,
+  },
+  RATE_WIDGET: {
+    widget: RateWidget,
+    config: RATE_WIDGET_CONFIG,
+    panelConfig: RATE_PANEL_CONFIG,
+  },
+  BAR_PROGRESS_WIDGET: {
+    widget: BarProgressWidget,
+    config: BAR_PROGRESS_WIDGET_CONFIG,
+    panelConfig: BAR_PROGRESS_PANEL_CONFIG,
+  },
+  CIRCLE_PROGRESS_WIDGET: {
+    widget: CircleProgressWidget,
+    config: CIRCLE_PROGRESS_WIDGET_CONFIG,
+    panelConfig: CIRCLE_PROGRESS_PANEL_CONFIG,
+  },
+  TIMELINE_WIDGET: {
+    widget: TimelineWidget,
+    config: TIMELINE_WIDGET_CONFIG,
+    panelConfig: TIMELINE_PANEL_CONFIG,
+  },
+  NUMBER_INPUT_WIDGET: {
+    widget: NumberInputWidget,
+    config: NUMBER_INPUT_WIDGET_CONFIG,
+    panelConfig: NUMBER_INPUT_PANEL_CONFIG,
+  },
+  CHECKBOX_GROUP_WIDGET: {
+    widget: CheckboxWidget,
+    config: CHECKBOX_GROUP_WIDGET_CONFIG,
+    panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
+  },
+  SEGMENTED_CONTROL_WIDGET: {
+    widget: SegmentedControlWidget,
+    config: SEGMENTED_CONTROL_WIDGET_CONFIG,
+    panelConfig: SEGMENTED_CONTROL_PANEL_CONFIG,
+  },
 }
 
 export type WidgetType = keyof typeof WidgetConfig
@@ -66,6 +163,5 @@ export type WidgetType = keyof typeof WidgetConfig
 export const WidgetTypeList = Object.keys(WidgetConfig)
 
 export const widgetBuilder = (type: WidgetType) => {
-  const start = performance.now()
   return WidgetConfig[type]
 }

@@ -1,21 +1,29 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { ActionEditor } from "./components/ActionEditor"
 import {
-  editorContainerStyle,
-  navbarStyle,
-  middlePanelStyle,
+  applyBottomPanelStyle,
+  applyLeftPanelStyle,
+  applyRightPanelStyle,
   centerPanelStyle,
   contentStyle,
-  applyLeftPanelStyle,
-  applyBottomPanelStyle,
-  applyRightPanelStyle,
+  editorContainerStyle,
+  middlePanelStyle,
+  navbarStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection, Room } from "@/api/ws/ws"
+import { useSelector } from "react-redux"
+import {
+  isOpenBottomPanel,
+  isOpenLeftPanel,
+  isOpenRightPanel,
+} from "@/redux/currentApp/config/configSelector"
+import { CanvasPanel } from "@/page/App/components/CanvasPanel"
+import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -26,20 +34,7 @@ interface PanelConfigProps {
 export type PanelState = keyof PanelConfigProps
 
 export const Editor: FC = () => {
-  const [config, setConfig] = useState({
-    showLeftPanel: true,
-    showRightPanel: true,
-    showBottomPanel: true,
-  })
   const [room, setRoom] = useState<Room>()
-  const { showLeftPanel, showBottomPanel, showRightPanel } = config
-
-  const switchPanelState = (state: PanelState) => {
-    const newConfig = config
-    newConfig[state] = !newConfig[state]
-    setConfig({ ...newConfig })
-  }
-
   useEffect(() => {
     Connection.enterRoom(
       "app",
@@ -56,19 +51,25 @@ export const Editor: FC = () => {
     }
   }, [])
 
+  const showLeftPanel = useSelector(isOpenLeftPanel)
+  const showRightPanel = useSelector(isOpenRightPanel)
+  const showBottomPanel = useSelector(isOpenBottomPanel)
+
   return (
     <DndProvider backend={HTML5Backend}>
-      <div css={editorContainerStyle}>
-        <PageNavBar css={navbarStyle} switchPanelState={switchPanelState} />
-        <div css={contentStyle}>
-          <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
-          <div css={middlePanelStyle}>
-            <div css={centerPanelStyle} />
-            <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+      <GlobalDataProvider>
+        <div css={editorContainerStyle}>
+          <PageNavBar css={navbarStyle} />
+          <div css={contentStyle}>
+            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+            <div css={middlePanelStyle}>
+              <CanvasPanel css={centerPanelStyle} />
+              <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+            </div>
+            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
           </div>
-          <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
         </div>
-      </div>
+      </GlobalDataProvider>
     </DndProvider>
   )
 }
