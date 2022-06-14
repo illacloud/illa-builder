@@ -5,7 +5,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export type PointerPosition = "tl" | "tr" | "bl" | "br"
 export type BarPosition = "l" | "r" | "t" | "b"
 
-function getStateColor(scaleSquareType: ScaleSquareType): string {
+export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
   switch (scaleSquareType) {
     case "error":
@@ -28,14 +28,8 @@ export function applyOuterStyle(h: number, w: number): SerializedStyles {
   `
 }
 
-export const applyInnerStyle = css`
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
-  height: 100%;
-`
-
 export function applySquarePointerStyle(
+  selected: boolean,
   scaleSquareType: ScaleSquareType,
   pointerPosition: PointerPosition,
 ): SerializedStyles {
@@ -75,19 +69,22 @@ export function applySquarePointerStyle(
   return css`
     ${positionStyle};
     box-sizing: border-box;
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
-    border: 1px solid ${stateColor};
+    border: 1px solid ${selected ? stateColor : "transparent"};
     height: 4px;
     width: 4px;
     position: absolute;
+    background: ${selected
+      ? globalColor(`--${illaPrefix}-white-01`)
+      : "transparent"};
 
     &:hover {
-      background: ${stateColor};
+      background: ${selected ? stateColor : "transparent"};
     }
   `
 }
 
 export function applyBarPointerStyle(
+  selected: boolean,
   scaleSquareType: ScaleSquareType,
   barPosition: BarPosition,
 ): SerializedStyles {
@@ -142,24 +139,37 @@ export function applyBarPointerStyle(
     box-sizing: border-box;
     position: absolute;
     border-radius: 2px;
-    border: 1px solid ${stateColor};
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
+    border: 1px solid ${selected ? stateColor : "transparent"};
+    background: ${selected
+      ? globalColor(`--${illaPrefix}-white-01`)
+      : "transparent"};
 
     &:hover {
-      background: ${stateColor};
+      background: ${selected ? stateColor : "transparent"};
     }
   `
 }
 
-export function applyTransformWidgetStyle(
-  scaleSquareType: ScaleSquareType,
-): SerializedStyles {
-  let stateColor = getStateColor(scaleSquareType)
+export function applyTransformWidgetStyle(): SerializedStyles {
   return css`
-    box-sizing: border-box;
-    border: 1px solid ${stateColor};
     width: 100%;
     height: 100%;
     padding: 3px;
+  `
+}
+
+export function applyBorderStyle(
+  selected: boolean,
+  scaleSquareState: ScaleSquareType,
+): SerializedStyles {
+  return css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    stroke: ${selected ? getStateColor(scaleSquareState) : "transparent"};
+    stroke-width: 0.5px;
+    &:hover {
+      stroke: ${getStateColor(scaleSquareState)};
+    }
   `
 }
