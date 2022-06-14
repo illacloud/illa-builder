@@ -9,7 +9,7 @@ export enum ACTION_TYPE {
 }
 
 export interface HeaderProps {
-  meta: any // TODO: wait meta interface
+  // meta: any // TODO: wait meta interface
 }
 
 export interface PanelHeaderActionProps {
@@ -53,3 +53,7 @@ export interface PanelFieldGroupConfig {
 export type PanelConfig = PanelFieldConfig | PanelFieldGroupConfig
 
 export interface PanelSetterProps extends Omit<PanelFieldConfig, "id"> {}
+
+export interface SelectedPanelProps {
+  selectedDisplayNames: string[]
+}

@@ -1,4 +1,5 @@
 import { RootState } from "@/store"
+import { createSelector } from "@reduxjs/toolkit"
 
 export const isOpenLeftPanel = (state: RootState) => {
   return state.currentApp.config.openLeftPanel
@@ -27,3 +28,10 @@ export const getScale = (state: RootState) => {
 export const getSelectedComponents = (state: RootState) => {
   return state.currentApp.config.selectedComponents
 }
+
+export const getSelectedComponentsDisplayName = createSelector(
+  [getSelectedComponents],
+  (selectedComponents) => {
+    return selectedComponents.map((component) => component.displayName)
+  },
+)

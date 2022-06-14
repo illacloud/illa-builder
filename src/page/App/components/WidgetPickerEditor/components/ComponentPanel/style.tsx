@@ -8,7 +8,8 @@ export const componentContainerCss = css`
 `
 
 export const sessionListContainerCss = css`
-  height: 100%;
+  max-height: calc(100vh - 150px);
+  overflow-y: scroll;
   width: 100%;
   display: inline-flex;
   flex-direction: column;

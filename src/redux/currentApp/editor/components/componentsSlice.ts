@@ -4,6 +4,7 @@ import {
   addComponentReducer,
   addOrUpdateComponentReducer,
   removeComponentReducer,
+  updateComponentPropsReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
 
 const componentsSlice = createSlice({
@@ -13,6 +14,7 @@ const componentsSlice = createSlice({
     addComponentReducer,
     removeComponentReducer,
     addOrUpdateComponentReducer,
+    updateComponentPropsReducer,
   },
 })
 

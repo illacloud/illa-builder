@@ -41,6 +41,7 @@ import { DottedLineSquare } from "@/page/App/components/DottedLineSquare"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { getDottedLineSquareMap } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSelector"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
+import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
 
 export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
@@ -161,6 +162,21 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
         // remove drag
         dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
+        dispatch(
+            inspectActions.addWidgetPanelConfig({
+              displayName: item.displayName,
+              defaultProps: item.props
+                  ? {
+                    widgetType: item.type || "",
+                    widgetDisplayName: item.displayName,
+                    ...item.props,
+                  }
+                  : {
+                    widgetType: item.type || "",
+                    widgetDisplayName: item.displayName,
+                  },
+            }),
+        )
         return {} as DropResultInfo
       },
       hover: (item, monitor) => {
