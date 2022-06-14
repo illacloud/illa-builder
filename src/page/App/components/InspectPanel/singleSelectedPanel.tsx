@@ -26,3 +26,5 @@ export const SingleSelectedPanel: FC = () => {
     )
   )
 }
+
+SingleSelectedPanel.displayName = "SingleSelectedPanel"

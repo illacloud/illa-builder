@@ -1,5 +1,6 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
+import i18n from "@/i18n/config"
 
 const OptionsStyle = {
   display: "flex",
@@ -11,7 +12,7 @@ const baseWidgetName = "checkboxGroup"
 export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-options`,
-    groupName: "OPTIONS",
+    groupName: i18n.t("editor.inspect.setter_group.options"),
     children: [
       {
         id: `${baseWidgetName}-options-mode`,
@@ -40,7 +41,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-options-data-sources`,
-        labelName: "data sources",
+        labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         isFullWidth: true,
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
@@ -50,7 +51,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-options-mapped`,
-        labelName: "Mapped option",
+        labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
         useCustomLabel: true,
         isFullWidth: true,
         attrName: "mappedOption",
@@ -60,7 +61,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-options-default-value`,
-        labelName: "Default value",
+        labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
       },
@@ -68,23 +69,23 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-label`,
-    groupName: "LABEL",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: `${baseWidgetName}-label-label`,
-        labelName: "Label",
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${baseWidgetName}-label-caption`,
-        labelName: "Caption",
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${baseWidgetName}-label-position`,
-        labelName: "Position",
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -94,7 +95,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-alignment`,
-        labelName: "Alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -118,7 +119,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-label-label-width`,
-        labelName: "Width(%)",
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
       },
@@ -126,18 +127,20 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-validation`,
-    groupName: "VALIDATION",
+    groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
         id: `${baseWidgetName}-validation-required`,
-        labelName: "Required field",
+        labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "required",
       },
       {
         id: `${baseWidgetName}-validation-hide-message`,
-        labelName: "Hide validation message",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.hide_validation_message",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "hideValidationMessage",
@@ -150,7 +153,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-interaction-disabled`,
-        labelName: "Disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "false",
@@ -160,11 +163,11 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-adornments`,
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: `${baseWidgetName}-adornments-tooltip`,
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
@@ -172,18 +175,18 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-layout`,
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: `${baseWidgetName}-layout-hidden`,
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
       },
       {
         id: `${baseWidgetName}-layout-direction`,
-        labelName: "Alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
         options: ["vertical", "horizontal"],

@@ -11,7 +11,7 @@ const OptionsStyle = {
 export const INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "input-options",
-    groupName: i18n.t("editor.inspect.setter_group.options"),
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "input-basic-defaultValue",

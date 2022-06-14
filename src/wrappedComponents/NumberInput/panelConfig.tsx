@@ -1,5 +1,6 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
+import i18n from "@/i18n/config"
 
 const OptionsStyle = {
   display: "flex",
@@ -12,17 +13,17 @@ const widgetBaseName = "number-input"
 export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${widgetBaseName}-BASIC`,
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: `${widgetBaseName}-basic-default-value`,
-        labelName: "Default Value",
+        labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-basic-placeholder`,
-        labelName: "Placeholder",
+        labelName: i18n.t("editor.inspect.setter_label.placeholder"),
         attrName: "placeholder",
         setterType: "INPUT_SETTER",
       },
