@@ -2,7 +2,6 @@ import { FC } from "react"
 import { ScaleSquareProps } from "@/page/App/components/ScaleSquare/interface"
 import {
   applyBarPointerStyle,
-  applyInnerStyle,
   applyOuterStyle,
   applySquarePointerStyle,
   applyTransformWidgetStyle,
@@ -38,3 +37,5 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     </div>
   )
 }
+
+ScaleSquare.displayName = "ScaleSquare"

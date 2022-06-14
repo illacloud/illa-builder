@@ -37,6 +37,7 @@ export function applyLeftPanelStyle(display: boolean): SerializedStyles {
 
 export const centerPanelStyle = css`
   flex-grow: 1;
+  background: #fafafb;
   width: 100%;
 `
 

@@ -15,7 +15,6 @@ import {
 import useWindowSize from "react-use/lib/useWindowSize"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getScale,
   getUnitSize,
   isOpenBottomPanel,
   isOpenLeftPanel,
