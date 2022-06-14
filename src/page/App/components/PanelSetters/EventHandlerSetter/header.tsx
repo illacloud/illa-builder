@@ -17,8 +17,8 @@ export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = (
 
   const handleClickNewButton = useCallback(() => {
     const length = events.length
-    const event = "onChange" // 从配置项获取。
-    const targetId = "" // 从 redux 中读取
+    const event = ""
+    const targetId = ""
     handleAddItemAsync({
       id: `events-${v4()}`,
       event,
