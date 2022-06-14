@@ -22,8 +22,6 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Trigger } from "@illa-design/trigger"
 import { Divider } from "@illa-design/divider"
 
-// import { BrowserRouter, Navigate, Route, Routes, Router } from "react-router-dom"
-
 const SettingTrigger: FC = () => {
   const { t } = useTranslation()
   let navigate = useNavigate()

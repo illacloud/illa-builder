@@ -364,9 +364,6 @@
       "name": "Datetime"
     }
   },
-  "ACCOUNT": "ACCOUNT",
-  "PASSWORD": "PASSWORD",
-  "SETTING": "SETTING",
   "Setting": "Setting",
   "Logout": "Logout",
   "link_copied": "Link Copied!",
@@ -379,6 +376,10 @@
       "trash_failure": "Delete failure"
     },
     "resources": {
+      "table_name": "Resource Name",
+      "table_type": "Database Type",
+      "table_dbname": "Database Name",
+      "table_ctime": "Created",
       "trash_confirm_title": "Are you sure?",
       "trash_confirm_content": "This will break Apps and Query Library queries that use this resource",
       "trash_success": "Delete successfully",
@@ -387,6 +388,7 @@
   },
   "setting": {
     "account": {
+      "title": "ACCOUNT",
       "username": "Username",
       "empty_username": "Please enter your username",
       "error_username": "Username must be 3～15 characters",
@@ -394,6 +396,7 @@
       "save_fail": "Save fail"
     },
     "password": {
+      "title": "PASSWORD",
       "current_password": "Old password",
       "new_password": "New password",
       "confirm_password": "Confirm password",
@@ -403,6 +406,7 @@
       "submit_button": "Submit"
     },
     "other": {
+      "title": "SETTING",
       "language": "Language",
       "save": "Save Changes"
     }

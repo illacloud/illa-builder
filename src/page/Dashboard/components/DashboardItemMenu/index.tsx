@@ -93,7 +93,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                 onChange={(res) => {
                   confirmVal = res
                 }}
-                placeholder={`${t("dashboard.app,duplicate_placeholder")}`}
+                placeholder={`${t("dashboard.app.duplicate_placeholder")}`}
               />
             ),
             title: `${t("duplicate")} '${appName}'`,

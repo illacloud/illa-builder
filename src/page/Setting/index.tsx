@@ -25,15 +25,15 @@ export const Setting: FC = () => {
   }[] = [
     {
       key: "account",
-      title: t("ACCOUNT"),
+      title: t("setting.account.title"),
     },
     {
       key: "password",
-      title: t("PASSWORD"),
+      title: t("setting.password.title"),
     },
     {
       key: "others",
-      title: t("SETTING"),
+      title: t("setting.other.title"),
     },
   ]
 
@@ -47,13 +47,13 @@ export const Setting: FC = () => {
           }}
         />
         <span css={navBarTabStyle} onClick={() => navigate("/dashboard/apps")}>
-          Apps
+          {t("apps")}
         </span>
         <span
           css={navBarTabStyle}
           onClick={() => navigate("/dashboard/resources")}
         >
-          Resources
+          {t("resources")}
         </span>
       </div>
       <Tabs

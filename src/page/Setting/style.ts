@@ -16,6 +16,7 @@ export const navBarTabStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   margin-right: 32px;
+  cursor: pointer;
 `
 
 export const tabPrefixStyle = css`

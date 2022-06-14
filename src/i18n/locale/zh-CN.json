@@ -364,9 +364,6 @@
       "name": "Datetime"
     }
   },
-  "ACCOUNT": "账号",
-  "PASSWORD": "密码",
-  "SETTING": "设置",
   "Setting": "设置",
   "Logout": "退出登录",
   "link_copied": "链接已复制",
@@ -379,6 +376,10 @@
       "trash_failure": "删除失败"
     },
     "resources": {
+      "table_name": "资源名",
+      "table_type": "数据库类型",
+      "table_dbname": "数据库名",
+      "table_ctime": "创建时间",
       "trash_confirm_title": "确认",
       "trash_confirm_content": "删除将中断使用此资源的应用程序和查询库查询",
       "trash_success": "删除成功",
@@ -387,6 +388,7 @@
   },
   "setting": {
     "account": {
+      "title": "账号",
       "username": "用户名",
       "empty_username": "用户名不能为空",
       "error_username": "用户名须为3～15个字符",
@@ -394,6 +396,7 @@
       "save_fail": "保存失败"
     },
     "password": {
+      "title": "密码",
       "current_password": "旧密码",
       "new_password": "新密码",
       "confirm_password": "确认新密码",
@@ -403,6 +406,7 @@
       "submit_button": "提交"
     },
     "other": {
+      "title": "设置",
       "language": "语言",
       "save": "保存"
     }

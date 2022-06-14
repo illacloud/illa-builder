@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, ReactNode, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
@@ -25,7 +25,7 @@ import {
 } from "./style"
 
 function NameColComponent(type: string, text: string) {
-  let icon
+  let icon: ReactNode = null
   if (type) {
     icon = <RestApiIcon css={nameIconStyle} />
   }
@@ -82,20 +82,20 @@ export const DashboardResources: FC = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "Name",
+        Header: t("dashboard.resources.table_name"),
         accessor: "nameCol",
         width: 500,
       },
       {
-        Header: "Type",
+        Header: t("dashboard.resources.table_type"),
         accessor: "typeCol",
       },
       {
-        Header: "Database name",
+        Header: t("dashboard.resources.table_dbname"),
         accessor: "dbNameCol",
       },
       {
-        Header: "Created",
+        Header: t("dashboard.resources.table_ctime"),
         accessor: "ctimeCol",
       },
       {

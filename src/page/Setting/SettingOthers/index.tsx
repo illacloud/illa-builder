@@ -1,12 +1,19 @@
 import { FC, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import i18n from "@/i18n/config"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
+import { builderInfoActions } from "@/redux/builderInfo/builderInfoSlice"
 import { SettingCommonForm } from "../Components/SettingCommonForm"
 
 export const SettingOthers: FC = () => {
   const { t } = useTranslation()
 
-  const [languageValue, setLanguageValue] = useState<string>("English")
+  const dispatch = useDispatch()
+
+  const [languageValue, setLanguageValue] = useState<string>(
+    useSelector(getBuilderInfo).language,
+  )
 
   const paramData = [
     {
@@ -33,12 +40,12 @@ export const SettingOthers: FC = () => {
   ]
 
   const handleSubmit = () => {
-    console.log("account other", languageValue)
     if (languageValue === "English") {
       i18n.changeLanguage("en-US")
     } else if (languageValue === "简体中文") {
       i18n.changeLanguage("zh-CN")
     }
+    dispatch(builderInfoActions.updateLanguageReducer(languageValue))
   }
 
   return <SettingCommonForm paramData={paramData} onSubmit={handleSubmit} />

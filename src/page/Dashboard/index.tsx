@@ -33,7 +33,6 @@ export const IllaApp: FC = () => {
         method: "GET",
       },
       (response) => {
-        console.log("response", response)
         dispatch(
           dashboardResourceActions.updateResourceListReducer(response.data),
         )
