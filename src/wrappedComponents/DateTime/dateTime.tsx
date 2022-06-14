@@ -2,7 +2,6 @@ import { FC, useCallback, useState } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
 import { inputContainerCss } from "./style"
@@ -97,4 +96,4 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
 
 WrappedDateTime.displayName = "WrappedDate"
 
-export const DateTimeWidget = withParser(WrappedDateTime)
+export const DateTimeWidget = WrappedDateTime

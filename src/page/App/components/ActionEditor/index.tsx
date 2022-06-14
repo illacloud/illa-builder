@@ -66,7 +66,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       () => {
         // TODO: handle error
       },
-      () => { },
+      () => {},
       () => {
         // TODO: handle loading
       },

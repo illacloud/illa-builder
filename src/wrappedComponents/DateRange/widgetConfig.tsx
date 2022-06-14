@@ -8,8 +8,8 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.date_range.name"),
   icon: <DateRangeIcon />,
   sessionType: "CALENDAR",
-  w: 500,
-  h: 500,
+  w: 10,
+  h: 10,
   defaults: {
     dateFormat: "YYYY-MM-DD",
     minDate: "2022-05-01",

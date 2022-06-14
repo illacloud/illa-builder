@@ -9,8 +9,8 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.select.name"),
   icon: <SearchIcon />,
   sessionType: "SELECT",
-  w: 100,
-  h: 20,
+  w: 5,
+  h: 5,
   defaults: {
     label: "Label",
     labelAlign: "left",

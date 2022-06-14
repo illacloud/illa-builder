@@ -1,7 +1,6 @@
 import { FC, useMemo } from "react"
 import { Progress } from "@illa-design/progress"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { WrappedDateProps } from "./interface"
 import LabelWrapper from "../LabelWrapper"
@@ -58,4 +57,4 @@ export const WrappedBarProgress: FC<WrappedDateProps> = (props) => {
 
 WrappedBarProgress.displayName = "WrappedDate"
 
-export const BarProgressWidget = withParser(WrappedBarProgress)
+export const BarProgressWidget = WrappedBarProgress

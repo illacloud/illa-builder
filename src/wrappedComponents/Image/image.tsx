@@ -1,7 +1,6 @@
 import { Image } from "@illa-design/image"
 import { FC, useMemo } from "react"
 import { WrappedImageProps } from "./interface"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 export const WrappedImage: FC<WrappedImageProps> = (props) => {
@@ -35,4 +34,4 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
 
 WrappedImage.displayName = "ImageWidget"
 
-export const ImageWidget = withParser(WrappedImage)
+export const ImageWidget = WrappedImage
