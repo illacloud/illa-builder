@@ -319,7 +319,11 @@
         "allow_half": "Allow half",
         "allow_clear": "Allow clear",
         "time_format": "Time format",
-        "step_size": "Step size"
+        "step_size": "Step size",
+        "hide_value_label": "Hide value label",
+        "styles": "Styles",
+        "trail_color": "Trail color",
+        "stroke_width": "Stroke width"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -356,6 +360,12 @@
     },
     "switch": {
       "name": "Switch"
+    },
+    "circle_progress": {
+      "name": "Circle Progress"
+    },
+    "bar_progress": {
+      "name": "Bar Progress"
     },
     "rate": {
       "name": "Rate"
