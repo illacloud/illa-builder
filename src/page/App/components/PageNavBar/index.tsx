@@ -1,6 +1,13 @@
-import { FC, HTMLAttributes } from "react"
+import { FC } from "react"
 import { Button, ButtonGroup } from "@illa-design/button"
-import { MoreIcon, CaretRightIcon } from "@illa-design/icon"
+import {
+  BugIcon,
+  CaretRightIcon,
+  MoreIcon,
+  WindowBottomIcon,
+  WindowLeftIcon,
+  WindowRightIcon,
+} from "@illa-design/icon"
 import { useTranslation } from "react-i18next"
 import {
   descriptionStyle,
@@ -10,54 +17,54 @@ import {
   rowCenter,
   viewControlStyle,
 } from "./style"
-import {
-  BugIcon,
-  WindowBottomIcon,
-  WindowLeftIcon,
-  WindowRightIcon,
-} from "@illa-design/icon"
 import { ZoomControl } from "@/page/App/components/PageNavBar/ZoomControl"
 import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import { useDispatch, useSelector } from "react-redux"
-import { PanelState } from "@/page/App"
-
-interface PageNavBarProps extends HTMLAttributes<HTMLDivElement> {
-  switchPanelState: (config: PanelState) => void
-}
+import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
+import { configActions } from "@/redux/currentApp/config/configSlice"
+import {
+  isOpenBottomPanel,
+  isOpenLeftPanel,
+  isOpenRightPanel,
+} from "@/redux/currentApp/config/configSelector"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
-  const { className, switchPanelState } = props
-  const { t, i18n } = useTranslation()
+  const { className } = props
+  const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const projectInfo = {
-    name: "Sample App",
-    description: "Add description",
-  }
+  const appInfo = useSelector(getAppInfo)
 
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
         <Logo width={"34px"} />
         <section css={informationStyle}>
-          <div css={nameStyle}>{projectInfo.name}</div>
-          <div css={descriptionStyle}>{projectInfo.description}</div>
+          <div css={nameStyle}>{appInfo?.appName}</div>
+          <div css={descriptionStyle}>{appInfo?.appActivity}</div>
         </section>
       </div>
       <div css={viewControlStyle}>
         <WindowLeftIcon
           onClick={() => {
-            switchPanelState("showLeftPanel")
+            dispatch(
+              configActions.updateLeftPanel(!useSelector(isOpenLeftPanel)),
+            )
           }}
         />
         <WindowRightIcon
           onClick={() => {
-            switchPanelState("showRightPanel")
+            dispatch(
+              configActions.updateRightPanel(!useSelector(isOpenRightPanel)),
+            )
           }}
         />
         <WindowBottomIcon
           onClick={() => {
-            switchPanelState("showBottomPanel")
+            dispatch(
+              configActions.updateBottomPanel(!useSelector(isOpenBottomPanel)),
+            )
           }}
         />
         <ZoomControl />

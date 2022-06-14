@@ -8,43 +8,43 @@ import { Setter } from "@/page/App/components/InspectPanel/setter"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
-  componentId: string,
+  displayName: string,
   isInList: boolean = false,
 ) => {
   const { id } = config
-  return <Setter key={`${id}-${componentId}`} {...config} isInList={isInList} />
+  return <Setter key={`${id}-${displayName}`} {...config} isInList={isInList} />
 }
 
 export const renderPanelBar = (
   config: PanelFieldGroupConfig,
-  componentId: string,
+  displayName: string,
 ) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
   return (
     <PanelBar
-      key={`${id}-${groupName}-${componentId}`}
+      key={`${id}-${groupName}-${displayName}`}
       title={groupName}
       isOpened
     >
-      {children && children.length > 0 && fieldFactory(children, componentId)}
+      {children && children.length > 0 && fieldFactory(children, displayName)}
     </PanelBar>
   )
 }
 
 export const renderField = (
   item: PanelConfig,
-  componentId: string,
+  displayName: string,
   isInList: boolean = false,
 ) => {
   if ((item as PanelFieldGroupConfig).groupName) {
-    return renderPanelBar(item as PanelFieldGroupConfig, componentId)
+    return renderPanelBar(item as PanelFieldGroupConfig, displayName)
   } else if ((item as PanelFieldConfig).setterType) {
-    return renderFieldAndLabel(item as PanelFieldConfig, componentId, isInList)
+    return renderFieldAndLabel(item as PanelFieldConfig, displayName, isInList)
   }
   return null
 }
 
-export function fieldFactory(panelConfig: PanelConfig[], componentId: string) {
-  if (!componentId || !panelConfig || !panelConfig.length) return null
-  return panelConfig.map((item: PanelConfig) => renderField(item, componentId))
+export function fieldFactory(panelConfig: PanelConfig[], displayName: string) {
+  if (!displayName || !panelConfig || !panelConfig.length) return null
+  return panelConfig.map((item: PanelConfig) => renderField(item, displayName))
 }

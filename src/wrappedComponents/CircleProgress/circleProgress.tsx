@@ -1,7 +1,6 @@
 import { FC, useMemo } from "react"
 import { Progress } from "@illa-design/progress"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { WrappedCircleProgressProps } from "./interface"
 import { applyContainerCss } from "./style"
@@ -47,4 +46,4 @@ export const WrappedCircleProgress: FC<WrappedCircleProgressProps> = (
 
 WrappedCircleProgress.displayName = "WrappedDate"
 
-export const CircleProgressWidget = withParser(WrappedCircleProgress)
+export const CircleProgressWidget = WrappedCircleProgress
