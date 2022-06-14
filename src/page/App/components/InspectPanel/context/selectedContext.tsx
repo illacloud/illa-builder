@@ -1,7 +1,8 @@
 import { createContext, ReactNode, FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getWidgetInspectBySelectId } from "@/redux/currentApp/editor/inspect/inspectSelector"
+import { getWidgetInspectBySingleSelected } from "@/redux/currentApp/editor/inspect/inspectSelector"
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 interface Injected {
   panelConfig: Record<string, any>
@@ -15,25 +16,33 @@ interface Props {
   children?: ReactNode
 }
 
-// TODO: only support single select,wait to multi
 export const SelectedProvider: FC<Props> = ({ children }) => {
-  const panelConfig = useSelector(getWidgetInspectBySelectId) ?? {}
+  const panelConfig = useSelector(getWidgetInspectBySingleSelected)
 
   const dispatch = useDispatch()
 
   const handleUpdatePanelConfig = (value: Record<string, any>) => {
+    if (!panelConfig || !panelConfig.widgetDisplayName) return
     dispatch(
       inspectActions.updateWidgetPanelConfig({
-        id: panelConfig.id,
+        displayName: panelConfig.widgetDisplayName,
         value,
       }),
     )
   }
 
-  const handleUpdateDsl = (value: Record<string, any>) => {}
+  const handleUpdateDsl = (value: Record<string, any>) => {
+    if (!panelConfig || !panelConfig.widgetDisplayName) return
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName: panelConfig.widgetDisplayName,
+        newProps: value,
+      }),
+    )
+  }
 
   const value = {
-    panelConfig,
+    panelConfig: panelConfig || {},
     handleUpdateDsl: handleUpdateDsl,
     handleUpdatePanelConfig,
   }
