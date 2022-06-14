@@ -20,9 +20,9 @@ export const EventHandlerSetter: FC<EventHandlerSetterProps> = (props) => {
     handleUpdatePanelConfig,
     childrenSetter,
   } = props
-    const events = panelConfig[attrName] || []
-    const widgetProps = useSelector(getComponentNodeBySingleSelected)?.props
-    const dslEvents = widgetProps?.events || []
+  const events = panelConfig[attrName] || []
+  const widgetProps = useSelector(getComponentNodeBySingleSelected)?.props
+  const dslEvents = widgetProps?.events || []
 
   const handleAddItemAsync = useCallback(
     async (value: BaseEventItem) => {

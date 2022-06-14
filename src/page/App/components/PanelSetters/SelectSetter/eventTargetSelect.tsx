@@ -17,11 +17,8 @@ export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
     handleUpdatePanelConfig,
   } = props
 
-  console.log("props", props)
-
   const finalOptions = () => {
     const tmpOptions: { label: string; value: string }[] = []
-    console.log("globalData", globalData)
     Object.keys(globalData).forEach((key) => {
       if ("type" in globalData[key]) {
         if (globalData[key].type === "widget") {
