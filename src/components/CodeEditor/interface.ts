@@ -15,6 +15,7 @@ export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT" | "TEXT_SQL"
   value?: string
+  resultType?: string
   lineNumbers?: boolean
   height?: string
   placeholder?: string
@@ -22,7 +23,7 @@ export interface CodeEditorProps
   onChange?: (value: string) => void
 }
 
-export enum AutocompleteDataType {
+export enum DataType {
   OBJECT = "OBJECT",
   NUMBER = "NUMBER",
   ARRAY = "ARRAY",
@@ -34,7 +35,7 @@ export enum AutocompleteDataType {
 
 export type FieldEntityInformation = {
   entityName?: string
-  expectedType?: AutocompleteDataType
+  expectedType?: DataType
   entityType?: "ACTION" | "WIDGET" | "JSACTION"
   entityId?: string
   propertyPath?: string

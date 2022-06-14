@@ -1,18 +1,65 @@
 import { FC, HTMLAttributes, useEffect } from "react"
 import { ResultPreview } from "./interface"
-import { applyPreviewStyle } from "@/components/CodeEditor/style"
+import {
+  applyPreviewStyle,
+  contentTextStyle,
+  copyIconStyle,
+  iconStyle,
+  typeTextStyle,
+} from "./style"
+import { ErrorIcon, CopyIcon } from "@illa-design/icon"
+import { isString } from "@illa-design/system"
+import { Message } from "@illa-design/message"
+import copy from "copy-to-clipboard"
 
 interface CodePreviewProps extends HTMLAttributes<HTMLDivElement> {
   preview?: ResultPreview
 }
 
+function copyToClipboard(content: any) {
+  const stringifiedContent = isString(content)
+    ? content
+    : JSON.stringify(content, null, 2)
+  copy(stringifiedContent)
+  Message.success("copied to clipboard")
+}
+
 export const CodePreview: FC<CodePreviewProps> = (props) => {
   const { className, preview = { type: "String" }, ...otherProps } = props
 
+  const clickCopy = () => {}
+
+  if (preview?.state === "error") {
+    return (
+      <div className={className} css={applyPreviewStyle(preview?.state)}>
+        <CopyIcon css={copyIconStyle} size={"10px"} />
+        <div css={typeTextStyle}>
+          <ErrorIcon size={"12px"} css={iconStyle} />
+          Error
+        </div>
+        <div
+          css={contentTextStyle}
+          onClick={() => {
+            copyToClipboard(preview?.content)
+          }}
+        >
+          {preview?.content}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={className} css={applyPreviewStyle(preview?.state)}>
-      <div>{preview?.type}</div>
-      <div>"{preview?.content}"</div>
+      <CopyIcon
+        css={copyIconStyle}
+        size={"10px"}
+        onClick={() => {
+          copyToClipboard(preview?.content)
+        }}
+      />
+      <div css={typeTextStyle}>{preview?.type}</div>
+      <div css={contentTextStyle}>"{preview?.content}"</div>
     </div>
   )
 }

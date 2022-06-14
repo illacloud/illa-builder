@@ -20,7 +20,7 @@ import {
 } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { Trigger } from "@illa-design/trigger"
-import { CodePreview } from "@/components/CodeEditor/CodePreview"
+import { CodePreview } from "./CodePreview"
 
 export type Hinter = {
   showHint: (
@@ -166,6 +166,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         autofocus: false,
         matchBrackets: true,
         autoCloseBrackets: true,
+        lineWrapping: true,
         tabSize: 2,
         value: value ?? "",
         hintOptions: {
