@@ -14,8 +14,10 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const scale = useSelector(getScale)
 
   return (
-    <div {...otherProps} css={applyScaleContainerStyle(scale)}>
-      {applyCanvasTree(canvasTree)}
+    <div {...otherProps}>
+      <div css={applyScaleContainerStyle(scale)}>
+        {applyCanvasTree(canvasTree)}
+      </div>
     </div>
   )
 }

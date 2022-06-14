@@ -37,3 +37,5 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     </div>
   )
 }
+
+ScaleSquare.displayName = "ScaleSquare"

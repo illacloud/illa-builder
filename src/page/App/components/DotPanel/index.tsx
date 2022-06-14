@@ -15,7 +15,6 @@ import {
 import useWindowSize from "react-use/lib/useWindowSize"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getScale,
   getUnitSize,
   isOpenBottomPanel,
   isOpenLeftPanel,
@@ -163,19 +162,19 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         // remove drag
         dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
         dispatch(
-            inspectActions.addWidgetPanelConfig({
-              displayName: item.displayName,
-              defaultProps: item.props
-                  ? {
-                    widgetType: item.type || "",
-                    widgetDisplayName: item.displayName,
-                    ...item.props,
-                  }
-                  : {
-                    widgetType: item.type || "",
-                    widgetDisplayName: item.displayName,
-                  },
-            }),
+          inspectActions.addWidgetPanelConfig({
+            displayName: item.displayName,
+            defaultProps: item.props
+              ? {
+                  widgetType: item.type || "",
+                  widgetDisplayName: item.displayName,
+                  ...item.props,
+                }
+              : {
+                  widgetType: item.type || "",
+                  widgetDisplayName: item.displayName,
+                },
+          }),
         )
         return {} as DropResultInfo
       },
