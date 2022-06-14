@@ -29,26 +29,26 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${widgetBaseName}-basic-decimal-place`,
-        labelName: "Decimal place",
+        labelName: i18n.t("editor.inspect.setter_label.decimal_place"),
         labelDesc: "xxxx",
         attrName: "precision",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-basic-minimum`,
-        labelName: "Minimum",
+        labelName: i18n.t("editor.inspect.setter_label.minimum"),
         attrName: "min",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-basic-maximum  `,
-        labelName: "Maximum",
+        labelName: i18n.t("editor.inspect.setter_label.maximum"),
         attrName: "max",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-separator`,
-        labelName: "Thousand separator",
+        labelName: i18n.t("editor.inspect.setter_label.thousand_separator"),
         attrName: "openThousandSeparator",
         useCustomLabel: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
@@ -57,23 +57,23 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${widgetBaseName}-label`,
-    groupName: "LABEL",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: `${widgetBaseName}-label-label`,
-        labelName: "Label",
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-label-caption`,
-        labelName: "Caption",
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-label-position`,
-        labelName: "Position",
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -83,7 +83,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${widgetBaseName}-label-alignment`,
-        labelName: "Alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -107,7 +107,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${widgetBaseName}-label-width`,
-        labelName: "Width(%)",
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
       },
@@ -115,11 +115,11 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${widgetBaseName}-interaction`,
-    groupName: "INTERACTION",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
         id: `${widgetBaseName}-interaction-disabled`,
-        labelName: "Disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "false",
@@ -127,7 +127,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${widgetBaseName}-interaction-readonly`,
-        labelName: "Readonly",
+        labelName: i18n.t("editor.inspect.setter_label.read_only"),
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "false",
@@ -137,29 +137,29 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${widgetBaseName}-adornments`,
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: `${widgetBaseName}-adornments-tooltip`,
-        labelName: "Tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-adornments-loading`,
-        labelName: "Loading",
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
         attrName: "loading",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-adornments-prefix`,
-        labelName: "Prefix text",
+        labelName: i18n.t("editor.inspect.setter_label.prefix_text"),
         attrName: "prefix",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${widgetBaseName}-adornments-suffix`,
-        labelName: "Suffix text",
+        labelName: i18n.t("editor.inspect.setter_label.suffix_text"),
         attrName: "suffix",
         setterType: "INPUT_SETTER",
       },
@@ -167,24 +167,26 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${widgetBaseName}-validation`,
-    groupName: "VALIDATION",
+    groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
         id: `${widgetBaseName}-validation-required`,
-        labelName: "Required field",
+        labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "required",
       },
       {
         id: `${widgetBaseName}-validation-custom`,
-        labelName: "Custom rule",
+        labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "customRule",
       },
       {
         id: `${widgetBaseName}-validation-hide-message`,
-        labelName: "Hide validation message",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.hide_validation_message",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLabel: true,
         attrName: "hideValidationMessage",
@@ -193,11 +195,11 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${widgetBaseName}-layout`,
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: `${widgetBaseName}-layout-hidden`,
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",

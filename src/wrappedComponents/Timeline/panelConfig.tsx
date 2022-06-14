@@ -1,27 +1,28 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
+import i18n from "@/i18n/config"
 
 const baseWidgetName = "timeline"
 export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-basic`,
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: `${baseWidgetName}-items`,
-        labelName: "Items",
+        labelName: i18n.t("editor.inspect.setter_label.items"),
         attrName: "items",
         setterType: "INPUT_SETTER",
       },
       {
         id: `${baseWidgetName}-direction`,
-        labelName: "Direction",
+        labelName: i18n.t("editor.inspect.setter_label.direction"),
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
         options: ["vertical", "horizontal"],
       },
       {
         id: `${baseWidgetName}-pending`,
-        labelName: "Pending",
+        labelName: i18n.t("editor.inspect.setter_label.pending"),
         attrName: "pending",
         isFullWidth: true,
         setterType: "INPUT_SETTER",
@@ -30,11 +31,11 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "text-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "text-layout-hidden",
-        labelName: "Hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
       },

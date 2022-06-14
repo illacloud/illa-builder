@@ -88,30 +88,50 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "image-interaction-tooltip",
         attrName: "events",
-        labelName: "Event Handler",
+        labelName: i18n.t("editor.inspect.setter_label.event_handler"),
         labelDesc: "xxxxx",
         setterType: "EVENT_HANDLER_SETTER",
         useCustomLabel: true,
         childrenSetter: [
           {
             id: "event",
-            labelName: "Event",
+            labelName: i18n.t("editor.inspect.setter_label.event"),
             setterType: "BASE_SELECT_SETTER",
             attrName: "event",
             options: [{ label: "Change", value: "onChange" }],
           },
           {
             id: "type",
-            labelName: "Action",
+            labelName: i18n.t("editor.inspect.setter_label.action"),
             setterType: "BASE_SELECT_SETTER",
             attrName: "type",
             options: [
-              { label: "Trigger Query", value: "datasource" },
-              { label: "Control component", value: "widget" },
-              { label: "Run script", value: "script" },
-              { label: "Go to URL", value: "openUrl" },
-              { label: "Show notification", value: "showNotification" },
-              { label: "Set temporary state", value: "state" },
+              {
+                label: i18n.t("editor.inspect.setter_label.trigger_query"),
+                value: "datasource",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_label.control_component"),
+                value: "widget",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_label.run_script"),
+                value: "script",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_label.go_to_url"),
+                value: "openUrl",
+              },
+              {
+                label: i18n.t("editor.inspect.setter_label.show_notification"),
+                value: "showNotification",
+              },
+              {
+                label: i18n.t(
+                  "editor.inspect.setter_label.set_temporary_state",
+                ),
+                value: "state",
+              },
             ],
           },
           {
@@ -147,7 +167,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "disabled",
-            labelName: "Disabled",
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
             setterType: "DYNAMIC_SWITCH_SETTER",
             attrName: "disabled",
             bindAttrName: "type",

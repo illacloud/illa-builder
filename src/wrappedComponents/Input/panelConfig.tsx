@@ -10,7 +10,7 @@ const OptionsStyle = {
 
 export const INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "input-options",
+    id: "input-basic",
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
@@ -187,7 +187,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: "input-validation-custom",
         labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
-        attrName: "custom rule",
+        attrName: "customRule",
       },
       {
         id: "input-validation-hide-message",

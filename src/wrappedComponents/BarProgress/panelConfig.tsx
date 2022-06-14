@@ -12,7 +12,7 @@ const OptionsStyle = {
 export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "bar-progress-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "bar-progress-basic-Value",
@@ -24,7 +24,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "bar-progress-label",
-    groupName: "LABEL",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "bar-progress-label-label",
@@ -82,7 +82,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "bar-progress-adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "bar-progress-adornments-showText",
@@ -100,7 +100,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "bar-progress-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "bar-progress-layout-hidden",
@@ -113,7 +113,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "bar-progress-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "bar-progress-style-list",

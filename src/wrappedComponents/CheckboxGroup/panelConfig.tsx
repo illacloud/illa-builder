@@ -149,7 +149,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-interaction`,
-    groupName: "INTERACTION",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
         id: `${baseWidgetName}-interaction-disabled`,
