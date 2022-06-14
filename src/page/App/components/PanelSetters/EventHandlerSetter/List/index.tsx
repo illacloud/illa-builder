@@ -47,7 +47,6 @@ export const List: FC<ListProps> = (props) => {
         ...script,
       }
       handleUpdate(newOptions, newDSLEvents)
-      console.log(script)
     },
     [events, dslEvents, handleUpdate],
   )
