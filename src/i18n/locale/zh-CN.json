@@ -6,9 +6,11 @@
   "description": {
     "part1": "这是一个示例。"
   },
-  "apps": "应用",
+  "apps": "项目",
+  "allApps": "所有项目",
   "resources": "资源",
   "create_new": "创建",
+  "create_new_app": "创建项目",
   "share": "分享",
   "rename": "重命名",
   "duplicate": "复制",
@@ -224,7 +226,9 @@
         "redis": {
           "name": "Redis"
         },
-        "mongo_db": { "name": "MongoDB" }
+        "mongo_db": {
+          "name": "MongoDB"
+        }
       },
       "result": {
         "title": {
@@ -368,6 +372,53 @@
     },
     "bar_progress": {
       "name": "Bar Progress"
+    }
+  },
+  "Setting": "设置",
+  "Logout": "退出登录",
+  "link_copied": "链接已复制",
+  "dashboard": {
+    "app": {
+      "duplicate_fail": "复制失败",
+      "rename_fail": "重命名失败",
+      "duplicate_placeholder": "请输入项目名称",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败"
+    },
+    "resources": {
+      "table_name": "资源名",
+      "table_type": "数据库类型",
+      "table_dbname": "数据库名",
+      "table_ctime": "创建时间",
+      "trash_confirm_title": "确认",
+      "trash_confirm_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败"
+    }
+  },
+  "setting": {
+    "account": {
+      "title": "账号",
+      "username": "用户名",
+      "empty_username": "用户名不能为空",
+      "error_username": "用户名须为3～15个字符",
+      "save": "保存",
+      "save_fail": "保存失败"
+    },
+    "password": {
+      "title": "密码",
+      "current_password": "旧密码",
+      "new_password": "新密码",
+      "confirm_password": "确认新密码",
+      "empty_password": "密码不能为空",
+      "error_format_password": "密码须为3～20个字符",
+      "error_match_password": "密码不匹配",
+      "submit_button": "提交"
+    },
+    "other": {
+      "title": "设置",
+      "language": "语言",
+      "save": "保存"
     }
   }
 }
