@@ -1,10 +1,15 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Button } from "@illa-design/button"
 import { WarningCircleIcon } from "@illa-design/icon"
+import { Link } from "@illa-design/link"
+import { Message } from "@illa-design/message"
+import { Countdown } from "@illa-design/statistic"
 import { EMAIL_FORMAT } from "@/constants/regExp"
+import { Api } from "@/api/base"
 import {
   formLabelStyle,
   formTitleStyle,
@@ -16,20 +21,39 @@ import {
   errorIconStyle,
 } from "@/page/User/style"
 import { ResetPwdFields } from "./interface"
-import { Link } from "@illa-design/link"
 
 export const ResetPassword: FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const [verificationToken, setVerificationToken] = useState("")
+  const [showCountDown, setShowCountDown] = useState(false)
   const {
     control,
     handleSubmit,
     trigger,
+    getValues,
     formState: { errors },
   } = useForm<ResetPwdFields>({
     mode: "onBlur",
   })
   const onSubmit: SubmitHandler<ResetPwdFields> = (data) => {
-    console.log(data)
+    Api.request(
+      {
+        method: "POST",
+        url: "/auth/forgetPassword",
+        data: {
+          verificationToken,
+          ...data,
+        },
+      },
+      () => {
+        navigate("/user/login")
+        Message.success(t("user.forgot_password.tips.success"))
+      },
+      () => {
+        Message.error(t("user.forgot_password.tips.fail"))
+      },
+    )
   }
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
@@ -85,14 +109,38 @@ export const ResetPassword: FC = () => {
                   error={!!errors.verify}
                   variant="fill"
                   suffix={{
-                    render: (
+                    render: showCountDown ? (
+                      <Countdown
+                        value={Date.now() + 1000 * 60}
+                        now={Date.now()}
+                        format="ss"
+                        onFinish={() => {
+                          setShowCountDown(false)
+                        }}
+                      />
+                    ) : (
                       <Link
                         colorScheme="techPurple"
                         hoverable={false}
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
-                            // TODO send verify code
+                            Api.request<{ verificationToken: string }>(
+                              {
+                                method: "POST",
+                                url: "/auth/verification",
+                                data: { email: getValues("email") },
+                              },
+                              (res) => {
+                                setVerificationToken(res.data.verificationToken)
+                                Message.success(
+                                  t("user.forgot_password.tips.verify"),
+                                )
+                              },
+                              () => {},
+                              () => {},
+                              () => {},
+                            )
                           }
                         }}
                       >

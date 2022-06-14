@@ -39,6 +39,11 @@
         "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
         "subscribe": "订阅ILLA的动态"
       },
+      "tips": {
+        "success": "登录成功",
+        "fail": "登录失败",
+        "verify": "验证码已发送"
+      },
       "placeholder": {
         "username": "请输入用户名",
         "email": "请输入邮箱",
@@ -80,6 +85,10 @@
         "forgot_password": "忘记密码?",
         "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>"
       },
+      "tips": {
+        "success": "注册成功",
+        "fail": "注册失败"
+      },
       "placeholder": {
         "email": "请输入邮箱",
         "password": "请输入密码（6-20个字符）"
@@ -108,6 +117,11 @@
       "actions": {
         "send": "获取验证码",
         "reset": "重置"
+      },
+      "tips": {
+        "success": "重置密码成功",
+        "fail": "重置密码失败",
+        "verify": "验证码已发送"
       },
       "placeholder": {
         "email": "请输入邮箱",

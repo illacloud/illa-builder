@@ -7,6 +7,7 @@ import { Checkbox } from "@illa-design/checkbox"
 import { Button } from "@illa-design/button"
 import { Link } from "@illa-design/link"
 import { Message } from "@illa-design/message"
+import { Countdown } from "@illa-design/statistic"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { Api } from "@/api/base"
@@ -28,6 +29,7 @@ export const Register: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [verificationToken, setVerificationToken] = useState("")
+  const [showCountDown, setShowCountDown] = useState(false)
   const {
     control,
     handleSubmit,
@@ -51,8 +53,12 @@ export const Register: FC = () => {
         },
       },
       () => {
-        Message.success("Success!")
-        navigate("/user/login")
+        navigate(localStorage.getItem("stashPath") ?? "/")
+        localStorage.removeItem("stashPath")
+        Message.success(t("user.sign_up.tips.success"))
+      },
+      () => {
+        Message.error(t("user.sign_up.tips.fail"))
       },
     )
   }
@@ -143,7 +149,16 @@ export const Register: FC = () => {
                   error={!!errors.verify}
                   variant="fill"
                   suffix={{
-                    render: (
+                    render: showCountDown ? (
+                      <Countdown
+                        value={Date.now() + 1000 * 60}
+                        now={Date.now()}
+                        format="ss"
+                        onFinish={() => {
+                          setShowCountDown(false)
+                        }}
+                      />
+                    ) : (
                       <Link
                         colorScheme="techPurple"
                         hoverable={false}
@@ -158,6 +173,8 @@ export const Register: FC = () => {
                               },
                               (res) => {
                                 setVerificationToken(res.data.verificationToken)
+                                Message.success(t("user.sign_up.tips.verify"))
+                                setShowCountDown(true)
                               },
                               () => {},
                               () => {},

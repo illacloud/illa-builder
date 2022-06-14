@@ -39,6 +39,11 @@
         "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
+      "tips": {
+        "success": "Success",
+        "fail": "Fail",
+        "verify": "Verification code sent"
+      },
       "placeholder": {
         "username": "Enter your username",
         "email": "Enter your email",
@@ -80,6 +85,10 @@
         "forgot_password": "Forgot Password?",
         "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>"
       },
+      "tips": {
+        "success": "Success",
+        "fail": "Fail"
+      },
       "placeholder": {
         "email": "Enter your email",
         "password": "Enter your password(6~20 characters)"
@@ -108,6 +117,11 @@
       "actions": {
         "send": "Send code",
         "reset": "Reset"
+      },
+      "tips": {
+        "success": "Success",
+        "fail": "Fail",
+        "verify": "Verification code sent"
       },
       "placeholder": {
         "email": "Enter your email",

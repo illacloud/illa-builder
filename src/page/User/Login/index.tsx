@@ -39,9 +39,13 @@ export const Login: FC = () => {
     Api.request(
       { method: "POST", url: "/auth/signin", data },
       () => {
-        Message.success("Success!")
+        navigate(localStorage.getItem("stashPath") ?? "/")
+        localStorage.removeItem("stashPath")
+        Message.success(t("user.sign_in.tips.success"))
       },
-      () => {},
+      () => {
+        Message.error(t("user.sign_in.tips.fail"))
+      },
       () => {},
       () => {},
     )
