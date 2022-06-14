@@ -164,19 +164,21 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
         // remove drag
         dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
+
+        const defaultProps = item.props
+          ? {
+              widgetType: item.type || "",
+              widgetDisplayName: item.displayName,
+              ...item.props,
+            }
+          : {
+              widgetType: item.type || "",
+              widgetDisplayName: item.displayName,
+            }
         dispatch(
-          inspectActions.addWidgetPanelConfig({
+          inspectActions.addOrUpdateWidgetPanelConfig({
             displayName: item.displayName,
-            defaultProps: item.props
-              ? {
-                  widgetType: item.type || "",
-                  widgetDisplayName: item.displayName,
-                  ...item.props,
-                }
-              : {
-                  widgetType: item.type || "",
-                  widgetDisplayName: item.displayName,
-                },
+            defaultProps,
           }),
         )
         return {} as DropResultInfo

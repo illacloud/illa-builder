@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { InspectStateInitial } from "@/redux/currentApp/editor/inspect/inspectState"
 import {
-  addWidgetPanelConfig,
+  addOrUpdateWidgetPanelConfig,
   updateWidgetPanelConfig,
 } from "@/redux/currentApp/editor/inspect/inspectReducer"
 
@@ -10,7 +10,7 @@ const inspectSlice = createSlice({
   initialState: InspectStateInitial,
   reducers: {
     updateWidgetPanelConfig,
-    addWidgetPanelConfig,
+    addOrUpdateWidgetPanelConfig,
   },
 })
 

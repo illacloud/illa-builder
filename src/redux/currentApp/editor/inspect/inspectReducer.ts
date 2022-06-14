@@ -1,6 +1,6 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
-  addInspectPayload,
+  addOrUpdateInspectPayload,
   updateInspectPayload,
 } from "@/redux/currentApp/editor/inspect/inspectPayload"
 import { InspectState } from "@/redux/currentApp/editor/inspect/inspectState"
@@ -17,10 +17,18 @@ export const updateWidgetPanelConfig: CaseReducer<
   }
 }
 
-export const addWidgetPanelConfig: CaseReducer<
+export const addOrUpdateWidgetPanelConfig: CaseReducer<
   InspectState,
-  PayloadAction<addInspectPayload>
+  PayloadAction<addOrUpdateInspectPayload>
 > = (state, action) => {
   const { displayName, defaultProps } = action.payload
-  state[displayName] = defaultProps
+  if (!defaultProps.widgetType || !defaultProps.widgetDisplayName) return
+  if (!state[displayName]) {
+    state[displayName] = defaultProps
+    return
+  }
+  state[displayName] = {
+    ...state[displayName],
+    ...defaultProps,
+  }
 }

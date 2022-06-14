@@ -5,7 +5,7 @@ export interface updateInspectPayload {
   value: Record<string, any>
 }
 
-export interface addInspectPayload {
+export interface addOrUpdateInspectPayload {
   displayName: string
   defaultProps: BaseInspectState
 }
