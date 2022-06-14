@@ -55,3 +55,17 @@ export const updateShowDot: CaseReducer<ConfigState, PayloadAction<boolean>> = (
 ) => {
   state.showDot = action.payload
 }
+
+export const plusScale: CaseReducer<ConfigState, PayloadAction<void>> = (
+  state,
+  action,
+) => {
+  state.scale = state.scale + 10
+}
+
+export const minusScale: CaseReducer<ConfigState, PayloadAction<void>> = (
+  state,
+  action,
+) => {
+  state.scale = state.scale - 10
+}

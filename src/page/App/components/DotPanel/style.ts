@@ -2,16 +2,16 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 /**
- * @param height default 100% , or number for px
+ * @param h default 100% , or number for px
  */
-export function applyScaleStyle(height: number | null): SerializedStyles {
-  let finalHeight: string
-  if (height == null) {
-    finalHeight = "100%"
-  } else {
-    finalHeight = `${height}px`
-  }
-  return css`
+export function applyScaleStyle(h: number | null): SerializedStyles {
+    let finalHeight: string
+    if (h == null) {
+        finalHeight = "100%"
+    } else {
+        finalHeight = `${h}px`
+    }
+    return css`
     position: relative;
     padding-left: 6px;
     padding-right: 6px;
@@ -42,26 +42,26 @@ export function applyDotRowsStyle(isLastRow: boolean): SerializedStyles {
 }
 
 export function applyChildrenContainerStyle(
-  width: number | null,
-  height?: number | null,
+  w: number | null,
+  h?: number | null,
 ): SerializedStyles {
   return css`
     position: absolute;
-    width: ${width}px;
-    height: ${height}px;
+    width: ${w}px;
+    height: ${h}px;
   `
 }
 
 export function applyDotContainerStyle(
   showDot: boolean,
-  width: number | null,
-  height?: number | null,
+  w: number | null,
+  h?: number | null,
 ): SerializedStyles {
   return css`
     visibility: ${showDot ? "visible" : "hidden"};
     position: absolute;
-    width: ${width}px;
-    height: ${height}px;
+    width: ${w}px;
+    height: ${h}px;
   `
 }
 

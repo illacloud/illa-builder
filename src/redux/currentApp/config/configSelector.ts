@@ -21,6 +21,10 @@ export const isShowDot = (state: RootState) => {
   return state.currentApp.config.showDot
 }
 
+export const getScale = (state: RootState) => {
+  return state.currentApp.config.scale
+}
+
 export const getSelectedComponents = (state: RootState) => {
   return state.currentApp.config.selectedComponents
 }

@@ -21,16 +21,19 @@ function getStateColor(scaleSquareType: ScaleSquareType): string {
   return stateColor
 }
 
-export function applyScaleSquareContainerStyle(
-  h: number,
-  w: number,
-): SerializedStyles {
+export function applyOuterStyle(h: number, w: number): SerializedStyles {
   return css`
-    position: relative;
     height: ${h}px;
     width: ${w}px;
   `
 }
+
+export const applyInnerStyle = css`
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
 
 export function applySquarePointerStyle(
   scaleSquareType: ScaleSquareType,
@@ -73,7 +76,7 @@ export function applySquarePointerStyle(
     ${positionStyle};
     box-sizing: border-box;
     background: ${globalColor(`--${illaPrefix}-white-01`)};
-    border: 1px ${stateColor};
+    border: 1px solid ${stateColor};
     height: 4px;
     width: 4px;
     position: absolute;
@@ -95,36 +98,52 @@ export function applyBarPointerStyle(
     case "t":
       barPositionStyle = css`
         top: 0;
-        left: 50%;
-        right: 50%;
+        left: 0;
+        right: 0;
         margin: auto;
+        height: 4px;
+        width: 18px;
       `
       break
     case "b":
       barPositionStyle = css`
         bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 4px;
+        width: 18px;
       `
       break
     case "l":
       barPositionStyle = css`
+        bottom: 0;
         left: 0;
+        top: 0;
+        margin: auto;
+        width: 4px;
+        height: 18px;
       `
       break
     case "r":
       barPositionStyle = css`
+        bottom: 0;
         right: 0;
+        top: 0;
+        margin: auto;
+        width: 4px;
+        height: 18px;
       `
       break
   }
 
   return css`
+    ${barPositionStyle};
     box-sizing: border-box;
-    border-radius: 2px;
     position: absolute;
-    border: 1px ${stateColor};
+    border-radius: 2px;
+    border: 1px solid ${stateColor};
     background: ${globalColor(`--${illaPrefix}-white-01`)};
-    height: 4px;
-    width: 18px;
 
     &:hover {
       background: ${stateColor};
@@ -138,11 +157,9 @@ export function applyTransformWidgetStyle(
   let stateColor = getStateColor(scaleSquareType)
   return css`
     box-sizing: border-box;
-    border: 1px ${stateColor};
-    position: absolute;
+    border: 1px solid ${stateColor};
     width: 100%;
     height: 100%;
-    margin: 1px;
     padding: 3px;
   `
 }

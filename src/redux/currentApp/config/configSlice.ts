@@ -4,6 +4,8 @@ import {
   updateBottomPanel,
   updateLeftPanel,
   updateRightPanel,
+  plusScale,
+  minusScale,
   updateSelectedComponent,
   updateShowDot,
   updateUnitWidth,
@@ -19,6 +21,8 @@ const configSlice = createSlice({
     updateUnitWidth,
     updateShowDot,
     updateSelectedComponent,
+    plusScale,
+    minusScale,
   },
 })
 
