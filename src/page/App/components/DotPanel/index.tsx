@@ -15,6 +15,7 @@ import {
 import useWindowSize from "react-use/lib/useWindowSize"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  getScale,
   getUnitSize,
   isOpenBottomPanel,
   isOpenLeftPanel,
@@ -51,6 +52,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   // window
   const { width: windowWidth, height: windowHeight } = useWindowSize()
+  // scale
+  const scale = useSelector(getScale)
 
   // canvas field
   const edgeWidth = 6
@@ -91,7 +94,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [windowHeight, bottomPanelOpenState])
+  }, [windowHeight, bottomPanelOpenState, scale])
 
   // calculate width
   useEffect(() => {
@@ -106,7 +109,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       dispatch(configActions.updateUnitWidth(finalBlockWidth))
       setCanvasWidth(container.getBoundingClientRect().width - edgeWidth * 2)
     }
-  }, [windowWidth, leftPanelOpenState, rightPanelOpenState])
+  }, [windowWidth, leftPanelOpenState, rightPanelOpenState, scale])
 
   const [collectedInfo, dropTarget] = useDrop<
     ComponentNode,

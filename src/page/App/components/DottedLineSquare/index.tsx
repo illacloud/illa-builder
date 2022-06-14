@@ -6,3 +6,5 @@ export const DottedLineSquare: FC<DottedLineSquareProps> = (props) => {
   const { w, h, ...otherProps } = props
   return <div css={applyDottedContainer(w, h)} {...otherProps} />
 }
+
+DottedLineSquare.displayName = "DottedLineSquare"

@@ -8,3 +8,5 @@ export const DragShadowSquare: FC<DragShadowSquareProps> = (props) => {
     <div css={applyDragShadowSquareStyle(isConflict, h, w)} {...otherProps} />
   )
 }
+
+DragShadowSquare.displayName = "DragShadowSquare"
