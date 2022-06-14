@@ -23,6 +23,7 @@ import {
   isOpenRightPanel,
 } from "@/redux/currentApp/config/configSelector"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
+import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -56,17 +57,19 @@ export const Editor: FC = () => {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div css={editorContainerStyle}>
-        <PageNavBar css={navbarStyle} />
-        <div css={contentStyle}>
-          <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
-          <div css={middlePanelStyle}>
-            <CanvasPanel css={centerPanelStyle} />
-            <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+      <GlobalDataProvider>
+        <div css={editorContainerStyle}>
+          <PageNavBar css={navbarStyle} />
+          <div css={contentStyle}>
+            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+            <div css={middlePanelStyle}>
+              <CanvasPanel css={centerPanelStyle} />
+              <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+            </div>
+            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
           </div>
-          <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
         </div>
-      </div>
+      </GlobalDataProvider>
     </DndProvider>
   )
 }

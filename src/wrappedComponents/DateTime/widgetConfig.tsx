@@ -8,8 +8,8 @@ export const DATE_TIME_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.date_time.name"),
   icon: <DateTimeIcon />,
   sessionType: "CALENDAR",
-  w: 100,
-  h: 50,
+  w: 20,
+  h: 5,
   defaults: {
     placeholder: "YYYY-MM-DD",
     dateFormat: "YYYY-MM-DD",

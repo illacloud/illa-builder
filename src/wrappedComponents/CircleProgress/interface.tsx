@@ -1,4 +1,5 @@
 export type Alignment = "start" | "center" | "end"
+
 export interface WrappedCircleProgressProps {
   value?: number
   tooltipText?: string

@@ -16,7 +16,7 @@ const OptionsStyle = {
 export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "circle-progress-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "circle-progress-basic-Value",
@@ -28,7 +28,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "circle-progress-adornments",
-    groupName: "ADORNMENTS",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "circle-progress-adornments-showText",
@@ -46,7 +46,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "circle-progress-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "circle-progress-layout-hidden",
@@ -91,7 +91,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "circle-progress-style",
-    groupName: "STYLE",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "circle-progress-style-list",

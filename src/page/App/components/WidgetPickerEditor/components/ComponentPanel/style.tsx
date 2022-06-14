@@ -9,7 +9,7 @@ export const componentContainerCss = css`
 
 export const sessionListContainerCss = css`
   max-height: calc(100vh - 150px);
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   display: inline-flex;
   flex-direction: column;
