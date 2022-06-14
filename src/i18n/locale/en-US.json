@@ -99,7 +99,8 @@
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
-          "api": "APIS"
+          "api": "APIS",
+          "configure": "Configure {{name}}"
         },
         "btn": {
           "back": "Back",
@@ -126,7 +127,7 @@
         "label": {
           "comming_soon": "Comming Soon"
         },
-        "mySql": {
+        "my_sql": {
           "name": "MySQL",
           "label": {
             "name": "Name",

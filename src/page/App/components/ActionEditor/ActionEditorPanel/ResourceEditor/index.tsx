@@ -74,20 +74,13 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
             }}
           >
             <Option onClick={onCreateResource} isSelectOption={false}>
-              <span
-                css={resourceOptionStyle}
-                title={t("editor.action.panel.option.resource.new")}
-              >
-                {t("editor.action.panel.option.resource.new")}
-              </span>
+              {t("editor.action.panel.option.resource.new")}
             </Option>
             <Divider />
             {resourceList &&
               resourceList.map(({ resourceId: id, resourceName: name }) => (
                 <Option value={id} key={id}>
-                  <span css={resourceOptionStyle} title={name}>
-                    {name}
-                  </span>
+                  {name}
                 </Option>
               ))}
           </Select>

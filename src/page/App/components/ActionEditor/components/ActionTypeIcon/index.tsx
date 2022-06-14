@@ -5,13 +5,14 @@ import {
   PostgresIcon,
   MongoDbIcon,
   RestApiIcon,
+  JSTransformerIcon,
 } from "@illa-design/icon"
-import { ResourceIconProps } from "./interface"
+import { ActionTypeIconProps } from "./interface"
 
-export const ResourceIcon: FC<ResourceIconProps> = (props) => {
-  const { resourceType, className } = props
+export const ActionTypeIcon: FC<ActionTypeIconProps> = (props) => {
+  const { actionType, className } = props
 
-  switch (resourceType) {
+  switch (actionType) {
     case "mysql":
       return <MySqlIcon className={className} />
     case "postgres":
@@ -22,9 +23,11 @@ export const ResourceIcon: FC<ResourceIconProps> = (props) => {
       return <MongoDbIcon className={className} />
     case "restapi":
       return <RestApiIcon className={className} />
+    case "transformer":
+      return <JSTransformerIcon className={className} />
     default:
       return null
   }
 }
 
-ResourceIcon.displayName = "ResourceIcon"
+ActionTypeIcon.displayName = "ActionTypeIcon"

@@ -19,7 +19,7 @@ export type ActionType =
   | "transformer"
 
 type ActionTypeNameKey =
-  | "mySql"
+  | "my_sql"
   | "postgres"
   | "redis"
   | "mongo_db"
@@ -29,33 +29,33 @@ type ActionTypeNameKey =
 export interface ResourceDataItem {
   nameKey: ActionTypeNameKey
   icon: ReactElement
-  type: ActionType
+  actionType: ActionType
   isDraft?: boolean
 }
 
 export const databases: ResourceDataItem[] = [
   {
-    nameKey: "mySql",
+    nameKey: "my_sql",
     icon: <MySqlIcon />,
-    type: "mysql",
+    actionType: "mysql",
   },
   {
     nameKey: "postgres",
     icon: <PostgresIcon />,
     isDraft: true,
-    type: "postgres",
+    actionType: "postgres",
   },
   {
     nameKey: "redis",
     icon: <RedisIcon />,
     isDraft: true,
-    type: "redis",
+    actionType: "redis",
   },
   {
     nameKey: "mongo_db",
     icon: <MongoDbIcon />,
     isDraft: true,
-    type: "mongodb",
+    actionType: "mongodb",
   },
 ]
 
@@ -63,7 +63,7 @@ export const apis: ResourceDataItem[] = [
   {
     nameKey: "rest_api",
     icon: <RestApiIcon />,
-    type: "restapi",
+    actionType: "restapi",
   },
 ]
 
@@ -71,6 +71,6 @@ export const jsTransformer: ResourceDataItem[] = [
   {
     nameKey: "js_transformer",
     icon: <JSTransformerIcon />,
-    type: "transformer",
+    actionType: "transformer",
   },
 ]

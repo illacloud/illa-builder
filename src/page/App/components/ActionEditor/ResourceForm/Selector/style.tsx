@@ -29,20 +29,50 @@ export function applyResourceListStyle(last?: boolean): SerializedStyles {
   `
 }
 
-export const resourceItemStyle = css`
-  border-radius: 8px;
-  border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-  padding: 24px 44px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+export function applyResourceItemStyle(isDraft?: boolean): SerializedStyles {
+  const draftStyle = css`
+    cursor: not-allowed;
+    &:after {
+      top: 0;
+      position: absolute;
+      content: attr(data-draft-tip);
+      padding: 0 8px;
+      line-height: 16px;
+      font-size: 12px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+      color: ${globalColor(`--${illaPrefix}-techPurple-02`)};
+    }
+  `
+  const hoverStyle = css`
+    &:hover {
+      box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
+      background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+      border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    }
+  `
 
-  &:hover {
-    box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
-    background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
-  }
+  return css`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    ${!isDraft && hoverStyle}
+    ${isDraft && draftStyle}
+  `
+}
+
+export const resourceIconStyle = css`
+  font-size: 32px;
 `
 
 export const resourceNameStyle = css`

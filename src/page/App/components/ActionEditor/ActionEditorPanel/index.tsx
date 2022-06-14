@@ -1,16 +1,13 @@
 import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
 import { AnimatePresence } from "framer-motion"
-import { v4 as uuidV4 } from "uuid"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useTranslation } from "react-i18next"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
-import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
 import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
@@ -30,7 +27,7 @@ import { ActionResult } from "./ActionResult"
 const { Item: MenuItem } = Menu
 
 function renderEditor(
-  type: string,
+  actionType: string,
   ref: Ref<triggerRunRef>,
   onSaveParam: () => void,
   onRun: (result: any) => void,
@@ -38,7 +35,7 @@ function renderEditor(
 ) {
   const { onEditResource, onChangeResource, onCreateResource, onChange } = props
 
-  switch (type) {
+  switch (actionType) {
     case "restapi":
     case "mysql":
       return (
@@ -73,13 +70,13 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
+    onUpdateActionItem,
     onChange,
     onSave,
   } = props
 
   const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
-  const dispatch = useDispatch()
 
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const [actionResVisible, setActionResVisible] = useState(false)
@@ -98,44 +95,16 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     return actionItems.find((action) => action.actionId === activeActionItemId)
   }, [actionItems, activeActionItemId])
 
-  const actionItemsNameSet = useMemo(() => {
-    return new Set(actionItems.map((i) => i.displayName))
-  }, [actionItems])
-
-  const actionType = activeActionItem?.type ?? ""
+  const actionType = activeActionItem?.actionType ?? ""
 
   function handleAction(key: string) {
     setMoreBtnMenuVisible(false)
 
     if (key === "duplicate") {
-      duplicateActionItem()
+      onDuplicateActionItem()
     } else if (key === "delete") {
-      deleteActionItem()
+      onDeleteActionItem()
     }
-  }
-
-  function duplicateActionItem() {
-    if (activeActionItem) {
-      const { type } = activeActionItem
-      const id = uuidV4()
-
-      dispatch(
-        actionActions.addActionItemReducer({
-          actionId: id,
-          type,
-          displayName: generateName(type, actionItems, actionItemsNameSet),
-        }),
-      )
-
-      onDuplicateActionItem(id)
-    }
-  }
-
-  function deleteActionItem() {
-    activeActionItem &&
-      dispatch(actionActions.removeActionItemReducer(activeActionItemId))
-
-    onDeleteActionItem(activeActionItemId)
   }
 
   const moreActions = (
@@ -181,7 +150,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   return (
     <div css={containerStyle}>
       <header css={headerStyle}>
-        <TitleInput activeActionItem={activeActionItem} />
+        <TitleInput
+          activeActionItem={activeActionItem}
+          onChange={(name) =>
+            onUpdateActionItem(activeActionItemId, { displayName: name })
+          }
+        />
         <span css={fillingStyle} />
         <Dropdown
           dropList={moreActions}

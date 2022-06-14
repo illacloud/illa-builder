@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
-import { ResourceIcon } from "./ResourceIcon"
+import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
 import { ActionResourceSeletorProps } from "./interface"
 import {
   containerStyle,
@@ -62,8 +62,8 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
             )}
             onClick={() => setSelectedResourceId(r.resourceId)}
           >
-            <ResourceIcon
-              resourceType={r.resourceType}
+            <ActionTypeIcon
+              actionType={r.resourceType}
               css={resourceItemIconStyle}
             />
             <span css={resourceItemTitleStyle}>{r.resourceName}</span>
