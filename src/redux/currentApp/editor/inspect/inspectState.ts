@@ -1,5 +1,12 @@
+export interface BaseInspectState {
+  widgetDisplayName: string
+  widgetType: string
+
+  [key: string]: any
+}
+
 export interface InspectState {
-  [key: string]: Record<string, any>
+  [key: string]: BaseInspectState
 }
 
 // TODO: get config from request;

@@ -3,8 +3,6 @@ import MarkdownView, { ShowdownExtension } from "react-showdown"
 import { TextProps } from "./interface"
 import { applyTextCss, textContainerCss } from "./style"
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 const transLink: ShowdownExtension = {
@@ -59,4 +57,4 @@ export const Text: FC<TextProps> = (props: TextProps) => {
 
 Text.displayName = "TextWidget"
 
-export const TextWidget = withParser(Text)
+export const TextWidget = Text

@@ -9,9 +9,13 @@ import { UserLogin } from "@/page/User"
 import { Register } from "@/page/User/Register"
 import { Login } from "@/page/User/Login"
 import { ResetPassword } from "@/page/User/ResetPassword"
+import { Setting } from "@/page/Setting"
 import { Page404 } from "@/page/status/404"
 import { Page403 } from "@/page/status/403"
 import { Page500 } from "@/page/status/500"
+import { SettingAccount } from "@/page/Setting/SettingAccount"
+import { SettingPassword } from "@/page/Setting/SettingPassword"
+import { SettingOthers } from "@/page/Setting/SettingOthers"
 import {
   ConfigProvider,
   enUS,
@@ -63,6 +67,12 @@ function App() {
           </Route>
           <Route index element={<Navigate to="/dashboard" />} />
           <Route path="app/:app" element={<Editor />} />
+          <Route path="setting" element={<Setting />}>
+            <Route index element={<Navigate to="./account" />} />
+            <Route path="account" element={<SettingAccount />} />
+            <Route path="password" element={<SettingPassword />} />
+            <Route path="others" element={<SettingOthers />} />
+          </Route>
           <Route path="403" element={<Page403 />} />
           <Route path="500" element={<Page500 />} />
           <Route path="*" element={<Page404 />} />

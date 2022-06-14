@@ -1,7 +1,6 @@
 import { FC, useCallback, useMemo } from "react"
 import dayjs from "dayjs"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { DateRangePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
@@ -101,4 +100,4 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
 
 WrappedDateRange.displayName = "WrappedDateRange"
 
-export const DateRangeWidget = withParser(WrappedDateRange)
+export const DateRangeWidget = WrappedDateRange

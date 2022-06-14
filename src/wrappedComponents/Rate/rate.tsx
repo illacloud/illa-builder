@@ -1,7 +1,6 @@
 import { FC, useMemo } from "react"
 import { WrappedDateProps } from "./interface"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import LabelWrapper from "../LabelWrapper"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
@@ -79,4 +78,4 @@ export const WrappedRate: FC<WrappedDateProps> = (props) => {
 
 WrappedRate.displayName = "WrappedRate"
 
-export const RateWidget = withParser(WrappedRate)
+export const RateWidget = WrappedRate

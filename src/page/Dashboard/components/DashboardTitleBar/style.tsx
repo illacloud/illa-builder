@@ -1,4 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const containerStyle: SerializedStyles = css`
   box-sizing: border-box;
@@ -24,8 +25,51 @@ export const navBarAvatarContainerStyle: SerializedStyles = css`
   flex-grow: 1;
   align-self: center;
   flex-direction: row;
+  cursor: pointer;
 `
 
 export const expandStyle: SerializedStyles = css`
   margin-left: 8px;
+`
+
+export const settingBodyStyle = css`
+  width: 200px;
+  height: 120px;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+`
+
+export const coverTriggerStyle = css`
+  position: relative;
+  top: 10px;
+  & > div {
+    padding: 0;
+    box-shadow: none;
+  }
+`
+
+export const settingUserStyle = css`
+  padding: 0 8px;
+`
+
+export const userAvatarStyle = css`
+  margin: 8px;
+`
+
+export const usernameStyle = css`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`
+
+export const settingListStyle = css`
+  padding: 4px 0;
+`
+
+export const settingItemStyle = css`
+  padding: 5px 16px;
+  font-size: 14px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  cursor: pointer;
 `
