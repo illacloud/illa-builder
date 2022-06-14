@@ -16,18 +16,24 @@
   "network_error": "Network Error",
   "create_fail": "Create fail",
   "remove_fail": "Remove fail",
+  "retry": "Retry",
   "btn": {
     "choose_file": "Choose a file"
   },
   "editor": {
     "action": {
+      "type": {
+        "database": "Databases",
+        "api": "Apis",
+        "js_transformer": "Javascript Transformer"
+      },
       "action_list": {
         "title": "Action List",
         "placeholder": {
           "search": "search"
         },
         "btn": {
-          "new": "new",
+          "new": "New",
           "close": "close"
         },
         "menu": {
@@ -44,6 +50,11 @@
         },
         "message": {
           "confirm_switch": "You did not save your query. Are you sure you want to discard changes?"
+        },
+        "action_generator": {
+          "selector": {
+            "title": "Select action type"
+          }
         }
       },
       "panel": {
@@ -76,9 +87,13 @@
           "success": "Success",
           "failure": "Failure",
           "event_handler": "Event Handler"
+        },
+        "tips": {
+          "transformer": "Enable transformers to transform the result of the query to a different format."
         }
       },
       "form": {
+        "required": "This is required!",
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
@@ -87,13 +102,28 @@
         "btn": {
           "back": "Back",
           "test_connection": "Test Connection",
-          "create_resource": "Create Resource"
+          "create_resource": "Create Resource",
+          "save_changes": "Save Changes"
         },
         "validate": {
           "required": "{name} is required!"
         }
       },
       "resource": {
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+          },
+          "tip": {
+            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+          }
+        },
+        "js_transformer": {
+          "name": "Transformer"
+        },
+        "label": {
+          "comming_soon": "Comming Soon"
+        },
         "mySql": {
           "name": "MySQL",
           "label": {
@@ -193,8 +223,153 @@
         },
         "redis": {
           "name": "Redis"
+        },
+        "mongo_db": {
+          "name": "MongoDB"
+        }
+      },
+      "result": {
+        "title": {
+          "success": "Query ran successfully",
+          "error": "Query ran fail"
         }
       }
+    },
+    "widget_picker": {
+      "tab_title": "Insert",
+      "search_placeholder": "search",
+      "sessions": {
+        "commonly": "Commonly components",
+        "inputs": "Inputs",
+        "selects": "Select inputs",
+        "calendar": "Calendar inputs",
+        "presentation": "Presentation",
+        "data": "Data",
+        "container": "Container and form",
+        "navigation": "Navigation"
+      }
+    },
+    "inspect": {
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it.",
+      "setter_group": {
+        "basic": "BASIC",
+        "label": "LABEL",
+        "adornments": "ADORNMENTS",
+        "interaction": "INTERACTION",
+        "layout": "LAYOUT",
+        "style": "STYLE",
+        "validation": "VALIDATION",
+        "options": "OPTIONS"
+      },
+      "setter_label": {
+        "text": "Text",
+        "type": "Type",
+        "submit_form": "Submit form",
+        "loading": "Loading",
+        "disabled": "Disabled",
+        "tooltip": "Tooltip",
+        "align": "Align",
+        "hidden": "Hidden",
+        "variant": "Variant",
+        "color": "Color",
+        "theme_color": "Theme color",
+        "default_value": "Default value",
+        "format": "Format",
+        "placeholder": "Placeholder",
+        "max_date": "Max date",
+        "min_date": "Min date",
+        "label": "Label",
+        "caption": "Caption",
+        "label_position": "Position",
+        "label_alignment": "Alignment",
+        "label_width": "Width(%)",
+        "read_only": "Read only",
+        "show_clear_button": "Show clear button",
+        "required_field": "Required field",
+        "custom_rule": "Custom rule",
+        "hide_validation_message": "Hide validation message",
+        "start_placeholder": "Start placeholder",
+        "end_placeholder": "End placeholder",
+        "image_source": "Image source",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "img_height": "Height",
+        "img_width": "Width",
+        "radius": "Radius",
+        "show_character_count": "Show character count",
+        "prefix_text": "Prefix text",
+        "suffix_text": "Suffix text",
+        "pattern": "Pattern",
+        "regex": "Regex",
+        "max_length": "Max length",
+        "min_length": "Min Length",
+        "data_sources": "Data sources",
+        "mapped_option": "Mapped Option",
+        "value": "Value",
+        "horizontal_alignment": "Horizontal alignment",
+        "vertical_alignment": "Vertical alignment",
+        "links_color": "Links",
+        "background_color": "Background",
+        "icon": "Icon",
+        "max_count": "Max count",
+        "allow_half": "Allow half",
+        "allow_clear": "Allow clear",
+        "time_format": "Time format",
+        "step_size": "Step size",
+        "hide_value_label": "Hide value label",
+        "styles": "Styles",
+        "trail_color": "Trail color",
+        "stroke_width": "Stroke width"
+      },
+      "setter_default_value": {
+        "solid": "Solid",
+        "outline": "Outline"
+      }
+    }
+  },
+  "widget": {
+    "text": {
+      "name": "Text",
+      "default_value": "This is a text"
+    },
+    "button": {
+      "name": "Button",
+      "default_text": "Button"
+    },
+    "date": {
+      "name": "Date"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "image": {
+      "name": "Image"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "radio_group": {
+      "name": "Radio group"
+    },
+    "select": {
+      "name": "Select"
+    },
+    "switch": {
+      "name": "Switch"
+    },
+    "circle_progress": {
+      "name": "Circle Progress"
+    },
+    "bar_progress": {
+      "name": "Bar Progress"
+    },
+    "rate": {
+      "name": "Rate"
+    },
+    "date_time": {
+      "name": "Datetime"
     }
   }
 }

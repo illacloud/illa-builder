@@ -1,16 +1,17 @@
 import { SearchIcon } from "@illa-design/icon"
-import { ComponentModel } from "@/wrappedComponents/interface"
+import { WidgetConfig } from "@/wrappedComponents/interface"
 import { v4 } from "uuid"
+import i18n from "@/i18n/config"
 
-export const SELECT_WIDGET_CONFIG: ComponentModel = {
+export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "SELECT_WIDGET",
-  widgetName: "select",
-  version: "0.0.1",
+  displayName: "select",
+  widgetName: i18n.t("widget.select.name"),
   icon: <SearchIcon />,
-  sessionType: "BASIC",
+  sessionType: "SELECT",
+  w: 10,
+  h: 5,
   defaults: {
-    rows: 50,
-    columns: 500,
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",

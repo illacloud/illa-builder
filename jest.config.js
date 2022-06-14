@@ -3,6 +3,7 @@ module.exports = {
   coverageDirectory: "./jest-coverage/",
   coverageReporters: ["lcov"],
   collectCoverage: true,
+  coverageProvider: "v8",
   collectCoverageFrom: [
     "./src/**/*.(ts|tsx)",
     "!./src/**/*.test.(ts|tsx)",
@@ -24,6 +25,7 @@ module.exports = {
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",
+      useESM: true,
     },
   },
   preset: "ts-jest",

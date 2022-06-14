@@ -1,36 +1,51 @@
 import { FC, ReactNode } from "react"
-import { SessionType } from "./ComponentListBuilder"
-import { PanelConfig } from "@/page/Editor/components/InspectPanel/interface"
-import { DSLWidget } from "@/wrappedComponents/DraggableComponent/interface"
+import { NewSessionType } from "./ComponentListBuilder"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { WidgetType } from "@/wrappedComponents/WidgetBuilder"
-
-export interface SizeProps {
-  w?: number | string
-  h?: number | string
-}
 
 export interface WidgetConfigs {
   [key: string]: {
     widget: FC<any>
-    config: ComponentModel
+    config: WidgetConfig
     panelConfig: PanelConfig[]
   }
 }
 
-export type ComponentModel = {
-  id?: string
+export interface DraggableWrapperShape {
+  w: number
+  h: number
+}
+
+export interface BaseWidgetInfo {
+  displayName: string
   widgetName: string
-  icon?: string | ReactNode // url
-  type?: string // 组件类型
-  version: string
-  sessionType?: SessionType
+  icon: ReactNode
+  type: WidgetType
+  sessionType?: NewSessionType
+}
+
+export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
+  id: string
+  childrenNode?: WidgetCardInfo[]
   defaults?: {
     [key: string]: any
   }
 }
 
-export interface DragInfo extends DSLWidget {
-  props: {
+export type WidgetConfig = Omit<WidgetCardInfo, "id">
+
+export interface BaseDSL
+  extends DraggableWrapperShape,
+    Omit<BaseWidgetInfo, "icon" | "sessionType" | "widgetName"> {
+  id: string
+  childrenNode?: BaseDSL[]
+  props?: {
     [key: string]: any
-  } & DSLWidget["props"]
+  }
+}
+
+export interface EventsInProps {
+  script: string
+  eventType: string
+  enabled?: string
 }

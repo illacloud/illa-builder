@@ -1,10 +1,10 @@
-import { Global } from "@emotion/react"
+import { Global, css } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import { globalStyle } from "./style"
+import { globalStyle, codemirrorGlobalStyle } from "./style"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
-import { Editor } from "@/page/Editor"
+import { Editor } from "@/page/App"
 import { Page404 } from "@/page/status/404"
 import { Page403 } from "@/page/status/403"
 import { Page500 } from "@/page/status/500"
@@ -44,7 +44,7 @@ function App() {
   return (
     <BrowserRouter>
       <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>
-        <Global styles={globalStyle} />
+        <Global styles={css(globalStyle, codemirrorGlobalStyle)} />
         <Routes>
           <Route path="dashboard" element={<IllaApp />}>
             <Route index element={<Navigate to="./apps" />} />
@@ -52,7 +52,7 @@ function App() {
             <Route path="resources" element={<DashboardResources />} />
           </Route>
           <Route index element={<Navigate to="/dashboard" />} />
-          <Route path="editor/:editor" element={<Editor />} />
+          <Route path="app/:app" element={<Editor />} />
           <Route path="403" element={<Page403 />} />
           <Route path="500" element={<Page500 />} />
           <Route path="*" element={<Page404 />} />

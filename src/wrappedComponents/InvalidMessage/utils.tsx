@@ -46,7 +46,7 @@ function isValidURL(str: string) {
   return urlMatchPattern.test(str) ? undefined : invalidMessage.get("url")
 }
 
-const invalidMessage = new Map<string, string>([
+export const invalidMessage = new Map<string, string>([
   ["maxLength", "Must be no more than ${1} characters"],
   ["minLength", "Must be at least ${1} characters"],
   ["maxValue", "Must be less than ${1}"],

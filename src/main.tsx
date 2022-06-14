@@ -3,18 +3,29 @@ import * as ReactDOM from "react-dom"
 import App from "./App"
 import { Provider } from "react-redux"
 import store from "./store"
-;(async () => {
-  if (process.env.NODE_ENV === "development") {
-    const { worker } = await import("./mocks/browser")
-    worker.start()
-  }
-})()
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById("root"),
-)
+import { enableMapSet } from "immer"
+
+enableMapSet()
+
+async function startMockWorker() {
+  const { worker } = await import("./mocks/browser")
+  await worker.start()
+}
+
+async function prepare() {
+  if (import.meta.env.DEV) {
+    await startMockWorker()
+  }
+}
+
+prepare().then(() => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById("root"),
+  )
+})
