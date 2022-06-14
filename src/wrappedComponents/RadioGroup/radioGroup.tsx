@@ -2,9 +2,8 @@ import { RadioGroup } from "@illa-design/radio"
 import { FC } from "react"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedRadioGroupProps } from "./interface"
-import { withParser } from "@/wrappedComponents/parserHOC"
 
-const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
+export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props) => {
   const {
     label,
     labelPosition,
@@ -18,7 +17,7 @@ const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
     disabled,
     options,
     direction,
-    checkedBackgroundColor,
+    colorScheme,
     handleUpdateDsl,
   } = props
   return (
@@ -37,7 +36,7 @@ const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
         disabled={disabled}
         options={options}
         direction={direction}
-        colorScheme={checkedBackgroundColor}
+        colorScheme={colorScheme}
         onChange={(value) => {
           handleUpdateDsl({ value })
         }}
@@ -48,4 +47,4 @@ const WrappedRadioGroup: FC<WrappedRadioGroupProps<any>> = (props) => {
 
 WrappedRadioGroup.displayName = "RadioGroupWidget"
 
-export const RadioGroupWidget = withParser(WrappedRadioGroup)
+export const RadioGroupWidget = WrappedRadioGroup

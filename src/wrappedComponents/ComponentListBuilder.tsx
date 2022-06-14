@@ -55,8 +55,8 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
       sessionConfigs[sessionType] = []
     }
     const childrenConfig: WidgetCardInfo = {
-      ...item,
       id: `${sessionType}-${type}-${displayName}`,
+      ...item,
     }
     if (COMMONLY_WIDGET.has(type as string)) {
       sessionConfigs.COMMON.push(childrenConfig)

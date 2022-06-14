@@ -8,8 +8,8 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.input.name"),
   icon: <SearchIcon />,
   sessionType: "INPUTS",
-  w: 100,
-  h: 10,
+  w: 10,
+  h: 5,
   defaults: {
     label: "Label",
     labelAlign: "left",

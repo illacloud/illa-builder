@@ -1,7 +1,9 @@
-import { createContext, ReactNode, FC } from "react"
+import { createContext, ReactNode, FC, useContext, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getWidgetInspectBySelectId } from "@/redux/currentApp/editor/inspect/inspectSelector"
+import { getWidgetInspectBySingleSelected } from "@/redux/currentApp/editor/inspect/inspectSelector"
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 
 interface Injected {
   panelConfig: Record<string, any>
@@ -12,30 +14,51 @@ interface Injected {
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
 
 interface Props {
+  propsPanelConfig?: Record<string, any>
+  handleUpdateItemPanelConfig?: (value: Record<string, any>) => void
+  handleUpdateItemDsl?: (value: Record<string, any>) => void
   children?: ReactNode
 }
 
-// TODO: only support single select,wait to multi
-export const SelectedProvider: FC<Props> = ({ children }) => {
-  const panelConfig = useSelector(getWidgetInspectBySelectId) ?? {}
-
+export const SelectedProvider: FC<Props> = ({
+  propsPanelConfig,
+  children,
+  handleUpdateItemPanelConfig,
+  handleUpdateItemDsl,
+}) => {
+  const allPanelConfig = useSelector(getWidgetInspectBySingleSelected)
   const dispatch = useDispatch()
 
-  const handleUpdatePanelConfig = (value: Record<string, any>) => {
+  const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
+
+  const handleUpdatePanelConfig = useCallback(
+    (value: Record<string, any>) => {
+      if (!allPanelConfig || !allPanelConfig.widgetDisplayName) return
+      dispatch(
+        inspectActions.updateWidgetPanelConfig({
+          displayName: allPanelConfig.widgetDisplayName,
+          value,
+        }),
+      )
+    },
+    [allPanelConfig],
+  )
+
+  const handleUpdateDsl = (value: Record<string, any>) => {
+    if (!allPanelConfig || !allPanelConfig.widgetDisplayName) return
     dispatch(
-      inspectActions.updateWidgetPanelConfig({
-        id: panelConfig.id,
-        value,
+      componentsActions.updateComponentPropsReducer({
+        displayName: allPanelConfig.widgetDisplayName,
+        newProps: value,
       }),
     )
   }
 
-  const handleUpdateDsl = (value: Record<string, any>) => {}
-
   const value = {
-    panelConfig,
-    handleUpdateDsl: handleUpdateDsl,
-    handleUpdatePanelConfig,
+    panelConfig: propsPanelConfig ?? allPanelConfig ?? {},
+    handleUpdateDsl: handleUpdateItemDsl ?? handleUpdateDsl,
+    handleUpdatePanelConfig:
+      handleUpdateItemPanelConfig ?? handleUpdatePanelConfig,
   }
 
   return (
@@ -45,4 +68,4 @@ export const SelectedProvider: FC<Props> = ({ children }) => {
   )
 }
 
-SelectedProvider.displayName = "SingleSelectContext"
+SelectedProvider.displayName = "SelectedProvider"

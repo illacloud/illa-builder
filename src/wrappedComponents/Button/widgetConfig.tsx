@@ -9,8 +9,8 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.button.name"),
   icon: <SearchIcon />,
   sessionType: "PRESENTATION",
-  w: 100,
-  h: 50,
+  w: 10,
+  h: 5,
   defaults: {
     text: i18n.t("widget.button.default_text"),
     variant: "fill",

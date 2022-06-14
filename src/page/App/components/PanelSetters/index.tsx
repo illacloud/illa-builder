@@ -9,6 +9,8 @@ import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListS
 import { MappedOptionSetter } from "@/page/App/components/PanelSetters/MappedOptionSetter"
 import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/searchSelect"
 import { DateRangeValueSetter } from "@/page/App/components/PanelSetters/DateRangeValueSetter"
+import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
+import { EventTargetSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetSelect"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -22,6 +24,8 @@ const SetterTypeMapSetter = {
   OPTION_LIST_SETTER: OptionListSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,
   DATE_RANGE_VALUE_SETTER: DateRangeValueSetter,
+  EVENT_HANDLER_SETTER: EventHandlerSetter,
+  EVENT_TARGET_SELECT_SETTER: EventTargetSelect,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

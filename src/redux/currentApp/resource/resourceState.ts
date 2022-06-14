@@ -7,5 +7,6 @@ import {
 export interface Resource extends DashboardResource {
   options: MySQLConfigureValues | RESTAPIConfigureValues
 }
+
 export type ResourceListState = Resource[]
 export const resourceInitialState: ResourceListState = []
