@@ -2,33 +2,36 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import store from "@/store"
 import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
+import { DottedLineSquare } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareState"
 
 export function updateDottedLineSquareData(
   componentNode: ComponentNode,
   squareX: number,
   squareY: number,
-  parentDisplayName: string,
-  dispatchFn: (componentNode: ComponentNode) => void,
+  unitWidth: number,
+  unitHeight: number,
+  dispatchFn: (dottedLineSquare: DottedLineSquare) => void,
 ) {
   // reduce render
-  const currentDottedLine = searchDsl(
-    store.getState().currentApp.editor.components.rootDsl,
-    componentNode.displayName,
-  )
-  if (currentDottedLine != null) {
-    if (squareX == currentDottedLine.x && squareY == currentDottedLine.y) {
+  const currentDrag =
+    store.getState().currentApp.editor.dottedLineSquare.map[
+      componentNode.displayName
+    ]
+  if (currentDrag !== null && currentDrag !== undefined) {
+    if (squareX == currentDrag.squareX && squareY == currentDrag.squareY) {
       return
     }
   }
-  // set dotted line
-  const newItem = {
-    ...componentNode,
-  } as ComponentNode
-  newItem.parentNode = parentDisplayName
-  newItem.containerType = "EDITOR_DOTTED_LINE_SQUARE"
-  newItem.x = squareX
-  newItem.y = squareY
-  dispatchFn?.(newItem)
+
+  // set shadow
+  const dottedLineSquare = {
+    displayName: componentNode.displayName,
+    squareX,
+    squareY,
+    w: componentNode.w * unitWidth,
+    h: componentNode.h * unitHeight,
+  } as DottedLineSquare
+  dispatchFn?.(dottedLineSquare)
 }
 
 export function updateDragShadowData(

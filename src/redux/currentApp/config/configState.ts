@@ -6,6 +6,7 @@ export interface ConfigState {
   openRightPanel: boolean
   unitSize: UnitSize
   showDot: boolean
+  scale: number
   selectedComponents: ComponentNode[]
 }
 
@@ -16,6 +17,7 @@ export interface UnitSize {
 
 export const ConfigInitialState: ConfigState = {
   openLeftPanel: true,
+  scale: 100,
   openBottomPanel: true,
   selectedComponents: [],
   openRightPanel: true,
