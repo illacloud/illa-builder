@@ -3,11 +3,14 @@ import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
 import { Resource } from "@/redux/currentApp/resource/resourceState"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
+import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ResourceForm } from "./ResourceForm"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
@@ -19,14 +22,14 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const dispatch = useDispatch()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
-  const [resourceId, setResourceId] = useState("preset_REST API")
+  const [resourceId, setResourceId] = useState("")
   const [isActionDirty, setIsActionDirty] = useState(false)
   const [editorHeight, setEditorHeight] = useState(300)
+  const [actionListLoading, setActionListLoading] = useState(false)
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
-
   const actionItems = useSelector(selectAllActionItem)
 
-  function onDeleteActionItem(id: string) {
+  function updateSeletedItemId(id: string) {
     const { length } = actionItems
 
     if (id !== activeActionItemId) {
@@ -54,11 +57,102 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     setActiveActionItemId(id)
   }
 
+  function onAddActionItem(data: Partial<ActionItem>) {
+    Api.request(
+      {
+        url: "/actions",
+        method: "POST",
+        data,
+      },
+      ({ data }: { data: ActionItem }) => {
+        dispatch(actionActions.addActionItemReducer(data))
+        updateActiveActionItemId(data.actionId)
+      },
+      () => {},
+      () => {},
+      (loading) => {
+        setActionListLoading(loading)
+      },
+    )
+  }
+
+  function onUpdateActionItem(actionId: string, data: Partial<ActionItem>) {
+    Api.request(
+      {
+        url: `/actions/${actionId}`,
+        method: "PUT",
+        data: data,
+      },
+      ({ data }: { data: ActionItem }) => {
+        dispatch(
+          actionActions.updateActionItemReducer({
+            ...data,
+          }),
+        )
+      },
+      () => {},
+      () => {},
+      (loading) => {
+        setActionListLoading(loading)
+      },
+    )
+  }
+
+  function onDuplicateActionItem(actionId: string = activeActionItemId) {
+    const targetItem = actionItems.find((i) => i.actionId === actionId)
+
+    if (targetItem) {
+      const actionType = targetItem.actionType
+      const { actionId, ...duplicateActionData } = targetItem
+
+      Api.request(
+        {
+          url: "/actions",
+          method: "POST",
+          data: {
+            ...duplicateActionData,
+            displayName: generateName(actionType, actionItems),
+          },
+        },
+        ({ data }: { data: ActionItem }) => {
+          dispatch(actionActions.addActionItemReducer(data))
+          onDuplicateActionItem(data?.actionId)
+        },
+        () => {},
+        () => {},
+        (loading) => {
+          setActionListLoading(loading)
+        },
+      )
+    }
+  }
+
+  function onDeleteActionItem(actionId: string = activeActionItemId) {
+    Api.request(
+      {
+        url: `/actions/${actionId}`,
+        method: "DELETE",
+      },
+      ({ data }: { data: { actionId: string } }) => {
+        dispatch(actionActions.removeActionItemReducer(data?.actionId))
+        updateSeletedItemId(data?.actionId)
+      },
+      () => {},
+      () => {},
+      (loading) => {
+        setActionListLoading(loading)
+      },
+    )
+  }
+
   useEffect(() => {
+    const controller = new AbortController()
+
     Api.request(
       {
         method: "GET",
         url: "/resources",
+        signal: controller.signal,
       },
       ({ data }: { data: Resource[] }) => {
         dispatch(resourceActions.addResourceListReducer(data))
@@ -71,13 +165,38 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         // TODO: handle loading
       },
     )
+
+    Api.request(
+      {
+        method: "GET",
+        url: "/actions",
+        signal: controller.signal,
+      },
+      ({ data }: { data: ActionItem[] }) => {
+        dispatch(actionActions.addActionListReducer(data))
+
+        if (data.length) {
+          setActiveActionItemId(data[0].actionId)
+        }
+      },
+      () => {
+        // TODO: handle error
+      },
+      () => {},
+      (loading) => {
+        setActionListLoading(loading)
+      },
+    )
+
+    return () => {
+      controller.abort()
+    }
   }, [])
 
   useEffect(() => {
     const resourceId =
       actionItems.find(({ actionId }) => activeActionItemId === actionId)
         ?.resourceId ?? ""
-
     setResourceId(resourceId)
   }, [activeActionItemId, actionItems])
 
@@ -96,10 +215,12 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           }}
           actionList={
             <ActionList
+              loading={actionListLoading}
               isActionDirty={isActionDirty}
               onSelectActionItem={updateActiveActionItemId}
-              onAddActionItem={updateActiveActionItemId}
-              onDuplicateActionItem={updateActiveActionItemId}
+              onUpdateActionItem={onUpdateActionItem}
+              onAddActionItem={onAddActionItem}
+              onDuplicateActionItem={onDuplicateActionItem}
               onDeleteActionItem={onDeleteActionItem}
             />
           }
@@ -108,7 +229,8 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
               key={activeActionItemId}
               isActionDirty={isActionDirty}
               onDeleteActionItem={onDeleteActionItem}
-              onDuplicateActionItem={updateActiveActionItemId}
+              onDuplicateActionItem={onDuplicateActionItem}
+              onUpdateActionItem={onUpdateActionItem}
               onCreateResource={() => {
                 setActionType("select")
                 setFormVisible(true)

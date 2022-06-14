@@ -19,3 +19,5 @@ export const SelectedPanel: FC<SelectedPanelProps> = (props) => {
     </SelectedProvider>
   )
 }
+
+SelectedPanel.displayName = "SelectedPanel"

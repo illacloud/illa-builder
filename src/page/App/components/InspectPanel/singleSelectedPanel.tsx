@@ -4,6 +4,10 @@ import { PanelHeader } from "@/page/App/components/InspectPanel/header"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { panelBuilder } from "@/wrappedComponents/PanelBuilder"
 import { fieldFactory } from "./utils/fieldFactory"
+import {
+  singleSelectedPanelSetterWrapperStyle,
+  singleSelectedPanelWrapperStyle,
+} from "@/page/App/components/InspectPanel/style"
 
 export const SingleSelectedPanel: FC = () => {
   const { panelConfig } = useContext(SelectedPanelContext)
@@ -15,14 +19,16 @@ export const SingleSelectedPanel: FC = () => {
 
   return (
     builderPanelConfig && (
-      <div style={{ width: "100%" }}>
+      <div css={singleSelectedPanelWrapperStyle}>
         <Divider />
         <PanelHeader />
         <Divider />
-        <div style={{ maxHeight: "calc(100vh - 150px )", overflowY: "scroll" }}>
+        <div css={singleSelectedPanelSetterWrapperStyle}>
           {fieldFactory(builderPanelConfig, panelConfig.widgetDisplayName)}
         </div>
       </div>
     )
   )
 }
+
+SingleSelectedPanel.displayName = "SingleSelectedPanel"

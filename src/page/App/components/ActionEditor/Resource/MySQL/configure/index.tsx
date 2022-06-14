@@ -23,12 +23,7 @@ import {
   requiredLabelTextStyle,
   splitLineStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
-import {
-  MySQLConfigureProps,
-  MySQLConfigureValues,
-  AdvancedOptions,
-  TestConnectionBaseValues,
-} from "../interface"
+import { MySQLConfigureProps, MySQLConfigureValues } from "../interface"
 import { InputUpload } from "./input-upload"
 import {
   formPaddingStyle,
@@ -38,49 +33,6 @@ import {
   usernamePasswordStyle,
 } from "./style"
 
-const baseOptionSet = new Set([
-  "host",
-  "port",
-  "databaseName",
-  "databaseUsername",
-  "databasePassword",
-  "ssl",
-  "ssh",
-])
-const advancedOptionSet = new Set([
-  "sshHost",
-  "sshPort",
-  "sshUsername",
-  "sshPassword",
-  "sshPrivateKey",
-  "sshPassphrase",
-  "serverCert",
-  "clientKey",
-  "clientCert",
-])
-const dataTransform = (data: MySQLConfigureValues) => {
-  let options: {
-    [x: string]:
-      | string
-      | number
-      | boolean
-      | { [x: string]: string | number | boolean }
-  } = {}
-  let advanced: { [x: string]: string | number | boolean } = {}
-  Object.keys(data).forEach((key) => {
-    if (baseOptionSet.has(key)) {
-      options[key as keyof TestConnectionBaseValues] =
-        data[key as keyof MySQLConfigureValues]
-    }
-    if (advancedOptionSet.has(key)) {
-      advanced[key as keyof AdvancedOptions] =
-        data[key as keyof MySQLConfigureValues]
-    }
-  })
-  options.advancedOptions = advanced
-  return { kind: "mysql", options }
-}
-
 export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
   (props, ref) => {
     const { resourceId, connectionRef, onSubmit, onTestConnection } = props
@@ -88,8 +40,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
-    const [expandSSH, setExpandSSH] = useState(false)
-    const [expandSSL, setExpandSSL] = useState(false)
+    const [enableSSH, setEnableSSH] = useState(false)
+    const [enableSSL, setEnableSSL] = useState(false)
     const {
       handleSubmit,
       control,
@@ -100,27 +52,22 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       setValue,
     } = useForm<MySQLConfigureValues>({
       mode: "onBlur",
-      defaultValues: (resourceConfig?.config as MySQLConfigureValues) || {
+      defaultValues: {
+        resourceName: resourceConfig?.resourceName,
+        ...resourceConfig?.options,
+      } || {
         port: 3306,
-        ssh: false,
-        ssl: false,
-        sshPort: 22,
       },
     })
 
     const testConnection = () => {
-      let data: MySQLConfigureValues = {
-        ...getValues(),
-        ssh: expandSSH,
-        ssl: expandSSL,
-      }
-      const _data = dataTransform(data)
+      const data = getValues()
+      const { resourceName, ...options } = data
+
       onTestConnection?.({
-        resourceName: data.name,
+        resourceName: resourceName,
         resourceType: "MySQL",
-        dbName: "",
-        created: Date.now().toString(),
-        config: _data,
+        options,
       })
     }
 
@@ -131,15 +78,12 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     })
 
     const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
-      data = { ...data, ssh: expandSSH, ssl: expandSSL }
-
+      const { resourceName, ...options } = data
       onSubmit &&
         onSubmit({
-          resourceName: data.name,
+          resourceName: resourceName,
           resourceType: "mysql",
-          dbName: "",
-          created: Date.now().toString(),
-          config: data,
+          options,
         })
     }
     return (
@@ -147,16 +91,16 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
         <div css={css(gridContainerStyle, formPaddingStyle)}>
           <div css={gridRowContainerStyle}>
             <label css={requiredLabelTextStyle}>
-              {t("editor.action.resource.mySql.label.name")}
+              {t("editor.action.resource.my_sql.label.name")}
             </label>
             <Controller
               render={({ field }) => (
                 <Input
                   {...field}
                   placeholder={t(
-                    "editor.action.resource.mySql.placeholder.name",
+                    "editor.action.resource.my_sql.placeholder.name",
                   )}
-                  error={!!errors.name}
+                  error={!!errors.resourceName}
                   maxLength={200}
                 />
               )}
@@ -164,17 +108,17 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 required: t("editor.action.form.required"),
               }}
               control={control}
-              name="name"
+              name="resourceName"
             />
-            {errors.name && (
+            {errors.resourceName && (
               <div css={css(errorMessageStyle, applyGridColIndex(2))}>
-                {errors.name.message}
+                {errors.resourceName.message}
               </div>
             )}
           </div>
           <div css={gridRowContainerStyle}>
             <label css={requiredLabelTextStyle}>
-              {t("editor.action.resource.mySql.label.hostname_port")}
+              {t("editor.action.resource.my_sql.label.hostname_port")}
             </label>
             <div css={hostnamePortStyle}>
               <Controller
@@ -182,7 +126,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   <Input
                     {...field}
                     placeholder={t(
-                      "editor.action.resource.mySql.placeholder.hostname",
+                      "editor.action.resource.my_sql.placeholder.hostname",
                     )}
                     error={!!errors.host}
                     maxLength={200}
@@ -218,14 +162,14 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
           </div>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
-              {t("editor.action.resource.mySql.label.database")}
+              {t("editor.action.resource.my_sql.label.database")}
             </label>
             <Controller
               render={({ field }) => (
                 <Input
                   {...field}
                   placeholder={t(
-                    "editor.action.resource.mySql.placeholder.database",
+                    "editor.action.resource.my_sql.placeholder.database",
                   )}
                 />
               )}
@@ -235,7 +179,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
           </div>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
-              {t("editor.action.resource.mySql.label.username_password")}
+              {t("editor.action.resource.my_sql.label.username_password")}
             </label>
             <div css={usernamePasswordStyle}>
               <Controller
@@ -243,7 +187,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   <Input
                     {...field}
                     placeholder={t(
-                      "editor.action.resource.mySql.placeholder.username",
+                      "editor.action.resource.my_sql.placeholder.username",
                     )}
                   />
                 )}
@@ -256,7 +200,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     {...field}
                     invisibleButton={false}
                     placeholder={t(
-                      "editor.action.resource.mySql.placeholder.password",
+                      "editor.action.resource.my_sql.placeholder.password",
                     )}
                   />
                 )}
@@ -265,43 +209,43 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               />
             </div>
             <div css={css(descriptionStyle, applyGridColIndex(2))}>
-              {t("editor.action.resource.mySql.tip.username_password")}
+              {t("editor.action.resource.my_sql.tip.username_password")}
             </div>
           </div>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
-              {t("editor.action.resource.mySql.label.connect_type")}
+              {t("editor.action.resource.my_sql.label.connect_type")}
             </label>
             <div css={itemTextStyle}>
-              {t("editor.action.resource.mySql.tip.connect_type")}
+              {t("editor.action.resource.my_sql.tip.connect_type")}
             </div>
           </div>
           <Divider css={splitLineStyle} />
           <h4 css={groupTitleStyle}>Advanced Options</h4>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
-              {t("editor.action.resource.mySql.label.connect_over_ssh")}
+              {t("editor.action.resource.my_sql.label.connect_over_ssh")}
             </label>
             <div css={switchAreaStyle}>
               <Switch
                 colorScheme="techPurple"
-                checked={expandSSH}
+                checked={enableSSH}
                 onChange={(val) => {
-                  setExpandSSH(val)
+                  setEnableSSH(val)
                 }}
               />
               <div css={switchDescriptionStyle}>
                 <div css={labelTextStyle}>
-                  {t("editor.action.resource.mySql.tip.connect_over_ssh")}
+                  {t("editor.action.resource.my_sql.tip.connect_over_ssh")}
                 </div>
               </div>
             </div>
           </div>
-          {expandSSH && (
+          {enableSSH && (
             <>
               <div css={gridRowContainerStyle}>
                 <label css={requiredLabelTextStyle}>
-                  {t("editor.action.resource.mySql.label.ssh_hostname_port")}
+                  {t("editor.action.resource.my_sql.label.ssh_hostname_port")}
                 </label>
                 <div css={hostnamePortStyle}>
                   <Controller
@@ -309,43 +253,48 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       <Input
                         {...field}
                         placeholder={t(
-                          "editor.action.resource.mySql.placeholder.ssh_hostname_port",
+                          "editor.action.resource.my_sql.placeholder.ssh_hostname_port",
                         )}
                         maxLength={200}
-                        error={!!errors.sshHost}
+                        error={!!errors.advancedOptions?.sshHost}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshHost"
+                    name="advancedOptions.sshHost"
                   />
                   <Controller
                     render={({ field }) => (
                       <InputNumber
                         {...field}
                         placeholder="22"
-                        error={!!errors.sshPort}
+                        error={!!errors.advancedOptions?.sshPort}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshPort"
+                    name="advancedOptions.sshPort"
                   />
                 </div>
-                {(errors.sshHost || errors.sshPort) && (
-                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                    <div css={errorMessageStyle}>{errors.sshHost?.message}</div>
-                    <div css={errorMessageStyle}>{errors.sshPort?.message}</div>
-                  </div>
-                )}
+                {(errors.advancedOptions?.sshHost ||
+                  errors.advancedOptions?.sshPort) && (
+                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshHost?.message}
+                      </div>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshPort?.message}
+                      </div>
+                    </div>
+                  )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={requiredLabelTextStyle}>
-                  {t("editor.action.resource.mySql.label.ssh_credentials")}
+                  {t("editor.action.resource.my_sql.label.ssh_credentials")}
                 </label>
                 <div css={usernamePasswordStyle}>
                   <Controller
@@ -353,16 +302,16 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       <Input
                         {...field}
                         placeholder={t(
-                          "editor.action.resource.mySql.placeholder.ssh_credentials",
+                          "editor.action.resource.my_sql.placeholder.ssh_credentials",
                         )}
-                        error={!!errors.sshUsername}
+                        error={!!errors.advancedOptions?.sshUsername}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshUsername"
+                    name="advancedOptions.sshUsername"
                   />
                   <Controller
                     render={({ field }) => (
@@ -370,38 +319,39 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         {...field}
                         placeholder="•••••••••"
                         invisibleButton={false}
-                        error={!!errors.sshPassword}
+                        error={!!errors.advancedOptions?.sshPassword}
                       />
                     )}
                     rules={{
                       required: t("editor.action.form.required"),
                     }}
                     control={control}
-                    name="sshPassword"
+                    name="advancedOptions.sshPassword"
                   />
                 </div>
-                {(errors.sshUsername || errors.sshPassword) && (
-                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                    <div css={errorMessageStyle}>
-                      {errors.sshUsername?.message}
+                {(errors.advancedOptions?.sshUsername ||
+                  errors.advancedOptions?.sshPassword) && (
+                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshUsername?.message}
+                      </div>
+                      <div css={errorMessageStyle}>
+                        {errors.advancedOptions?.sshPassword?.message}
+                      </div>
                     </div>
-                    <div css={errorMessageStyle}>
-                      {errors.sshPassword?.message}
-                    </div>
-                  </div>
-                )}
+                  )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={labelTextStyle}>
-                  {t("editor.action.resource.mySql.label.private_key")}
+                  {t("editor.action.resource.my_sql.label.private_key")}
                 </label>
                 <InputUpload
-                  name="sshPrivateKey"
+                  name="advancedOptions.sshPrivateKey"
                   register={register}
                   reset={resetField}
                   setValue={setValue}
                   placeholder={t(
-                    "editor.action.resource.mySql.placeholder.private_key",
+                    "editor.action.resource.my_sql.placeholder.private_key",
                   )}
                 />
               </div>
@@ -409,7 +359,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 <label css={css(labelTextStyle, labelTextVerticalStyle)}>
                   <div>SSH passphrase</div>
                   <div css={labelTextSmallSizeStyle}>
-                    {t("editor.action.resource.mySql.tip.ssh_passphrase")}
+                    {t("editor.action.resource.my_sql.tip.ssh_passphrase")}
                   </div>
                 </label>
                 <Controller
@@ -421,73 +371,73 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     />
                   )}
                   control={control}
-                  name="sshPassphrase"
+                  name="advancedOptions.sshPassphrase"
                 />
               </div>
             </>
           )}
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
-              {t("editor.action.resource.mySql.label.ssl_options")}
+              {t("editor.action.resource.my_sql.label.ssl_options")}
             </label>
             <div css={switchAreaStyle}>
               <Switch
                 colorScheme="techPurple"
-                checked={expandSSL}
+                checked={enableSSL}
                 onChange={(val) => {
-                  setExpandSSL(val)
+                  setEnableSSL(val)
                 }}
               />
               <div css={switchDescriptionStyle}>
                 <div css={labelTextStyle}>
-                  {t("editor.action.resource.mySql.tip.ssl_options")}
+                  {t("editor.action.resource.my_sql.tip.ssl_options")}
                 </div>
               </div>
             </div>
           </div>
-          {expandSSL && (
+          {enableSSL && (
             <>
               <div css={gridRowContainerStyle}>
                 <label css={labelTextStyle}>
                   {t(
-                    "editor.action.resource.mySql.label.server_root_certificate",
+                    "editor.action.resource.my_sql.label.server_root_certificate",
                   )}
                 </label>
                 <InputUpload
-                  name="serverCert"
+                  name="advancedOptions.serverCert"
                   register={register}
                   reset={resetField}
                   setValue={setValue}
                   placeholder={t(
-                    "editor.action.resource.mySql.placeholder.server_root_certificate",
-                  )}
-                />
-              </div>
-              <div css={gridRowContainerStyle}>
-                <label css={labelTextStyle}>
-                  {t("editor.action.resource.mySql.label.client_key")}
-                </label>
-                <InputUpload
-                  name="clientKey"
-                  register={register}
-                  reset={resetField}
-                  setValue={setValue}
-                  placeholder={t(
-                    "editor.action.resource.mySql.placeholder.client_key",
+                    "editor.action.resource.my_sql.placeholder.server_root_certificate",
                   )}
                 />
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={labelTextStyle}>
-                  {t("editor.action.resource.mySql.label.client_certificate")}
+                  {t("editor.action.resource.my_sql.label.client_key")}
                 </label>
                 <InputUpload
-                  name="clientCert"
+                  name="advancedOptions.clientKey"
                   register={register}
                   reset={resetField}
                   setValue={setValue}
                   placeholder={t(
-                    "editor.action.resource.mySql.placeholder.client_certificate",
+                    "editor.action.resource.my_sql.placeholder.client_key",
+                  )}
+                />
+              </div>
+              <div css={gridRowContainerStyle}>
+                <label css={labelTextStyle}>
+                  {t("editor.action.resource.my_sql.label.client_certificate")}
+                </label>
+                <InputUpload
+                  name="advancedOptions.clientCert"
+                  register={register}
+                  reset={resetField}
+                  setValue={setValue}
+                  placeholder={t(
+                    "editor.action.resource.my_sql.placeholder.client_certificate",
                   )}
                 />
               </div>

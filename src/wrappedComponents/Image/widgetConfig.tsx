@@ -8,8 +8,8 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.image.name"),
   icon: <SearchIcon />,
   sessionType: "PRESENTATION",
-  h: 10,
-  w: 5,
+  h: 15,
+  w: 10,
   defaults: {
     src: "https://placekitten.com/400/300",
   },

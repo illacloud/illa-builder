@@ -20,6 +20,6 @@ export interface ActionTypeSelectorCardProps extends ResourceDataItem {
 }
 
 export interface ActionTypeInfo {
-  type: string
+  actionType: string
   category?: ActionTypeCategory
 }

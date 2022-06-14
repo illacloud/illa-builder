@@ -27,7 +27,7 @@ const renderResourceNode = (
   resourceType: ResourceType | undefined,
   connectionRef: RefObject<ConnectionRef>,
   formRef: RefObject<HTMLFormElement>,
-  onSubmitForm: (data: any) => void,
+  onSubmitForm: (data: any, resourceId?: string) => void,
   onTestConnection: (data: any) => void,
   props: ResourceFormEditorProps,
 ) => {
@@ -37,7 +37,10 @@ const renderResourceNode = (
   switch (resourceType) {
     case "restapi":
       node = (
-        <RESTAPIConfigure resourceId={resourceId} onSubmit={onSubmitForm} />
+        <RESTAPIConfigure
+          resourceId={resourceId}
+          onSubmit={(data) => onSubmitForm(data, resourceId)}
+        />
       )
       break
     case "mysql":
@@ -45,7 +48,7 @@ const renderResourceNode = (
         <MySQLConfigure
           connectionRef={connectionRef}
           resourceId={resourceId}
-          onSubmit={onSubmitForm}
+          onSubmit={(data) => onSubmitForm(data, resourceId)}
           onTestConnection={onTestConnection}
         />
       )
@@ -56,6 +59,17 @@ const renderResourceNode = (
   }
 
   return cloneElement(node, { ref: formRef }) || null
+}
+
+const getResourceTypeNameKey = (resourceType: string) => {
+  switch (resourceType) {
+    case "restapi":
+      return "rest_api"
+    case "mysql":
+      return "my_sql"
+    default:
+      return ""
+  }
 }
 
 export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
@@ -73,6 +87,11 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
 
   const [createBtnLoading, setCreateBtnLoading] = useState(false)
   const [testConnectionLoading, setTestConnectionLoading] = useState(false)
+
+  const resourceTypeNameKey = getResourceTypeNameKey(resourceType as string)
+  const resourceTitle = resourceTypeNameKey
+    ? t(`editor.action.resource.${resourceTypeNameKey}.name`)
+    : ""
 
   function submitForm() {
     formRef.current?.requestSubmit()
@@ -133,7 +152,9 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
 
   return (
     <div css={formContainerStyle}>
-      <div css={formTitleStyle}>Configure</div>
+      <div css={formTitleStyle}>
+        {t("editor.action.form.title.configure", { name: resourceTitle })}
+      </div>
       <div>
         {renderResourceNode(
           resourceType,

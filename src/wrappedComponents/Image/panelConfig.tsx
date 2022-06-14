@@ -8,8 +8,8 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "image-basic-source",
+        attrName: "fallbackSrc",
         labelName: i18n.t("editor.inspect.setter_label.image_source"),
-        attrName: "src",
         setterType: "INPUT_SETTER",
         defaultValue: "https://placekitten.com/400/300",
       },
@@ -17,14 +17,14 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         id: "image-basic-alt-text",
         labelName: i18n.t("editor.inspect.setter_label.alt_text"),
         labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
-        attrName: "altText",
+        attrName: "alt",
         setterType: "INPUT_SETTER",
       },
     ],
   },
   // {
   //   id: "image-Interaction",
-  //   groupName: "Interaction",
+  //   groupName: i18n.t("editor.inspect.setter_group.interaction")
   //   children: [
   //     {
   //       id: "image-interaction-event",

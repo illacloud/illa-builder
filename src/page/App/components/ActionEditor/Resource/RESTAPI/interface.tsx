@@ -9,7 +9,7 @@ export type Params = {
 }
 
 export interface RESTAPIConfigureValues {
-  name: string
+  resourceName: string
   baseURL?: string
   urlParams?: Params[]
   headers?: Params[]
