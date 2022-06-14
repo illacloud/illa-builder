@@ -14,7 +14,7 @@ export const DatabaseResult: FC<DatabaseResultProps> = (props) => {
     ? Object.keys(data[0]).map((k) => {
       return {
         accessor: k,
-        Headers: () => k,
+        Header: `${k}`,
       }
     })
     : []
