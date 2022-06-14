@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useContext } from "react"
+import { FC, useRef, useState, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { css } from "@emotion/react"
 import { RightIcon, CloseIcon, WarningCircleIcon } from "@illa-design/icon"
@@ -10,6 +10,9 @@ import {
   applyResizerStyle,
 } from "@/page/App/components/ActionEditor/style"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
+import { ApiResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/ApiResult"
+import { DatabaseResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/DatabaseResult"
+import { ActionResult as ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
 import {
   resCloseIconStyle,
   applyResContainerStyle,
@@ -46,8 +49,17 @@ function renderStatusNode(status: ActionRestultStatus) {
   }
 }
 
+function renderResult(actionType: string, result?: ActionResultType) {
+  switch (actionType) {
+    case "restapi":
+      return <ApiResult result={result} />
+    case "mysql":
+      return <DatabaseResult result={result} />
+  }
+}
+
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose, result, status = "success", className } = props
+  const { onClose, result, status = "success", className, actionType } = props
   const { t } = useTranslation()
   const { editorHeight } = useContext(ActionEditorContext)
   const resultContainerRef = useRef<HTMLDivElement>(null)
@@ -64,6 +76,11 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
     status === "success"
       ? t("editor.action.result.title.success")
       : t("editor.action.result.title.error")
+
+  const resultNode = useMemo(
+    () => renderResult(actionType, result),
+    [actionType, result],
+  )
 
   return (
     <motion.div
@@ -92,8 +109,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           <span css={resTitleStyle}>{title}</span>
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
         </div>
-        {/* TODO:@Spike use InputEditor to display result */}
-        <pre css={resContentStyle}>{result}</pre>
+        <div css={resContentStyle}>{resultNode}</div>
       </div>
     </motion.div>
   )

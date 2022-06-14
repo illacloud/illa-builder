@@ -81,7 +81,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const [actionResVisible, setActionResVisible] = useState(false)
   const [isRuning, setIsRuning] = useState(false)
-  const [result, setResult] = useState<string>()
+  const [result, setResult] = useState<object>()
   const [duration, setDuaraion] = useState<string>()
 
   const runningIntervalRef = useRef<NodeJS.Timer>()
@@ -128,7 +128,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   function onRun(result: any) {
     setActionResVisible(true)
-    setResult(JSON.stringify(result.data, null, "····"))
+    setResult(result)
   }
 
   function onLoadingActionResult(loading: boolean) {
@@ -215,6 +215,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             {actionResVisible && (
               <ActionResult
                 result={result}
+                actionType={actionType}
                 onClose={() => {
                   setActionResVisible(false)
                 }}

@@ -15,24 +15,6 @@ import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPa
 import { ActionEditorPanelContext } from "@/page/App/components/ActionEditor/ActionEditorPanel/context"
 import { ResourcePanelProps } from "./interface"
 
-const dataTransform = (data: any) => {
-  const _data = {
-    resourceId: "04813000-438f-468e-a8c1-d34518b6c2fa",
-    type: "SQLQuery",
-    name: "sqlEg",
-    actionTemplate: {
-      mode: "sql",
-      query: "select * from users limit 100",
-      enableTransformer: false,
-      transformer:
-        "// The variable 'data' allows you to reference the request's data in the transformer. \n// example: return data.find(element => element.isError)\nreturn data.error",
-      events: [],
-    },
-  }
-  _data.actionTemplate.query = data.general?.query
-  return _data
-}
-
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
     const { resourceId, onChange, onSave, onRun } = props
@@ -66,18 +48,27 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     }
 
     const run = () => {
-      const _data = dataTransform(params)
       Api.request(
         {
           url: `/actions/${activeActionItemId}/run`,
           method: "POST",
-          data: _data,
+          data: {
+            actionType: activeActionItem?.actionType,
+          },
         },
         (data) => {
-          onRun && onRun(data.data)
+          const { config, request, ...response } = data
+          // TODO: get restapi request params
+          const apiRequestParams = {
+            url: "",
+            method: "",
+            body: "",
+            headers: {},
+          }
+          onRun && onRun({ request: apiRequestParams, response })
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => {
           onLoadingActionResult?.(loading)
         },

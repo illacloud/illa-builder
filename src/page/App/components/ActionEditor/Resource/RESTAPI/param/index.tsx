@@ -37,7 +37,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     ) ?? null
 
   const config = action?.config?.general as RESTAPIParamValues
-  const resourceConfig = resource?.config as RESTAPIConfigureValues
+  const resourceConfig = resource?.options as RESTAPIConfigureValues
   const baseURL = resourceConfig?.baseURL
 
   const [params, setParams] = useState({

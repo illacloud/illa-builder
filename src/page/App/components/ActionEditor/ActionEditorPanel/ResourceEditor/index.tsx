@@ -18,7 +18,6 @@ import {
   applyEditIconStyle,
   sectionTitleStyle,
   resourceBarStyle,
-  resourceOptionStyle,
   resourceBarTitleStyle,
   panelScrollStyle,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"

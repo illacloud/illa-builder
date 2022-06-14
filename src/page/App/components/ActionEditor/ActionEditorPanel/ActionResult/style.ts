@@ -42,9 +42,6 @@ export const resTitleStyle = css`
 
 export const resContentStyle = css`
   overflow: auto;
-  & .CodeMirror {
-    border: 0;
-  }
 `
 
 export const resCloseIconStyle = css`
