@@ -133,7 +133,7 @@ export const SettingPassword: FC = () => {
     if (!beforeFormat()) {
       return
     }
-    console.log("account password")
+
     Api.request(
       {
         url: "/api/v1/users/password",

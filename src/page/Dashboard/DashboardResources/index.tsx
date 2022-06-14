@@ -105,7 +105,7 @@ export const DashboardResources: FC = () => {
         width: 20,
       },
     ],
-    [resourcesList],
+    [],
   )
   const data = useMemo(() => {
     const result: any[] = []
