@@ -78,7 +78,9 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       transition={{ duration: 0.2 }}
       key={"title"}
     >
-      <span css={titleStyle}>{title}</span>
+      <span css={titleStyle} title={title}>
+        {title}
+      </span>
       <PenIcon css={titleEditIconStyle} viewBox={"0 0 14 14"} />
     </motion.div>
   )

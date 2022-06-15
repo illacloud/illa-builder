@@ -39,8 +39,8 @@ export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-        `--${illaPrefix}-techPurple-06`,
-      )}!important;
+    `--${illaPrefix}-techPurple-06`,
+  )}!important;
     }
   `
 }
@@ -96,7 +96,7 @@ export const actionItemNameStyle = css`
   margin-left: 8px;
   max-width: 164px;
   overflow: hidden;
-  margin-right: 8px;
+  margin-rigth: 8px;
 `
 
 export function applyactionItemNameTextStyle(
@@ -107,6 +107,7 @@ export function applyactionItemNameTextStyle(
   `
   return css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     display: inline-block;
@@ -257,8 +258,8 @@ export const searchInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
