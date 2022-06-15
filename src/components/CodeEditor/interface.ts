@@ -46,3 +46,9 @@ export interface ResultPreview {
   type?: "Object" | "String" | "Boolean" | "Number"
   content?: string
 }
+
+export interface EditorInputState {
+  focus?: boolean
+  error: boolean
+  height: string
+}

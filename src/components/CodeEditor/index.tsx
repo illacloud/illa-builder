@@ -51,8 +51,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const [previewVisible, setPreviewVisible] = useState<boolean>()
 
   const handleFocus = () => {
+    console.log("foucs")
     setPreviewVisible(true)
   }
+  console.log(previewVisible, "previewVisible")
 
   const handleBlur = (instance: Editor, event: FocusEvent) => {
     onBlur?.()
@@ -187,10 +189,19 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
     return () => {
       editor?.off("change", handleChange)
-      editor?.off("blur", handleBlur)
       editor?.off("focus", handleFocus)
+      editor?.off("blur", handleBlur)
+      editor?.off("keyup", (cm) => {
+        cm.execCommand("autocomplete")
+      })
     }
   }, [])
+
+  const inputState = {
+    focus: previewVisible,
+    error: false,
+    height,
+  }
 
   return (
     <div>
@@ -202,6 +213,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         position="bl"
         autoAlignPopupWidth
         withoutPadding
+        withoutShadow
         popupVisible={previewVisible}
         content={<CodePreview preview={preview} />}
         showArrow={false}
@@ -211,7 +223,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           <div
             className={className}
             ref={codeTargetRef}
-            css={applyCodeEditorStyle(height)}
+            css={applyCodeEditorStyle(inputState)}
             {...otherProps}
           >
             <div id="hintBody" />

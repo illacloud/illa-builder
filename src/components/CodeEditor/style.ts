@@ -1,5 +1,7 @@
+import chroma from "chroma-js"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { EditorInputState } from "./interface"
 
 export const codemirrorStyle = css`
   .cm-illa-expression {
@@ -8,12 +10,47 @@ export const codemirrorStyle = css`
   }
 `
 
-export function applyCodeEditorStyle(height: string): SerializedStyles {
+export const inputErrorStyle = css`
+  border-color: ${globalColor(`--${illaPrefix}-red-03`)};
+
+  &:hover {
+    border-color: ${globalColor(`--${illaPrefix}-red-02`)};
+  }
+`
+
+export function applyCodeEditorStyle(
+  inputState: EditorInputState,
+): SerializedStyles {
+  let stateStyle = css``
+  const stateColor = inputState.error ? "red" : "techPurple"
+  if (inputState.focus) {
+    stateStyle = css`
+      border-radius: 8px 8px 0 0;
+      border-color: ${globalColor(`--${illaPrefix}-${stateColor}-03`)};
+      box-shadow: 0 0 8px 0
+        ${chroma(globalColor(`--${illaPrefix}-${stateColor}-01`))
+          .alpha(0.15)
+          .hex()};
+    `
+  } else if (inputState.error) {
+    stateStyle = inputErrorStyle
+  } else {
+    stateStyle = css`
+      border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+
+      &:hover {
+        border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
+      }
+    `
+  }
+
   return css`
     & > .CodeMirror {
-      height: ${height};
+      height: ${inputState.height};
       border-radius: 8px;
       border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      transition: all 200ms ease-in-out;
+      ${stateStyle}
     }
 
     & > .CodeMirror-empty {
@@ -46,6 +83,7 @@ export const copyIconStyle = css`
   right: 4px;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
@@ -64,4 +102,3 @@ export const contentTextStyle = css`
   font-weight: 400;
   word-wrap: break-word;
 `
-
