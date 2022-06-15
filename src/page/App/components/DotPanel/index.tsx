@@ -345,6 +345,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     <div
       ref={mergeRefs(canvasRef, dropTarget)}
       css={applyScaleStyle(canvasHeight)}
+      onClick={(event) => {
+        dispatch(configActions.updateSelectedComponent([]))
+      }}
       {...otherProps}
     >
       <div css={applyDotContainerStyle(showDot, canvasWidth, canvasHeight)}>

@@ -37,24 +37,28 @@ export function applySquarePointerStyle(
   switch (pointerPosition) {
     case "tl":
       positionStyle = css`
+        cursor: ${selected ? "nwse-resize" : "default"};
         top: 0;
         left: 0;
       `
       break
     case "tr":
       positionStyle = css`
+        cursor: ${selected ? "nesw-resize" : "default"};
         top: 0;
         right: 0;
       `
       break
     case "bl":
       positionStyle = css`
+        cursor: ${selected ? "nesw-resize" : "default"};
         bottom: 0;
         left: 0;
       `
       break
     case "br":
       positionStyle = css`
+        cursor: ${selected ? "nwse-resize" : "default"};
         bottom: 0;
         right: 0;
       `
@@ -98,6 +102,7 @@ export function applyBarPointerStyle(
         left: 0;
         right: 0;
         margin: auto;
+        cursor: ${selected ? "row-resize" : "default"};
         height: 4px;
         width: 18px;
       `
@@ -107,6 +112,7 @@ export function applyBarPointerStyle(
         bottom: 0;
         left: 0;
         right: 0;
+        cursor: ${selected ? "row-resize" : "default"};
         margin: auto;
         height: 4px;
         width: 18px;
@@ -117,6 +123,7 @@ export function applyBarPointerStyle(
         bottom: 0;
         left: 0;
         top: 0;
+        cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 4px;
         height: 18px;
@@ -127,6 +134,7 @@ export function applyBarPointerStyle(
         bottom: 0;
         right: 0;
         top: 0;
+        cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 4px;
         height: 18px;
@@ -167,7 +175,7 @@ export function applyBorderStyle(
     top: 0;
     left: 0;
     stroke: ${selected ? getStateColor(scaleSquareState) : "transparent"};
-    stroke-width: 0.5px;
+    stroke-width: 1px;
     &:hover {
       stroke: ${getStateColor(scaleSquareState)};
     }

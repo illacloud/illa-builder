@@ -3,11 +3,9 @@ import { ScaleSquareProps } from "@/page/App/components/ScaleSquare/interface"
 import {
   applyBarPointerStyle,
   applyBorderStyle,
-  applyLineStroke,
   applyOuterStyle,
   applySquarePointerStyle,
   applyTransformWidgetStyle,
-  getStateColor,
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
 import { useDispatch, useSelector } from "react-redux"
@@ -29,8 +27,9 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     <div
       css={applyOuterStyle(h, w)}
       className={className}
-      onClick={() => {
+      onClick={(e) => {
         dispatch(configActions.updateSelectedComponent([componentNode]))
+        e.stopPropagation()
       }}
       {...otherProps}
     >
