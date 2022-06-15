@@ -95,7 +95,7 @@
         }
       },
       "form": {
-        "required": "This is required!",
+        "required": "This is required",
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
@@ -109,7 +109,7 @@
           "save_changes": "Save Changes"
         },
         "validate": {
-          "required": "{name} is required!"
+          "required": "{name} is required"
         }
       },
       "resource": {

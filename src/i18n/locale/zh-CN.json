@@ -109,7 +109,7 @@
           "save_changes": "保存修改"
         },
         "validate": {
-          "required": "{name} is required!"
+          "required": "{name} is required"
         }
       },
       "resource": {
