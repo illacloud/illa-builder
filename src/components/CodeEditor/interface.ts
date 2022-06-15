@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react"
 import { EditorConfiguration } from "codemirror"
+import { ExpectedType } from "./utils"
 
 export enum EditorModes {
   TEXT = "text/plain",
@@ -15,12 +16,12 @@ export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT" | "TEXT_SQL"
   value?: string
-  resultType?: string
+  expectedType: ExpectedType
   lineNumbers?: boolean
   height?: string
   placeholder?: string
   onBlur?: () => void
-  onChange?: (value: string) => void
+  onChange?: (value: string, calcResult: any) => void
 }
 
 export enum DataType {
@@ -43,7 +44,7 @@ export type FieldEntityInformation = {
 
 export interface ResultPreview {
   state?: "default" | "error"
-  type?: "Object" | "String" | "Boolean" | "Number"
+  type?: ExpectedType
   content?: string
 }
 

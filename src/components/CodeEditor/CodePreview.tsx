@@ -25,29 +25,9 @@ function copyToClipboard(content: any) {
 }
 
 export const CodePreview: FC<CodePreviewProps> = (props) => {
-  const { className, preview = { type: "String" }, ...otherProps } = props
+  const { className, preview, ...otherProps } = props
 
   const clickCopy = () => {}
-
-  if (preview?.state === "error") {
-    return (
-      <div className={className} css={applyPreviewStyle(preview?.state)}>
-        <CopyIcon css={copyIconStyle} size={"10px"} />
-        <div css={typeTextStyle}>
-          <ErrorIcon size={"12px"} css={iconStyle} />
-          Error
-        </div>
-        <div
-          css={contentTextStyle}
-          onClick={() => {
-            copyToClipboard(preview?.content)
-          }}
-        >
-          {preview?.content}
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className={className} css={applyPreviewStyle(preview?.state)}>
@@ -58,8 +38,19 @@ export const CodePreview: FC<CodePreviewProps> = (props) => {
           copyToClipboard(preview?.content)
         }}
       />
-      <div css={typeTextStyle}>{preview?.type}</div>
-      <div css={contentTextStyle}>"{preview?.content}"</div>
+      {preview?.state === "error" ? (
+        <div css={typeTextStyle}>
+          <ErrorIcon size={"12px"} css={iconStyle} />
+          Error
+        </div>
+      ) : (
+        <div css={typeTextStyle}>{preview?.type}</div>
+      )}
+      <div css={contentTextStyle}>
+        {preview?.type === "String"
+          ? `"${preview?.content}"`
+          : preview?.content}
+      </div>
     </div>
   )
 }
