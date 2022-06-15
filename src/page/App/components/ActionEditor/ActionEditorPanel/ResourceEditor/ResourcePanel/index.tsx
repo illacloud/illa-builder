@@ -30,12 +30,9 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     let resourceType: string
     let resource
 
-    const [params, setParams] = useState<
-      Pick<ActionItemConfig, "general" | "transformer" | "eventHandler">
-    >({
-      general: {},
+    const [params, setParams] = useState<ActionItemConfig>({
       transformer: "",
-      eventHandler: {},
+      events: [],
     })
 
     resource = useSelector(selectAllResource).find(
@@ -43,7 +40,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     )
 
     const onParamsChange = (value: ParamValues) => {
-      setParams({ ...params, general: value })
+      setParams({ ...params, ...value })
       onChange?.()
     }
 
@@ -58,14 +55,24 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
         },
         (data) => {
           const { config, request, ...response } = data
-          // TODO: get restapi request params
-          const apiRequestParams = {
-            url: "",
-            method: "",
-            body: "",
-            headers: {},
+          let result: { response: any; request?: any } = { response }
+
+          // return request params as result if is `api` action type
+          if (
+            activeActionItem &&
+            ["restapi"].includes(activeActionItem.actionType)
+          ) {
+            const { url, method, body, headers } = params
+            const request = {
+              url,
+              method,
+              body,
+              headers,
+            }
+            result = { ...result, request }
           }
-          onRun && onRun({ request: apiRequestParams, response })
+
+          onRun && onRun(result)
         },
         () => { },
         () => { },
@@ -83,7 +90,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           ...activeActionItem,
           resourceId,
           actionTemplate: {
-            ...activeActionItem?.config,
+            ...activeActionItem?.actionTemplate,
             ...params,
           },
         }),

@@ -21,7 +21,18 @@ import {
   RESTAPIParamProps,
   RESTAPIConfigureValues,
   RESTAPIParamValues,
+  Params,
 } from "../interface"
+
+function concatUrl(
+  path: string = "",
+  urlParams: Params[] = [],
+  baseUrl?: string,
+) {
+  const params = urlParams.map(({ key, value }) => `${key}=${value}`).join("&")
+  const url = params ? `${path}?${params}` : path
+  return baseUrl ? `${baseUrl}/${url}` : url
+}
 
 export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { onChange } = props
@@ -36,17 +47,18 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       ({ resourceId: id }) => id === resourceId,
     ) ?? null
 
-  const config = action?.config?.general as RESTAPIParamValues
+  const config = action?.actionTemplate as RESTAPIParamValues
   const resourceConfig = resource?.options as RESTAPIConfigureValues
   const baseURL = resourceConfig?.baseURL
 
   const [params, setParams] = useState({
     method: config?.method ?? "GET",
     path: config?.path,
-    URLParameters: config?.URLParameters ?? [],
-    Headers: config?.Headers ?? [],
-    Body: config?.Body ?? [],
-    Cookies: config?.Cookies ?? [],
+    urlParams: config?.urlParams ?? [],
+    url: concatUrl(config.path, config.urlParams, baseURL),
+    headers: config?.headers ?? [],
+    body: config?.body ?? [],
+    cookies: config?.cookies ?? [],
   })
 
   const hasBody = params.method.indexOf("GET") === -1
@@ -55,6 +67,10 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     return (v: any) => {
       setParams((preParam) => {
         const newParam = { ...preParam, [field]: v }
+
+        if (["path", "urlParams"].includes(field)) {
+          newParam.url = concatUrl(newParam.path, newParam.urlParams, baseURL)
+        }
         onChange && onChange(newParam)
         return newParam
       })
@@ -93,8 +109,8 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
           {t("editor.action.resource.rest_api.label.url_parameters")}
         </label>
         <FieldArray
-          value={params.URLParameters}
-          onChange={updateField("URLParameter")}
+          value={params.urlParams}
+          onChange={updateField("urlParams")}
         />
       </div>
 
@@ -102,7 +118,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
         <label css={labelTextStyle}>
           {t("editor.action.resource.rest_api.label.headers")}
         </label>
-        <FieldArray value={params.Headers} onChange={updateField("Headers")} />
+        <FieldArray value={params.headers} onChange={updateField("headers")} />
       </div>
 
       {hasBody && (
@@ -110,7 +126,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
           <label css={labelTextStyle}>
             {t("editor.action.resource.rest_api.label.body")}
           </label>
-          <Body value={params.Body} onChange={updateField("Body")} />
+          <Body value={params.body} onChange={updateField("body")} />
         </div>
       )}
 
@@ -118,7 +134,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
         <label css={labelTextStyle}>
           {t("editor.action.resource.rest_api.label.cookies")}
         </label>
-        <FieldArray value={params.Cookies} onChange={updateField("Cookies")} />
+        <FieldArray value={params.cookies} onChange={updateField("cookies")} />
       </div>
     </div>
   )
