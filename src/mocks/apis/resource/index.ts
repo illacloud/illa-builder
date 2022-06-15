@@ -13,7 +13,6 @@ export default [
     const dateStr = new Date().toISOString()
 
     const { access_token, refresh_token } = req.cookies
-    console.log("tokens", access_token, refresh_token)
     if (!access_token && !refresh_token) {
       return res(
         ctx.status(200),

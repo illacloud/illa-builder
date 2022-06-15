@@ -23,11 +23,14 @@ import {
   checkboxTextStyle,
 } from "@/page/User/style"
 import { TextLink } from "@/page/User/components/TextLink"
-import { RegisterFields } from "./interface"
+import { RegisterFields, RegisterResult } from "./interface"
+import { useDispatch } from "react-redux"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 
 export const Register: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [verificationToken, setVerificationToken] = useState("")
   const [showCountDown, setShowCountDown] = useState(false)
   const {
@@ -43,7 +46,7 @@ export const Register: FC = () => {
     },
   })
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
-    Api.request(
+    Api.request<RegisterResult>(
       {
         method: "POST",
         url: "/auth/signup",
@@ -52,7 +55,15 @@ export const Register: FC = () => {
           ...data,
         },
       },
-      () => {
+      (res) => {
+        dispatch(
+          currentUserActions.updateCurrentUserReducer({
+            userId: res.data.userId,
+            userName: res.data.userName,
+            language: "English",
+            userAvatar: "",
+          }),
+        )
         navigate(localStorage.getItem("stashPath") ?? "/")
         localStorage.removeItem("stashPath")
         Message.success(t("user.sign_up.tips.success"))

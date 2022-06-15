@@ -1,12 +1,14 @@
 import { FC } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Message } from "@illa-design/message"
 import { Button } from "@illa-design/button"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { EMAIL_FORMAT } from "@/constants/regExp"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { Api } from "@/api/base"
 import {
   formLabelStyle,
@@ -23,11 +25,12 @@ import {
   forgotPwdContainerStyle,
 } from "@/page/User/style"
 import { TextLink } from "@/page/User/components/TextLink"
-import { LoginFields } from "./interface"
+import { LoginFields, LoginResult } from "./interface"
 
 export const Login: FC = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const {
     control,
     handleSubmit,
@@ -36,9 +39,17 @@ export const Login: FC = () => {
     mode: "onBlur",
   })
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
-    Api.request(
+    Api.request<LoginResult>(
       { method: "POST", url: "/auth/signin", data },
-      () => {
+      (res) => {
+        dispatch(
+          currentUserActions.updateCurrentUserReducer({
+            userId: res.data.userId,
+            userName: res.data.userName,
+            language: "English",
+            userAvatar: "",
+          }),
+        )
         navigate(localStorage.getItem("stashPath") ?? "/")
         localStorage.removeItem("stashPath")
         Message.success(t("user.sign_in.tips.success"))

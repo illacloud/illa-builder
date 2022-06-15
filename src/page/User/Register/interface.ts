@@ -5,3 +5,10 @@ export interface RegisterFields {
   password: string
   isSubscribe: boolean
 }
+
+export interface RegisterResult {
+  userId: string
+  userName: string
+  email: string
+  createdAt: string
+}
