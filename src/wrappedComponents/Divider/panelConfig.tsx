@@ -16,7 +16,7 @@ const OptionsStyle = {
 export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "divider-basic",
-    groupName: "BASIC",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "divider-basic-text",
@@ -60,7 +60,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "divider-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "divider-layout-hidden",
@@ -72,15 +72,12 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "divider-style",
-    groupName: "STYLE",
-    labelName: i18n.t("editor.inspect.setter_label.styles"),
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "divider-style-list",
         setterType: "LIST_SETTER",
-        isFullWidth: true,
-        labelName: "Color",
-        attrName: "color",
+        attrName: "style",
         useCustomLabel: true,
         childrenSetter: [
           {
