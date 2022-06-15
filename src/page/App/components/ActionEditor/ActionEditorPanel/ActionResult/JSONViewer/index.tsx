@@ -7,7 +7,7 @@ export const JSONViewer: FC<JSONViewerProps> = (props) => {
   const { src = {} } = props
 
   const reactJsonConfig = {
-    name: false,
+    name: false as const,
     iconStyle: "triangle" as const,
     enableClipboard: false,
     displayObjectSize: false,
@@ -18,6 +18,7 @@ export const JSONViewer: FC<JSONViewerProps> = (props) => {
 
   return (
     <div css={jsonViewContainer}>
+      {/* @ts-ignore */}
       <ReactJson src={src} {...reactJsonConfig} />
     </div>
   )
