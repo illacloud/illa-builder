@@ -1,6 +1,5 @@
 import { FC, useMemo } from "react"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
-import { withParser } from "@/wrappedComponents/parserHOC"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { Divider } from "@illa-design/divider"
 import { WrappedDividerProps } from "./interface"
@@ -18,7 +17,7 @@ export const WrappedDivider: FC<WrappedDividerProps> = (props) => {
       disabled={!tooltipText}
       position="tl"
     >
-      <Wrapper w="500px" h="10px" alignment="fullWidth" hidden={hidden}>
+      <Wrapper alignment="fullWidth" hidden={hidden}>
         <Divider
           text={text}
           textAlign={textAlign}
@@ -32,4 +31,4 @@ export const WrappedDivider: FC<WrappedDividerProps> = (props) => {
 
 WrappedDivider.displayName = "WrappedDivider"
 
-export const DividerWidget = withParser(WrappedDivider)
+export const DividerWidget = WrappedDivider
