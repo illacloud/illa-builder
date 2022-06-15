@@ -28,7 +28,7 @@ export const gridRowContainerStyle = css`
 export const paramGridRowContainerStyle = css`
   grid-gap: 8px 16px;
   display: grid;
-  grid: auto/repeat(auto-fit, 200px minmax(280px, 1fr));
+  grid: auto/repeat(auto-fit, minmax(15%, min-content) minmax(280px, 1fr));
 `
 
 export const gridRowCenterItemStyle = css`
