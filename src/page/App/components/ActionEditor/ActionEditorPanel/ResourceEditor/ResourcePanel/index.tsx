@@ -72,9 +72,24 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
             result = { ...result, request }
           }
 
+          dispatch(
+            actionActions.updateActionItemReducer({
+              ...activeActionItem,
+              data: {},
+              error: false,
+            }),
+          )
+
           onRun && onRun(result)
         },
-        () => { },
+        () => {
+          dispatch(
+            actionActions.updateActionItemReducer({
+              ...activeActionItem,
+              error: true,
+            }),
+          )
+        },
         () => { },
         (loading) => {
           onLoadingActionResult?.(loading)

@@ -28,6 +28,8 @@ export interface ActionItem {
   network?: ActionConnectNetwork
   config?: ActionItemConfig
   actionTemplate?: ActionItemConfig
+  error?: boolean
+  data?: any
 }
 
 export type ActionListState = ActionItem[]
