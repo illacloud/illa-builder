@@ -16,9 +16,9 @@ export const evaluateDynamicString = (
   if (requiresEval) {
     try {
       evalResult = getDynamicValue(dynamicString, dataTree, evaluationType)
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
       evalResult = undefined
+      throw error
     }
   } else {
     evalResult = dynamicString
