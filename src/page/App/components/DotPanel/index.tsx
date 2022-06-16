@@ -288,22 +288,25 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       const w = item.w * unitWidth
 
       const [l, t] = calculateXY(item.x, item.y, unitWidth, unitHeight)
-
+      if (item.isDragging) {
+        return null
+      }
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
           return <DotPanel componentNode={item} key={item.displayName} />
-        case "EDITOR_DOTTED_LINE_SQUARE":
-          return (
-            <DottedLineSquare
-              css={applyDragObjectStyle(t, l)}
-              h={h}
-              w={w}
-              key={item.displayName}
-            />
-          )
         case "EDITOR_SCALE_SQUARE":
           return (
             <ScaleSquare
+              onClientXYChange={(clientX, clientY) => {
+                if (canvasRef.current != null) {
+                  const canvasRect = canvasRef.current?.getBoundingClientRect()
+                  const canvasScrollLeft = canvasRef.current?.scrollLeft
+                  const canvasScrollTop = canvasRef.current?.scrollTop
+                  const relativeX = clientX - canvasRect.x + canvasScrollLeft
+                  const relativeY = clientY - canvasRect.y + canvasScrollTop
+                  console.log(relativeX, relativeY)
+                }
+              }}
               key={item.displayName}
               css={applyDragObjectStyle(t, l)}
               componentNode={item}

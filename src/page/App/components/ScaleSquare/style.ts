@@ -2,8 +2,7 @@ import { css, SerializedStyles } from "@emotion/react"
 import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export type PointerPosition = "tl" | "tr" | "bl" | "br"
-export type BarPosition = "l" | "r" | "t" | "b"
+export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
 export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
@@ -31,7 +30,7 @@ export function applyOuterStyle(h: number, w: number): SerializedStyles {
 export function applySquarePointerStyle(
   selected: boolean,
   scaleSquareType: ScaleSquareType,
-  pointerPosition: PointerPosition,
+  pointerPosition: BarPosition,
 ): SerializedStyles {
   let positionStyle: SerializedStyles
   switch (pointerPosition) {
@@ -87,6 +86,11 @@ export function applySquarePointerStyle(
   `
 }
 
+export const onePixelStyle = css`
+  width: 1px;
+  height: 1px;
+`
+
 export function applyBarPointerStyle(
   selected: boolean,
   scaleSquareType: ScaleSquareType,
@@ -140,6 +144,8 @@ export function applyBarPointerStyle(
         height: 18px;
       `
       break
+    default:
+      barPositionStyle = css``
   }
 
   return css`
@@ -171,13 +177,16 @@ export function applyBorderStyle(
   scaleSquareState: ScaleSquareType,
 ): SerializedStyles {
   return css`
+    width: calc(100% - 3px);
+    height: calc(100% - 3px);
     position: absolute;
-    top: 0;
-    left: 0;
-    stroke: ${selected ? getStateColor(scaleSquareState) : "transparent"};
-    stroke-width: 1px;
+    top: 1.5px;
+    left: 1.5px;
+    border: 1px solid
+      ${selected ? getStateColor(scaleSquareState) : "transparent"};
+
     &:hover {
-      stroke: ${getStateColor(scaleSquareState)};
+      border-color: ${getStateColor(scaleSquareState)};
     }
   `
 }

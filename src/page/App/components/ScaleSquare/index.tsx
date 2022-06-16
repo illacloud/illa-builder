@@ -6,14 +6,22 @@ import {
   applyOuterStyle,
   applySquarePointerStyle,
   applyTransformWidgetStyle,
+  onePixelStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/currentApp/config/configSlice"
 import { RootState } from "@/store"
+import { useDrag } from "react-dnd"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  DragCollectedInfo,
+  DropResultInfo,
+} from "@/page/App/components/DotPanel/interface"
 
 export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
-  const { w, h, componentNode, className, ...otherProps } = props
+  const { w, h, componentNode, className, onClientXYChange, ...otherProps } =
+    props
   const scaleSquareState = componentNode.error ? "error" : "normal"
   const dispatch = useDispatch()
   const selected = useSelector<RootState, boolean>((state) => {
@@ -23,6 +31,20 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       }) != -1
     )
   })
+
+  const [collectedInfo, dragRef, dragPreviewRef] = useDrag<
+    ComponentNode,
+    DropResultInfo,
+    DragCollectedInfo
+  >(
+    () => ({
+      type: "components",
+      item: componentNode,
+      canDrag: !componentNode.isDragging,
+    }),
+    [],
+  )
+
   return (
     <div
       css={applyOuterStyle(h, w)}
@@ -33,27 +55,60 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       }}
       {...otherProps}
     >
-      <div css={applyTransformWidgetStyle()}>
-        <TransformWidget componentNode={componentNode} />
+      <div css={applyBorderStyle(selected, scaleSquareState)}>
+        <div css={applyTransformWidgetStyle()} ref={dragRef}>
+          <TransformWidget componentNode={componentNode} />
+        </div>
       </div>
-      <svg
-        css={applyBorderStyle(selected, scaleSquareState)}
-        width="100%"
-        height="100%"
-      >
-        <line x1="2" y1="2" x2={w - 2} y2="2" />
-        <line x1={w - 2} y1="2" x2={w - 2} y2={h - 2} />
-        <line x1="2" y1={h - 2} x2={w - 2} y2={h - 2} />
-        <line x1="2" y1="2" x2="2" y2={h - 2} />
-      </svg>
-      <div css={applySquarePointerStyle(selected, scaleSquareState, "tl")} />
-      <div css={applySquarePointerStyle(selected, scaleSquareState, "tr")} />
-      <div css={applySquarePointerStyle(selected, scaleSquareState, "bl")} />
-      <div css={applySquarePointerStyle(selected, scaleSquareState, "br")} />
-      <div css={applyBarPointerStyle(selected, scaleSquareState, "l")} />
-      <div css={applyBarPointerStyle(selected, scaleSquareState, "t")} />
-      <div css={applyBarPointerStyle(selected, scaleSquareState, "r")} />
-      <div css={applyBarPointerStyle(selected, scaleSquareState, "b")} />
+      <div
+        css={applySquarePointerStyle(selected, scaleSquareState, "tl")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "tl")
+        }}
+      />
+      <div
+        css={applySquarePointerStyle(selected, scaleSquareState, "tr")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "tr")
+        }}
+      />
+      <div
+        css={applySquarePointerStyle(selected, scaleSquareState, "bl")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "bl")
+        }}
+      />
+      <div
+        css={applySquarePointerStyle(selected, scaleSquareState, "br")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "br")
+        }}
+      />
+      <div
+        css={applyBarPointerStyle(selected, scaleSquareState, "l")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "l")
+        }}
+      />
+      <div
+        css={applyBarPointerStyle(selected, scaleSquareState, "t")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "t")
+        }}
+      />
+      <div
+        css={applyBarPointerStyle(selected, scaleSquareState, "r")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "r")
+        }}
+      />
+      <div
+        css={applyBarPointerStyle(selected, scaleSquareState, "b")}
+        onMouseMove={(event) => {
+          onClientXYChange(event.clientX, event.clientY, "b")
+        }}
+      />
+      <div ref={dragPreviewRef} css={onePixelStyle} />
     </div>
   )
 }

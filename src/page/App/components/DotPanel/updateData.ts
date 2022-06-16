@@ -1,5 +1,4 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import store from "@/store"
 import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
 import { DottedLineSquare } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareState"
@@ -75,6 +74,7 @@ export function updateScaleSquare(
     ...componentNode,
   } as ComponentNode
   newItem.parentNode = parentDisplayName
+  newItem.isDragging = false
   newItem.containerType = "EDITOR_SCALE_SQUARE"
   newItem.x = squareX
   newItem.y = squareY
