@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { Select } from "@illa-design/select"
 import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
-import { EditorInput } from "@/components/EditorInput"
+import { CodeEditor } from "@/components/CodeEditor"
 import { BodyParams, BodyProps, ContentType } from "../interface"
 import { bodyFieldStyle, descriptionCodeStyle, descriptionStyle } from "./style"
 
@@ -49,7 +49,13 @@ export const Body: FC<BodyProps> = (props) => {
           />
         )
       case "raw":
-        return <EditorInput mode="javascript" onChange={onChange} />
+        return (
+          <CodeEditor
+            mode="TEXT_JS"
+            expectedType="String"
+            onChange={onChange}
+          />
+        )
       case "binary":
         return (
           <>
@@ -59,7 +65,11 @@ export const Body: FC<BodyProps> = (props) => {
                 css={descriptionCodeStyle}
               >{`{data: binary string, filename?: string }`}</code>
             </dd>
-            <EditorInput mode="javascript" onChange={onChange} />
+            <CodeEditor
+              mode="TEXT_JS"
+              expectedType="String"
+              onChange={onChange}
+            />
           </>
         )
       case "none":

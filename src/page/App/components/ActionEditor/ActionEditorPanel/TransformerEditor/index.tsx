@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector, useDispatch } from "react-redux"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { EditorInput } from "@/components/EditorInput"
+import { CodeEditor } from "@/components/CodeEditor"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { TransformerEditorProps } from "./interface"
@@ -22,7 +22,7 @@ export const TransformerEditor = forwardRef<
   const { onChangeParam, onSaveParam } = props
 
   // TODO: eval transformer
-  const run = () => {}
+  const run = () => { }
 
   const saveAndRun = () => {
     run()
@@ -46,8 +46,9 @@ export const TransformerEditor = forwardRef<
 
   return (
     <div css={transformerContainerStyle}>
-      <EditorInput
-        mode="javascript"
+      <CodeEditor
+        mode="TEXT_JS"
+        expectedType="String"
         height={"100px"}
         placeholder={t("editor.action.resource.transformer.placeholder.tip")}
         onChange={onChangeParam}

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid"
 import { PlusIcon, DeleteIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { Select } from "@illa-design/select"
-import { EditorInput } from "@/components/EditorInput"
+import { CodeEditor } from "@/components/CodeEditor"
 import { FieldArrayProps, ValueType } from "./interface"
 import {
   deleteIconWrapperStyle,
@@ -48,8 +48,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
       <div css={fieldItemStyle} key={_key}>
         {hasType ? (
           <>
-            <EditorInput
-              mode="javascript"
+            <CodeEditor
+              mode="TEXT_JS"
+              expectedType="String"
               lineNumbers={false}
               height="32px"
               placeholder="key"
@@ -65,8 +66,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             />
           </>
         ) : (
-          <EditorInput
-            mode="javascript"
+          <CodeEditor
+            mode="TEXT_JS"
+            expectedType="String"
             lineNumbers={false}
             height="32px"
             placeholder="key"
@@ -75,8 +77,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           />
         )}
 
-        <EditorInput
-          mode="javascript"
+        <CodeEditor
+          mode="TEXT_JS"
+          expectedType="String"
           lineNumbers={false}
           height="32px"
           placeholder="value"
