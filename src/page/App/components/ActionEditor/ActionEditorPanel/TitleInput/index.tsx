@@ -3,7 +3,7 @@ import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { AnimatePresence, motion } from "framer-motion"
 import {
-  titleContainerStyle,
+  applyTitleContainerStyle,
   titleEditIconStyle,
   titleStyle,
   titleInputContainerStyle,
@@ -18,6 +18,7 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [title, setTitle] = useState(name)
+  const editable = title !== ""
   const variants = {
     hidden: {
       display: "none",
@@ -68,9 +69,9 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   ) : (
     <motion.div
       onClick={() => {
-        setIsEditing(true)
+        editable && setIsEditing(true)
       }}
-      css={titleContainerStyle}
+      css={applyTitleContainerStyle(editable)}
       initial={"hidden"}
       animate={"visible"}
       exit={"hidden"}
