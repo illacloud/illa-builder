@@ -114,12 +114,24 @@ export function updateResizeScaleSquare(
       newItem.x = nearX
       break
     case "tl":
+      newItem.h = newItem.h + newItem.y - nearY
+      newItem.y = nearY
+      newItem.w = newItem.w + newItem.x - nearX
+      newItem.x = nearX
       break
     case "tr":
+      newItem.h = newItem.h + newItem.y - nearY
+      newItem.y = nearY
+      newItem.w = nearX - newItem.x
       break
     case "bl":
+      newItem.h = nearY - newItem.y
+      newItem.w = newItem.w + newItem.x - nearX
+      newItem.x = nearX
       break
     case "br":
+      newItem.h = nearY - newItem.y
+      newItem.w = nearX - newItem.x
       break
     default:
       break
