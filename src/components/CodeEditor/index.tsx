@@ -56,13 +56,15 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     type: expectedType,
   })
   const [previewVisible, setPreviewVisible] = useState<boolean>()
+  const [focus, setFocus] = useState<boolean>()
 
   const handleFocus = () => {
-    setPreviewVisible(true)
+    setFocus(true)
   }
 
   const handleBlur = (instance: Editor, event: FocusEvent) => {
     onBlur?.()
+    setFocus(false)
     setPreviewVisible(false)
   }
 
@@ -82,7 +84,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         type: previewType,
         content: !!calcResult ? JSON.stringify(calcResult) : calcResult,
       })
-    } catch (e) {
+    } catch (e: any) {
       console.error(e)
       setPreview({
         state: "error",
@@ -175,7 +177,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }, [])
 
   const inputState = {
-    focus: previewVisible,
+    focus,
     error: false,
     height,
   }
@@ -187,15 +189,20 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         _css={css`
           padding: 0;
         `}
+        trigger={'focus'}
         position="bl"
         autoAlignPopupWidth
         withoutPadding
         withoutShadow
-        closeOnClick={false}
         popupVisible={previewVisible}
         content={<CodePreview preview={preview} />}
         showArrow={false}
         colorScheme="white"
+        onVisibleChange={(visible) => {
+          if (visible !== previewVisible && focus) {
+            setPreviewVisible(true)
+          }
+        }}
       >
         <div>
           <div
