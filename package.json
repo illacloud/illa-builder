@@ -21,8 +21,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@codemirror/lang-javascript": "^6.0.0",
-    "@codemirror/lang-sql": "^6.0.0",
     "@emotion/react": "^11.7.1",
     "@illa-design/react": "*",
     "@lezer/common": "^1.0.0",
