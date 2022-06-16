@@ -1,4 +1,4 @@
-import { useContext, forwardRef } from "react"
+import { forwardRef } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -6,8 +6,8 @@ import { Select, Option } from "@illa-design/select"
 import { PenIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
 import { ResourcePanel } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourcePanel"
-import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import {
   actionStyle,
@@ -35,8 +35,8 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
     } = props
 
     const { t } = useTranslation()
-    const { resourceId } = useContext(ActionEditorContext)
     const resourceList = useSelector(selectAllResource)
+    const { resourceId } = useSelector(getSelectedAction)
 
     const triggerOptions = [
       {
@@ -49,7 +49,7 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
       },
     ]
 
-    const isResourceEditable = resourceId && resourceId.indexOf("preset") === -1
+    const isResourceEditable = resourceId !== ""
 
     return (
       <div css={panelScrollStyle}>
@@ -85,7 +85,9 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
           </Select>
           <div
             css={applyEditIconStyle(!isResourceEditable)}
-            onClick={() => onEditResource && onEditResource(resourceId)}
+            onClick={() =>
+              onEditResource && onEditResource(resourceId as string)
+            }
           >
             <PenIcon />
           </div>

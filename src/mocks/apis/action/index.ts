@@ -30,12 +30,10 @@ export default [
       const failRes = res(
         ctx.delay(3000 * Math.random()),
         ctx.status(400),
-        ctx.json(
-          {
-            errorCode: 400,
-            errorMessage: "Something wrong"
-          }
-        ),
+        ctx.json({
+          errorCode: 400,
+          errorMessage: "Something wrong",
+        }),
       )
 
       return Math.random() > 0.7 ? successRes : failRes

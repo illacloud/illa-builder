@@ -22,8 +22,8 @@ export interface ActionItemConfig {
 export interface ActionItem {
   actionId: string
   displayName: string
-  resourceId?: string
   actionType: string
+  resourceId?: string
   status?: ActionStatus
   network?: ActionConnectNetwork
   config?: ActionItemConfig

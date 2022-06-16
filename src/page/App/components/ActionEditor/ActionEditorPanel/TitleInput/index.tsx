@@ -1,7 +1,13 @@
-import { FC, useState, useRef, useEffect } from "react"
+import { FC, useState, useRef, useEffect, useContext } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useSelector, useDispatch } from "react-redux"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
-import { AnimatePresence, motion } from "framer-motion"
+import { Api } from "@/api/base"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import {
   applyTitleContainerStyle,
   titleEditIconStyle,
@@ -11,8 +17,10 @@ import {
 } from "./style"
 import { TitleInputProps } from "./interface"
 
-export const TitleInput: FC<TitleInputProps> = (props) => {
-  const { activeActionItem, onChange } = props
+export const TitleInput: FC<TitleInputProps> = () => {
+  const dispatch = useDispatch()
+  const { setActionListLoading } = useContext(ActionEditorContext)
+  const activeActionItem = useSelector(getSelectedAction)
   const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -42,7 +50,28 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
     setIsEditing(false)
 
     if (title !== name) {
-      onChange?.(title)
+      Api.request<ActionItem>(
+        {
+          url: `/actions/${activeActionItem.actionId}`,
+          method: "PUT",
+          data: {
+            ...activeActionItem,
+            displayName: title,
+          },
+        },
+        ({ data }) => {
+          dispatch(
+            actionActions.updateActionItemReducer({
+              ...data,
+            }),
+          )
+        },
+        () => {},
+        () => {},
+        (loading) => {
+          setActionListLoading?.(loading)
+        },
+      )
     }
   }
 

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { configActions } from "@/redux/currentApp/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
 import { Resource } from "@/redux/currentApp/resource/resourceState"
@@ -194,18 +195,18 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   }, [])
 
   useEffect(() => {
-    const resourceId =
-      actionItems.find(({ actionId }) => activeActionItemId === actionId)
-        ?.resourceId ?? ""
-    setResourceId(resourceId)
+    const selectedAction = actionItems.find(
+      ({ actionId }) => actionId === activeActionItemId,
+    )
+    selectedAction &&
+      dispatch(configActions.updateSelectedAction(selectedAction))
   }, [activeActionItemId, actionItems])
 
   return (
     <ActionEditorContext.Provider
       value={{
-        activeActionItemId,
-        resourceId,
         editorHeight,
+        setActionListLoading,
       }}
     >
       <div className={className}>
@@ -230,7 +231,6 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
               isActionDirty={isActionDirty}
               onDeleteActionItem={onDeleteActionItem}
               onDuplicateActionItem={onDuplicateActionItem}
-              onUpdateActionItem={onUpdateActionItem}
               onCreateResource={() => {
                 setActionType("select")
                 setFormVisible(true)

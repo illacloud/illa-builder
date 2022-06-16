@@ -183,13 +183,13 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   return (
-    <div>
+    <>
       <Global styles={codemirrorStyle} />
       <Trigger
         _css={css`
           padding: 0;
         `}
-        trigger={'focus'}
+        trigger={"focus"}
         position="bl"
         autoAlignPopupWidth
         withoutPadding
@@ -204,9 +204,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           }
         }}
       >
-        <div>
+        <div className={className}>
           <div
-            className={className}
             ref={codeTargetRef}
             css={applyCodeEditorStyle(inputState)}
             {...otherProps}
@@ -215,7 +214,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           </div>
         </div>
       </Trigger>
-    </div>
+    </>
   )
 }
 

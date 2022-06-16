@@ -5,10 +5,9 @@ import { Api } from "@/api/base"
 import { ParamValues } from "@/page/App/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/currentApp/action/actionState"
 import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Transformer } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/Transformer"
-import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ResourceParams } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourceParams"
 import { EventHandler } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/EventHandler"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
@@ -19,11 +18,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
     const { resourceId, onChange, onSave, onRun } = props
 
-    const { activeActionItemId } = useContext(ActionEditorContext)
     const { onLoadingActionResult } = useContext(ActionEditorPanelContext)
-    const activeActionItem = useSelector(selectAllActionItem).find(
-      ({ actionId: id }) => id === activeActionItemId,
-    )
+    const activeActionItem = useSelector(getSelectedAction)
     const allResource = useSelector(selectAllResource)
     const dispatch = useDispatch()
 
@@ -63,7 +59,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
 
       Api.request(
         {
-          url: `/actions/${activeActionItemId}/run`,
+          url: `/actions/${activeActionItem?.actionId}/run`,
           method: "POST",
           data: {
             actionType: activeActionItem?.actionType,
@@ -90,7 +86,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           )
           onRun && onRun({ response: { data, statusText, headers }, request })
         },
-        () => { },
+        () => {},
         (loading) => {
           onLoadingActionResult?.(loading)
         },

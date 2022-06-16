@@ -1,4 +1,4 @@
-import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
+import { FC, useState, useRef, Ref } from "react"
 import { AnimatePresence } from "framer-motion"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
@@ -6,8 +6,7 @@ import { Dropdown } from "@illa-design/dropdown"
 import { Menu } from "@illa-design/menu"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
 import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
 import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
@@ -70,12 +69,10 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
-    onUpdateActionItem,
     onChange,
     onSave,
   } = props
 
-  const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
 
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
@@ -86,15 +83,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   const runningIntervalRef = useRef<NodeJS.Timer>()
   const triggerRunRef = useRef<triggerRunRef>(null)
-  const actionItems = useSelector(selectAllActionItem)
-  const activeActionItem = useMemo(() => {
-    if (!activeActionItemId) {
-      return null
-    }
-
-    return actionItems.find((action) => action.actionId === activeActionItemId)
-  }, [actionItems, activeActionItemId])
-
+  const activeActionItem = useSelector(getSelectedAction)
   const actionType = activeActionItem?.actionType ?? ""
 
   function handleAction(key: string) {
@@ -150,12 +139,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   return (
     <div css={containerStyle}>
       <header css={headerStyle}>
-        <TitleInput
-          activeActionItem={activeActionItem}
-          onChange={(name) =>
-            onUpdateActionItem(activeActionItemId, { displayName: name })
-          }
-        />
+        <TitleInput />
         <span css={fillingStyle} />
         <Dropdown
           dropList={moreActions}
@@ -195,9 +179,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         >
           {isRuning
             ? duration
-            : (isActionDirty ?
-              t("editor.action.panel.btn.save_and_run") :
-              t("editor.action.panel.btn.run"))}
+            : isActionDirty
+            ? t("editor.action.panel.btn.save_and_run")
+            : t("editor.action.panel.btn.run")}
         </Button>
       </header>
 
