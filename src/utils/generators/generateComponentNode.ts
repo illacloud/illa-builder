@@ -38,6 +38,8 @@ export const generateComponentNode = (
   baseDSL = {
     w,
     h,
+    minH: 0,
+    minW: 0,
     isDragging: false,
     error: false,
     x: -1,

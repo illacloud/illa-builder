@@ -8,9 +8,9 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   componentNode: ComponentNode
   h: number
   w: number
-  onClientXYChange: (
-    clientX: number,
-    clientY: number,
-    barPosition: BarPosition,
-  ) => void
+}
+
+export interface DragResize {
+  position: BarPosition
+  node: ComponentNode
 }

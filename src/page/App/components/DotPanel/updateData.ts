@@ -2,6 +2,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import store from "@/store"
 import { DragShadow } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
 import { DottedLineSquare } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareState"
+import { BarPosition } from "@/page/App/components/ScaleSquare/style"
 
 export function updateDottedLineSquareData(
   componentNode: ComponentNode,
@@ -78,6 +79,51 @@ export function updateScaleSquare(
   newItem.containerType = "EDITOR_SCALE_SQUARE"
   newItem.x = squareX
   newItem.y = squareY
+  // add component
+  dispatchFn?.(newItem)
+}
+
+export function updateResizeScaleSquare(
+  componentNode: ComponentNode,
+  nearX: number,
+  nearY: number,
+  position: BarPosition,
+  dispatchFn: (componentNode: ComponentNode) => void,
+) {
+  // set scale square
+  const newItem = {
+    ...componentNode,
+  } as ComponentNode
+
+  switch (position) {
+    case "t":
+      if (nearY < 0) {
+        return
+      }
+      newItem.h = newItem.h + newItem.y - nearY
+      newItem.y = nearY
+      break
+    case "r":
+      newItem.w = nearX - newItem.x
+      break
+    case "b":
+      newItem.h = nearY - newItem.y
+      break
+    case "l":
+      newItem.w = newItem.w + newItem.x - nearX
+      newItem.x = nearX
+      break
+    case "tl":
+      break
+    case "tr":
+      break
+    case "bl":
+      break
+    case "br":
+      break
+    default:
+      break
+  }
   // add component
   dispatchFn?.(newItem)
 }

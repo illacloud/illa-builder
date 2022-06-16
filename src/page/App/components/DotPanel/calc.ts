@@ -28,6 +28,10 @@ export function calculateDragPosition(
   const renderX = relativeX - (componentW * unitWidth) / 2 - edgeWidth
   const renderY = relativeY - (componentH * unitHeight) / 2 - edgeWidth
 
+  // near position
+  const nearX = Math.floor((relativeX - edgeWidth) / unitWidth)
+  const nearY = Math.floor((relativeY - edgeWidth) / unitHeight)
+
   return {
     relativeX,
     relativeY,
@@ -35,6 +39,8 @@ export function calculateDragPosition(
     squareY,
     renderX,
     renderY,
+    nearX,
+    nearY,
   } as DragPosition
 }
 

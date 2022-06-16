@@ -186,6 +186,7 @@ export function applyBorderStyle(
       ${selected ? getStateColor(scaleSquareState) : "transparent"};
 
     &:hover {
+      cursor: move;
       border-color: ${getStateColor(scaleSquareState)};
     }
   `
