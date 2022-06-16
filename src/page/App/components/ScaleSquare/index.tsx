@@ -1,6 +1,7 @@
 import { FC } from "react"
 import {
   DragResize,
+  DragResizeCollected,
   ScaleSquareProps,
 } from "@/page/App/components/ScaleSquare/interface"
 import {
@@ -23,13 +24,20 @@ import { mergeRefs } from "@illa-design/system"
 function getDragConfig(
   componentNode: ComponentNode,
   barPosition: BarPosition,
-): FactoryOrInstance<DragSourceHookSpec<DragResize, unknown, unknown>> {
+): FactoryOrInstance<
+  DragSourceHookSpec<DragResize, unknown, DragResizeCollected>
+> {
   return () => ({
     type: "resize",
     item: {
       node: componentNode,
       position: barPosition,
     } as DragResize,
+    collect: (monitor) => {
+      return {
+        resizing: monitor.isDragging(),
+      } as DragResizeCollected
+    },
     canDrag: !componentNode.isDragging,
   })
 }
@@ -56,45 +64,53 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   )
 
   // register resize
-  const [, resizeT, resizeTPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "t"),
-    [componentNode],
-  )
+  const [collectT, resizeT, resizeTPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "t"), [componentNode])
 
-  const [, resizeR, resizeRPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "r"),
-    [componentNode],
-  )
+  const [collectR, resizeR, resizeRPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "r"), [componentNode])
 
-  const [, resizeB, resizeBPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "b"),
-    [componentNode],
-  )
+  const [collectB, resizeB, resizeBPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "b"), [componentNode])
 
-  const [, resizeL, resizeLPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "l"),
-    [componentNode],
-  )
+  const [collectL, resizeL, resizeLPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "l"), [componentNode])
 
-  const [, resizeTl, resizeTlPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "tl"),
-    [componentNode],
-  )
+  const [collectTl, resizeTl, resizeTlPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "tl"), [componentNode])
 
-  const [, resizeTr, resizeTrPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "tr"),
-    [componentNode],
-  )
+  const [collectTr, resizeTr, resizeTrPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "tr"), [componentNode])
 
-  const [, resizeBl, resizeBlPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "bl"),
-    [componentNode],
-  )
+  const [collectBl, resizeBl, resizeBlPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "bl"), [componentNode])
 
-  const [, resizeBr, resizeBrPreviewRef] = useDrag<DragResize>(
-    getDragConfig(componentNode, "br"),
-    [componentNode],
-  )
+  const [collectBr, resizeBr, resizeBrPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "br"), [componentNode])
 
   return (
     <div
@@ -112,35 +128,75 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         </div>
       </div>
       <div
-        css={applyBarPointerStyle(selected, scaleSquareState, "t")}
+        css={applyBarPointerStyle(
+          selected,
+          collectT.resizing,
+          scaleSquareState,
+          "t",
+        )}
         ref={resizeT}
       />
       <div
-        css={applyBarPointerStyle(selected, scaleSquareState, "r")}
+        css={applyBarPointerStyle(
+          selected,
+          collectR.resizing,
+          scaleSquareState,
+          "r",
+        )}
         ref={resizeR}
       />
       <div
-        css={applyBarPointerStyle(selected, scaleSquareState, "b")}
+        css={applyBarPointerStyle(
+          selected,
+          collectB.resizing,
+          scaleSquareState,
+          "b",
+        )}
         ref={resizeB}
       />
       <div
-        css={applyBarPointerStyle(selected, scaleSquareState, "l")}
+        css={applyBarPointerStyle(
+          selected,
+          collectL.resizing,
+          scaleSquareState,
+          "l",
+        )}
         ref={resizeL}
       />
       <div
-        css={applySquarePointerStyle(selected, scaleSquareState, "tl")}
+        css={applySquarePointerStyle(
+          selected,
+          collectTl.resizing,
+          scaleSquareState,
+          "tl",
+        )}
         ref={resizeTl}
       />
       <div
-        css={applySquarePointerStyle(selected, scaleSquareState, "tr")}
+        css={applySquarePointerStyle(
+          selected,
+          collectTr.resizing,
+          scaleSquareState,
+          "tr",
+        )}
         ref={resizeTr}
       />
       <div
-        css={applySquarePointerStyle(selected, scaleSquareState, "bl")}
+        css={applySquarePointerStyle(
+          selected,
+          collectBl.resizing,
+          scaleSquareState,
+          "bl",
+        )}
         ref={resizeBl}
       />
       <div
-        css={applySquarePointerStyle(selected, scaleSquareState, "br")}
+        css={applySquarePointerStyle(
+          selected,
+          collectBr.resizing,
+          scaleSquareState,
+          "br",
+        )}
         ref={resizeBr}
       />
       <div

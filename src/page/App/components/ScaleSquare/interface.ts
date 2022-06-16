@@ -14,3 +14,7 @@ export interface DragResize {
   position: BarPosition
   node: ComponentNode
 }
+
+export interface DragResizeCollected {
+  resizing: boolean
+}
