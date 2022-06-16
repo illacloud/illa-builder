@@ -74,15 +74,15 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let previewType = expectedType
     try {
       let calcResult = evaluateDynamicString("", currentValue, {})
-      if (!currentValue?.includes("{{")) {
-        calcResult = getEvalValue(previewType, calcResult)
-      }
+      // if (!currentValue?.includes("{{")) {
+      //   calcResult = getEvalValue(previewType, calcResult)
+      // }
       isExpectType(previewType, calcResult)
       onChange?.(currentValue, calcResult)
       setPreview({
         state: "default",
         type: previewType,
-        content: !!calcResult ? JSON.stringify(calcResult) : calcResult,
+        content: calcResult,
       })
     } catch (e: any) {
       console.error(e)
