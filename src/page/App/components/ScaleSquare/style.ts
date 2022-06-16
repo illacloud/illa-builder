@@ -37,29 +37,29 @@ export function applySquarePointerStyle(
     case "tl":
       positionStyle = css`
         cursor: ${selected ? "nwse-resize" : "default"};
-        top: 0;
-        left: 0;
+        top: -2px;
+        left: -2px;
       `
       break
     case "tr":
       positionStyle = css`
         cursor: ${selected ? "nesw-resize" : "default"};
-        top: 0;
-        right: 0;
+        top: -2px;
+        right: -2px;
       `
       break
     case "bl":
       positionStyle = css`
         cursor: ${selected ? "nesw-resize" : "default"};
-        bottom: 0;
-        left: 0;
+        bottom: -2px;
+        left: -2px;
       `
       break
     case "br":
       positionStyle = css`
         cursor: ${selected ? "nwse-resize" : "default"};
-        bottom: 0;
-        right: 0;
+        bottom: -2px;
+        right: -2px;
       `
       break
     default:
@@ -102,7 +102,7 @@ export function applyBarPointerStyle(
   switch (barPosition) {
     case "t":
       barPositionStyle = css`
-        top: 0;
+        top: -2px;
         left: 0;
         right: 0;
         margin: auto;
@@ -113,7 +113,7 @@ export function applyBarPointerStyle(
       break
     case "b":
       barPositionStyle = css`
-        bottom: 0;
+        bottom: -2px;
         left: 0;
         right: 0;
         cursor: ${selected ? "row-resize" : "default"};
@@ -125,7 +125,7 @@ export function applyBarPointerStyle(
     case "l":
       barPositionStyle = css`
         bottom: 0;
-        left: 0;
+        left: -2px;
         top: 0;
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
@@ -136,7 +136,7 @@ export function applyBarPointerStyle(
     case "r":
       barPositionStyle = css`
         bottom: 0;
-        right: 0;
+        right: -2px;
         top: 0;
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
@@ -177,11 +177,9 @@ export function applyBorderStyle(
   scaleSquareState: ScaleSquareType,
 ): SerializedStyles {
   return css`
-    width: calc(100% - 3px);
-    height: calc(100% - 3px);
+    width: calc(100%);
+    height: calc(100%);
     position: absolute;
-    top: 1.5px;
-    left: 1.5px;
     border: 1px solid
       ${selected ? getStateColor(scaleSquareState) : "transparent"};
 
