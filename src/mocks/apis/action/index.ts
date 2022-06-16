@@ -17,8 +17,8 @@ export default [
     (req, res, ctx) => {
       const { actionType } = req.body
 
-      return res(
-        ctx.delay(5000 * Math.random()),
+      const successRes = res(
+        ctx.delay(3000 * Math.random()),
         ctx.status(200),
         ctx.json(
           actionType === "mysql"
@@ -26,6 +26,19 @@ export default [
             : ACTION_API_RUN_RESULT,
         ),
       )
+
+      const failRes = res(
+        ctx.delay(3000 * Math.random()),
+        ctx.status(400),
+        ctx.json(
+          {
+            errorCode: 400,
+            errorMessage: "Something wrong"
+          }
+        ),
+      )
+
+      return Math.random() > 0.7 ? successRes : failRes
     },
   ),
 

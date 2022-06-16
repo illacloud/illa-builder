@@ -51,7 +51,6 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             <CodeEditor
               mode="TEXT_JS"
               expectedType="String"
-              lineNumbers={false}
               height="32px"
               placeholder="key"
               css={fieldItemKeyStyle}
@@ -69,7 +68,6 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           <CodeEditor
             mode="TEXT_JS"
             expectedType="String"
-            lineNumbers={false}
             height="32px"
             placeholder="key"
             css={fieldItemKeyStyle}
@@ -80,7 +78,6 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
         <CodeEditor
           mode="TEXT_JS"
           expectedType="String"
-          lineNumbers={false}
           height="32px"
           placeholder="value"
           css={fieldItemValueStyle}

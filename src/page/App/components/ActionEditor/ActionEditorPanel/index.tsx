@@ -195,9 +195,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         >
           {isRuning
             ? duration
-            : isActionDirty
-            ? t("editor.action.panel.btn.save_and_run")
-            : t("editor.action.panel.btn.run")}
+            : (isActionDirty ?
+              t("editor.action.panel.btn.save_and_run") :
+              t("editor.action.panel.btn.run"))}
         </Button>
       </header>
 
@@ -216,6 +216,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
               <ActionResult
                 result={result}
                 actionType={actionType}
+                error={activeActionItem?.error}
                 onClose={() => {
                   setActionResVisible(false)
                 }}

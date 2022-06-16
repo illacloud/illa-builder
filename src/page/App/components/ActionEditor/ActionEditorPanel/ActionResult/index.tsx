@@ -23,30 +23,26 @@ import {
   resSuccessStatusIconStyle,
   resFailStatusIconStyle,
 } from "./style"
-import { ActionResultProps, ActionRestultStatus } from "./interface"
+import { ActionResultProps } from "./interface"
 
 const CONTAINER_DEFAULT_HEIGHT = 180
 
-function renderStatusNode(status: ActionRestultStatus) {
-  switch (status) {
-    case "success": {
-      return (
-        <RightIcon
-          css={css(resStatusIconStyle, resSuccessStatusIconStyle)}
-          size="10px"
-        />
-      )
-    }
-
-    case "error": {
-      return (
-        <WarningCircleIcon
-          css={css(resStatusIconStyle, resFailStatusIconStyle)}
-          size="10px"
-        />
-      )
-    }
+function renderStatusNode(error?: boolean) {
+  if (error) {
+    return (
+      <WarningCircleIcon
+        css={css(resStatusIconStyle, resFailStatusIconStyle)}
+        size="10px"
+      />
+    )
   }
+
+  return (
+    <RightIcon
+      css={css(resStatusIconStyle, resSuccessStatusIconStyle)}
+      size="10px"
+    />
+  )
 }
 
 function renderResult(actionType: string, result?: ActionResultType) {
@@ -59,7 +55,7 @@ function renderResult(actionType: string, result?: ActionResultType) {
 }
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose, result, status = "success", className, actionType } = props
+  const { onClose, result, error, className, actionType } = props
   const { t } = useTranslation()
   const { editorHeight } = useContext(ActionEditorContext)
   const resultContainerRef = useRef<HTMLDivElement>(null)
@@ -72,10 +68,9 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
   }
 
   const resizer = useResize("vertical", resultContainerRef, onHeightChange)
-  const title =
-    status === "success"
-      ? t("editor.action.result.title.success")
-      : t("editor.action.result.title.error")
+  const title = error
+    ? t("editor.action.result.title.error")
+    : t("editor.action.result.title.success")
 
   const resultNode = useMemo(
     () => renderResult(actionType, result),
@@ -105,7 +100,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         )}
       >
         <div css={resHeaderStyle}>
-          {renderStatusNode(status)}
+          {renderStatusNode(error)}
           <span css={resTitleStyle}>{title}</span>
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
         </div>

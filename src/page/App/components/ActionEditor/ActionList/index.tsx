@@ -114,8 +114,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
-    const { actionId: id, displayName: name, status, actionType } = item
-    const isWarning = status === "warning"
+    const { actionId: id, displayName: name, status, actionType, error } = item
     const isSelected = id === activeActionItemId
 
     function renderName() {
@@ -138,7 +137,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
           onDoubleClick={() => editName(id, name)}
         >
           <span
-            css={applyactionItemNameTextStyle(isWarning ?? false)}
+            css={applyactionItemNameTextStyle(error ?? false)}
             title={name}
           >
             {name}
@@ -162,7 +161,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       >
         <span css={actionItemIconStyle}>
           <ActionTypeIcon actionType={actionType} />
-          {isWarning && (
+          {error && (
             <WarningCircleIcon css={warningIndicatorStyle} size={"8px"} />
           )}
         </span>

@@ -45,6 +45,22 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     }
 
     const run = () => {
+      let request: any
+
+      // return request params as result if is `api` action type
+      if (
+        activeActionItem &&
+        ["restapi"].includes(activeActionItem.actionType)
+      ) {
+        const { url, method, body, headers } = params
+        request = {
+          url,
+          method,
+          body,
+          headers,
+        }
+      }
+
       Api.request(
         {
           url: `/actions/${activeActionItemId}/run`,
@@ -53,42 +69,26 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
             actionType: activeActionItem?.actionType,
           },
         },
-        (data) => {
-          const { config, request, ...response } = data
-          let result: { response: any; request?: any } = { response }
-
-          // return request params as result if is `api` action type
-          if (
-            activeActionItem &&
-            ["restapi"].includes(activeActionItem.actionType)
-          ) {
-            const { url, method, body, headers } = params
-            const request = {
-              url,
-              method,
-              body,
-              headers,
-            }
-            result = { ...result, request }
-          }
-
+        ({ data, statusText, headers }) => {
           dispatch(
             actionActions.updateActionItemReducer({
               ...activeActionItem,
-              data: {},
+              data,
               error: false,
             }),
           )
 
-          onRun && onRun(result)
+          onRun && onRun({ response: { data, statusText, headers }, request })
         },
-        () => {
+        ({ data, statusText, headers }) => {
           dispatch(
             actionActions.updateActionItemReducer({
               ...activeActionItem,
+              data: {},
               error: true,
             }),
           )
+          onRun && onRun({ response: { data, statusText, headers }, request })
         },
         () => { },
         (loading) => {
