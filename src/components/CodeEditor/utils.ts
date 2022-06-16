@@ -1,4 +1,6 @@
 //
+import { evalScript } from "@/utils/evaluateDynamicString/codeSandbox"
+
 export const ignoreToken = (text?: string[]) => {
   const ignoreStr = " ,#,!,-,=,@,$,%,&,+,;,(,),*,(),{}"
   const ignore = ignoreStr.split(",")
@@ -18,17 +20,24 @@ const DataTypeList = {
   String,
   Number,
   Array,
-  Function,
   Object,
   Boolean,
 }
 
 export type ExpectedType = keyof typeof DataTypeList
 
-export function getTypeValue(type: ExpectedType, content: string) {
-  const res = new DataTypeList[type](content)
-  console.log(type, res, 'res')
-  return res.valueOf()
+export function getEvalValue(type: ExpectedType, content: any) {
+  try {
+    if (type === "Object" || type === "Array") {
+      return evalScript(content, {}, false)
+    } else if (type === "Number") {
+      return Number(content)
+    } else {
+      const res = new DataTypeList[type](content)
+      return res.valueOf()
+    }
+  } catch (e) {}
+  return content
 }
 
 function getValueType(value: any) {

@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
@@ -22,7 +22,7 @@ import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { CodePreview } from "./CodePreview"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import {getTypeValue, isExpectType} from "@/components/CodeEditor/utils"
+import { getEvalValue, isExpectType } from "@/components/CodeEditor/utils"
 
 export type Hinter = {
   showHint: (
@@ -50,11 +50,13 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const [editor, setEditor] = useState<Editor>()
   const [hinters, setHinters] = useState<Hinter[]>([])
   const [hinterOpen, setHinterOpen] = useState<boolean>()
-  const [preview, setPreview] = useState<ResultPreview>()
+  const [preview, setPreview] = useState<ResultPreview>({
+    state: "default",
+    type: expectedType,
+  })
   const [previewVisible, setPreviewVisible] = useState<boolean>()
 
   const handleFocus = () => {
-    console.log("foucs")
     setPreviewVisible(true)
   }
 
@@ -65,26 +67,19 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     handleAutocomplete(editor)
+    const currentValue = editor?.getValue()
+    let previewType = expectedType
     try {
-      const currentValue = editor?.getValue()
       let calcResult = evaluateDynamicString("", currentValue, {})
-      console.log(
-          expectedType,
-          currentValue,
-          calcResult,
-          "evaluateData",
-      )
-      calcResult = getTypeValue(expectedType, calcResult)
-      console.log(
-          calcResult,
-          "getTypeValue",
-      )
-      isExpectType(expectedType, calcResult)
+      if (!currentValue?.includes("{{")) {
+        calcResult = getEvalValue(previewType, calcResult)
+      }
+      isExpectType(previewType, calcResult)
       onChange?.(currentValue, calcResult)
       setPreview({
         state: "default",
-        type: expectedType,
-        content: calcResult.toString(),
+        type: previewType,
+        content: !!calcResult ? JSON.stringify(calcResult) : calcResult,
       })
     } catch (e) {
       console.error(e)
@@ -93,7 +88,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         content: e.toString(),
       })
     }
-
   }
 
   useEffect(() => {
@@ -110,7 +104,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
   }, [value])
 
-  const handleAutocompleteAddition= (cm: CodeMirror.Editor) => {
+  const handleAutocompleteAddition = (cm: CodeMirror.Editor) => {
     // if (!isFocused) return;
     const entityInformation: FieldEntityInformation = {}
     let hinterOpen = false
@@ -121,11 +115,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     setHinterOpen(hinterOpen)
   }
 
-  const handleAutocomplete = (
-    cm: CodeMirror.Editor,
-  ) => {
+  const handleAutocomplete = (cm: CodeMirror.Editor) => {
     const modeName = cm.getModeAt(cm.getCursor()).name
-    console.log(modeName, "modeName")
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
         // tables: {
@@ -150,7 +141,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   useEffect(() => {
-    console.log(editor, codeTargetRef, "editor")
     if (!editor) {
       const editor = CodeMirror(codeTargetRef.current!, {
         mode: EditorModes[mode],

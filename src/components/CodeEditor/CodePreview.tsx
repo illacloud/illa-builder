@@ -27,8 +27,6 @@ function copyToClipboard(content: any) {
 export const CodePreview: FC<CodePreviewProps> = (props) => {
   const { className, preview, ...otherProps } = props
 
-  const clickCopy = () => {}
-
   return (
     <div className={className} css={applyPreviewStyle(preview?.state)}>
       <CopyIcon
@@ -48,7 +46,7 @@ export const CodePreview: FC<CodePreviewProps> = (props) => {
       )}
       <div css={contentTextStyle}>
         {preview?.type === "String"
-          ? `"${preview?.content}"`
+          ? `${preview?.content ?? ``}`
           : preview?.content}
       </div>
     </div>

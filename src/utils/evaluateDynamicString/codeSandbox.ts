@@ -20,6 +20,7 @@ export function evalScript(
 
     try {
       result = eval(userScript)
+      console.log(result, 'result in eval')
     } catch (error) {
       // TODO: add error handler
       throw error

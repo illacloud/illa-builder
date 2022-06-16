@@ -10,6 +10,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   return (
     <div className={className}>
       <CodeEditor mode="JAVASCRIPT" expectedType="Boolean" value={value} onChange={setValue} />
+      <CodeEditor mode="JAVASCRIPT" expectedType="Object" />
       <CodeEditor mode="SQL" expectedType="Object" />
       <CodeEditor mode="SQL_JS" expectedType="String" />
       <CodeEditor mode="TEXT_JS"  expectedType="String" />
