@@ -18,6 +18,7 @@ export interface CodeEditorProps
   value?: string
   expectedType: ExpectedType
   lineNumbers?: boolean
+  readOnly?: boolean
   height?: string
   placeholder?: string
   onBlur?: () => void

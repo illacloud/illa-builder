@@ -42,6 +42,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     expectedType = "String",
     value,
     height = "auto",
+    readOnly,
     onBlur,
     onChange,
     ...otherProps
@@ -153,6 +154,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         lineWrapping: true,
         tabSize: 2,
         value: value ?? "",
+        readOnly: readOnly && "nocursor",
         hintOptions: {
           completeSingle: false,
         },
