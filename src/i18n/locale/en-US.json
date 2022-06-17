@@ -176,7 +176,7 @@
             "cookies": "Cookies",
             "body": "Body",
             "extra_body_values": "Extra Body Values",
-            "list_of_cookies_to_forward": "List Of Cookies To Forward",
+            "list_of_cookies_to_forward": "List Of Cookies To\n Forward",
             "forward_all_cookies": "Forward All Cookies",
             "base_url": "Base URL",
             "authentication": "Authentication",
@@ -191,11 +191,11 @@
             "access_token_url": "Access Token URL",
             "client_id": "Client ID",
             "client_secret": "Client Secret",
-            "scopes": "Scopes (separated by a space)",
+            "scopes": "Scopes (separated by\n a space)",
             "audience": "Audience",
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
-            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "access_token_lifespan": "Access Token\n lifespan(optiinal)",
             "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
           },
           "tip": {

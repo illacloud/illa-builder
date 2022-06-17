@@ -54,13 +54,14 @@ export const splitLineStyle = css`
 `
 
 export const labelTextStyle = css`
+  padding-top: 5px;
   display: flex;
   justify-content: end;
   font-size: 14px;
-  line-height: 32px;
   font-weight: 500;
   text-align: right;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  white-space: pre;
 `
 
 export const itemTextStyle = css`
