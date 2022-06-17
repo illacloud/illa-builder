@@ -39,8 +39,8 @@ export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-        `--${illaPrefix}-techPurple-06`,
-      )}!important;
+    `--${illaPrefix}-techPurple-06`,
+  )}!important;
     }
   `
 }
@@ -186,11 +186,11 @@ export function applycontextMenuStyle(
   left?: number,
 ): SerializedStyles {
   return css`
-    position: fixed !important;
+    position: fixed;
     top: ${top ?? 0}px;
     left: ${left ?? 0}px;
     margin: 0;
-    padding: 0;
+    padding: 8px 0;
     width: 184px;
     border: solid 1px ${globalColor(`--${illaPrefix}-gray-08`)};
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
@@ -200,6 +200,16 @@ export function applycontextMenuStyle(
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
   `
 }
+
+const menuItemStyle = css`
+  line-height: 32px;
+  padding: 5px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+  }
+`
 
 export function applycontextMenuVisibleStyle(
   isVisible: boolean,
@@ -217,12 +227,14 @@ export function applycontextMenuVisibleStyle(
 }
 
 export const duplicateActionStyle = css`
+  ${menuItemStyle}
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)}!important;
-`
+  `
 
 export const deleteActionStyle = css`
+  ${menuItemStyle}
   color: ${globalColor(`--${illaPrefix}-red-03`)}!important;
-`
+  `
 
 export const searchHeaderStyle = css`
   width: 100%;
@@ -231,7 +243,7 @@ export const searchHeaderStyle = css`
   padding: 13px 16px;
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
-`
+  `
 export const searchHeaderInputStyle = css`
   justify-content: flex-end;
 `
@@ -248,28 +260,28 @@ export const searchHeaderTitleTextStyle = css`
 export const searchHeaderTitleIconStyle = css`
   cursor: pointer;
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   }
-`
+  `
 export const searchInputStyle = css`
   margin-right: 8px;
   & > span {
-    border-radius: 8px !important;
-    border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
+  border-radius: 8px !important;
+  border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
-`
+      `
 
 export const searchInputIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-`
+  `
 
 export const searchInputCloseBtnStyle = css`
   flex: 0 0 45px;
   & > span {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
-`
+  `

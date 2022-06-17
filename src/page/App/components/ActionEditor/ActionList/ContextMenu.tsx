@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
+import { css } from "@emotion/react"
 import useClickAway from "react-use/lib/useClickAway"
 import { forwardRef, useState, useRef, useEffect, FC } from "react"
-import { Menu } from "@illa-design/menu"
 import { motion } from "framer-motion"
 import {
   applycontextMenuStyle,
@@ -10,7 +10,6 @@ import {
   applycontextMenuVisibleStyle,
 } from "./style"
 
-const MenuItem = Menu.Item
 import { ContextMenuProps } from "./interface"
 
 export const ContextMenu: FC<ContextMenuProps> = (props) => {
@@ -47,19 +46,6 @@ export const ContextMenu: FC<ContextMenuProps> = (props) => {
     setVisible(true)
   }, [contextMenuEvent])
 
-  function handleAction(key: string) {
-    switch (key) {
-      case "duplicate":
-        duplicateActionItem()
-        break
-      case "delete":
-        deleteActionItem()
-        break
-      default:
-        break
-    }
-  }
-
   function duplicateActionItem() {
     setVisible(false)
     onDuplicate && onDuplicate()
@@ -72,25 +58,20 @@ export const ContextMenu: FC<ContextMenuProps> = (props) => {
 
   const MotionMenu = motion(
     forwardRef<HTMLDivElement>((_, ref) => (
-      <Menu
-        css={[
+      <div
+        css={css(
           applycontextMenuStyle(position.y, position.x),
           applycontextMenuVisibleStyle(visible),
-        ]}
-        onClickMenuItem={handleAction}
+        )}
         ref={ref}
       >
-        <MenuItem
-          key={"duplicate"}
-          title={t("editor.action.action_list.contextMenu.duplicate")}
-          css={duplicateActionStyle}
-        />
-        <MenuItem
-          key={"delete"}
-          title={t("editor.action.action_list.contextMenu.delete")}
-          css={deleteActionStyle}
-        />
-      </Menu>
+        <div css={duplicateActionStyle} onClick={duplicateActionItem}>
+          {t("editor.action.action_list.contextMenu.duplicate")}
+        </div>
+        <div css={deleteActionStyle} onClick={deleteActionItem}>
+          {t("editor.action.action_list.contextMenu.delete")}
+        </div>
+      </div>
     )),
   )
 
