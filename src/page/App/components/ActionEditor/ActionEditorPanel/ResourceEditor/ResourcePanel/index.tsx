@@ -69,7 +69,9 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           dispatch(
             actionActions.updateActionItemReducer({
               ...activeActionItem,
+              // TODO: apply Transfomer
               data,
+              rawData: data,
               error: false,
             }),
           )
@@ -80,13 +82,15 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           dispatch(
             actionActions.updateActionItemReducer({
               ...activeActionItem,
+              // TODO: apply Transfomer
               data: {},
+              rawData: {},
               error: true,
             }),
           )
           onRun && onRun({ response: { data, statusText, headers }, request })
         },
-        () => {},
+        () => { },
         (loading) => {
           onLoadingActionResult?.(loading)
         },

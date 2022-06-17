@@ -30,6 +30,7 @@ export interface ActionItem {
   actionTemplate?: ActionItemConfig
   error?: boolean
   data?: any
+  rawData?: any
 }
 
 export type ActionListState = ActionItem[]
