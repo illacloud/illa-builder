@@ -31,4 +31,5 @@ export const colorSchemeOptions = [
   },
   { key: globalColor(`--${illaPrefix}-cyan-01`), value: "cyan" },
   { key: globalColor(`--${illaPrefix}-gray-01`), value: "gray" },
+  { key: globalColor(`--${illaPrefix}-grayBlue-01`), value: "grayBlue" },
 ]
