@@ -55,11 +55,11 @@ export interface BodyProps {
 export interface RESTAPIParamValues {
   method?: HTTPMethod
   path?: string
-  URLParameters?: Params[]
-  Headers?: Params[]
-  ContentType?: ContentType
-  Body?: BodyParams[] | string
-  Cookies?: Params[]
+  urlParams?: Params[]
+  headers?: Params[]
+  contentType?: ContentType
+  body?: BodyParams[] | string
+  cookies?: Params[]
 }
 
 export interface RESTAPIParamProps {

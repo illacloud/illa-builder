@@ -3,8 +3,6 @@ import {
   MySQLParamValues,
 } from "@/page/App/components/ActionEditor/Resource"
 
-export type ActionType = "action" | "transformer"
-
 type ActionStatus = "warning" | string
 
 interface ActionConnectNetwork {
@@ -16,32 +14,23 @@ interface ActionConnectNetwork {
 }
 
 export interface ActionItemConfig {
-  general?: RESTAPIParamValues | MySQLParamValues | string
-  trigger?: "manual" | "change"
-  mode?: "gui" | "plain"
+  [index: string]: any
   transformer?: string
-  eventHandler?: EventHandler
-}
-
-interface Transformer {
-  enable: boolean
-  value: string
-}
-
-interface EventHandler {
-  success?: string[]
-  failure?: string[]
+  events?: []
 }
 
 export interface ActionItem {
   actionId: string
   displayName: string
-  resourceId?: string
   actionType: string
+  resourceId?: string
   status?: ActionStatus
   network?: ActionConnectNetwork
   config?: ActionItemConfig
   actionTemplate?: ActionItemConfig
+  error?: boolean
+  data?: any
+  rawData?: any
 }
 
 export type ActionListState = ActionItem[]

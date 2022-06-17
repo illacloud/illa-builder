@@ -109,7 +109,7 @@
           "save_changes": "保存修改"
         },
         "validate": {
-          "required": "{name} is required!"
+          "required": "{name} is required"
         }
       },
       "resource": {
@@ -234,7 +234,11 @@
       "result": {
         "title": {
           "success": "Query ran successfully",
-          "error": "Query ran fail"
+          "error": "Query ran fail",
+          "table": "Table",
+          "json": "JSON",
+          "response": "Response",
+          "api_request": "Api Request"
         }
       }
     },

@@ -282,15 +282,15 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 </div>
                 {(errors.advancedOptions?.sshHost ||
                   errors.advancedOptions?.sshPort) && (
-                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshHost?.message}
-                      </div>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshPort?.message}
-                      </div>
+                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshHost?.message}
                     </div>
-                  )}
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshPort?.message}
+                    </div>
+                  </div>
+                )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={requiredLabelTextStyle}>
@@ -331,15 +331,15 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 </div>
                 {(errors.advancedOptions?.sshUsername ||
                   errors.advancedOptions?.sshPassword) && (
-                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshUsername?.message}
-                      </div>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshPassword?.message}
-                      </div>
+                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshUsername?.message}
                     </div>
-                  )}
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshPassword?.message}
+                    </div>
+                  </div>
+                )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={labelTextStyle}>
