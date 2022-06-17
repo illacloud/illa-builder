@@ -255,14 +255,28 @@ export const moreListItemWarnStyle = css`
 `
 
 export const moreBtnMenuStyle = css`
+  padding: 8px 0;
   width: 180px;
+  box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
+`
+
+const moreActionItemStyle = css`
+  line-height: 32px;
+  padding: 5px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+  }
 `
 
 export const duplicateActionStyle = css`
+  ${moreActionItemStyle}
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)} !important;
 `
 
 export const deleteActionStyle = css`
+  ${moreActionItemStyle}
   color: ${globalColor(`--${illaPrefix}-red-03`)} !important;
 `
 
