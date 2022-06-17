@@ -156,7 +156,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
           <div css={modalInputWrapperCss}>
             <Input
               value={disabledValue}
-              onChange={;(value) => {
+              onChange={(value) => {
                 setDisabledValue(value)
                 // handleUpdate({ disabled: value })
               }}
