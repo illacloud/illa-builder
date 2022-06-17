@@ -12,7 +12,7 @@ import { ResourceParams } from "@/page/App/components/ActionEditor/ActionEditorP
 import { EventHandler } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/EventHandler"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import { ActionEditorPanelContext } from "@/page/App/components/ActionEditor/ActionEditorPanel/context"
-import { ResourcePanelProps } from "./interface"
+import { ResourcePanelProps, ReturnRequestProp } from "./interface"
 
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
@@ -41,7 +41,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
     }
 
     const run = () => {
-      let request: any
+      let request: ReturnRequestProp
 
       // return request params as result if is `api` action type
       if (
@@ -86,7 +86,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           )
           onRun && onRun({ response: { data, statusText, headers }, request })
         },
-        () => {},
+        () => { },
         (loading) => {
           onLoadingActionResult?.(loading)
         },
