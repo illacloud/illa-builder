@@ -50,7 +50,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     method: config?.method ?? "GET",
     path: config?.path,
     urlParams: config?.urlParams ?? [],
-    url: concatUrl(config.path, config.urlParams, baseURL),
+    url: concatUrl(config?.path, config?.urlParams, baseURL),
     headers: config?.headers ?? [],
     body: config?.body ?? [],
     cookies: config?.cookies ?? [],
