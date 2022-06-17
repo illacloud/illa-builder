@@ -19,7 +19,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         isFullWidth: true,
         attrName: "optionMode",
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: "manual",
         options: [
           {
             label: "Manual",
@@ -45,7 +44,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         isFullWidth: true,
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
-        defaultValue: "{{[]}}",
         bindAttrName: "optionMode",
         shown: (value) => value === "mapped",
       },
@@ -156,8 +154,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
-        placeholder: "false",
-        defaultValue: false,
+        placeholder: "{{false}}",
       },
     ],
   },

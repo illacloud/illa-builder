@@ -15,17 +15,17 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     useCustomLabel = false,
     shown,
     bindAttrName,
+    attrName,
   } = props
   const Comp = getSetterByType(setterType)
 
-  const { panelConfig, handleUpdateDsl, handleUpdatePanelConfig } =
-    useContext(SelectedPanelContext)
+  const { widgetProps, handleUpdateDsl } = useContext(SelectedPanelContext)
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
-    const bindAttrNameValue = panelConfig[bindAttrName]
+    const bindAttrNameValue = widgetProps[bindAttrName]
     return shown(bindAttrNameValue)
-  }, [shown, panelConfig])
+  }, [shown, widgetProps])
 
   const renderLabel = useMemo(() => {
     return !useCustomLabel && labelName ? (
@@ -38,15 +38,18 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   }, [labelName, labelDesc, isInList])
 
   const renderSetter = useMemo(() => {
+    const defaultValue = widgetProps[attrName]
+    const expectedType = props.expectedType
     return Comp ? (
       <Comp
         {...props}
-        panelConfig={panelConfig}
+        value={defaultValue}
+        panelConfig={widgetProps}
         handleUpdateDsl={handleUpdateDsl}
-        handleUpdatePanelConfig={handleUpdatePanelConfig}
+        expectedType={expectedType ?? "String"}
       />
     ) : null
-  }, [Comp, props, panelConfig, handleUpdateDsl, handleUpdatePanelConfig])
+  }, [Comp, props, widgetProps, attrName, handleUpdateDsl])
 
   return canRenderSetter ? (
     <div

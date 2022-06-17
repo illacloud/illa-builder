@@ -11,14 +11,8 @@ import { ColorSelectSetterProps } from "./interface"
 import chroma from "chroma-js"
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
-  const {
-    defaultValue,
-    options,
-    attrName,
-    panelConfig,
-    handleUpdateDsl,
-    handleUpdatePanelConfig,
-  } = props
+  const { defaultValue, options, attrName, panelConfig, handleUpdateDsl } =
+    props
   const [menuVisible, setMenuVisible] = useState(false)
 
   const renderContent = useCallback((color: string = "transparent") => {
@@ -44,7 +38,6 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
               css={colorSelectMenuItemWrapperCss}
               key={key}
               onClick={() => {
-                handleUpdatePanelConfig({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
                 setMenuVisible(false)
               }}
@@ -55,7 +48,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
         })}
       </div>
     )
-  }, [renderContent, options, attrName, handleUpdatePanelConfig])
+  }, [renderContent, options, attrName])
 
   const translateValueToKey = useMemo(() => {
     const value = panelConfig[attrName]

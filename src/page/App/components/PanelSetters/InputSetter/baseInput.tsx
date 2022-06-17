@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from "react"
 import { Input } from "@illa-design/input"
 import { BaseInputSetterProps } from "./interface"
-import { applyInputSetterWrapperStyle } from "./style"
+import { applyInputSetterStyle, applyInputSetterWrapperStyle } from "./style"
+import { CodeEditor } from "@/components/CodeEditor"
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
@@ -12,24 +13,19 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     attrName,
     panelConfig,
     handleUpdateDsl,
-    handleUpdatePanelConfig,
+    expectedType,
+    value,
   } = props
-
-  const [inputValue, setInputValue] = useState(panelConfig[attrName])
-
-  useEffect(() => {
-    setInputValue(panelConfig[attrName])
-  }, [panelConfig[attrName]])
 
   return (
     <div css={applyInputSetterWrapperStyle(isFullWidth, isInList)}>
-      <Input
-        placeholder={placeholder}
-        value={inputValue ?? defaultValue}
-        onChange={(value) => {
-          setInputValue(value)
-          handleUpdatePanelConfig({ [attrName]: value })
-          // TODO： calc dsl and then to update props
+      <CodeEditor
+        css={applyInputSetterStyle}
+        placeholder={placeholder ?? ""}
+        value={value ?? ""}
+        expectedType={expectedType || "String"}
+        mode="TEXT_JS"
+        onChange={(value, calcResult) => {
           handleUpdateDsl({ [attrName]: value })
         }}
       />

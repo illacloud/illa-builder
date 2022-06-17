@@ -11,12 +11,10 @@ export const SEGMENTED_CONTROL_WIDGET_CONFIG: WidgetConfig = {
   icon: <SearchIcon />,
   sessionType: "PRESENTATION",
   defaults: {
-    rows: 50,
-    columns: 500,
+    optionMode: "manual",
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    width: "500px",
     direction: "horizontal",
     options: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },

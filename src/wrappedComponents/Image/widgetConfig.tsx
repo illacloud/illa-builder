@@ -11,6 +11,6 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   h: 15,
   w: 10,
   defaults: {
-    src: "https://placekitten.com/400/300",
+    fallbackSrc: "https://placekitten.com/400/300",
   },
 }

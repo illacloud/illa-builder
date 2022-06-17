@@ -132,6 +132,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
+        expectedType: "Boolean",
       },
     ],
   },

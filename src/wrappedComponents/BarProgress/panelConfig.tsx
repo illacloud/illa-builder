@@ -107,7 +107,6 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
-        defaultValue: false,
       },
     ],
   },

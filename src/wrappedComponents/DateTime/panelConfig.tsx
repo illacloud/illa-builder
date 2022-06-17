@@ -56,6 +56,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.step_size"),
         attrName: "minuteStep",
         setterType: "INPUT_SETTER",
+        expectedType: "Number",
       },
     ],
   },

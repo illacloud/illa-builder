@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { SetterType } from "@/page/App/components/PanelSetters"
+import { ExpectedType } from "@/components/CodeEditor/utils"
 
 export enum ACTION_TYPE {
   VIEW_DOCUMENT = "VIEW_DOCUMENT",
@@ -33,6 +34,7 @@ export interface PanelBarProps {
 export interface PanelFieldConfig extends PanelLabelProps {
   id: string
   setterType: SetterType
+  expectedType?: ExpectedType
   attrName: string
   childrenSetter?: PanelFieldConfig[]
   options?: any

@@ -20,7 +20,6 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         isFullWidth: true,
         attrName: "optionMode",
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: "manual",
         options: [
           {
             label: "Manual",
@@ -157,8 +156,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
-        placeholder: "false",
-        defaultValue: false,
+        placeholder: "{{false}}",
       },
     ],
   },

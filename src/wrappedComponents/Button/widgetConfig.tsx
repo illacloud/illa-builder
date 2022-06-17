@@ -17,8 +17,6 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
     submit: false,
     width: "200px",
     alignment: "fullWidth",
-    backgroundColor: globalColor(`--${illaPrefix}-blue-01`),
-    textColor: globalColor(`--${illaPrefix}-white-01`),
-    borderColor: globalColor(`--${illaPrefix}-blue-01`),
+    colorScheme: "blue",
   },
 }

@@ -7,12 +7,12 @@ import { HeaderProps } from "./interface"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
-  const { panelConfig } = useContext(SelectedPanelContext)
+  const { widgetDisplayName } = useContext(SelectedPanelContext)
 
   return (
     <div css={panelHeaderWrapperCss}>
       {/*  TODO: wait for editable component*/}
-      <div>{panelConfig.widgetDisplayName}</div>
+      <div>{widgetDisplayName}</div>
       <div css={panelHeaderIconWrapperCss}>
         <Trigger
           position="br"

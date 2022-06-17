@@ -11,7 +11,7 @@ export const WrappedButton: FC<WrappedButtonProps> = forwardRef(
     // TODO:
     useImperativeHandle(ref, () => ({}))
     const {
-      text = "Button",
+      text,
       variant,
       leftIcon,
       rightIcon,
@@ -19,7 +19,7 @@ export const WrappedButton: FC<WrappedButtonProps> = forwardRef(
       submit,
       borderRadius,
       loading,
-      alignment = "fullWidth",
+      alignment,
       tooltipText,
       colorScheme,
     } = props
@@ -50,7 +50,7 @@ export const WrappedButton: FC<WrappedButtonProps> = forwardRef(
         disabled={!tooltipText}
         position="tl"
       >
-        <div css={applyButtonLayoutStyle(alignment)}>
+        <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
           <Wrapper alignment="fullWidth">
             <Button
               disabled={disabled}

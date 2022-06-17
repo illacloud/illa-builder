@@ -11,3 +11,7 @@ export const applyInputSetterWrapperStyle = (
       `
     : applySetterStyle(isFullWidth)
 }
+
+export const applyInputSetterStyle = css`
+  width: 100%;
+`
