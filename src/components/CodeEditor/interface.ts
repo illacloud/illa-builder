@@ -21,6 +21,7 @@ export interface CodeEditorProps
   readOnly?: boolean
   height?: string
   placeholder?: string
+  borderRadius?: string
   onBlur?: () => void
   onChange?: (value: string, calcResult: any) => void
 }
@@ -53,4 +54,5 @@ export interface EditorInputState {
   focus?: boolean
   error: boolean
   height: string
+  borderRadius: string
 }
