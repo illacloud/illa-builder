@@ -3,7 +3,6 @@ import { AnimatePresence } from "framer-motion"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
-import { Menu } from "@illa-design/menu"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
@@ -22,8 +21,6 @@ import {
 } from "./style"
 import { ActionEditorPanelContext } from "./context"
 import { ActionResult } from "./ActionResult"
-
-const { Item: MenuItem } = Menu
 
 function renderEditor(
   actionType: string,
@@ -86,29 +83,27 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const activeActionItem = useSelector(getSelectedAction)
   const actionType = activeActionItem?.actionType ?? ""
 
-  function handleAction(key: string) {
-    setMoreBtnMenuVisible(false)
-
-    if (key === "duplicate") {
-      onDuplicateActionItem()
-    } else if (key === "delete") {
-      onDeleteActionItem()
-    }
-  }
-
   const moreActions = (
-    <Menu onClickMenuItem={handleAction} css={moreBtnMenuStyle}>
-      <MenuItem
-        key={"duplicate"}
-        title={t("editor.action.panel.menu.more.duplicate")}
+    <div css={moreBtnMenuStyle}>
+      <div
         css={duplicateActionStyle}
-      />
-      <MenuItem
-        key={"delete"}
-        title={t("editor.action.panel.menu.more.delete")}
+        onClick={() => {
+          setMoreBtnMenuVisible(false)
+          onDuplicateActionItem()
+        }}
+      >
+        {t("editor.action.panel.menu.more.duplicate")}
+      </div>
+      <div
         css={deleteActionStyle}
-      />
-    </Menu>
+        onClick={() => {
+          setMoreBtnMenuVisible(false)
+          onDeleteActionItem()
+        }}
+      >
+        {t("editor.action.panel.menu.more.delete")}
+      </div>
+    </div>
   )
 
   function onSaveParam() {
@@ -147,6 +142,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           popupVisible={moreBtnMenuVisible}
           onVisibleChange={setMoreBtnMenuVisible}
           triggerProps={{
+            position: "br",
             clickOutsideToClose: true,
             closeOnClick: true,
             openDelay: 0,
@@ -180,8 +176,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           {isRuning
             ? duration
             : isActionDirty
-            ? t("editor.action.panel.btn.save_and_run")
-            : t("editor.action.panel.btn.run")}
+              ? t("editor.action.panel.btn.save_and_run")
+              : t("editor.action.panel.btn.run")}
         </Button>
       </header>
 
