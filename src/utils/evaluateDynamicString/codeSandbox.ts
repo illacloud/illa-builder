@@ -20,9 +20,10 @@ export function evalScript(
 
     try {
       result = eval(userScript)
-    } catch (e) {
+      console.log(result, 'result in eval')
+    } catch (error) {
       // TODO: add error handler
-      console.log(e)
+      throw error
     } finally {
       for (const entity in GlobalData) {
         // @ts-ignore: No types available

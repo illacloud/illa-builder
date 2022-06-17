@@ -15,6 +15,8 @@ export interface ComponentNode {
   containerType: ContainerType
   h: number
   w: number
+  minH: number
+  minW: number
   // default -1
   x: number
   // default -1

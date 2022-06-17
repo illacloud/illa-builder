@@ -28,9 +28,6 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
     () => ({
       type: "components",
       item: componentNode,
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
     }),
     [],
   )
