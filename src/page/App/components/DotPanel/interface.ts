@@ -13,6 +13,8 @@ export interface DragPosition {
   squareY: number
   renderX: number
   renderY: number
+  nearX: number
+  nearY: number
 }
 
 // return when drop trigger

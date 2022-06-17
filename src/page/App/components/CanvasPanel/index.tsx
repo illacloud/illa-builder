@@ -5,19 +5,15 @@ import { DotPanel } from "@/page/App/components/DotPanel"
 import { useSelector } from "react-redux"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { getScale } from "@/redux/currentApp/config/configSelector"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
 
   const canvasTree = useSelector(getCanvas)
-  const scale = useSelector(getScale)
 
   return (
-    <div {...otherProps}>
-      <div css={applyScaleContainerStyle(scale)}>
-        {applyCanvasTree(canvasTree)}
-      </div>
+    <div {...otherProps} css={applyScaleContainerStyle(100)}>
+      {applyCanvasTree(canvasTree)}
     </div>
   )
 }

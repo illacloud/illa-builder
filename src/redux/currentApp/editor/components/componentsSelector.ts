@@ -27,10 +27,6 @@ export function searchDsl(
   }
 }
 
-export const getComponentNode = (state: RootState, displayName: string) => {
-  return searchDsl(state.currentApp.editor.components.rootDsl, displayName)
-}
-
 export const getCanvas = (state: RootState) => {
   return state.currentApp.editor.components.rootDsl
 }

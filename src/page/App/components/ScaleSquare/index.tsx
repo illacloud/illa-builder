@@ -1,39 +1,218 @@
 import { FC } from "react"
-import { ScaleSquareProps } from "@/page/App/components/ScaleSquare/interface"
+import {
+  DragResize,
+  DragResizeCollected,
+  ScaleSquareProps,
+} from "@/page/App/components/ScaleSquare/interface"
 import {
   applyBarPointerStyle,
+  applyBorderStyle,
   applyOuterStyle,
   applySquarePointerStyle,
   applyTransformWidgetStyle,
+  BarPosition,
+  onePixelStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/currentApp/config/configSlice"
+import { RootState } from "@/store"
+import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { mergeRefs } from "@illa-design/system"
+
+function getDragConfig(
+  componentNode: ComponentNode,
+  barPosition: BarPosition,
+): FactoryOrInstance<
+  DragSourceHookSpec<DragResize, unknown, DragResizeCollected>
+> {
+  return () => ({
+    type: "resize",
+    item: {
+      node: componentNode,
+      position: barPosition,
+    } as DragResize,
+    collect: (monitor) => {
+      return {
+        resizing: monitor.isDragging(),
+      } as DragResizeCollected
+    },
+    canDrag: !componentNode.isDragging,
+  })
+}
 
 export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const { w, h, componentNode, className, ...otherProps } = props
   const scaleSquareState = componentNode.error ? "error" : "normal"
   const dispatch = useDispatch()
+  const selected = useSelector<RootState, boolean>((state) => {
+    return (
+      state.currentApp.config.selectedComponents.findIndex((value) => {
+        return value.displayName == componentNode.displayName
+      }) != -1
+    )
+  })
+
+  const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
+    () => ({
+      type: "components",
+      item: componentNode,
+      canDrag: !componentNode.isDragging,
+    }),
+    [componentNode],
+  )
+
+  // register resize
+  const [collectT, resizeT, resizeTPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "t"), [componentNode])
+
+  const [collectR, resizeR, resizeRPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "r"), [componentNode])
+
+  const [collectB, resizeB, resizeBPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "b"), [componentNode])
+
+  const [collectL, resizeL, resizeLPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "l"), [componentNode])
+
+  const [collectTl, resizeTl, resizeTlPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "tl"), [componentNode])
+
+  const [collectTr, resizeTr, resizeTrPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "tr"), [componentNode])
+
+  const [collectBl, resizeBl, resizeBlPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "bl"), [componentNode])
+
+  const [collectBr, resizeBr, resizeBrPreviewRef] = useDrag<
+    DragResize,
+    unknown,
+    DragResizeCollected
+  >(getDragConfig(componentNode, "br"), [componentNode])
+
   return (
     <div
       css={applyOuterStyle(h, w)}
       className={className}
-      onClick={() => {
+      onClick={(e) => {
         dispatch(configActions.updateSelectedComponent([componentNode]))
+        e.stopPropagation()
       }}
       {...otherProps}
     >
-      <div css={applyTransformWidgetStyle(scaleSquareState)}>
-        <TransformWidget componentNode={componentNode} />
+      <div css={applyBorderStyle(selected, scaleSquareState)}>
+        <div css={applyTransformWidgetStyle()} ref={dragRef}>
+          <TransformWidget componentNode={componentNode} />
+        </div>
       </div>
-      <div css={applySquarePointerStyle(scaleSquareState, "tl")} />
-      <div css={applySquarePointerStyle(scaleSquareState, "tr")} />
-      <div css={applySquarePointerStyle(scaleSquareState, "bl")} />
-      <div css={applySquarePointerStyle(scaleSquareState, "br")} />
-      <div css={applyBarPointerStyle(scaleSquareState, "l")} />
-      <div css={applyBarPointerStyle(scaleSquareState, "t")} />
-      <div css={applyBarPointerStyle(scaleSquareState, "r")} />
-      <div css={applyBarPointerStyle(scaleSquareState, "b")} />
+      <div
+        css={applyBarPointerStyle(
+          selected,
+          collectT.resizing,
+          scaleSquareState,
+          "t",
+        )}
+        ref={resizeT}
+      />
+      <div
+        css={applyBarPointerStyle(
+          selected,
+          collectR.resizing,
+          scaleSquareState,
+          "r",
+        )}
+        ref={resizeR}
+      />
+      <div
+        css={applyBarPointerStyle(
+          selected,
+          collectB.resizing,
+          scaleSquareState,
+          "b",
+        )}
+        ref={resizeB}
+      />
+      <div
+        css={applyBarPointerStyle(
+          selected,
+          collectL.resizing,
+          scaleSquareState,
+          "l",
+        )}
+        ref={resizeL}
+      />
+      <div
+        css={applySquarePointerStyle(
+          selected,
+          collectTl.resizing,
+          scaleSquareState,
+          "tl",
+        )}
+        ref={resizeTl}
+      />
+      <div
+        css={applySquarePointerStyle(
+          selected,
+          collectTr.resizing,
+          scaleSquareState,
+          "tr",
+        )}
+        ref={resizeTr}
+      />
+      <div
+        css={applySquarePointerStyle(
+          selected,
+          collectBl.resizing,
+          scaleSquareState,
+          "bl",
+        )}
+        ref={resizeBl}
+      />
+      <div
+        css={applySquarePointerStyle(
+          selected,
+          collectBr.resizing,
+          scaleSquareState,
+          "br",
+        )}
+        ref={resizeBr}
+      />
+      <div
+        ref={mergeRefs(
+          dragPreviewRef,
+          resizeTPreviewRef,
+          resizeRPreviewRef,
+          resizeBPreviewRef,
+          resizeLPreviewRef,
+          resizeTlPreviewRef,
+          resizeTrPreviewRef,
+          resizeBlPreviewRef,
+          resizeBrPreviewRef,
+        )}
+        css={onePixelStyle}
+      />
     </div>
   )
 }
