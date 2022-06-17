@@ -27,7 +27,7 @@ CodeMirror.defineMode(EditorModes.TEXT_JS, function (config) {
 
 CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
   return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, EditorModes.SQL),
+    CodeMirror.getMode(config, {name: "text/x-sql"}),
     {
       open: "{{",
       close: "}}",

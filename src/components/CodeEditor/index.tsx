@@ -12,6 +12,7 @@ import "codemirror/addon/lint/lint"
 import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
+import "./hinter"
 import {
   ResultPreview,
   CodeEditorProps,
@@ -22,7 +23,7 @@ import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { CodePreview } from "./CodePreview"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { getEvalValue, isExpectType } from "@/components/CodeEditor/utils"
+import { isExpectType } from "@/components/CodeEditor/utils"
 
 export type Hinter = {
   showHint: (
@@ -121,12 +122,13 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const handleAutocomplete = (cm: CodeMirror.Editor) => {
     const modeName = cm.getModeAt(cm.getCursor()).name
+    console.log(modeName, "modeName")
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-        // tables: {
-        //   table1: ["col_A", "col_B", "col_C"],
-        //   table2: ["other_columns1", "other_columns2"],
-        // },
+        tables: {
+          table1: ["col_A", "col_B", "col_C"],
+          table2: ["other_columns1", "other_columns2"],
+        },
         completeSingle: false,
       })
     } else if (modeName == "javascript") {
