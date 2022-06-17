@@ -2,10 +2,9 @@ import { css, SerializedStyles } from "@emotion/react"
 import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export type PointerPosition = "tl" | "tr" | "bl" | "br"
-export type BarPosition = "l" | "r" | "t" | "b"
+export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
-function getStateColor(scaleSquareType: ScaleSquareType): string {
+export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
   switch (scaleSquareType) {
     case "error":
@@ -28,41 +27,40 @@ export function applyOuterStyle(h: number, w: number): SerializedStyles {
   `
 }
 
-export const applyInnerStyle = css`
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
-  height: 100%;
-`
-
 export function applySquarePointerStyle(
+  selected: boolean,
+  resizing: boolean,
   scaleSquareType: ScaleSquareType,
-  pointerPosition: PointerPosition,
+  pointerPosition: BarPosition,
 ): SerializedStyles {
   let positionStyle: SerializedStyles
   switch (pointerPosition) {
     case "tl":
       positionStyle = css`
-        top: 0;
-        left: 0;
+        top: -2px;
+        left: -2px;
+        cursor: ${selected ? "nwse-resize" : "default"};
       `
       break
     case "tr":
       positionStyle = css`
-        top: 0;
-        right: 0;
+        cursor: ${selected ? "nesw-resize" : "default"};
+        top: -2px;
+        right: -2px;
       `
       break
     case "bl":
       positionStyle = css`
-        bottom: 0;
-        left: 0;
+        cursor: ${selected ? "nesw-resize" : "default"};
+        bottom: -2px;
+        left: -2px;
       `
       break
     case "br":
       positionStyle = css`
-        bottom: 0;
-        right: 0;
+        cursor: ${selected ? "nwse-resize" : "default"};
+        bottom: -2px;
+        right: -2px;
       `
       break
     default:
@@ -75,19 +73,32 @@ export function applySquarePointerStyle(
   return css`
     ${positionStyle};
     box-sizing: border-box;
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
-    border: 1px solid ${stateColor};
+    border: 1px solid ${selected ? stateColor : "transparent"};
     height: 4px;
     width: 4px;
     position: absolute;
+    background: ${selected
+      ? globalColor(`--${illaPrefix}-white-01`)
+      : "transparent"};
+
+    &:active {
+      background: ${selected ? stateColor : "transparent"};
+    }
 
     &:hover {
-      background: ${stateColor};
+      background: ${selected ? stateColor : "transparent"};
     }
   `
 }
 
+export const onePixelStyle = css`
+  width: 1px;
+  height: 1px;
+`
+
 export function applyBarPointerStyle(
+  selected: boolean,
+  resizing: boolean,
   scaleSquareType: ScaleSquareType,
   barPosition: BarPosition,
 ): SerializedStyles {
@@ -97,19 +108,21 @@ export function applyBarPointerStyle(
   switch (barPosition) {
     case "t":
       barPositionStyle = css`
-        top: 0;
+        top: -2px;
         left: 0;
         right: 0;
         margin: auto;
+        cursor: ${selected ? "row-resize" : "default"};
         height: 4px;
         width: 18px;
       `
       break
     case "b":
       barPositionStyle = css`
-        bottom: 0;
+        bottom: -2px;
         left: 0;
         right: 0;
+        cursor: ${selected ? "row-resize" : "default"};
         margin: auto;
         height: 4px;
         width: 18px;
@@ -118,8 +131,9 @@ export function applyBarPointerStyle(
     case "l":
       barPositionStyle = css`
         bottom: 0;
-        left: 0;
+        left: -2px;
         top: 0;
+        cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 4px;
         height: 18px;
@@ -128,13 +142,16 @@ export function applyBarPointerStyle(
     case "r":
       barPositionStyle = css`
         bottom: 0;
-        right: 0;
+        right: -2px;
         top: 0;
+        cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 4px;
         height: 18px;
       `
       break
+    default:
+      barPositionStyle = css``
   }
 
   return css`
@@ -142,24 +159,47 @@ export function applyBarPointerStyle(
     box-sizing: border-box;
     position: absolute;
     border-radius: 2px;
-    border: 1px solid ${stateColor};
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
+    border: 1px solid ${selected ? stateColor : "transparent"};
+    background: ${selected
+      ? globalColor(`--${illaPrefix}-white-01`)
+      : "transparent"};
+
+    &:active {
+      background: ${selected ? stateColor : "transparent"};
+    }
 
     &:hover {
-      background: ${stateColor};
+      background: ${selected ? stateColor : "transparent"};
     }
   `
 }
 
-export function applyTransformWidgetStyle(
-  scaleSquareType: ScaleSquareType,
-): SerializedStyles {
-  let stateColor = getStateColor(scaleSquareType)
+export function applyTransformWidgetStyle(): SerializedStyles {
   return css`
-    box-sizing: border-box;
-    border: 1px solid ${stateColor};
     width: 100%;
     height: 100%;
     padding: 3px;
+  `
+}
+
+export function applyBorderStyle(
+  selected: boolean,
+  scaleSquareState: ScaleSquareType,
+): SerializedStyles {
+  return css`
+    width: calc(100%);
+    height: calc(100%);
+    position: absolute;
+    cursor: move;
+    border: 1px solid
+      ${selected ? getStateColor(scaleSquareState) : "transparent"};
+
+    &:hover {
+      border-color: ${getStateColor(scaleSquareState)};
+    }
+
+    &:active {
+      border-color: ${getStateColor(scaleSquareState)};
+    }
   `
 }

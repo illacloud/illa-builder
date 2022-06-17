@@ -58,6 +58,7 @@ export function applyDotContainerStyle(
   h?: number | null,
 ): SerializedStyles {
   return css`
+    z-index: -1;
     visibility: ${showDot ? "visible" : "hidden"};
     position: absolute;
     width: ${w}px;

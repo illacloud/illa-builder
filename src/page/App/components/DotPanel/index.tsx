@@ -34,6 +34,7 @@ import { calculateDragPosition, calculateXY } from "./calc"
 import {
   updateDottedLineSquareData,
   updateDragShadowData,
+  updateResizeScaleSquare,
   updateScaleSquare,
 } from "@/page/App/components/DotPanel/updateData"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -42,6 +43,7 @@ import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { getDottedLineSquareMap } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSelector"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { inspectActions } from "@/redux/currentApp/editor/inspect/inspectSlice"
+import { DragResize } from "@/page/App/components/ScaleSquare/interface"
 
 export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
@@ -111,7 +113,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     }
   }, [windowWidth, leftPanelOpenState, rightPanelOpenState, scale])
 
-  const [collectedInfo, dropTarget] = useDrop<
+  // drag move
+  const [, dropTarget] = useDrop<
     ComponentNode,
     DropResultInfo,
     DropCollectedInfo
@@ -246,6 +249,60 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     [unitWidth, unitHeight],
   )
 
+  // drag resize
+  const [, resizeDropTarget] = useDrop<DragResize>(
+    () => ({
+      accept: ["resize"],
+      drop: (item, monitor) => {
+        if (!monitor.isOver({ shallow: true })) {
+          return
+        }
+        // set dot show
+        dispatch(configActions.updateShowDot(false))
+      },
+      hover: (item, monitor) => {
+        if (!monitor.isOver({ shallow: true })) {
+          return
+        }
+        if (store.getState().currentApp.config.showDot == false) {
+          dispatch(configActions.updateShowDot(true))
+        }
+        const monitorRect = monitor.getClientOffset()
+        const canvasRect = canvasRef.current?.getBoundingClientRect()
+        const canvasScrollLeft = canvasRef.current?.scrollLeft
+        const canvasScrollTop = canvasRef.current?.scrollTop
+        if (
+          monitorRect != null &&
+          canvasRect != null &&
+          canvasScrollLeft != null &&
+          canvasScrollTop != null
+        ) {
+          const { nearX, nearY } = calculateDragPosition(
+            canvasRect,
+            monitorRect,
+            canvasScrollLeft,
+            canvasScrollTop,
+            unitWidth,
+            unitHeight,
+            item.node.w,
+            item.node.h,
+            edgeWidth,
+          )
+          updateResizeScaleSquare(
+            item.node,
+            nearX,
+            nearY,
+            item.position,
+            (i) => {
+              dispatch(componentsActions.addOrUpdateComponentReducer(i))
+            },
+          )
+        }
+      },
+    }),
+    [unitWidth, unitHeight],
+  )
+
   const dragShadows = useMemo<ReactNode[]>(() => {
     return Object.keys(dragShadowMap).map<ReactNode>((value, index, array) => {
       const item = dragShadowMap[value]
@@ -288,19 +345,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       const w = item.w * unitWidth
 
       const [l, t] = calculateXY(item.x, item.y, unitWidth, unitHeight)
-
+      if (item.isDragging) {
+        return null
+      }
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
           return <DotPanel componentNode={item} key={item.displayName} />
-        case "EDITOR_DOTTED_LINE_SQUARE":
-          return (
-            <DottedLineSquare
-              css={applyDragObjectStyle(t, l)}
-              h={h}
-              w={w}
-              key={item.displayName}
-            />
-          )
         case "EDITOR_SCALE_SQUARE":
           return (
             <ScaleSquare
@@ -343,8 +393,11 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   return (
     <div
-      ref={mergeRefs(canvasRef, dropTarget)}
+      ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
       css={applyScaleStyle(canvasHeight)}
+      onClick={(event) => {
+        dispatch(configActions.updateSelectedComponent([]))
+      }}
       {...otherProps}
     >
       <div css={applyDotContainerStyle(showDot, canvasWidth, canvasHeight)}>
