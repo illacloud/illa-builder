@@ -59,9 +59,14 @@ export const actionItemListStyle = css`
 `
 
 export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
-  const backgroundcolorStyle = css`
+  const backgroundColorStyle = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
+
+  const selectedBackgroundColorStyle = css`
+    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+  `
+
   return css`
     display: flex;
     align-items: center;
@@ -71,15 +76,16 @@ export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
     user-select: none;
 
     &:hover {
-      ${backgroundcolorStyle}
+      ${backgroundColorStyle}
     }
 
-    ${isSelected && backgroundcolorStyle}
+    ${isSelected && selectedBackgroundColorStyle}
   `
 }
 
 export const actionItemIconStyle = css`
   position: relative;
+  display: flex;
   color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 

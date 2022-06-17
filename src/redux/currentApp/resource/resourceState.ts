@@ -5,7 +5,8 @@ import {
 } from "@/page/App/components/ActionEditor/Resource"
 
 export interface Resource extends DashboardResource {
-  config: MySQLConfigureValues | RESTAPIConfigureValues
+  options: MySQLConfigureValues | RESTAPIConfigureValues
 }
+
 export type ResourceListState = Resource[]
 export const resourceInitialState: ResourceListState = []

@@ -1,8 +1,10 @@
-export interface WrappedImageProps {
-  src: string
-  altText: string
-  tooltipText: string
-  radius: string
-  width: string
-  height: string
+import { ImageProps } from "@illa-design/image"
+
+export interface WrappedImageProps
+  extends Pick<
+    ImageProps,
+    "fallbackSrc" | "alt" | "radius" | "width" | "height"
+  > {
+  tooltipText?: string
+  handleUpdateDsl: (value: Record<string, string>) => void
 }

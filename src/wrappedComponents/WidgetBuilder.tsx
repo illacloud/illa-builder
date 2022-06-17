@@ -49,6 +49,26 @@ import {
   CIRCLE_PROGRESS_WIDGET_CONFIG,
   CircleProgressWidget,
 } from "@/wrappedComponents/CircleProgress"
+import {
+  TIMELINE_PANEL_CONFIG,
+  TIMELINE_WIDGET_CONFIG,
+  TimelineWidget,
+} from "@/wrappedComponents/Timeline"
+import {
+  NUMBER_INPUT_PANEL_CONFIG,
+  NUMBER_INPUT_WIDGET_CONFIG,
+  NumberInputWidget,
+} from "@/wrappedComponents/NumberInput"
+import {
+  CHECKBOX_GROUP_PANEL_CONFIG,
+  CHECKBOX_GROUP_WIDGET_CONFIG,
+  CheckboxWidget,
+} from "@/wrappedComponents/CheckboxGroup"
+import {
+  SEGMENTED_CONTROL_PANEL_CONFIG,
+  SEGMENTED_CONTROL_WIDGET_CONFIG,
+  SegmentedControlWidget,
+} from "@/wrappedComponents/SegmentedControl"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -115,6 +135,26 @@ const WidgetConfig: WidgetConfigs = {
     widget: CircleProgressWidget,
     config: CIRCLE_PROGRESS_WIDGET_CONFIG,
     panelConfig: CIRCLE_PROGRESS_PANEL_CONFIG,
+  },
+  TIMELINE_WIDGET: {
+    widget: TimelineWidget,
+    config: TIMELINE_WIDGET_CONFIG,
+    panelConfig: TIMELINE_PANEL_CONFIG,
+  },
+  NUMBER_INPUT_WIDGET: {
+    widget: NumberInputWidget,
+    config: NUMBER_INPUT_WIDGET_CONFIG,
+    panelConfig: NUMBER_INPUT_PANEL_CONFIG,
+  },
+  CHECKBOX_GROUP_WIDGET: {
+    widget: CheckboxWidget,
+    config: CHECKBOX_GROUP_WIDGET_CONFIG,
+    panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
+  },
+  SEGMENTED_CONTROL_WIDGET: {
+    widget: SegmentedControlWidget,
+    config: SEGMENTED_CONTROL_WIDGET_CONFIG,
+    panelConfig: SEGMENTED_CONTROL_PANEL_CONFIG,
   },
 }
 

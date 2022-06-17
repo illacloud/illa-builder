@@ -5,7 +5,7 @@ import i18n from "@/i18n/config"
 export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "Text",
   widgetName: i18n.t("widget.text.name"),
-  h: 10,
+  h: 5,
   w: 10,
   type: "TEXT_WIDGET",
   icon: <SearchIcon />,

@@ -67,7 +67,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "rate-label",
-    groupName: "LABEL",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "rate-label-label",

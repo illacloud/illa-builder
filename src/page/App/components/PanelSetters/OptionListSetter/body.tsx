@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext } from "react"
+import { FC, useCallback, useContext, useEffect } from "react"
 import { OptionListSetterContext } from "./context/optionListContext"
 import { ListItem } from "./listItem"
 import { v4 } from "uuid"
@@ -9,6 +9,10 @@ export const ListBody: FC = () => {
   )
 
   if (!options || !Array.isArray(options)) return null
+
+  useEffect(() => {
+    handleUpdateDsl(options)
+  }, [])
 
   const handleUpdateItem = useCallback(
     (index: number, value: Record<string, any>) => {

@@ -90,28 +90,28 @@ export const EditorInput = forwardRef<HTMLDivElement, EditorInputProps>(
       editor.on("change", handleChange)
       editor.on("blur", handleBlur)
 
-      CodeMirror.registerHelper(
-        "hint",
-        "javascript",
-        (editor: CodeMirror.Editor) => {
-          // console.log(hintOptions)
-          const cursor = editor.getCursor()
-          const line = editor.getLine(cursor.line)
-          const end = cursor.ch
-          const start = end
-          if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
-            const hint = {
-              list: listHintData(),
-              from: CodeMirror.Pos(cursor.line, start),
-              to: CodeMirror.Pos(cursor.line, end),
-            }
-            // CodeMirror.on(hint, "pick", (selected) => {
-            //   console.log("selected", selected)
-            // })
-            return hint
-          }
-        },
-      )
+      // CodeMirror.registerHelper(
+      //   "hint",
+      //   "javascript",
+      //   (editor: CodeMirror.Editor) => {
+      //     // console.log(hintOptions)
+      //     const cursor = editor.getCursor()
+      //     const line = editor.getLine(cursor.line)
+      //     const end = cursor.ch
+      //     const start = end
+      //     if (`${line[cursor.ch - 2]}${line[cursor.ch - 1]}` === "{{") {
+      //       const hint = {
+      //         list: listHintData(),
+      //         from: CodeMirror.Pos(cursor.line, start),
+      //         to: CodeMirror.Pos(cursor.line, end),
+      //       }
+      //       // CodeMirror.on(hint, "pick", (selected) => {
+      //       //   console.log("selected", selected)
+      //       // })
+      //       return hint
+      //     }
+      //   },
+      // )
 
       return () => {
         editor.off("change", handleChange)

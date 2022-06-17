@@ -6,6 +6,7 @@ import {
   listTitleContainerStyle,
   listTitleStyle,
   menuButtonStyle,
+  hoverableStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
@@ -36,8 +37,15 @@ export const DashboardApps: FC = () => {
   return (
     <div css={appsContainerStyle}>
       <div css={listTitleContainerStyle}>
-        <span css={listTitleStyle}>{t("apps")}</span>
-        <Button colorScheme="gray">{t("share")}</Button>
+        <span css={listTitleStyle}>{t("all_apps")}</span>
+        <Button
+          colorScheme="gray"
+          onClick={() => {
+            Message.success({ content: t("link_copied") })
+          }}
+        >
+          {t("share")}
+        </Button>
         <Button
           _css={menuButtonStyle}
           loading={createLoading}
@@ -69,7 +77,7 @@ export const DashboardApps: FC = () => {
             )
           }}
         >
-          {t("create_new")}
+          {t("create_new_app")}
         </Button>
       </div>
       <Divider direction="horizontal" />
@@ -100,7 +108,12 @@ export const DashboardApps: FC = () => {
                       withoutPadding
                       clickOutsideToClose
                       closeOnInnerClick
-                      content={<DashboardItemMenu appId={item.appId} />}
+                      content={
+                        <DashboardItemMenu
+                          appId={item.appId}
+                          appName={item.appName}
+                        />
+                      }
                     >
                       <Button
                         _css={itemMenuButtonStyle}
@@ -112,8 +125,12 @@ export const DashboardApps: FC = () => {
                 }
               >
                 <ListItemMeta
+                  css={hoverableStyle}
                   title={item.appName}
                   description={item.appActivity}
+                  onClick={() => {
+                    navigate(`/app/${item.appId}`)
+                  }}
                 />
               </ListItem>
             )

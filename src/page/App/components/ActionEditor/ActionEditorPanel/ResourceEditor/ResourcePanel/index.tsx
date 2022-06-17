@@ -52,10 +52,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       Pick<ActionItemConfig, "general" | "transformer" | "eventHandler">
     >({
       general: {},
-      transformer: {
-        value: "",
-        enable: false,
-      },
+      transformer: "",
       eventHandler: {},
     })
 
@@ -94,7 +91,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
         actionActions.updateActionItemReducer({
           ...activeActionItem,
           resourceId,
-          config: {
+          actionTemplate: {
             ...activeActionItem?.config,
             ...params,
           },
@@ -108,12 +105,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
       return { run, saveAndRun }
     })
 
-    if (resourceId?.indexOf("preset") !== -1) {
-      resourceType = resourceId?.split("_")[1] ?? ""
-    } else {
-      resource = allResource.find((i) => i.resourceId === resourceId)
-      resourceType = resource?.resourceType ?? ""
-    }
+    resource = allResource.find((i) => i.resourceId === resourceId)
+    resourceType = resource?.resourceType ?? ""
 
     return (
       <>
