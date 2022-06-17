@@ -126,19 +126,16 @@ export function updateResizeScaleSquare(
       newItem.x = nearX
       break
     case "tl":
-      if (newItem.h + newItem.y - nearY >= newItem.minH) {
+      {
+        const rightTlX = newItem.x + newItem.w - newItem.minW
+        const rightTlY = newItem.y + newItem.h - newItem.minH
+        const leftTlX = 0
+        const leftTlY = 0
+
         newItem.h = newItem.h + newItem.y - nearY
         newItem.y = nearY
-      } else {
-        newItem.h = newItem.minH
-        newItem.y = newItem.y + newItem.h - newItem.minH
-      }
-      if (newItem.w + newItem.x - nearX >= newItem.minW) {
         newItem.w = newItem.w + newItem.x - nearX
         newItem.x = nearX
-      } else {
-        newItem.w = newItem.minW
-        newItem.x = newItem.x + newItem.w - newItem.minW
       }
       break
     case "tr":
