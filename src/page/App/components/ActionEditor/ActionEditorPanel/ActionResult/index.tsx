@@ -19,7 +19,6 @@ import {
   resHeaderStyle,
   resTitleStyle,
   resContentStyle,
-  resStatusIconStyle,
   resSuccessStatusIconStyle,
   resFailStatusIconStyle,
 } from "./style"
@@ -31,7 +30,7 @@ function renderStatusNode(error?: boolean) {
   if (error) {
     return (
       <WarningCircleIcon
-        css={css(resStatusIconStyle, resFailStatusIconStyle)}
+        css={resFailStatusIconStyle}
         size="10px"
       />
     )
@@ -39,7 +38,7 @@ function renderStatusNode(error?: boolean) {
 
   return (
     <RightIcon
-      css={css(resStatusIconStyle, resSuccessStatusIconStyle)}
+      css={resSuccessStatusIconStyle}
       size="10px"
     />
   )

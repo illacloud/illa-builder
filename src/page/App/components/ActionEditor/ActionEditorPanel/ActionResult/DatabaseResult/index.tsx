@@ -12,16 +12,16 @@ export const DatabaseResult: FC<DatabaseResultProps> = (props) => {
 
   const columns = data?.length
     ? Object.keys(data[0]).map((k) => {
-        return {
-          accessor: k,
-          Header: `${k}`,
-        }
-      })
+      return {
+        accessor: k,
+        Header: `${k}`,
+      }
+    })
     : []
 
   return (
     <Tabs variant="text">
-      <TabPane key={"table"} title={t("editor.action.result.title.table")}>
+      <TabPane key="table" title={t("editor.action.result.title.table")}>
         <Table
           data={data}
           columns={columns}
@@ -31,7 +31,7 @@ export const DatabaseResult: FC<DatabaseResultProps> = (props) => {
           disableFilters
         />
       </TabPane>
-      <TabPane key={"json"} title={t("editor.action.result.title.json")}>
+      <TabPane key="json" title={t("editor.action.result.title.json")}>
         <JSONViewer src={data} />
       </TabPane>
     </Tabs>
