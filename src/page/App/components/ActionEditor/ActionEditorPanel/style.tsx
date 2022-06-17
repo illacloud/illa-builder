@@ -61,8 +61,8 @@ export const titleInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)} !important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
@@ -117,8 +117,8 @@ export const runBtnStyle = css`
 
   &:hover {
     background-color: ${globalColor(
-  `--${illaPrefix}-techPurple-06`,
-)} !important;
+      `--${illaPrefix}-techPurple-06`,
+    )} !important;
   }
 `
 
@@ -181,13 +181,13 @@ export const sectionTitleStyle = css`
   line-height: 22px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  `
+`
 
 export const handlerTitleStyle = css`
   ${sectionTitleStyle};
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   padding: 16px 16px 0;
-  `
+`
 
 export const panelPaddingStyle = css`
   padding: 8px 16px;
@@ -202,7 +202,7 @@ export const newBtnStyle = css`
 
 export const dashBorderBottomStyle = css`
   border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
-  `
+`
 
 export const gridHandlersStyle = css`
   display: grid;
@@ -228,7 +228,7 @@ export const handlerMoreIconStyle = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-    `
+`
 
 export const moreListStyle = css`
   list-style: none;
@@ -247,19 +247,18 @@ export const moreListItemStyle = css`
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
-    `
+`
 
 export const moreListItemWarnStyle = css`
   ${moreListItemStyle};
   color: ${globalColor(`--${illaPrefix}-red-03`)};
-  `
+`
 
 export const moreBtnMenuStyle = css`
   padding: 8px 0;
   width: 180px;
   box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
-
-  `
+`
 
 const moreActionItemStyle = css`
   line-height: 32px;
@@ -267,23 +266,23 @@ const moreActionItemStyle = css`
   cursor: pointer;
 
   &:hover {
-  background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
- }
-  `
+    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+  }
+`
 
 export const duplicateActionStyle = css`
   ${moreActionItemStyle}
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)} !important;
-  `
+`
 
 export const deleteActionStyle = css`
   ${moreActionItemStyle}
   color: ${globalColor(`--${illaPrefix}-red-03`)} !important;
-  `
+`
 
 export const handlerItemWrapperStyle = css`
-display: flex;
-height: 32px;
+  display: flex;
+  height: 32px;
   font-size: 14px;
   line-height: 1.57;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};

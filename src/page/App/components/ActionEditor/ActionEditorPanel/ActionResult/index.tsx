@@ -28,20 +28,10 @@ const CONTAINER_DEFAULT_HEIGHT = 180
 
 function renderStatusNode(error?: boolean) {
   if (error) {
-    return (
-      <WarningCircleIcon
-        css={resFailStatusIconStyle}
-        size="10px"
-      />
-    )
+    return <WarningCircleIcon css={resFailStatusIconStyle} size="10px" />
   }
 
-  return (
-    <RightIcon
-      css={resSuccessStatusIconStyle}
-      size="10px"
-    />
-  )
+  return <RightIcon css={resSuccessStatusIconStyle} size="10px" />
 }
 
 function renderResult(actionType: string, result?: ActionResultType) {

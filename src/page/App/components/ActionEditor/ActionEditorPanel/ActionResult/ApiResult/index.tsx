@@ -12,10 +12,7 @@ export const ApiResult: FC<ApiResultProps> = (props) => {
 
   return (
     <Tabs variant="text">
-      <TabPane
-        key="response"
-        title={t("editor.action.result.title.response")}
-      >
+      <TabPane key="response" title={t("editor.action.result.title.response")}>
         <JSONViewer src={data} />
       </TabPane>
       <TabPane

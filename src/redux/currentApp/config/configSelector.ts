@@ -29,7 +29,6 @@ export const getSelectedComponents = (state: RootState) => {
   return state.currentApp.config.selectedComponents
 }
 
-
 export const getSelectedAction = (state: RootState) => {
   return state.currentApp.config.selectedAction
 }

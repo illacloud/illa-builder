@@ -86,7 +86,7 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           )
           onRun && onRun({ response: { data, statusText, headers }, request })
         },
-        () => { },
+        () => {},
         (loading) => {
           onLoadingActionResult?.(loading)
         },
