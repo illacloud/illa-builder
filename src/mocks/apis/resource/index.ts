@@ -15,7 +15,8 @@ export default [
     const { access_token, refresh_token } = req.cookies
     if (!access_token && !refresh_token) {
       return res(
-        ctx.status(200),
+        ctx.delay(1000),
+        ctx.status(401),
         ctx.json({ errorCode: 401, errorMessage: "Unauthorized" }),
       )
     }

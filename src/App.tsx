@@ -28,6 +28,7 @@ import "@/i18n/config"
 import "@/api/base"
 import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
+import { AxiosInterceptor } from "@/api/AxiosInterceptor"
 
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {
@@ -53,30 +54,32 @@ function App() {
     <BrowserRouter>
       <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>
         <Global styles={css(globalStyle, codemirrorGlobalStyle)} />
-        <Routes>
-          <Route path="dashboard" element={<IllaApp />}>
-            <Route index element={<Navigate to="./apps" />} />
-            <Route path="apps" element={<DashboardApps />} />
-            <Route path="resources" element={<DashboardResources />} />
-          </Route>
-          <Route path="user" element={<UserLogin />}>
-            <Route index element={<Navigate to="./login" />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="forgotPassword" element={<ResetPassword />} />
-          </Route>
-          <Route index element={<Navigate to="/dashboard" />} />
-          <Route path="app/:app" element={<Editor />} />
-          <Route path="setting" element={<Setting />}>
-            <Route index element={<Navigate to="./account" />} />
-            <Route path="account" element={<SettingAccount />} />
-            <Route path="password" element={<SettingPassword />} />
-            <Route path="others" element={<SettingOthers />} />
-          </Route>
-          <Route path="403" element={<Page403 />} />
-          <Route path="500" element={<Page500 />} />
-          <Route path="*" element={<Page404 />} />
-        </Routes>
+        <AxiosInterceptor>
+          <Routes>
+            <Route path="dashboard" element={<IllaApp />}>
+              <Route index element={<Navigate to="./apps" />} />
+              <Route path="apps" element={<DashboardApps />} />
+              <Route path="resources" element={<DashboardResources />} />
+            </Route>
+            <Route path="user" element={<UserLogin />}>
+              <Route index element={<Navigate to="./login" />} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="forgotPassword" element={<ResetPassword />} />
+            </Route>
+            <Route index element={<Navigate to="/dashboard" />} />
+            <Route path="app/:app" element={<Editor />} />
+            <Route path="setting" element={<Setting />}>
+              <Route index element={<Navigate to="./account" />} />
+              <Route path="account" element={<SettingAccount />} />
+              <Route path="password" element={<SettingPassword />} />
+              <Route path="others" element={<SettingOthers />} />
+            </Route>
+            <Route path="403" element={<Page403 />} />
+            <Route path="500" element={<Page500 />} />
+            <Route path="*" element={<Page404 />} />
+          </Routes>
+        </AxiosInterceptor>
       </ConfigProvider>
     </BrowserRouter>
   )

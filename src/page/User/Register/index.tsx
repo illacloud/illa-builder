@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"
 import { Button } from "@illa-design/button"
@@ -26,10 +26,13 @@ import { TextLink } from "@/page/User/components/TextLink"
 import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { LocationState } from "@/page/User/Login/interface"
 
 export const Register: FC = () => {
+  const [submitLoading, setSubmitLoading] = useState(false)
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
   const dispatch = useDispatch()
   const [verificationToken, setVerificationToken] = useState("")
   const [showCountDown, setShowCountDown] = useState(false)
@@ -64,12 +67,17 @@ export const Register: FC = () => {
             userAvatar: "",
           }),
         )
-        navigate(localStorage.getItem("stashPath") ?? "/")
-        localStorage.removeItem("stashPath")
+        navigate((location.state as LocationState)?.from?.pathname ?? "/", {
+          replace: true,
+        })
         Message.success(t("user.sign_up.tips.success"))
       },
       () => {
         Message.error(t("user.sign_up.tips.fail"))
+      },
+      () => {},
+      (loading) => {
+        setSubmitLoading(loading)
       },
     )
   }
@@ -275,6 +283,7 @@ export const Register: FC = () => {
           colorScheme="techPurple"
           size="large"
           buttonRadius="8px"
+          loading={submitLoading}
           fullWidth
         >
           {t("user.sign_up.actions.create")}

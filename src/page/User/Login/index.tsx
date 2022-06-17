@@ -1,8 +1,8 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Message } from "@illa-design/message"
 import { Button } from "@illa-design/button"
@@ -25,11 +25,13 @@ import {
   forgotPwdContainerStyle,
 } from "@/page/User/style"
 import { TextLink } from "@/page/User/components/TextLink"
-import { LoginFields, LoginResult } from "./interface"
+import { LocationState, LoginFields, LoginResult } from "./interface"
 
 export const Login: FC = () => {
+  const [submitLoading, setSubmitLoading] = useState(false)
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const location = useLocation()
   const dispatch = useDispatch()
   const {
     control,
@@ -50,15 +52,18 @@ export const Login: FC = () => {
             userAvatar: "",
           }),
         )
-        navigate(localStorage.getItem("stashPath") ?? "/")
-        localStorage.removeItem("stashPath")
+        navigate((location.state as LocationState)?.from?.pathname ?? "/", {
+          replace: true,
+        })
         Message.success(t("user.sign_in.tips.success"))
       },
       () => {
         Message.error(t("user.sign_in.tips.fail"))
       },
       () => {},
-      () => {},
+      (loading) => {
+        setSubmitLoading(loading)
+      },
     )
   }
 
@@ -167,6 +172,7 @@ export const Login: FC = () => {
           colorScheme="techPurple"
           size="large"
           buttonRadius="8px"
+          loading={submitLoading}
           fullWidth
         >
           {t("user.sign_in.actions.login")}

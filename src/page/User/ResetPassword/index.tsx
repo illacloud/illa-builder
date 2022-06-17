@@ -23,6 +23,7 @@ import {
 import { ResetPwdFields } from "./interface"
 
 export const ResetPassword: FC = () => {
+  const [submitLoading, setSubmitLoading] = useState(false)
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [verificationToken, setVerificationToken] = useState("")
@@ -52,6 +53,10 @@ export const ResetPassword: FC = () => {
       },
       () => {
         Message.error(t("user.forgot_password.tips.fail"))
+      },
+      () => {},
+      (loading) => {
+        setSubmitLoading(loading)
       },
     )
   }
@@ -133,6 +138,7 @@ export const ResetPassword: FC = () => {
                               },
                               (res) => {
                                 setVerificationToken(res.data.verificationToken)
+                                setShowCountDown(true)
                                 Message.success(
                                   t("user.forgot_password.tips.verify"),
                                 )
@@ -214,6 +220,7 @@ export const ResetPassword: FC = () => {
           colorScheme="techPurple"
           size="large"
           buttonRadius="8px"
+          loading={submitLoading}
           fullWidth
         >
           {t("user.forgot_password.actions.reset")}

@@ -17,15 +17,6 @@ const axios = Axios.create({
   },
 })
 
-axios.interceptors.response.use((res) => {
-  if (res?.data?.errorCode === 401) {
-    localStorage.setItem("stashPath", window.location.pathname)
-    window.location.href = "/user/login"
-    return Promise.reject(res)
-  }
-  return res
-})
-
 export class Api {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
     config: AxiosRequestConfig<RequestBody>,
@@ -54,5 +45,18 @@ export class Api {
           crash?.(error)
         }
       })
+  }
+
+  static addResponseInterceptor<RespData, RespConfig>(
+    resInterceptor?: (
+      value: AxiosResponse<RespData, RespConfig>,
+    ) => RespData | Promise<RespData>,
+    errInterceptor?: (error: any) => any,
+  ) {
+    return axios.interceptors.response.use(resInterceptor, errInterceptor)
+  }
+
+  static removeResponseInterceptor(interceptor: number) {
+    axios.interceptors.response.eject(interceptor)
   }
 }
