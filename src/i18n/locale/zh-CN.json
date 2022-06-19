@@ -109,7 +109,7 @@
           "save_changes": "保存修改"
         },
         "validate": {
-          "required": "{name} is required!"
+          "required": "{name} is required"
         }
       },
       "resource": {
@@ -234,7 +234,11 @@
       "result": {
         "title": {
           "success": "Query ran successfully",
-          "error": "Query ran fail"
+          "error": "Query ran fail",
+          "table": "Table",
+          "json": "JSON",
+          "response": "Response",
+          "api_request": "Api Request"
         }
       }
     },
@@ -340,7 +344,9 @@
         "run_script": "Run script",
         "go_to_url": "Go to URL",
         "show_notification": "Show notification",
-        "set_temporary_state": "Set temporary state"
+        "set_temporary_state": "Set temporary state",
+        "text_align": "Text align",
+        "text_size": "Text size"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -389,6 +395,9 @@
     },
     "bar_progress": {
       "name": "Bar Progress"
+    },
+    "divider_progress": {
+      "name": "Divider"
     }
   },
   "Setting": "设置",

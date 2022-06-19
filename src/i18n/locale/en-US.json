@@ -95,7 +95,7 @@
         }
       },
       "form": {
-        "required": "This is required!",
+        "required": "This is required",
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
@@ -109,7 +109,7 @@
           "save_changes": "Save Changes"
         },
         "validate": {
-          "required": "{name} is required!"
+          "required": "{name} is required"
         }
       },
       "resource": {
@@ -176,7 +176,7 @@
             "cookies": "Cookies",
             "body": "Body",
             "extra_body_values": "Extra Body Values",
-            "list_of_cookies_to_forward": "List Of Cookies To Forward",
+            "list_of_cookies_to_forward": "List Of Cookies To\n Forward",
             "forward_all_cookies": "Forward All Cookies",
             "base_url": "Base URL",
             "authentication": "Authentication",
@@ -191,11 +191,11 @@
             "access_token_url": "Access Token URL",
             "client_id": "Client ID",
             "client_secret": "Client Secret",
-            "scopes": "Scopes (separated by a space)",
+            "scopes": "Scopes (separated by\n a space)",
             "audience": "Audience",
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
-            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "access_token_lifespan": "Access Token\n lifespan(optiinal)",
             "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
           },
           "tip": {
@@ -234,7 +234,11 @@
       "result": {
         "title": {
           "success": "Query ran successfully",
-          "error": "Query ran fail"
+          "error": "Query ran fail",
+          "table": "Table",
+          "json": "JSON",
+          "response": "Response",
+          "api_request": "Api Request"
         }
       }
     },
@@ -340,7 +344,9 @@
         "run_script": "Run script",
         "go_to_url": "Go to URL",
         "show_notification": "Show notification",
-        "set_temporary_state": "Set temporary state"
+        "set_temporary_state": "Set temporary state",
+        "text_align": "Text align",
+        "text_size": "Text size"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -389,6 +395,9 @@
     },
     "date_time": {
       "name": "Datetime"
+    },
+    "divider_progress": {
+      "name": "Divider"
     }
   },
   "Setting": "Setting",

@@ -15,6 +15,7 @@ export const resStatusIconStyle = css`
 `
 
 export const resSuccessStatusIconStyle = css`
+  ${resStatusIconStyle}
   & path {
     fill: ${globalColor(`--${illaPrefix}-green-07`)};
 
@@ -24,6 +25,8 @@ export const resSuccessStatusIconStyle = css`
   }
 `
 export const resFailStatusIconStyle = css`
+  ${resStatusIconStyle}
+
   & path {
     fill: ${globalColor(`--${illaPrefix}-orange-07`)};
 
@@ -42,9 +45,6 @@ export const resTitleStyle = css`
 
 export const resContentStyle = css`
   overflow: auto;
-  & .CodeMirror {
-    border: 0;
-  }
 `
 
 export const resCloseIconStyle = css`

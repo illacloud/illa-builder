@@ -5,78 +5,91 @@ import { Api } from "@/api/base"
 import { ParamValues } from "@/page/App/components/ActionEditor/Resource"
 import { ActionItemConfig } from "@/redux/currentApp/action/actionState"
 import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Transformer } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/Transformer"
-import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ResourceParams } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourceParams"
 import { EventHandler } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/EventHandler"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
 import { ActionEditorPanelContext } from "@/page/App/components/ActionEditor/ActionEditorPanel/context"
-import { ResourcePanelProps } from "./interface"
-
-const dataTransform = (data: any) => {
-  const _data = {
-    resourceId: "04813000-438f-468e-a8c1-d34518b6c2fa",
-    type: "SQLQuery",
-    name: "sqlEg",
-    actionTemplate: {
-      mode: "sql",
-      query: "select * from users limit 100",
-      enableTransformer: false,
-      transformer:
-        "// The variable 'data' allows you to reference the request's data in the transformer. \n// example: return data.find(element => element.isError)\nreturn data.error",
-      events: [],
-    },
-  }
-  _data.actionTemplate.query = data.general?.query
-  return _data
-}
+import { ResourcePanelProps, ReturnRequestProp } from "./interface"
 
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
     const { resourceId, onChange, onSave, onRun } = props
 
-    const { activeActionItemId } = useContext(ActionEditorContext)
     const { onLoadingActionResult } = useContext(ActionEditorPanelContext)
-    const activeActionItem = useSelector(selectAllActionItem).find(
-      ({ actionId: id }) => id === activeActionItemId,
-    )
+    const activeActionItem = useSelector(getSelectedAction)
     const allResource = useSelector(selectAllResource)
     const dispatch = useDispatch()
 
     let resourceType: string
     let resource
 
-    const [params, setParams] = useState<
-      Pick<ActionItemConfig, "general" | "transformer" | "eventHandler">
-    >({
-      general: {},
-      transformer: "",
-      eventHandler: {},
-    })
+      const [params, setParams] = useState<ActionItemConfig>({
+        transformer: "",
+        events: [],
+      })
 
     resource = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
 
     const onParamsChange = (value: ParamValues) => {
-      setParams({ ...params, general: value })
-      onChange?.()
+        setParams({ ...params, ...value })
+        onChange?.()
     }
 
     const run = () => {
-      const _data = dataTransform(params)
+      let request: ReturnRequestProp
+
+      // return request params as result if is `api` action type
+      if (
+        activeActionItem &&
+        ["restapi"].includes(activeActionItem.actionType)
+      ) {
+        const { url, method, body, headers } = params
+        request = {
+          url,
+          method,
+          body,
+          headers,
+        }
+      }
+
       Api.request(
         {
-          url: `/actions/${activeActionItemId}/run`,
+          url: `/actions/${activeActionItem?.actionId}/run`,
           method: "POST",
-          data: _data,
+          data: {
+            actionType: activeActionItem?.actionType,
+          },
         },
-        (data) => {
-          onRun && onRun(data.data)
+        ({ data, statusText, headers }) => {
+          dispatch(
+            actionActions.updateActionItemReducer({
+              ...activeActionItem,
+              // TODO: apply Transfomer
+              data,
+              rawData: data,
+              error: false,
+            }),
+          )
+
+          onRun && onRun({ response: { data, statusText, headers }, request })
         },
-        () => {},
+        ({ data, statusText, headers }) => {
+          dispatch(
+            actionActions.updateActionItemReducer({
+              ...activeActionItem,
+              // TODO: apply Transfomer
+              data: {},
+              rawData: {},
+              error: true,
+            }),
+          )
+          onRun && onRun({ response: { data, statusText, headers }, request })
+        },
         () => {},
         (loading) => {
           onLoadingActionResult?.(loading)
@@ -92,8 +105,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           ...activeActionItem,
           resourceId,
           actionTemplate: {
-            ...activeActionItem?.config,
-            ...params,
+              ...activeActionItem?.actionTemplate,
+              ...params,
           },
         }),
       )

@@ -1,38 +1,27 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ConfigState } from "@/redux/currentApp/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
   PayloadAction<boolean>
 > = (state, action) => {
-  state = {
-    ...state,
-    openLeftPanel: action.payload,
-  }
-  return state
+    state.openLeftPanel = action.payload
 }
 
 export const updateRightPanel: CaseReducer<
   ConfigState,
   PayloadAction<boolean>
 > = (state, action) => {
-  state = {
-    ...state,
-    openRightPanel: action.payload,
-  }
-  return state
+    state.openRightPanel = action.payload
 }
 
 export const updateBottomPanel: CaseReducer<
   ConfigState,
   PayloadAction<boolean>
 > = (state, action) => {
-  state = {
-    ...state,
-    openBottomPanel: action.payload,
-  }
-  return state
+    state.openBottomPanel = action.payload
 }
 
 export const updateUnitWidth: CaseReducer<
@@ -47,6 +36,13 @@ export const updateSelectedComponent: CaseReducer<
   PayloadAction<ComponentNode[]>
 > = (state, action) => {
   state.selectedComponents = action.payload
+}
+
+export const updateSelectedAction: CaseReducer<
+  ConfigState,
+  PayloadAction<ActionItem>
+> = (state, action) => {
+  state.selectedAction = action.payload
 }
 
 export const updateShowDot: CaseReducer<ConfigState, PayloadAction<boolean>> = (
