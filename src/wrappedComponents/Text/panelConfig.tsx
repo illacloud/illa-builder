@@ -25,7 +25,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.value"),
         attrName: "disableMarkdown",
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: false,
         options: [
           { label: "Markdown", value: true },
           { label: "Plain Text", value: false },
@@ -35,7 +34,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-basic-value",
         attrName: "value",
         setterType: "INPUT_SETTER",
-        defaultValue: "I'm a text",
       },
     ],
   },
@@ -62,7 +60,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "horizontalAlign",
         labelDesc: "xxxxxxx",
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: "start",
         isSetterSingleRow: true,
         options: [
           {
@@ -97,7 +94,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         labelDesc: "xxxxxxx",
         attrName: "verticalAlign",
-        defaultValue: "start",
         isSetterSingleRow: true,
         options: [
           {

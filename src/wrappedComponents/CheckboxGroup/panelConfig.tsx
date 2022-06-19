@@ -18,7 +18,6 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-options-mode`,
         attrName: "optionMode",
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: "manual",
         options: [
           {
             label: "Manual",

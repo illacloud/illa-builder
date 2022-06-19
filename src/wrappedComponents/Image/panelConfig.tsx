@@ -12,7 +12,6 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: "String",
         labelName: i18n.t("editor.inspect.setter_label.image_source"),
         setterType: "INPUT_SETTER",
-        defaultValue: "https://placekitten.com/400/300",
       },
       {
         id: "image-basic-alt-text",
