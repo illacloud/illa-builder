@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Tooltip } from "@illa-design/tooltip"
-import { applyLabelStyle, applyLabelTipsStyle, labelTipsCss } from "./style"
+import { applyLabelStyle, applyLabelTipsStyle } from "./style"
 import { PanelLabelProps } from "./interface"
 
 export const PanelLabel: FC<PanelLabelProps> = (props) => {

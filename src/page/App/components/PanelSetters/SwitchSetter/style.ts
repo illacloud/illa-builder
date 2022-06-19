@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { illaPrefix, globalColor } from "@illa-design/theme"
-import { publicPaddingCss } from "@/page/App/components/InspectPanel/style"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
 export const dynamicSwitchWrapperCss = css`
   display: flex;
@@ -39,7 +39,7 @@ export const applyCustomIconStyle = (
 const singleRowCss = css`
   min-height: 48px;
   width: 100%;
-  ${publicPaddingCss}
+  ${publicPaddingStyle}
 `
 
 const doubleRowCss = css`
@@ -47,7 +47,7 @@ const doubleRowCss = css`
   width: 100%;
   display: flex;
   align-items: center;
-  ${publicPaddingCss}
+  ${publicPaddingStyle}
 `
 
 export const applyLabelWrapperStyle = (

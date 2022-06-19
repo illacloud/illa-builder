@@ -4,7 +4,7 @@ import {
   PanelFieldGroupConfig,
 } from "@/page/App/components/InspectPanel/interface"
 import { PanelBar } from "@/page/App/components/InspectPanel/bar"
-import { Setter } from "@/page/App/components/InspectPanel/Setter"
+import { Setter } from "@/page/App/components/InspectPanel/setter"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,

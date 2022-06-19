@@ -2,12 +2,12 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 
-export const publicPaddingCss = css`
+export const publicPaddingStyle = css`
   padding: 0 16px;
   box-sizing: border-box;
 `
 
-export const baseLabelCss = css`
+export const baseLabelStyle = css`
   font-size: 14px;
   font-weight: 500;
   line-height: 22px;
@@ -16,13 +16,13 @@ export const baseLabelCss = css`
   overflow: hidden;
 `
 
-export const ListLabelCss = css`
+export const ListLabelStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-weight: 400;
 `
 
 export function applyLabelStyle(isInList?: boolean): SerializedStyles {
-  return isInList ? ListLabelCss : baseLabelCss
+  return isInList ? ListLabelStyle : baseLabelStyle
 }
 
 export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
@@ -33,56 +33,51 @@ export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
   `
 }
 
-export const labelTipsCss = css`
-  ${baseLabelCss};
-  border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
-`
-
-export const panelHeaderWrapperCss = css`
+export const panelHeaderWrapperStyle = css`
   display: flex;
   width: 100%;
   height: 48px;
   justify-content: space-between;
   align-items: center;
-  ${publicPaddingCss}
+  ${publicPaddingStyle}
 `
 
-export const panelHeaderIconWrapperCss = css`
+export const panelHeaderIconWrapperStyle = css`
   cursor: pointer;
 `
 
-export const panelBarWrapperCss = css``
-
-export const panelBarHeaderCss = css`
+export const panelBarHeaderStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 48px;
   cursor: pointer;
-  ${publicPaddingCss};
+  ${publicPaddingStyle};
 `
 
-export const panelBarTitleCss = css`
+export const panelBarTitleStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   font-weight: 500;
   font-size: 14px;
 `
 
-export function panelBarOpenedIconCss(isOpened: boolean): SerializedStyles {
+export function applyPanelBarOpenedIconStyle(
+  isOpened: boolean,
+): SerializedStyles {
   const rotate = isOpened
     ? ""
     : css`
         transform: rotate(180deg);
       `
   return css`
-    font-size: 8px;
+    font-size: 12px;
     transition: transform 200ms;
     color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     ${rotate}
   `
 }
 
-export const panelBarItemContentCss = css`
+export const panelBarItemContentStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   position: relative;
@@ -97,7 +92,7 @@ export const panelBarItemAnimation: Variants = {
 export function applySetterWrapperStyle(
   isSetterSingleRow: boolean = false,
   isInList: boolean = false,
-  canWrapped: boolean = false,
+  isSetterSingleRowWrapper: boolean = false,
   useCustomLayout: boolean = false,
 ): SerializedStyles {
   if (useCustomLayout) {
@@ -105,7 +100,7 @@ export function applySetterWrapperStyle(
   }
   if (isSetterSingleRow) {
     return css`
-      ${publicPaddingCss}
+      ${publicPaddingStyle}
     `
   }
 
@@ -119,8 +114,8 @@ export function applySetterWrapperStyle(
     height: auto;
   `
   return css`
-    ${publicPaddingCss};
-    ${canWrapped ? wrappedStyle : basicStyle};
+    ${publicPaddingStyle};
+    ${isSetterSingleRowWrapper ? wrappedStyle : basicStyle};
   `
 }
 

@@ -6,11 +6,11 @@ export const componentContainerStyle = css`
   width: 100%;
 `
 export const searchWrapperStyle = css`
-  padding: 16px 16px;
+  padding: 16px;
 `
 
 export const sessionListContainerStyle = css`
-  padding: 16px 16px;
+  ${searchWrapperStyle};
   max-height: calc(100vh - 150px);
   overflow-y: auto;
   width: 100%;
