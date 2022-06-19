@@ -49,7 +49,7 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
       },
     ]
 
-      const isResourceEditable = resourceId !== ""
+    const isResourceEditable = resourceId !== ""
 
     return (
       <div css={panelScrollStyle}>

@@ -7,21 +7,21 @@ export const updateLeftPanel: CaseReducer<
   ConfigState,
   PayloadAction<boolean>
 > = (state, action) => {
-    state.openLeftPanel = action.payload
+  state.openLeftPanel = action.payload
 }
 
 export const updateRightPanel: CaseReducer<
   ConfigState,
   PayloadAction<boolean>
 > = (state, action) => {
-    state.openRightPanel = action.payload
+  state.openRightPanel = action.payload
 }
 
 export const updateBottomPanel: CaseReducer<
   ConfigState,
   PayloadAction<boolean>
 > = (state, action) => {
-    state.openBottomPanel = action.payload
+  state.openBottomPanel = action.payload
 }
 
 export const updateUnitWidth: CaseReducer<

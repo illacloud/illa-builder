@@ -16,29 +16,29 @@ import { ResourcePanelProps, ReturnRequestProp } from "./interface"
 
 export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
   (props, ref) => {
-    const { resourceId, onChange, onSave, onRun } = props
+      const { resourceId, onChange, onSave, onRun } = props
 
-    const { onLoadingActionResult } = useContext(ActionEditorPanelContext)
-    const activeActionItem = useSelector(getSelectedAction)
-    const allResource = useSelector(selectAllResource)
-    const dispatch = useDispatch()
+      const { onLoadingActionResult } = useContext(ActionEditorPanelContext)
+      const activeActionItem = useSelector(getSelectedAction)
+      const allResource = useSelector(selectAllResource)
+      const dispatch = useDispatch()
 
-    let resourceType: string
-    let resource
+      let resourceType: string
+      let resource
 
       const [params, setParams] = useState<ActionItemConfig>({
         transformer: "",
         events: [],
       })
 
-    resource = useSelector(selectAllResource).find(
-      (i) => i.resourceId === resourceId,
-    )
+      resource = useSelector(selectAllResource).find(
+        (i) => i.resourceId === resourceId,
+      )
 
-    const onParamsChange = (value: ParamValues) => {
+      const onParamsChange = (value: ParamValues) => {
         setParams({ ...params, ...value })
         onChange?.()
-    }
+      }
 
     const run = () => {
       let request: ReturnRequestProp
@@ -105,8 +105,8 @@ export const ResourcePanel = forwardRef<triggerRunRef, ResourcePanelProps>(
           ...activeActionItem,
           resourceId,
           actionTemplate: {
-              ...activeActionItem?.actionTemplate,
-              ...params,
+            ...activeActionItem?.actionTemplate,
+            ...params,
           },
         }),
       )
