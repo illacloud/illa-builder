@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Tooltip } from "@illa-design/tooltip"
-import { applyLabelStyle, labelTipsCss } from "./style"
+import { applyLabelStyle, applyLabelTipsStyle, labelTipsCss } from "./style"
 import { PanelLabelProps } from "./interface"
 
 export const PanelLabel: FC<PanelLabelProps> = (props) => {
@@ -15,7 +15,7 @@ export const PanelLabel: FC<PanelLabelProps> = (props) => {
           position="left"
           maxWidth="240px"
         >
-          <span css={labelTipsCss}>{labelName}</span>
+          <span css={applyLabelTipsStyle(isInList)}>{labelName}</span>
         </Tooltip>
       ) : (
         <span css={applyLabelStyle(isInList)}>{labelName}</span>

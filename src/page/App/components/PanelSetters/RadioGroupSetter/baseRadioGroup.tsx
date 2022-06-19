@@ -1,13 +1,13 @@
 import { FC } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { BaseRadioGroupProps } from "./interface"
-import { applySetterStyle } from "../style"
+import { applyRadioGroupWrapperStyle } from "@/page/App/components/PanelSetters/RadioGroupSetter/style"
 
 export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
-  const { value, options, isFullWidth, attrName, handleUpdateDsl } = props
+  const { value, options, isSetterSingleRow, attrName, handleUpdateDsl } = props
 
   return (
-    <div css={applySetterStyle(isFullWidth)}>
+    <div css={applyRadioGroupWrapperStyle(isSetterSingleRow)}>
       <RadioGroup
         onChange={(value) => {
           handleUpdateDsl({ [attrName]: value })

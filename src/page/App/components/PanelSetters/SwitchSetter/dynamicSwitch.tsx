@@ -14,11 +14,9 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const {
     defaultValue,
     attrName,
-    useCustomLabel,
     labelName,
     labelDesc,
     panelConfig,
-    handleUpdatePanelConfig,
     handleUpdateDsl,
   } = props
 
@@ -31,21 +29,15 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
       <div css={dynamicSwitchWrapperCss}>
-        {useCustomLabel && (
-          <PanelLabel labelName={labelName} labelDesc={labelDesc} />
-        )}
+        <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <div css={customAndSwitchWrapperCss}>
           <div
             css={applyCustomIconStyle(customSelected)}
             onClick={() => {
+              // TODO: @weichen
               if (customSelected) {
-                handleUpdatePanelConfig({
-                  [customKey]: false,
-                  [customValueKey]: "",
-                })
                 return
               }
-              handleUpdatePanelConfig({ [customKey]: !customSelected })
             }}
           >
             <svg
@@ -64,7 +56,6 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           {!customSelected && (
             <Switch
               onChange={(value) => {
-                handleUpdatePanelConfig({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
               }}
               checked={panelConfig[attrName] ?? defaultValue}
@@ -83,8 +74,8 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             defaultValue={customValue}
             handleUpdateDsl={handleUpdateDsl}
             panelConfig={panelConfig}
-            handleUpdatePanelConfig={handleUpdatePanelConfig}
-            isFullWidth
+            handleUpdateDynamicStrings={() => {}}
+            expectedType="String"
           />
         </div>
       )}

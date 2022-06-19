@@ -1,5 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { applyFixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const colorSelectWrapperCss = css`
   height: 100%;
@@ -49,3 +50,13 @@ export const colorSelectMenuItemWrapperCss = css`
     background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
   }
 `
+
+export const BaseSelectWrapperStyle = (
+  isSetterSingleRow: boolean = false,
+): SerializedStyles => {
+  return isSetterSingleRow
+    ? css`
+        width: 100%;
+      `
+    : applyFixedWidthStyle
+}

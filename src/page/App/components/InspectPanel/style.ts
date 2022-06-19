@@ -25,6 +25,14 @@ export function applyLabelStyle(isInList?: boolean): SerializedStyles {
   return isInList ? ListLabelCss : baseLabelCss
 }
 
+export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
+  const labelStyle = applyLabelStyle(isInList)
+  return css`
+    ${labelStyle};
+    border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+  `
+}
+
 export const labelTipsCss = css`
   ${baseLabelCss};
   border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
@@ -86,29 +94,34 @@ export const panelBarItemAnimation: Variants = {
   exit: { height: 0, opacity: 0 },
 }
 
-export const applySetterWrapperStyle = (
-  isFullWidth: boolean = false,
-  hasLabel: boolean = true,
-  useCustomLabel: boolean = false,
+export function applySetterWrapperStyle(
+  isSetterSingleRow: boolean = false,
   isInList: boolean = false,
-): SerializedStyles => {
-  if (useCustomLabel) return css``
+  canWrapped: boolean = false,
+  useCustomLayout: boolean = false,
+): SerializedStyles {
+  if (useCustomLayout) {
+    return css``
+  }
+  if (isSetterSingleRow) {
+    return css`
+      ${publicPaddingCss}
+    `
+  }
 
-  return isFullWidth
-    ? css`
-        ${publicPaddingCss};
-        height: ${hasLabel ? "auto" : "48px"};
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-      `
-    : css`
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: ${isInList ? "40px" : "48px"};
-        ${publicPaddingCss};
-      `
+  const basicStyle = css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: ${isInList ? "40px" : "48px"};
+  `
+  const wrappedStyle = css`
+    height: auto;
+  `
+  return css`
+    ${publicPaddingCss};
+    ${canWrapped ? wrappedStyle : basicStyle};
+  `
 }
 
 export const unselectedTipWrapperStyle = css`

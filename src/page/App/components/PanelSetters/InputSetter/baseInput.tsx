@@ -1,5 +1,4 @@
-import { FC, useEffect, useState } from "react"
-import { Input } from "@illa-design/input"
+import { FC } from "react"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterStyle, applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -7,12 +6,9 @@ import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
-    isFullWidth,
+    isSetterSingleRow,
     placeholder,
-    defaultValue,
-    isInList,
     attrName,
-    panelConfig,
     handleUpdateDsl,
     expectedType,
     value,
@@ -20,7 +16,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   } = props
 
   return (
-    <div css={applyInputSetterWrapperStyle(isFullWidth, isInList)}>
+    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
       <CodeEditor
         css={applyInputSetterStyle}
         placeholder={placeholder ?? ""}

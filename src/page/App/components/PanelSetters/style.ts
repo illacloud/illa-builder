@@ -1,17 +1,9 @@
-import { css, SerializedStyles } from "@emotion/react"
+import { css } from "@emotion/react"
 
-export const applySetterStyle = (
-  isFullWidth: boolean = false,
-): SerializedStyles => {
-  return isFullWidth
-    ? css`
-        width: 100%;
-        margin-top: 8px;
-      `
-    : css`
-        width: 184px;
-        display: flex;
-        justify-content: end;
-        flex: none;
-      `
-}
+export const applyFixedWidthStyle = css`
+  width: 184px;
+`
+
+export const applyDynamicWidthStyle = css`
+  width: auto;
+`

@@ -22,9 +22,7 @@ export interface PanelLabelProps {
   labelName?: string
   labelDesc?: string
   isInList?: boolean
-  useCustomLabel?: boolean
 }
-
 export interface PanelBarProps {
   title: string
   children?: ReactNode
@@ -37,8 +35,9 @@ export interface PanelFieldConfig extends PanelLabelProps {
   expectedType?: ExpectedType
   attrName: string
   childrenSetter?: PanelFieldConfig[]
+  useCustomLayout?: boolean
   options?: any
-  isFullWidth?: boolean
+  isSetterSingleRow?: boolean
   defaultValue?: any
   placeholder?: string
   shown?: (value: any) => boolean

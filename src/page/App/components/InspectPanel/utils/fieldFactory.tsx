@@ -4,7 +4,7 @@ import {
   PanelFieldGroupConfig,
 } from "@/page/App/components/InspectPanel/interface"
 import { PanelBar } from "@/page/App/components/InspectPanel/bar"
-import { Setter } from "@/page/App/components/InspectPanel/setter"
+import { Setter } from "@/page/App/components/InspectPanel/Setter"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
@@ -21,11 +21,7 @@ export const renderPanelBar = (
 ) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
   return (
-    <PanelBar
-      key={`${id}-${groupName}-${displayName}`}
-      title={groupName}
-      isOpened
-    >
+    <PanelBar key={`${id}-${displayName}`} title={groupName} isOpened>
       {children && children.length > 0 && fieldFactory(children, displayName)}
     </PanelBar>
   )

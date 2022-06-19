@@ -1,7 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { applyFixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
-export const applyInputSetterWrapperStyle = (
+export const applyRadioGroupWrapperStyle = (
   isSetterSingleRow: boolean = false,
 ): SerializedStyles => {
   return isSetterSingleRow
@@ -11,7 +11,3 @@ export const applyInputSetterWrapperStyle = (
       `
     : applyFixedWidthStyle
 }
-
-export const applyInputSetterStyle = css`
-  width: 100%;
-`

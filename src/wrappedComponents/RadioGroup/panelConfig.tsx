@@ -16,7 +16,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "radioGroup-options-mode",
-        isFullWidth: true,
         attrName: "optionMode",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -32,7 +31,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "radioGroup-basic-options",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "options",
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: "optionMode",
@@ -41,7 +40,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "radioGroup-option-data-sources",
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
-        isFullWidth: true,
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: "optionMode",
@@ -50,8 +48,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "radioGroup-option-mapped",
         labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
-        useCustomLabel: true,
-        isFullWidth: true,
+        useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
         bindAttrName: "optionMode",
@@ -131,7 +128,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: "radioGroup-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "required",
       },
       {
@@ -140,7 +137,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
     ],

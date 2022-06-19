@@ -95,10 +95,9 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "circle-progress-style-list",
         setterType: "LIST_SETTER",
-        isFullWidth: true,
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
-        useCustomLabel: true,
+        useCustomLayout: true,
         childrenSetter: [
           {
             id: "circle-progress-color",

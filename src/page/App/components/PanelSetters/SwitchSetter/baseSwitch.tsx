@@ -1,23 +1,15 @@
 import { FC } from "react"
 import { BaseSwitchProps } from "./interface"
 import { Switch } from "@illa-design/switch"
-import { applySetterStyle } from "@/page/App/components/PanelSetters/style"
+import { applyDynamicWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
-  const {
-    defaultValue,
-    isFullWidth,
-    attrName,
-    panelConfig,
-    handleUpdateDsl,
-    handleUpdatePanelConfig,
-  } = props
+  const { defaultValue, attrName, panelConfig, handleUpdateDsl } = props
 
   return (
-    <div css={applySetterStyle(isFullWidth)}>
+    <div css={applyDynamicWidthStyle}>
       <Switch
         onChange={(value) => {
-          handleUpdatePanelConfig({ [attrName]: value })
           handleUpdateDsl({ [attrName]: value })
         }}
         checked={panelConfig[attrName] ?? defaultValue}

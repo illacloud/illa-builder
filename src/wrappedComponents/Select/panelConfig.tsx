@@ -15,7 +15,6 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "select-options-mode",
-        isFullWidth: true,
         attrName: "optionMode",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -31,7 +30,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-basic-options",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "options",
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: "optionMode",
@@ -40,7 +39,6 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-option-data-sources",
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
-        isFullWidth: true,
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: "optionMode",
@@ -50,8 +48,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-option-mapped",
         labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
-        useCustomLabel: true,
-        isFullWidth: true,
+        useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
         bindAttrName: "optionMode",
@@ -137,7 +134,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         id: "select-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "required",
       },
       {
@@ -146,7 +143,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
     ],
@@ -179,7 +176,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         id: "select-adornments-showClear",
         labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "showClear",
-        useCustomLabel: true,
+        useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
       },
       {
