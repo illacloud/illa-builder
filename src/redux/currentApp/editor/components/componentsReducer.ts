@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ComponentNode,
   ComponentsState,
+  updateComponentDynamicStringsPayload,
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -72,4 +73,18 @@ export const updateComponentPropsReducer: CaseReducer<
     ...oldProps,
     ...newProps,
   }
+}
+
+export const updateComponentDynamicStringsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<updateComponentDynamicStringsPayload>
+> = (state, action) => {
+  const { displayName, dynamicStrings } = action.payload
+  const node = searchDsl(state.rootDsl, displayName)
+  if (!node) return
+  if (!node.panelConfig)
+    node.panelConfig = {
+      dynamicStrings: [],
+    }
+  node.panelConfig.dynamicStrings = dynamicStrings
 }

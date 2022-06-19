@@ -3,6 +3,7 @@ import { Input } from "@illa-design/input"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterStyle, applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
@@ -15,6 +16,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     handleUpdateDsl,
     expectedType,
     value,
+    handleUpdateDynamicStrings,
   } = props
 
   return (
@@ -27,6 +29,11 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         mode="TEXT_JS"
         onChange={(value, calcResult) => {
           handleUpdateDsl({ [attrName]: value })
+          if (isDynamicString(value)) {
+            handleUpdateDynamicStrings("add", attrName)
+          } else {
+            handleUpdateDynamicStrings("delete", attrName)
+          }
         }}
       />
     </div>

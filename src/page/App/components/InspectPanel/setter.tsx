@@ -19,7 +19,8 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   } = props
   const Comp = getSetterByType(setterType)
 
-  const { widgetProps, handleUpdateDsl } = useContext(SelectedPanelContext)
+  const { widgetProps, handleUpdateDsl, handleUpdateDynamicStrings } =
+    useContext(SelectedPanelContext)
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
@@ -46,6 +47,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
         value={defaultValue}
         panelConfig={widgetProps}
         handleUpdateDsl={handleUpdateDsl}
+        handleUpdateDynamicStrings={handleUpdateDynamicStrings}
         expectedType={expectedType ?? "String"}
       />
     ) : null
