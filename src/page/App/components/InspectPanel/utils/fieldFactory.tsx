@@ -16,7 +16,10 @@ export const renderFieldAndLabel = (
   return <Setter key={`${id}-${displayName}`} {...config} isInList={isInList} />
 }
 
-export const renderPanelBar = (config: PanelFieldGroupConfig, displayName: string) => {
+export const renderPanelBar = (
+  config: PanelFieldGroupConfig,
+  displayName: string,
+) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
   let isOpened = true
   const key = `${id}-${displayName}`

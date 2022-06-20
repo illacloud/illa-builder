@@ -3,11 +3,11 @@ import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 import {
-  labelCss,
-  listSetterWrapperCss,
-  listWrapperCss,
-  resetButtonCss,
-  resetIconCss,
+  labelStyle,
+  listSetterWrapperStyle,
+  listWrapperStyle,
+  resetButtonStyle,
+  resetIconStyle,
 } from "./style"
 
 export const ListSetter: FC<ListSetterProps> = (props) => {
@@ -62,12 +62,12 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
   }, [getDefaultValue, handleUpdateDsl])
 
   return (
-    <div css={listSetterWrapperCss}>
-      <div css={labelCss}>
+    <div css={listSetterWrapperStyle}>
+      <div css={labelStyle}>
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         {canReset && (
-          <div onClick={onClickReset} css={resetButtonCss}>
-            <div css={resetIconCss}>
+          <div onClick={onClickReset} css={resetButtonStyle}>
+            <div css={resetIconStyle}>
               <svg
                 width="14"
                 height="14"
@@ -88,7 +88,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
           </div>
         )}
       </div>
-      <div css={listWrapperCss}>
+      <div css={listWrapperStyle}>
         {childrenSetter?.map((child) => {
           return renderFieldAndLabel(child, panelConfig.id, true)
         })}
