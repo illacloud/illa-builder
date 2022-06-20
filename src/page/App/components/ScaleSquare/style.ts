@@ -178,6 +178,8 @@ export function applyTransformWidgetStyle(): SerializedStyles {
   return css`
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 3px;
   `
 }

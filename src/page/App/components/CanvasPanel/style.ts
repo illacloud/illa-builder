@@ -5,7 +5,8 @@ export function applyScaleContainerStyle(scale: number): SerializedStyles {
   return css`
     transform: scale(${scale / 100});
     transform-origin: 50% 0;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: ${globalColor(`--${illaPrefix}-white-01`)};
     box-sizing: border-box;
     height: 100%;

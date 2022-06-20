@@ -4,6 +4,8 @@ import { DragPosition } from "@/page/App/components/DotPanel/interface"
 export function calculateDragPosition(
   canvasRect: DOMRect,
   monitorRect: XYCoord,
+  canvasWidth: number,
+  canvasHeight: number,
   canvasScrollLeft: number,
   canvasScrollTop: number,
   unitWidth: number,
@@ -11,26 +13,45 @@ export function calculateDragPosition(
   componentW: number,
   componentH: number,
   edgeWidth: number,
+  blockColumns: number,
+  blockRows: number,
+  verticalResize: boolean,
 ): DragPosition {
   // mouse position
-  const relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft
-  const relativeY = monitorRect.y - canvasRect.y + canvasScrollTop
-
-  // middle calc position
-  const centerX = (relativeX - edgeWidth) / unitWidth
-  const centerY = (relativeY - edgeWidth) / unitHeight
-
-  // panel position
-  const squareX = Math.floor(centerX - componentW / 2)
-  const squareY = Math.floor(centerY - componentH / 2)
-
-  // real position
-  const renderX = relativeX - (componentW * unitWidth) / 2 - edgeWidth
-  const renderY = relativeY - (componentH * unitHeight) / 2 - edgeWidth
+  let relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft - edgeWidth
+  let relativeY = monitorRect.y - canvasRect.y + canvasScrollTop - edgeWidth
 
   // near position
-  const nearX = Math.floor((relativeX - edgeWidth) / unitWidth)
-  const nearY = Math.floor((relativeY - edgeWidth) / unitHeight)
+  const nearX = Math.floor(relativeX / unitWidth)
+  const nearY = Math.floor(relativeY / unitHeight)
+
+  // middle calc position
+  const centerX = relativeX / unitWidth
+  const centerY = relativeY / unitHeight
+
+  // panel position
+  let squareX = Math.floor(centerX - componentW / 2)
+  let squareY = Math.floor(centerY - componentH / 2)
+
+  if (squareX < 0) {
+    squareX = 0
+  }
+  if (squareX + componentW > blockColumns) {
+    squareX = blockColumns - componentW
+  }
+  if (squareY < 0) {
+    squareY = 0
+  }
+
+  // real position
+  let renderX = relativeX - (componentW * unitWidth) / 2
+  let renderY = relativeY - (componentH * unitHeight) / 2
+
+  if (!verticalResize) {
+    if (renderY + componentH * unitHeight > canvasHeight) {
+      renderY = canvasHeight - componentH * unitHeight
+    }
+  }
 
   return {
     relativeX,

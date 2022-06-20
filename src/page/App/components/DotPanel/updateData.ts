@@ -40,6 +40,8 @@ export function updateDragShadowData(
   renderY: number,
   unitWidth: number,
   unitHeight: number,
+  canvasWidth: number,
+  edgeWidth: number,
   dispatchFn: (renderDragShadow: DragShadow) => void,
 ) {
   // reduce render
@@ -58,7 +60,10 @@ export function updateDragShadowData(
     renderY,
     w: componentNode.w * unitWidth,
     h: componentNode.h * unitHeight,
-    isConflict: false,
+    isConflict:
+      renderX < 0 ||
+      renderY < 0 ||
+      renderX + componentNode.w * unitWidth > canvasWidth,
   } as DragShadow
   dispatchFn?.(renderDragShadow)
 }
