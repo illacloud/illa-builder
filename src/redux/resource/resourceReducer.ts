@@ -2,7 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ResourceListState,
   Resource,
-} from "@/redux/currentApp/resource/resourceState"
+} from "@/redux/resource/resourceState"
 
 export const addResourceListReducer: CaseReducer<
   ResourceListState,
@@ -30,6 +30,4 @@ export const updateResourceItemReducer: CaseReducer<
     ...state[targetIndex],
     ...action.payload,
   })
-
-  return state
 }

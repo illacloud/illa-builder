@@ -6,7 +6,7 @@ import { InputTag } from "@illa-design/input-tag"
 import { Checkbox } from "@illa-design/checkbox"
 import { Select, Option } from "@illa-design/select"
 import { useSelector } from "react-redux"
-import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { useTranslation } from "react-i18next"
 import {
   formStyle,
