@@ -3,22 +3,16 @@ import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 import {
-  labelCss,
-  listSetterWrapperCss,
-  listWrapperCss,
-  resetButtonCss,
-  resetIconCss,
+  labelStyle,
+  listSetterWrapperStyle,
+  listWrapperStyle,
+  resetButtonStyle,
+  resetIconStyle,
 } from "./style"
 
 export const ListSetter: FC<ListSetterProps> = (props) => {
-  const {
-    labelName,
-    labelDesc,
-    childrenSetter,
-    useCustomLabel,
-    panelConfig,
-    handleUpdatePanelConfig,
-  } = props
+  const { labelName, labelDesc, childrenSetter, panelConfig, handleUpdateDsl } =
+    props
 
   const getDslKeys = useMemo(() => {
     const hadKeysMapped = new Map()
@@ -64,39 +58,37 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
   }, [getDslKeys])
 
   const onClickReset = useCallback(() => {
-    handleUpdatePanelConfig(getDefaultValue)
-  }, [getDefaultValue, handleUpdatePanelConfig])
+    handleUpdateDsl(getDefaultValue)
+  }, [getDefaultValue, handleUpdateDsl])
 
   return (
-    <div css={listSetterWrapperCss}>
-      {useCustomLabel && (
-        <div css={labelCss}>
-          <PanelLabel labelName={labelName} labelDesc={labelDesc} />
-          {canReset && (
-            <div onClick={onClickReset} css={resetButtonCss}>
-              <div css={resetIconCss}>
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2.41057 3.5H8.53467C10.226 3.5 11.5972 4.87113 11.5972 6.5625V6.5625C11.5972 8.25387 10.226 9.625 8.53467 9.625H2.41052M2.41052 9.625L3.93745 7.875M2.41052 9.625L3.93745 11.375"
-                    stroke="#1D2129"
-                    strokeWidth="1.3125"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <span>reset</span>
+    <div css={listSetterWrapperStyle}>
+      <div css={labelStyle}>
+        <PanelLabel labelName={labelName} labelDesc={labelDesc} />
+        {canReset && (
+          <div onClick={onClickReset} css={resetButtonStyle}>
+            <div css={resetIconStyle}>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.41057 3.5H8.53467C10.226 3.5 11.5972 4.87113 11.5972 6.5625V6.5625C11.5972 8.25387 10.226 9.625 8.53467 9.625H2.41052M2.41052 9.625L3.93745 7.875M2.41052 9.625L3.93745 11.375"
+                  stroke="#1D2129"
+                  strokeWidth="1.3125"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
-          )}
-        </div>
-      )}
-      <div css={listWrapperCss}>
+            <span>reset</span>
+          </div>
+        )}
+      </div>
+      <div css={listWrapperStyle}>
         {childrenSetter?.map((child) => {
           return renderFieldAndLabel(child, panelConfig.id, true)
         })}

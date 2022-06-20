@@ -1,15 +1,15 @@
 import { css } from "@emotion/react"
 import { illaPrefix, globalColor } from "@illa-design/theme"
-import { publicPaddingCss } from "@/page/App/components/InspectPanel/style"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
-export const labelCss = css`
+export const labelStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 48px;
 `
 
-export const listWrapperCss = css`
+export const listWrapperStyle = css`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -19,17 +19,17 @@ export const listWrapperCss = css`
   padding: 12px 0;
 `
 
-export const resetButtonCss = css`
+export const resetButtonStyle = css`
   display: flex;
   align-items: center;
   cursor: pointer;
 `
-export const resetIconCss = css`
+export const resetIconStyle = css`
   width: 14px;
   height: 14px;
   margin-right: 4px;
 `
 
-export const listSetterWrapperCss = css`
-  ${publicPaddingCss};
+export const listSetterWrapperStyle = css`
+  ${publicPaddingStyle};
 `

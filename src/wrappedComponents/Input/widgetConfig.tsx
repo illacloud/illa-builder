@@ -14,6 +14,5 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    width: "400px",
   },
 }

@@ -11,9 +11,9 @@ export const CIRCLE_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 10,
   defaults: {
-    value: 50,
+    value: "50",
     strokeWidth: "4px",
-    hidden: false,
+    hidden: "false",
     alignment: "center",
   },
 }

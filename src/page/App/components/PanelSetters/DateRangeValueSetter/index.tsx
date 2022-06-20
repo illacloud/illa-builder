@@ -8,8 +8,7 @@ const START_DATE_KEY = "start-date"
 const END_DATE_KEY = "end-date"
 
 export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
-  const { attrName, panelConfig, handleUpdateDsl, handleUpdatePanelConfig } =
-    props
+  const { attrName, panelConfig, handleUpdateDsl } = props
 
   const [values, setValues] = useState<string[]>(panelConfig[attrName])
 
@@ -30,7 +29,7 @@ export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
           attrName={START_DATE_KEY}
           panelConfig={panelConfig}
           handleUpdateDsl={handleUpdateDsl}
-          handleUpdatePanelConfig={handleUpdatePanelConfig}
+          expectedType="String"
         />
       </div>
       <div css={setterContainerStyle}>
@@ -40,7 +39,7 @@ export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
           attrName={END_DATE_KEY}
           panelConfig={panelConfig}
           handleUpdateDsl={handleUpdateDsl}
-          handleUpdatePanelConfig={handleUpdatePanelConfig}
+          expectedType="String"
         />
       </div>
     </>

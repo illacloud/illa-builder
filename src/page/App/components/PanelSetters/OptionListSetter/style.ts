@@ -33,7 +33,7 @@ export const addIconCss = css`
 
 export const ListCss = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  margin: 0 16px;
+  margin: 16px 16px 0 16px;
   border-radius: 8px;
 `
 

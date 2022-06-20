@@ -14,6 +14,6 @@ export const DATE_TIME_WIDGET_CONFIG: WidgetConfig = {
     placeholder: "YYYY-MM-DD",
     dateFormat: "YYYY-MM-DD",
     timeFormat: "HH:mm",
-    minuteStep: 1,
+    minuteStep: "{{1}}",
   },
 }

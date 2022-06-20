@@ -78,7 +78,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
         id: "divider-style-list",
         setterType: "LIST_SETTER",
         attrName: "style",
-        useCustomLabel: true,
+        useCustomLayout: true,
         childrenSetter: [
           {
             id: "divider-style-color",

@@ -5,6 +5,7 @@ import {
 } from "@/page/App/components/InspectPanel/interface"
 import { PanelBar } from "@/page/App/components/InspectPanel/bar"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
+import { getLocalStorage, setLocalStorage } from "@/utils/storage"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
@@ -20,11 +21,25 @@ export const renderPanelBar = (
   displayName: string,
 ) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
+  let isOpened = true
+  const key = `${id}-${displayName}`
+
+  const saveToggleState = (value: boolean) => {
+    setLocalStorage(key, value, -1)
+  }
+
+  if (getLocalStorage(key) != undefined) {
+    isOpened = getLocalStorage(key)
+  } else {
+    saveToggleState(isOpened)
+  }
+
   return (
     <PanelBar
-      key={`${id}-${groupName}-${displayName}`}
+      key={key}
       title={groupName}
-      isOpened
+      isOpened={isOpened}
+      saveToggleState={saveToggleState}
     >
       {children && children.length > 0 && fieldFactory(children, displayName)}
     </PanelBar>

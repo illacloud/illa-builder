@@ -1,7 +1,8 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
-export const colorSelectWrapperCss = css`
+export const colorSelectWrapperStyle = css`
   height: 100%;
   padding: 8px;
   border-radius: 8px;
@@ -16,7 +17,9 @@ export const colorSelectWrapperCss = css`
   }
 `
 
-export const colorSelectPreviewColorCss = (color: string): SerializedStyles => {
+export const applyColorSelectPreviewColorStyle = (
+  color: string,
+): SerializedStyles => {
   return css`
     width: 24px;
     height: 24px;
@@ -27,18 +30,18 @@ export const colorSelectPreviewColorCss = (color: string): SerializedStyles => {
   `
 }
 
-export const colorSelectPreviewNameCss = css`
+export const colorSelectPreviewNameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   margin-left: 8px;
   width: 60px;
 `
 
-export const colorSelectMenuWrapperCss = css`
+export const colorSelectMenuWrapperStyle = css`
   width: 120px;
   padding: 8px 0;
 `
 
-export const colorSelectMenuItemWrapperCss = css`
+export const colorSelectMenuItemWrapperStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,3 +52,13 @@ export const colorSelectMenuItemWrapperCss = css`
     background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
   }
 `
+
+export const applyBaseSelectWrapperStyle = (
+  isSetterSingleRow: boolean = false,
+): SerializedStyles => {
+  return isSetterSingleRow
+    ? css`
+        width: 100%;
+      `
+    : fixedWidthStyle
+}

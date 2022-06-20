@@ -20,6 +20,8 @@ import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { getComputedValue } from "@/page/App/components/PanelSetters/MappedOptionSetter/utils"
 import { v4 } from "uuid"
+import { isEqual } from "lodash"
+import { CodeEditor } from "@/components/CodeEditor"
 
 interface configItem {
   id: string
@@ -29,10 +31,9 @@ interface configItem {
 }
 
 export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
-  const GLOBAL_DATA = useContext(GLOBAL_DATA_CONTEXT)
+  const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
-  const { attrName, panelConfig, handleUpdatePanelConfig, handleUpdateDsl } =
-    props
+  const { attrName, panelConfig, handleUpdateDsl } = props
 
   const childrenPanelConfig = panelConfig[attrName] ?? ({} as configItem)
 
@@ -43,66 +44,79 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
   const [disabledValue, setDisabledValue] = useState(
     childrenPanelConfig.disabled ?? "",
   )
-
-  const handleUpdate = useCallback(
-    (value: Partial<configItem>) => {
-      const newChildrenPanelConfig = { ...childrenPanelConfig, ...value }
-      handleUpdatePanelConfig({ [attrName]: newChildrenPanelConfig })
-    },
-    [childrenPanelConfig, attrName, handleUpdatePanelConfig],
-  )
-
-  const realDataSources = useMemo(() => {
-    const dynamicSources = panelConfig.dataSources ?? "{{[]}}"
-    return evaluateDynamicString(panelConfig.id, dynamicSources, {
-      ...GLOBAL_DATA,
-    })
-  }, [panelConfig, GLOBAL_DATA])
-
-  const getRealValue = useCallback(
-    (jsString: string, keyInDataTree: string) => {
-      // const res: Array<any> = []
-      const realJS = getComputedValue(jsString)
-      const res = evaluateDynamicString(keyInDataTree, realJS, {
-        ...GLOBAL_DATA,
-        dataOptions: realDataSources,
-      })
-      return res ?? []
-    },
-    [GLOBAL_DATA, realDataSources],
-  )
-
-  const calcData = useMemo(() => {
-    const options: configItem[] = []
-    const keyInDataTree = panelConfig.id
-    const realLabelValue = getRealValue(labelValue || "{{item}}", keyInDataTree)
-    const realOptionValue = getRealValue(
-      optionValue || "{{item}}",
-      keyInDataTree,
-    )
-    const realDisabledValue = getRealValue(disabledValue, keyInDataTree)
-    const maxLength = Math.max(
-      realLabelValue.length,
-      realOptionValue.length,
-      realDisabledValue.length,
-    )
-    for (let i = 0; i < maxLength; i++) {
-      const label = realLabelValue[i] ?? ""
-      const value = realOptionValue[i] ?? ""
-      const disabled = realDisabledValue[i] ?? false
-      options.push({
-        id: `option-${v4()}`,
-        label,
-        value,
-        disabled,
-      })
-    }
-    return options
-  }, [getRealValue, labelValue, optionValue, disabledValue])
-
-  useEffect(() => {
-    handleUpdateDsl({ options: calcData })
-  }, [handleUpdateDsl, calcData])
+  //
+  // const handleUpdate = useCallback(
+  //   (value: Partial<configItem>) => {
+  //     const newChildrenPanelConfig = { ...childrenPanelConfig, ...value }
+  //     handleUpdateDsl({ [attrName]: newChildrenPanelConfig })
+  //   },
+  //   [childrenPanelConfig, attrName, handleUpdateDsl],
+  // )
+  //
+  // const realDataSources = useMemo(() => {
+  //   const dynamicSources = panelConfig.dataSources ?? "{{[]}}"
+  //   let res = []
+  //   try {
+  //     res = evaluateDynamicString(panelConfig.id, dynamicSources, {
+  //       ...globalData,
+  //     })
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  //   return res
+  // }, [panelConfig, globalData])
+  //
+  // const getRealValue = useCallback(
+  //   (jsString: string, keyInDataTree: string) => {
+  //     const realJS = getComputedValue(jsString)
+  //     let res = []
+  //     try {
+  //       res = evaluateDynamicString(keyInDataTree, realJS, {
+  //         ...globalData,
+  //         dataOptions: realDataSources,
+  //       })
+  //     } catch (e) {
+  //       console.log(e)
+  //     }
+  //
+  //     return res
+  //   },
+  //   [globalData, realDataSources],
+  // )
+  //
+  // const calcData = useMemo(() => {
+  //   const options: configItem[] = []
+  //   const keyInDataTree = panelConfig.id
+  //   const realLabelValue = getRealValue(labelValue || "{{item}}", keyInDataTree)
+  //   const realOptionValue = getRealValue(
+  //     optionValue || "{{item}}",
+  //     keyInDataTree,
+  //   )
+  //   const realDisabledValue = getRealValue(disabledValue, keyInDataTree)
+  //   const maxLength = Math.max(
+  //     realLabelValue.length,
+  //     realOptionValue.length,
+  //     realDisabledValue.length,
+  //   )
+  //   for (let i = 0; i < maxLength; i++) {
+  //     const label = realLabelValue[i] ?? ""
+  //     const value = realOptionValue[i] ?? ""
+  //     const disabled = realDisabledValue[i] ?? false
+  //     options.push({
+  //       id: `option-${v4()}`,
+  //       label,
+  //       value,
+  //       disabled,
+  //     })
+  //   }
+  //   return options
+  // }, [getRealValue, labelValue, optionValue, disabledValue])
+  //
+  // useEffect(() => {
+  //   const oldOptions = childrenPanelConfig.options ?? []
+  //   if (isEqual(oldOptions, calcData)) return
+  //   handleUpdateDsl({ options: calcData })
+  // }, [handleUpdateDsl, calcData])
 
   return (
     <div css={ListCss}>
@@ -113,12 +127,13 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
         <div css={labelAndInputWrapperCss}>
           <span css={modalLabelCss}>Value</span>
           <div css={modalInputWrapperCss}>
-            <Input
+            <CodeEditor
               value={optionValue}
-              placeholder="{{item}}"
-              onChange={(value) => {
+              expectedType="Object"
+              mode="TEXT_JS"
+              onChange={(value, calcResult) => {
                 setOptionValue(value)
-                handleUpdate({ value })
+                // handleUpdate({ value })
               }}
             />
           </div>
@@ -131,7 +146,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
               placeholder="{{item}}"
               onChange={(value) => {
                 setLabelValue(value)
-                handleUpdate({ label: value })
+                // handleUpdate({ label: value })
               }}
             />
           </div>
@@ -143,7 +158,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
               value={disabledValue}
               onChange={(value) => {
                 setDisabledValue(value)
-                handleUpdate({ disabled: value })
+                // handleUpdate({ disabled: value })
               }}
             />
           </div>
