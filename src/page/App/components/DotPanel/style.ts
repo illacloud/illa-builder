@@ -1,16 +1,9 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyScaleStyle(
-  h: number | null,
-  verticalResize: boolean,
-): SerializedStyles {
+export function applyScaleStyle(verticalResize: boolean): SerializedStyles {
   let finalHeight: string
-  if (h == null) {
-    finalHeight = "100%"
-  } else {
-    finalHeight = `${h}px`
-  }
+  finalHeight = "100%"
   return css`
     position: relative;
     padding-left: 6px;

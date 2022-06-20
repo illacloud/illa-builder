@@ -86,30 +86,33 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
-      if (container.getBoundingClientRect().height < (canvasHeight ?? 0)) {
+      const containerHeight =
+        container.getBoundingClientRect().height + container.scrollTop
+
+      if (containerHeight < (canvasHeight ?? 0)) {
         return
       }
       const finalBlockRows = Math.ceil(
-        (container.getBoundingClientRect().height - edgeWidth) / unitHeight,
+        (containerHeight - edgeWidth) / unitHeight,
       )
       const finalHeight = finalBlockRows * unitHeight + 2
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [windowHeight, bottomPanelOpenState, scale])
+  }, [windowHeight, bottomPanelOpenState, scale, canvasRef.current?.scrollTop])
 
   // calculate width
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
+      const containerWidth =
+        container.getBoundingClientRect().width + container.scrollLeft
       const finalBlockWidth =
-        (container.getBoundingClientRect().width -
-          edgeWidth * 2 -
-          (blockColumns + 1) * 2) /
+        (containerWidth - edgeWidth * 2 - (blockColumns + 1) * 2) /
           blockColumns +
         2
       dispatch(configActions.updateUnitWidth(finalBlockWidth))
-      setCanvasWidth(container.getBoundingClientRect().width - edgeWidth * 2)
+      setCanvasWidth(containerWidth - edgeWidth * 2)
     }
   }, [windowWidth, leftPanelOpenState, rightPanelOpenState, scale])
 
@@ -200,6 +203,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (store.getState().currentApp.config.showDot == false) {
           dispatch(configActions.updateShowDot(true))
         }
+
         // calc data
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
@@ -421,7 +425,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   return (
     <div
       ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
-      css={applyScaleStyle(canvasHeight, componentNode.verticalResize)}
+      css={applyScaleStyle(componentNode.verticalResize)}
       onClick={(event) => {
         dispatch(configActions.updateSelectedComponent([]))
       }}
