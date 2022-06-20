@@ -90,7 +90,7 @@ export const setSessionStorage = (
   value: any,
   expire: number = 0,
 ) => {
-  setStorage("localStorage", key, value, expire)
+  setStorage("sessionStorage", key, value, expire)
 }
 
 export const getLocalStorage = (key: string) => getStorage("localStorage", key)
