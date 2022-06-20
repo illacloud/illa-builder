@@ -13,6 +13,7 @@ export interface ComponentNode {
   } | null
   type: string | null
   containerType: ContainerType
+  verticalResize: boolean
   h: number
   w: number
   minH: number
@@ -40,6 +41,7 @@ export const ComponentsInitialState: ComponentsState = {
     childrenNode: null,
     type: null,
     containerType: "EDITOR_DOT_PANEL",
+    verticalResize: true,
     h: 0,
     w: 0,
     x: -1,
