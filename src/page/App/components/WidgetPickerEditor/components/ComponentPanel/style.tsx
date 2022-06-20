@@ -11,6 +11,8 @@ export const searchWrapperStyle = css`
 
 export const sessionListContainerStyle = css`
   ${searchWrapperStyle};
+  padding-top: 0;
+  padding-bottom: 0;
   max-height: calc(100vh - 150px);
   overflow-y: auto;
   width: 100%;
