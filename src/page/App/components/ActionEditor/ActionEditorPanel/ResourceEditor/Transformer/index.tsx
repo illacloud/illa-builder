@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, FC } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { RadioGroup } from "@illa-design/radio"
@@ -12,8 +12,11 @@ import {
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
 import { CodeEditor } from "@/components/CodeEditor"
 import { disableTransformerStyle } from "./style"
+import { TransformerProps } from "./interface"
 
-export const Transformer = () => {
+export const Transformer: FC<TransformerProps> = (props) => {
+  const { onChange } = props
+
   const { t } = useTranslation()
   const [enable, setEnable] = useState<"Enable" | "Disable">("Disable")
   return (
@@ -40,7 +43,12 @@ export const Transformer = () => {
       </div>
       <div css={panelPaddingStyle}>
         {enable === "Enable" ? (
-          <CodeEditor mode="TEXT_JS" expectedType="String" height="88px" />
+          <CodeEditor
+            mode="TEXT_JS"
+            expectedType="String"
+            height="88px"
+            onChange={(value) => onChange({ transformer: value })}
+          />
         ) : (
           <div css={disableTransformerStyle}>
             {t("editor.action.panel.tips.transformer")}

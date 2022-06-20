@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios'
+import { AxiosResponse } from "axios"
 
 export interface DatabaseResultProps {
   result?: AxiosResponse

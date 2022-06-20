@@ -111,8 +111,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
         setIsActionDirty?.(false)
       },
-      () => { },
-      () => { },
+      () => {},
+      () => {},
       (loading) => {
         onLoadingActionResult(loading)
       },
@@ -157,7 +157,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         setResult(response)
         setActionResVisible(true)
       },
-      () => { },
+      () => {},
       (loading) => {
         onLoadingActionResult(loading)
       },

@@ -43,7 +43,7 @@ export const ResourcePanel: FC<ResourcePanelProps> = (props) => {
           resourceType={resourceType}
           onChange={updateActionTemplate}
         />
-        <Transformer />
+        <Transformer onChange={updateActionTemplate} />
         <Divider />
         <EventHandler />
       </div>

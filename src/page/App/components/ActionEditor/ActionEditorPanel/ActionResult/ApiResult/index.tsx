@@ -9,7 +9,8 @@ import { JSONViewer } from "@/page/App/components/ActionEditor/ActionEditorPanel
 import { ApiResultProps } from "./interface"
 
 function concatUrl(path: string = "", urlParams = [], baseUrl?: string) {
-  const params = urlParams && urlParams.map(({ key, value }) => `${key}=${value}`).join("&")
+  const params =
+    urlParams && urlParams.map(({ key, value }) => `${key}=${value}`).join("&")
   const url = params ? `${path}?${params}` : path
   return baseUrl ? `${baseUrl}/${url}` : url
 }
