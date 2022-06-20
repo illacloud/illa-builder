@@ -149,7 +149,11 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasHeight != null
         ) {
           let calculateResult: DragPosition
-          if (item.x == -1 && item.y == -1 && item.parentNode == null) {
+          if (
+            item.x == -1 &&
+            item.y == -1 &&
+            item.parentNode != componentNode.displayName
+          ) {
             calculateResult = calculateDragPosition(
               canvasRect,
               monitorRect,
@@ -224,7 +228,11 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasHeight != null
         ) {
           let calculateResult: DragPosition
-          if (item.x == -1 && item.y == -1 && item.parentNode == null) {
+          if (
+            item.x == -1 &&
+            item.y == -1 &&
+            item.parentNode != componentNode.displayName
+          ) {
             calculateResult = calculateDragPosition(
               canvasRect,
               monitorRect,
