@@ -10,6 +10,7 @@ interface ActionConnectNetwork {
 
 export interface ActionItemConfig {
   [index: string]: any
+
   transformer?: string
   events?: []
 }

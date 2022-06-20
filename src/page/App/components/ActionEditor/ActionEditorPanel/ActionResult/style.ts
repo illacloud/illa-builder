@@ -16,7 +16,6 @@ export const resStatusIconStyle = css`
 
 export const resSuccessStatusIconStyle = css`
   ${resStatusIconStyle}
-
   & path {
     fill: ${globalColor(`--${illaPrefix}-green-07`)};
 

@@ -12,6 +12,14 @@ export default [
     const data = req.body
     const dateStr = new Date().toISOString()
 
+    const { access_token, refresh_token } = req.cookies
+    if (!access_token && !refresh_token) {
+      return res(
+        ctx.delay(1000),
+        ctx.status(401),
+        ctx.json({ errorCode: 401, errorMessage: "Unauthorized" }),
+      )
+    }
     return res(
       ctx.delay(1000),
       ctx.status(200),

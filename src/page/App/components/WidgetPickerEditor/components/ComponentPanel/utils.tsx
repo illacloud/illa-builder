@@ -14,11 +14,11 @@ export function getMatchComponent(
 
   const newSessionList: ComponentSessionProps[] = []
   options?.forEach((session) => {
-    const res = session.children.filter((component) =>
-      component.widgetName.toLocaleLowerCase().match(reg),
+    const res = session.widgetCardInfos.filter((widgetCardInfo) =>
+      widgetCardInfo.widgetName.toLocaleLowerCase().match(reg),
     )
     if (res.length > 0) {
-      newSessionList.push({ ...session, children: res })
+      newSessionList.push({ ...session, widgetCardInfos: res })
     }
   })
   return newSessionList

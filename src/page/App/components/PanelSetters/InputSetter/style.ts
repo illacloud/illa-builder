@@ -1,13 +1,17 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { applySetterStyle } from "@/page/App/components/PanelSetters/style"
+import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const applyInputSetterWrapperStyle = (
-  isFullWidth: boolean = false,
-  isInList: boolean = false,
+  isSetterSingleRow: boolean = false,
 ): SerializedStyles => {
-  return isInList
+  return isSetterSingleRow
     ? css`
         width: 100%;
+        margin-top: 8px;
       `
-    : applySetterStyle(isFullWidth)
+    : fixedWidthStyle
 }
+
+export const applyInputSetterStyle = css`
+  width: 100%;
+`

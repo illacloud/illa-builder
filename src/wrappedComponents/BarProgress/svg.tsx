@@ -1,1 +1,1 @@
-export const BarProgressIcon = () => <span>BarProgress</span>
+export const BarProgressIcon = () => <span>Bar</span>

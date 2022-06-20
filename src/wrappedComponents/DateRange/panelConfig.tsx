@@ -18,8 +18,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-range-basic-start-date",
         attrName: "value",
         setterType: "DATE_RANGE_VALUE_SETTER",
-        isFullWidth: true,
-        useCustomLabel: true,
+        useCustomLayout: true,
       },
       {
         id: "date-basic-Format",
@@ -30,15 +29,15 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-range-basic-start-placeholder",
         labelName: i18n.t("editor.inspect.setter_label.start_placeholder"),
+        isSetterSingleRow: true,
         attrName: "startPlaceholder",
-        isFullWidth: true,
         setterType: "INPUT_SETTER",
       },
       {
         id: "date-range-basic-end-placeholder",
         labelName: i18n.t("editor.inspect.setter_label.end_placeholder"),
+        isSetterSingleRow: true,
         attrName: "endPlaceholder",
-        isFullWidth: true,
         setterType: "INPUT_SETTER",
       },
       {
@@ -149,7 +148,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-range-adornments-showClear",
         labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "showClear",
-        useCustomLabel: true,
+        useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
       },
       {
@@ -168,7 +167,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-range-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "required",
       },
       {
@@ -183,7 +182,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
     ],
@@ -207,10 +206,10 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-range-style-list",
         setterType: "LIST_SETTER",
-        isFullWidth: true,
+        isSetterSingleRow: true,
         labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "color",
-        useCustomLabel: true,
+        useCustomLayout: true,
         childrenSetter: [
           {
             id: "date-range-style",

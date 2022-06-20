@@ -46,4 +46,17 @@ export class Api {
         }
       })
   }
+
+  static addResponseInterceptor<RespData, RespConfig>(
+    resInterceptor?: (
+      value: AxiosResponse<RespData, RespConfig>,
+    ) => RespData | Promise<RespData>,
+    errInterceptor?: (error: any) => any,
+  ) {
+    return axios.interceptors.response.use(resInterceptor, errInterceptor)
+  }
+
+  static removeResponseInterceptor(interceptor: number) {
+    axios.interceptors.response.eject(interceptor)
+  }
 }

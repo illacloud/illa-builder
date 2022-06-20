@@ -91,7 +91,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.event_handler"),
         labelDesc: "xxxxx",
         setterType: "EVENT_HANDLER_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         childrenSetter: [
           {
             id: "event",
@@ -171,7 +171,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             setterType: "DYNAMIC_SWITCH_SETTER",
             attrName: "disabled",
             bindAttrName: "type",
-            useCustomLabel: true,
+            useCustomLayout: true,
             shown: (type) => type === "widget",
           },
           {
@@ -195,7 +195,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             setterType: "DYNAMIC_SWITCH_SETTER",
             attrName: "newTab",
             bindAttrName: "type",
-            useCustomLabel: true,
+            useCustomLayout: true,
             shown: (type) => type === "openUrl",
           },
           {
@@ -268,8 +268,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
-        placeholder: "false",
-        defaultValue: false,
+        placeholder: "{{false}}",
       },
     ],
   },
@@ -293,7 +292,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         id: "switch-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "required",
       },
       {
@@ -302,7 +301,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
     ],

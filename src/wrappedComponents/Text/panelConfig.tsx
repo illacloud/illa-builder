@@ -25,7 +25,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.value"),
         attrName: "disableMarkdown",
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: false,
         options: [
           { label: "Markdown", value: true },
           { label: "Plain Text", value: false },
@@ -34,9 +33,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-basic-value",
         attrName: "value",
-        isFullWidth: true,
         setterType: "INPUT_SETTER",
-        defaultValue: "I'm a text",
       },
     ],
   },
@@ -62,9 +59,8 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
         attrName: "horizontalAlign",
         labelDesc: "xxxxxxx",
-        isFullWidth: true,
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: "start",
+        isSetterSingleRow: true,
         options: [
           {
             label: (
@@ -96,10 +92,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-layout-row",
         labelName: i18n.t("editor.inspect.setter_label.vertical_alignment"),
         setterType: "RADIO_GROUP_SETTER",
-        isFullWidth: true,
         labelDesc: "xxxxxxx",
         attrName: "verticalAlign",
-        defaultValue: "start",
+        isSetterSingleRow: true,
         options: [
           {
             label: (
@@ -132,6 +127,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
+        expectedType: "Boolean",
       },
     ],
   },
@@ -142,10 +138,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-style-list",
         setterType: "LIST_SETTER",
-        isFullWidth: true,
         labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "color",
-        useCustomLabel: true,
+        useCustomLayout: true,
         childrenSetter: [
           {
             id: "text-style-color",

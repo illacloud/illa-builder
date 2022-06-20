@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { SetterType } from "@/page/App/components/PanelSetters"
+import { ExpectedType } from "@/components/CodeEditor/utils"
 
 export enum ACTION_TYPE {
   VIEW_DOCUMENT = "VIEW_DOCUMENT",
@@ -21,22 +22,23 @@ export interface PanelLabelProps {
   labelName?: string
   labelDesc?: string
   isInList?: boolean
-  useCustomLabel?: boolean
 }
-
 export interface PanelBarProps {
   title: string
   children?: ReactNode
   isOpened?: boolean
+  saveToggleState: (value: boolean) => void
 }
 
 export interface PanelFieldConfig extends PanelLabelProps {
   id: string
   setterType: SetterType
+  expectedType?: ExpectedType
   attrName: string
   childrenSetter?: PanelFieldConfig[]
+  useCustomLayout?: boolean
   options?: any
-  isFullWidth?: boolean
+  isSetterSingleRow?: boolean
   defaultValue?: any
   placeholder?: string
   shown?: (value: any) => boolean

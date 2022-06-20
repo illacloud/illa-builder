@@ -17,7 +17,6 @@ export const EventHandlerSetter: FC<EventHandlerSetterProps> = (props) => {
     panelConfig,
     attrName,
     handleUpdateDsl,
-    handleUpdatePanelConfig,
     childrenSetter,
   } = props
   const events = panelConfig[attrName] || []
@@ -29,20 +28,18 @@ export const EventHandlerSetter: FC<EventHandlerSetterProps> = (props) => {
       const newOptions = [...events]
       const newDslEvents = [...dslEvents]
       newOptions.push(value)
-      handleUpdatePanelConfig({ [attrName]: newOptions })
       const script = transformEvent(value)
       newDslEvents.push(script)
       handleUpdateDsl({ events: newDslEvents })
     },
-    [handleUpdatePanelConfig, handleUpdateDsl],
+    [handleUpdateDsl],
   )
 
   const handleUpdate = useCallback(
     (value: BaseEventItem[], dslValue?: Record<string, any>) => {
-      handleUpdatePanelConfig({ [attrName]: value })
       handleUpdateDsl({ events: dslValue })
     },
-    [handleUpdatePanelConfig, handleUpdateDsl],
+    [handleUpdateDsl],
   )
 
   return (

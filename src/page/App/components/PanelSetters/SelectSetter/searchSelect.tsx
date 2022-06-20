@@ -1,21 +1,20 @@
 import { FC } from "react"
 import { Select } from "@illa-design/select"
-import { applySetterStyle } from "@/page/App/components/PanelSetters/style"
 import { BaseSelectSetterProps } from "./interface"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
 export const SearchSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const {
-    isFullWidth,
+    isSetterSingleRow,
     options,
     defaultValue,
     attrName,
     panelConfig,
     handleUpdateDsl,
-    handleUpdatePanelConfig,
   } = props
 
   return (
-    <div css={applySetterStyle(isFullWidth)}>
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         showSearch={true}
         allowClear
@@ -23,7 +22,6 @@ export const SearchSelectSetter: FC<BaseSelectSetterProps> = (props) => {
         size="small"
         value={panelConfig[attrName] ?? defaultValue}
         onChange={(value) => {
-          handleUpdatePanelConfig({ [attrName]: value })
           handleUpdateDsl({ [attrName]: value })
         }}
       />

@@ -1,19 +1,19 @@
 import { FC, useContext } from "react"
 import { MoreIcon } from "@illa-design/icon"
-import { panelHeaderWrapperCss, panelHeaderIconWrapperCss } from "./style"
+import { panelHeaderWrapperStyle, panelHeaderIconWrapperStyle } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { ActionMenu } from "./actionMenu"
 import { HeaderProps } from "./interface"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
-  const { panelConfig } = useContext(SelectedPanelContext)
+  const { widgetDisplayName } = useContext(SelectedPanelContext)
 
   return (
-    <div css={panelHeaderWrapperCss}>
+    <div css={panelHeaderWrapperStyle}>
       {/*  TODO: wait for editable component*/}
-      <div>{panelConfig.widgetDisplayName}</div>
-      <div css={panelHeaderIconWrapperCss}>
+      <div>{widgetDisplayName}</div>
+      <div css={panelHeaderIconWrapperStyle}>
         <Trigger
           position="br"
           trigger="click"

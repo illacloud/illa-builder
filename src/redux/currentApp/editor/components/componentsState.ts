@@ -13,6 +13,7 @@ export interface ComponentNode {
   } | null
   type: string | null
   containerType: ContainerType
+  verticalResize: boolean
   h: number
   w: number
   minH: number
@@ -24,6 +25,9 @@ export interface ComponentNode {
   props: {
     [key: string]: any
   } | null
+  panelConfig?: {
+    dynamicStrings: string[]
+  }
 }
 
 export interface ComponentsState {
@@ -37,6 +41,7 @@ export const ComponentsInitialState: ComponentsState = {
     childrenNode: null,
     type: null,
     containerType: "EDITOR_DOT_PANEL",
+    verticalResize: true,
     h: 0,
     w: 0,
     x: -1,
@@ -47,4 +52,9 @@ export const ComponentsInitialState: ComponentsState = {
 export interface updateComponentPropsPayload {
   displayName: string
   newProps: Record<string, any>
+}
+
+export interface updateComponentDynamicStringsPayload {
+  displayName: string
+  dynamicStrings: string[]
 }
