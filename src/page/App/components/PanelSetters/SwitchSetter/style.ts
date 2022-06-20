@@ -2,14 +2,14 @@ import { css, SerializedStyles } from "@emotion/react"
 import { illaPrefix, globalColor } from "@illa-design/theme"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
-export const dynamicSwitchWrapperCss = css`
+export const dynamicSwitchWrapperStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 `
 
-export const customAndSwitchWrapperCss = css`
+export const customAndSwitchWrapperStyle = css`
   display: flex;
   align-items: center;
 `
@@ -36,13 +36,13 @@ export const applyCustomIconStyle = (
   `
 }
 
-const singleRowCss = css`
+const singleRowStyle = css`
   min-height: 48px;
   width: 100%;
   ${publicPaddingStyle}
 `
 
-const doubleRowCss = css`
+const doubleRowStyle = css`
   min-height: 48px;
   width: 100%;
   display: flex;
@@ -53,5 +53,5 @@ const doubleRowCss = css`
 export const applyLabelWrapperStyle = (
   isCustom: boolean = false,
 ): SerializedStyles => {
-  return isCustom ? singleRowCss : doubleRowCss
+  return isCustom ? singleRowStyle : doubleRowStyle
 }

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Select } from "@illa-design/select"
 import { BaseSelectSetterProps } from "./interface"
-import { BaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
 export const BaseSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
@@ -14,7 +14,7 @@ export const BaseSelect: FC<BaseSelectSetterProps> = (props) => {
   } = props
 
   return (
-    <div css={BaseSelectWrapperStyle(isSetterSingleRow)}>
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         options={options}
         size="small"

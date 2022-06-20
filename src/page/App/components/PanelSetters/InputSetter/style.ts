@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { applyFixedWidthStyle } from "@/page/App/components/PanelSetters/style"
+import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const applyInputSetterWrapperStyle = (
   isSetterSingleRow: boolean = false,
@@ -9,7 +9,7 @@ export const applyInputSetterWrapperStyle = (
         width: 100%;
         margin-top: 8px;
       `
-    : applyFixedWidthStyle
+    : fixedWidthStyle
 }
 
 export const applyInputSetterStyle = css`

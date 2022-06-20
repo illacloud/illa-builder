@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { applyFixedWidthStyle } from "@/page/App/components/PanelSetters/style"
+import { fixedWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const applyRadioGroupWrapperStyle = (
   isSetterSingleRow: boolean = false,
@@ -9,5 +9,5 @@ export const applyRadioGroupWrapperStyle = (
         width: 100%;
         margin-top: 8px;
       `
-    : applyFixedWidthStyle
+    : fixedWidthStyle
 }

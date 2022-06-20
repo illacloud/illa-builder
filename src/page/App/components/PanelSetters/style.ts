@@ -1,9 +1,9 @@
 import { css } from "@emotion/react"
 
-export const applyFixedWidthStyle = css`
+export const fixedWidthStyle = css`
   width: 184px;
 `
 
-export const applyDynamicWidthStyle = css`
+export const dynamicWidthStyle = css`
   width: auto;
 `

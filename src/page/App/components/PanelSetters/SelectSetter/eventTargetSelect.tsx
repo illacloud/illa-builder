@@ -2,7 +2,7 @@ import { FC, useContext } from "react"
 import { Select } from "@illa-design/select"
 import { BaseSelectSetterProps } from "./interface"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
-import { BaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
 export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
@@ -32,7 +32,7 @@ export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
   }
 
   return (
-    <div css={BaseSelectWrapperStyle(isSetterSingleRow)}>
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         options={finalOptions()}
         size="small"

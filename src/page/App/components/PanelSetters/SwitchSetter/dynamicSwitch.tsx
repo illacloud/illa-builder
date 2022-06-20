@@ -5,8 +5,8 @@ import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import {
   applyCustomIconStyle,
   applyLabelWrapperStyle,
-  customAndSwitchWrapperCss,
-  dynamicSwitchWrapperCss,
+  customAndSwitchWrapperStyle,
+  dynamicSwitchWrapperStyle,
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
 
@@ -28,9 +28,9 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
 
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
-      <div css={dynamicSwitchWrapperCss}>
+      <div css={dynamicSwitchWrapperStyle}>
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
-        <div css={customAndSwitchWrapperCss}>
+        <div css={customAndSwitchWrapperStyle}>
           <div
             css={applyCustomIconStyle(customSelected)}
             onClick={() => {

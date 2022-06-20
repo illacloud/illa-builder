@@ -1,10 +1,10 @@
 import { FC, useCallback, useMemo, useState } from "react"
 import {
-  colorSelectMenuItemWrapperCss,
-  colorSelectMenuWrapperCss,
-  colorSelectPreviewColorCss,
-  colorSelectPreviewNameCss,
-  colorSelectWrapperCss,
+  colorSelectMenuItemWrapperStyle,
+  colorSelectMenuWrapperStyle,
+  applyColorSelectPreviewColorStyle,
+  colorSelectPreviewNameStyle,
+  colorSelectWrapperStyle,
 } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { ColorSelectSetterProps } from "./interface"
@@ -18,8 +18,8 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
   const renderContent = useCallback((color: string = "transparent") => {
     return (
       <>
-        <div css={colorSelectPreviewColorCss(color)} />
-        <div css={colorSelectPreviewNameCss}>
+        <div css={applyColorSelectPreviewColorStyle(color)} />
+        <div css={colorSelectPreviewNameStyle}>
           {color !== "transparent"
             ? chroma(color).hex().toLocaleUpperCase()
             : color}
@@ -30,12 +30,12 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
 
   const renderMenuList = useMemo(() => {
     return (
-      <div css={colorSelectMenuWrapperCss}>
+      <div css={colorSelectMenuWrapperStyle}>
         {options?.map((color) => {
           const { key, value } = color
           return (
             <div
-              css={colorSelectMenuItemWrapperCss}
+              css={colorSelectMenuItemWrapperStyle}
               key={key}
               onClick={() => {
                 handleUpdateDsl({ [attrName]: value })
@@ -69,7 +69,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
       onVisibleChange={setMenuVisible}
       content={renderMenuList}
     >
-      <div css={colorSelectWrapperCss}>
+      <div css={colorSelectWrapperStyle}>
         {renderContent(translateValueToKey)}
       </div>
     </Trigger>
