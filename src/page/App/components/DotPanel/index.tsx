@@ -290,6 +290,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           )
           updateResizeScaleSquare(
             item.node,
+            blockColumns,
             nearX,
             nearY,
             item.position,
