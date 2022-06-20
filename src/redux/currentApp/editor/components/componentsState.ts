@@ -25,6 +25,9 @@ export interface ComponentNode {
   props: {
     [key: string]: any
   } | null
+  panelConfig?: {
+    dynamicStrings: string[]
+  }
 }
 
 export interface ComponentsState {
@@ -49,4 +52,9 @@ export const ComponentsInitialState: ComponentsState = {
 export interface updateComponentPropsPayload {
   displayName: string
   newProps: Record<string, any>
+}
+
+export interface updateComponentDynamicStringsPayload {
+  displayName: string
+  dynamicStrings: string[]
 }

@@ -16,7 +16,7 @@ export const ResourceForm: FC<ResourceFormProps> = (props) => {
   }, [propActionType])
 
   const handleClose = () => {
-    onCancel && onCancel()
+    onCancel?.()
     setActionType(propActionType)
   }
 

@@ -1,13 +1,11 @@
-import { FC, useMemo, useState, useRef, useContext, Ref } from "react"
+import { FC, useState, useRef, Ref } from "react"
 import { AnimatePresence } from "framer-motion"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
-import { Menu } from "@illa-design/menu"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
-import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
 import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
 import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
@@ -23,8 +21,6 @@ import {
 } from "./style"
 import { ActionEditorPanelContext } from "./context"
 import { ActionResult } from "./ActionResult"
-
-const { Item: MenuItem } = Menu
 
 function renderEditor(
   actionType: string,
@@ -70,56 +66,44 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
-    onUpdateActionItem,
     onChange,
     onSave,
   } = props
 
-  const { activeActionItemId } = useContext(ActionEditorContext)
   const { t } = useTranslation()
 
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const [actionResVisible, setActionResVisible] = useState(false)
   const [isRuning, setIsRuning] = useState(false)
-  const [result, setResult] = useState<string>()
+  const [result, setResult] = useState<object>()
   const [duration, setDuaraion] = useState<string>()
 
   const runningIntervalRef = useRef<NodeJS.Timer>()
   const triggerRunRef = useRef<triggerRunRef>(null)
-  const actionItems = useSelector(selectAllActionItem)
-  const activeActionItem = useMemo(() => {
-    if (!activeActionItemId) {
-      return null
-    }
-
-    return actionItems.find((action) => action.actionId === activeActionItemId)
-  }, [actionItems, activeActionItemId])
-
+  const activeActionItem = useSelector(getSelectedAction)
   const actionType = activeActionItem?.actionType ?? ""
 
-  function handleAction(key: string) {
-    setMoreBtnMenuVisible(false)
-
-    if (key === "duplicate") {
-      onDuplicateActionItem()
-    } else if (key === "delete") {
-      onDeleteActionItem()
-    }
-  }
-
   const moreActions = (
-    <Menu onClickMenuItem={handleAction} css={moreBtnMenuStyle}>
-      <MenuItem
-        key={"duplicate"}
-        title={t("editor.action.panel.menu.more.duplicate")}
+    <div css={moreBtnMenuStyle}>
+      <div
         css={duplicateActionStyle}
-      />
-      <MenuItem
-        key={"delete"}
-        title={t("editor.action.panel.menu.more.delete")}
+        onClick={() => {
+          setMoreBtnMenuVisible(false)
+          onDuplicateActionItem()
+        }}
+      >
+        {t("editor.action.panel.menu.more.duplicate")}
+      </div>
+      <div
         css={deleteActionStyle}
-      />
-    </Menu>
+        onClick={() => {
+          setMoreBtnMenuVisible(false)
+          onDeleteActionItem()
+        }}
+      >
+        {t("editor.action.panel.menu.more.delete")}
+      </div>
+    </div>
   )
 
   function onSaveParam() {
@@ -128,7 +112,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   function onRun(result: any) {
     setActionResVisible(true)
-    setResult(JSON.stringify(result.data, null, "····"))
+    setResult(result)
   }
 
   function onLoadingActionResult(loading: boolean) {
@@ -150,12 +134,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   return (
     <div css={containerStyle}>
       <header css={headerStyle}>
-        <TitleInput
-          activeActionItem={activeActionItem}
-          onChange={(name) =>
-            onUpdateActionItem(activeActionItemId, { displayName: name })
-          }
-        />
+        <TitleInput />
         <span css={fillingStyle} />
         <Dropdown
           dropList={moreActions}
@@ -163,6 +142,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           popupVisible={moreBtnMenuVisible}
           onVisibleChange={setMoreBtnMenuVisible}
           triggerProps={{
+            position: "br",
             clickOutsideToClose: true,
             closeOnClick: true,
             openDelay: 0,
@@ -215,6 +195,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             {actionResVisible && (
               <ActionResult
                 result={result}
+                actionType={actionType}
+                error={activeActionItem?.error}
                 onClose={() => {
                   setActionResVisible(false)
                 }}

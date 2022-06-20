@@ -1,11 +1,11 @@
-import { FC, useState, useMemo, useRef, MouseEvent, useContext } from "react"
+import { FC, useState, useMemo, useRef, MouseEvent } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
 import { Input } from "@illa-design/input"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
 import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
 import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
@@ -41,8 +41,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
   const { t } = useTranslation()
   const actionItems = useSelector(selectAllActionItem)
-  const { activeActionItemId } = useContext(ActionEditorContext)
-
+  const activeActionItem = useSelector(getSelectedAction)
   const [query, setQuery] = useState<string>("")
   const [editingName, setEditingName] = useState("")
   const [editingActionItemId, setEditingActionItemId] = useState("")
@@ -114,9 +113,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
-    const { actionId: id, displayName: name, status, actionType } = item
-    const isWarning = status === "warning"
-    const isSelected = id === activeActionItemId
+    const { actionId: id, displayName: name, actionType, error } = item
+    const isSelected = id === activeActionItem.actionId
 
     function renderName() {
       if (id === editingActionItemId) {
@@ -137,10 +135,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
           css={actionItemNameStyle}
           onDoubleClick={() => editName(id, name)}
         >
-          <span
-            css={applyactionItemNameTextStyle(isWarning ?? false)}
-            title={name}
-          >
+          <span css={applyactionItemNameTextStyle(error ?? false)} title={name}>
             {name}
           </span>
           {isActionDirty && isSelected && (
@@ -162,7 +157,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       >
         <span css={actionItemIconStyle}>
           <ActionTypeIcon actionType={actionType} />
-          {isWarning && (
+          {error && (
             <WarningCircleIcon css={warningIndicatorStyle} size={"8px"} />
           )}
         </span>

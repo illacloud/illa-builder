@@ -79,7 +79,7 @@ export const buildComponentList = (): ComponentSessionProps[] => {
   return keys.map((key) => {
     return {
       title: newSessionTypeMapSessionNameKey[key],
-      children: configs[key],
+      widgetCardInfos: configs[key],
     }
   })
 }

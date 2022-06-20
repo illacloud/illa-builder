@@ -24,7 +24,6 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-pending`,
         labelName: i18n.t("editor.inspect.setter_label.pending"),
         attrName: "pending",
-        isFullWidth: true,
         setterType: "INPUT_SETTER",
       },
     ],

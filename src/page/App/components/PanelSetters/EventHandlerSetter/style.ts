@@ -1,8 +1,8 @@
 import { css } from "@emotion/react"
 import { illaPrefix, globalColor } from "@illa-design/theme"
-import { publicPaddingCss } from "@/page/App/components/InspectPanel/style"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
-export const eventHandlerSetterWrapperStyle = publicPaddingCss
+export const eventHandlerSetterWrapperStyle = publicPaddingStyle
 
 export const headerWrapperStyle = css`
   display: flex;

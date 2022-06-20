@@ -10,12 +10,11 @@ import {
 } from "@/page/App/components/InspectPanel/style"
 
 export const SingleSelectedPanel: FC = () => {
-  const { panelConfig } = useContext(SelectedPanelContext)
+  const { widgetType, widgetDisplayName } = useContext(SelectedPanelContext)
 
   const builderPanelConfig = useMemo(() => {
-    const componentType = panelConfig.widgetType
-    return panelBuilder(componentType)
-  }, [panelConfig])
+    return panelBuilder(widgetType)
+  }, [widgetType])
 
   return (
     builderPanelConfig && (
@@ -24,7 +23,7 @@ export const SingleSelectedPanel: FC = () => {
         <PanelHeader />
         <Divider />
         <div css={singleSelectedPanelSetterWrapperStyle}>
-          {fieldFactory(builderPanelConfig, panelConfig.widgetDisplayName)}
+          {fieldFactory(builderPanelConfig, widgetDisplayName)}
         </div>
       </div>
     )

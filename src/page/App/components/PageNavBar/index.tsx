@@ -35,6 +35,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const dispatch = useDispatch()
 
   const appInfo = useSelector(getAppInfo)
+  const leftPanelVisible = useSelector(isOpenLeftPanel)
+  const rightPanelVsible = useSelector(isOpenRightPanel)
+  const bottomPanelVisible = useSelector(isOpenBottomPanel)
 
   return (
     <div className={className} css={navBarStyle}>
@@ -48,23 +51,17 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={viewControlStyle}>
         <WindowLeftIcon
           onClick={() => {
-            dispatch(
-              configActions.updateLeftPanel(!useSelector(isOpenLeftPanel)),
-            )
+            dispatch(configActions.updateLeftPanel(!leftPanelVisible))
           }}
         />
         <WindowRightIcon
           onClick={() => {
-            dispatch(
-              configActions.updateRightPanel(!useSelector(isOpenRightPanel)),
-            )
+            dispatch(configActions.updateRightPanel(!rightPanelVsible))
           }}
         />
         <WindowBottomIcon
           onClick={() => {
-            dispatch(
-              configActions.updateBottomPanel(!useSelector(isOpenBottomPanel)),
-            )
+            dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
           }}
         />
         <ZoomControl />

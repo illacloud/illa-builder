@@ -7,6 +7,7 @@ import {
   plusScale,
   minusScale,
   updateSelectedComponent,
+  updateSelectedAction,
   updateShowDot,
   updateUnitWidth,
 } from "@/redux/currentApp/config/configReducer"
@@ -21,6 +22,7 @@ const configSlice = createSlice({
     updateUnitWidth,
     updateShowDot,
     updateSelectedComponent,
+    updateSelectedAction,
     plusScale,
     minusScale,
   },

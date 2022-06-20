@@ -14,10 +14,12 @@ export const IllaApp: FC = () => {
   const [room, setRoom] = useState<Room>()
   const dispatch = useDispatch()
   useEffect(() => {
+    const controller = new AbortController()
     Api.request<DashboardApp[]>(
       {
         url: "/api/v1/apps",
         method: "GET",
+        signal: controller.signal,
       },
       (response) => {
         dispatch(
@@ -31,6 +33,7 @@ export const IllaApp: FC = () => {
       {
         url: "/api/v1/resources",
         method: "GET",
+        signal: controller.signal,
       },
       (response) => {
         dispatch(
@@ -52,6 +55,7 @@ export const IllaApp: FC = () => {
       if (room !== undefined) {
         Connection.leaveRoom(room.roomId)
       }
+      controller.abort()
     }
   }, [])
   return (
