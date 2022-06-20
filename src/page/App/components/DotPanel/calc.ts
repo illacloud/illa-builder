@@ -59,12 +59,33 @@ export function calculateDragPosition(
   }
 
   return {
-    relativeX,
-    relativeY,
     squareX,
     squareY,
     renderX,
     renderY,
+  } as DragPosition
+}
+
+export function calculateDragExistPosition(
+  unitWidth: number,
+  unitHeight: number,
+  lastSquareX: number,
+  lastSquareY: number,
+  diffRect: XYCoord,
+): DragPosition {
+  const realX = lastSquareX * unitWidth
+  const realY = lastSquareY * unitHeight
+  const renderX = realX + diffRect.x
+  const renderY = realY + diffRect.y
+
+  const squareX = lastSquareX + Math.floor(diffRect.x / unitWidth)
+  const squareY = lastSquareY + Math.floor(diffRect.y / unitHeight)
+
+  return {
+    renderX,
+    renderY,
+    squareX,
+    squareY,
   } as DragPosition
 }
 

@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react"
 import {
   DotPanelProps,
+  DragPosition,
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
@@ -30,7 +31,12 @@ import { DragShadowSquare } from "@/page/App/components/DragShadowSquare"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import store, { RootState } from "@/store"
-import { calculateDragPosition, calculateNearXY, calculateXY } from "./calc"
+import {
+  calculateDragExistPosition,
+  calculateDragPosition,
+  calculateNearXY,
+  calculateXY,
+} from "./calc"
 import {
   updateDottedLineSquareData,
   updateDragShadowData,
@@ -142,26 +148,37 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth != null &&
           canvasHeight != null
         ) {
-          const { squareX, squareY } = calculateDragPosition(
-            canvasRect,
-            monitorRect,
-            canvasWidth,
-            canvasHeight,
-            canvasScrollLeft,
-            canvasScrollTop,
-            unitWidth,
-            unitHeight,
-            item.w,
-            item.h,
-            edgeWidth,
-            blockColumns,
-            blockRows,
-            componentNode.verticalResize,
-          )
+          let calculateResult: DragPosition
+          if (item.x == -1 && item.y == -1) {
+            calculateResult = calculateDragPosition(
+              canvasRect,
+              monitorRect,
+              canvasWidth,
+              canvasHeight,
+              canvasScrollLeft,
+              canvasScrollTop,
+              unitWidth,
+              unitHeight,
+              item.w,
+              item.h,
+              edgeWidth,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
+            )
+          } else {
+            calculateResult = calculateDragExistPosition(
+              unitWidth,
+              unitHeight,
+              item.x,
+              item.y,
+              monitor.getDifferenceFromInitialOffset()!!,
+            )
+          }
           updateScaleSquare(
             item,
-            squareX,
-            squareY,
+            calculateResult.squareX,
+            calculateResult.squareY,
             componentNode.displayName,
             (newItem) => {
               dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
@@ -200,26 +217,37 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth != null &&
           canvasHeight != null
         ) {
-          const { squareX, squareY, renderX, renderY } = calculateDragPosition(
-            canvasRect,
-            monitorRect,
-            canvasWidth,
-            canvasHeight,
-            canvasScrollLeft,
-            canvasScrollTop,
-            unitWidth,
-            unitHeight,
-            item.w,
-            item.h,
-            edgeWidth,
-            blockColumns,
-            blockRows,
-            componentNode.verticalResize,
-          )
+          let calculateResult: DragPosition
+          if (item.x == -1 && item.y == -1) {
+            calculateResult = calculateDragPosition(
+              canvasRect,
+              monitorRect,
+              canvasWidth,
+              canvasHeight,
+              canvasScrollLeft,
+              canvasScrollTop,
+              unitWidth,
+              unitHeight,
+              item.w,
+              item.h,
+              edgeWidth,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
+            )
+          } else {
+            calculateResult = calculateDragExistPosition(
+              unitWidth,
+              unitHeight,
+              item.x,
+              item.y,
+              monitor.getDifferenceFromInitialOffset()!!,
+            )
+          }
           updateDragShadowData(
             item,
-            renderX,
-            renderY,
+            calculateResult.renderX,
+            calculateResult.renderY,
             unitWidth,
             unitHeight,
             canvasWidth,
@@ -236,8 +264,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           )
           updateDottedLineSquareData(
             item,
-            squareX,
-            squareY,
+            calculateResult.squareX,
+            calculateResult.squareY,
             unitWidth,
             unitHeight,
             (newItem) => {
