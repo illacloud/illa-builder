@@ -38,7 +38,7 @@ export const ComponentsInitialState: ComponentsState = {
     childrenNode: null,
     type: null,
     containerType: "EDITOR_DOT_PANEL",
-    verticalResize: false,
+    verticalResize: true,
     h: 0,
     w: 0,
     x: -1,

@@ -236,7 +236,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             unitWidth,
             unitHeight,
             canvasWidth,
+            canvasHeight,
             edgeWidth,
+            componentNode.verticalResize,
             (renderDragShadow) => {
               dispatch(
                 dragShadowActions.addOrUpdateDragShadowReducer(
@@ -419,7 +421,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   return (
     <div
       ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
-      css={applyScaleStyle(canvasHeight)}
+      css={applyScaleStyle(canvasHeight, componentNode.verticalResize)}
       onClick={(event) => {
         dispatch(configActions.updateSelectedComponent([]))
       }}
