@@ -2,14 +2,29 @@ import { FC, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
+import "codemirror/lib/codemirror"
 import "codemirror/theme/duotone-light.css"
 import "codemirror/addon/edit/matchbrackets"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
-import "codemirror/addon/tern/tern.css"
 import "codemirror/addon/lint/lint"
 import "codemirror/addon/lint/lint.css"
+// tern
+import tern from "tern"
+import "codemirror/addon/tern/worker"
+import "codemirror/addon/tern/tern.css"
+import "codemirror/addon/tern/tern"
+// import 'tern/lib/tern';
+// import 'tern/plugin/complete_strings';
+// import 'tern/doc/demo/polyfill';
+// import 'tern/lib/signal';
+// import 'tern/lib/def';
+// import 'tern/lib/comment';
+// import 'tern/lib/infer';
+// import "tern/plugin/doc_comment"
+import ecmascript from "tern/defs/ecmascript.json"
+
 // defineMode
 import "./modes"
 import "./hinter"
@@ -24,6 +39,11 @@ import { Trigger } from "@illa-design/trigger"
 import { CodePreview } from "./CodePreview"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isExpectType } from "@/components/CodeEditor/utils"
+import ReactDOM from "react-dom";
+import {AutoCompleteItem} from "@/components/EditorInput/AutoComplete/item";
+import {HintComplement} from "@/components/EditorInput/AutoComplete/HintComplement";
+import {Def} from "tern/lib/tern";
+import * as Tern from "tern";
 
 export type Hinter = {
   showHint: (
@@ -34,6 +54,8 @@ export type Hinter = {
   update?: (data: any) => void
   fireOnFocus?: boolean
 }
+
+window.tern = tern
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -50,6 +72,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     ...otherProps
   } = props
   const codeTargetRef = useRef<HTMLDivElement>(null)
+  const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
   const [hinters, setHinters] = useState<Hinter[]>([])
   const [hinterOpen, setHinterOpen] = useState<boolean>()
@@ -59,7 +82,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   })
   const [previewVisible, setPreviewVisible] = useState<boolean>()
   const [focus, setFocus] = useState<boolean>()
-
   const handleFocus = () => {
     setFocus(true)
   }
@@ -132,10 +154,11 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         completeSingle: false,
       })
     } else if (modeName == "javascript") {
-      cm.showHint({
-        hint: CodeMirror.hint.javascript,
-        completeSingle: false, // 是否立即补全
-      })
+      sever.current?.complete(cm)
+      // cm.showHint({
+      //   hint: CodeMirror.hint.javascript,
+      //   completeSingle: false, // 是否立即补全
+      // })
     }
   }
 
@@ -145,6 +168,23 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   ) => {
     marking.forEach((helper) => helper(editor))
   }
+
+  useEffect(() => {
+    sever.current = new CodeMirror.TernServer({
+      // @ts-ignore type warning
+
+      defs: [ecmascript, {}],
+      completionTip: (data) => {
+        console.log(data, 'completionTip')
+        let div = document.createElement("div")
+        let a = ReactDOM.render(
+            <HintComplement />,
+            div,
+        )
+        return div
+      },
+    })
+  }, [])
 
   useEffect(() => {
     if (!editor) {
