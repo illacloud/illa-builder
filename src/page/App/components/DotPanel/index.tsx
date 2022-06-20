@@ -317,7 +317,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   )
 
   const dragShadows = useMemo<ReactNode[]>(() => {
-    return Object.keys(dragShadowMap).map<ReactNode>((value, index, array) => {
+    return Object.keys(dragShadowMap).map<ReactNode>((value) => {
       const item = dragShadowMap[value]
       return (
         <DragShadowSquare
@@ -382,34 +382,32 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   }, [componentNode.childrenNode])
 
   const dottedLineSquares = useMemo<ReactNode[]>(() => {
-    return Object.keys(dottedLineSquareMap).map<ReactNode>(
-      (value, index, array) => {
-        const item = dottedLineSquareMap[value]
-        const h = item.h
-        const w = item.w
-        const [l, t] = calculateXY(
-          item.squareX,
-          item.squareY,
-          unitWidth,
-          unitHeight,
-        )
-        return (
-          <DottedLineSquare
-            css={applyDragObjectStyle(t, l)}
-            h={h}
-            w={w}
-            key={item.displayName}
-          />
-        )
-      },
-    )
+    return Object.keys(dottedLineSquareMap).map<ReactNode>((value) => {
+      const item = dottedLineSquareMap[value]
+      const h = item.h
+      const w = item.w
+      const [l, t] = calculateXY(
+        item.squareX,
+        item.squareY,
+        unitWidth,
+        unitHeight,
+      )
+      return (
+        <DottedLineSquare
+          css={applyDragObjectStyle(t, l)}
+          h={h}
+          w={w}
+          key={item.displayName}
+        />
+      )
+    })
   }, [dottedLineSquareMap])
 
   return (
     <div
       ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
       css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
-      onClick={(event) => {
+      onClick={() => {
         dispatch(configActions.updateSelectedComponent([]))
       }}
       {...otherProps}
