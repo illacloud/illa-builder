@@ -57,7 +57,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const scale = useSelector(getScale)
 
   // canvas field
-  const edgeWidth = 6
+  const edgeWidth = 18
   const [canvasHeight, setCanvasHeight] = useState<number | null>(null)
   const [canvasWidth, setCanvasWidth] = useState<number | null>(null)
   const blockColumns = 64
@@ -157,8 +157,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             blockColumns,
             blockRows,
             componentNode.verticalResize,
-            item.x,
-            item.y,
           )
           updateScaleSquare(
             item,
@@ -217,8 +215,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             blockColumns,
             blockRows,
             componentNode.verticalResize,
-            item.x,
-            item.y,
           )
           updateDragShadowData(
             item,
@@ -376,7 +372,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           return null
       }
     })
-  }, [componentNode.childrenNode])
+  }, [componentNode.childrenNode, canvasWidth])
 
   const dottedLineSquares = useMemo<ReactNode[]>(() => {
     return Object.keys(dottedLineSquareMap).map<ReactNode>((value) => {

@@ -16,8 +16,6 @@ export function calculateDragPosition(
   blockColumns: number,
   blockRows: number,
   parentVerticalResize: boolean,
-  lastSquareX?: number,
-  lastSquareY?: number,
 ): DragPosition {
   // mouse position
   let relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft - edgeWidth

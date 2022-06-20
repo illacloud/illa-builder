@@ -107,7 +107,7 @@ export function applyHandlerStyle(
     display: flex;
     left: 0;
     cursor: grab;
-    top: -20px;
+    top: -18px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     position: absolute;
@@ -118,7 +118,7 @@ export function applyHandlerStyle(
     align-items: center;
     padding-left: 1px;
     padding-right: 4px;
-    height: 20px;
+    height: 18px;
     max-height: ${maxHeight}px;
   `
 }
