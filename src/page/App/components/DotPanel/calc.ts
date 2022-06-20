@@ -71,15 +71,44 @@ export function calculateDragExistPosition(
   unitHeight: number,
   lastSquareX: number,
   lastSquareY: number,
+  canvasHeight: number,
   diffRect: XYCoord,
+  componentW: number,
+  componentH: number,
+  blockColumns: number,
+  blockRows: number,
+  parentVerticalResize: boolean,
 ): DragPosition {
   const realX = lastSquareX * unitWidth
   const realY = lastSquareY * unitHeight
-  const renderX = realX + diffRect.x
-  const renderY = realY + diffRect.y
+  let renderX = realX + diffRect.x
+  let renderY = realY + diffRect.y
 
-  const squareX = lastSquareX + Math.floor(diffRect.x / unitWidth)
-  const squareY = lastSquareY + Math.floor(diffRect.y / unitHeight)
+  let squareX = lastSquareX + Math.floor(diffRect.x / unitWidth)
+  let squareY = lastSquareY + Math.floor(diffRect.y / unitHeight)
+
+  if (squareX < 0) {
+    squareX = 0
+  }
+
+  if (squareX + componentW > blockColumns) {
+    squareX = blockColumns - componentW
+  }
+  if (squareY < 0) {
+    squareY = 0
+  }
+
+  if (!parentVerticalResize) {
+    if (squareY + componentH > blockRows) {
+      squareY = blockRows - componentH
+    }
+  }
+
+  if (!parentVerticalResize) {
+    if (renderY + (componentH * unitHeight) / 2 > canvasHeight) {
+      renderY = canvasHeight - (componentH * unitHeight) / 2
+    }
+  }
 
   return {
     renderX,

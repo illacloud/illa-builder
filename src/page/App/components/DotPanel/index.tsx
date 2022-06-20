@@ -149,7 +149,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasHeight != null
         ) {
           let calculateResult: DragPosition
-          if (item.x == -1 && item.y == -1) {
+          if (item.x == -1 && item.y == -1 && item.parentNode == null) {
             calculateResult = calculateDragPosition(
               canvasRect,
               monitorRect,
@@ -172,7 +172,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
               unitHeight,
               item.x,
               item.y,
+              canvasHeight,
               monitor.getDifferenceFromInitialOffset()!!,
+              item.w,
+              item.h,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
             )
           }
           updateScaleSquare(
@@ -218,7 +224,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasHeight != null
         ) {
           let calculateResult: DragPosition
-          if (item.x == -1 && item.y == -1) {
+          if (item.x == -1 && item.y == -1 && item.parentNode == null) {
             calculateResult = calculateDragPosition(
               canvasRect,
               monitorRect,
@@ -241,7 +247,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
               unitHeight,
               item.x,
               item.y,
+              canvasHeight,
               monitor.getDifferenceFromInitialOffset()!!,
+              item.w,
+              item.h,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
             )
           }
           updateDragShadowData(
