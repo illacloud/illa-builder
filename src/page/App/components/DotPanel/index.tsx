@@ -57,7 +57,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const scale = useSelector(getScale)
 
   // canvas field
-  const edgeWidth = 20
+  const edgeWidth = 6
   const [canvasHeight, setCanvasHeight] = useState<number | null>(null)
   const [canvasWidth, setCanvasWidth] = useState<number | null>(null)
   const blockColumns = 64
@@ -113,7 +113,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       dispatch(configActions.updateUnitWidth(finalBlockWidth))
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [windowWidth, leftPanelOpenState, rightPanelOpenState, scale])
+  }, [windowWidth, leftPanelOpenState, rightPanelOpenState])
 
   // drag move
   const [, dropTarget] = useDrop<

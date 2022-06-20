@@ -14,7 +14,6 @@ export function applyScaleStyle(
     overflow-x: hidden;
     overflow-y: ${verticalResize ? "auto" : "hidden"};
     width: 100%;
-    min-width: 948px;
     height: 100%;
   `
 }
