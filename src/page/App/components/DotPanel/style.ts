@@ -2,8 +2,6 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export function applyScaleStyle(verticalResize: boolean): SerializedStyles {
-  let finalHeight: string
-  finalHeight = "100%"
   return css`
     position: relative;
     padding-left: 6px;
@@ -14,8 +12,7 @@ export function applyScaleStyle(verticalResize: boolean): SerializedStyles {
     overflow-y: ${verticalResize ? "auto" : "hidden"};
     width: 100%;
     min-width: 948px;
-    min-height: 948px;
-    height: ${finalHeight};
+    height: 100%;
   `
 }
 
