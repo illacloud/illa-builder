@@ -7,11 +7,13 @@ import {
 import {
   applyBarPointerStyle,
   applyBorderStyle,
+  applyHandlerStyle,
   applyOuterStyle,
   applySquarePointerStyle,
   applyTransformWidgetStyle,
   BarPosition,
   onePixelStyle,
+  warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
 import { useDispatch, useSelector } from "react-redux"
@@ -20,6 +22,8 @@ import { RootState } from "@/store"
 import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { mergeRefs } from "@illa-design/system"
+import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 function getDragConfig(
   componentNode: ComponentNode,
@@ -55,6 +59,15 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   })
 
   const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
+    () => ({
+      type: "components",
+      item: componentNode,
+      canDrag: !componentNode.isDragging,
+    }),
+    [componentNode],
+  )
+
+  const [, dragHandlerRef, dragPreviewHandlerRef] = useDrag<ComponentNode>(
     () => ({
       type: "components",
       item: componentNode,
@@ -128,6 +141,20 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           ref={dragRef}
         >
           <TransformWidget componentNode={componentNode} />
+        </div>
+        <div
+          className={"handler"}
+          ref={dragHandlerRef}
+          css={applyHandlerStyle(selected, h, scaleSquareState)}
+        >
+          <DragIcon />
+          <span>{componentNode.displayName}</span>
+          {scaleSquareState == "error" && (
+            <WarningCircleIcon
+              color={globalColor(`--${illaPrefix}-white-05`)}
+              css={warningStyle}
+            />
+          )}
         </div>
       </div>
       <div
@@ -205,6 +232,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       <div
         ref={mergeRefs(
           dragPreviewRef,
+          dragPreviewHandlerRef,
           resizeTPreviewRef,
           resizeRPreviewRef,
           resizeBPreviewRef,

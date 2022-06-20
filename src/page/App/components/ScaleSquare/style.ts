@@ -97,6 +97,36 @@ export const onePixelStyle = css`
   height: 1px;
 `
 
+export function applyHandlerStyle(
+  selected: boolean,
+  maxHeight: number,
+  state: ScaleSquareType,
+): SerializedStyles {
+  return css`
+    visibility: ${selected ? "visible" : "hidden"};
+    display: flex;
+    left: 0;
+    cursor: grab;
+    top: -20px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    position: absolute;
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
+    background: ${getStateColor(state)};
+    flex-direction: row;
+    font-size: 12px;
+    align-items: center;
+    padding-left: 1px;
+    padding-right: 4px;
+    height: 20px;
+    max-height: ${maxHeight}px;
+  `
+}
+
+export const warningStyle = css`
+  margin-left: 4px;
+`
+
 export function applyBarPointerStyle(
   selected: boolean,
   resizing: boolean,
@@ -201,6 +231,9 @@ export function applyBorderStyle(
 
     &:hover {
       border-color: ${getStateColor(scaleSquareState)};
+      .handler {
+        visibility: visible;
+      }
     }
 
     &:active {

@@ -30,7 +30,7 @@ import { DragShadowSquare } from "@/page/App/components/DragShadowSquare"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import store, { RootState } from "@/store"
-import { calculateDragPosition, calculateXY } from "./calc"
+import { calculateDragPosition, calculateNearXY, calculateXY } from "./calc"
 import {
   updateDottedLineSquareData,
   updateDragShadowData,
@@ -157,6 +157,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             blockColumns,
             blockRows,
             componentNode.verticalResize,
+            item.x,
+            item.y,
           )
           updateScaleSquare(
             item,
@@ -215,6 +217,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             blockColumns,
             blockRows,
             componentNode.verticalResize,
+            item.x,
+            item.y,
           )
           updateDragShadowData(
             item,
@@ -284,21 +288,14 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth != null &&
           canvasHeight != null
         ) {
-          const { nearX, nearY } = calculateDragPosition(
+          const [nearX, nearY] = calculateNearXY(
             canvasRect,
             monitorRect,
-            canvasWidth,
-            canvasHeight,
             canvasScrollLeft,
             canvasScrollTop,
             unitWidth,
             unitHeight,
-            item.node.w,
-            item.node.h,
             edgeWidth,
-            blockColumns,
-            blockRows,
-            componentNode.verticalResize,
           )
           updateResizeScaleSquare(
             item.node,
