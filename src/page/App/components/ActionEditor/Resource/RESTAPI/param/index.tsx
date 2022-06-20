@@ -20,18 +20,7 @@ import {
   RESTAPIParamProps,
   RESTAPIConfigureValues,
   RESTAPIParamValues,
-  Params,
 } from "../interface"
-
-function concatUrl(
-  path: string = "",
-  urlParams: Params[] = [],
-  baseUrl?: string,
-) {
-  const params = urlParams.map(({ key, value }) => `${key}=${value}`).join("&")
-  const url = params ? `${path}?${params}` : path
-  return baseUrl ? `${baseUrl}/${url}` : url
-}
 
 export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { onChange } = props
@@ -50,7 +39,6 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     method: config?.method ?? "GET",
     path: config?.path,
     urlParams: config?.urlParams ?? [],
-    url: concatUrl(config?.path, config?.urlParams, baseURL),
     headers: config?.headers ?? [],
     body: config?.body ?? [],
     cookies: config?.cookies ?? [],
@@ -63,9 +51,6 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       setParams((preParam) => {
         const newParam = { ...preParam, [field]: v }
 
-        if (["path", "urlParams"].includes(field)) {
-          newParam.url = concatUrl(newParam.path, newParam.urlParams, baseURL)
-        }
         onChange && onChange(newParam)
         return newParam
       })

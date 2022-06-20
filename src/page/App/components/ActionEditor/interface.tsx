@@ -19,5 +19,6 @@ export type ResourceType = DatabaseType | ApiType | string
 
 export interface ActionEditorContextProps {
   editorHeight: number
+  setIsActionDirty?: (isDirty: boolean) => void
   setActionListLoading?: (loading: boolean) => void
 }

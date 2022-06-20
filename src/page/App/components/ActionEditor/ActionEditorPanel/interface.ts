@@ -13,11 +13,4 @@ export interface ActionEditorPanelProps
   onSave?: () => void
 }
 
-export interface ActionEditorPanelContextProps {
-  onLoadingActionResult?: (loading: boolean) => void
-}
-
-export type triggerRunRef = {
-  run: () => void
-  saveAndRun: () => void
-}
+export type TriggerMode = "manual" | "onChange"

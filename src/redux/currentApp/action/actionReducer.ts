@@ -30,8 +30,6 @@ export const updateActionItemReducer: CaseReducer<
     ...state[targetActionIndex],
     ...action.payload,
   })
-
-  return state
 }
 
 export const removeActionItemReducer: CaseReducer<
@@ -42,5 +40,4 @@ export const removeActionItemReducer: CaseReducer<
     state.findIndex((item: ActionItem) => item.actionId === action.payload),
     1,
   )
-  return state
 }

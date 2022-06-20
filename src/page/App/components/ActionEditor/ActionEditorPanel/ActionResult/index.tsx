@@ -1,18 +1,21 @@
 import { FC, useRef, useState, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { motion } from "framer-motion"
 import { css } from "@emotion/react"
 import { RightIcon, CloseIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
-import { motion } from "framer-motion"
+import { AxiosResponse } from "axios"
 import {
   actionEditorPanelLayoutWrapper,
   applyContainerHeight,
   applyResizerStyle,
 } from "@/page/App/components/ActionEditor/style"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ApiResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/ApiResult"
 import { DatabaseResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/DatabaseResult"
-import { ActionResult as ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
 import {
   resCloseIconStyle,
   applyResContainerStyle,
@@ -34,7 +37,9 @@ function renderStatusNode(error?: boolean) {
   return <RightIcon css={resSuccessStatusIconStyle} size="10px" />
 }
 
-function renderResult(actionType: string, result?: ActionResultType) {
+function renderResult(activeActionItem: ActionItem, result?: AxiosResponse) {
+  const { actionType } = activeActionItem
+
   switch (actionType) {
     case "restapi":
       return <ApiResult result={result} />
@@ -44,8 +49,9 @@ function renderResult(actionType: string, result?: ActionResultType) {
 }
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose, result, error, className, actionType } = props
+  const { onClose, result, error, className } = props
   const { t } = useTranslation()
+  const activeActionItem = useSelector(getSelectedAction)
   const { editorHeight } = useContext(ActionEditorContext)
   const resultContainerRef = useRef<HTMLDivElement>(null)
   const [containerHeight, setContainerHeight] = useState(
@@ -62,8 +68,8 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
     : t("editor.action.result.title.success")
 
   const resultNode = useMemo(
-    () => renderResult(actionType, result),
-    [actionType, result],
+    () => renderResult(activeActionItem, result),
+    [activeActionItem, result],
   )
 
   return (

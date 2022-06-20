@@ -1,15 +1,20 @@
-import { FC, useState, useRef, Ref } from "react"
+import { FC, useState, useRef, useContext } from "react"
 import { AnimatePresence } from "framer-motion"
+import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { Api } from "@/api/base"
+import { AxiosResponse } from "axios"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
-import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
 import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
-import { ActionEditorPanelProps, triggerRunRef } from "./interface"
+import { ActionEditorPanelProps, TriggerMode } from "./interface"
 import {
   containerStyle,
   headerStyle,
@@ -19,44 +24,7 @@ import {
   duplicateActionStyle,
   deleteActionStyle,
 } from "./style"
-import { ActionEditorPanelContext } from "./context"
 import { ActionResult } from "./ActionResult"
-
-function renderEditor(
-  actionType: string,
-  ref: Ref<triggerRunRef>,
-  onSaveParam: () => void,
-  onRun: (result: any) => void,
-  props: Partial<ActionEditorPanelProps>,
-) {
-  const { onEditResource, onChangeResource, onCreateResource, onChange } = props
-
-  switch (actionType) {
-    case "restapi":
-    case "mysql":
-      return (
-        <ResourceEditor
-          ref={ref}
-          onChangeParam={onChange}
-          onSaveParam={onSaveParam}
-          onRun={onRun}
-          onCreateResource={onCreateResource}
-          onEditResource={onEditResource}
-          onChangeResource={onChangeResource}
-        />
-      )
-    case "transformer":
-      return (
-        <TransformerEditor
-          ref={ref}
-          onChangeParam={onChange}
-          onSaveParam={onSaveParam}
-        />
-      )
-    default:
-      return null
-  }
-}
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
@@ -66,22 +34,23 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
-    onChange,
-    onSave,
   } = props
 
   const { t } = useTranslation()
-
+  const dispatch = useDispatch()
+  const { setIsActionDirty } = useContext(ActionEditorContext)
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const [actionResVisible, setActionResVisible] = useState(false)
+  const [triggerMode, setTriggerMode] = useState<TriggerMode>("manual")
   const [isRuning, setIsRuning] = useState(false)
-  const [result, setResult] = useState<object>()
+  const [result, setResult] = useState<AxiosResponse>()
   const [duration, setDuaraion] = useState<string>()
 
   const runningIntervalRef = useRef<NodeJS.Timer>()
-  const triggerRunRef = useRef<triggerRunRef>(null)
   const activeActionItem = useSelector(getSelectedAction)
   const actionType = activeActionItem?.actionType ?? ""
+  let editorNode = null
+  let runBtnText = ""
 
   const moreActions = (
     <div css={moreBtnMenuStyle}>
@@ -106,13 +75,93 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     </div>
   )
 
-  function onSaveParam() {
-    onSave?.()
+  async function saveOrRun() {
+    if (isActionDirty) {
+      if (triggerMode === "manual") {
+        // save only
+        save()
+      } else {
+        // save and run
+        await save()
+        run()
+      }
+    } else {
+      // run
+      run()
+    }
   }
 
-  function onRun(result: any) {
-    setActionResVisible(true)
-    setResult(result)
+  async function save() {
+    const { data, rawData, error, ...actionPayload } = activeActionItem
+    const actionId = activeActionItem.actionId
+
+    Api.request<ActionItem>(
+      {
+        url: `/actions/${actionId}`,
+        method: "PUT",
+        data: actionPayload,
+      },
+      ({ data }) => {
+        dispatch(
+          actionActions.updateActionItemReducer({
+            ...data,
+            actionId,
+          }),
+        )
+
+        setIsActionDirty?.(false)
+      },
+      () => { },
+      () => { },
+      (loading) => {
+        onLoadingActionResult(loading)
+      },
+    )
+  }
+
+  function run() {
+    Api.request(
+      {
+        url: `/actions/${activeActionItem?.actionId}/run`,
+        method: "POST",
+        data: {
+          actionType: activeActionItem?.actionType,
+        },
+      },
+      (response) => {
+        // save data to action
+        dispatch(
+          actionActions.updateActionItemReducer({
+            ...activeActionItem,
+            // TODO: apply Transfomer
+            data: response.data,
+            rawData: response.data,
+            error: false,
+          }),
+        )
+
+        setResult(response)
+        setActionResVisible(true)
+      },
+      (response) => {
+        // empty data if has error
+        dispatch(
+          actionActions.updateActionItemReducer({
+            ...activeActionItem,
+            // TODO: apply Transfomer
+            data: {},
+            rawData: {},
+            error: true,
+          }),
+        )
+        setResult(response)
+        setActionResVisible(true)
+      },
+      () => { },
+      (loading) => {
+        onLoadingActionResult(loading)
+      },
+    )
   }
 
   function onLoadingActionResult(loading: boolean) {
@@ -128,6 +177,39 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     } else {
       clearInterval(runningIntervalRef.current)
       setDuaraion("")
+    }
+  }
+
+  switch (actionType) {
+    case "restapi":
+    case "mysql":
+      editorNode = (
+        <ResourceEditor
+          triggerMode={triggerMode}
+          onChangeTriggerMode={setTriggerMode}
+          onCreateResource={onCreateResource}
+          onEditResource={onEditResource}
+          onChangeResource={onChangeResource}
+        />
+      )
+      break
+    case "transformer":
+      editorNode = <TransformerEditor />
+      break
+    default:
+      break
+  }
+
+  if (isRuning) {
+    runBtnText = duration as string
+  } else {
+    if (isActionDirty) {
+      runBtnText =
+        triggerMode === "manual"
+          ? t("editor.action.panel.btn.save")
+          : t("editor.action.panel.btn.save_and_run")
+    } else {
+      runBtnText = t("editor.action.panel.btn.run")
     }
   }
 
@@ -166,36 +248,19 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           leftIcon={<CaretRightIcon />}
           loading={isRuning}
           disabled={isRuning}
-          onClick={() => {
-            setActionResVisible(false)
-            isActionDirty
-              ? triggerRunRef.current?.saveAndRun()
-              : triggerRunRef.current?.run()
-          }}
+          onClick={saveOrRun}
         >
-          {isRuning
-            ? duration
-            : isActionDirty
-            ? t("editor.action.panel.btn.save_and_run")
-            : t("editor.action.panel.btn.run")}
+          {runBtnText}
         </Button>
       </header>
 
       {activeActionItem && (
         <>
-          <ActionEditorPanelContext.Provider value={{ onLoadingActionResult }}>
-            {renderEditor(actionType, triggerRunRef, onSaveParam, onRun, {
-              onChange,
-              onCreateResource,
-              onEditResource,
-              onChangeResource,
-            })}
-          </ActionEditorPanelContext.Provider>
+          {editorNode}
           <AnimatePresence>
             {actionResVisible && (
               <ActionResult
                 result={result}
-                actionType={actionType}
                 error={activeActionItem?.error}
                 onClose={() => {
                   setActionResVisible(false)

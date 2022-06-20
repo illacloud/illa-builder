@@ -72,6 +72,7 @@
         },
         "btn": {
           "run": "Run",
+          "save": "Save",
           "save_and_run": "Save&Run",
           "disable": "Disable",
           "enable": "Enable",

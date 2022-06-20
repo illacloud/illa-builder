@@ -7,16 +7,16 @@ import { DatabaseResultProps } from "./interface"
 
 export const DatabaseResult: FC<DatabaseResultProps> = (props) => {
   const { result } = props
-  const data = result?.response?.data
+  const data = result?.data
   const { t } = useTranslation()
 
   const columns = data?.length
     ? Object.keys(data[0]).map((k) => {
-        return {
-          accessor: k,
-          Header: `${k}`,
-        }
-      })
+      return {
+        accessor: k,
+        Header: `${k}`,
+      }
+    })
     : []
 
   return (
