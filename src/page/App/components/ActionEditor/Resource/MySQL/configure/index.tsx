@@ -79,12 +79,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
 
     const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
       const { resourceName, ...options } = data
-      onSubmit &&
-        onSubmit({
-          resourceName: resourceName,
-          resourceType: "mysql",
-          options,
-        })
+      onSubmit?.({
+        resourceName: resourceName,
+        resourceType: "mysql",
+        options,
+      })
     }
     return (
       <form onSubmit={handleSubmit(submitForm)} css={formStyle} ref={ref}>

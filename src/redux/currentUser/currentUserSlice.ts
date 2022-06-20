@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { updateCurrentUserReducer } from "@/redux/currentUser/currentUserReducer"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import {
+  CurrentUser,
+  CurrentUserInitialState,
+} from "@/redux/currentUser/currentUserState"
 import { SliceCaseReducers } from "@reduxjs/toolkit/src/createSlice"
 
 const currentUserSlice = createSlice<
@@ -9,7 +12,7 @@ const currentUserSlice = createSlice<
   "currentUser"
 >({
   name: "currentUser",
-  initialState: null,
+  initialState: CurrentUserInitialState,
   reducers: {
     updateCurrentUserReducer,
   },
