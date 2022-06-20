@@ -136,11 +136,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           monitorRect != null &&
           canvasRect != null &&
           canvasScrollLeft != null &&
-          canvasScrollTop != null
+          canvasScrollTop != null &&
+          canvasWidth != null &&
+          canvasHeight != null
         ) {
           const { squareX, squareY } = calculateDragPosition(
             canvasRect,
             monitorRect,
+            canvasWidth,
+            canvasHeight,
             canvasScrollLeft,
             canvasScrollTop,
             unitWidth,
@@ -148,6 +152,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.w,
             item.h,
             edgeWidth,
+            blockColumns,
+            blockRows,
+            componentNode.verticalResize,
           )
           updateScaleSquare(
             item,
@@ -202,11 +209,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           monitorRect != null &&
           canvasRect != null &&
           canvasScrollLeft != null &&
-          canvasScrollTop != null
+          canvasScrollTop != null &&
+          canvasWidth != null &&
+          canvasHeight != null
         ) {
           const { squareX, squareY, renderX, renderY } = calculateDragPosition(
             canvasRect,
             monitorRect,
+            canvasWidth,
+            canvasHeight,
             canvasScrollLeft,
             canvasScrollTop,
             unitWidth,
@@ -214,6 +225,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.w,
             item.h,
             edgeWidth,
+            blockColumns,
+            blockRows,
+            componentNode.verticalResize,
           )
           updateDragShadowData(
             item,
@@ -221,6 +235,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             renderY,
             unitWidth,
             unitHeight,
+            canvasWidth,
+            edgeWidth,
             (renderDragShadow) => {
               dispatch(
                 dragShadowActions.addOrUpdateDragShadowReducer(
@@ -246,7 +262,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         }
       },
     }),
-    [unitWidth, unitHeight],
+    [unitWidth, unitHeight, canvasWidth],
   )
 
   // drag resize
@@ -275,11 +291,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           monitorRect != null &&
           canvasRect != null &&
           canvasScrollLeft != null &&
-          canvasScrollTop != null
+          canvasScrollTop != null &&
+          canvasWidth != null &&
+          canvasHeight != null
         ) {
           const { nearX, nearY } = calculateDragPosition(
             canvasRect,
             monitorRect,
+            canvasWidth,
+            canvasHeight,
             canvasScrollLeft,
             canvasScrollTop,
             unitWidth,
@@ -287,6 +307,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.node.w,
             item.node.h,
             edgeWidth,
+            blockColumns,
+            blockRows,
+            componentNode.verticalResize,
           )
           updateResizeScaleSquare(
             item.node,
@@ -310,6 +333,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       return (
         <DragShadowSquare
           key={item.displayName}
+          isConflict={item.isConflict}
           css={applyDragObjectStyle(item.renderY, item.renderX)}
           h={item.h}
           w={item.w}

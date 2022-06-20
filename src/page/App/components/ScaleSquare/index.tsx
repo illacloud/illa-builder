@@ -123,7 +123,10 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       {...otherProps}
     >
       <div css={applyBorderStyle(selected, scaleSquareState)}>
-        <div css={applyTransformWidgetStyle()} ref={dragRef}>
+        <div
+          css={applyTransformWidgetStyle(componentNode.verticalResize)}
+          ref={dragRef}
+        >
           <TransformWidget componentNode={componentNode} />
         </div>
       </div>

@@ -3,7 +3,6 @@ import { HTMLAttributes } from "react"
 
 export interface DotPanelProps extends HTMLAttributes<HTMLDivElement> {
   componentNode: ComponentNode
-  scale?: number
 }
 
 export interface DragPosition {
