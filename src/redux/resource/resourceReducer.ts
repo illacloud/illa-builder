@@ -30,6 +30,4 @@ export const updateResourceItemReducer: CaseReducer<
     ...state[targetIndex],
     ...action.payload,
   })
-
-  return state
 }
