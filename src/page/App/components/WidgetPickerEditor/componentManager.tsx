@@ -10,9 +10,6 @@ function ComponentsManager() {
   return (
     <div css={componentPanelCss}>
       <Tabs variant="text" defaultActiveKey="Insert">
-        <TabPane title="Frame" key="Frame">
-          Frame
-        </TabPane>
         <TabPane title={t("editor.inspect.tab_title")} key="Inspect">
           <ConfigPanel />
         </TabPane>
