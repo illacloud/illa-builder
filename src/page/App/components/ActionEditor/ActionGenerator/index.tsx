@@ -91,7 +91,7 @@ function renderStep(
   }
 }
 
-export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
+export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
   const { visible, onClose } = props
   const [step, setStep] = useState<ActionGeneratorSteps>("type")
   const [resourceType, setResourceType] = useState<string>("")

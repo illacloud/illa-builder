@@ -14,6 +14,8 @@ import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorP
 import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
+import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
+import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
 import { ActionEditorPanelProps, TriggerMode } from "./interface"
 import {
   containerStyle,
@@ -24,7 +26,7 @@ import {
   duplicateActionStyle,
   deleteActionStyle,
 } from "./style"
-import { ActionResult } from "./ActionResult"
+
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
@@ -43,7 +45,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const [actionResVisible, setActionResVisible] = useState(false)
   const [triggerMode, setTriggerMode] = useState<TriggerMode>("manual")
   const [isRuning, setIsRuning] = useState(false)
-  const [result, setResult] = useState<AxiosResponse>()
+  const [result, setResult] = useState<ActionResultType>()
   const [duration, setDuaraion] = useState<string>()
 
   const runningIntervalRef = useRef<NodeJS.Timer>()
@@ -111,8 +113,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
         setIsActionDirty?.(false)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => {
         onLoadingActionResult(loading)
       },
@@ -120,6 +122,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function run() {
+    const { actionType } = activeActionItem
+
+    if (actionType === "transformer") {
+      // TODO: run transformer
+      setResult(activeActionItem.actionTemplate?.transformer)
+      setActionResVisible(true)
+      return
+    }
+
     Api.request(
       {
         url: `/actions/${activeActionItem?.actionId}/run`,
@@ -157,7 +168,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         setResult(response)
         setActionResVisible(true)
       },
-      () => {},
+      () => { },
       (loading) => {
         onLoadingActionResult(loading)
       },

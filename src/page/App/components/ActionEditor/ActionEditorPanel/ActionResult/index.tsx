@@ -25,7 +25,8 @@ import {
   resSuccessStatusIconStyle,
   resFailStatusIconStyle,
 } from "./style"
-import { ActionResultProps } from "./interface"
+import { ActionResultProps, ActionResultType } from "./interface"
+import { TransformerResult } from "./TransformerResult"
 
 const CONTAINER_DEFAULT_HEIGHT = 180
 
@@ -37,14 +38,19 @@ function renderStatusNode(error?: boolean) {
   return <RightIcon css={resSuccessStatusIconStyle} size="10px" />
 }
 
-function renderResult(activeActionItem: ActionItem, result?: AxiosResponse) {
+function renderResult(
+  activeActionItem: ActionItem,
+  result?: ActionResultType
+) {
   const { actionType } = activeActionItem
 
   switch (actionType) {
     case "restapi":
-      return <ApiResult result={result} />
+      return <ApiResult result={result as AxiosResponse} />
     case "mysql":
-      return <DatabaseResult result={result} />
+      return <DatabaseResult result={result as AxiosResponse} />
+    case "transformer":
+      return <TransformerResult result={result as string} />
   }
 }
 
@@ -63,6 +69,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
   }
 
   const resizer = useResize("vertical", resultContainerRef, onHeightChange)
+
   const title = error
     ? t("editor.action.result.title.error")
     : t("editor.action.result.title.success")
