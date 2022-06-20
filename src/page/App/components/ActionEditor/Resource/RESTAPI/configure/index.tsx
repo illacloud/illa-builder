@@ -20,6 +20,7 @@ import {
   gridRowContainerStyle,
   gridRowCenterItemStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import {
   RESTAPIConfigureProps,
   RESTAPIConfigureValues,
@@ -69,7 +70,7 @@ export const RESTAPIConfigure = forwardRef<
   const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
     onSubmit?.({
       resourceName: data.resourceName,
-      resourceType: "restapi",
+      resourceType: ACTION_TYPE.REST_API,
       options: getOptions(data),
     })
   }

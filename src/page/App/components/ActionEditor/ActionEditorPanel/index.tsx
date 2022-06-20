@@ -3,7 +3,6 @@ import { AnimatePresence } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
-import { AxiosResponse } from "axios"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
@@ -16,6 +15,7 @@ import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
 import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
 import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ActionEditorPanelProps, TriggerMode } from "./interface"
 import {
   containerStyle,
@@ -192,8 +192,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   switch (actionType) {
-    case "restapi":
-    case "mysql":
+    case ACTION_TYPE.REST_API:
+    case ACTION_TYPE.MYSQL:
       editorNode = (
         <ResourceEditor
           triggerMode={triggerMode}
@@ -204,7 +204,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         />
       )
       break
-    case "transformer":
+    case ACTION_TYPE.TRANSFORMER:
       editorNode = <TransformerEditor />
       break
     default:

@@ -69,8 +69,8 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         dispatch(actionActions.addActionItemReducer(data))
         updateActiveActionItemId(data.actionId)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => {
         setActionListLoading(loading)
       },
@@ -91,8 +91,8 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           }),
         )
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => {
         setActionListLoading(loading)
       },
@@ -119,8 +119,8 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           dispatch(actionActions.addActionItemReducer(data))
           onDuplicateActionItem(data?.actionId)
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => {
           setActionListLoading(loading)
         },
@@ -138,8 +138,8 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         dispatch(actionActions.removeActionItemReducer(data?.actionId))
         updateSeletedItemId(data?.actionId)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => {
         setActionListLoading(loading)
       },
@@ -161,7 +161,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       () => {
         // TODO: handle error
       },
-      () => {},
+      () => { },
       () => {
         // TODO: handle loading
       },
@@ -183,7 +183,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       () => {
         // TODO: handle error
       },
-      () => {},
+      () => { },
       (loading) => {
         setActionListLoading(loading)
       },

@@ -16,6 +16,7 @@ import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ApiResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/ApiResult"
 import { DatabaseResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/DatabaseResult"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import {
   resCloseIconStyle,
   applyResContainerStyle,
@@ -45,11 +46,11 @@ function renderResult(
   const { actionType } = activeActionItem
 
   switch (actionType) {
-    case "restapi":
+    case ACTION_TYPE.REST_API:
       return <ApiResult result={result as AxiosResponse} />
-    case "mysql":
+    case ACTION_TYPE.MYSQL:
       return <DatabaseResult result={result as AxiosResponse} />
-    case "transformer":
+    case ACTION_TYPE.TRANSFORMER:
       return <TransformerResult result={result as string} />
   }
 }

@@ -13,6 +13,7 @@ import {
   RESTAPIConfigure,
 } from "@/page/App/components/ActionEditor/Resource"
 import { ResourceType } from "@/page/App/components/ActionEditor/interface"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ResourceFormEditorProps, ConnectionRef } from "./interface"
 import {
   formContainerStyle,
@@ -35,7 +36,7 @@ const renderResourceNode = (
   const { resourceId } = props
 
   switch (resourceType) {
-    case "restapi":
+    case ACTION_TYPE.REST_API:
       node = (
         <RESTAPIConfigure
           resourceId={resourceId}
@@ -43,7 +44,7 @@ const renderResourceNode = (
         />
       )
       break
-    case "mysql":
+    case ACTION_TYPE.MYSQL:
       node = (
         <MySQLConfigure
           connectionRef={connectionRef}
@@ -63,9 +64,9 @@ const renderResourceNode = (
 
 const getResourceTypeNameKey = (resourceType: string) => {
   switch (resourceType) {
-    case "restapi":
+    case ACTION_TYPE.REST_API:
       return "rest_api"
-    case "mysql":
+    case ACTION_TYPE.MYSQL:
       return "my_sql"
     default:
       return ""
