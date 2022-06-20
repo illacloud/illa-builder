@@ -1,12 +1,15 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyScaleStyle(verticalResize: boolean): SerializedStyles {
+export function applyScaleStyle(
+  verticalResize: boolean,
+  edgeWidth: number,
+): SerializedStyles {
   return css`
     position: relative;
-    padding-left: 6px;
-    padding-right: 6px;
-    padding-top: 6px;
+    padding-left: ${edgeWidth}px;
+    padding-right: ${edgeWidth}px;
+    padding-top: ${edgeWidth}px;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: ${verticalResize ? "auto" : "hidden"};

@@ -57,7 +57,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const scale = useSelector(getScale)
 
   // canvas field
-  const edgeWidth = 6
+  const edgeWidth = 20
   const [canvasHeight, setCanvasHeight] = useState<number | null>(null)
   const [canvasWidth, setCanvasWidth] = useState<number | null>(null)
   const blockColumns = 64
@@ -408,7 +408,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   return (
     <div
       ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
-      css={applyScaleStyle(componentNode.verticalResize)}
+      css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
       onClick={(event) => {
         dispatch(configActions.updateSelectedComponent([]))
       }}
