@@ -11,12 +11,13 @@ import { motion, AnimatePresence } from "framer-motion"
 import { UpIcon } from "@illa-design/icon"
 
 export const PanelBar: FC<PanelBarProps> = (props) => {
-  const { title, children, isOpened = true } = props
+  const { title, children, isOpened = true, saveToggleState } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
   const handleToggle = useCallback(() => {
+    saveToggleState(!isOpenedState)
     setIsOpenedState(!isOpenedState)
-  }, [isOpenedState])
+  }, [isOpenedState, saveToggleState])
 
   return (
     <div>
