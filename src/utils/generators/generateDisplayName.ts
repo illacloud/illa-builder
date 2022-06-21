@@ -27,7 +27,7 @@ export class DisplayNameGenerator {
 
   // use when create success
   static getDisplayName(type: string): string {
-    if (this.map.hasOwnProperty(type)) {
+    if (type in this.map) {
       const num = this.map[type]
       this.map[type] = num + 1
     } else {

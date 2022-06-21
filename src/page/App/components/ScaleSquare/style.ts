@@ -74,8 +74,8 @@ export function applySquarePointerStyle(
     ${positionStyle};
     box-sizing: border-box;
     border: 1px solid ${selected ? stateColor : "transparent"};
-    height: 4px;
-    width: 4px;
+    height: 5px;
+    width: 5px;
     position: absolute;
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)
@@ -154,7 +154,7 @@ export function applyBarPointerStyle(
         right: 0;
         margin: auto;
         cursor: ${selected ? "row-resize" : "default"};
-        height: 4px;
+        height: 5px;
         width: 18px;
       `
       break
@@ -165,7 +165,7 @@ export function applyBarPointerStyle(
         right: 0;
         cursor: ${selected ? "row-resize" : "default"};
         margin: auto;
-        height: 4px;
+        height: 5px;
         width: 18px;
       `
       break
@@ -176,7 +176,7 @@ export function applyBarPointerStyle(
         top: 0;
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
-        width: 4px;
+        width: 5px;
         height: 18px;
       `
       break
@@ -187,7 +187,7 @@ export function applyBarPointerStyle(
         top: 0;
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
-        width: 4px;
+        width: 5px;
         height: 18px;
       `
       break
@@ -199,7 +199,7 @@ export function applyBarPointerStyle(
     ${barPositionStyle};
     box-sizing: border-box;
     position: absolute;
-    border-radius: 2px;
+    border-radius: 2.5px;
     border: 1px solid ${selected ? stateColor : "transparent"};
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)

@@ -72,6 +72,8 @@ export function calculateDragExistPosition(
   lastSquareX: number,
   lastSquareY: number,
   canvasHeight: number,
+  canvasScrollLeft: number,
+  canvasScrollTop: number,
   diffRect: XYCoord,
   componentW: number,
   componentH: number,
