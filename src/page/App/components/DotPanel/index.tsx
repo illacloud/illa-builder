@@ -10,14 +10,9 @@ import {
   applyDragObjectStyle,
   applyScaleStyle,
 } from "@/page/App/components/DotPanel/style"
-import useWindowSize from "react-use/lib/useWindowSize"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getScale,
   getUnitSize,
-  isOpenBottomPanel,
-  isOpenLeftPanel,
-  isOpenRightPanel,
   isShowDot,
 } from "@/redux/currentApp/config/configSelector"
 import { useDrop } from "react-dnd"
@@ -48,11 +43,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   const dispatch = useDispatch()
 
-  // window
-  const { width: windowWidth, height: windowHeight } = useWindowSize()
-  // scale
-  const scale = useSelector(getScale)
-
   // canvas field
   const edgeWidth = 18
   const [canvasHeight, setCanvasHeight] = useState<number>(0)
@@ -69,10 +59,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     return pre === after
   })
 
-  const bottomPanelOpenState = useSelector(isOpenBottomPanel)
-  const leftPanelOpenState = useSelector(isOpenLeftPanel)
-  const rightPanelOpenState = useSelector(isOpenRightPanel)
-
   // drag shadow
   const dragShadowMap = useSelector(getDragShadowMap)
   // dotted line square
@@ -83,10 +69,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
       const containerHeight = container.clientHeight
-
-      if (containerHeight < (canvasHeight ?? 0)) {
-        return
-      }
       const finalBlockRows = Math.ceil(
         (containerHeight - edgeWidth * 2) / unitHeight,
       )
@@ -94,7 +76,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [windowHeight, bottomPanelOpenState, scale, canvasRef.current?.scrollTop])
+  }, [canvasRef.current?.clientHeight])
 
   // calculate width
   useEffect(() => {
@@ -108,7 +90,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       dispatch(configActions.updateUnitWidth(finalBlockWidth))
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [windowWidth, leftPanelOpenState, rightPanelOpenState])
+  }, [canvasRef.current?.clientWidth])
 
   // drag move
   const [, dropTarget] = useDrop<

@@ -37,28 +37,6 @@ export function calculateNotExistDragPosition(
   renderX = relativeX - (componentW * unitWidth) / 2
   renderY = relativeY - (componentH * unitHeight) / 2
 
-  if (squareX < 0) {
-    squareX = 0
-  }
-  if (squareX + componentW > blockColumns) {
-    squareX = blockColumns - componentW
-  }
-  if (squareY < 0) {
-    squareY = 0
-  }
-
-  if (!parentVerticalResize) {
-    if (squareY + componentH > blockRows) {
-      squareY = blockRows - componentH
-    }
-  }
-
-  if (!parentVerticalResize) {
-    if (renderY + (componentH * unitHeight) / 2 > canvasHeight) {
-      renderY = canvasHeight - (componentH * unitHeight) / 2
-    }
-  }
-
   return {
     squareX,
     squareY,
@@ -94,29 +72,6 @@ export function calculateExistDragPosition(
   let squareX = Math.floor(renderX / unitWidth)
   let squareY = Math.floor(renderY / unitHeight)
 
-  if (squareX < 0) {
-    squareX = 0
-  }
-
-  if (squareX + componentW > blockColumns) {
-    squareX = blockColumns - componentW
-  }
-  if (squareY < 0) {
-    squareY = 0
-  }
-
-  if (!parentVerticalResize) {
-    if (squareY + componentH > blockRows) {
-      squareY = blockRows - componentH
-    }
-  }
-
-  if (!parentVerticalResize) {
-    if (renderY + (componentH * unitHeight) / 2 > canvasHeight) {
-      renderY = canvasHeight - (componentH * unitHeight) / 2
-    }
-  }
-
   return {
     renderX,
     renderY,
@@ -141,12 +96,14 @@ export function calculateDragPosition(
   parentVerticalResize: boolean,
   parentDisplayName: string,
 ): DragPosition {
+  let calcResult: DragPosition
+
   if (
     componentNode.x == -1 &&
     componentNode.y == -1 &&
     componentNode.parentNode != parentDisplayName
   ) {
-    return calculateNotExistDragPosition(
+    calcResult = calculateNotExistDragPosition(
       canvasRect,
       monitorRect,
       canvasWidth,
@@ -163,7 +120,7 @@ export function calculateDragPosition(
       parentVerticalResize,
     )
   } else {
-    return calculateNotExistDragPosition(
+    calcResult = calculateNotExistDragPosition(
       canvasRect,
       monitorRect,
       canvasWidth,
@@ -180,6 +137,33 @@ export function calculateDragPosition(
       parentVerticalResize,
     )
   }
+
+  if (calcResult.squareX < 0) {
+    calcResult.squareX = 0
+  }
+  if (calcResult.squareX + componentNode.w > blockColumns) {
+    calcResult.squareX = blockColumns - componentNode.w
+  }
+  if (calcResult.squareY < 0) {
+    calcResult.squareY = 0
+  }
+
+  if (!parentVerticalResize) {
+    if (calcResult.squareY + componentNode.h > blockRows) {
+      calcResult.squareY = blockRows - componentNode.h
+    }
+  }
+
+  if (!parentVerticalResize) {
+    if (
+      calcResult.renderY + (componentNode.h * unitHeight) / 2 >
+      canvasHeight
+    ) {
+      calcResult.renderY = canvasHeight - (componentNode.h * unitHeight) / 2
+    }
+  }
+
+  return calcResult
 }
 
 export function calculateNearXY(
