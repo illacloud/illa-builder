@@ -10,6 +10,7 @@ export function applyScaleStyle(
     padding-left: ${edgeWidth}px;
     padding-right: ${edgeWidth}px;
     padding-top: ${edgeWidth}px;
+    padding-bottom: ${edgeWidth}px;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: ${verticalResize ? "auto" : "hidden"};

@@ -1,7 +1,6 @@
 import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react"
 import {
   DotPanelProps,
-  DragPosition,
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
@@ -21,20 +20,14 @@ import {
   isOpenRightPanel,
   isShowDot,
 } from "@/redux/currentApp/config/configSelector"
-import { useDrop, XYCoord } from "react-dnd"
+import { useDrop } from "react-dnd"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import store, { RootState } from "@/store"
-import {
-  calculateDragPosition,
-  calculateExistDragPosition,
-  calculateNearXY,
-  calculateNotExistDragPosition,
-  calculateXY,
-} from "./calc"
+import { calculateDragPosition, calculateNearXY, calculateXY } from "./calc"
 import {
   updateDottedLineSquareData,
   updateDragShadowData,
@@ -335,8 +328,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         const ratio = window.devicePixelRatio
         ctx.clearRect(0, 0, canvasWidth, canvasHeight)
         ctx.scale(ratio, ratio)
-        for (let i = 0; i < blockRows + 1; i++) {
-          for (let j = 0; j < blockColumns + 1; j++) {
+        for (let i = 1; i < blockRows; i++) {
+          for (let j = 1; j < blockColumns; j++) {
             ctx.beginPath()
             const x = j * unitWidth + 1
             const y = i * unitHeight + 1
@@ -346,6 +339,11 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             ctx.fill()
           }
         }
+        ctx.beginPath()
+        ctx.rect(0, 0, canvasWidth, canvasHeight)
+        ctx.closePath()
+        ctx.strokeStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
+        ctx.stroke()
       }
     }
   }, [canvasHeight, canvasWidth])

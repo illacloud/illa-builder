@@ -1,6 +1,5 @@
 import { XYCoord } from "react-dnd"
 import { DragPosition } from "@/page/App/components/DotPanel/interface"
-import { ComponentType } from "react"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export function calculateNotExistDragPosition(
