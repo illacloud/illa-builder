@@ -21,7 +21,7 @@ import {
   isOpenRightPanel,
   isShowDot,
 } from "@/redux/currentApp/config/configSelector"
-import { useDrop } from "react-dnd"
+import { useDrop, XYCoord } from "react-dnd"
 import { mergeRefs } from "@illa-design/system"
 import { configActions } from "@/redux/currentApp/config/configSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -169,16 +169,25 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             )
           } else {
             calculateResult = calculateDragExistPosition(
-              unitWidth,
-              unitHeight,
-              item.x,
-              item.y,
+              canvasRect,
+              monitorRect,
+              {
+                x:
+                  monitor.getInitialClientOffset()!!.x -
+                  monitor.getInitialSourceClientOffset()!!.x,
+                y:
+                  monitor.getInitialClientOffset()!!.y -
+                  monitor.getInitialSourceClientOffset()!!.y,
+              } as XYCoord,
+              canvasWidth,
               canvasHeight,
               canvasScrollLeft,
               canvasScrollTop,
-              monitor.getDifferenceFromInitialOffset()!!,
+              unitWidth,
+              unitHeight,
               item.w,
               item.h,
+              edgeWidth,
               blockColumns,
               blockRows,
               componentNode.verticalResize,
@@ -250,16 +259,25 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             )
           } else {
             calculateResult = calculateDragExistPosition(
-              unitWidth,
-              unitHeight,
-              item.x,
-              item.y,
+              canvasRect,
+              monitorRect,
+              {
+                x:
+                  monitor.getInitialClientOffset()!!.x -
+                  monitor.getInitialSourceClientOffset()!!.x,
+                y:
+                  monitor.getInitialClientOffset()!!.y -
+                  monitor.getInitialSourceClientOffset()!!.y,
+              } as XYCoord,
+              canvasWidth,
               canvasHeight,
               canvasScrollLeft,
               canvasScrollTop,
-              monitor.getDifferenceFromInitialOffset()!!,
+              unitWidth,
+              unitHeight,
               item.w,
               item.h,
+              edgeWidth,
               blockColumns,
               blockRows,
               componentNode.verticalResize,

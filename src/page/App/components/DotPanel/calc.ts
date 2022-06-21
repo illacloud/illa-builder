@@ -67,27 +67,31 @@ export function calculateDragPosition(
 }
 
 export function calculateDragExistPosition(
-  unitWidth: number,
-  unitHeight: number,
-  lastSquareX: number,
-  lastSquareY: number,
+  canvasRect: DOMRect,
+  monitorRect: XYCoord,
+  offsetRecord: XYCoord,
+  canvasWidth: number,
   canvasHeight: number,
   canvasScrollLeft: number,
   canvasScrollTop: number,
-  diffRect: XYCoord,
+  unitWidth: number,
+  unitHeight: number,
   componentW: number,
   componentH: number,
+  edgeWidth: number,
   blockColumns: number,
   blockRows: number,
   parentVerticalResize: boolean,
 ): DragPosition {
-  const realX = lastSquareX * unitWidth
-  const realY = lastSquareY * unitHeight
-  let renderX = realX + diffRect.x
-  let renderY = realY + diffRect.y
+  // mouse position
+  let relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft - edgeWidth
+  let relativeY = monitorRect.y - canvasRect.y + canvasScrollTop - edgeWidth
 
-  let squareX = lastSquareX + Math.floor(diffRect.x / unitWidth)
-  let squareY = lastSquareY + Math.floor(diffRect.y / unitHeight)
+  let renderX = relativeX - offsetRecord.x
+  let renderY = relativeY - offsetRecord.y
+
+  let squareX = Math.floor(renderX / unitWidth)
+  let squareY = Math.floor(renderY / unitHeight)
 
   if (squareX < 0) {
     squareX = 0
