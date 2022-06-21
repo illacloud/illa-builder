@@ -82,16 +82,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
-      const containerHeight =
-        container.getBoundingClientRect().height + container.scrollTop
+      const containerHeight = container.clientHeight
 
       if (containerHeight < (canvasHeight ?? 0)) {
         return
       }
       const finalBlockRows = Math.ceil(
-        (containerHeight - edgeWidth) / unitHeight,
+        (containerHeight - edgeWidth * 2) / unitHeight,
       )
-      const finalHeight = finalBlockRows * unitHeight + 2
+      const finalHeight = finalBlockRows * unitHeight
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
@@ -101,8 +100,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
-      const containerWidth =
-        container.getBoundingClientRect().width + container.scrollLeft
+      const containerWidth = container.clientWidth
       const finalBlockWidth =
         (containerWidth - edgeWidth * 2 - (blockColumns + 1) * 2) /
           blockColumns +
