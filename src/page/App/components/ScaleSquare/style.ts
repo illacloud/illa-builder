@@ -96,9 +96,20 @@ export const onePixelStyle = css`
   height: 1px;
 `
 
+export const dragIconStyle = css`
+  flex: none;
+`
+
+export const dragHandlerTextStyle = css`
+  flex-shrink: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`
+
 export function applyHandlerStyle(
   selected: boolean,
-  maxHeight: number,
+  maxWidth: number,
   state: ScaleSquareType,
 ): SerializedStyles {
   return css`
@@ -118,7 +129,7 @@ export function applyHandlerStyle(
     padding-left: 1px;
     padding-right: 4px;
     height: 18px;
-    max-height: ${maxHeight}px;
+    max-width: ${maxWidth}px;
   `
 }
 

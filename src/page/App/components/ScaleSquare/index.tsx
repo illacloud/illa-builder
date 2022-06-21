@@ -12,6 +12,8 @@ import {
   applySquarePointerStyle,
   applyTransformWidgetStyle,
   BarPosition,
+  dragHandlerTextStyle,
+  dragIconStyle,
   onePixelStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
@@ -145,10 +147,10 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         <div
           className={"handler"}
           ref={dragHandlerRef}
-          css={applyHandlerStyle(selected, h, scaleSquareState)}
+          css={applyHandlerStyle(selected, w, scaleSquareState)}
         >
-          <DragIcon />
-          <span>{componentNode.displayName}</span>
+          <DragIcon css={dragIconStyle} />
+          <div css={dragHandlerTextStyle}>{componentNode.displayName}</div>
           {scaleSquareState == "error" && (
             <WarningCircleIcon
               color={globalColor(`--${illaPrefix}-white-05`)}
