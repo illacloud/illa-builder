@@ -25,16 +25,6 @@ export const dotStyle = css`
   background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
-export function applyDotRowsStyle(isLastRow: boolean): SerializedStyles {
-  return css`
-    height: ${isLastRow ? "2px" : "8px"};
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  `
-}
-
 export function applyChildrenContainerStyle(
   w: number | null,
   h?: number | null,
@@ -46,17 +36,11 @@ export function applyChildrenContainerStyle(
   `
 }
 
-export function applyDotContainerStyle(
-  showDot: boolean,
-  w: number | null,
-  h?: number | null,
-): SerializedStyles {
+export function applyDotCanvasStyle(showDot: boolean): SerializedStyles {
   return css`
     z-index: -1;
     visibility: ${showDot ? "visible" : "hidden"};
     position: absolute;
-    width: ${w}px;
-    height: ${h}px;
   `
 }
 
