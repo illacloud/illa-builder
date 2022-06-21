@@ -1,7 +1,4 @@
-export type ContainerType =
-  | "EDITOR_DOT_PANEL"
-  | "EDITOR_SCALE_SQUARE"
-  | "EDITOR_DOTTED_LINE_SQUARE"
+export type ContainerType = "EDITOR_DOT_PANEL" | "EDITOR_SCALE_SQUARE"
 
 export interface ComponentNode {
   displayName: string
@@ -13,8 +10,11 @@ export interface ComponentNode {
   } | null
   type: string | null
   containerType: ContainerType
+  verticalResize: boolean
   h: number
   w: number
+  minH: number
+  minW: number
   // default -1
   x: number
   // default -1
@@ -22,6 +22,9 @@ export interface ComponentNode {
   props: {
     [key: string]: any
   } | null
+  panelConfig?: {
+    dynamicStrings: string[]
+  }
 }
 
 export interface ComponentsState {
@@ -35,6 +38,7 @@ export const ComponentsInitialState: ComponentsState = {
     childrenNode: null,
     type: null,
     containerType: "EDITOR_DOT_PANEL",
+    verticalResize: true,
     h: 0,
     w: 0,
     x: -1,
@@ -45,4 +49,9 @@ export const ComponentsInitialState: ComponentsState = {
 export interface updateComponentPropsPayload {
   displayName: string
   newProps: Record<string, any>
+}
+
+export interface updateComponentDynamicStringsPayload {
+  displayName: string
+  dynamicStrings: string[]
 }

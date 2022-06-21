@@ -8,7 +8,7 @@ import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
-import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
   descriptionStyle,
   errorMessageStyle,
@@ -79,12 +79,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
 
     const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
       const { resourceName, ...options } = data
-      onSubmit &&
-        onSubmit({
-          resourceName: resourceName,
-          resourceType: "mysql",
-          options,
-        })
+      onSubmit?.({
+        resourceName: resourceName,
+        resourceType: "mysql",
+        options,
+      })
     }
     return (
       <form onSubmit={handleSubmit(submitForm)} css={formStyle} ref={ref}>
@@ -282,15 +281,15 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 </div>
                 {(errors.advancedOptions?.sshHost ||
                   errors.advancedOptions?.sshPort) && (
-                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshHost?.message}
-                      </div>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshPort?.message}
-                      </div>
+                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshHost?.message}
                     </div>
-                  )}
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshPort?.message}
+                    </div>
+                  </div>
+                )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={requiredLabelTextStyle}>
@@ -331,15 +330,15 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 </div>
                 {(errors.advancedOptions?.sshUsername ||
                   errors.advancedOptions?.sshPassword) && (
-                    <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshUsername?.message}
-                      </div>
-                      <div css={errorMessageStyle}>
-                        {errors.advancedOptions?.sshPassword?.message}
-                      </div>
+                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshUsername?.message}
                     </div>
-                  )}
+                    <div css={errorMessageStyle}>
+                      {errors.advancedOptions?.sshPassword?.message}
+                    </div>
+                  </div>
+                )}
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={labelTextStyle}>

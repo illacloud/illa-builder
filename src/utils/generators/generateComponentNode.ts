@@ -1,6 +1,7 @@
 import { WidgetCardInfo } from "@/wrappedComponents/interface"
 import { WidgetTypeList } from "@/wrappedComponents/WidgetBuilder"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,
@@ -12,10 +13,6 @@ export const generateComponentNode = (
     !WidgetTypeList.includes(widgetInfo.type)
   ) {
     throw new Error("Widget is not registered")
-  }
-
-  if (!widgetInfo.displayName) {
-    throw new Error("dsl must have displayName")
   }
 
   if (widgetInfo.w == undefined || widgetInfo.h == undefined) {
@@ -34,14 +31,19 @@ export const generateComponentNode = (
 
   const childrenNodeDSLKeys = Object.keys(childrenNodeDSL)
 
-  const { defaults, w, h, displayName, type } = widgetInfo
+  const { defaults, w, h, type } = widgetInfo
   baseDSL = {
     w,
     h,
+    minH: 0,
+    minW: 0,
+    verticalResize: false,
+    isDragging: false,
+    error: false,
     x: -1,
     y: -1,
     type,
-    displayName,
+    displayName: DisplayNameGenerator.getDisplayName(type),
     containerType: "EDITOR_SCALE_SQUARE",
     parentNode: null,
     childrenNode: childrenNodeDSLKeys.length > 0 ? childrenNodeDSL : null,

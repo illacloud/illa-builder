@@ -94,13 +94,13 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     handleAutocomplete(editor)
     const currentValue = editor?.getValue()
     let previewType = expectedType
+    let calcResult: any = null
     try {
-      let calcResult = evaluateDynamicString("", currentValue, {})
+      calcResult = evaluateDynamicString("", currentValue, {})
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)
       // }
       isExpectType(previewType, calcResult)
-      onChange?.(currentValue, calcResult)
       setPreview({
         state: "default",
         type: previewType,
@@ -112,20 +112,34 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         state: "error",
         content: e.toString(),
       })
+    } finally {
+      onChange?.(currentValue, calcResult)
     }
   }
 
   useEffect(() => {
     const currentValue = editor?.getValue()
     if (value && value !== currentValue) {
-      const calcResult = evaluateDynamicString("", value, {})
-      editor?.setValue(value)
-      onChange?.(value, calcResult)
-      setPreview({
-        state: "default",
-        type: expectedType,
-        content: calcResult,
-      })
+      let calcResult: any = null
+      let previewType = expectedType
+      try {
+        calcResult = evaluateDynamicString("", value, {})
+        editor?.setValue(value)
+        isExpectType(previewType, calcResult)
+        setPreview({
+          state: "default",
+          type: expectedType,
+          content: calcResult,
+        })
+      } catch (e: any) {
+        console.error(e)
+        setPreview({
+          state: "error",
+          content: e.toString(),
+        })
+      } finally {
+        onChange?.(value, calcResult)
+      }
     }
   }, [value])
 

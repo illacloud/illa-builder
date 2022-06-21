@@ -16,10 +16,8 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-options-mode`,
-        isFullWidth: true,
         attrName: "optionMode",
         setterType: "RADIO_GROUP_SETTER",
-        defaultValue: "manual",
         options: [
           {
             label: "Manual",
@@ -33,7 +31,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-options-options`,
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "options",
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: "optionMode",
@@ -42,18 +40,15 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-options-data-sources`,
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
-        isFullWidth: true,
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
-        defaultValue: "[]",
         bindAttrName: "optionMode",
         shown: (value) => value === "mapped",
       },
       {
         id: `${baseWidgetName}-options-mapped`,
         labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
-        useCustomLabel: true,
-        isFullWidth: true,
+        useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
         bindAttrName: "optionMode",
@@ -133,7 +128,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-validation-required`,
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "required",
       },
       {
@@ -142,7 +137,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLabel: true,
+        useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
     ],
@@ -156,8 +151,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
-        placeholder: "false",
-        defaultValue: false,
+        placeholder: "{{false}}",
       },
     ],
   },

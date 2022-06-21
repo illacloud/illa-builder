@@ -2,7 +2,6 @@ import { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
 import { getSelectedComponentsDisplayName } from "@/redux/currentApp/config/configSelector"
-import { getInspectState } from "@/redux/currentApp/editor/inspect/inspectSelector"
 
 export function searchDsl(
   rootNode: ComponentNode | null,
@@ -11,24 +10,23 @@ export function searchDsl(
   if (rootNode == null) {
     return null
   }
-  if (rootNode.displayName == findDisplayName) {
-    return rootNode
-  } else {
-    const childrenNode = rootNode.childrenNode
-    let returnNode: ComponentNode | null = null
-    if (childrenNode != null) {
-      Object.keys(childrenNode).forEach((key) => {
-        returnNode = searchDsl(childrenNode[key], findDisplayName)
+  const queue = [rootNode]
+  while (queue.length > 0) {
+    const head = queue[queue.length - 1]
+
+    if (head.displayName == findDisplayName) {
+      return head
+    }
+    queue.pop()
+    if (head.childrenNode) {
+      Object.keys(head.childrenNode).forEach((key) => {
+        if (head.childrenNode && head.childrenNode[key]) {
+          queue.push(head.childrenNode[key])
+        }
       })
-      return returnNode
-    } else {
-      return null
     }
   }
-}
-
-export const getComponentNode = (state: RootState, displayName: string) => {
-  return searchDsl(state.currentApp.editor.components.rootDsl, displayName)
+  return null
 }
 
 export const getCanvas = (state: RootState) => {

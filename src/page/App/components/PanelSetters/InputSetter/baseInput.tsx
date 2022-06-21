@@ -1,36 +1,35 @@
-import { FC, useEffect, useState } from "react"
-import { Input } from "@illa-design/input"
+import { FC } from "react"
 import { BaseInputSetterProps } from "./interface"
-import { applyInputSetterWrapperStyle } from "./style"
+import { applyInputSetterStyle, applyInputSetterWrapperStyle } from "./style"
+import { CodeEditor } from "@/components/CodeEditor"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
-    isFullWidth,
+    isSetterSingleRow,
     placeholder,
-    defaultValue,
-    isInList,
     attrName,
-    panelConfig,
     handleUpdateDsl,
-    handleUpdatePanelConfig,
+    expectedType,
+    value,
+    handleUpdateDynamicStrings,
   } = props
 
-  const [inputValue, setInputValue] = useState(panelConfig[attrName])
-
-  useEffect(() => {
-    setInputValue(panelConfig[attrName])
-  }, [panelConfig[attrName]])
-
   return (
-    <div css={applyInputSetterWrapperStyle(isFullWidth, isInList)}>
-      <Input
-        placeholder={placeholder}
-        value={inputValue ?? defaultValue}
-        onChange={(value) => {
-          setInputValue(value)
-          handleUpdatePanelConfig({ [attrName]: value })
-          // TODO： calc dsl and then to update props
+    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
+      <CodeEditor
+        css={applyInputSetterStyle}
+        placeholder={placeholder ?? ""}
+        value={value ?? ""}
+        expectedType={expectedType || "String"}
+        mode="TEXT_JS"
+        onChange={(value, calcResult) => {
           handleUpdateDsl({ [attrName]: value })
+          if (isDynamicString(value)) {
+            handleUpdateDynamicStrings("add", attrName)
+          } else {
+            handleUpdateDynamicStrings("delete", attrName)
+          }
         }}
       />
     </div>

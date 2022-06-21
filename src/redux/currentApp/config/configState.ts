@@ -1,4 +1,5 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export interface ConfigState {
   openLeftPanel: boolean
@@ -8,6 +9,7 @@ export interface ConfigState {
   showDot: boolean
   scale: number
   selectedComponents: ComponentNode[]
+  selectedAction: ActionItem
 }
 
 export interface UnitSize {
@@ -17,10 +19,11 @@ export interface UnitSize {
 
 export const ConfigInitialState: ConfigState = {
   openLeftPanel: true,
-  scale: 100,
   openBottomPanel: true,
-  selectedComponents: [],
   openRightPanel: true,
+  scale: 100,
+  selectedComponents: [],
+  selectedAction: { actionId: "", displayName: "", actionType: "" },
   showDot: false,
   unitSize: {
     unitHeight: 8,

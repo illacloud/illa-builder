@@ -1,20 +1,19 @@
 import { FC, useContext } from "react"
 import { Select } from "@illa-design/select"
-import { applySetterStyle } from "@/page/App/components/PanelSetters/style"
 import { BaseSelectSetterProps } from "./interface"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
+import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
 export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
   const {
-    isFullWidth,
+    isSetterSingleRow,
     options,
     defaultValue,
     attrName,
     panelConfig,
     handleUpdateDsl,
-    handleUpdatePanelConfig,
   } = props
 
   const finalOptions = () => {
@@ -33,13 +32,12 @@ export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
   }
 
   return (
-    <div css={applySetterStyle(isFullWidth)}>
+    <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         options={finalOptions()}
         size="small"
         value={panelConfig[attrName] ?? defaultValue}
         onChange={(value) => {
-          handleUpdatePanelConfig({ [attrName]: value })
           handleUpdateDsl({ [attrName]: value })
         }}
       />

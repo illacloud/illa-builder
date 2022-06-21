@@ -22,6 +22,130 @@
   "btn": {
     "choose_file": "Choose a file"
   },
+  "user": {
+    "sign_up": {
+      "title": "Sign up",
+      "fields": {
+        "username": "Username",
+        "email": "Email",
+        "verify": "Verification code",
+        "password": "Password"
+      },
+      "actions": {
+        "send": "Send code",
+        "create": "Create Account"
+      },
+      "description": {
+        "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+        "subscribe": "I am willing to receive the updates and news about ILLA"
+      },
+      "tips": {
+        "success": "Success",
+        "fail": "Fail",
+        "verify": "Verification code sent"
+      },
+      "placeholder": {
+        "username": "Enter your username",
+        "email": "Enter your email",
+        "verify": "Please enter verification code",
+        "password": "Create a password(6~20 characters)"
+      },
+      "error_message": {
+        "username": {
+          "require":"Please enter username",
+          "length": "The username must be 3~15 characters"
+        },
+        "email": {
+          "require":"Please enter your email",
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "An account with that email address already exists."
+        },
+        "password": {
+          "require":"Please enter password",
+          "length": "The password must be 6~20 characters"
+        },
+        "verify": {
+          "require": "Please enter verification code",
+          "invalid": "Invalid verification code",
+          "expired": "Verification code expired"
+        }
+      }
+    },
+    "sign_in": {
+      "title": "Welcome to back",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "actions": {
+        "login": "Sign in"
+      },
+      "description": {
+        "register": "New user? <0>Create an account</0>",
+        "forgot_password": "Forgot Password?",
+        "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>"
+      },
+      "tips": {
+        "success": "Success",
+        "fail": "Fail"
+      },
+      "placeholder": {
+        "email": "Enter your email",
+        "password": "Enter your password(6~20 characters)"
+      },
+      "error_message": {
+        "email": {
+          "require":"Please enter your email",
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account."
+        },
+        "password": {
+          "require":"Please enter password",
+          "locked": "Too many bad attempts， please reset your password or try again after 1 hour",
+          "incorrect": "Incorrect email or password",
+          "length": "The password must be 6~20 characters"
+        }
+      }
+    },
+    "forgot_password": {
+      "title": "Reset Password",
+      "fields": {
+        "email": "Email",
+        "password": "New Password",
+        "verify": "Verification code"
+      },
+      "actions": {
+        "send": "Send code",
+        "reset": "Reset"
+      },
+      "tips": {
+        "success": "Success",
+        "fail": "Fail",
+        "verify": "Verification code sent"
+      },
+      "placeholder": {
+        "email": "Enter your email",
+        "verify": "Please enter verification code",
+        "password": "Enter your new password(6~20 characters)"
+      },
+      "error_message": {
+        "email": {
+          "require":"Please enter your email",
+          "invalid_pattern": "Please enter a valid email address",
+          "registered": "The email address doesn't associate with an account."
+        },
+        "verify": {
+          "require": "Please enter verification code",
+          "invalid": "Invalid verification code",
+          "expired": "Verification code expired"
+        },
+        "password": {
+          "require":"Please enter password",
+          "length": "The password must be 6~20 characters"
+        }
+      }
+    }
+  },
   "editor": {
     "action": {
       "type": {
@@ -95,7 +219,7 @@
         }
       },
       "form": {
-        "required": "This is required!",
+        "required": "This is required",
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
@@ -109,7 +233,7 @@
           "save_changes": "Save Changes"
         },
         "validate": {
-          "required": "{name} is required!"
+          "required": "{name} is required"
         }
       },
       "resource": {
@@ -176,7 +300,7 @@
             "cookies": "Cookies",
             "body": "Body",
             "extra_body_values": "Extra Body Values",
-            "list_of_cookies_to_forward": "List Of Cookies To Forward",
+            "list_of_cookies_to_forward": "List Of Cookies To\n Forward",
             "forward_all_cookies": "Forward All Cookies",
             "base_url": "Base URL",
             "authentication": "Authentication",
@@ -191,11 +315,11 @@
             "access_token_url": "Access Token URL",
             "client_id": "Client ID",
             "client_secret": "Client Secret",
-            "scopes": "Scopes (separated by a space)",
+            "scopes": "Scopes (separated by\n a space)",
             "audience": "Audience",
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
-            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "access_token_lifespan": "Access Token\n lifespan(optiinal)",
             "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
           },
           "tip": {
@@ -234,7 +358,11 @@
       "result": {
         "title": {
           "success": "Query ran successfully",
-          "error": "Query ran fail"
+          "error": "Query ran fail",
+          "table": "Table",
+          "json": "JSON",
+          "response": "Response",
+          "api_request": "Api Request"
         }
       }
     },
@@ -340,7 +468,9 @@
         "run_script": "Run script",
         "go_to_url": "Go to URL",
         "show_notification": "Show notification",
-        "set_temporary_state": "Set temporary state"
+        "set_temporary_state": "Set temporary state",
+        "text_align": "Text align",
+        "text_size": "Text size"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -389,6 +519,9 @@
     },
     "date_time": {
       "name": "Datetime"
+    },
+    "divider_progress": {
+      "name": "Divider"
     }
   },
   "Setting": "Setting",

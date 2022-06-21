@@ -28,7 +28,7 @@ export const gridRowContainerStyle = css`
 export const paramGridRowContainerStyle = css`
   grid-gap: 8px 16px;
   display: grid;
-  grid: auto/repeat(auto-fit, 200px minmax(280px, 1fr));
+  grid: auto/repeat(auto-fit, minmax(15%, min-content) minmax(280px, 1fr));
 `
 
 export const gridRowCenterItemStyle = css`
@@ -54,13 +54,14 @@ export const splitLineStyle = css`
 `
 
 export const labelTextStyle = css`
+  padding-top: 5px;
   display: flex;
   justify-content: end;
   font-size: 14px;
-  line-height: 32px;
   font-weight: 500;
   text-align: right;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  white-space: pre;
 `
 
 export const itemTextStyle = css`

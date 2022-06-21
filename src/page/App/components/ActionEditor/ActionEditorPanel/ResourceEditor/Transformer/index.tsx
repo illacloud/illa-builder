@@ -10,7 +10,7 @@ import {
   sectionTitleStyle,
   radioBtnStyle,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
-import { EditorInput } from "@/components/EditorInput"
+import { CodeEditor } from "@/components/CodeEditor"
 import { disableTransformerStyle } from "./style"
 
 export const Transformer = () => {
@@ -40,7 +40,7 @@ export const Transformer = () => {
       </div>
       <div css={panelPaddingStyle}>
         {enable === "Enable" ? (
-          <EditorInput mode="javascript" height="88px" />
+          <CodeEditor mode="TEXT_JS" expectedType="String" height="88px" />
         ) : (
           <div css={disableTransformerStyle}>
             {t("editor.action.panel.tips.transformer")}

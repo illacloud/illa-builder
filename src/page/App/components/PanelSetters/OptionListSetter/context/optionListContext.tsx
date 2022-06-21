@@ -20,7 +20,6 @@ export const OptionListSetterContext = createContext<Injected>({} as Injected)
 interface Props {
   panelConfig: any
   attrName: string
-  handleUpdateAllPanelConfig: (value: any) => void
   handleUpdateAllDsl: (value: any) => void
   children?: ReactNode
 }
@@ -30,28 +29,23 @@ export const OptionListSetterProvider: FC<Props> = ({
   panelConfig,
   attrName,
   handleUpdateAllDsl,
-  handleUpdateAllPanelConfig,
 }) => {
   const options = panelConfig[attrName] as configItem[]
 
   const handleUpdate = (value: configItem[]) => {
     const newOptions = value
-    handleUpdateAllPanelConfig({ [attrName]: newOptions })
     handleUpdateAllDsl({ [attrName]: newOptions })
   }
 
   const handleAddItem = (value: configItem) => {
     const newOptions = [...options]
     newOptions.push(value)
-    handleUpdateAllPanelConfig({ [attrName]: newOptions })
-    // TODO: calc data to update dsl
     handleUpdateAllDsl({ [attrName]: newOptions })
   }
 
   const handleAddItemAsync = async (value: configItem) => {
     const newOptions = [...options]
     newOptions.push(value)
-    handleUpdateAllPanelConfig({ [attrName]: newOptions })
     handleUpdateAllDsl({ [attrName]: newOptions })
   }
 

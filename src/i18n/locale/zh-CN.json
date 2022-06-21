@@ -22,6 +22,130 @@
   "btn": {
     "choose_file": "Choose a file"
   },
+  "user": {
+    "sign_up": {
+      "title": "注册",
+      "fields": {
+        "username": "用户名",
+        "email": "邮箱",
+        "verify": "验证码",
+        "password": "密码"
+      },
+      "actions": {
+        "send": "获取验证码",
+        "create": "创建账户"
+      },
+      "description": {
+        "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+        "subscribe": "订阅ILLA的动态"
+      },
+      "tips": {
+        "success": "登录成功",
+        "fail": "登录失败",
+        "verify": "验证码已发送"
+      },
+      "placeholder": {
+        "username": "请输入用户名",
+        "email": "请输入邮箱",
+        "verify": "请输入验证码",
+        "password": "请输入密码（6-20个字符）"
+      },
+      "error_message": {
+        "username": {
+          "require":"用户名不能为空",
+          "length": "用户名须为3～15个字符"
+        },
+        "email": {
+          "require":"邮箱不能为空",
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱已注册，请登录"
+        },
+        "password": {
+          "require":"密码不能为空",
+          "length": "密码须为6～20个字符"
+        },
+        "verify": {
+          "require": "请输入验证码",
+          "invalid": "验证码错误",
+          "expired": "验证码已过期"
+        }
+      }
+    },
+    "sign_in": {
+      "title": "欢迎回来",
+      "fields": {
+        "email": "邮箱",
+        "password": "密码"
+      },
+      "actions": {
+        "login": "登录"
+      },
+      "description": {
+        "register": "新用户？<0>注册账号</0>",
+        "forgot_password": "忘记密码?",
+        "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>"
+      },
+      "tips": {
+        "success": "注册成功",
+        "fail": "注册失败"
+      },
+      "placeholder": {
+        "email": "请输入邮箱",
+        "password": "请输入密码（6-20个字符）"
+      },
+      "error_message": {
+        "email": {
+          "require":"邮箱不能为空",
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱未注册"
+        },
+        "password": {
+          "require":"密码不能为空",
+          "locked": "密码输错超过5次，账户将被锁定1小时",
+          "incorrect": "请输入正确的账号密码",
+          "length": "密码须为6～20个字符"
+        }
+      }
+    },
+    "forgot_password": {
+      "title": "重置密码",
+      "fields": {
+        "email": "邮箱",
+        "password": "新密码",
+        "verify": "验证码"
+      },
+      "actions": {
+        "send": "获取验证码",
+        "reset": "重置"
+      },
+      "tips": {
+        "success": "重置密码成功",
+        "fail": "重置密码失败",
+        "verify": "验证码已发送"
+      },
+      "placeholder": {
+        "email": "请输入邮箱",
+        "verify": "请输入验证码",
+        "password": "请输入密码（6-20个字符）"
+      },
+      "error_message": {
+        "email": {
+          "require":"邮箱不能为空",
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱未注册"
+        },
+        "verify": {
+          "require": "请输入验证码",
+          "invalid": "验证码错误",
+          "expired": "验证码已过期"
+        },
+        "password": {
+          "require":"密码不能为空",
+          "length": "密码须为6～20个字符"
+        }
+      }
+    }
+  },
   "editor": {
     "action": {
       "type": {
@@ -109,7 +233,7 @@
           "save_changes": "保存修改"
         },
         "validate": {
-          "required": "{name} is required!"
+          "required": "{name} is required"
         }
       },
       "resource": {
@@ -234,7 +358,11 @@
       "result": {
         "title": {
           "success": "Query ran successfully",
-          "error": "Query ran fail"
+          "error": "Query ran fail",
+          "table": "Table",
+          "json": "JSON",
+          "response": "Response",
+          "api_request": "Api Request"
         }
       }
     },
@@ -340,7 +468,9 @@
         "run_script": "Run script",
         "go_to_url": "Go to URL",
         "show_notification": "Show notification",
-        "set_temporary_state": "Set temporary state"
+        "set_temporary_state": "Set temporary state",
+        "text_align": "Text align",
+        "text_size": "Text size"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -389,6 +519,9 @@
     },
     "bar_progress": {
       "name": "Bar Progress"
+    },
+    "divider_progress": {
+      "name": "Divider"
     }
   },
   "Setting": "设置",

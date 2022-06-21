@@ -29,6 +29,18 @@ export const getSelectedComponents = (state: RootState) => {
   return state.currentApp.config.selectedComponents
 }
 
+export const getSelectedAction = (state: RootState) => {
+  return state.currentApp.config.selectedAction
+}
+
+export const isSelected = (state: RootState, displayName: string) => {
+  return (
+    state.currentApp.config.selectedComponents.findIndex((value) => {
+      return value.displayName == displayName
+    }) != -1
+  )
+}
+
 export const getSelectedComponentsDisplayName = createSelector(
   [getSelectedComponents],
   (selectedComponents) => {

@@ -1,9 +1,15 @@
-import { FC, useState, useRef, useEffect } from "react"
+import { FC, useState, useRef, useEffect, useContext } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useSelector, useDispatch } from "react-redux"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
-import { AnimatePresence, motion } from "framer-motion"
+import { Api } from "@/api/base"
+import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import {
-  titleContainerStyle,
+  applyTitleContainerStyle,
   titleEditIconStyle,
   titleStyle,
   titleInputContainerStyle,
@@ -11,13 +17,16 @@ import {
 } from "./style"
 import { TitleInputProps } from "./interface"
 
-export const TitleInput: FC<TitleInputProps> = (props) => {
-  const { activeActionItem, onChange } = props
+export const TitleInput: FC<TitleInputProps> = () => {
+  const dispatch = useDispatch()
+  const { setActionListLoading } = useContext(ActionEditorContext)
+  const activeActionItem = useSelector(getSelectedAction)
   const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [title, setTitle] = useState(name)
+  const editable = title !== ""
   const variants = {
     hidden: {
       display: "none",
@@ -41,7 +50,28 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
     setIsEditing(false)
 
     if (title !== name) {
-      onChange?.(title)
+      Api.request<ActionItem>(
+        {
+          url: `/actions/${activeActionItem.actionId}`,
+          method: "PUT",
+          data: {
+            ...activeActionItem,
+            displayName: title,
+          },
+        },
+        ({ data }) => {
+          dispatch(
+            actionActions.updateActionItemReducer({
+              ...data,
+            }),
+          )
+        },
+        () => {},
+        () => {},
+        (loading) => {
+          setActionListLoading?.(loading)
+        },
+      )
     }
   }
 
@@ -68,9 +98,9 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
   ) : (
     <motion.div
       onClick={() => {
-        setIsEditing(true)
+        editable && setIsEditing(true)
       }}
-      css={titleContainerStyle}
+      css={applyTitleContainerStyle(editable)}
       initial={"hidden"}
       animate={"visible"}
       exit={"hidden"}
@@ -78,7 +108,9 @@ export const TitleInput: FC<TitleInputProps> = (props) => {
       transition={{ duration: 0.2 }}
       key={"title"}
     >
-      <span css={titleStyle}>{title}</span>
+      <span css={titleStyle} title={title}>
+        {title}
+      </span>
       <PenIcon css={titleEditIconStyle} viewBox={"0 0 14 14"} />
     </motion.div>
   )

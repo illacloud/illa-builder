@@ -18,7 +18,6 @@ export type DatabaseType = "MySQL" | "Postgres" | "Redis"
 export type ResourceType = DatabaseType | ApiType | string
 
 export interface ActionEditorContextProps {
-  activeActionItemId: string
-  resourceId: string
   editorHeight: number
+  setActionListLoading?: (loading: boolean) => void
 }

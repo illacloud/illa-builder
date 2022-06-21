@@ -69,6 +69,11 @@ import {
   SEGMENTED_CONTROL_WIDGET_CONFIG,
   SegmentedControlWidget,
 } from "@/wrappedComponents/SegmentedControl"
+import {
+  DIVIDER_PANEL_CONFIG,
+  DIVIDER_WIDGET_CONFIG,
+  DividerWidget,
+} from "@/wrappedComponents/Divider"
 
 const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -155,6 +160,11 @@ const WidgetConfig: WidgetConfigs = {
     widget: SegmentedControlWidget,
     config: SEGMENTED_CONTROL_WIDGET_CONFIG,
     panelConfig: SEGMENTED_CONTROL_PANEL_CONFIG,
+  },
+  DIVIDER_WIDGET: {
+    widget: DividerWidget,
+    config: DIVIDER_WIDGET_CONFIG,
+    panelConfig: DIVIDER_PANEL_CONFIG,
   },
 }
 

@@ -1,8 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import logger from "redux-logger"
-import resourceReducer from "@/redux/currentApp/resource/resourceSlice"
+import resourceReducer from "@/redux/resource/resourceSlice"
 import actionReducer from "@/redux/currentApp/action/actionSlice"
-import inspectReducer from "@/redux/currentApp/editor/inspect/inspectSlice"
 import dashboardResourceReducer from "@/redux/dashboard/resources/dashboardResourceSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
 import currentUserReducer from "@/redux/currentUser/currentUserSlice"
@@ -15,7 +14,6 @@ import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSl
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 
 const editorReducer = combineReducers({
-  inspect: inspectReducer,
   components: componentsReducer,
   dragShadow: dragShadowReducer,
   dottedLineSquare: dottedLineSquareReducer,
