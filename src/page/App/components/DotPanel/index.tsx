@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react"
 import {
   DotPanelProps,
+  DragPosition,
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
@@ -30,7 +31,12 @@ import { DragShadowSquare } from "@/page/App/components/DragShadowSquare"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import store, { RootState } from "@/store"
-import { calculateDragPosition, calculateXY } from "./calc"
+import {
+  calculateDragExistPosition,
+  calculateDragPosition,
+  calculateNearXY,
+  calculateXY,
+} from "./calc"
 import {
   updateDottedLineSquareData,
   updateDragShadowData,
@@ -57,7 +63,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const scale = useSelector(getScale)
 
   // canvas field
-  const edgeWidth = 6
+  const edgeWidth = 18
   const [canvasHeight, setCanvasHeight] = useState<number | null>(null)
   const [canvasWidth, setCanvasWidth] = useState<number | null>(null)
   const blockColumns = 64
@@ -113,7 +119,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       dispatch(configActions.updateUnitWidth(finalBlockWidth))
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [windowWidth, leftPanelOpenState, rightPanelOpenState, scale])
+  }, [windowWidth, leftPanelOpenState, rightPanelOpenState])
 
   // drag move
   const [, dropTarget] = useDrop<
@@ -142,26 +148,47 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth != null &&
           canvasHeight != null
         ) {
-          const { squareX, squareY } = calculateDragPosition(
-            canvasRect,
-            monitorRect,
-            canvasWidth,
-            canvasHeight,
-            canvasScrollLeft,
-            canvasScrollTop,
-            unitWidth,
-            unitHeight,
-            item.w,
-            item.h,
-            edgeWidth,
-            blockColumns,
-            blockRows,
-            componentNode.verticalResize,
-          )
+          let calculateResult: DragPosition
+          if (
+            item.x == -1 &&
+            item.y == -1 &&
+            item.parentNode != componentNode.displayName
+          ) {
+            calculateResult = calculateDragPosition(
+              canvasRect,
+              monitorRect,
+              canvasWidth,
+              canvasHeight,
+              canvasScrollLeft,
+              canvasScrollTop,
+              unitWidth,
+              unitHeight,
+              item.w,
+              item.h,
+              edgeWidth,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
+            )
+          } else {
+            calculateResult = calculateDragExistPosition(
+              unitWidth,
+              unitHeight,
+              item.x,
+              item.y,
+              canvasHeight,
+              monitor.getDifferenceFromInitialOffset()!!,
+              item.w,
+              item.h,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
+            )
+          }
           updateScaleSquare(
             item,
-            squareX,
-            squareY,
+            calculateResult.squareX,
+            calculateResult.squareY,
             componentNode.displayName,
             (newItem) => {
               dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
@@ -200,26 +227,47 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth != null &&
           canvasHeight != null
         ) {
-          const { squareX, squareY, renderX, renderY } = calculateDragPosition(
-            canvasRect,
-            monitorRect,
-            canvasWidth,
-            canvasHeight,
-            canvasScrollLeft,
-            canvasScrollTop,
-            unitWidth,
-            unitHeight,
-            item.w,
-            item.h,
-            edgeWidth,
-            blockColumns,
-            blockRows,
-            componentNode.verticalResize,
-          )
+          let calculateResult: DragPosition
+          if (
+            item.x == -1 &&
+            item.y == -1 &&
+            item.parentNode != componentNode.displayName
+          ) {
+            calculateResult = calculateDragPosition(
+              canvasRect,
+              monitorRect,
+              canvasWidth,
+              canvasHeight,
+              canvasScrollLeft,
+              canvasScrollTop,
+              unitWidth,
+              unitHeight,
+              item.w,
+              item.h,
+              edgeWidth,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
+            )
+          } else {
+            calculateResult = calculateDragExistPosition(
+              unitWidth,
+              unitHeight,
+              item.x,
+              item.y,
+              canvasHeight,
+              monitor.getDifferenceFromInitialOffset()!!,
+              item.w,
+              item.h,
+              blockColumns,
+              blockRows,
+              componentNode.verticalResize,
+            )
+          }
           updateDragShadowData(
             item,
-            renderX,
-            renderY,
+            calculateResult.renderX,
+            calculateResult.renderY,
             unitWidth,
             unitHeight,
             canvasWidth,
@@ -236,8 +284,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           )
           updateDottedLineSquareData(
             item,
-            squareX,
-            squareY,
+            calculateResult.squareX,
+            calculateResult.squareY,
             unitWidth,
             unitHeight,
             (newItem) => {
@@ -284,21 +332,14 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth != null &&
           canvasHeight != null
         ) {
-          const { nearX, nearY } = calculateDragPosition(
+          const [nearX, nearY] = calculateNearXY(
             canvasRect,
             monitorRect,
-            canvasWidth,
-            canvasHeight,
             canvasScrollLeft,
             canvasScrollTop,
             unitWidth,
             unitHeight,
-            item.node.w,
-            item.node.h,
             edgeWidth,
-            blockColumns,
-            blockRows,
-            componentNode.verticalResize,
           )
           updateResizeScaleSquare(
             item.node,
@@ -317,7 +358,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   )
 
   const dragShadows = useMemo<ReactNode[]>(() => {
-    return Object.keys(dragShadowMap).map<ReactNode>((value, index, array) => {
+    return Object.keys(dragShadowMap).map<ReactNode>((value) => {
       const item = dragShadowMap[value]
       return (
         <DragShadowSquare
@@ -379,37 +420,35 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           return null
       }
     })
-  }, [componentNode.childrenNode])
+  }, [componentNode.childrenNode, canvasWidth])
 
   const dottedLineSquares = useMemo<ReactNode[]>(() => {
-    return Object.keys(dottedLineSquareMap).map<ReactNode>(
-      (value, index, array) => {
-        const item = dottedLineSquareMap[value]
-        const h = item.h
-        const w = item.w
-        const [l, t] = calculateXY(
-          item.squareX,
-          item.squareY,
-          unitWidth,
-          unitHeight,
-        )
-        return (
-          <DottedLineSquare
-            css={applyDragObjectStyle(t, l)}
-            h={h}
-            w={w}
-            key={item.displayName}
-          />
-        )
-      },
-    )
+    return Object.keys(dottedLineSquareMap).map<ReactNode>((value) => {
+      const item = dottedLineSquareMap[value]
+      const h = item.h
+      const w = item.w
+      const [l, t] = calculateXY(
+        item.squareX,
+        item.squareY,
+        unitWidth,
+        unitHeight,
+      )
+      return (
+        <DottedLineSquare
+          css={applyDragObjectStyle(t, l)}
+          h={h}
+          w={w}
+          key={item.displayName}
+        />
+      )
+    })
   }, [dottedLineSquareMap])
 
   return (
     <div
       ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
-      css={applyScaleStyle(componentNode.verticalResize)}
-      onClick={(event) => {
+      css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
+      onClick={() => {
         dispatch(configActions.updateSelectedComponent([]))
       }}
       {...otherProps}
