@@ -8,7 +8,7 @@ export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
   switch (scaleSquareType) {
     case "error":
-      stateColor = globalColor(`--${illaPrefix}-red-03`)
+      stateColor = globalColor(`--${illaPrefix}-orange-03`)
       break
     case "normal":
       stateColor = globalColor(`--${illaPrefix}-techPurple-01`)

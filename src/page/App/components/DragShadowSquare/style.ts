@@ -11,7 +11,7 @@ export function applyDragShadowSquareStyle(
     width: ${w}px;
     border-radius: 2px;
     background: ${isConflict
-      ? globalColor(`--${illaPrefix}-red-03`)
+      ? globalColor(`--${illaPrefix}-orange-03`)
       : globalColor(`--${illaPrefix}-techPurple-06`)};
   `
 }
