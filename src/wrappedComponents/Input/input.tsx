@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { forwardRef, useState } from "react"
 import { WrappedInputProps } from "./interface"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { Input } from "@illa-design/input"
@@ -7,17 +7,18 @@ import { inputContainerCss } from "./style"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
-export const WrappedInput: FC<WrappedInputProps> = (props) => {
+export const WrappedInput = forwardRef<any, WrappedInputProps>((props, any) => {
   const {
+    value,
+    placeholder,
+    disabled,
     readOnly,
-    maxLength,
-    minLength,
-    pattern,
-    regex,
-    customRule,
+    prefixIcon,
+    prefixText,
+    suffixIcon,
+    suffixText,
     required,
     showCharacterCount,
-    defaultValue,
     label,
     labelAlign,
     labelWidth,
@@ -25,11 +26,11 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
     labelCaption,
     labelWidthUnit,
     tooltipText,
-    ...res
+    handleUpdateDsl,
   } = props
 
   const validateProps: ValidateMessageProps = props
-  const [currentValue, setCurrentValue] = useState(defaultValue)
+  const [currentValue, setCurrentValue] = useState("")
 
   return (
     <div>
@@ -46,10 +47,18 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
         >
           <div css={inputContainerCss}>
             <Input
+              value={value}
+              placeholder={placeholder}
+              disabled={disabled}
+              readOnly={readOnly}
+              prefix={prefixIcon}
+              addonBefore={prefixText}
+              suffix={suffixIcon}
+              addonAfter={suffixText}
               onChange={(value) => {
                 setCurrentValue(value)
+                handleUpdateDsl({ value })
               }}
-              {...res}
               showCount={showCharacterCount}
             />
             <InvalidMessage value={currentValue} {...validateProps} />
@@ -58,7 +67,8 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
       </Wrapper>
     </div>
   )
-}
+})
+
 export const InputWidget = WrappedInput
 
 WrappedInput.displayName = "WrappedInput"

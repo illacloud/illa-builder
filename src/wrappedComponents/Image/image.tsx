@@ -1,10 +1,10 @@
 import { Image } from "@illa-design/image"
-import { FC, useMemo, forwardRef, useImperativeHandle } from "react"
+import { useMemo, forwardRef, useImperativeHandle } from "react"
 import { WrappedImageProps } from "./interface"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 
-export const WrappedImage: FC<WrappedImageProps> = forwardRef((props, ref) => {
+export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
   const {
     fallbackSrc,
     alt,

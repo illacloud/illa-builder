@@ -4,17 +4,17 @@ import {
   SWITCH_PANEL_CONFIG,
   SWITCH_WIDGET_CONFIG,
   SwitchWidget,
-} from "./Switch"
+} from "@/wrappedComponents/Switch"
 import {
   BUTTON_PANEL_CONFIG,
   BUTTON_WIDGET_CONFIG,
   ButtonWidget,
-} from "./Button"
+} from "@/wrappedComponents/Button"
 import {
   SELECT_PANEL_CONFIG,
   SELECT_WIDGET_CONFIG,
   SelectWidget,
-} from "./Select"
+} from "@/wrappedComponents/Select"
 import { INPUT_PANEL_CONFIG, INPUT_WIDGET_CONFIG, InputWidget } from "./Input"
 import { WidgetConfigs } from "./interface"
 import {

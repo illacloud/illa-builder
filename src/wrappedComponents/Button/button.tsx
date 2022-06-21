@@ -1,12 +1,11 @@
-import { FC, forwardRef, useImperativeHandle, useMemo } from "react"
-import { WrappedButtonProps } from "./interface"
+import { forwardRef, useImperativeHandle, useMemo } from "react"
 import { Button } from "@illa-design/button"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { applyButtonLayoutStyle } from "./style"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
+import { WrappedButtonProps } from "./interface"
+import { applyButtonLayoutStyle } from "./style"
 
-export const WrappedButton: FC<WrappedButtonProps> = forwardRef(
+export const WrappedButton = forwardRef<any, WrappedButtonProps>(
   (props, ref) => {
     // TODO:
     useImperativeHandle(ref, () => ({}))
@@ -58,6 +57,8 @@ export const WrappedButton: FC<WrappedButtonProps> = forwardRef(
               autoFullVertically
               autoFullHorizontal
               buttonRadius={borderRadius}
+              leftIcon={leftIcon}
+              rightIcon={rightIcon}
               // borderColor={_borderColor}
               // backgroundColor={backgroundColor}
               // textColor={_textColor}

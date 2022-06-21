@@ -1,12 +1,12 @@
 import { InputNumber, LoadingIcon } from "@illa-design/react"
-import { FC, useEffect, useMemo, useState } from "react"
+import { forwardRef, useEffect, useMemo, useState } from "react"
 import { WrappedNumberInputProps } from "@/wrappedComponents/NumberInput/interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/([-+]?\d{3})(?=\d)/g, "$1,")
 
-export const WrappedInputNumber: FC<WrappedNumberInputProps> = (props) => {
+export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>((props, ref) => {
   const {
     openThousandSeparator,
     max,
@@ -19,7 +19,6 @@ export const WrappedInputNumber: FC<WrappedNumberInputProps> = (props) => {
     prefix,
     suffix,
     loading,
-    handleUpdateDsl,
     label,
     labelAlign,
     labelWidth,
@@ -28,6 +27,7 @@ export const WrappedInputNumber: FC<WrappedNumberInputProps> = (props) => {
     labelPosition,
     required,
     tooltipText,
+    handleUpdateDsl,
   } = props
 
   const [finalValue, setFinalValue] = useState(value)
@@ -81,6 +81,6 @@ export const WrappedInputNumber: FC<WrappedNumberInputProps> = (props) => {
       />
     </LabelWrapper>
   )
-}
+})
 
 export const NumberInputWidget = WrappedInputNumber

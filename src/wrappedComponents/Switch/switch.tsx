@@ -1,9 +1,9 @@
 import { Switch } from "@illa-design/switch"
-import { FC, forwardRef, useImperativeHandle } from "react"
+import { forwardRef, useImperativeHandle } from "react"
 import { WrappedSwitchProps } from "./interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
-export const WrappedSwitch: FC<WrappedSwitchProps> = forwardRef(
+export const WrappedSwitch = forwardRef<any, WrappedSwitchProps>(
   (props, ref) => {
     useImperativeHandle(ref, () => ({
       setValue: (value: boolean) => {
@@ -13,7 +13,7 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = forwardRef(
         handleUpdateDsl({ value: undefined })
       },
       toggleValue: () => {
-        handleUpdateDsl({ value: !props.checked })
+        handleUpdateDsl({ value: !props.value })
       },
     }))
 
@@ -24,7 +24,7 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = forwardRef(
       labelPosition,
       labelCaption,
       labelWidthUnit,
-      checked,
+      value,
       disabled,
       required,
       colorScheme = "blue",
@@ -44,7 +44,7 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = forwardRef(
         tooltipText={tooltipText}
       >
         <Switch
-          checked={checked}
+          checked={value}
           disabled={disabled}
           colorScheme={colorScheme}
           onChange={(value) => {

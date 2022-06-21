@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { forwardRef, useCallback, useState } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
@@ -8,7 +8,7 @@ import { inputContainerCss } from "./style"
 import { WrappedDateTimeProps } from "./interface"
 import LabelWrapper from "../LabelWrapper"
 
-export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
+export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>((props) => {
   const {
     value,
     tooltipText,
@@ -22,7 +22,6 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
     labelCaption,
     labelWidthUnit,
     required,
-    defaultValue,
     colorScheme,
     minDate,
     disabled,
@@ -31,9 +30,10 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
     minuteStep,
     timeFormat,
     hideValidationMessage,
+    handleUpdateDsl
   } = props
 
-  const [currentValue, setCurrentValue] = useState(value ?? defaultValue)
+  const [currentValue, setCurrentValue] = useState(value)
 
   const checkRange = useCallback(
     (current) => {
@@ -67,7 +67,6 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
             <DatePicker
               showTime={{ step: { minute: minuteStep }, format: timeFormat }}
               colorScheme={colorScheme}
-              defaultValue={defaultValue}
               format={dateFormat}
               value={value}
               readOnly={readOnly}
@@ -80,6 +79,7 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
               }}
               onChange={(value) => {
                 setCurrentValue(value)
+                handleUpdateDsl?.({ value })
               }}
             />
             <InvalidMessage
@@ -92,7 +92,7 @@ export const WrappedDateTime: FC<WrappedDateTimeProps> = (props) => {
       </Wrapper>
     </TooltipWrapper>
   )
-}
+})
 
 WrappedDateTime.displayName = "WrappedDate"
 

@@ -1,10 +1,9 @@
-import { ColorScheme, TextAlign } from "@illa-design/divider"
+import { DividerProps } from "@illa-design/divider"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
 
-export interface WrappedDividerProps {
-  tooltipText?: string
-  text?: string
-  textAlign?: TextAlign
+export interface WrappedDividerProps
+  extends Pick<TooltipWrapperProps, "tooltipText">,
+  Pick<DividerProps, "text" | "textAlign"> {
   textSize?: string | number
-  hidden?: boolean
-  color?: ColorScheme
+  color?: DividerProps["colorScheme"]
 }

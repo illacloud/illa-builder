@@ -1,23 +1,23 @@
+import { DatePickerProps } from "@illa-design/date-picker"
 import LabelProps from "@/wrappedComponents/Label/interface"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
-import { InputBorderColor } from "@illa-design/input"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
 
-export type alignmentType = "start" | "center" | "end" | "fullWidth"
-
-export interface WrappedDateTimeProps extends LabelProps, ValidateMessageProps {
+export interface WrappedDateTimeProps
+  extends LabelProps,
+  ValidateMessageProps,
+  Pick<TooltipWrapperProps, "tooltipText">,
+  Pick<
+  DatePickerProps,
+  "placeholder" | "disabled" | "readOnly" | "colorScheme"
+  > {
   value?: string
-  defaultValue?: string
-  placeholder?: string
   dateFormat?: string
   timeFormat?: string
   minuteStep?: number
   tooltipText?: string
-  disabled?: boolean
   loading?: boolean
-  readOnly?: boolean
   showClear?: boolean
-  required?: boolean
-  colorScheme?: InputBorderColor
   minDate?: string
   maxDate?: string
   handleUpdateDsl?: (value: Record<string, string>) => void

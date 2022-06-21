@@ -1,11 +1,10 @@
-export type Alignment = "start" | "center" | "end"
+import { ProgressProps } from "@illa-design/progress"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
+import LabelProps from "@/wrappedComponents/Label/interface"
 
-export interface WrappedCircleProgressProps {
+export interface WrappedCircleProgressProps
+  extends LabelProps,
+  Pick<ProgressProps, "color" | "trailColor" | "showText" | "strokeWidth">,
+  Pick<TooltipWrapperProps, "tooltipText"> {
   value?: number
-  tooltipText?: string
-  showText?: boolean
-  color?: string
-  trailColor?: string
-  strokeWidth?: string
-  alignment?: Alignment
 }

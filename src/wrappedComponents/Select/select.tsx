@@ -1,10 +1,10 @@
-import { FC } from "react"
+import { forwardRef } from "react"
 import { WrappedSelectProps } from "./interface"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { Select } from "@illa-design/select"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 
-export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
+export const WrappedSelect = forwardRef<any, WrappedSelectProps>((props) => {
   const {
     label,
     labelAlign,
@@ -13,11 +13,17 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     labelWidth,
     labelWidthUnit,
     required,
-    hidden,
     tooltipText,
     showClear,
+    options,
+    value,
+    placeholder,
+    disabled,
+    loading,
+    readOnly,
+    showSearch,
+    inputValue,
     handleUpdateDsl,
-    ...selectProps
   } = props
   return (
     <Wrapper>
@@ -33,7 +39,14 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       >
         <Select
           allowClear={showClear}
-          {...selectProps}
+          options={options}
+          value={value}
+          placeholder={placeholder}
+          disabled={disabled}
+          loading={loading}
+          readOnly={readOnly}
+          showSearch={showSearch}
+          inputValue={inputValue}
           size="small"
           onChange={(value) => {
             handleUpdateDsl({ value })
@@ -42,7 +55,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       </LabelWrapper>
     </Wrapper>
   )
-}
+})
 
 WrappedSelect.displayName = "SelectWidget"
 

@@ -6,8 +6,8 @@ export interface TextProps {
   disableMarkdown?: boolean
   horizontalAlign?: HorizontalAlign
   verticalAlign?: VerticalAlign
-  backgroundColor?: string
-  textColor?: string
-  linkColor?: string
+  backgroundColor?: string // TODO: add colorScheme type
+  textColor?: string // TODO: add colorScheme type
+  linkColor?: string // TODO: add colorScheme type
   tooltipText?: string
 }

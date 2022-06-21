@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { forwardRef, useCallback, useState } from "react"
 import dayjs from "dayjs"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
@@ -8,7 +8,7 @@ import { inputContainerCss } from "./style"
 import { WrappedDateProps } from "./interface"
 import LabelWrapper from "../LabelWrapper"
 
-export const WrappedDate: FC<WrappedDateProps> = (props) => {
+export const WrappedDate = forwardRef<any, WrappedDateProps>((props) => {
   const {
     value,
     tooltipText,
@@ -29,6 +29,7 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
     maxDate,
     readOnly,
     hideValidationMessage,
+    handleUpdateDsl
   } = props
 
   const [currentValue, setCurrentValue] = useState(value ?? defaultValue)
@@ -76,6 +77,7 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
               onClear={() => setCurrentValue("")}
               onChange={(value) => {
                 setCurrentValue(value)
+                handleUpdateDsl?.({ value })
               }}
             />
             <InvalidMessage
@@ -88,7 +90,7 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
       </Wrapper>
     </TooltipWrapper>
   )
-}
+})
 
 WrappedDate.displayName = "WrappedDate"
 

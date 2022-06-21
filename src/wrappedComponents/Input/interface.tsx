@@ -1,18 +1,19 @@
+import { InputProps } from "@illa-design/input"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
 import LabelProps from "@/wrappedComponents/Label/interface"
-import { ReactNode } from "react"
 
-export interface WrappedInputProps extends LabelProps, ValidateMessageProps {
-  placeholder?: string
-  disabled?: boolean
-  readOnly?: boolean
-  showCharacterCount?: boolean
+export interface WrappedInputProps
+  extends LabelProps,
+  ValidateMessageProps,
+  Pick<TooltipWrapperProps, "tooltipText">,
+  Pick<InputProps, "placeholder" | "disabled" | "readOnly"> {
+  showCharacterCount?: InputProps["showCount"]
   value?: string
-  defaultValue?: string
-  prefixIcon?: ReactNode
-  prefixText?: string
-  suffixIcon?: ReactNode
-  suffixText?: string
+  prefixIcon?: InputProps["prefix"]
+  prefixText?: InputProps["addonBefore"]
+  suffixIcon?: InputProps["suffix"]
+  suffixText?: InputProps["addonAfter"]
   tooltipText?: string
   handleUpdateDsl: (value: Record<string, string>) => void
 }
