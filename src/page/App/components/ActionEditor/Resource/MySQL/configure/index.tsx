@@ -4,7 +4,6 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
-import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
@@ -219,7 +218,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               {t("editor.action.resource.my_sql.tip.connect_type")}
             </div>
           </div>
-          <Divider css={splitLineStyle} />
+          <div css={splitLineStyle} />
           <h4 css={groupTitleStyle}>Advanced Options</h4>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
