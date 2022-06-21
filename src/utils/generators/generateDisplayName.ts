@@ -6,7 +6,7 @@ export class DisplayNameGenerator {
     [key: string]: number
   } = {}
 
-  static initialMap(componentNode: ComponentNode) {
+  static initialComponentMap(componentNode: ComponentNode) {
     if (
       componentNode.type != null &&
       new RegExp(`${componentNode.type}\\d+`).test(componentNode.displayName)
@@ -16,6 +16,12 @@ export class DisplayNameGenerator {
       } else {
         this.map[componentNode.type] = 1
       }
+    }
+    const children = componentNode.childrenNode
+    if (children != null) {
+      Object.keys(children).forEach((key) => {
+        this.initialComponentMap(children[key])
+      })
     }
   }
 
