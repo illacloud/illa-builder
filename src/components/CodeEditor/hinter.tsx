@@ -1,66 +1,48 @@
 import "codemirror/addon/hint/sql-hint"
 import "codemirror/addon/hint/javascript-hint"
-import CodeMirror from "codemirror"
+import CodeMirror, { Hint } from "codemirror"
 import ReactDOM from "react-dom"
 import { AutoCompleteItem } from "@/components/EditorInput/AutoComplete/item"
+import {isString} from "@illa-design/system";
 
 let origJsHint = CodeMirror.hint.javascript
-CodeMirror.hint.javascript = function (cm, option) {
-  let inner = origJsHint(cm, option) || {
+CodeMirror.hint.javascript = async function (cm, option) {
+  let inner = (await origJsHint(cm, option)) || {
     from: cm.getCursor(),
     to: cm.getCursor(),
     list: [],
   }
   console.log(inner, cm, option, "javascript inner")
-  inner?.list?.push({
-    text: "bozo",
-    render: (elt: HTMLLIElement) => {
-      // console.log(elt, "render")
-      let div = document.createElement("div")
-      ReactDOM.render(
-        <AutoCompleteItem type={"String"} content={"bozo"} />,
-        div,
-      )
-      elt?.appendChild(div)
-    },
-  })
   return inner
 }
 
-const hintWords = ["trap.our()", "trap.hints()", "trap"]
-const jsHinter = CodeMirror.hint.javascript
-CodeMirror.hint.javascript = function (editor, option) {
-  const cursor = editor.getCursor()
-  const currentLine = editor.getLine(cursor.line)
-  let start = cursor.ch
-  let end = start
-  const rex = /[\w.]/
-  while (end < currentLine.length && rex.test(currentLine.charAt(end))) ++end
-  while (start && rex.test(currentLine.charAt(start - 1))) --start
-  const curWord = start !== end && currentLine.slice(start, end)
-  const dflt = jsHinter(editor, option)
-  const result = dflt || {
-    from: CodeMirror.Pos(cursor.line, end),
-    to: CodeMirror.Pos(cursor.line, end),
-    list: [],
-  }
-  // Add our custom hintWords to the list, if they start with the curWord...
-  hintWords.forEach((h) => {
-    if (h.startsWith(curWord)) result.list.push(h)
-  })
-  result.list.sort() // sort the final list of hints
-  return result
-}
-
 let origSqlHint = CodeMirror.hint.sql
-CodeMirror.hint.sql = function (cm, option) {
-  cm.doc.modeOption = "sql"
-  let inner = origSqlHint(cm, option) || {
+CodeMirror.hint.sql = async function (cm, option) {
+  const editor = cm
+  // [TODO] override sql-hint.js
+  // @ts-ignore override doc.modeOption
+  // see in: https://github.com/codemirror/codemirror5/issues/5249
+  editor.doc.modeOption = "sql"
+  let inner = (await origSqlHint(editor, option)) || {
     from: cm.getCursor(),
     to: cm.getCursor(),
     list: [],
   }
-  console.log(inner, cm, option, "sql inner")
-  inner?.list?.push("bozo")
+  const newList = []
+  for (let i = 0; i < inner.list.length; i++) {
+    console.log(inner.list[i], "item")
+    let item = isString(inner.list[i])
+      ? inner.list[i] as string
+      : (inner.list[i] as Hint)?.text
+    newList.push({
+      text: item,
+      render: (elt: HTMLLIElement) => {
+        let div = document.createElement("div")
+        ReactDOM.render(<AutoCompleteItem content={item as string} />, div)
+        elt?.appendChild(div)
+      },
+    })
+  }
+  inner.list = newList
   return inner
 }

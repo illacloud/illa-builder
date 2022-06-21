@@ -38,9 +38,9 @@ export const AutoCompleteItem = forwardRef<
 
   return (
     <div css={itemStyle} ref={ref} {...rest}>
-      {IconEle(type)}
+      {type ? IconEle(type) : null}
       <span css={contentStyle}>{content}</span>
-      <span css={typeStyle}>{type}</span>
+      {type ? <span css={typeStyle}>{type}</span> : null}
     </div>
   )
 })

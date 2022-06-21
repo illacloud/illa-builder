@@ -10,6 +10,6 @@ export type AutoCompleteItemType =
   | "Null"
 
 export interface AutoCompleteItemProps extends HTMLAttributes<HTMLDivElement> {
-  type: AutoCompleteItemType
+  type?: AutoCompleteItemType
   content: string
 }

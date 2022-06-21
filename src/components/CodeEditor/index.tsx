@@ -42,8 +42,6 @@ import { isExpectType } from "@/components/CodeEditor/utils"
 import ReactDOM from "react-dom";
 import {AutoCompleteItem} from "@/components/EditorInput/AutoComplete/item";
 import {HintComplement} from "@/components/EditorInput/AutoComplete/HintComplement";
-import {Def} from "tern/lib/tern";
-import * as Tern from "tern";
 
 export type Hinter = {
   showHint: (
