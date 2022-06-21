@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect, useRef, useState, useMemo } from "react"
 import { css, Global } from "@emotion/react"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
@@ -10,24 +10,11 @@ import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
 import "codemirror/addon/lint/lint"
 import "codemirror/addon/lint/lint.css"
-// tern
-import tern from "tern"
-import "codemirror/addon/tern/worker"
-import "codemirror/addon/tern/tern.css"
-import "codemirror/addon/tern/tern"
-// import 'tern/lib/tern';
-// import 'tern/plugin/complete_strings';
-// import 'tern/doc/demo/polyfill';
-// import 'tern/lib/signal';
-// import 'tern/lib/def';
-// import 'tern/lib/comment';
-// import 'tern/lib/infer';
-// import "tern/plugin/doc_comment"
-import ecmascript from "tern/defs/ecmascript.json"
-
 // defineMode
 import "./modes"
 import "./hinter"
+import { TernServer } from "./TernSever"
+import { Trigger } from "@illa-design/trigger"
 import {
   ResultPreview,
   CodeEditorProps,
@@ -35,13 +22,9 @@ import {
   FieldEntityInformation,
 } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
-import { Trigger } from "@illa-design/trigger"
 import { CodePreview } from "./CodePreview"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { isExpectType } from "@/components/CodeEditor/utils"
-import ReactDOM from "react-dom";
-import {AutoCompleteItem} from "@/components/EditorInput/AutoComplete/item";
-import {HintComplement} from "@/components/EditorInput/AutoComplete/HintComplement";
 
 export type Hinter = {
   showHint: (
@@ -52,8 +35,6 @@ export type Hinter = {
   update?: (data: any) => void
   fireOnFocus?: boolean
 }
-
-window.tern = tern
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -72,29 +53,29 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const codeTargetRef = useRef<HTMLDivElement>(null)
   const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
-  const [hinters, setHinters] = useState<Hinter[]>([])
-  const [hinterOpen, setHinterOpen] = useState<boolean>()
   const [preview, setPreview] = useState<ResultPreview>({
     state: "default",
     type: expectedType,
   })
   const [previewVisible, setPreviewVisible] = useState<boolean>()
   const [focus, setFocus] = useState<boolean>()
+  // Solve the closure problem
+  const latestProps = useRef(props)
+  latestProps.current = props
+
   const handleFocus = () => {
     setFocus(true)
   }
 
   const handleBlur = (instance: Editor, event: FocusEvent) => {
-    onBlur?.()
+    latestProps.current?.onBlur?.()
     setFocus(false)
     setPreviewVisible(false)
   }
 
-  const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
-    handleAutocomplete(editor)
-    const currentValue = editor?.getValue()
-    let previewType = expectedType
+  const valueChanged = (currentValue: string) => {
     let calcResult: any = null
+    let previewType = expectedType
     try {
       calcResult = evaluateDynamicString("", currentValue, {})
       // if (!currentValue?.includes("{{")) {
@@ -113,46 +94,22 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         content: e.toString(),
       })
     } finally {
-      onChange?.(currentValue, calcResult)
+      latestProps.current.onChange?.(currentValue, calcResult)
     }
+  }
+
+  const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
+    handleAutocomplete(editor)
+    const currentValue = editor?.getValue()
+    valueChanged(currentValue)
   }
 
   useEffect(() => {
     const currentValue = editor?.getValue()
     if (value && value !== currentValue) {
-      let calcResult: any = null
-      let previewType = expectedType
-      try {
-        calcResult = evaluateDynamicString("", value, {})
-        editor?.setValue(value)
-        isExpectType(previewType, calcResult)
-        setPreview({
-          state: "default",
-          type: expectedType,
-          content: calcResult,
-        })
-      } catch (e: any) {
-        console.error(e)
-        setPreview({
-          state: "error",
-          content: e.toString(),
-        })
-      } finally {
-        onChange?.(value, calcResult)
-      }
+      editor?.setValue(value)
     }
   }, [value])
-
-  const handleAutocompleteAddition = (cm: CodeMirror.Editor) => {
-    // if (!isFocused) return;
-    const entityInformation: FieldEntityInformation = {}
-    let hinterOpen = false
-    for (let i = 0; i < hinters.length; i++) {
-      hinterOpen = hinters[i].showHint(cm, entityInformation, {})
-      if (hinterOpen) break
-    }
-    setHinterOpen(hinterOpen)
-  }
 
   const handleAutocomplete = (cm: CodeMirror.Editor) => {
     const modeName = cm.getModeAt(cm.getCursor()).name
@@ -182,23 +139,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   useEffect(() => {
-    sever.current = new CodeMirror.TernServer({
-      // @ts-ignore type warning
-
-      defs: [ecmascript, {}],
-      completionTip: (data) => {
-        console.log(data, 'completionTip')
-        let div = document.createElement("div")
-        let a = ReactDOM.render(
-            <HintComplement />,
-            div,
-        )
-        return div
-      },
-    })
-  }, [])
-
-  useEffect(() => {
+    sever.current = TernServer()
     if (!editor) {
       const editor = CodeMirror(codeTargetRef.current!, {
         mode: EditorModes[mode],
