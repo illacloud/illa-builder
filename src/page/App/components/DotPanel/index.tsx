@@ -386,7 +386,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         })
       }
     }
-  }, [dragShadowMap])
+  }, [dragShadowMap, canvasHeight, canvasWidth])
 
   // render dot
   useEffect(() => {
@@ -411,7 +411,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         }
       }
     }
-  }, [windowHeight, windowWidth, canvasHeight, canvasWidth])
+  }, [canvasHeight, canvasWidth])
 
   // render dotted line
   useEffect(() => {
@@ -443,7 +443,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         })
       }
     }
-  }, [dottedLineSquareMap])
+  }, [dottedLineSquareMap, canvasHeight, canvasWidth])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
@@ -477,7 +477,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           return null
       }
     })
-  }, [componentNode.childrenNode, canvasWidth])
+  }, [componentNode.childrenNode, canvasHeight, canvasWidth])
 
   return (
     <div
