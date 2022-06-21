@@ -29,9 +29,10 @@ import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShado
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import store, { RootState } from "@/store"
 import {
-  calculateDragExistPosition,
   calculateDragPosition,
+  calculateExistDragPosition,
   calculateNearXY,
+  calculateNotExistDragPosition,
   calculateXY,
 } from "./calc"
 import {
@@ -132,77 +133,32 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         }
         // set dot show
         dispatch(configActions.updateShowDot(false))
-        // calc data
-        const monitorRect = monitor.getClientOffset()
-        const canvasRect = canvasRef.current?.getBoundingClientRect()
-        const canvasScrollLeft = canvasRef.current?.scrollLeft
-        const canvasScrollTop = canvasRef.current?.scrollTop
-        if (
-          monitorRect != null &&
-          canvasRect != null &&
-          canvasScrollLeft != null &&
-          canvasScrollTop != null &&
-          canvasWidth != null &&
-          canvasHeight != null
-        ) {
-          let calculateResult: DragPosition
-          if (
-            item.x == -1 &&
-            item.y == -1 &&
-            item.parentNode != componentNode.displayName
-          ) {
-            calculateResult = calculateDragPosition(
-              canvasRect,
-              monitorRect,
-              canvasWidth,
-              canvasHeight,
-              canvasScrollLeft,
-              canvasScrollTop,
-              unitWidth,
-              unitHeight,
-              item.w,
-              item.h,
-              edgeWidth,
-              blockColumns,
-              blockRows,
-              componentNode.verticalResize,
-            )
-          } else {
-            calculateResult = calculateDragExistPosition(
-              canvasRect,
-              monitorRect,
-              {
-                x:
-                  monitor.getInitialClientOffset()!!.x -
-                  monitor.getInitialSourceClientOffset()!!.x,
-                y:
-                  monitor.getInitialClientOffset()!!.y -
-                  monitor.getInitialSourceClientOffset()!!.y,
-              } as XYCoord,
-              canvasWidth,
-              canvasHeight,
-              canvasScrollLeft,
-              canvasScrollTop,
-              unitWidth,
-              unitHeight,
-              item.w,
-              item.h,
-              edgeWidth,
-              blockColumns,
-              blockRows,
-              componentNode.verticalResize,
-            )
-          }
-          updateScaleSquare(
-            item,
-            calculateResult.squareX,
-            calculateResult.squareY,
-            componentNode.displayName,
-            (newItem) => {
-              dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
-            },
-          )
-        }
+        const calculateResult = calculateDragPosition(
+          item,
+          canvasRef.current!!.getBoundingClientRect(),
+          monitor.getClientOffset()!!,
+          canvasWidth,
+          canvasHeight,
+          canvasRef.current!!.scrollLeft,
+          canvasRef.current!!.scrollTop,
+          unitWidth,
+          unitHeight,
+          edgeWidth,
+          blockColumns,
+          blockRows,
+          componentNode.verticalResize,
+          componentNode.displayName,
+        )
+        // set scale square
+        updateScaleSquare(
+          item,
+          calculateResult.squareX,
+          calculateResult.squareY,
+          componentNode.displayName,
+          (newItem) => {
+            dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+          },
+        )
         // remove dotted line square
         dispatch(
           dottedLineSquareActions.removeDottedLineSquareReducer(
@@ -218,110 +174,73 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
+        // set dot show
         if (store.getState().currentApp.config.showDot == false) {
           dispatch(configActions.updateShowDot(true))
         }
-
-        // calc data
-        const monitorRect = monitor.getClientOffset()
-        const canvasRect = canvasRef.current?.getBoundingClientRect()
-        const canvasScrollLeft = canvasRef.current?.scrollLeft
-        const canvasScrollTop = canvasRef.current?.scrollTop
+        // already exist dismiss
         if (
-          monitorRect != null &&
-          canvasRect != null &&
-          canvasScrollLeft != null &&
-          canvasScrollTop != null &&
-          canvasWidth != null &&
-          canvasHeight != null
+          item.x != -1 ||
+          item.y != -1 ||
+          item.parentNode == componentNode.displayName
         ) {
-          let calculateResult: DragPosition
-          if (
-            item.x == -1 &&
-            item.y == -1 &&
-            item.parentNode != componentNode.displayName
-          ) {
-            calculateResult = calculateDragPosition(
-              canvasRect,
-              monitorRect,
-              canvasWidth,
-              canvasHeight,
-              canvasScrollLeft,
-              canvasScrollTop,
-              unitWidth,
-              unitHeight,
-              item.w,
-              item.h,
-              edgeWidth,
-              blockColumns,
-              blockRows,
-              componentNode.verticalResize,
-            )
-          } else {
-            calculateResult = calculateDragExistPosition(
-              canvasRect,
-              monitorRect,
-              {
-                x:
-                  monitor.getInitialClientOffset()!!.x -
-                  monitor.getInitialSourceClientOffset()!!.x,
-                y:
-                  monitor.getInitialClientOffset()!!.y -
-                  monitor.getInitialSourceClientOffset()!!.y,
-              } as XYCoord,
-              canvasWidth,
-              canvasHeight,
-              canvasScrollLeft,
-              canvasScrollTop,
-              unitWidth,
-              unitHeight,
-              item.w,
-              item.h,
-              edgeWidth,
-              blockColumns,
-              blockRows,
-              componentNode.verticalResize,
-            )
-            dispatch(
-              componentsActions.addOrUpdateComponentReducer({
-                ...item,
-                isDragging: true,
-              }),
-            )
-          }
-          updateDragShadowData(
-            item,
-            calculateResult.renderX,
-            calculateResult.renderY,
-            unitWidth,
-            unitHeight,
-            canvasWidth,
-            canvasHeight,
-            edgeWidth,
-            componentNode.verticalResize,
-            (renderDragShadow) => {
-              dispatch(
-                dragShadowActions.addOrUpdateDragShadowReducer(
-                  renderDragShadow,
-                ),
-              )
-            },
-          )
-          updateDottedLineSquareData(
-            item,
-            calculateResult.squareX,
-            calculateResult.squareY,
-            unitWidth,
-            unitHeight,
-            (newItem) => {
-              dispatch(
-                dottedLineSquareActions.addOrUpdateDottedLineSquareReducer(
-                  newItem,
-                ),
-              )
-            },
+          dispatch(
+            componentsActions.addOrUpdateComponentReducer({
+              ...item,
+              isDragging: true,
+            }),
           )
         }
+
+        const calculateResult = calculateDragPosition(
+          item,
+          canvasRef.current!!.getBoundingClientRect(),
+          monitor.getClientOffset()!!,
+          canvasWidth,
+          canvasHeight,
+          canvasRef.current!!.scrollLeft,
+          canvasRef.current!!.scrollTop,
+          unitWidth,
+          unitHeight,
+          edgeWidth,
+          blockColumns,
+          blockRows,
+          componentNode.verticalResize,
+          componentNode.displayName,
+        )
+
+        // drag shadow
+        updateDragShadowData(
+          item,
+          calculateResult.renderX,
+          calculateResult.renderY,
+          unitWidth,
+          unitHeight,
+          canvasWidth,
+          canvasHeight,
+          edgeWidth,
+          componentNode.verticalResize,
+          (renderDragShadow) => {
+            dispatch(
+              dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow),
+            )
+          },
+        )
+        // dotted line square
+        updateDottedLineSquareData(
+          item,
+          calculateResult.squareX,
+          calculateResult.squareY,
+          unitWidth,
+          unitHeight,
+          (newItem) => {
+            dispatch(
+              dottedLineSquareActions.addOrUpdateDottedLineSquareReducer(
+                newItem,
+              ),
+            )
+          },
+        )
       },
     }),
     [unitWidth, unitHeight, canvasWidth],

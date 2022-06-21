@@ -1,7 +1,9 @@
 import { XYCoord } from "react-dnd"
 import { DragPosition } from "@/page/App/components/DotPanel/interface"
+import { ComponentType } from "react"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
-export function calculateDragPosition(
+export function calculateNotExistDragPosition(
   canvasRect: DOMRect,
   monitorRect: XYCoord,
   canvasWidth: number,
@@ -66,7 +68,7 @@ export function calculateDragPosition(
   } as DragPosition
 }
 
-export function calculateDragExistPosition(
+export function calculateExistDragPosition(
   canvasRect: DOMRect,
   monitorRect: XYCoord,
   offsetRecord: XYCoord,
@@ -122,6 +124,63 @@ export function calculateDragExistPosition(
     squareX,
     squareY,
   } as DragPosition
+}
+
+export function calculateDragPosition(
+  componentNode: ComponentNode,
+  canvasRect: DOMRect,
+  monitorRect: XYCoord,
+  canvasWidth: number,
+  canvasHeight: number,
+  canvasScrollLeft: number,
+  canvasScrollTop: number,
+  unitWidth: number,
+  unitHeight: number,
+  edgeWidth: number,
+  blockColumns: number,
+  blockRows: number,
+  parentVerticalResize: boolean,
+  parentDisplayName: string,
+): DragPosition {
+  if (
+    componentNode.x == -1 &&
+    componentNode.y == -1 &&
+    componentNode.parentNode != parentDisplayName
+  ) {
+    return calculateNotExistDragPosition(
+      canvasRect,
+      monitorRect,
+      canvasWidth,
+      canvasHeight,
+      canvasScrollLeft,
+      canvasScrollTop,
+      unitWidth,
+      unitHeight,
+      componentNode.w,
+      componentNode.h,
+      edgeWidth,
+      blockColumns,
+      blockRows,
+      parentVerticalResize,
+    )
+  } else {
+    return calculateNotExistDragPosition(
+      canvasRect,
+      monitorRect,
+      canvasWidth,
+      canvasHeight,
+      canvasScrollLeft,
+      canvasScrollTop,
+      unitWidth,
+      unitHeight,
+      componentNode.w,
+      componentNode.h,
+      edgeWidth,
+      blockColumns,
+      blockRows,
+      parentVerticalResize,
+    )
+  }
 }
 
 export function calculateNearXY(
