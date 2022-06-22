@@ -5,15 +5,17 @@ export const mainTitleStyle = css`
   display: flex;
   font-size: 12px;
   line-height: 20px;
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
 `
 
 export const contentAreaStyle = css`
   flex: 1;
-  margin-right: 10px;
 `
 
 export const titleTextStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   font-weight: 500;
 `
@@ -27,9 +29,22 @@ export const evaluationStyle = css`
   font-weight: 500;
 `
 
-export const mainTextHeightStyle = css`
-  height: 22px;
-  line-height: 1.83;
+export const docIconStyle = css`
+  text-decoration: none;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  &:hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+  &:active, &:visited, &:link, &:hover  {
+    color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+  }
 `
 
 export const infoTextHeightStyle = css`

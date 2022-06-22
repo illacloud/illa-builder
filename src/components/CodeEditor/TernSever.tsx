@@ -14,11 +14,10 @@ import ecmascript from "tern/defs/ecmascript.json"
 import CodeMirror from "codemirror"
 import ReactDOM from "react-dom"
 import { HintComplement } from "@/components/EditorInput/AutoComplete/HintComplement"
-
 import demoUs from "./defs/demo_us.json"
 import { TypeQueryResult } from "tern/lib/tern"
-// create global variable
-// @ts-ignore
+
+// @ts-ignore: create global variable
 // see in: https://github.com/codemirror/codemirror5/issues/5362
 window.tern = tern
 
@@ -32,9 +31,9 @@ export const TernServer = (data: Record<string, any> = {}) => {
   // let demo = demoUs["abc"]
 
   return new CodeMirror.TernServer({
+    // @ts-ignore: type define error
     defs: [ecmascript, { ...demoUs, ...data }],
-    // @ts-ignore
-    // type define error
+    // @ts-ignore: type define error
     completionTip: (data: TypeQueryResult) => {
       console.log(data, "completionTip")
       let div = document.createElement("div")
