@@ -3,6 +3,9 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const mainTitleStyle = css`
   display: flex;
+  font-size: 12px;
+  line-height: 20px;
+  font-family: 'Helvetica Neue';
 `
 
 export const contentAreaStyle = css`
@@ -11,15 +14,17 @@ export const contentAreaStyle = css`
 `
 
 export const titleTextStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   font-weight: 500;
-  font-size: 12px;
-  margin: 1px 0;
 `
 
-export const containerTextStyle = css`
+export const docTextStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  font-size: 12px;
+`
+
+export const evaluationStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-weight: 500;
 `
 
 export const mainTextHeightStyle = css`
@@ -28,6 +33,5 @@ export const mainTextHeightStyle = css`
 `
 
 export const infoTextHeightStyle = css`
-  height: 20px;
   line-height: 1.67;
 `
