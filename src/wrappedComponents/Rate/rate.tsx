@@ -8,7 +8,7 @@ import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedRateProps } from "./interface"
 import { inputContainerCss } from "./style"
 
-export const WrappedRate = forwardRef<any, WrappedRateProps>((props) => {
+export const WrappedRate = forwardRef<any, WrappedRateProps>((props, ref) => {
   const {
     value,
     tooltipText,

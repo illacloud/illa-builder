@@ -1,7 +1,7 @@
 import { forwardRef, useMemo } from "react"
+import { Divider } from "@illa-design/divider"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
-import { Divider } from "@illa-design/divider"
 import { WrappedDividerProps } from "./interface"
 
 export const WrappedDivider = forwardRef<any, WrappedDividerProps>(

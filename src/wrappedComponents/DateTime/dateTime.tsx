@@ -4,12 +4,12 @@ import { DatePicker } from "@illa-design/date-picker"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { inputContainerCss } from "./style"
 import { WrappedDateTimeProps } from "./interface"
-import LabelWrapper from "../LabelWrapper"
 
 export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
-  (props) => {
+  (props, ref) => {
     const {
       value,
       tooltipText,
@@ -79,6 +79,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
                 disabledDate={checkRange}
                 onClear={() => {
                   setCurrentValue(undefined)
+                  handleUpdateDsl?.({ value: "" })
                 }}
                 onChange={(value) => {
                   setCurrentValue(value)

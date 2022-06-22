@@ -1,13 +1,13 @@
-import { Image } from "@illa-design/image"
 import { useMemo, forwardRef, useImperativeHandle } from "react"
-import { WrappedImageProps } from "./interface"
+import { Image } from "@illa-design/image"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { isValidUrlScheme } from "@/utils/typeHelper"
+import { WrappedImageProps } from "./interface"
 
 export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
   const {
-    fallbackSrc,
-    alt,
+    imageSrc,
+    altText,
     radius,
     tooltipText,
     width,
@@ -17,17 +17,17 @@ export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     setImageUrl: (src: string) => {
-      handleUpdateDsl({ fallbackSrc: src })
+      handleUpdateDsl({ imageSrc: src })
     },
   }))
 
   const finalSrc = useMemo(() => {
-    let finalURL = fallbackSrc
+    let finalURL = imageSrc
     if (finalURL && !isValidUrlScheme(finalURL)) {
       finalURL = `https://${finalURL}`
     }
     return finalURL
-  }, [fallbackSrc])
+  }, [imageSrc])
 
   const finalRadius = useMemo(() => {
     const reg = /^\d+$/
@@ -45,8 +45,8 @@ export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
       position="top"
     >
       <Image
-        fallbackSrc={finalSrc}
-        alt={alt}
+        src={finalSrc}
+        alt={altText}
         radius={finalRadius}
         height={height}
         width={width}

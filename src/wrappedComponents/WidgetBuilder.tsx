@@ -1,5 +1,14 @@
-import { TEXT_PANEL_CONFIG, TEXT_WIDGET_CONFIG, TextWidget } from "./Text"
-import { IMAGE_PANEL_CONFIG, IMAGE_WIDGET_CONFIG, ImageWidget } from "./Image"
+import { WidgetConfigs } from "./interface"
+import {
+  TEXT_PANEL_CONFIG,
+  TEXT_WIDGET_CONFIG,
+  TextWidget,
+} from "@/wrappedComponents/Text"
+import {
+  IMAGE_PANEL_CONFIG,
+  IMAGE_WIDGET_CONFIG,
+  ImageWidget,
+} from "@/wrappedComponents/Image"
 import {
   SWITCH_PANEL_CONFIG,
   SWITCH_WIDGET_CONFIG,
@@ -15,13 +24,16 @@ import {
   SELECT_WIDGET_CONFIG,
   SelectWidget,
 } from "@/wrappedComponents/Select"
-import { INPUT_PANEL_CONFIG, INPUT_WIDGET_CONFIG, InputWidget } from "./Input"
-import { WidgetConfigs } from "./interface"
+import {
+  INPUT_PANEL_CONFIG,
+  INPUT_WIDGET_CONFIG,
+  InputWidget,
+} from "@/wrappedComponents/Input"
 import {
   RADIO_GROUP_PANEL_CONFIG,
   RADIO_GROUP_WIDGET_CONFIG,
   RadioGroupWidget,
-} from "./RadioGroup"
+} from "@/wrappedComponents/RadioGroup"
 import {
   DATE_PANEL_CONFIG,
   DATE_WIDGET_CONFIG,
@@ -37,8 +49,11 @@ import {
   DATE_RANGE_WIDGET_CONFIG,
   DateRangeWidget,
 } from "@/wrappedComponents/DateRange"
-import { RateWidget } from "@/wrappedComponents/Rate/rate"
-import { RATE_PANEL_CONFIG, RATE_WIDGET_CONFIG } from "@/wrappedComponents/Rate"
+import {
+  RATE_PANEL_CONFIG,
+  RATE_WIDGET_CONFIG,
+  RateWidget,
+} from "@/wrappedComponents/Rate"
 import {
   BAR_PROGRESS_PANEL_CONFIG,
   BAR_PROGRESS_WIDGET_CONFIG,

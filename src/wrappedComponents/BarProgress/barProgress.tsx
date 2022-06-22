@@ -2,8 +2,8 @@ import { forwardRef, useMemo } from "react"
 import { Progress } from "@illa-design/progress"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedBarProgressProps } from "./interface"
-import LabelWrapper from "../LabelWrapper"
 
 export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
   (props, ref) => {

@@ -1,5 +1,6 @@
-import { InputNumber, LoadingIcon } from "@illa-design/react"
 import { forwardRef, useEffect, useMemo, useState } from "react"
+import { InputNumber } from "@illa-design/input-number"
+import { LoadingIcon } from "@illa-design/icon"
 import { WrappedNumberInputProps } from "@/wrappedComponents/NumberInput/interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 

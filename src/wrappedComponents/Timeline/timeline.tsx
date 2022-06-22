@@ -3,7 +3,7 @@ import { Timeline, TimelineItem } from "@illa-design/timeline"
 import { WrappedTimelineProps } from "@/wrappedComponents/Timeline/interface"
 
 export const WrappedTimeline = forwardRef<any, WrappedTimelineProps>(
-  (props) => {
+  (props, ref) => {
     const {
       items = [
         "The first milestone",

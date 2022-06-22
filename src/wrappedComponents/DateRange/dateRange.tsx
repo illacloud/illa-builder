@@ -1,16 +1,16 @@
 import { forwardRef, useCallback, useMemo } from "react"
 import dayjs from "dayjs"
+import { DateRangePicker } from "@illa-design/date-picker"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
-import { DateRangePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
 import { invalidMessage } from "@/wrappedComponents/InvalidMessage/utils"
-import LabelWrapper from "../LabelWrapper"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { inputContainerCss } from "./style"
 import { WrappedDateRangeProps } from "./interface"
 
 export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
-  (props) => {
+  (props, ref) => {
     const {
       value,
       tooltipText,
@@ -25,7 +25,6 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
       labelCaption,
       labelWidthUnit,
       required,
-      defaultValue,
       colorScheme,
       minDate,
       disabled,
@@ -79,7 +78,6 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
             <div css={inputContainerCss}>
               <DateRangePicker
                 colorScheme={colorScheme}
-                defaultValue={defaultValue ? [defaultValue] : undefined}
                 format={dateFormat}
                 value={value}
                 readOnly={readOnly}
@@ -88,7 +86,9 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
                 allowClear={showClear}
                 disabledDate={checkRange}
                 // todo @aoao handleUpdateDsl?
-                // onClear={() => }
+                onClear={() => {
+                  handleUpdateDsl?.({ value: "" })
+                }}
                 onChange={(value) => {
                   handleUpdateDsl?.({ value })
                 }}

@@ -1,7 +1,7 @@
-import { Switch } from "@illa-design/switch"
 import { forwardRef, useImperativeHandle } from "react"
-import { WrappedSwitchProps } from "./interface"
+import { Switch } from "@illa-design/switch"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
+import { WrappedSwitchProps } from "./interface"
 
 export const WrappedSwitch = forwardRef<any, WrappedSwitchProps>(
   (props, ref) => {

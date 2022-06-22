@@ -1,13 +1,13 @@
 import { forwardRef, useState } from "react"
-import { WrappedInputProps } from "./interface"
-import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { Input } from "@illa-design/input"
+import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
-import { inputContainerCss } from "./style"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
+import { WrappedInputProps } from "./interface"
+import { inputContainerCss } from "./style"
 
-export const WrappedInput = forwardRef<any, WrappedInputProps>((props, any) => {
+export const WrappedInput = forwardRef<any, WrappedInputProps>((props, ref) => {
   const {
     value,
     placeholder,

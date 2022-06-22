@@ -17,7 +17,7 @@ export interface WrappedDateTimeProps
   minuteStep?: number
   tooltipText?: string
   loading?: boolean
-  showClear?: boolean
+  showClear?: DatePickerProps["allowClear"]
   minDate?: string
   maxDate?: string
   handleUpdateDsl?: (value: Record<string, string>) => void

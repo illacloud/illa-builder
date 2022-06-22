@@ -21,9 +21,9 @@ export interface WrappedSelectProps
   optionConfigureMode?: "dynamic" | "static"
   showClear?: SelectProps["allowClear"]
   invalid?: boolean
-  prefixIcon?: string
-  suffixIcon?: string
-  prefixText?: string
-  suffixText?: string
+  prefixIcon?: string // TODO: not support yet
+  suffixIcon?: string // TODO: not support yet
+  prefixText?: string // TODO: not support yet
+  suffixText?: string // TODO: not support yet
   handleUpdateDsl: (value: Record<string, any>) => void
 }
