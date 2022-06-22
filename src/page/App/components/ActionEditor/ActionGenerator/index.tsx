@@ -93,7 +93,7 @@ function renderStep(
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
-  const [step, setStep] = useState<ActionGeneratorSteps>("type")
+  const [step, setStep] = useState<ActionGeneratorSteps>("resource")
   const [resourceType, setResourceType] = useState<string>("")
   const resourceList = useSelector(selectAllResource).filter(
     (r) => r.resourceType === resourceType,

@@ -1,21 +1,24 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { useDispatch } from "react-redux"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Message } from "@illa-design/message"
+import { CloseIcon } from "@illa-design/icon"
 import {
   triggerContentContainerCss,
   applyTriggerContentItemStyle,
+  modalStyle,
+  closeIconStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
-import { dashboardResourceActions } from "@/redux/dashboard/resources/dashboardResourceSlice"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 import { DashboardResourcesItemMenuProps } from "./interface"
 
 export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
   props,
 ) => {
-  const { appId } = props
+  const { resourceId, showFormVisible, setCurId } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -23,66 +26,80 @@ export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
   const [confirmLoading, setConfirmLoading] = useState(false)
 
   return (
-    <div css={triggerContentContainerCss}>
-      <div
-        css={applyTriggerContentItemStyle(
-          globalColor(`--${illaPrefix}-techPurple-01`),
-        )}
-        onClick={() => {}}
-      >
-        {t("edit")}
+    <>
+      <div css={triggerContentContainerCss}>
+        <div
+          css={applyTriggerContentItemStyle(
+            globalColor(`--${illaPrefix}-grayBlue-02`),
+            globalColor(`--${illaPrefix}-techPurple-01`),
+          )}
+          onClick={() => {
+            setCurId(resourceId)
+            showFormVisible()
+          }}
+        >
+          {t("edit")}
+        </div>
+        <div
+          css={applyTriggerContentItemStyle(
+            globalColor(`--${illaPrefix}-red-03`),
+          )}
+          onClick={() => {
+            Modal.confirm({
+              _css: modalStyle,
+              confirmLoading: confirmLoading,
+              title: t("dashboard.common.delete_title"),
+              content: <span>{t("dashboard.common.delete_content")}</span>,
+              cancelText: t("dashboard.common.delete_cancel_text"),
+              okText: t("dashboard.common.delete_ok_text"),
+              okButtonProps: {
+                colorScheme: "techPurple",
+              },
+              closable: true,
+              // closeElement: <div css={closeIconStyle}>
+              //   <CloseIcon size="14px" />
+              // </div>,
+              onOk: () => {
+                setConfirmLoading(true)
+                return new Promise((resolve) => {
+                  Api.request(
+                    {
+                      url: `/api/v1/resources/${resourceId}`,
+                      method: "DELETE",
+                    },
+                    (response) => {
+                      dispatch(
+                        resourceActions.removeResourceItemReducer(
+                          response.data.resourceId,
+                        ),
+                      )
+                      Message.success(t("dashboard.resources.trash_success"))
+
+                      setConfirmLoading(false)
+                      resolve("finish")
+                    },
+                    (failure) => {
+                      Message.error(t("dashboard.resources.trash_failure"))
+
+                      setConfirmLoading(false)
+                      resolve("finish")
+                    },
+                    (crash) => {
+                      Message.error(t("network_error"))
+
+                      setConfirmLoading(false)
+                      resolve("finish")
+                    },
+                  )
+                })
+              },
+            })
+          }}
+        >
+          {t("dashboard.common.delete")}
+        </div>
       </div>
-      <div
-        css={applyTriggerContentItemStyle(
-          globalColor(`--${illaPrefix}-red-03`),
-        )}
-        onClick={() => {
-          Modal.confirm({
-            confirmLoading: confirmLoading,
-            title: t("dashboard.resources.trash_confirm_title"),
-            content: (
-              <div>{t("dashboard.resources.trash_confirm_content")}</div>
-            ),
-            onOk: () => {
-              setConfirmLoading(true)
-              return new Promise((resolve) => {
-                Api.request(
-                  {
-                    url: `/api/v1/resources/${appId}`,
-                    method: "DELETE",
-                  },
-                  (response) => {
-                    dispatch(
-                      dashboardResourceActions.removeResourceReducer(
-                        response.data.resourceId,
-                      ),
-                    )
-                    Message.success(t("dashboard.resources.trash_success"))
-
-                    setConfirmLoading(false)
-                    resolve("finish")
-                  },
-                  (failure) => {
-                    Message.error(t("dashboard.resources.trash_failure"))
-
-                    setConfirmLoading(false)
-                    resolve("finish")
-                  },
-                  (crash) => {
-                    Message.error(t("network_error"))
-
-                    setConfirmLoading(false)
-                    resolve("finish")
-                  },
-                )
-              })
-            },
-          })
-        }}
-      >
-        {t("move_to_trash")}
-      </div>
-    </div>
+    </>
   )
 }
 

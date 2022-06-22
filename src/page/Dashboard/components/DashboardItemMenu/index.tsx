@@ -4,9 +4,12 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Input } from "@illa-design/input"
 import { Message } from "@illa-design/message"
+import { CloseIcon } from "@illa-design/icon"
 import {
   triggerContentContainerCss,
   applyTriggerContentItemStyle,
+  modalStyle,
+  closeIconStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
@@ -14,7 +17,7 @@ import { useDispatch } from "react-redux"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
-  const { appId, appName } = props
+  const { appId, appName, appIndex } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -27,10 +30,12 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
     <div css={triggerContentContainerCss}>
       <div
         css={applyTriggerContentItemStyle(
+          globalColor(`--${illaPrefix}-grayBlue-02`),
           globalColor(`--${illaPrefix}-techPurple-01`),
         )}
         onClick={() => {
           Modal.confirm({
+            _css: modalStyle,
             content: (
               <Input
                 onChange={(res) => {
@@ -40,9 +45,21 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             ),
             title: t("rename"),
             confirmLoading: confirmLoading,
+            okButtonProps: {
+              colorScheme: "techPurple",
+            },
+            closable: true,
+            // closeElement: <div css={closeIconStyle}>
+            //   <CloseIcon size="14px" />
+            // </div>,
             onOk: () => {
-              setConfirmLoading(true)
+              // setConfirmLoading(true)
               return new Promise((resolve) => {
+                if (!confirmVal) {
+                  Message.error(t("dashboard.app.name_empty"))
+                  resolve("finish")
+                  return
+                }
                 Api.request(
                   {
                     url: `/api/v1/apps/${appId}`,
@@ -85,9 +102,11 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
       <div
         css={applyTriggerContentItemStyle(
           globalColor(`--${illaPrefix}-grayBlue-02`),
+          globalColor(`--${illaPrefix}-techPurple-01`),
         )}
         onClick={() => {
           Modal.confirm({
+            _css: modalStyle,
             content: (
               <Input
                 onChange={(res) => {
@@ -98,6 +117,13 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             ),
             title: `${t("duplicate")} '${appName}'`,
             confirmLoading: confirmLoading,
+            okButtonProps: {
+              colorScheme: "techPurple",
+            },
+            closable: true,
+            // closeElement: <div css={closeIconStyle}>
+            //   <CloseIcon size="14px" />
+            // </div>,
             onOk: () => {
               setConfirmLoading(true)
               return new Promise((resolve) => {
@@ -109,6 +135,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                   (response) => {
                     dispatch(
                       dashboardAppActions.addDashboardAppReducer({
+                        index: appIndex,
                         app: response.data,
                       }),
                     )
@@ -141,30 +168,46 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           globalColor(`--${illaPrefix}-red-03`),
         )}
         onClick={() => {
-          Api.request(
-            {
-              url: `/api/v1/apps/${appId}`,
-              method: "DELETE",
+          Modal.confirm({
+            _css: modalStyle,
+            title: t("dashboard.common.delete_title"),
+            content: <span>{t("dashboard.common.delete_content")}</span>,
+            cancelText: t("dashboard.common.delete_cancel_text"),
+            okText: t("dashboard.common.delete_ok_text"),
+            okButtonProps: {
+              colorScheme: "techPurple",
             },
-            (response) => {
-              dispatch(
-                dashboardAppActions.removeDashboardAppReducer(
-                  response.data.appId,
-                ),
-              )
+            closable: true,
+            // closeElement: <div css={closeIconStyle}>
+            //   <CloseIcon size="14px" />
+            // </div>,
+            onOk: () => {
+              Api.request(
+                {
+                  url: `/api/v1/apps/${appId}`,
+                  method: "DELETE",
+                },
+                (response) => {
+                  dispatch(
+                    dashboardAppActions.removeDashboardAppReducer(
+                      response.data.appId,
+                    ),
+                  )
 
-              Message.success(t("dashboard.app.trash_success"))
+                  Message.success(t("dashboard.app.trash_success"))
+                },
+                (failure) => {
+                  Message.success(t("dashboard.app.trash_failure"))
+                },
+                (crash) => {
+                  Message.error(t("network_error"))
+                },
+              )
             },
-            (failure) => {
-              Message.success(t("dashboard.app.trash_failure"))
-            },
-            (crash) => {
-              Message.error(t("network_error"))
-            },
-          )
+          })
         }}
       >
-        {t("move_to_trash")}
+        {t("dashboard.common.delete")}
       </div>
     </div>
   )

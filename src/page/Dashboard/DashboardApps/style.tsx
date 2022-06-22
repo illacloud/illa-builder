@@ -1,5 +1,5 @@
 import { SerializedStyles } from "@emotion/serialize"
-import { css } from "@emotion/react"
+import { css, keyframes } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const appsContainerStyle: SerializedStyles = css`
@@ -49,4 +49,23 @@ export const loadingBoxStyle = css`
 
 export const hoverableStyle = css`
   cursor: pointer;
+`
+
+export const editButtonStyle = css`
+  opacity: 0;
+`
+export const rateScale = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
+export const listItemStyle = css`
+  &: hover {
+    .edit-button {
+      animation: 0.15s ${rateScale} ease-in-out forwards;
+    }
+  }
 `

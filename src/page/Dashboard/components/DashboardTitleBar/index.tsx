@@ -41,7 +41,14 @@ const SettingTrigger: FC = () => {
         >
           {t("Setting")}
         </div>
-        <div css={settingItemStyle}>{t("Logout")}</div>
+        <div
+          css={settingItemStyle}
+          onClick={() => {
+            navigate("/user/login")
+          }}
+        >
+          {t("Logout")}
+        </div>
       </div>
     </div>
   )
@@ -88,9 +95,10 @@ export const DashboardTitleBar: FC = () => {
             _css={coverTriggerStyle}
           >
             <div>
-              <Avatar size="small" />
+              <Avatar colorScheme="techPurple" size="small" />
               <DownIcon
-                css={expandStyle}
+                _css={expandStyle}
+                size="12px"
                 color={globalColor(`--${illaPrefix}-grayBlue-05`)}
               />
             </div>

@@ -1,8 +1,11 @@
 export interface DashboardItemMenuProps {
   appId: string
   appName: string
+  appIndex: number
 }
 
 export interface DashboardResourcesItemMenuProps {
-  appId: string
+  resourceId: string
+  showFormVisible: any
+  setCurId: any
 }

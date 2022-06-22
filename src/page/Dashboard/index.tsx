@@ -7,8 +7,8 @@ import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useDispatch } from "react-redux"
-import { DashboardResource } from "@/redux/dashboard/resources/dashboardResourceState"
-import { dashboardResourceActions } from "@/redux/dashboard/resources/dashboardResourceSlice"
+import { Resource } from "@/redux/resource/resourceState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const IllaApp: FC = () => {
   const [room, setRoom] = useState<Room>()
@@ -29,20 +29,25 @@ export const IllaApp: FC = () => {
       (response) => {},
       (error) => {},
     )
-    Api.request<DashboardResource[]>(
+
+    Api.request<Resource[]>(
       {
         url: "/api/v1/resources",
         method: "GET",
         signal: controller.signal,
       },
       (response) => {
-        dispatch(
-          dashboardResourceActions.updateResourceListReducer(response.data),
-        )
+        dispatch(resourceActions.addResourceListReducer(response.data))
       },
-      (response) => {},
-      (error) => {},
+      () => {
+        // TODO: handle error
+      },
+      () => {},
+      () => {
+        // TODO: handle loading
+      },
     )
+
     Connection.enterRoom(
       "dashboard",
       (loading) => {},

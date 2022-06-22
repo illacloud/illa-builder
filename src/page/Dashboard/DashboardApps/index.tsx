@@ -7,10 +7,12 @@ import {
   listTitleStyle,
   menuButtonStyle,
   hoverableStyle,
+  listItemStyle,
+  editButtonStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
-import { List, ListItem, ListItemMeta } from "@illa-design/list"
+import { List, ListItemMeta, ListItem } from "@illa-design/list"
 import { MoreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
@@ -87,9 +89,10 @@ export const DashboardApps: FC = () => {
           data={appsList}
           bordered={false}
           hoverable={true}
-          render={(item) => {
+          render={(item, index) => {
             return (
               <ListItem
+                _css={listItemStyle}
                 extra={
                   <div css={itemExtraContainerStyle}>
                     <Button
@@ -97,6 +100,8 @@ export const DashboardApps: FC = () => {
                       onClick={() => {
                         navigate(`/app/${item.appId}`)
                       }}
+                      _css={editButtonStyle}
+                      className="edit-button"
                     >
                       {t("edit")}
                     </Button>
@@ -112,13 +117,14 @@ export const DashboardApps: FC = () => {
                         <DashboardItemMenu
                           appId={item.appId}
                           appName={item.appName}
+                          appIndex={index}
                         />
                       }
                     >
                       <Button
                         _css={itemMenuButtonStyle}
                         colorScheme="grayBlue"
-                        leftIcon={<MoreIcon />}
+                        leftIcon={<MoreIcon size="14px" />}
                       />
                     </Tooltip>
                   </div>
@@ -127,7 +133,7 @@ export const DashboardApps: FC = () => {
                 <ListItemMeta
                   css={hoverableStyle}
                   title={item.appName}
-                  description={item.appActivity}
+                  description={`${item.lastModifiedBy} ${item.lastModifiedAt}`}
                   onClick={() => {
                     navigate(`/app/${item.appId}`)
                   }}

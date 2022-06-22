@@ -1,27 +1,30 @@
-import { FC, ReactNode, useMemo } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { FC, ReactNode, useMemo, useState } from "react"
+import { useSelector } from "react-redux"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
-import { Divider } from "@illa-design/divider"
 import { Tooltip } from "@illa-design/tooltip"
 import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
-import { RestApiIcon, MoreIcon, PostgresIcon } from "@illa-design/icon"
-import { DashboardResource } from "@/redux/dashboard/resources/dashboardResourceState"
-import { getDashboardResources } from "@/redux/dashboard/resources/dashboardResourceSelector"
+import { RestApiIcon, MoreIcon } from "@illa-design/icon"
+import { DashboardResource } from "@/redux/resource/resourceState"
+import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
   appsContainerStyle,
   listTitleContainerStyle,
   listTitleStyle,
   itemMenuButtonStyle,
+  editButtonStyle,
 } from "@/page/Dashboard/DashboardApps/style"
 import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
+import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
+import { ResourceForm } from "@/page/App/components/ActionEditor/ResourceForm"
 import {
   nameIconStyle,
   tableNormalTextStyle,
   tableMainTextStyle,
   tableInfoTextStyle,
+  tableStyle,
 } from "./style"
 
 function NameColComponent(type: string, text: string) {
@@ -49,12 +52,26 @@ function DbNameColComponent(text: string) {
 function CtimeColComponent(text: string) {
   return <span css={tableInfoTextStyle}>{text}</span>
 }
-const ExtraColComponent: FC<{ resourceId: string }> = (props) => {
+const ExtraColComponent: FC<{
+  resourceId: string
+  showFormVisible: any
+  setCurId: any
+}> = (props) => {
   const { t } = useTranslation()
-  const { resourceId } = props
+  const { resourceId, showFormVisible, setCurId } = props
   return (
     <>
-      <Button colorScheme="techPurple">{t("edit")}</Button>
+      <Button
+        className="edit-button"
+        _css={editButtonStyle}
+        colorScheme="techPurple"
+        onClick={() => {
+          setCurId(resourceId)
+          showFormVisible()
+        }}
+      >
+        {t("edit")}
+      </Button>
       <Tooltip
         trigger="click"
         colorScheme="white"
@@ -63,12 +80,18 @@ const ExtraColComponent: FC<{ resourceId: string }> = (props) => {
         withoutPadding
         clickOutsideToClose
         closeOnInnerClick
-        content={<DashboardResourcesItemMenu appId={resourceId} />}
+        content={
+          <DashboardResourcesItemMenu
+            resourceId={resourceId}
+            setCurId={setCurId}
+            showFormVisible={showFormVisible}
+          />
+        }
       >
         <Button
           _css={itemMenuButtonStyle}
           colorScheme="grayBlue"
-          leftIcon={<MoreIcon />}
+          leftIcon={<MoreIcon size="14px" />}
         />
       </Tooltip>
     </>
@@ -76,33 +99,51 @@ const ExtraColComponent: FC<{ resourceId: string }> = (props) => {
 }
 
 export const DashboardResources: FC = () => {
+  const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
+  const [formVisible, setFormVisible] = useState(false)
+  const [curResourceId, setCurResourceId] = useState<string>("")
+
   const { t } = useTranslation()
 
-  const resourcesList: DashboardResource[] = useSelector(getDashboardResources)
+  const resourcesList: DashboardResource[] = useSelector(selectAllResource)
+
+  const countColumnsWidth = (itemWidth: number, minWidth: number) => {
+    const windowSizaRate = +(
+      (document.documentElement.clientWidth * 0.67) /
+      1920
+    ).toFixed(2)
+    console.log("windowSizaRate", windowSizaRate)
+    return itemWidth * windowSizaRate < minWidth
+      ? minWidth
+      : itemWidth * windowSizaRate
+  }
   const columns = useMemo(
     () => [
       {
         Header: t("dashboard.resources.table_name"),
         accessor: "nameCol",
-        width: 500,
+        width: `${countColumnsWidth(360, 160)}px`,
       },
       {
         Header: t("dashboard.resources.table_type"),
         accessor: "typeCol",
+        width: "150px",
       },
       {
         Header: t("dashboard.resources.table_dbname"),
         accessor: "dbNameCol",
+        width: `${countColumnsWidth(520, 200)}px`,
       },
       {
         Header: t("dashboard.resources.table_ctime"),
         accessor: "ctimeCol",
+        width: "150px",
       },
       {
         Header: "",
         accessor: "extraCol",
         disableSortBy: true,
-        width: 20,
+        width: "90px",
       },
     ],
     [],
@@ -115,24 +156,55 @@ export const DashboardResources: FC = () => {
         typeCol: TypeColComponent(item.resourceType),
         dbNameCol: DbNameColComponent(item.databaseName),
         ctimeCol: CtimeColComponent(item.createdAt),
-        extraCol: <ExtraColComponent resourceId={item.resourceId} />,
+        extraCol: (
+          <ExtraColComponent
+            resourceId={item.resourceId}
+            showFormVisible={() => setFormVisible(true)}
+            setCurId={setCurResourceId}
+          />
+        ),
       })
     })
     return result
   }, [resourcesList])
 
   return (
-    <div css={appsContainerStyle}>
-      <div css={listTitleContainerStyle}>
-        <span css={listTitleStyle}>{t("resources")}</span>
-        <Button colorScheme="techPurple">{t("create_new")}</Button>
+    <>
+      <div css={appsContainerStyle}>
+        <div css={listTitleContainerStyle}>
+          <span css={listTitleStyle}>{t("resources")}</span>
+          <Button
+            colorScheme="techPurple"
+            onClick={() => {
+              setActionGeneratorVisible(true)
+            }}
+          >
+            {t("create_new")}
+          </Button>
+        </div>
+        {resourcesList?.length ? (
+          <Table
+            _css={tableStyle}
+            data={data}
+            columns={columns}
+            disableRowSelect
+            striped
+          />
+        ) : null}
+        {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
       </div>
-      <Divider direction="horizontal" />
-      {resourcesList?.length ? (
-        <Table data={data} columns={columns} disableRowSelect />
-      ) : null}
-      {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
-    </div>
+      <ActionGenerator
+        visible={actionGeneratorVisible}
+        onClose={() => setActionGeneratorVisible(false)}
+        onAddAction={() => setActionGeneratorVisible(false)}
+      />
+      <ResourceForm
+        visible={formVisible}
+        actionType="edit"
+        resourceId={curResourceId}
+        onCancel={() => setFormVisible(false)}
+      />
+    </>
   )
 }
 
