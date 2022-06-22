@@ -8,7 +8,7 @@ export interface WrappedSwitchProps
     Pick<TooltipWrapperProps, "tooltipText">,
     LabelProps,
     Omit<ValidateMessageProps, "value"> {
-  value: SwitchProps["checked"]
+  value?: SwitchProps["checked"]
   handleOnChange: () => void
   handleUpdateDsl: (value: Record<string, boolean | undefined>) => void
 }

@@ -10,5 +10,5 @@ export interface WrappedCheckboxGroupProps
     Pick<TooltipWrapperProps, "tooltipText">,
     LabelProps {
   handleUpdateDsl: (value: Record<string, any>) => void
-  itemMode: "dynamic" | "static"
+  itemMode?: "dynamic" | "static"
 }

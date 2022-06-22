@@ -15,7 +15,7 @@ test("Text renders correctly", () => {
   render(
     <WrappedSelect
       required
-      defaultValue="Beijing"
+      value="Beijing"
       label="select"
       placeholder="test-WrappedSelect"
       labelPosition="left"

@@ -87,7 +87,7 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
                 disabledDate={checkRange}
                 // todo @aoao handleUpdateDsl?
                 onClear={() => {
-                  handleUpdateDsl?.({ value: "" })
+                  handleUpdateDsl?.({ value: [] })
                 }}
                 onChange={(value) => {
                   handleUpdateDsl?.({ value })

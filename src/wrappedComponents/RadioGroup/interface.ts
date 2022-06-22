@@ -9,6 +9,6 @@ export interface WrappedRadioGroupProps
     >,
     Pick<TooltipWrapperProps, "tooltipText">,
     LabelProps {
-  itemMode: "manual" | "mapped"
-  handleUpdateDsl: (value: Record<string, any>) => void
+  itemMode?: "manual" | "mapped"
+  handleUpdateDsl?: (value: Record<string, any>) => void
 }
