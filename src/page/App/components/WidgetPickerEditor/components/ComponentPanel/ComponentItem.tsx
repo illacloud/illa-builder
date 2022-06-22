@@ -17,14 +17,6 @@ import {
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
   const { widgetName, icon, id, ...partialDragInfo } = props
 
-  const componentNode = useMemo(() => {
-    const fullDragInfo = {
-      widgetName,
-      ...partialDragInfo,
-    }
-    return generateComponentNode(fullDragInfo)
-  }, [widgetName, partialDragInfo])
-
   const [, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
     DropResultInfo,
@@ -32,7 +24,12 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
   >(
     () => ({
       type: "components",
-      item: componentNode,
+      item: () => {
+        return generateComponentNode({
+          widgetName,
+          ...partialDragInfo,
+        })
+      },
     }),
     [],
   )

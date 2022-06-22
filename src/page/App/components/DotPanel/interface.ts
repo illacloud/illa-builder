@@ -6,14 +6,10 @@ export interface DotPanelProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface DragPosition {
-  relativeX: number
-  relativeY: number
   squareX: number
   squareY: number
   renderX: number
   renderY: number
-  nearX: number
-  nearY: number
 }
 
 // return when drop trigger
