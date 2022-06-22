@@ -45,7 +45,7 @@ export const WrappedCircleProgress = forwardRef<
           tooltipText={tooltipText}
         >
           <Progress
-            type="line"
+            type="circle"
             percent={value}
             showText={showText}
             color={color}
