@@ -1,4 +1,4 @@
-import { SearchIcon } from "@illa-design/icon"
+import { RadioGroupWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/wrappedComponents/interface"
 import { v4 } from "uuid"
 import i18n from "@/i18n/config"
@@ -7,7 +7,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   displayName: "RadioGroup",
   type: "RADIO_GROUP_WIDGET",
   widgetName: i18n.t("widget.radio_group.name"),
-  icon: <SearchIcon />,
+  icon: <RadioGroupWidgetIcon size={"100%"} />,
   sessionType: "SELECT",
   w: 20,
   h: 5,

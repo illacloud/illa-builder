@@ -1,4 +1,4 @@
-import { SearchIcon } from "@illa-design/icon"
+import { TextWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/wrappedComponents/interface"
 import i18n from "@/i18n/config"
 
@@ -8,7 +8,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   h: 5,
   w: 10,
   type: "TEXT_WIDGET",
-  icon: <SearchIcon />,
+  icon: <TextWidgetIcon size={"100%"} />,
   sessionType: "PRESENTATION",
   defaults: {
     value: "This is a text",
