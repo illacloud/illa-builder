@@ -297,7 +297,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
         const ratio = window.devicePixelRatio
         ctx.scale(ratio, ratio)
         Object.keys(dragShadowMap).forEach((value) => {
@@ -322,7 +322,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
         const ratio = window.devicePixelRatio
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
         ctx.scale(ratio, ratio)
         for (let i = 1; i < blockRows; i++) {
           for (let j = 1; j < blockColumns; j++) {
@@ -351,7 +351,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight)
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
         Object.keys(dottedLineSquareMap).forEach((value) => {
           const item = dottedLineSquareMap[value]
           const h = item.h
