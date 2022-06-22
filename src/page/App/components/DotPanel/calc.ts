@@ -3,7 +3,7 @@ import { DragPosition } from "@/page/App/components/DotPanel/interface"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export function calculateNotExistDragPosition(
-  canvasRect: DOMRect,
+  canvasXY: XYCoord,
   monitorRect: XYCoord,
   canvasWidth: number,
   canvasHeight: number,
@@ -14,13 +14,10 @@ export function calculateNotExistDragPosition(
   componentW: number,
   componentH: number,
   edgeWidth: number,
-  blockColumns: number,
-  blockRows: number,
-  parentVerticalResize: boolean,
 ): DragPosition {
   // mouse position
-  let relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft - edgeWidth
-  let relativeY = monitorRect.y - canvasRect.y + canvasScrollTop - edgeWidth
+  let relativeX = monitorRect.x - canvasXY.x + canvasScrollLeft - edgeWidth
+  let relativeY = monitorRect.y - canvasXY.y + canvasScrollTop - edgeWidth
 
   // middle calc position
   const centerX = relativeX / unitWidth
@@ -46,7 +43,7 @@ export function calculateNotExistDragPosition(
 }
 
 export function calculateExistDragPosition(
-  canvasRect: DOMRect,
+  canvasXY: XYCoord,
   monitorRect: XYCoord,
   offsetRecord: XYCoord,
   canvasWidth: number,
@@ -58,13 +55,10 @@ export function calculateExistDragPosition(
   componentW: number,
   componentH: number,
   edgeWidth: number,
-  blockColumns: number,
-  blockRows: number,
-  parentVerticalResize: boolean,
 ): DragPosition {
   // mouse position
-  let relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft - edgeWidth
-  let relativeY = monitorRect.y - canvasRect.y + canvasScrollTop - edgeWidth
+  let relativeX = monitorRect.x - canvasXY.x + canvasScrollLeft - edgeWidth
+  let relativeY = monitorRect.y - canvasXY.y + canvasScrollTop - edgeWidth
 
   let renderX = relativeX - offsetRecord.x
   let renderY = relativeY - offsetRecord.y
@@ -82,8 +76,6 @@ export function calculateExistDragPosition(
 
 export function calculateDragPosition(
   componentNode: ComponentNode,
-  canvasRect: DOMRect,
-  monitorRect: XYCoord,
   canvasWidth: number,
   canvasHeight: number,
   canvasScrollLeft: number,
@@ -95,6 +87,10 @@ export function calculateDragPosition(
   blockRows: number,
   parentVerticalResize: boolean,
   parentDisplayName: string,
+  canvasRect: DOMRect,
+  monitorRect: XYCoord,
+  monitorInitialClientOffset: XYCoord,
+  monitorInitialSourceClientOffset: XYCoord,
 ): DragPosition {
   let calcResult: DragPosition
 
@@ -104,8 +100,14 @@ export function calculateDragPosition(
     componentNode.parentNode != parentDisplayName
   ) {
     calcResult = calculateNotExistDragPosition(
-      canvasRect,
-      monitorRect,
+      {
+        x: canvasRect.x,
+        y: canvasRect.y,
+      } as XYCoord,
+      {
+        x: monitorRect.x,
+        y: monitorRect.y,
+      } as XYCoord,
       canvasWidth,
       canvasHeight,
       canvasScrollLeft,
@@ -115,14 +117,21 @@ export function calculateDragPosition(
       componentNode.w,
       componentNode.h,
       edgeWidth,
-      blockColumns,
-      blockRows,
-      parentVerticalResize,
     )
   } else {
-    calcResult = calculateNotExistDragPosition(
-      canvasRect,
-      monitorRect,
+    calcResult = calculateExistDragPosition(
+      {
+        x: canvasRect.x,
+        y: canvasRect.y,
+      } as XYCoord,
+      {
+        x: monitorRect.x,
+        y: monitorRect.y,
+      } as XYCoord,
+      {
+        x: monitorInitialClientOffset.x - monitorInitialSourceClientOffset.x,
+        y: monitorInitialClientOffset.y - monitorInitialSourceClientOffset.y,
+      } as XYCoord,
       canvasWidth,
       canvasHeight,
       canvasScrollLeft,
@@ -132,9 +141,6 @@ export function calculateDragPosition(
       componentNode.w,
       componentNode.h,
       edgeWidth,
-      blockColumns,
-      blockRows,
-      parentVerticalResize,
     )
   }
 

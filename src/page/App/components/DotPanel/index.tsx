@@ -108,8 +108,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         dispatch(configActions.updateShowDot(false))
         const calculateResult = calculateDragPosition(
           item,
-          canvasRef.current!!.getBoundingClientRect(),
-          monitor.getClientOffset()!!,
           canvasWidth,
           canvasHeight,
           canvasRef.current!!.scrollLeft,
@@ -121,6 +119,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           blockRows,
           componentNode.verticalResize,
           componentNode.displayName,
+          canvasRef.current?.getBoundingClientRect(),
+          monitor.getClientOffset()!!,
+          monitor.getInitialClientOffset()!!,
+          monitor.getInitialSourceClientOffset()!!,
         )
         // set scale square
         updateScaleSquare(
@@ -167,8 +169,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
         const calculateResult = calculateDragPosition(
           item,
-          canvasRef.current!!.getBoundingClientRect(),
-          monitor.getClientOffset()!!,
           canvasWidth,
           canvasHeight,
           canvasRef.current!!.scrollLeft,
@@ -180,6 +180,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           blockRows,
           componentNode.verticalResize,
           componentNode.displayName,
+          canvasRef.current?.getBoundingClientRect(),
+          monitor.getClientOffset()!!,
+          monitor.getInitialClientOffset()!!,
+          monitor.getInitialSourceClientOffset()!!,
         )
 
         // drag shadow
