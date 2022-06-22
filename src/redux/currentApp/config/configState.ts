@@ -5,16 +5,10 @@ export interface ConfigState {
   openLeftPanel: boolean
   openBottomPanel: boolean
   openRightPanel: boolean
-  unitSize: UnitSize
   showDot: boolean
   scale: number
   selectedComponents: ComponentNode[]
   selectedAction: ActionItem
-}
-
-export interface UnitSize {
-  unitWidth: number
-  unitHeight: number
 }
 
 export const ConfigInitialState: ConfigState = {
@@ -25,8 +19,4 @@ export const ConfigInitialState: ConfigState = {
   selectedComponents: [],
   selectedAction: { actionId: "", displayName: "", actionType: "" },
   showDot: false,
-  unitSize: {
-    unitHeight: 8,
-    unitWidth: 0,
-  },
 }

@@ -1,5 +1,4 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export function applyScaleStyle(
   verticalResize: boolean,
@@ -10,7 +9,6 @@ export function applyScaleStyle(
     padding-left: ${edgeWidth}px;
     padding-right: ${edgeWidth}px;
     padding-top: ${edgeWidth}px;
-    padding-bottom: ${edgeWidth}px;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: ${verticalResize ? "auto" : "hidden"};
@@ -18,13 +16,6 @@ export function applyScaleStyle(
     height: 100%;
   `
 }
-
-export const dotStyle = css`
-  height: 2px;
-  width: 2px;
-  border-radius: 1px;
-  background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
 
 export function applyChildrenContainerStyle(
   w: number | null,
@@ -37,7 +28,10 @@ export function applyChildrenContainerStyle(
   `
 }
 
-export function applyDotCanvasStyle(showDot: boolean): SerializedStyles {
+export function applyDotCanvasStyle(
+  edgeWidth: number,
+  showDot: boolean,
+): SerializedStyles {
   return css`
     z-index: -1;
     visibility: ${showDot ? "visible" : "hidden"};

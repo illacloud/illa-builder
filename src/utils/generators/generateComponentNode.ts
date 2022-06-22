@@ -38,7 +38,7 @@ export const generateComponentNode = (
     minH: 0,
     minW: 0,
     verticalResize: false,
-    isDragging: false,
+    isDragging: true,
     error: false,
     x: -1,
     y: -1,

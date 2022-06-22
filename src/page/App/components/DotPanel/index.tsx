@@ -12,7 +12,9 @@ import {
 } from "@/page/App/components/DotPanel/style"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getUnitSize,
+  isOpenBottomPanel,
+  isOpenLeftPanel,
+  isOpenRightPanel,
   isShowDot,
 } from "@/redux/currentApp/config/configSelector"
 import { useDrop } from "react-dnd"
@@ -51,24 +53,30 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const [blockRows, setBlockRows] = useState(0)
 
   // block field
-  const unitHeight = useSelector(getUnitSize).unitHeight
-  const unitWidth = useSelector(getUnitSize).unitWidth
+  const unitHeight = 8
+  const [unitWidth, setUnitWidth] = useState(0)
 
   // other field
   const showDot = useSelector<RootState, boolean>(isShowDot, (pre, after) => {
     return pre === after
   })
 
+  // config
+  const leftPanelState = useSelector(isOpenLeftPanel)
+  const rightPanelState = useSelector(isOpenRightPanel)
+  const bottomPanelState = useSelector(isOpenBottomPanel)
+
   // drag shadow
   const dragShadowMap = useSelector(getDragShadowMap)
+
   // dotted line square
   const dottedLineSquareMap = useSelector(getDottedLineSquareMap)
 
-  // calculate height
+  // calculate first height
   useEffect(() => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
-      const containerHeight = container.clientHeight
+      const containerHeight = container.scrollHeight
       const finalBlockRows = Math.ceil(
         (containerHeight - edgeWidth * 2) / unitHeight,
       )
@@ -76,7 +84,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [canvasRef.current?.clientHeight])
+  }, [bottomPanelState])
+
+  // calculate scale height
+  useEffect(() => {
+    const finalHeight = blockRows * unitHeight
+    if (finalHeight != canvasHeight) {
+      setCanvasHeight(finalHeight)
+    }
+  }, [blockRows])
 
   // calculate width
   useEffect(() => {
@@ -87,10 +103,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         (containerWidth - edgeWidth * 2 - (blockColumns + 1) * 2) /
           blockColumns +
         2
-      dispatch(configActions.updateUnitWidth(finalBlockWidth))
+      setUnitWidth(finalBlockWidth)
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [canvasRef.current?.clientWidth])
+  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState])
 
   // drag move
   const [, dropTarget] = useDrop<
@@ -119,7 +135,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           blockRows,
           componentNode.verticalResize,
           componentNode.displayName,
-          canvasRef.current?.getBoundingClientRect(),
+          canvasRef.current!!.getBoundingClientRect(),
           monitor.getClientOffset()!!,
           monitor.getInitialClientOffset()!!,
           monitor.getInitialSourceClientOffset()!!,
@@ -142,7 +158,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
         // remove drag
         dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
-
         return {} as DropResultInfo
       },
       hover: (item, monitor) => {
@@ -153,20 +168,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (store.getState().currentApp.config.showDot == false) {
           dispatch(configActions.updateShowDot(true))
         }
-        // already exist dismiss
-        if (
-          item.x != -1 ||
-          item.y != -1 ||
-          item.parentNode == componentNode.displayName
-        ) {
-          dispatch(
-            componentsActions.addOrUpdateComponentReducer({
-              ...item,
-              isDragging: true,
-            }),
-          )
-        }
-
         const calculateResult = calculateDragPosition(
           item,
           canvasWidth,
@@ -180,12 +181,17 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           blockRows,
           componentNode.verticalResize,
           componentNode.displayName,
-          canvasRef.current?.getBoundingClientRect(),
+          canvasRef.current!!.getBoundingClientRect(),
           monitor.getClientOffset()!!,
           monitor.getInitialClientOffset()!!,
           monitor.getInitialSourceClientOffset()!!,
         )
-
+        // scale panel
+        if (componentNode.verticalResize) {
+          if (calculateResult.squareY + item.h > blockRows) {
+            setBlockRows(blockRows + 20)
+          }
+        }
         // drag shadow
         updateDragShadowData(
           item,
@@ -220,7 +226,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
       },
     }),
-    [unitWidth, unitHeight, canvasWidth],
+    [canvasWidth, canvasHeight],
   )
 
   // drag resize
@@ -262,6 +268,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             unitHeight,
             edgeWidth,
           )
+          // scale panel
+          if (componentNode.verticalResize) {
+            if (nearY > blockRows) {
+              setBlockRows(blockRows + 20)
+            }
+          }
           updateResizeScaleSquare(
             item.node,
             blockColumns,
@@ -275,7 +287,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         }
       },
     }),
-    [unitWidth, unitHeight],
+    [canvasWidth, canvasHeight],
   )
 
   // render drag
@@ -376,9 +388,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       const w = item.w * unitWidth
 
       const [l, t] = calculateXY(item.x, item.y, unitWidth, unitHeight)
-      if (item.isDragging) {
-        return null
-      }
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
           return <DotPanel componentNode={item} key={item.displayName} />
@@ -409,24 +418,24 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     >
       <canvas
         id={`${componentNode.displayName}-canvas`}
-        css={applyDotCanvasStyle(showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot)}
         width={canvasWidth}
-        height={canvasHeight}
+        height={canvasHeight + edgeWidth}
       />
       <canvas
         id={`${componentNode.displayName}-dotted`}
-        css={applyDotCanvasStyle(showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot)}
         width={canvasWidth}
-        height={canvasHeight}
+        height={canvasHeight + edgeWidth}
       />
       <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
         {componentTree}
       </div>
       <canvas
         id={`${componentNode.displayName}-dragged`}
-        css={applyDotCanvasStyle(showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot)}
         width={canvasWidth}
-        height={canvasHeight}
+        height={canvasHeight + edgeWidth}
       />
     </div>
   )

@@ -26,6 +26,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { mergeRefs } from "@illa-design/system"
 import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 function getDragConfig(
   componentNode: ComponentNode,
@@ -63,8 +64,14 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
     () => ({
       type: "components",
-      item: componentNode,
-      canDrag: !componentNode.isDragging,
+      item: () => {
+        const item = {
+          ...componentNode,
+          isDragging: true,
+        }
+        dispatch(componentsActions.addOrUpdateComponentReducer(item))
+        return item
+      },
     }),
     [componentNode],
   )
@@ -72,8 +79,14 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const [, dragHandlerRef, dragPreviewHandlerRef] = useDrag<ComponentNode>(
     () => ({
       type: "components",
-      item: componentNode,
-      canDrag: !componentNode.isDragging,
+      item: () => {
+        const item = {
+          ...componentNode,
+          isDragging: true,
+        }
+        dispatch(componentsActions.addOrUpdateComponentReducer(item))
+        return item
+      },
     }),
     [componentNode],
   )
