@@ -53,7 +53,8 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             //   <CloseIcon size="14px" />
             // </div>,
             onOk: () => {
-              // setConfirmLoading(true)
+              setConfirmLoading(true)
+
               return new Promise((resolve) => {
                 if (!confirmVal) {
                   Message.error(t("dashboard.app.name_empty"))

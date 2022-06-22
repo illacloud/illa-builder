@@ -535,6 +535,7 @@
       "delete": "移到回收站"
     },
     "app": {
+      "create_app": "创建App",
       "duplicate_fail": "复制失败",
       "rename_fail": "重命名失败",
       "duplicate_placeholder": "请输入项目名称",

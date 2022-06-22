@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next"
 import { Message } from "@illa-design/message"
 import { Api } from "@/api/base"
 import { SettingCommonForm } from "../Components/SettingCommonForm"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { useDispatch, useSelector } from "react-redux"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
@@ -12,6 +14,8 @@ export const SettingAccount: FC = () => {
   const [userErrorMsg, setUserErrorMsg] = useState<string>("")
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
 
+  const userInfo = useSelector(getCurrentUser)
+
   const paramData = [
     {
       title: "Email",
@@ -19,7 +23,7 @@ export const SettingAccount: FC = () => {
       content: [
         {
           type: "input",
-          value: "kwononlyboa@gmail.com",
+          value: userInfo?.userName,
           disabled: true,
         },
       ],

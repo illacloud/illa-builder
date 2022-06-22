@@ -10,6 +10,7 @@ import {
   listItemStyle,
   editButtonStyle,
 } from "./style"
+import { modalStyle } from "../components/DashboardItemMenu/style"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
 import { List, ListItemMeta, ListItem } from "@illa-design/list"
@@ -25,6 +26,8 @@ import { Api } from "@/api/base"
 import { Tooltip } from "@illa-design/tooltip"
 import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
 import { Message } from "@illa-design/message"
+import { Modal } from "@illa-design/modal"
+import { Input } from "@illa-design/input"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -35,6 +38,8 @@ export const DashboardApps: FC = () => {
   const appsList: DashboardApp[] = useSelector(getDashboardApps)
 
   const [createLoading, setCreateNewLoading] = useState(false)
+
+  let confirmVal = ""
 
   return (
     <div css={appsContainerStyle}>
@@ -53,30 +58,50 @@ export const DashboardApps: FC = () => {
           loading={createLoading}
           colorScheme="techPurple"
           onClick={() => {
-            Api.request<DashboardApp>(
-              {
-                url: "/dashboard/apps",
-                method: "POST",
+            Modal.confirm({
+              _css: modalStyle,
+              content: (
+                <Input
+                  onChange={(res) => {
+                    confirmVal = res
+                  }}
+                />
+              ),
+              title: t("dashboard.app.create_app"),
+              okButtonProps: {
+                colorScheme: "techPurple",
               },
-              (response) => {
-                dispatch(
-                  dashboardAppActions.addDashboardAppReducer({
-                    app: response.data,
-                  }),
+              closable: true,
+              onOk: () => {
+                Api.request<DashboardApp>(
+                  {
+                    url: "/api/v1/apps",
+                    method: "POST",
+                    data: {
+                      appName: confirmVal,
+                    },
+                  },
+                  (response) => {
+                    dispatch(
+                      dashboardAppActions.addDashboardAppReducer({
+                        app: response.data,
+                      }),
+                    )
+                    navigate(`/app/${response.data.appId}`)
+                  },
+                  (response) => {},
+                  (error) => {},
+                  (loading) => {
+                    setCreateNewLoading(loading)
+                  },
+                  (errorState) => {
+                    if (errorState) {
+                      Message.error({ content: t("create_fail") })
+                    }
+                  },
                 )
-                navigate(`/app/${response.data.appId}`)
               },
-              (response) => {},
-              (error) => {},
-              (loading) => {
-                setCreateNewLoading(loading)
-              },
-              (errorState) => {
-                if (errorState) {
-                  Message.error({ content: t("create_fail") })
-                }
-              },
-            )
+            })
           }}
         >
           {t("create_new_app")}

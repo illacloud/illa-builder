@@ -535,6 +535,7 @@
       "delete": "Delete"
     },
     "app": {
+      "create_app": "Create App",
       "rename_fail": "Rename fail",
       "duplicate_fail": "Duplicate fail",
       "duplicate_placeholder": "Enter your app name here",

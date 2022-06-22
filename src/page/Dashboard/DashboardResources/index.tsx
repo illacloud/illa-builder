@@ -112,7 +112,6 @@ export const DashboardResources: FC = () => {
       (document.documentElement.clientWidth * 0.67) /
       1920
     ).toFixed(2)
-    console.log("windowSizaRate", windowSizaRate)
     return itemWidth * windowSizaRate < minWidth
       ? minWidth
       : itemWidth * windowSizaRate
