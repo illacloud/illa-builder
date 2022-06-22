@@ -50,6 +50,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const [canvasHeight, setCanvasHeight] = useState<number>(0)
   const [canvasWidth, setCanvasWidth] = useState<number>(0)
   const blockColumns = 64
+  const [minBlockRows, setMinBlockRows] = useState(0)
   const [blockRows, setBlockRows] = useState(0)
 
   // block field
@@ -77,11 +78,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     if (canvasRef.current != null) {
       const container = canvasRef.current
       const containerHeight = container.scrollHeight
-      const finalBlockRows = Math.ceil(
+      let finalBlockRows = Math.ceil(
         (containerHeight - edgeWidth * 2) / unitHeight,
       )
+      if (finalBlockRows < minBlockRows) {
+        finalBlockRows = minBlockRows
+      }
       const finalHeight = finalBlockRows * unitHeight
       setBlockRows(finalBlockRows)
+      setMinBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
   }, [bottomPanelState])
@@ -375,6 +380,19 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       }
     }
   }, [dottedLineSquareMap, canvasHeight, canvasWidth])
+
+  useEffect(() => {
+    let maxY = 0
+    for (let item in componentNode.childrenNode) {
+      maxY = Math.max(
+        maxY,
+        componentNode.childrenNode[item].y + componentNode.childrenNode[item].h,
+      )
+    }
+    if (maxY < blockRows && maxY >= minBlockRows) {
+      setBlockRows(maxY)
+    }
+  }, [componentNode.childrenNode])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
