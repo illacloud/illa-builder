@@ -36,6 +36,24 @@ export type Hinter = {
   fireOnFocus?: boolean
 }
 
+export enum AUTOCOMPLETE_CLOSE_KEY {
+  Enter,
+  Tab,
+  Escape,
+  Comma,
+  Semicolon,
+  Space,
+  Delete,
+  "Ctrl+Backspace",
+  OSLeft,
+  "(",
+  ")",
+}
+
+export const isCloseKey = (key: any): key is AUTOCOMPLETE_CLOSE_KEY => {
+  return AUTOCOMPLETE_CLOSE_KEY.hasOwnProperty(key);
+}
+
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
@@ -99,9 +117,33 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
-    handleAutocomplete(editor)
     const currentValue = editor?.getValue()
     valueChanged(currentValue)
+  }
+
+  const handleKeyUp = (editor: Editor, event: KeyboardEvent) => {
+    const key = event.key;
+    const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`;
+    if (isCloseKey(code) || isCloseKey(key)) {
+      editor.closeHint();
+      return;
+    }
+    const cursor = editor.getCursor();
+    const line = editor.getLine(cursor.line);
+    let showAutocomplete = false;
+    /* Check if the character before cursor is completable to show autocomplete which backspacing */
+    if (event.code === "Backspace") {
+      const prevChar = line[cursor.ch - 1];
+      showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar);
+    } else if (key === "{") {
+      /* Autocomplete for { should show up only when a user attempts to write {{}} and not a code block. */
+      const prevChar = line[cursor.ch - 2];
+      showAutocomplete = prevChar === "{";
+    } else if (key.length == 1) {
+      showAutocomplete = /[a-zA-Z_0-9.]/.test(key);
+      /* Autocomplete should be triggered only for characters that make up valid variable names */
+    }
+    showAutocomplete && handleAutocomplete(editor)
   }
 
   useEffect(() => {
@@ -150,6 +192,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         matchBrackets: true,
         autoCloseBrackets: true,
         lineWrapping: true,
+        scrollbarStyle: "null",
         tabSize: 2,
         value: value ?? "",
         readOnly: readOnly && "nocursor",
@@ -159,6 +202,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
 
       editor.on("change", handleChange)
+      editor.on("keyup", handleKeyUp)
       editor.on("focus", handleFocus)
       editor.on("blur", handleBlur)
       setEditor(editor)
@@ -167,8 +211,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
     return () => {
       editor?.off("change", handleChange)
+      editor?.off("keyup", handleKeyUp)
       editor?.off("focus", handleFocus)
       editor?.off("blur", handleBlur)
+      setEditor(undefined)
     }
   }, [])
 

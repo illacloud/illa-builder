@@ -1,6 +1,6 @@
 import tern from "tern"
 import "codemirror/addon/tern/worker"
-import "codemirror/addon/tern/tern.css"
+// import "codemirror/addon/tern/tern.css"
 import "codemirror/addon/tern/tern"
 // import 'tern/lib/tern';
 // import 'tern/plugin/complete_strings';

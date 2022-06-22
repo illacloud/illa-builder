@@ -1,6 +1,6 @@
 import { Global, css } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import { globalStyle, codemirrorGlobalStyle } from "./style"
+import { globalStyle } from "./style"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
@@ -53,7 +53,7 @@ function App() {
   return (
     <BrowserRouter>
       <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>
-        <Global styles={css(globalStyle, codemirrorGlobalStyle)} />
+        <Global styles={css(globalStyle)} />
         <AxiosInterceptor>
           <Routes>
             <Route path="dashboard" element={<IllaApp />}>

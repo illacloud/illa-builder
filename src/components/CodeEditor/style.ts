@@ -8,6 +8,193 @@ export const codemirrorStyle = css`
     background: #f5fdfa;
     color: ${globalColor(`--${illaPrefix}-green-03`)};
   }
+
+  .CodeMirror-hints {
+    padding: 2px 0;
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    border-radius: 8px;
+    box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  li.CodeMirror-hint-active {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  }
+
+  li.CodeMirror-hint {
+    margin: 1px 0;
+
+    &:hover {
+      background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+      color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    }
+  }
+
+  .CodeMirror-Tern-completion {
+    display: flex;
+    padding-left: 30px;
+    position: relative;
+    line-height: 22px;
+  }
+
+  .CodeMirror-Tern-completion:before {
+    position: absolute;
+    left: 8px;
+    bottom: 4px;
+    border-radius: 2px;
+    font-size: 10px;
+    height: 14px;
+    width: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: white;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue";
+  }
+
+  .CodeMirror-Tern-completion:after {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    font-family: monospace;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    position: relative;
+    content: "";
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    flex: 1 1 0;
+    padding-right: 8px;
+    padding-left: 10px;
+  }
+
+  .CodeMirror-Tern-completion-unknown:before {
+    content: "?";
+    background: #4bb;
+  }
+
+  .CodeMirror-Tern-completion-object {
+    &:before {
+      content: "O";
+      background: #ffefb7;
+      color: #ffcd00;
+    }
+
+    &:after {
+      content: "Object";
+    }
+  }
+
+  .CodeMirror-Tern-completion-fn {
+    &:before {
+      content: "F";
+      background: #e3fdff;
+      color: #12ddf2;
+    }
+
+    &:after {
+      content: "Function";
+    }
+  }
+
+  .CodeMirror-Tern-completion-array {
+    &:before {
+      content: "A";
+      background: #dbfff1;
+      color: #00d689;
+    }
+
+    &:after {
+      content: "Array";
+    }
+  }
+
+  .CodeMirror-Tern-completion-number {
+    &:before {
+      content: "1";
+      background: #ffe8da;
+      color: #ff8246;
+    }
+
+    &:after {
+      content: "Number";
+    }
+  }
+
+  .CodeMirror-Tern-completion-string {
+    :before {
+      content: "S";
+      background: #ffe4e4;
+      color: #ff7272;
+    }
+
+    &:after {
+      content: "String";
+    }
+  }
+
+  .CodeMirror-Tern-completion-bool:before {
+    content: "B";
+    background: #999;
+  }
+
+  .CodeMirror-Tern-completion-guess {
+    color: #999;
+  }
+
+  .CodeMirror-Tern-tooltip {
+    margin: 0 8px;
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    border-radius: 8px;
+    color: #444;
+    padding: 3px 8px 8px;
+    font-size: 90%;
+    font-family: monospace;
+    background-color: white;
+    white-space: pre-wrap;
+
+    max-width: 40em;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.16);
+
+    transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+  }
+
+  .CodeMirror-Tern-hint-doc {
+    max-width: 25em;
+    margin-top: -3px;
+  }
+
+  .CodeMirror-Tern-fname {
+    color: black;
+  }
+
+  .CodeMirror-Tern-farg {
+    color: #70a;
+  }
+
+  .CodeMirror-Tern-farg-current {
+    text-decoration: underline;
+  }
+
+  .CodeMirror-Tern-type {
+    color: #07c;
+  }
+
+  .CodeMirror-Tern-fhint-guess {
+    opacity: 0.7;
+  }
 `
 
 export const inputErrorStyle = css`
