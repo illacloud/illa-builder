@@ -5,9 +5,9 @@ import LabelProps from "@/wrappedComponents/Label/interface"
 
 export interface WrappedInputProps
   extends LabelProps,
-  ValidateMessageProps,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  Pick<InputProps, "placeholder" | "disabled" | "readOnly"> {
+    ValidateMessageProps,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<InputProps, "placeholder" | "disabled" | "readOnly"> {
   showCharacterCount?: InputProps["showCount"]
   value?: string
   prefixIcon?: InputProps["prefix"]

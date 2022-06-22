@@ -4,10 +4,10 @@ import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interfac
 
 export interface WrappedSegmentedControlProps
   extends Pick<
-  RadioGroupProps<any>,
-  "value" | "disabled" | "options" | "direction" | "colorScheme"
-  >,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  LabelProps {
+      RadioGroupProps<any>,
+      "value" | "disabled" | "options" | "direction" | "colorScheme"
+    >,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    LabelProps {
   handleUpdateDsl: (value: Record<string, any>) => void
 }

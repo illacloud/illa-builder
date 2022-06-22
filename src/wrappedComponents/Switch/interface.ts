@@ -5,9 +5,9 @@ import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interfa
 
 export interface WrappedSwitchProps
   extends Pick<SwitchProps, "disabled" | "colorScheme">,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  LabelProps,
-  Omit<ValidateMessageProps, "value"> {
+    Pick<TooltipWrapperProps, "tooltipText">,
+    LabelProps,
+    Omit<ValidateMessageProps, "value"> {
   value: SwitchProps["checked"]
   handleOnChange: () => void
   handleUpdateDsl: (value: Record<string, boolean | undefined>) => void

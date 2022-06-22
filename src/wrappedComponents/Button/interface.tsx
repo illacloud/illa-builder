@@ -5,18 +5,18 @@ export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
 export interface WrappedButtonProps
   extends Pick<
-  ButtonProps,
-  | "variant"
-  | "leftIcon"
-  | "rightIcon"
-  | "disabled"
-  | "loading"
-  | "borderColor"
-  | "backgroundColor"
-  | "textColor"
-  | "colorScheme"
-  >,
-  Pick<TooltipWrapperProps, "tooltipText"> {
+      ButtonProps,
+      | "variant"
+      | "leftIcon"
+      | "rightIcon"
+      | "disabled"
+      | "loading"
+      | "borderColor"
+      | "backgroundColor"
+      | "textColor"
+      | "colorScheme"
+    >,
+    Pick<TooltipWrapperProps, "tooltipText"> {
   text?: string
   submit?: boolean
   submitTargetId?: string

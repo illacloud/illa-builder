@@ -8,17 +8,17 @@ export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
 export interface WrappedDateProps
   extends LabelProps,
-  ValidateMessageProps,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  Pick<
-  DatePickerProps,
-  | "value"
-  | "readOnly"
-  | "disabled"
-  | "placeholder"
-  | "defaultValue"
-  | "colorScheme"
-  > {
+    ValidateMessageProps,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<
+      DatePickerProps,
+      | "value"
+      | "readOnly"
+      | "disabled"
+      | "placeholder"
+      | "defaultValue"
+      | "colorScheme"
+    > {
   value?: string
   dateFormat?: string
   loading?: boolean

@@ -5,19 +5,19 @@ import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interfa
 
 export interface WrappedSelectProps
   extends LabelProps,
-  Omit<ValidateMessageProps, "value">,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  Pick<
-  SelectProps,
-  | "options"
-  | "value"
-  | "placeholder"
-  | "disabled"
-  | "loading"
-  | "readOnly"
-  | "showSearch"
-  | "inputValue"
-  > {
+    Omit<ValidateMessageProps, "value">,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<
+      SelectProps,
+      | "options"
+      | "value"
+      | "placeholder"
+      | "disabled"
+      | "loading"
+      | "readOnly"
+      | "showSearch"
+      | "inputValue"
+    > {
   optionConfigureMode?: "dynamic" | "static"
   showClear?: SelectProps["allowClear"]
   invalid?: boolean

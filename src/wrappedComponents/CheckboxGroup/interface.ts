@@ -4,11 +4,11 @@ import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interfac
 
 export interface WrappedCheckboxGroupProps
   extends Pick<
-  CheckboxGroupProps,
-  "value" | "disabled" | "options" | "direction" | "defaultValue"
-  >,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  LabelProps {
+      CheckboxGroupProps,
+      "value" | "disabled" | "options" | "direction" | "defaultValue"
+    >,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    LabelProps {
   handleUpdateDsl: (value: Record<string, any>) => void
   itemMode: "dynamic" | "static"
 }

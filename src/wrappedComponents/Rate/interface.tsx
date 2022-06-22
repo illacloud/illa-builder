@@ -5,9 +5,9 @@ import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interfa
 
 export interface WrappedRateProps
   extends LabelProps,
-  Omit<ValidateMessageProps, "value">,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  Pick<RateProps, "allowHalf" | "allowClear" | "disabled"> {
+    Omit<ValidateMessageProps, "value">,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<RateProps, "allowHalf" | "allowClear" | "disabled"> {
   value?: number
   loading?: boolean
   readOnly?: boolean

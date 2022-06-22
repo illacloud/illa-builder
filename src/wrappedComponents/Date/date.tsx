@@ -29,7 +29,7 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props) => {
     maxDate,
     readOnly,
     hideValidationMessage,
-    handleUpdateDsl
+    handleUpdateDsl,
   } = props
 
   const [currentValue, setCurrentValue] = useState(value ?? defaultValue)

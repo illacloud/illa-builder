@@ -5,12 +5,12 @@ import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interfac
 
 export interface WrappedDateTimeProps
   extends LabelProps,
-  ValidateMessageProps,
-  Pick<TooltipWrapperProps, "tooltipText">,
-  Pick<
-  DatePickerProps,
-  "placeholder" | "disabled" | "readOnly" | "colorScheme"
-  > {
+    ValidateMessageProps,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<
+      DatePickerProps,
+      "placeholder" | "disabled" | "readOnly" | "colorScheme"
+    > {
   value?: string
   dateFormat?: string
   timeFormat?: string

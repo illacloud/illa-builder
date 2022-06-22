@@ -5,11 +5,11 @@ import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interfa
 
 export interface WrappedDateRangeProps
   extends LabelProps,
-  Omit<ValidateMessageProps, "value">,
-  Pick<
-  CommonRangeProps,
-  "defaultValue" | "disabled" | "colorScheme" | "readOnly"
-  > {
+    Omit<ValidateMessageProps, "value">,
+    Pick<
+      CommonRangeProps,
+      "defaultValue" | "disabled" | "colorScheme" | "readOnly"
+    > {
   value?: string[]
   startPlaceholder?: string
   endPlaceholder?: string
