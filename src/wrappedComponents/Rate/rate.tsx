@@ -65,7 +65,7 @@ export const WrappedRate = forwardRef<any, WrappedRateProps>((props, ref) => {
               allowClear={allowClear}
               value={value}
               onChange={(value) => {
-                handleUpdateDsl?.({ value })
+                handleUpdateDsl({ value })
               }}
             />
             <InvalidMessage

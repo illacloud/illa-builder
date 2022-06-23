@@ -13,5 +13,5 @@ export interface WrappedRateProps
   readOnly?: boolean
   icon?: "star" | "heart"
   maxCount?: RateProps["count"]
-  handleUpdateDsl?: (value: Record<string, number>) => void
+  handleUpdateDsl: (value: Record<string, number>) => void
 }

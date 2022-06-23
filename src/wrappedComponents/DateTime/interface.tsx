@@ -20,5 +20,5 @@ export interface WrappedDateTimeProps
   showClear?: DatePickerProps["allowClear"]
   minDate?: string
   maxDate?: string
-  handleUpdateDsl?: (value: Record<string, string>) => void
+  handleUpdateDsl: (value: Record<string, string>) => void
 }

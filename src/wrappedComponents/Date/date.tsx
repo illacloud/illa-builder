@@ -74,11 +74,11 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
               // todo @aoao handleUpdateDsl?
               onClear={() => {
                 setCurrentValue("")
-                handleUpdateDsl?.({ value: "" })
+                handleUpdateDsl({ value: "" })
               }}
               onChange={(value) => {
                 setCurrentValue(value)
-                handleUpdateDsl?.({ value })
+                handleUpdateDsl({ value })
               }}
             />
             <InvalidMessage

@@ -24,5 +24,5 @@ export interface WrappedDateProps
   afterText?: string // TODO: not support yet
   minDate?: string
   maxDate?: string
-  handleUpdateDsl?: (value: Record<string, string>) => void
+  handleUpdateDsl: (value: Record<string, string>) => void
 }

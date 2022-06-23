@@ -37,7 +37,7 @@ export const WrappedRadioGroup = forwardRef<any, WrappedRadioGroupProps>(
           direction={direction}
           colorScheme={colorScheme}
           onChange={(value) => {
-            handleUpdateDsl?.({ value })
+            handleUpdateDsl({ value })
           }}
         />
       </LabelWrapper>

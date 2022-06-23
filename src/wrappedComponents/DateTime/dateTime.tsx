@@ -79,11 +79,11 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
                 disabledDate={checkRange}
                 onClear={() => {
                   setCurrentValue(undefined)
-                  handleUpdateDsl?.({ value: "" })
+                  handleUpdateDsl({ value: "" })
                 }}
                 onChange={(value) => {
                   setCurrentValue(value)
-                  handleUpdateDsl?.({ value })
+                  handleUpdateDsl({ value })
                 }}
               />
               <InvalidMessage
