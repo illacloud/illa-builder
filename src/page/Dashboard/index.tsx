@@ -17,7 +17,7 @@ export const IllaApp: FC = () => {
     const controller = new AbortController()
     Api.request<DashboardApp[]>(
       {
-        url: "/api/v1/apps",
+        url: "/apps",
         method: "GET",
         signal: controller.signal,
       },
@@ -32,7 +32,7 @@ export const IllaApp: FC = () => {
 
     Api.request<Resource[]>(
       {
-        url: "/api/v1/resources",
+        url: "/resources",
         method: "GET",
         signal: controller.signal,
       },

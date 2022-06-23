@@ -64,7 +64,7 @@ export const rateScale = keyframes`
 `
 export const listItemStyle = css`
   &: hover {
-    .edit-button {
+    [title="editButton"] {
       animation: 0.15s ${rateScale} ease-in-out forwards;
     }
   }

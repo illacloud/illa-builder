@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { useDispatch } from "react-redux"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
 export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId, appName, appIndex } = props
@@ -63,7 +64,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                 }
                 Api.request(
                   {
-                    url: `/api/v1/apps/${appId}`,
+                    url: `/apps/${appId}`,
                     method: "PUT",
                     data: {
                       appName: confirmVal,
@@ -128,9 +129,9 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             onOk: () => {
               setConfirmLoading(true)
               return new Promise((resolve) => {
-                Api.request(
+                Api.request<DashboardApp>(
                   {
-                    url: `/api/v1/apps/${appId}/duplicate`,
+                    url: `/apps/${appId}/duplicate`,
                     method: "POST",
                   },
                   (response) => {
@@ -183,9 +184,9 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             //   <CloseIcon size="14px" />
             // </div>,
             onOk: () => {
-              Api.request(
+              Api.request<DashboardApp>(
                 {
-                  url: `/api/v1/apps/${appId}`,
+                  url: `/apps/${appId}`,
                   method: "DELETE",
                 },
                 (response) => {

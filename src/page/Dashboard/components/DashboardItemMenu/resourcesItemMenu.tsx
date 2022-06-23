@@ -13,6 +13,7 @@ import {
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
+import { DashboardResource } from "@/redux/resource/resourceState"
 import { DashboardResourcesItemMenuProps } from "./interface"
 
 export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
@@ -62,9 +63,9 @@ export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
               onOk: () => {
                 setConfirmLoading(true)
                 return new Promise((resolve) => {
-                  Api.request(
+                  Api.request<DashboardResource>(
                     {
-                      url: `/api/v1/resources/${resourceId}`,
+                      url: `/resources/${resourceId}`,
                       method: "DELETE",
                     },
                     (response) => {

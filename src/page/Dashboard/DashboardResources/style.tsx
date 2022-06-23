@@ -46,7 +46,7 @@ export const tableStyle = css`
     cursor: pointer;
     &: hover {
       background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-      .edit-button {
+      [title="editButton"] {
         animation: 0.15s ${rateScale} ease-in-out forwards;
       }
     }

@@ -6,6 +6,6 @@ export interface DashboardItemMenuProps {
 
 export interface DashboardResourcesItemMenuProps {
   resourceId: string
-  showFormVisible: any
-  setCurId: any
+  showFormVisible: () => void
+  setCurId: (curResourceId: string) => void
 }

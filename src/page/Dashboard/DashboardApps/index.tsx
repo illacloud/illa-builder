@@ -10,7 +10,7 @@ import {
   listItemStyle,
   editButtonStyle,
 } from "./style"
-import { modalStyle } from "../components/DashboardItemMenu/style"
+import { modalStyle } from "@/page/Dashboard/components/DashboardItemMenu/style"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
 import { List, ListItemMeta, ListItem } from "@illa-design/list"
@@ -75,7 +75,7 @@ export const DashboardApps: FC = () => {
               onOk: () => {
                 Api.request<DashboardApp>(
                   {
-                    url: "/api/v1/apps",
+                    url: "/apps",
                     method: "POST",
                     data: {
                       appName: confirmVal,
@@ -126,7 +126,7 @@ export const DashboardApps: FC = () => {
                         navigate(`/app/${item.appId}`)
                       }}
                       _css={editButtonStyle}
-                      className="edit-button"
+                      title="editButton"
                     >
                       {t("edit")}
                     </Button>

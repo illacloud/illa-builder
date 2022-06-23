@@ -79,7 +79,7 @@ export const SettingAccount: FC = () => {
 
     Api.request(
       {
-        url: "/api/v1/users/username",
+        url: "/users/username",
         method: "PATCH",
         data: {
           userName: usernameValue,

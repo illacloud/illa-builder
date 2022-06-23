@@ -136,7 +136,7 @@ export const SettingPassword: FC = () => {
 
     Api.request(
       {
-        url: "/api/v1/users/password",
+        url: "/users/password",
         method: "PATCH",
         data: {
           currentPassword: currentPasswordValue,

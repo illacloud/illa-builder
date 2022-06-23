@@ -54,8 +54,8 @@ function CtimeColComponent(text: string) {
 }
 const ExtraColComponent: FC<{
   resourceId: string
-  showFormVisible: any
-  setCurId: any
+  showFormVisible: () => void
+  setCurId: (curResourceId: string) => void
 }> = (props) => {
   const { t } = useTranslation()
   const { resourceId, showFormVisible, setCurId } = props
@@ -69,6 +69,7 @@ const ExtraColComponent: FC<{
           setCurId(resourceId)
           showFormVisible()
         }}
+        title="editButton"
       >
         {t("edit")}
       </Button>
@@ -100,12 +101,19 @@ const ExtraColComponent: FC<{
 
 export const DashboardResources: FC = () => {
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const [formVisible, setFormVisible] = useState(false)
+  const [formVisible, setFormVisible] = useState<boolean>(false)
   const [curResourceId, setCurResourceId] = useState<string>("")
 
   const { t } = useTranslation()
 
   const resourcesList: DashboardResource[] = useSelector(selectAllResource)
+
+  const showFromFunction = () => {
+    setFormVisible(true)
+  }
+  const changeCurResourceId = (curResourceId: string) => {
+    setCurResourceId(curResourceId)
+  }
 
   const countColumnsWidth = (itemWidth: number, minWidth: number) => {
     const windowSizaRate = +(
@@ -158,8 +166,8 @@ export const DashboardResources: FC = () => {
         extraCol: (
           <ExtraColComponent
             resourceId={item.resourceId}
-            showFormVisible={() => setFormVisible(true)}
-            setCurId={setCurResourceId}
+            showFormVisible={() => showFromFunction()}
+            setCurId={changeCurResourceId}
           />
         ),
       })
@@ -194,14 +202,20 @@ export const DashboardResources: FC = () => {
       </div>
       <ActionGenerator
         visible={actionGeneratorVisible}
-        onClose={() => setActionGeneratorVisible(false)}
-        onAddAction={() => setActionGeneratorVisible(false)}
+        onClose={() => {
+          setActionGeneratorVisible(false)
+        }}
+        onAddAction={() => {
+          setActionGeneratorVisible(false)
+        }}
       />
       <ResourceForm
         visible={formVisible}
         actionType="edit"
         resourceId={curResourceId}
-        onCancel={() => setFormVisible(false)}
+        onCancel={() => {
+          setFormVisible(false)
+        }}
       />
     </>
   )
