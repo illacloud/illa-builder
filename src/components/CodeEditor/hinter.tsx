@@ -12,7 +12,6 @@ CodeMirror.hint.javascript = async function (cm, option) {
     to: cm.getCursor(),
     list: [],
   }
-  console.log(inner, cm, option, "javascript inner")
   return inner
 }
 
@@ -30,7 +29,6 @@ CodeMirror.hint.sql = async function (cm, option) {
   }
   const newList = []
   for (let i = 0; i < inner.list.length; i++) {
-    console.log(inner.list[i], "item")
     let item = isString(inner.list[i])
       ? (inner.list[i] as string)
       : (inner.list[i] as Hint)?.text

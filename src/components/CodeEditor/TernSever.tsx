@@ -50,7 +50,6 @@ const transDataToDefs = (data?: Record<string, any>) => {
   if (data) {
     const def: Record<string, any> = {}
     for (const dataKey in data) {
-      console.log(dataKey, "dataKey")
       if (isObject(data[dataKey])) {
         let a = data[dataKey] as Object
         def[dataKey] = { ...a, ...transDataToDefs(a) }
@@ -59,7 +58,6 @@ const transDataToDefs = (data?: Record<string, any>) => {
         def[dataKey]["!type"] = transTernTypeName(data[dataKey])
       }
     }
-    console.log({ def, data }, "transDataToDefs")
     return def
   }
   return {}
@@ -77,7 +75,6 @@ export const TernServer = (
     defs: [ecmascript, { ...currentDef, ...transData }],
     // @ts-ignore: type define error
     completionTip: (data: TypeQueryResult) => {
-      console.log(data, "completionTip")
       let div = document.createElement("div")
       ReactDOM.render(<HintTooltip data={data} />, div)
       return div

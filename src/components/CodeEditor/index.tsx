@@ -21,13 +21,11 @@ import {
   ResultPreview,
   CodeEditorProps,
   EditorModes,
-  FieldEntityInformation,
 } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
@@ -76,6 +74,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let previewType = expectedType
     try {
       calcResult = evaluateDynamicString("", currentValue, globalData)
+      // [TODO]: v1 evaluate
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)
       // }
@@ -135,7 +134,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const handleAutocomplete = (cm: CodeMirror.Editor) => {
     const modeName = cm.getModeAt(cm.getCursor()).name
-    console.log(modeName, "modeName")
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
         tables,
