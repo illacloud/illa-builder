@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { ConfigInitialState } from "@/redux/currentApp/config/configState"
+import { ConfigInitialState } from "@/redux/config/configState"
 import {
   updateBottomPanel,
   updateLeftPanel,
@@ -9,7 +9,7 @@ import {
   updateSelectedComponent,
   updateSelectedAction,
   updateShowDot,
-} from "@/redux/currentApp/config/configReducer"
+} from "@/redux/config/configReducer"
 
 const configSlice = createSlice({
   name: "builderInfo",

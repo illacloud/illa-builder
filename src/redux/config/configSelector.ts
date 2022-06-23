@@ -2,36 +2,36 @@ import { RootState } from "@/store"
 import { createSelector } from "@reduxjs/toolkit"
 
 export const isOpenLeftPanel = (state: RootState) => {
-  return state.currentApp.config.openLeftPanel
+  return state.config.openLeftPanel
 }
 
 export const isOpenBottomPanel = (state: RootState) => {
-  return state.currentApp.config.openBottomPanel
+  return state.config.openBottomPanel
 }
 
 export const isOpenRightPanel = (state: RootState) => {
-  return state.currentApp.config.openRightPanel
+  return state.config.openRightPanel
 }
 
 export const isShowDot = (state: RootState) => {
-  return state.currentApp.config.showDot
+  return state.config.showDot
 }
 
 export const getScale = (state: RootState) => {
-  return state.currentApp.config.scale
+  return state.config.scale
 }
 
 export const getSelectedComponents = (state: RootState) => {
-  return state.currentApp.config.selectedComponents
+  return state.config.selectedComponents
 }
 
 export const getSelectedAction = (state: RootState) => {
-  return state.currentApp.config.selectedAction
+  return state.config.selectedAction
 }
 
 export const isSelected = (state: RootState, displayName: string) => {
   return (
-    state.currentApp.config.selectedComponents.findIndex((value) => {
+    state.config.selectedComponents.findIndex((value) => {
       return value.displayName == displayName
     }) != -1
   )

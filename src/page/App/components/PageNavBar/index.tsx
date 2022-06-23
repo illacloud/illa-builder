@@ -22,12 +22,12 @@ import { ZoomControl } from "@/page/App/components/PageNavBar/ZoomControl"
 import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import { useDispatch, useSelector } from "react-redux"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
-import { configActions } from "@/redux/currentApp/config/configSlice"
+import { configActions } from "@/redux/config/configSlice"
 import {
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
-} from "@/redux/currentApp/config/configSelector"
+} from "@/redux/config/configSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
