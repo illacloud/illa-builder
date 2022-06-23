@@ -33,7 +33,6 @@ const renderResourceNode = (
 ) => {
   let node: JSX.Element
   const { resourceId } = props
-
   switch (resourceType) {
     case "restapi":
       node = (

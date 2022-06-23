@@ -7,10 +7,13 @@ import {
   listTitleStyle,
   menuButtonStyle,
   hoverableStyle,
+  listItemStyle,
+  editButtonStyle,
 } from "./style"
+import { modalStyle } from "@/page/Dashboard/components/DashboardItemMenu/style"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
-import { List, ListItem, ListItemMeta } from "@illa-design/list"
+import { List, ListItemMeta, ListItem } from "@illa-design/list"
 import { MoreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
@@ -23,6 +26,8 @@ import { Api } from "@/api/base"
 import { Tooltip } from "@illa-design/tooltip"
 import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
 import { Message } from "@illa-design/message"
+import { Modal } from "@illa-design/modal"
+import { Input } from "@illa-design/input"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -33,6 +38,8 @@ export const DashboardApps: FC = () => {
   const appsList: DashboardApp[] = useSelector(getDashboardApps)
 
   const [createLoading, setCreateNewLoading] = useState(false)
+
+  let confirmVal = ""
 
   return (
     <div css={appsContainerStyle}>
@@ -51,30 +58,50 @@ export const DashboardApps: FC = () => {
           loading={createLoading}
           colorScheme="techPurple"
           onClick={() => {
-            Api.request<DashboardApp>(
-              {
-                url: "/dashboard/apps",
-                method: "POST",
+            Modal.confirm({
+              _css: modalStyle,
+              content: (
+                <Input
+                  onChange={(res) => {
+                    confirmVal = res
+                  }}
+                />
+              ),
+              title: t("dashboard.app.create_app"),
+              okButtonProps: {
+                colorScheme: "techPurple",
               },
-              (response) => {
-                dispatch(
-                  dashboardAppActions.addDashboardAppReducer({
-                    app: response.data,
-                  }),
+              closable: true,
+              onOk: () => {
+                Api.request<DashboardApp>(
+                  {
+                    url: "/apps",
+                    method: "POST",
+                    data: {
+                      appName: confirmVal,
+                    },
+                  },
+                  (response) => {
+                    dispatch(
+                      dashboardAppActions.addDashboardAppReducer({
+                        app: response.data,
+                      }),
+                    )
+                    navigate(`/app/${response.data.appId}`)
+                  },
+                  (response) => {},
+                  (error) => {},
+                  (loading) => {
+                    setCreateNewLoading(loading)
+                  },
+                  (errorState) => {
+                    if (errorState) {
+                      Message.error({ content: t("create_fail") })
+                    }
+                  },
                 )
-                navigate(`/app/${response.data.appId}`)
               },
-              (response) => {},
-              (error) => {},
-              (loading) => {
-                setCreateNewLoading(loading)
-              },
-              (errorState) => {
-                if (errorState) {
-                  Message.error({ content: t("create_fail") })
-                }
-              },
-            )
+            })
           }}
         >
           {t("create_new_app")}
@@ -87,9 +114,10 @@ export const DashboardApps: FC = () => {
           data={appsList}
           bordered={false}
           hoverable={true}
-          render={(item) => {
+          render={(item, index) => {
             return (
               <ListItem
+                _css={listItemStyle}
                 extra={
                   <div css={itemExtraContainerStyle}>
                     <Button
@@ -97,6 +125,8 @@ export const DashboardApps: FC = () => {
                       onClick={() => {
                         navigate(`/app/${item.appId}`)
                       }}
+                      _css={editButtonStyle}
+                      title="editButton"
                     >
                       {t("edit")}
                     </Button>
@@ -112,13 +142,14 @@ export const DashboardApps: FC = () => {
                         <DashboardItemMenu
                           appId={item.appId}
                           appName={item.appName}
+                          appIndex={index}
                         />
                       }
                     >
                       <Button
                         _css={itemMenuButtonStyle}
                         colorScheme="grayBlue"
-                        leftIcon={<MoreIcon />}
+                        leftIcon={<MoreIcon size="14px" />}
                       />
                     </Tooltip>
                   </div>
@@ -127,7 +158,7 @@ export const DashboardApps: FC = () => {
                 <ListItemMeta
                   css={hoverableStyle}
                   title={item.appName}
-                  description={item.appActivity}
+                  description={`${item.lastModifiedBy} ${item.lastModifiedAt}`}
                   onClick={() => {
                     navigate(`/app/${item.appId}`)
                   }}

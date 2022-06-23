@@ -17,7 +17,7 @@ export const ZoomControl: FC = (props) => {
         onClick={() => {
           dispatch(configActions.plusScale())
         }}
-        leftIcon={<PlusIcon />}
+        leftIcon={<PlusIcon size="8px" />}
       />
       <span css={numStyle}>{scale}%</span>
       <Button
@@ -26,7 +26,7 @@ export const ZoomControl: FC = (props) => {
         onClick={() => {
           dispatch(configActions.minusScale())
         }}
-        leftIcon={<MinusIcon />}
+        leftIcon={<MinusIcon size="8px" />}
       />
     </div>
   )

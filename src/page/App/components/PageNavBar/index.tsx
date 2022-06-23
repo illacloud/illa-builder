@@ -16,6 +16,7 @@ import {
   navBarStyle,
   rowCenter,
   viewControlStyle,
+  windowIconStyle,
 } from "./style"
 import { ZoomControl } from "@/page/App/components/PageNavBar/ZoomControl"
 import { ReactComponent as Logo } from "@assets/illa-logo.svg"
@@ -50,16 +51,19 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       </div>
       <div css={viewControlStyle}>
         <WindowLeftIcon
+          _css={windowIconStyle(leftPanelVisible)}
           onClick={() => {
             dispatch(configActions.updateLeftPanel(!leftPanelVisible))
           }}
         />
         <WindowRightIcon
+          _css={windowIconStyle(rightPanelVsible)}
           onClick={() => {
             dispatch(configActions.updateRightPanel(!rightPanelVsible))
           }}
         />
         <WindowBottomIcon
+          _css={windowIconStyle(bottomPanelVisible)}
           onClick={() => {
             dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
           }}
@@ -68,8 +72,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       </div>
       <div>
         <ButtonGroup spacing={"8px"}>
-          <Button colorScheme="gray" size="medium" leftIcon={<BugIcon />} />
-          <Button colorScheme="gray" size="medium" leftIcon={<MoreIcon />} />
+          <Button
+            colorScheme="gray"
+            size="medium"
+            leftIcon={<BugIcon size="14px" />}
+          />
+          <Button
+            colorScheme="gray"
+            size="medium"
+            leftIcon={<MoreIcon size="14px" />}
+          />
           <Button
             colorScheme="techPurple"
             size="medium"
