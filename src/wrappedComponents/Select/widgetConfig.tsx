@@ -7,7 +7,7 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "SELECT_WIDGET",
   displayName: "select",
   widgetName: i18n.t("widget.select.name"),
-  icon: <SelectWidgetIcon size={"100%"} />,
+  icon: <SelectWidgetIcon size="100%" />,
   sessionType: "SELECT",
   w: 10,
   h: 5,

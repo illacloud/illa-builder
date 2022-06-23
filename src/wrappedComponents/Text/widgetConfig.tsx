@@ -8,7 +8,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   h: 5,
   w: 10,
   type: "TEXT_WIDGET",
-  icon: <TextWidgetIcon size={"100%"} />,
+  icon: <TextWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   defaults: {
     value: "This is a text",

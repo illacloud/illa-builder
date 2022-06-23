@@ -7,7 +7,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   displayName: "RadioGroup",
   type: "RADIO_GROUP_WIDGET",
   widgetName: i18n.t("widget.radio_group.name"),
-  icon: <RadioGroupWidgetIcon size={"100%"} />,
+  icon: <RadioGroupWidgetIcon size="100%" />,
   sessionType: "SELECT",
   w: 20,
   h: 5,

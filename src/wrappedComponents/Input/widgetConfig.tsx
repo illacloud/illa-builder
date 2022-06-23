@@ -6,7 +6,7 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   type: "INPUT_WIDGET",
   displayName: "input",
   widgetName: i18n.t("widget.input.name"),
-  icon: <TextInputWidgetIcon size={"100%"} />,
+  icon: <TextInputWidgetIcon size="100%" />,
   sessionType: "INPUTS",
   w: 10,
   h: 5,

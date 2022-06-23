@@ -6,7 +6,7 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   type: "IMAGE_WIDGET",
   displayName: "Image",
   widgetName: i18n.t("widget.image.name"),
-  icon: <ImageWidgetIcon size={"100%"} />,
+  icon: <ImageWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   h: 15,
   w: 10,
