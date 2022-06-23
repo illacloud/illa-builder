@@ -45,7 +45,7 @@ export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
       position="top"
     >
       <Image
-        src={finalSrc}
+        fallbackSrc={finalSrc}
         alt={altText}
         radius={finalRadius}
         height={height}
