@@ -26,9 +26,9 @@ import {
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
-import {useSelector} from "react-redux";
-import {getCurrentUser} from "@/redux/currentUser/currentUserSelector";
-import {getLanguageValue} from "@/redux/builderInfo/builderInfoSelector";
+import { useSelector } from "react-redux"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {

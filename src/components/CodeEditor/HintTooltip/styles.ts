@@ -42,7 +42,10 @@ export const docIconStyle = css`
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-  &:active, &:visited, &:link, &:hover  {
+  &:active,
+  &:visited,
+  &:link,
+  &:hover {
     color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   }
 `
