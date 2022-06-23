@@ -107,35 +107,49 @@ export function updateResizeScaleSquare(
   } as ComponentNode
 
   switch (position) {
-    case "t":
+    case "t": {
+      let finalY = nearY
       if (nearY < 0) {
-        return
+        finalY = 0
       }
-      newItem.h = newItem.h + newItem.y - nearY
-      if (newItem.h < newItem.minH) {
-        return
+      if (newItem.h + newItem.y - nearY < newItem.minH) {
+        finalY = newItem.h + newItem.y - newItem.minH
       }
-      newItem.y = nearY
+      newItem.h = newItem.h + newItem.y - finalY
+      newItem.y = finalY
       break
-    case "r":
-      newItem.w = nearX - newItem.x
-      if (newItem.w < newItem.minW) {
-        return
+    }
+    case "r": {
+      let finalX = nearX
+      if (nearX > blockColumns) {
+        finalX = blockColumns
       }
-      break
-    case "b":
-      newItem.h = nearY - newItem.y
-      if (newItem.h < newItem.minH) {
-        return
+      if (nearX < newItem.x + newItem.minW) {
+        finalX = newItem.x + newItem.minW
       }
+      newItem.w = finalX - newItem.x
       break
-    case "l":
-      newItem.w = newItem.w + newItem.x - nearX
-      if (newItem.w < newItem.minW) {
-        return
+    }
+    case "b": {
+      let finalY = nearY
+      if (nearY < newItem.y + newItem.minH) {
+        finalY = newItem.y + newItem.minH
       }
-      newItem.x = nearX
+      newItem.h = finalY - newItem.y
       break
+    }
+    case "l": {
+      let finalX = nearX
+      if (nearX < 0) {
+        finalX = 0
+      }
+      if (newItem.w + newItem.x - finalX < newItem.minW) {
+        finalX = newItem.w + newItem.x - newItem.minW
+      }
+      newItem.w = newItem.w + newItem.x - finalX
+      newItem.x = finalX
+      break
+    }
     case "tl": {
       const rightTlX = newItem.x + newItem.w - newItem.minW
       const rightTlY = newItem.y + newItem.h - newItem.minH

@@ -1,8 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import {
-  ResourceListState,
-  Resource,
-} from "@/redux/currentApp/resource/resourceState"
+import { ResourceListState, Resource } from "@/redux/resource/resourceState"
 
 export const addResourceListReducer: CaseReducer<
   ResourceListState,
@@ -30,6 +27,16 @@ export const updateResourceItemReducer: CaseReducer<
     ...state[targetIndex],
     ...action.payload,
   })
+}
 
-  return state
+export const removeResourceItemReducer: CaseReducer<
+  ResourceListState,
+  PayloadAction<string>
+> = (state, action) => {
+  let index = state.findIndex((i) => {
+    return i.resourceId === action.payload
+  })
+  if (index !== -1) {
+    state.splice(index, 1)
+  }
 }

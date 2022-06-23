@@ -55,6 +55,7 @@ export const titleStyle = css`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-right: 8px;
 `
 
 export const titleEditIconStyle = css`

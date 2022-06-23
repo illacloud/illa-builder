@@ -106,7 +106,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           {renderStatusNode(error)}
           <span css={resTitleStyle}>{title}</span>
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
-        </div>
+          p        </div>
         <div css={resContentStyle}>{resultNode}</div>
       </div>
     </motion.div>

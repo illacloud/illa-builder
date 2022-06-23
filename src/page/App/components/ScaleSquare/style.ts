@@ -1,7 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
 
@@ -9,7 +8,7 @@ export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
   switch (scaleSquareType) {
     case "error":
-      stateColor = globalColor(`--${illaPrefix}-red-03`)
+      stateColor = globalColor(`--${illaPrefix}-orange-03`)
       break
     case "normal":
       stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
@@ -21,8 +20,13 @@ export function getStateColor(scaleSquareType: ScaleSquareType): string {
   return stateColor
 }
 
-export function applyOuterStyle(h: number, w: number): SerializedStyles {
+export function applyOuterStyle(
+  isDragging: boolean,
+  h: number,
+  w: number,
+): SerializedStyles {
   return css`
+    opacity: ${isDragging ? 0 : 100};
     height: ${h}px;
     width: ${w}px;
   `
@@ -75,8 +79,8 @@ export function applySquarePointerStyle(
     ${positionStyle};
     box-sizing: border-box;
     border: 1px solid ${selected ? stateColor : "transparent"};
-    height: 4px;
-    width: 4px;
+    height: 5px;
+    width: 5px;
     position: absolute;
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)
@@ -97,6 +101,47 @@ export const onePixelStyle = css`
   height: 1px;
 `
 
+export const dragIconStyle = css`
+  flex: none;
+`
+
+export const dragHandlerTextStyle = css`
+  flex-shrink: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`
+
+export function applyHandlerStyle(
+  selected: boolean,
+  maxWidth: number,
+  state: ScaleSquareType,
+): SerializedStyles {
+  return css`
+    visibility: ${selected ? "visible" : "hidden"};
+    display: flex;
+    left: 0;
+    cursor: grab;
+    top: -18px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    position: absolute;
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
+    background: ${getStateColor(state)};
+    flex-direction: row;
+    font-size: 12px;
+    align-items: center;
+    padding-left: 1px;
+    padding-right: 4px;
+    height: 18px;
+    max-width: ${maxWidth}px;
+  `
+}
+
+export const warningStyle = css`
+  margin-left: 4px;
+`
+
 export function applyBarPointerStyle(
   selected: boolean,
   resizing: boolean,
@@ -114,7 +159,7 @@ export function applyBarPointerStyle(
         right: 0;
         margin: auto;
         cursor: ${selected ? "row-resize" : "default"};
-        height: 4px;
+        height: 5px;
         width: 18px;
       `
       break
@@ -125,7 +170,7 @@ export function applyBarPointerStyle(
         right: 0;
         cursor: ${selected ? "row-resize" : "default"};
         margin: auto;
-        height: 4px;
+        height: 5px;
         width: 18px;
       `
       break
@@ -136,7 +181,7 @@ export function applyBarPointerStyle(
         top: 0;
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
-        width: 4px;
+        width: 5px;
         height: 18px;
       `
       break
@@ -147,7 +192,7 @@ export function applyBarPointerStyle(
         top: 0;
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
-        width: 4px;
+        width: 5px;
         height: 18px;
       `
       break
@@ -159,7 +204,7 @@ export function applyBarPointerStyle(
     ${barPositionStyle};
     box-sizing: border-box;
     position: absolute;
-    border-radius: 2px;
+    border-radius: 2.5px;
     border: 1px solid ${selected ? stateColor : "transparent"};
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)
@@ -201,6 +246,10 @@ export function applyBorderStyle(
 
     &:hover {
       border-color: ${getStateColor(scaleSquareState)};
+
+      .handler {
+        visibility: visible;
+      }
     }
 
     &:active {

@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const navBarStyle = css`
@@ -43,3 +43,11 @@ export const nameStyle = css`
 export const descriptionStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
+
+export function windowIconStyle(selected: boolean): SerializedStyles {
+  return css`
+    color: ${selected
+      ? globalColor(`--${illaPrefix}-grayBlue-03`)
+      : globalColor(`--${illaPrefix}-grayBlue-05`)};
+  `
+}

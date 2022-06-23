@@ -9,7 +9,10 @@ export const triggerContentContainerCss: SerializedStyles = css`
   flex-direction: column;
 `
 
-export function applyTriggerContentItemStyle(color: string): SerializedStyles {
+export function applyTriggerContentItemStyle(
+  color: string,
+  hoverColor?: string,
+): SerializedStyles {
   return css`
     cursor: pointer;
     padding: 5px 16px;
@@ -19,6 +22,17 @@ export function applyTriggerContentItemStyle(color: string): SerializedStyles {
 
     &:hover {
       background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+      color: ${hoverColor || color};
     }
   `
 }
+
+export const modalStyle = css`
+  width: 520px;
+`
+
+export const closeIconStyle = css`
+  position: absolute;
+  top: 21px;
+  right: 18px;
+`

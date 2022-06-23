@@ -14,7 +14,6 @@
   "share": "分享",
   "rename": "重命名",
   "duplicate": "复制",
-  "move_to_trash": "移到回收站",
   "network_error": "网络异常",
   "create_fail": "创建失败",
   "remove_fail": "删除失败",
@@ -52,16 +51,16 @@
       },
       "error_message": {
         "username": {
-          "require":"用户名不能为空",
+          "require": "用户名不能为空",
           "length": "用户名须为3～15个字符"
         },
         "email": {
-          "require":"邮箱不能为空",
+          "require": "邮箱不能为空",
           "invalid_pattern": "邮箱格式不正确",
           "registered": "此邮箱已注册，请登录"
         },
         "password": {
-          "require":"密码不能为空",
+          "require": "密码不能为空",
           "length": "密码须为6～20个字符"
         },
         "verify": {
@@ -95,12 +94,12 @@
       },
       "error_message": {
         "email": {
-          "require":"邮箱不能为空",
+          "require": "邮箱不能为空",
           "invalid_pattern": "邮箱格式不正确",
           "registered": "此邮箱未注册"
         },
         "password": {
-          "require":"密码不能为空",
+          "require": "密码不能为空",
           "locked": "密码输错超过5次，账户将被锁定1小时",
           "incorrect": "请输入正确的账号密码",
           "length": "密码须为6～20个字符"
@@ -130,7 +129,7 @@
       },
       "error_message": {
         "email": {
-          "require":"邮箱不能为空",
+          "require": "邮箱不能为空",
           "invalid_pattern": "邮箱格式不正确",
           "registered": "此邮箱未注册"
         },
@@ -140,7 +139,7 @@
           "expired": "验证码已过期"
         },
         "password": {
-          "require":"密码不能为空",
+          "require": "密码不能为空",
           "length": "密码须为6～20个字符"
         }
       }
@@ -529,20 +528,27 @@
   "Logout": "退出登录",
   "link_copied": "链接已复制",
   "dashboard": {
+    "common": {
+      "delete_title": "确认",
+      "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "delete_cancel_text": "取消",
+      "delete_ok_text": "删除",
+      "delete": "移到回收站"
+    },
     "app": {
+      "create_app": "创建App",
       "duplicate_fail": "复制失败",
       "rename_fail": "重命名失败",
       "duplicate_placeholder": "请输入项目名称",
       "trash_success": "删除成功",
-      "trash_failure": "删除失败"
+      "trash_failure": "删除失败",
+      "name_empty": "命名不能为空"
     },
     "resources": {
       "table_name": "资源名",
       "table_type": "数据库类型",
       "table_dbname": "数据库名",
       "table_ctime": "创建时间",
-      "trash_confirm_title": "确认",
-      "trash_confirm_content": "删除将中断使用此资源的应用程序和查询库查询",
       "trash_success": "删除成功",
       "trash_failure": "删除失败"
     }

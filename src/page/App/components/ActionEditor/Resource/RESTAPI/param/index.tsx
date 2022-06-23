@@ -6,7 +6,7 @@ import { Input } from "@illa-design/input"
 import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
-import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
   configContainerStyle,
   descriptionStyle,

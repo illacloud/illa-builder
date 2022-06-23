@@ -14,7 +14,6 @@
   "share": "Share",
   "rename": "Rename",
   "duplicate": "Duplicate",
-  "move_to_trash": "Move to trash",
   "network_error": "Network Error",
   "create_fail": "Create fail",
   "remove_fail": "Remove fail",
@@ -52,16 +51,16 @@
       },
       "error_message": {
         "username": {
-          "require":"Please enter username",
+          "require": "Please enter username",
           "length": "The username must be 3~15 characters"
         },
         "email": {
-          "require":"Please enter your email",
+          "require": "Please enter your email",
           "invalid_pattern": "Please enter a valid email address",
           "registered": "An account with that email address already exists."
         },
         "password": {
-          "require":"Please enter password",
+          "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         },
         "verify": {
@@ -95,12 +94,12 @@
       },
       "error_message": {
         "email": {
-          "require":"Please enter your email",
+          "require": "Please enter your email",
           "invalid_pattern": "Please enter a valid email address",
           "registered": "The email address doesn't associate with an account."
         },
         "password": {
-          "require":"Please enter password",
+          "require": "Please enter password",
           "locked": "Too many bad attempts， please reset your password or try again after 1 hour",
           "incorrect": "Incorrect email or password",
           "length": "The password must be 6~20 characters"
@@ -130,7 +129,7 @@
       },
       "error_message": {
         "email": {
-          "require":"Please enter your email",
+          "require": "Please enter your email",
           "invalid_pattern": "Please enter a valid email address",
           "registered": "The email address doesn't associate with an account."
         },
@@ -140,7 +139,7 @@
           "expired": "Verification code expired"
         },
         "password": {
-          "require":"Please enter password",
+          "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         }
       }
@@ -529,20 +528,27 @@
   "Logout": "Logout",
   "link_copied": "Link Copied!",
   "dashboard": {
+    "common": {
+      "delete_title": "Are you sure?",
+      "delete_content": "This will break Apps and Query Library queries that use this resource",
+      "delete_cancel_text": "Cancel",
+      "delete_ok_text": "Delete",
+      "delete": "Delete"
+    },
     "app": {
+      "create_app": "Create App",
       "rename_fail": "Rename fail",
       "duplicate_fail": "Duplicate fail",
       "duplicate_placeholder": "Enter your app name here",
       "trash_success": "Delete successfully",
-      "trash_failure": "Delete failure"
+      "trash_failure": "Delete failure",
+      "name_empty": "name can't be empty"
     },
     "resources": {
       "table_name": "Resource Name",
       "table_type": "Database Type",
       "table_dbname": "Database Name",
       "table_ctime": "Created",
-      "trash_confirm_title": "Are you sure?",
-      "trash_confirm_content": "This will break Apps and Query Library queries that use this resource",
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure"
     }
