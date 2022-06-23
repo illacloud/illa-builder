@@ -389,10 +389,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         componentNode.childrenNode[item].y + componentNode.childrenNode[item].h,
       )
     }
-    if (maxY < blockRows && maxY >= minBlockRows) {
-      setBlockRows(maxY)
+    if (maxY < blockRows) {
+      setBlockRows(Math.max(maxY, minBlockRows))
     }
-  }, [componentNode.childrenNode])
+  }, [componentNode])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode

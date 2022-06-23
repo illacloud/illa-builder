@@ -141,8 +141,6 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     DragResizeCollected
   >(getDragConfig(componentNode, "br"), [componentNode])
 
-  console.log("longbo", componentNode.displayName, componentNode.isDragging)
-
   return (
     <div
       css={applyOuterStyle(componentNode.isDragging, h, w)}
