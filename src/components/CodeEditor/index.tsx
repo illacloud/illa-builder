@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useContext, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
@@ -25,6 +25,7 @@ import {
 } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
+import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -33,6 +34,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     placeholder = "input sth",
     expectedType = "String",
     borderRadius = "8px",
+    tables = {},
+    lineNumbers,
     value,
     height = "auto",
     readOnly,
@@ -40,6 +43,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     onChange,
     ...otherProps
   } = props
+  const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
   const codeTargetRef = useRef<HTMLDivElement>(null)
   const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
@@ -130,10 +134,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     console.log(modeName, "modeName")
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-        tables: {
-          table1: ["col_A", "col_B", "col_C"],
-          table2: ["other_columns1", "other_columns2"],
-        },
+        tables,
         completeSingle: false,
       })
     } else if (modeName == "javascript") {
@@ -153,6 +154,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   useEffect(() => {
+    console.log({ globalData }, "globalData")
+  }, [globalData])
+
+  useEffect(() => {
     sever.current = TernServer({
       testDemo: { "!type": "Demo" },
       tryDemo: "Demo",
@@ -161,11 +166,12 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       const editor = CodeMirror(codeTargetRef.current!, {
         mode: EditorModes[mode],
         placeholder,
-        lineNumbers: mode !== "TEXT_JS",
+        lineNumbers,
         autocapitalize: false,
         autofocus: false,
         matchBrackets: true,
         autoCloseBrackets: true,
+        showCursorWhenSelecting: true,
         lineWrapping: true,
         scrollbarStyle: "null",
         tabSize: 2,

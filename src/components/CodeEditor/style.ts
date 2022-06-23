@@ -1,9 +1,21 @@
 import chroma from "chroma-js"
+import "@fontsource/fira-code"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { EditorInputState } from "./interface"
+import arraySvg from "./assets/array.svg"
+import booleanSvg from "./assets/boolean.svg"
+import stringSvg from "./assets/string.svg"
+import objectSvg from "./assets/object.svg"
+import numberSvg from "./assets/number.svg"
+import nullSvg from "./assets/null.svg"
+import functionSvg from "./assets/function.svg"
 
 export const codemirrorStyle = css`
+  .CodeMirror {
+    font-family: "Fira Code", monospace;
+  }
+
   .cm-illa-expression {
     background: #f5fdfa;
     color: ${globalColor(`--${illaPrefix}-green-03`)};
@@ -12,8 +24,10 @@ export const codemirrorStyle = css`
   .CodeMirror-lines {
     padding: 6px 2px;
   }
-  
+
   .CodeMirror-hints {
+    font-family: "Fira Code", monospace;
+    min-width: 289px;
     padding: 2px 0;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-radius: 8px;
@@ -32,6 +46,7 @@ export const codemirrorStyle = css`
 
   li.CodeMirror-hint {
     margin: 1px 0;
+    transition: 0.2s ease-in-out;
 
     &:hover {
       background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
@@ -41,15 +56,17 @@ export const codemirrorStyle = css`
 
   .CodeMirror-Tern-completion {
     display: flex;
+    align-items: center;
     padding-left: 30px;
     position: relative;
-    line-height: 22px;
+    height: 24px;
   }
 
   .CodeMirror-Tern-completion:before {
+    content: "";
     position: absolute;
     left: 8px;
-    bottom: 4px;
+    bottom: 5px;
     border-radius: 2px;
     font-size: 10px;
     height: 14px;
@@ -64,10 +81,8 @@ export const codemirrorStyle = css`
 
   .CodeMirror-Tern-completion:after {
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-    font-family: monospace;
     font-weight: 400;
     font-size: 12px;
-    line-height: 22px;
     position: relative;
     content: "";
     display: flex;
@@ -79,15 +94,12 @@ export const codemirrorStyle = css`
   }
 
   .CodeMirror-Tern-completion-unknown:before {
-    content: "?";
-    background: #4bb;
+    background: url(${nullSvg});
   }
 
   .CodeMirror-Tern-completion-object {
     &:before {
-      content: "O";
-      background: #ffefb7;
-      color: #ffcd00;
+      background: url(${objectSvg});
     }
 
     &:after {
@@ -97,9 +109,7 @@ export const codemirrorStyle = css`
 
   .CodeMirror-Tern-completion-fn {
     &:before {
-      content: "F";
-      background: #e3fdff;
-      color: #12ddf2;
+      background: url(${functionSvg});
     }
 
     &:after {
@@ -109,9 +119,7 @@ export const codemirrorStyle = css`
 
   .CodeMirror-Tern-completion-array {
     &:before {
-      content: "A";
-      background: #dbfff1;
-      color: #00d689;
+      background: url(${arraySvg});
     }
 
     &:after {
@@ -121,9 +129,7 @@ export const codemirrorStyle = css`
 
   .CodeMirror-Tern-completion-number {
     &:before {
-      content: "1";
-      background: #ffe8da;
-      color: #ff8246;
+      background: url(${numberSvg});
     }
 
     &:after {
@@ -133,9 +139,7 @@ export const codemirrorStyle = css`
 
   .CodeMirror-Tern-completion-string {
     :before {
-      content: "S";
-      background: #ffe4e4;
-      color: #ff7272;
+      background: url(${stringSvg});
     }
 
     &:after {
@@ -143,9 +147,14 @@ export const codemirrorStyle = css`
     }
   }
 
-  .CodeMirror-Tern-completion-bool:before {
-    content: "B";
-    background: #999;
+  .CodeMirror-Tern-completion-bool {
+    :before {
+      background: url(${booleanSvg});
+    }
+
+    &:after {
+      content: "Boolean";
+    }
   }
 
   .CodeMirror-Tern-completion-guess {
@@ -260,7 +269,7 @@ export function applyPreviewStyle(state?: string): SerializedStyles {
     color: ${globalColor(`--${illaPrefix}-${statusColor}-01`)};
     border-radius: 0 0 8px 8px;
     padding: 4px 8px;
-    font-family: monospace;
+    font-family: "Fira Code", monospace;
     position: relative;
   `
 }

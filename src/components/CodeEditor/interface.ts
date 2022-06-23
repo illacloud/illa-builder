@@ -17,11 +17,14 @@ export interface CodeEditorProps
   mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT" | "TEXT_SQL"
   value?: string
   expectedType: ExpectedType
+  // Whether to show line numbers to the left of the editor.
   lineNumbers?: boolean
   readOnly?: boolean
   height?: string
   placeholder?: string
   borderRadius?: string
+  // sql table data
+  tables?: Record<string, any>
   onBlur?: () => void
   onChange?: (value: string, calcResult: any) => void
 }
