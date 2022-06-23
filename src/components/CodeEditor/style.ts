@@ -181,7 +181,7 @@ export const codemirrorStyle = css`
   }
 
   .CodeMirror-Tern-hint-doc {
-    max-width: 25em;
+    width: 287px;
     margin-top: -3px;
   }
 
