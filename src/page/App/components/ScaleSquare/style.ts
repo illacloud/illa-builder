@@ -21,12 +21,12 @@ export function getStateColor(scaleSquareType: ScaleSquareType): string {
 }
 
 export function applyOuterStyle(
-  selected: boolean,
+  isDragging: boolean,
   h: number,
   w: number,
 ): SerializedStyles {
   return css`
-    z-index: ${selected ? 1 : 0};
+    opacity: ${isDragging ? 0 : 100};
     height: ${h}px;
     width: ${w}px;
   `
@@ -246,6 +246,7 @@ export function applyBorderStyle(
 
     &:hover {
       border-color: ${getStateColor(scaleSquareState)};
+
       .handler {
         visibility: visible;
       }

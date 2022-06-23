@@ -51,6 +51,7 @@ function getDragConfig(
 
 export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const { w, h, componentNode, className, ...otherProps } = props
+
   const scaleSquareState = componentNode.error ? "error" : "normal"
   const dispatch = useDispatch()
   const selected = useSelector<RootState, boolean>((state) => {
@@ -140,9 +141,11 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     DragResizeCollected
   >(getDragConfig(componentNode, "br"), [componentNode])
 
+  console.log("longbo", componentNode.displayName, componentNode.isDragging)
+
   return (
     <div
-      css={applyOuterStyle(selected, h, w)}
+      css={applyOuterStyle(componentNode.isDragging, h, w)}
       className={className}
       onClick={(e) => {
         dispatch(configActions.updateSelectedComponent([componentNode]))
