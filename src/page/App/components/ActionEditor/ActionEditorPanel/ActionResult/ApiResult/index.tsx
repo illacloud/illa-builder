@@ -3,7 +3,7 @@ import { RESTAPIConfigureValues } from "@/page/App/components/ActionEditor/Resou
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
-import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { Tabs, TabPane } from "@illa-design/tabs"
 import { JSONViewer } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/JSONViewer"
 import { ApiResultProps } from "./interface"
