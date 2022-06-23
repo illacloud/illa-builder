@@ -6,11 +6,8 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { EventsInProps } from "@/wrappedComponents/interface"
 
 const getEventScripts = (events: EventsInProps[], eventType: string) => {
-  const filterEvents = events.filter((event) => {
+  return events.filter((event) => {
     return event.eventType === eventType
-  })
-  return filterEvents.map((event) => {
-    return event
   })
 }
 
@@ -42,28 +39,29 @@ export const TransformWidget: FC<TransformWidgetProps> = (props) => {
   const handleOnChange = () => {
     getOnChangeEventScripts().forEach((scriptObj) => {
       const { enabled, script } = scriptObj
-      if (!enabled) {
+      if (enabled == "undefined") {
+        evaluateDynamicString("events", script, globalData)
+        return
+      }
+      if (
+        typeof enabled === "string" &&
+        evaluateDynamicString("events", enabled, globalData)
+      ) {
         evaluateDynamicString("events", script, globalData)
       }
-      if (enabled && evaluateDynamicString("events", enabled, globalData))
-        evaluateDynamicString("events", script, globalData)
     })
   }
 
-  const ChildComponent = useMemo(() => {
-    const { type, props: componentNodeProps = {} } = componentNode
-    if (!type) return null
-    const COMP = widgetBuilder(type).widget
-    if (!COMP) return null
-    return (
-      <COMP
-        {...componentNodeProps}
-        handleOnChange={handleOnChange}
-        handleUpdateDsl={handleUpdateDsl}
-        ref={ref}
-      />
-    )
-  }, [componentNode])
-
-  return ChildComponent
+  const { type, props: componentNodeProps = {} } = componentNode
+  if (!type) return null
+  const COMP = widgetBuilder(type).widget
+  if (!COMP) return null
+  return (
+    <COMP
+      {...componentNodeProps}
+      handleOnChange={handleOnChange}
+      handleUpdateDsl={handleUpdateDsl}
+      ref={ref}
+    />
+  )
 }

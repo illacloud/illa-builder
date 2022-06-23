@@ -7,11 +7,15 @@ import {
 import {
   applyBarPointerStyle,
   applyBorderStyle,
+  applyHandlerStyle,
   applyOuterStyle,
   applySquarePointerStyle,
   applyTransformWidgetStyle,
   BarPosition,
+  dragHandlerTextStyle,
+  dragIconStyle,
   onePixelStyle,
+  warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
 import { useDispatch, useSelector } from "react-redux"
@@ -20,6 +24,9 @@ import { RootState } from "@/store"
 import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { mergeRefs } from "@illa-design/system"
+import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 function getDragConfig(
   componentNode: ComponentNode,
@@ -57,8 +64,29 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
     () => ({
       type: "components",
-      item: componentNode,
-      canDrag: !componentNode.isDragging,
+      item: () => {
+        const item = {
+          ...componentNode,
+          isDragging: true,
+        }
+        dispatch(componentsActions.addOrUpdateComponentReducer(item))
+        return item
+      },
+    }),
+    [componentNode],
+  )
+
+  const [, dragHandlerRef, dragPreviewHandlerRef] = useDrag<ComponentNode>(
+    () => ({
+      type: "components",
+      item: () => {
+        const item = {
+          ...componentNode,
+          isDragging: true,
+        }
+        dispatch(componentsActions.addOrUpdateComponentReducer(item))
+        return item
+      },
     }),
     [componentNode],
   )
@@ -123,8 +151,25 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       {...otherProps}
     >
       <div css={applyBorderStyle(selected, scaleSquareState)}>
-        <div css={applyTransformWidgetStyle()} ref={dragRef}>
+        <div
+          css={applyTransformWidgetStyle(componentNode.verticalResize)}
+          ref={dragRef}
+        >
           <TransformWidget componentNode={componentNode} />
+        </div>
+        <div
+          className={"handler"}
+          ref={dragHandlerRef}
+          css={applyHandlerStyle(selected, w, scaleSquareState)}
+        >
+          <DragIcon css={dragIconStyle} />
+          <div css={dragHandlerTextStyle}>{componentNode.displayName}</div>
+          {scaleSquareState == "error" && (
+            <WarningCircleIcon
+              color={globalColor(`--${illaPrefix}-white-05`)}
+              css={warningStyle}
+            />
+          )}
         </div>
       </div>
       <div
@@ -202,6 +247,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       <div
         ref={mergeRefs(
           dragPreviewRef,
+          dragPreviewHandlerRef,
           resizeTPreviewRef,
           resizeRPreviewRef,
           resizeBPreviewRef,

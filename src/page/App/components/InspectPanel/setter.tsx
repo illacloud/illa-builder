@@ -8,53 +8,78 @@ import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
     setterType,
-    isFullWidth,
+    isSetterSingleRow,
     isInList,
     labelName,
     labelDesc,
-    useCustomLabel = false,
+    useCustomLayout = false,
     shown,
     bindAttrName,
+    attrName,
   } = props
   const Comp = getSetterByType(setterType)
 
-  const { panelConfig, handleUpdateDsl, handleUpdatePanelConfig } =
+  const { widgetProps, handleUpdateDsl, handleUpdateDynamicStrings } =
     useContext(SelectedPanelContext)
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
-    const bindAttrNameValue = panelConfig[bindAttrName]
+    const bindAttrNameValue = widgetProps[bindAttrName]
     return shown(bindAttrNameValue)
-  }, [shown, panelConfig])
+  }, [shown, widgetProps])
 
   const renderLabel = useMemo(() => {
-    return !useCustomLabel && labelName ? (
+    return !useCustomLayout && labelName ? (
       <PanelLabel
         labelName={labelName}
         labelDesc={labelDesc}
         isInList={isInList}
       />
     ) : null
-  }, [labelName, labelDesc, isInList])
+  }, [useCustomLayout, labelName, labelDesc, isInList])
+
+  const canWrapped = useMemo(() => {
+    if (renderLabel) {
+      const value = widgetProps[attrName]
+      return typeof value === "string" && value.includes("\n")
+    }
+    return false
+  }, [renderLabel, widgetProps, attrName])
+
+  const isSetterSingleRowWrapper = useMemo(() => {
+    return isSetterSingleRow || !labelName || canWrapped
+  }, [isSetterSingleRow, labelName, canWrapped])
 
   const renderSetter = useMemo(() => {
+    const defaultValue = widgetProps[attrName]
+    const expectedType = props.expectedType
     return Comp ? (
       <Comp
         {...props}
-        panelConfig={panelConfig}
+        isSetterSingleRow={isSetterSingleRowWrapper}
+        value={defaultValue}
+        panelConfig={widgetProps}
         handleUpdateDsl={handleUpdateDsl}
-        handleUpdatePanelConfig={handleUpdatePanelConfig}
+        handleUpdateDynamicStrings={handleUpdateDynamicStrings}
+        expectedType={expectedType ?? "String"}
       />
     ) : null
-  }, [Comp, props, panelConfig, handleUpdateDsl, handleUpdatePanelConfig])
+  }, [
+    Comp,
+    props,
+    widgetProps,
+    attrName,
+    handleUpdateDsl,
+    isSetterSingleRowWrapper,
+  ])
 
   return canRenderSetter ? (
     <div
       css={applySetterWrapperStyle(
-        isFullWidth,
-        !!labelName,
-        useCustomLabel,
+        isSetterSingleRow,
         isInList,
+        isSetterSingleRowWrapper,
+        useCustomLayout,
       )}
     >
       {renderLabel}

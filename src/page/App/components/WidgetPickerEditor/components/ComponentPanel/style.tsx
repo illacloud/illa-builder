@@ -1,28 +1,33 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const componentContainerCss = css`
-  padding: 16px 16px;
+export const componentContainerStyle = css`
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   width: 100%;
 `
+export const searchWrapperStyle = css`
+  padding: 16px;
+`
 
-export const sessionListContainerCss = css`
+export const sessionListContainerStyle = css`
+  ${searchWrapperStyle};
+  padding-top: 0;
+  padding-bottom: 0;
   max-height: calc(100vh - 150px);
   overflow-y: auto;
   width: 100%;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
 `
 
-export const sessionContainerCss = css`
+export const sessionContainerStyle = css`
   height: 100%;
   width: 100%;
   display: inline-flex;
   flex-direction: column;
 `
 
-export const sessionTitleCss = css`
+export const sessionTitleStyle = css`
   height: 38px;
   width: 100%;
   font-size: 14px;
@@ -31,20 +36,20 @@ export const sessionTitleCss = css`
   align-items: center;
 `
 
-export const componentListContainerCss = css`
+export const componentListContainerStyle = css`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 88px);
-  justify-content: space-between;
+  gap: 16px 8px;
 `
 
-export const itemContainerCss = css`
-  display: inline-flex;
-  position: relative;
+export const itemContainerStyle = css`
+  display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
-  margin-bottom: 16px;
-  justify-content: center;
   align-items: center;
+  position: relative;
+  width: 88px;
 `
 
 export const dragPreviewStyle = css`
@@ -56,53 +61,42 @@ export const dragPreviewStyle = css`
   width: 1px;
 `
 
-export const iconCss = css`
-  width: 88px;
+export const iconStyle = css`
   height: 70px;
-  display: inline-flex;
+  width: 100%;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${hexToRGBA(
     globalColor(`--${illaPrefix}-grayBlue-09`),
     0.5,
   )};
+  cursor: grab;
 
   &:hover {
     background-color: ${hexToRGBA(
       globalColor(`--${illaPrefix}-techPurple-07`),
     )};
-    cursor: grab;
+    transform: scale(1.1);
   }
 
-  &:hover {
-    background-color: ${hexToRGBA(
-      globalColor(`--${illaPrefix}-techPurple-07`),
-    )};
-    cursor: grab;
-  }
-
-  transition: all 200ms;
+  transition: 0.15s ease-in-out;
+  transition-property: transform;
+  will-change: transform;
 `
 
-export const nameCss = css`
+export const nameStyle = css`
   font-size: 12px;
+  width: 100%;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  max-lines: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 88px;
-  word-break: break-all;
   text-overflow: ellipsis;
   box-sizing: border-box;
   padding: 4px 8px 0 8px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   overflow: hidden;
   text-align: center;
 `
 
-export const emptyCss = css`
+export const emptyStyle = css`
   width: 100%;
   height: 100%;
   display: flex;
@@ -111,7 +105,7 @@ export const emptyCss = css`
   align-items: center;
 `
 
-export const emptyTipCss = css`
+export const emptyTipStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   margin-top: 4px;
   font-size: 14px;

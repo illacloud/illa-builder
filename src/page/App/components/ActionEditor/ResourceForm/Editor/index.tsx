@@ -5,9 +5,9 @@ import { Button } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { Notification } from "@illa-design/notification"
 import { Api } from "@/api/base"
-import { Resource } from "@/redux/currentApp/resource/resourceState"
-import { resourceActions } from "@/redux/currentApp/resource/resourceSlice"
-import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { Resource } from "@/redux/resource/resourceState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
   MySQLConfigure,
   RESTAPIConfigure,

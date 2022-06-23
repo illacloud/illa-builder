@@ -2,27 +2,11 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ComponentNode,
   ComponentsState,
+  updateComponentDynamicStringsPayload,
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-
-export const addComponentReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<ComponentNode>
-> = (state, action) => {
-  const addNode = action.payload
-  if (state.rootDsl == null || addNode.parentNode == null) {
-    state.rootDsl = addNode
-  } else {
-    const parentNode = searchDsl(state.rootDsl, addNode.parentNode)
-    if (parentNode != null) {
-      if (parentNode.childrenNode == null) {
-        parentNode.childrenNode = {}
-      }
-      parentNode.childrenNode[addNode.displayName] = addNode
-    }
-  }
-}
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const removeComponentReducer: CaseReducer<
   ComponentsState,
@@ -72,4 +56,18 @@ export const updateComponentPropsReducer: CaseReducer<
     ...oldProps,
     ...newProps,
   }
+}
+
+export const updateComponentDynamicStringsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<updateComponentDynamicStringsPayload>
+> = (state, action) => {
+  const { displayName, dynamicStrings } = action.payload
+  const node = searchDsl(state.rootDsl, displayName)
+  if (!node) return
+  if (!node.panelConfig)
+    node.panelConfig = {
+      dynamicStrings: [],
+    }
+  node.panelConfig.dynamicStrings = dynamicStrings
 }

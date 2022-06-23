@@ -1,31 +1,25 @@
 import { FC, useCallback, useMemo, useState } from "react"
 import {
-  colorSelectMenuItemWrapperCss,
-  colorSelectMenuWrapperCss,
-  colorSelectPreviewColorCss,
-  colorSelectPreviewNameCss,
-  colorSelectWrapperCss,
+  colorSelectMenuItemWrapperStyle,
+  colorSelectMenuWrapperStyle,
+  applyColorSelectPreviewColorStyle,
+  colorSelectPreviewNameStyle,
+  colorSelectWrapperStyle,
 } from "./style"
 import { Trigger } from "@illa-design/trigger"
 import { ColorSelectSetterProps } from "./interface"
 import chroma from "chroma-js"
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
-  const {
-    defaultValue,
-    options,
-    attrName,
-    panelConfig,
-    handleUpdateDsl,
-    handleUpdatePanelConfig,
-  } = props
+  const { defaultValue, options, attrName, panelConfig, handleUpdateDsl } =
+    props
   const [menuVisible, setMenuVisible] = useState(false)
 
   const renderContent = useCallback((color: string = "transparent") => {
     return (
       <>
-        <div css={colorSelectPreviewColorCss(color)} />
-        <div css={colorSelectPreviewNameCss}>
+        <div css={applyColorSelectPreviewColorStyle(color)} />
+        <div css={colorSelectPreviewNameStyle}>
           {color !== "transparent"
             ? chroma(color).hex().toLocaleUpperCase()
             : color}
@@ -36,15 +30,14 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
 
   const renderMenuList = useMemo(() => {
     return (
-      <div css={colorSelectMenuWrapperCss}>
+      <div css={colorSelectMenuWrapperStyle}>
         {options?.map((color) => {
           const { key, value } = color
           return (
             <div
-              css={colorSelectMenuItemWrapperCss}
+              css={colorSelectMenuItemWrapperStyle}
               key={key}
               onClick={() => {
-                handleUpdatePanelConfig({ [attrName]: value })
                 handleUpdateDsl({ [attrName]: value })
                 setMenuVisible(false)
               }}
@@ -55,7 +48,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
         })}
       </div>
     )
-  }, [renderContent, options, attrName, handleUpdatePanelConfig])
+  }, [renderContent, options, attrName])
 
   const translateValueToKey = useMemo(() => {
     const value = panelConfig[attrName]
@@ -76,7 +69,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
       onVisibleChange={setMenuVisible}
       content={renderMenuList}
     >
-      <div css={colorSelectWrapperCss}>
+      <div css={colorSelectWrapperStyle}>
         {renderContent(translateValueToKey)}
       </div>
     </Trigger>

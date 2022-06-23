@@ -1,1 +1,1 @@
-export const CircleProgressIcon = () => <span>CircleProgress</span>
+export const CircleProgressIcon = () => <span>Circle</span>

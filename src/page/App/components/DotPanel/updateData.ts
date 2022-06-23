@@ -40,6 +40,10 @@ export function updateDragShadowData(
   renderY: number,
   unitWidth: number,
   unitHeight: number,
+  canvasWidth: number,
+  canvasHeight: number,
+  edgeWidth: number,
+  parentVerticalResize: boolean,
   dispatchFn: (renderDragShadow: DragShadow) => void,
 ) {
   // reduce render
@@ -58,7 +62,13 @@ export function updateDragShadowData(
     renderY,
     w: componentNode.w * unitWidth,
     h: componentNode.h * unitHeight,
-    isConflict: false,
+    isConflict:
+      renderX < 0 ||
+      renderX + componentNode.w * unitWidth > canvasWidth ||
+      renderY < 0 ||
+      (!parentVerticalResize
+        ? renderY + componentNode.h * unitHeight > canvasHeight
+        : false),
   } as DragShadow
   dispatchFn?.(renderDragShadow)
 }
@@ -85,6 +95,7 @@ export function updateScaleSquare(
 
 export function updateResizeScaleSquare(
   componentNode: ComponentNode,
+  blockColumns: number,
   nearX: number,
   nearY: number,
   position: BarPosition,
@@ -96,77 +107,150 @@ export function updateResizeScaleSquare(
   } as ComponentNode
 
   switch (position) {
-    case "t":
+    case "t": {
+      let finalY = nearY
       if (nearY < 0) {
-        return
+        finalY = 0
       }
-      newItem.h = newItem.h + newItem.y - nearY
-      if (newItem.h < newItem.minH) {
-        return
+      if (newItem.h + newItem.y - nearY < newItem.minH) {
+        finalY = newItem.h + newItem.y - newItem.minH
       }
-      newItem.y = nearY
+      newItem.h = newItem.h + newItem.y - finalY
+      newItem.y = finalY
       break
-    case "r":
-      newItem.w = nearX - newItem.x
-      if (newItem.w < newItem.minW) {
-        return
+    }
+    case "r": {
+      let finalX = nearX
+      if (nearX > blockColumns) {
+        finalX = blockColumns
       }
+      if (nearX < newItem.x + newItem.minW) {
+        finalX = newItem.x + newItem.minW
+      }
+      newItem.w = finalX - newItem.x
       break
-    case "b":
-      newItem.h = nearY - newItem.y
-      if (newItem.h < newItem.minH) {
-        return
+    }
+    case "b": {
+      let finalY = nearY
+      if (nearY < newItem.y + newItem.minH) {
+        finalY = newItem.y + newItem.minH
       }
+      newItem.h = finalY - newItem.y
       break
-    case "l":
-      newItem.w = newItem.w + newItem.x - nearX
-      if (newItem.w < newItem.minW) {
-        return
+    }
+    case "l": {
+      let finalX = nearX
+      if (nearX < 0) {
+        finalX = 0
       }
-      newItem.x = nearX
+      if (newItem.w + newItem.x - finalX < newItem.minW) {
+        finalX = newItem.w + newItem.x - newItem.minW
+      }
+      newItem.w = newItem.w + newItem.x - finalX
+      newItem.x = finalX
       break
-    case "tl":
-      if (newItem.h + newItem.y - nearY >= newItem.minH) {
-        newItem.h = newItem.h + newItem.y - nearY
-        newItem.y = nearY
-      } else {
-        newItem.h = newItem.minH
-        newItem.y = newItem.y + newItem.h - newItem.minH
+    }
+    case "tl": {
+      const rightTlX = newItem.x + newItem.w - newItem.minW
+      const rightTlY = newItem.y + newItem.h - newItem.minH
+      const leftTlX = 0
+      const leftTlY = 0
+
+      let finalY = nearY
+      let finalX = nearX
+
+      if (nearX > rightTlX) {
+        finalX = rightTlX
       }
-      if (newItem.w + newItem.x - nearX >= newItem.minW) {
-        newItem.w = newItem.w + newItem.x - nearX
-        newItem.x = nearX
-      } else {
-        newItem.w = newItem.minW
-        newItem.x = newItem.x + newItem.w - newItem.minW
+      if (nearX < leftTlX) {
+        finalX = leftTlX
       }
+      if (nearY > rightTlY) {
+        finalY = rightTlY
+      }
+      if (nearY < leftTlY) {
+        finalY = leftTlY
+      }
+
+      newItem.h = newItem.h + newItem.y - finalY
+      newItem.y = finalY
+      newItem.w = newItem.w + newItem.x - finalX
+      newItem.x = finalX
       break
-    case "tr":
-      if (newItem.h + newItem.y - nearY >= newItem.minH) {
-        newItem.h = newItem.h + newItem.y - nearY
-        newItem.y = nearY
+    }
+    case "tr": {
+      const rightTlX = blockColumns
+      const rightTlY = 0
+      const leftTlX = newItem.x + newItem.minW
+      const leftTlY = newItem.y + newItem.h - newItem.minH
+
+      let finalY = nearY
+      let finalX = nearX
+
+      if (nearX > rightTlX) {
+        finalX = rightTlX
       }
-      if (nearX - newItem.x >= newItem.minW) {
-        newItem.w = nearX - newItem.x
+      if (nearX < leftTlX) {
+        finalX = leftTlX
       }
+      if (nearY < rightTlY) {
+        finalY = rightTlY
+      }
+      if (nearY > leftTlY) {
+        finalY = leftTlY
+      }
+
+      newItem.h = newItem.h + newItem.y - finalY
+      newItem.y = finalY
+      newItem.w = finalX - newItem.x
       break
-    case "bl":
-      if (nearY - newItem.y >= newItem.minH) {
-        newItem.h = nearY - newItem.y
+    }
+    case "bl": {
+      const rightTlX = newItem.x + newItem.w - newItem.minW
+      const rightTlY = newItem.y + newItem.minH
+      const leftTlX = 0
+
+      let finalY = nearY
+      let finalX = nearX
+
+      if (nearX > rightTlX) {
+        finalX = rightTlX
       }
-      if (newItem.w + newItem.x - nearX >= newItem.minW) {
-        newItem.w = newItem.w + newItem.x - nearX
-        newItem.x = nearX
+      if (nearX < leftTlX) {
+        finalX = leftTlX
       }
+      if (nearY < rightTlY) {
+        finalY = rightTlY
+      }
+
+      newItem.h = finalY - newItem.y
+      newItem.w = newItem.w + newItem.x - finalX
+      newItem.x = finalX
       break
-    case "br":
-      if (nearY - newItem.y >= newItem.minH) {
-        newItem.h = nearY - newItem.y
+    }
+    case "br": {
+      const rightTlX = blockColumns
+      const leftTlX = newItem.x + newItem.minW
+      const leftTlY = newItem.y + newItem.minH
+
+      let finalY = nearY
+      let finalX = nearX
+
+      if (nearX > rightTlX) {
+        finalX = rightTlX
       }
-      if (nearX - newItem.x >= newItem.minW) {
-        newItem.w = nearX - newItem.x
+      if (nearX < leftTlX) {
+        finalX = leftTlX
       }
+
+      if (nearY < leftTlY) {
+        finalY = leftTlY
+      }
+
+      newItem.h = finalY - newItem.y
+      newItem.w = finalX - newItem.x
       break
+    }
     default:
       break
   }

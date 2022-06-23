@@ -8,7 +8,7 @@ export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
 
 export type ComponentSessionProps = {
   title: ReactNode
-  children: WidgetCardInfo[]
+  widgetCardInfos: WidgetCardInfo[]
 }
 
 export type NewTypeMapComponent = {

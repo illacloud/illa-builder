@@ -12,6 +12,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   w: 20,
   h: 5,
   defaults: {
+    optionMode: "manual",
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
@@ -22,5 +23,6 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
       { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },
       { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },
     ],
+    dataSources: "{{[]}}",
   },
 }

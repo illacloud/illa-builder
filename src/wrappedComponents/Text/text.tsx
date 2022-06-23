@@ -13,13 +13,13 @@ const transLink: ShowdownExtension = {
 
 export const Text: FC<TextProps> = (props: TextProps) => {
   const {
-    value = "This is a text",
-    disableMarkdown = false,
-    horizontalAlign = "start",
-    verticalAlign = "start",
-    linkColor = "blue",
+    value,
+    disableMarkdown,
+    horizontalAlign,
+    verticalAlign,
+    linkColor,
     backgroundColor = "transparent",
-    textColor = "grayBlue",
+    textColor,
     tooltipText,
   } = props
 
@@ -44,7 +44,7 @@ export const Text: FC<TextProps> = (props: TextProps) => {
                 backgroundColor,
               )}, ${alignCss}
             `}
-            markdown={value}
+            markdown={value ?? ""}
             extensions={[transLink]}
           />
         ) : (

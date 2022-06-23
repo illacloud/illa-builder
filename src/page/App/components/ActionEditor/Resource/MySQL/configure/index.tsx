@@ -7,7 +7,7 @@ import { Switch } from "@illa-design/switch"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
-import { selectAllResource } from "@/redux/currentApp/resource/resourceSelector"
+import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
   descriptionStyle,
   errorMessageStyle,

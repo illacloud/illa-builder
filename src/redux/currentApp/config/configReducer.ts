@@ -24,13 +24,6 @@ export const updateBottomPanel: CaseReducer<
   state.openBottomPanel = action.payload
 }
 
-export const updateUnitWidth: CaseReducer<
-  ConfigState,
-  PayloadAction<number>
-> = (state, action) => {
-  state.unitSize.unitWidth = action.payload
-}
-
 export const updateSelectedComponent: CaseReducer<
   ConfigState,
   PayloadAction<ComponentNode[]>
