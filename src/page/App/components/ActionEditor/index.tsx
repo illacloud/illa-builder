@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/currentApp/config/configSlice"
@@ -11,7 +12,6 @@ import { Resource } from "@/redux/resource/resourceState"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
-import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ResourceForm } from "./ResourceForm"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorLayout } from "./layout"
@@ -112,7 +112,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           method: "POST",
           data: {
             ...duplicateActionData,
-            displayName: generateName(actionType, actionItems),
+            displayName: DisplayNameGenerator.getDisplayName(actionType)
           },
         },
         ({ data }: { data: ActionItem }) => {

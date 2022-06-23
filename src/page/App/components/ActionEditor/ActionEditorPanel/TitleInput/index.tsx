@@ -3,11 +3,13 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
+import { Message } from "@illa-design/Message"
 import { Api } from "@/api/base"
 import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
+import { useIsValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
 import {
   applyTitleContainerStyle,
   titleEditIconStyle,
@@ -19,11 +21,12 @@ import { TitleInputProps } from "./interface"
 
 export const TitleInput: FC<TitleInputProps> = () => {
   const dispatch = useDispatch()
-  const { setActionListLoading } = useContext(ActionEditorContext)
   const activeActionItem = useSelector(getSelectedAction)
+  const { setActionListLoading } = useContext(ActionEditorContext)
   const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const { isValidActionDisplayName } = useIsValidActionDisplayName()
 
   const [title, setTitle] = useState(name)
   const editable = title !== ""
@@ -49,6 +52,13 @@ export const TitleInput: FC<TitleInputProps> = () => {
   function handleOnBlur() {
     setIsEditing(false)
 
+    const { error, errorMsg } = isValidActionDisplayName(title)
+    if (error) {
+      Message.warning(errorMsg as string)
+      setTitle(name)
+      return
+    }
+
     if (title !== name) {
       Api.request<ActionItem>(
         {
@@ -66,8 +76,8 @@ export const TitleInput: FC<TitleInputProps> = () => {
             }),
           )
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => {
           setActionListLoading?.(loading)
         },

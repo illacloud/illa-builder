@@ -174,7 +174,9 @@
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
-          "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
+          "name_already_exist": "名称已经存在",
+          "please_input_name": "请输入名称"
         },
         "action_generator": {
           "selector": {

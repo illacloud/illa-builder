@@ -174,7 +174,9 @@
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
-          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?"
+          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
+          "name_already_exist": "Already exists",
+          "please_input_name": "Please input name"
         },
         "action_generator": {
           "selector": {

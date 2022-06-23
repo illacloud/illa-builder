@@ -2,14 +2,17 @@ import { FC, useState, useMemo, useRef, MouseEvent } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
+import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
-import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
 import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
 import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
+import { useIsValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
+import { ActionDisplayNameValidateResult } from "@/page/App/components/ActionEditor/interface"
 import {
   actionListContainerStyle,
   newBtnContainerStyle,
@@ -46,8 +49,11 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [editingName, setEditingName] = useState("")
   const [editingActionItemId, setEditingActionItemId] = useState("")
   const [contextMenuActionId, setContextMenuActionId] = useState("")
+  const [isRenameError, setIsRenameError] =
+    useState<ActionDisplayNameValidateResult>()
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
   const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
+  const { isValidActionDisplayName } = useIsValidActionDisplayName()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -69,10 +75,12 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }, 0)
   }
 
-  function updateName() {
-    onUpdateActionItem(editingActionItemId, {
-      displayName: editingName,
-    })
+  function updateName(originName: string) {
+    if (originName !== editingName && !isRenameError) {
+      onUpdateActionItem(editingActionItemId, {
+        displayName: editingName,
+      })
+    }
     setEditingActionItemId("")
     setEditingName("")
   }
@@ -97,7 +105,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }
 
     onAddActionItem({
-      displayName: generateName(actionType, actionItems),
+      displayName: DisplayNameGenerator.getDisplayName(actionType),
       actionType,
       resourceId,
       actionTemplate,
@@ -119,14 +127,28 @@ export const ActionList: FC<ActionListProps> = (props) => {
     function renderName() {
       if (id === editingActionItemId) {
         return (
-          <Input
-            inputRef={inputRef}
-            requirePadding={false}
-            value={editingName}
-            onChange={(value) => setEditingName(value)}
-            onBlur={updateName}
-            onPressEnter={updateName}
-          />
+          <Trigger
+            content={<span>{isRenameError?.errorMsg}</span>}
+            position="bottom"
+            popupVisible={isRenameError?.error}
+            showArrow={false}
+            closeDelay={0}
+            colorScheme="red"
+          >
+            <Input
+              inputRef={inputRef}
+              requirePadding={false}
+              value={editingName}
+              error={isRenameError?.error}
+              onChange={(value) => {
+                setEditingName(value)
+                value !== name &&
+                  setIsRenameError(isValidActionDisplayName(value))
+              }}
+              onBlur={() => updateName(name)}
+              onPressEnter={() => updateName(name)}
+            />
+          </Trigger>
         )
       }
 

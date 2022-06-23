@@ -1,19 +1,37 @@
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import i18n from "@/i18n/config"
+import { useMemo } from "react"
+import { useSelector } from "react-redux"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { ActionDisplayNameValidateResult } from "./interface"
 
-export function generateName(actionType: string, actionItems: ActionItem[]) {
-  const actionItemsNameSet = new Set(actionItems.map((i) => i.displayName))
-  const length = actionItems.filter((i) => i.actionType === actionType).length
-  const prefix = actionType
+export function useIsValidActionDisplayName() {
+  const actionList = useSelector(selectAllActionItem)
+  const displayNameSet = useMemo(() => {
+    return new Set(actionList.map(({ displayName }) => displayName))
+  }, [actionList])
 
-  const getUniqueName = (length: number): string => {
-    const name = `${prefix}${length + 1}`
-
-    if (actionItemsNameSet.has(name)) {
-      return getUniqueName(length + 1)
+  function isValidActionDisplayName(
+    name: string,
+  ): ActionDisplayNameValidateResult {
+    if (name === "") {
+      return {
+        error: true,
+        errorMsg: i18n.t("editor.action.action_list.message.please_input_name"),
+      }
+    }
+    if (displayNameSet.has(name)) {
+      return {
+        error: true,
+        errorMsg: i18n.t(
+          "editor.action.action_list.message.name_already_exist",
+        ),
+      }
     }
 
-    return name
+    return { error: false }
   }
 
-  return getUniqueName(length)
+  return {
+    isValidActionDisplayName,
+  }
 }

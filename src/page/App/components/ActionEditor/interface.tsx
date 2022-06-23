@@ -22,3 +22,8 @@ export interface ActionEditorContextProps {
   setIsActionDirty?: (isDirty: boolean) => void
   setActionListLoading?: (loading: boolean) => void
 }
+
+export interface ActionDisplayNameValidateResult {
+  error: boolean
+  errorMsg?: string
+}

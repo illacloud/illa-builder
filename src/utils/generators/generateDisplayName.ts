@@ -1,5 +1,6 @@
 // string for component
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export class DisplayNameGenerator {
   static map: {
@@ -23,6 +24,18 @@ export class DisplayNameGenerator {
         this.initialComponentMap(children[key])
       })
     }
+  }
+
+  static initialActionMap(actionList: ActionItem[]) {
+    actionList.forEach(({ displayName, actionType }) => {
+      if (/${actionType}\d+$/.test(displayName)) {
+        if (this.map.hasOwnProperty(actionType)) {
+          this.map[actionType] += 1
+        } else {
+          this.map[actionType] = 1
+        }
+      }
+    })
   }
 
   // use when create success
