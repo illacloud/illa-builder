@@ -51,3 +51,21 @@ export function isExpectType(type: string, value: any) {
   }
   return valueType === type
 }
+
+export enum AUTOCOMPLETE_CLOSE_KEY {
+  Enter,
+  Tab,
+  Escape,
+  Comma,
+  Semicolon,
+  Space,
+  Delete,
+  "Ctrl+Backspace",
+  OSLeft,
+  "(",
+  ")",
+}
+
+export const isCloseKey = (key: any): key is AUTOCOMPLETE_CLOSE_KEY => {
+  return AUTOCOMPLETE_CLOSE_KEY.hasOwnProperty(key)
+}

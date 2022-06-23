@@ -1,9 +1,9 @@
+import ReactDOM from "react-dom"
+import CodeMirror, { Hint } from "codemirror"
 import "codemirror/addon/hint/sql-hint"
 import "codemirror/addon/hint/javascript-hint"
-import CodeMirror, { Hint } from "codemirror"
-import ReactDOM from "react-dom"
-import { AutoCompleteItem } from "@/components/EditorInput/AutoComplete/item"
-import {isString} from "@illa-design/system";
+import { isString } from "@illa-design/system"
+import { AutoCompleteItem } from "./AutoComplete"
 
 let origJsHint = CodeMirror.hint.javascript
 CodeMirror.hint.javascript = async function (cm, option) {
@@ -32,7 +32,7 @@ CodeMirror.hint.sql = async function (cm, option) {
   for (let i = 0; i < inner.list.length; i++) {
     console.log(inner.list[i], "item")
     let item = isString(inner.list[i])
-      ? inner.list[i] as string
+      ? (inner.list[i] as string)
       : (inner.list[i] as Hint)?.text
     newList.push({
       text: item,

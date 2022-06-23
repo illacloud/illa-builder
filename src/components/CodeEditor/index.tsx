@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState, useMemo } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
@@ -15,6 +15,8 @@ import "./modes"
 import "./hinter"
 import { TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { CodePreview } from "./CodePreview"
 import {
   ResultPreview,
   CodeEditorProps,
@@ -22,37 +24,7 @@ import {
   FieldEntityInformation,
 } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
-import { CodePreview } from "./CodePreview"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { isExpectType } from "@/components/CodeEditor/utils"
-
-export type Hinter = {
-  showHint: (
-    editor: CodeMirror.Editor,
-    entityInformation: FieldEntityInformation,
-    additionalData?: any,
-  ) => boolean
-  update?: (data: any) => void
-  fireOnFocus?: boolean
-}
-
-export enum AUTOCOMPLETE_CLOSE_KEY {
-  Enter,
-  Tab,
-  Escape,
-  Comma,
-  Semicolon,
-  Space,
-  Delete,
-  "Ctrl+Backspace",
-  OSLeft,
-  "(",
-  ")",
-}
-
-export const isCloseKey = (key: any): key is AUTOCOMPLETE_CLOSE_KEY => {
-  return AUTOCOMPLETE_CLOSE_KEY.hasOwnProperty(key)
-}
+import { isCloseKey, isExpectType } from "./utils"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -181,7 +153,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   useEffect(() => {
-    sever.current = TernServer({ testDemo: { "!type": "Demo" }, tryDemo: "Demo" })
+    sever.current = TernServer({
+      testDemo: { "!type": "Demo" },
+      tryDemo: "Demo",
+    })
     if (!editor) {
       const editor = CodeMirror(codeTargetRef.current!, {
         mode: EditorModes[mode],
