@@ -142,7 +142,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
 
   return (
     <div
-      css={applyOuterStyle(h, w)}
+      css={applyOuterStyle(selected, h, w)}
       className={className}
       onClick={(e) => {
         dispatch(configActions.updateSelectedComponent([componentNode]))

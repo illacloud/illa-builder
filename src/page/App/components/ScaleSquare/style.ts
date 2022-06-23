@@ -20,8 +20,13 @@ export function getStateColor(scaleSquareType: ScaleSquareType): string {
   return stateColor
 }
 
-export function applyOuterStyle(h: number, w: number): SerializedStyles {
+export function applyOuterStyle(
+  selected: boolean,
+  h: number,
+  w: number,
+): SerializedStyles {
   return css`
+    z-index: ${selected ? 1 : 0};
     height: ${h}px;
     width: ${w}px;
   `
