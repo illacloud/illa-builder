@@ -6,7 +6,8 @@ test("WrappedDateRange renders correctly", () => {
   const handleUpdateDSL = jest.fn()
   render(
     <WrappedDateRange
-      value={["2022-06-01", "2022-06-02"]}
+      startValue="2022-06-01"
+      endValue="2022-06-02"
       handleUpdateDsl={handleUpdateDSL}
     />,
   )

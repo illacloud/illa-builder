@@ -12,7 +12,8 @@ import { WrappedDateRangeProps } from "./interface"
 export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
   (props, ref) => {
     const {
-      value,
+      startValue,
+      endValue,
       tooltipText,
       dateFormat,
       startPlaceholder,
@@ -37,13 +38,17 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
 
     const _placeholder = [startPlaceholder ?? "", endPlaceholder ?? ""]
 
+    const dateRangeValue = useMemo(() => {
+      return [startValue, endValue]
+    }, [startValue, endValue])
+
     const _customValue = useMemo(() => {
       if (customRule) {
         return customRule
-      } else if (required && !value) {
+      } else if (required && !startValue && !endValue) {
         return invalidMessage.get("required")
       }
-    }, [customRule, required, value])
+    }, [customRule, required, startValue, endValue])
 
     const checkRange = useCallback(
       (current) => {
@@ -79,7 +84,7 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
               <DateRangePicker
                 colorScheme={colorScheme}
                 format={dateFormat}
-                value={value}
+                value={dateRangeValue}
                 readOnly={readOnly}
                 disabled={disabled}
                 placeholder={_placeholder}
