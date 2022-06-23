@@ -21,10 +21,6 @@ export const codemirrorStyle = css`
     color: ${globalColor(`--${illaPrefix}-green-03`)};
   }
 
-  .CodeMirror-lines {
-    padding: 6px 2px;
-  }
-
   .CodeMirror-hints {
     font-family: "Fira Code", monospace;
     min-width: 289px;

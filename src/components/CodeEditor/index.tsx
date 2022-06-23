@@ -26,6 +26,9 @@ import {
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
+import {useSelector} from "react-redux";
+import {getCurrentUser} from "@/redux/currentUser/currentUserSelector";
+import {getLanguageValue} from "@/redux/builderInfo/builderInfoSelector";
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -44,6 +47,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     ...otherProps
   } = props
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
+  const languageValue = useSelector(getLanguageValue)
   const codeTargetRef = useRef<HTMLDivElement>(null)
   const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
@@ -71,7 +75,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let calcResult: any = null
     let previewType = expectedType
     try {
-      calcResult = evaluateDynamicString("", currentValue, {})
+      calcResult = evaluateDynamicString("", currentValue, globalData)
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)
       // }
@@ -146,22 +150,11 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
   }
 
-  const updateMarkings = (
-    editor: CodeMirror.Editor,
-    marking: Array<(editor: CodeMirror.Editor) => void>,
-  ) => {
-    marking.forEach((helper) => helper(editor))
-  }
+  useEffect(() => {
+    sever.current = TernServer(languageValue, globalData)
+  }, [globalData, languageValue])
 
   useEffect(() => {
-    console.log({ globalData }, "globalData")
-  }, [globalData])
-
-  useEffect(() => {
-    sever.current = TernServer({
-      testDemo: { "!type": "Demo" },
-      tryDemo: "Demo",
-    })
     if (!editor) {
       const editor = CodeMirror(codeTargetRef.current!, {
         mode: EditorModes[mode],
@@ -187,7 +180,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       editor.on("focus", handleFocus)
       editor.on("blur", handleBlur)
       setEditor(editor)
-      // updateMarkings(editor, [bindingMarker])
     }
 
     return () => {
@@ -195,7 +187,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       editor?.off("keyup", handleKeyUp)
       editor?.off("focus", handleFocus)
       editor?.off("blur", handleBlur)
-      setEditor(undefined)
     }
   }, [])
 

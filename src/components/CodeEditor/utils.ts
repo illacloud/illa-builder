@@ -40,7 +40,7 @@ export function getEvalValue(type: ExpectedType, content: any) {
   return content
 }
 
-function getValueType(value: any) {
+export function getValueType(value: any) {
   return Object.prototype.toString.call(value).slice(8, -1)
 }
 
