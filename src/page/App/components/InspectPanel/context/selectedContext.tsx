@@ -15,6 +15,7 @@ import { Empty } from "@/page/App/components/InspectPanel/empty"
 interface Injected {
   widgetType: string
   widgetDisplayName: string
+  widgetParentDisplayName: string
   widgetProps: Record<string, any>
   handleUpdateDsl: (value: Record<string, any>) => void
   handleUpdateDynamicStrings: (action: "add" | "delete", value: string) => void
@@ -46,6 +47,11 @@ export const SelectedProvider: FC<Props> = ({
 
   const widgetDisplayName = useMemo(
     () => singleSelectedComponentNode?.displayName,
+    [singleSelectedComponentNode],
+  )
+
+  const widgetParentDisplayName = useMemo(
+    () => singleSelectedComponentNode?.parentNode as string,
     [singleSelectedComponentNode],
   )
 
@@ -102,6 +108,7 @@ export const SelectedProvider: FC<Props> = ({
   const value = {
     widgetType,
     widgetDisplayName,
+    widgetParentDisplayName,
     widgetProps,
     handleUpdateDsl,
     handleUpdateDynamicStrings,

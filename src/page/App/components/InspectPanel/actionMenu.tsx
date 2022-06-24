@@ -1,11 +1,15 @@
 import { FC } from "react"
 import { Menu } from "@illa-design/menu"
 import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
+import { useDispatch } from "react-redux"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { configActions } from "@/redux/config/configSlice"
 
 const Item = Menu.Item
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
-  const { componentId, componentType } = props
+  const { widgetDisplayName, componentType, widgetParentDisplayName } = props
+  const dispatch = useDispatch()
   const handleClickMenuItem = (key: string) => {
     switch (key) {
       case ACTION_TYPE.VIEW_DOCUMENT: {
@@ -25,8 +29,13 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         break
       }
       case ACTION_TYPE.DELETE: {
-        //  TODO: wait for redux to delete node
-        console.log("Delete")
+        dispatch(
+          componentsActions.deleteComponentNodeReducer({
+            displayName: widgetDisplayName,
+            parentDisplayName: widgetParentDisplayName,
+          }),
+        )
+        dispatch(configActions.clearSelectedComponent())
         break
       }
     }
