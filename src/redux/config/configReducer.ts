@@ -59,9 +59,9 @@ export const minusScale: CaseReducer<ConfigState, PayloadAction<void>> = (
   state.scale = state.scale - 10
 }
 
-export const clearSelectedComponent: CaseReducer<
-  ConfigState,
-  PayloadAction<null>
-> = (state, action) => {
+export const clearSelectedComponent: CaseReducer<ConfigState, PayloadAction<void>> = (
+  state,
+  action,
+) => {
   state.selectedComponents = []
 }

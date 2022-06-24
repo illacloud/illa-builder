@@ -35,7 +35,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
             parentDisplayName: widgetParentDisplayName,
           }),
         )
-        dispatch(configActions.clearSelectedComponent(null))
+        dispatch(configActions.clearSelectedComponent())
         break
       }
     }
