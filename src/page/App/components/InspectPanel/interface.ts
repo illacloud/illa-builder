@@ -14,7 +14,8 @@ export interface HeaderProps {
 }
 
 export interface PanelHeaderActionProps {
-  componentId: string
+  widgetParentDisplayName: string
+  widgetDisplayName: string
   componentType: string
 }
 

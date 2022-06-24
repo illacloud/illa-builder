@@ -7,7 +7,8 @@ import { HeaderProps } from "./interface"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
-  const { widgetDisplayName } = useContext(SelectedPanelContext)
+  const { widgetDisplayName, widgetParentDisplayName } =
+    useContext(SelectedPanelContext)
 
   return (
     <div css={panelHeaderWrapperStyle}>
@@ -17,7 +18,13 @@ export const PanelHeader: FC<HeaderProps> = (props) => {
         <Trigger
           position="br"
           trigger="click"
-          content={<ActionMenu componentId="testId" componentType="testType" />}
+          content={
+            <ActionMenu
+              widgetParentDisplayName={widgetParentDisplayName}
+              widgetDisplayName={widgetDisplayName}
+              componentType="testType"
+            />
+          }
           withoutPadding
           closeOnClick
           clickOutsideToClose
