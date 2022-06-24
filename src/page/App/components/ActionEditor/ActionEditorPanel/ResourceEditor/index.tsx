@@ -74,16 +74,15 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
             {t("editor.action.panel.option.resource.new")}
           </Option>
           <Divider />
-          {resourceList &&
-            resourceList.map(({ resourceId: id, resourceName: name }) => (
-              <Option value={id} key={id}>
-                {name}
-              </Option>
-            ))}
+          {resourceList?.map(({ resourceId: id, resourceName: name }) => (
+            <Option value={id} key={id}>
+              {name}
+            </Option>
+          ))}
         </Select>
         <div
           css={applyEditIconStyle(!isResourceEditable)}
-          onClick={() => onEditResource && onEditResource(resourceId as string)}
+          onClick={() => onEditResource?.(resourceId as string)}
         >
           <PenIcon />
         </div>

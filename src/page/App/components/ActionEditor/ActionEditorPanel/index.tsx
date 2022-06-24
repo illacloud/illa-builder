@@ -76,14 +76,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     </div>
   )
 
-  async function saveOrRun() {
+  function saveOrRun() {
     if (isActionDirty) {
       if (triggerMode === "manual") {
         // save only
         save()
       } else {
         // save and run
-        await save()
+        save()
         run()
       }
     } else {
@@ -92,7 +92,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     }
   }
 
-  async function save() {
+  function save() {
     const { data, rawData, error, ...actionPayload } = activeActionItem
     const actionId = activeActionItem.actionId
 
@@ -112,8 +112,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
         setIsActionDirty?.(false)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => {
         onLoadingActionResult(loading)
       },
@@ -167,7 +167,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         setResult(response)
         setActionResVisible(true)
       },
-      () => {},
+      () => { },
       (loading) => {
         onLoadingActionResult(loading)
       },
