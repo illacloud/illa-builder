@@ -8,7 +8,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "image-basic-source",
-        attrName: "fallbackSrc",
+        attrName: "imageSrc",
         expectedType: "String",
         labelName: i18n.t("editor.inspect.setter_label.image_source"),
         setterType: "INPUT_SETTER",
@@ -18,7 +18,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.alt_text"),
         labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
         expectedType: "String",
-        attrName: "alt",
+        attrName: "altText",
         setterType: "INPUT_SETTER",
       },
     ],

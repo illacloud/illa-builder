@@ -1,9 +1,9 @@
-import { FC } from "react"
+import { forwardRef } from "react"
+import { css } from "@emotion/react"
 import MarkdownView, { ShowdownExtension } from "react-showdown"
+import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 import { TextProps } from "./interface"
 import { applyTextCss, textContainerCss } from "./style"
-import { css } from "@emotion/react"
-import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
 
 const transLink: ShowdownExtension = {
   type: "output",
@@ -11,7 +11,7 @@ const transLink: ShowdownExtension = {
   replace: `<a  href='$1' >$1</a>`,
 }
 
-export const Text: FC<TextProps> = (props: TextProps) => {
+export const Text = forwardRef<any, TextProps>((props, ref) => {
   const {
     value,
     disableMarkdown,
@@ -53,7 +53,7 @@ export const Text: FC<TextProps> = (props: TextProps) => {
       </div>
     </TooltipWrapper>
   )
-}
+})
 
 Text.displayName = "TextWidget"
 

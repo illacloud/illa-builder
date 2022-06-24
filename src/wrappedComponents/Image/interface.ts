@@ -1,10 +1,10 @@
 import { ImageProps } from "@illa-design/image"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
 
 export interface WrappedImageProps
-  extends Pick<
-    ImageProps,
-    "fallbackSrc" | "alt" | "radius" | "width" | "height"
-  > {
-  tooltipText?: string
+  extends Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<ImageProps, "radius" | "width" | "height"> {
+  imageSrc?: ImageProps["src"]
+  altText?: ImageProps["alt"]
   handleUpdateDsl: (value: Record<string, string>) => void
 }

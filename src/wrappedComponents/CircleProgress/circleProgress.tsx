@@ -1,21 +1,27 @@
-import { FC, useMemo } from "react"
+import { forwardRef, useMemo } from "react"
 import { Progress } from "@illa-design/progress"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedCircleProgressProps } from "./interface"
-import { applyContainerCss } from "./style"
 
-export const WrappedCircleProgress: FC<WrappedCircleProgressProps> = (
-  props,
-) => {
+export const WrappedCircleProgress = forwardRef<
+  any,
+  WrappedCircleProgressProps
+>((props, ref) => {
   const {
     value,
     tooltipText,
+    label,
+    labelAlign,
+    labelWidth,
+    labelPosition,
+    labelCaption,
+    labelWidthUnit,
     color,
     trailColor,
     showText,
     strokeWidth,
-    alignment,
   } = props
 
   const _strokeWidth = useMemo(() => {
@@ -29,7 +35,15 @@ export const WrappedCircleProgress: FC<WrappedCircleProgressProps> = (
       position="tl"
     >
       <Wrapper alignment="fullWidth">
-        <div css={applyContainerCss(alignment)}>
+        <LabelWrapper
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          tooltipText={tooltipText}
+        >
           <Progress
             type="circle"
             percent={value}
@@ -38,12 +52,12 @@ export const WrappedCircleProgress: FC<WrappedCircleProgressProps> = (
             trailColor={trailColor}
             strokeWidth={_strokeWidth}
           />
-        </div>
+        </LabelWrapper>
       </Wrapper>
     </TooltipWrapper>
   )
-}
+})
 
-WrappedCircleProgress.displayName = "WrappedDate"
+WrappedCircleProgress.displayName = "WrappedCircleProgress"
 
 export const CircleProgressWidget = WrappedCircleProgress

@@ -1,17 +1,16 @@
-import { FC, useMemo } from "react"
-import { WrappedDateProps } from "./interface"
+import { forwardRef, useMemo } from "react"
+import { Rate } from "@illa-design/rate"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
-import LabelWrapper from "../LabelWrapper"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
-import { inputContainerCss } from "./style"
-import { Rate } from "@illa-design/rate"
 import { invalidMessage } from "@/wrappedComponents/InvalidMessage/utils"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
+import { WrappedRateProps } from "./interface"
+import { inputContainerCss } from "./style"
 
-export const WrappedRate: FC<WrappedDateProps> = (props) => {
+export const WrappedRate = forwardRef<any, WrappedRateProps>((props, ref) => {
   const {
     value,
-    defaultValue,
     tooltipText,
     allowClear,
     label,
@@ -23,11 +22,12 @@ export const WrappedRate: FC<WrappedDateProps> = (props) => {
     required,
     disabled,
     customRule,
-    heart,
+    icon,
     readOnly,
     allowHalf,
     hideValidationMessage,
     maxCount,
+    handleUpdateDsl,
   } = props
 
   const _customValue = useMemo(() => {
@@ -59,11 +59,14 @@ export const WrappedRate: FC<WrappedDateProps> = (props) => {
             <Rate
               count={maxCount}
               allowHalf={allowHalf}
-              heart={heart}
+              heart={icon === "heart"}
               disabled={disabled}
               readonly={readOnly}
               allowClear={allowClear}
-              value={value ?? defaultValue}
+              value={value}
+              onChange={(value) => {
+                handleUpdateDsl({ value })
+              }}
             />
             <InvalidMessage
               customRule={_customValue}
@@ -74,7 +77,7 @@ export const WrappedRate: FC<WrappedDateProps> = (props) => {
       </Wrapper>
     </TooltipWrapper>
   )
-}
+})
 
 WrappedRate.displayName = "WrappedRate"
 
