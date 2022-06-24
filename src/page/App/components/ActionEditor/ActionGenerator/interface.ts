@@ -6,6 +6,7 @@ export interface ActionInfo extends ActionTypeInfo {
 
 export interface ActionGeneratorProps {
   visible: boolean
+  createNewWithoutVerify?: boolean
   onClose: () => void
   onAddAction?: (info: ActionInfo) => void
 }

@@ -43,8 +43,9 @@ function renderStep(
   setStep: (step: ActionGeneratorSteps) => void,
   setResourceType: (resourceType: string) => void,
   resourceList: Resource[],
+  createNewWithoutVerify: boolean,
 ) {
-  const { onAddAction } = props
+  const { onAddAction, onClose } = props
   const [defaultSelectedResourceId, setDefaultSelectedResourceId] = useState("")
 
   switch (step) {
@@ -72,6 +73,7 @@ function renderStep(
             onAddAction?.({ actionType: resourceType, resourceId })
           }}
           defaultSelectedResourceId={defaultSelectedResourceId}
+          createNewWithoutVerify={createNewWithoutVerify}
         />
       )
     case "resource-create":
@@ -80,9 +82,18 @@ function renderStep(
           actionType="configure"
           resourceType={resourceType}
           back={() => {
+            if (createNewWithoutVerify) {
+              setStep("type")
+              return
+            }
             setStep(resourceList.length > 0 ? "resource" : "type")
           }}
           onSubmit={(resourceId) => {
+            console.log("onSubmit")
+            if (createNewWithoutVerify) {
+              onClose()
+              return
+            }
             setStep("resource")
             setDefaultSelectedResourceId(resourceId)
           }}
@@ -92,7 +103,7 @@ function renderStep(
 }
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
-  const { visible, onClose } = props
+  const { visible, createNewWithoutVerify = false, onClose } = props
   const [step, setStep] = useState<ActionGeneratorSteps>("type")
   const [resourceType, setResourceType] = useState<string>("")
   const resourceList = useSelector(selectAllResource).filter(
@@ -120,6 +131,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         setStep,
         setResourceType,
         resourceList,
+        createNewWithoutVerify,
       )}
     </Modal>
   )

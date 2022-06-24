@@ -549,7 +549,8 @@
       "table_dbname": "数据库名",
       "table_ctime": "创建时间",
       "trash_success": "删除成功",
-      "trash_failure": "删除失败"
+      "trash_failure": "删除失败",
+      "create_success": "创建成功！"
     }
   },
   "setting": {

@@ -549,7 +549,8 @@
       "table_dbname": "Database Name",
       "table_ctime": "Created",
       "trash_success": "Delete successfully",
-      "trash_failure": "Delete failure"
+      "trash_failure": "Delete failure",
+      "create_success": "Create Success!"
     }
   },
   "setting": {

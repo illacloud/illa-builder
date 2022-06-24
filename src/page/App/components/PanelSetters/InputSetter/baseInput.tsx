@@ -28,7 +28,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
           if (isDynamicString(value)) {
             handleUpdateDynamicStrings?.("add", attrName)
           } else {
-              handleUpdateDynamicStrings?.("delete", attrName)
+            handleUpdateDynamicStrings?.("delete", attrName)
           }
         }}
       />

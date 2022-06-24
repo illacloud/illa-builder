@@ -7,7 +7,13 @@ import { ResourceFormProps, ActionType } from "./interface"
 import { modalStyle, closeIconStyle } from "./style"
 
 export const ResourceForm: FC<ResourceFormProps> = (props) => {
-  const { actionType: propActionType, visible, onCancel, resourceId } = props
+  const {
+    actionType: propActionType,
+    visible,
+    onCancel,
+    resourceId,
+    withoutBack = false,
+  } = props
   const [configureType, setConfigureType] = useState<string>()
   const [actionType, setActionType] = useState<ActionType>(propActionType)
 
@@ -41,6 +47,7 @@ export const ResourceForm: FC<ResourceFormProps> = (props) => {
             back={() => {
               setActionType("select")
             }}
+            withoutBack={withoutBack}
           />
         )
       case "configure":

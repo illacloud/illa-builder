@@ -13,9 +13,10 @@ async function startMockWorker() {
 }
 
 async function prepare() {
-  if (import.meta.env.DEV) {
-    await startMockWorker()
-  }
+  // if (import.meta.env.DEV) {
+  //   await startMockWorker()
+  // }
+  await Promise.resolve()
 }
 
 prepare().then(() => {

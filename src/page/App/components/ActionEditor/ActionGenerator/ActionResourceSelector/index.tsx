@@ -27,6 +27,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
     onCreateAction,
     onCreateResource,
     defaultSelectedResourceId = "",
+    createNewWithoutVerify,
   } = props
   const resourceList = useSelector(selectAllResource)
     .filter((r) => r.resourceType === resourceType)
@@ -39,7 +40,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
   )
 
   useEffect(() => {
-    if (resourceList.length === 0) {
+    if (createNewWithoutVerify || resourceList.length === 0) {
       onCreateResource?.(resourceType)
     }
   }, [])
