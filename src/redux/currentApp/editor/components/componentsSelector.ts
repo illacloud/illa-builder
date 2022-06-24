@@ -1,7 +1,7 @@
 import { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
-import { getSelectedComponentsDisplayName } from "@/redux/currentApp/config/configSelector"
+import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
 
 export function searchDsl(
   rootNode: ComponentNode | null,

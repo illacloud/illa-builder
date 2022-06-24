@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector, useDispatch } from "react-redux"
-import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { CodeEditor } from "@/components/CodeEditor"
 import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
