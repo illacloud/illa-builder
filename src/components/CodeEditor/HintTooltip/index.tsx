@@ -2,8 +2,7 @@ import { FC } from "react"
 import { DocsIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 import { Tag } from "@illa-design/tag"
-
-import { HintComplementProps } from "./interface"
+import { HintTooltipProps } from "./interface"
 import {
   mainTitleStyle,
   contentAreaStyle,
@@ -14,8 +13,8 @@ import {
   evaluationStyle,
 } from "./styles"
 
-export const HintComplement: FC<HintComplementProps> = (props) => {
-  const { index, data } = props
+export const HintTooltip: FC<HintTooltipProps> = (props) => {
+  const { data } = props
 
   return (
     <>
@@ -42,4 +41,4 @@ export const HintComplement: FC<HintComplementProps> = (props) => {
   )
 }
 
-HintComplement.displayName = "HintComplement"
+HintTooltip.displayName = "HintTooltip"
