@@ -4,12 +4,12 @@ import "codemirror/addon/tern/tern"
 import ecmascript from "tern/defs/ecmascript.json"
 import CodeMirror from "codemirror"
 import ReactDOM from "react-dom"
+import { TypeQueryResult } from "tern/lib/tern"
+import { isObject } from "@illa-design/system"
+import { getValueType } from "@/components/CodeEditor/utils"
 import { HintTooltip } from "./HintTooltip"
 import demoUs from "./defs/demo_us.json"
 import demoZh from "./defs/demo_zh.json"
-import { TypeQueryResult } from "tern/lib/tern"
-import { getValueType } from "@/components/CodeEditor/utils"
-import { isObject } from "@illa-design/system"
 
 // @ts-ignore: create global variable
 // see in: https://github.com/codemirror/codemirror5/issues/5362

@@ -1,6 +1,6 @@
 import { Global, css } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import { globalStyle } from "./style"
+import { useSelector } from "react-redux"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
@@ -22,13 +22,13 @@ import {
   Locale,
   zhCN,
 } from "@illa-design/config-provider"
-import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import "@/i18n/config"
 import "@/api/base"
 import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AxiosInterceptor } from "@/api/AxiosInterceptor"
+import { globalStyle } from "./style"
 
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {
