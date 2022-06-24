@@ -17,7 +17,15 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       />
       <CodeEditor mode="JAVASCRIPT" expectedType="Object" />
       <CodeEditor mode="SQL" expectedType="Object" />
-      <CodeEditor mode="SQL_JS" expectedType="String" />
+      <CodeEditor
+        mode="SQL_JS"
+        expectedType="String"
+        lineNumbers
+        tables={{
+          table1: ["col_A", "col_B", "col_C"],
+          table2: ["other_columns1", "other_columns2"],
+        }}
+      />
       <CodeEditor mode="TEXT_JS" expectedType="String" />
       <CodeEditor mode="TEXT_SQL" expectedType="Number" />
       <CodeEditor mode="TEXT_SQL" expectedType="Array" />

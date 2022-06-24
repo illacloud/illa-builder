@@ -13,6 +13,7 @@ export const MySQLParam = (props: MySQLParamProps) => {
         mode="TEXT_SQL"
         expectedType="String"
         height="88px"
+        lineNumbers
       />
     </div>
   )
