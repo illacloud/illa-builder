@@ -7,7 +7,7 @@ import { HeaderProps } from "./interface"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
-  const { widgetDisplayName, widgetParentDisplayName } =
+  const { widgetDisplayName, widgetParentDisplayName, widgetType } =
     useContext(SelectedPanelContext)
 
   return (
@@ -22,7 +22,7 @@ export const PanelHeader: FC<HeaderProps> = (props) => {
             <ActionMenu
               widgetParentDisplayName={widgetParentDisplayName}
               widgetDisplayName={widgetDisplayName}
-              componentType="testType"
+              componentType={widgetType}
             />
           }
           withoutPadding
