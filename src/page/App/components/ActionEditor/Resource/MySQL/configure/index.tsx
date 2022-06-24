@@ -9,13 +9,13 @@ import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
+  connectTextStyle,
   descriptionStyle,
   errorMessageStyle,
   formStyle,
   gridContainerStyle,
   gridRowContainerStyle,
   groupTitleStyle,
-  itemTextStyle,
   labelTextSmallSizeStyle,
   labelTextStyle,
   labelTextVerticalStyle,
@@ -214,7 +214,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             <label css={labelTextStyle}>
               {t("editor.action.resource.my_sql.label.connect_type")}
             </label>
-            <div css={itemTextStyle}>
+            <div css={connectTextStyle}>
               {t("editor.action.resource.my_sql.tip.connect_type")}
             </div>
           </div>
@@ -233,7 +233,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.connect_over_ssh")}
                 </div>
               </div>
@@ -387,7 +387,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.ssl_options")}
                 </div>
               </div>

@@ -22,7 +22,6 @@ import {
   errorIconStyle,
   checkboxTextStyle,
 } from "@/page/User/style"
-import { TextLink } from "@/page/User/components/TextLink"
 import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
@@ -278,24 +277,15 @@ export const Register: FC = () => {
           />
         </div>
       </section>
-      <section css={gridFormFieldStyle}>
-        <Button
-          colorScheme="techPurple"
-          size="large"
-          buttonRadius="8px"
-          loading={submitLoading}
-          fullWidth
-        >
-          {t("user.sign_up.actions.create")}
-        </Button>
-        <span css={checkboxTextStyle}>
-          <Trans
-            i18nKey="user.sign_up.description.policy"
-            t={t}
-            components={[<TextLink />, <TextLink />]}
-          />
-        </span>
-      </section>
+      <Button
+        colorScheme="techPurple"
+        size="large"
+        buttonRadius="8px"
+        loading={submitLoading}
+        fullWidth
+      >
+        {t("user.sign_up.actions.create")}
+      </Button>
     </form>
   )
 }
