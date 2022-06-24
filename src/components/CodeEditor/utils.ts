@@ -40,7 +40,7 @@ export function getEvalValue(type: ExpectedType, content: any) {
   return content
 }
 
-function getValueType(value: any) {
+export function getValueType(value: any) {
   return Object.prototype.toString.call(value).slice(8, -1)
 }
 
@@ -50,4 +50,22 @@ export function isExpectType(type: string, value: any) {
     throw `The value has to be of type '${type}', you provided a value of type '${valueType}'`
   }
   return valueType === type
+}
+
+export enum AUTOCOMPLETE_CLOSE_KEY {
+  Enter,
+  Tab,
+  Escape,
+  Comma,
+  Semicolon,
+  Space,
+  Delete,
+  "Ctrl+Backspace",
+  OSLeft,
+  "(",
+  ")",
+}
+
+export const isCloseKey = (key: any): key is AUTOCOMPLETE_CLOSE_KEY => {
+  return AUTOCOMPLETE_CLOSE_KEY.hasOwnProperty(key)
 }

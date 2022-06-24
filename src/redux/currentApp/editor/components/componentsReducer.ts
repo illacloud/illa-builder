@@ -2,11 +2,13 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ComponentNode,
   ComponentsState,
+  deleteComponentNodePayload,
   updateComponentDynamicStringsPayload,
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+// TODO: @longbo file path error
+// import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const removeComponentReducer: CaseReducer<
   ComponentsState,
@@ -42,6 +44,26 @@ export const addOrUpdateComponentReducer: CaseReducer<
       parentNode.childrenNode[dealNode.displayName] = dealNode
     }
   }
+}
+
+export const deleteComponentNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<deleteComponentNodePayload>
+> = (state, action) => {
+  const { displayName, parentDisplayName } = action.payload
+  if (state.rootDsl == null) {
+    return
+  }
+  const rootNode = state.rootDsl
+  const parentNode = searchDsl(rootNode, parentDisplayName)
+  if (parentNode == null) {
+    return
+  }
+  const childrenNodes = parentNode.childrenNode
+  if (childrenNodes == null) {
+    return
+  }
+  delete childrenNodes[displayName]
 }
 
 export const updateComponentPropsReducer: CaseReducer<

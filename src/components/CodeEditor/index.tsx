@@ -117,7 +117,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           content: e.toString(),
         })
       } finally {
-        // onChange?.(value, calcResult)
+        onChange?.(value, calcResult)
       }
     }
   }, [value])

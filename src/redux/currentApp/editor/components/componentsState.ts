@@ -19,6 +19,8 @@ export interface ComponentNode {
   x: number
   // default -1
   y: number
+  // default 0
+  z: number
   props: {
     [key: string]: any
   } | null
@@ -44,6 +46,11 @@ export const ComponentsInitialState: ComponentsState = {
     x: -1,
     y: -1,
   } as ComponentNode,
+}
+
+export interface deleteComponentNodePayload {
+  displayName: string
+  parentDisplayName: string
 }
 
 export interface updateComponentPropsPayload {

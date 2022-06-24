@@ -4,6 +4,7 @@ import {
   addResourceListReducer,
   addResourceItemReducer,
   updateResourceItemReducer,
+  removeResourceItemReducer,
 } from "@/redux/resource/resourceReducer"
 
 const resourceSlice = createSlice({
@@ -13,6 +14,7 @@ const resourceSlice = createSlice({
     addResourceListReducer,
     addResourceItemReducer,
     updateResourceItemReducer,
+    removeResourceItemReducer,
   },
 })
 

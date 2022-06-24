@@ -1,7 +1,9 @@
 // string for component
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import store from "@/store"
 
-export class DisplayNameGenerator {
+export class ComponentNodeDisplayNameGenerator {
   static map: {
     [key: string]: number
   } = {}
@@ -27,12 +29,21 @@ export class DisplayNameGenerator {
 
   // use when create success
   static getDisplayName(type: string): string {
+    let index = 1
     if (type in this.map) {
       const num = this.map[type]
-      this.map[type] = num + 1
-    } else {
-      this.map[type] = 1
+      index = num + 1
     }
-    return `${type}${this.map[type]}`
+    let name = `${type}${index}`
+
+    while (
+      searchDsl(store.getState().currentApp.editor.components.rootDsl, name) !=
+      null
+    ) {
+      index = index + 1
+      name = `${type}${index}`
+    }
+    this.map[type] = index
+    return name
   }
 }

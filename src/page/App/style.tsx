@@ -32,6 +32,7 @@ export function applyLeftPanelStyle(display: boolean): SerializedStyles {
     min-width: 280px;
     box-sizing: border-box;
     border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    background: ${globalColor(`--${illaPrefix}-white-01`)};
     ${display ? "" : "display: none"};
   `
 }
@@ -45,7 +46,6 @@ export function applyBottomPanelStyle(display: boolean): SerializedStyles {
   return css`
     box-sizing: border-box;
     width: 100%;
-    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     ${display ? "" : "display: none"};
   `
 }
@@ -57,6 +57,7 @@ export function applyRightPanelStyle(display: boolean): SerializedStyles {
     min-width: 320px;
     height: 100%;
     border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    background: ${globalColor(`--${illaPrefix}-white-01`)};
     ${display ? "" : "display: none"};
   `
 }
@@ -68,4 +69,5 @@ export const middlePanelStyle = css`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: ${globalColor(`--${illaPrefix}-white-01`)};
 `

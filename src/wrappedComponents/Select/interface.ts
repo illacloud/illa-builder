@@ -1,38 +1,29 @@
-import { ReactNode } from "react"
+import { SelectProps } from "@illa-design/select"
 import LabelProps from "@/wrappedComponents/Label/interface"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
+import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
 
-export interface SelectProps {
-  options?: (
-    | string
-    | number
-    | {
-        label: ReactNode | string
-        value: string | number
-        disabled?: boolean
-        extra?: any
-      }
-  )[]
-  value?: string | number
-  placeholder?: string
-  defaultValue?: string | number
-  disabled?: boolean
-  loading?: boolean
-  readOnly?: boolean
-  invalid?: boolean
-  showClear?: boolean
-  prefixIcon?: string
-  suffixIcon?: string
-  prefixText?: string
-  suffixText?: string
-  hideValidationMessage?: boolean
-  required?: boolean
-  showSearch?: boolean
-  inputValue?: string
-}
-
-export interface WrappedSelectProps extends LabelProps, SelectProps {
+export interface WrappedSelectProps
+  extends LabelProps,
+    Omit<ValidateMessageProps, "value">,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<
+      SelectProps,
+      | "options"
+      | "value"
+      | "placeholder"
+      | "disabled"
+      | "loading"
+      | "readOnly"
+      | "showSearch"
+      | "inputValue"
+    > {
   optionConfigureMode?: "dynamic" | "static"
-  showClear?: boolean
-  tooltipText?: string
+  showClear?: SelectProps["allowClear"]
+  invalid?: boolean
+  prefixIcon?: string // TODO: not support yet
+  suffixIcon?: string // TODO: not support yet
+  prefixText?: string // TODO: not support yet
+  suffixText?: string // TODO: not support yet
   handleUpdateDsl: (value: Record<string, any>) => void
 }

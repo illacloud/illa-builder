@@ -7,7 +7,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { configActions } from "@/redux/currentApp/config/configSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { splitLineStyle } from "./style"
 import {

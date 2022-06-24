@@ -16,10 +16,10 @@ import {
   isOpenLeftPanel,
   isOpenRightPanel,
   isShowDot,
-} from "@/redux/currentApp/config/configSelector"
+} from "@/redux/config/configSelector"
 import { useDrop } from "react-dnd"
 import { mergeRefs } from "@illa-design/system"
-import { configActions } from "@/redux/currentApp/config/configSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
@@ -170,7 +170,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           return
         }
         // set dot show
-        if (store.getState().currentApp.config.showDot == false) {
+        if (store.getState().config.showDot == false) {
           dispatch(configActions.updateShowDot(true))
         }
         const calculateResult = calculateDragPosition(
@@ -249,7 +249,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        if (store.getState().currentApp.config.showDot == false) {
+        if (store.getState().config.showDot == false) {
           dispatch(configActions.updateShowDot(true))
         }
         const monitorRect = monitor.getClientOffset()
@@ -389,10 +389,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         componentNode.childrenNode[item].y + componentNode.childrenNode[item].h,
       )
     }
-    if (maxY < blockRows && maxY >= minBlockRows) {
-      setBlockRows(maxY)
+    if (maxY < blockRows) {
+      setBlockRows(Math.max(maxY, minBlockRows))
     }
-  }, [componentNode.childrenNode])
+  }, [componentNode])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode

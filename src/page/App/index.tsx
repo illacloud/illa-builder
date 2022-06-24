@@ -21,7 +21,7 @@ import {
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
-} from "@/redux/currentApp/config/configSelector"
+} from "@/redux/config/configSelector"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 

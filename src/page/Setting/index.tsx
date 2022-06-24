@@ -11,6 +11,8 @@ import {
   tabPrefixStyle,
   preIconStyle,
   tabPreTextStyle,
+  tabSuffixStyle,
+  backAreaStyle,
 } from "./style"
 
 export const Setting: FC = () => {
@@ -58,17 +60,19 @@ export const Setting: FC = () => {
       </div>
       <Tabs
         prefix={
-          <div
-            key="prefix"
-            css={tabPrefixStyle}
-            onClick={() => {
-              navigate("/dashboard")
-            }}
-          >
-            <PreIcon css={preIconStyle} />
-            <span css={tabPreTextStyle}>back</span>
+          <div key="prefix" css={tabPrefixStyle}>
+            <div
+              css={backAreaStyle}
+              onClick={() => {
+                navigate("/dashboard")
+              }}
+            >
+              <PreIcon css={preIconStyle} />
+              <span css={tabPreTextStyle}>back</span>
+            </div>
           </div>
         }
+        suffix={<div css={tabSuffixStyle}></div>}
         activeKey={pathList[pathList.length - 1]}
         withoutContent
         colorScheme="grayBlue"
