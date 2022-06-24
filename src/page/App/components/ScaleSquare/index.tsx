@@ -19,13 +19,14 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
 import { useDispatch, useSelector } from "react-redux"
-import { configActions } from "@/redux/currentApp/config/configSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { RootState } from "@/store"
 import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { mergeRefs } from "@illa-design/system"
 import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 function getDragConfig(
   componentNode: ComponentNode,
@@ -50,11 +51,12 @@ function getDragConfig(
 
 export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const { w, h, componentNode, className, ...otherProps } = props
+
   const scaleSquareState = componentNode.error ? "error" : "normal"
   const dispatch = useDispatch()
   const selected = useSelector<RootState, boolean>((state) => {
     return (
-      state.currentApp.config.selectedComponents.findIndex((value) => {
+      state.config.selectedComponents.findIndex((value) => {
         return value.displayName == componentNode.displayName
       }) != -1
     )
@@ -63,8 +65,14 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
     () => ({
       type: "components",
-      item: componentNode,
-      canDrag: !componentNode.isDragging,
+      item: () => {
+        const item = {
+          ...componentNode,
+          isDragging: true,
+        }
+        dispatch(componentsActions.addOrUpdateComponentReducer(item))
+        return item
+      },
     }),
     [componentNode],
   )
@@ -72,8 +80,14 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const [, dragHandlerRef, dragPreviewHandlerRef] = useDrag<ComponentNode>(
     () => ({
       type: "components",
-      item: componentNode,
-      canDrag: !componentNode.isDragging,
+      item: () => {
+        const item = {
+          ...componentNode,
+          isDragging: true,
+        }
+        dispatch(componentsActions.addOrUpdateComponentReducer(item))
+        return item
+      },
     }),
     [componentNode],
   )
@@ -129,7 +143,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
 
   return (
     <div
-      css={applyOuterStyle(h, w)}
+      css={applyOuterStyle(componentNode.isDragging, h, w)}
       className={className}
       onClick={(e) => {
         dispatch(configActions.updateSelectedComponent([componentNode]))

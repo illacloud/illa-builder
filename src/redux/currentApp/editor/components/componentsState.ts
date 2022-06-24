@@ -19,6 +19,8 @@ export interface ComponentNode {
   x: number
   // default -1
   y: number
+  // default 0
+  z: number
   props: {
     [key: string]: any
   } | null

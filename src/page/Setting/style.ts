@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const navBarStyle = css`
   padding: 0 16px;
-  height: 42px;
+  height: 45px;
   display: flex;
   align-items: center;
 `
@@ -24,7 +24,7 @@ export const tabPrefixStyle = css`
   align-self: center;
   margin-left: 16px;
   padding: 0 16px;
-  cursor: pointer;
+  flex: 1;
 `
 export const preIconStyle = css`
   display: inline-block;
@@ -33,4 +33,12 @@ export const preIconStyle = css`
 `
 export const tabPreTextStyle = css`
   font-size: 14px;
+`
+
+export const backAreaStyle = css`
+  cursor: pointer;
+`
+
+export const tabSuffixStyle = css`
+  flex: 1;
 `

@@ -26,9 +26,9 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         onChange={(value, calcResult) => {
           handleUpdateDsl({ [attrName]: value })
           if (isDynamicString(value)) {
-            handleUpdateDynamicStrings("add", attrName)
+            handleUpdateDynamicStrings?.("add", attrName)
           } else {
-            handleUpdateDynamicStrings("delete", attrName)
+              handleUpdateDynamicStrings?.("delete", attrName)
           }
         }}
       />
