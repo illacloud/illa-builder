@@ -1,11 +1,12 @@
+import { forwardRef } from "react"
 import { RadioGroup } from "@illa-design/radio"
-import { FC } from "react"
 import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { WrappedSegmentedControlProps } from "./interface"
 
-export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
-  props,
-) => {
+export const WrappedSegmentedControl = forwardRef<
+  any,
+  WrappedSegmentedControlProps
+>((props, ref) => {
   const {
     label,
     labelPosition,
@@ -15,7 +16,6 @@ export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
     labelAlign,
     tooltipText,
     value,
-    defaultValue,
     disabled,
     options,
     direction,
@@ -35,7 +35,6 @@ export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
       <RadioGroup
         type="button"
         value={value}
-        defaultValue={defaultValue}
         disabled={disabled}
         options={options}
         direction={direction}
@@ -46,7 +45,7 @@ export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
       />
     </LabelWrapper>
   )
-}
+})
 
 WrappedSegmentedControl.displayName = "WrappedSegmentedControl"
 

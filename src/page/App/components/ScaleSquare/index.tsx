@@ -19,7 +19,7 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
 import { useDispatch, useSelector } from "react-redux"
-import { configActions } from "@/redux/currentApp/config/configSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { RootState } from "@/store"
 import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -56,7 +56,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const dispatch = useDispatch()
   const selected = useSelector<RootState, boolean>((state) => {
     return (
-      state.currentApp.config.selectedComponents.findIndex((value) => {
+      state.config.selectedComponents.findIndex((value) => {
         return value.displayName == componentNode.displayName
       }) != -1
     )

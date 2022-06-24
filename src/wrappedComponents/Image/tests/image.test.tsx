@@ -8,7 +8,7 @@ test("Image render", () => {
     <WrappedImage
       height="200px"
       width="200px"
-      fallbackSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
       handleUpdateDsl={handleUpdateDSL}
       radius="20"
     />,
@@ -28,7 +28,7 @@ test("Image render with radius", () => {
     <WrappedImage
       height="200px"
       width="200px"
-      fallbackSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+      imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
       handleUpdateDsl={handleUpdateDSL}
       radius="20px"
     />,

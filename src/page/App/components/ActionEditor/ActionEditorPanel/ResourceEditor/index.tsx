@@ -6,7 +6,7 @@ import { Select, Option } from "@illa-design/select"
 import { PenIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
-import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import { ResourcePanel } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourcePanel"
 import {
   actionStyle,

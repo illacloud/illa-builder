@@ -1,14 +1,14 @@
-import { FC, useCallback, useState } from "react"
+import { forwardRef, useCallback, useState } from "react"
 import dayjs from "dayjs"
+import { DatePicker } from "@illa-design/date-picker"
 import { Wrapper } from "@/wrappedComponents/Wrapper"
 import { TooltipWrapper } from "@/wrappedComponents/TooltipWrapper"
-import { DatePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/wrappedComponents/InvalidMessage"
+import LabelWrapper from "@/wrappedComponents/LabelWrapper"
 import { inputContainerCss } from "./style"
 import { WrappedDateProps } from "./interface"
-import LabelWrapper from "../LabelWrapper"
 
-export const WrappedDate: FC<WrappedDateProps> = (props) => {
+export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
   const {
     value,
     tooltipText,
@@ -22,16 +22,16 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
     labelCaption,
     labelWidthUnit,
     required,
-    defaultValue,
     colorScheme,
     minDate,
     disabled,
     maxDate,
     readOnly,
     hideValidationMessage,
+    handleUpdateDsl,
   } = props
 
-  const [currentValue, setCurrentValue] = useState(value ?? defaultValue)
+  const [currentValue, setCurrentValue] = useState(value)
 
   const checkRange = useCallback(
     (current) => {
@@ -64,7 +64,6 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
           <div css={inputContainerCss}>
             <DatePicker
               colorScheme={colorScheme}
-              defaultValue={defaultValue}
               format={dateFormat}
               value={value}
               readOnly={readOnly}
@@ -73,9 +72,13 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
               allowClear={showClear}
               disabledDate={checkRange}
               // todo @aoao handleUpdateDsl?
-              onClear={() => setCurrentValue("")}
+              onClear={() => {
+                setCurrentValue("")
+                handleUpdateDsl({ value: "" })
+              }}
               onChange={(value) => {
                 setCurrentValue(value)
+                handleUpdateDsl({ value })
               }}
             />
             <InvalidMessage
@@ -88,7 +91,7 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
       </Wrapper>
     </TooltipWrapper>
   )
-}
+})
 
 WrappedDate.displayName = "WrappedDate"
 

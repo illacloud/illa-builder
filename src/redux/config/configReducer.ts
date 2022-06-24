@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { ConfigState } from "@/redux/currentApp/config/configState"
+import { ConfigState } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 
