@@ -26,6 +26,7 @@ import {
   updatedIndicatorStyle,
   noMatchFoundWrapperStyle,
   emptyActionListPlaceholderStyle,
+  nameErrorMsgStyle,
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
@@ -82,6 +83,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       })
     }
     setEditingActionItemId("")
+    setIsRenameError({ error: false })
     setEditingName("")
   }
 
@@ -128,7 +130,9 @@ export const ActionList: FC<ActionListProps> = (props) => {
       if (id === editingActionItemId) {
         return (
           <Trigger
-            content={<span>{isRenameError?.errorMsg}</span>}
+            content={
+              <span css={nameErrorMsgStyle}>{isRenameError?.errorMsg}</span>
+            }
             position="bottom"
             popupVisible={isRenameError?.error}
             showArrow={false}

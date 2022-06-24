@@ -76,8 +76,8 @@ export const TitleInput: FC<TitleInputProps> = () => {
             }),
           )
         },
-        () => { },
-        () => { },
+        () => {},
+        () => {},
         (loading) => {
           setActionListLoading?.(loading)
         },

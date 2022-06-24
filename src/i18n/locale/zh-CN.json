@@ -176,7 +176,8 @@
         "message": {
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
           "name_already_exist": "名称已经存在",
-          "please_input_name": "请输入名称"
+          "please_input_name": "请输入名称",
+          "valid_name": "仅能包含字母，数字，'_' 或 '$'"
         },
         "action_generator": {
           "selector": {

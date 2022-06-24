@@ -39,10 +39,7 @@ function renderStatusNode(error?: boolean) {
   return <RightIcon css={resSuccessStatusIconStyle} size="10px" />
 }
 
-function renderResult(
-  activeActionItem: ActionItem,
-  result?: ActionResultType
-) {
+function renderResult(activeActionItem: ActionItem, result?: ActionResultType) {
   const { actionType } = activeActionItem
 
   switch (actionType) {
@@ -105,8 +102,8 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         <div css={resHeaderStyle}>
           {renderStatusNode(error)}
           <span css={resTitleStyle}>{title}</span>
-          <CloseIcon css={resCloseIconStyle} onClick={onClose} />
-          p        </div>
+          <CloseIcon css={resCloseIconStyle} onClick={onClose} />p{" "}
+        </div>
         <div css={resContentStyle}>{resultNode}</div>
       </div>
     </motion.div>

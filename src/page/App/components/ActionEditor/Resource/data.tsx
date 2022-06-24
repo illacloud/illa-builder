@@ -33,25 +33,25 @@ export const databases: ResourceDataItem[] = [
   {
     nameKey: "my_sql",
     icon: <MySqlIcon />,
-    actionType: ACTION_TYPE.MYSQL
+    actionType: ACTION_TYPE.MYSQL,
   },
   {
     nameKey: "postgres",
     icon: <PostgresIcon />,
     isDraft: true,
-    actionType: ACTION_TYPE.POSTGRES
+    actionType: ACTION_TYPE.POSTGRES,
   },
   {
     nameKey: "redis",
     icon: <RedisIcon />,
     isDraft: true,
-    actionType: ACTION_TYPE.REDIS
+    actionType: ACTION_TYPE.REDIS,
   },
   {
     nameKey: "mongo_db",
     icon: <MongoDbIcon />,
     isDraft: true,
-    actionType: ACTION_TYPE.MONGO_DB
+    actionType: ACTION_TYPE.MONGO_DB,
   },
 ]
 
@@ -59,7 +59,7 @@ export const apis: ResourceDataItem[] = [
   {
     nameKey: "rest_api",
     icon: <RestApiIcon />,
-    actionType: ACTION_TYPE.REST_API
+    actionType: ACTION_TYPE.REST_API,
   },
 ]
 
@@ -67,6 +67,6 @@ export const jsTransformer: ResourceDataItem[] = [
   {
     nameKey: "js_transformer",
     icon: <JSTransformerIcon />,
-    actionType: ACTION_TYPE.TRANSFORMER
+    actionType: ACTION_TYPE.TRANSFORMER,
   },
 ]

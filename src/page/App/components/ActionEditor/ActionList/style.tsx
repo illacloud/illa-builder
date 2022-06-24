@@ -285,3 +285,8 @@ export const searchInputCloseBtnStyle = css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
 `
+
+export const nameErrorMsgStyle = css`
+  display: inline-block;
+  width: 180px;
+`
