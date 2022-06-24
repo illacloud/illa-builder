@@ -9,6 +9,7 @@ import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
 import "codemirror/addon/lint/lint"
+import "codemirror/addon/lint/javascript-lint"
 import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
@@ -27,7 +28,11 @@ import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
-
+import { UpdateLintingCallback } from "codemirror/addon/lint/lint"
+import {EvaluationError, getLintAnnotations} from "@/components/CodeEditor/lintHelper";
+import { get } from "react-hook-form"
+import { JSHINT } from "jshint";
+window.JSHINT = JSHINT
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
@@ -55,6 +60,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   })
   const [previewVisible, setPreviewVisible] = useState<boolean>()
   const [focus, setFocus] = useState<boolean>()
+  const [updateLintingCallback, setLintingCallback] = useState<UpdateLintingCallback>()
   // Solve the closure problem
   const latestProps = useRef(props)
   latestProps.current = props
@@ -141,6 +147,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
     } else if (modeName == "javascript") {
       sever.current?.complete(cm)
+      CodeMirror.lint.javascript(cm.getValue(), {}, cm)
       // cm.showHint({
       //   hint: CodeMirror.hint.javascript,
       //   completeSingle: false, // 是否立即补全
@@ -171,6 +178,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         hintOptions: {
           completeSingle: false,
         },
+        lint: true,
       })
 
       editor.on("change", handleChange)
