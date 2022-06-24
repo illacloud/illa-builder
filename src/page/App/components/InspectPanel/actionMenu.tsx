@@ -29,7 +29,6 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         break
       }
       case ACTION_TYPE.DELETE: {
-        //  TODO: wait for redux to delete node
         dispatch(
           componentsActions.deleteComponentNodeReducer({
             displayName: widgetDisplayName,
