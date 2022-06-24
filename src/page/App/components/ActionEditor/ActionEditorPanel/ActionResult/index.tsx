@@ -11,7 +11,7 @@ import {
   applyContainerHeight,
   applyResizerStyle,
 } from "@/page/App/components/ActionEditor/style"
-import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ApiResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/ApiResult"

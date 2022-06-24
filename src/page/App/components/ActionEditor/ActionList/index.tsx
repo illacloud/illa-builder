@@ -5,9 +5,9 @@ import { Button } from "@illa-design/button"
 import { Trigger } from "@illa-design/trigger"
 import { Input } from "@illa-design/input"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { getSelectedAction } from "@/redux/currentApp/config/configSelector"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
 import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
 import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
@@ -105,7 +105,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }
 
     onAddActionItem({
-      displayName: DisplayNameGenerator.getDisplayName(actionType),
+      displayName: ActionDisplayNameGenerator.getDisplayName(actionType),
       actionType,
       resourceId,
       actionTemplate,

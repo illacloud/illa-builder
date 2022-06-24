@@ -6,7 +6,6 @@ import {
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const removeComponentReducer: CaseReducer<
   ComponentsState,
