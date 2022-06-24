@@ -1,12 +1,12 @@
+import { SearchIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/wrappedComponents/interface"
-import { DateRangeIcon } from "./svg"
 import i18n from "@/i18n/config"
 
 export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   type: "DATE_RANGE_WIDGET",
   displayName: "dateRange",
   widgetName: i18n.t("widget.date_range.name"),
-  icon: <DateRangeIcon />,
+  icon: <SearchIcon />,
   sessionType: "CALENDAR",
   w: 20,
   h: 5,
