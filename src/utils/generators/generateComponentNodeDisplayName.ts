@@ -28,20 +28,20 @@ export class ComponentNodeDisplayNameGenerator {
   }
 
   // use when create success
-  static getDisplayName(type: string): string {
+  static getDisplayName(type: string, showName?: string): string {
     let index = 1
     if (type in this.map) {
       const num = this.map[type]
       index = num + 1
     }
-    let name = `${type}${index}`
+    let name = `${showName || type}${index}`
 
     while (
       searchDsl(store.getState().currentApp.editor.components.rootDsl, name) !=
       null
     ) {
       index = index + 1
-      name = `${type}${index}`
+      name = `${showName || type}${index}`
     }
     this.map[type] = index
     return name
