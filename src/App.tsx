@@ -1,5 +1,7 @@
 import { Global, css } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { Unsubscribe } from "@reduxjs/toolkit"
+import { useEffect } from "react"
 import { globalStyle, codemirrorGlobalStyle } from "./style"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
@@ -29,6 +31,9 @@ import "@/api/base"
 import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AxiosInterceptor } from "@/api/AxiosInterceptor"
+import { startAppListening } from "@/store"
+import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
+import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
 
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {
@@ -50,6 +55,16 @@ function getLocaleFromLanguage(language?: string): Locale {
 
 function App() {
   const currentUser = useSelector(getCurrentUser)
+
+  useEffect(() => {
+    const subscriptions: Unsubscribe[] = [
+      setupDependenciesListeners(startAppListening),
+      setupExecutionListeners(startAppListening),
+    ]
+
+    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
+  }, [])
+
   return (
     <BrowserRouter>
       <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>

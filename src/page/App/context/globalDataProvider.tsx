@@ -1,6 +1,8 @@
 import { createContext, ReactNode, FC, useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 import { NotificationType, Notification } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
+import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
 
 interface Injected {
   globalData: { [key: string]: any }
@@ -11,23 +13,6 @@ export const GLOBAL_DATA_CONTEXT = createContext<Injected>({} as Injected)
 
 interface Props {
   children?: ReactNode
-}
-
-// {{builder.user}}
-// TODO: @WeiChen wait to real global data
-const dataTree = {
-  builder: {
-    user: "weichen",
-    email: "weichen@test.com",
-  },
-  query1: {
-    run: () => {
-      return [1, 2, 3, 4, 5]
-    },
-    run2: (a: string) => {
-      return a
-    },
-  },
 }
 
 // {{showNotification("info","222","333")}}
@@ -68,14 +53,24 @@ const goToURL = (url: string, isNewTab?: boolean) => {
 }
 
 const initState = {
-  ...dataTree,
   showNotification,
   runScript,
   goToURL,
 }
 
 export const GlobalDataProvider: FC<Props> = ({ children }) => {
-  const [globalData, setGlobalData] = useState<Record<string, any>>(initState)
+  const displayNameMapProps = useSelector(getExecution)
+  const [globalData, setGlobalData] = useState<Record<string, any>>({
+    ...displayNameMapProps,
+    ...initState,
+  })
+
+  useEffect(() => {
+    setGlobalData({
+      ...displayNameMapProps,
+      ...initState,
+    })
+  }, [displayNameMapProps])
 
   const handleUpdateGlobalData = (key: string, value: any) => {
     setGlobalData({

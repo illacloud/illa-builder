@@ -3,7 +3,6 @@ import { ComponentsInitialState } from "@/redux/currentApp/editor/components/com
 import {
   addOrUpdateComponentReducer,
   removeComponentReducer,
-  updateComponentDynamicStringsReducer,
   updateComponentPropsReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
 
@@ -14,7 +13,6 @@ const componentsSlice = createSlice({
     removeComponentReducer,
     addOrUpdateComponentReducer,
     updateComponentPropsReducer,
-    updateComponentDynamicStringsReducer,
   },
 })
 
