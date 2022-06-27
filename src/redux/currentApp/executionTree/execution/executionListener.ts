@@ -64,15 +64,9 @@ async function handleUpdateExecution(
 ) {
   const rootState = listenerApi.getState()
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
-  const executionOrder = {
-    order: ["TEXT_WIDGET1", "TEXT_WIDGET1.text"],
-    point: -1,
-  }
   if (!displayNameMapProps) return
-  // TODO: @weichen wait to eval;
   const { order, point } = getEvalOrderSelector(rootState)
   const exectionTree = exectionAllTree(displayNameMapProps, order, point)
-  // const inverseDependencies = generateDependencies(displayNameMapProps)
   listenerApi.dispatch(
     executionActions.setExecutionReducer({
       execution: exectionTree,
