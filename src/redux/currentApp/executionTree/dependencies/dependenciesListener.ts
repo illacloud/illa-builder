@@ -1,5 +1,5 @@
-import { AppStartListening, AppListenerEffectAPI } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
+import { AppStartListening, AppListenerEffectAPI } from "@/store"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { generateDependencies } from "@/utils/generators/generateDependenciesMap"
