@@ -18,20 +18,21 @@ import { TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
-import {
-  ResultPreview,
-  CodeEditorProps,
-  EditorModes,
-} from "./interface"
+import { ResultPreview, CodeEditorProps, EditorModes } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 import { UpdateLintingCallback } from "codemirror/addon/lint/lint"
-import {EvaluationError, getLintAnnotations} from "@/components/CodeEditor/lintHelper";
+import {
+  EvaluationError,
+  getLintAnnotations,
+} from "@/components/CodeEditor/lintHelper"
 import { get } from "react-hook-form"
-import { JSHINT } from "jshint";
+import { JSHINT } from "jshint"
+import { evalScript } from "@/utils/evaluateDynamicString/codeSandbox"
+
 window.JSHINT = JSHINT
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -42,6 +43,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     borderRadius = "8px",
     tables = {},
     lineNumbers,
+    noTab,
     value,
     height = "auto",
     readOnly,
@@ -60,7 +62,9 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   })
   const [previewVisible, setPreviewVisible] = useState<boolean>()
   const [focus, setFocus] = useState<boolean>()
-  const [updateLintingCallback, setLintingCallback] = useState<UpdateLintingCallback>()
+  const [error, setError] = useState<boolean>()
+  const [updateLintingCallback, setLintingCallback] =
+    useState<UpdateLintingCallback>()
   // Solve the closure problem
   const latestProps = useRef(props)
   latestProps.current = props
@@ -78,6 +82,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const valueChanged = (currentValue: string) => {
     let calcResult: any = null
     let previewType = expectedType
+    setError(false)
     try {
       calcResult = evaluateDynamicString("", currentValue, globalData)
       // [TODO]: v1 evaluate
@@ -90,8 +95,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         type: previewType,
         content: calcResult,
       })
+      // console.log(evalScript(calcResult, globalData, false), "evalScript")
     } catch (e: any) {
       console.error(e)
+      setError(true)
       setPreview({
         state: "error",
         content: e.toString(),
@@ -180,7 +187,9 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         },
         lint: true,
       })
-
+      if (noTab) {
+        editor?.setOption("extraKeys", { Tab: false })
+      }
       editor.on("change", handleChange)
       editor.on("keyup", handleKeyUp)
       editor.on("focus", handleFocus)
@@ -198,7 +207,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const inputState = {
     focus,
-    error: false,
+    error,
     height,
     borderRadius,
   }

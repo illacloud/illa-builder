@@ -23,6 +23,7 @@ export interface CodeEditorProps
   height?: string
   placeholder?: string
   borderRadius?: string
+  noTab?: boolean
   // sql table data
   tables?: Record<string, any>
   onBlur?: () => void

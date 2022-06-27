@@ -11,13 +11,15 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
     <div className={className}>
       <CodeEditor
         mode="JAVASCRIPT"
-        expectedType="Boolean"
+        expectedType="String"
         value={value}
         onChange={setValue}
+        noTab
       />
-      <CodeEditor mode="JAVASCRIPT" expectedType="Object" />
-      <CodeEditor mode="SQL" expectedType="Object" />
+      <CodeEditor mode="JAVASCRIPT" expectedType="Object" noTab />
+      <CodeEditor mode="SQL" expectedType="Object" noTab />
       <CodeEditor
+          noTab
         mode="SQL_JS"
         expectedType="String"
         lineNumbers
