@@ -1,4 +1,4 @@
-import _ from "lodash"
+import { isString } from "@illa-design/system"
 
 const DISPLAY_NAME_REGEX =
   /^([^\x00-\xff]|[a-zA-Z_$])([^\x00-\xff]|[a-zA-Z0-9_$])*$/
@@ -68,7 +68,7 @@ export const isValidUrlScheme = (url: string): boolean => {
 }
 
 export const isInt = (val: string | number): boolean => {
-  return Number.isInteger(val) || (_.isString(val) && /^\d+$/.test(val))
+  return Number.isInteger(val) || (isString(val) && /^\d+$/.test(val))
 }
 
 export const isValidDisplayName = (displayName: string): boolean =>
