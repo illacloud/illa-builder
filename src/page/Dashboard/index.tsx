@@ -11,12 +11,19 @@ import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useDispatch } from "react-redux"
 import { Resource } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { containerStyle, loadingStyle, errorBodyStyle, errorIconContentStyle, errorIconColorStyle, errorTitleStyle, errorDescriptionStyle } from "./style"
+import {
+  containerStyle,
+  loadingStyle,
+  errorBodyStyle,
+  errorIconContentStyle,
+  errorIconColorStyle,
+  errorTitleStyle,
+  errorDescriptionStyle,
+} from "./style"
 import { t } from "i18next"
 
 export const IllaApp: FC = () => {
-
-  const [pageState, setPageState] = useState<string>('loading')
+  const [pageState, setPageState] = useState<string>("loading")
   const [retryNum, setRetryNum] = useState<number>(0)
 
   const [room, setRoom] = useState<Room>()
@@ -34,16 +41,16 @@ export const IllaApp: FC = () => {
           dispatch(
             dashboardAppActions.updateDashboardAppListReducer(response.data),
           )
-          resoleve('success')
+          resoleve("success")
         },
-        (failure) => { },
-        (crash) => { },
-        (loading) => { },
+        (failure) => {},
+        (crash) => {},
+        (loading) => {},
         (errorState) => {
           if (errorState) {
-            resoleve('error')
+            resoleve("error")
           }
-        }
+        },
       )
     })
 
@@ -56,31 +63,31 @@ export const IllaApp: FC = () => {
         },
         (response) => {
           dispatch(resourceActions.addResourceListReducer(response.data))
-          resoleve('success')
+          resoleve("success")
         },
-        (failure) => { },
-        (crash) => { },
-        (loading) => { },
+        (failure) => {},
+        (crash) => {},
+        (loading) => {},
         (errorState) => {
           if (errorState) {
-            resoleve('error')
+            resoleve("error")
           }
         },
       )
     })
 
     Promise.all([appList, resourceList]).then((result) => {
-      if (result.includes('error')) {
-        setPageState('error')
+      if (result.includes("error")) {
+        setPageState("error")
       } else {
-        setPageState('success')
+        setPageState("success")
       }
     })
 
     Connection.enterRoom(
       "dashboard",
-      (loading) => { },
-      (errorState) => { },
+      (loading) => {},
+      (errorState) => {},
       (room) => {
         setRoom(room)
       },
@@ -95,25 +102,27 @@ export const IllaApp: FC = () => {
   return (
     <div css={containerStyle}>
       <DashboardTitleBar />
-      {
-        pageState === 'loading' &&
-        <Loading _css={loadingStyle} />
-      }
-      {
-        pageState === 'error' &&
+      {pageState === "loading" && <Loading _css={loadingStyle} />}
+      {pageState === "error" && (
         <div css={errorBodyStyle}>
           <div css={errorIconContentStyle}>
             <CloseIcon size="16px" _css={errorIconColorStyle} />
           </div>
           <div css={errorTitleStyle}>{t("dashboard.common.error_title")}</div>
-          <div css={errorDescriptionStyle}>{t("dashboard.common.error_description")}</div>
-          <Button colorScheme="techPurple" onClick={() => { setRetryNum(retryNum + 1) }}>{t("dashboard.common.error_button")}</Button>
+          <div css={errorDescriptionStyle}>
+            {t("dashboard.common.error_description")}
+          </div>
+          <Button
+            colorScheme="techPurple"
+            onClick={() => {
+              setRetryNum(retryNum + 1)
+            }}
+          >
+            {t("dashboard.common.error_button")}
+          </Button>
         </div>
-      }
-      {
-        pageState === 'success' &&
-        <Outlet />
-      }
+      )}
+      {pageState === "success" && <Outlet />}
     </div>
   )
 }
