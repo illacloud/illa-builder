@@ -3,6 +3,7 @@ import { Unsubscribe } from "@reduxjs/toolkit"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
+import { getEvalOrderSelector } from "@/redux/currentApp/executionTree/dependencies/dependenciesSelector"
 
 async function handleUpdateExecution(
   action: ReturnType<typeof dependenciesActions.setDependenciesReducer>,
@@ -16,6 +17,7 @@ async function handleUpdateExecution(
   }
   if (!displayNameMapProps) return
   // TODO: @weichen wait to eval;
+  const evalOrder = getEvalOrderSelector(rootState)
   // const inverseDependencies = generateDependencies(displayNameMapProps)
   listenerApi.dispatch(
     executionActions.setExecutionReducer({

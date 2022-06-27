@@ -1,5 +1,6 @@
 import { RootState } from "@/store"
 import { createSelector } from "@reduxjs/toolkit"
+import toposort from "toposort"
 
 export const getDependencies = (state: RootState) =>
   state.currentApp.executionTree.dependencies
@@ -7,5 +8,16 @@ export const getDependencies = (state: RootState) =>
 // TODO:Longbo
 export const getEvalOrderSelector = createSelector(
   [getDependencies],
-  (dependencies) => {},
+  (dependencies) => {
+    const dependencyTree: Array<[string, string]> = []
+    Object.keys(dependencies).forEach((key: string) => {
+      if (dependencies[key].length) {
+        dependencies[key].forEach((dep) => dependencyTree.push([key, dep]))
+      } else {
+        dependencyTree.push([key, ""])
+      }
+    })
+
+    return toposort(dependencyTree).filter((d) => !!d)
+  },
 )
