@@ -170,6 +170,7 @@ export const Register: FC = () => {
                     render: showCountDown ? (
                       <Countdown
                         value={Date.now() + 1000 * 60}
+                        mode="builder"
                         now={Date.now()}
                         format="ss"
                         onFinish={() => {

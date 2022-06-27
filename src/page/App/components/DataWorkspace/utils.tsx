@@ -2,8 +2,6 @@ import { isArray, omit, isObject } from "@illa-design/system"
 import { TreeDataType } from "@illa-design/tree-common"
 import { ActionListState } from "@/redux/currentApp/action/actionState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { BuilderInfo } from "@/redux/builderInfo/builderInfoState"
-import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import {
   itemNameDescStyle,
   itemNameStyle,
