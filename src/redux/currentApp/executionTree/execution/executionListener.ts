@@ -14,16 +14,25 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 function exectionAllTree(
   displayNameMap: Record<string, any>,
   evalOrder: string[],
+  point: number,
 ) {
   const oldTree = _.cloneDeep(displayNameMap)
   try {
     return evalOrder.reduce(
-      (current: Record<string, any>, fullPath: string) => {
+      (
+        current: Record<string, any>,
+        fullPath: string,
+        currentIndex: number,
+      ) => {
         const { displayName, attributeyPath } =
           getDisplayNameAndAttributeyPath(fullPath)
         const widgetOrAction = current[displayName]
-        const widgetOrActionAttribute = _.get(widgetOrAction, attributeyPath)
+        let widgetOrActionAttribute = _.get(widgetOrAction, attributeyPath)
         let evaledValue
+        if (point === currentIndex) {
+          // TODO: @weichen widget default value
+          widgetOrActionAttribute = "defaultValue"
+        }
         const requiredEval = isDynamicString(widgetOrActionAttribute)
         if (requiredEval) {
           try {
@@ -62,7 +71,7 @@ async function handleUpdateExecution(
   if (!displayNameMapProps) return
   // TODO: @weichen wait to eval;
   const { order, point } = getEvalOrderSelector(rootState)
-  const exectionTree = exectionAllTree(displayNameMapProps, order)
+  const exectionTree = exectionAllTree(displayNameMapProps, order, point)
   // const inverseDependencies = generateDependencies(displayNameMapProps)
   listenerApi.dispatch(
     executionActions.setExecutionReducer({
