@@ -436,22 +436,22 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     >
       <canvas
         id={`${componentNode.displayName}-canvas`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot, 0)}
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />
       <canvas
         id={`${componentNode.displayName}-dotted`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot, 1)}
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />
-      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+      <div css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}>
         {componentTree}
       </div>
       <canvas
         id={`${componentNode.displayName}-dragged`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot, 3)}
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />

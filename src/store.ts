@@ -11,6 +11,7 @@ import configReducer from "@/redux/config/configSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
+import displayNameReducer from "@/redux/currentApp/displayName/displayNameSlice"
 
 const editorReducer = combineReducers({
   components: componentsReducer,
@@ -22,6 +23,7 @@ const appReducer = combineReducers({
   editor: editorReducer,
   action: actionReducer,
   appInfo: appInfoReducer,
+  displayName: displayNameReducer,
 })
 
 const dashboardReducer = combineReducers({

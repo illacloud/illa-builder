@@ -1,6 +1,7 @@
 import { XYCoord } from "react-dnd"
 import { DragPosition } from "@/page/App/components/DotPanel/interface"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateComponentNodeDisplayName"
 
 export function calculateNotExistDragPosition(
   canvasXY: XYCoord,
@@ -117,6 +118,10 @@ export function calculateDragPosition(
       componentNode.w,
       componentNode.h,
       edgeWidth,
+    )
+    ComponentNodeDisplayNameGenerator.removeDisplayName(
+      componentNode.type ?? "",
+      componentNode.displayName,
     )
   } else {
     calcResult = calculateExistDragPosition(
