@@ -27,3 +27,12 @@ export const setExecutionErrorReducer: CaseReducer<
   }
   state.error = error
 }
+
+export const setExecutionReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<ExecutionState>
+> = (state, action) => {
+  const { result, error } = action.payload
+  state.result = result
+  state.error = error
+}

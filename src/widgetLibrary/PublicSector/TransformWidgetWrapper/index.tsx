@@ -6,6 +6,7 @@ import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { isObject } from "@/utils/typeHelper"
 
 const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -59,7 +60,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   }
 
   const realProps = useMemo(() => {
-    return displayNameMapProps[displayName] ?? {}
+    const result: Record<string, any> = {}
+    const calcProps = displayNameMapProps[displayName] ?? {}
+    Object.keys(calcProps).forEach((key) => {
+      // TODO: weichen move to evalTree
+      if (isObject(calcProps[key])) {
+        result[key] = JSON.stringify(calcProps[key])
+      } else {
+        result[key] = calcProps[key]
+      }
+    })
+    return result
   }, [displayNameMapProps, displayName])
 
   if (!type) return null
