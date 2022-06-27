@@ -2,7 +2,8 @@ import { Global, css } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { useEffect } from "react"
-import { globalStyle, codemirrorGlobalStyle } from "./style"
+import { globalStyle } from "./style"
+import { useSelector } from "react-redux"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
@@ -24,7 +25,6 @@ import {
   Locale,
   zhCN,
 } from "@illa-design/config-provider"
-import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import "@/i18n/config"
 import "@/api/base"
@@ -68,7 +68,7 @@ function App() {
   return (
     <BrowserRouter>
       <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>
-        <Global styles={css(globalStyle, codemirrorGlobalStyle)} />
+        <Global styles={css(globalStyle)} />
         <AxiosInterceptor>
           <Routes>
             <Route path="dashboard" element={<IllaApp />}>

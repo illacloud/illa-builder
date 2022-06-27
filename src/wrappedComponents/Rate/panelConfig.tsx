@@ -16,6 +16,12 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
+        id: "rate-basic-value",
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        attrName: "value",
+        setterType: "INPUT_SETTER",
+      },
+      {
         id: "rate-basic-DefaultValue",
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "defaultValue",
@@ -24,7 +30,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-basic-icon",
         labelName: i18n.t("editor.inspect.setter_label.icon"),
-        attrName: "heart",
+        attrName: "icon",
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {

@@ -1,4 +1,4 @@
-import { SearchIcon } from "@illa-design/icon"
+import { SwitchWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/wrappedComponents/interface"
 import i18n from "@/i18n/config"
 
@@ -8,7 +8,7 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
   h: 5,
   w: 10,
   type: "SWITCH_WIDGET",
-  icon: <SearchIcon />,
+  icon: <SwitchWidgetIcon size="100%" />,
   sessionType: "SELECT",
   defaults: {
     label: "Label",

@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { ArrayIcon } from "@illa-design/icon"
+import { DocsIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 import { Tag } from "@illa-design/tag"
 
@@ -8,33 +8,35 @@ import {
   mainTitleStyle,
   contentAreaStyle,
   titleTextStyle,
-  containerTextStyle,
-  mainTextHeightStyle,
+  docIconStyle,
   infoTextHeightStyle,
+  docTextStyle,
+  evaluationStyle,
 } from "./styles"
 
 export const HintComplement: FC<HintComplementProps> = (props) => {
-  const { index } = props
+  const { index, data } = props
 
   return (
     <>
       <div css={mainTitleStyle}>
         <div css={contentAreaStyle}>
-          <div css={css(titleTextStyle, mainTextHeightStyle)}>
-            bccInput.value
+          <div css={css(titleTextStyle)}>
+            {data.name}
+            {data.url ? (
+              <a css={docIconStyle} href={data.url} target="_blank">
+                <DocsIcon />
+              </a>
+            ) : null}
           </div>
-          <div css={css(containerTextStyle, infoTextHeightStyle)}>
-            valueCurrent value entered in the
-          </div>
+          {data?.type?.length ? <div>{data?.type}</div> : null}
+          {data?.doc?.length ? (
+            <div css={css(docTextStyle, infoTextHeightStyle)}>{data.doc}</div>
+          ) : null}
+          {/*[TODO] Evaluate */}
+          {/*<div css={css(evaluationStyle)}>Evaluates to</div>*/}
+          {/*<Tag size="small">"Hello"</Tag>*/}
         </div>
-        <ArrayIcon _css={mainTextHeightStyle} />
-      </div>
-      <div css={mainTitleStyle}>
-        <div css={contentAreaStyle}>
-          <div css={css(titleTextStyle, mainTextHeightStyle)}>Evaluates to</div>
-          <Tag>"Hello"</Tag>
-        </div>
-        <div css={css(containerTextStyle, mainTextHeightStyle)}>String</div>
       </div>
     </>
   )

@@ -1,4 +1,4 @@
-import { SearchIcon } from "@illa-design/icon"
+import { SelectWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/wrappedComponents/interface"
 import { v4 } from "uuid"
 import i18n from "@/i18n/config"
@@ -7,7 +7,7 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "SELECT_WIDGET",
   displayName: "select",
   widgetName: i18n.t("widget.select.name"),
-  icon: <SearchIcon />,
+  icon: <SelectWidgetIcon size="100%" />,
   sessionType: "SELECT",
   w: 10,
   h: 5,

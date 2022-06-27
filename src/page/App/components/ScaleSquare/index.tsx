@@ -19,7 +19,7 @@ import {
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidget } from "@/wrappedComponents/TransformWidget"
 import { useDispatch, useSelector } from "react-redux"
-import { configActions } from "@/redux/currentApp/config/configSlice"
+import { configActions } from "@/redux/config/configSlice"
 import { RootState } from "@/store"
 import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -51,11 +51,12 @@ function getDragConfig(
 
 export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const { w, h, componentNode, className, ...otherProps } = props
+
   const scaleSquareState = componentNode.error ? "error" : "normal"
   const dispatch = useDispatch()
   const selected = useSelector<RootState, boolean>((state) => {
     return (
-      state.currentApp.config.selectedComponents.findIndex((value) => {
+      state.config.selectedComponents.findIndex((value) => {
         return value.displayName == componentNode.displayName
       }) != -1
     )
@@ -142,7 +143,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
 
   return (
     <div
-      css={applyOuterStyle(selected, h, w)}
+      css={applyOuterStyle(componentNode.isDragging, h, w)}
       className={className}
       onClick={(e) => {
         dispatch(configActions.updateSelectedComponent([componentNode]))

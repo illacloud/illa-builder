@@ -1,5 +1,8 @@
 import _ from "lodash"
 
+const DISPLAY_NAME_REGEX =
+  /^([^\x00-\xff]|[a-zA-Z_$])([^\x00-\xff]|[a-zA-Z0-9_$])*$/
+
 export enum Types {
   STRING = "STRING",
   NUMBER = "NUMBER",
@@ -67,3 +70,6 @@ export const isValidUrlScheme = (url: string): boolean => {
 export const isInt = (val: string | number): boolean => {
   return Number.isInteger(val) || (_.isString(val) && /^\d+$/.test(val))
 }
+
+export const isValidDisplayName = (displayName: string): boolean =>
+  DISPLAY_NAME_REGEX.test(displayName)

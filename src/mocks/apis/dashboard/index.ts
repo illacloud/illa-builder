@@ -2,7 +2,7 @@ import { rest } from "msw"
 import { baseUrl } from "@/mocks/config"
 
 export default [
-  rest.get(`${baseUrl}/api/v1/apps`, (req, res, ctx) => {
+  rest.get(`${baseUrl}/apps`, (req, res, ctx) => {
     const headers = req.headers
     const url = req.url
     return res(
@@ -28,8 +28,19 @@ export default [
       ]),
     )
   }),
-
-  rest.get(`${baseUrl}/api/v1/resources`, (req, res, ctx) => {
+  rest.post(`${baseUrl}/apps`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        appId: "1f221b62-568b-448c-989e-d3a376273134",
+        appName: "Untitled app",
+        currentVersionId: "450ca3c2-38ff-4f27-a1f7-3e71452f49cd",
+        lastModifiedBy: "Zhanjiao Deng",
+        lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
+      }),
+    )
+  }),
+  rest.get(`${baseUrl}/resources`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
@@ -57,14 +68,13 @@ export default [
     )
   }),
 
-  rest.delete(`${baseUrl}/api/v1/resources/:resourceId`, (req, res, ctx) => {
+  rest.delete(`${baseUrl}/resources/:resourceId`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({ resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52" }),
     )
   }),
-
-  rest.put(`${baseUrl}/api/v1/apps/:appId`, (req, res, ctx) => {
+  rest.put(`${baseUrl}/apps/:appId`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -76,8 +86,7 @@ export default [
       }),
     )
   }),
-
-  rest.post(`${baseUrl}/api/v1/apps/:appId/duplicate`, (req, res, ctx) => {
+  rest.post(`${baseUrl}/apps/:appId/duplicate`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -90,7 +99,7 @@ export default [
     )
   }),
 
-  rest.delete(`${baseUrl}/api/v1/apps/:appId`, (req, res, ctx) => {
+  rest.delete(`${baseUrl}/apps/:appId`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
@@ -99,7 +108,7 @@ export default [
     )
   }),
 
-  rest.patch(`${baseUrl}/api/v1/users/username`, (req, res, ctx) => {
+  rest.patch(`${baseUrl}/users/username`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

@@ -1,23 +1,17 @@
+import { RateProps } from "@illa-design/rate"
 import LabelProps from "@/wrappedComponents/Label/interface"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
 import { ValidateMessageProps } from "@/wrappedComponents/InvalidMessage/interface"
-import { ReactNode } from "react"
-import { InputBorderColor } from "@illa-design/input"
 
-export type alignmentType = "start" | "center" | "end" | "fullWidth"
-
-export interface WrappedDateProps
+export interface WrappedRateProps
   extends LabelProps,
-    Omit<ValidateMessageProps, "value"> {
+    Omit<ValidateMessageProps, "value">,
+    Pick<TooltipWrapperProps, "tooltipText">,
+    Pick<RateProps, "allowHalf" | "allowClear" | "disabled"> {
   value?: number
-  defaultValue?: number
-  tooltipText?: string
-  disabled?: boolean
   loading?: boolean
-  allowClear?: boolean
-  required?: boolean
   readOnly?: boolean
-  handleUpdateDsl?: (value: Record<string, string>) => void
-  heart?: boolean
-  allowHalf?: boolean
-  maxCount?: number
+  icon?: "star" | "heart"
+  maxCount?: RateProps["count"]
+  handleUpdateDsl: (value: Record<string, number>) => void
 }

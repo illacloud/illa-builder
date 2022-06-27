@@ -17,7 +17,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-basic-defaultValue",
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
-        attrName: "checked",
+        attrName: "value",
         setterType: "INPUT_SETTER",
         placeholder: "false",
       },

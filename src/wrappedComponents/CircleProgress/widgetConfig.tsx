@@ -1,12 +1,12 @@
+import { SearchIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/wrappedComponents/interface"
-import { CircleProgressIcon } from "./svg"
 import i18n from "@/i18n/config"
 
 export const CIRCLE_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   type: "CIRCLE_PROGRESS_WIDGET",
   displayName: "circleProgress",
   widgetName: i18n.t("widget.circle_progress.name"),
-  icon: <CircleProgressIcon />,
+  icon: <SearchIcon />,
   sessionType: "PRESENTATION",
   w: 10,
   h: 10,

@@ -1,21 +1,25 @@
-import { ButtonColorScheme } from "@illa-design/button/src"
+import { ButtonProps } from "@illa-design/button/src"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
 
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
-export interface WrappedButtonProps {
-  variant?: "fill" | "outline"
+export interface WrappedButtonProps
+  extends Pick<
+      ButtonProps,
+      | "variant"
+      | "leftIcon"
+      | "rightIcon"
+      | "disabled"
+      | "loading"
+      | "borderColor"
+      | "backgroundColor"
+      | "textColor"
+      | "colorScheme"
+    >,
+    Pick<TooltipWrapperProps, "tooltipText"> {
   text?: string
-  leftIcon?: string
-  rightIcon?: string
-  disabled?: boolean
   submit?: boolean
   submitTargetId?: string
-  backgroundColor?: string
-  borderColor?: string
-  textColor?: string
-  borderRadius?: string
-  loading?: boolean
   alignment?: alignmentType
-  tooltipText?: string
-  colorScheme?: ButtonColorScheme
+  borderRadius?: string
 }

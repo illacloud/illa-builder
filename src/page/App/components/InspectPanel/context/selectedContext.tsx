@@ -7,6 +7,7 @@ import { Empty } from "@/page/App/components/InspectPanel/empty"
 interface Injected {
   widgetType: string
   widgetDisplayName: string
+  widgetParentDisplayName: string
   widgetProps: Record<string, any>
   handleUpdateDsl: (value: Record<string, any>) => void
 }
@@ -30,38 +31,44 @@ export const SelectedProvider: FC<Props> = ({
     getComponentNodeBySingleSelected,
   )
 
-  const widgetType = useMemo(
-    () => singleSelectedComponentNode?.type,
-    [singleSelectedComponentNode],
-  )
-
-  const widgetDisplayName = useMemo(
-    () => singleSelectedComponentNode?.displayName as string,
-    [singleSelectedComponentNode],
-  )
-
-  const widgetProps = useMemo(
-    () => singleSelectedComponentNode?.props || {},
-    [singleSelectedComponentNode],
-  )
-
-  const dispatch = useDispatch()
-
-  const handleUpdateDsl = (value: Record<string, any>) => {
-    if (!widgetProps || !widgetDisplayName) return
-    dispatch(
-      componentsActions.updateComponentPropsReducer({
-        displayName: widgetDisplayName,
-        newProps: value,
-      }),
+    const widgetType = useMemo(
+      () => singleSelectedComponentNode?.type,
+      [singleSelectedComponentNode],
     )
-  }
+
+    const widgetDisplayName = useMemo(
+      () => singleSelectedComponentNode?.displayName as string,
+      [singleSelectedComponentNode],
+    )
+
+    const widgetParentDisplayName = useMemo(
+      () => singleSelectedComponentNode?.parentNode as string,
+      [singleSelectedComponentNode],
+    )
+
+    const widgetProps = useMemo(
+      () => singleSelectedComponentNode?.props || {},
+      [singleSelectedComponentNode],
+    )
+
+    const dispatch = useDispatch()
+
+    const handleUpdateDsl = (value: Record<string, any>) => {
+      if (!widgetProps || !widgetDisplayName) return
+      dispatch(
+        componentsActions.updateComponentPropsReducer({
+          displayName: widgetDisplayName,
+          newProps: value,
+        }),
+      )
+    }
 
   if (!widgetType || !widgetDisplayName) return <Empty />
 
   const value = {
     widgetType,
     widgetDisplayName,
+    widgetParentDisplayName,
     widgetProps,
     handleUpdateDsl,
   }
