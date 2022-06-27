@@ -52,6 +52,7 @@ function DbNameColComponent(text: string) {
 function CtimeColComponent(text: string) {
   return <span css={tableInfoTextStyle}>{text}</span>
 }
+
 const ExtraColComponent: FC<{
   resourceId: string
   showFormVisible: () => void

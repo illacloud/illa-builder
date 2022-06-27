@@ -57,3 +57,11 @@ export const stringToJS = (string: string): string => {
     .join(" + ")
   return js
 }
+
+export const wrapCode = (code: string) => {
+  return `
+    (function() {
+      return ${code}
+    })
+  `
+}

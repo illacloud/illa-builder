@@ -28,7 +28,6 @@ export default [
       ]),
     )
   }),
-
   rest.post(`${baseUrl}/apps`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -41,7 +40,6 @@ export default [
       }),
     )
   }),
-
   rest.get(`${baseUrl}/resources`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -76,7 +74,6 @@ export default [
       ctx.json({ resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52" }),
     )
   }),
-
   rest.put(`${baseUrl}/apps/:appId`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -89,7 +86,6 @@ export default [
       }),
     )
   }),
-
   rest.post(`${baseUrl}/apps/:appId/duplicate`, (req, res, ctx) => {
     return res(
       ctx.status(200),
