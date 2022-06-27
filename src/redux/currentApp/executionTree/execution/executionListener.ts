@@ -77,7 +77,6 @@ async function handleUpdateExecution(
     order,
     point,
   )
-  console.log("errorTree", errorTree)
   listenerApi.dispatch(
     executionActions.setExecutionResultReducer({
       result: evaledTree,
