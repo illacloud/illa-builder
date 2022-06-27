@@ -532,7 +532,10 @@
       "delete_content": "This will break Apps and Query Library queries that use this resource",
       "delete_cancel_text": "Cancel",
       "delete_ok_text": "Delete",
-      "delete": "Delete"
+      "delete": "Delete",
+      "error_title": "Error",
+      "error_description": "There is a problem with your operation.",
+      "error_button": "Retry"
     },
     "app": {
       "create_app": "Create App",
@@ -550,7 +553,8 @@
       "table_ctime": "Created",
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure",
-      "create_success": "Create Success!"
+      "create_success": "Create Success!",
+      "edit_success": "Edit Success"
     }
   },
   "setting": {

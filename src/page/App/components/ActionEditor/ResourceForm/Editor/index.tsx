@@ -72,13 +72,7 @@ const getResourceTypeNameKey = (resourceType: string) => {
 }
 
 export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
-  const {
-    resourceId,
-    back,
-    onSubmit,
-    resourceType: resourceTypeProps,
-    withoutBack = false,
-  } = props
+  const { resourceId, back, onSubmit, resourceType: resourceTypeProps } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const resource = useSelector(selectAllResource).find(
@@ -171,7 +165,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         )}
       </div>
       <div css={formFooterStyle}>
-        {!withoutBack && (
+        {back && (
           <Button
             variant="text"
             size="medium"

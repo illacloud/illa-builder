@@ -532,7 +532,10 @@
       "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
       "delete_cancel_text": "取消",
       "delete_ok_text": "删除",
-      "delete": "移到回收站"
+      "delete": "移到回收站",
+      "error_title": "错误",
+      "error_description": "请求错误",
+      "error_button": "重试"
     },
     "app": {
       "create_app": "创建App",
@@ -550,7 +553,8 @@
       "table_ctime": "创建时间",
       "trash_success": "删除成功",
       "trash_failure": "删除失败",
-      "create_success": "创建成功！"
+      "create_success": "创建成功！",
+      "edit_success": "修改成功"
     }
   },
   "setting": {

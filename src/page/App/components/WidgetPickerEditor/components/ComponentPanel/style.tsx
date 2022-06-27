@@ -68,15 +68,15 @@ export const iconStyle = css`
   justify-content: center;
   align-items: center;
   background-color: ${hexToRGBA(
-  globalColor(`--${illaPrefix}-grayBlue-09`),
-  0.5,
-)};
+    globalColor(`--${illaPrefix}-grayBlue-09`),
+    0.5,
+  )};
   cursor: grab;
 
   &:hover {
     background-color: ${hexToRGBA(
-  globalColor(`--${illaPrefix}-techPurple-07`),
-)};
+      globalColor(`--${illaPrefix}-techPurple-07`),
+    )};
     transform: scale(1.1);
   }
 

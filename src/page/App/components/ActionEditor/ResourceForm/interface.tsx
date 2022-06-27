@@ -11,6 +11,5 @@ export interface ResourceFormProps {
   resourceId: string
   databaseType?: DatabaseType
   apiType?: ApiType
-  withoutBack?: boolean
   onCancel?: () => void
 }

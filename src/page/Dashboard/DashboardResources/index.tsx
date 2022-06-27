@@ -1,4 +1,4 @@
-import { FC, ReactNode, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
@@ -13,9 +13,9 @@ import { Message } from "@illa-design/message"
 import { Resource, ResourceListState } from "@/redux/resource/resourceState"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
-import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
-import { ResourceForm } from "@/page/App/components/ActionEditor/ResourceForm"
 import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
+import { DashboardGenerator } from "@/page/Dashboard/components/DashboardGenerator"
+import { ActionType } from "@/page/Dashboard/components/DashboardGenerator/interface"
 import {
   appsContainerStyle,
   listTitleContainerStyle,
@@ -62,9 +62,10 @@ const ExtraColComponent: FC<{
   resourceId: string
   showFormVisible: () => void
   setCurId: (curResourceId: string) => void
+  actionTypeEdit: () => void
 }> = (props) => {
   const { t } = useTranslation()
-  const { resourceId, showFormVisible, setCurId } = props
+  const { resourceId, showFormVisible, setCurId, actionTypeEdit } = props
   return (
     <>
       <Button
@@ -73,6 +74,7 @@ const ExtraColComponent: FC<{
         colorScheme="techPurple"
         onClick={() => {
           setCurId(resourceId)
+          actionTypeEdit()
           showFormVisible()
         }}
         title="editButton"
@@ -92,6 +94,7 @@ const ExtraColComponent: FC<{
             resourceId={resourceId}
             setCurId={setCurId}
             showFormVisible={showFormVisible}
+            actionTypeEdit={actionTypeEdit}
           />
         }
       >
@@ -107,18 +110,21 @@ const ExtraColComponent: FC<{
 
 export const DashboardResources: FC = () => {
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const [formVisible, setFormVisible] = useState<boolean>(false)
   const [curResourceId, setCurResourceId] = useState<string>("")
+  const [actionType, setActionType] = useState<ActionType>("new")
 
   const { t } = useTranslation()
 
   const resourcesList: ResourceListState = useSelector(selectAllResource)
 
   const showFromFunction = () => {
-    setFormVisible(true)
+    setActionGeneratorVisible(true)
   }
   const changeCurResourceId = (curResourceId: string) => {
     setCurResourceId(curResourceId)
+  }
+  const actionTypeEdit = () => {
+    setActionType("edit")
   }
 
   const countColumnsWidth = (itemWidth: number, minWidth: number) => {
@@ -168,12 +174,13 @@ export const DashboardResources: FC = () => {
         nameCol: NameColComponent(item.resourceType, item.resourceName),
         typeCol: TypeColComponent(item.resourceType),
         dbNameCol: DbNameColComponent(item.options?.databaseName),
-        ctimeCol: CtimeColComponent(item.UpdatedAt),
+        ctimeCol: CtimeColComponent(item.updatedAt),
         extraCol: (
           <ExtraColComponent
             resourceId={item.resourceId}
             showFormVisible={() => showFromFunction()}
             setCurId={changeCurResourceId}
+            actionTypeEdit={actionTypeEdit}
           />
         ),
       })
@@ -189,6 +196,7 @@ export const DashboardResources: FC = () => {
           <Button
             colorScheme="techPurple"
             onClick={() => {
+              setActionType("new")
               setActionGeneratorVisible(true)
             }}
           >
@@ -205,22 +213,21 @@ export const DashboardResources: FC = () => {
         ) : null}
         {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
       </div>
-      <ActionGenerator
+      <DashboardGenerator
+        actionType={actionType}
         visible={actionGeneratorVisible}
-        createNewWithoutVerify
+        resourceId={curResourceId}
         onClose={() => {
-          Message.success(t("dashboard.resources.create_success"))
           setActionGeneratorVisible(false)
         }}
-      />
-      <ResourceForm
-        visible={formVisible}
-        actionType="edit"
-        resourceId={curResourceId}
-        onCancel={() => {
-          setFormVisible(false)
+        onSuccess={(type: ActionType) => {
+          if (type === "new") {
+            Message.success(t("dashboard.resources.create_success"))
+          } else if (type === "edit") {
+            Message.success(t("dashboard.resources.edit_success"))
+          }
+          setActionGeneratorVisible(false)
         }}
-        withoutBack
       />
     </>
   )

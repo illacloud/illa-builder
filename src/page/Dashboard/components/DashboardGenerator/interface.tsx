@@ -4,10 +4,19 @@ export interface ActionInfo extends ActionTypeInfo {
   resourceId?: string
 }
 
-export interface ActionGeneratorProps {
+export type ActionType = "edit" | "new"
+
+export interface DashboardGeneratorProps {
   visible: boolean
+  actionType: ActionType
+  resourceId?: string
   onClose: () => void
   onAddAction?: (info: ActionInfo) => void
+  onSuccess: (type: ActionType) => void
 }
 
-export type ActionGeneratorSteps = "type" | "resource" | "resource-create"
+export type DashboardGeneratorSteps =
+  | "type"
+  | "resource"
+  | "resource-create"
+  | "edit"
