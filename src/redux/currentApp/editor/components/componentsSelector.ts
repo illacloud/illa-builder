@@ -5,9 +5,9 @@ import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
 
 export function searchDsl(
   rootNode: ComponentNode | null,
-  findDisplayName: string,
+  findDisplayName: string | null,
 ): ComponentNode | null {
-  if (rootNode == null) {
+  if (rootNode == null || findDisplayName == null) {
     return null
   }
   const queue = [rootNode]

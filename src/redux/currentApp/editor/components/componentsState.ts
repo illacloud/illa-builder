@@ -48,6 +48,11 @@ export const ComponentsInitialState: ComponentsState = {
   } as ComponentNode,
 }
 
+export interface deleteComponentNodePayload {
+  displayName: string
+  parentDisplayName: string
+}
+
 export interface updateComponentPropsPayload {
   displayName: string
   newProps: Record<string, any>

@@ -9,6 +9,7 @@ import {
   updateSelectedComponent,
   updateSelectedAction,
   updateShowDot,
+  clearSelectedComponent,
 } from "@/redux/config/configReducer"
 
 const configSlice = createSlice({
@@ -20,6 +21,7 @@ const configSlice = createSlice({
     updateBottomPanel,
     updateShowDot,
     updateSelectedComponent,
+    clearSelectedComponent,
     updateSelectedAction,
     plusScale,
     minusScale,
