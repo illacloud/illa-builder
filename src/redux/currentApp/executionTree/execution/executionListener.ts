@@ -10,6 +10,11 @@ import {
   isDynamicString,
 } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import {
+  ErrorShape,
+  ExecutionState,
+} from "@/redux/currentApp/executionTree/execution/executionState"
+import { setExecutionResultReducer } from "@/redux/currentApp/executionTree/execution/executionReducer"
 
 function exectionAllTree(
   displayNameMap: Record<string, any>,
@@ -17,8 +22,9 @@ function exectionAllTree(
   point: number,
 ) {
   const oldTree = _.cloneDeep(displayNameMap)
+  const errorTree: ExecutionState["error"] = {}
   try {
-    return evalOrder.reduce(
+    const evaledTree = evalOrder.reduce(
       (
         current: Record<string, any>,
         fullPath: string,
@@ -42,6 +48,10 @@ function exectionAllTree(
               current,
             )
           } catch (e) {
+            _.set(errorTree, fullPath, {
+              error: true,
+              errorMessage: (e as Error).message,
+            })
             // TODO: @weichen widget default value
             evaledValue = undefined
           }
@@ -52,9 +62,9 @@ function exectionAllTree(
       },
       oldTree,
     )
+    return { evaledTree, errorTree }
   } catch (e) {
-    console.log(e)
-    return oldTree
+    return { evaledTree: oldTree, errorTree }
   }
 }
 
@@ -66,10 +76,20 @@ async function handleUpdateExecution(
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
   if (!displayNameMapProps) return
   const { order, point } = getEvalOrderSelector(rootState)
-  const exectionTree = exectionAllTree(displayNameMapProps, order, point)
+  const { evaledTree, errorTree } = exectionAllTree(
+    displayNameMapProps,
+    order,
+    point,
+  )
+  console.log("errorTree", errorTree)
   listenerApi.dispatch(
-    executionActions.setExecutionReducer({
-      execution: exectionTree,
+    executionActions.setExecutionResultReducer({
+      result: evaledTree,
+    }),
+  )
+  listenerApi.dispatch(
+    executionActions.setExecutionErrorReducer({
+      error: errorTree,
     }),
   )
 }

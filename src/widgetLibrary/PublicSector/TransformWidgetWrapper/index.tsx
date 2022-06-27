@@ -5,7 +5,7 @@ import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidg
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { EventsInProps } from "@/widgetLibrary/interface"
-import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
 
 const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -18,7 +18,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
 
   const { displayName, type } = componentNode
 
-  const displayNameMapProps = useSelector(getExecution)
+  const displayNameMapProps = useSelector(getExecutionResult)
 
   const { handleUpdateGlobalData, globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
@@ -58,10 +58,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     })
   }
 
-  const realProps = useMemo(
-    () => displayNameMapProps[displayName] ?? {},
-    [displayNameMapProps, displayName],
-  )
+  const realProps = useMemo(() => {
+    return displayNameMapProps[displayName] ?? {}
+  }, [displayNameMapProps, displayName])
+
   if (!type) return null
   const COMP = widgetBuilder(type).widget
   if (!COMP) return null

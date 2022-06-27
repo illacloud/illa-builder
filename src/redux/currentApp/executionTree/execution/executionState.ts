@@ -1,15 +1,24 @@
-export interface propShape {
-  result: any
+export interface ErrorShape {
   error: boolean
-  errorMessage: string
+  errorMessage: string | undefined
 }
 
 export interface ExecutionState {
-  [key: string]: Record<string, propShape>
+  result: {
+    [key: string]: Record<string, any>
+  }
+  error: { [key: string]: Record<string, ErrorShape> }
 }
 
-export interface SetExecutionPayload {
-  execution: ExecutionState
+export interface SetExecutionResultPayload {
+  result: ExecutionState["result"]
 }
 
-export const executionInitialState: ExecutionState = {}
+export interface SetExecutionErrorPayload {
+  error: ExecutionState["error"]
+}
+
+export const executionInitialState: ExecutionState = {
+  result: {},
+  error: {},
+}
