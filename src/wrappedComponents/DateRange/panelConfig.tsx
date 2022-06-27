@@ -1,13 +1,7 @@
-import { HorizontalEnd, HorizontalStart } from "@/wrappedComponents/svg"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
-
-const OptionsStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}
 
 export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -87,19 +81,11 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: (
-              <div style={OptionsStyle}>
-                <HorizontalStart />
-              </div>
-            ),
+            label: <HorizontalStartIcon />,
             value: "left",
           },
           {
-            label: (
-              <div style={OptionsStyle}>
-                <HorizontalEnd />
-              </div>
-            ),
+            label: <HorizontalEndIcon />,
             value: "right",
           },
         ],

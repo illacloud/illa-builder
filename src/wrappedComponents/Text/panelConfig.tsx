@@ -1,19 +1,14 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
-  HorizontalCenter,
-  HorizontalEnd,
-  HorizontalStart,
-  VerticalStart,
-  VerticalCenter,
-  VerticalEnd,
-} from "@/wrappedComponents/svg"
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalStartIcon,
+  VerticalStartIcon,
+  VerticalCenterIcon,
+  VerticalEndIcon,
+} from "@illa-design/react"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 import i18n from "@/i18n/config"
-
-const AlignmentOptionStyle = {
-  display: "flex",
-  alignItems: "center",
-}
 
 export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -63,27 +58,15 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
         options: [
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <HorizontalStart />
-              </div>
-            ),
+            label: <HorizontalStartIcon />,
             value: "start",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <HorizontalCenter />
-              </div>
-            ),
+            label: <HorizontalCenterIcon />,
             value: "center",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <HorizontalEnd />
-              </div>
-            ),
+            label: <HorizontalEndIcon />,
             value: "end",
           },
         ],
@@ -97,27 +80,15 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
         options: [
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <VerticalStart />
-              </div>
-            ),
+            label: <VerticalStartIcon />,
             value: "start",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <VerticalCenter />
-              </div>
-            ),
+            label: <VerticalCenterIcon />,
             value: "center",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <VerticalEnd />
-              </div>
-            ),
+            label: <VerticalEndIcon />,
             value: "end",
           },
         ],

@@ -1,17 +1,11 @@
 import {
-  HorizontalCenter,
-  HorizontalEnd,
-  HorizontalStart,
-} from "@/wrappedComponents/svg"
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalStartIcon,
+} from "@illa-design/react"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
-
-const OptionsStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}
 
 export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -61,27 +55,15 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         attrName: "alignment",
         options: [
           {
-            label: (
-              <div style={OptionsStyle}>
-                <HorizontalStart />
-              </div>
-            ),
+            label: <HorizontalStartIcon />,
             value: "start",
           },
           {
-            label: (
-              <div style={OptionsStyle}>
-                <HorizontalCenter />
-              </div>
-            ),
+            label: <HorizontalCenterIcon />,
             value: "center",
           },
           {
-            label: (
-              <div style={OptionsStyle}>
-                <HorizontalEnd />
-              </div>
-            ),
+            label: <HorizontalEndIcon />,
             value: "end",
           },
         ],

@@ -1,12 +1,6 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { HorizontalStart, HorizontalEnd } from "@/wrappedComponents/svg"
+import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/react"
 import i18n from "@/i18n/config"
-
-const OptionsStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}
 
 export const INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -64,19 +58,11 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: (
-              <div style={OptionsStyle}>
-                <HorizontalStart />
-              </div>
-            ),
+            label: <HorizontalStartIcon />,
             value: "left",
           },
           {
-            label: (
-              <div style={OptionsStyle}>
-                <HorizontalEnd />
-              </div>
-            ),
+            label: <HorizontalEndIcon />,
             value: "right",
           },
         ],

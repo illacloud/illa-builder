@@ -1,18 +1,12 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
-  HorizontalCenter,
-  HorizontalEnd,
-  HorizontalFullWidth,
-  HorizontalStart,
-} from "@/wrappedComponents/svg"
+  HorizontalCenterIcon,
+  HorizontalEndIcon,
+  HorizontalFullIcon,
+  HorizontalStartIcon,
+} from "@illa-design/react"
 import { colorSchemeOptions } from "@/wrappedComponents/colorSchemeOptions"
 import i18n from "@/i18n/config"
-
-const AlignmentOptionStyle = {
-  fontSize: "16px",
-  display: "flex",
-  alignItems: "center",
-}
 
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -96,35 +90,19 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         attrName: "alignment",
         options: [
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <HorizontalStart />
-              </div>
-            ),
+            label: <HorizontalStartIcon />,
             value: "start",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <HorizontalCenter />
-              </div>
-            ),
+            label: <HorizontalCenterIcon />,
             value: "center",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <HorizontalEnd />
-              </div>
-            ),
+            label: <HorizontalEndIcon />,
             value: "end",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                <HorizontalFullWidth />
-              </div>
-            ),
+            label: <HorizontalFullIcon />,
             value: "fullWidth",
           },
         ],
@@ -148,19 +126,11 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         attrName: "variant",
         options: [
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                {i18n.t("editor.inspect.setter_default_value.solid")}
-              </div>
-            ),
+            label: i18n.t("editor.inspect.setter_default_value.solid"),
             value: "fill",
           },
           {
-            label: (
-              <div style={AlignmentOptionStyle}>
-                {i18n.t("editor.inspect.setter_default_value.outline")}
-              </div>
-            ),
+            label: i18n.t("editor.inspect.setter_default_value.outline"),
             value: "outline",
           },
         ],
