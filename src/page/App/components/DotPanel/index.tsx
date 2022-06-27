@@ -37,6 +37,7 @@ import { getDottedLineSquareMap } from "@/redux/currentApp/editor/dottedLineSqua
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { DragResize } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import useWindowSize from "react-use/lib/useWindowSize"
 
 export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
@@ -44,6 +45,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const canvasRef = useRef<HTMLDivElement>(null)
 
   const dispatch = useDispatch()
+  // window
+  const { width, height } = useWindowSize()
 
   // canvas field
   const edgeWidth = 18
@@ -89,7 +92,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setMinBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [bottomPanelState])
+  }, [bottomPanelState, height])
 
   // calculate scale height
   useEffect(() => {
@@ -111,7 +114,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setUnitWidth(finalBlockWidth)
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState])
+  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState, width])
 
   // drag move
   const [, dropTarget] = useDrop<
