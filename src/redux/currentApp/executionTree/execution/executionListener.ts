@@ -3,7 +3,6 @@ import { Unsubscribe } from "@reduxjs/toolkit"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
-import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 
 async function handleUpdateExecution(
   action: ReturnType<typeof dependenciesActions.setDependenciesReducer>,
