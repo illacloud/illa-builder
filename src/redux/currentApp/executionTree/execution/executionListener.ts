@@ -17,7 +17,7 @@ async function handleUpdateExecution(
   }
   if (!displayNameMapProps) return
   // TODO: @weichen wait to eval;
-  const evalOrder = getEvalOrderSelector(rootState)
+  const { order, point } = getEvalOrderSelector(rootState)
   // const inverseDependencies = generateDependencies(displayNameMapProps)
   listenerApi.dispatch(
     executionActions.setExecutionReducer({

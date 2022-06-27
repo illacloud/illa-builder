@@ -18,6 +18,11 @@ export const getEvalOrderSelector = createSelector(
       }
     })
 
-    return toposort(dependencyTree).filter((d) => !!d)
+    const order = toposort(dependencyTree).filter((d) => !!d)
+
+    return {
+      order,
+      point: -1,
+    }
   },
 )
