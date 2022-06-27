@@ -170,9 +170,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           return
         }
         // set dot show
-          if (store.getState().config.showDot == false) {
-            dispatch(configActions.updateShowDot(true))
-          }
+        if (store.getState().config.showDot == false) {
+          dispatch(configActions.updateShowDot(true))
+        }
         const calculateResult = calculateDragPosition(
           item,
           canvasWidth,
@@ -246,12 +246,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         dispatch(configActions.updateShowDot(false))
       },
       hover: (item, monitor) => {
-          if (!monitor.isOver({ shallow: true })) {
-            return
-          }
-          if (store.getState().config.showDot == false) {
-            dispatch(configActions.updateShowDot(true))
-          }
+        if (!monitor.isOver({ shallow: true })) {
+          return
+        }
+        if (store.getState().config.showDot == false) {
+          dispatch(configActions.updateShowDot(true))
+        }
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
         const canvasScrollLeft = canvasRef.current?.scrollLeft

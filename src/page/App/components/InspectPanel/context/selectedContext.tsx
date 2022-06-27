@@ -31,37 +31,37 @@ export const SelectedProvider: FC<Props> = ({
     getComponentNodeBySingleSelected,
   )
 
-    const widgetType = useMemo(
-      () => singleSelectedComponentNode?.type,
-      [singleSelectedComponentNode],
+  const widgetType = useMemo(
+    () => singleSelectedComponentNode?.type,
+    [singleSelectedComponentNode],
+  )
+
+  const widgetDisplayName = useMemo(
+    () => singleSelectedComponentNode?.displayName as string,
+    [singleSelectedComponentNode],
+  )
+
+  const widgetParentDisplayName = useMemo(
+    () => singleSelectedComponentNode?.parentNode as string,
+    [singleSelectedComponentNode],
+  )
+
+  const widgetProps = useMemo(
+    () => singleSelectedComponentNode?.props || {},
+    [singleSelectedComponentNode],
+  )
+
+  const dispatch = useDispatch()
+
+  const handleUpdateDsl = (value: Record<string, any>) => {
+    if (!widgetProps || !widgetDisplayName) return
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName: widgetDisplayName,
+        newProps: value,
+      }),
     )
-
-    const widgetDisplayName = useMemo(
-      () => singleSelectedComponentNode?.displayName as string,
-      [singleSelectedComponentNode],
-    )
-
-    const widgetParentDisplayName = useMemo(
-      () => singleSelectedComponentNode?.parentNode as string,
-      [singleSelectedComponentNode],
-    )
-
-    const widgetProps = useMemo(
-      () => singleSelectedComponentNode?.props || {},
-      [singleSelectedComponentNode],
-    )
-
-    const dispatch = useDispatch()
-
-    const handleUpdateDsl = (value: Record<string, any>) => {
-      if (!widgetProps || !widgetDisplayName) return
-      dispatch(
-        componentsActions.updateComponentPropsReducer({
-          displayName: widgetDisplayName,
-          newProps: value,
-        }),
-      )
-    }
+  }
 
   if (!widgetType || !widgetDisplayName) return <Empty />
 

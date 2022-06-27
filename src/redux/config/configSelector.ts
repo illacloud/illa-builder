@@ -6,27 +6,27 @@ export const isOpenLeftPanel = (state: RootState) => {
 }
 
 export const isOpenBottomPanel = (state: RootState) => {
-    return state.config.openBottomPanel
+  return state.config.openBottomPanel
 }
 
 export const isOpenRightPanel = (state: RootState) => {
-    return state.config.openRightPanel
+  return state.config.openRightPanel
 }
 
 export const isShowDot = (state: RootState) => {
-    return state.config.showDot
+  return state.config.showDot
 }
 
 export const getScale = (state: RootState) => {
-    return state.config.scale
+  return state.config.scale
 }
 
 export const getSelectedComponents = (state: RootState) => {
-    return state.config.selectedComponents
+  return state.config.selectedComponents
 }
 
 export const getSelectedAction = (state: RootState) => {
-    return state.config.selectedAction
+  return state.config.selectedAction
 }
 
 export const isSelected = (state: RootState, displayName: string) => {
