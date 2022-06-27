@@ -1,6 +1,6 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
-import { colorSchemeOptions } from "@/widgetLibrary/colorSchemeOptions"
+import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
 
 export const DATE_PANEL_CONFIG: PanelConfig[] = [

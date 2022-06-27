@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { colorSchemes } from "@/widgetLibrary/colorSchemeOptions"
+import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 
 export const textContainerCss = css`
   display: inline-flex;

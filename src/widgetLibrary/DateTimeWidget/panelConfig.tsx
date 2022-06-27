@@ -1,5 +1,5 @@
 import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
-import { colorSchemeOptions } from "@/widgetLibrary/colorSchemeOptions"
+import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 

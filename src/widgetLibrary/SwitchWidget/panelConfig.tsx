@@ -1,6 +1,6 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/react"
-import { colorSchemeOptions } from "@/widgetLibrary/colorSchemeOptions"
+import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
 
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
