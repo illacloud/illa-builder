@@ -10,11 +10,7 @@ import {
   isDynamicString,
 } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import {
-  ErrorShape,
-  ExecutionState,
-} from "@/redux/currentApp/executionTree/execution/executionState"
-import { setExecutionResultReducer } from "@/redux/currentApp/executionTree/execution/executionReducer"
+import { ExecutionState } from "@/redux/currentApp/executionTree/execution/executionState"
 
 function exectionAllTree(
   displayNameMap: Record<string, any>,
