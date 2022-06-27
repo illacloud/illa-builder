@@ -1,3 +1,5 @@
+import { isString } from "@illa-design/system"
+
 const DISPLAY_NAME_REGEX =
   /^([^\x00-\xff]|[a-zA-Z_$])([^\x00-\xff]|[a-zA-Z0-9_$])*$/
 
@@ -63,6 +65,10 @@ export const isValidUrlScheme = (url: string): boolean => {
     // Tel url to directly open phone app prefilled
     url.startsWith("tel:")
   )
+}
+
+export const isInt = (val: string | number): boolean => {
+  return Number.isInteger(val) || (isString(val) && /^\d+$/.test(val))
 }
 
 export const isValidDisplayName = (displayName: string): boolean =>

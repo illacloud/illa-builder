@@ -153,6 +153,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           componentNode.displayName,
           (newItem) => {
             dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+            dispatch(
+              componentsActions.updateComponentPropsReducer({
+                displayName: newItem.displayName,
+                newProps: newItem.props ?? {},
+              }),
+            )
           },
         )
         // remove dotted line square

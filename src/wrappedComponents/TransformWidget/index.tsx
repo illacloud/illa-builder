@@ -1,9 +1,11 @@
 import { FC, useContext, useEffect, useMemo, useRef } from "react"
+import { useSelector } from "react-redux"
 import { widgetBuilder } from "@/wrappedComponents/WidgetBuilder"
 import { TransformWidgetProps } from "@/wrappedComponents/TransformWidget/interface"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { EventsInProps } from "@/wrappedComponents/interface"
+import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
 
 const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -13,6 +15,10 @@ const getEventScripts = (events: EventsInProps[], eventType: string) => {
 
 export const TransformWidget: FC<TransformWidgetProps> = (props) => {
   const { componentNode, ...otherProps } = props
+
+  const { displayName, type } = componentNode
+
+  const displayNameMapProps = useSelector(getExecution)
 
   const { handleUpdateGlobalData, globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
@@ -52,13 +58,16 @@ export const TransformWidget: FC<TransformWidgetProps> = (props) => {
     })
   }
 
-  const { type, props: componentNodeProps = {} } = componentNode
+  const realProps = useMemo(
+    () => displayNameMapProps[displayName] ?? {},
+    [displayNameMapProps, displayName],
+  )
   if (!type) return null
   const COMP = widgetBuilder(type).widget
   if (!COMP) return null
   return (
     <COMP
-      {...componentNodeProps}
+      {...realProps}
       handleOnChange={handleOnChange}
       handleUpdateDsl={handleUpdateDsl}
       ref={ref}
