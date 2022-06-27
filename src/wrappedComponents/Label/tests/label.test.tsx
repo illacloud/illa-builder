@@ -24,7 +24,3 @@ test("Render with labelAlign and labelPosition", () => {
   expect(labelWrapper).toHaveStyle("text-align: right")
   expect(labelWrapper).toHaveStyle("margin-bottom: 8px")
 })
-
-test("Render with labelWidthUnit", () => {
-  //  wait to do id
-})

@@ -1,15 +1,15 @@
-import { FC, useMemo } from "react"
+import { useMemo, forwardRef } from "react"
 import LabelProps from "./interface"
 import {
   applyLabelStyle,
   labelCaptionCss,
   labelRequiredCss,
-  labelTitleCss,
+  applyLabelTitleStyle,
 } from "./styles"
 
-const Label: FC<LabelProps> = (props) => {
+const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
   const {
-    label = "Label",
+    label,
     labelAlign = "left",
     labelCaption,
     labelPosition = "left",
@@ -17,24 +17,26 @@ const Label: FC<LabelProps> = (props) => {
     labelWidthUnit = "%",
     required,
     hidden,
+    hasTooltip = false,
+    ...rest
   } = props
 
   const renderLabelTitleRequired = useMemo(() => {
     return required ? <span css={labelRequiredCss}>*</span> : null
-  }, [])
+  }, [required])
 
   const renderLabelTitle = useMemo(() => {
     return (
-      <span css={labelTitleCss}>
+      <span css={applyLabelTitleStyle(hasTooltip)}>
         {label}
         {renderLabelTitleRequired}
       </span>
     )
-  }, [label, renderLabelTitleRequired])
+  }, [label, renderLabelTitleRequired, hasTooltip])
 
   const renderLabelCaption = useMemo(() => {
     return labelCaption ? <div css={labelCaptionCss}>{labelCaption}</div> : null
-  }, [])
+  }, [labelCaption])
 
   const formatLabelWidth = useMemo(() => {
     if (labelWidthUnit === "%" || labelWidthUnit === "px") {
@@ -46,11 +48,15 @@ const Label: FC<LabelProps> = (props) => {
   }, [labelWidthUnit, labelWidth])
 
   return !hidden && label ? (
-    <label css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}>
+    <label
+      css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}
+      ref={ref}
+      {...rest}
+    >
       {renderLabelTitle}
       {renderLabelCaption}
     </label>
   ) : null
-}
+})
 
 export default Label

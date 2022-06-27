@@ -1,7 +1,580 @@
 {
   "deploy": "发布",
+  "preview": "预览",
+  "edit": "编辑",
   "title": "欢迎来到艾拉云",
   "description": {
     "part1": "这是一个示例。"
+  },
+  "apps": "项目",
+  "allApps": "所有项目",
+  "resources": "资源",
+  "create_new": "创建",
+  "create_new_app": "创建项目",
+  "share": "分享",
+  "rename": "重命名",
+  "duplicate": "复制",
+  "network_error": "网络异常",
+  "create_fail": "创建失败",
+  "remove_fail": "删除失败",
+  "retry": "重试",
+  "btn": {
+    "choose_file": "Choose a file"
+  },
+  "user": {
+    "sign_up": {
+      "title": "注册",
+      "fields": {
+        "username": "用户名",
+        "email": "邮箱",
+        "verify": "验证码",
+        "password": "密码"
+      },
+      "actions": {
+        "send": "获取验证码",
+        "create": "创建账户"
+      },
+      "description": {
+        "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
+        "subscribe": "订阅ILLA的动态"
+      },
+      "tips": {
+        "success": "登录成功",
+        "fail": "登录失败",
+        "verify": "验证码已发送"
+      },
+      "placeholder": {
+        "username": "请输入用户名",
+        "email": "请输入邮箱",
+        "verify": "请输入验证码",
+        "password": "请输入密码（6-20个字符）"
+      },
+      "error_message": {
+        "username": {
+          "require": "用户名不能为空",
+          "length": "用户名须为3～15个字符"
+        },
+        "email": {
+          "require": "邮箱不能为空",
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱已注册，请登录"
+        },
+        "password": {
+          "require": "密码不能为空",
+          "length": "密码须为6～20个字符"
+        },
+        "verify": {
+          "require": "请输入验证码",
+          "invalid": "验证码错误",
+          "expired": "验证码已过期"
+        }
+      }
+    },
+    "sign_in": {
+      "title": "欢迎回来",
+      "fields": {
+        "email": "邮箱",
+        "password": "密码"
+      },
+      "actions": {
+        "login": "登录"
+      },
+      "description": {
+        "register": "新用户？<0>注册账号</0>",
+        "forgot_password": "忘记密码?",
+        "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>"
+      },
+      "tips": {
+        "success": "注册成功",
+        "fail": "注册失败"
+      },
+      "placeholder": {
+        "email": "请输入邮箱",
+        "password": "请输入密码（6-20个字符）"
+      },
+      "error_message": {
+        "email": {
+          "require": "邮箱不能为空",
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱未注册"
+        },
+        "password": {
+          "require": "密码不能为空",
+          "locked": "密码输错超过5次，账户将被锁定1小时",
+          "incorrect": "请输入正确的账号密码",
+          "length": "密码须为6～20个字符"
+        }
+      }
+    },
+    "forgot_password": {
+      "title": "重置密码",
+      "fields": {
+        "email": "邮箱",
+        "password": "新密码",
+        "verify": "验证码"
+      },
+      "actions": {
+        "send": "获取验证码",
+        "reset": "重置"
+      },
+      "tips": {
+        "success": "重置密码成功",
+        "fail": "重置密码失败",
+        "verify": "验证码已发送"
+      },
+      "placeholder": {
+        "email": "请输入邮箱",
+        "verify": "请输入验证码",
+        "password": "请输入密码（6-20个字符）"
+      },
+      "error_message": {
+        "email": {
+          "require": "邮箱不能为空",
+          "invalid_pattern": "邮箱格式不正确",
+          "registered": "此邮箱未注册"
+        },
+        "verify": {
+          "require": "请输入验证码",
+          "invalid": "验证码错误",
+          "expired": "验证码已过期"
+        },
+        "password": {
+          "require": "密码不能为空",
+          "length": "密码须为6～20个字符"
+        }
+      }
+    }
+  },
+  "editor": {
+    "action": {
+      "type": {
+        "database": "Databases",
+        "api": "Apis",
+        "js_transformer": "Javascript Transformer"
+      },
+      "action_list": {
+        "title": "Action List",
+        "placeholder": {
+          "search": "search"
+        },
+        "btn": {
+          "new": "new",
+          "close": "close"
+        },
+        "menu": {
+          "resource_action": "Resource action",
+          "javascript_transformer": "JavaScript transformer"
+        },
+        "contextMenu": {
+          "delete": "删除",
+          "duplicate": "复制"
+        },
+        "tips": {
+          "not_found": "Sorry, No Search result",
+          "empty": "Add a action to begin working with data from a connected resource."
+        },
+        "message": {
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
+        },
+        "action_generator": {
+          "selector": {
+            "title": "Select action type"
+          }
+        }
+      },
+      "panel": {
+        "option": {
+          "trigger": {
+            "manually": "手动触发",
+            "on_change": "自动触发"
+          },
+          "resource": {
+            "new": "新家资源",
+            "rest_query": "RESTQuery(restapi)"
+          }
+        },
+        "btn": {
+          "run": "运行",
+          "save_and_run": "保存&运行",
+          "disable": "禁用",
+          "enable": "使用",
+          "new": "新增"
+        },
+        "menu": {
+          "more": {
+            "delete": "删除",
+            "duplicate": "复制"
+          }
+        },
+        "label": {
+          "resource": "Resource",
+          "transformer": "转换器",
+          "success": "成功",
+          "failure": "失败",
+          "event_handler": "Event Handler"
+        },
+        "tips": {
+          "transformer": "Enable transformers to transform the result of the query to a different format."
+        }
+      },
+      "form": {
+        "required": "这是必填项",
+        "title": {
+          "select": "Select Resource Type",
+          "database": "DATABASES",
+          "api": "APIS",
+          "configure": "配置 {{name}}"
+        },
+        "btn": {
+          "back": "后退",
+          "test_connection": "测试连接",
+          "create_resource": "创建资源",
+          "save_changes": "保存修改"
+        },
+        "validate": {
+          "required": "{name} is required"
+        }
+      },
+      "resource": {
+        "transformer": {
+          "placeholder": {
+            "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
+          },
+          "tip": {
+            "external_reference": "您可以创建对已定义变量的外部引用。 例如，{{ transformer2.value }}"
+          }
+        },
+        "js_transformer": {
+          "name": "Transformer"
+        },
+        "label": {
+          "comming_soon": "Comming Soon"
+        },
+        "my_sql": {
+          "name": "MySQL",
+          "label": {
+            "name": "名称",
+            "hostname_port": "主机/端口",
+            "database": "数据库名称",
+            "username_password": "用户名/密码",
+            "connect_type": "Connect Type",
+            "connect_over_ssh": "通过 SSH 连接",
+            "ssh_hostname_port": "SSH 主机名/端口",
+            "ssh_credentials": "SSH 凭证",
+            "private_key": "私钥",
+            "ssh_passphrase": "SSH 密码",
+            "ssl_options": "SSL 选项",
+            "server_root_certificate": "服务器根证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书"
+          },
+          "tip": {
+            "username_password": "Credentials will be encrypted & stored securely on our servers.",
+            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "connect_over_ssh": "用于连接到专用网络",
+            "ssl_options": "SSL is used when available",
+            "ssh_passphrase": "used if provided"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "主机名",
+            "database": "acme_production",
+            "username": "用户名",
+            "password": "密码",
+            "ssh_hostname_port": "e.g.localhost",
+            "ssh_credentials": "e.g.ec2-user",
+            "private_key": "e.g.path/to/root.crt",
+            "server_root_certificate": "e.g.path/to/root.crt",
+            "client_key": "e.g.path/to/root.crt",
+            "client_certificate": "e.g.path/to/root.crt"
+          }
+        },
+        "rest_api": {
+          "name": "REST API",
+          "label": {
+            "name": "名称",
+            "action_type": "请求方法",
+            "url_parameters": "URL参数",
+            "headers": "头部字段",
+            "cookies": "Cookies",
+            "body": "载荷",
+            "extra_body_values": "载荷",
+            "list_of_cookies_to_forward": "要转发的 cookie 列表",
+            "forward_all_cookies": "转发所有Cookies",
+            "base_url": "基础URL",
+            "authentication": "API认证",
+            "basic_auth_username": "基础认证用户名",
+            "basic_auth_password": "基础认证密码",
+            "configure_oauth2": "配置OAuth 2.0",
+            "use_client_credentials_auth": "使用客户端凭据身份验证",
+            "oauth_callback_url": "OAuth回调URL",
+            "copy_url_to_application": "复制URL",
+            "share_oauth2_credentials_between_users": "在用户之间共享 OAuth2.0 凭据",
+            "authorization_url": "授权网址",
+            "access_token_url": "访问令牌",
+            "client_id": "客户编号",
+            "client_secret": "客户密码",
+            "scopes": "范围（以空格分隔）",
+            "audience": "观众",
+            "access_token": "Access Token",
+            "refresh_token": "Refresh Token",
+            "access_token_lifespan": "Access Token lifespan(optiinal)",
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+          },
+          "tip": {
+            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "name": "The name for resource when creating queries in the ILLA.",
+            "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
+            "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "action_url_path": "api/v2/endpoint.json",
+            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "username": "用户名",
+            "password": "密码",
+            "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
+            "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
+            "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
+            "access_token_lifespan": "Token Lifespan in seconds"
+          },
+          "option": {
+            "authentication": {
+              "basicAuth": "基础认证"
+            }
+          }
+        },
+        "postgres": {
+          "name": "Postgres"
+        },
+        "redis": {
+          "name": "Redis"
+        },
+        "mongo_db": {
+          "name": "MongoDB"
+        }
+      },
+      "result": {
+        "title": {
+          "success": "Query ran successfully",
+          "error": "Query ran fail",
+          "table": "Table",
+          "json": "JSON",
+          "response": "Response",
+          "api_request": "Api Request"
+        }
+      }
+    },
+    "widget_picker": {
+      "tab_title": "Insert",
+      "search_placeholder": "search",
+      "sessions": {
+        "commonly": "Commonly components",
+        "inputs": "Inputs",
+        "selects": "Select inputs",
+        "calendar": "Calendar inputs",
+        "presentation": "Presentation",
+        "data": "Data",
+        "container": "Container and form",
+        "navigation": "Navigation"
+      }
+    },
+    "inspect": {
+      "tab_title": "Inspect",
+      "unselected_tip1": "No components selected.",
+      "unselected_tip2": "Click on a component to select it.",
+      "setter_group": {
+        "basic": "BASIC",
+        "label": "LABEL",
+        "adornments": "ADORNMENTS",
+        "interaction": "INTERACTION",
+        "layout": "LAYOUT",
+        "style": "STYLE",
+        "validation": "VALIDATION",
+        "options": "OPTIONS"
+      },
+      "setter_label": {
+        "text": "Text",
+        "type": "Type",
+        "submit_form": "Submit form",
+        "loading": "Loading",
+        "disabled": "Disabled",
+        "tooltip": "Tooltip",
+        "align": "Align",
+        "hidden": "Hidden",
+        "variant": "Variant",
+        "color": "Color",
+        "theme_color": "Theme color",
+        "default_value": "Default value",
+        "format": "Format",
+        "placeholder": "Placeholder",
+        "max_date": "Max date",
+        "min_date": "Min date",
+        "label": "Label",
+        "caption": "Caption",
+        "label_position": "Position",
+        "label_alignment": "Alignment",
+        "label_width": "Width(%)",
+        "read_only": "Read only",
+        "show_clear_button": "Show clear button",
+        "required_field": "Required field",
+        "custom_rule": "Custom rule",
+        "hide_validation_message": "Hide validation message",
+        "start_placeholder": "Start placeholder",
+        "end_placeholder": "End placeholder",
+        "image_source": "Image source",
+        "alt_text": "Alt text",
+        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "img_height": "Height",
+        "img_width": "Width",
+        "radius": "Radius",
+        "show_character_count": "Show character count",
+        "prefix_text": "Prefix text",
+        "suffix_text": "Suffix text",
+        "pattern": "Pattern",
+        "regex": "Regex",
+        "max_length": "Max length",
+        "min_length": "Min Length",
+        "data_sources": "Data sources",
+        "mapped_option": "Mapped Option",
+        "value": "Value",
+        "horizontal_alignment": "Horizontal alignment",
+        "vertical_alignment": "Vertical alignment",
+        "links_color": "Links",
+        "background_color": "Background",
+        "icon": "Icon",
+        "max_count": "Max count",
+        "allow_half": "Allow half",
+        "allow_clear": "Allow clear",
+        "time_format": "Time format",
+        "step_size": "Step size",
+        "hide_value_label": "Hide value label",
+        "styles": "Styles",
+        "trail_color": "Trail color",
+        "stroke_width": "Stroke width",
+        "decimal_place": "Decimal place",
+        "minimum": "Minimum",
+        "maximum": "Maximum",
+        "thousand_separator": "Thousand separator",
+        "items": "Items",
+        "direction": "Direction",
+        "pending": "Pending",
+        "event_handler": "Event handler",
+        "event": "Event",
+        "action": "Action",
+        "trigger_query": "Trigger query",
+        "control_component": "Control component",
+        "run_script": "Run script",
+        "go_to_url": "Go to URL",
+        "show_notification": "Show notification",
+        "set_temporary_state": "Set temporary state",
+        "text_align": "Text align",
+        "text_size": "Text size"
+      },
+      "setter_default_value": {
+        "solid": "Solid",
+        "outline": "Outline"
+      }
+    }
+  },
+  "widget": {
+    "text": {
+      "name": "Text",
+      "default_value": "This is a text"
+    },
+    "button": {
+      "name": "Button",
+      "default_text": "Button"
+    },
+    "date": {
+      "name": "Date"
+    },
+    "date_range": {
+      "name": "Date range"
+    },
+    "image": {
+      "name": "Image"
+    },
+    "input": {
+      "name": "Input"
+    },
+    "radio_group": {
+      "name": "Radio group"
+    },
+    "select": {
+      "name": "Select"
+    },
+    "switch": {
+      "name": "Switch"
+    },
+    "rate": {
+      "name": "Rate"
+    },
+    "date_time": {
+      "name": "Datetime"
+    },
+    "circle_progress": {
+      "name": "Circle Progress"
+    },
+    "bar_progress": {
+      "name": "Bar Progress"
+    },
+    "divider_progress": {
+      "name": "Divider"
+    }
+  },
+  "Setting": "设置",
+  "Logout": "退出登录",
+  "link_copied": "链接已复制",
+  "dashboard": {
+    "common": {
+      "delete_title": "确认",
+      "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
+      "delete_cancel_text": "取消",
+      "delete_ok_text": "删除",
+      "delete": "移到回收站"
+    },
+    "app": {
+      "create_app": "创建App",
+      "duplicate_fail": "复制失败",
+      "rename_fail": "重命名失败",
+      "duplicate_placeholder": "请输入项目名称",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败",
+      "name_empty": "命名不能为空"
+    },
+    "resources": {
+      "table_name": "资源名",
+      "table_type": "数据库类型",
+      "table_dbname": "数据库名",
+      "table_ctime": "创建时间",
+      "trash_success": "删除成功",
+      "trash_failure": "删除失败"
+    }
+  },
+  "setting": {
+    "account": {
+      "title": "账号",
+      "username": "用户名",
+      "empty_username": "用户名不能为空",
+      "error_username": "用户名须为3～15个字符",
+      "save": "保存",
+      "save_fail": "保存失败"
+    },
+    "password": {
+      "title": "密码",
+      "current_password": "旧密码",
+      "new_password": "新密码",
+      "confirm_password": "确认新密码",
+      "empty_password": "密码不能为空",
+      "error_format_password": "密码须为3～20个字符",
+      "error_match_password": "密码不匹配",
+      "submit_button": "提交"
+    },
+    "other": {
+      "title": "设置",
+      "language": "语言",
+      "save": "保存"
+    }
   }
 }

@@ -8,9 +8,9 @@ test("Text renders correctly", () => {
 })
 
 test("Text renders with textColor", () => {
-  render(<Text value="hello builder" textColor="#ffb3b3" />)
+  render(<Text value="hello builder" textColor="purple" />)
   expect(screen.getByText("hello builder")).toHaveStyle({
-    color: "rgb(255, 179, 179)",
+    color: "#833fdf",
   })
 })
 
@@ -19,7 +19,7 @@ test("Text renders with markdown", () => {
     <Text
       value="**hello builder**<https://github.com/illa-family/illa-builder>"
       disableMarkdown={true}
-      linkColor="#ffb3b3"
+      linkColor="purple"
     />,
   )
   expect(screen.getByText("hello builder")).toHaveStyle({
@@ -28,22 +28,22 @@ test("Text renders with markdown", () => {
   expect(
     screen.getByText("https://github.com/illa-family/illa-builder"),
   ).toHaveStyle({
-    color: "rgb(255, 179, 179)",
+    color: "#833fdf",
   })
 })
 
 test("Text renders with align", () => {
   render(
     <div>
-      <Text value="left-top" horizontalAlign="start" verticalAlign="top" />
+      <Text value="left-top" horizontalAlign="start" verticalAlign="start" />
       <Text value="center" horizontalAlign="center" verticalAlign="center" />
-      <Text value="right-bottom" horizontalAlign="end" verticalAlign="bottom" />
+      <Text value="right-bottom" horizontalAlign="end" verticalAlign="end" />
     </div>,
   )
 
   expect(screen.getByText("left-top").parentElement).toHaveStyle({
     "justify-content": "start",
-    "align-items": "top",
+    "align-items": "start",
   })
   expect(screen.getByText("center").parentElement).toHaveStyle({
     "justify-content": "center",
@@ -51,6 +51,6 @@ test("Text renders with align", () => {
   })
   expect(screen.getByText("right-bottom").parentElement).toHaveStyle({
     "justify-content": "end",
-    "align-items": "bottom",
+    "align-items": "end",
   })
 })

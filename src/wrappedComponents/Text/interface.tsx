@@ -1,15 +1,13 @@
-import { HTMLAttributes } from "react"
-import { SizeProps } from "../interface"
-
 export type HorizontalAlign = "start" | "center" | "end"
-export type VerticalAlign = "top" | "center" | "bottom"
+export type VerticalAlign = "start" | "center" | "end"
+import { TooltipWrapperProps } from "@/wrappedComponents/TooltipWrapper/interface"
 
-export interface TextProps extends HTMLAttributes<HTMLDivElement>, SizeProps {
+export interface TextProps extends Pick<TooltipWrapperProps, "tooltipText"> {
   value?: string
   disableMarkdown?: boolean
   horizontalAlign?: HorizontalAlign
   verticalAlign?: VerticalAlign
-  backgroundColor?: string
-  textColor?: string
-  linkColor?: string
+  backgroundColor?: string // TODO: add colorScheme type
+  textColor?: string // TODO: add colorScheme type
+  linkColor?: string // TODO: add colorScheme type
 }

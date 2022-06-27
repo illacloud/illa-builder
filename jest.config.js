@@ -3,6 +3,7 @@ module.exports = {
   coverageDirectory: "./jest-coverage/",
   coverageReporters: ["lcov"],
   collectCoverage: true,
+  coverageProvider: "v8",
   collectCoverageFrom: [
     "./src/**/*.(ts|tsx)",
     "!./src/**/*.test.(ts|tsx)",
@@ -17,11 +18,14 @@ module.exports = {
   ],
   moduleNameMapper: {
     "^react($|/.+)": "<rootDir>/node_modules/react$1", // makes sure all React imports are running off of the one in this package.
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@assets/(.*)$": "<rootDir>/src/assets/$1",
   },
   roots: ["./src"],
   globals: {
     "ts-jest": {
       tsconfig: "tsconfig.json",
+      useESM: true,
     },
   },
   preset: "ts-jest",

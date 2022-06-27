@@ -24,6 +24,7 @@ packages/*/tsconfig.tsbuildinfo
 tsconfig.tsbuildinfo
 .next
 .idea
+dist
 
 # Local Netlify folder
 .netlify
@@ -90,8 +91,8 @@ typings/
 *.tgz
 
 # dotenv environment variables file
-.env
-.env.*
+.env.*.local
+.env.local
 
 # Mac files
 .DS_Store

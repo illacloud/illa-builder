@@ -1,5 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { LabelAlignType, LabelPositionType } from "./interface"
 
 const baseLabelCss = css`
   display: block;
@@ -9,9 +10,18 @@ const baseLabelCss = css`
 `
 
 function applyLeftLabelStyle(
-  alignment: "left" | "right",
+  position: "left" | "right",
+  alignment: LabelAlignType,
   width?: string,
 ): SerializedStyles {
+  const isOnLeft = position === "left"
+  const marginCss = isOnLeft
+    ? css`
+        margin-right: 8px;
+      `
+    : css`
+        margin-left: 8px;
+      `
   return css`
     ${baseLabelCss};
     width: ${width};
@@ -19,7 +29,7 @@ function applyLeftLabelStyle(
     flex: 0 1 ${width};
     align-self: center;
     text-align: ${alignment};
-    margin-right: 8px;
+    ${marginCss}
   `
 }
 
@@ -33,20 +43,28 @@ function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
 }
 
 export function applyLabelStyle(
-  labelPosition: "left" | "top",
-  alignment: "left" | "right",
+  position: LabelPositionType,
+  alignment: LabelAlignType,
   width?: string,
 ): SerializedStyles {
-  if (labelPosition === "top") {
+  if (position === "top") {
     return applyTopLabelStyle(alignment)
   } else {
-    return applyLeftLabelStyle(alignment, width)
+    return applyLeftLabelStyle(position, alignment, width)
   }
 }
 
-export const labelTitleCss = css`
-  color: ${globalColor(`--${illaPrefix}-gray-03`)};
-`
+export const applyLabelTitleStyle = (hasTooltip: boolean) => {
+  const borderCss = hasTooltip
+    ? css`
+        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+      `
+    : css``
+  return css`
+    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    ${borderCss}
+  `
+}
 
 export const labelCaptionCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-04`)};
