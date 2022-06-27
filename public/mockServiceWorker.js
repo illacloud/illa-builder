@@ -8,15 +8,15 @@
  * - Please do NOT serve this file on production.
  */
 
-const INTEGRITY_CHECKSUM = '02f4ad4a2797f85668baf196e553d929'
-const bypassHeaderName = 'x-msw-bypass'
+const INTEGRITY_CHECKSUM = "02f4ad4a2797f85668baf196e553d929"
+const bypassHeaderName = "x-msw-bypass"
 const activeClientIds = new Set()
 
-self.addEventListener('install', function () {
+self.addEventListener("install", function () {
   return self.skipWaiting()
 })
 
-self.addEventListener('activate', async function (event) {
+self.addEventListener("activate", async function (event) {
   return self.clients.claim()
 })
 
@@ -268,7 +268,7 @@ self.addEventListener("fetch", function (event) {
   const requestId = uuidv4()
 
   return event.respondWith(
-    handleRequest(event, requestId).catch(;(error) => {
+    handleRequest(event, requestId).catch((error) => {
       if (error.name === "NetworkError") {
         console.warn(
           '[MSW] Successfully emulated a network error for the "%s %s" request.',
@@ -330,9 +330,9 @@ function respondWithMock(clientMessage) {
 }
 
 function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     const r = (Math.random() * 16) | 0
-    const v = c == 'x' ? r : (r & 0x3) | 0x8
+    const v = c == "x" ? r : (r & 0x3) | 0x8
     return v.toString(16)
   })
 }
