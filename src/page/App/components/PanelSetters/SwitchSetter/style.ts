@@ -29,6 +29,7 @@ export const applyCustomIconStyle = (
     ${selectedStyle};
     width: 16px;
     height: 16px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
