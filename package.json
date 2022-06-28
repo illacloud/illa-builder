@@ -34,6 +34,7 @@
     "framer-motion": "^6.3.0",
     "i18next": "^21.6.16",
     "immer": "^9.0.14",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",

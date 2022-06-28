@@ -1,5 +1,5 @@
-import { WidgetCardInfo } from "@/wrappedComponents/interface"
-import { WidgetTypeList } from "@/wrappedComponents/WidgetBuilder"
+import { WidgetCardInfo } from "@/widgetLibrary/interface"
+import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateComponentNodeDisplayName"
 

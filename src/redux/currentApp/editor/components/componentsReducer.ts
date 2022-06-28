@@ -95,6 +95,6 @@ export const updateComponentPropsReducer: CaseReducer<
   })
   node.props = {
     ...newNodeProps,
-    dynamicStrings: dynamicStringList,
+    $dynamicStrings: dynamicStringList,
   }
 }

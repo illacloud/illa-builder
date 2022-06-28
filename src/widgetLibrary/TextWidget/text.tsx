@@ -1,0 +1,60 @@
+import { forwardRef } from "react"
+import { css } from "@emotion/react"
+import MarkdownView, { ShowdownExtension } from "react-showdown"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { TextProps } from "./interface"
+import { applyTextCss, textContainerCss } from "./style"
+
+const transLink: ShowdownExtension = {
+  type: "output",
+  regex: new RegExp(`<a href="(.*)"></a>`, "g"),
+  replace: `<a  href='$1' >$1</a>`,
+}
+
+export const Text = forwardRef<any, TextProps>((props, ref) => {
+  const {
+    value,
+    disableMarkdown,
+    horizontalAlign,
+    verticalAlign,
+    linkColor,
+    backgroundColor = "transparent",
+    textColor,
+    tooltipText,
+  } = props
+
+  const alignCss = css`
+    justify-content: ${horizontalAlign};
+    align-items: ${verticalAlign};
+  `
+
+  return (
+    <TooltipWrapper
+      tooltipText={tooltipText}
+      position="tl"
+      disabled={!tooltipText}
+    >
+      <div css={css(textContainerCss, alignCss)}>
+        {disableMarkdown ? (
+          <MarkdownView
+            css={css`
+              ${applyTextCss(
+                textColor,
+                linkColor,
+                backgroundColor,
+              )}, ${alignCss}
+            `}
+            markdown={value ?? ""}
+            extensions={[transLink]}
+          />
+        ) : (
+          <div css={applyTextCss(textColor)}>{value}</div>
+        )}
+      </div>
+    </TooltipWrapper>
+  )
+})
+
+Text.displayName = "TextWidget"
+
+export const TextWidget = Text

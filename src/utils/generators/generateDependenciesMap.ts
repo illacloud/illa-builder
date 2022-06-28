@@ -72,7 +72,7 @@ export const generateDependencies = (
   const allKeys = getAllPaths(displayNameMapProps)
   Object.keys(displayNameMapProps).forEach((displayName) => {
     const widgetProps = displayNameMapProps[displayName]
-    const dynamicStrings: string[] = widgetProps.dynamicStrings ?? []
+    const dynamicStrings: string[] = widgetProps.$dynamicStrings ?? []
     if (dynamicStrings.length) {
       dynamicStrings.forEach((attrName) => {
         const originValue = _.get(widgetProps, attrName)
