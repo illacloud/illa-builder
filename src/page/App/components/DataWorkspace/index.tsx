@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useState, useCallback, useRef } from "react"
+import { FC, HTMLAttributes, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { WorkSpaceItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceItem"
 import {
@@ -12,9 +12,14 @@ import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { splitLineStyle } from "./style"
 import {
   actionListTransformer,
-  componentListTransformer,
+  executionListTransformer,
   globalInfoTransformer,
 } from "./utils"
+import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import {
+  getSelectedAction,
+  getSelectedComponentsDisplayName,
+} from "@/redux/config/configSelector"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -24,7 +29,8 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const actionList = useSelector(selectAllActionItem)
   const _actionList = actionListTransformer(actionList)
   const root = useSelector(getCanvas)
-  const _componentList = componentListTransformer(root!)
+  const execution = useSelector(getWidgetExecutionResult)
+  const _componentList = executionListTransformer(execution)
   const userInfo = useSelector(getCurrentUser)
   const builderInfo = useSelector(getBuilderInfo)
   const globalInfoList = [
@@ -41,11 +47,16 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   ]
   const _globalInfoList = globalInfoTransformer(globalInfoList)
 
-  const handleComponentSelect = (selectedKeys: string[]) => {
-    const selectedComponent = searchDsl(root, selectedKeys[0])
-    selectedComponent &&
-      dispatch(configActions.updateSelectedComponent([selectedComponent]))
-  }
+  const selectedComponents = useSelector(getSelectedComponentsDisplayName)
+  const selectedAction = useSelector(getSelectedAction)
+  const handleComponentSelect = useCallback(
+    (selectedKeys: string[]) => {
+      const selectedComponent = searchDsl(root, selectedKeys[0])
+      selectedComponent &&
+        dispatch(configActions.updateSelectedComponent([selectedComponent]))
+    },
+    [root],
+  )
 
   const handleActionSelect = (selectedKeys: string[]) => {
     const action = actionList.find((item) => item.actionId === selectedKeys[0])
@@ -57,12 +68,14 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       <WorkSpaceItem
         title={`ACTIONS & TRANSFORMERS (${_actionList.length})`}
         dataList={_actionList}
+        selectedKeys={[selectedAction.actionId]}
         handleSelect={handleActionSelect}
       />
       <div css={splitLineStyle} />
       <WorkSpaceItem
         title={`COMPONENTS (${_componentList.length})`}
         dataList={_componentList}
+        selectedKeys={selectedComponents}
         handleSelect={handleComponentSelect}
       />
       <div css={splitLineStyle} />

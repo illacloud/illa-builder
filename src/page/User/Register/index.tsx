@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation, Trans } from "react-i18next"
+import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"

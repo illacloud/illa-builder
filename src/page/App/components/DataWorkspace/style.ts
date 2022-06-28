@@ -9,7 +9,6 @@ export const splitLineStyle: SerializedStyles = css`
 export const itemNameStyle: SerializedStyles = css`
   font-size: 12px;
   font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const itemNameDescStyle: SerializedStyles = css`

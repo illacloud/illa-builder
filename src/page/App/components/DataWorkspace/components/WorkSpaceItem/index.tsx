@@ -9,7 +9,7 @@ import { WorkSpaceItemProps } from "./interface"
 import { itemTitleStyle } from "./style"
 
 export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
-  const { title, dataList = [], handleSelect } = props
+  const { title, dataList = [], selectedKeys, handleSelect } = props
   const expandedKeys = useSelector(getExpandedKeys)
   const dispatch = useDispatch()
   const handleExpand = (keys: string[]) => {
@@ -27,6 +27,7 @@ export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
       >
         <Tree
           defaultExpandedKeys={expandedKeys}
+          defaultSelectedKeys={selectedKeys}
           treeData={dataList}
           onExpand={handleExpand}
           onSelect={handleSelect}
