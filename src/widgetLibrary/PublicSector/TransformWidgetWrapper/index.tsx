@@ -64,7 +64,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     const calcProps = displayNameMapProps[displayName] ?? {}
     Object.keys(calcProps).forEach((key) => {
       // TODO: weichen move to evalTree
-      if (isObject(calcProps[key])) {
+      if (isObject(calcProps[key] && key !== "styles")) {
         result[key] = JSON.stringify(calcProps[key])
       } else {
         result[key] = calcProps[key]

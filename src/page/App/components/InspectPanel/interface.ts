@@ -55,7 +55,9 @@ export interface PanelFieldGroupConfig {
 
 export type PanelConfig = PanelFieldConfig | PanelFieldGroupConfig
 
-export interface PanelSetterProps extends Omit<PanelFieldConfig, "id"> {}
+export interface PanelSetterProps extends Omit<PanelFieldConfig, "id"> {
+  parentAttrName: string
+}
 
 export interface SelectedPanelProps {
   selectedDisplayNames: string[]

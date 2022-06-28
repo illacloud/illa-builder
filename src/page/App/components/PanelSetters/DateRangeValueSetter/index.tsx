@@ -17,7 +17,7 @@ export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
   }, [panelConfig[START_DATE_KEY], panelConfig[END_DATE_KEY]])
 
   useEffect(() => {
-    handleUpdateDsl({ [attrName]: values })
+    handleUpdateDsl(attrName, values)
   }, [values])
 
   return (
@@ -25,7 +25,6 @@ export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
       <div css={setterContainerStyle}>
         <PanelLabel labelName="Start date" />
         <BaseInput
-          defaultValue={panelConfig[attrName]?.[0]}
           attrName={START_DATE_KEY}
           panelConfig={panelConfig}
           handleUpdateDsl={handleUpdateDsl}
@@ -35,7 +34,6 @@ export const DateRangeValueSetter: FC<DateRangeValueSetterProps> = (props) => {
       <div css={setterContainerStyle}>
         <PanelLabel labelName="End date" />
         <BaseInput
-          defaultValue={panelConfig[attrName]?.[1]}
           attrName={END_DATE_KEY}
           panelConfig={panelConfig}
           handleUpdateDsl={handleUpdateDsl}

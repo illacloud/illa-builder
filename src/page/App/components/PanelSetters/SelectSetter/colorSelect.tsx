@@ -1,4 +1,7 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
+import chroma from "chroma-js"
+import { Trigger } from "@illa-design/trigger"
+import { ColorSelectSetterProps } from "./interface"
 import {
   colorSelectMenuItemWrapperStyle,
   colorSelectMenuWrapperStyle,
@@ -6,27 +9,21 @@ import {
   colorSelectPreviewNameStyle,
   colorSelectWrapperStyle,
 } from "./style"
-import { Trigger } from "@illa-design/trigger"
-import { ColorSelectSetterProps } from "./interface"
-import chroma from "chroma-js"
+
+const renderContent = (color: string = "transparent") => (
+  <>
+    <div css={applyColorSelectPreviewColorStyle(color)} />
+    <div css={colorSelectPreviewNameStyle}>
+      {color !== "transparent"
+        ? chroma(color).hex().toLocaleUpperCase()
+        : color}
+    </div>
+  </>
+)
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
-  const { defaultValue, options, attrName, panelConfig, handleUpdateDsl } =
-    props
+  const { value, options, attrName, handleUpdateDsl } = props
   const [menuVisible, setMenuVisible] = useState(false)
-
-  const renderContent = useCallback((color: string = "transparent") => {
-    return (
-      <>
-        <div css={applyColorSelectPreviewColorStyle(color)} />
-        <div css={colorSelectPreviewNameStyle}>
-          {color !== "transparent"
-            ? chroma(color).hex().toLocaleUpperCase()
-            : color}
-        </div>
-      </>
-    )
-  }, [])
 
   const renderMenuList = useMemo(() => {
     return (
@@ -38,7 +35,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
               css={colorSelectMenuItemWrapperStyle}
               key={key}
               onClick={() => {
-                handleUpdateDsl({ [attrName]: value })
+                handleUpdateDsl(attrName, value)
                 setMenuVisible(false)
               }}
             >
@@ -48,15 +45,12 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
         })}
       </div>
     )
-  }, [renderContent, options, attrName])
+  }, [options, attrName, handleUpdateDsl])
 
   const translateValueToKey = useMemo(() => {
-    const value = panelConfig[attrName]
-    const key = options?.find(
-      (item) => item.value === (value ?? defaultValue),
-    )?.key
+    const key = options?.find((item) => item.value === value)?.key
     return key ?? "transparent"
-  }, [panelConfig, options])
+  }, [value, options])
 
   return (
     <Trigger

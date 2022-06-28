@@ -17,12 +17,16 @@ export const customAndSwitchWrapperStyle = css`
 export const applyCustomIconStyle = (
   isSelected: boolean = false,
 ): SerializedStyles => {
-  const color = isSelected
-    ? globalColor(`--${illaPrefix}-purple-01`)
-    : globalColor(`--${illaPrefix}-grayBlue-06`)
+  const selectedStyle = isSelected
+    ? css`
+        color: ${globalColor(`--${illaPrefix}-purple-01`)};
+      `
+    : css`
+        color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+        margin-right: 10px;
+      `
   return css`
-    margin-right: 10px;
-    color: ${color};
+    ${selectedStyle};
     width: 16px;
     height: 16px;
     display: flex;
