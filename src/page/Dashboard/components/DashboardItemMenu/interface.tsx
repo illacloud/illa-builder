@@ -8,5 +8,5 @@ export interface DashboardResourcesItemMenuProps {
   resourceId: string
   showFormVisible: () => void
   setCurId: (curResourceId: string) => void
-  actionTypeEdit: () => void
+  editActionType: () => void
 }

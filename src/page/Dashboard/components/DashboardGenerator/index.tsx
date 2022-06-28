@@ -12,23 +12,16 @@ import { modalStyle } from "./style"
 
 function onSelectActionType(
   info: ActionTypeInfo,
-  props: DashboardGeneratorProps,
   setStep: (step: DashboardGeneratorSteps) => void,
   setResourceType: (resourceType: string) => void,
 ) {
   const { category, actionType } = info
-  const { onAddAction } = props
 
   switch (category) {
-    case "jsTransformer": {
-      onAddAction?.(info)
-      break
-    }
     case "apis":
     case "databases": {
       // check if has resource, to create if not, to list if has
       setResourceType(actionType)
-      // setStep("resource")
       setStep("resource-create")
       break
     }
@@ -41,7 +34,6 @@ function renderStep(
   step: DashboardGeneratorSteps,
   resourceType: string,
   resourceId: string,
-  props: DashboardGeneratorProps,
   setStep: (step: DashboardGeneratorSteps) => void,
   setResourceType: (resourceType: string) => void,
   onSuccess: (type: ActionType) => void,
@@ -51,8 +43,9 @@ function renderStep(
       return (
         <ActionTypeSelector
           onSelect={(info) => {
-            onSelectActionType(info, props, setStep, setResourceType)
+            onSelectActionType(info, setStep, setResourceType)
           }}
+          resourceOnly
         />
       )
     case "resource-create":
@@ -90,7 +83,6 @@ export const DashboardGenerator: FC<DashboardGeneratorProps> = function (
   const [resourceType, setResourceType] = useState<string>("")
 
   useEffect(() => {
-    // setStep("type")
     switch (actionType) {
       case "new":
         setStep("type")
@@ -115,7 +107,6 @@ export const DashboardGenerator: FC<DashboardGeneratorProps> = function (
         step,
         resourceType,
         resourceId,
-        props,
         setStep,
         setResourceType,
         onSuccess,

@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { Outlet } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import { Loading } from "@illa-design/loading"
 import { CloseIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
@@ -20,9 +21,10 @@ import {
   errorTitleStyle,
   errorDescriptionStyle,
 } from "./style"
-import { t } from "i18next"
 
 export const IllaApp: FC = () => {
+  const { t } = useTranslation()
+
   const [pageState, setPageState] = useState<string>("loading")
   const [retryNum, setRetryNum] = useState<number>(0)
 

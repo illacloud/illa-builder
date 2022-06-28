@@ -554,7 +554,8 @@
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure",
       "create_success": "Create Success!",
-      "edit_success": "Edit Success"
+      "edit_success": "Edit Success",
+      "create_new_title": "Select resource type"
     }
   },
   "setting": {

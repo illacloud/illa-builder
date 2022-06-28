@@ -62,7 +62,7 @@ const List: FC<ActionTypeSelectorListProps> = function (props) {
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = function (
   props,
 ) {
-  const { onSelect } = props
+  const { resourceOnly = false, onSelect } = props
   const { t } = useTranslation()
   const lists = [
     {
@@ -81,11 +81,20 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = function (
       category: "jsTransformer" as const,
     },
   ]
+  if (resourceOnly) {
+    lists.splice(
+      lists.findIndex(
+        (item) => item.title === t("editor.action.type.js_transformer"),
+      ),
+    )
+  }
 
   return (
     <div css={containerStyle}>
       <div css={titleStyle}>
-        {t("editor.action.action_list.action_generator.selector.title")}
+        {resourceOnly
+          ? t("dashboard.resources.create_new_title")
+          : t("editor.action.action_list.action_generator.selector.title")}
       </div>
 
       {lists.map((l) => (

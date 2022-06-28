@@ -62,10 +62,10 @@ const ExtraColComponent: FC<{
   resourceId: string
   showFormVisible: () => void
   setCurId: (curResourceId: string) => void
-  actionTypeEdit: () => void
+  editActionType: () => void
 }> = (props) => {
   const { t } = useTranslation()
-  const { resourceId, showFormVisible, setCurId, actionTypeEdit } = props
+  const { resourceId, showFormVisible, setCurId, editActionType } = props
   return (
     <>
       <Button
@@ -74,7 +74,7 @@ const ExtraColComponent: FC<{
         colorScheme="techPurple"
         onClick={() => {
           setCurId(resourceId)
-          actionTypeEdit()
+          editActionType()
           showFormVisible()
         }}
         title="editButton"
@@ -94,7 +94,7 @@ const ExtraColComponent: FC<{
             resourceId={resourceId}
             setCurId={setCurId}
             showFormVisible={showFormVisible}
-            actionTypeEdit={actionTypeEdit}
+            editActionType={editActionType}
           />
         }
       >
@@ -109,7 +109,8 @@ const ExtraColComponent: FC<{
 }
 
 export const DashboardResources: FC = () => {
-  const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
+  const [dashboardGeneratorVisible, setDashboardGeneratorVisible] =
+    useState(false)
   const [curResourceId, setCurResourceId] = useState<string>("")
   const [actionType, setActionType] = useState<ActionType>("new")
 
@@ -118,12 +119,12 @@ export const DashboardResources: FC = () => {
   const resourcesList: ResourceListState = useSelector(selectAllResource)
 
   const showFromFunction = () => {
-    setActionGeneratorVisible(true)
+    setDashboardGeneratorVisible(true)
   }
   const changeCurResourceId = (curResourceId: string) => {
     setCurResourceId(curResourceId)
   }
-  const actionTypeEdit = () => {
+  const editActionType = () => {
     setActionType("edit")
   }
 
@@ -180,7 +181,7 @@ export const DashboardResources: FC = () => {
             resourceId={item.resourceId}
             showFormVisible={() => showFromFunction()}
             setCurId={changeCurResourceId}
-            actionTypeEdit={actionTypeEdit}
+            editActionType={editActionType}
           />
         ),
       })
@@ -197,7 +198,7 @@ export const DashboardResources: FC = () => {
             colorScheme="techPurple"
             onClick={() => {
               setActionType("new")
-              setActionGeneratorVisible(true)
+              setDashboardGeneratorVisible(true)
             }}
           >
             {t("create_new")}
@@ -215,10 +216,10 @@ export const DashboardResources: FC = () => {
       </div>
       <DashboardGenerator
         actionType={actionType}
-        visible={actionGeneratorVisible}
+        visible={dashboardGeneratorVisible}
         resourceId={curResourceId}
         onClose={() => {
-          setActionGeneratorVisible(false)
+          setDashboardGeneratorVisible(false)
         }}
         onSuccess={(type: ActionType) => {
           if (type === "new") {
@@ -226,7 +227,7 @@ export const DashboardResources: FC = () => {
           } else if (type === "edit") {
             Message.success(t("dashboard.resources.edit_success"))
           }
-          setActionGeneratorVisible(false)
+          setDashboardGeneratorVisible(false)
         }}
       />
     </>

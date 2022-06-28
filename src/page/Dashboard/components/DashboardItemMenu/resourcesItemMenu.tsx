@@ -19,7 +19,7 @@ import { DashboardResourcesItemMenuProps } from "./interface"
 export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
   props,
 ) => {
-  const { resourceId, showFormVisible, setCurId, actionTypeEdit } = props
+  const { resourceId, showFormVisible, setCurId, editActionType } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -36,7 +36,7 @@ export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
           )}
           onClick={() => {
             setCurId(resourceId)
-            actionTypeEdit()
+            editActionType()
             showFormVisible()
           }}
         >

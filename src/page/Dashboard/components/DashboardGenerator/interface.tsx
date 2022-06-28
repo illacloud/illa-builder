@@ -11,7 +11,6 @@ export interface DashboardGeneratorProps {
   actionType: ActionType
   resourceId?: string
   onClose: () => void
-  onAddAction?: (info: ActionInfo) => void
   onSuccess: (type: ActionType) => void
 }
 
