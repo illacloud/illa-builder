@@ -3,6 +3,7 @@ import {
   ExecutionState,
   SetExecutionErrorPayload,
   SetExecutionResultPayload,
+  UpdateExecutionByDisplayNamePayload,
 } from "@/redux/currentApp/executionTree/execution/executionState"
 import { isObject } from "@/utils/typeHelper"
 
@@ -35,4 +36,15 @@ export const setExecutionReducer: CaseReducer<
   const { result, error } = action.payload
   state.result = result
   state.error = error
+}
+
+export const updateExecutionByDisplayNameReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<UpdateExecutionByDisplayNamePayload>
+> = (state, action) => {
+  const { displayName, value } = action.payload
+  state.result[displayName] = {
+    ...state.result[displayName],
+    ...value,
+  }
 }
