@@ -11,6 +11,7 @@ export interface DashboardResource {
   createdBy: string
   lastModifiedBy: string
   createdAt: string
+  updatedAt: string
   lastModifiedAt: string
 }
 

@@ -8,6 +8,7 @@ export interface ResourceFormEditorProps {
   actionType: ActionType
   resourceId?: string
   resourceType?: string
+  ResourceFormEditor?: boolean
   back?: () => void
   onSubmit?: (resourceId: string) => void
 }
