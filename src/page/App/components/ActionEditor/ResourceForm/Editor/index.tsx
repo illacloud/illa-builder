@@ -165,16 +165,18 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         )}
       </div>
       <div css={formFooterStyle}>
-        <Button
-          variant="text"
-          size="medium"
-          colorScheme="grayBlue"
-          type="button"
-          onClick={back}
-        >
-          <PaginationPreIcon css={backIconStyle} />
-          {t("editor.action.form.btn.back")}
-        </Button>
+        {back && (
+          <Button
+            variant="text"
+            size="medium"
+            colorScheme="grayBlue"
+            type="button"
+            onClick={back}
+          >
+            <PaginationPreIcon css={backIconStyle} />
+            {t("editor.action.form.btn.back")}
+          </Button>
+        )}
 
         <div css={formFooterFillingStyle} />
 

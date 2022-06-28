@@ -72,4 +72,7 @@ export const settingItemStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   cursor: pointer;
+  &: hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
 `

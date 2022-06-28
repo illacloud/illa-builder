@@ -16,6 +16,7 @@ async function prepare() {
   if (import.meta.env.DEV) {
     await startMockWorker()
   }
+  await Promise.resolve()
 }
 
 prepare().then(() => {
