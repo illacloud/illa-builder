@@ -7,7 +7,7 @@ export interface TextProps extends Pick<TooltipWrapperProps, "tooltipText"> {
   disableMarkdown?: boolean
   horizontalAlign?: HorizontalAlign
   verticalAlign?: VerticalAlign
-  styles: {
+  styles?: {
     backgroundColor?: string // TODO: add colorScheme type
     textColor?: string // TODO: add colorScheme type
     linkColor?: string // TODO: add colorScheme type
