@@ -12,7 +12,7 @@ import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { splitLineStyle } from "./style"
 import {
   actionListTransformer,
-  executionListTransformer,
+  widgetListTransformer,
   globalInfoTransformer,
 } from "./utils"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
@@ -28,27 +28,28 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const dispatch = useDispatch()
   const actionList = useSelector(selectAllActionItem)
   const _actionList = actionListTransformer(actionList)
-  const root = useSelector(getCanvas)
-  const execution = useSelector(getWidgetExecutionResult)
-  const _componentList = executionListTransformer(execution)
+  const widgetExecution = useSelector(getWidgetExecutionResult)
+  const widgetList = widgetListTransformer(widgetExecution)
   const userInfo = useSelector(getCurrentUser)
   const builderInfo = useSelector(getBuilderInfo)
   const globalInfoList = [
     {
       ...builderInfo,
-      displayName: "builder_info",
-      treeId: "builder_info",
+      displayName: "builderInfo",
+      treeId: "builderInfo",
     },
     {
       ...userInfo,
-      displayName: "current_user",
-      treeId: userInfo?.userId ?? "current_user",
+      displayName: "currentUser",
+      treeId: userInfo?.userId ?? "currentUser",
     },
   ]
   const _globalInfoList = globalInfoTransformer(globalInfoList)
 
   const selectedComponents = useSelector(getSelectedComponentsDisplayName)
   const selectedAction = useSelector(getSelectedAction)
+
+  const root = useSelector(getCanvas)
   const handleComponentSelect = useCallback(
     (selectedKeys: string[]) => {
       const selectedComponent = searchDsl(root, selectedKeys[0])
@@ -73,8 +74,8 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       />
       <div css={splitLineStyle} />
       <WorkSpaceItem
-        title={`COMPONENTS (${_componentList.length})`}
-        dataList={_componentList}
+        title={`COMPONENTS (${widgetList.length})`}
+        dataList={widgetList}
         selectedKeys={selectedComponents}
         handleSelect={handleComponentSelect}
       />

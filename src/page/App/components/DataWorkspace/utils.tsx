@@ -60,9 +60,7 @@ export const actionListTransformer = (list: ActionListState) =>
   return dataList
 }*/
 
-export const executionListTransformer = (
-  execution: ExecutionState["result"],
-) => {
+export const widgetListTransformer = (execution: ExecutionState["result"]) => {
   const dataList: TreeDataType[] = []
   Object.keys(execution).forEach((key) => {
     const childrenArray = dfsTransformer(execution[key], key)
