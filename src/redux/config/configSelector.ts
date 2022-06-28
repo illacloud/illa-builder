@@ -37,6 +37,10 @@ export const isSelected = (state: RootState, displayName: string) => {
   )
 }
 
+export const getExpandedKeys = (state: RootState) => {
+  return state.config.expandedKeys
+}
+
 export const getSelectedComponentsDisplayName = createSelector(
   [getSelectedComponents],
   (selectedComponents) => {

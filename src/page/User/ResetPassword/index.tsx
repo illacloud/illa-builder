@@ -116,6 +116,7 @@ export const ResetPassword: FC = () => {
                   suffix={{
                     render: showCountDown ? (
                       <Countdown
+                        mode="builder"
                         value={Date.now() + 1000 * 60}
                         now={Date.now()}
                         format="ss"

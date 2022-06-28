@@ -65,3 +65,18 @@ export const clearSelectedComponent: CaseReducer<
 > = (state, action) => {
   state.selectedComponents = []
 }
+
+export const setExpandedKey: CaseReducer<
+  ConfigState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  state.expandedKeys = action.payload
+}
+
+export const removeExpandedKey: CaseReducer<
+  ConfigState,
+  PayloadAction<string>
+> = (state, action) => {
+  const index = state.expandedKeys.findIndex((key) => key === action.payload)
+  index > -1 && state.expandedKeys.splice(index)
+}

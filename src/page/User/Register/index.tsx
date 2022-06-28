@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation, Trans } from "react-i18next"
+import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"
@@ -22,7 +22,6 @@ import {
   errorIconStyle,
   checkboxTextStyle,
 } from "@/page/User/style"
-import { TextLink } from "@/page/User/components/TextLink"
 import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
@@ -171,6 +170,7 @@ export const Register: FC = () => {
                     render: showCountDown ? (
                       <Countdown
                         value={Date.now() + 1000 * 60}
+                        mode="builder"
                         now={Date.now()}
                         format="ss"
                         onFinish={() => {
@@ -278,24 +278,15 @@ export const Register: FC = () => {
           />
         </div>
       </section>
-      <section css={gridFormFieldStyle}>
-        <Button
-          colorScheme="techPurple"
-          size="large"
-          buttonRadius="8px"
-          loading={submitLoading}
-          fullWidth
-        >
-          {t("user.sign_up.actions.create")}
-        </Button>
-        <span css={checkboxTextStyle}>
-          <Trans
-            i18nKey="user.sign_up.description.policy"
-            t={t}
-            components={[<TextLink />, <TextLink />]}
-          />
-        </span>
-      </section>
+      <Button
+        colorScheme="techPurple"
+        size="large"
+        buttonRadius="8px"
+        loading={submitLoading}
+        fullWidth
+      >
+        {t("user.sign_up.actions.create")}
+      </Button>
     </form>
   )
 }
