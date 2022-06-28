@@ -32,7 +32,7 @@ export const IllaApp: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const controller = new AbortController()
-    const appList = new Promise((resoleve) => {
+    const appList = new Promise((resolve) => {
       Api.request<DashboardApp[]>(
         {
           url: "/apps",
@@ -43,20 +43,20 @@ export const IllaApp: FC = () => {
           dispatch(
             dashboardAppActions.updateDashboardAppListReducer(response.data),
           )
-          resoleve("success")
+          resolve("success")
         },
         (failure) => {},
         (crash) => {},
         (loading) => {},
         (errorState) => {
           if (errorState) {
-            resoleve("error")
+            resolve("error")
           }
         },
       )
     })
 
-    const resourceList = new Promise((resoleve) => {
+    const resourceList = new Promise((resolve) => {
       Api.request<Resource[]>(
         {
           url: "/resources",
@@ -65,14 +65,14 @@ export const IllaApp: FC = () => {
         },
         (response) => {
           dispatch(resourceActions.addResourceListReducer(response.data))
-          resoleve("success")
+          resolve("success")
         },
         (failure) => {},
         (crash) => {},
         (loading) => {},
         (errorState) => {
           if (errorState) {
-            resoleve("error")
+            resolve("error")
           }
         },
       )

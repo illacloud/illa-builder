@@ -85,6 +85,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = function (
     lists.splice(
       lists.findIndex(
         (item) => item.title === t("editor.action.type.js_transformer"),
+        1,
       ),
     )
   }
