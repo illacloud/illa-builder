@@ -1,5 +1,5 @@
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/react"
 import { HeartIcon, StarIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import i18n from "@/i18n/config"

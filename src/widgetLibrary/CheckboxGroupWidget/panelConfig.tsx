@@ -1,5 +1,5 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/react"
+import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import i18n from "@/i18n/config"
 
 const baseWidgetName = "checkboxGroup"

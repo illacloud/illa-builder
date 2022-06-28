@@ -1,4 +1,3 @@
-import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   HorizontalCenterIcon,
   HorizontalEndIcon,
@@ -6,7 +5,8 @@ import {
   VerticalStartIcon,
   VerticalCenterIcon,
   VerticalEndIcon,
-} from "@illa-design/react"
+} from "@illa-design/icon"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
 

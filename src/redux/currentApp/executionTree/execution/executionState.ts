@@ -1,6 +1,6 @@
 export interface ErrorShape {
   error: boolean
-  errorMessage: string | undefined
+  errorMessage?: string
 }
 
 export interface ExecutionState {
