@@ -64,9 +64,14 @@ export const labelTextStyle = css`
   white-space: pre;
 `
 
-export const itemTextStyle = css`
-  ${labelTextStyle};
+export const connectTextStyle = css`
+  padding-top: 5px;
+  display: flex;
   justify-content: start;
+  font-size: 14px;
+  text-align: right;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  white-space: pre;
 `
 
 export const requiredLabelTextStyle = css`

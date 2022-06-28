@@ -9,6 +9,7 @@ export interface ConfigState {
   scale: number
   selectedComponents: ComponentNode[]
   selectedAction: ActionItem
+  expandedKeys: string[]
 }
 
 export const ConfigInitialState: ConfigState = {
@@ -19,4 +20,5 @@ export const ConfigInitialState: ConfigState = {
   selectedComponents: [],
   selectedAction: { actionId: "", displayName: "", actionType: "" },
   showDot: false,
+  expandedKeys: [],
 }
