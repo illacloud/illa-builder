@@ -29,9 +29,7 @@ function exectionAllTree(
         const { displayName, attributeyPath } =
           getDisplayNameAndAttributeyPath(fullPath)
         const widgetOrAction = current[displayName]
-        console.log("current", JSON.parse(JSON.stringify(current)))
         let widgetOrActionAttribute = _.get(current, fullPath)
-        console.log("widgetOrActionAttribute", widgetOrActionAttribute)
         let evaledValue
         if (point === currentIndex) {
           // TODO: @weichen widget default value
@@ -56,8 +54,6 @@ function exectionAllTree(
         } else {
           evaledValue = widgetOrActionAttribute
         }
-        console.log("fullPath", fullPath)
-        console.log("evaledValue", evaledValue)
         return _.set(current, fullPath, evaledValue)
       },
       oldTree,
