@@ -20,9 +20,8 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
     handleCloseMode()
   }
 
-  // TODO: wait for design to change style
   return (
-    <Menu style={{ width: "200px" }} onClickMenuItem={handleClickMenuItem}>
+    <Menu onClickMenuItem={handleClickMenuItem}>
       <Item title="Duplicate" key="Duplicate" />
       <Item title="Delete" key="Delete" />
     </Menu>
