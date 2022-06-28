@@ -10,8 +10,9 @@ export const setDependenciesReducer: CaseReducer<
   PayloadAction<SetDependenciesActionPayload>
 > = (state, action) => {
   const { dependencies } = action.payload
-  if (!isObject(dependencies)) return
-  Object.keys(dependencies).forEach((key) => {
-    state[key] = dependencies[key]
-  })
+  if (!isObject(dependencies)) {
+    return
+  }
+  state = dependencies
+  return state
 }

@@ -17,7 +17,7 @@ import {
   onePixelStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { TransformWidget } from "@/wrappedComponents/TransformWidget"
+import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
 import { RootState } from "@/store"
@@ -156,7 +156,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           css={applyTransformWidgetStyle(componentNode.verticalResize)}
           ref={dragRef}
         >
-          <TransformWidget componentNode={componentNode} />
+          <TransformWidgetWrapper componentNode={componentNode} />
         </div>
         <div
           className={"handler"}
