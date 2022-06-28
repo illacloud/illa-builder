@@ -14,6 +14,7 @@ export interface DashboardResource {
   updatedAt: string
   lastModifiedAt: string
 }
+
 export interface Resource extends DashboardResource {
   options: MySQLConfigureValues | RESTAPIConfigureValues
 }
