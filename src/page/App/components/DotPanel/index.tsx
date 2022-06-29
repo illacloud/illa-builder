@@ -43,6 +43,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
 
   const canvasRef = useRef<HTMLDivElement>(null)
+  const componentsTreeRef = useRef<HTMLDivElement>(null)
 
   const dispatch = useDispatch()
   // window
@@ -436,11 +437,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   return (
     <div
-      ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
+      ref={mergeRefs(canvasRef, dropTarget, resizeDropTarget)}
       css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
-      onClick={() => {
-        dispatch(configActions.updateSelectedComponent([]))
-      }}
       {...otherProps}
     >
       <canvas
@@ -455,12 +453,21 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />
-      <div css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}>
+      <div
+        ref={componentsTreeRef}
+        css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
+        onClick={(e) => {
+          e.stopPropagation()
+          if (e.target == componentsTreeRef.current) {
+            dispatch(configActions.updateSelectedComponent([]))
+          }
+        }}
+      >
         {componentTree}
       </div>
       <canvas
         id={`${componentNode.displayName}-dragged`}
-        css={applyDotCanvasStyle(edgeWidth, showDot, 3)}
+        css={applyDotCanvasStyle(edgeWidth, showDot, 100)}
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />
