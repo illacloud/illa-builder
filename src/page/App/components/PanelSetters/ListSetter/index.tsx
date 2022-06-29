@@ -21,6 +21,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     attrName,
     handleUpdateDsl,
     value,
+    widgetDisplayName,
   } = props
 
   const getDefaultValue = useMemo(() => {
@@ -62,7 +63,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
       </div>
       <div css={listWrapperStyle}>
         {childrenSetter?.map((child) => {
-          return renderFieldAndLabel(child, panelConfig.id, true, attrName)
+          return renderFieldAndLabel(child, widgetDisplayName, true, attrName)
         })}
       </div>
     </div>

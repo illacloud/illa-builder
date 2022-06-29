@@ -18,10 +18,12 @@ export function applyScaleStyle(
 }
 
 export function applyChildrenContainerStyle(
+  z: number,
   w: number | null,
   h?: number | null,
 ): SerializedStyles {
   return css`
+    z-index: ${z};
     position: absolute;
     width: ${w}px;
     height: ${h}px;
@@ -31,9 +33,10 @@ export function applyChildrenContainerStyle(
 export function applyDotCanvasStyle(
   edgeWidth: number,
   showDot: boolean,
+  z: number,
 ): SerializedStyles {
   return css`
-    z-index: -1;
+    z-index: ${z};
     visibility: ${showDot ? "visible" : "hidden"};
     position: absolute;
   `

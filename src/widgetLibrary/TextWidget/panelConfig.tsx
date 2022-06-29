@@ -29,6 +29,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-basic-value",
         attrName: "value",
         setterType: "INPUT_SETTER",
+        isSetterSingleRow: true,
       },
     ],
   },

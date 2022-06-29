@@ -20,7 +20,6 @@ export const SingleSelectedPanel: FC = () => {
     builderPanelConfig && (
       <div css={singleSelectedPanelWrapperStyle}>
         <PanelHeader />
-        <Divider />
         <div css={singleSelectedPanelSetterWrapperStyle}>
           {fieldFactory(builderPanelConfig, widgetDisplayName)}
         </div>
