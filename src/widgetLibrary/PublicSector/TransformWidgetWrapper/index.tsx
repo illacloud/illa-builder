@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect, useMemo, useRef } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
@@ -7,6 +7,7 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { isObject } from "@/utils/typeHelper"
+import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 
 const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -23,7 +24,16 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
 
   const { handleUpdateGlobalData, globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
-  const handleUpdateDsl = (value: Record<string, any>) => {}
+  const dispatch = useDispatch()
+
+  const handleUpdateDsl = (value: Record<string, any>) => {
+    dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName,
+        value,
+      }),
+    )
+  }
 
   const ref = useRef<Record<string, any>>()
 
@@ -64,7 +74,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     const calcProps = displayNameMapProps[displayName] ?? {}
     Object.keys(calcProps).forEach((key) => {
       // TODO: weichen move to evalTree
-      if (isObject(calcProps[key])) {
+      if (isObject(calcProps[key] && key !== "styles")) {
         result[key] = JSON.stringify(calcProps[key])
       } else {
         result[key] = calcProps[key]

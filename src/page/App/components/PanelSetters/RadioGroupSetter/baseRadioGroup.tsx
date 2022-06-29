@@ -10,7 +10,7 @@ export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
     <div css={applyRadioGroupWrapperStyle(isSetterSingleRow)}>
       <RadioGroup
         onChange={(value) => {
-          handleUpdateDsl({ [attrName]: value })
+          handleUpdateDsl(attrName, value)
         }}
         value={value}
         options={options}

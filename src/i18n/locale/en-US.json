@@ -383,6 +383,13 @@
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it.",
+      "header": {
+        "action_menu": {
+          "view_documentation": "View documentation",
+          "reset_state": "Reset state",
+          "delete": "Delete"
+        }
+      },
       "setter_group": {
         "basic": "BASIC",
         "label": "LABEL",
@@ -474,6 +481,14 @@
       "setter_default_value": {
         "solid": "Solid",
         "outline": "Outline"
+      },
+      "setter_content": {
+        "option_list": {
+          "action_menu":{
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          }
+        }
       }
     }
   },

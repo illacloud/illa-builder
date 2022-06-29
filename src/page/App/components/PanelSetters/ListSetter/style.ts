@@ -25,8 +25,6 @@ export const resetButtonStyle = css`
   cursor: pointer;
 `
 export const resetIconStyle = css`
-  width: 14px;
-  height: 14px;
   margin-right: 4px;
 `
 

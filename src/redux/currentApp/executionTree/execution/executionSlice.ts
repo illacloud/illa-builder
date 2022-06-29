@@ -5,6 +5,7 @@ import {
   setExecutionErrorReducer,
   setExecutionReducer,
   setExecutionResultReducer,
+  updateExecutionByDisplayNameReducer,
 } from "@/redux/currentApp/executionTree/execution/executionReducer"
 
 const executionSlice = createSlice({
@@ -14,6 +15,7 @@ const executionSlice = createSlice({
     setExecutionReducer,
     setExecutionResultReducer,
     setExecutionErrorReducer,
+    updateExecutionByDisplayNameReducer,
   },
 })
 

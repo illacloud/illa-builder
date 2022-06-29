@@ -18,7 +18,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
       <Input
         value={value ?? ""}
         onChange={(value) => {
-          handleUpdateDsl({ [attrName]: value })
+          handleUpdateDsl(attrName, value)
         }}
       />
     </div>

@@ -1,69 +1,64 @@
-import { FC, useCallback, useContext, useEffect } from "react"
-import { OptionListSetterContext } from "./context/optionListContext"
+import { FC, useCallback } from "react"
 import { ListItem } from "./listItem"
 import { v4 } from "uuid"
+import { OptionListBodyProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import { generateOptionItemId } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
 
-export const ListBody: FC = () => {
-  const { options, handleUpdateDsl, widgetId } = useContext(
-    OptionListSetterContext,
-  )
+export const ListBody: FC<OptionListBodyProps> = (props) => {
+  const { optionItems, handleUpdateDsl, attrName } = props
 
-  if (!options || !Array.isArray(options)) return null
-
-  useEffect(() => {
-    handleUpdateDsl(options)
-  }, [])
+  if (!optionItems || !Array.isArray(optionItems)) return null
 
   const handleUpdateItem = useCallback(
     (index: number, value: Record<string, any>) => {
-      const newOptions = [...options]
+      const newOptions = [...optionItems]
       newOptions[index] = {
         ...newOptions[index],
         ...value,
       }
-      handleUpdateDsl(newOptions)
+      handleUpdateDsl(attrName, newOptions)
     },
-    [options, handleUpdateDsl],
+    [attrName, optionItems, handleUpdateDsl],
   )
 
   const handleCopyItem = useCallback(
     (index) => {
-      const newOptions = [...options]
+      const newOptions = [...optionItems]
       const newItem = { ...newOptions[index] }
-      newItem.id = `option-${v4()}`
+      newItem.id = generateOptionItemId()
       newOptions.splice(index + 1, 0, newItem)
-      handleUpdateDsl(newOptions)
+      handleUpdateDsl(attrName, newOptions)
     },
-    [options, handleUpdateDsl],
+    [attrName, optionItems, handleUpdateDsl],
   )
 
   const handleDeleteItem = useCallback(
     (index) => {
-      const newOptions = [...options]
+      const newOptions = [...optionItems]
       newOptions.splice(index, 1)
-      handleUpdateDsl(newOptions)
+      handleUpdateDsl(attrName, newOptions)
     },
-    [options, handleUpdateDsl],
+    [attrName, optionItems, handleUpdateDsl],
   )
 
   const moveItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
-      const dragOptionItem = options[dragIndex]
-      const newOptions = [...options]
+      const dragOptionItem = optionItems[dragIndex]
+      const newOptions = [...optionItems]
       newOptions.splice(dragIndex, 1)
       newOptions.splice(hoverIndex, 0, dragOptionItem)
-      handleUpdateDsl(newOptions)
+      handleUpdateDsl(attrName, newOptions)
     },
-    [options, handleUpdateDsl],
+    [attrName, optionItems, handleUpdateDsl],
   )
 
   return (
     <>
-      {options.map((item, index) => {
+      {optionItems.map((item, index) => {
         const { label, value, disabled, id } = item
         return (
           <ListItem
-            key={`${widgetId}-${id}`}
+            key={id}
             label={label}
             value={value}
             disabled={disabled}
