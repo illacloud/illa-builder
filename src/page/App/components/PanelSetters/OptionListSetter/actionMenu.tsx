@@ -1,6 +1,10 @@
 import { FC, SyntheticEvent } from "react"
 import { css } from "@emotion/react"
-import { ActionMenuProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import { useTranslation } from "react-i18next"
+import {
+  ActionMenuProps,
+  ActionType,
+} from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import {
   actionMenuContaninterStyle,
   baseActionMenuItemStyle,
@@ -9,17 +13,19 @@ import {
 
 export const ActionMenu: FC<ActionMenuProps> = (props) => {
   const { index, handleCopyItem, handleCloseMode, handleDeleteItem } = props
+  const { t } = useTranslation()
+
   const handleClickMenuItem = (e: SyntheticEvent<EventTarget>) => {
     if (!(e.target instanceof HTMLDivElement)) {
       return
     }
     const key = e.target.dataset["key"]
     switch (key) {
-      case "Duplicate": {
+      case ActionType.DUPLICATE: {
         handleCopyItem(index)
         break
       }
-      case "Delete": {
+      case ActionType.DELETE: {
         handleDeleteItem(index)
         break
       }
@@ -29,14 +35,14 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
 
   return (
     <div css={actionMenuContaninterStyle} onClick={handleClickMenuItem}>
-      <div css={baseActionMenuItemStyle} data-key="Duplicate">
-        Duplicate
+      <div css={baseActionMenuItemStyle} data-key={ActionType.DUPLICATE}>
+        {t("editor.inspect.setter_content.option_list.action_menu.duplicate")}
       </div>
       <div
         css={css(baseActionMenuItemStyle, deleteActionMenuItemStyle)}
-        data-key="Delete"
+        data-key={ActionType.DELETE}
       >
-        Delete
+        {t("editor.inspect.setter_content.option_list.action_menu.delete")}
       </div>
     </div>
   )

@@ -9,6 +9,7 @@ import {
   baseActionMenuItemStyle,
   deleteActionMenuItemStyle,
 } from "./style"
+import { useTranslation } from "react-i18next"
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const {
@@ -17,6 +18,8 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
     widgetParentDisplayName,
     handleCloseMenu,
   } = props
+  const { t } = useTranslation()
+
   const dispatch = useDispatch()
 
   const handleClickMenuItem = (e: SyntheticEvent<EventTarget>) => {
@@ -59,16 +62,16 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   return (
     <div css={actionMenuContaninterStyle} onClick={handleClickMenuItem}>
       <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.VIEW_DOCUMENT}>
-        View documentation
+        {t("editor.inspect.header.action_menu.view_documentation")}
       </div>
       <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.RESET_STATE}>
-        Reset state
+        {t("editor.inspect.header.action_menu.reset_state")}
       </div>
       <div
         css={css(baseActionMenuItemStyle, deleteActionMenuItemStyle)}
         data-key={ACTION_TYPE.DELETE}
       >
-        Delete
+        {t("editor.inspect.header.action_menu.delete")}
       </div>
     </div>
   )
