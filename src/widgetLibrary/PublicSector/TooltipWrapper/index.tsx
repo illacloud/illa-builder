@@ -12,7 +12,9 @@ export const TooltipWrapper: FC<TooltipWrapperProps> = (props) => {
         <Text
           value={tooltipText}
           disableMarkdown
-          textColor={globalColor(`--${illaPrefix}-white-01`)}
+          styles={{
+            textColor: globalColor(`--${illaPrefix}-white-01`),
+          }}
         />
       }
       disabled={disabled}
