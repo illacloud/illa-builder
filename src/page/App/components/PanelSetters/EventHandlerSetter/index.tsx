@@ -30,14 +30,14 @@ export const EventHandlerSetter: FC<EventHandlerSetterProps> = (props) => {
       newOptions.push(value)
       const script = transformEvent(value)
       newDslEvents.push(script)
-      handleUpdateDsl({ events: newDslEvents })
+      handleUpdateDsl(events, newDslEvents)
     },
     [handleUpdateDsl],
   )
 
   const handleUpdate = useCallback(
     (value: BaseEventItem[], dslValue?: Record<string, any>) => {
-      handleUpdateDsl({ events: dslValue })
+      handleUpdateDsl(events, dslValue)
     },
     [handleUpdateDsl],
   )
