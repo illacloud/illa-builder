@@ -3,8 +3,8 @@ import { DragItem, ListItemProps } from "./interface"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { Identifier } from "dnd-core"
 import { optionListItemCss } from "./style"
-import { DragIconAndLabel } from "@/page/App/components/PanelSetters/OptionListSetter/DragIconAndLabel"
-import { More } from "@/page/App/components/PanelSetters/OptionListSetter/More"
+import { DragIconAndLabel } from "@/page/App/components/PanelSetters/OptionListSetter/dragIconAndLabel"
+import { More } from "@/page/App/components/PanelSetters/OptionListSetter/more"
 
 export const ListItem: FC<ListItemProps> = (props) => {
   const {

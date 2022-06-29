@@ -17,6 +17,7 @@ export interface PanelHeaderActionProps {
   widgetParentDisplayName: string
   widgetDisplayName: string
   componentType: string
+  handleCloseMenu: () => void
 }
 
 export interface PanelLabelProps {

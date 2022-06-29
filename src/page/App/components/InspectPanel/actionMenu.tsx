@@ -1,16 +1,30 @@
-import { FC } from "react"
-import { Menu } from "@illa-design/menu"
-import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
+import { FC, SyntheticEvent } from "react"
 import { useDispatch } from "react-redux"
+import { css } from "@emotion/react"
+import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { configActions } from "@/redux/config/configSlice"
-
-const Item = Menu.Item
+import {
+  actionMenuContaninterStyle,
+  baseActionMenuItemStyle,
+  deleteActionMenuItemStyle,
+} from "./style"
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
-  const { widgetDisplayName, componentType, widgetParentDisplayName } = props
+  const {
+    widgetDisplayName,
+    componentType,
+    widgetParentDisplayName,
+    handleCloseMenu,
+  } = props
   const dispatch = useDispatch()
-  const handleClickMenuItem = (key: string) => {
+
+  const handleClickMenuItem = (e: SyntheticEvent<EventTarget>) => {
+    if (!(e.target instanceof HTMLDivElement)) {
+      handleCloseMenu()
+      return
+    }
+    const key = e.target.dataset["key"]
     switch (key) {
       case ACTION_TYPE.VIEW_DOCUMENT: {
         //  TODO: wait for redux to find componentType map docs;
@@ -39,16 +53,24 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         break
       }
     }
+    handleCloseMenu()
   }
 
-  // TODO: wait for design to change style
   return (
-    <Menu style={{ width: "200px" }} onClickMenuItem={handleClickMenuItem}>
-      <Item title="View documentation" key={ACTION_TYPE.VIEW_DOCUMENT} />
-      <Item title="Switch component" key={ACTION_TYPE.SWITCH_COMPONENT} />
-      <Item title="Reset state" key={ACTION_TYPE.RESET_STATE} />
-      <Item title="delete" key={ACTION_TYPE.DELETE} />
-    </Menu>
+    <div css={actionMenuContaninterStyle} onClick={handleClickMenuItem}>
+      <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.VIEW_DOCUMENT}>
+        View documentation
+      </div>
+      <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.RESET_STATE}>
+        Reset state
+      </div>
+      <div
+        css={css(baseActionMenuItemStyle, deleteActionMenuItemStyle)}
+        data-key={ACTION_TYPE.DELETE}
+      >
+        Delete
+      </div>
+    </div>
   )
 }
 

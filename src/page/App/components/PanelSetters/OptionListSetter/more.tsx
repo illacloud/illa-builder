@@ -1,7 +1,7 @@
 import { FC, useState, useCallback } from "react"
-import { ActionMenu } from "@/page/App/components/PanelSetters/OptionListSetter/ActionMenu"
+import { Dropdown } from "@illa-design/dropdown"
 import { MoreIcon } from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
+import { ActionMenu } from "@/page/App/components/PanelSetters/OptionListSetter/actionMenu"
 import { MoreProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 
 export const More: FC<MoreProps> = (props) => {
@@ -11,10 +11,9 @@ export const More: FC<MoreProps> = (props) => {
     setActionMenuVisible(false)
   }, [])
   return (
-    <Trigger
-      colorScheme="white"
+    <Dropdown
       popupVisible={actionMenuVisible}
-      content={
+      dropList={
         <ActionMenu
           index={index}
           handleCopyItem={handleCopyItem}
@@ -23,9 +22,7 @@ export const More: FC<MoreProps> = (props) => {
         />
       }
       trigger="click"
-      showArrow={false}
       position="br"
-      clickOutsideToClose
       onVisibleChange={(visible) => {
         setActionMenuVisible(visible)
       }}
@@ -33,6 +30,6 @@ export const More: FC<MoreProps> = (props) => {
       <div>
         <MoreIcon />
       </div>
-    </Trigger>
+    </Dropdown>
   )
 }
