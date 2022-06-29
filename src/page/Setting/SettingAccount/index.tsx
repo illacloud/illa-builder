@@ -4,7 +4,7 @@ import { Message } from "@illa-design/message"
 import { Api } from "@/api/base"
 import { SettingCommonForm } from "../Components/SettingCommonForm"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()

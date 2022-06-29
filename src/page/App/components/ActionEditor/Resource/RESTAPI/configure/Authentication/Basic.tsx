@@ -22,6 +22,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
               "editor.action.resource.rest_api.placeholder.username",
             )}
             maxLength={200}
+            borderColor="techPurple"
           />
         )}
         control={control}
@@ -39,6 +40,7 @@ export const BasicAuth: FC<BasicAuthProps> = (props) => {
               "editor.action.resource.rest_api.placeholder.password",
             )}
             maxLength={200}
+            borderColor="techPurple"
           />
         )}
         control={control}

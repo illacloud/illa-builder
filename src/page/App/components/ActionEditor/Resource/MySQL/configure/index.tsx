@@ -100,6 +100,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   )}
                   error={!!errors.resourceName}
                   maxLength={200}
+                  borderColor="techPurple"
                 />
               )}
               rules={{
@@ -128,6 +129,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     )}
                     error={!!errors.host}
                     maxLength={200}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -142,6 +144,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     {...field}
                     placeholder="3306"
                     error={!!errors.port}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -169,6 +172,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   placeholder={t(
                     "editor.action.resource.my_sql.placeholder.database",
                   )}
+                  borderColor="techPurple"
                 />
               )}
               control={control}
@@ -187,6 +191,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     placeholder={t(
                       "editor.action.resource.my_sql.placeholder.username",
                     )}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -200,6 +205,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     placeholder={t(
                       "editor.action.resource.my_sql.placeholder.password",
                     )}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -255,6 +261,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         )}
                         maxLength={200}
                         error={!!errors.advancedOptions?.sshHost}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -269,6 +276,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         {...field}
                         placeholder="22"
                         error={!!errors.advancedOptions?.sshPort}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -303,6 +311,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                           "editor.action.resource.my_sql.placeholder.ssh_credentials",
                         )}
                         error={!!errors.advancedOptions?.sshUsername}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -318,6 +327,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         placeholder="•••••••••"
                         invisibleButton={false}
                         error={!!errors.advancedOptions?.sshPassword}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -366,6 +376,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       {...field}
                       placeholder="•••••••••"
                       invisibleButton={false}
+                      borderColor="techPurple"
                     />
                   )}
                   control={control}

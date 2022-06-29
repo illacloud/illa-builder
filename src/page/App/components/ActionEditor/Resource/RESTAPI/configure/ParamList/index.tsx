@@ -30,7 +30,12 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
         <div css={paramItemStyle} key={field.id}>
           <Controller
             render={({ field }) => (
-              <Input {...field} placeholder={"key"} css={paramItemKeyStyle} />
+              <Input
+                {...field}
+                placeholder={"key"}
+                css={paramItemKeyStyle}
+                borderColor="techPurple"
+              />
             )}
             control={control}
             name={`${name}.${index}.key`}
@@ -39,6 +44,7 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
             render={({ field }) => (
               <Input
                 {...field}
+                borderColor="techPurple"
                 addonAfter={{
                   render: (
                     <DeleteIcon
