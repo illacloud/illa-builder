@@ -20,6 +20,7 @@ module.exports = {
     "^react($|/.+)": "<rootDir>/node_modules/react$1", // makes sure all React imports are running off of the one in this package.
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@assets/(.*)$": "<rootDir>/src/assets/$1",
+    "^@illa-design/(.*)$": "<rootDir>/illa-design/packages/$1",
   },
   roots: ["./src"],
   globals: {
