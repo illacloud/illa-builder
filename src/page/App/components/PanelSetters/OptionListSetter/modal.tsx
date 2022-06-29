@@ -25,10 +25,6 @@ export const Modal: FC<ModalProps> = (props) => {
   const [optionValue, setOptionValue] = useState(value)
   const [disabledValue, setDisabledValue] = useState(disabled ?? "")
 
-  const handleClickCloseIcon = useCallback(() => {
-    handleCloseModal()
-  }, [handleCloseModal])
-
   const handleChangeValue = useCallback(
     (value) => {
       setOptionValue(value)

@@ -4,19 +4,18 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
-import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
+  connectTextStyle,
   descriptionStyle,
   errorMessageStyle,
   formStyle,
   gridContainerStyle,
   gridRowContainerStyle,
   groupTitleStyle,
-  itemTextStyle,
   labelTextSmallSizeStyle,
   labelTextStyle,
   labelTextVerticalStyle,
@@ -215,11 +214,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             <label css={labelTextStyle}>
               {t("editor.action.resource.my_sql.label.connect_type")}
             </label>
-            <div css={itemTextStyle}>
+            <div css={connectTextStyle}>
               {t("editor.action.resource.my_sql.tip.connect_type")}
             </div>
           </div>
-          <Divider css={splitLineStyle} />
+          <div css={splitLineStyle} />
           <h4 css={groupTitleStyle}>Advanced Options</h4>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
@@ -234,7 +233,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.connect_over_ssh")}
                 </div>
               </div>
@@ -388,7 +387,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.ssl_options")}
                 </div>
               </div>

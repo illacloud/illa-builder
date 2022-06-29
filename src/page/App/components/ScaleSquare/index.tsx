@@ -17,7 +17,7 @@ import {
   onePixelStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { TransformWidget } from "@/wrappedComponents/TransformWidget"
+import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
 import { RootState } from "@/store"
@@ -146,6 +146,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   >(getDragConfig(componentNode, "br"), [componentNode])
 
   return (
+<<<<<<< HEAD
     <Dropdown trigger="contextmenu" dropList={<Item key="" title={"有才啊"} />}>
       <div
         css={applyOuterStyle(componentNode.isDragging, h, w)}
@@ -181,6 +182,23 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
               />
             )}
           </div>
+=======
+    <div
+      css={applyOuterStyle(componentNode.isDragging, h, w)}
+      className={className}
+      onClick={(e) => {
+        dispatch(configActions.updateSelectedComponent([componentNode]))
+        e.stopPropagation()
+      }}
+      {...otherProps}
+    >
+      <div css={applyBorderStyle(selected, scaleSquareState)}>
+        <div
+          css={applyTransformWidgetStyle(componentNode.verticalResize)}
+          ref={dragRef}
+        >
+          <TransformWidgetWrapper componentNode={componentNode} />
+>>>>>>> develop
         </div>
         <div
           css={applyBarPointerStyle(

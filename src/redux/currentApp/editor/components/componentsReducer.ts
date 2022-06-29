@@ -3,10 +3,11 @@ import {
   ComponentNode,
   ComponentsState,
   deleteComponentNodePayload,
-  updateComponentDynamicStringsPayload,
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import { isObject } from "@/utils/typeHelper"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const removeComponentReducer: CaseReducer<
   ComponentsState,
@@ -72,22 +73,26 @@ export const updateComponentPropsReducer: CaseReducer<
   const node = searchDsl(state.rootDsl, displayName)
   if (!node) return
   const oldProps = node.props || {}
-  node.props = {
+
+  const newNodeProps = {
     ...oldProps,
     ...newProps,
   }
-}
-
-export const updateComponentDynamicStringsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<updateComponentDynamicStringsPayload>
-> = (state, action) => {
-  const { displayName, dynamicStrings } = action.payload
-  const node = searchDsl(state.rootDsl, displayName)
-  if (!node) return
-  if (!node.panelConfig)
-    node.panelConfig = {
-      dynamicStrings: [],
+  let dynamicStringList: string[] = []
+  Object.keys(newNodeProps).forEach((propName) => {
+    const propsValue = newNodeProps[propName]
+    let stringValue = propsValue
+    if (isObject(stringValue)) {
+      stringValue = JSON.stringify(propsValue)
     }
-  node.panelConfig.dynamicStrings = dynamicStrings
+
+    const isDynamic = isDynamicString(stringValue)
+    if (isDynamic) {
+      dynamicStringList.push(propName)
+    }
+  })
+  node.props = {
+    ...newNodeProps,
+    $dynamicStrings: dynamicStringList,
+  }
 }

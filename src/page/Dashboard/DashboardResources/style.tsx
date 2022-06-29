@@ -26,28 +26,23 @@ export const tableInfoTextStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
-
-const rateScale = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`
 export const tableStyle = css`
   thead tr th {
     background: ${globalColor(`--${illaPrefix}-white-01`)};
   }
   tr {
     height: 56px;
+    border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+  tr:last-child {
+    border-bottom: none;
   }
   tbody tr {
     cursor: pointer;
     &: hover {
       background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       [title="editButton"] {
-        animation: 0.15s ${rateScale} ease-in-out forwards;
+        opacity: 1;
       }
     }
   }

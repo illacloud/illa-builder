@@ -4,15 +4,15 @@ import { Switch } from "@illa-design/switch"
 import { dynamicWidthStyle } from "@/page/App/components/PanelSetters/style"
 
 export const BaseSwitchSetter: FC<BaseSwitchProps> = (props) => {
-  const { defaultValue, attrName, panelConfig, handleUpdateDsl } = props
+  const { value, attrName, handleUpdateDsl } = props
 
   return (
     <div css={dynamicWidthStyle}>
       <Switch
         onChange={(value) => {
-          handleUpdateDsl({ [attrName]: value })
+          handleUpdateDsl(attrName, value)
         }}
-        checked={panelConfig[attrName] ?? defaultValue}
+        checked={value}
         colorScheme="purple"
       />
     </div>
