@@ -23,6 +23,9 @@
       ],
       "@assets/*": [
         "./src/assets/*"
+      ],
+      "@illa-design": [
+        "./illa-design/packages/*"
       ]
     },
     "types": [

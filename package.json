@@ -23,7 +23,6 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@fontsource/fira-code": "^4.5.10",
-    "@illa-design/react": "*",
     "@lezer/common": "^1.0.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@uiw/react-codemirror": "^4.8.1",
