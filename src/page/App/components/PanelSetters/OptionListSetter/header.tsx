@@ -1,29 +1,17 @@
-import { FC, useCallback, useContext } from "react"
+import { FC, useCallback } from "react"
 import { AddIcon } from "@illa-design/icon"
 import { addIconCss, optionListHeaderCss, headerActionButtonCss } from "./style"
 import { HeaderProps } from "./interface"
-import { OptionListSetterContext } from "./context/optionListContext"
-import { dispatch } from "use-bus"
-import { v4 } from "uuid"
+import { generateNewOptionItem } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
 
 export const OptionListHeader: FC<HeaderProps> = (props) => {
-  const { labelName } = props
-
-  const { options, handleAddItemToDslAsync } = useContext(
-    OptionListSetterContext,
-  )
+  const { labelName, optionItems, handleUpdateDsl, attrName } = props
 
   const handleClickNewButton = useCallback(() => {
-    const length = options.length
-    handleAddItemToDslAsync({
-      value: `Option ${length + 1}`,
-      id: `option-${v4()}`,
-      label: `Option ${length + 1}`,
-    }).then(() => {
-      dispatch("CLOSE_LIST_ALL_MODAL")
-      dispatch(`OPEN_LIST_ITEM_MODAL_${length}`)
-    })
-  }, [options, handleAddItemToDslAsync])
+    const num = optionItems.length + 1
+    const newItem = generateNewOptionItem(num)
+    handleUpdateDsl(attrName, [...optionItems, newItem])
+  }, [optionItems, handleUpdateDsl, attrName])
 
   return (
     <div css={optionListHeaderCss}>

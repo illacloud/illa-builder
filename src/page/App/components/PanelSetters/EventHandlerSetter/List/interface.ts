@@ -3,7 +3,7 @@ import {
   BaseEventItem,
 } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { EventsInProps } from "@/wrappedComponents/interface"
+import { EventsInProps } from "@/widgetLibrary/interface"
 
 export interface ActionMenuProps {
   index: number

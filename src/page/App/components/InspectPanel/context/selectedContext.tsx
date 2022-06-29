@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { createContext, ReactNode, FC, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -9,7 +10,7 @@ interface Injected {
   widgetDisplayName: string
   widgetParentDisplayName: string
   widgetProps: Record<string, any>
-  handleUpdateDsl: (value: Record<string, any>) => void
+  handleUpdateDsl: (attrPath: string, value: any) => void
 }
 
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
@@ -53,12 +54,14 @@ export const SelectedProvider: FC<Props> = ({
 
   const dispatch = useDispatch()
 
-  const handleUpdateDsl = (value: Record<string, any>) => {
+  const handleUpdateDsl = (attrPath: string, value: any) => {
     if (!widgetProps || !widgetDisplayName) return
+    const newProps = _.cloneDeep(widgetProps)
+    _.set(newProps, attrPath, value)
     dispatch(
       componentsActions.updateComponentPropsReducer({
         displayName: widgetDisplayName,
-        newProps: value,
+        newProps,
       }),
     )
   }

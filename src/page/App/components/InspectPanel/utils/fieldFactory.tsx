@@ -11,9 +11,17 @@ export const renderFieldAndLabel = (
   config: PanelFieldConfig,
   displayName: string,
   isInList: boolean = false,
+  parentAttrName: string,
 ) => {
   const { id } = config
-  return <Setter key={`${id}-${displayName}`} {...config} isInList={isInList} />
+  return (
+    <Setter
+      key={`${id}-${displayName}`}
+      {...config}
+      isInList={isInList}
+      parentAttrName={parentAttrName}
+    />
+  )
 }
 
 export const renderPanelBar = (
@@ -54,7 +62,12 @@ export const renderField = (
   if ((item as PanelFieldGroupConfig).groupName) {
     return renderPanelBar(item as PanelFieldGroupConfig, displayName)
   } else if ((item as PanelFieldConfig).setterType) {
-    return renderFieldAndLabel(item as PanelFieldConfig, displayName, isInList)
+    return renderFieldAndLabel(
+      item as PanelFieldConfig,
+      displayName,
+      isInList,
+      "",
+    )
   }
   return null
 }

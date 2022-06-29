@@ -22,3 +22,8 @@ export const executionInitialState: ExecutionState = {
   result: {},
   error: {},
 }
+
+export interface UpdateExecutionByDisplayNamePayload {
+  displayName: string
+  value: Record<string, any>
+}
