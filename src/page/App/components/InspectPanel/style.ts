@@ -101,6 +101,7 @@ export function applySetterWrapperStyle(
   }
   if (isSetterSingleRow) {
     return css`
+      margin: 8px 0;
       ${publicPaddingStyle}
     `
   }
