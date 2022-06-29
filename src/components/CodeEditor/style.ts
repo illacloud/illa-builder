@@ -15,6 +15,12 @@ export const codemirrorStyle = css`
   .CodeMirror {
     font-family: "Fira Code", monospace;
   }
+  .CodeMirror-selected { background: #d7d4f0; }
+  .CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
+  .CodeMirror-crosshair { cursor: crosshair; }
+  .CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
+  .CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
+
 
   .cm-illa-expression {
     background: #f5fdfa;
