@@ -119,10 +119,6 @@ export function calculateDragPosition(
       componentNode.h,
       edgeWidth,
     )
-    ComponentNodeDisplayNameGenerator.removeDisplayName(
-      componentNode.type ?? "",
-      componentNode.displayName,
-    )
   } else {
     calcResult = calculateExistDragPosition(
       {

@@ -146,7 +146,6 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   >(getDragConfig(componentNode, "br"), [componentNode])
 
   return (
-<<<<<<< HEAD
     <Dropdown trigger="contextmenu" dropList={<Item key="" title={"有才啊"} />}>
       <div
         css={applyOuterStyle(componentNode.isDragging, h, w)}
@@ -166,7 +165,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             css={applyTransformWidgetStyle(componentNode.verticalResize)}
             ref={dragRef}
           >
-            <TransformWidget componentNode={componentNode} />
+            <TransformWidgetWrapper componentNode={componentNode} />
           </div>
           <div
             className={"handler"}
@@ -182,23 +181,6 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
               />
             )}
           </div>
-=======
-    <div
-      css={applyOuterStyle(componentNode.isDragging, h, w)}
-      className={className}
-      onClick={(e) => {
-        dispatch(configActions.updateSelectedComponent([componentNode]))
-        e.stopPropagation()
-      }}
-      {...otherProps}
-    >
-      <div css={applyBorderStyle(selected, scaleSquareState)}>
-        <div
-          css={applyTransformWidgetStyle(componentNode.verticalResize)}
-          ref={dragRef}
-        >
-          <TransformWidgetWrapper componentNode={componentNode} />
->>>>>>> develop
         </div>
         <div
           css={applyBarPointerStyle(
