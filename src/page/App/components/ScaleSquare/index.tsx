@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import {
   DragResize,
   DragResizeCollected,
@@ -27,6 +27,10 @@ import { mergeRefs } from "@illa-design/system"
 import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { Dropdown } from "@illa-design/dropdown"
+import { Menu } from "@illa-design/menu"
+
+const { Item } = Menu
 
 function getDragConfig(
   componentNode: ComponentNode,
@@ -142,125 +146,131 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   >(getDragConfig(componentNode, "br"), [componentNode])
 
   return (
-    <div
-      css={applyOuterStyle(componentNode.isDragging, h, w)}
-      className={className}
-      onClick={(e) => {
-        dispatch(configActions.updateSelectedComponent([componentNode]))
-        e.stopPropagation()
-      }}
-      {...otherProps}
-    >
-      <div css={applyBorderStyle(selected, scaleSquareState)}>
-        <div
-          css={applyTransformWidgetStyle(componentNode.verticalResize)}
-          ref={dragRef}
-        >
-          <TransformWidget componentNode={componentNode} />
+    <Dropdown trigger="contextmenu" dropList={<Item key="" title={"有才啊"} />}>
+      <div
+        css={applyOuterStyle(componentNode.isDragging, h, w)}
+        className={className}
+        onClick={(e) => {
+          console.log(e)
+          dispatch(configActions.updateSelectedComponent([componentNode]))
+          e.stopPropagation()
+        }}
+        onContextMenu={(e) => {
+          e.preventDefault()
+        }}
+        {...otherProps}
+      >
+        <div css={applyBorderStyle(selected, scaleSquareState)}>
+          <div
+            css={applyTransformWidgetStyle(componentNode.verticalResize)}
+            ref={dragRef}
+          >
+            <TransformWidget componentNode={componentNode} />
+          </div>
+          <div
+            className={"handler"}
+            ref={dragHandlerRef}
+            css={applyHandlerStyle(selected, w, scaleSquareState)}
+          >
+            <DragIcon css={dragIconStyle} />
+            <div css={dragHandlerTextStyle}>{componentNode.displayName}</div>
+            {scaleSquareState == "error" && (
+              <WarningCircleIcon
+                color={globalColor(`--${illaPrefix}-white-05`)}
+                css={warningStyle}
+              />
+            )}
+          </div>
         </div>
         <div
-          className={"handler"}
-          ref={dragHandlerRef}
-          css={applyHandlerStyle(selected, w, scaleSquareState)}
-        >
-          <DragIcon css={dragIconStyle} />
-          <div css={dragHandlerTextStyle}>{componentNode.displayName}</div>
-          {scaleSquareState == "error" && (
-            <WarningCircleIcon
-              color={globalColor(`--${illaPrefix}-white-05`)}
-              css={warningStyle}
-            />
+          css={applyBarPointerStyle(
+            selected,
+            collectT.resizing,
+            scaleSquareState,
+            "t",
           )}
-        </div>
+          ref={resizeT}
+        />
+        <div
+          css={applyBarPointerStyle(
+            selected,
+            collectR.resizing,
+            scaleSquareState,
+            "r",
+          )}
+          ref={resizeR}
+        />
+        <div
+          css={applyBarPointerStyle(
+            selected,
+            collectB.resizing,
+            scaleSquareState,
+            "b",
+          )}
+          ref={resizeB}
+        />
+        <div
+          css={applyBarPointerStyle(
+            selected,
+            collectL.resizing,
+            scaleSquareState,
+            "l",
+          )}
+          ref={resizeL}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectTl.resizing,
+            scaleSquareState,
+            "tl",
+          )}
+          ref={resizeTl}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectTr.resizing,
+            scaleSquareState,
+            "tr",
+          )}
+          ref={resizeTr}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectBl.resizing,
+            scaleSquareState,
+            "bl",
+          )}
+          ref={resizeBl}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectBr.resizing,
+            scaleSquareState,
+            "br",
+          )}
+          ref={resizeBr}
+        />
+        <div
+          ref={mergeRefs(
+            dragPreviewRef,
+            dragPreviewHandlerRef,
+            resizeTPreviewRef,
+            resizeRPreviewRef,
+            resizeBPreviewRef,
+            resizeLPreviewRef,
+            resizeTlPreviewRef,
+            resizeTrPreviewRef,
+            resizeBlPreviewRef,
+            resizeBrPreviewRef,
+          )}
+          css={onePixelStyle}
+        />
       </div>
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectT.resizing,
-          scaleSquareState,
-          "t",
-        )}
-        ref={resizeT}
-      />
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectR.resizing,
-          scaleSquareState,
-          "r",
-        )}
-        ref={resizeR}
-      />
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectB.resizing,
-          scaleSquareState,
-          "b",
-        )}
-        ref={resizeB}
-      />
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectL.resizing,
-          scaleSquareState,
-          "l",
-        )}
-        ref={resizeL}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectTl.resizing,
-          scaleSquareState,
-          "tl",
-        )}
-        ref={resizeTl}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectTr.resizing,
-          scaleSquareState,
-          "tr",
-        )}
-        ref={resizeTr}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectBl.resizing,
-          scaleSquareState,
-          "bl",
-        )}
-        ref={resizeBl}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectBr.resizing,
-          scaleSquareState,
-          "br",
-        )}
-        ref={resizeBr}
-      />
-      <div
-        ref={mergeRefs(
-          dragPreviewRef,
-          dragPreviewHandlerRef,
-          resizeTPreviewRef,
-          resizeRPreviewRef,
-          resizeBPreviewRef,
-          resizeLPreviewRef,
-          resizeTlPreviewRef,
-          resizeTrPreviewRef,
-          resizeBlPreviewRef,
-          resizeBrPreviewRef,
-        )}
-        css={onePixelStyle}
-      />
-    </div>
+    </Dropdown>
   )
 }
 
