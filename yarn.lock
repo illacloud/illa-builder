@@ -2336,6 +2336,11 @@
   resolved "https://registry.npmmirror.com/@types/js-levenshtein/-/js-levenshtein-1.1.1.tgz#ba05426a43f9e4e30b631941e0aa17bf0c890ed5"
   integrity sha512-qC4bCqYGy1y/NP7dDVr7KJarn+PbX1nSpwA7JXdu0HxT3QYjO8MJ+cntENtHFVy2dRAyBV23OZ6MxsW1AM1L8g==
 
+"@types/jshint@^2.12.1":
+  version "2.12.1"
+  resolved "https://registry.npmmirror.com/@types/jshint/-/jshint-2.12.1.tgz#eb38b787b666bc7db7037174a0c2ebce89f0432e"
+  integrity sha512-Sen/qexrVc74JFfqPfaRB5zF/aIuziEmENKFQgpUNU23Ebja/aAFXdnPpiB9qumE8QWLCHFinuVbx5THc5tWkw==
+
 "@types/lodash@^4.14.178":
   version "4.14.182"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"

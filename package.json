@@ -26,6 +26,7 @@
     "@illa-design/react": "*",
     "@lezer/common": "^1.0.0",
     "@reduxjs/toolkit": "^1.8.1",
+    "@types/jshint": "^2.12.1",
     "@uiw/react-codemirror": "^4.8.1",
     "axios": "^0.26.1",
     "codemirror": "^5.65.5",

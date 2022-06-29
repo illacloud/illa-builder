@@ -32,6 +32,7 @@ import {
 import { get } from "react-hook-form"
 import { JSHINT } from "jshint"
 import { evalScript } from "@/utils/evaluateDynamicString/codeSandbox"
+import { executeMultilineJS } from "@/components/CodeEditor/eval"
 
 window.JSHINT = JSHINT
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
@@ -79,7 +80,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     setPreviewVisible(false)
   }
 
-  const valueChanged = (currentValue: string) => {
+  const valueChanged = async (currentValue: string) => {
     let calcResult: any = null
     let previewType = expectedType
     setError(false)
@@ -95,6 +96,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         type: previewType,
         content: calcResult,
       })
+
       // console.log(evalScript(calcResult, globalData, false), "evalScript")
     } catch (e: any) {
       console.error(e)
@@ -106,6 +108,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     } finally {
       latestProps.current.onChange?.(currentValue, calcResult)
     }
+    console.log(await executeMultilineJS(calcResult), "executeMultilineJS")
   }
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
@@ -154,7 +157,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
     } else if (modeName == "javascript") {
       sever.current?.complete(cm)
-      CodeMirror.lint.javascript(cm.getValue(), {}, cm)
+      // CodeMirror.lint.javascript(cm.getValue(), {}, cm)
       // cm.showHint({
       //   hint: CodeMirror.hint.javascript,
       //   completeSingle: false, // 是否立即补全
