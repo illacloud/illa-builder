@@ -17,6 +17,7 @@ import configReducer from "@/redux/config/configSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
+import displayNameReducer from "@/redux/currentApp/displayName/displayNameSlice"
 import executionReducer from "@/redux/currentApp/executionTree/execution/executionSlice"
 import dependenciesReducer from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 
@@ -37,6 +38,7 @@ const appReducer = combineReducers({
   editor: editorReducer,
   action: actionReducer,
   appInfo: appInfoReducer,
+  displayName: displayNameReducer,
   executionTree: executionTreeReducer,
 })
 

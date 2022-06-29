@@ -6,8 +6,6 @@ import {
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-// TODO: @longbo file path error
-// import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { isObject } from "@/utils/typeHelper"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
@@ -28,6 +26,11 @@ export const removeComponentReducer: CaseReducer<
     }
   }
 }
+
+export const copyComponentNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentNode>
+> = (state, action) => {}
 
 export const addOrUpdateComponentReducer: CaseReducer<
   ComponentsState,

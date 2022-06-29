@@ -484,12 +484,16 @@
       },
       "setter_content": {
         "option_list": {
-          "action_menu":{
+          "action_menu": {
             "delete": "Delete",
             "duplicate": "Duplicate"
           }
         }
       }
+    },
+    "context_menu": {
+      "duplicate": "复制",
+      "delete": "删除"
     }
   },
   "widget": {
