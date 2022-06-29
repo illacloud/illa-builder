@@ -24,7 +24,6 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
         break
       }
     }
-    console.log("????")
     handleCloseMode()
   }
 
