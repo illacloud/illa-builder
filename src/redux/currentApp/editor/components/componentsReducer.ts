@@ -27,6 +27,11 @@ export const removeComponentReducer: CaseReducer<
   }
 }
 
+export const copyComponentNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentNode>
+> = (state, action) => {}
+
 export const addOrUpdateComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode>

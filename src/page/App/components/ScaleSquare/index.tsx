@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import {
   DragResize,
   DragResizeCollected,
@@ -27,10 +27,10 @@ import { mergeRefs } from "@illa-design/system"
 import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { Dropdown } from "@illa-design/dropdown"
-import { Menu } from "@illa-design/menu"
+import { Dropdown, DropList } from "@illa-design/dropdown"
+import { useTranslation } from "react-i18next"
 
-const { Item } = Menu
+const { Item } = DropList
 
 function getDragConfig(
   componentNode: ComponentNode,
@@ -55,6 +55,8 @@ function getDragConfig(
 
 export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const { w, h, componentNode, className, ...otherProps } = props
+
+  const { t } = useTranslation()
 
   const scaleSquareState = componentNode.error ? "error" : "normal"
   const dispatch = useDispatch()
@@ -146,17 +148,35 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   >(getDragConfig(componentNode, "br"), [componentNode])
 
   return (
-    <Dropdown trigger="contextmenu" dropList={<Item key="" title={"有才啊"} />}>
+    <Dropdown
+      trigger="contextmenu"
+      dropList={
+        <DropList width="184px">
+          <Item
+            key="duplicate"
+            title={t("editor.context_menu.duplicate")}
+            onClick={() => {
+              dispatch(
+                componentsActions.copyComponentNodeReducer(componentNode),
+              )
+            }}
+          />
+          <Item
+            fontColor={globalColor(`--${illaPrefix}-red-03`)}
+            key="delete"
+            title={t("editor.context_menu.delete")}
+            onClick={() => {
+              dispatch(componentsActions.removeComponentReducer(componentNode))
+            }}
+          />
+        </DropList>
+      }
+    >
       <div
         css={applyOuterStyle(componentNode.isDragging, h, w)}
         className={className}
         onClick={(e) => {
-          console.log(e)
           dispatch(configActions.updateSelectedComponent([componentNode]))
-          e.stopPropagation()
-        }}
-        onContextMenu={(e) => {
-          e.preventDefault()
         }}
         {...otherProps}
       >
