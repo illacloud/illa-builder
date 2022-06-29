@@ -48,3 +48,5 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     </Trigger>
   )
 }
+
+DragIconAndLabel.displayName = "DragIconAndLabel"

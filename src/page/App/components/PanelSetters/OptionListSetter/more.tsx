@@ -33,3 +33,5 @@ export const More: FC<MoreProps> = (props) => {
     </Dropdown>
   )
 }
+
+More.displayName = "OptionListSetterMore"

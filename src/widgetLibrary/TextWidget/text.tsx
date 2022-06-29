@@ -21,7 +21,6 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
     tooltipText,
   } = props
 
-  console.log("styles", styles)
   const alignCss = css`
     justify-content: ${horizontalAlign};
     align-items: ${verticalAlign};
