@@ -37,13 +37,17 @@ import { getDottedLineSquareMap } from "@/redux/currentApp/editor/dottedLineSqua
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { DragResize } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import useWindowSize from "react-use/lib/useWindowSize"
 
 export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
 
   const canvasRef = useRef<HTMLDivElement>(null)
+  const componentsTreeRef = useRef<HTMLDivElement>(null)
 
   const dispatch = useDispatch()
+  // window
+  const { width, height } = useWindowSize()
 
   // canvas field
   const edgeWidth = 18
@@ -89,7 +93,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setMinBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [bottomPanelState])
+  }, [bottomPanelState, height])
 
   // calculate scale height
   useEffect(() => {
@@ -111,7 +115,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setUnitWidth(finalBlockWidth)
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState])
+  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState, width])
 
   // drag move
   const [, dropTarget] = useDrop<
@@ -433,31 +437,37 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   return (
     <div
-      ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
+      ref={mergeRefs(canvasRef, dropTarget, resizeDropTarget)}
       css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
-      onClick={() => {
-        dispatch(configActions.updateSelectedComponent([]))
-      }}
       {...otherProps}
     >
       <canvas
         id={`${componentNode.displayName}-canvas`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot, 0)}
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />
       <canvas
         id={`${componentNode.displayName}-dotted`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot, 1)}
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />
-      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+      <div
+        ref={componentsTreeRef}
+        css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
+        onClick={(e) => {
+          e.stopPropagation()
+          if (e.target == componentsTreeRef.current) {
+            dispatch(configActions.updateSelectedComponent([]))
+          }
+        }}
+      >
         {componentTree}
       </div>
       <canvas
         id={`${componentNode.displayName}-dragged`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
+        css={applyDotCanvasStyle(edgeWidth, showDot, 100)}
         width={canvasWidth}
         height={canvasHeight + edgeWidth}
       />

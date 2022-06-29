@@ -490,6 +490,10 @@
           }
         }
       }
+    },
+    "context_menu": {
+      "duplicate": "Duplicate",
+      "delete": "Delete"
     }
   },
   "widget": {
