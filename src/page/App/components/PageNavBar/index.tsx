@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useNavigate } from "react-router-dom"
 import { Button, ButtonGroup } from "@illa-design/button"
 import {
   BugIcon,
@@ -34,6 +35,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const appInfo = useSelector(getAppInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
@@ -43,7 +45,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
-        <Logo width={"34px"} />
+        <Logo
+          width={"34px"}
+          onClick={() => {
+            navigate("/")
+          }}
+          style={{ cursor: "pointer" }}
+        />
         <section css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
           <div css={descriptionStyle}>{appInfo?.appActivity}</div>

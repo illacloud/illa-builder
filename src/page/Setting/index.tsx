@@ -16,10 +16,10 @@ import {
 } from "./style"
 
 export const Setting: FC = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const { t } = useTranslation()
-  let location = useLocation()
-  let pathList = location.pathname.split("/")
+  const location = useLocation()
+  const pathList = location.pathname.split("/")
 
   const tabs: {
     key: string
