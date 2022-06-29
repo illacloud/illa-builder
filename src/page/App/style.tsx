@@ -30,6 +30,7 @@ export function applyLeftPanelStyle(display: boolean): SerializedStyles {
     width: 280px;
     height: 100%;
     min-width: 280px;
+    overflow: auto;
     box-sizing: border-box;
     border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background: ${globalColor(`--${illaPrefix}-white-01`)};

@@ -6,7 +6,7 @@ import { Tree } from "@illa-design/tree"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { WorkSpaceItemProps } from "./interface"
-import { itemTitleStyle } from "./style"
+import { applyTreeContainerStyle, itemTitleStyle } from "./style"
 
 export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
   const { title, dataList = [], selectedKeys, handleSelect } = props
@@ -20,21 +20,24 @@ export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
       mode="builder"
       expandIconPosition="right"
       expandIcon={<ExpandIcon />}
+      defaultActiveKey="title"
     >
       <CollapseItem
         name="title"
         header={<span css={itemTitleStyle}>{title}</span>}
       >
-        <Tree
-          defaultExpandedKeys={expandedKeys}
-          defaultSelectedKeys={selectedKeys}
-          treeData={dataList}
-          onExpand={handleExpand}
-          onSelect={handleSelect}
-          autoExpandParent={false}
-          multiple={false}
-          blockNode
-        />
+        <div css={applyTreeContainerStyle(dataList.length > 0)}>
+          <Tree
+            defaultExpandedKeys={expandedKeys}
+            defaultSelectedKeys={selectedKeys}
+            treeData={dataList}
+            onExpand={handleExpand}
+            onSelect={handleSelect}
+            autoExpandParent={false}
+            multiple={false}
+            blockNode
+          />
+        </div>
       </CollapseItem>
     </Collapse>
   )
