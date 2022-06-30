@@ -75,6 +75,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.email}
                   variant="fill"
@@ -110,6 +111,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.verify}
                   variant="fill"
@@ -183,6 +185,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.password}
                   variant="fill"

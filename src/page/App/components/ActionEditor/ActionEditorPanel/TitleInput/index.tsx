@@ -86,6 +86,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
       onAnimationComplete={focusInput}
     >
       <Input
+        borderColor="techPurple"
         onBlur={() => handleOnBlur()}
         onPressEnter={() => handleOnBlur()}
         value={title}

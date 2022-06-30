@@ -105,6 +105,7 @@ export const RESTAPIConfigure = forwardRef<
               )}
               error={!!errors.resourceName}
               maxLength={200}
+              borderColor="techPurple"
             />
           )}
           rules={{
@@ -130,6 +131,7 @@ export const RESTAPIConfigure = forwardRef<
         <Controller
           render={({ field }) => (
             <Input
+              borderColor="techPurple"
               {...field}
               placeholder={t(
                 "editor.action.resource.rest_api.placeholder.base_url",
@@ -179,6 +181,7 @@ export const RESTAPIConfigure = forwardRef<
                 {...field}
                 size={"small"}
                 _css={inputTagSmallSizeStyle}
+                borderColor="techPurple"
               />
             )}
             control={control}
@@ -187,7 +190,11 @@ export const RESTAPIConfigure = forwardRef<
         </div>
         <Controller
           render={({ field }) => (
-            <Checkbox css={css(applyGridColIndex(2), checkboxStyle)} {...field}>
+            <Checkbox
+              colorScheme="techPurple"
+              css={css(applyGridColIndex(2), checkboxStyle)}
+              {...field}
+            >
               {t("editor.action.resource.rest_api.label.forward_all_cookies")}
             </Checkbox>
           )}
@@ -204,6 +211,7 @@ export const RESTAPIConfigure = forwardRef<
           render={() => (
             <Select
               size={"small"}
+              colorScheme="techPurple"
               onChange={setAuthType}
               value={authType}
               triggerProps={{ _css: topZIndexStyle }}
