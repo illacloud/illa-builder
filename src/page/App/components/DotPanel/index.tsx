@@ -163,6 +163,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
                 newProps: newItem.props ?? {},
               }),
             )
+            dispatch(configActions.updateSelectedComponent([newItem]))
           },
         )
         // remove dotted line square
@@ -423,7 +424,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           return (
             <ScaleSquare
               key={item.displayName}
-              css={applyDragObjectStyle(t, l)}
+              css={applyDragObjectStyle(t, l, item.z)}
               componentNode={item}
               h={h}
               w={w}
@@ -457,7 +458,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         ref={componentsTreeRef}
         css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
         onClick={(e) => {
-          e.stopPropagation()
           if (e.target == componentsTreeRef.current) {
             dispatch(configActions.updateSelectedComponent([]))
           }

@@ -64,10 +64,12 @@ const store = configureStore({
 
 export default store
 export type RootState = ReturnType<typeof store.getState>
+
 export type AppDispatch = typeof store.dispatch
-export type AppListenerEffectAPI = ListenerEffectAPI<RootState, AppDispatch>
 
 export type AppStartListening = TypedStartListening<RootState, AppDispatch>
+
+export type AppListenerEffectAPI = ListenerEffectAPI<RootState, AppDispatch>
 
 export const startAppListening =
   listenerMiddleware.startListening as AppStartListening

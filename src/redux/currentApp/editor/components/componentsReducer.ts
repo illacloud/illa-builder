@@ -27,6 +27,27 @@ export const removeComponentReducer: CaseReducer<
   }
 }
 
+export const bringToFrontReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentNode[]>
+> = (state, action) => {
+  action.payload.forEach((item) => {
+    const parentNode = searchDsl(state.rootDsl, item.parentNode)
+    if (parentNode) {
+      for (let childrenNodeKey in parentNode?.childrenNode) {
+        const node = parentNode?.childrenNode[childrenNodeKey]
+        if (node != undefined) {
+          if (node.displayName === item.displayName) {
+            node.z = 10
+          } else {
+            node.z = 0
+          }
+        }
+      }
+    }
+  })
+}
+
 export const copyComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode>
