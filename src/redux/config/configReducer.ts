@@ -2,6 +2,8 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ConfigState } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import store from "@/store"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
