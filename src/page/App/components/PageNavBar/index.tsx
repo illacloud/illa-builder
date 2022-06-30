@@ -1,6 +1,8 @@
 import { FC } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, ButtonGroup } from "@illa-design/button"
+import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import {
   BugIcon,
   CaretRightIcon,
@@ -9,19 +11,8 @@ import {
   WindowLeftIcon,
   WindowRightIcon,
 } from "@illa-design/icon"
-import { useTranslation } from "react-i18next"
-import {
-  descriptionStyle,
-  informationStyle,
-  nameStyle,
-  navBarStyle,
-  rowCenter,
-  viewControlStyle,
-  windowIconStyle,
-} from "./style"
+import { Button, ButtonGroup } from "@illa-design/button"
 import { ZoomControl } from "@/page/App/components/PageNavBar/ZoomControl"
-import { ReactComponent as Logo } from "@assets/illa-logo.svg"
-import { useDispatch, useSelector } from "react-redux"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -30,6 +21,16 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import {
+  descriptionStyle,
+  informationStyle,
+  nameStyle,
+  navBarStyle,
+  rowCenter,
+  viewControlStyle,
+  windowIconStyle,
+  logoCursorStyle,
+} from "./style"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
@@ -50,7 +51,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           onClick={() => {
             navigate("/")
           }}
-          style={{ cursor: "pointer" }}
+          css={logoCursorStyle}
         />
         <section css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
