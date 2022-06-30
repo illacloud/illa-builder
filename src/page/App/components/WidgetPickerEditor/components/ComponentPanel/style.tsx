@@ -6,7 +6,7 @@ export const componentContainerStyle = css`
   width: 100%;
 `
 export const searchWrapperStyle = css`
-  padding: 16px;
+  padding: 16px 16px 8px 16px;
 `
 
 export const sessionListContainerStyle = css`
@@ -25,6 +25,9 @@ export const sessionContainerStyle = css`
   width: 100%;
   display: inline-flex;
   flex-direction: column;
+  &:not(:nth-of-type(1)) {
+    margin-top: 8px;
+  }
 `
 
 export const sessionTitleStyle = css`
@@ -69,6 +72,7 @@ export const iconStyle = css`
   align-items: center;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   cursor: grab;
+  border-radius: 4px;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
