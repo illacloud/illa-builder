@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
   gridHandlersStyle,
@@ -12,7 +12,7 @@ import { v4 as uuid } from "uuid"
 import { HandlerItem } from "./HandlerItem"
 import { EventInstanceProps } from "./interface"
 
-export const EventInstance = (props: EventInstanceProps) => {
+export const EventInstance: FC<EventInstanceProps> = (props) => {
   const { title } = props
   const [handlerList, setHandlerList] = useState([{ key: uuid() }])
   const { t } = useTranslation()
@@ -43,3 +43,5 @@ export const EventInstance = (props: EventInstanceProps) => {
     </>
   )
 }
+
+EventInstance.displayName = "EventInstance"

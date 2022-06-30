@@ -1,3 +1,4 @@
+import { FC } from "react"
 import { MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import {
@@ -10,7 +11,7 @@ import {
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
 import { HandlerItemProps } from "./interface"
 
-export const HandlerItem = (props: HandlerItemProps) => {
+export const HandlerItem: FC<HandlerItemProps> = (props) => {
   const { content } = props
   const dropList = (
     <ul css={moreListStyle}>
@@ -37,3 +38,5 @@ export const HandlerItem = (props: HandlerItemProps) => {
     </div>
   )
 }
+
+HandlerItem.displayName = "HandlerItem"

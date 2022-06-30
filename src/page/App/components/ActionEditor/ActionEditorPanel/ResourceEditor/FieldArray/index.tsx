@@ -57,6 +57,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               onChange={(v) => updateField(index, "key", v)}
             />
             <Select
+              colorScheme="techPurple"
               value={type}
               options={typeOptions}
               css={fieldItemTypeStyle}

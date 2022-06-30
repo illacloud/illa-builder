@@ -98,6 +98,7 @@ export const Login: FC = () => {
                   error={!!errors.email}
                   variant="fill"
                   placeholder={t("user.sign_in.placeholder.email")}
+                  borderColor="techPurple"
                 />
               )}
               rules={{
@@ -143,6 +144,7 @@ export const Login: FC = () => {
                   error={!!errors.password}
                   variant="fill"
                   placeholder={t("user.sign_in.placeholder.password")}
+                  borderColor="techPurple"
                 />
               )}
               rules={{

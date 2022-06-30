@@ -59,12 +59,14 @@ export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
           </label>
           <span css={fillingStyle} />
           <Select
+            colorScheme="techPurple"
             options={triggerOptions}
             defaultValue={0}
             css={css(actionSelectStyle, triggerSelectStyle)}
           />
 
           <Select
+            colorScheme="techPurple"
             css={css(actionSelectStyle, resourceSelectStyle)}
             value={resourceId}
             onChange={onChangeResource}

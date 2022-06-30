@@ -46,6 +46,7 @@ export const InputUpload: FC<InputUploadProps> = (props) => {
           reset(name)
         }}
         allowClear
+        borderColor="techPurple"
       />
       <input
         css={displayNoneStyle}

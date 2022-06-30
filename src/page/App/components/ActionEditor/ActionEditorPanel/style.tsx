@@ -298,7 +298,7 @@ export const handlerItemContentStyle = css`
   border-bottom-left-radius: 8px;
 
   &:hover {
-    border-color: ${globalColor(`--${illaPrefix}-blue-06`)};
+    border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
   }
 `
 
