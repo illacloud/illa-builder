@@ -1,6 +1,7 @@
 import { FC, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
 import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { builderInfoActions } from "@/redux/builderInfo/builderInfoSlice"
@@ -8,8 +9,8 @@ import { SettingCommonForm } from "../Components/SettingCommonForm"
 
 export const SettingOthers: FC = () => {
   const { t } = useTranslation()
-
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [languageValue, setLanguageValue] = useState<string>(
     useSelector(getBuilderInfo).language,

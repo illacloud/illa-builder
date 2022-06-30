@@ -42,10 +42,15 @@ export function applyDotCanvasStyle(
   `
 }
 
-export function applyDragObjectStyle(t: number, l: number): SerializedStyles {
+export function applyDragObjectStyle(
+  t: number,
+  l: number,
+  z: number,
+): SerializedStyles {
   return css`
     position: absolute;
     top: ${t}px;
     left: ${l}px;
+    z-index: ${z};
   `
 }

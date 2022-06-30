@@ -1,9 +1,9 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
-import { AppStartListening, AppListenerEffectAPI } from "@/store"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { generateDependencies } from "@/utils/generators/generateDependenciesMap"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
+import { AppListenerEffectAPI, AppStartListening } from "@/store"
 
 async function handleUpdateDependencies(
   action: ReturnType<typeof componentsActions.updateComponentPropsReducer>,

@@ -5,11 +5,11 @@ import { useTranslation } from "react-i18next"
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import { Button } from "@illa-design/button"
-import { Tooltip } from "@illa-design/tooltip"
 import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
 import { MoreIcon } from "@illa-design/icon"
 import { Message } from "@illa-design/message"
+import { Dropdown } from "@illa-design/dropdown"
 import { Resource, ResourceListState } from "@/redux/resource/resourceState"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
@@ -82,15 +82,10 @@ const ExtraColComponent: FC<{
       >
         {t("edit")}
       </Button>
-      <Tooltip
-        trigger="click"
-        colorScheme="white"
-        showArrow={false}
+      <Dropdown
         position="br"
-        withoutPadding
-        clickOutsideToClose
-        closeOnInnerClick
-        content={
+        trigger="click"
+        dropList={
           <DashboardResourcesItemMenu
             resourceId={resourceId}
             setCurId={setCurId}
@@ -104,7 +99,7 @@ const ExtraColComponent: FC<{
           colorScheme="grayBlue"
           leftIcon={<MoreIcon size="14px" />}
         />
-      </Tooltip>
+      </Dropdown>
     </>
   )
 }
