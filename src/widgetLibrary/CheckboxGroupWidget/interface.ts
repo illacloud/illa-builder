@@ -11,7 +11,7 @@ export interface WrappedCheckboxGroupProps
     LabelProps {
   itemMode?: "dynamic" | "static"
   handleUpdateDsl: (value: Record<string, any>) => void
-  styles: {
-    colorScheme: CheckboxGroupProps["colorScheme"]
+  styles?: {
+    colorScheme?: CheckboxGroupProps["colorScheme"]
   }
 }

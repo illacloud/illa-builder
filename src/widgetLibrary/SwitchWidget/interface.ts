@@ -11,7 +11,7 @@ export interface WrappedSwitchProps
   value?: SwitchProps["checked"]
   handleOnChange: () => void
   handleUpdateDsl: (value: Record<string, boolean | undefined>) => void
-  styles: {
-    colorScheme: SwitchProps["colorScheme"]
+  styles?: {
+    colorScheme?: SwitchProps["colorScheme"]
   }
 }

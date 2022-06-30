@@ -119,6 +119,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
             handleCloseModal={handleCloseModal}
             childrenSetter={childrenSetter}
             handleUpdateItem={finalHandleUpdateItem}
+            attrName={`events.${index}`}
           />
         }
         showArrow={false}

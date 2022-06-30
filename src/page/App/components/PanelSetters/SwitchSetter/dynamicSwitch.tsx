@@ -20,6 +20,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     panelConfig,
     handleUpdateDsl,
     value,
+    widgetDisplayName,
   } = props
 
   const dynamicAttrPath = get(panelConfig, "$dynamicAttrPaths", [])
@@ -63,6 +64,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             panelConfig={panelConfig}
             expectedType="String"
             isSetterSingleRow
+            widgetDisplayName={widgetDisplayName}
           />
         </div>
       )}
