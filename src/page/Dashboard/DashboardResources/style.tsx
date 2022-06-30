@@ -29,6 +29,7 @@ export const tableInfoTextStyle = css`
 export const tableStyle = css`
   thead tr th {
     background: ${globalColor(`--${illaPrefix}-white-01`)};
+    font-weight: 500;
   }
   tr {
     height: 56px;
