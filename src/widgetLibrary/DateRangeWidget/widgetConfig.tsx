@@ -12,8 +12,6 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   h: 5,
   defaults: {
     dateFormat: "YYYY-MM-DD",
-    minDate: "2022-05-01",
-    maxDate: "2022-05-30",
     startPlaceholder: "Start date",
     endPlaceholder: "End date",
     value: ["2022-05-02", "2022-05-03"],
