@@ -13,7 +13,6 @@ test("segmentedControl renders correctly", () => {
       ]}
       value={2}
       handleUpdateDsl={handleUpdateDSL}
-      colorScheme="green"
     />,
   )
   expect(screen.getByText("1")).toBeInTheDocument()

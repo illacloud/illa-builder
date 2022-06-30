@@ -21,7 +21,7 @@ export interface WrappedButtonProps
   submitTargetId?: string
   alignment?: alignmentType
   borderRadius?: string
-  styles: {
-    colorScheme: ButtonProps["colorScheme"]
+  styles?: {
+    colorScheme?: ButtonProps["colorScheme"]
   }
 }

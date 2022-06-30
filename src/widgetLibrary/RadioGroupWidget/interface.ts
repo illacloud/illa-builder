@@ -11,7 +11,7 @@ export interface WrappedRadioGroupProps
     LabelProps {
   itemMode?: "manual" | "mapped"
   handleUpdateDsl: (value: Record<string, any>) => void
-  styles: {
-    colorScheme: RadioGroupProps<any>["colorScheme"]
+  styles?: {
+    colorScheme?: RadioGroupProps<any>["colorScheme"]
   }
 }
