@@ -54,7 +54,6 @@ export const renderPanelBar = (
       >
         {children && children.length > 0 && fieldFactory(children, displayName)}
       </PanelBar>
-      {isOpened && <div style={{ marginTop: "8px" }} />}
     </>
   )
 }

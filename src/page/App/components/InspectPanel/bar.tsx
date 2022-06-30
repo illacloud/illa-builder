@@ -40,6 +40,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           <div>{children}</div>
         </motion.div>
       </AnimatePresence>
+      {isOpenedState && <div style={{ marginTop: "8px" }} />}
     </>
   )
 }
