@@ -56,12 +56,11 @@ export const SelectedProvider: FC<Props> = ({
 
   const handleUpdateDsl = (attrPath: string, value: any) => {
     if (!widgetProps || !widgetDisplayName) return
-    const newProps = _.cloneDeep(widgetProps)
-    _.set(newProps, attrPath, value)
+    const updateSlice = { [attrPath]: value }
     dispatch(
       componentsActions.updateComponentPropsReducer({
         displayName: widgetDisplayName,
-        newProps,
+        updateSlice,
       }),
     )
   }

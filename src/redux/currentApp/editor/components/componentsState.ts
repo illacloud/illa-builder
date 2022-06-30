@@ -57,10 +57,5 @@ export interface deleteComponentNodePayload {
 
 export interface updateComponentPropsPayload {
   displayName: string
-  newProps: Record<string, any>
-}
-
-export interface updateComponentDynamicStringsPayload {
-  displayName: string
-  dynamicStrings: string[]
+  updateSlice: Record<string, any>
 }

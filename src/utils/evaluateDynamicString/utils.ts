@@ -1,4 +1,5 @@
 import { getSnippets } from "./dynamicConverter"
+import { isObject } from "@/utils/typeHelper"
 
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
 export const DYNAMIC_STRING_REG = /{{([\s\S]*?)}}/
@@ -46,7 +47,7 @@ export const createGlobalData = (
 
 export const stringToJS = (string: string): string => {
   const { jsSnippets, stringSnippets } = getSnippets(string)
-  const js = stringSnippets
+  return stringSnippets
     .map((segment, index) => {
       if (jsSnippets[index] && jsSnippets[index].length > 0) {
         return jsSnippets[index]
@@ -55,7 +56,6 @@ export const stringToJS = (string: string): string => {
       }
     })
     .join(" + ")
-  return js
 }
 
 export const wrapCode = (code: string) => {
@@ -65,19 +65,68 @@ export const wrapCode = (code: string) => {
     })
   `
 }
-export function getDisplayNameAndAttributeyPath(fullPath: string): {
+export function getDisplayNameAndAttrPath(fullPath: string): {
   displayName: string
-  attributeyPath: string
+  attrPath: string
 } {
   const indexOfFirstDot = fullPath.indexOf(".")
   if (indexOfFirstDot === -1) {
     // No dot was found so path is the entity name itself
     return {
       displayName: fullPath,
-      attributeyPath: "",
+      attrPath: "",
     }
   }
   const displayName = fullPath.substring(0, indexOfFirstDot)
-  const attributeyPath = fullPath.substring(indexOfFirstDot + 1)
-  return { displayName, attributeyPath }
+  const attrPath = fullPath.substring(indexOfFirstDot + 1)
+  return { displayName, attrPath }
+}
+
+export const getAllPaths = (
+  widgetsOrActions: Record<string, any> | any[],
+  currentPath: string = "",
+  result: Record<string, any> = {},
+) => {
+  if (currentPath) result[currentPath] = true
+  if (Array.isArray(widgetsOrActions)) {
+    for (let i = 0; i < widgetsOrActions.length; i++) {
+      const tempKey = currentPath ? `${currentPath}[${i}]` : `${i}`
+      getAllPaths(widgetsOrActions[i], tempKey, result)
+    }
+  } else if (isObject(widgetsOrActions)) {
+    for (const key in widgetsOrActions) {
+      const tempKey = currentPath ? `${currentPath}.${key}` : `${key}`
+      getAllPaths(widgetsOrActions[key], tempKey, result)
+    }
+  }
+  return result
+}
+
+export const getWidgetOrActionDynamicAttrPaths = (
+  widgetOrAction: Record<string, any>,
+): string[] => {
+  if (
+    widgetOrAction &&
+    widgetOrAction.$dynamicAttrPaths &&
+    Array.isArray(widgetOrAction.$dynamicAttrPaths)
+  ) {
+    return [...widgetOrAction.$dynamicAttrPaths]
+  }
+  return []
+}
+
+export const isPathInDynamicAttrPaths = (
+  widgetOrAction: Record<string, any>,
+  path: string,
+): boolean => {
+  if (
+    widgetOrAction &&
+    widgetOrAction.$dynamicAttrPaths &&
+    Array.isArray(widgetOrAction.$dynamicAttrPaths)
+  ) {
+    return widgetOrAction.$dynamicAttrPaths.find((dynamicAttrPath) => {
+      return dynamicAttrPath === path
+    })
+  }
+  return false
 }

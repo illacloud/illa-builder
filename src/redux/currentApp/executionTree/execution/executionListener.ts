@@ -6,13 +6,13 @@ import { dependenciesActions } from "@/redux/currentApp/executionTree/dependenci
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { getEvalOrderSelector } from "@/redux/currentApp/executionTree/dependencies/dependenciesSelector"
 import {
-  getDisplayNameAndAttributeyPath,
+  getDisplayNameAndAttrPath,
   isDynamicString,
 } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ExecutionState } from "@/redux/currentApp/executionTree/execution/executionState"
 
-function exectionAllTree(
+function executeAllTree(
   displayNameMap: Record<string, any>,
   evalOrder: string[],
   point: number,
@@ -20,17 +20,16 @@ function exectionAllTree(
   const oldTree = _.cloneDeep(displayNameMap)
   const errorTree: ExecutionState["error"] = {}
   try {
-    const evaledTree = evalOrder.reduce(
+    const evaluatedTree = evalOrder.reduce(
       (
         current: Record<string, any>,
         fullPath: string,
         currentIndex: number,
       ) => {
-        const { displayName, attributeyPath } =
-          getDisplayNameAndAttributeyPath(fullPath)
+        const { displayName, attrPath } = getDisplayNameAndAttrPath(fullPath)
         const widgetOrAction = current[displayName]
         let widgetOrActionAttribute = _.get(current, fullPath)
-        let evaledValue
+        let evaluateValue
         if (point === currentIndex) {
           // TODO: @weichen widget default value
           widgetOrActionAttribute = "defaultValue"
@@ -38,8 +37,8 @@ function exectionAllTree(
         const requiredEval = isDynamicString(widgetOrActionAttribute)
         if (requiredEval) {
           try {
-            evaledValue = evaluateDynamicString(
-              attributeyPath,
+            evaluateValue = evaluateDynamicString(
+              attrPath,
               widgetOrActionAttribute,
               current,
             )
@@ -49,18 +48,18 @@ function exectionAllTree(
               errorMessage: (e as Error).message,
             })
             // TODO: @weichen widget default value
-            evaledValue = undefined
+            evaluateValue = undefined
           }
         } else {
-          evaledValue = widgetOrActionAttribute
+          evaluateValue = widgetOrActionAttribute
         }
-        return _.set(current, fullPath, evaledValue)
+        return _.set(current, fullPath, evaluateValue)
       },
       oldTree,
     )
-    return { evaledTree, errorTree }
+    return { evaluatedTree, errorTree }
   } catch (e) {
-    return { evaledTree: oldTree, errorTree }
+    return { evaluatedTree: oldTree, errorTree }
   }
 }
 
@@ -72,14 +71,14 @@ async function handleUpdateExecution(
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
   if (!displayNameMapProps) return
   const { order, point } = getEvalOrderSelector(rootState)
-  const { evaledTree, errorTree } = exectionAllTree(
+  const { evaluatedTree, errorTree } = executeAllTree(
     displayNameMapProps,
     order,
     point,
   )
   listenerApi.dispatch(
     executionActions.setExecutionReducer({
-      result: evaledTree,
+      result: evaluatedTree,
       error: errorTree,
     }),
   )
