@@ -104,7 +104,9 @@ export const IllaApp: FC = () => {
   return (
     <div css={containerStyle}>
       <DashboardTitleBar />
-      {pageState === "loading" && <Loading _css={loadingStyle} />}
+      {pageState === "loading" && (
+        <Loading _css={loadingStyle} colorScheme="techPurple" />
+      )}
       {pageState === "error" && (
         <div css={errorBodyStyle}>
           <div css={errorIconContentStyle}>

@@ -64,3 +64,9 @@ export const listItemStyle = css`
     }
   }
 `
+
+export const listItemTitleStyle = css`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+`

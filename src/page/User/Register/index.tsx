@@ -95,6 +95,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.username}
                   variant="fill"
@@ -130,6 +131,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.email}
                   variant="fill"
@@ -163,6 +165,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.verify}
                   variant="fill"
@@ -232,6 +235,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.password}
                   variant="fill"

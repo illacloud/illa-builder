@@ -21,7 +21,7 @@ export const actionListTransformer = (list: ActionListState) =>
         <>
           <span css={itemNameStyle}>{item.displayName}&nbsp;</span>
           <span css={itemNameDescStyle}>
-            {`{}`}&nbsp;&nbsp;{childrenArray.length}key
+            {`{ }`}&nbsp;&nbsp;{childrenArray.length}key
           </span>
         </>
       ),
@@ -69,7 +69,7 @@ export const widgetListTransformer = (execution: ExecutionState["result"]) => {
         <>
           <span css={itemNameStyle}>{key}&nbsp;</span>
           <span css={itemNameDescStyle}>
-            {`{}`}&nbsp;&nbsp;{childrenArray.length}key
+            {`{ }`}&nbsp;&nbsp;{childrenArray.length}key
           </span>
         </>
       ),
@@ -97,7 +97,7 @@ export const globalInfoTransformer = (
         <>
           <span css={itemNameStyle}>{item.displayName}&nbsp;</span>
           <span css={itemNameDescStyle}>
-            {`{}`}&nbsp;&nbsp;{childrenArray.length}key
+            {`{ }`}&nbsp;&nbsp;{childrenArray.length}key
           </span>
         </>
       ),
@@ -127,7 +127,7 @@ export const dfsTransformer = (
               <>
                 <span css={itemNameStyle}>{key}&nbsp;</span>
                 <span css={itemNameDescStyle}>
-                  {isObject(props[key]) ? `{}` : `[]`}&nbsp;&nbsp;
+                  {isObject(props[key]) ? `{ }` : `[ ]`}&nbsp;&nbsp;
                   {childrenArray.length}key
                 </span>
               </>

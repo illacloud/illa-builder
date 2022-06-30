@@ -56,7 +56,7 @@ export const panelBarHeaderStyle = css`
 `
 
 export const panelBarTitleStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-weight: 500;
   font-size: 14px;
 `
@@ -72,7 +72,7 @@ export function applyPanelBarOpenedIconStyle(
   return css`
     font-size: 12px;
     transition: transform 200ms;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     ${rotate}
   `
 }
@@ -100,6 +100,7 @@ export function applySetterWrapperStyle(
   }
   if (isSetterSingleRow) {
     return css`
+      margin: 8px 0;
       ${publicPaddingStyle}
     `
   }

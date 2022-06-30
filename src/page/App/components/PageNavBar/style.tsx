@@ -51,3 +51,7 @@ export function windowIconStyle(selected: boolean): SerializedStyles {
       : globalColor(`--${illaPrefix}-grayBlue-05`)};
   `
 }
+
+export const logoCursorStyle = css`
+  cursor: pointer;
+`
