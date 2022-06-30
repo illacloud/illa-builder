@@ -142,6 +142,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
             <Input
               inputRef={inputRef}
               requirePadding={false}
+              borderColor="techPurple"
+
               value={editingName}
               error={isRenameError?.error}
               onChange={(value) => {
@@ -153,6 +155,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
               onPressEnter={() => updateName(name)}
             />
           </Trigger>
+
         )
       }
 

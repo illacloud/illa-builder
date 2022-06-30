@@ -56,6 +56,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
         <span css={fillingStyle} />
         <Select
           value={triggerMode}
+          colorScheme="techPurple"
           onChange={onChangeTriggerMode}
           options={triggerOptions}
           defaultValue={0}
@@ -65,6 +66,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
         <Select
           css={css(actionSelectStyle, resourceSelectStyle)}
           value={resourceId}
+          colorScheme="techPurple"
           onChange={onChangeResource}
           triggerProps={{
             autoAlignPopupWidth: false,

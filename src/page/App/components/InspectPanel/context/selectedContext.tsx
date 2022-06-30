@@ -1,14 +1,7 @@
-import {
-  createContext,
-  ReactNode,
-  FC,
-  useContext,
-  useCallback,
-  useMemo,
-} from "react"
+import _ from "lodash"
+import { createContext, ReactNode, FC, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { Empty } from "@/page/App/components/InspectPanel/empty"
 
@@ -17,8 +10,7 @@ interface Injected {
   widgetDisplayName: string
   widgetParentDisplayName: string
   widgetProps: Record<string, any>
-  handleUpdateDsl: (value: Record<string, any>) => void
-  handleUpdateDynamicStrings: (action: "add" | "delete", value: string) => void
+  handleUpdateDsl: (attrPath: string, value: any) => void
 }
 
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
@@ -46,7 +38,7 @@ export const SelectedProvider: FC<Props> = ({
   )
 
   const widgetDisplayName = useMemo(
-    () => singleSelectedComponentNode?.displayName,
+    () => singleSelectedComponentNode?.displayName as string,
     [singleSelectedComponentNode],
   )
 
@@ -60,47 +52,18 @@ export const SelectedProvider: FC<Props> = ({
     [singleSelectedComponentNode],
   )
 
-  const widgetDynamicStrings = useMemo(() => {
-    return singleSelectedComponentNode?.panelConfig?.dynamicStrings || []
-  }, [singleSelectedComponentNode])
-
   const dispatch = useDispatch()
 
-  const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
-
-  const handleUpdateDsl = (value: Record<string, any>) => {
+  const handleUpdateDsl = (attrPath: string, value: any) => {
     if (!widgetProps || !widgetDisplayName) return
+    const newProps = _.cloneDeep(widgetProps)
+    _.set(newProps, attrPath, value)
     dispatch(
       componentsActions.updateComponentPropsReducer({
         displayName: widgetDisplayName,
-        newProps: value,
+        newProps,
       }),
     )
-  }
-
-  const handleUpdateDynamicStrings = (
-    action: "add" | "delete",
-    value: string,
-  ) => {
-    if (!widgetProps || !widgetDisplayName) return
-
-    switch (action) {
-      case "add":
-        if (widgetDynamicStrings.includes(value)) return
-        componentsActions.updateComponentDynamicStringsReducer({
-          displayName: widgetDisplayName,
-          dynamicStrings: [...widgetDynamicStrings, value],
-        })
-        return
-      case "delete":
-        if (!widgetDynamicStrings.includes(value)) return
-        const index = widgetDynamicStrings.indexOf(value)
-        componentsActions.updateComponentDynamicStringsReducer({
-          displayName: widgetDisplayName,
-          dynamicStrings: widgetDynamicStrings.splice(index, 1),
-        })
-        return
-    }
   }
 
   if (!widgetType || !widgetDisplayName) return <Empty />
@@ -111,7 +74,6 @@ export const SelectedProvider: FC<Props> = ({
     widgetParentDisplayName,
     widgetProps,
     handleUpdateDsl,
-    handleUpdateDynamicStrings,
   }
 
   return (

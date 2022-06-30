@@ -56,7 +56,7 @@ export const panelBarHeaderStyle = css`
 `
 
 export const panelBarTitleStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-weight: 500;
   font-size: 14px;
 `
@@ -72,7 +72,7 @@ export function applyPanelBarOpenedIconStyle(
   return css`
     font-size: 12px;
     transition: transform 200ms;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     ${rotate}
   `
 }
@@ -100,6 +100,7 @@ export function applySetterWrapperStyle(
   }
   if (isSetterSingleRow) {
     return css`
+      margin: 8px 0;
       ${publicPaddingStyle}
     `
   }
@@ -145,4 +146,28 @@ export const singleSelectedPanelWrapperStyle = css`
 export const singleSelectedPanelSetterWrapperStyle = css`
   max-height: calc(100vh - 150px);
   overflow-y: auto;
+`
+
+export const actionMenuContaninterStyle = css`
+  padding: 8px 0;
+  width: 184px;
+  border-radius: 8px;
+  border: 1px solid ${globalColor(`--${illaPrefix}-gray-08`)};
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.16);
+`
+
+export const baseActionMenuItemStyle = css`
+  width: 100%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${globalColor(`--${illaPrefix}-gray-09`)};
+  }
+`
+
+export const deleteActionMenuItemStyle = css`
+  color: ${globalColor(`--${illaPrefix}-red-03`)};
 `

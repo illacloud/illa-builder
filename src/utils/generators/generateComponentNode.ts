@@ -1,5 +1,5 @@
-import { WidgetCardInfo } from "@/wrappedComponents/interface"
-import { WidgetTypeList } from "@/wrappedComponents/WidgetBuilder"
+import { WidgetCardInfo } from "@/widgetLibrary/interface"
+import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateComponentNodeDisplayName"
 
@@ -31,7 +31,7 @@ export const generateComponentNode = (
 
   const childrenNodeDSLKeys = Object.keys(childrenNodeDSL)
 
-  const { defaults, w, h, type } = widgetInfo
+  const { defaults, w, h, type, widgetName = "" } = widgetInfo
   baseDSL = {
     w,
     h,
@@ -43,8 +43,12 @@ export const generateComponentNode = (
     x: -1,
     y: -1,
     z: 0,
+    showName: widgetName,
     type,
-    displayName: ComponentNodeDisplayNameGenerator.getDisplayName(type),
+    displayName: ComponentNodeDisplayNameGenerator.getDisplayName(
+      type,
+      widgetName,
+    ),
     containerType: "EDITOR_SCALE_SQUARE",
     parentNode: null,
     childrenNode: childrenNodeDSLKeys.length > 0 ? childrenNodeDSL : null,

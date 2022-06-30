@@ -1,4 +1,24 @@
 import { FC, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom"
+import dayjs from "dayjs"
+import utc from "dayjs/plugin/utc"
+import { Button } from "@illa-design/button"
+import { List, ListItem, ListItemMeta } from "@illa-design/list"
+import { MoreIcon } from "@illa-design/icon"
+import { Divider } from "@illa-design/divider"
+import { Empty } from "@illa-design/empty"
+import { Message } from "@illa-design/message"
+import { Modal } from "@illa-design/modal"
+import { Input } from "@illa-design/input"
+import { Dropdown } from "@illa-design/dropdown"
+import { Api } from "@/api/base"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
+import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
+import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
+import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
+import { modalStyle } from "@/page/Dashboard/components/DashboardItemMenu/style"
 import {
   appsContainerStyle,
   itemExtraContainerStyle,
@@ -9,25 +29,10 @@ import {
   hoverableStyle,
   listItemStyle,
   editButtonStyle,
+  listItemTitleStyle,
 } from "./style"
-import { modalStyle } from "@/page/Dashboard/components/DashboardItemMenu/style"
-import { useTranslation } from "react-i18next"
-import { Button } from "@illa-design/button"
-import { List, ListItemMeta, ListItem } from "@illa-design/list"
-import { MoreIcon } from "@illa-design/icon"
-import { Divider } from "@illa-design/divider"
-import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
-import { Empty } from "@illa-design/empty"
-import { useDispatch, useSelector } from "react-redux"
-import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
-import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { useNavigate } from "react-router-dom"
-import { Api } from "@/api/base"
-import { Tooltip } from "@illa-design/tooltip"
-import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu"
-import { Message } from "@illa-design/message"
-import { Modal } from "@illa-design/modal"
-import { Input } from "@illa-design/input"
+
+dayjs.extend(utc)
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -114,6 +119,7 @@ export const DashboardApps: FC = () => {
           data={appsList}
           bordered={false}
           hoverable={true}
+          renderRaw
           render={(item, index) => {
             return (
               <ListItem
@@ -130,15 +136,10 @@ export const DashboardApps: FC = () => {
                     >
                       {t("edit")}
                     </Button>
-                    <Tooltip
-                      trigger="click"
-                      colorScheme="white"
-                      showArrow={false}
+                    <Dropdown
                       position="br"
-                      withoutPadding
-                      clickOutsideToClose
-                      closeOnInnerClick
-                      content={
+                      trigger="click"
+                      dropList={
                         <DashboardItemMenu
                           appId={item.appId}
                           appName={item.appName}
@@ -151,14 +152,16 @@ export const DashboardApps: FC = () => {
                         colorScheme="grayBlue"
                         leftIcon={<MoreIcon size="14px" />}
                       />
-                    </Tooltip>
+                    </Dropdown>
                   </div>
                 }
               >
                 <ListItemMeta
                   css={hoverableStyle}
-                  title={item.appName}
-                  description={`${item.lastModifiedBy} ${item.lastModifiedAt}`}
+                  title={<span css={listItemTitleStyle}>{item.appName}</span>}
+                  description={`${item.lastModifiedBy} ${dayjs
+                    .utc(item.lastModifiedAt)
+                    .format("YYYY-MM-DD HH:mm:ss")}`}
                   onClick={() => {
                     navigate(`/app/${item.appId}`)
                   }}

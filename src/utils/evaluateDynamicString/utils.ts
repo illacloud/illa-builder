@@ -57,3 +57,27 @@ export const stringToJS = (string: string): string => {
     .join(" + ")
   return js
 }
+
+export const wrapCode = (code: string) => {
+  return `
+    (function() {
+      return ${code}
+    })
+  `
+}
+export function getDisplayNameAndAttributeyPath(fullPath: string): {
+  displayName: string
+  attributeyPath: string
+} {
+  const indexOfFirstDot = fullPath.indexOf(".")
+  if (indexOfFirstDot === -1) {
+    // No dot was found so path is the entity name itself
+    return {
+      displayName: fullPath,
+      attributeyPath: "",
+    }
+  }
+  const displayName = fullPath.substring(0, indexOfFirstDot)
+  const attributeyPath = fullPath.substring(indexOfFirstDot + 1)
+  return { displayName, attributeyPath }
+}

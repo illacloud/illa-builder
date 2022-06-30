@@ -37,14 +37,13 @@ export const isSelected = (state: RootState, displayName: string) => {
   )
 }
 
+export const getExpandedKeys = (state: RootState) => {
+  return state.config.expandedKeys
+}
+
 export const getSelectedComponentsDisplayName = createSelector(
   [getSelectedComponents],
   (selectedComponents) => {
     return selectedComponents.map((component) => component.displayName)
   },
-)
-
-export const getIsSelectedComponent = createSelector(
-  [getSelectedComponentsDisplayName],
-  (displayNames) => displayNames.length > 0,
 )

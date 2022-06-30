@@ -38,6 +38,7 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                       <>
                         <Input
                           size="large"
+                          borderColor="techPurple"
                           style={{ width: 280 }}
                           disabled={contentItem.disabled}
                           value={contentItem.value}
@@ -56,6 +57,7 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                     {contentItem.type === "select" && (
                       <Select
                         style={{ width: 280 }}
+                        colorScheme="techPurple"
                         options={contentItem.selectOptions}
                         defaultValue={contentItem.defaultSelectValue}
                         onChange={contentItem.onChange}

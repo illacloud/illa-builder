@@ -106,6 +106,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               }}
             />
             <Select
+              colorScheme="techPurple"
               value={type}
               options={typeOptions}
               css={fieldItemTypeStyle}

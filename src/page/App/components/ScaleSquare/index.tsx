@@ -17,7 +17,7 @@ import {
   onePixelStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { TransformWidget } from "@/wrappedComponents/TransformWidget"
+import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
 import { RootState } from "@/store"
@@ -27,6 +27,10 @@ import { mergeRefs } from "@illa-design/system"
 import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { Dropdown, DropList } from "@illa-design/dropdown"
+import { useTranslation } from "react-i18next"
+
+const { Item } = DropList
 
 function getDragConfig(
   componentNode: ComponentNode,
@@ -51,6 +55,8 @@ function getDragConfig(
 
 export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const { w, h, componentNode, className, ...otherProps } = props
+
+  const { t } = useTranslation()
 
   const scaleSquareState = componentNode.error ? "error" : "normal"
   const dispatch = useDispatch()
@@ -142,125 +148,149 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   >(getDragConfig(componentNode, "br"), [componentNode])
 
   return (
-    <div
-      css={applyOuterStyle(componentNode.isDragging, h, w)}
-      className={className}
-      onClick={(e) => {
-        dispatch(configActions.updateSelectedComponent([componentNode]))
-        e.stopPropagation()
-      }}
-      {...otherProps}
+    <Dropdown
+      trigger="contextmenu"
+      dropList={
+        <DropList width="184px">
+          <Item
+            key="duplicate"
+            title={t("editor.context_menu.duplicate")}
+            onClick={() => {
+              dispatch(
+                componentsActions.copyComponentNodeReducer(componentNode),
+              )
+            }}
+          />
+          <Item
+            fontColor={globalColor(`--${illaPrefix}-red-03`)}
+            key="delete"
+            title={t("editor.context_menu.delete")}
+            onClick={() => {
+              dispatch(componentsActions.removeComponentReducer(componentNode))
+            }}
+          />
+        </DropList>
+      }
     >
-      <div css={applyBorderStyle(selected, scaleSquareState)}>
-        <div
-          css={applyTransformWidgetStyle(componentNode.verticalResize)}
-          ref={dragRef}
-        >
-          <TransformWidget componentNode={componentNode} />
+      <div
+        css={applyOuterStyle(componentNode.isDragging, h, w)}
+        className={className}
+        onClick={(e) => {
+          dispatch(configActions.updateSelectedComponent([componentNode]))
+        }}
+        {...otherProps}
+      >
+        <div css={applyBorderStyle(selected, scaleSquareState)}>
+          <div
+            css={applyTransformWidgetStyle(componentNode.verticalResize)}
+            ref={dragRef}
+          >
+            <TransformWidgetWrapper componentNode={componentNode} />
+          </div>
+          <div
+            className={"handler"}
+            ref={dragHandlerRef}
+            css={applyHandlerStyle(selected, w, scaleSquareState)}
+          >
+            <DragIcon css={dragIconStyle} />
+            <div css={dragHandlerTextStyle}>{componentNode.displayName}</div>
+            {scaleSquareState == "error" && (
+              <WarningCircleIcon
+                color={globalColor(`--${illaPrefix}-white-05`)}
+                css={warningStyle}
+              />
+            )}
+          </div>
         </div>
         <div
-          className={"handler"}
-          ref={dragHandlerRef}
-          css={applyHandlerStyle(selected, w, scaleSquareState)}
-        >
-          <DragIcon css={dragIconStyle} />
-          <div css={dragHandlerTextStyle}>{componentNode.displayName}</div>
-          {scaleSquareState == "error" && (
-            <WarningCircleIcon
-              color={globalColor(`--${illaPrefix}-white-05`)}
-              css={warningStyle}
-            />
+          css={applyBarPointerStyle(
+            selected,
+            collectT.resizing,
+            scaleSquareState,
+            "t",
           )}
-        </div>
+          ref={resizeT}
+        />
+        <div
+          css={applyBarPointerStyle(
+            selected,
+            collectR.resizing,
+            scaleSquareState,
+            "r",
+          )}
+          ref={resizeR}
+        />
+        <div
+          css={applyBarPointerStyle(
+            selected,
+            collectB.resizing,
+            scaleSquareState,
+            "b",
+          )}
+          ref={resizeB}
+        />
+        <div
+          css={applyBarPointerStyle(
+            selected,
+            collectL.resizing,
+            scaleSquareState,
+            "l",
+          )}
+          ref={resizeL}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectTl.resizing,
+            scaleSquareState,
+            "tl",
+          )}
+          ref={resizeTl}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectTr.resizing,
+            scaleSquareState,
+            "tr",
+          )}
+          ref={resizeTr}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectBl.resizing,
+            scaleSquareState,
+            "bl",
+          )}
+          ref={resizeBl}
+        />
+        <div
+          css={applySquarePointerStyle(
+            selected,
+            collectBr.resizing,
+            scaleSquareState,
+            "br",
+          )}
+          ref={resizeBr}
+        />
+        <div
+          ref={mergeRefs(
+            dragPreviewRef,
+            dragPreviewHandlerRef,
+            resizeTPreviewRef,
+            resizeRPreviewRef,
+            resizeBPreviewRef,
+            resizeLPreviewRef,
+            resizeTlPreviewRef,
+            resizeTrPreviewRef,
+            resizeBlPreviewRef,
+            resizeBrPreviewRef,
+          )}
+          css={onePixelStyle}
+        />
       </div>
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectT.resizing,
-          scaleSquareState,
-          "t",
-        )}
-        ref={resizeT}
-      />
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectR.resizing,
-          scaleSquareState,
-          "r",
-        )}
-        ref={resizeR}
-      />
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectB.resizing,
-          scaleSquareState,
-          "b",
-        )}
-        ref={resizeB}
-      />
-      <div
-        css={applyBarPointerStyle(
-          selected,
-          collectL.resizing,
-          scaleSquareState,
-          "l",
-        )}
-        ref={resizeL}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectTl.resizing,
-          scaleSquareState,
-          "tl",
-        )}
-        ref={resizeTl}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectTr.resizing,
-          scaleSquareState,
-          "tr",
-        )}
-        ref={resizeTr}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectBl.resizing,
-          scaleSquareState,
-          "bl",
-        )}
-        ref={resizeBl}
-      />
-      <div
-        css={applySquarePointerStyle(
-          selected,
-          collectBr.resizing,
-          scaleSquareState,
-          "br",
-        )}
-        ref={resizeBr}
-      />
-      <div
-        ref={mergeRefs(
-          dragPreviewRef,
-          dragPreviewHandlerRef,
-          resizeTPreviewRef,
-          resizeRPreviewRef,
-          resizeBPreviewRef,
-          resizeLPreviewRef,
-          resizeTlPreviewRef,
-          resizeTrPreviewRef,
-          resizeBlPreviewRef,
-          resizeBrPreviewRef,
-        )}
-        css={onePixelStyle}
-      />
-    </div>
+    </Dropdown>
   )
 }
 

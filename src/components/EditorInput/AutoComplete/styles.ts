@@ -7,6 +7,7 @@ export const itemStyle = css`
   height: 24px;
   min-width: 287px;
   transition: background 0.2s ease-in-out;
+
   &:hover {
     background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
   }

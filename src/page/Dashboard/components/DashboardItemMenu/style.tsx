@@ -15,7 +15,7 @@ export function applyTriggerContentItemStyle(
 ): SerializedStyles {
   return css`
     cursor: pointer;
-    padding: 5px 16px;
+    padding: 6px 16px;
     color: ${color};
     min-width: 184px;
     font-size: 14px;

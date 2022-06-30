@@ -6,14 +6,14 @@ export const componentContainerStyle = css`
   width: 100%;
 `
 export const searchWrapperStyle = css`
-  padding: 16px;
+  padding: 16px 16px 8px 16px;
 `
 
 export const sessionListContainerStyle = css`
   ${searchWrapperStyle};
   padding-top: 0;
   padding-bottom: 0;
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 158px);
   overflow-y: auto;
   width: 100%;
   display: flex;
@@ -25,6 +25,9 @@ export const sessionContainerStyle = css`
   width: 100%;
   display: inline-flex;
   flex-direction: column;
+  &:not(:nth-of-type(1)) {
+    margin-top: 8px;
+  }
 `
 
 export const sessionTitleStyle = css`
@@ -67,28 +70,19 @@ export const iconStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${hexToRGBA(
-    globalColor(`--${illaPrefix}-grayBlue-09`),
-    0.5,
-  )};
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   cursor: grab;
-
+  border-radius: 4px;
+  transition: background-color 200ms ease-in-out;
   &:hover {
-    background-color: ${hexToRGBA(
-      globalColor(`--${illaPrefix}-techPurple-07`),
-    )};
-    transform: scale(1.1);
+   background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-
-  transition: 0.15s ease-in-out;
-  transition-property: transform;
-  will-change: transform;
 `
 
 export const nameStyle = css`
   font-size: 12px;
   width: 100%;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   text-overflow: ellipsis;
   box-sizing: border-box;
   padding: 4px 8px 0 8px;
@@ -103,6 +97,7 @@ export const emptyStyle = css`
   padding-top: 122.5px;
   flex-direction: column;
   align-items: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const emptyTipStyle = css`

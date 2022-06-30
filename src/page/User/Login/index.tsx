@@ -20,7 +20,6 @@ import {
   gridValidStyle,
   errorMsgStyle,
   errorIconStyle,
-  checkboxTextStyle,
   forgotPwdStyle,
   forgotPwdContainerStyle,
 } from "@/page/User/style"
@@ -99,6 +98,7 @@ export const Login: FC = () => {
                   error={!!errors.email}
                   variant="fill"
                   placeholder={t("user.sign_in.placeholder.email")}
+                  borderColor="techPurple"
                 />
               )}
               rules={{
@@ -144,6 +144,7 @@ export const Login: FC = () => {
                   error={!!errors.password}
                   variant="fill"
                   placeholder={t("user.sign_in.placeholder.password")}
+                  borderColor="techPurple"
                 />
               )}
               rules={{
@@ -167,24 +168,15 @@ export const Login: FC = () => {
           </div>
         </section>
       </section>
-      <section css={gridFormFieldStyle}>
-        <Button
-          colorScheme="techPurple"
-          size="large"
-          buttonRadius="8px"
-          loading={submitLoading}
-          fullWidth
-        >
-          {t("user.sign_in.actions.login")}
-        </Button>
-        <span css={checkboxTextStyle}>
-          <Trans
-            i18nKey="user.sign_in.description.policy"
-            t={t}
-            components={[<TextLink />, <TextLink />]}
-          />
-        </span>
-      </section>
+      <Button
+        colorScheme="techPurple"
+        size="large"
+        buttonRadius="8px"
+        loading={submitLoading}
+        fullWidth
+      >
+        {t("user.sign_in.actions.login")}
+      </Button>
     </form>
   )
 }

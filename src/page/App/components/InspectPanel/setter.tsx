@@ -1,3 +1,4 @@
+import _ from "lodash"
 import { FC, useContext, useMemo } from "react"
 import { applySetterWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
@@ -16,10 +17,11 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     shown,
     bindAttrName,
     attrName,
+    parentAttrName,
   } = props
   const Comp = getSetterByType(setterType)
 
-  const { widgetProps, handleUpdateDsl, handleUpdateDynamicStrings } =
+  const { widgetProps, handleUpdateDsl, widgetDisplayName } =
     useContext(SelectedPanelContext)
 
   const canRenderSetter = useMemo(() => {
@@ -38,9 +40,16 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     ) : null
   }, [useCustomLayout, labelName, labelDesc, isInList])
 
+  const _finalAttrName = useMemo(() => {
+    if (parentAttrName) {
+      return `${parentAttrName}.${attrName}`
+    }
+    return attrName
+  }, [parentAttrName, attrName])
+
   const canWrapped = useMemo(() => {
     if (renderLabel) {
-      const value = widgetProps[attrName]
+      const value = _.get(widgetProps, _finalAttrName)
       return typeof value === "string" && value.includes("\n")
     }
     return false
@@ -51,16 +60,17 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   }, [isSetterSingleRow, labelName, canWrapped])
 
   const renderSetter = useMemo(() => {
-    const defaultValue = widgetProps[attrName]
+    const value = _.get(widgetProps, _finalAttrName)
     const expectedType = props.expectedType
     return Comp ? (
       <Comp
         {...props}
+        attrName={_finalAttrName}
         isSetterSingleRow={isSetterSingleRowWrapper}
-        value={defaultValue}
+        value={value}
         panelConfig={widgetProps}
         handleUpdateDsl={handleUpdateDsl}
-        handleUpdateDynamicStrings={handleUpdateDynamicStrings}
+        widgetDisplayName={widgetDisplayName}
         expectedType={expectedType ?? "String"}
       />
     ) : null
@@ -71,6 +81,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     attrName,
     handleUpdateDsl,
     isSetterSingleRowWrapper,
+    _finalAttrName,
   ])
 
   return canRenderSetter ? (

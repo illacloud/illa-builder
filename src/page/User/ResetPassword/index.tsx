@@ -75,6 +75,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.email}
                   variant="fill"
@@ -110,12 +111,14 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.verify}
                   variant="fill"
                   suffix={{
                     render: showCountDown ? (
                       <Countdown
+                        mode="builder"
                         value={Date.now() + 1000 * 60}
                         now={Date.now()}
                         format="ss"
@@ -182,6 +185,7 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.password}
                   variant="fill"

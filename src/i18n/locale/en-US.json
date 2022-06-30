@@ -340,7 +340,9 @@
             "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
             "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
-            "access_token_lifespan": "Token Lifespan in seconds"
+            "access_token_lifespan": "Token Lifespan in seconds",
+            "param_key": "key",
+            "param_value": "value"
           },
           "option": {
             "authentication": {
@@ -387,6 +389,13 @@
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it.",
+      "header": {
+        "action_menu": {
+          "view_documentation": "View documentation",
+          "reset_state": "Reset state",
+          "delete": "Delete"
+        }
+      },
       "setter_group": {
         "basic": "BASIC",
         "label": "LABEL",
@@ -478,7 +487,19 @@
       "setter_default_value": {
         "solid": "Solid",
         "outline": "Outline"
+      },
+      "setter_content": {
+        "option_list": {
+          "action_menu":{
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          }
+        }
       }
+    },
+    "context_menu": {
+      "duplicate": "Duplicate",
+      "delete": "Delete"
     }
   },
   "widget": {
@@ -536,7 +557,10 @@
       "delete_content": "This will break Apps and Query Library queries that use this resource",
       "delete_cancel_text": "Cancel",
       "delete_ok_text": "Delete",
-      "delete": "Delete"
+      "delete": "Delete",
+      "error_title": "Error",
+      "error_description": "There is a problem with your operation.",
+      "error_button": "Retry"
     },
     "app": {
       "create_app": "Create App",
@@ -553,7 +577,10 @@
       "table_dbname": "Database Name",
       "table_ctime": "Created",
       "trash_success": "Delete successfully",
-      "trash_failure": "Delete failure"
+      "trash_failure": "Delete failure",
+      "create_success": "Create Success!",
+      "edit_success": "Edit Success",
+      "create_new_title": "Select resource type"
     }
   },
   "setting": {

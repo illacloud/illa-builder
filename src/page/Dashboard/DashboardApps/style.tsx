@@ -1,5 +1,5 @@
 import { SerializedStyles } from "@emotion/serialize"
-import { css, keyframes } from "@emotion/react"
+import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const appsContainerStyle: SerializedStyles = css`
@@ -8,7 +8,7 @@ export const appsContainerStyle: SerializedStyles = css`
   flex-direction: column;
   margin: 0 auto;
   width: 67%;
-  height: 100%;
+  padding: 40px 0;
 `
 
 export const listTitleContainerStyle: SerializedStyles = css`
@@ -54,18 +54,19 @@ export const hoverableStyle = css`
 export const editButtonStyle = css`
   opacity: 0;
 `
-export const rateScale = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`
 export const listItemStyle = css`
+  padding: 12px 16px;
+  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   &: hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     [title="editButton"] {
-      animation: 0.15s ${rateScale} ease-in-out forwards;
+      opacity: 1;
     }
   }
+`
+
+export const listItemTitleStyle = css`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `

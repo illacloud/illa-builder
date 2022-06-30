@@ -51,7 +51,10 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       setParams((preParam) => {
         const newParam = { ...preParam, [field]: v }
 
-        onChange && onChange(newParam)
+        if (["path", "urlParams"].includes(field)) {
+          newParam.url = concatUrl(newParam.path, newParam.urlParams, baseURL)
+        }
+        onChange?.(newParam)
         return newParam
       })
     }
@@ -68,7 +71,8 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             value={params.method}
             onChange={updateField("method")}
             options={["GET", "POST", "PUT", "DELETE", "PATCH"]}
-            size={"small"}
+            size="small"
+            colorScheme="techPurple"
           />
           <Input
             value={params.path}
@@ -76,6 +80,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             placeholder={t(
               "editor.action.resource.rest_api.placeholder.action_url_path",
             )}
+            borderColor="techPurple"
             addonBefore={{ render: baseURL ?? null }}
           />
         </div>

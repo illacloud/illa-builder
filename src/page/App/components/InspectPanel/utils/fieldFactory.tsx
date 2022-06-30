@@ -1,3 +1,4 @@
+import { Divider } from "@illa-design/divider"
 import {
   PanelConfig,
   PanelFieldConfig,
@@ -11,14 +12,23 @@ export const renderFieldAndLabel = (
   config: PanelFieldConfig,
   displayName: string,
   isInList: boolean = false,
+  parentAttrName: string,
 ) => {
   const { id } = config
-  return <Setter key={`${id}-${displayName}`} {...config} isInList={isInList} />
+  return (
+    <Setter
+      key={`${id}-${displayName}`}
+      {...config}
+      isInList={isInList}
+      parentAttrName={parentAttrName}
+    />
+  )
 }
 
 export const renderPanelBar = (
   config: PanelFieldGroupConfig,
   displayName: string,
+  index: number,
 ) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
   let isOpened = true
@@ -35,14 +45,21 @@ export const renderPanelBar = (
   }
 
   return (
-    <PanelBar
-      key={key}
-      title={groupName}
-      isOpened={isOpened}
-      saveToggleState={saveToggleState}
-    >
-      {children && children.length > 0 && fieldFactory(children, displayName)}
-    </PanelBar>
+    <>
+      {index !== 0 && (
+        <div style={{ marginTop: "8px" }}>
+          <Divider />
+        </div>
+      )}
+      <PanelBar
+        key={key}
+        title={groupName}
+        isOpened={isOpened}
+        saveToggleState={saveToggleState}
+      >
+        {children && children.length > 0 && fieldFactory(children, displayName)}
+      </PanelBar>
+    </>
   )
 }
 
@@ -50,16 +67,24 @@ export const renderField = (
   item: PanelConfig,
   displayName: string,
   isInList: boolean = false,
+  index: number,
 ) => {
   if ((item as PanelFieldGroupConfig).groupName) {
-    return renderPanelBar(item as PanelFieldGroupConfig, displayName)
+    return renderPanelBar(item as PanelFieldGroupConfig, displayName, index)
   } else if ((item as PanelFieldConfig).setterType) {
-    return renderFieldAndLabel(item as PanelFieldConfig, displayName, isInList)
+    return renderFieldAndLabel(
+      item as PanelFieldConfig,
+      displayName,
+      isInList,
+      "",
+    )
   }
   return null
 }
 
 export function fieldFactory(panelConfig: PanelConfig[], displayName: string) {
   if (!displayName || !panelConfig || !panelConfig.length) return null
-  return panelConfig.map((item: PanelConfig) => renderField(item, displayName))
+  return panelConfig.map((item: PanelConfig, index: number) =>
+    renderField(item, displayName, false, index),
+  )
 }
