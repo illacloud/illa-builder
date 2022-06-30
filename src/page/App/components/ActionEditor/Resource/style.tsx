@@ -54,9 +54,20 @@ export const splitLineStyle = css`
 `
 
 export const labelTextStyle = css`
-  padding-top: 5px;
   display: flex;
   justify-content: end;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  white-space: pre;
+`
+
+export const dynamicLabelTextStyle = css`
+  display: flex;
+  justify-content: end;
+  padding-top: 5px;
   font-size: 14px;
   font-weight: 500;
   text-align: right;
@@ -65,9 +76,9 @@ export const labelTextStyle = css`
 `
 
 export const connectTextStyle = css`
-  padding-top: 5px;
   display: flex;
   justify-content: start;
+  align-items: center;
   font-size: 14px;
   text-align: right;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
@@ -81,7 +92,7 @@ export const requiredLabelTextStyle = css`
   &:before {
     content: "*";
     margin-right: 5px;
-    margin-top: 5px;
+    margin-top: 3px;
     font-weight: bold;
     color: ${globalColor(`--${illaPrefix}-red-03`)};
   }

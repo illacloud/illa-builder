@@ -1,6 +1,5 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
 import _ from "lodash"
-import { AppStartListening, AppListenerEffectAPI } from "@/store"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
@@ -11,8 +10,9 @@ import {
 } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { ExecutionState } from "@/redux/currentApp/executionTree/execution/executionState"
+import { AppListenerEffectAPI, AppStartListening } from "@/store"
 
-function exectionAllTree(
+function executionAllTree(
   displayNameMap: Record<string, any>,
   evalOrder: string[],
   point: number,
@@ -72,7 +72,7 @@ async function handleUpdateExecution(
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
   if (!displayNameMapProps) return
   const { order, point } = getEvalOrderSelector(rootState)
-  const { evaledTree, errorTree } = exectionAllTree(
+  const { evaledTree, errorTree } = executionAllTree(
     displayNameMapProps,
     order,
     point,

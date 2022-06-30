@@ -31,7 +31,7 @@ import "@/api/base"
 import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AxiosInterceptor } from "@/api/AxiosInterceptor"
-import { startAppListening } from "@/store"
+import { startBuilderListening } from "@/store"
 import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
 
@@ -55,15 +55,6 @@ function getLocaleFromLanguage(language?: string): Locale {
 
 function App() {
   const currentUser = useSelector(getCurrentUser)
-
-  useEffect(() => {
-    const subscriptions: Unsubscribe[] = [
-      setupDependenciesListeners(startAppListening),
-      setupExecutionListeners(startAppListening),
-    ]
-
-    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
-  }, [])
 
   return (
     <BrowserRouter>

@@ -8,10 +8,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "yarn build-all && vite --mode cloud",
-    "build": "vite build --mode cloud",
-    "build-self": "vite build --mode self",
+    "build": "yarn build-all && vite build --mode cloud",
+    "build-self": "yarn build-all && vite build --mode self",
     "build-all": "yarn turbo run build",
-    "preview": "vite preview",
+    "preview": "yarn build-all && vite preview",
     "test": "npx patch-package && yarn build-all && npx jest && npx cypress run-ct -b chrome",
     "report:combined": "sh ./scripts/merge-coverage.sh",
     "posttest": "yarn report:combined",

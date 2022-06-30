@@ -47,8 +47,3 @@ export const getSelectedComponentsDisplayName = createSelector(
     return selectedComponents.map((component) => component.displayName)
   },
 )
-
-export const getIsSelectedComponent = createSelector(
-  [getSelectedComponentsDisplayName],
-  (displayNames) => displayNames.length > 0,
-)
