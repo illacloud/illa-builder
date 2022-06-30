@@ -17,6 +17,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
       <Input
         value={value ?? ""}
+        placeholder={placeholder}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}

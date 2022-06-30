@@ -19,6 +19,7 @@ import {
   errorMessageStyle,
   gridRowContainerStyle,
   gridRowCenterItemStyle,
+  dynamicLabelTextStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
 import {
   RESTAPIConfigureProps,
@@ -145,21 +146,21 @@ export const RESTAPIConfigure = forwardRef<
       </div>
 
       <div css={gridRowContainerStyle}>
-        <label css={labelTextStyle}>
+        <label css={dynamicLabelTextStyle}>
           {t("editor.action.resource.rest_api.label.url_parameters")}
         </label>
         <ParamList control={control} name={"urlParams"} />
       </div>
 
       <div css={gridRowContainerStyle}>
-        <label css={labelTextStyle}>
+        <label css={dynamicLabelTextStyle}>
           {t("editor.action.resource.rest_api.label.headers")}
         </label>
         <ParamList control={control} name={"headers"} />
       </div>
 
       <div css={gridRowContainerStyle}>
-        <label css={labelTextStyle}>
+        <label css={dynamicLabelTextStyle}>
           {t("editor.action.resource.rest_api.label.extra_body_values")}
         </label>
         <ParamList control={control} name={"body"} />
@@ -181,7 +182,6 @@ export const RESTAPIConfigure = forwardRef<
                 {...field}
                 size={"small"}
                 _css={inputTagSmallSizeStyle}
-                borderColor="techPurple"
               />
             )}
             control={control}
