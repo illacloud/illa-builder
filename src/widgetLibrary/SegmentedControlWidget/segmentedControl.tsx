@@ -19,7 +19,7 @@ export const WrappedSegmentedControl = forwardRef<
     disabled,
     options,
     direction,
-    colorScheme,
+    styles,
     handleUpdateDsl,
   } = props
   return (
@@ -38,7 +38,7 @@ export const WrappedSegmentedControl = forwardRef<
         disabled={disabled}
         options={options}
         direction={direction}
-        colorScheme={colorScheme}
+        colorScheme={styles?.colorScheme}
         onChange={(value) => {
           handleUpdateDsl({ value })
         }}

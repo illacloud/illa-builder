@@ -26,4 +26,7 @@ export interface WrappedSelectProps
   prefixText?: string // TODO: not support yet
   suffixText?: string // TODO: not support yet
   handleUpdateDsl: (value: Record<string, any>) => void
+  styles?: {
+    colorScheme?: SelectProps["colorScheme"]
+  }
 }

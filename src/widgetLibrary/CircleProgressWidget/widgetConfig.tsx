@@ -15,5 +15,10 @@ export const CIRCLE_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
     strokeWidth: "4px",
     hidden: "false",
     alignment: "center",
+    styles: {
+      color: "blue",
+      trailColor: "gray",
+      strokeWidth: "4px",
+    },
   },
 }

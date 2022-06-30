@@ -14,5 +14,10 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
     value: "50",
     strokeWidth: "4px",
     hidden: "false",
+    styles: {
+      color: "blue",
+      trailColor: "gray",
+      strokeWidth: "4px",
+    },
   },
 }

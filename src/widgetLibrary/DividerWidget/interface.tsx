@@ -4,6 +4,8 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 export interface WrappedDividerProps
   extends Pick<TooltipWrapperProps, "tooltipText">,
     Pick<DividerProps, "text" | "textAlign"> {
-  textSize?: string | number
-  color?: DividerProps["colorScheme"]
+  styles?: {
+    colorScheme?: DividerProps["colorScheme"]
+    textSize?: DividerProps["textSize"]
+  }
 }

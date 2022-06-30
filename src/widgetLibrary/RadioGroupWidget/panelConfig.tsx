@@ -174,16 +174,25 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-style",
+    id: `radioGroup-styles`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "radioGroup-style-color",
-        labelName: i18n.t("editor.inspect.setter_label.color"),
-        setterType: "COLOR_SELECT_SETTER",
-        attrName: "colorScheme",
-        defaultValue: "blue",
-        options: colorSchemeOptions,
+        id: "radioGroup-style",
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: "radioGroup-style-color",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            attrName: "colorScheme",
+            setterType: "COLOR_SELECT_SETTER",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
+          },
+        ],
       },
     ],
   },

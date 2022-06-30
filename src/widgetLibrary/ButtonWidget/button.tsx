@@ -20,7 +20,7 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
       loading,
       alignment,
       tooltipText,
-      colorScheme,
+      styles,
     } = props
 
     // TODOS : P1,wait PM
@@ -62,7 +62,7 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
               // borderColor={_borderColor}
               // backgroundColor={backgroundColor}
               // textColor={_textColor}
-              colorScheme={colorScheme}
+              colorScheme={styles?.colorScheme}
               loading={loading}
             >
               {text}
