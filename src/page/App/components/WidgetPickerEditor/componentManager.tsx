@@ -5,22 +5,22 @@ import { ConfigPanel } from "./components/ConfigPanel"
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { getIsSelectedComponent } from "@/redux/config/configSelector"
+import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
 
 function ComponentsManager() {
   const { t } = useTranslation()
 
   const [activeKey, setActiveKey] = useState("Insert")
 
-  const isSelectedComponent = useSelector(getIsSelectedComponent)
+  const selectedDisplayNames = useSelector(getSelectedComponentsDisplayName)
 
   useEffect(() => {
-    if (isSelectedComponent) {
+    if (selectedDisplayNames.length > 0) {
       setActiveKey("Inspect")
     } else {
       setActiveKey("Insert")
     }
-  }, [isSelectedComponent])
+  }, [selectedDisplayNames])
 
   return (
     <div css={componentPanelCss}>
