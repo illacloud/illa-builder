@@ -52,7 +52,6 @@ export const panelBarHeaderStyle = css`
   align-items: center;
   height: 48px;
   cursor: pointer;
-  border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   ${publicPaddingStyle};
 `
 
