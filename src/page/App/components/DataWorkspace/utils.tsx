@@ -2,6 +2,7 @@ import { isArray, omit, isObject } from "@illa-design/system"
 import { TreeDataType } from "@illa-design/tree-common"
 import { ActionListState } from "@/redux/currentApp/action/actionState"
 import {
+  applyJsonValueColorStyle,
   itemNameDescStyle,
   itemNameStyle,
   jsonItemStyle,
@@ -143,11 +144,7 @@ export const dfsTransformer = (
                 <label css={jsonNameStyle}>
                   <div>{key}&nbsp;</div>
                 </label>
-                <span css={jsonValueStyle}>
-                  {typeof props[key] === "string"
-                    ? `"${props[key]}"`
-                    : `${props[key]}`}
-                </span>
+                <span css={jsonValueStyle}>{renderJsonValue(props[key])}</span>
               </div>
             ),
             selectable: false,
@@ -156,4 +153,14 @@ export const dfsTransformer = (
         }
       })
   return dataList
+}
+
+export const renderJsonValue = (value: any) => {
+  const type = typeof value
+  switch (type) {
+    case "string":
+      return <span css={applyJsonValueColorStyle(type)}>{`"${value}"`}</span>
+    default:
+      return <span css={applyJsonValueColorStyle(type)}>{`${value}`}</span>
+  }
 }
