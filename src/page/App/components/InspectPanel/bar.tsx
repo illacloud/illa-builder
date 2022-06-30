@@ -20,7 +20,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
   }, [isOpenedState, saveToggleState])
 
   return (
-    <div>
+    <>
       <div css={panelBarHeaderStyle} onClick={handleToggle}>
         <span css={panelBarTitleStyle}>{title}</span>
         <span css={applyPanelBarOpenedIconStyle(isOpenedState)}>
@@ -40,7 +40,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           <div>{children}</div>
         </motion.div>
       </AnimatePresence>
-    </div>
+    </>
   )
 }
 

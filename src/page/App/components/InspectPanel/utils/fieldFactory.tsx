@@ -46,11 +46,6 @@ export const renderPanelBar = (
 
   return (
     <>
-      {index !== 0 && (
-        <div style={{ marginTop: "8px" }}>
-          <Divider />
-        </div>
-      )}
       <PanelBar
         key={key}
         title={groupName}
@@ -59,6 +54,7 @@ export const renderPanelBar = (
       >
         {children && children.length > 0 && fieldFactory(children, displayName)}
       </PanelBar>
+      {isOpened && <div style={{ marginTop: "8px" }} />}
     </>
   )
 }
