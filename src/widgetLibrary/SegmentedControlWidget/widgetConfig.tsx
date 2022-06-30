@@ -1,4 +1,4 @@
-import { SearchIcon } from "@illa-design/icon"
+import { RadioButtonWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 
@@ -8,7 +8,7 @@ export const SEGMENTED_CONTROL_WIDGET_CONFIG: WidgetConfig = {
   displayName: "segmentControl",
   w: 10,
   h: 5,
-  icon: <SearchIcon />,
+  icon: <RadioButtonWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   defaults: {
     optionMode: "manual",

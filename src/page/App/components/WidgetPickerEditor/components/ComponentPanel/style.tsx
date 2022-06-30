@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const componentContainerStyle = css`
   border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   width: 100%;
-`
+  `
 export const searchWrapperStyle = css`
   padding: 16px 16px 8px 16px;
 `
@@ -26,7 +26,7 @@ export const sessionContainerStyle = css`
   display: inline-flex;
   flex-direction: column;
   &:not(:nth-of-type(1)) {
-    margin-top: 8px;
+  margin-top: 8px;
   }
 `
 
@@ -73,10 +73,11 @@ export const iconStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   cursor: grab;
   border-radius: 4px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-`
+    `
 
 export const nameStyle = css`
   font-size: 12px;
@@ -87,7 +88,7 @@ export const nameStyle = css`
   padding: 4px 8px 0 8px;
   overflow: hidden;
   text-align: center;
-`
+  `
 
 export const emptyStyle = css`
   width: 100%;
@@ -97,13 +98,13 @@ export const emptyStyle = css`
   flex-direction: column;
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-`
+  `
 
 export const emptyTipStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   margin-top: 4px;
   font-size: 14px;
-`
+  `
 
 function hexToRGBA(hex: string, alpha?: number) {
   const r = parseInt(hex.slice(1, 3), 16),
