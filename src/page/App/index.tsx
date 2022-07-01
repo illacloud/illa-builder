@@ -24,6 +24,11 @@ import {
 } from "@/redux/config/configSelector"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
+import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { startAppListening } from "@/store"
+import { Unsubscribe } from "@reduxjs/toolkit"
+import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
+import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -49,6 +54,15 @@ export const Editor: FC = () => {
         Connection.leaveRoom(room.roomId)
       }
     }
+  }, [])
+
+  useEffect(() => {
+    const subscriptions: Unsubscribe[] = [
+      setupDependenciesListeners(startAppListening),
+      setupExecutionListeners(startAppListening),
+      setupComponentsListeners(startAppListening),
+    ]
+    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
   const showLeftPanel = useSelector(isOpenLeftPanel)

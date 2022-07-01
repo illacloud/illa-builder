@@ -13,7 +13,7 @@ export const sessionListContainerStyle = css`
   ${searchWrapperStyle};
   padding-top: 0;
   padding-bottom: 0;
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 158px);
   overflow-y: auto;
   width: 100%;
   display: flex;
@@ -74,6 +74,7 @@ export const iconStyle = css`
   cursor: grab;
   border-radius: 4px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  transition: background-color 200ms ease-in-out;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
