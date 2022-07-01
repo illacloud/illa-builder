@@ -15,5 +15,8 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
     startPlaceholder: "Start date",
     endPlaceholder: "End date",
     value: ["2022-05-02", "2022-05-03"],
+    styles: {
+      colorScheme: "blue",
+    },
   },
 }

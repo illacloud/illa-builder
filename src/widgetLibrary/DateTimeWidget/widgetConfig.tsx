@@ -15,5 +15,8 @@ export const DATE_TIME_WIDGET_CONFIG: WidgetConfig = {
     dateFormat: "YYYY-MM-DD",
     timeFormat: "HH:mm",
     minuteStep: "{{1}}",
+    styles: {
+      colorScheme: "blue",
+    },
   },
 }

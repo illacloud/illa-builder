@@ -33,7 +33,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
                 css={{ color: globalColor(`--${illaPrefix}-red-03`) }}
               />
             ),
-            value: true,
+            value: "heart",
           },
           {
             label: (
@@ -41,7 +41,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
                 css={{ color: globalColor(`--${illaPrefix}-yellow-04`) }}
               />
             ),
-            value: false,
+            value: "star",
           },
         ],
       },

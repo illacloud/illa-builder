@@ -306,16 +306,25 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "switch-style",
+    id: `switch-style`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "switch-style-radius",
-        labelName: i18n.t("editor.inspect.setter_label.background_color"),
-        attrName: "colorScheme",
-        setterType: "COLOR_SELECT_SETTER",
-        defaultValue: "blue",
-        options: colorSchemeOptions,
+        id: "switch-style",
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: "switch-style-radius",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            attrName: "colorScheme",
+            setterType: "COLOR_SELECT_SETTER",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
+          },
+        ],
       },
     ],
   },

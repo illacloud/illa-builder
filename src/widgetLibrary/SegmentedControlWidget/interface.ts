@@ -5,9 +5,12 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 export interface WrappedSegmentedControlProps
   extends Pick<
       RadioGroupProps<any>,
-      "value" | "disabled" | "options" | "direction" | "colorScheme"
+      "value" | "disabled" | "options" | "direction"
     >,
     Pick<TooltipWrapperProps, "tooltipText">,
     LabelProps {
+  styles?: {
+    colorScheme?: RadioGroupProps<any>["colorScheme"]
+  }
   handleUpdateDsl: (value: Record<string, any>) => void
 }

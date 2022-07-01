@@ -12,5 +12,8 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   defaults: {
     imageSrc: "https://placekitten.com/400/300",
+    styles: {
+      radius: "0px",
+    },
   },
 }

@@ -46,11 +46,6 @@ export const renderPanelBar = (
 
   return (
     <>
-      {index !== 0 && (
-        <div style={{ marginTop: "8px" }}>
-          <Divider />
-        </div>
-      )}
       <PanelBar
         key={key}
         title={groupName}

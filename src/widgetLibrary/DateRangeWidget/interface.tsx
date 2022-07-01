@@ -11,7 +11,7 @@ export interface WrappedDateRangeProps
   extends LabelProps,
     Omit<ValidateMessageProps, "value">,
     Pick<TooltipWrapperProps, "tooltipText">,
-    Pick<CommonRangeProps, "disabled" | "colorScheme" | "readOnly"> {
+    Pick<CommonRangeProps, "disabled" | "readOnly"> {
   startValue: string
   endValue: string
   startPlaceholder?: string
@@ -25,5 +25,8 @@ export interface WrappedDateRangeProps
   afterText?: string // TODO: not support yet
   minDate?: string
   maxDate?: string
+  styles?: {
+    colorScheme?: CommonRangeProps["colorScheme"]
+  }
   handleUpdateDsl: (value: Record<string, string[]>) => void
 }

@@ -23,5 +23,8 @@ export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
       { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },
     ],
     dataSources: "{{[]}}",
+    styles: {
+      colorScheme: "blue",
+    },
   },
 }

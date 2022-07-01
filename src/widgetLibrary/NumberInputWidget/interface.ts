@@ -20,4 +20,7 @@ export interface WrappedNumberInputProps
   openThousandSeparator?: boolean
   handleUpdateDsl: (value: Record<string, number | undefined>) => void
   loading?: boolean
+  styles?: {
+    colorScheme?: InputNumberProps["borderColor"]
+  }
 }

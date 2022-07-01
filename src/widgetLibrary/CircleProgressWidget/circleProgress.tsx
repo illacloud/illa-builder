@@ -18,15 +18,15 @@ export const WrappedCircleProgress = forwardRef<
     labelPosition,
     labelCaption,
     labelWidthUnit,
-    color,
-    trailColor,
     showText,
-    strokeWidth,
+    styles,
   } = props
 
   const _strokeWidth = useMemo(() => {
-    return !isNaN(Number(strokeWidth)) ? strokeWidth + "px" : strokeWidth
-  }, [strokeWidth])
+    return !isNaN(Number(styles?.strokeWidth))
+      ? styles?.strokeWidth + "px"
+      : styles?.strokeWidth
+  }, [styles?.strokeWidth])
 
   return (
     <TooltipWrapper
@@ -48,8 +48,8 @@ export const WrappedCircleProgress = forwardRef<
             type="circle"
             percent={value}
             showText={showText}
-            color={color}
-            trailColor={trailColor}
+            color={styles?.color}
+            trailColor={styles?.trailColor}
             strokeWidth={_strokeWidth}
           />
         </LabelWrapper>

@@ -81,11 +81,21 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "image-style-radius",
-        labelName: i18n.t("editor.inspect.setter_label.radius"),
-        expectedType: "String",
-        attrName: "radius",
-        setterType: "INPUT_SETTER",
+        id: "date-style-list",
+        setterType: "LIST_SETTER",
+        isSetterSingleRow: true,
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: "image-style-radius",
+            labelName: i18n.t("editor.inspect.setter_label.radius"),
+            setterType: "INPUT_SETTER",
+            attrName: "radius",
+            defaultValue: "0px",
+          },
+        ],
       },
     ],
   },

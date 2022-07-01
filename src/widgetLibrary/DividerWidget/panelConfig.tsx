@@ -59,14 +59,15 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "divider-style-list",
         setterType: "LIST_SETTER",
-        attrName: "style",
+        attrName: "styles",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "divider-style-color",
-            labelName: i18n.t("editor.inspect.setter_label.color"),
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_SELECT_SETTER",
-            attrName: "color",
+            attrName: "colorScheme",
             defaultValue: "grayBlue",
             options: colorSchemeOptions,
           },
@@ -75,6 +76,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
             setterType: "INPUT_SETTER",
             attrName: "textSize",
+            defaultValue: "14px",
           },
         ],
       },

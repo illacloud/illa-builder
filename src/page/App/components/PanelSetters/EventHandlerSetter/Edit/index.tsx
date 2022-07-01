@@ -6,7 +6,13 @@ import { SelectedProvider } from "@/page/App/components/InspectPanel/context/sel
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 
 export const EventHandle: FC<IEventHandleProps> = (props) => {
-  const { event, handleCloseModal, childrenSetter, handleUpdateItem } = props
+  const {
+    event,
+    handleCloseModal,
+    childrenSetter,
+    handleUpdateItem,
+    attrName,
+  } = props
 
   const formattingTitle = useMemo(
     () =>
@@ -27,7 +33,7 @@ export const EventHandle: FC<IEventHandleProps> = (props) => {
         handleUpdateItemDsl={handleUpdateItem}
       >
         {childrenSetter?.map((child) => {
-          return renderFieldAndLabel(child, event.id)
+          return renderFieldAndLabel(child, event.id, false, attrName)
         })}
       </SelectedProvider>
     </div>
