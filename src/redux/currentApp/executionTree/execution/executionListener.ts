@@ -1,5 +1,5 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
-import _ from "lodash"
+import { cloneDeep, get, set } from "lodash"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
@@ -17,7 +17,7 @@ function executeAllTree(
   evalOrder: string[],
   point: number,
 ) {
-  const oldTree = _.cloneDeep(displayNameMap)
+  const oldTree = cloneDeep(displayNameMap)
   const errorTree: ExecutionState["error"] = {}
   try {
     const evaluatedTree = evalOrder.reduce(
@@ -28,7 +28,7 @@ function executeAllTree(
       ) => {
         const { displayName, attrPath } = getDisplayNameAndAttrPath(fullPath)
         const widgetOrAction = current[displayName]
-        let widgetOrActionAttribute = _.get(current, fullPath)
+        let widgetOrActionAttribute = get(current, fullPath)
         let evaluateValue
         if (point === currentIndex) {
           // TODO: @weichen widget default value
@@ -43,7 +43,7 @@ function executeAllTree(
               current,
             )
           } catch (e) {
-            _.set(errorTree, fullPath, {
+            set(errorTree, fullPath, {
               error: true,
               errorMessage: (e as Error).message,
             })
@@ -53,7 +53,7 @@ function executeAllTree(
         } else {
           evaluateValue = widgetOrActionAttribute
         }
-        return _.set(current, fullPath, evaluateValue)
+        return set(current, fullPath, evaluateValue)
       },
       oldTree,
     )

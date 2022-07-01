@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo } from "react"
-import _ from "lodash"
+import { isEqual } from "lodash"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
@@ -41,7 +41,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
   }, [childrenSetter])
 
   const canReset = useMemo(() => {
-    return !_.isEqual(getDefaultValue, value)
+    return !isEqual(getDefaultValue, value)
   }, [getDefaultValue, value])
 
   const onClickReset = useCallback(() => {
@@ -63,7 +63,12 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
       </div>
       <div css={listWrapperStyle}>
         {childrenSetter?.map((child) => {
-          return renderFieldAndLabel(child, widgetDisplayName, true, attrName)
+          return renderFieldAndLabel(
+            child,
+            widgetDisplayName ?? "",
+            true,
+            attrName,
+          )
         })}
       </div>
     </div>

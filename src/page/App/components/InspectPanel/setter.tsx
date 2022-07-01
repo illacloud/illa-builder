@@ -1,5 +1,5 @@
-import _ from "lodash"
 import { FC, useContext, useMemo } from "react"
+import { get } from "lodash"
 import { applySetterWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
 import { getSetterByType } from "@/page/App/components/PanelSetters"
@@ -49,7 +49,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
 
   const canWrapped = useMemo(() => {
     if (renderLabel) {
-      const value = _.get(widgetProps, _finalAttrName)
+      const value = get(widgetProps, _finalAttrName)
       return typeof value === "string" && value.includes("\n")
     }
     return false
@@ -60,7 +60,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   }, [isSetterSingleRow, labelName, canWrapped])
 
   const renderSetter = useMemo(() => {
-    const value = _.get(widgetProps, _finalAttrName)
+    const value = get(widgetProps, _finalAttrName)
     const expectedType = props.expectedType
     return Comp ? (
       <Comp

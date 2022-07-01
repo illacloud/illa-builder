@@ -1,7 +1,7 @@
 // Thk appsmith
 import { parse, Node } from "acorn"
 import { ancestor } from "acorn-walk"
-import _ from "lodash"
+import { isFinite } from "lodash"
 import { wrapCode } from "@/utils/evaluateDynamicString/utils"
 import { unescapeJS } from "@/utils/ast/unescapeJs"
 
@@ -117,7 +117,7 @@ const isArrayAccessorNode = (node: Node): node is MemberExpressionNode => {
     isMemberExpressionNode(node) &&
     node.computed &&
     isLiteralNode(node.property) &&
-    _.isFinite(node.property.value)
+    isFinite(node.property.value)
   )
 }
 
@@ -154,10 +154,13 @@ const constructFinalMemberExpIdentifier = (
 const getPropertyAccessor = (propertyNode: IdentifierNode | LiteralNode) => {
   if (isIdentifierNode(propertyNode)) {
     return `.${propertyNode.name}`
-  } else if (isLiteralNode(propertyNode) && _.isString(propertyNode.value)) {
+  } else if (
+    isLiteralNode(propertyNode) &&
+    typeof propertyNode.value === "string"
+  ) {
     // is string literal search a['b']
     return `.${propertyNode.value}`
-  } else if (isLiteralNode(propertyNode) && _.isFinite(propertyNode.value)) {
+  } else if (isLiteralNode(propertyNode) && isFinite(propertyNode.value)) {
     // is array index search - a[9]
     return `[${propertyNode.value}]`
   }
