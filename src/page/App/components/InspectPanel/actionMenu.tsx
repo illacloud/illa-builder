@@ -10,6 +10,7 @@ import {
   deleteActionMenuItemStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const {
@@ -35,14 +36,14 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         window.open("https://www.baidu.com")
         break
       }
-      case ACTION_TYPE.SWITCH_COMPONENT: {
-        //  TODO: wait to do smt
-        console.log("SwitchComponent")
-        break
-      }
       case ACTION_TYPE.RESET_STATE: {
-        //  TODO: wait for componentDSL to change redux DSL
-        console.log("ResetState")
+        const defaultProps = widgetBuilder(componentType).config.defaults
+        dispatch(
+          componentsActions.updateComponentPropsReducer({
+            displayName: widgetDisplayName,
+            updateSlice: defaultProps ?? {},
+          }),
+        )
         break
       }
       case ACTION_TYPE.DELETE: {
