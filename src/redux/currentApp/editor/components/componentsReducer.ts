@@ -1,4 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import { cloneDeep } from "lodash"
 import {
   ComponentNode,
   ComponentsState,
@@ -6,8 +7,8 @@ import {
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const removeComponentReducer: CaseReducer<
   ComponentsState,
@@ -95,30 +96,17 @@ export const updateComponentPropsReducer: CaseReducer<
   ComponentsState,
   PayloadAction<updateComponentPropsPayload>
 > = (state, action) => {
-  const { displayName, newProps } = action.payload
+  const { displayName, updateSlice } = action.payload
+  if (!isObject(updateSlice) || !displayName) {
+    return
+  }
   const node = searchDsl(state.rootDsl, displayName)
   if (!node) return
-  const oldProps = node.props || {}
-
-  const newNodeProps = {
-    ...oldProps,
-    ...newProps,
-  }
-  let dynamicStringList: string[] = []
-  Object.keys(newNodeProps).forEach((propName) => {
-    const propsValue = newNodeProps[propName]
-    let stringValue = propsValue
-    if (isObject(stringValue)) {
-      stringValue = JSON.stringify(propsValue)
-    }
-
-    const isDynamic = isDynamicString(stringValue)
-    if (isDynamic) {
-      dynamicStringList.push(propName)
-    }
-  })
-  node.props = {
-    ...newNodeProps,
-    $dynamicStrings: dynamicStringList,
-  }
+  const widgetProps = node.props || {}
+  const clonedWidgetProps = cloneDeep(widgetProps)
+  node.props = getNewWidgetPropsByUpdateSlice(
+    displayName,
+    updateSlice,
+    clonedWidgetProps,
+  )
 }

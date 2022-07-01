@@ -1,7 +1,7 @@
 import { FC } from "react"
+import { get } from "lodash"
 import { FxIcon } from "@illa-design/icon"
 import { Switch } from "@illa-design/switch"
-import _ from "lodash"
 import { DynamicSwitchProps } from "./interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import {
@@ -23,9 +23,9 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     widgetDisplayName,
   } = props
 
-  const dynamicStrings = _.get(panelConfig, "$dynamicStrings", [])
+  const dynamicAttrPath = get(panelConfig, "$dynamicAttrPaths", [])
 
-  const customSelected = dynamicStrings.includes(attrName)
+  const customSelected = dynamicAttrPath.includes(attrName)
 
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
