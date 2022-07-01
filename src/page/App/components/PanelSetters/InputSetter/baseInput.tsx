@@ -4,6 +4,14 @@ import { applyInputSetterStyle, applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
 import { Input } from "@illa-design/input"
 
+function getPath(attrName?: string, widgetDisplayName?: string) {
+  if (attrName && widgetDisplayName) {
+    return `${widgetDisplayName}.${attrName}`
+  } else {
+    return widgetDisplayName
+  }
+}
+
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
     isSetterSingleRow,
@@ -17,13 +25,6 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
 
   return (
     <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
-      {/*<Input*/}
-      {/*  value={value ?? ""}*/}
-      {/*  placeholder={placeholder}*/}
-      {/*  onChange={(value) => {*/}
-      {/*    handleUpdateDsl(attrName, value)*/}
-      {/*  }}*/}
-      {/*/>*/}
       <CodeEditor
         value={value ?? ""}
         placeholder={placeholder}
@@ -32,13 +33,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         }}
         mode={"TEXT_JS"}
         expectedType={expectedType}
-        path={(function getPath() {
-          if (attrName && widgetDisplayName) {
-            return `${widgetDisplayName}.${attrName}`
-          } else {
-            return widgetDisplayName
-          }
-        })()}
+        path={getPath(attrName, widgetDisplayName)}
       />
     </div>
   )
