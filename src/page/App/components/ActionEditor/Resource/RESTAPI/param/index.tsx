@@ -14,13 +14,14 @@ import {
   labelTextStyle,
   applyGridColIndex,
 } from "@/page/App/components/ActionEditor/Resource/style"
-import { Body } from "./Body"
-import { actionTypeStyle } from "./style"
 import {
   RESTAPIParamProps,
   RESTAPIConfigureValues,
   RESTAPIParamValues,
-} from "../interface"
+} from "@/page/App/components/ActionEditor/Resource/RESTAPI/interface"
+import { Body } from "./Body"
+import { actionTypeStyle } from "./style"
+
 
 export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { onChange } = props
@@ -37,7 +38,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   const [params, setParams] = useState({
     method: config?.method ?? "GET",
-    path: config?.path,
+    url: config?.url,
     urlParams: config?.urlParams ?? [],
     headers: config?.headers ?? [],
     body: config?.body ?? [],
@@ -48,14 +49,11 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   function updateField(field: string) {
     return (v: any) => {
-      setParams((preParam) => {
-        const newParam = { ...preParam, [field]: v }
+      setParams((preParams) => {
+        const newParams = { ...preParams, [field]: v }
 
-        if (["path", "urlParams"].includes(field)) {
-          newParam.url = concatUrl(newParam.path, newParam.urlParams, baseURL)
-        }
-        onChange?.(newParam)
-        return newParam
+        onChange?.(newParams)
+        return newParams
       })
     }
   }
@@ -75,8 +73,8 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             colorScheme="techPurple"
           />
           <Input
-            value={params.path}
-            onChange={updateField("path")}
+            value={params.url}
+            onChange={updateField("url")}
             placeholder={t(
               "editor.action.resource.rest_api.placeholder.action_url_path",
             )}

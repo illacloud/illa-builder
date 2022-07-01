@@ -16,7 +16,7 @@ import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel
 import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
 import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
-import { ActionEditorPanelProps, TriggerMode } from "./interface"
+import { ActionEditorPanelProps } from "./interface"
 import {
   containerStyle,
   headerStyle,
@@ -31,7 +31,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
     isActionDirty,
     onEditResource,
-    onChangeResource,
     onCreateResource,
     onDuplicateActionItem,
     onDeleteActionItem,
@@ -39,10 +38,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { setIsActionDirty } = useContext(ActionEditorContext)
+  const { setIsActionDirty, baseActionApi } = useContext(ActionEditorContext)
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const [actionResVisible, setActionResVisible] = useState(false)
-  const [triggerMode, setTriggerMode] = useState<TriggerMode>("manual")
   const [isRuning, setIsRuning] = useState(false)
   const [result, setResult] = useState<ActionResultType>()
   const [duration, setDuaraion] = useState<string>()
@@ -50,6 +48,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const runningIntervalRef = useRef<NodeJS.Timer>()
   const activeActionItem = useSelector(getSelectedAction)
   const actionType = activeActionItem?.actionType ?? ""
+  const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
   let editorNode = null
   let runBtnText = ""
 
@@ -93,14 +92,19 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function save() {
-    const { data, rawData, error, ...actionPayload } = activeActionItem
-    const actionId = activeActionItem.actionId
+    const { actionId, resourceId, actionType, displayName, actionTemplate } =
+      activeActionItem
 
     Api.request<ActionItem>(
       {
-        url: `/actions/${actionId}`,
+        url: `${baseActionApi}/${actionId}`,
         method: "PUT",
-        data: actionPayload,
+        data: {
+          resourceId,
+          actionType,
+          displayName,
+          actionTemplate,
+        },
       },
       ({ data }) => {
         dispatch(
@@ -121,7 +125,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function run() {
-    const { actionType } = activeActionItem
+    const { resourceId, actionType, actionTemplate, displayName } =
+      activeActionItem
 
     if (actionType === "transformer") {
       // TODO: run transformer
@@ -132,11 +137,28 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
     Api.request(
       {
-        url: `/actions/${activeActionItem?.actionId}/run`,
+        url: `${baseActionApi}/${activeActionItem?.actionId}/run`,
         method: "POST",
         data: {
-          actionType: activeActionItem?.actionType,
+          resourceId,
+          actionType,
+          actionTemplate,
+          displayName,
         },
+        // TODO: @spike temporay set `User-Agent` in headers,
+        // will be removed after handle by server later
+        transformRequest: [
+          function(data) {
+            if (actionType === ACTION_TYPE.REST_API) {
+              data.actionTemplate.headers = [
+                ...data.actionTemplate.headers,
+                ["User-Agent", navigator.userAgent],
+              ]
+            }
+
+            return JSON.stringify(data)
+          },
+        ],
       },
       (response) => {
         // save data to action
@@ -195,16 +217,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     case ACTION_TYPE.MYSQL:
       editorNode = (
         <ResourceEditor
-          triggerMode={triggerMode}
-          onChangeTriggerMode={setTriggerMode}
+          key={activeActionItem.actionId}
           onCreateResource={onCreateResource}
           onEditResource={onEditResource}
-          onChangeResource={onChangeResource}
         />
       )
       break
     case ACTION_TYPE.TRANSFORMER:
-      editorNode = <TransformerEditor />
+      editorNode = <TransformerEditor key={activeActionItem.actionId} />
       break
     default:
       break

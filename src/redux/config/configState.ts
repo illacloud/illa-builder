@@ -18,7 +18,12 @@ export const ConfigInitialState: ConfigState = {
   openRightPanel: true,
   scale: 100,
   selectedComponents: [],
-  selectedAction: { actionId: "", displayName: "", actionType: "" },
+  selectedAction: {
+    actionId: "",
+    displayName: "",
+    actionType: "",
+    actionTemplate: { transformer: "" },
+  },
   showDot: false,
   expandedKeys: [],
 }

@@ -94,8 +94,8 @@ export const DashboardApps: FC = () => {
                     )
                     navigate(`/app/${response.data.appId}`)
                   },
-                  (response) => {},
-                  (error) => {},
+                  (response) => { },
+                  (error) => { },
                   (loading) => {
                     setCreateNewLoading(loading)
                   },
@@ -129,7 +129,7 @@ export const DashboardApps: FC = () => {
                     <Button
                       colorScheme="techPurple"
                       onClick={() => {
-                        navigate(`/app/${item.appId}`)
+                        navigate(`/app/${item.currentVersionId}`)
                       }}
                       _css={editButtonStyle}
                       title="editButton"
@@ -163,7 +163,7 @@ export const DashboardApps: FC = () => {
                     .utc(item.lastModifiedAt)
                     .format("YYYY-MM-DD HH:mm:ss")}`}
                   onClick={() => {
-                    navigate(`/app/${item.appId}`)
+                    navigate(`/app/${item.currentVersionId}`)
                   }}
                 />
               </ListItem>

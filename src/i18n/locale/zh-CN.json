@@ -323,7 +323,8 @@
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
             "access_token_lifespan": "Access Token lifespan(optiinal)",
-            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "bearerToken": "Bearer Token"
           },
           "tip": {
             "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
@@ -346,7 +347,10 @@
           },
           "option": {
             "authentication": {
-              "basicAuth": "基础认证"
+              "none": "无",
+              "basic_auth": "基础认证",
+              "bearer": "Bearer",
+              "oauth2": "OAuth 2.0"
             }
           }
         },

@@ -13,13 +13,15 @@ export const TransformerEditor: FC<TransformerEditorProps> = () => {
   const { setIsActionDirty } = useContext(ActionEditorContext)
   const dispatch = useDispatch()
   const activeActionItem = useSelector(getSelectedAction)
+  const transformer = activeActionItem.actionTemplate?.transformer ?? ""
 
   return (
     <div css={transformerContainerStyle}>
       <CodeEditor
-        mode="TEXT_JS"
+        mode="JAVASCRIPT"
         expectedType="String"
         height={"100px"}
+        value={transformer}
         placeholder={t("editor.action.resource.transformer.placeholder.tip")}
         onChange={(value) => {
           setIsActionDirty?.(true)

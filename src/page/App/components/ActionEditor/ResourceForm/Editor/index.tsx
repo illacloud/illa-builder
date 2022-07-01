@@ -23,6 +23,7 @@ import {
   createResourceBtnStyle,
   formTitleStyle,
 } from "./style"
+import { AxiosResponse } from "axios"
 
 const renderResourceNode = (
   resourceType: ResourceType | undefined,
@@ -109,8 +110,8 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
           dispatch(resourceActions.updateResourceItemReducer(data))
           onSubmit?.(resourceId)
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => setCreateBtnLoading(loading),
       )
       return
@@ -126,26 +127,26 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         dispatch(resourceActions.addResourceItemReducer(data))
         onSubmit?.(data.resourceId)
       },
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       (loading) => setCreateBtnLoading(loading),
     )
   }
 
   function onTestConnection(data: any) {
-    Api.request<string>(
+    Api.request<{ message: string }>(
       {
         url: "/resources/testConnection",
         method: "POST",
         data,
       },
       ({ data }) => {
-        Notification.success({ title: <span>{data}</span> })
+        Notification.success({ title: <span>{data.message}</span> })
       },
       ({ data }) => {
-        Notification.error({ title: <span>{data}</span> })
+        Notification.error({ title: <span>{data.errorMessage}</span> })
       },
-      () => {},
+      () => { },
       (loading) => setTestConnectionLoading(loading),
     )
   }

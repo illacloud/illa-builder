@@ -4,7 +4,6 @@ export interface ActionEditorPanelProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   isActionDirty?: boolean
   onEditResource?: (id: string) => void
-  onChangeResource?: (id: string) => void
   onCreateResource?: () => void
   onDeleteActionItem: () => void
   onDuplicateActionItem: () => void

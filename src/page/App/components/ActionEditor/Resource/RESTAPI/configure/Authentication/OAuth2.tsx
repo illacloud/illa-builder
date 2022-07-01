@@ -221,3 +221,5 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
     </>
   )
 }
+
+OAuth2.displayName = "OAuth2"

@@ -21,7 +21,7 @@ export const ApiResult: FC<ApiResultProps> = (props) => {
     ({ resourceId }) => resourceId === activeActionItem.resourceId,
   )
   const baseURL = (resource?.options as RESTAPIConfigureValues)?.baseURL
-  const path = activeActionItem.actionTemplate?.path
+  const url = activeActionItem.actionTemplate?.url
   const urlParams = activeActionItem.actionTemplate?.urlParams
   const method = activeActionItem.actionTemplate?.method
   const body = activeActionItem.actionTemplate?.body
@@ -29,13 +29,13 @@ export const ApiResult: FC<ApiResultProps> = (props) => {
   const { result } = props
   const data = result?.data
   const apiRequest = {
-    response: result,
     request: {
+      url: concatUrl(url, urlParams, baseURL),
       method,
-      url: concatUrl(path, urlParams, baseURL),
-      body,
-      headers,
+      body: body?.length ? body : null,
+      headers: headers?.length ? headers : null,
     },
+    response: result,
   }
 
   const { t } = useTranslation()

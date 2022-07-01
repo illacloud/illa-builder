@@ -1,3 +1,6 @@
 export interface TransformerProps {
-  onChange: (value: { transformer: string }) => void
+  onChange: (value: {
+    transformer?: string
+    enableTransformer?: boolean
+  }) => void
 }

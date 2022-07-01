@@ -22,7 +22,8 @@ import { TitleInputProps } from "./interface"
 export const TitleInput: FC<TitleInputProps> = () => {
   const dispatch = useDispatch()
   const activeActionItem = useSelector(getSelectedAction)
-  const { setActionListLoading } = useContext(ActionEditorContext)
+  const { setActionListLoading, baseActionApi } =
+    useContext(ActionEditorContext)
   const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -60,12 +61,16 @@ export const TitleInput: FC<TitleInputProps> = () => {
     }
 
     if (title !== name) {
+      const { resourceId, actionType, actionTemplate } = activeActionItem
+
       Api.request<ActionItem>(
         {
-          url: `/actions/${activeActionItem.actionId}`,
+          url: baseActionApi,
           method: "PUT",
           data: {
-            ...activeActionItem,
+            resourceId,
+            actionType,
+            actionTemplate,
             displayName: title,
           },
         },
@@ -76,8 +81,8 @@ export const TitleInput: FC<TitleInputProps> = () => {
             }),
           )
         },
-        () => {},
-        () => {},
+        () => { },
+        () => { },
         (loading) => {
           setActionListLoading?.(loading)
         },

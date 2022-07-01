@@ -1,12 +1,13 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Select, Option } from "@illa-design/select"
 import { PenIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { ResourcePanel } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourcePanel"
 import {
   actionStyle,
@@ -20,21 +21,20 @@ import {
   resourceBarTitleStyle,
   panelScrollStyle,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ResourceEditorProps } from "./interface"
 
 export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
-  const {
-    triggerMode,
-    onChangeTriggerMode,
-    onChangeResource,
-    onCreateResource,
-    onEditResource,
-  } = props
+  const { onCreateResource, onEditResource } = props
 
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const resourceList = useSelector(selectAllResource)
-  const { resourceId } = useSelector(getSelectedAction)
+  const activeActionItem = useSelector(getSelectedAction)
+  const { setIsActionDirty } = useContext(ActionEditorContext)
+  const { resourceId = "" } = activeActionItem
   const isResourceEditable = resourceId !== ""
+  const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
 
   const triggerOptions = [
     {
@@ -43,7 +43,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
     },
     {
       label: t("editor.action.panel.option.trigger.on_change"),
-      value: "onChange",
+      value: "change",
     },
   ]
 
@@ -57,7 +57,18 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
         <Select
           value={triggerMode}
           colorScheme="techPurple"
-          onChange={onChangeTriggerMode}
+          onChange={(value) => {
+            setIsActionDirty?.(true)
+            dispatch(
+              configActions.updateSelectedAction({
+                ...activeActionItem,
+                actionTemplate: {
+                  ...activeActionItem.actionTemplate,
+                  triggerMode: value,
+                },
+              }),
+            )
+          }}
           options={triggerOptions}
           defaultValue={0}
           css={css(actionSelectStyle, triggerSelectStyle)}
@@ -67,7 +78,15 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
           css={css(actionSelectStyle, resourceSelectStyle)}
           value={resourceId}
           colorScheme="techPurple"
-          onChange={onChangeResource}
+          onChange={(value) => {
+            setIsActionDirty?.(true)
+            dispatch(
+              configActions.updateSelectedAction({
+                ...activeActionItem,
+                resourceId: value,
+              }),
+            )
+          }}
           triggerProps={{
             autoAlignPopupWidth: false,
           }}
