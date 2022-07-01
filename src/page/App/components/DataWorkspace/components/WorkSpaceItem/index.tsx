@@ -35,6 +35,7 @@ export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
             onSelect={handleSelect}
             autoExpandParent={false}
             multiple={false}
+            size="small"
             blockNode
           />
         </div>
