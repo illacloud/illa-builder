@@ -1,11 +1,12 @@
 import { FC, useState, useRef, useContext } from "react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AnimatePresence } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
-import { Dropdown } from "@illa-design/dropdown"
+import { Dropdown, DropList } from "@illa-design/dropdown"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -23,9 +24,9 @@ import {
   fillingStyle,
   moreBtnStyle,
   moreBtnMenuStyle,
-  duplicateActionStyle,
-  deleteActionStyle,
 } from "./style"
+
+const DropListItem = DropList.Item
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
@@ -51,29 +52,6 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
   let editorNode = null
   let runBtnText = ""
-
-  const moreActions = (
-    <div css={moreBtnMenuStyle}>
-      <div
-        css={duplicateActionStyle}
-        onClick={() => {
-          setMoreBtnMenuVisible(false)
-          onDuplicateActionItem()
-        }}
-      >
-        {t("editor.action.panel.menu.more.duplicate")}
-      </div>
-      <div
-        css={deleteActionStyle}
-        onClick={() => {
-          setMoreBtnMenuVisible(false)
-          onDeleteActionItem()
-        }}
-      >
-        {t("editor.action.panel.menu.more.delete")}
-      </div>
-    </div>
-  )
 
   function saveOrRun() {
     if (isActionDirty) {
@@ -249,7 +227,31 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         <TitleInput />
         <span css={fillingStyle} />
         <Dropdown
-          dropList={moreActions}
+          dropList={
+            <DropList
+              css={moreBtnMenuStyle}
+              onClickItem={(key) => {
+                switch (key) {
+                  case "duplicate":
+                    onDuplicateActionItem()
+                    break
+                  case "delete":
+                    onDeleteActionItem()
+                    break
+                }
+              }}
+            >
+              <DropListItem
+                key={"duplicate"}
+                title={t("editor.action.panel.menu.more.duplicate")}
+              />
+              <DropListItem
+                key={"delete"}
+                title={t("editor.action.panel.menu.more.delete")}
+                fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              />
+            </DropList>
+          }
           trigger={"click"}
           popupVisible={moreBtnMenuVisible}
           onVisibleChange={setMoreBtnMenuVisible}

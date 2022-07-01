@@ -61,8 +61,8 @@ export const titleInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)} !important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-        .alpha(0.2)
-        .hex()};
+    .alpha(0.2)
+    .hex()};
   }
 `
 
@@ -117,8 +117,8 @@ export const runBtnStyle = css`
 
   &:hover {
     background-color: ${globalColor(
-      `--${illaPrefix}-techPurple-06`,
-    )} !important;
+  `--${illaPrefix}-techPurple-06`,
+)} !important;
   }
 `
 
@@ -258,26 +258,6 @@ export const moreBtnMenuStyle = css`
   padding: 8px 0;
   width: 180px;
   box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
-`
-
-const moreActionItemStyle = css`
-  line-height: 32px;
-  padding: 5px 16px;
-  cursor: pointer;
-
-  &:hover {
-    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-  }
-`
-
-export const duplicateActionStyle = css`
-  ${moreActionItemStyle}
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)} !important;
-`
-
-export const deleteActionStyle = css`
-  ${moreActionItemStyle}
-  color: ${globalColor(`--${illaPrefix}-red-03`)} !important;
 `
 
 export const handlerItemWrapperStyle = css`
