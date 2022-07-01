@@ -34,6 +34,7 @@ export const Transformer: FC<TransformerProps> = (props) => {
           <RadioGroup
             type="button"
             size="small"
+            colorScheme="techPurple"
             options={[
               {
                 value: false,

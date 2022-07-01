@@ -8,6 +8,7 @@ export const actionListContainerStyle = css`
   width: 255px;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   position: relative;
+  font-size: 14px;
 `
 
 export const newBtnContainerStyle = css`
@@ -51,21 +52,21 @@ export const newButtonTextStyle = css`
 `
 
 export const actionItemListStyle = css`
-  list-style: none;
+list-style: none;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   overflow-y: auto;
 `
 
-export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
+export function applyActionItemStyle(isSelected: boolean): SerializedStyles {
   const backgroundColorStyle = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-  `
+    `
 
   const selectedBackgroundColorStyle = css`
     background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-  `
+    `
 
   return css`
     display: flex;
@@ -74,9 +75,11 @@ export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
     padding: 9px 16px;
     height: 40px;
     user-select: none;
+    font-size: 14px;
+    font-weight: 500;
 
     &:hover {
-      ${backgroundColorStyle}
+    ${isSelected ? selectedBackgroundColorStyle : backgroundColorStyle}
     }
 
     ${isSelected && selectedBackgroundColorStyle}
@@ -246,7 +249,8 @@ export const searchHeaderStyle = css`
   display: flex;
   padding: 13px 16px;
   align-items: center;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 export const searchHeaderInputStyle = css`
   justify-content: flex-end;

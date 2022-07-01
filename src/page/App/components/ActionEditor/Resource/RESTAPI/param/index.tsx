@@ -13,6 +13,7 @@ import {
   paramGridRowContainerStyle,
   labelTextStyle,
   applyGridColIndex,
+  labelTextAlignSelfStartStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
 import {
   RESTAPIParamProps,
@@ -88,7 +89,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       </div>
 
       <div css={paramGridRowContainerStyle}>
-        <label css={labelTextStyle}>
+        <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
           {t("editor.action.resource.rest_api.label.url_parameters")}
         </label>
         <FieldArray
@@ -98,7 +99,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       </div>
 
       <div css={paramGridRowContainerStyle}>
-        <label css={labelTextStyle}>
+        <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
           {t("editor.action.resource.rest_api.label.headers")}
         </label>
         <FieldArray value={params.headers} onChange={updateField("headers")} />
@@ -106,7 +107,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
       {hasBody && (
         <div css={paramGridRowContainerStyle}>
-          <label css={labelTextStyle}>
+          <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
             {t("editor.action.resource.rest_api.label.body")}
           </label>
           <Body value={params.body} onChange={updateField("body")} />
@@ -114,7 +115,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       )}
 
       <div css={paramGridRowContainerStyle}>
-        <label css={labelTextStyle}>
+        <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
           {t("editor.action.resource.rest_api.label.cookies")}
         </label>
         <FieldArray value={params.cookies} onChange={updateField("cookies")} />

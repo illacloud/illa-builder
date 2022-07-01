@@ -187,6 +187,7 @@ export function applyEditIconStyle(disabled: boolean): SerializedStyles {
     border-radius: 0 8px 8px 0;
     box-sizing: border-box;
     margin-right: 8px;
+    border-left: 0;
 
     ${cursorStyle}
     ${hoverStyle}
@@ -202,28 +203,35 @@ export const sectionTitleStyle = css`
   line-height: 22px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-`
+  `
 
 export const handlerTitleStyle = css`
   ${sectionTitleStyle};
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   padding: 16px 16px 0;
-`
+  `
 
 export const panelPaddingStyle = css`
-  padding: 8px 16px;
+  padding: 16px;
 `
 
 export const panelSubBarStyle = css`
   padding: 13px 16px;
 `
 export const newBtnStyle = css`
-  padding-left: 16px;
+  margin-left: 16px;
+  padding: 0 8px;
+  height: 24px;
+  font-size: 14px;
+
+  & > span:first-child {
+  margin-right: 4px;
+  }
 `
 
 export const dashBorderBottomStyle = css`
   border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
-`
+  `
 
 export const gridHandlersStyle = css`
   display: grid;
@@ -249,7 +257,7 @@ export const handlerMoreIconStyle = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-`
+    `
 
 export const moreListStyle = css`
   list-style: none;
@@ -268,18 +276,18 @@ export const moreListItemStyle = css`
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
-`
+    `
 
 export const moreListItemWarnStyle = css`
   ${moreListItemStyle};
   color: ${globalColor(`--${illaPrefix}-red-03`)};
-`
+  `
 
 export const moreBtnMenuStyle = css`
   padding: 8px 0;
   width: 180px;
   box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
-`
+  `
 
 export const handlerItemWrapperStyle = css`
   display: flex;
@@ -288,7 +296,7 @@ export const handlerItemWrapperStyle = css`
   line-height: 1.57;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   cursor: pointer;
-`
+  `
 
 export const handlerItemContentStyle = css`
   flex: 1;
@@ -301,7 +309,7 @@ export const handlerItemContentStyle = css`
   &:hover {
     border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
   }
-`
+    `
 
 export const handlerItemMoreStyle = css`
   width: 32px;
@@ -317,7 +325,7 @@ export const handlerItemMoreStyle = css`
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-`
+    `
 
 export const radioBtnStyle = css`
   width: 184px;
@@ -333,18 +341,18 @@ export const resStatusStyle = css`
   align-items: center;
   width: 16px;
   height: 16px;
-`
+  `
 
 export const resTitleStyle = css`
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-gray-01`)};
-`
+  `
 
 export const resAlertBgcStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-`
+  `
 
 export const resCloseIconStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-`
+  `

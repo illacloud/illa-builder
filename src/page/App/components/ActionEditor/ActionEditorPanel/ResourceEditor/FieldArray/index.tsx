@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { v4 as uuidv4 } from "uuid"
-import { PlusIcon, DeleteIcon } from "@illa-design/icon"
+import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { Select } from "@illa-design/select"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -159,7 +159,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           variant="text"
           size="medium"
           colorScheme="techPurple"
-          leftIcon={<PlusIcon />}
+          leftIcon={<AddIcon />}
           _css={newButtonStyle}
           onClick={addField}
         >

@@ -64,6 +64,12 @@ export const labelTextStyle = css`
   white-space: pre;
 `
 
+export const labelTextAlignSelfStartStyle = css`
+  align-self: flex-start;
+  /* vertical center to input, lineHeight same with input */
+  line-height: 30px;
+`
+
 export const dynamicLabelTextStyle = css`
   display: flex;
   justify-content: end;

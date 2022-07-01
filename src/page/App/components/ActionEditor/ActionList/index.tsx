@@ -20,7 +20,7 @@ import {
   newBtnContainerStyle,
   newButtonTextStyle,
   actionItemListStyle,
-  applyactionItemStyle,
+  applyActionItemStyle,
   actionItemNameStyle,
   applyactionItemNameTextStyle,
   actionItemIconStyle,
@@ -164,7 +164,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     return (
       <li
         key={id}
-        css={applyactionItemStyle(isSelected)}
+        css={applyActionItemStyle(isSelected)}
         onClick={() => onClickActionItem(id, name)}
         onContextMenu={() => {
           setContextMenuActionId(id)
