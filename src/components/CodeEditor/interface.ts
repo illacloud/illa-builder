@@ -23,10 +23,11 @@ export interface CodeEditorProps
   placeholder?: string
   borderRadius?: string
   noTab?: boolean
+  path?: string
   // sql table data
   tables?: Record<string, any>
   onBlur?: () => void
-  onChange?: (value: string, calcResult: any) => void
+  onChange?: (value: string, calcResult?: any) => void
 }
 
 export enum DataType {
@@ -55,7 +56,7 @@ export interface ResultPreview {
 
 export interface EditorInputState {
   focus?: boolean
-  error: boolean
+  error?: boolean
   height: string
   borderRadius: string
 }

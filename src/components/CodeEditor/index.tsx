@@ -1,5 +1,6 @@
-import { FC, useContext, useEffect, useRef, useState } from "react"
+import { FC, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
+import { get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/lib/codemirror"
@@ -8,9 +9,6 @@ import "codemirror/addon/edit/matchbrackets"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
-import "codemirror/addon/lint/lint"
-import "codemirror/addon/lint/javascript-lint"
-import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
 import "./hinter"
@@ -24,17 +22,9 @@ import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
-import { UpdateLintingCallback } from "codemirror/addon/lint/lint"
-import {
-  EvaluationError,
-  getLintAnnotations,
-} from "@/components/CodeEditor/lintHelper"
-import { get } from "react-hook-form"
-import { JSHINT } from "jshint"
-import { evalScript } from "@/utils/evaluateDynamicString/codeSandbox"
 import { executeMultilineJS } from "@/components/CodeEditor/eval"
+import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
 
-window.JSHINT = JSHINT
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
@@ -42,6 +32,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     placeholder = "input sth",
     expectedType = "String",
     borderRadius = "8px",
+    path,
     tables = {},
     lineNumbers,
     noTab,
@@ -54,6 +45,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   } = props
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
   const languageValue = useSelector(getLanguageValue)
+  const { error: executionError, result: executionResult } =
+    useSelector(getExecution)
   const codeTargetRef = useRef<HTMLDivElement>(null)
   const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
@@ -64,8 +57,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const [previewVisible, setPreviewVisible] = useState<boolean>()
   const [focus, setFocus] = useState<boolean>()
   const [error, setError] = useState<boolean>()
-  const [updateLintingCallback, setLintingCallback] =
-    useState<UpdateLintingCallback>()
   // Solve the closure problem
   const latestProps = useRef(props)
   latestProps.current = props
@@ -80,7 +71,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     setPreviewVisible(false)
   }
 
-  const valueChanged = async (currentValue: string) => {
+  const valueChanged = (currentValue: string) => {
     let calcResult: any = null
     let previewType = expectedType
     setError(false)
@@ -96,8 +87,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         type: previewType,
         content: calcResult,
       })
-
-      // console.log(evalScript(calcResult, globalData, false), "evalScript")
     } catch (e: any) {
       console.error(e)
       setError(true)
@@ -108,12 +97,37 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     } finally {
       latestProps.current.onChange?.(currentValue, calcResult)
     }
-    console.log(await executeMultilineJS(calcResult), "executeMultilineJS")
+    // console.log(await executeMultilineJS(calcResult), "executeMultilineJS")
   }
+
+  useEffect(() => {
+    if (path) {
+      let error = get(executionError, path)
+      let result = get(executionResult, path)
+      console.log({ path, error, result })
+      if (error?.length) {
+        setError(true)
+        setPreview({
+          state: "error",
+          content: error[0]?.errorMessage,
+        })
+      } else {
+        setPreview({
+          state: "default",
+          type: expectedType,
+          content: result?.toString() ?? "",
+        })
+      }
+    }
+  }, [executionError, executionResult, path])
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     const currentValue = editor?.getValue()
-    valueChanged(currentValue)
+    if (path) {
+      latestProps.current.onChange?.(currentValue)
+    } else {
+      valueChanged(currentValue)
+    }
   }
 
   const handleKeyUp = (editor: Editor, event: KeyboardEvent) => {
@@ -157,7 +171,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
     } else if (modeName == "javascript") {
       sever.current?.complete(cm)
-      // CodeMirror.lint.javascript(cm.getValue(), {}, cm)
       // cm.showHint({
       //   hint: CodeMirror.hint.javascript,
       //   completeSingle: false, // 是否立即补全
@@ -227,6 +240,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         autoAlignPopupWidth
         withoutPadding
         withoutShadow
+        openDelay={10}
+        closeDelay={10}
         popupVisible={previewVisible}
         content={<CodePreview preview={preview} />}
         showArrow={false}
