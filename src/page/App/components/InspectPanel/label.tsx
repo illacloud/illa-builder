@@ -7,7 +7,7 @@ export const PanelLabel: FC<PanelLabelProps> = (props) => {
   const { labelDesc, labelName, isInList } = props
 
   return (
-    <div>
+    <>
       <Tooltip
         content={labelDesc}
         trigger="hover"
@@ -19,7 +19,7 @@ export const PanelLabel: FC<PanelLabelProps> = (props) => {
           {labelName}
         </span>
       </Tooltip>
-    </div>
+    </>
   )
 }
 
