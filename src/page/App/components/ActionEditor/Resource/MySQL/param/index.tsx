@@ -10,7 +10,7 @@ export const MySQLParam = (props: MySQLParamProps) => {
         onChange={(value) => {
           onChange && onChange({ query: value })
         }}
-        mode="TEXT_SQL"
+        mode="SQL_JS"
         expectedType="String"
         height="88px"
         lineNumbers
