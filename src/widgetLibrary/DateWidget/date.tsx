@@ -30,7 +30,7 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
     styles,
     handleUpdateDsl,
   } = props
-  console.log("styles", styles)
+
   const [currentValue, setCurrentValue] = useState(value)
 
   const checkRange = useCallback(
