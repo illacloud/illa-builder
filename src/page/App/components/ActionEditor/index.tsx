@@ -130,7 +130,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     const targetItem = actionItems.find((i) => i.actionId === actionId)
 
     if (targetItem) {
-      const { resourceId, actionType, actionTemplate } = targetItem
+      const { resourceId, actionType, actionTemplate = {} } = targetItem
       const displayName = ActionDisplayNameGenerator.getDisplayName(actionType)
 
       Api.request(

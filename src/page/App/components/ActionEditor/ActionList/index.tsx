@@ -1,9 +1,11 @@
-import { FC, useState, useMemo, useRef, MouseEvent } from "react"
+import { FC, useState, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
 import { Trigger } from "@illa-design/trigger"
+import { DropList, Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
+import { illaPrefix, globalColor } from "@illa-design/theme"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
 import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
@@ -30,7 +32,8 @@ import {
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
-import { ContextMenu } from "./ContextMenu"
+
+const DropListItem = DropList.Item
 
 export const ActionList: FC<ActionListProps> = (props) => {
   const {
@@ -53,7 +56,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [isRenameError, setIsRenameError] =
     useState<ActionDisplayNameValidateResult>({ error: false })
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
   const { isValidActionDisplayName } = useIsValidActionDisplayName()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -109,14 +111,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
     })
   }
 
-  function onDuplicate() {
-    onDuplicateActionItem(contextMenuActionId)
-  }
-
-  function onDelete() {
-    onDeleteActionItem(contextMenuActionId)
-  }
-
   const actionItemsList = matchedActionItems.map((item) => {
     const { actionId: id, displayName: name, actionType, error } = item
     const isSelected = id === activeActionItem.actionId
@@ -138,7 +132,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
               inputRef={inputRef}
               requirePadding={false}
               borderColor="techPurple"
-
               value={editingName}
               error={isRenameError?.error}
               onChange={(value) => {
@@ -150,7 +143,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
               onPressEnter={() => updateName(name)}
             />
           </Trigger>
-
         )
       }
 
@@ -174,9 +166,8 @@ export const ActionList: FC<ActionListProps> = (props) => {
         key={id}
         css={applyactionItemStyle(isSelected)}
         onClick={() => onClickActionItem(id, name)}
-        onContextMenu={(e: MouseEvent) => {
+        onContextMenu={() => {
           setContextMenuActionId(id)
-          setContextMenuEvent(e)
         }}
       >
         <span css={actionItemIconStyle}>
@@ -235,13 +226,36 @@ export const ActionList: FC<ActionListProps> = (props) => {
         </Button>
       </div>
 
-      <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
-
-      <ContextMenu
-        onDelete={onDelete}
-        onDuplicate={onDuplicate}
-        contextMenuEvent={contextMenuEvent}
-      />
+      <Dropdown
+        trigger="contextmenu"
+        dropList={
+          <DropList
+            width={"184px"}
+            onClickItem={(key) => {
+              switch (key) {
+                case "duplicate":
+                  onDuplicateActionItem(contextMenuActionId)
+                  break
+                case "delete":
+                  onDeleteActionItem(contextMenuActionId)
+                  break
+              }
+            }}
+          >
+            <DropListItem
+              key={"duplicate"}
+              title={t("editor.action.action_list.contextMenu.duplicate")}
+            />
+            <DropListItem
+              key={"delete"}
+              title={t("editor.action.action_list.contextMenu.delete")}
+              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+            />
+          </DropList>
+        }
+      >
+        <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
+      </Dropdown>
 
       <ActionGenerator
         visible={actionGeneratorVisible}
