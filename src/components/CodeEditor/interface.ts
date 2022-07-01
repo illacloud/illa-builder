@@ -8,13 +8,12 @@ export enum EditorModes {
   JSON = "application/json",
   JAVASCRIPT = "javascript",
   TEXT_JS = "text-js",
-  TEXT_SQL = "text-sql",
   SQL_JS = "sql-js",
 }
 
 export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT" | "TEXT_SQL"
+  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT"
   value?: string
   expectedType: ExpectedType
   // Whether to show line numbers to the left of the editor.
