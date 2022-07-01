@@ -1,29 +1,45 @@
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import store from "@/store"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameReducer"
+import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 
 export class ActionDisplayNameGenerator {
-  static map: {
-    [key: string]: number
-  } = {}
+  static getDisplayName(type: string, showName?: string): string {
+    let index = 1
+    let name = `${showName || type}${index}`
 
-  static init(actionList: ActionItem[]) {
-    actionList.forEach(({ displayName, actionType }) => {
-      if (/${actionType}\d+$/.test(displayName)) {
-        if (this.map.hasOwnProperty(actionType)) {
-          this.map[actionType] += 1
-        } else {
-          this.map[actionType] = 1
-        }
-      }
-    })
+    // get unique name from all actions
+    while (
+      selectAllActionItem(store.getState())
+        .map((i) => i.displayName)
+        .includes(name)
+    ) {
+      index += 1
+      name = `${showName || type}${index}`
+    }
+
+    // check cache map
+    while (isAlreadyGenerate({ type, displayName: name })) {
+      index += 1
+      name = `${showName || type}${name}`
+    }
+
+    store.dispatch(
+      displayNameActions.addDisplayNameReducer({
+        type: showName || type,
+        displayName: name,
+      }),
+    )
+
+    return name
   }
 
-  static getDisplayName(type: string): string {
-    if (type in this.map) {
-      const num = this.map[type]
-      this.map[type] = num + 1
-    } else {
-      this.map[type] = 1
-    }
-    return `${type}${this.map[type]}`
+  static removeDisplayName(type: string, displayName: string) {
+    store.dispatch(
+      displayNameActions.removeDisplayNameReducer({
+        type,
+        displayName,
+      }),
+    )
   }
 }
