@@ -1,4 +1,4 @@
-import { SearchIcon } from "@illa-design/icon"
+import { CheckboxWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 
@@ -6,7 +6,7 @@ export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   type: "CHECKBOX_GROUP_WIDGET",
   widgetName: "checkbox",
   displayName: "checkboxGroup",
-  icon: <SearchIcon />,
+  icon: <CheckboxWidgetIcon size="100%" />,
   sessionType: "SELECT",
   w: 10,
   h: 5,
