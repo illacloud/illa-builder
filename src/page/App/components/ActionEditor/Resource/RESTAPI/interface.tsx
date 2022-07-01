@@ -31,6 +31,7 @@ export interface RESTAPIConfigureValues {
   oauth2RefreshToken?: string
   oauth2AccessTokenLifespanSeconds?: number
   oauth2ShareUserCredentials?: boolean
+  databaseName: string
 }
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"

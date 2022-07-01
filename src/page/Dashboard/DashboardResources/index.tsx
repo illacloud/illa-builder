@@ -1,14 +1,21 @@
-import { FC, ReactNode, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
+import dayjs from "dayjs"
+import utc from "dayjs/plugin/utc"
 import { Button } from "@illa-design/button"
-import { Tooltip } from "@illa-design/tooltip"
 import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
-import { RestApiIcon, MoreIcon } from "@illa-design/icon"
-import { DashboardResource } from "@/redux/resource/resourceState"
+import { MoreIcon } from "@illa-design/icon"
+import { Message } from "@illa-design/message"
+import { Dropdown } from "@illa-design/dropdown"
+import { Resource, ResourceListState } from "@/redux/resource/resourceState"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
+import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
+import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
+import { DashboardGenerator } from "@/page/Dashboard/components/DashboardGenerator"
+import { ActionType } from "@/page/Dashboard/components/DashboardGenerator/interface"
 import {
   appsContainerStyle,
   listTitleContainerStyle,
@@ -16,9 +23,6 @@ import {
   itemMenuButtonStyle,
   editButtonStyle,
 } from "@/page/Dashboard/DashboardApps/style"
-import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
-import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
-import { ResourceForm } from "@/page/App/components/ActionEditor/ResourceForm"
 import {
   nameIconStyle,
   tableNormalTextStyle,
@@ -27,14 +31,12 @@ import {
   tableStyle,
 } from "./style"
 
+dayjs.extend(utc)
+
 function NameColComponent(type: string, text: string) {
-  let icon: ReactNode = null
-  if (type) {
-    icon = <RestApiIcon css={nameIconStyle} />
-  }
   return (
     <>
-      {icon}
+      <ActionTypeIcon actionType={type} css={nameIconStyle} />
       <span css={css(tableNormalTextStyle, tableMainTextStyle)}>{text}</span>
     </>
   )
@@ -50,15 +52,21 @@ function DbNameColComponent(text: string) {
   }
 }
 function CtimeColComponent(text: string) {
-  return <span css={tableInfoTextStyle}>{text}</span>
+  return (
+    <span css={tableInfoTextStyle}>
+      {dayjs.utc(text).format("YYYY-MM-DD HH:mm:ss")}
+    </span>
+  )
 }
+
 const ExtraColComponent: FC<{
   resourceId: string
   showFormVisible: () => void
   setCurId: (curResourceId: string) => void
+  editActionType: () => void
 }> = (props) => {
   const { t } = useTranslation()
-  const { resourceId, showFormVisible, setCurId } = props
+  const { resourceId, showFormVisible, setCurId, editActionType } = props
   return (
     <>
       <Button
@@ -67,25 +75,22 @@ const ExtraColComponent: FC<{
         colorScheme="techPurple"
         onClick={() => {
           setCurId(resourceId)
+          editActionType()
           showFormVisible()
         }}
         title="editButton"
       >
         {t("edit")}
       </Button>
-      <Tooltip
-        trigger="click"
-        colorScheme="white"
-        showArrow={false}
+      <Dropdown
         position="br"
-        withoutPadding
-        clickOutsideToClose
-        closeOnInnerClick
-        content={
+        trigger="click"
+        dropList={
           <DashboardResourcesItemMenu
             resourceId={resourceId}
             setCurId={setCurId}
             showFormVisible={showFormVisible}
+            editActionType={editActionType}
           />
         }
       >
@@ -94,25 +99,29 @@ const ExtraColComponent: FC<{
           colorScheme="grayBlue"
           leftIcon={<MoreIcon size="14px" />}
         />
-      </Tooltip>
+      </Dropdown>
     </>
   )
 }
 
 export const DashboardResources: FC = () => {
-  const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const [formVisible, setFormVisible] = useState<boolean>(false)
+  const [dashboardGeneratorVisible, setDashboardGeneratorVisible] =
+    useState(false)
   const [curResourceId, setCurResourceId] = useState<string>("")
+  const [actionType, setActionType] = useState<ActionType>("new")
 
   const { t } = useTranslation()
 
-  const resourcesList: DashboardResource[] = useSelector(selectAllResource)
+  const resourcesList: ResourceListState = useSelector(selectAllResource)
 
   const showFromFunction = () => {
-    setFormVisible(true)
+    setDashboardGeneratorVisible(true)
   }
   const changeCurResourceId = (curResourceId: string) => {
     setCurResourceId(curResourceId)
+  }
+  const editActionType = () => {
+    setActionType("edit")
   }
 
   const countColumnsWidth = (itemWidth: number, minWidth: number) => {
@@ -157,17 +166,18 @@ export const DashboardResources: FC = () => {
   )
   const data = useMemo(() => {
     const result: any[] = []
-    resourcesList.forEach((item: DashboardResource, idx: number) => {
+    resourcesList.forEach((item: Resource, idx: number) => {
       result.push({
         nameCol: NameColComponent(item.resourceType, item.resourceName),
         typeCol: TypeColComponent(item.resourceType),
-        dbNameCol: DbNameColComponent(item.databaseName),
-        ctimeCol: CtimeColComponent(item.createdAt),
+        dbNameCol: DbNameColComponent(item.options?.databaseName),
+        ctimeCol: CtimeColComponent(item.updatedAt),
         extraCol: (
           <ExtraColComponent
             resourceId={item.resourceId}
             showFormVisible={() => showFromFunction()}
             setCurId={changeCurResourceId}
+            editActionType={editActionType}
           />
         ),
       })
@@ -183,7 +193,8 @@ export const DashboardResources: FC = () => {
           <Button
             colorScheme="techPurple"
             onClick={() => {
-              setActionGeneratorVisible(true)
+              setActionType("new")
+              setDashboardGeneratorVisible(true)
             }}
           >
             {t("create_new")}
@@ -195,26 +206,24 @@ export const DashboardResources: FC = () => {
             data={data}
             columns={columns}
             disableRowSelect
-            striped
           />
         ) : null}
         {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
       </div>
-      <ActionGenerator
-        visible={actionGeneratorVisible}
-        onClose={() => {
-          setActionGeneratorVisible(false)
-        }}
-        onAddAction={() => {
-          setActionGeneratorVisible(false)
-        }}
-      />
-      <ResourceForm
-        visible={formVisible}
-        actionType="edit"
+      <DashboardGenerator
+        actionType={actionType}
+        visible={dashboardGeneratorVisible}
         resourceId={curResourceId}
-        onCancel={() => {
-          setFormVisible(false)
+        onClose={() => {
+          setDashboardGeneratorVisible(false)
+        }}
+        onSuccess={(type: ActionType) => {
+          if (type === "new") {
+            Message.success(t("dashboard.resources.create_success"))
+          } else if (type === "edit") {
+            Message.success(t("dashboard.resources.edit_success"))
+          }
+          setDashboardGeneratorVisible(false)
         }}
       />
     </>

@@ -81,6 +81,7 @@ export const Body: FC<BodyProps> = (props) => {
   return (
     <div css={bodyFieldStyle}>
       <Select
+        colorScheme="techPurple"
         value={bodyType}
         options={bodyTypeOptiosn}
         onChange={setBodyType}

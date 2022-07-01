@@ -1,14 +1,14 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import { cloneDeep } from "lodash"
 import {
   ComponentNode,
   ComponentsState,
   deleteComponentNodePayload,
-  updateComponentDynamicStringsPayload,
   updateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-// TODO: @longbo file path error
-// import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
+import { isObject } from "@/utils/typeHelper"
 
 export const removeComponentReducer: CaseReducer<
   ComponentsState,
@@ -27,6 +27,32 @@ export const removeComponentReducer: CaseReducer<
     }
   }
 }
+
+export const bringToFrontReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentNode[]>
+> = (state, action) => {
+  action.payload.forEach((item) => {
+    const parentNode = searchDsl(state.rootDsl, item.parentNode)
+    if (parentNode) {
+      for (let childrenNodeKey in parentNode?.childrenNode) {
+        const node = parentNode?.childrenNode[childrenNodeKey]
+        if (node != undefined) {
+          if (node.displayName === item.displayName) {
+            node.z = 10
+          } else {
+            node.z = 0
+          }
+        }
+      }
+    }
+  })
+}
+
+export const copyComponentNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentNode>
+> = (state, action) => {}
 
 export const addOrUpdateComponentReducer: CaseReducer<
   ComponentsState,
@@ -70,26 +96,17 @@ export const updateComponentPropsReducer: CaseReducer<
   ComponentsState,
   PayloadAction<updateComponentPropsPayload>
 > = (state, action) => {
-  const { displayName, newProps } = action.payload
-  const node = searchDsl(state.rootDsl, displayName)
-  if (!node) return
-  const oldProps = node.props || {}
-  node.props = {
-    ...oldProps,
-    ...newProps,
+  const { displayName, updateSlice } = action.payload
+  if (!isObject(updateSlice) || !displayName) {
+    return
   }
-}
-
-export const updateComponentDynamicStringsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<updateComponentDynamicStringsPayload>
-> = (state, action) => {
-  const { displayName, dynamicStrings } = action.payload
   const node = searchDsl(state.rootDsl, displayName)
   if (!node) return
-  if (!node.panelConfig)
-    node.panelConfig = {
-      dynamicStrings: [],
-    }
-  node.panelConfig.dynamicStrings = dynamicStrings
+  const widgetProps = node.props || {}
+  const clonedWidgetProps = cloneDeep(widgetProps)
+  node.props = getNewWidgetPropsByUpdateSlice(
+    displayName,
+    updateSlice,
+    clonedWidgetProps,
+  )
 }

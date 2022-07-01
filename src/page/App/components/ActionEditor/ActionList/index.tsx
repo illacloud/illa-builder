@@ -121,6 +121,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
         return (
           <Input
             inputRef={inputRef}
+            borderColor="techPurple"
             requirePadding={false}
             value={editingName}
             onChange={(value) => setEditingName(value)}

@@ -69,6 +69,7 @@ export const movableIconWrapperCss = css`
   cursor: grab;
   display: flex;
   align-items: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const modalWrapperCss = css`

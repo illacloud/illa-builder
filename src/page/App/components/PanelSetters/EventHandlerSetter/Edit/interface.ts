@@ -6,4 +6,5 @@ export interface IEventHandleProps {
   handleCloseModal: () => void
   childrenSetter?: PanelFieldConfig[]
   handleUpdateItem: (value: any) => void
+  attrName: string
 }

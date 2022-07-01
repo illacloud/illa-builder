@@ -3,12 +3,13 @@ export type ContainerType = "EDITOR_DOT_PANEL" | "EDITOR_SCALE_SQUARE"
 export interface ComponentNode {
   displayName: string
   parentNode: string | null
+  showName: string
   error: boolean
   isDragging: boolean
   childrenNode: {
     [key: string]: ComponentNode
   } | null
-  type: string | null
+  type: string
   containerType: ContainerType
   verticalResize: boolean
   h: number
@@ -37,8 +38,9 @@ export const ComponentsInitialState: ComponentsState = {
   rootDsl: {
     displayName: "root",
     parentNode: null,
+    showName: "root",
     childrenNode: null,
-    type: null,
+    type: "DOT_PANEL",
     containerType: "EDITOR_DOT_PANEL",
     verticalResize: true,
     h: 0,
@@ -55,10 +57,5 @@ export interface deleteComponentNodePayload {
 
 export interface updateComponentPropsPayload {
   displayName: string
-  newProps: Record<string, any>
-}
-
-export interface updateComponentDynamicStringsPayload {
-  displayName: string
-  dynamicStrings: string[]
+  updateSlice: Record<string, any>
 }

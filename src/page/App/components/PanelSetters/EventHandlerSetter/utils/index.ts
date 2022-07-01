@@ -7,7 +7,7 @@ import {
   StateEventItem,
   WidgetEventItem,
 } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
-import { EventsInProps } from "@/wrappedComponents/interface"
+import { EventsInProps } from "@/widgetLibrary/interface"
 
 export const transformEvent = (event: BaseEventItem): EventsInProps => {
   const { type, event: eventType } = event

@@ -4,19 +4,18 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
-import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
+  connectTextStyle,
   descriptionStyle,
   errorMessageStyle,
   formStyle,
   gridContainerStyle,
   gridRowContainerStyle,
   groupTitleStyle,
-  itemTextStyle,
   labelTextSmallSizeStyle,
   labelTextStyle,
   labelTextVerticalStyle,
@@ -101,6 +100,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   )}
                   error={!!errors.resourceName}
                   maxLength={200}
+                  borderColor="techPurple"
                 />
               )}
               rules={{
@@ -129,6 +129,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     )}
                     error={!!errors.host}
                     maxLength={200}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -143,6 +144,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     {...field}
                     placeholder="3306"
                     error={!!errors.port}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -170,6 +172,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   placeholder={t(
                     "editor.action.resource.my_sql.placeholder.database",
                   )}
+                  borderColor="techPurple"
                 />
               )}
               control={control}
@@ -188,6 +191,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     placeholder={t(
                       "editor.action.resource.my_sql.placeholder.username",
                     )}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -201,6 +205,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     placeholder={t(
                       "editor.action.resource.my_sql.placeholder.password",
                     )}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -215,11 +220,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             <label css={labelTextStyle}>
               {t("editor.action.resource.my_sql.label.connect_type")}
             </label>
-            <div css={itemTextStyle}>
+            <div css={connectTextStyle}>
               {t("editor.action.resource.my_sql.tip.connect_type")}
             </div>
           </div>
-          <Divider css={splitLineStyle} />
+          <div css={splitLineStyle} />
           <h4 css={groupTitleStyle}>Advanced Options</h4>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
@@ -234,7 +239,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.connect_over_ssh")}
                 </div>
               </div>
@@ -256,6 +261,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         )}
                         maxLength={200}
                         error={!!errors.advancedOptions?.sshHost}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -270,6 +276,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         {...field}
                         placeholder="22"
                         error={!!errors.advancedOptions?.sshPort}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -304,6 +311,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                           "editor.action.resource.my_sql.placeholder.ssh_credentials",
                         )}
                         error={!!errors.advancedOptions?.sshUsername}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -319,6 +327,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         placeholder="•••••••••"
                         invisibleButton={false}
                         error={!!errors.advancedOptions?.sshPassword}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -367,6 +376,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       {...field}
                       placeholder="•••••••••"
                       invisibleButton={false}
+                      borderColor="techPurple"
                     />
                   )}
                   control={control}
@@ -388,7 +398,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.ssl_options")}
                 </div>
               </div>

@@ -1,28 +1,29 @@
 import { FC } from "react"
+import { get } from "lodash"
 import { OptionListHeader } from "./header"
 import { ListBody } from "./body"
 import { OptionListSetterProps } from "./interface"
-import { OptionListSetterProvider } from "./context/optionListContext"
 import { ListCss } from "./style"
-import { DndProvider } from "react-dnd"
-import { HTML5Backend } from "react-dnd-html5-backend"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const { attrName, panelConfig, handleUpdateDsl } = props
 
+  const optionItems = get(panelConfig, attrName, [])
+
   return (
-    <OptionListSetterProvider
-      panelConfig={panelConfig}
-      attrName={attrName}
-      handleUpdateAllDsl={handleUpdateDsl}
-    >
-      <div css={ListCss}>
-        <OptionListHeader labelName="label" />
-        <DndProvider backend={HTML5Backend}>
-          <ListBody />
-        </DndProvider>
-      </div>
-    </OptionListSetterProvider>
+    <div css={ListCss}>
+      <OptionListHeader
+        labelName="Options"
+        optionItems={optionItems}
+        attrName={attrName}
+        handleUpdateDsl={handleUpdateDsl}
+      />
+      <ListBody
+        handleUpdateDsl={handleUpdateDsl}
+        optionItems={optionItems}
+        attrName={attrName}
+      />
+    </div>
   )
 }
 

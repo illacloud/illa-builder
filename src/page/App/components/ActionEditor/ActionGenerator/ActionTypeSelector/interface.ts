@@ -5,6 +5,7 @@ import {
 
 export interface ActionTypeSelectorProps {
   onSelect?: (item: ActionTypeInfo) => void
+  resourceOnly?: boolean
 }
 
 export interface ActionTypeSelectorListProps {

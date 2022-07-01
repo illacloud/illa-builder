@@ -28,7 +28,6 @@ export default [
       ]),
     )
   }),
-
   rest.post(`${baseUrl}/apps`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -39,41 +38,6 @@ export default [
         lastModifiedBy: "Zhanjiao Deng",
         lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
       }),
-    )
-  }),
-
-  rest.get(`${baseUrl}/resources`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json([
-        {
-          resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52",
-          resourceName: "mysqlExample",
-          resourceType: "mysql",
-          databaseName: "ZGVmYXVsdA==",
-          createdBy: "1f221b62-568b-448c-989easdqwe2",
-          lastModifiedBy: "1f221b62-568b-448c-989easdqwe2",
-          createdAt: "2022-06-06T12:00:30.780+00:00",
-          lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
-        },
-        {
-          resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52",
-          resourceName: "restapiEg",
-          resourceType: "restapi",
-          databaseName: "",
-          createdBy: "1f221b62-568b-448c-989easdqwe2",
-          lastModifiedBy: "1f221b62-568b-448c-989easdqwe2",
-          createdAt: "2022-06-06T12:00:30.780+00:00",
-          lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
-        },
-      ]),
-    )
-  }),
-
-  rest.delete(`${baseUrl}/resources/:resourceId`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({ resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52" }),
     )
   }),
 
@@ -89,7 +53,6 @@ export default [
       }),
     )
   }),
-
   rest.post(`${baseUrl}/apps/:appId/duplicate`, (req, res, ctx) => {
     return res(
       ctx.status(200),

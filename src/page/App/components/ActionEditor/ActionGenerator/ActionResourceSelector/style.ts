@@ -38,7 +38,7 @@ export const resourceItemContainerStyle = css`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
 
@@ -53,6 +53,7 @@ export const resourceItemIconStyle = css`
 export const resourceItemTitleStyle = css`
   margin-left: 8px;
   flex: 1;
+  font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 

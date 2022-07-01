@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { forwardRef } from "react"
+import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
 import { DeleteIcon, AddIcon } from "@illa-design/icon"
 import { useFieldArray, Controller } from "react-hook-form"
@@ -20,6 +21,7 @@ const EmptyField: Params = { key: "", value: "" }
 export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
   (props, ref) => {
     const { control, name, ...restProps } = props
+    const { t } = useTranslation()
     const { fields, append, remove, update } = useFieldArray({
       control,
       name,
@@ -30,7 +32,14 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
         <div css={paramItemStyle} key={field.id}>
           <Controller
             render={({ field }) => (
-              <Input {...field} placeholder={"key"} css={paramItemKeyStyle} />
+              <Input
+                {...field}
+                placeholder={t(
+                  "editor.action.resource.rest_api.placeholder.param_key",
+                )}
+                css={paramItemKeyStyle}
+                borderColor="techPurple"
+              />
             )}
             control={control}
             name={`${name}.${index}.key`}
@@ -39,6 +48,7 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
             render={({ field }) => (
               <Input
                 {...field}
+                borderColor="techPurple"
                 addonAfter={{
                   render: (
                     <DeleteIcon
@@ -47,7 +57,9 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
                     />
                   ),
                 }}
-                placeholder={"value"}
+                placeholder={t(
+                  "editor.action.resource.rest_api.placeholder.param_value",
+                )}
                 css={paramItemValueStyle}
               />
             )}
