@@ -5,6 +5,7 @@ import {
   panelBarTitleStyle,
   panelBarItemContentStyle,
   panelBarItemAnimation,
+  ghostEmptyStyle,
 } from "./style"
 import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
@@ -40,7 +41,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           <div>{children}</div>
         </motion.div>
       </AnimatePresence>
-      {isOpenedState && <div style={{ marginTop: "8px" }} />}
+      {isOpenedState && <div css={ghostEmptyStyle} />}
     </>
   )
 }

@@ -151,7 +151,7 @@ export const singleSelectedPanelSetterWrapperStyle = css`
   overflow-y: auto;
 `
 
-export const actionMenuContaninterStyle = css`
+export const actionMenuContainerStyle = css`
   padding: 8px 0;
   width: 184px;
   border-radius: 8px;
@@ -173,4 +173,8 @@ export const baseActionMenuItemStyle = css`
 
 export const deleteActionMenuItemStyle = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)};
+`
+
+export const ghostEmptyStyle = css`
+  margin-top: 8px;
 `
