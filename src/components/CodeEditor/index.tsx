@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useMemo, useRef, useState } from "react"
+import { FC, useContext, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
 import { get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
@@ -22,7 +22,6 @@ import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
-import { executeMultilineJS } from "@/components/CodeEditor/eval"
 import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
@@ -192,7 +191,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         autofocus: false,
         matchBrackets: true,
         autoCloseBrackets: true,
-        showCursorWhenSelecting: true,
         lineWrapping: true,
         scrollbarStyle: "null",
         tabSize: 2,
@@ -256,6 +254,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           <div
             ref={codeTargetRef}
             css={applyCodeEditorStyle(inputState)}
+            className={error? 'cm-error':'cm-default'}
             {...otherProps}
           >
             <div id="hintBody" />

@@ -6,7 +6,7 @@ export enum EditorModes {
   TEXT = "text/plain",
   SQL = "sql",
   JSON = "application/json",
-  JAVASCRIPT = "javascript",
+  JAVASCRIPT = "custom-javascript",
   TEXT_JS = "text-js",
   SQL_JS = "sql-js",
 }

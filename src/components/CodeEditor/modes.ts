@@ -20,7 +20,7 @@ CodeMirror.defineMode(EditorModes.TEXT_JS, function (config) {
       }),
       delimStyle: "illa-expression",
       innerStyle: "illa-expression",
-      parseDelimiters: true,
+      parseDelimiters: false,
     },
   )
 })
@@ -36,7 +36,25 @@ CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
       }),
       delimStyle: "illa-expression",
       innerStyle: "illa-expression",
-      parseDelimiters: true,
+      parseDelimiters: false,
+    },
+  )
+})
+
+CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
+  return CodeMirror.multiplexingMode(
+    CodeMirror.getMode(config, {
+      name: "application/javascript",
+    }),
+    {
+      open: "{{",
+      close: "}}",
+      mode: CodeMirror.getMode(config, {
+        name: "application/javascript",
+      }),
+      delimStyle: "illa-expression",
+      innerStyle: "illa-expression",
+      parseDelimiters: false,
     },
   )
 })
