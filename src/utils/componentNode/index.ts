@@ -28,12 +28,13 @@ const getDynamicAttrPathUpdate = (
     stringValue = JSON.stringify(attrValue)
   }
   const isDynamic = isDynamicString(stringValue)
-  if (!isDynamic && isPathInDynamicAttrPaths(widgetProps, attrPath)) {
+  const isPathInDynamic = isPathInDynamicAttrPaths(widgetProps, attrPath)
+  if (!isDynamic && isPathInDynamic) {
     return {
       attrPath,
       action: DynamicAttrPathActions.REMOVE,
     }
-  } else if (isDynamic && !isPathInDynamicAttrPaths(widgetProps, attrPath)) {
+  } else if (isDynamic && !isPathInDynamic) {
     return {
       attrPath,
       action: DynamicAttrPathActions.ADD,
