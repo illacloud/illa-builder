@@ -25,11 +25,19 @@ export function applyLabelStyle(isInList?: boolean): SerializedStyles {
   return isInList ? ListLabelStyle : baseLabelStyle
 }
 
-export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
+export function applyLabelTipsStyle(
+  isInList?: boolean,
+  hasLabelDesc?: boolean,
+): SerializedStyles {
   const labelStyle = applyLabelStyle(isInList)
+  const borderBottomStyle = hasLabelDesc
+    ? css`
+        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+      `
+    : css``
   return css`
     ${labelStyle};
-    border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+    ${borderBottomStyle};
   `
 }
 
