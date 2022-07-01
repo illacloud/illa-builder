@@ -11,12 +11,13 @@ import {
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
+  loadingStyle,
   middlePanelStyle,
   navbarStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection, Room } from "@/api/ws/ws"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   isOpenBottomPanel,
   isOpenLeftPanel,
@@ -29,6 +30,17 @@ import { startAppListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
+import { Loading } from "@illa-design/loading"
+import { Api } from "@/api/base"
+import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
+import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
+import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
+import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
+import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
+import { Skeleton } from "@illa-design/skeleton"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -40,6 +52,9 @@ export type PanelState = keyof PanelConfigProps
 
 export const Editor: FC = () => {
   const [room, setRoom] = useState<Room>()
+
+  const dispatch = useDispatch()
+
   useEffect(() => {
     Connection.enterRoom(
       "app",
@@ -69,19 +84,77 @@ export const Editor: FC = () => {
   const showRightPanel = useSelector(isOpenRightPanel)
   const showBottomPanel = useSelector(isOpenBottomPanel)
 
+  const [loadingState, setLoadingState] = useState(true)
+
+  useEffect(() => {
+    Api.request<CurrentAppResp>(
+      {
+        url: `/api/v1/apps/${1}/versions/${2}`,
+        method: "GET",
+      },
+      (response) => {
+        dispatch(
+          componentsActions.addOrUpdateComponentReducer(
+            response.data.components,
+          ),
+        )
+        dispatch(actionActions.updateActionListReducer(response.data.actions))
+        dispatch(
+          dependenciesActions.setDependenciesReducer(
+            response.data.dependenciesState,
+          ),
+        )
+        dispatch(
+          executionActions.setExecutionReducer(response.data.executionState),
+        )
+        dispatch(
+          dragShadowActions.updateDragShadowReducer(
+            response.data.dragShadowState,
+          ),
+        )
+        dispatch(
+          dottedLineSquareActions.updateDottedLineSquareReducer(
+            response.data.dottedLineSquareState,
+          ),
+        )
+        dispatch(
+          displayNameActions.updateDisplayNameReducer(
+            response.data.displayNameState,
+          ),
+        )
+      },
+      (e) => {},
+      (e) => {},
+      (loading) => {
+        setLoadingState(loading)
+      },
+    )
+  }, [])
+
   return (
     <DndProvider backend={HTML5Backend}>
       <GlobalDataProvider>
         <div css={editorContainerStyle}>
-          <PageNavBar css={navbarStyle} />
-          <div css={contentStyle}>
-            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
-            <div css={middlePanelStyle}>
-              <CanvasPanel css={centerPanelStyle} />
-              <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+          {loadingState && (
+            <div css={loadingStyle}>
+              <Skeleton />
             </div>
-            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
-          </div>
+          )}
+          {!loadingState && (
+            <>
+              <PageNavBar css={navbarStyle} />
+              <div css={contentStyle}>
+                <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+                <div css={middlePanelStyle}>
+                  <CanvasPanel css={centerPanelStyle} />
+                  <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+                </div>
+                <WidgetPickerEditor
+                  css={applyRightPanelStyle(showRightPanel)}
+                />
+              </div>
+            </>
+          )}
         </div>
       </GlobalDataProvider>
     </DndProvider>

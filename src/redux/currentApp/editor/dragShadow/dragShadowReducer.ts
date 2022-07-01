@@ -4,6 +4,13 @@ import {
   DragShadowState,
 } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
 
+export const updateDragShadowReducer: CaseReducer<
+  DragShadowState,
+  PayloadAction<DragShadowState>
+> = (state, action) => {
+  return action.payload
+}
+
 export const addOrUpdateDragShadowReducer: CaseReducer<
   DragShadowState,
   PayloadAction<DragShadow>

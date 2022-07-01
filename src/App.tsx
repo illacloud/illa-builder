@@ -1,7 +1,5 @@
-import { Global, css } from "@emotion/react"
+import { css, Global } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import { Unsubscribe } from "@reduxjs/toolkit"
-import { useEffect } from "react"
 import { globalStyle } from "./style"
 import { useSelector } from "react-redux"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
@@ -31,9 +29,6 @@ import "@/api/base"
 import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AxiosInterceptor } from "@/api/AxiosInterceptor"
-import { startBuilderListening } from "@/store"
-import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
-import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
 
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {

@@ -1,9 +1,7 @@
 export interface DisplayNameState {
-  cacheMap: {
-    [type: string]: string[]
-  }
+  displayNameList: string[]
 }
 
 export const DisplayNameInitialState: DisplayNameState = {
-  cacheMap: {},
+  displayNameList: [],
 }

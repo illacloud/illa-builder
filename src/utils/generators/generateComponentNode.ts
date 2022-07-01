@@ -1,7 +1,7 @@
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateComponentNodeDisplayName"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,
@@ -45,10 +45,7 @@ export const generateComponentNode = (
     z: 0,
     showName: widgetName,
     type,
-    displayName: ComponentNodeDisplayNameGenerator.getDisplayName(
-      type,
-      widgetName,
-    ),
+    displayName: DisplayNameGenerator.getDisplayName(type, widgetName),
     containerType: "EDITOR_SCALE_SQUARE",
     parentNode: null,
     childrenNode: childrenNodeDSLKeys.length > 0 ? childrenNodeDSL : null,
