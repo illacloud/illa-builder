@@ -29,7 +29,7 @@ export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
   const labelStyle = applyLabelStyle(isInList)
   return css`
     ${labelStyle};
-    border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+    border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   `
 }
 
@@ -53,7 +53,7 @@ export const panelBarHeaderStyle = css`
   height: 48px;
   cursor: pointer;
   &:not(:first-of-type) {
-    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
   ${publicPaddingStyle};
 `
