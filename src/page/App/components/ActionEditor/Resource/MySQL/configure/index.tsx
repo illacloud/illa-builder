@@ -39,8 +39,8 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
-    const [enableSSH, setEnableSSH] = useState(resourceConfig?.options.ssh)
-    const [enableSSL, setEnableSSL] = useState(resourceConfig?.options.ssl)
+    const [enableSSH, setEnableSSH] = useState((resourceConfig?.options as MySQLConfigureValues).ssh)
+    const [enableSSL, setEnableSSL] = useState((resourceConfig?.options as MySQLConfigureValues).ssl)
     const {
       handleSubmit,
       control,

@@ -73,7 +73,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     setActiveActionItemId(id)
   }
 
-  function onAddActionItem(data: ActionItem) {
+  function onAddActionItem(data: Omit<ActionItem, "actionId">) {
     Api.request(
       {
         url: baseActionApi,
