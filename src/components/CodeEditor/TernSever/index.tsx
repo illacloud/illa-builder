@@ -16,68 +16,68 @@ import demoZh from "../defs/demo_zh.json"
 window.tern = tern
 
 const getCurrentDef = (language: string) => {
-    switch (language) {
-        case "简体中文":
-            return demoZh
-        case "English":
-            return demoUs
-        default:
-            return demoUs
-    }
+  switch (language) {
+    case "简体中文":
+      return demoZh
+    case "English":
+      return demoUs
+    default:
+      return demoUs
+  }
 }
 
 const transTernTypeName = (value: any): string => {
-    let res = getValueType(value)
-    switch (res) {
-        case "String":
-            return "string"
-        case "Number":
-            return "number"
-        case "Array":
-            return "array"
-        case "Object":
-            return "object"
-        case "Function":
-            return "fn()"
-        case "Boolean":
-            return "bool"
-        default:
-            return "unknown"
-    }
+  let res = getValueType(value)
+  switch (res) {
+    case "String":
+      return "string"
+    case "Number":
+      return "number"
+    case "Array":
+      return "array"
+    case "Object":
+      return "object"
+    case "Function":
+      return "fn()"
+    case "Boolean":
+      return "bool"
+    default:
+      return "unknown"
+  }
 }
 
 const transDataToDefs = (data?: Record<string, any>) => {
-    if (data) {
-        const def: Record<string, any> = {}
-        for (const dataKey in data) {
-            if (isObject(data[dataKey])) {
-                let a = data[dataKey] as Object
-                def[dataKey] = { ...a, ...transDataToDefs(a) }
-            } else {
-                def[dataKey] = {}
-                def[dataKey]["!type"] = transTernTypeName(data[dataKey])
-            }
-        }
-        return def
+  if (data) {
+    const def: Record<string, any> = {}
+    for (const dataKey in data) {
+      if (isObject(data[dataKey])) {
+        let a = data[dataKey] as Object
+        def[dataKey] = { ...a, ...transDataToDefs(a) }
+      } else {
+        def[dataKey] = {}
+        def[dataKey]["!type"] = transTernTypeName(data[dataKey])
+      }
     }
-    return {}
+    return def
+  }
+  return {}
 }
 
 export const TernServer = (
-    language: string = "English",
-    data?: Record<string, any>,
+  language: string = "English",
+  data?: Record<string, any>,
 ) => {
-    let currentDef = getCurrentDef(language)
-    let transData = transDataToDefs(data)
+  let currentDef = getCurrentDef(language)
+  let transData = transDataToDefs(data)
 
-    return new CodeMirror.TernServer({
-        // @ts-ignore: type define error
-        defs: [ecmascript, { ...currentDef, ...transData }],
-        // @ts-ignore: type define error
-        completionTip: (data: TypeQueryResult) => {
-            let div = document.createElement("div")
-            ReactDOM.render(<HintTooltip data={data} />, div)
-            return div
-        },
-    })
+  return new CodeMirror.TernServer({
+    // @ts-ignore: type define error
+    defs: [ecmascript, { ...currentDef, ...transData }],
+    // @ts-ignore: type define error
+    completionTip: (data: TypeQueryResult) => {
+      let div = document.createElement("div")
+      ReactDOM.render(<HintTooltip data={data} />, div)
+      return div
+    },
+  })
 }

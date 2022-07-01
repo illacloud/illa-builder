@@ -96,14 +96,12 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     } finally {
       latestProps.current.onChange?.(currentValue, calcResult)
     }
-    // console.log(await executeMultilineJS(calcResult), "executeMultilineJS")
   }
 
   useEffect(() => {
     if (path) {
       let error = get(executionError, path)
       let result = get(executionResult, path)
-      console.log({ path, error, result })
       if (error?.length) {
         setError(true)
         setPreview({
@@ -254,7 +252,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           <div
             ref={codeTargetRef}
             css={applyCodeEditorStyle(inputState)}
-            className={error? 'cm-error':'cm-default'}
+            className={error ? "cm-error" : "cm-default"}
             {...otherProps}
           >
             <div id="hintBody" />

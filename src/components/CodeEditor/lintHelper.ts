@@ -7,5 +7,4 @@ import "codemirror/addon/lint/lint.css"
 // see in: https://github.com/codemirror/codemirror5/issues/5362
 window.JSHINT = JSHINT
 
-
 // CodeMirror.lint.javascript(cm.getValue(), {}, cm)

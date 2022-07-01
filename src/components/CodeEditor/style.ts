@@ -48,7 +48,7 @@ export const codemirrorStyle = css`
   }
 
   ${ternStyle}
-  
+
   .CodeMirror-hints {
     font-family: "Fira Code", monospace;
     min-width: 289px;
