@@ -51,7 +51,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [editingActionItemId, setEditingActionItemId] = useState("")
   const [contextMenuActionId, setContextMenuActionId] = useState("")
   const [isRenameError, setIsRenameError] =
-    useState<ActionDisplayNameValidateResult>()
+    useState<ActionDisplayNameValidateResult>({ error: false })
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
   const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
   const { isValidActionDisplayName } = useIsValidActionDisplayName()
@@ -132,7 +132,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
             popupVisible={isRenameError?.error}
             showArrow={false}
             closeDelay={0}
-            colorScheme="red"
+            colorScheme="techPurple"
           >
             <Input
               inputRef={inputRef}

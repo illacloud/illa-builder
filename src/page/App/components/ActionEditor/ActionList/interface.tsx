@@ -3,7 +3,7 @@ import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export interface ActionListProps extends HTMLAttributes<HTMLDivElement> {
   loading?: boolean
-  onAddActionItem: (data: Partial<ActionItem>) => void
+  onAddActionItem: (data: ActionItem) => void
   onUpdateActionItem: (actionId: string, data: Partial<ActionItem>) => void
   onDuplicateActionItem: (actionId: string) => void
   onDeleteActionItem: (actionId: string) => void

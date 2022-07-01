@@ -177,7 +177,7 @@
           "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
           "name_already_exist": "Already exists",
           "please_input_name": "Please input name",
-          "valid_name": "Can only contain letters, numbers, '_' or '$'"
+          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
         },
         "action_generator": {
           "selector": {

@@ -10,6 +10,7 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { useIsValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
+import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
 import {
   applyTitleContainerStyle,
   titleEditIconStyle,
@@ -54,6 +55,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
     setIsEditing(false)
 
     const { error, errorMsg } = isValidActionDisplayName(title)
+
     if (error) {
       Message.warning(errorMsg as string)
       setTitle(name)
@@ -62,6 +64,8 @@ export const TitleInput: FC<TitleInputProps> = () => {
 
     if (title !== name) {
       const { resourceId, actionType, actionTemplate } = activeActionItem
+
+      ActionDisplayNameGenerator.cacheDisplayName(title)
 
       Api.request<ActionItem>(
         {
@@ -80,8 +84,12 @@ export const TitleInput: FC<TitleInputProps> = () => {
               ...data,
             }),
           )
+
+          ActionDisplayNameGenerator.removeDisplayName(title)
         },
-        () => { },
+        () => {
+          ActionDisplayNameGenerator.removeDisplayName(title)
+        },
         () => { },
         (loading) => {
           setActionListLoading?.(loading)

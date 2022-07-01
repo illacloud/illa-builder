@@ -50,12 +50,11 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
             actionId: "",
             displayName: "",
             actionType: "",
-            actionTemplate: {}
+            actionTemplate: {},
           }),
         )
       } else {
         updateActiveActionItemId(actionItems[length - 2].actionId)
-
       }
     } else {
       updateActiveActionItemId(lastItemId)
@@ -74,7 +73,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     setActiveActionItemId(id)
   }
 
-  function onAddActionItem(data: Partial<ActionItem>) {
+  function onAddActionItem(data: ActionItem) {
     Api.request(
       {
         url: baseActionApi,
@@ -84,8 +83,11 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       ({ data }: { data: ActionItem }) => {
         dispatch(actionActions.addActionItemReducer(data))
         updateActiveActionItemId(data.actionId)
+        ActionDisplayNameGenerator.removeDisplayName(data.displayName)
       },
-      () => { },
+      () => {
+        ActionDisplayNameGenerator.removeDisplayName(data.displayName)
+      },
       () => { },
       (loading) => {
         setActionListLoading(loading)
@@ -93,8 +95,10 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     )
   }
 
-  function onUpdateActionItem(actionId: string, data: Partial<ActionItem>) {
-    const { resourceId, actionType, displayName, actionTemplate } = data;
+  function onUpdateActionItem(actionId: string, data: ActionItem) {
+    const { resourceId, actionType, displayName, actionTemplate } = data
+
+    ActionDisplayNameGenerator.cacheDisplayName(displayName)
 
     Api.request(
       {
@@ -104,7 +108,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           resourceId,
           actionType,
           displayName,
-          actionTemplate
+          actionTemplate,
         },
       },
       ({ data }: { data: ActionItem }) => {
@@ -127,6 +131,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
     if (targetItem) {
       const { resourceId, actionType, actionTemplate } = targetItem
+      const displayName = ActionDisplayNameGenerator.getDisplayName(actionType)
 
       Api.request(
         {
@@ -136,14 +141,17 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
             resourceId,
             actionType,
             actionTemplate,
-            displayName: ActionDisplayNameGenerator.getDisplayName(actionType),
+            displayName,
           },
         },
         ({ data }: { data: ActionItem }) => {
           dispatch(actionActions.addActionItemReducer(data))
           onDuplicateActionItem(data?.actionId)
+          ActionDisplayNameGenerator.removeDisplayName(data.displayName)
         },
-        () => { },
+        () => {
+          ActionDisplayNameGenerator.removeDisplayName(displayName)
+        },
         () => { },
         (loading) => {
           setActionListLoading(loading)

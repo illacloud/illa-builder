@@ -4,9 +4,11 @@ import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameRed
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 
 export class ActionDisplayNameGenerator {
-  static getDisplayName(type: string, showName?: string): string {
+  static DISPLAY_NAME_TYPE: "actionDisplayNameType"
+
+  static getDisplayName(type: string): string {
     let index = 1
-    let name = `${showName || type}${index}`
+    let name = `${type}${index}`
 
     // get unique name from all actions
     while (
@@ -15,18 +17,18 @@ export class ActionDisplayNameGenerator {
         .includes(name)
     ) {
       index += 1
-      name = `${showName || type}${index}`
+      name = `${type}${index}`
     }
 
     // check cache map
     while (isAlreadyGenerate({ type, displayName: name })) {
       index += 1
-      name = `${showName || type}${name}`
+      name = `${type}${name}`
     }
 
     store.dispatch(
       displayNameActions.addDisplayNameReducer({
-        type: showName || type,
+        type: this.DISPLAY_NAME_TYPE,
         displayName: name,
       }),
     )
@@ -34,10 +36,19 @@ export class ActionDisplayNameGenerator {
     return name
   }
 
-  static removeDisplayName(type: string, displayName: string) {
+  static cacheDisplayName(displayName: string) {
+    store.dispatch(
+      displayNameActions.addDisplayNameReducer({
+        type: this.DISPLAY_NAME_TYPE,
+        displayName,
+      }),
+    )
+  }
+
+  static removeDisplayName(displayName: string) {
     store.dispatch(
       displayNameActions.removeDisplayNameReducer({
-        type,
+        type: this.DISPLAY_NAME_TYPE,
         displayName,
       }),
     )
