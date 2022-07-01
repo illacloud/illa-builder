@@ -40,7 +40,12 @@ export const Transformer = () => {
       </div>
       <div css={panelPaddingStyle}>
         {enable === "Enable" ? (
-          <CodeEditor mode="TEXT_JS" expectedType="String" height="88px" />
+          <CodeEditor
+            mode="JAVASCRIPT"
+            expectedType="String"
+            height="88px"
+            lineNumbers
+          />
         ) : (
           <div css={disableTransformerStyle}>
             {t("editor.action.panel.tips.transformer")}
