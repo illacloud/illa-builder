@@ -105,11 +105,7 @@ export const getAllPaths = (
 export const getWidgetOrActionDynamicAttrPaths = (
   widgetOrAction: Record<string, any>,
 ): string[] => {
-  if (
-    widgetOrAction &&
-    widgetOrAction.$dynamicAttrPaths &&
-    Array.isArray(widgetOrAction.$dynamicAttrPaths)
-  ) {
+  if (Array.isArray(widgetOrAction.$dynamicAttrPaths)) {
     return [...widgetOrAction.$dynamicAttrPaths]
   }
   return []
@@ -119,11 +115,7 @@ export const isPathInDynamicAttrPaths = (
   widgetOrAction: Record<string, any>,
   path: string,
 ): boolean => {
-  if (
-    widgetOrAction &&
-    widgetOrAction.$dynamicAttrPaths &&
-    Array.isArray(widgetOrAction.$dynamicAttrPaths)
-  ) {
+  if (Array.isArray(widgetOrAction.$dynamicAttrPaths)) {
     return widgetOrAction.$dynamicAttrPaths.find((dynamicAttrPath) => {
       return dynamicAttrPath === path
     })
