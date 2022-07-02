@@ -1,24 +1,16 @@
-import { FC, useRef } from "react"
+import { FC, useContext, useRef } from "react"
 import { DragItem, ListItemProps } from "./interface"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { Identifier } from "dnd-core"
 import { optionListItemCss } from "./style"
 import { DragIconAndLabel } from "@/page/App/components/PanelSetters/OptionListSetter/dragIconAndLabel"
 import { More } from "@/page/App/components/PanelSetters/OptionListSetter/more"
+import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 
 export const ListItem: FC<ListItemProps> = (props) => {
-  const {
-    id,
-    label,
-    value,
-    disabled,
-    index,
-    handleUpdateItem,
-    moveItem,
-    handleCopyItem,
-    handleDeleteItem,
-  } = props
+  const { id, label, value, index } = props
 
+  const { handleMoveOptionItem } = useContext(OptionListSetterContext)
   const ref = useRef<HTMLDivElement>(null)
 
   const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
@@ -48,7 +40,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
       }
-      moveItem(dragIndex, hoverIndex)
+      handleMoveOptionItem(dragIndex, hoverIndex)
       item.index = hoverIndex
     },
   })
@@ -69,19 +61,8 @@ export const ListItem: FC<ListItemProps> = (props) => {
   return (
     <div ref={ref} style={{ opacity }}>
       <div css={optionListItemCss}>
-        <DragIconAndLabel
-          label={label}
-          value={value}
-          index={index}
-          id={id}
-          disabled={disabled}
-          handleUpdateItem={handleUpdateItem}
-        />
-        <More
-          index={index}
-          handleCopyItem={handleCopyItem}
-          handleDeleteItem={handleDeleteItem}
-        />
+        <DragIconAndLabel index={index} />
+        <More index={index} />
       </div>
     </div>
   )

@@ -31,6 +31,28 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: "optionMode",
         shown: (value) => !value || value === "manual",
+        childrenSetter: [
+          {
+            id: "select-options-label",
+            labelName: "Label",
+            attrName: "label",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: "select-options-value",
+            labelName: "Value",
+            attrName: "value",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: "select-options-disabled",
+            labelName: "Disabled",
+            attrName: "disabled",
+            setterType: "INPUT_SETTER",
+          },
+        ],
       },
       {
         id: "select-option-data-sources",

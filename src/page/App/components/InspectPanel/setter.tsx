@@ -5,6 +5,7 @@ import { PanelSetterProps } from "./interface"
 import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -18,6 +19,8 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     bindAttrName,
     attrName,
     parentAttrName,
+    expectedType,
+    childrenSetter,
   } = props
   const Comp = getSetterByType(setterType)
 
@@ -61,7 +64,6 @@ export const Setter: FC<PanelSetterProps> = (props) => {
 
   const renderSetter = useMemo(() => {
     const value = get(widgetProps, _finalAttrName)
-    const expectedType = props.expectedType
     return Comp ? (
       <Comp
         {...props}
@@ -71,7 +73,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
         panelConfig={widgetProps}
         handleUpdateDsl={handleUpdateDsl}
         widgetDisplayName={widgetDisplayName}
-        expectedType={expectedType ?? "String"}
+        expectedType={expectedType ?? VALIDATION_TYPES.STRING}
       />
     ) : null
   }, [

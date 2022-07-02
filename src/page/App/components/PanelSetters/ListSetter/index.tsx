@@ -17,7 +17,6 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     labelName,
     labelDesc,
     childrenSetter,
-    panelConfig,
     attrName,
     handleUpdateDsl,
     value,

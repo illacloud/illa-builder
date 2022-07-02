@@ -1,4 +1,5 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface OptionItemShape {
   id: string
@@ -9,49 +10,31 @@ export interface OptionItemShape {
 
 export interface HeaderProps {
   labelName: string
-  attrName: string
-  optionItems: OptionItemShape[]
-  handleUpdateDsl: (attrPath: string, value: OptionItemShape[]) => void
+  handleAddOption: () => void
 }
 
-export interface OptionListBodyProps {
-  optionItems: OptionItemShape[]
-  handleUpdateDsl: (attrPath: string, value: OptionItemShape[]) => void
-  attrName: string
-}
-
-export interface ListItemProps extends ActionsProps, OptionItemShape {
-  id: string
-  index: number
-  moveItem: (dragIndex: number, hoverIndex: number) => void
-}
-
-export interface DragIconAndLabelProps
-  extends OptionItemShape,
-    Pick<ActionsProps, "handleUpdateItem"> {
+export interface ListItemProps extends Omit<OptionItemShape, "disabled"> {
   index: number
 }
 
-export interface MoreProps extends Omit<ActionsProps, "handleUpdateItem"> {
+export interface DragIconAndLabelProps {
   index: number
 }
 
-export interface ActionsProps {
-  handleUpdateItem: (index: number, value: any) => void
-  handleCopyItem: (index: number) => void
-  handleDeleteItem: (index: number) => void
+export interface MoreProps {
+  index: number
 }
 
-export interface ModalProps
-  extends Omit<
-    ListItemProps,
-    "id" | "moveItem" | "handleCopyItem" | "handleDeleteItem"
-  > {
+export interface ModalProps {
   title: string
+  index: number
   handleCloseModal: () => void
 }
 
-export interface OptionListSetterProps extends BaseSetter {}
+export interface OptionListSetterProps extends BaseSetter {
+  value: OptionItemShape[]
+  childrenSetter?: PanelFieldConfig[]
+}
 
 export interface DragItem {
   index: number
@@ -61,9 +44,7 @@ export interface DragItem {
 
 export interface ActionMenuProps {
   index: number
-  handleCopyItem: (index: number) => void
   handleCloseMode: () => void
-  handleDeleteItem: (index: number) => void
 }
 
 export enum ActionType {

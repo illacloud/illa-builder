@@ -35,7 +35,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
 
   const { attrName, panelConfig, handleUpdateDsl } = props
 
-  const childrenPanelConfig = panelConfig[attrName] ?? ({} as configItem)
+  const childrenPanelConfig = panelConfig?.[attrName] ?? ({} as configItem)
 
   const [labelValue, setLabelValue] = useState(childrenPanelConfig.label ?? "")
   const [optionValue, setOptionValue] = useState(

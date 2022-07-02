@@ -1,65 +1,30 @@
 import { createContext, ReactNode, FC } from "react"
+import { OptionItemShape } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
-interface configItem {
-  id: string
-  label: string
-  value: string
-  disabled?: string
+interface ProviderProps {
+  optionItems: OptionItemShape[]
+  childrenSetter: PanelFieldConfig[]
+  widgetDisplayName: string
+  attrPath: string
+  children: ReactNode
+  handleDeleteOptionItem: (index: number) => void
+  handleCopyOptionItem: (index: number) => void
+  handleMoveOptionItem: (dragIndex: number, hoverIndex: number) => void
 }
 
-interface Injected {
-  options: configItem[]
-  handleUpdateDsl: (value: configItem[]) => void
-  handleAddItemToDsl: (value: configItem) => void
-  handleAddItemToDslAsync: (value: configItem) => Promise<void>
-  widgetId: string
-}
+export const OptionListSetterContext = createContext<ProviderProps>(
+  {} as ProviderProps,
+)
 
-export const OptionListSetterContext = createContext<Injected>({} as Injected)
-
-interface Props {
-  panelConfig: any
-  attrName: string
-  handleUpdateAllDsl: (value: any) => void
-  children?: ReactNode
-}
-
-export const OptionListSetterProvider: FC<Props> = ({
-  children,
-  panelConfig,
-  attrName,
-  handleUpdateAllDsl,
-}) => {
-  const options = panelConfig[attrName] as configItem[]
-
-  const handleUpdate = (value: configItem[]) => {
-    const newOptions = value
-    handleUpdateAllDsl({ [attrName]: newOptions })
-  }
-
-  const handleAddItem = (value: configItem) => {
-    const newOptions = [...options]
-    newOptions.push(value)
-    handleUpdateAllDsl({ [attrName]: newOptions })
-  }
-
-  const handleAddItemAsync = async (value: configItem) => {
-    const newOptions = [...options]
-    newOptions.push(value)
-    handleUpdateAllDsl({ [attrName]: newOptions })
-  }
-
+export const OptionListSetterProvider: FC<ProviderProps> = (props) => {
   const value = {
-    widgetId: panelConfig.id,
-    options: options ?? [],
-    handleUpdateDsl: handleUpdate,
-    handleAddItemToDsl: handleAddItem,
-    handleAddItemToDslAsync: handleAddItemAsync,
+    ...props,
   }
 
   return (
     <OptionListSetterContext.Provider value={value}>
-      {children}
+      {props.children}
     </OptionListSetterContext.Provider>
   )
 }
