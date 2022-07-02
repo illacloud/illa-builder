@@ -20,7 +20,6 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     attrName,
     parentAttrName,
     expectedType,
-    childrenSetter,
   } = props
   const Comp = getSetterByType(setterType)
 
@@ -31,7 +30,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     if (!bindAttrName || !shown) return true
     const bindAttrNameValue = widgetProps[bindAttrName]
     return shown(bindAttrNameValue)
-  }, [shown, widgetProps])
+  }, [shown, widgetProps, bindAttrName])
 
   const renderLabel = useMemo(() => {
     return !useCustomLayout && labelName ? (
@@ -56,7 +55,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
       return typeof value === "string" && value.includes("\n")
     }
     return false
-  }, [renderLabel, widgetProps, attrName])
+  }, [renderLabel, widgetProps])
 
   const isSetterSingleRowWrapper = useMemo(() => {
     return isSetterSingleRow || !labelName || canWrapped
@@ -84,6 +83,8 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     handleUpdateDsl,
     isSetterSingleRowWrapper,
     _finalAttrName,
+    widgetDisplayName,
+    expectedType,
   ])
 
   return canRenderSetter ? (
