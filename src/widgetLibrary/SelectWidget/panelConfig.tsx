@@ -2,6 +2,7 @@ import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -37,7 +38,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: "optionMode",
-        expectedType: "Array",
+        expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "mapped",
       },
       {
@@ -60,6 +61,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.placeholder"),
         attrName: "placeholder",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -72,12 +74,14 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-label-position",
@@ -110,6 +114,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -145,6 +150,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "select-interaction-readonly",
@@ -152,6 +158,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -171,18 +178,21 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.prefix_text"),
         attrName: "prefixText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-adornments-suffixText",
         labelName: i18n.t("editor.inspect.setter_label.suffix_text"),
         attrName: "suffixText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-adornments-tooltip",
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -196,6 +206,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },

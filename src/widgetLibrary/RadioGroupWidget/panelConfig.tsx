@@ -2,6 +2,7 @@ import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -37,6 +38,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: "optionMode",
+        expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "mapped",
       },
       {
@@ -65,12 +67,14 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "radioGroup-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: "radioGroup-label-position",
@@ -103,6 +107,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -138,6 +143,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -150,6 +156,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -163,6 +170,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "radioGroup-style-direction",

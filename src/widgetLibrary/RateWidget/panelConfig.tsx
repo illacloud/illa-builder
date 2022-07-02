@@ -3,6 +3,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HeartIcon, StarIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const RATE_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -14,12 +15,14 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: "rate-basic-DefaultValue",
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "defaultValue",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: "rate-basic-icon",
@@ -50,6 +53,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.max_count"),
         attrName: "maxCount",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: "rate-basic-allow-half",
@@ -74,12 +78,14 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "rate-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "rate-label-position",
@@ -112,6 +118,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -126,6 +133,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "rate-interaction-readonly",
@@ -133,6 +141,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "readonly",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -145,6 +154,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -164,6 +174,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "customRule",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "rate-validation-hide-message",
@@ -185,6 +196,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },

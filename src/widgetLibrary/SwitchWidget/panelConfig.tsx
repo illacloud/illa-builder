@@ -2,6 +2,7 @@ import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -13,7 +14,8 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
-        placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        placeholder: "{{false}}",
       },
     ],
   },
@@ -26,12 +28,14 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "switch-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "switch-label-position",
@@ -64,6 +68,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -165,6 +170,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             setterType: "INPUT_SETTER",
             attrName: "script",
             bindAttrName: "type",
+            expectedType: VALIDATION_TYPES.STRING,
             shown: (type) => type === "script",
           },
           {
@@ -173,6 +179,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             setterType: "INPUT_SETTER",
             attrName: "url",
             bindAttrName: "type",
+            expectedType: VALIDATION_TYPES.STRING,
             shown: (type) => type === "openUrl",
           },
           {
@@ -190,12 +197,14 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             setterType: "INPUT_SETTER",
             attrName: "title",
             bindAttrName: "type",
+            expectedType: VALIDATION_TYPES.STRING,
             shown: (type) => type === "showNotification",
           },
           {
             id: "description",
             labelName: "Description",
             setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
             attrName: "description",
             bindAttrName: "type",
 
@@ -221,6 +230,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             setterType: "INPUT_SETTER",
             attrName: "duration",
             bindAttrName: "type",
+            expectedType: VALIDATION_TYPES.NUMBER,
             shown: (type) => type === "showNotification",
           },
           {
@@ -245,6 +255,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             labelName: "Only run when",
             labelDesc: "xxxxx",
             setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
             attrName: "enabled",
           },
         ],
@@ -255,6 +266,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -267,6 +279,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -302,6 +315,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
