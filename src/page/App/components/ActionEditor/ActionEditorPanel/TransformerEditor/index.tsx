@@ -44,11 +44,12 @@ export const TransformerEditor = forwardRef<
   return (
     <div css={transformerContainerStyle}>
       <CodeEditor
-        mode="TEXT_JS"
+        mode="JAVASCRIPT"
         expectedType="String"
         height={"100px"}
         placeholder={t("editor.action.resource.transformer.placeholder.tip")}
         onChange={onChangeParam}
+        lineNumbers
       />
       <dd css={transfomerTipsStyle}>
         {t("editor.action.resource.transformer.tip.external_reference")}
