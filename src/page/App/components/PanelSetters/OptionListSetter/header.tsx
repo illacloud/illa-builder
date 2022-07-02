@@ -1,16 +1,20 @@
 import { FC } from "react"
 import { AddIcon } from "@illa-design/icon"
-import { addIconCss, optionListHeaderCss, headerActionButtonCss } from "./style"
+import {
+  addIconStyle,
+  optionListHeaderStyle,
+  headerActionButtonStyle,
+} from "./style"
 import { HeaderProps } from "./interface"
 
 export const OptionListHeader: FC<HeaderProps> = (props) => {
   const { labelName, handleAddOption } = props
 
   return (
-    <div css={optionListHeaderCss}>
+    <div css={optionListHeaderStyle}>
       <div>{labelName}</div>
-      <div css={headerActionButtonCss} onClick={handleAddOption}>
-        <AddIcon _css={addIconCss} />
+      <div css={headerActionButtonStyle} onClick={handleAddOption}>
+        <AddIcon _css={addIconStyle} />
         <span>New</span>
       </div>
     </div>

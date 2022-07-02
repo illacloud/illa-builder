@@ -1,5 +1,5 @@
 import { FC, useContext } from "react"
-import { listWrapperCss, modalWrapperCss } from "./style"
+import { listWrapperStyle, modalWrapperStyle } from "./style"
 import { ModalProps } from "./interface"
 import { ModalHeader } from "@/page/App/components/PanelSetters/PublicComponent/Modal/header"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
@@ -13,9 +13,9 @@ export const Modal: FC<ModalProps> = (props) => {
   )
 
   return (
-    <div css={modalWrapperCss}>
+    <div css={modalWrapperStyle}>
       <ModalHeader title={title} handleCloseModal={handleCloseModal} />
-      <div css={listWrapperCss}>
+      <div css={listWrapperStyle}>
         {childrenSetter?.map((child) => {
           return renderFieldAndLabel(
             child,

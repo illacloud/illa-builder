@@ -5,9 +5,9 @@ import { Trigger } from "@illa-design/trigger"
 import { get } from "lodash"
 import { Modal } from "@/page/App/components/PanelSetters/OptionListSetter/modal"
 import {
-  labelNameAndIconCss,
-  labelNameWrapper,
-  movableIconWrapperCss,
+  labelNameAndIconStyle,
+  labelNameWrapperStyle,
+  movableIconWrapperStyle,
 } from "@/page/App/components/PanelSetters/OptionListSetter/style"
 import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
@@ -48,11 +48,11 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         setModalVisible(visible)
       }}
     >
-      <div css={labelNameAndIconCss}>
-        <span css={movableIconWrapperCss} className="movableIconWrapper">
+      <div css={labelNameAndIconStyle}>
+        <span css={movableIconWrapperStyle} className="movableIconWrapper">
           <DragPointIcon />
         </span>
-        <span css={labelNameWrapper}>{labelName || "No label"}</span>
+        <span css={labelNameWrapperStyle}>{labelName || "No label"}</span>
       </div>
     </Trigger>
   )

@@ -2,7 +2,7 @@ import { FC, useContext, useRef } from "react"
 import { DragItem, ListItemProps } from "./interface"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { Identifier } from "dnd-core"
-import { optionListItemCss } from "./style"
+import { optionListItemStyle } from "./style"
 import { DragIconAndLabel } from "@/page/App/components/PanelSetters/OptionListSetter/dragIconAndLabel"
 import { More } from "@/page/App/components/PanelSetters/OptionListSetter/more"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
@@ -60,7 +60,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
 
   return (
     <div ref={ref} style={{ opacity }}>
-      <div css={optionListItemCss}>
+      <div css={optionListItemStyle}>
         <DragIconAndLabel index={index} />
         <More index={index} />
       </div>
