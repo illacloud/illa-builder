@@ -3,7 +3,6 @@ import { useSelector } from "react-redux"
 import { DragPointIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { get } from "lodash"
-import { Modal } from "@/page/App/components/PanelSetters/OptionListSetter/modal"
 import {
   labelNameAndIconStyle,
   labelNameWrapperStyle,
@@ -12,11 +11,14 @@ import {
 import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index } = props
   const [modalVisible, setModalVisible] = useState(false)
-  const { widgetDisplayName, attrPath } = useContext(OptionListSetterContext)
+  const { widgetDisplayName, attrPath, childrenSetter } = useContext(
+    OptionListSetterContext,
+  )
   const executionResult = useSelector(getExecutionResult)
 
   const labelName = useMemo(() => {
@@ -34,10 +36,13 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       colorScheme="white"
       popupVisible={modalVisible}
       content={
-        <Modal
+        <BaseModal
           title="Edit Options"
           handleCloseModal={handleCloseModal}
           index={index}
+          attrPath={attrPath}
+          widgetDisplayName={widgetDisplayName}
+          childrenSetter={childrenSetter}
         />
       }
       trigger="click"

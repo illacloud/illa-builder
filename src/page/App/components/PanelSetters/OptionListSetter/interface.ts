@@ -25,12 +25,6 @@ export interface MoreProps {
   index: number
 }
 
-export interface ModalProps {
-  title: string
-  index: number
-  handleCloseModal: () => void
-}
-
 export interface OptionListSetterProps extends BaseSetter {
   value: OptionItemShape[]
   childrenSetter?: PanelFieldConfig[]

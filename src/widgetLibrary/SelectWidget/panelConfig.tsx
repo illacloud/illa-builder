@@ -51,6 +51,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
             labelName: "Disabled",
             attrName: "disabled",
             setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
           },
         ],
       },

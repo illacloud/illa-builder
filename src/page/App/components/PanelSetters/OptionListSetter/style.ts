@@ -68,16 +68,3 @@ export const movableIconWrapperStyle = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
-
-export const modalWrapperStyle = css`
-  width: 400px;
-  padding: 0 4px;
-`
-
-export const listWrapperStyle = css`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 12px 0;
-`
