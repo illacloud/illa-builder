@@ -71,6 +71,29 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "OPTION_MAPPED_SETTER",
         bindAttrName: "optionMode",
         shown: (value) => value === "mapped",
+        childrenSetter: [
+          {
+            id: `select-mappedOption-labels`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
+            attrName: "labels",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `select-mappedOption-values`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
+            attrName: "values",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `select-mappedOption-disables`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
+            attrName: "disables",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+        ],
       },
       {
         id: "select-basic-defaultValue",
