@@ -46,7 +46,7 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
           disabled={disabled}
           variant={variant}
           autoFullVertically
-          autoFullHorizontal
+          autoFullHorizontal={alignment === "fullWidth"}
           buttonRadius={borderRadius}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
@@ -55,6 +55,7 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
           // textColor={_textColor}
           colorScheme={colorScheme}
           loading={loading}
+          fullWidth={alignment === "fullWidth"}
         >
           {text}
         </Button>
