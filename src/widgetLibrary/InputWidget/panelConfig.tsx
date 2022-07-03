@@ -110,6 +110,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "allowClear",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "input-adornments-showChartCount",
@@ -117,6 +118,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "showCharacterCount",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "input-adornments-prefixText",
@@ -149,6 +151,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: "input-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -195,6 +198,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
