@@ -1,9 +1,10 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
 import { Input } from "@illa-design/input"
 import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
+import { debounce } from "@illa-design/system"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
@@ -48,12 +49,16 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   const hasBody = params.method.indexOf("GET") === -1
 
+  const debounceOnChange = debounce(() => onChange?.(params), 150)
+
+  useEffect(() => {
+    debounceOnChange()
+  }, [params])
+
   function updateField(field: string) {
     return (v: any) => {
       setParams((preParams) => {
         const newParams = { ...preParams, [field]: v }
-
-        onChange?.(newParams)
         return newParams
       })
     }

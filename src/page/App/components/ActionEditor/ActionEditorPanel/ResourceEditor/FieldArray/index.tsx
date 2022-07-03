@@ -33,15 +33,6 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
       : [getEmptyField()],
   )
 
-  useEffect(() => {
-    setFields(
-      value?.length
-        ? value.map((v) => {
-          return { ...v, _key: uuidv4() }
-        })
-        : [getEmptyField()],
-    )
-  }, [value])
 
   const typeOptions = [
     { value: "text", label: "TEXT" },
