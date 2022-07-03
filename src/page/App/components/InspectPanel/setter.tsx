@@ -1,6 +1,6 @@
 import { FC, useContext, useMemo } from "react"
 import { get } from "lodash"
-import { applySetterWrapperStyle } from "./style"
+import { applySetterWrapperStyle, applySetterPublicWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
 import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
@@ -49,31 +49,27 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     return attrName
   }, [parentAttrName, attrName])
 
-  const canWrapped = useMemo(() => {
-    if (renderLabel) {
-      const value = get(widgetProps, _finalAttrName)
-      return typeof value === "string" && value.includes("\n")
-    }
-    return false
-  }, [renderLabel, widgetProps])
-
   const isSetterSingleRowWrapper = useMemo(() => {
-    return isSetterSingleRow || !labelName || canWrapped
-  }, [isSetterSingleRow, labelName, canWrapped])
+    return isSetterSingleRow || !labelName
+  }, [isSetterSingleRow, labelName])
 
   const renderSetter = useMemo(() => {
     const value = get(widgetProps, _finalAttrName)
     return Comp ? (
-      <Comp
-        {...props}
-        attrName={_finalAttrName}
-        isSetterSingleRow={isSetterSingleRowWrapper}
-        value={value}
-        panelConfig={widgetProps}
-        handleUpdateDsl={handleUpdateDsl}
-        widgetDisplayName={widgetDisplayName}
-        expectedType={expectedType ?? VALIDATION_TYPES.STRING}
-      />
+      <div
+        css={applySetterPublicWrapperStyle(isInList, isSetterSingleRowWrapper)}
+      >
+        <Comp
+          {...props}
+          attrName={_finalAttrName}
+          isSetterSingleRow={isSetterSingleRowWrapper}
+          value={value}
+          panelConfig={widgetProps}
+          handleUpdateDsl={handleUpdateDsl}
+          widgetDisplayName={widgetDisplayName}
+          expectedType={expectedType ?? VALIDATION_TYPES.STRING}
+        />
+      </div>
     ) : null
   }, [
     Comp,
@@ -85,6 +81,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     _finalAttrName,
     widgetDisplayName,
     expectedType,
+    isInList,
   ])
 
   return canRenderSetter ? (

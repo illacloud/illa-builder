@@ -5,8 +5,9 @@ import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 export const labelStyle = css`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 48px;
+  min-height: 40px;
+  padding-bottom: 8px;
+  align-items: flex-start;
 `
 
 export const listWrapperStyle = css`
