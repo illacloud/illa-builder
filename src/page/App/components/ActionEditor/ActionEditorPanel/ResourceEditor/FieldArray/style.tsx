@@ -16,7 +16,7 @@ export const fieldItemStyle = css`
 `
 
 export const fieldItemKeyStyle = css`
-  width: 160px;
+  min-width: 160px;
 
   & .CodeMirror.CodeMirror-wrap {
     border-top-right-radius: 0;

@@ -74,7 +74,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     debounceOnChange()
   }, [params])
 
-  function updateUrlParams() {
+  const updateUrlParams = debounce(() => {
     setParams((preParams) => {
       const newParams = { ...preParams }
 
@@ -108,7 +108,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
       return newParams
     })
-  }
+  }, 100)
 
   function updatePath() {
     setParams((preParams) => {
@@ -146,7 +146,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             onBlur={() => setIsEditingUrl(false)}
             onChange={(value) => {
               setParams((prev) => {
-                return { ...prev, path: value }
+                return { ...prev, url: value }
               })
               isEditingUrl && updateUrlParams()
             }}
@@ -180,18 +180,22 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
                 urlParams: removeArrayField(prev.urlParams, _key),
               }
             })
+            !isEditingUrl && updatePath()
           }}
           onChange={(value) => {
+            if (isEditingUrl) {
+              return
+            }
             setParams((prev) => {
               const urlParams =
-                value.key === undefined && value.value === undefined
+                value.key === "" && value.value === ""
                   ? removeArrayField(prev.urlParams, value._key)
                   : updateArrayField(prev.urlParams, value)
               const newParams = { ...prev, urlParams }
               return newParams
             })
 
-            !isEditingUrl && updatePath()
+            updatePath()
           }}
           autoNewField
         />
