@@ -18,7 +18,7 @@ export const WrappedCheckbox = forwardRef<any, WrappedCheckboxGroupProps>(
       disabled,
       options,
       direction,
-      styles,
+      colorScheme,
       handleUpdateDsl,
     } = props
 
@@ -38,7 +38,7 @@ export const WrappedCheckbox = forwardRef<any, WrappedCheckboxGroupProps>(
           disabled={disabled}
           options={options}
           direction={direction}
-          colorScheme={styles?.colorScheme}
+          colorScheme={colorScheme}
           onChange={(value) => {
             handleUpdateDsl({ value })
           }}

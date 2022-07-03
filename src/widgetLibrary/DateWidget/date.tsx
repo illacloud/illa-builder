@@ -27,7 +27,7 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
     maxDate,
     readOnly,
     hideValidationMessage,
-    styles,
+    colorScheme,
     handleUpdateDsl,
   } = props
 
@@ -63,7 +63,7 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
         >
           <div css={inputContainerCss}>
             <DatePicker
-              colorScheme={styles?.colorScheme}
+              colorScheme={colorScheme}
               format={dateFormat}
               value={value}
               readOnly={readOnly}

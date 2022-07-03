@@ -24,7 +24,7 @@ export const WrappedSelect = forwardRef<any, WrappedSelectProps>(
       readOnly,
       showSearch,
       inputValue,
-      styles,
+      colorScheme,
       handleUpdateDsl,
     } = props
     return (
@@ -50,7 +50,7 @@ export const WrappedSelect = forwardRef<any, WrappedSelectProps>(
             showSearch={showSearch}
             inputValue={inputValue}
             size="small"
-            colorScheme={styles?.colorScheme}
+            colorScheme={colorScheme}
             onChange={(value) => {
               handleUpdateDsl({ value })
             }}

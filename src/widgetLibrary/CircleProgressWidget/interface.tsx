@@ -4,12 +4,7 @@ import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 export type Alignment = "start" | "center" | "end"
 export interface WrappedCircleProgressProps
   extends LabelProps,
-    Pick<ProgressProps, "showText">,
+    Pick<ProgressProps, "showText" | "color" | "trailColor" | "strokeWidth">,
     Pick<TooltipWrapperProps, "tooltipText"> {
   value?: number
-  styles?: {
-    color?: ProgressProps["color"]
-    trailColor?: ProgressProps["trailColor"]
-    strokeWidth?: ProgressProps["strokeWidth"]
-  }
 }

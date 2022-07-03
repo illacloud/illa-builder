@@ -6,13 +6,11 @@ import { WrappedDividerProps } from "./interface"
 
 export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
   (props, ref) => {
-    const { tooltipText, text, textAlign, styles } = props
+    const { tooltipText, text, textAlign, colorScheme, textSize } = props
 
     const _textSize = useMemo(() => {
-      return !isNaN(Number(styles?.textSize))
-        ? styles?.textSize + "px"
-        : styles?.textSize?.toString()
-    }, [styles?.textSize])
+      return !isNaN(Number(textSize)) ? textSize + "px" : textSize?.toString()
+    }, [textSize])
 
     return (
       <TooltipWrapper
@@ -25,7 +23,7 @@ export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
             text={text}
             textAlign={textAlign}
             textSize={_textSize}
-            colorScheme={styles?.colorScheme}
+            colorScheme={colorScheme}
           />
         </Wrapper>
       </TooltipWrapper>

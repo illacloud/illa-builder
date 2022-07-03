@@ -15,9 +15,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     horizontalAlign: "start",
     verticalAlign: "start",
     disableMarkdown: false,
-    styles: {
-      linkColor: "blue",
-      textColor: "gray",
-    },
+    linkColor: "blue",
+    textColor: "gray",
   },
 }

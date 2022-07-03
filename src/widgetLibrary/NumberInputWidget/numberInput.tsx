@@ -29,7 +29,7 @@ export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>(
       labelPosition,
       required,
       tooltipText,
-      styles,
+      colorScheme,
       handleUpdateDsl,
     } = props
 
@@ -81,7 +81,7 @@ export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>(
           suffix={finalSuffix}
           mode="button"
           onChange={changeValue}
-          borderColor={styles?.colorScheme}
+          borderColor={colorScheme}
         />
       </LabelWrapper>
     )

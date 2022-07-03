@@ -17,7 +17,7 @@ export const WrappedRadioGroup = forwardRef<any, WrappedRadioGroupProps>(
       disabled,
       options,
       direction,
-      styles,
+      colorScheme,
       handleUpdateDsl,
     } = props
     return (
@@ -35,7 +35,7 @@ export const WrappedRadioGroup = forwardRef<any, WrappedRadioGroupProps>(
           disabled={disabled}
           options={options}
           direction={direction}
-          colorScheme={styles?.colorScheme}
+          colorScheme={colorScheme}
           onChange={(value) => {
             handleUpdateDsl({ value })
           }}

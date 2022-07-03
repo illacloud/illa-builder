@@ -22,8 +22,6 @@ export const SEGMENTED_CONTROL_WIDGET_CONFIG: WidgetConfig = {
       { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },
     ],
     dataSources: "{{[]}}",
-    styles: {
-      colorScheme: "blue",
-    },
+    colorScheme: "blue",
   },
 }

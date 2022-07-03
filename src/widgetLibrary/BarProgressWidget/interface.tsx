@@ -4,12 +4,7 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 
 export interface WrappedBarProgressProps
   extends LabelProps,
-    Pick<ProgressProps, "showText">,
+    Pick<ProgressProps, "showText" | "trailColor" | "color" | "strokeWidth">,
     Pick<TooltipWrapperProps, "tooltipText"> {
   value?: number
-  styles?: {
-    trailColor?: ProgressProps["trailColor"]
-    color?: ProgressProps["color"]
-    strokeWidth?: ProgressProps["strokeWidth"]
-  }
 }

@@ -30,7 +30,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       minuteStep,
       timeFormat,
       hideValidationMessage,
-      styles,
+      colorScheme,
       handleUpdateDsl,
     } = props
 
@@ -69,7 +69,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
             <div css={inputContainerCss}>
               <DatePicker
                 showTime={{ step: { minute: minuteStep }, format: timeFormat }}
-                colorScheme={styles?.colorScheme}
+                colorScheme={colorScheme}
                 format={dateFormat}
                 value={value}
                 readOnly={readOnly}

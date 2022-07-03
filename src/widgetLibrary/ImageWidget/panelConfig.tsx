@@ -95,6 +95,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
             setterType: "INPUT_SETTER",
             attrName: "radius",
             defaultValue: "0px",
+            expectedType: VALIDATION_TYPES.STRING,
           },
         ],
       },

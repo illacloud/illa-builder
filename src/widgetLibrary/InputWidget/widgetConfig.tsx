@@ -14,8 +14,6 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    styles: {
-      colorScheme: "blue",
-    },
+    colorScheme: "blue",
   },
 }

@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo } from "react"
-import { isEqual } from "lodash"
+import { isEqual, set, get } from "lodash"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
@@ -19,33 +19,38 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     childrenSetter,
     attrName,
     handleUpdateDsl,
-    value,
     widgetDisplayName,
+    panelConfig,
   } = props
 
-  const getDefaultValue = useMemo(() => {
+  const childrenSetterAttrPathMapDefaultValue = useMemo(() => {
+    const childrenSetterAttrPathMap: Record<string, any> = {}
     if (childrenSetter) {
-      let defaultValues: Record<string, any> = {}
-      childrenSetter.forEach((child) => {
-        const childAttrName = child.attrName
-        const defaultValue = child.defaultValue
-        defaultValues = {
-          ...defaultValues,
-          [childAttrName]: defaultValue,
-        }
+      childrenSetter.forEach((childSetter) => {
+        set(
+          childrenSetterAttrPathMap,
+          childSetter.attrName,
+          childSetter.defaultValue,
+        )
       })
-      return defaultValues
     }
-    return {}
+    return childrenSetterAttrPathMap
   }, [childrenSetter])
 
   const canReset = useMemo(() => {
-    return !isEqual(getDefaultValue, value)
-  }, [getDefaultValue, value])
+    return Object.keys(childrenSetterAttrPathMapDefaultValue).some((key) => {
+      const realValue = get(panelConfig, key)
+      const defaultValue = get(childrenSetterAttrPathMapDefaultValue, key)
+      return !isEqual(realValue, defaultValue)
+    })
+  }, [childrenSetterAttrPathMapDefaultValue, panelConfig])
 
   const onClickReset = useCallback(() => {
-    handleUpdateDsl(attrName, getDefaultValue)
-  }, [attrName, getDefaultValue, handleUpdateDsl])
+    Object.keys(childrenSetterAttrPathMapDefaultValue).forEach((key) => {
+      const defaultValue = get(childrenSetterAttrPathMapDefaultValue, key)
+      handleUpdateDsl(key, defaultValue)
+    })
+  }, [childrenSetterAttrPathMapDefaultValue, handleUpdateDsl])
 
   return (
     <div css={listSetterWrapperStyle}>
@@ -62,12 +67,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
       </div>
       <div css={listWrapperStyle}>
         {childrenSetter?.map((child) => {
-          return renderFieldAndLabel(
-            child,
-            widgetDisplayName ?? "",
-            true,
-            attrName,
-          )
+          return renderFieldAndLabel(child, widgetDisplayName ?? "", true, "")
         })}
       </div>
     </div>

@@ -30,8 +30,10 @@ function validateTree(
         const panelConfig = widgetBuilder(
           widgetOrAction.$widgetType,
         ).panelConfig
-        const { validationPaths } =
-          generateAllTypePathsFromWidgetConfig(panelConfig)
+        const { validationPaths } = generateAllTypePathsFromWidgetConfig(
+          panelConfig,
+          widgetOrAction,
+        )
         Object.keys(validationPaths).forEach((validationPath) => {
           const validationType = validationPaths[validationPath]
           const fullPath = `${displayName}.${validationPath}`

@@ -27,7 +27,7 @@ export const WrappedSwitch = forwardRef<any, WrappedSwitchProps>(
       value,
       disabled,
       required,
-      styles,
+      colorScheme,
       tooltipText,
       handleUpdateDsl,
       handleOnChange,
@@ -46,7 +46,7 @@ export const WrappedSwitch = forwardRef<any, WrappedSwitchProps>(
         <Switch
           checked={value}
           disabled={disabled}
-          colorScheme={styles?.colorScheme}
+          colorScheme={colorScheme}
           onChange={(value) => {
             handleOnChange()
             handleUpdateDsl({ value })

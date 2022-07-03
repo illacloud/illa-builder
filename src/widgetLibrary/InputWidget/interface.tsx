@@ -16,7 +16,5 @@ export interface WrappedInputProps
   suffixText?: InputProps["addonAfter"]
   tooltipText?: string
   handleUpdateDsl: (value: Record<string, string>) => void
-  styles?: {
-    colorScheme?: InputProps["borderColor"]
-  }
+  colorScheme?: InputProps["borderColor"]
 }

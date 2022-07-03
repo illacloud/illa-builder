@@ -26,7 +26,7 @@ export const WrappedInput = forwardRef<any, WrappedInputProps>((props, ref) => {
     labelCaption,
     labelWidthUnit,
     tooltipText,
-    styles,
+    colorScheme,
     handleUpdateDsl,
   } = props
 
@@ -61,7 +61,7 @@ export const WrappedInput = forwardRef<any, WrappedInputProps>((props, ref) => {
                 handleUpdateDsl({ value })
               }}
               showCount={showCharacterCount}
-              borderColor={styles?.colorScheme}
+              borderColor={colorScheme}
             />
             <InvalidMessage value={currentValue} {...validateProps} />
           </div>

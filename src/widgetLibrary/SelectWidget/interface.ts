@@ -17,6 +17,7 @@ export interface WrappedSelectProps
       | "readOnly"
       | "showSearch"
       | "inputValue"
+      | "colorScheme"
     > {
   optionConfigureMode?: "dynamic" | "static"
   showClear?: SelectProps["allowClear"]
@@ -26,7 +27,4 @@ export interface WrappedSelectProps
   prefixText?: string // TODO: not support yet
   suffixText?: string // TODO: not support yet
   handleUpdateDsl: (value: Record<string, any>) => void
-  styles?: {
-    colorScheme?: SelectProps["colorScheme"]
-  }
 }

@@ -17,7 +17,9 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
     disableMarkdown,
     horizontalAlign,
     verticalAlign,
-    styles,
+    backgroundColor,
+    textColor,
+    linkColor,
     tooltipText,
   } = props
 
@@ -37,16 +39,16 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
           <MarkdownView
             css={css`
               ${applyTextCss(
-                styles?.textColor,
-                styles?.linkColor,
-                styles?.backgroundColor ?? "transparent",
+                textColor,
+                linkColor,
+                backgroundColor ?? "transparent",
               )}, ${alignCss}
             `}
             markdown={value ?? ""}
             extensions={[transLink]}
           />
         ) : (
-          <div css={applyTextCss(styles?.textColor)}>{value}</div>
+          <div css={applyTextCss(textColor)}>{value}</div>
         )}
       </div>
     </TooltipWrapper>

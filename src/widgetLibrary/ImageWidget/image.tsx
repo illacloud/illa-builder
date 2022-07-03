@@ -11,7 +11,7 @@ export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
     tooltipText,
     width,
     height,
-    styles,
+    radius,
     handleUpdateDsl,
   } = props
 
@@ -32,11 +32,11 @@ export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
   const finalRadius = useMemo(() => {
     const reg = /^\d+$/
     const pattern = new RegExp(reg)
-    if (styles?.radius && pattern.test(styles.radius)) {
-      return styles.radius + "px"
+    if (radius && pattern.test(radius)) {
+      return radius + "px"
     }
-    return styles?.radius
-  }, [styles?.radius])
+    return radius
+  }, [radius])
 
   return (
     <TooltipWrapper

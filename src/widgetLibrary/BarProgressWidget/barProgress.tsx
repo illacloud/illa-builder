@@ -17,14 +17,14 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
       labelCaption,
       labelWidthUnit,
       showText,
-      styles,
+      strokeWidth,
+      color,
+      trailColor,
     } = props
 
     const _strokeWidth = useMemo(() => {
-      return !isNaN(Number(styles?.strokeWidth))
-        ? styles?.strokeWidth + "px"
-        : styles?.strokeWidth
-    }, [styles?.strokeWidth])
+      return !isNaN(Number(strokeWidth)) ? strokeWidth + "px" : strokeWidth
+    }, [strokeWidth])
 
     return (
       <TooltipWrapper
@@ -46,8 +46,8 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
               type="line"
               percent={value}
               showText={showText}
-              color={styles?.color}
-              trailColor={styles?.trailColor}
+              color={color}
+              trailColor={trailColor}
               strokeWidth={_strokeWidth}
             />
           </LabelWrapper>
