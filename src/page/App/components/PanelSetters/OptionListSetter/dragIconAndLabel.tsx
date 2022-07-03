@@ -39,8 +39,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         <BaseModal
           title="Edit Options"
           handleCloseModal={handleCloseModal}
-          index={index}
-          attrPath={attrPath}
+          attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}
           childrenSetter={childrenSetter}
         />

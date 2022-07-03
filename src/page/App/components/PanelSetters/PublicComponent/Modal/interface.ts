@@ -9,7 +9,6 @@ export interface BodyProps {
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
   attrPath: string
-  index: number
 }
 
 export interface ModalProps extends HeaderProps, BodyProps {}

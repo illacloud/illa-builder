@@ -11,7 +11,6 @@ export const BaseModal: FC<ModalProps> = (props) => {
     childrenSetter,
     widgetDisplayName,
     attrPath,
-    index,
   } = props
   return (
     <div css={modalWrapperStyle}>
@@ -20,7 +19,6 @@ export const BaseModal: FC<ModalProps> = (props) => {
         childrenSetter={childrenSetter}
         widgetDisplayName={widgetDisplayName}
         attrPath={attrPath}
-        index={index}
       />
     </div>
   )
