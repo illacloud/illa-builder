@@ -45,8 +45,8 @@ export const titleInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 
@@ -65,6 +65,6 @@ export const titleEditIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   transition: all 0.2s ease-in-out;
   opacity: 0;
-position: absolute;
-right: 16px;
+  position: absolute;
+  right: 16px;
 `

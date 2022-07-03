@@ -77,8 +77,15 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
           }}
         >
           <Option onClick={onCreateResource} isSelectOption={false}>
-            <span css={css(resourceSelectOptionStyle, resourceSelectNewOptionStyle)}>
-              <PlusIcon css={css(resourceSelectOptionIconStyle, resourceSelectOptionNewIconStyle)} />
+            <span
+              css={css(resourceSelectOptionStyle, resourceSelectNewOptionStyle)}
+            >
+              <PlusIcon
+                css={css(
+                  resourceSelectOptionIconStyle,
+                  resourceSelectOptionNewIconStyle,
+                )}
+              />
               {t("editor.action.panel.option.resource.new")}
             </span>
           </Option>

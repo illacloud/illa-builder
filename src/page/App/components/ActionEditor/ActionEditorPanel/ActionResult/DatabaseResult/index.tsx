@@ -13,11 +13,11 @@ export const DatabaseResult: FC<DatabaseResultProps> = (props) => {
 
   const columns = data?.length
     ? Object.keys(data[0]).map((k) => {
-      return {
-        accessor: k,
-        Header: `${k}`,
-      }
-    })
+        return {
+          accessor: k,
+          Header: `${k}`,
+        }
+      })
     : []
 
   return (

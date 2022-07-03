@@ -94,8 +94,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
         setIsActionDirty?.(false)
       },
-      () => { },
-      () => { },
+      () => {},
+      () => {},
       (loading) => {
         onLoadingActionResult(loading)
       },
@@ -126,7 +126,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         // TODO: @spike temporay set `User-Agent` in headers,
         // will be removed after handle by server later
         transformRequest: [
-          function(data) {
+          function (data) {
             if (actionType === ACTION_TYPE.REST_API) {
               data.actionTemplate.headers = [
                 ...data.actionTemplate.headers,
@@ -167,7 +167,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         setResult(response)
         setActionResVisible(true)
       },
-      () => { },
+      () => {},
       (loading) => {
         onLoadingActionResult(loading)
       },

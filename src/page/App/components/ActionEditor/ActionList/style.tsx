@@ -40,8 +40,8 @@ export const applynewButtonStyle = (isActive: boolean): SerializedStyles => {
 
     &:hover {
       background-color: ${globalColor(
-    `--${illaPrefix}-techPurple-06`,
-  )}!important;
+        `--${illaPrefix}-techPurple-06`,
+      )}!important;
     }
   `
 }
@@ -52,7 +52,7 @@ export const newButtonTextStyle = css`
 `
 
 export const actionItemListStyle = css`
-list-style: none;
+  list-style: none;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -62,11 +62,11 @@ list-style: none;
 export function applyActionItemStyle(isSelected: boolean): SerializedStyles {
   const backgroundColorStyle = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-    `
+  `
 
   const selectedBackgroundColorStyle = css`
     background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-    `
+  `
 
   return css`
     display: flex;
@@ -79,7 +79,7 @@ export function applyActionItemStyle(isSelected: boolean): SerializedStyles {
     font-weight: 500;
 
     &:hover {
-    ${isSelected ? selectedBackgroundColorStyle : backgroundColorStyle}
+      ${isSelected ? selectedBackgroundColorStyle : backgroundColorStyle}
     }
 
     ${isSelected && selectedBackgroundColorStyle}
@@ -278,8 +278,8 @@ export const searchInputStyle = css`
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)}!important;
     box-shadow: 0 0 8px 0
       ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
-    .alpha(0.2)
-    .hex()};
+        .alpha(0.2)
+        .hex()};
   }
 `
 

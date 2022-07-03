@@ -1,11 +1,10 @@
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { v4 as uuidv4 } from "uuid"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { Select } from "@illa-design/select"
 import { CodeEditor } from "@/components/CodeEditor"
-import { FieldArrayProps, ValueType } from "./interface"
+import { FieldArrayProps } from "./interface"
 import {
   deleteIconWrapperStyle,
   fieldItemStyle,
@@ -16,40 +15,17 @@ import {
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
-  const { hasType, onChange, value, autoNewField } = props
+  const {
+    hasType,
+    onChange,
+    value: fields = [],
+    typeOptions,
+    autoNewField,
+    onAdd,
+    onRemove,
+  } = props
 
   const { t } = useTranslation()
-
-  const getEmptyField = () => {
-    return hasType
-      ? { key: "", type: "text", value: "", _key: uuidv4() }
-      : { key: "", value: "", _key: uuidv4() }
-  }
-  const [fields, setFields] = useState(
-    value?.length
-      ? value.map((v) => {
-        return { ...v, _key: uuidv4() }
-      })
-      : [getEmptyField()],
-  )
-
-
-  const typeOptions = [
-    { value: "text", label: "TEXT" },
-    { value: "file", label: "File" },
-  ]
-
-  function updateField(
-    index: number,
-    field: "key" | "type" | "value",
-    value: string,
-  ) {
-    const fieldsCopy = [...fields]
-    fieldsCopy[index][field] = value
-    setFields(fieldsCopy)
-
-    onChange && onChange(fields.map(({ _key, ...rest }) => rest as ValueType))
-  }
 
   function autoAddField(index: number) {
     if (!autoNewField) {
@@ -57,31 +33,13 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
     }
 
     if (index === fields.length - 1) {
-      addField()
-    } else {
-      const { key, value } = fields[index]
-      key === "" && value === "" && removeField(index)
+      onAdd?.()
     }
   }
 
-  function addField() {
-    setFields((preFields) => [...preFields, getEmptyField()])
-  }
-
-  function removeField(index: number) {
-    const fieldsCopy = fields.slice(0)
-
-    if (fieldsCopy.length === 1) {
-      setFields([getEmptyField()])
-      return
-    }
-    fieldsCopy.splice(index, 1)
-    setFields(fieldsCopy)
-  }
-
-  const fieldList = fields.map(({ type, _key }, index) => {
+  const fieldList = fields.map((field, index) => {
     return (
-      <div css={fieldItemStyle} key={_key}>
+      <div css={fieldItemStyle} key={field._key}>
         {hasType ? (
           <>
             <CodeEditor
@@ -90,20 +48,20 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               height="32px"
               placeholder="key"
               css={fieldItemKeyStyle}
-              value={fields[index]["key"]}
+              value={field.key}
               onChange={(v) => {
-                updateField(index, "key", v)
+                onChange?.({ ...field, key: v })
                 autoAddField(index)
               }}
             />
             <Select
               colorScheme="techPurple"
-              value={type}
+              value={field.type}
               options={typeOptions}
               css={fieldItemTypeStyle}
               size="small"
               onChange={(v) => {
-                updateField(index, "type", v)
+                onChange?.({ ...field, type: v })
                 autoAddField(index)
               }}
             />
@@ -114,10 +72,10 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             expectedType="String"
             height="32px"
             placeholder="key"
-            value={fields[index]["key"]}
+            value={field.key}
             css={fieldItemKeyStyle}
             onChange={(v) => {
-              updateField(index, "key", v)
+              onChange?.({ ...field, key: v })
               autoAddField(index)
             }}
           />
@@ -128,14 +86,17 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           expectedType="String"
           height="32px"
           placeholder="value"
-          value={fields[index]["value"]}
+          value={field.value}
           css={fieldItemValueStyle}
           onChange={(v) => {
-            updateField(index, "value", v)
+            onChange?.({ ...field, value: v })
             autoAddField(index)
           }}
         />
-        <div css={deleteIconWrapperStyle} onClick={() => removeField(index)}>
+        <div
+          css={deleteIconWrapperStyle}
+          onClick={() => onRemove?.(field._key)}
+        >
           <DeleteIcon size="12px" />
         </div>
       </div>
@@ -152,7 +113,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           colorScheme="techPurple"
           leftIcon={<AddIcon />}
           _css={newButtonStyle}
-          onClick={addField}
+          onClick={onAdd}
         >
           {t("editor.action.panel.btn.new")}
         </Button>

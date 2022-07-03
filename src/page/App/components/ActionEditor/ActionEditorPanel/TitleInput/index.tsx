@@ -90,7 +90,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
         () => {
           ActionDisplayNameGenerator.removeDisplayName(title)
         },
-        () => { },
+        () => {},
         (loading) => {
           setActionListLoading?.(loading)
         },

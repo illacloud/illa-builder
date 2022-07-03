@@ -19,7 +19,11 @@ export const JSONViewer: FC<JSONViewerProps> = (props) => {
   return (
     <div css={jsonViewContainer}>
       {/* @ts-ignore */}
-      <ReactJson src={src} {...reactJsonConfig} collapsed={collapsed ?? false} />
+      <ReactJson
+        src={src}
+        {...reactJsonConfig}
+        collapsed={collapsed ?? false}
+      />
     </div>
   )
 }

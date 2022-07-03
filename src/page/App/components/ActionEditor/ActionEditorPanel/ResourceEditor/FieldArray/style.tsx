@@ -11,7 +11,7 @@ export const fieldItemStyle = css`
   align-items: center;
 
   & + & {
-  margin-top: 16px;
+    margin-top: 16px;
   }
 `
 
@@ -19,8 +19,8 @@ export const fieldItemKeyStyle = css`
   width: 160px;
 
   & .CodeMirror.CodeMirror-wrap {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   & .CodeMirror:not(.CodeMirror-focused) {
@@ -34,8 +34,8 @@ export const fieldItemTypeStyle = css`
   border-right: 0 !important;
 
   & > div {
-   padding-top: 0 !important;
-   padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 `
 
@@ -43,7 +43,7 @@ export const fieldItemValueStyle = css`
   flex: 1;
 
   & .CodeMirror {
-  border-radius: 0;
+    border-radius: 0;
   }
 `
 
@@ -54,7 +54,7 @@ export const newButtonStyle = css`
   font-size: 14px;
 
   & > span:first-child {
-  margin-right: 4px;
+    margin-right: 4px;
   }
 `
 
@@ -73,4 +73,4 @@ export const deleteIconWrapperStyle = css`
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
-    `
+`

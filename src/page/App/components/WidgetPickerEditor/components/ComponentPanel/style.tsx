@@ -75,7 +75,7 @@ export const iconStyle = css`
   border-radius: 4px;
   transition: background-color 200ms ease-in-out;
   &:hover {
-   background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
 `
 

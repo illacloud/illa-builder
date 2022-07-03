@@ -15,12 +15,7 @@ export const BearerAuth: FC<BearerAuthProps> = (props) => {
         {t("editor.action.resource.rest_api.label.bearerToken")}
       </label>
       <Controller
-        render={({ field }) => (
-          <Input
-            {...field}
-            maxLength={200}
-          />
-        )}
+        render={({ field }) => <Input {...field} maxLength={200} />}
         control={control}
         name="bearerToken"
       />

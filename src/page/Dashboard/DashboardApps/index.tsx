@@ -94,8 +94,8 @@ export const DashboardApps: FC = () => {
                     )
                     navigate(`/app/${response.data.appId}`)
                   },
-                  (response) => { },
-                  (error) => { },
+                  (response) => {},
+                  (error) => {},
                   (loading) => {
                     setCreateNewLoading(loading)
                   },

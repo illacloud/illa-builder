@@ -43,7 +43,9 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
   }, [])
 
   useEffect(() => {
-    setSelectedResourceId(defaultSelectedResourceId || (resourceList[0]?.resourceId ?? ""))
+    setSelectedResourceId(
+      defaultSelectedResourceId || (resourceList[0]?.resourceId ?? ""),
+    )
   }, [defaultSelectedResourceId])
 
   return (

@@ -88,7 +88,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       () => {
         ActionDisplayNameGenerator.removeDisplayName(data.displayName)
       },
-      () => { },
+      () => {},
       (loading) => {
         setActionListLoading(loading)
       },
@@ -118,8 +118,8 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           }),
         )
       },
-      () => { },
-      () => { },
+      () => {},
+      () => {},
       (loading) => {
         setActionListLoading(loading)
       },
@@ -152,7 +152,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         () => {
           ActionDisplayNameGenerator.removeDisplayName(displayName)
         },
-        () => { },
+        () => {},
         (loading) => {
           setActionListLoading(loading)
         },
@@ -173,8 +173,8 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         setIsActionDirty(false)
         updateSeletedItemId(removedActionId)
       },
-      () => { },
-      () => { },
+      () => {},
+      () => {},
       (loading) => {
         setActionListLoading(loading)
       },
@@ -196,7 +196,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       () => {
         // TODO: handle error
       },
-      () => { },
+      () => {},
       () => {
         // TODO: handle loading
       },
@@ -218,7 +218,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       () => {
         // TODO: handle error
       },
-      () => { },
+      () => {},
       (loading) => {
         setActionListLoading(loading)
       },

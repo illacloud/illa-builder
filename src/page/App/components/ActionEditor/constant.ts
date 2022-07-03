@@ -4,5 +4,5 @@ export enum ACTION_TYPE {
   MYSQL = "mysql",
   MONGO_DB = "mongodb",
   REDIS = "redis",
-  POSTGRES = "postgres"
+  POSTGRES = "postgres",
 }
