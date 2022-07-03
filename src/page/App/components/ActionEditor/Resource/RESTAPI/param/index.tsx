@@ -57,7 +57,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   const [params, setParams] = useState({
     method: config?.method ?? "GET",
-    path: config?.path ?? "",
+    url: config?.url ?? "",
     urlParams: initArrayField(config?.urlParams),
     headers: initArrayField(config?.headers),
     body: config?.body,
@@ -78,7 +78,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     setParams((preParams) => {
       const newParams = { ...preParams }
 
-      if (!hasParamInPath(preParams.path)) {
+      if (!hasParamInPath(preParams.url)) {
         if (newParams.urlParams.length > 1) {
           newParams.urlParams = [getEmptyField()]
         }
@@ -86,7 +86,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       }
 
       let newUrlParams: ValueType[] = []
-      const extractedParams = extractParamFromPath(newParams.path)
+      const extractedParams = extractParamFromPath(newParams.url)
 
       extractedParams.forEach((param, index) => {
         if (newParams.urlParams[index]) {
@@ -113,11 +113,11 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   function updatePath() {
     setParams((preParams) => {
       const params = concatParam(preParams.urlParams)
-      const path = extractPath(preParams.path)
+      const path = extractPath(preParams.url)
 
       return {
         ...preParams,
-        path: params ? `${path}?${params}` : path,
+        url: params ? `${path}?${params}` : path,
       }
     })
   }
@@ -141,7 +141,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
             colorScheme="techPurple"
           />
           <Input
-            value={params.path}
+            value={params.url}
             onFocus={() => setIsEditingUrl(true)}
             onBlur={() => setIsEditingUrl(false)}
             onChange={(value) => {
