@@ -7,6 +7,5 @@ test("WrappedRate renders correctly", () => {
   render(
     <WrappedRate allowHalf value={2.5} handleUpdateDsl={handleUpdateDSL} />,
   )
-  expect(screen.getByText("test-value")).toBeInTheDocument()
   expect(screen.getAllByTitle("StarIcon")?.[0]).toBeInTheDocument()
 })
