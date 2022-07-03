@@ -1,27 +1,17 @@
 import { forwardRef, useCallback, useState } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
-import { Wrapper } from "@/widgetLibrary/PublicSector/Wrapper"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import LabelWrapper from "@/widgetLibrary/PublicSector/LabelWrapper"
-import { inputContainerCss } from "./style"
 import { WrappedDateTimeProps } from "./interface"
+import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
   (props, ref) => {
     const {
       value,
-      tooltipText,
       dateFormat,
       placeholder,
       showClear,
-      label,
-      labelAlign,
-      labelWidth,
-      labelPosition,
-      labelCaption,
-      labelWidthUnit,
       required,
       minDate,
       disabled,
@@ -50,51 +40,32 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
     )
 
     return (
-      <TooltipWrapper
-        tooltipText={tooltipText}
-        disabled={!tooltipText}
-        position="tl"
-      >
-        <Wrapper alignment="fullWidth">
-          <LabelWrapper
-            label={label}
-            labelAlign={labelAlign}
-            labelWidth={labelWidth}
-            labelCaption={labelCaption}
-            labelWidthUnit={labelWidthUnit}
-            labelPosition={labelPosition}
-            required={required}
-            tooltipText={tooltipText}
-          >
-            <div css={inputContainerCss}>
-              <DatePicker
-                showTime={{ step: { minute: minuteStep }, format: timeFormat }}
-                colorScheme={colorScheme}
-                format={dateFormat}
-                value={value}
-                readOnly={readOnly}
-                disabled={disabled}
-                placeholder={placeholder}
-                allowClear={showClear}
-                disabledDate={checkRange}
-                onClear={() => {
-                  setCurrentValue(undefined)
-                  handleUpdateDsl({ value: "" })
-                }}
-                onChange={(value) => {
-                  setCurrentValue(value)
-                  handleUpdateDsl({ value })
-                }}
-              />
-              <InvalidMessage
-                value={currentValue}
-                required={required}
-                hideValidationMessage={hideValidationMessage}
-              />
-            </div>
-          </LabelWrapper>
-        </Wrapper>
-      </TooltipWrapper>
+      <div css={containerStyle}>
+        <DatePicker
+          showTime={{ step: { minute: minuteStep }, format: timeFormat }}
+          colorScheme={colorScheme}
+          format={dateFormat}
+          value={value}
+          readOnly={readOnly}
+          disabled={disabled}
+          placeholder={placeholder}
+          allowClear={showClear}
+          disabledDate={checkRange}
+          onClear={() => {
+            setCurrentValue(undefined)
+            handleUpdateDsl({ value: "" })
+          }}
+          onChange={(value) => {
+            setCurrentValue(value)
+            handleUpdateDsl({ value })
+          }}
+        />
+        <InvalidMessage
+          value={currentValue}
+          required={required}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
     )
   },
 )

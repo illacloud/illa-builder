@@ -73,7 +73,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: "select-label-labelWidth",
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
-        expectedType: VALIDATION_TYPES.STRING,
+        expectedType: VALIDATION_TYPES.NUMBER,
         setterType: "INPUT_SETTER",
       },
     ],

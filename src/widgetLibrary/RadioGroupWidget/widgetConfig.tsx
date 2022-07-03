@@ -16,7 +16,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    width: "500px",
+    labelWidth: "{{33}}",
     direction: "horizontal",
     options: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },

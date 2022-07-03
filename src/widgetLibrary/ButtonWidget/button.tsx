@@ -1,7 +1,5 @@
 import { forwardRef, useImperativeHandle, useMemo } from "react"
 import { Button } from "@illa-design/button"
-import { Wrapper } from "@/widgetLibrary/PublicSector/Wrapper"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { WrappedButtonProps } from "./interface"
 import { applyButtonLayoutStyle } from "./style"
 
@@ -19,7 +17,6 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
       borderRadius,
       loading,
       alignment,
-      tooltipText,
       colorScheme,
     } = props
 
@@ -44,32 +41,24 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
     // }, [variant, borderColor])
 
     return (
-      <TooltipWrapper
-        tooltipText={tooltipText}
-        disabled={!tooltipText}
-        position="tl"
-      >
-        <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
-          <Wrapper alignment="fullWidth">
-            <Button
-              disabled={disabled}
-              variant={variant}
-              autoFullVertically
-              autoFullHorizontal
-              buttonRadius={borderRadius}
-              leftIcon={leftIcon}
-              rightIcon={rightIcon}
-              // borderColor={_borderColor}
-              // backgroundColor={backgroundColor}
-              // textColor={_textColor}
-              colorScheme={colorScheme}
-              loading={loading}
-            >
-              {text}
-            </Button>
-          </Wrapper>
-        </div>
-      </TooltipWrapper>
+      <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
+        <Button
+          disabled={disabled}
+          variant={variant}
+          autoFullVertically
+          autoFullHorizontal
+          buttonRadius={borderRadius}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          // borderColor={_borderColor}
+          // backgroundColor={backgroundColor}
+          // textColor={_textColor}
+          colorScheme={colorScheme}
+          loading={loading}
+        >
+          {text}
+        </Button>
+      </div>
     )
   },
 )

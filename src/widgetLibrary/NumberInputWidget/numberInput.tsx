@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useMemo, useState } from "react"
 import { InputNumber } from "@illa-design/input-number"
 import { LoadingIcon } from "@illa-design/icon"
 import { WrappedNumberInputProps } from "@/widgetLibrary/NumberInputWidget/interface"
-import LabelWrapper from "@/widgetLibrary/PublicSector/LabelWrapper"
+import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/([-+]?\d{3})(?=\d)/g, "$1,")
@@ -21,14 +21,6 @@ export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>(
       prefix,
       suffix,
       loading,
-      label,
-      labelAlign,
-      labelWidth,
-      labelCaption,
-      labelWidthUnit,
-      labelPosition,
-      required,
-      tooltipText,
       colorScheme,
       handleUpdateDsl,
     } = props
@@ -58,16 +50,7 @@ export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>(
     }, [loading, suffix])
 
     return (
-      <LabelWrapper
-        label={label}
-        labelAlign={labelAlign}
-        labelWidth={labelWidth}
-        labelCaption={labelCaption}
-        labelWidthUnit={labelWidthUnit}
-        labelPosition={labelPosition}
-        required={required}
-        tooltipText={tooltipText}
-      >
+      <div css={containerStyle}>
         <InputNumber
           max={max}
           min={min}
@@ -83,7 +66,7 @@ export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>(
           onChange={changeValue}
           borderColor={colorScheme}
         />
-      </LabelWrapper>
+      </div>
     )
   },
 )

@@ -29,29 +29,23 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
   `
 
   return (
-    <TooltipWrapper
-      tooltipText={tooltipText}
-      position="tl"
-      disabled={!tooltipText}
-    >
-      <div css={css(textContainerCss, alignCss)}>
-        {disableMarkdown ? (
-          <MarkdownView
-            css={css`
-              ${applyTextCss(
-                textColor,
-                linkColor,
-                backgroundColor ?? "transparent",
-              )}, ${alignCss}
-            `}
-            markdown={value ?? ""}
-            extensions={[transLink]}
-          />
-        ) : (
-          <div css={applyTextCss(textColor)}>{value}</div>
-        )}
-      </div>
-    </TooltipWrapper>
+    <div css={css(textContainerCss, alignCss)}>
+      {disableMarkdown ? (
+        <MarkdownView
+          css={css`
+            ${applyTextCss(
+              textColor,
+              linkColor,
+              backgroundColor ?? "transparent",
+            )}, ${alignCss}
+          `}
+          markdown={value ?? ""}
+          extensions={[transLink]}
+        />
+      ) : (
+        <div css={applyTextCss(textColor)}>{value}</div>
+      )}
+    </div>
   )
 })
 

@@ -1,15 +1,11 @@
 import { ReactNode } from "react"
 import { DatePickerProps } from "@illa-design/date-picker"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
 export interface WrappedDateProps
-  extends LabelProps,
-    ValidateMessageProps,
-    Pick<TooltipWrapperProps, "tooltipText">,
+  extends ValidateMessageProps,
     Pick<
       DatePickerProps,
       "value" | "readOnly" | "disabled" | "placeholder" | "colorScheme"

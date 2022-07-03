@@ -15,6 +15,7 @@ export const SEGMENTED_CONTROL_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
+    labelWidth: "{{33}}",
     direction: "horizontal",
     options: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },

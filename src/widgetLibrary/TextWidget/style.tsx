@@ -3,9 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 
 export const textContainerCss = css`
-  display: inline-flex;
-  width: 100%;
-  height: 100%;
+  display: flex;
 
   p {
     margin: 0;

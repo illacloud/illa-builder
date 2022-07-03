@@ -5,15 +5,7 @@ import { isValidUrlScheme } from "@/utils/typeHelper"
 import { WrappedImageProps } from "./interface"
 
 export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
-  const {
-    imageSrc,
-    altText,
-    tooltipText,
-    width,
-    height,
-    radius,
-    handleUpdateDsl,
-  } = props
+  const { imageSrc, altText, tooltipText, radius, handleUpdateDsl } = props
 
   useImperativeHandle(ref, () => ({
     setImageUrl: (src: string) => {
@@ -42,14 +34,14 @@ export const WrappedImage = forwardRef<any, WrappedImageProps>((props, ref) => {
     <TooltipWrapper
       tooltipText={tooltipText}
       disabled={!tooltipText}
-      position="top"
+      position="tl"
     >
       <Image
         fallbackSrc={finalSrc}
         alt={altText}
         radius={finalRadius}
-        height={height}
-        width={width}
+        height="100%"
+        width="100%"
       />
     </TooltipWrapper>
   )

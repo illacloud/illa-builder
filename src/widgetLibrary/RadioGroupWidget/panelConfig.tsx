@@ -74,7 +74,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "radioGroup-label-position",
