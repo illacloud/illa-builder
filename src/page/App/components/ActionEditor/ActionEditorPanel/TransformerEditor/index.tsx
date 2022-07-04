@@ -23,6 +23,7 @@ export const TransformerEditor: FC<TransformerEditorProps> = () => {
         height={"100px"}
         value={transformer}
         placeholder={t("editor.action.resource.transformer.placeholder.tip")}
+        lineNumbers
         onChange={(value) => {
           setIsActionDirty?.(true)
           dispatch(

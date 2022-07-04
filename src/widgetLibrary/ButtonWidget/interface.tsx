@@ -14,7 +14,6 @@ export interface WrappedButtonProps
       | "borderColor"
       | "backgroundColor"
       | "textColor"
-      | "colorScheme"
     >,
     Pick<TooltipWrapperProps, "tooltipText"> {
   text?: string
@@ -22,4 +21,7 @@ export interface WrappedButtonProps
   submitTargetId?: string
   alignment?: alignmentType
   borderRadius?: string
+  styles?: {
+    colorScheme?: ButtonProps["colorScheme"]
+  }
 }

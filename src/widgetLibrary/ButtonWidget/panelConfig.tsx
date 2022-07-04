@@ -138,8 +138,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-style-list",
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.color"),
-        attrName: "color",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {

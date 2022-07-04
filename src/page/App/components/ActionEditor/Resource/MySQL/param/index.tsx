@@ -18,7 +18,7 @@ export const MySQLParam: FC<MySQLParamProps> = (props) => {
           // TODO: @spike Temporary Fix `mode` to `sql`, should support `gui` mode later
           onChange({ query: value, mode })
         }}
-        mode="TEXT_SQL"
+        mode="SQL_JS"
         expectedType="String"
         height="88px"
         lineNumbers

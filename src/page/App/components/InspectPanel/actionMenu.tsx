@@ -5,7 +5,7 @@ import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { configActions } from "@/redux/config/configSlice"
 import {
-  actionMenuContaninterStyle,
+  actionMenuContainerStyle,
   baseActionMenuItemStyle,
   deleteActionMenuItemStyle,
 } from "./style"
@@ -60,7 +60,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   }
 
   return (
-    <div css={actionMenuContaninterStyle} onClick={handleClickMenuItem}>
+    <div css={actionMenuContainerStyle} onClick={handleClickMenuItem}>
       <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.VIEW_DOCUMENT}>
         {t("editor.inspect.header.action_menu.view_documentation")}
       </div>

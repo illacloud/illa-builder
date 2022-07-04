@@ -1,14 +1,14 @@
 import { FC } from "react"
+import { get } from "lodash"
 import { OptionListHeader } from "./header"
 import { ListBody } from "./body"
 import { OptionListSetterProps } from "./interface"
 import { ListCss } from "./style"
-import _ from "lodash"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const { attrName, panelConfig, handleUpdateDsl } = props
 
-  const optionItems = _.get(panelConfig, attrName, [])
+  const optionItems = get(panelConfig, attrName, [])
 
   return (
     <div css={ListCss}>

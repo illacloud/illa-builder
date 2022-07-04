@@ -1,6 +1,7 @@
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
+import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 
 export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -195,6 +196,29 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+      },
+    ],
+  },
+  {
+    id: `select-style`,
+    groupName: i18n.t("editor.inspect.setter_group.style"),
+    children: [
+      {
+        id: `select-style-styles`,
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `select-style-color`,
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            attrName: "colorScheme",
+            setterType: "COLOR_SELECT_SETTER",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
+          },
+        ],
       },
     ],
   },

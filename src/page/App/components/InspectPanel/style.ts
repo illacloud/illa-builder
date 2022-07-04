@@ -25,11 +25,19 @@ export function applyLabelStyle(isInList?: boolean): SerializedStyles {
   return isInList ? ListLabelStyle : baseLabelStyle
 }
 
-export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
+export function applyLabelTipsStyle(
+  isInList?: boolean,
+  hasLabelDesc?: boolean,
+): SerializedStyles {
   const labelStyle = applyLabelStyle(isInList)
+  const borderBottomStyle = hasLabelDesc
+    ? css`
+        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+      `
+    : css``
   return css`
     ${labelStyle};
-    border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+    ${borderBottomStyle};
   `
 }
 
@@ -52,6 +60,9 @@ export const panelBarHeaderStyle = css`
   align-items: center;
   height: 48px;
   cursor: pointer;
+  &:not(:first-of-type) {
+    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
   ${publicPaddingStyle};
 `
 
@@ -148,7 +159,7 @@ export const singleSelectedPanelSetterWrapperStyle = css`
   overflow-y: auto;
 `
 
-export const actionMenuContaninterStyle = css`
+export const actionMenuContainerStyle = css`
   padding: 8px 0;
   width: 184px;
   border-radius: 8px;
@@ -170,4 +181,8 @@ export const baseActionMenuItemStyle = css`
 
 export const deleteActionMenuItemStyle = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)};
+`
+
+export const ghostEmptyStyle = css`
+  margin-top: 8px;
 `

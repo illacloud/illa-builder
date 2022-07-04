@@ -53,10 +53,11 @@ export const Transformer: FC<TransformerProps> = (props) => {
       <div css={panelPaddingStyle}>
         {enableTransformer ? (
           <CodeEditor
-            mode="TEXT_JS"
+            mode="JAVASCRIPT"
             expectedType="String"
             height="88px"
             value={transformer}
+            lineNumbers
             onChange={(value) => onChange({ transformer: value })}
           />
         ) : (

@@ -6,15 +6,14 @@ export enum EditorModes {
   TEXT = "text/plain",
   SQL = "sql",
   JSON = "application/json",
-  JAVASCRIPT = "javascript",
+  JAVASCRIPT = "custom-javascript",
   TEXT_JS = "text-js",
-  TEXT_SQL = "text-sql",
   SQL_JS = "sql-js",
 }
 
 export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT" | "TEXT_SQL"
+  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT"
   value?: string
   expectedType: ExpectedType
   // Whether to show line numbers to the left of the editor.
@@ -23,10 +22,12 @@ export interface CodeEditorProps
   height?: string
   placeholder?: string
   borderRadius?: string
+  noTab?: boolean
+  path?: string
   // sql table data
   tables?: Record<string, any>
   onBlur?: () => void
-  onChange?: (value: string, calcResult: any) => void
+  onChange?: (value: string, calcResult?: any) => void
 }
 
 export enum DataType {
@@ -55,7 +56,7 @@ export interface ResultPreview {
 
 export interface EditorInputState {
   focus?: boolean
-  error: boolean
+  error?: boolean
   height: string
   borderRadius: string
 }

@@ -185,12 +185,12 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-style-list",
         setterType: "LIST_SETTER",
         isSetterSingleRow: true,
-        labelName: i18n.t("editor.inspect.setter_label.color"),
-        attrName: "color",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "date-style-bg",
+            id: "date-style-colorScheme",
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_SELECT_SETTER",
             attrName: "colorScheme",

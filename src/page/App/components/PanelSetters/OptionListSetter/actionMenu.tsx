@@ -6,7 +6,7 @@ import {
   ActionType,
 } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import {
-  actionMenuContaninterStyle,
+  actionMenuContainerStyle,
   baseActionMenuItemStyle,
   deleteActionMenuItemStyle,
 } from "@/page/App/components/InspectPanel/style"
@@ -34,7 +34,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
   }
 
   return (
-    <div css={actionMenuContaninterStyle} onClick={handleClickMenuItem}>
+    <div css={actionMenuContainerStyle} onClick={handleClickMenuItem}>
       <div css={baseActionMenuItemStyle} data-key={ActionType.DUPLICATE}>
         {t("editor.inspect.setter_content.option_list.action_menu.duplicate")}
       </div>

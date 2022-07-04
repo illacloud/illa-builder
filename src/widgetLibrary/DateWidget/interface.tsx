@@ -10,10 +10,7 @@ export interface WrappedDateProps
   extends LabelProps,
     ValidateMessageProps,
     Pick<TooltipWrapperProps, "tooltipText">,
-    Pick<
-      DatePickerProps,
-      "value" | "readOnly" | "disabled" | "placeholder" | "colorScheme"
-    > {
+    Pick<DatePickerProps, "value" | "readOnly" | "disabled" | "placeholder"> {
   value?: string
   dateFormat?: string
   loading?: boolean
@@ -25,4 +22,7 @@ export interface WrappedDateProps
   minDate?: string
   maxDate?: string
   handleUpdateDsl: (value: Record<string, string>) => void
+  styles?: {
+    colorScheme?: DatePickerProps["colorScheme"]
+  }
 }

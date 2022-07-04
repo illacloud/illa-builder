@@ -172,12 +172,21 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: `${baseWidgetName}-style-color`,
-        labelName: i18n.t("editor.inspect.setter_label.color"),
-        setterType: "COLOR_SELECT_SETTER",
-        attrName: "colorScheme",
-        defaultValue: "blue",
-        options: colorSchemeOptions,
+        id: `${baseWidgetName}-style-styles`,
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-style-color`,
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            attrName: "colorScheme",
+            setterType: "COLOR_SELECT_SETTER",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
+          },
+        ],
       },
     ],
   },

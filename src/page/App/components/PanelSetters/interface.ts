@@ -8,5 +8,5 @@ export interface BaseSetter {
   handleUpdateDsl: (attrPath: string, value: any) => void
   expectedType: ExpectedType
   isInList?: boolean
-  widgetDisplayName: string
+  widgetDisplayName?: string
 }

@@ -26,13 +26,13 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
       labelCaption,
       labelWidthUnit,
       required,
-      colorScheme,
       minDate,
       disabled,
       maxDate,
       readOnly,
       customRule,
       hideValidationMessage,
+      styles,
       handleUpdateDsl,
     } = props
 
@@ -82,7 +82,7 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
           >
             <div css={inputContainerCss}>
               <DateRangePicker
-                colorScheme={colorScheme}
+                colorScheme={styles?.colorScheme}
                 format={dateFormat}
                 value={dateRangeValue}
                 readOnly={readOnly}
