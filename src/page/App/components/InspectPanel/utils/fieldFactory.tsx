@@ -45,16 +45,14 @@ export const renderPanelBar = (
   }
 
   return (
-    <>
-      <PanelBar
-        key={key}
-        title={groupName}
-        isOpened={isOpened}
-        saveToggleState={saveToggleState}
-      >
-        {children && children.length > 0 && fieldFactory(children, displayName)}
-      </PanelBar>
-    </>
+    <PanelBar
+      key={key}
+      title={groupName}
+      isOpened={isOpened}
+      saveToggleState={saveToggleState}
+    >
+      {children && children.length > 0 && fieldFactory(children, displayName)}
+    </PanelBar>
   )
 }
 
