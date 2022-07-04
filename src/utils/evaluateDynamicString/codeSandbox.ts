@@ -21,7 +21,6 @@ export function evalScript(
     try {
       result = eval(userScript)
     } catch (error) {
-      // TODO: add error handler
       throw error
     } finally {
       for (const entity in GlobalData) {

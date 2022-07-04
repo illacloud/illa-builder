@@ -2,6 +2,7 @@ import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -13,43 +14,49 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-basic-date-format",
         labelName: i18n.t("editor.inspect.setter_label.format"),
         attrName: "dateFormat",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-basic-placeholder",
         labelName: i18n.t("editor.inspect.setter_label.placeholder"),
         attrName: "placeholder",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-basic-max-date",
         labelName: i18n.t("editor.inspect.setter_label.max_date"),
         attrName: "maxDate",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-basic-min-date",
         labelName: i18n.t("editor.inspect.setter_label.min_date"),
         attrName: "minDate",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-basic-time-format",
         labelName: i18n.t("editor.inspect.setter_label.time_format"),
         attrName: "timeFormat",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-basic-minute-step",
         labelName: i18n.t("editor.inspect.setter_label.step_size"),
         attrName: "minuteStep",
         setterType: "INPUT_SETTER",
-        expectedType: "Number",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -62,12 +69,14 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date_time-label-position",
@@ -100,6 +109,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -114,6 +124,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "loading",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date_time-interaction-disabled",
@@ -121,6 +132,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date_time-interaction-readonly",
@@ -128,6 +140,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "readonly",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -141,12 +154,14 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         attrName: "showClear",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date_time-adornments-tooltip",
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -158,6 +173,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         id: "date-time-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -166,6 +182,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "customRule",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-time-validation-hide-message",
@@ -173,6 +190,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
@@ -187,6 +205,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },

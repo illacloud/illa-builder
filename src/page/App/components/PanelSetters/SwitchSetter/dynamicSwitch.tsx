@@ -8,6 +8,7 @@ import {
   applyCustomIconStyle,
   applyLabelWrapperStyle,
   customAndSwitchWrapperStyle,
+  dynamicSwitchInputStyle,
   dynamicSwitchWrapperStyle,
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
@@ -21,6 +22,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     handleUpdateDsl,
     value,
     widgetDisplayName,
+    expectedType,
   } = props
 
   const dynamicAttrPath = get(panelConfig, "$dynamicAttrPaths", [])
@@ -56,13 +58,13 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         </div>
       </div>
       {customSelected && (
-        <div style={{ marginBottom: "8px" }}>
+        <div css={dynamicSwitchInputStyle}>
           <BaseInput
             attrName={attrName}
             value={value}
             handleUpdateDsl={handleUpdateDsl}
             panelConfig={panelConfig}
-            expectedType="String"
+            expectedType={expectedType}
             isSetterSingleRow
             widgetDisplayName={widgetDisplayName}
           />

@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import { SetterType } from "@/page/App/components/PanelSetters"
-import { ExpectedType } from "@/components/CodeEditor/utils"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export enum ACTION_TYPE {
   VIEW_DOCUMENT = "VIEW_DOCUMENT",
@@ -35,7 +35,7 @@ export interface PanelBarProps {
 export interface PanelFieldConfig extends PanelLabelProps {
   id: string
   setterType: SetterType
-  expectedType?: ExpectedType
+  expectedType?: VALIDATION_TYPES
   attrName: string
   childrenSetter?: PanelFieldConfig[]
   useCustomLayout?: boolean

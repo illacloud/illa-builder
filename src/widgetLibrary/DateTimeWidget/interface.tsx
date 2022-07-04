@@ -1,13 +1,12 @@
 import { DatePickerProps } from "@illa-design/date-picker"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedDateTimeProps
-  extends LabelProps,
-    ValidateMessageProps,
-    Pick<TooltipWrapperProps, "tooltipText">,
-    Pick<DatePickerProps, "placeholder" | "disabled" | "readOnly"> {
+  extends ValidateMessageProps,
+    Pick<
+      DatePickerProps,
+      "placeholder" | "disabled" | "readOnly" | "colorScheme"
+    > {
   value?: string
   dateFormat?: string
   timeFormat?: string
@@ -18,7 +17,4 @@ export interface WrappedDateTimeProps
   minDate?: string
   maxDate?: string
   handleUpdateDsl: (value: Record<string, string>) => void
-  styles?: {
-    colorScheme?: DatePickerProps["colorScheme"]
-  }
 }

@@ -78,9 +78,6 @@ const getNewAttrUpdatesAndDynamicAttrPaths = (
   const dynamicAttrPathUpdates: DynamicAttrPathUpdateShape[] = []
   Object.keys(updatePaths).forEach((attrPath) => {
     const attrValue = get(updateSlice, attrPath)
-    if (typeof attrValue !== "string") {
-      return
-    }
     dynamicAttrPathUpdates.push(
       getDynamicAttrPathUpdate(widgetProps, attrPath, attrValue),
     )

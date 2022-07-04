@@ -1,5 +1,6 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -9,7 +10,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "image-basic-source",
         attrName: "imageSrc",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         labelName: i18n.t("editor.inspect.setter_label.image_source"),
         setterType: "INPUT_SETTER",
       },
@@ -17,7 +18,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         id: "image-basic-alt-text",
         labelName: i18n.t("editor.inspect.setter_label.alt_text"),
         labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         attrName: "altText",
         setterType: "INPUT_SETTER",
       },
@@ -44,7 +45,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         id: "image-adornments-tooltip",
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
     ],
@@ -57,21 +58,21 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         id: "image-layout-height",
         labelName: i18n.t("editor.inspect.setter_label.img_height"),
         attrName: "height",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
         id: "image-layout-width",
         labelName: i18n.t("editor.inspect.setter_label.img_width"),
         attrName: "width",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
         id: "image-layout-hidden",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
-        expectedType: "Boolean",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
     ],
@@ -94,6 +95,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
             setterType: "INPUT_SETTER",
             attrName: "radius",
             defaultValue: "0px",
+            expectedType: VALIDATION_TYPES.STRING,
           },
         ],
       },

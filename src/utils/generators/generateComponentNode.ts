@@ -31,7 +31,7 @@ export const generateComponentNode = (
 
   const childrenNodeDSLKeys = Object.keys(childrenNodeDSL)
 
-  const { defaults, w, h, type, widgetName = "" } = widgetInfo
+  const { defaults, w, h, type, displayName = "" } = widgetInfo
   baseDSL = {
     w,
     h,
@@ -43,11 +43,11 @@ export const generateComponentNode = (
     x: -1,
     y: -1,
     z: 0,
-    showName: widgetName,
+    showName: displayName,
     type,
     displayName: ComponentNodeDisplayNameGenerator.getDisplayName(
       type,
-      widgetName,
+      displayName,
     ),
     containerType: "EDITOR_SCALE_SQUARE",
     parentNode: null,
