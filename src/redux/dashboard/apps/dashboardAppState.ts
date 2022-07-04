@@ -5,6 +5,7 @@ export interface DashboardAppsState {
 export interface DashboardApp {
   appId: string
   appName: string
+  versionId: string
   appActivity?: string
 }
 

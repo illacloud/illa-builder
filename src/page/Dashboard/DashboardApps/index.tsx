@@ -92,7 +92,9 @@ export const DashboardApps: FC = () => {
                         app: response.data,
                       }),
                     )
-                    navigate(`/app/${response.data.appId}`)
+                    navigate(
+                      `/app/${response.data.appId}/version/${response.data.versionId}`,
+                    )
                   },
                   (response) => {},
                   (error) => {},

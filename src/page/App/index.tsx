@@ -41,6 +41,7 @@ import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShad
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { Skeleton } from "@illa-design/skeleton"
+import { useParams } from "react-router-dom"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -54,6 +55,8 @@ export const Editor: FC = () => {
   const [room, setRoom] = useState<Room>()
 
   const dispatch = useDispatch()
+
+  let { appId, versionId } = useParams()
 
   useEffect(() => {
     Connection.enterRoom(
@@ -89,7 +92,7 @@ export const Editor: FC = () => {
   useEffect(() => {
     Api.request<CurrentAppResp>(
       {
-        url: `/api/v1/apps/${1}/versions/${2}`,
+        url: `/api/v1/apps/${appId}/versions/${versionId}`,
         method: "GET",
       },
       (response) => {
