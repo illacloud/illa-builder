@@ -92,7 +92,7 @@ export const Editor: FC = () => {
   useEffect(() => {
     Api.request<CurrentAppResp>(
       {
-        url: `/api/v1/apps/${appId}/versions/${versionId}`,
+        url: `/apps/${appId}/versions/${versionId}`,
         method: "GET",
       },
       (response) => {

@@ -113,7 +113,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-interaction-readonly",
         labelName: i18n.t("editor.inspect.setter_label.read_only"),
         labelDesc: "xxxxx",
-        attrName: "readonly",
+        attrName: "readOnly",
         setterType: "INPUT_SETTER",
       },
     ],
