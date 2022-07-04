@@ -11,9 +11,7 @@ export const DIVIDER_WIDGET_CONFIG: WidgetConfig = {
   w: 30,
   h: 5,
   defaults: {
-    styles: {
-      colorScheme: "grayBlue",
-      textSize: "14px",
-    },
+    colorScheme: "grayBlue",
+    textSize: "14px",
   },
 }

@@ -489,7 +489,11 @@
           "action_menu":{
             "delete": "Delete",
             "duplicate": "Duplicate"
-          }
+          },
+          "list_no_label": "No label"
+        },
+        "list_setter": {
+          "reset": "Reset"
         }
       }
     },

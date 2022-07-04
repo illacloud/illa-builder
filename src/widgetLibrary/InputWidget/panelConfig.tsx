@@ -2,6 +2,7 @@ import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -12,14 +13,14 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: "input-basic-defaultValue",
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
         id: "input-basic-placeholder",
         labelName: i18n.t("editor.inspect.setter_label.placeholder"),
         attrName: "placeholder",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
     ],
@@ -33,13 +34,13 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "input-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
@@ -72,7 +73,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: "select-label-labelWidth",
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
-        expectedType: "String",
+        expectedType: VALIDATION_TYPES.NUMBER,
         setterType: "INPUT_SETTER",
       },
     ],
@@ -86,7 +87,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
-        expectedType: "Boolean",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         placeholder: "{{false}}",
       },
       {
@@ -95,7 +96,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
-        expectedType: "Boolean",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -109,6 +110,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "allowClear",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "input-adornments-showChartCount",
@@ -116,24 +118,28 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "showCharacterCount",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "input-adornments-prefixText",
         labelName: i18n.t("editor.inspect.setter_label.prefix_text"),
         attrName: "prefixText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "input-adornments-suffixText",
         labelName: i18n.t("editor.inspect.setter_label.suffix_text"),
         attrName: "suffixText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "input-adornments-tooltip",
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -145,6 +151,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: "input-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -161,6 +168,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "regex",
         bindAttrName: "pattern",
+        expectedType: VALIDATION_TYPES.STRING,
         shown: (value) => value === "Regex",
       },
       {
@@ -168,18 +176,21 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.max_length"),
         setterType: "INPUT_SETTER",
         attrName: "maxLength",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: "input-validation-min",
         labelName: i18n.t("editor.inspect.setter_label.min_length"),
         setterType: "INPUT_SETTER",
         attrName: "minLength",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
         id: "input-validation-custom",
         labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "customRule",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "input-validation-hide-message",
@@ -187,6 +198,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
@@ -202,6 +214,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },

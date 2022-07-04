@@ -26,7 +26,7 @@ test("Image render with radius", () => {
       width="200px"
       imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
       handleUpdateDsl={handleUpdateDSL}
-      styles={{ radius: "20" }}
+      radius="20"
     />,
   )
   expect(screen.getByRole("img")).toHaveAttribute(

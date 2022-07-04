@@ -36,7 +36,7 @@ function applyLeftLabelStyle(
 function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
   return css`
     ${baseLabelCss};
-
+    width: 100%;
     margin-bottom: 8px;
     text-align: ${alignment};
   `
@@ -61,7 +61,7 @@ export const applyLabelTitleStyle = (hasTooltip: boolean) => {
       `
     : css``
   return css`
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     ${borderCss}
   `
 }

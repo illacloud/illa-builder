@@ -1,8 +1,7 @@
 import { FC } from "react"
 import { BaseInputSetterProps } from "./interface"
-import { applyInputSetterStyle, applyInputSetterWrapperStyle } from "./style"
+import { applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
-import { Input } from "@illa-design/input"
 
 function getPath(attrName?: string, widgetDisplayName?: string) {
   if (attrName && widgetDisplayName) {
