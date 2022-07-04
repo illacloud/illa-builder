@@ -117,11 +117,11 @@ export const Editor: FC = () => {
             response.data.dottedLineSquareState,
           ),
         )
-        // dispatch(
-        //   displayNameActions.updateDisplayNameReducer(
-        //     response.data.displayNameState,
-        //   ),
-        // )
+        dispatch(
+          displayNameActions.updateDisplayNameReducer(
+            response.data.displayNameState,
+          ),
+        )
       },
       (e) => {},
       (e) => {},
