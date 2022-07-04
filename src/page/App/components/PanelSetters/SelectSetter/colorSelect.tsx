@@ -12,12 +12,12 @@ import {
 
 const renderContent = (color: string = "transparent") => (
   <>
-    <div css={applyColorSelectPreviewColorStyle(color)} />
-    <div css={colorSelectPreviewNameStyle}>
+    <span css={applyColorSelectPreviewColorStyle(color)} />
+    <span css={colorSelectPreviewNameStyle}>
       {color !== "transparent"
         ? chroma(color).hex().toLocaleUpperCase()
         : color}
-    </div>
+    </span>
   </>
 )
 

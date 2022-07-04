@@ -1,9 +1,8 @@
 import { forwardRef } from "react"
 import { css } from "@emotion/react"
 import MarkdownView, { ShowdownExtension } from "react-showdown"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TextProps } from "./interface"
-import { applyTextCss, textContainerCss } from "./style"
+import { applyTextContainerStyle, applyTextStyle } from "./style"
 
 const transLink: ShowdownExtension = {
   type: "output",
@@ -17,8 +16,9 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
     disableMarkdown,
     horizontalAlign,
     verticalAlign,
-    styles,
-    tooltipText,
+    backgroundColor,
+    textColor,
+    linkColor,
   } = props
 
   const alignCss = css`
@@ -27,29 +27,23 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
   `
 
   return (
-    <TooltipWrapper
-      tooltipText={tooltipText}
-      position="tl"
-      disabled={!tooltipText}
-    >
-      <div css={css(textContainerCss, alignCss)}>
-        {disableMarkdown ? (
-          <MarkdownView
-            css={css`
-              ${applyTextCss(
-                styles?.textColor,
-                styles?.linkColor,
-                styles?.backgroundColor ?? "transparent",
-              )}, ${alignCss}
-            `}
-            markdown={value ?? ""}
-            extensions={[transLink]}
-          />
-        ) : (
-          <div css={applyTextCss(styles?.textColor)}>{value}</div>
-        )}
-      </div>
-    </TooltipWrapper>
+    <div css={css(applyTextContainerStyle(horizontalAlign, verticalAlign))}>
+      {disableMarkdown ? (
+        <MarkdownView
+          css={css`
+            ${applyTextStyle(
+              textColor,
+              linkColor,
+              backgroundColor ?? "transparent",
+            )}, ${alignCss}
+          `}
+          markdown={value ?? ""}
+          extensions={[transLink]}
+        />
+      ) : (
+        <div css={applyTextStyle(textColor)}>{value}</div>
+      )}
+    </div>
   )
 })
 

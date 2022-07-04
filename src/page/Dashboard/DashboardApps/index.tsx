@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
@@ -60,6 +60,14 @@ export const DashboardApps: FC = () => {
   const [duplicateValue, setDuplicateValue] = useState<string>("")
   const [duplicateModalLoading, setDuplicateModalLoading] =
     useState<boolean>(false)
+
+  useEffect(() => {
+    return () => {
+      setCreateNewLoading(false)
+      setRenameModalLoading(false)
+      setDuplicateModalLoading(false)
+    }
+  }, [])
 
   // rename function
   const showRenameModal = () => {
@@ -221,6 +229,7 @@ export const DashboardApps: FC = () => {
                       <Dropdown
                         position="br"
                         trigger="click"
+                        triggerProps={{ closeDelay: 0, openDelay: 0 }}
                         dropList={
                           <DashboardItemMenu
                             appId={item.appId}
@@ -274,17 +283,15 @@ export const DashboardApps: FC = () => {
           colorScheme: "techPurple",
         }}
         closeElement={
-          <div
-            css={dashboardCloseIconStyle}
-            onClick={() => {
-              console.log("1")
-            }}
-          >
+          <div css={dashboardCloseIconStyle}>
             <CloseIcon />
           </div>
         }
         visible={createNewVisible}
         confirmLoading={createLoading}
+        onCancel={() => {
+          setCreateNewVisible(false)
+        }}
         onOk={() => {
           if (!createNewValue) {
             Message.error(t("dashboard.app.name_empty"))
@@ -320,6 +327,7 @@ export const DashboardApps: FC = () => {
             </div>
           }
           confirmLoading={renameModalLoading}
+          onCancel={closeRenameModal}
           onOk={() => {
             if (!renameValue) {
               Message.error(t("dashboard.app.name_empty"))
@@ -362,7 +370,7 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
-            // TODO: unique name
+            // TODO: @zch unique name
             duplicateRequest()
           }}
         >

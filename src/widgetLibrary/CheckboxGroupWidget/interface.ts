@@ -4,14 +4,14 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 
 export interface WrappedCheckboxGroupProps
   extends Pick<
-      CheckboxGroupProps,
-      "value" | "disabled" | "options" | "direction" | "defaultValue"
-    >,
-    Pick<TooltipWrapperProps, "tooltipText">,
-    LabelProps {
+    CheckboxGroupProps,
+    | "value"
+    | "disabled"
+    | "options"
+    | "direction"
+    | "defaultValue"
+    | "colorScheme"
+  > {
   itemMode?: "dynamic" | "static"
   handleUpdateDsl: (value: Record<string, any>) => void
-  styles?: {
-    colorScheme?: CheckboxGroupProps["colorScheme"]
-  }
 }

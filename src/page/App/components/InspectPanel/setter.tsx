@@ -1,10 +1,11 @@
 import { FC, useContext, useMemo } from "react"
 import { get } from "lodash"
-import { applySetterWrapperStyle } from "./style"
+import { applySetterWrapperStyle, applySetterPublicWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
 import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -18,6 +19,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     bindAttrName,
     attrName,
     parentAttrName,
+    expectedType,
   } = props
   const Comp = getSetterByType(setterType)
 
@@ -28,7 +30,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     if (!bindAttrName || !shown) return true
     const bindAttrNameValue = widgetProps[bindAttrName]
     return shown(bindAttrNameValue)
-  }, [shown, widgetProps])
+  }, [shown, widgetProps, bindAttrName])
 
   const renderLabel = useMemo(() => {
     return !useCustomLayout && labelName ? (
@@ -47,32 +49,27 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     return attrName
   }, [parentAttrName, attrName])
 
-  const canWrapped = useMemo(() => {
-    if (renderLabel) {
-      const value = get(widgetProps, _finalAttrName)
-      return typeof value === "string" && value.includes("\n")
-    }
-    return false
-  }, [renderLabel, widgetProps, attrName])
-
   const isSetterSingleRowWrapper = useMemo(() => {
-    return isSetterSingleRow || !labelName || canWrapped
-  }, [isSetterSingleRow, labelName, canWrapped])
+    return isSetterSingleRow || !labelName
+  }, [isSetterSingleRow, labelName])
 
   const renderSetter = useMemo(() => {
     const value = get(widgetProps, _finalAttrName)
-    const expectedType = props.expectedType
     return Comp ? (
-      <Comp
-        {...props}
-        attrName={_finalAttrName}
-        isSetterSingleRow={isSetterSingleRowWrapper}
-        value={value}
-        panelConfig={widgetProps}
-        handleUpdateDsl={handleUpdateDsl}
-        widgetDisplayName={widgetDisplayName}
-        expectedType={expectedType ?? "String"}
-      />
+      <div
+        css={applySetterPublicWrapperStyle(isInList, isSetterSingleRowWrapper)}
+      >
+        <Comp
+          {...props}
+          attrName={_finalAttrName}
+          isSetterSingleRow={isSetterSingleRowWrapper}
+          value={value}
+          panelConfig={widgetProps}
+          handleUpdateDsl={handleUpdateDsl}
+          widgetDisplayName={widgetDisplayName}
+          expectedType={expectedType ?? VALIDATION_TYPES.STRING}
+        />
+      </div>
     ) : null
   }, [
     Comp,
@@ -82,6 +79,9 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     handleUpdateDsl,
     isSetterSingleRowWrapper,
     _finalAttrName,
+    widgetDisplayName,
+    expectedType,
+    isInList,
   ])
 
   return canRenderSetter ? (

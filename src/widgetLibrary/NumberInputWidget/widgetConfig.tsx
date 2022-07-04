@@ -13,8 +13,9 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    styles: {
-      colorScheme: "blue",
-    },
+    labelWidth: "{{33}}",
+    colorScheme: "blue",
+    max: "{{Infinity}}",
+    min: "{{-Infinity}}",
   },
 }

@@ -9,6 +9,7 @@ import {
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -29,6 +30,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-basic-value",
         attrName: "value",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
         isSetterSingleRow: true,
       },
     ],
@@ -43,6 +45,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -99,7 +102,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         setterType: "INPUT_SETTER",
         attrName: "hidden",
-        expectedType: "Boolean",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },

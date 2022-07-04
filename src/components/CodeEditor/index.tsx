@@ -109,6 +109,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           content: error[0]?.errorMessage,
         })
       } else {
+        setError(false)
         setPreview({
           state: "default",
           type: expectedType,
