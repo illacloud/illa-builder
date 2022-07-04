@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState } from "react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
 import { get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
@@ -12,6 +12,7 @@ import "codemirror/addon/display/autorefresh"
 // defineMode
 import "./modes"
 import "./hinter"
+import "./lintHelper"
 import { TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -23,6 +24,7 @@ import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -100,14 +102,25 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   useEffect(() => {
     if (path) {
-      let error = get(executionError, path)
-      let result = get(executionResult, path)
-      if (error?.length) {
-        setError(true)
-        setPreview({
-          state: "error",
-          content: error[0]?.errorMessage,
+      const error = get(executionError, path)
+      const result = get(executionResult, path)
+      if (error) {
+        const evalError = error?.find((item) => {
+          return item.errorType !== "LINT"
         })
+        const lintError = error?.find((item) => {
+          return item.errorType === "LINT"
+        })
+        if (evalError) {
+          setError(true)
+          setPreview({
+            state: "error",
+            content: evalError.errorMessage,
+          })
+        }
+        if (lintError?.errorLine && editor) {
+          lineMarker(editor, lintError.errorLine)
+        }
       } else {
         setError(false)
         setPreview({
@@ -121,6 +134,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     const currentValue = editor?.getValue()
+    clearMarks(editor)
     if (path) {
       latestProps.current.onChange?.(currentValue)
     } else {
@@ -198,10 +212,12 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         hintOptions: {
           completeSingle: false,
         },
-        lint: true,
       })
       if (noTab) {
         editor?.setOption("extraKeys", { Tab: false })
+      }
+      if (lineNumbers) {
+        editor?.setOption("gutters", ["CodeMirror-lint-markers"])
       }
       editor.on("change", handleChange)
       editor.on("keyup", handleKeyUp)
