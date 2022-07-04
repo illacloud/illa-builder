@@ -30,6 +30,7 @@ import {
   viewControlStyle,
   windowIconStyle,
   logoCursorStyle,
+  windowIconBodyStyle,
 } from "./style"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
@@ -59,24 +60,30 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         </section>
       </div>
       <div css={viewControlStyle}>
-        <WindowLeftIcon
-          _css={windowIconStyle(leftPanelVisible)}
-          onClick={() => {
-            dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-          }}
-        />
-        <WindowRightIcon
-          _css={windowIconStyle(rightPanelVsible)}
-          onClick={() => {
-            dispatch(configActions.updateRightPanel(!rightPanelVsible))
-          }}
-        />
-        <WindowBottomIcon
-          _css={windowIconStyle(bottomPanelVisible)}
-          onClick={() => {
-            dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-          }}
-        />
+        <span css={windowIconBodyStyle}>
+          <WindowLeftIcon
+            _css={windowIconStyle(leftPanelVisible)}
+            onClick={() => {
+              dispatch(configActions.updateLeftPanel(!leftPanelVisible))
+            }}
+          />
+        </span>
+        <span css={windowIconBodyStyle}>
+          <WindowRightIcon
+            _css={windowIconStyle(rightPanelVsible)}
+            onClick={() => {
+              dispatch(configActions.updateRightPanel(!rightPanelVsible))
+            }}
+          />
+        </span>
+        <span css={windowIconBodyStyle}>
+          <WindowBottomIcon
+            _css={windowIconStyle(bottomPanelVisible)}
+            onClick={() => {
+              dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
+            }}
+          />
+        </span>
         <ZoomControl />
       </div>
       <div>

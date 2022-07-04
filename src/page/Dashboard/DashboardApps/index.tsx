@@ -157,8 +157,8 @@ export const DashboardApps: FC = () => {
         )
         navigate(`/app/${response.data.appId}`)
       },
-      (response) => { },
-      (error) => { },
+      (response) => {},
+      (error) => {},
       (loading) => {
         setCreateNewLoading(true)
       },
@@ -187,7 +187,9 @@ export const DashboardApps: FC = () => {
           <Button
             _css={menuButtonStyle}
             colorScheme="techPurple"
-            onClick={() => { setCreateNewVisible(true) }}
+            onClick={() => {
+              setCreateNewVisible(true)
+            }}
           >
             {t("create_new_app")}
           </Button>
@@ -276,7 +278,9 @@ export const DashboardApps: FC = () => {
         }
         visible={createNewVisible}
         confirmLoading={createLoading}
-        onCancel={() => { setCreateNewVisible(false) }}
+        onCancel={() => {
+          setCreateNewVisible(false)
+        }}
         onOk={() => {
           if (!createNewValue) {
             Message.error(t("dashboard.app.name_empty"))
@@ -359,8 +363,9 @@ export const DashboardApps: FC = () => {
             duplicateRequest()
           }}
         >
-          <div css={modalTitleStyle}>{`${t("duplicate")} '${appsList[currentAppIdx].appName
-            }'`}</div>
+          <div css={modalTitleStyle}>{`${t("duplicate")} '${
+            appsList[currentAppIdx].appName
+          }'`}</div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {
