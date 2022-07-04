@@ -101,7 +101,11 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     hidden,
   } = realProps
   return (
-    <BasicWrapper tooltipText={tooltipText} hidden={hidden}>
+    <BasicWrapper
+      tooltipText={tooltipText}
+      hidden={hidden}
+      labelPosition={labelPosition}
+    >
       <Label
         label={label}
         labelAlign={labelAlign}

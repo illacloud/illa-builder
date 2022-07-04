@@ -36,7 +36,7 @@ function applyLeftLabelStyle(
 function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
   return css`
     ${baseLabelCss};
-
+    width: 100%;
     margin-bottom: 8px;
     text-align: ${alignment};
   `

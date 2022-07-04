@@ -1,6 +1,26 @@
 import { css } from "@emotion/react"
 
-export const applyBasicWrapperStyle = (hidden?: boolean) => {
+const getFlexDirection = (labelPosition: "left" | "right" | "top" = "left") => {
+  switch (labelPosition) {
+    case "left":
+      return css`
+        flex-direction: row;
+      `
+    case "right":
+      return css`
+        flex-direction: row-reverse;
+      `
+    case "top":
+      return css`
+        flex-direction: column;
+      `
+  }
+}
+
+export const applyBasicWrapperStyle = (
+  hidden?: boolean,
+  labelPosition?: "left" | "right" | "top",
+) => {
   const shapeStyle = hidden
     ? css`
         width: 0;
@@ -14,6 +34,7 @@ export const applyBasicWrapperStyle = (hidden?: boolean) => {
     ${shapeStyle};
     overflow: hidden;
     display: flex;
+    ${getFlexDirection(labelPosition)}
     justify-content: center;
     align-items: center;
   `

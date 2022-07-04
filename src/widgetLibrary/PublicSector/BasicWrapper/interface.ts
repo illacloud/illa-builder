@@ -3,4 +3,5 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 export interface BasicWrapperProps extends TooltipWrapperProps {
   children?: ReactNode
   hidden?: boolean
+  labelPosition?: "left" | "right" | "top"
 }
