@@ -17,7 +17,6 @@ export const rowCenter = css`
 `
 
 export const viewControlStyle = css`
-  gap: 12px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 
   ${rowCenter}
@@ -54,4 +53,16 @@ export function windowIconStyle(selected: boolean): SerializedStyles {
 
 export const logoCursorStyle = css`
   cursor: pointer;
+`
+
+export const windowIconBodyStyle = css`
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  margin-right: 2px;
+  border-radius: 4px;
+  &: hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
 `

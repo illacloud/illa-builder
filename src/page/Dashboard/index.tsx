@@ -77,6 +77,7 @@ export const IllaApp: FC = () => {
         },
       )
     })
+    // TODO: @zch app share link
 
     Promise.all([appList, resourceList]).then((result) => {
       if (result.includes("error")) {
