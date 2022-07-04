@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { MinusIcon, PlusIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
-import { controlStyle, numStyle, buttonStyle } from "./style"
+import { controlStyle, numStyle } from "./style"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
 import { getScale } from "@/redux/config/configSelector"
@@ -12,7 +12,7 @@ export const ZoomControl: FC = (props) => {
   return (
     <div css={controlStyle}>
       <Button
-        _css={buttonStyle}
+        colorScheme="grayBlue"
         size="small"
         onClick={() => {
           dispatch(configActions.plusScale())
@@ -21,7 +21,7 @@ export const ZoomControl: FC = (props) => {
       />
       <span css={numStyle}>{scale}%</span>
       <Button
-        _css={buttonStyle}
+        colorScheme="grayBlue"
         size="small"
         onClick={() => {
           dispatch(configActions.minusScale())
