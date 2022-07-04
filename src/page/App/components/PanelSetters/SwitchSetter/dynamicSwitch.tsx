@@ -8,6 +8,7 @@ import {
   applyCustomIconStyle,
   applyLabelWrapperStyle,
   customAndSwitchWrapperStyle,
+  dynamicSwitchInputStyle,
   dynamicSwitchWrapperStyle,
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
@@ -57,7 +58,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
         </div>
       </div>
       {customSelected && (
-        <div style={{ padding: "8px 0", width: "100%" }}>
+        <div css={dynamicSwitchInputStyle}>
           <BaseInput
             attrName={attrName}
             value={value}

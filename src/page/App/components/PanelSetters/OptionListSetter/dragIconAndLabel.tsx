@@ -1,5 +1,6 @@
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
 import { DragPointIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { get } from "lodash"
@@ -19,6 +20,8 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { widgetDisplayName, attrPath, childrenSetter } = useContext(
     OptionListSetterContext,
   )
+
+  const { t } = useTranslation()
   const executionResult = useSelector(getExecutionResult)
 
   const labelName = useMemo(() => {
@@ -56,7 +59,10 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         <span css={movableIconWrapperStyle} className="movableIconWrapper">
           <DragPointIcon />
         </span>
-        <span css={labelNameWrapperStyle}>{labelName || "No label"}</span>
+        <span css={labelNameWrapperStyle}>
+          {labelName ||
+            t("editor.inspect.setter_content.option_list.list_no_label")}
+        </span>
       </div>
     </Trigger>
   )

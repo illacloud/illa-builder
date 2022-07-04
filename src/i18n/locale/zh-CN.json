@@ -489,7 +489,8 @@
           "action_menu": {
             "delete": "Delete",
             "duplicate": "Duplicate"
-          }
+          },
+          "list_no_label": "No label"
         }
       }
     },

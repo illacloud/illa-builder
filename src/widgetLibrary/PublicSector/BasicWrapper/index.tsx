@@ -15,3 +15,4 @@ export const BasicWrapper: FC<BasicWrapperProps> = (props) => {
     </TooltipWrapper>
   )
 }
+BasicWrapper.displayName = "BasicWrapper"

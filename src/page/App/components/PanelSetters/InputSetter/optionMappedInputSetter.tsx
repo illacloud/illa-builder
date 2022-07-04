@@ -38,7 +38,7 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
         value={realInputValue(value, widgetDisplayName)}
         placeholder={placeholder}
         onChange={handleValueChange}
-        mode={"TEXT_JS"}
+        mode="TEXT_JS"
         expectedType={expectedType}
         path={getPath(attrName, widgetDisplayName)}
       />

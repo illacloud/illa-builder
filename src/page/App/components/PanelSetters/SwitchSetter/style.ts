@@ -61,3 +61,8 @@ export const applyLabelWrapperStyle = (
 ): SerializedStyles => {
   return isCustom ? doubleRowStyle : singleRowStyle
 }
+
+export const dynamicSwitchInputStyle = css`
+  padding: 8px 0;
+  width: 100%;
+`

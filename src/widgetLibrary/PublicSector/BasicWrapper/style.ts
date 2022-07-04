@@ -1,6 +1,8 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 
-const getFlexDirection = (labelPosition: "left" | "right" | "top" = "left") => {
+const getFlexDirection = (
+  labelPosition: "left" | "right" | "top" = "left",
+): SerializedStyles => {
   switch (labelPosition) {
     case "left":
       return css`
@@ -20,7 +22,7 @@ const getFlexDirection = (labelPosition: "left" | "right" | "top" = "left") => {
 export const applyBasicWrapperStyle = (
   hidden?: boolean,
   labelPosition?: "left" | "right" | "top",
-) => {
+): SerializedStyles => {
   const shapeStyle = hidden
     ? css`
         width: 0;
