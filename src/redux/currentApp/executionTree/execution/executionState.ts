@@ -33,3 +33,8 @@ export interface UpdateExecutionByDisplayNamePayload {
   displayName: string
   value: Record<string, any>
 }
+
+export interface UpdateExecutionErrorByAttrPathPayload {
+  attrPath: string
+  value: ErrorShape
+}
