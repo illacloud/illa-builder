@@ -62,6 +62,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         bindAttrName: "optionMode",
         expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "mapped",
+        isSetterSingleRow: true,
       },
       {
         id: "select-option-mapped",
