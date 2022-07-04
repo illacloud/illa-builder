@@ -19,7 +19,7 @@ import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { modalStyle } from "@/page/Dashboard/components/DashboardItemMenu/style"
-import { dashboardClossIconStyle } from "@/page/Dashboard/style"
+import { dashboardCloseIconStyle } from "@/page/Dashboard/style"
 import {
   appsContainerStyle,
   itemExtraContainerStyle,
@@ -44,13 +44,12 @@ export const DashboardApps: FC = () => {
 
   const appsList: DashboardApp[] = useSelector(getDashboardApps)
 
-  const [createNewValue, setCreateNewValue] = useState<string>("")
-  const [createLoading, setCreateNewLoading] = useState(false)
-  const [createButtonDisabled, setCreateButtonDisabled] =
-    useState<boolean>(true)
-
   // current appInfo
   const [currentAppIdx, setCurrentAppIdx] = useState<number>(0)
+  // create new state
+  const [createNewVisible, setCreateNewVisible] = useState<boolean>(false)
+  const [createNewValue, setCreateNewValue] = useState<string>("")
+  const [createLoading, setCreateNewLoading] = useState(false)
   // rename modal state
   const [renameModalVisible, setRenameModalVisible] = useState<boolean>(false)
   const [renameValue, setRenameValue] = useState<string>("")
@@ -61,14 +60,6 @@ export const DashboardApps: FC = () => {
   const [duplicateValue, setDuplicateValue] = useState<string>("")
   const [duplicateModalLoading, setDuplicateModalLoading] =
     useState<boolean>(false)
-
-  useEffect(() => {
-    if (!createNewValue) {
-      setCreateButtonDisabled(true)
-    } else {
-      setCreateButtonDisabled(false)
-    }
-  }, [createNewValue])
 
   // rename function
   const showRenameModal = () => {
@@ -148,6 +139,38 @@ export const DashboardApps: FC = () => {
     )
   }
 
+  // create new function
+  const createNewRequest = () => {
+    Api.request<DashboardApp>(
+      {
+        url: "/apps",
+        method: "POST",
+        data: {
+          appName: createNewValue,
+        },
+      },
+      (response) => {
+        dispatch(
+          dashboardAppActions.addDashboardAppReducer({
+            app: response.data,
+          }),
+        )
+        navigate(`/app/${response.data.appId}`)
+      },
+      (response) => { },
+      (error) => { },
+      (loading) => {
+        setCreateNewLoading(true)
+      },
+      (errorState) => {
+        if (errorState) {
+          Message.error({ content: t("create_fail") })
+          setCreateNewLoading(false)
+        }
+      },
+    )
+  }
+
   return (
     <>
       <div css={appsContainerStyle}>
@@ -163,68 +186,8 @@ export const DashboardApps: FC = () => {
           </Button>
           <Button
             _css={menuButtonStyle}
-            loading={createLoading}
             colorScheme="techPurple"
-            onClick={() => {
-              Modal.confirm({
-                _css: modalStyle,
-                content: (
-                  <Input
-                    css={modalInputStyle}
-                    onChange={(res) => {
-                      setCreateNewValue(res)
-                    }}
-                  />
-                ),
-                closeElement: (
-                  <div css={dashboardClossIconStyle}>
-                    <CloseIcon />
-                  </div>
-                ),
-                footerAlign: "right",
-                title: t("dashboard.app.create_app"),
-                okButtonProps: {
-                  colorScheme: "techPurple",
-                  // TODO: verify
-                  // disabled: createButtonDisabled
-                },
-                closable: true,
-                hideCancel: true,
-                autoFocus: false,
-                onOk: () => {
-                  if (!createNewValue) {
-                    Message.error(t("dashboard.app.name_empty"))
-                  }
-                  Api.request<DashboardApp>(
-                    {
-                      url: "/apps",
-                      method: "POST",
-                      data: {
-                        appName: createNewValue,
-                      },
-                    },
-                    (response) => {
-                      dispatch(
-                        dashboardAppActions.addDashboardAppReducer({
-                          app: response.data,
-                        }),
-                      )
-                      navigate(`/app/${response.data.appId}`)
-                    },
-                    (response) => {},
-                    (error) => {},
-                    (loading) => {
-                      setCreateNewLoading(loading)
-                    },
-                    (errorState) => {
-                      if (errorState) {
-                        Message.error({ content: t("create_fail") })
-                      }
-                    },
-                  )
-                },
-              })
-            }}
+            onClick={() => { setCreateNewVisible(true) }}
           >
             {t("create_new_app")}
           </Button>
@@ -295,6 +258,40 @@ export const DashboardApps: FC = () => {
         )}
         {appsList.length == 0 && <Empty paddingVertical="120px" />}
       </div>
+      {/* create new Modal */}
+      <Modal
+        simple
+        closable
+        hideCancel
+        autoFocus={false}
+        footerAlign="right"
+        _css={modalStyle}
+        okButtonProps={{
+          colorScheme: "techPurple",
+        }}
+        closeElement={
+          <div css={dashboardCloseIconStyle} onClick={() => { console.log('1') }}>
+            <CloseIcon />
+          </div>
+        }
+        visible={createNewVisible}
+        confirmLoading={createLoading}
+        onOk={() => {
+          if (!createNewValue) {
+            Message.error(t("dashboard.app.name_empty"))
+            return
+          }
+          createNewRequest()
+        }}
+      >
+        <div css={modalTitleStyle}>{t("dashboard.app.create_app")}</div>
+        <Input
+          css={modalInputStyle}
+          onChange={(res) => {
+            setCreateNewValue(res)
+          }}
+        />
+      </Modal>
       {/* Rename Modal */}
       {appsList.length !== 0 && (
         <Modal
@@ -309,7 +306,7 @@ export const DashboardApps: FC = () => {
             colorScheme: "techPurple",
           }}
           closeElement={
-            <div css={dashboardClossIconStyle}>
+            <div css={dashboardCloseIconStyle}>
               <CloseIcon />
             </div>
           }
@@ -322,7 +319,7 @@ export const DashboardApps: FC = () => {
             renameRequest()
           }}
         >
-          <div css={modalTitleStyle}>{t("rename")}</div>
+          <div css={modalTitleStyle}>{t("dashboard.app.create_app")}</div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {
@@ -345,7 +342,7 @@ export const DashboardApps: FC = () => {
             colorScheme: "techPurple",
           }}
           closeElement={
-            <div css={dashboardClossIconStyle}>
+            <div css={dashboardCloseIconStyle}>
               <CloseIcon />
             </div>
           }
@@ -360,9 +357,8 @@ export const DashboardApps: FC = () => {
             duplicateRequest()
           }}
         >
-          <div css={modalTitleStyle}>{`${t("duplicate")} '${
-            appsList[currentAppIdx].appName
-          }'`}</div>
+          <div css={modalTitleStyle}>{`${t("duplicate")} '${appsList[currentAppIdx].appName
+            }'`}</div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {

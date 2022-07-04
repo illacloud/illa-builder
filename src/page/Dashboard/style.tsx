@@ -45,7 +45,7 @@ export const errorDescriptionStyle = css`
   margin-bottom: 24px;
 `
 
-export const dashboardClossIconStyle = css`
+export const dashboardCloseIconStyle = css`
   position: absolute;
   line-height: 0;
   font-size: 14px;

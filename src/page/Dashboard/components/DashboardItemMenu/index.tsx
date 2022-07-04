@@ -9,7 +9,7 @@ import { Api } from "@/api/base"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
-import { dashboardClossIconStyle } from "@/page/Dashboard/style"
+import { dashboardCloseIconStyle } from "@/page/Dashboard/style"
 import {
   triggerContentContainerCss,
   applyTriggerContentItemStyle,
@@ -70,7 +70,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             },
             closable: true,
             closeElement: (
-              <div css={dashboardClossIconStyle}>
+              <div css={dashboardCloseIconStyle}>
                 <CloseIcon />
               </div>
             ),
