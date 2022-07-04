@@ -30,7 +30,6 @@ import { startAppListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
-import { Loading } from "@illa-design/loading"
 import { Api } from "@/api/base"
 import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -40,8 +39,8 @@ import { executionActions } from "@/redux/currentApp/executionTree/execution/exe
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
-import { Skeleton } from "@illa-design/skeleton"
 import { useParams } from "react-router-dom"
+import { updateComponentReducer } from "@/redux/currentApp/editor/components/componentsReducer"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -97,9 +96,7 @@ export const Editor: FC = () => {
       },
       (response) => {
         dispatch(
-          componentsActions.addOrUpdateComponentReducer(
-            response.data.components,
-          ),
+          componentsActions.updateComponentReducer(response.data.components),
         )
         dispatch(actionActions.updateActionListReducer(response.data.actions))
         dispatch(
@@ -120,11 +117,11 @@ export const Editor: FC = () => {
             response.data.dottedLineSquareState,
           ),
         )
-        dispatch(
-          displayNameActions.updateDisplayNameReducer(
-            response.data.displayNameState,
-          ),
-        )
+        // dispatch(
+        //   displayNameActions.updateDisplayNameReducer(
+        //     response.data.displayNameState,
+        //   ),
+        // )
       },
       (e) => {},
       (e) => {},
@@ -138,11 +135,7 @@ export const Editor: FC = () => {
     <DndProvider backend={HTML5Backend}>
       <GlobalDataProvider>
         <div css={editorContainerStyle}>
-          {loadingState && (
-            <div css={loadingStyle}>
-              <Skeleton />
-            </div>
-          )}
+          {loadingState && <div css={loadingStyle}></div>}
           {!loadingState && (
             <>
               <PageNavBar css={navbarStyle} />

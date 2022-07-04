@@ -8,7 +8,7 @@ export const addOrUpdateDottedLineSquareReducer: CaseReducer<
   DottedLineSquareState,
   PayloadAction<DottedLineSquare>
 > = (state, action) => {
-  state.map[action.payload.displayName] = action.payload
+  state[action.payload.displayName] = action.payload
 }
 
 export const updateDottedLineSquareReducer: CaseReducer<
@@ -22,5 +22,5 @@ export const removeDottedLineSquareReducer: CaseReducer<
   DottedLineSquareState,
   PayloadAction<string>
 > = (state, action) => {
-  delete state.map[action.payload]
+  delete state[action.payload]
 }
