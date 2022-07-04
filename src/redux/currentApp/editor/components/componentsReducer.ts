@@ -49,6 +49,13 @@ export const bringToFrontReducer: CaseReducer<
   })
 }
 
+export const updateComponentReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentsState>
+> = (state, action) => {
+  return action.payload
+}
+
 export const copyComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode>

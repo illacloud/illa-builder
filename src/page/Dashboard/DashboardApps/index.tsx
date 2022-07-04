@@ -6,7 +6,7 @@ import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
-import { MoreIcon, CloseIcon } from "@illa-design/icon"
+import { CloseIcon, MoreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { Empty } from "@illa-design/empty"
 import { Message } from "@illa-design/message"
@@ -22,15 +22,15 @@ import { modalStyle } from "@/page/Dashboard/components/DashboardItemMenu/style"
 import { dashboardCloseIconStyle } from "@/page/Dashboard/style"
 import {
   appsContainerStyle,
+  editButtonStyle,
+  hoverableStyle,
   itemExtraContainerStyle,
   itemMenuButtonStyle,
+  listItemStyle,
+  listItemTitleStyle,
   listTitleContainerStyle,
   listTitleStyle,
   menuButtonStyle,
-  hoverableStyle,
-  listItemStyle,
-  editButtonStyle,
-  listItemTitleStyle,
   modalInputStyle,
   modalTitleStyle,
 } from "./style"
@@ -256,7 +256,9 @@ export const DashboardApps: FC = () => {
                       .utc(item.lastModifiedAt)
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
-                      navigate(`/app/${item.appId}`)
+                      navigate(
+                        `/app/${item.appId}/version/${item.currentVersionId}`,
+                      )
                     }}
                   />
                 </ListItem>
