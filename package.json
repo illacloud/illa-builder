@@ -8,7 +8,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "yarn build-all && vite --mode cloud",
-    "build": "yarn build-all && vite build --mode cloud",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 yarn build-all && vite build --mode cloud",
     "build-self": "yarn build-all && vite build --mode self",
     "build-all": "yarn turbo run build",
     "preview": "yarn build-all && vite preview",
