@@ -11,6 +11,7 @@ import {
   resetIconStyle,
 } from "./style"
 import { ResetIcon } from "@illa-design/icon"
+import { useTranslation } from "react-i18next"
 
 export const ListSetter: FC<ListSetterProps> = (props) => {
   const {
@@ -22,6 +23,8 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     widgetDisplayName,
     panelConfig,
   } = props
+
+  const { t } = useTranslation()
 
   const childrenSetterAttrPathMapDefaultValue = useMemo(() => {
     const childrenSetterAttrPathMap: Record<string, any> = {}
@@ -61,7 +64,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
             <span css={resetIconStyle}>
               <ResetIcon />
             </span>
-            <span>reset</span>
+            <span>{t("editor.inspect.setter_content.list_setter.reset")}</span>
           </div>
         )}
       </div>
