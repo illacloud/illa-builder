@@ -85,7 +85,12 @@ export const DashboardTitleBar: FC = () => {
       }
       suffix={
         <div css={navBarAvatarContainerStyle} key="suffix">
-          <Dropdown position="br" trigger="click" dropList={<SettingTrigger />}>
+          <Dropdown
+            position="br"
+            trigger="click"
+            triggerProps={{ closeDelay: 0, openDelay: 0 }}
+            dropList={<SettingTrigger />}
+          >
             <div>
               <Avatar colorScheme="techPurple" size="small" />
               <DownIcon

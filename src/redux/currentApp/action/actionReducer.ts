@@ -4,7 +4,7 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 
-export const addActionListReducer: CaseReducer<
+export const updateActionListReducer: CaseReducer<
   ActionListState,
   PayloadAction<ActionItem[]>
 > = (_, action) => {

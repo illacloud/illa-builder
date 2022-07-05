@@ -14,7 +14,7 @@ export function updateDottedLineSquareData(
 ) {
   // reduce render
   const currentDrag =
-    store.getState().currentApp.editor.dottedLineSquare.map[
+    store.getState().currentApp.editor.dottedLineSquare[
       componentNode.displayName
     ]
   if (currentDrag !== null && currentDrag !== undefined) {
@@ -48,7 +48,7 @@ export function updateDragShadowData(
 ) {
   // reduce render
   const currentDrag =
-    store.getState().currentApp.editor.dragShadow.map[componentNode.displayName]
+    store.getState().currentApp.editor.dragShadow[componentNode.displayName]
   if (currentDrag !== null && currentDrag !== undefined) {
     if (renderX == currentDrag.renderX && renderY == currentDrag.renderY) {
       return

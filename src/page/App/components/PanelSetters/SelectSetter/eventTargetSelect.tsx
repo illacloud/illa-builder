@@ -30,7 +30,7 @@ export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
       <Select
         options={finalOptions()}
         size="small"
-        value={panelConfig[attrName]}
+        value={panelConfig?.[attrName]}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}

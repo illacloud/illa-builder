@@ -10,7 +10,6 @@ export const publicPaddingStyle = css`
 export const baseLabelStyle = css`
   font-size: 14px;
   font-weight: 500;
-  line-height: 22px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -19,6 +18,9 @@ export const baseLabelStyle = css`
 export const ListLabelStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export function applyLabelStyle(isInList?: boolean): SerializedStyles {
@@ -111,23 +113,18 @@ export function applySetterWrapperStyle(
   }
   if (isSetterSingleRow) {
     return css`
-      margin: 8px 0;
       ${publicPaddingStyle}
     `
   }
 
   const basicStyle = css`
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    height: ${isInList ? "40px" : "48px"};
-  `
-  const wrappedStyle = css`
-    height: auto;
   `
   return css`
     ${publicPaddingStyle};
-    ${isSetterSingleRowWrapper ? wrappedStyle : basicStyle};
+    ${basicStyle};
   `
 }
 
@@ -186,3 +183,24 @@ export const deleteActionMenuItemStyle = css`
 export const ghostEmptyStyle = css`
   margin-top: 8px;
 `
+
+export const applySetterPublicWrapperStyle = (
+  isInList: boolean = false,
+  isSetterSingleRowWrapper: boolean = false,
+) => {
+  const widthStyle = isSetterSingleRowWrapper
+    ? css`
+        width: 100%;
+      `
+    : css``
+  return isInList
+    ? css`
+        min-height: 40px;
+        ${widthStyle}
+      `
+    : css`
+        padding: 8px 0;
+        min-height: 48px;
+        ${widthStyle}
+      `
+}

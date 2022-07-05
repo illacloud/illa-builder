@@ -1,18 +1,28 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
+import {
+  HorizontalAlign,
+  VerticalAlign,
+} from "@/widgetLibrary/TextWidget/interface"
 
-export const textContainerCss = css`
-  display: inline-flex;
-  width: 100%;
-  height: 100%;
+export const applyTextContainerStyle = (
+  horizontalAlign: HorizontalAlign = "start",
+  verticalAlign: VerticalAlign = "start",
+): SerializedStyles => {
+  return css`
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: ${horizontalAlign};
+    align-items: ${verticalAlign};
+    p {
+      margin: 0;
+    }
+  `
+}
 
-  p {
-    margin: 0;
-  }
-`
-
-export function applyTextCss(
+export function applyTextStyle(
   textColor?: string,
   linkColor?: string,
   backgroundColor?: string,
@@ -23,11 +33,11 @@ export function applyTextCss(
     colorSchemes.includes(backgroundColor)
       ? globalColor(`--${illaPrefix}-${backgroundColor}-01`)
       : "transparent"};
-    ${applyLinkCss(linkColor)}
+    ${applyLinkStyle(linkColor)}
   `
 }
 
-export function applyLinkCss(linkColor?: string): SerializedStyles {
+export function applyLinkStyle(linkColor?: string): SerializedStyles {
   return linkColor
     ? css`
         a {

@@ -1,17 +1,35 @@
-import { FC, useCallback, useState } from "react"
-import { Modal } from "@/page/App/components/PanelSetters/OptionListSetter/modal"
-import {
-  labelNameAndIconCss,
-  labelNameWrapper,
-  movableIconWrapperCss,
-} from "@/page/App/components/PanelSetters/OptionListSetter/style"
-import { Trigger } from "@illa-design/trigger"
-import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import { FC, useCallback, useContext, useMemo, useState } from "react"
+import { useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
 import { DragPointIcon } from "@illa-design/icon"
+import { Trigger } from "@illa-design/trigger"
+import { get } from "lodash"
+import {
+  labelNameAndIconStyle,
+  labelNameWrapperStyle,
+  movableIconWrapperStyle,
+} from "@/page/App/components/PanelSetters/OptionListSetter/style"
+import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { label, value, index, disabled, handleUpdateItem } = props
+  const { index } = props
   const [modalVisible, setModalVisible] = useState(false)
+  const { widgetDisplayName, attrPath, childrenSetter } = useContext(
+    OptionListSetterContext,
+  )
+
+  const { t } = useTranslation()
+  const executionResult = useSelector(getExecutionResult)
+
+  const labelName = useMemo(() => {
+    return get(
+      executionResult,
+      `${widgetDisplayName}.${attrPath}.${index}.label`,
+    )
+  }, [executionResult, widgetDisplayName, attrPath, index])
 
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
@@ -21,14 +39,12 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       colorScheme="white"
       popupVisible={modalVisible}
       content={
-        <Modal
+        <BaseModal
           title="Edit Options"
-          label={label}
-          value={value}
-          index={index}
-          disabled={disabled}
-          handleUpdateItem={handleUpdateItem}
           handleCloseModal={handleCloseModal}
+          attrPath={`${attrPath}.${index}`}
+          widgetDisplayName={widgetDisplayName}
+          childrenSetter={childrenSetter}
         />
       }
       trigger="click"
@@ -39,11 +55,14 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         setModalVisible(visible)
       }}
     >
-      <div css={labelNameAndIconCss}>
-        <span css={movableIconWrapperCss} className="movableIconWrapper">
+      <div css={labelNameAndIconStyle}>
+        <span css={movableIconWrapperStyle} className="movableIconWrapper">
           <DragPointIcon />
         </span>
-        <span css={labelNameWrapper}>{label || value || "No label"}</span>
+        <span css={labelNameWrapperStyle}>
+          {labelName ||
+            t("editor.inspect.setter_content.option_list.list_no_label")}
+        </span>
       </div>
     </Trigger>
   )

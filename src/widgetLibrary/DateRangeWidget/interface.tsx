@@ -1,17 +1,10 @@
 import { ReactNode } from "react"
-import {
-  CommonRangeProps,
-  DatePickerCalendarValue,
-} from "@illa-design/date-picker"
-import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { CommonRangeProps } from "@illa-design/date-picker"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedDateRangeProps
-  extends LabelProps,
-    Omit<ValidateMessageProps, "value">,
-    Pick<TooltipWrapperProps, "tooltipText">,
-    Pick<CommonRangeProps, "disabled" | "readOnly"> {
+  extends Omit<ValidateMessageProps, "value">,
+    Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {
   startValue: string
   endValue: string
   startPlaceholder?: string
@@ -25,8 +18,5 @@ export interface WrappedDateRangeProps
   afterText?: string // TODO: not support yet
   minDate?: string
   maxDate?: string
-  styles?: {
-    colorScheme?: CommonRangeProps["colorScheme"]
-  }
   handleUpdateDsl: (value: Record<string, string[]>) => void
 }

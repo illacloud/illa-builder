@@ -3,7 +3,7 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
-  displayName: "Switch",
+  displayName: "switch",
   widgetName: i18n.t("widget.switch.name"),
   h: 5,
   w: 10,
@@ -14,9 +14,7 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    width: "200px",
-    styles: {
-      colorScheme: "blue",
-    },
+    labelWidth: "{{33}}",
+    colorScheme: "blue",
   },
 }

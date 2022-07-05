@@ -1,7 +1,5 @@
 import { forwardRef, useImperativeHandle, useMemo } from "react"
 import { Button } from "@illa-design/button"
-import { Wrapper } from "@/widgetLibrary/PublicSector/Wrapper"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { WrappedButtonProps } from "./interface"
 import { applyButtonLayoutStyle } from "./style"
 
@@ -19,8 +17,7 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
       borderRadius,
       loading,
       alignment,
-      tooltipText,
-      styles,
+      colorScheme,
     } = props
 
     // TODOS : P1,wait PM
@@ -44,32 +41,25 @@ export const WrappedButton = forwardRef<any, WrappedButtonProps>(
     // }, [variant, borderColor])
 
     return (
-      <TooltipWrapper
-        tooltipText={tooltipText}
-        disabled={!tooltipText}
-        position="tl"
-      >
-        <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
-          <Wrapper alignment="fullWidth">
-            <Button
-              disabled={disabled}
-              variant={variant}
-              autoFullVertically
-              autoFullHorizontal
-              buttonRadius={borderRadius}
-              leftIcon={leftIcon}
-              rightIcon={rightIcon}
-              // borderColor={_borderColor}
-              // backgroundColor={backgroundColor}
-              // textColor={_textColor}
-              colorScheme={styles?.colorScheme}
-              loading={loading}
-            >
-              {text}
-            </Button>
-          </Wrapper>
-        </div>
-      </TooltipWrapper>
+      <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
+        <Button
+          disabled={disabled}
+          variant={variant}
+          autoFullVertically
+          autoFullHorizontal={alignment === "fullWidth"}
+          buttonRadius={borderRadius}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          // borderColor={_borderColor}
+          // backgroundColor={backgroundColor}
+          // textColor={_textColor}
+          colorScheme={colorScheme}
+          loading={loading}
+          fullWidth={alignment === "fullWidth"}
+        >
+          {text}
+        </Button>
+      </div>
     )
   },
 )

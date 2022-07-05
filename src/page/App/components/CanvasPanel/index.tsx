@@ -25,6 +25,7 @@ function applyCanvasTree(
   if (componentNode == null) {
     return null
   }
+  console.log(componentNode)
   switch (componentNode.containerType) {
     case "EDITOR_DOT_PANEL":
       return (

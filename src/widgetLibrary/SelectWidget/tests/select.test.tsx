@@ -16,9 +16,7 @@ test("Text renders correctly", () => {
     <WrappedSelect
       required
       value="Beijing"
-      label="select"
       placeholder="test-WrappedSelect"
-      labelPosition="left"
       options={options}
       handleUpdateDsl={handleChange}
     />,

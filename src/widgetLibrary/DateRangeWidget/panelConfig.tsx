@@ -2,6 +2,7 @@ import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -59,12 +60,14 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-range-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-range-label-position",
@@ -97,6 +100,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -138,6 +142,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "showClear",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date-range-adornments-tooltip",
@@ -155,6 +160,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-range-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -170,6 +176,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },

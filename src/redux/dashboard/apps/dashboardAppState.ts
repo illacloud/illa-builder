@@ -1,5 +1,6 @@
 export interface DashboardAppsState {
   list: DashboardApp[]
+  url: string
 }
 
 export interface DashboardApp {
@@ -11,4 +12,5 @@ export interface DashboardApp {
 
 export const DashboardAppsInitialState: DashboardAppsState = {
   list: [],
+  url: "",
 }

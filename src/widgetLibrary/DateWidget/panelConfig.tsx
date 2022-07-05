@@ -2,6 +2,7 @@ import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DATE_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -13,30 +14,35 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-basic-Format",
         labelName: i18n.t("editor.inspect.setter_label.format"),
         attrName: "dateFormat",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-basic-placeholder",
         labelName: i18n.t("editor.inspect.setter_label.placeholder"),
         attrName: "placeholder",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-basic-max-date",
         labelName: i18n.t("editor.inspect.setter_label.max_date"),
         attrName: "maxDate",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-basic-min-date",
         labelName: i18n.t("editor.inspect.setter_label.min_date"),
         attrName: "minDate",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -49,12 +55,14 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "date-label-position",
@@ -87,6 +95,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -101,6 +110,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "loading",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date-interaction-disabled",
@@ -108,13 +118,15 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date-interaction-readonly",
         labelName: i18n.t("editor.inspect.setter_label.read_only"),
         labelDesc: "xxxxx",
-        attrName: "readonly",
+        attrName: "readOnly",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -128,12 +140,14 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "showClear",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date-adornments-tooltip",
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -145,6 +159,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         id: "input-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -153,6 +168,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "custom rule",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "input-validation-hide-message",
@@ -160,6 +176,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
@@ -174,6 +191,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },

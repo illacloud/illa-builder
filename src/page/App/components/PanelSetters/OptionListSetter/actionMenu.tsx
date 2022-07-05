@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent } from "react"
+import { FC, SyntheticEvent, useContext } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import {
@@ -10,9 +10,13 @@ import {
   baseActionMenuItemStyle,
   deleteActionMenuItemStyle,
 } from "@/page/App/components/InspectPanel/style"
+import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 
 export const ActionMenu: FC<ActionMenuProps> = (props) => {
-  const { index, handleCopyItem, handleCloseMode, handleDeleteItem } = props
+  const { index, handleCloseMode } = props
+  const { handleCopyOptionItem, handleDeleteOptionItem } = useContext(
+    OptionListSetterContext,
+  )
   const { t } = useTranslation()
 
   const handleClickMenuItem = (e: SyntheticEvent<EventTarget>) => {
@@ -22,11 +26,11 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
     const key = e.target.dataset["key"]
     switch (key) {
       case ActionType.DUPLICATE: {
-        handleCopyItem(index)
+        handleCopyOptionItem(index)
         break
       }
       case ActionType.DELETE: {
-        handleDeleteItem(index)
+        handleDeleteOptionItem(index)
         break
       }
     }
