@@ -180,44 +180,46 @@ export const ResetPassword: FC = () => {
         </section>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
-            {t("user.forgot_password.fields.password")}
+            {t("user.forgot_password.fields.newPassword")}
           </label>
           <div css={gridValidStyle}>
             <Controller
-              name="password"
+              name="newPassword"
               control={control}
               render={({ field }) => (
                 <Password
                   {...field}
                   borderColor="techPurple"
                   size="large"
-                  error={!!errors.password}
+                  error={!!errors.newPassword}
                   variant="fill"
-                  placeholder={t("user.forgot_password.placeholder.password")}
+                  placeholder={t(
+                    "user.forgot_password.placeholder.newPassword",
+                  )}
                 />
               )}
               rules={{
                 required: t(
-                  "user.forgot_password.error_message.password.require",
+                  "user.forgot_password.error_message.newPassword.require",
                 ),
                 maxLength: {
                   value: 20,
                   message: t(
-                    "user.forgot_password.error_message.password.length",
+                    "user.forgot_password.error_message.newPassword.length",
                   ),
                 },
                 minLength: {
                   value: 6,
                   message: t(
-                    "user.forgot_password.error_message.password.length",
+                    "user.forgot_password.error_message.newPassword.length",
                   ),
                 },
               }}
             />
-            {errors.password && (
+            {errors.newPassword && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.password.message}
+                {errors.newPassword.message}
               </div>
             )}
           </div>

@@ -10,6 +10,7 @@ export interface LoginResult {
   username: string
   email: string
   createdAt: string
+  language: string
 }
 
 export interface LocationState {

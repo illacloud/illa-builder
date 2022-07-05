@@ -110,7 +110,7 @@
       "title": "Reset Password",
       "fields": {
         "email": "Email",
-        "password": "New Password",
+        "newPassword": "New Password",
         "verificationCode": "Verification code"
       },
       "actions": {
@@ -125,7 +125,7 @@
       "placeholder": {
         "email": "Enter your email",
         "verificationCode": "Please enter verification code",
-        "password": "Enter your new password(6~20 characters)"
+        "newPassword": "Enter your new password(6~20 characters)"
       },
       "error_message": {
         "email": {
@@ -138,7 +138,7 @@
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
         },
-        "password": {
+        "newPassword": {
           "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         }

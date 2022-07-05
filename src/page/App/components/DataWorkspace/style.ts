@@ -1,11 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const splitLineStyle: SerializedStyles = css`
-  height: 1px;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
-
 export const itemNameStyle: SerializedStyles = css`
   font-size: 12px;
   font-weight: 500;

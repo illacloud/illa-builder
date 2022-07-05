@@ -47,7 +47,7 @@ export const Login: FC = () => {
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
             userName: res.data.username,
-            language: "English",
+            language: res.data.language === "zh-cn" ? "简体中文" : "English",
             userAvatar: "",
           }),
         )

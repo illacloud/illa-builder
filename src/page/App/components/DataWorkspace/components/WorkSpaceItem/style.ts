@@ -1,10 +1,4 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-
-export const itemTitleStyle: SerializedStyles = css`
-  font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-`
 
 export const gridCollapseContentStyle: SerializedStyles = css`
   display: grid;
@@ -16,5 +10,6 @@ export function applyTreeContainerStyle(
 ): SerializedStyles {
   return css`
     padding-bottom: ${showPadding ? "16px" : "0"};
+    font-size: 0;
   `
 }

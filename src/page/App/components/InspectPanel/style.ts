@@ -204,8 +204,3 @@ export const applySetterPublicWrapperStyle = (
         ${widthStyle}
       `
 }
-
-// when panel bar has no children,prevent expanding
-export const panelBarNoFontSizeStyle = css`
-  font-size: 0;
-`
