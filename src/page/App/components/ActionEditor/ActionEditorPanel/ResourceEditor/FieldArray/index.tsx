@@ -95,7 +95,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
         />
         <div
           css={deleteIconWrapperStyle}
-          onClick={() => onRemove?.(field._key)}
+          onClick={() => {
+            onRemove?.(field._key)
+          }}
         >
           <DeleteIcon size="12px" />
         </div>
@@ -121,3 +123,5 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
     </div>
   )
 }
+
+FieldArray.displayName = "FieldArray"

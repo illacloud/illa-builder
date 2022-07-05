@@ -41,7 +41,8 @@ export function extractParamFromPath(path?: string): Params[] {
   return (
     urlParamsStr?.split("&").map((param) => {
       const equalMarkIndex = param.indexOf("=")
-      let key = "", value = ""
+      let key = "",
+        value = ""
 
       if (equalMarkIndex !== -1) {
         key = param.slice(0, equalMarkIndex)
