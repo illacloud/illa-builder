@@ -33,6 +33,8 @@ export const colorSelectPreviewNameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   margin-left: 8px;
   display: inline-block;
+  width: 56px;
+  font-size: 12px;
 `
 
 export const colorSelectMenuWrapperStyle = css`

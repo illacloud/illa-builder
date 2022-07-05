@@ -39,7 +39,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           initial={false}
           transition={{ duration: 0.2 }}
         >
-          <div css={panelBarNoFontSizeStyle}>{children}</div>
+          {children}
         </motion.div>
       </AnimatePresence>
       {isOpenedState && <div css={ghostEmptyStyle} />}
