@@ -220,7 +220,7 @@ export const DashboardApps: FC = () => {
                         colorScheme="techPurple"
                         onClick={() => {
                           navigate(
-                            `/app/${item.appId}/version/${item.versionId}`,
+                            `/app/${item.appId}/version/${item.currentVersionId}`,
                           )
                         }}
                         _css={editButtonStyle}

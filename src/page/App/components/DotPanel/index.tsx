@@ -1,4 +1,5 @@
 import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react"
+import { Scrollbars } from "react-custom-scrollbars"
 import {
   DotPanelProps,
   DropCollectedInfo,
@@ -442,35 +443,37 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
       {...otherProps}
     >
-      <canvas
-        id={`${componentNode.displayName}-canvas`}
-        css={applyDotCanvasStyle(edgeWidth, showDot, 0)}
-        width={canvasWidth}
-        height={canvasHeight + edgeWidth}
-      />
-      <canvas
-        id={`${componentNode.displayName}-dotted`}
-        css={applyDotCanvasStyle(edgeWidth, showDot, 1)}
-        width={canvasWidth}
-        height={canvasHeight + edgeWidth}
-      />
-      <div
-        ref={componentsTreeRef}
-        css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
-        onClick={(e) => {
-          if (e.target == componentsTreeRef.current) {
-            dispatch(configActions.updateSelectedComponent([]))
-          }
-        }}
-      >
-        {componentTree}
-      </div>
-      <canvas
-        id={`${componentNode.displayName}-dragged`}
-        css={applyDotCanvasStyle(edgeWidth, showDot, 100)}
-        width={canvasWidth}
-        height={canvasHeight + edgeWidth}
-      />
+      <Scrollbars autoHide>
+        <canvas
+          id={`${componentNode.displayName}-canvas`}
+          css={applyDotCanvasStyle(edgeWidth, showDot, 0)}
+          width={canvasWidth}
+          height={canvasHeight + edgeWidth}
+        />
+        <canvas
+          id={`${componentNode.displayName}-dotted`}
+          css={applyDotCanvasStyle(edgeWidth, showDot, 1)}
+          width={canvasWidth}
+          height={canvasHeight + edgeWidth}
+        />
+        <div
+          ref={componentsTreeRef}
+          css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
+          onClick={(e) => {
+            if (e.target == componentsTreeRef.current) {
+              dispatch(configActions.updateSelectedComponent([]))
+            }
+          }}
+        >
+          {componentTree}
+        </div>
+        <canvas
+          id={`${componentNode.displayName}-dragged`}
+          css={applyDotCanvasStyle(edgeWidth, showDot, 100)}
+          width={canvasWidth}
+          height={canvasHeight + edgeWidth}
+        />
+      </Scrollbars>
     </div>
   )
 }

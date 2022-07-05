@@ -7,6 +7,7 @@ import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { WorkSpaceItemProps } from "./interface"
 import { applyTreeContainerStyle, itemTitleStyle } from "./style"
+import { PanelBar } from "@/page/App/components/InspectPanel/bar"
 
 export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
   const { title, dataList = [], selectedKeys, handleSelect } = props
@@ -16,7 +17,7 @@ export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
     dispatch(configActions.setExpandedKey(keys))
   }
   return (
-    <Collapse
+    /*    <Collapse
       mode="builder"
       expandIconPosition="right"
       expandIcon={<ExpandIcon />}
@@ -40,7 +41,23 @@ export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
           />
         </div>
       </CollapseItem>
-    </Collapse>
+    </Collapse>*/
+    <PanelBar title={title} saveToggleState={() => {}}>
+      <div css={applyTreeContainerStyle(dataList.length > 0)}>
+        <Tree
+          defaultExpandedKeys={expandedKeys}
+          defaultSelectedKeys={selectedKeys}
+          treeData={dataList}
+          onExpand={handleExpand}
+          onSelect={handleSelect}
+          autoExpandParent={false}
+          multiple={false}
+          size="small"
+          _mode="builder"
+          blockNode
+        />
+      </div>
+    </PanelBar>
   )
 }
 

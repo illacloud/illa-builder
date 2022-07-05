@@ -1,5 +1,6 @@
 import { FC, HTMLAttributes, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Scrollbars } from "react-custom-scrollbars"
 import { WorkSpaceItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceItem"
 import {
   getCanvas,
@@ -66,24 +67,26 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
 
   return (
     <div className={className}>
-      <WorkSpaceItem
-        title={`ACTIONS & TRANSFORMERS (${_actionList.length})`}
-        dataList={_actionList}
-        selectedKeys={[selectedAction.actionId]}
-        handleSelect={handleActionSelect}
-      />
-      <div css={splitLineStyle} />
-      <WorkSpaceItem
-        title={`COMPONENTS (${widgetList.length})`}
-        dataList={widgetList}
-        selectedKeys={selectedComponents}
-        handleSelect={handleComponentSelect}
-      />
-      <div css={splitLineStyle} />
-      <WorkSpaceItem
-        title={`GLOBALS (${_globalInfoList.length})`}
-        dataList={_globalInfoList}
-      />
+      <Scrollbars autoHide>
+        <WorkSpaceItem
+          title={`ACTIONS & TRANSFORMERS (${_actionList.length})`}
+          dataList={_actionList}
+          selectedKeys={[selectedAction.actionId]}
+          handleSelect={handleActionSelect}
+        />
+        <div css={splitLineStyle} />
+        <WorkSpaceItem
+          title={`COMPONENTS (${widgetList.length})`}
+          dataList={widgetList}
+          selectedKeys={selectedComponents}
+          handleSelect={handleComponentSelect}
+        />
+        <div css={splitLineStyle} />
+        <WorkSpaceItem
+          title={`GLOBALS (${_globalInfoList.length})`}
+          dataList={_globalInfoList}
+        />
+      </Scrollbars>
     </div>
   )
 }

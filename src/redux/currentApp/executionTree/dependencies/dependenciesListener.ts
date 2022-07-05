@@ -1,4 +1,4 @@
-import { Unsubscribe } from "@reduxjs/toolkit"
+import { Unsubscribe, isAnyOf } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { generateDependencies } from "@/utils/generators/generateDependenciesMap"
@@ -6,7 +6,7 @@ import { dependenciesActions } from "@/redux/currentApp/executionTree/dependenci
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 
 async function handleUpdateDependencies(
-  action: ReturnType<typeof componentsActions.updateComponentPropsReducer>,
+  action: unknown,
   listenerApi: AppListenerEffectAPI,
 ) {
   const rootState = listenerApi.getState()
@@ -23,7 +23,10 @@ export function setupDependenciesListeners(
 ): Unsubscribe {
   const subscriptions = [
     startListening({
-      actionCreator: componentsActions.updateComponentPropsReducer,
+      matcher: isAnyOf(
+        componentsActions.updateComponentPropsReducer,
+        componentsActions.deleteComponentNodeReducer,
+      ),
       effect: handleUpdateDependencies,
     }),
   ]

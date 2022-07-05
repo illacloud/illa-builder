@@ -40,8 +40,3 @@ export interface ActionMenuProps {
   index: number
   handleCloseMode: () => void
 }
-
-export enum ActionType {
-  DUPLICATE = "DUPLICATE",
-  DELETE = "DELETE",
-}
