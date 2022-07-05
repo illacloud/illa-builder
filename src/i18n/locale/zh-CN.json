@@ -334,7 +334,8 @@
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "action_url_path": "api/v2/endpoint.json",
+            "action_url_path_with_base_url": "api/v2/endpoint.json",
+            "action_url_path": "http://www.api.com/api/v2/endpoint.json",
             "base_url": "Use the absolute URL (e.g https://example.com)",
             "username": "用户名",
             "password": "密码",

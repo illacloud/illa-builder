@@ -66,8 +66,8 @@ function applyMediaQueryStyle(
   rightPanelVisible: boolean,
   style: SerializedStyles,
 ): SerializedStyles {
-  const MEDIA_QUERY_WIDTH = 1500
-  const WIDTH_THRESHOLD = 950
+  const MEDIA_QUERY_WIDTH = 1600
+  const WIDTH_THRESHOLD = 1000
 
   const active =
     MEDIA_QUERY_WIDTH -

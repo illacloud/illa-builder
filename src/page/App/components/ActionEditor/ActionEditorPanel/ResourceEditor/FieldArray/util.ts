@@ -55,6 +55,8 @@ export function wrappedWithKey(data: Omit<ValueType, "_key">) {
   return { ...data, _key: uuidV4() }
 }
 
-export function excludeKeyFromData(data: ValueType[]) {
-  return data.map(({ _key, ...rest }) => rest)
+export function excludeKeyAndEmptyFieldFromData(data: ValueType[]) {
+  return data
+    .filter(({ key, value }) => key !== "" && value !== "")
+    .map(({ _key, ...rest }) => rest)
 }

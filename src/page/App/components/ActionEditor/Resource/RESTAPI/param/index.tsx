@@ -17,7 +17,6 @@ import {
   configContainerStyle,
   paramGridRowContainerStyle,
   labelTextStyle,
-  applyGridColIndex,
   labelTextAlignSelfStartStyle,
   applyGridRowContainerInSmallWidthStyle,
   applyLabelTextInSmallWidthStyle,
@@ -40,8 +39,8 @@ import {
   removeArrayField,
   updateArrayField,
   wrappedWithKey,
-  excludeKeyFromData,
   getEmptyField,
+  excludeKeyAndEmptyFieldFromData,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray/util"
 import { Body } from "./Body"
 
@@ -80,9 +79,9 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     // remove `_key` when update
     onChange?.({
       ...params,
-      urlParams: excludeKeyFromData(params.urlParams),
-      headers: excludeKeyFromData(params.headers),
-      cookies: excludeKeyFromData(params.cookies),
+      urlParams: excludeKeyAndEmptyFieldFromData(params.urlParams),
+      headers: excludeKeyAndEmptyFieldFromData(params.headers),
+      cookies: excludeKeyAndEmptyFieldFromData(params.cookies),
     })
   }, 200)
 
@@ -188,9 +187,15 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
                 })
                 isEditingUrl && updateUrlParams()
               }}
-              placeholder={t(
-                "editor.action.resource.rest_api.placeholder.action_url_path",
-              )}
+              placeholder={
+                baseURL
+                  ? t(
+                      "editor.action.resource.rest_api.placeholder.action_url_path_with_base_url",
+                    )
+                  : t(
+                      "editor.action.resource.rest_api.placeholder.action_url_path",
+                    )
+              }
               borderColor="techPurple"
               addonBefore={{ render: baseURL ?? null }}
             />
