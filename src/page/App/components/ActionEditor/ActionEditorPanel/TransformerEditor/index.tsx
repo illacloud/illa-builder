@@ -1,45 +1,19 @@
-import { forwardRef, useImperativeHandle } from "react"
+import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector, useDispatch } from "react-redux"
+import { configActions } from "@/redux/config/configSlice"
 import { getSelectedAction } from "@/redux/config/configSelector"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { CodeEditor } from "@/components/CodeEditor"
-import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { TransformerEditorProps } from "./interface"
 import { transformerContainerStyle, transfomerTipsStyle } from "./style"
 
-export const TransformerEditor = forwardRef<
-  triggerRunRef,
-  TransformerEditorProps
->((props, ref) => {
+export const TransformerEditor: FC<TransformerEditorProps> = () => {
   const { t } = useTranslation()
+  const { setIsActionDirty } = useContext(ActionEditorContext)
   const dispatch = useDispatch()
   const activeActionItem = useSelector(getSelectedAction)
-
-  const { onChangeParam, onSaveParam } = props
-
-  // TODO: eval transformer
-  const run = () => {}
-
-  const saveAndRun = () => {
-    run()
-
-    dispatch(
-      actionActions.updateActionItemReducer({
-        ...activeActionItem,
-        actionTemplate: {
-          ...activeActionItem?.actionTemplate,
-          transformer: "",
-        },
-      }),
-    )
-
-    onSaveParam && onSaveParam()
-  }
-
-  useImperativeHandle(ref, () => {
-    return { run, saveAndRun }
-  })
+  const transformer = activeActionItem.actionTemplate?.transformer ?? ""
 
   return (
     <div css={transformerContainerStyle}>
@@ -47,15 +21,27 @@ export const TransformerEditor = forwardRef<
         mode="JAVASCRIPT"
         expectedType="String"
         height={"100px"}
+        value={transformer}
         placeholder={t("editor.action.resource.transformer.placeholder.tip")}
-        onChange={onChangeParam}
         lineNumbers
+        onChange={(value) => {
+          setIsActionDirty?.(true)
+          dispatch(
+            configActions.updateSelectedAction({
+              ...activeActionItem,
+              actionTemplate: {
+                ...activeActionItem.actionTemplate,
+                transformer: value,
+              },
+            }),
+          )
+        }}
       />
       <dd css={transfomerTipsStyle}>
         {t("editor.action.resource.transformer.tip.external_reference")}
       </dd>
     </div>
   )
-})
+}
 
 TransformerEditor.displayName = "TransformerEditor"

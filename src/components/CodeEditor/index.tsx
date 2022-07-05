@@ -155,8 +155,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   useEffect(() => {
     const currentValue = editor?.getValue()
-    if (value && value !== currentValue) {
-      editor?.setValue(value)
+    if (value !== currentValue) {
+      editor?.setValue(value ?? "")
     }
   }, [value])
 

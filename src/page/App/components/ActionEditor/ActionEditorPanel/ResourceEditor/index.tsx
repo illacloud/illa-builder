@@ -1,14 +1,15 @@
-import { forwardRef } from "react"
+import { FC, useContext } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Select, Option } from "@illa-design/select"
-import { PenIcon } from "@illa-design/icon"
+import { PenIcon, PlusIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 import { ResourcePanel } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/ResourcePanel"
-import { triggerRunRef } from "@/page/App/components/ActionEditor/ActionEditorPanel/interface"
+import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
 import {
   actionStyle,
   fillingStyle,
@@ -20,91 +21,120 @@ import {
   resourceBarStyle,
   resourceBarTitleStyle,
   panelScrollStyle,
+  resourceSelectOptionIconStyle,
+  resourceSelectOptionStyle,
+  resourceSelectNewOptionStyle,
+  resourceSelectOptionNewIconStyle,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
+import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ResourceEditorProps } from "./interface"
 
-export const ResourceEditor = forwardRef<triggerRunRef, ResourceEditorProps>(
-  (props, ref) => {
-    const {
-      onChangeResource,
-      onCreateResource,
-      onEditResource,
-      onChangeParam,
-      onSaveParam,
-      onRun,
-    } = props
+export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
+  const { onCreateResource, onEditResource } = props
 
-    const { t } = useTranslation()
-    const resourceList = useSelector(selectAllResource)
-    const { resourceId } = useSelector(getSelectedAction)
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const resourceList = useSelector(selectAllResource)
+  const activeActionItem = useSelector(getSelectedAction)
+  const { setIsActionDirty } = useContext(ActionEditorContext)
+  const { resourceId = "" } = activeActionItem
+  const isResourceEditable = resourceId !== ""
+  const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
 
-    const triggerOptions = [
-      {
-        label: t("editor.action.panel.option.trigger.manually"),
-        value: 0,
-      },
-      {
-        label: t("editor.action.panel.option.trigger.on_change"),
-        value: 1,
-      },
-    ]
+  const triggerOptions = [
+    {
+      label: t("editor.action.panel.option.trigger.manually"),
+      value: "manual",
+    },
+    {
+      label: t("editor.action.panel.option.trigger.on_change"),
+      value: "change",
+    },
+  ]
 
-    const isResourceEditable = resourceId !== ""
-
-    return (
-      <div css={panelScrollStyle}>
-        <div css={css(actionStyle, resourceBarStyle)}>
-          <label css={css(sectionTitleStyle, resourceBarTitleStyle)}>
-            {t("editor.action.panel.label.resource")}
-          </label>
-          <span css={fillingStyle} />
-          <Select
-            colorScheme="techPurple"
-            options={triggerOptions}
-            defaultValue={0}
-            css={css(actionSelectStyle, triggerSelectStyle)}
-          />
-
-          <Select
-            colorScheme="techPurple"
-            css={css(actionSelectStyle, resourceSelectStyle)}
-            value={resourceId}
-            onChange={onChangeResource}
-            triggerProps={{
-              autoAlignPopupWidth: false,
-            }}
-          >
-            <Option onClick={onCreateResource} isSelectOption={false}>
+  return (
+    <div css={panelScrollStyle}>
+      <div css={css(actionStyle, resourceBarStyle)}>
+        <label css={css(sectionTitleStyle, resourceBarTitleStyle)}>
+          {t("editor.action.panel.label.resource")}
+        </label>
+        <span css={fillingStyle} />
+        <Select
+          css={css(actionSelectStyle, resourceSelectStyle)}
+          value={resourceId}
+          colorScheme="techPurple"
+          onChange={(value) => {
+            setIsActionDirty?.(true)
+            dispatch(
+              configActions.updateSelectedAction({
+                ...activeActionItem,
+                resourceId: value,
+              }),
+            )
+          }}
+          triggerProps={{
+            autoAlignPopupWidth: false,
+          }}
+        >
+          <Option onClick={onCreateResource} isSelectOption={false}>
+            <span
+              css={css(resourceSelectOptionStyle, resourceSelectNewOptionStyle)}
+            >
+              <PlusIcon
+                css={css(
+                  resourceSelectOptionIconStyle,
+                  resourceSelectOptionNewIconStyle,
+                )}
+              />
               {t("editor.action.panel.option.resource.new")}
-            </Option>
-            <Divider />
-            {resourceList &&
-              resourceList.map(({ resourceId: id, resourceName: name }) => (
-                <Option value={id} key={id}>
+            </span>
+          </Option>
+          <Divider />
+          {resourceList?.map(
+            ({ resourceId: id, resourceName: name, resourceType }) => (
+              <Option value={id} key={id} isSelectOption>
+                <span css={resourceSelectOptionStyle}>
+                  <ActionTypeIcon
+                    actionType={resourceType}
+                    css={resourceSelectOptionIconStyle}
+                  />
                   {name}
-                </Option>
-              ))}
-          </Select>
-          <div
-            css={applyEditIconStyle(!isResourceEditable)}
-            onClick={() =>
-              onEditResource && onEditResource(resourceId as string)
-            }
-          >
-            <PenIcon />
-          </div>
+                </span>
+              </Option>
+            ),
+          )}
+        </Select>
+        <div
+          css={applyEditIconStyle(!isResourceEditable)}
+          onClick={() => onEditResource?.(resourceId as string)}
+        >
+          <PenIcon />
         </div>
-        <Divider />
-        <ResourcePanel
-          ref={ref}
-          resourceId={resourceId}
-          onChange={onChangeParam}
-          onSave={onSaveParam}
-          onRun={onRun}
+
+        <Select
+          value={triggerMode}
+          colorScheme="techPurple"
+          onChange={(value) => {
+            setIsActionDirty?.(true)
+            dispatch(
+              configActions.updateSelectedAction({
+                ...activeActionItem,
+                actionTemplate: {
+                  ...activeActionItem.actionTemplate,
+                  triggerMode: value,
+                },
+              }),
+            )
+          }}
+          options={triggerOptions}
+          defaultValue={0}
+          css={css(actionSelectStyle, triggerSelectStyle)}
         />
       </div>
-    )
-  },
-)
+      <Divider />
+      <ResourcePanel resourceId={resourceId} />
+    </div>
+  )
+}
 
 ResourceEditor.displayName = "ResourceEditor"

@@ -1,11 +1,10 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
-import { v4 as uuidv4 } from "uuid"
-import { PlusIcon, DeleteIcon } from "@illa-design/icon"
+import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { Select } from "@illa-design/select"
 import { CodeEditor } from "@/components/CodeEditor"
-import { FieldArrayProps, ValueType } from "./interface"
+import { FieldArrayProps } from "./interface"
 import {
   deleteIconWrapperStyle,
   fieldItemStyle,
@@ -16,36 +15,31 @@ import {
 } from "./style"
 
 export const FieldArray: FC<FieldArrayProps> = (props) => {
-  const { hasType, onChange } = props
+  const {
+    hasType,
+    onChange,
+    value: fields = [],
+    typeOptions,
+    autoNewField,
+    onAdd,
+    onRemove,
+  } = props
 
   const { t } = useTranslation()
 
-  const getEmptyField = () => {
-    return hasType
-      ? { key: "", type: "text", value: "", _key: uuidv4() }
-      : { key: "", value: "", _key: uuidv4() }
-  }
-  const [fields, setFields] = useState([getEmptyField()])
-  const typeOptions = [
-    { value: "text", label: "TEXT" },
-    { value: "file", label: "File" },
-  ]
+  function autoAddField(index: number) {
+    if (!autoNewField) {
+      return
+    }
 
-  function updateField(
-    index: number,
-    field: "key" | "type" | "value",
-    value: string,
-  ) {
-    const fieldsCopy = [...fields]
-    fieldsCopy[index][field] = value
-    setFields(fieldsCopy)
-
-    onChange && onChange(fields.map(({ _key, ...rest }) => rest as ValueType))
+    if (index === fields.length - 1) {
+      onAdd?.()
+    }
   }
 
-  const fieldList = fields.map(({ type, _key }, index) => {
+  const fieldList = fields.map((field, index) => {
     return (
-      <div css={fieldItemStyle} key={_key}>
+      <div css={fieldItemStyle} key={field._key}>
         {hasType ? (
           <>
             <CodeEditor
@@ -54,15 +48,22 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               height="32px"
               placeholder="key"
               css={fieldItemKeyStyle}
-              onChange={(v) => updateField(index, "key", v)}
+              value={field.key}
+              onChange={(v) => {
+                onChange?.({ ...field, key: v })
+                autoAddField(index)
+              }}
             />
             <Select
               colorScheme="techPurple"
-              value={type}
+              value={field.type}
               options={typeOptions}
               css={fieldItemTypeStyle}
               size="small"
-              onChange={(v) => updateField(index, "type", v)}
+              onChange={(v) => {
+                onChange?.({ ...field, type: v })
+                autoAddField(index)
+              }}
             />
           </>
         ) : (
@@ -71,8 +72,12 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             expectedType="String"
             height="32px"
             placeholder="key"
+            value={field.key}
             css={fieldItemKeyStyle}
-            onChange={(v) => updateField(index, "key", v)}
+            onChange={(v) => {
+              onChange?.({ ...field, key: v })
+              autoAddField(index)
+            }}
           />
         )}
 
@@ -81,44 +86,42 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           expectedType="String"
           height="32px"
           placeholder="value"
+          value={field.value}
           css={fieldItemValueStyle}
-          onChange={(v) => updateField(index, "value", v)}
+          onChange={(v) => {
+            onChange?.({ ...field, value: v })
+            autoAddField(index)
+          }}
         />
-        <div css={deleteIconWrapperStyle} onClick={() => removeField(index)}>
+        <div
+          css={deleteIconWrapperStyle}
+          onClick={() => {
+            onRemove?.(field._key)
+          }}
+        >
           <DeleteIcon size="12px" />
         </div>
       </div>
     )
   })
 
-  function addNewField() {
-    setFields([...fields, getEmptyField()])
-  }
-
-  function removeField(index: number) {
-    const fieldsCopy = fields.slice(0)
-
-    if (fieldsCopy.length === 1) {
-      setFields([getEmptyField()])
-      return
-    }
-    fieldsCopy.splice(index, 1)
-    setFields(fieldsCopy)
-  }
-
   return (
     <div>
       {fieldList}
-      <Button
-        variant="text"
-        size="medium"
-        colorScheme="techPurple"
-        leftIcon={<PlusIcon />}
-        _css={newButtonStyle}
-        onClick={addNewField}
-      >
-        {t("editor.action.panel.btn.new")}
-      </Button>
+      {!autoNewField && (
+        <Button
+          variant="text"
+          size="medium"
+          colorScheme="techPurple"
+          leftIcon={<AddIcon />}
+          _css={newButtonStyle}
+          onClick={onAdd}
+        >
+          {t("editor.action.panel.btn.new")}
+        </Button>
+      )}
     </div>
   )
 }
+
+FieldArray.displayName = "FieldArray"
