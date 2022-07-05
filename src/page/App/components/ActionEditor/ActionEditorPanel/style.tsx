@@ -7,6 +7,7 @@ export const containerStyle = css`
   flex-direction: column;
   flex: 1;
   overflow: auto;
+  min-width: 670px;
 `
 
 export const panelScrollStyle = css`
