@@ -165,8 +165,8 @@ export const DashboardApps: FC = () => {
         )
         navigate(`/app/${response.data.appId}`)
       },
-      (response) => {},
-      (error) => {},
+      (response) => { },
+      (error) => { },
       (loading) => {
         setCreateNewLoading(true)
       },
@@ -220,7 +220,7 @@ export const DashboardApps: FC = () => {
                         colorScheme="techPurple"
                         onClick={() => {
                           navigate(
-                            `/app/${item.appId}/version/${item.versionId}`,
+                            `/app/${item.appId}/version/${item.currentVersionId}`,
                           )
                         }}
                         _css={editButtonStyle}
@@ -376,9 +376,8 @@ export const DashboardApps: FC = () => {
             duplicateRequest()
           }}
         >
-          <div css={modalTitleStyle}>{`${t("duplicate")} '${
-            appsList[currentAppIdx].appName
-          }'`}</div>
+          <div css={modalTitleStyle}>{`${t("duplicate")} '${appsList[currentAppIdx].appName
+            }'`}</div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {
