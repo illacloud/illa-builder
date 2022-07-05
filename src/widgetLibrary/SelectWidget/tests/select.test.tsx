@@ -21,5 +21,5 @@ test("Text renders correctly", () => {
       handleUpdateDsl={handleChange}
     />,
   )
-  expect(screen.getByText("Beijing")).toBeInTheDocument()
+  expect(screen.getByDisplayValue("Beijing")).toBeInTheDocument()
 })

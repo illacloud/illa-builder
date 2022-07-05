@@ -82,9 +82,10 @@ export const generateDependencies = (
       }),
     )
   })
+
   Object.keys(dependenciesMap).forEach((path) => {
     if (dependenciesMap[path].length === 0) {
-      inverseDependenciesMap[path] = []
+      inverseDependenciesMap[path] = inverseDependenciesMap[path] || []
     } else {
       dependenciesMap[path].forEach((dependency) => {
         inverseDependenciesMap[dependency] =
