@@ -1,8 +1,9 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import store from "@/store"
+import { DisplayNameState } from "@/redux/currentApp/displayName/displayNameState"
 
 export const addDisplayNameReducer: CaseReducer<
-  string[],
+  DisplayNameState,
   PayloadAction<string>
 > = (state, action) => {
   if (!state.includes(action.payload)) {
@@ -11,14 +12,14 @@ export const addDisplayNameReducer: CaseReducer<
 }
 
 export const updateDisplayNameReducer: CaseReducer<
-  string[],
+  DisplayNameState,
   PayloadAction<string[]>
 > = (state, action) => {
   return action.payload
 }
 
 export const removeDisplayNameReducer: CaseReducer<
-  string[],
+  DisplayNameState,
   PayloadAction<string>
 > = (state, action) => {
   if (state.includes(action.payload)) {

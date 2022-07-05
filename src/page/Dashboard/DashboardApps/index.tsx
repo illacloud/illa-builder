@@ -219,7 +219,9 @@ export const DashboardApps: FC = () => {
                       <Button
                         colorScheme="techPurple"
                         onClick={() => {
-                          navigate(`/app/${item.appId}`)
+                          navigate(
+                            `/app/${item.appId}/version/${item.versionId}`,
+                          )
                         }}
                         _css={editButtonStyle}
                         title="editButton"
