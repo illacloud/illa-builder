@@ -1,4 +1,4 @@
-import { Global, css } from "@emotion/react"
+import { css, Global } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { globalStyle } from "./style"
 import { useSelector } from "react-redux"
@@ -69,7 +69,7 @@ function App() {
               <Route path="forgotPassword" element={<ResetPassword />} />
             </Route>
             <Route index element={<Navigate to="/dashboard" />} />
-            <Route path="app/:app" element={<Editor />} />
+            <Route path="app/:appId/version/:versionId" element={<Editor />} />
             <Route path="setting" element={<Setting />}>
               <Route index element={<Navigate to="./account" />} />
               <Route path="account" element={<SettingAccount />} />

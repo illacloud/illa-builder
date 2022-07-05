@@ -34,9 +34,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
-  const [selectedResourceId, setSelectedResourceId] = useState<string>(
-    defaultSelectedResourceId || (resourceList[0]?.resourceId ?? ""),
-  )
+  const [selectedResourceId, setSelectedResourceId] = useState<string>("")
 
   useEffect(() => {
     if (resourceList.length === 0) {
@@ -45,7 +43,9 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
   }, [])
 
   useEffect(() => {
-    setSelectedResourceId(defaultSelectedResourceId)
+    setSelectedResourceId(
+      defaultSelectedResourceId || (resourceList[0]?.resourceId ?? ""),
+    )
   }, [defaultSelectedResourceId])
 
   return (

@@ -7,9 +7,7 @@ export interface DottedLineSquare {
 }
 
 export interface DottedLineSquareState {
-  map: { [displayName: string]: DottedLineSquare }
+  [key: string]: DottedLineSquare
 }
 
-export const DottedLineSquareInitialState: DottedLineSquareState = {
-  map: {},
-}
+export const DottedLineSquareInitialState: DottedLineSquareState = {}

@@ -8,6 +8,7 @@ export const actionListContainerStyle = css`
   width: 255px;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   position: relative;
+  font-size: 14px;
 `
 
 export const newBtnContainerStyle = css`
@@ -58,7 +59,7 @@ export const actionItemListStyle = css`
   overflow-y: auto;
 `
 
-export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
+export function applyActionItemStyle(isSelected: boolean): SerializedStyles {
   const backgroundColorStyle = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   `
@@ -74,9 +75,11 @@ export function applyactionItemStyle(isSelected: boolean): SerializedStyles {
     padding: 9px 16px;
     height: 40px;
     user-select: none;
+    font-size: 14px;
+    font-weight: 500;
 
     &:hover {
-      ${backgroundColorStyle}
+      ${isSelected ? selectedBackgroundColorStyle : backgroundColorStyle}
     }
 
     ${isSelected && selectedBackgroundColorStyle}
@@ -201,6 +204,10 @@ export function applycontextMenuStyle(
   `
 }
 
+export const actionListContextMenuStyle = css`
+  width: 184px;
+`
+
 const menuItemStyle = css`
   line-height: 32px;
   padding: 5px 16px;
@@ -242,7 +249,8 @@ export const searchHeaderStyle = css`
   display: flex;
   padding: 13px 16px;
   align-items: center;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+  font-weight: 500;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 export const searchHeaderInputStyle = css`
   justify-content: flex-end;
@@ -284,4 +292,9 @@ export const searchInputCloseBtnStyle = css`
   & > span {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
+`
+
+export const nameErrorMsgStyle = css`
+  display: inline-block;
+  width: 180px;
 `

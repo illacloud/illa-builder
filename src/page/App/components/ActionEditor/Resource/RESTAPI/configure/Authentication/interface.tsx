@@ -10,3 +10,6 @@ interface BaseAuthProps<T> {
 export interface BasicAuthProps extends BaseAuthProps<RESTAPIConfigureValues> {}
 
 export interface OAuth2Props extends BaseAuthProps<RESTAPIConfigureValues> {}
+
+export interface BearerAuthProps
+  extends BaseAuthProps<RESTAPIConfigureValues> {}

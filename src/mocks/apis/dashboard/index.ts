@@ -9,21 +9,11 @@ export default [
       ctx.status(200),
       ctx.json([
         {
-          appId: "1",
-          appName: "Test App 1",
-          appActivity: "activity",
-        },
-        {
-          appId: "2",
-          appName: "Test App 2",
-          appActivity: "activity2",
-        },
-        {
           appId: "1f221b62-568b-448c-989e-d3a376273134",
           appName: "illa example app",
           currentVersionId: "450ca3c2-38ff-4f27-a1f7-3e71452f49cd",
-          lastModifiedBy: "Zhanjiao Deng",
-          lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
+          updatedBy: "Zhanjiao Deng",
+          updatedAt: "2022-06-06T14:00:30.780+00:00",
         },
       ]),
     )
@@ -38,6 +28,41 @@ export default [
         lastModifiedBy: "Zhanjiao Deng",
         lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
       }),
+    )
+  }),
+
+  // rest.get(`${baseUrl}/resources`, (req, res, ctx) => {
+  //   return res(
+  //     ctx.status(200),
+  //     ctx.json([
+  //       {
+  //         resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52",
+  //         resourceName: "mysqlExample",
+  //         resourceType: "mysql",
+  //         databaseName: "ZGVmYXVsdA==",
+  //         createdBy: "1f221b62-568b-448c-989easdqwe2",
+  //         lastModifiedBy: "1f221b62-568b-448c-989easdqwe2",
+  //         createdAt: "2022-06-06T12:00:30.780+00:00",
+  //         lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
+  //       },
+  //       {
+  //         resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52",
+  //         resourceName: "restapiEg",
+  //         resourceType: "restapi",
+  //         databaseName: "",
+  //         createdBy: "1f221b62-568b-448c-989easdqwe2",
+  //         lastModifiedBy: "1f221b62-568b-448c-989easdqwe2",
+  //         createdAt: "2022-06-06T12:00:30.780+00:00",
+  //         lastModifiedAt: "2022-06-06T14:00:30.780+00:00",
+  //       },
+  //     ]),
+  //   )
+  // }),
+
+  rest.delete(`${baseUrl}/resources/:resourceId`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({ resourceId: "85d111c2-32zj-4f27-a1f7-3e71452fzn52" }),
     )
   }),
 
@@ -83,6 +108,15 @@ export default [
         userName: "Zhanjiao Deng",
         email: "dengzhanjiao@illasoft.com",
         createdAt: "2022-06-06T12:00:30.780+00:00",
+      }),
+    )
+  }),
+
+  rest.post(`${baseUrl}/apps/:appId/links`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        url: "https://illacloud.com/apps/621f221b-598b-8c68-449e-273134d3a376",
       }),
     )
   }),

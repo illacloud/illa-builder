@@ -1,21 +1,26 @@
-import { FC, useState, useMemo, useRef, MouseEvent } from "react"
+import { FC, useState, useMemo, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
+import { Trigger } from "@illa-design/trigger"
+import { DropList, Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
+import { illaPrefix, globalColor } from "@illa-design/theme"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
+import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
-import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
 import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
 import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
+import { useIsValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
+import { ActionDisplayNameValidateResult } from "@/page/App/components/ActionEditor/interface"
 import {
   actionListContainerStyle,
   newBtnContainerStyle,
   newButtonTextStyle,
   actionItemListStyle,
-  applyactionItemStyle,
+  applyActionItemStyle,
   actionItemNameStyle,
   applyactionItemNameTextStyle,
   actionItemIconStyle,
@@ -23,10 +28,12 @@ import {
   updatedIndicatorStyle,
   noMatchFoundWrapperStyle,
   emptyActionListPlaceholderStyle,
+  nameErrorMsgStyle,
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
-import { ContextMenu } from "./ContextMenu"
+
+const DropListItem = DropList.Item
 
 export const ActionList: FC<ActionListProps> = (props) => {
   const {
@@ -46,8 +53,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [editingName, setEditingName] = useState("")
   const [editingActionItemId, setEditingActionItemId] = useState("")
   const [contextMenuActionId, setContextMenuActionId] = useState("")
+  const [isRenameError, setIsRenameError] =
+    useState<ActionDisplayNameValidateResult>({ error: false })
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const [contextMenuEvent, setContextMenuEvent] = useState<MouseEvent>()
+  const { isValidActionDisplayName } = useIsValidActionDisplayName()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -69,11 +78,15 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }, 0)
   }
 
-  function updateName() {
-    onUpdateActionItem(editingActionItemId, {
-      displayName: editingName,
-    })
+  function updateName(originName: string) {
+    if (originName !== editingName && !isRenameError) {
+      onUpdateActionItem(editingActionItemId, {
+        ...activeActionItem,
+        displayName: editingName,
+      })
+    }
     setEditingActionItemId("")
+    setIsRenameError({ error: false })
     setEditingName("")
   }
 
@@ -86,30 +99,16 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function onAddAction(info: ActionInfo) {
-    const { category, actionType, resourceId = "" } = info
+    const { actionType, resourceId } = info
 
     setActionGeneratorVisible(false)
 
-    let actionTemplate
-
-    if (category === "jsTransformer") {
-      actionTemplate = { transformer: "" }
-    }
-
     onAddActionItem({
-      displayName: generateName(actionType, actionItems),
+      displayName: ActionDisplayNameGenerator.getDisplayName(actionType),
       actionType,
       resourceId,
-      actionTemplate,
+      actionTemplate: {},
     })
-  }
-
-  function onDuplicate() {
-    onDuplicateActionItem(contextMenuActionId)
-  }
-
-  function onDelete() {
-    onDeleteActionItem(contextMenuActionId)
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
@@ -119,15 +118,31 @@ export const ActionList: FC<ActionListProps> = (props) => {
     function renderName() {
       if (id === editingActionItemId) {
         return (
-          <Input
-            inputRef={inputRef}
-            borderColor="techPurple"
-            requirePadding={false}
-            value={editingName}
-            onChange={(value) => setEditingName(value)}
-            onBlur={updateName}
-            onPressEnter={updateName}
-          />
+          <Trigger
+            content={
+              <span css={nameErrorMsgStyle}>{isRenameError?.errorMsg}</span>
+            }
+            position="bottom"
+            popupVisible={isRenameError?.error}
+            showArrow={false}
+            closeDelay={0}
+            colorScheme="techPurple"
+          >
+            <Input
+              inputRef={inputRef}
+              requirePadding={false}
+              borderColor="techPurple"
+              value={editingName}
+              error={isRenameError?.error}
+              onChange={(value) => {
+                setEditingName(value)
+                value !== name &&
+                  setIsRenameError(isValidActionDisplayName(value))
+              }}
+              onBlur={() => updateName(name)}
+              onPressEnter={() => updateName(name)}
+            />
+          </Trigger>
         )
       }
 
@@ -149,11 +164,10 @@ export const ActionList: FC<ActionListProps> = (props) => {
     return (
       <li
         key={id}
-        css={applyactionItemStyle(isSelected)}
+        css={applyActionItemStyle(isSelected)}
         onClick={() => onClickActionItem(id, name)}
-        onContextMenu={(e: MouseEvent) => {
+        onContextMenu={() => {
           setContextMenuActionId(id)
-          setContextMenuEvent(e)
         }}
       >
         <span css={actionItemIconStyle}>
@@ -212,13 +226,36 @@ export const ActionList: FC<ActionListProps> = (props) => {
         </Button>
       </div>
 
-      <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
-
-      <ContextMenu
-        onDelete={onDelete}
-        onDuplicate={onDuplicate}
-        contextMenuEvent={contextMenuEvent}
-      />
+      <Dropdown
+        trigger="contextmenu"
+        dropList={
+          <DropList
+            width={"184px"}
+            onClickItem={(key) => {
+              switch (key) {
+                case "duplicate":
+                  onDuplicateActionItem(contextMenuActionId)
+                  break
+                case "delete":
+                  onDeleteActionItem(contextMenuActionId)
+                  break
+              }
+            }}
+          >
+            <DropListItem
+              key={"duplicate"}
+              title={t("editor.action.action_list.contextMenu.duplicate")}
+            />
+            <DropListItem
+              key={"delete"}
+              title={t("editor.action.action_list.contextMenu.delete")}
+              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+            />
+          </DropList>
+        }
+      >
+        <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
+      </Dropdown>
 
       <ActionGenerator
         visible={actionGeneratorVisible}

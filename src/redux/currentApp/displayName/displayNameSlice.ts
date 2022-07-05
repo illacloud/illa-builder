@@ -3,12 +3,17 @@ import { DisplayNameInitialState } from "@/redux/currentApp/displayName/displayN
 import {
   addDisplayNameReducer,
   removeDisplayNameReducer,
+  updateDisplayNameReducer,
 } from "@/redux/currentApp/displayName/displayNameReducer"
 
 const displayNameSlice = createSlice({
   name: "displayName",
   initialState: DisplayNameInitialState,
-  reducers: { addDisplayNameReducer, removeDisplayNameReducer },
+  reducers: {
+    updateDisplayNameReducer,
+    addDisplayNameReducer,
+    removeDisplayNameReducer,
+  },
 })
 
 export const displayNameActions = displayNameSlice.actions

@@ -4,7 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const controlStyle = css`
   display: flex;
   align-items: center;
-  margin-left: 9px;
+  margin-left: 14px;
   font-size: 12px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `

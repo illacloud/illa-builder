@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { FC } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { RadioGroup } from "@illa-design/radio"
+import { useSelector } from "react-redux"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import {
   actionStyle,
   fillingStyle,
@@ -12,10 +14,15 @@ import {
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
 import { CodeEditor } from "@/components/CodeEditor"
 import { disableTransformerStyle } from "./style"
+import { TransformerProps } from "./interface"
 
-export const Transformer = () => {
+export const Transformer: FC<TransformerProps> = (props) => {
+  const { onChange } = props
+  const selectedAction = useSelector(getSelectedAction)
+  const { transformer = "", enableTransformer = false } =
+    selectedAction.actionTemplate ?? {}
   const { t } = useTranslation()
-  const [enable, setEnable] = useState<"Enable" | "Disable">("Disable")
+
   return (
     <>
       <div css={css(actionStyle, panelSubBarStyle)}>
@@ -27,24 +34,31 @@ export const Transformer = () => {
           <RadioGroup
             type="button"
             size="small"
+            colorScheme="techPurple"
             options={[
-              t("editor.action.panel.btn.disable"),
-              t("editor.action.panel.btn.enable"),
+              {
+                value: false,
+                label: t("editor.action.panel.btn.disable"),
+              },
+              {
+                value: true,
+                label: t("editor.action.panel.btn.enable"),
+              },
             ]}
-            value={enable}
-            onChange={(value: "Enable" | "Disable") => {
-              setEnable(value)
-            }}
+            value={enableTransformer}
+            onChange={(value) => onChange({ enableTransformer: value })}
           />
         </div>
       </div>
       <div css={panelPaddingStyle}>
-        {enable === "Enable" ? (
+        {enableTransformer ? (
           <CodeEditor
             mode="JAVASCRIPT"
             expectedType="String"
             height="88px"
+            value={transformer}
             lineNumbers
+            onChange={(value) => onChange({ transformer: value })}
           />
         ) : (
           <div css={disableTransformerStyle}>

@@ -85,6 +85,7 @@ const ExtraColComponent: FC<{
       <Dropdown
         position="br"
         trigger="click"
+        triggerProps={{ closeDelay: 0, openDelay: 0 }}
         dropList={
           <DashboardResourcesItemMenu
             resourceId={resourceId}

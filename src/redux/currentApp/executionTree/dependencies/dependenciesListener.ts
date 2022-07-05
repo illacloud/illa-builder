@@ -14,9 +14,7 @@ async function handleUpdateDependencies(
   if (!displayNameMapProps) return
   const inverseDependencies = generateDependencies(displayNameMapProps)
   listenerApi.dispatch(
-    dependenciesActions.setDependenciesReducer({
-      dependencies: inverseDependencies,
-    }),
+    dependenciesActions.setDependenciesReducer(inverseDependencies),
   )
 }
 

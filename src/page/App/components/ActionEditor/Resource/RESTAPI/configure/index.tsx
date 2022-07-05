@@ -21,6 +21,7 @@ import {
   gridRowCenterItemStyle,
   dynamicLabelTextStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import {
   RESTAPIConfigureProps,
   RESTAPIConfigureValues,
@@ -28,7 +29,7 @@ import {
 } from "../interface"
 import { inputTagSmallSizeStyle, topZIndexStyle } from "./style"
 import { ParamList } from "./ParamList"
-import { BasicAuth, OAuth2 } from "./Authentication"
+import { BasicAuth, BearerAuth } from "./Authentication"
 
 const EmptyField: Params = { key: "", value: "" }
 
@@ -55,36 +56,35 @@ export const RESTAPIConfigure = forwardRef<
     defaultValues: {
       urlParams: [EmptyField],
       headers: [EmptyField],
-      body: [EmptyField],
-      forwardAllCookies: false,
       authentication: "none",
-      oauth2UseClientCredentialsAuth: false,
-      oauth2ShareUserCredentials: false,
+      /* TODO: @spike hide param that not support yet */
+      // forwardAllCookies: false,
+      // body: [EmptyField],
+      // oauth2UseClientCredentialsAuth: false,
+      // oauth2ShareUserCredentials: false,
       resourceName: resourceConfig?.resourceName,
       ...resourceConfig?.options,
     },
   })
 
-  const [authType, setAuthType] = useState("none")
-
   const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
     onSubmit?.({
       resourceName: data.resourceName,
-      resourceType: "restapi",
+      resourceType: ACTION_TYPE.REST_API,
       options: getOptions(data),
     })
   }
 
   const renderAuthConfig = () => {
-    if (authType === "basic") {
-      return <BasicAuth control={control} watch={watch} />
-    }
+    switch (watch("authentication")) {
+      case "basic":
+        return <BasicAuth control={control} watch={watch} />
+      case "bearer":
+        return <BearerAuth control={control} watch={watch} />
 
-    if (authType === "OAuth2") {
-      return <OAuth2 control={control} watch={watch} />
+      default:
+        return null
     }
-
-    return null
   }
 
   return (
@@ -159,70 +159,81 @@ export const RESTAPIConfigure = forwardRef<
         <ParamList control={control} name={"headers"} />
       </div>
 
-      <div css={gridRowContainerStyle}>
-        <label css={dynamicLabelTextStyle}>
-          {t("editor.action.resource.rest_api.label.extra_body_values")}
-        </label>
-        <ParamList control={control} name={"body"} />
-        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
-          {t("editor.action.resource.rest_api.tip.extra_body_values")}
-        </dd>
-      </div>
+      {/* TODO: @spike api not support yes */}
+      {/* <div css={gridRowContainerStyle}>
+              <label css={dynamicLabelTextStyle}>
+              {t("editor.action.resource.rest_api.label.extra_body_values")}
+              </label>
+              <ParamList control={control} name={"body"} />
+              <dd css={css(applyGridColIndex(2), descriptionStyle)}>
+              {t("editor.action.resource.rest_api.tip.extra_body_values")}
+              </dd>
+              </div>
 
-      <div css={gridRowContainerStyle}>
-        <div css={css(gridRowContainerStyle, gridRowCenterItemStyle)}>
-          <label css={labelTextStyle}>
-            {t(
+              <div css={gridRowContainerStyle}>
+              <div css={css(gridRowContainerStyle, gridRowCenterItemStyle)}>
+              <label css={labelTextStyle}>
+              {t(
               "editor.action.resource.rest_api.label.list_of_cookies_to_forward",
-            )}
-          </label>
-          <Controller
-            render={({ field }) => (
+              )}
+              </label>
+              <Controller
+              render={({ field }) => (
               <InputTag
-                {...field}
-                size={"small"}
-                _css={inputTagSmallSizeStyle}
-              />
-            )}
-            control={control}
-            name="cookiesToForward"
-          />
-        </div>
-        <Controller
-          render={({ field }) => (
-            <Checkbox
-              colorScheme="techPurple"
-              css={css(applyGridColIndex(2), checkboxStyle)}
               {...field}
-            >
+              size={"small"}
+              _css={inputTagSmallSizeStyle}
+              />
+              )}
+              control={control}
+              name="cookiesToForward"
+              />
+              </div>
+              <Controller
+              render={({ field }) => (
+
+              <Checkbox colorScheme="techPurple" css={css(applyGridColIndex(2), checkboxStyle)} {...field}>
               {t("editor.action.resource.rest_api.label.forward_all_cookies")}
-            </Checkbox>
-          )}
-          control={control}
-          name="forwardAllCookies"
-        />
-      </div>
+              </Checkbox>
+              )}
+              control={control}
+              name="forwardAllCookies"
+              />
+              </div> */}
 
       <div css={gridRowContainerStyle}>
         <label css={labelTextStyle}>
           {t("editor.action.resource.rest_api.label.authentication")}
         </label>
         <Controller
-          render={() => (
+          render={({ field }) => (
             <Select
               size={"small"}
               colorScheme="techPurple"
-              onChange={setAuthType}
-              value={authType}
+              {...field}
               triggerProps={{ _css: topZIndexStyle }}
             >
-              <Option value={"none"}>None</Option>
-              <Option value={"basic"}>
+              <Option value={"none"}>
                 {t(
-                  "editor.action.resource.rest_api.option.authentication.basicAuth",
+                  "editor.action.resource.rest_api.option.authentication.none",
                 )}
               </Option>
-              <Option value={"OAuth2"}>OAuth 2.0</Option>
+              <Option value={"bearer"}>
+                {t(
+                  "editor.action.resource.rest_api.option.authentication.bearer",
+                )}
+              </Option>
+              <Option value={"basic"}>
+                {t(
+                  "editor.action.resource.rest_api.option.authentication.basic_auth",
+                )}
+              </Option>
+              {/* TODO: @spike not support yet */}
+              {/* <Option value={"OAuth2"}>
+                      {t(
+                      "editor.action.resource.rest_api.option.authentication.oauth2",
+                      )}
+                      </Option> */}
             </Select>
           )}
           control={control}

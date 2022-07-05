@@ -1,5 +1,5 @@
-import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
+import { AxiosResponse } from "axios"
 
 export interface DatabaseResultProps {
-  result?: ActionResult
+  result?: AxiosResponse
 }

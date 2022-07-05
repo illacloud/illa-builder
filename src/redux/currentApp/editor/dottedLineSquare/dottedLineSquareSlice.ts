@@ -3,12 +3,14 @@ import { DottedLineSquareInitialState } from "@/redux/currentApp/editor/dottedLi
 import {
   addOrUpdateDottedLineSquareReducer,
   removeDottedLineSquareReducer,
+  updateDottedLineSquareReducer,
 } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareReducer"
 
 const dottedLineSquareSlice = createSlice({
   name: "dottedLineSquare",
   initialState: DottedLineSquareInitialState,
   reducers: {
+    updateDottedLineSquareReducer,
     addOrUpdateDottedLineSquareReducer,
     removeDottedLineSquareReducer,
   },

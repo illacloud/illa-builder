@@ -4,7 +4,7 @@ import { JSONViewerProps } from "./interface"
 import { jsonViewContainer } from "./style"
 
 export const JSONViewer: FC<JSONViewerProps> = (props) => {
-  const { src = {} } = props
+  const { src = {}, collapsed } = props
 
   const reactJsonConfig = {
     name: false as const,
@@ -19,7 +19,11 @@ export const JSONViewer: FC<JSONViewerProps> = (props) => {
   return (
     <div css={jsonViewContainer}>
       {/* @ts-ignore */}
-      <ReactJson src={src} {...reactJsonConfig} />
+      <ReactJson
+        src={src}
+        {...reactJsonConfig}
+        collapsed={collapsed ?? false}
+      />
     </div>
   )
 }

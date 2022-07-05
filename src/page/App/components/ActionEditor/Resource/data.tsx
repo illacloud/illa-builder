@@ -7,16 +7,12 @@ import {
   RestApiIcon,
   JSTransformerIcon,
 } from "@illa-design/icon"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 
 export type ActionTypeCategory = "databases" | "apis" | "jsTransformer"
 
-export type ActionType =
-  | "mysql"
-  | "postgres"
-  | "redis"
-  | "mongodb"
-  | "restapi"
-  | "transformer"
+type ValueOf<T> = T[keyof T]
+export type ActionType = ValueOf<typeof ACTION_TYPE>
 
 type ActionTypeNameKey =
   | "my_sql"
@@ -37,25 +33,25 @@ export const databases: ResourceDataItem[] = [
   {
     nameKey: "my_sql",
     icon: <MySqlIcon />,
-    actionType: "mysql",
+    actionType: ACTION_TYPE.MYSQL,
   },
   {
     nameKey: "postgres",
     icon: <PostgresIcon />,
     isDraft: true,
-    actionType: "postgres",
+    actionType: ACTION_TYPE.POSTGRES,
   },
   {
     nameKey: "redis",
     icon: <RedisIcon />,
     isDraft: true,
-    actionType: "redis",
+    actionType: ACTION_TYPE.REDIS,
   },
   {
     nameKey: "mongo_db",
     icon: <MongoDbIcon />,
     isDraft: true,
-    actionType: "mongodb",
+    actionType: ACTION_TYPE.MONGO_DB,
   },
 ]
 
@@ -63,7 +59,7 @@ export const apis: ResourceDataItem[] = [
   {
     nameKey: "rest_api",
     icon: <RestApiIcon />,
-    actionType: "restapi",
+    actionType: ACTION_TYPE.REST_API,
   },
 ]
 
@@ -71,6 +67,6 @@ export const jsTransformer: ResourceDataItem[] = [
   {
     nameKey: "js_transformer",
     icon: <JSTransformerIcon />,
-    actionType: "transformer",
+    actionType: ACTION_TYPE.TRANSFORMER,
   },
 ]
