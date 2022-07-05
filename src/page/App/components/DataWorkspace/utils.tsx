@@ -20,10 +20,10 @@ export const actionListTransformer = (list: ActionListState) =>
     return {
       title: (
         <>
-          <span css={itemNameStyle}>{item.displayName}&nbsp;</span>
-          <span css={itemNameDescStyle}>
+          <label css={itemNameStyle}>{item.displayName}&nbsp;</label>
+          <label css={itemNameDescStyle}>
             {`{ }`}&nbsp;&nbsp;{childrenArray.length}key
-          </span>
+          </label>
         </>
       ),
       children: childrenArray,
@@ -68,10 +68,10 @@ export const widgetListTransformer = (execution: ExecutionState["result"]) => {
     dataList.push({
       title: (
         <>
-          <span css={itemNameStyle}>{key}&nbsp;</span>
-          <span css={itemNameDescStyle}>
+          <label css={itemNameStyle}>{key}&nbsp;</label>
+          <label css={itemNameDescStyle}>
             {`{ }`}&nbsp;&nbsp;{childrenArray.length}key
-          </span>
+          </label>
         </>
       ),
       children: childrenArray,
@@ -96,10 +96,10 @@ export const globalInfoTransformer = (
     return {
       title: (
         <>
-          <span css={itemNameStyle}>{item.displayName}&nbsp;</span>
-          <span css={itemNameDescStyle}>
-            {`{ }`}&nbsp;&nbsp;{childrenArray.length}key
-          </span>
+          <label css={itemNameStyle}>{item.displayName}&nbsp;</label>
+          <label css={itemNameDescStyle}>
+            {`{`}&nbsp;{`}`}&nbsp;&nbsp;{childrenArray.length}key
+          </label>
         </>
       ),
       children: childrenArray,
@@ -126,11 +126,12 @@ export const dfsTransformer = (
           dataList.push({
             title: (
               <>
-                <span css={itemNameStyle}>{key}&nbsp;</span>
-                <span css={itemNameDescStyle}>
+                <label css={itemNameStyle}>{key}&nbsp;</label>
+                <label css={itemNameDescStyle}>
                   {isObject(props[key]) ? `{ }` : `[ ]`}&nbsp;&nbsp;
-                  {childrenArray.length}key
-                </span>
+                  {childrenArray.length}
+                  {childrenArray.length > 1 ? "keys" : "key"}
+                </label>
               </>
             ),
             key: pre + key,
@@ -141,10 +142,10 @@ export const dfsTransformer = (
           dataList.push({
             title: (
               <div css={jsonItemStyle}>
-                <label css={jsonNameStyle}>
-                  <div>{key}&nbsp;</div>
+                <label css={jsonNameStyle}>{key}&nbsp;</label>
+                <label css={jsonValueStyle}>
+                  {renderJsonValue(props[key])}
                 </label>
-                <span css={jsonValueStyle}>{renderJsonValue(props[key])}</span>
               </div>
             ),
             selectable: false,
@@ -159,8 +160,8 @@ export const renderJsonValue = (value: any) => {
   const type = typeof value
   switch (type) {
     case "string":
-      return <span css={applyJsonValueColorStyle(type)}>{`"${value}"`}</span>
+      return <label css={applyJsonValueColorStyle(type)}>{`"${value}"`}</label>
     default:
-      return <span css={applyJsonValueColorStyle(type)}>{`${value}`}</span>
+      return <label css={applyJsonValueColorStyle(type)}>{`${value}`}</label>
   }
 }

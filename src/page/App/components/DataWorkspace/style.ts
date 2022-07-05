@@ -44,7 +44,7 @@ export function applyJsonValueColorStyle(type: any): SerializedStyles {
       `
     case "string":
       return css`
-        color: #f50;
+        color: #219;
       `
     case "undefined":
       return css`
