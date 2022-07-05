@@ -164,7 +164,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
       /* Autocomplete should be triggered only for characters that make up valid variable names */
     }
-    showAutocomplete && handleAutocomplete(editor)
+    showAutocomplete && handleAutocomplete(editor, line)
   }
 
   useEffect(() => {
@@ -174,7 +174,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
   }, [value])
 
-  const handleAutocomplete = (cm: CodeMirror.Editor) => {
+  const handleAutocomplete = (cm: CodeMirror.Editor, line: string) => {
     const modeName = cm.getModeAt(cm.getCursor()).name
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
@@ -183,6 +183,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
     } else if (modeName == "javascript") {
       sever.current?.complete(cm)
+      console.log(cm.getLineTokens(0), 'token')
       // cm.showHint({
       //   hint: CodeMirror.hint.javascript,
       //   completeSingle: false, // 是否立即补全
@@ -191,6 +192,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   useEffect(() => {
+    console.log(globalData, 'globalData')
     sever.current = TernServer(languageValue, globalData)
   }, [globalData, languageValue])
 

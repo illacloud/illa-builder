@@ -1,6 +1,7 @@
 import tern from "tern"
 import "codemirror/addon/tern/worker"
 import "codemirror/addon/tern/tern"
+import "./tern/tern"
 import ecmascript from "tern/defs/ecmascript.json"
 import CodeMirror from "codemirror"
 import ReactDOM from "react-dom"
@@ -75,9 +76,14 @@ export const TernServer = (
     defs: [ecmascript, { ...currentDef, ...transData }],
     // @ts-ignore: type define error
     completionTip: (data: TypeQueryResult) => {
+      console.log(data, 'data')
       let div = document.createElement("div")
       ReactDOM.render(<HintTooltip data={data} />, div)
       return div
+    },
+    responseFilter: (doc, query, request, error, data) => {
+      console.log({doc, query, request, error, data}, 'responseFilter')
+      return data
     },
   })
 }
