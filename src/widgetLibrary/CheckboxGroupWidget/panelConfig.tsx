@@ -40,6 +40,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         bindAttrName: "optionMode",
         shown: (value) => value === "mapped",
+        isSetterSingleRow: true,
       },
       {
         id: `${baseWidgetName}-options-mapped`,

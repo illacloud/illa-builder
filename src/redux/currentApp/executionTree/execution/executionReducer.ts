@@ -4,8 +4,10 @@ import {
   SetExecutionErrorPayload,
   SetExecutionResultPayload,
   UpdateExecutionByDisplayNamePayload,
+  UpdateExecutionErrorByAttrPathPayload,
 } from "@/redux/currentApp/executionTree/execution/executionState"
 import { isObject } from "@/utils/typeHelper"
+import { get, set, cloneDeep } from "lodash"
 
 export const setExecutionResultReducer: CaseReducer<
   ExecutionState,
@@ -47,4 +49,30 @@ export const updateExecutionByDisplayNameReducer: CaseReducer<
     ...state.result[displayName],
     ...value,
   }
+}
+
+/**
+ * example payload:
+ * {
+ *     attrPath:"mySQL.sql"  <-> "displayName.attrName"
+ *     value: errorShape <-> { errorType: ExecutionErrorType.LINT, errorMessage: "errorMessage", errorLine: 1, errorColumn: 1 }
+ * }
+ **/
+export const updateExecutionErrorByAttrPathReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<UpdateExecutionErrorByAttrPathPayload>
+> = (state, action) => {
+  const { attrPath, value } = action.payload
+  if (!attrPath) {
+    return
+  }
+  const newErrors = cloneDeep(state.error)
+  const oldTargetErrors = get(state.error, attrPath, [])
+  const newType = value.errorType
+  const newTargetErrors = oldTargetErrors.filter(
+    (error) => error.errorType !== newType,
+  )
+  set(newErrors, attrPath, [...newTargetErrors, value])
+
+  state.error = newErrors
 }

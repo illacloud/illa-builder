@@ -11,7 +11,7 @@ export const getExecutionResult = createSelector(
 
 export const getExecutionError = createSelector(
   [getExecution],
-  (execution) => execution.error,
+  (execution) => execution.error ?? {},
 )
 
 export const getWidgetExecutionResult = createSelector(
