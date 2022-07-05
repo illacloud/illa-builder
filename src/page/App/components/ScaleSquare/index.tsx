@@ -172,7 +172,12 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             key="delete"
             title={t("editor.context_menu.delete")}
             onClick={() => {
-              dispatch(componentsActions.removeComponentReducer(componentNode))
+              dispatch(
+                componentsActions.deleteComponentNodeReducer({
+                  displayName: componentNode.displayName,
+                  parentDisplayName: componentNode.parentNode || "",
+                }),
+              )
             }}
           />
         </DropList>
