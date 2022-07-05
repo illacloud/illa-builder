@@ -1,12 +1,10 @@
 import { FC } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Collapse, CollapseItem } from "@illa-design/collapse"
-import { PreIcon as ExpandIcon } from "@illa-design/icon"
 import { Tree } from "@illa-design/tree"
 import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { WorkSpaceItemProps } from "./interface"
-import { applyTreeContainerStyle, itemTitleStyle } from "./style"
+import { applyTreeContainerStyle } from "./style"
 import { PanelBar } from "@/page/App/components/InspectPanel/bar"
 
 export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
@@ -17,31 +15,6 @@ export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
     dispatch(configActions.setExpandedKey(keys))
   }
   return (
-    /*    <Collapse
-      mode="builder"
-      expandIconPosition="right"
-      expandIcon={<ExpandIcon />}
-      defaultActiveKey="title"
-    >
-      <CollapseItem
-        name="title"
-        header={<span css={itemTitleStyle}>{title}</span>}
-      >
-        <div css={applyTreeContainerStyle(dataList.length > 0)}>
-          <Tree
-            defaultExpandedKeys={expandedKeys}
-            defaultSelectedKeys={selectedKeys}
-            treeData={dataList}
-            onExpand={handleExpand}
-            onSelect={handleSelect}
-            autoExpandParent={false}
-            multiple={false}
-            size="small"
-            blockNode
-          />
-        </div>
-      </CollapseItem>
-    </Collapse>*/
     <PanelBar title={title} saveToggleState={() => {}}>
       <div css={applyTreeContainerStyle(dataList.length > 0)}>
         <Tree

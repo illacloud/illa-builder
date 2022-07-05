@@ -10,7 +10,6 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { splitLineStyle } from "./style"
 import {
   actionListTransformer,
   widgetListTransformer,
@@ -74,14 +73,12 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
           selectedKeys={[selectedAction.actionId]}
           handleSelect={handleActionSelect}
         />
-        <div css={splitLineStyle} />
         <WorkSpaceItem
           title={`COMPONENTS (${widgetList.length})`}
           dataList={widgetList}
           selectedKeys={selectedComponents}
           handleSelect={handleComponentSelect}
         />
-        <div css={splitLineStyle} />
         <WorkSpaceItem
           title={`GLOBALS (${_globalInfoList.length})`}
           dataList={_globalInfoList}

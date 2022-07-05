@@ -23,7 +23,7 @@ export const SettingAccount: FC = () => {
       content: [
         {
           type: "input",
-          value: userInfo?.userName,
+          value: userInfo?.username,
           disabled: true,
         },
       ],

@@ -7,9 +7,10 @@ export interface LoginFields {
 
 export interface LoginResult {
   userId: string
-  userName: string
+  username: string
   email: string
   createdAt: string
+  language: string
 }
 
 export interface LocationState {

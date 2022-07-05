@@ -1,14 +1,14 @@
 export interface RegisterFields {
   username: string
   email: string
-  verify: string
+  verificationCode: string
   password: string
-  isSubscribe: boolean
+  isSubscribed: boolean
 }
 
 export interface RegisterResult {
   userId: string
-  userName: string
+  username: string
   email: string
   createdAt: string
 }

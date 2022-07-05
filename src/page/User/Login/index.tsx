@@ -46,8 +46,8 @@ export const Login: FC = () => {
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
-            userName: res.data.userName,
-            language: "English",
+            userName: res.data.username,
+            language: res.data.language === "zh-cn" ? "简体中文" : "English",
             userAvatar: "",
           }),
         )
@@ -56,8 +56,9 @@ export const Login: FC = () => {
         })
         Message.success(t("user.sign_in.tips.success"))
       },
-      () => {
-        Message.error(t("user.sign_in.tips.fail"))
+      (res) => {
+        // Message.error(t("user.sign_in.tips.fail"))
+        Message.error(res.data.errorMessage)
       },
       () => {},
       (loading) => {
