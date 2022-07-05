@@ -1,16 +1,11 @@
-import { FC, SyntheticEvent, useContext } from "react"
-import { css } from "@emotion/react"
+import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  ActionMenuProps,
-  ActionType,
-} from "@/page/App/components/PanelSetters/OptionListSetter/interface"
-import {
-  actionMenuContainerStyle,
-  baseActionMenuItemStyle,
-  deleteActionMenuItemStyle,
-} from "@/page/App/components/InspectPanel/style"
+import { DropList } from "@illa-design/dropdown"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+import { ActionMenuProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+
+const { Item } = DropList
 
 export const ActionMenu: FC<ActionMenuProps> = (props) => {
   const { index, handleCloseMode } = props
@@ -19,36 +14,30 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
   )
   const { t } = useTranslation()
 
-  const handleClickMenuItem = (e: SyntheticEvent<EventTarget>) => {
-    if (!(e.target instanceof HTMLDivElement)) {
-      return
-    }
-    const key = e.target.dataset["key"]
-    switch (key) {
-      case ActionType.DUPLICATE: {
-        handleCopyOptionItem(index)
-        break
-      }
-      case ActionType.DELETE: {
-        handleDeleteOptionItem(index)
-        break
-      }
-    }
-    handleCloseMode()
-  }
-
   return (
-    <div css={actionMenuContainerStyle} onClick={handleClickMenuItem}>
-      <div css={baseActionMenuItemStyle} data-key={ActionType.DUPLICATE}>
-        {t("editor.inspect.setter_content.option_list.action_menu.duplicate")}
-      </div>
-      <div
-        css={css(baseActionMenuItemStyle, deleteActionMenuItemStyle)}
-        data-key={ActionType.DELETE}
-      >
-        {t("editor.inspect.setter_content.option_list.action_menu.delete")}
-      </div>
-    </div>
+    <DropList width="184px">
+      <Item
+        key="duplicate"
+        title={t(
+          "editor.inspect.setter_content.option_list.action_menu.duplicate",
+        )}
+        onClick={() => {
+          handleCopyOptionItem(index)
+          handleCloseMode()
+        }}
+      />
+      <Item
+        key="delete"
+        title={t(
+          "editor.inspect.setter_content.option_list.action_menu.delete",
+        )}
+        fontColor={globalColor(`--${illaPrefix}-red-03`)}
+        onClick={() => {
+          handleDeleteOptionItem(index)
+          handleCloseMode()
+        }}
+      />
+    </DropList>
   )
 }
 
