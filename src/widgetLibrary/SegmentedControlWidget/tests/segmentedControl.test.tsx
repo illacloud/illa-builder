@@ -6,14 +6,12 @@ test("segmentedControl renders correctly", () => {
   const handleUpdateDSL = jest.fn()
   render(
     <WrappedSegmentedControl
-      label="test"
       options={[
         { label: "1", value: 1 },
         { label: "2", value: 2 },
       ]}
       value={2}
       handleUpdateDsl={handleUpdateDSL}
-      colorScheme="green"
     />,
   )
   expect(screen.getByText("1")).toBeInTheDocument()

@@ -3,7 +3,7 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 
 export interface WrappedImageProps
   extends Pick<TooltipWrapperProps, "tooltipText">,
-    Pick<ImageProps, "radius" | "width" | "height"> {
+    Pick<ImageProps, "width" | "height" | "radius"> {
   imageSrc?: ImageProps["src"]
   altText?: ImageProps["alt"]
   handleUpdateDsl: (value: Record<string, string>) => void

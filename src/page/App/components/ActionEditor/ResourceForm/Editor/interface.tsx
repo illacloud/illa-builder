@@ -1,4 +1,4 @@
-import { ActionType } from "../interface"
+import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 
 export type ConnectionRef = {
   testConnection: () => void

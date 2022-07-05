@@ -1,5 +1,6 @@
 import { FC, useContext, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
+import { get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/lib/codemirror"
@@ -8,8 +9,6 @@ import "codemirror/addon/edit/matchbrackets"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
-import "codemirror/addon/lint/lint"
-import "codemirror/addon/lint/lint.css"
 // defineMode
 import "./modes"
 import "./hinter"
@@ -23,6 +22,7 @@ import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
+import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -31,8 +31,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     placeholder = "input sth",
     expectedType = "String",
     borderRadius = "8px",
+    path,
     tables = {},
     lineNumbers,
+    noTab,
     value,
     height = "auto",
     readOnly,
@@ -42,6 +44,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   } = props
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
   const languageValue = useSelector(getLanguageValue)
+  const { error: executionError, result: executionResult } =
+    useSelector(getExecution)
   const codeTargetRef = useRef<HTMLDivElement>(null)
   const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
@@ -51,6 +55,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   })
   const [previewVisible, setPreviewVisible] = useState<boolean>()
   const [focus, setFocus] = useState<boolean>()
+  const [error, setError] = useState<boolean>()
   // Solve the closure problem
   const latestProps = useRef(props)
   latestProps.current = props
@@ -68,6 +73,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const valueChanged = (currentValue: string) => {
     let calcResult: any = null
     let previewType = expectedType
+    setError(false)
     try {
       calcResult = evaluateDynamicString("", currentValue, globalData)
       // [TODO]: v1 evaluate
@@ -82,6 +88,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
     } catch (e: any) {
       console.error(e)
+      setError(true)
       setPreview({
         state: "error",
         content: e.toString(),
@@ -91,9 +98,34 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
   }
 
+  useEffect(() => {
+    if (path) {
+      let error = get(executionError, path)
+      let result = get(executionResult, path)
+      if (error?.length) {
+        setError(true)
+        setPreview({
+          state: "error",
+          content: error[0]?.errorMessage,
+        })
+      } else {
+        setError(false)
+        setPreview({
+          state: "default",
+          type: expectedType,
+          content: result?.toString() ?? "",
+        })
+      }
+    }
+  }, [executionError, executionResult, path])
+
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     const currentValue = editor?.getValue()
-    valueChanged(currentValue)
+    if (path) {
+      latestProps.current.onChange?.(currentValue)
+    } else {
+      valueChanged(currentValue)
+    }
   }
 
   const handleKeyUp = (editor: Editor, event: KeyboardEvent) => {
@@ -123,8 +155,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   useEffect(() => {
     const currentValue = editor?.getValue()
-    if (value && value !== currentValue) {
-      editor?.setValue(value)
+    if (value !== currentValue) {
+      editor?.setValue(value ?? "")
     }
   }, [value])
 
@@ -158,7 +190,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         autofocus: false,
         matchBrackets: true,
         autoCloseBrackets: true,
-        showCursorWhenSelecting: true,
         lineWrapping: true,
         scrollbarStyle: "null",
         tabSize: 2,
@@ -167,8 +198,11 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         hintOptions: {
           completeSingle: false,
         },
+        lint: true,
       })
-
+      if (noTab) {
+        editor?.setOption("extraKeys", { Tab: false })
+      }
       editor.on("change", handleChange)
       editor.on("keyup", handleKeyUp)
       editor.on("focus", handleFocus)
@@ -186,7 +220,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const inputState = {
     focus,
-    error: false,
+    error,
     height,
     borderRadius,
   }
@@ -203,6 +237,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         autoAlignPopupWidth
         withoutPadding
         withoutShadow
+        openDelay={10}
+        closeDelay={10}
         popupVisible={previewVisible}
         content={<CodePreview preview={preview} />}
         showArrow={false}
@@ -217,6 +253,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           <div
             ref={codeTargetRef}
             css={applyCodeEditorStyle(inputState)}
+            className={error ? "cm-error" : "cm-default"}
             {...otherProps}
           >
             <div id="hintBody" />

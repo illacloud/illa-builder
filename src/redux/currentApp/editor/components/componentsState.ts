@@ -35,19 +35,7 @@ export interface ComponentsState {
 }
 
 export const ComponentsInitialState: ComponentsState = {
-  rootDsl: {
-    displayName: "root",
-    parentNode: null,
-    showName: "root",
-    childrenNode: null,
-    type: "DOT_PANEL",
-    containerType: "EDITOR_DOT_PANEL",
-    verticalResize: true,
-    h: 0,
-    w: 0,
-    x: -1,
-    y: -1,
-  } as ComponentNode,
+  rootDsl: null,
 }
 
 export interface deleteComponentNodePayload {
@@ -57,10 +45,5 @@ export interface deleteComponentNodePayload {
 
 export interface updateComponentPropsPayload {
   displayName: string
-  newProps: Record<string, any>
-}
-
-export interface updateComponentDynamicStringsPayload {
-  displayName: string
-  dynamicStrings: string[]
+  updateSlice: Record<string, any>
 }

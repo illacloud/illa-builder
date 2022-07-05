@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const headerCss = css`
+export const headerStyle = css`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -17,7 +17,7 @@ export const headerCss = css`
   }
 `
 
-export const closeIconCss = css`
+export const closeIconStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,4 +25,16 @@ export const closeIconCss = css`
   height: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   cursor: pointer;
+`
+
+export const modalWrapperStyle = css`
+  width: 400px;
+  padding: 0 4px;
+`
+export const listWrapperStyle = css`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 12px 0;
 `

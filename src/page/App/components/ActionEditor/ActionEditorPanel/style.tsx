@@ -132,16 +132,34 @@ export const actionSelectStyle = css`
 `
 
 export const triggerSelectStyle = css`
-  max-width: 313px;
-  margin-right: 8px;
+  max-width: 400px;
   border-radius: 8px !important;
 `
 export const resourceSelectContainerStyle = css``
 
 export const resourceSelectStyle = css`
-  min-width: 151px !important;
-  max-width: 151px;
+  min-width: 169px;
+  max-width: 169px;
   border-radius: 8px 0 0 8px !important;
+`
+
+export const resourceSelectOptionStyle = css`
+  min-width: calc(200px - 16px * 2);
+  align-items: center;
+  display: flex;
+`
+
+export const resourceSelectNewOptionStyle = css`
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+`
+
+export const resourceSelectOptionIconStyle = css`
+  font-size: 14px;
+  margin-right: 8px;
+`
+
+export const resourceSelectOptionNewIconStyle = css`
+  font-size: 12px;
 `
 
 export const resourceOptionStyle = css`
@@ -150,13 +168,15 @@ export const resourceOptionStyle = css`
 `
 
 export function applyEditIconStyle(disabled: boolean): SerializedStyles {
-  const hoverStyle = disabled
-    ? ""
-    : css`
-        &:hover > svg {
-          color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
-        }
-      `
+  const hoverColor = disabled
+    ? globalColor(`--${illaPrefix}-grayBlue-05`)
+    : globalColor(`--${illaPrefix}-grayBlue-02`)
+
+  const hoverStyle = css`
+    &:hover > svg {
+      color: ${hoverColor};
+    }
+  `
 
   const cursorStyle = disabled ? "cursor: not-allowed;" : "cursor: pointer;"
 
@@ -166,12 +186,14 @@ export function applyEditIconStyle(disabled: boolean): SerializedStyles {
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-radius: 0 8px 8px 0;
     box-sizing: border-box;
+    margin-right: 8px;
+    border-left: 0;
 
     ${cursorStyle}
     ${hoverStyle}
       & > svg {
       margin: 8px;
-      color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+      color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
     }
   `
 }
@@ -190,14 +212,21 @@ export const handlerTitleStyle = css`
 `
 
 export const panelPaddingStyle = css`
-  padding: 8px 16px;
+  padding: 16px;
 `
 
 export const panelSubBarStyle = css`
   padding: 13px 16px;
 `
 export const newBtnStyle = css`
-  padding-left: 16px;
+  margin-left: 16px;
+  padding: 0 8px;
+  height: 24px;
+  font-size: 14px;
+
+  & > span:first-child {
+    margin-right: 4px;
+  }
 `
 
 export const dashBorderBottomStyle = css`
@@ -258,26 +287,6 @@ export const moreBtnMenuStyle = css`
   padding: 8px 0;
   width: 180px;
   box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
-`
-
-const moreActionItemStyle = css`
-  line-height: 32px;
-  padding: 5px 16px;
-  cursor: pointer;
-
-  &:hover {
-    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-  }
-`
-
-export const duplicateActionStyle = css`
-  ${moreActionItemStyle}
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)} !important;
-`
-
-export const deleteActionStyle = css`
-  ${moreActionItemStyle}
-  color: ${globalColor(`--${illaPrefix}-red-03`)} !important;
 `
 
 export const handlerItemWrapperStyle = css`

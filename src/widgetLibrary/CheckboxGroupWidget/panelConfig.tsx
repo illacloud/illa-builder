@@ -1,6 +1,8 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import i18n from "@/i18n/config"
+import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const baseWidgetName = "checkboxGroup"
 export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
@@ -53,6 +55,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         attrName: "value",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -65,12 +68,14 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-label-caption`,
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-label-position`,
@@ -103,6 +108,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -114,6 +120,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-validation-required`,
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -123,6 +130,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
@@ -138,6 +146,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -150,6 +159,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -163,6 +173,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: `${baseWidgetName}-layout-direction`,
@@ -170,6 +181,29 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
         options: ["vertical", "horizontal"],
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-styles`,
+    groupName: i18n.t("editor.inspect.setter_group.style"),
+    children: [
+      {
+        id: `${baseWidgetName}-style`,
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-style-coloScheme`,
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            attrName: "colorScheme",
+            setterType: "COLOR_SELECT_SETTER",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
+          },
+        ],
       },
     ],
   },

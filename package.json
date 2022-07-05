@@ -26,6 +26,7 @@
     "@illa-design/react": "*",
     "@lezer/common": "^1.0.0",
     "@reduxjs/toolkit": "^1.8.1",
+    "@types/jshint": "^2.12.1",
     "@uiw/react-codemirror": "^4.8.1",
     "acorn": "^8.7.1",
     "acorn-walk": "^8.2.0",
@@ -34,6 +35,7 @@
     "framer-motion": "^6.3.0",
     "i18next": "^21.6.16",
     "immer": "^9.0.14",
+    "jshint": "^2.13.4",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-custom-scrollbars": "^4.2.1",
@@ -53,7 +55,8 @@
     "toposort": "^2.0.2",
     "use-bus": "^2.5.1",
     "uuid": "^8.3.2",
-    "ws": "^8.7.0"
+    "ws": "^8.7.0",
+    "react-hotkeys-hook": "^3.4.6"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",

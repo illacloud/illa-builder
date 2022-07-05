@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC } from "react"
 import {
   dragPreviewStyle,
   iconStyle,
@@ -13,9 +13,15 @@ import {
   DragCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
+import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import store from "@/store"
+import { useDispatch } from "react-redux"
+import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
   const { widgetName, icon, id, ...partialDragInfo } = props
+
+  const dispatch = useDispatch()
 
   const [, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
@@ -24,6 +30,20 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
   >(
     () => ({
       type: "components",
+      end: (draggedItem, monitor) => {
+        if (
+          searchDsl(
+            store.getState().currentApp.editor.components.rootDsl,
+            draggedItem.displayName,
+          ) == null
+        ) {
+          dispatch(
+            displayNameActions.removeDisplayNameReducer(
+              draggedItem.displayName,
+            ),
+          )
+        }
+      },
       item: () => {
         return generateComponentNode({
           widgetName,

@@ -8,9 +8,7 @@ export interface DragShadow {
 }
 
 export interface DragShadowState {
-  map: { [displayName: string]: DragShadow }
+  [key: string]: DragShadow
 }
 
-export const DragShadowInitialState: DragShadowState = {
-  map: {},
-}
+export const DragShadowInitialState: DragShadowState = {}

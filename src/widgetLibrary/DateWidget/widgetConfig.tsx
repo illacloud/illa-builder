@@ -13,5 +13,10 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     value: "2022-06-01",
     dateFormat: "YYYY-MM-DD",
+    colorScheme: "blue",
+    label: "Label",
+    labelAlign: "left",
+    labelPosition: "left",
+    labelWidth: "{{33}}",
   },
 }

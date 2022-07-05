@@ -19,6 +19,7 @@ export interface RESTAPIConfigureValues {
   authentication?: string
   basicUsername?: string
   basicPassword?: string
+  bearerToken?: string
   oauth2UseClientCredentialsAuth?: boolean
   oauth2CallbackUrl?: string
   oauthAuthUrl?: string
@@ -55,7 +56,7 @@ export interface BodyProps {
 
 export interface RESTAPIParamValues {
   method?: HTTPMethod
-  path?: string
+  url?: string
   urlParams?: Params[]
   headers?: Params[]
   contentType?: ContentType

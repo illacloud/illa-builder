@@ -1,12 +1,16 @@
-import _ from "lodash"
+import { flatten, get, toPath } from "lodash"
 import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { extractIdentifiersFromCode } from "@/utils/ast/ast"
-import { isInt, isObject } from "@/utils/typeHelper"
-import { DependencyMap } from "@/redux/currentApp/executionTree/dependencies/dependenciesState"
+import { isInt } from "@/utils/typeHelper"
+import { DependenciesState } from "@/redux/currentApp/executionTree/dependencies/dependenciesState"
+import {
+  getAllPaths,
+  getWidgetOrActionDynamicAttrPaths,
+} from "@/utils/evaluateDynamicString/utils"
 
-export const convertPathToString = (arrPath: Array<string | number>) => {
+export const convertPathToString = (attrPath: Array<string | number>) => {
   let string = ""
-  arrPath.forEach((segment) => {
+  attrPath.forEach((segment) => {
     if (isInt(segment)) {
       string = string + "[" + segment + "]"
     } else {
@@ -19,7 +23,7 @@ export const convertPathToString = (arrPath: Array<string | number>) => {
   return string
 }
 
-export const extractReferencesFromBinding = (
+export const extractReferencesFromScript = (
   script: string,
   allPaths: Record<string, true>,
 ): string[] => {
@@ -30,55 +34,36 @@ export const extractReferencesFromBinding = (
       references.add(identifier)
       return
     }
-    const subpaths = _.toPath(identifier)
+    const subPaths = toPath(identifier)
     let current = ""
-    while (subpaths.length > 1) {
-      current = convertPathToString(subpaths)
+    while (subPaths.length > 1) {
+      current = convertPathToString(subPaths)
       if (allPaths.hasOwnProperty(current)) {
         references.add(current)
         return
       }
-      subpaths.pop()
+      subPaths.pop()
     }
   })
   return Array.from(references)
 }
 
-const getAllPaths = (
-  widgets: Record<string, any>,
-  curKey: string = "",
-  result: Record<string, any> = {},
-) => {
-  if (curKey) result[curKey] = true
-  if (Array.isArray(widgets)) {
-    for (let i = 0; i < widgets.length; i++) {
-      const tempKey = curKey ? `${curKey}[${i}]` : `${i}`
-      getAllPaths(widgets[i], tempKey, result)
-    }
-  } else if (isObject(widgets)) {
-    for (const key in widgets) {
-      const tempKey = curKey ? `${curKey}.${key}` : `${key}`
-      getAllPaths(widgets[key], tempKey, result)
-    }
-  }
-  return result
-}
-
 export const generateDependencies = (
   displayNameMapProps: Record<string, any>,
 ) => {
-  let dependenciesMap: DependencyMap = {}
-  let inverseDependenciesMap: DependencyMap = {}
+  let dependenciesMap: DependenciesState = {}
+  let inverseDependenciesMap: DependenciesState = {}
   const allKeys = getAllPaths(displayNameMapProps)
   Object.keys(displayNameMapProps).forEach((displayName) => {
     const widgetProps = displayNameMapProps[displayName]
-    const dynamicStrings: string[] = widgetProps.$dynamicStrings ?? []
-    if (dynamicStrings.length) {
-      dynamicStrings.forEach((attrName) => {
-        const originValue = _.get(widgetProps, attrName)
+    const dynamicAttrPaths: string[] =
+      getWidgetOrActionDynamicAttrPaths(widgetProps)
+    if (dynamicAttrPaths.length) {
+      dynamicAttrPaths.forEach((attrPath) => {
+        const originValue = get(widgetProps, attrPath)
         const { jsSnippets } = getSnippets(originValue)
-        const existingDeps = dependenciesMap[`${displayName}.${attrName}`] || []
-        dependenciesMap[`${displayName}.${attrName}`] = existingDeps.concat(
+        const existingDeps = dependenciesMap[`${displayName}.${attrPath}`] || []
+        dependenciesMap[`${displayName}.${attrPath}`] = existingDeps.concat(
           jsSnippets.filter((jsSnippet) => !!jsSnippet),
         )
       })
@@ -86,10 +71,10 @@ export const generateDependencies = (
   })
 
   Object.keys(dependenciesMap).forEach((key) => {
-    dependenciesMap[key] = _.flatten(
-      dependenciesMap[key].map((path) => {
+    dependenciesMap[key] = flatten(
+      dependenciesMap[key].map((script) => {
         try {
-          return extractReferencesFromBinding(path, allKeys)
+          return extractReferencesFromScript(script, allKeys)
         } catch (e) {
           console.log("error", e)
           return []
@@ -97,24 +82,16 @@ export const generateDependencies = (
       }),
     )
   })
-
-  const removedEmptyDependencies = fixedDependenciesMap(dependenciesMap)
-
-  Object.keys(removedEmptyDependencies).forEach((path) => {
-    removedEmptyDependencies[path].forEach((dependency) => {
-      inverseDependenciesMap[dependency] =
-        inverseDependenciesMap[dependency] || []
-      inverseDependenciesMap[dependency].push(path)
-    })
-  })
-  return inverseDependenciesMap
-}
-
-export const fixedDependenciesMap = (dependencies: DependencyMap) => {
-  Object.keys(dependencies).forEach((key) => {
-    if (dependencies[key].length === 0) {
-      delete dependencies[key]
+  Object.keys(dependenciesMap).forEach((path) => {
+    if (dependenciesMap[path].length === 0) {
+      inverseDependenciesMap[path] = []
+    } else {
+      dependenciesMap[path].forEach((dependency) => {
+        inverseDependenciesMap[dependency] =
+          inverseDependenciesMap[dependency] || []
+        inverseDependenciesMap[dependency].push(path)
+      })
     }
   })
-  return dependencies
+  return inverseDependenciesMap
 }

@@ -174,7 +174,10 @@
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
-          "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
+          "name_already_exist": "名称已经存在",
+          "please_input_name": "请输入名称",
+          "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头"
         },
         "action_generator": {
           "selector": {
@@ -195,6 +198,7 @@
         },
         "btn": {
           "run": "运行",
+          "save": "保存",
           "save_and_run": "保存&运行",
           "disable": "禁用",
           "enable": "使用",
@@ -319,7 +323,8 @@
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
             "access_token_lifespan": "Access Token lifespan(optiinal)",
-            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "bearerToken": "Bearer Token"
           },
           "tip": {
             "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
@@ -342,7 +347,10 @@
           },
           "option": {
             "authentication": {
-              "basicAuth": "基础认证"
+              "none": "无",
+              "basic_auth": "基础认证",
+              "bearer": "Bearer",
+              "oauth2": "OAuth 2.0"
             }
           }
         },
@@ -489,7 +497,11 @@
           "action_menu": {
             "delete": "Delete",
             "duplicate": "Duplicate"
-          }
+          },
+          "list_no_label": "No label"
+        },
+        "list_setter": {
+          "reset": "Reset"
         }
       }
     },

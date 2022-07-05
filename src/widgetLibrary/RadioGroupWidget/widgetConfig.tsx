@@ -4,7 +4,7 @@ import { v4 } from "uuid"
 import i18n from "@/i18n/config"
 
 export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
-  displayName: "RadioGroup",
+  displayName: "radioGroup",
   type: "RADIO_GROUP_WIDGET",
   widgetName: i18n.t("widget.radio_group.name"),
   icon: <RadioGroupWidgetIcon size="100%" />,
@@ -16,7 +16,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    width: "500px",
+    labelWidth: "{{33}}",
     direction: "horizontal",
     options: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },
@@ -24,5 +24,6 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
       { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },
     ],
     dataSources: "{{[]}}",
+    colorScheme: "blue",
   },
 }

@@ -10,16 +10,12 @@ test("Image render", () => {
       width="200px"
       imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
       handleUpdateDsl={handleUpdateDSL}
-      radius="20"
     />,
   )
   expect(screen.getByRole("img")).toHaveAttribute(
     "src",
     "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
   )
-  expect(screen.getByRole("img")).toHaveStyle({
-    "border-radius": "20px",
-  })
 })
 
 test("Image render with radius", () => {
@@ -30,7 +26,7 @@ test("Image render with radius", () => {
       width="200px"
       imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
       handleUpdateDsl={handleUpdateDSL}
-      radius="20px"
+      radius="20"
     />,
   )
   expect(screen.getByRole("img")).toHaveAttribute(

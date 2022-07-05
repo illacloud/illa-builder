@@ -39,8 +39,12 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
-    const [enableSSH, setEnableSSH] = useState(false)
-    const [enableSSL, setEnableSSL] = useState(false)
+    const [enableSSH, setEnableSSH] = useState(
+      (resourceConfig?.options as MySQLConfigureValues)?.ssh,
+    )
+    const [enableSSL, setEnableSSL] = useState(
+      (resourceConfig?.options as MySQLConfigureValues)?.ssl,
+    )
     const {
       handleSubmit,
       control,
@@ -65,8 +69,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
 
       onTestConnection?.({
         resourceName: resourceName,
-        resourceType: "MySQL",
-        options,
+        resourceType: "mysql",
+        options: {
+          ...options,
+          port: "" + options.port,
+        },
       })
     }
 
@@ -81,7 +88,12 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       onSubmit?.({
         resourceName: resourceName,
         resourceType: "mysql",
-        options,
+        options: {
+          ...options,
+          port: "" + options.port,
+          ssh: enableSSH,
+          ssl: enableSSL,
+        },
       })
     }
     return (

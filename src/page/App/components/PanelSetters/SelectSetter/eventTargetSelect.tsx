@@ -7,14 +7,8 @@ import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/
 export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
 
-  const {
-    isSetterSingleRow,
-    options,
-    defaultValue,
-    attrName,
-    panelConfig,
-    handleUpdateDsl,
-  } = props
+  const { isSetterSingleRow, options, attrName, panelConfig, handleUpdateDsl } =
+    props
 
   const finalOptions = () => {
     const tmpOptions: { label: string; value: string }[] = []
@@ -36,9 +30,9 @@ export const EventTargetSelect: FC<BaseSelectSetterProps> = (props) => {
       <Select
         options={finalOptions()}
         size="small"
-        value={panelConfig[attrName] ?? defaultValue}
+        value={panelConfig?.[attrName]}
         onChange={(value) => {
-          handleUpdateDsl({ [attrName]: value })
+          handleUpdateDsl(attrName, value)
         }}
       />
     </div>

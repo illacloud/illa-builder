@@ -4,7 +4,7 @@ import i18n from "@/i18n/config"
 
 export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   type: "IMAGE_WIDGET",
-  displayName: "Image",
+  displayName: "image",
   widgetName: i18n.t("widget.image.name"),
   icon: <ImageWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
@@ -12,5 +12,6 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   defaults: {
     imageSrc: "https://placekitten.com/400/300",
+    radius: "0px",
   },
 }

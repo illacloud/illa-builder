@@ -19,6 +19,14 @@ export const contentStyle = css`
   overflow: auto;
 `
 
+export const loadingStyle = css`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`
+
 export const navbarStyle = css`
   box-sizing: border-box;
   width: 100%;
@@ -65,7 +73,7 @@ export function applyRightPanelStyle(display: boolean): SerializedStyles {
 
 export const middlePanelStyle = css`
   flex-grow: 1;
-  min-width: 960px;
+  min-width: 300px;
   height: 100%;
   display: flex;
   flex-direction: column;

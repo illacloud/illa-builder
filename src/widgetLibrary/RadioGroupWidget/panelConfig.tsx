@@ -2,6 +2,7 @@ import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -37,6 +38,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: "optionMode",
+        expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "mapped",
       },
       {
@@ -65,12 +67,14 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "radioGroup-label-caption",
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "radioGroup-label-position",
@@ -103,6 +107,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -114,6 +119,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: "radioGroup-validation-required",
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -123,6 +129,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
@@ -138,6 +145,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -150,6 +158,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -163,6 +172,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "radioGroup-style-direction",
@@ -174,16 +184,25 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-style",
+    id: `radioGroup-styles`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "radioGroup-style-color",
-        labelName: i18n.t("editor.inspect.setter_label.color"),
-        setterType: "COLOR_SELECT_SETTER",
-        attrName: "colorScheme",
-        defaultValue: "blue",
-        options: colorSchemeOptions,
+        id: "radioGroup-style",
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: "radioGroup-style-color",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            attrName: "colorScheme",
+            setterType: "COLOR_SELECT_SETTER",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
+          },
+        ],
       },
     ],
   },

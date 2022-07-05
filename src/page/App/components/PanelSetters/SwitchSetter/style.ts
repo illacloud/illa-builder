@@ -12,6 +12,7 @@ export const dynamicSwitchWrapperStyle = css`
 export const customAndSwitchWrapperStyle = css`
   display: flex;
   align-items: center;
+  min-height: 28px;
 `
 
 export const applyCustomIconStyle = (
@@ -42,7 +43,6 @@ export const applyCustomIconStyle = (
 }
 
 const singleRowStyle = css`
-  min-height: 48px;
   width: 100%;
   ${publicPaddingStyle}
 `
@@ -52,11 +52,17 @@ const doubleRowStyle = css`
   width: 100%;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   ${publicPaddingStyle}
 `
 
 export const applyLabelWrapperStyle = (
   isCustom: boolean = false,
 ): SerializedStyles => {
-  return isCustom ? singleRowStyle : doubleRowStyle
+  return isCustom ? doubleRowStyle : singleRowStyle
 }
+
+export const dynamicSwitchInputStyle = css`
+  padding: 8px 0;
+  width: 100%;
+`

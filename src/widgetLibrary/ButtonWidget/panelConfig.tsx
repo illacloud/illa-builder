@@ -7,6 +7,7 @@ import {
 } from "@illa-design/react"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -18,6 +19,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "text",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -51,6 +53,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "loading",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: "submit",
         shown: (value) => {
           return value === false
@@ -62,6 +65,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: "submit",
         shown: (value) => value === false,
       },
@@ -75,6 +79,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         id: "button-adornments-tooltip",
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
+        expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
     ],
@@ -112,6 +117,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -138,8 +144,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-style-list",
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.color"),
-        attrName: "color",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {

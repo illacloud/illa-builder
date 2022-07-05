@@ -7,4 +7,6 @@ export interface BaseSwitchProps extends BaseSetter {
 
 type SwitchProProps = BaseSwitchProps & PanelLabelProps
 
-export interface DynamicSwitchProps extends SwitchProProps {}
+export interface DynamicSwitchProps extends SwitchProProps {
+  panelConfig: Record<string, any>
+}

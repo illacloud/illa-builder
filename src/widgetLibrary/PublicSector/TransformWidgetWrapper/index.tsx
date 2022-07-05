@@ -8,6 +8,8 @@ import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { isObject } from "@/utils/typeHelper"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
+import { BasicWrapper } from "@/widgetLibrary/PublicSector/BasicWrapper"
+import Label from "@/widgetLibrary/PublicSector/Label"
 
 const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -86,12 +88,39 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   if (!type) return null
   const COMP = widgetBuilder(type).widget
   if (!COMP) return null
+
+  const {
+    tooltipText,
+    label,
+    labelAlign,
+    labelWidth,
+    labelPosition,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    hidden,
+  } = realProps
   return (
-    <COMP
-      {...realProps}
-      handleOnChange={handleOnChange}
-      handleUpdateDsl={handleUpdateDsl}
-      ref={ref}
-    />
+    <BasicWrapper
+      tooltipText={tooltipText}
+      hidden={hidden}
+      labelPosition={labelPosition}
+    >
+      <Label
+        label={label}
+        labelAlign={labelAlign}
+        labelWidth={labelWidth}
+        labelCaption={labelCaption}
+        labelWidthUnit={labelWidthUnit}
+        labelPosition={labelPosition}
+        required={required}
+      />
+      <COMP
+        {...realProps}
+        handleOnChange={handleOnChange}
+        handleUpdateDsl={handleUpdateDsl}
+        ref={ref}
+      />
+    </BasicWrapper>
   )
 }

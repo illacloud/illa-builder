@@ -7,7 +7,7 @@ import {
   sectionTitleStyle,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/style"
 import { Button } from "@illa-design/button"
-import { PlusIcon } from "@illa-design/icon"
+import { AddIcon } from "@illa-design/icon"
 import { v4 as uuid } from "uuid"
 import { HandlerItem } from "./HandlerItem"
 import { EventInstanceProps } from "./interface"
@@ -27,19 +27,18 @@ export const EventInstance: FC<EventInstanceProps> = (props) => {
           <HandlerItem key={item.key} content={"ILLA"} />
         ))}
       </div>
-      <div css={newBtnStyle}>
-        <Button
-          variant="text"
-          size="medium"
-          colorScheme="techPurple"
-          leftIcon={<PlusIcon />}
-          onClick={() => {
-            setHandlerList([...handlerList, { key: uuid() }])
-          }}
-        >
-          {t("editor.action.panel.btn.new")}
-        </Button>
-      </div>
+      <Button
+        variant="text"
+        size="medium"
+        colorScheme="techPurple"
+        leftIcon={<AddIcon />}
+        _css={newBtnStyle}
+        onClick={() => {
+          setHandlerList([...handlerList, { key: uuid() }])
+        }}
+      >
+        {t("editor.action.panel.btn.new")}
+      </Button>
     </>
   )
 }

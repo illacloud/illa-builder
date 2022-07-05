@@ -5,11 +5,12 @@ import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { configActions } from "@/redux/config/configSlice"
 import {
-  actionMenuContaninterStyle,
+  actionMenuContainerStyle,
   baseActionMenuItemStyle,
   deleteActionMenuItemStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const {
@@ -35,14 +36,14 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         window.open("https://www.baidu.com")
         break
       }
-      case ACTION_TYPE.SWITCH_COMPONENT: {
-        //  TODO: wait to do smt
-        console.log("SwitchComponent")
-        break
-      }
       case ACTION_TYPE.RESET_STATE: {
-        //  TODO: wait for componentDSL to change redux DSL
-        console.log("ResetState")
+        const defaultProps = widgetBuilder(componentType).config.defaults
+        dispatch(
+          componentsActions.updateComponentPropsReducer({
+            displayName: widgetDisplayName,
+            updateSlice: defaultProps ?? {},
+          }),
+        )
         break
       }
       case ACTION_TYPE.DELETE: {
@@ -60,7 +61,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   }
 
   return (
-    <div css={actionMenuContaninterStyle} onClick={handleClickMenuItem}>
+    <div css={actionMenuContainerStyle} onClick={handleClickMenuItem}>
       <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.VIEW_DOCUMENT}>
         {t("editor.inspect.header.action_menu.view_documentation")}
       </div>

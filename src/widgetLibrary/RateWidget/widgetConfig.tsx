@@ -14,5 +14,10 @@ export const RATE_WIDGET_CONFIG: WidgetConfig = {
     value: "{{4.5}}",
     allowHalf: true,
     maxCount: "{{5}}",
+    icon: "star",
+    label: "Label",
+    labelAlign: "left",
+    labelPosition: "left",
+    labelWidth: "{{33}}",
   },
 }

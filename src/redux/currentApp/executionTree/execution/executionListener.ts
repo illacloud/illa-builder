@@ -1,36 +1,87 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
-import _ from "lodash"
+import { cloneDeep, get, set } from "lodash"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { getEvalOrderSelector } from "@/redux/currentApp/executionTree/dependencies/dependenciesSelector"
 import {
-  getDisplayNameAndAttributeyPath,
+  getDisplayNameAndAttrPath,
   isDynamicString,
 } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { ExecutionState } from "@/redux/currentApp/executionTree/execution/executionState"
+import {
+  ExecutionState,
+  ExecutionErrorType,
+} from "@/redux/currentApp/executionTree/execution/executionState"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { generateAllTypePathsFromWidgetConfig } from "@/utils/generators/generateAllTypePathsFromWidgetConfig"
+import { validationFactory } from "@/utils/validationFactory"
 
-function executionAllTree(
+function validateTree(
+  evaluatedTree: Record<string, any>,
+  errorTree: ExecutionState["error"],
+) {
+  const newErrorTree: ExecutionState["error"] = cloneDeep(errorTree)
+  const newEvaluatedTree = Object.keys(evaluatedTree).reduce(
+    (current: Record<string, any>, displayName) => {
+      const widgetOrAction = current[displayName]
+      if (widgetOrAction.$type === "WIDGET") {
+        const panelConfig = widgetBuilder(
+          widgetOrAction.$widgetType,
+        ).panelConfig
+        const { validationPaths } = generateAllTypePathsFromWidgetConfig(
+          panelConfig,
+          widgetOrAction,
+        )
+        Object.keys(validationPaths).forEach((validationPath) => {
+          const validationType = validationPaths[validationPath]
+          const fullPath = `${displayName}.${validationPath}`
+          const validationFunc = validationFactory[validationType]
+          const value = get(widgetOrAction, validationPath)
+          const { isValid, safeValue, errorMessage } = validationFunc(value)
+          set(current, fullPath, safeValue)
+          if (!isValid) {
+            let error = get(errorTree, fullPath)
+            if (!Array.isArray(error)) {
+              error = []
+            }
+            error.push({
+              errorType: ExecutionErrorType.VALIDATION,
+              errorMessage: errorMessage as string,
+            })
+            set(newErrorTree, fullPath, error)
+          }
+        })
+      }
+      return current
+    },
+    evaluatedTree,
+  )
+  return {
+    evaluatedTree: newEvaluatedTree,
+    errorTree: newErrorTree,
+  }
+}
+
+function executeAllTree(
   displayNameMap: Record<string, any>,
   evalOrder: string[],
   point: number,
 ) {
-  const oldTree = _.cloneDeep(displayNameMap)
+  const oldTree = cloneDeep(displayNameMap)
   const errorTree: ExecutionState["error"] = {}
   try {
-    const evaledTree = evalOrder.reduce(
+    const evaluatedTree = evalOrder.reduce(
       (
         current: Record<string, any>,
         fullPath: string,
         currentIndex: number,
       ) => {
-        const { displayName, attributeyPath } =
-          getDisplayNameAndAttributeyPath(fullPath)
+        const { displayName, attrPath } = getDisplayNameAndAttrPath(fullPath)
         const widgetOrAction = current[displayName]
-        let widgetOrActionAttribute = _.get(current, fullPath)
-        let evaledValue
+        let widgetOrActionAttribute = get(current, fullPath)
+        let evaluateValue
         if (point === currentIndex) {
           // TODO: @weichen widget default value
           widgetOrActionAttribute = "defaultValue"
@@ -38,29 +89,39 @@ function executionAllTree(
         const requiredEval = isDynamicString(widgetOrActionAttribute)
         if (requiredEval) {
           try {
-            evaledValue = evaluateDynamicString(
-              attributeyPath,
+            evaluateValue = evaluateDynamicString(
+              attrPath,
               widgetOrActionAttribute,
               current,
             )
           } catch (e) {
-            _.set(errorTree, fullPath, {
-              error: true,
-              errorMessage: (e as Error).message,
-            })
+            let oldError = get(errorTree, fullPath)
+            if (Array.isArray(oldError)) {
+              oldError.push({
+                errorType: ExecutionErrorType.EVALUATED,
+                errorMessage: (e as Error).message,
+              })
+            }
+
+            set(errorTree, fullPath, [
+              {
+                errorType: ExecutionErrorType.EVALUATED,
+                errorMessage: (e as Error).message,
+              },
+            ])
             // TODO: @weichen widget default value
-            evaledValue = undefined
+            evaluateValue = undefined
           }
         } else {
-          evaledValue = widgetOrActionAttribute
+          evaluateValue = widgetOrActionAttribute
         }
-        return _.set(current, fullPath, evaledValue)
+        return set(current, fullPath, evaluateValue)
       },
       oldTree,
     )
-    return { evaledTree, errorTree }
+    return { evaluatedTree, errorTree }
   } catch (e) {
-    return { evaledTree: oldTree, errorTree }
+    return { evaluatedTree: oldTree, errorTree }
   }
 }
 
@@ -72,15 +133,17 @@ async function handleUpdateExecution(
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
   if (!displayNameMapProps) return
   const { order, point } = getEvalOrderSelector(rootState)
-  const { evaledTree, errorTree } = executionAllTree(
+  const { evaluatedTree, errorTree } = executeAllTree(
     displayNameMapProps,
     order,
     point,
   )
+  const { evaluatedTree: newEvaluatedTree, errorTree: newErrorTree } =
+    validateTree(evaluatedTree, errorTree)
   listenerApi.dispatch(
     executionActions.setExecutionReducer({
-      result: evaledTree,
-      error: errorTree,
+      result: newEvaluatedTree,
+      error: newErrorTree,
     }),
   )
 }

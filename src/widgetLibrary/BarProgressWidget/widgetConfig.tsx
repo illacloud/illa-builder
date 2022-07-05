@@ -12,7 +12,13 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   h: 10,
   defaults: {
     value: "50",
-    strokeWidth: "4px",
     hidden: "false",
+    color: "blue",
+    trailColor: "gray",
+    strokeWidth: "4px",
+    label: "Label",
+    labelAlign: "left",
+    labelPosition: "left",
+    labelWidth: "{{33}}",
   },
 }

@@ -1,12 +1,12 @@
-import { ExpectedType } from "@/components/CodeEditor/utils"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface BaseSetter {
   isSetterSingleRow?: boolean
   value?: any
   attrName: string
-  panelConfig: Record<string, any>
+  panelConfig?: Record<string, any>
   handleUpdateDsl: (attrPath: string, value: any) => void
-  expectedType: ExpectedType
+  expectedType: VALIDATION_TYPES
   isInList?: boolean
   widgetDisplayName: string
 }

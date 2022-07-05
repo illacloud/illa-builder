@@ -7,7 +7,6 @@ export const applyRadioGroupWrapperStyle = (
   return isSetterSingleRow
     ? css`
         width: 100%;
-        margin-top: 8px;
       `
     : fixedWidthStyle
 }

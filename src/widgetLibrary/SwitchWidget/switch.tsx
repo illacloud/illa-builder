@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle } from "react"
 import { Switch } from "@illa-design/switch"
-import LabelWrapper from "@/widgetLibrary/PublicSector/LabelWrapper"
 import { WrappedSwitchProps } from "./interface"
+import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedSwitch = forwardRef<any, WrappedSwitchProps>(
   (props, ref) => {
@@ -17,32 +17,10 @@ export const WrappedSwitch = forwardRef<any, WrappedSwitchProps>(
       },
     }))
 
-    const {
-      label,
-      labelAlign,
-      labelWidth,
-      labelPosition,
-      labelCaption,
-      labelWidthUnit,
-      value,
-      disabled,
-      required,
-      colorScheme = "blue",
-      tooltipText,
-      handleUpdateDsl,
-      handleOnChange,
-    } = props
+    const { value, disabled, colorScheme, handleUpdateDsl, handleOnChange } =
+      props
     return (
-      <LabelWrapper
-        label={label}
-        labelAlign={labelAlign}
-        labelWidth={labelWidth}
-        labelCaption={labelCaption}
-        labelWidthUnit={labelWidthUnit}
-        labelPosition={labelPosition}
-        required={required}
-        tooltipText={tooltipText}
-      >
+      <div css={containerStyle}>
         <Switch
           checked={value}
           disabled={disabled}
@@ -52,7 +30,7 @@ export const WrappedSwitch = forwardRef<any, WrappedSwitchProps>(
             handleUpdateDsl({ value })
           }}
         />
-      </LabelWrapper>
+      </div>
     )
   },
 )

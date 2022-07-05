@@ -6,6 +6,7 @@ import {
   panelBarItemContentStyle,
   panelBarItemAnimation,
   panelBarNoFontSizeStyle,
+  ghostEmptyStyle,
 } from "./style"
 import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
@@ -21,7 +22,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
   }, [isOpenedState, saveToggleState])
 
   return (
-    <div>
+    <>
       <div css={panelBarHeaderStyle} onClick={handleToggle}>
         <span css={panelBarTitleStyle}>{title}</span>
         <span css={applyPanelBarOpenedIconStyle(isOpenedState)}>
@@ -41,7 +42,8 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           <div css={panelBarNoFontSizeStyle}>{children}</div>
         </motion.div>
       </AnimatePresence>
-    </div>
+      {isOpenedState && <div css={ghostEmptyStyle} />}
+    </>
   )
 }
 

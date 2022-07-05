@@ -161,7 +161,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             dispatch(
               componentsActions.updateComponentPropsReducer({
                 displayName: newItem.displayName,
-                newProps: newItem.props ?? {},
+                updateSlice: newItem.props ?? {},
               }),
             )
             dispatch(configActions.updateSelectedComponent([newItem]))

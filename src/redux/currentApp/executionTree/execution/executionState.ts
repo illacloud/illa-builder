@@ -1,13 +1,19 @@
+export enum ExecutionErrorType {
+  EVALUATED = "EVALUATED",
+  LINT = "LINT",
+  VALIDATION = "VALIDATION",
+}
+
 export interface ErrorShape {
-  error: boolean
-  errorMessage?: string
+  errorType: ExecutionErrorType
+  errorMessage: string
+  errorLine?: number
+  errorColumn?: number
 }
 
 export interface ExecutionState {
-  result: {
-    [key: string]: Record<string, any>
-  }
-  error: { [key: string]: Record<string, ErrorShape> }
+  result: Record<string, any>
+  error: Record<string, ErrorShape[]>
 }
 
 export interface SetExecutionResultPayload {

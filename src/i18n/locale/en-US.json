@@ -174,7 +174,10 @@
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
-          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?"
+          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
+          "name_already_exist": "Already exists",
+          "please_input_name": "Please input name",
+          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
         },
         "action_generator": {
           "selector": {
@@ -195,6 +198,7 @@
         },
         "btn": {
           "run": "Run",
+          "save": "Save",
           "save_and_run": "Save&Run",
           "disable": "Disable",
           "enable": "Enable",
@@ -319,7 +323,8 @@
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
             "access_token_lifespan": "Access Token\n lifespan(optiinal)",
-            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "bearerToken": "Bearer Token"
           },
           "tip": {
             "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
@@ -342,7 +347,10 @@
           },
           "option": {
             "authentication": {
-              "basicAuth": "Basic Auth"
+              "none": "None",
+              "basic_auth": "Basic Auth",
+              "bearer": "Bearer",
+              "oauth2": "OAuth 2.0"
             }
           }
         },
@@ -489,7 +497,11 @@
           "action_menu":{
             "delete": "Delete",
             "duplicate": "Duplicate"
-          }
+          },
+          "list_no_label": "No label"
+        },
+        "list_setter": {
+          "reset": "Reset"
         }
       }
     },

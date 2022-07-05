@@ -19,9 +19,9 @@ export const getWidgetExecutionResult = createSelector(
   (executionResult) => {
     const widgetExecutionResult: Record<string, any> = {}
     Object.keys(executionResult).forEach((key) => {
-      const entiy = executionResult[key]
-      if (entiy.$type === "WIDGET") {
-        widgetExecutionResult[key] = entiy
+      const widgetOrAction = executionResult[key]
+      if (widgetOrAction.$type === "WIDGET") {
+        widgetExecutionResult[key] = widgetOrAction
       }
     })
     return widgetExecutionResult

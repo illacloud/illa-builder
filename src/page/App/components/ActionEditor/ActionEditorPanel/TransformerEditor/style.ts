@@ -6,7 +6,9 @@ export const transformerContainerStyle = css`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 `
+
 export const transfomerTipsStyle = css`
   display: grid;
   align-items: center;

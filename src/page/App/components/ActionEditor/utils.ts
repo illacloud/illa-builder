@@ -1,19 +1,55 @@
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import i18n from "@/i18n/config"
+import { useMemo } from "react"
+import { useSelector } from "react-redux"
+import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameReducer"
+import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
+import { isValidDisplayName } from "@/utils/typeHelper"
+import { ActionDisplayNameValidateResult } from "./interface"
 
-export function generateName(actionType: string, actionItems: ActionItem[]) {
-  const actionItemsNameSet = new Set(actionItems.map((i) => i.displayName))
-  const length = actionItems.filter((i) => i.actionType === actionType).length
-  const prefix = actionType
+export function useIsValidActionDisplayName() {
+  const actionList = useSelector(selectAllActionItem)
+  const displayNameSet = useMemo(() => {
+    return new Set(actionList.map(({ displayName }) => displayName))
+  }, [actionList])
 
-  const getUniqueName = (length: number): string => {
-    const name = `${prefix}${length + 1}`
-
-    if (actionItemsNameSet.has(name)) {
-      return getUniqueName(length + 1)
+  function isValidActionDisplayName(
+    name: string,
+  ): ActionDisplayNameValidateResult {
+    if (name === "") {
+      return {
+        error: true,
+        errorMsg: i18n.t("editor.action.action_list.message.please_input_name"),
+      }
     }
 
-    return name
+    if (!isValidDisplayName(name)) {
+      return {
+        error: true,
+        errorMsg: i18n.t("editor.action.action_list.message.valid_name"),
+      }
+    }
+
+    // check if unique in all actions and cache map
+    if (
+      displayNameSet.has(name) ||
+      isAlreadyGenerate({
+        type: ActionDisplayNameGenerator.DISPLAY_NAME_TYPE,
+        displayName: name,
+      })
+    ) {
+      return {
+        error: true,
+        errorMsg: i18n.t(
+          "editor.action.action_list.message.name_already_exist",
+        ),
+      }
+    }
+
+    return { error: false }
   }
 
-  return getUniqueName(length)
+  return {
+    isValidActionDisplayName,
+  }
 }

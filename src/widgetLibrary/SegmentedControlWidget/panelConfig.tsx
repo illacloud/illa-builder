@@ -2,6 +2,7 @@ import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import i18n from "@/i18n/config"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 const baseWidgetName = "segmented-control"
 export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
@@ -38,6 +39,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: "optionMode",
+        expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "mapped",
       },
       {
@@ -66,12 +68,14 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-label-caption`,
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-label-position`,
@@ -104,6 +108,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
   },
@@ -115,6 +120,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-validation-required`,
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
@@ -124,6 +130,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
           "editor.inspect.setter_label.hide_validation_message",
         ),
         setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "hideValidationMessage",
       },
@@ -139,6 +146,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -151,6 +159,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
@@ -164,6 +173,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -172,12 +182,21 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: `${baseWidgetName}-style-color`,
-        labelName: i18n.t("editor.inspect.setter_label.color"),
-        setterType: "COLOR_SELECT_SETTER",
-        attrName: "colorScheme",
-        defaultValue: "blue",
-        options: colorSchemeOptions,
+        id: `${baseWidgetName}-style-styles`,
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-style-color`,
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            attrName: "colorScheme",
+            setterType: "COLOR_SELECT_SETTER",
+            defaultValue: "blue",
+            options: colorSchemeOptions,
+          },
+        ],
       },
     ],
   },

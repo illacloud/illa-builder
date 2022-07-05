@@ -1,38 +1,28 @@
 import { forwardRef, useCallback, useMemo } from "react"
 import dayjs from "dayjs"
 import { DateRangePicker } from "@illa-design/date-picker"
-import { Wrapper } from "@/widgetLibrary/PublicSector/Wrapper"
-import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { invalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
-import LabelWrapper from "@/widgetLibrary/PublicSector/LabelWrapper"
-import { inputContainerCss } from "./style"
 import { WrappedDateRangeProps } from "./interface"
+import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
   (props, ref) => {
     const {
       startValue,
       endValue,
-      tooltipText,
       dateFormat,
       startPlaceholder,
       endPlaceholder,
       showClear,
-      label,
-      labelAlign,
-      labelWidth,
-      labelPosition,
-      labelCaption,
-      labelWidthUnit,
       required,
-      colorScheme,
       minDate,
       disabled,
       maxDate,
       readOnly,
       customRule,
       hideValidationMessage,
+      colorScheme,
       handleUpdateDsl,
     } = props
 
@@ -64,48 +54,29 @@ export const WrappedDateRange = forwardRef<any, WrappedDateRangeProps>(
     )
 
     return (
-      <TooltipWrapper
-        tooltipText={tooltipText}
-        disabled={!tooltipText}
-        position="tl"
-      >
-        <Wrapper alignment="fullWidth">
-          <LabelWrapper
-            label={label}
-            labelAlign={labelAlign}
-            labelWidth={labelWidth}
-            labelCaption={labelCaption}
-            labelWidthUnit={labelWidthUnit}
-            labelPosition={labelPosition}
-            required={required}
-            tooltipText={tooltipText}
-          >
-            <div css={inputContainerCss}>
-              <DateRangePicker
-                colorScheme={colorScheme}
-                format={dateFormat}
-                value={dateRangeValue}
-                readOnly={readOnly}
-                disabled={disabled}
-                placeholder={_placeholder}
-                allowClear={showClear}
-                disabledDate={checkRange}
-                // todo @aoao handleUpdateDsl?
-                onClear={() => {
-                  handleUpdateDsl({ value: [] })
-                }}
-                onChange={(value) => {
-                  handleUpdateDsl({ value })
-                }}
-              />
-              <InvalidMessage
-                customRule={_customValue}
-                hideValidationMessage={hideValidationMessage}
-              />
-            </div>
-          </LabelWrapper>
-        </Wrapper>
-      </TooltipWrapper>
+      <div css={containerStyle}>
+        <DateRangePicker
+          colorScheme={colorScheme}
+          format={dateFormat}
+          value={dateRangeValue}
+          readOnly={readOnly}
+          disabled={disabled}
+          placeholder={_placeholder}
+          allowClear={showClear}
+          disabledDate={checkRange}
+          // todo @aoao handleUpdateDsl?
+          onClear={() => {
+            handleUpdateDsl({ value: [] })
+          }}
+          onChange={(value) => {
+            handleUpdateDsl({ value })
+          }}
+        />
+        <InvalidMessage
+          customRule={_customValue}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
     )
   },
 )

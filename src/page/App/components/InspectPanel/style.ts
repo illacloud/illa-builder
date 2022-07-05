@@ -10,7 +10,6 @@ export const publicPaddingStyle = css`
 export const baseLabelStyle = css`
   font-size: 14px;
   font-weight: 500;
-  line-height: 22px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -19,17 +18,28 @@ export const baseLabelStyle = css`
 export const ListLabelStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export function applyLabelStyle(isInList?: boolean): SerializedStyles {
   return isInList ? ListLabelStyle : baseLabelStyle
 }
 
-export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
+export function applyLabelTipsStyle(
+  isInList?: boolean,
+  hasLabelDesc?: boolean,
+): SerializedStyles {
   const labelStyle = applyLabelStyle(isInList)
+  const borderBottomStyle = hasLabelDesc
+    ? css`
+        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+      `
+    : css``
   return css`
     ${labelStyle};
-    border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+    ${borderBottomStyle};
   `
 }
 
@@ -52,6 +62,9 @@ export const panelBarHeaderStyle = css`
   align-items: center;
   height: 48px;
   cursor: pointer;
+  &:not(:first-of-type) {
+    border-top: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
   ${publicPaddingStyle};
 `
 
@@ -100,23 +113,18 @@ export function applySetterWrapperStyle(
   }
   if (isSetterSingleRow) {
     return css`
-      margin: 8px 0;
       ${publicPaddingStyle}
     `
   }
 
   const basicStyle = css`
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    height: ${isInList ? "40px" : "48px"};
-  `
-  const wrappedStyle = css`
-    height: auto;
   `
   return css`
     ${publicPaddingStyle};
-    ${isSetterSingleRowWrapper ? wrappedStyle : basicStyle};
+    ${basicStyle};
   `
 }
 
@@ -148,7 +156,7 @@ export const singleSelectedPanelSetterWrapperStyle = css`
   overflow-y: auto;
 `
 
-export const actionMenuContaninterStyle = css`
+export const actionMenuContainerStyle = css`
   padding: 8px 0;
   width: 184px;
   border-radius: 8px;
@@ -171,6 +179,31 @@ export const baseActionMenuItemStyle = css`
 export const deleteActionMenuItemStyle = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)};
 `
+
+export const ghostEmptyStyle = css`
+  margin-top: 8px;
+`
+
+export const applySetterPublicWrapperStyle = (
+  isInList: boolean = false,
+  isSetterSingleRowWrapper: boolean = false,
+) => {
+  const widthStyle = isSetterSingleRowWrapper
+    ? css`
+        width: 100%;
+      `
+    : css``
+  return isInList
+    ? css`
+        min-height: 40px;
+        ${widthStyle}
+      `
+    : css`
+        padding: 8px 0;
+        min-height: 48px;
+        ${widthStyle}
+      `
+}
 
 // when panel bar has no children,prevent expanding
 export const panelBarNoFontSizeStyle = css`

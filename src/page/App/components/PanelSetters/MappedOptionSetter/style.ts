@@ -1,11 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-const publicPaddingCss = css`
-  padding: 0 16px;
-`
-
-export const optionListHeaderCss = css`
+export const optionListHeaderStyle = css`
   width: 100%;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   display: flex;
@@ -15,35 +11,19 @@ export const optionListHeaderCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-weight: 500;
   box-sizing: border-box;
-  ${publicPaddingCss}
+  padding: 0 16px;
 `
 
-export const ListCss = css`
+export const listStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  margin: 16px 16px 0 16px;
+  margin: 0 16px 0 16px;
   border-radius: 8px;
 `
 
-export const listWrapperCss = css`
+export const listWrapperStyle = css`
   width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 12px 16px;
-`
-
-export const labelAndInputWrapperCss = css`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 48px;
-`
-
-export const modalInputWrapperCss = css`
-  width: 175px;
-`
-
-export const modalLabelCss = css`
-  font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  padding: 12px 0;
 `
