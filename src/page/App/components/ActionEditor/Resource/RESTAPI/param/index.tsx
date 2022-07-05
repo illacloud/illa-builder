@@ -6,6 +6,7 @@ import { Input } from "@illa-design/input"
 import { debounce } from "@illa-design/system"
 import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
 import { useSelector } from "react-redux"
+import { useFirstMountState } from "react-use"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
@@ -34,6 +35,7 @@ import {
   removeArrayField,
   updateArrayField,
   wrappedWithKey,
+  excludeKeyFromData,
   getEmptyField,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray/util"
 import { Body } from "./Body"
@@ -45,6 +47,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { t } = useTranslation()
   const { resourceId, actionTemplate } = useSelector(getSelectedAction)
   const [isEditingUrl, setIsEditingUrl] = useState(false)
+  const isFirstMount = useFirstMountState()
 
   const baseURL =
     (
@@ -67,10 +70,20 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const hasBody = params.method.indexOf("GET") === -1
 
   const debounceOnChange = debounce(() => {
-    onChange?.(params)
+    // remove `_key` when update
+    onChange?.({
+      ...params,
+      urlParams: excludeKeyFromData(params.urlParams),
+      headers: excludeKeyFromData(params.headers),
+      cookies: excludeKeyFromData(params.cookies),
+    })
   }, 200)
 
   useEffect(() => {
+    if (isFirstMount) {
+      return
+    }
+
     debounceOnChange()
   }, [params])
 
