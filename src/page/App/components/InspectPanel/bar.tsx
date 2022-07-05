@@ -5,6 +5,7 @@ import {
   panelBarTitleStyle,
   panelBarItemContentStyle,
   panelBarItemAnimation,
+  panelBarNoFontSizeStyle,
 } from "./style"
 import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
@@ -37,7 +38,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           initial={false}
           transition={{ duration: 0.2 }}
         >
-          <div>{children}</div>
+          <div css={panelBarNoFontSizeStyle}>{children}</div>
         </motion.div>
       </AnimatePresence>
     </div>

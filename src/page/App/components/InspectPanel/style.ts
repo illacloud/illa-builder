@@ -171,3 +171,8 @@ export const baseActionMenuItemStyle = css`
 export const deleteActionMenuItemStyle = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)};
 `
+
+// when panel bar has no children,prevent expanding
+export const panelBarNoFontSizeStyle = css`
+  font-size: 0;
+`

@@ -1,5 +1,6 @@
 import { FC, useState, useRef, useEffect } from "react"
 import { css } from "@emotion/react"
+import { Scrollbars } from "react-custom-scrollbars"
 import { useResize } from "@/utils/hooks/useResize"
 import {
   applyContainerHeight,
