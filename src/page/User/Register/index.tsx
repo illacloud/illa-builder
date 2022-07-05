@@ -44,7 +44,7 @@ export const Register: FC = () => {
   } = useForm<RegisterFields>({
     mode: "onBlur",
     defaultValues: {
-      isSubscribe: true,
+      isSubscribed: true,
     },
   })
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
@@ -61,7 +61,7 @@ export const Register: FC = () => {
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
-            userName: res.data.userName,
+            userName: res.data.username,
             language: "English",
             userAvatar: "",
           }),
@@ -157,17 +157,19 @@ export const Register: FC = () => {
           </div>
         </section>
         <section css={gridItemStyle}>
-          <label css={formLabelStyle}>{t("user.sign_up.fields.verify")}</label>
+          <label css={formLabelStyle}>
+            {t("user.sign_up.fields.verificationCode")}
+          </label>
           <div css={gridValidStyle}>
             <Controller
-              name="verify"
+              name="verificationCode"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
                   borderColor="techPurple"
                   size="large"
-                  error={!!errors.verify}
+                  error={!!errors.verificationCode}
                   variant="fill"
                   suffix={{
                     render: showCountDown ? (
@@ -195,7 +197,9 @@ export const Register: FC = () => {
                               },
                               (res) => {
                                 setVerificationToken(res.data.verificationToken)
-                                Message.success(t("user.sign_up.tips.verify"))
+                                Message.success(
+                                  t("user.sign_up.tips.verificationCode"),
+                                )
                                 setShowCountDown(true)
                               },
                               () => {},
@@ -209,17 +213,19 @@ export const Register: FC = () => {
                       </Link>
                     ),
                   }}
-                  placeholder={t("user.sign_up.placeholder.verify")}
+                  placeholder={t("user.sign_up.placeholder.verificationCode")}
                 />
               )}
               rules={{
-                required: t("user.sign_up.error_message.verify.require"),
+                required: t(
+                  "user.sign_up.error_message.verificationCode.require",
+                ),
               }}
             />
-            {errors.verify && (
+            {errors.verificationCode && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.verify.message}
+                {errors.verificationCode.message}
               </div>
             )}
           </div>
@@ -266,7 +272,7 @@ export const Register: FC = () => {
       <section css={gridItemStyle}>
         <div>
           <Controller
-            name="isSubscribe"
+            name="isSubscribed"
             control={control}
             render={({ field }) => (
               <Checkbox

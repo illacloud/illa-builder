@@ -1,5 +1,5 @@
 export interface ResetPwdFields {
   email: string
-  verify: string
+  verificationCode: string
   password: string
 }

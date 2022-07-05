@@ -27,7 +27,7 @@
       "fields": {
         "username": "用户名",
         "email": "邮箱",
-        "verify": "验证码",
+        "verificationCode": "验证码",
         "password": "密码"
       },
       "actions": {
@@ -41,12 +41,12 @@
       "tips": {
         "success": "登录成功",
         "fail": "登录失败",
-        "verify": "验证码已发送"
+        "verificationCode": "验证码已发送"
       },
       "placeholder": {
         "username": "请输入用户名",
         "email": "请输入邮箱",
-        "verify": "请输入验证码",
+        "verificationCode": "请输入验证码",
         "password": "请输入密码（6-20个字符）"
       },
       "error_message": {
@@ -63,7 +63,7 @@
           "require": "密码不能为空",
           "length": "密码须为6～20个字符"
         },
-        "verify": {
+        "verificationCode": {
           "require": "请输入验证码",
           "invalid": "验证码错误",
           "expired": "验证码已过期"
@@ -111,7 +111,7 @@
       "fields": {
         "email": "邮箱",
         "password": "新密码",
-        "verify": "验证码"
+        "verificationCode": "验证码"
       },
       "actions": {
         "send": "获取验证码",
@@ -120,11 +120,11 @@
       "tips": {
         "success": "重置密码成功",
         "fail": "重置密码失败",
-        "verify": "验证码已发送"
+        "verificationCode": "验证码已发送"
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "verify": "请输入验证码",
+        "verificationCode": "请输入验证码",
         "password": "请输入密码（6-20个字符）"
       },
       "error_message": {
@@ -133,7 +133,7 @@
           "invalid_pattern": "邮箱格式不正确",
           "registered": "此邮箱未注册"
         },
-        "verify": {
+        "verificationCode": {
           "require": "请输入验证码",
           "invalid": "验证码错误",
           "expired": "验证码已过期"

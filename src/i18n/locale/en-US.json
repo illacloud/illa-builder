@@ -27,7 +27,7 @@
       "fields": {
         "username": "Username",
         "email": "Email",
-        "verify": "Verification code",
+        "verificationCode": "Verification code",
         "password": "Password"
       },
       "actions": {
@@ -41,12 +41,12 @@
       "tips": {
         "success": "Success",
         "fail": "Fail",
-        "verify": "Verification code sent"
+        "verificationCode": "Verification code sent"
       },
       "placeholder": {
         "username": "Enter your username",
         "email": "Enter your email",
-        "verify": "Please enter verification code",
+        "verificationCode": "Please enter verification code",
         "password": "Create a password(6~20 characters)"
       },
       "error_message": {
@@ -63,7 +63,7 @@
           "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         },
-        "verify": {
+        "verificationCode": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
@@ -111,7 +111,7 @@
       "fields": {
         "email": "Email",
         "password": "New Password",
-        "verify": "Verification code"
+        "verificationCode": "Verification code"
       },
       "actions": {
         "send": "Send code",
@@ -120,11 +120,11 @@
       "tips": {
         "success": "Success",
         "fail": "Fail",
-        "verify": "Verification code sent"
+        "verificationCode": "Verification code sent"
       },
       "placeholder": {
         "email": "Enter your email",
-        "verify": "Please enter verification code",
+        "verificationCode": "Please enter verification code",
         "password": "Enter your new password(6~20 characters)"
       },
       "error_message": {
@@ -133,7 +133,7 @@
           "invalid_pattern": "Please enter a valid email address",
           "registered": "The email address doesn't associate with an account."
         },
-        "verify": {
+        "verificationCode": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"

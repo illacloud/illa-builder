@@ -102,18 +102,18 @@ export const ResetPassword: FC = () => {
         </section>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
-            {t("user.forgot_password.fields.verify")}
+            {t("user.forgot_password.fields.verificationCode")}
           </label>
           <div css={gridValidStyle}>
             <Controller
-              name="verify"
+              name="verificationCode"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
                   borderColor="techPurple"
                   size="large"
-                  error={!!errors.verify}
+                  error={!!errors.verificationCode}
                   variant="fill"
                   suffix={{
                     render: showCountDown ? (
@@ -143,7 +143,9 @@ export const ResetPassword: FC = () => {
                                 setVerificationToken(res.data.verificationToken)
                                 setShowCountDown(true)
                                 Message.success(
-                                  t("user.forgot_password.tips.verify"),
+                                  t(
+                                    "user.forgot_password.tips.verificationCode",
+                                  ),
                                 )
                               },
                               () => {},
@@ -157,19 +159,21 @@ export const ResetPassword: FC = () => {
                       </Link>
                     ),
                   }}
-                  placeholder={t("user.forgot_password.placeholder.verify")}
+                  placeholder={t(
+                    "user.forgot_password.placeholder.verificationCode",
+                  )}
                 />
               )}
               rules={{
                 required: t(
-                  "user.forgot_password.error_message.verify.require",
+                  "user.forgot_password.error_message.verificationCode.require",
                 ),
               }}
             />
-            {errors.verify && (
+            {errors.verificationCode && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.verify.message}
+                {errors.verificationCode.message}
               </div>
             )}
           </div>
