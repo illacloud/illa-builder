@@ -32,7 +32,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
   const actionItems = useSelector(selectAllActionItem)
   const { resourceId = "" } = useSelector(getSelectedAction)
-  const baseActionApi = `/versions/${params.currentVersionId}/actions`
+  const baseActionApi = `/versions/${params.versionId}/actions`
 
   function updateSeletedItemId(id: string) {
     const { length } = actionItems
