@@ -130,7 +130,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
           >
             <Input
               inputRef={inputRef}
-              requirePadding={false}
               borderColor="techPurple"
               value={editingName}
               error={isRenameError?.error}

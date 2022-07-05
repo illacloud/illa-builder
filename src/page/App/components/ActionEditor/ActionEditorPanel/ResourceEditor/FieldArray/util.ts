@@ -54,3 +54,9 @@ export function updateArrayField(prev: ValueType[], newVal: ValueType) {
 export function wrappedWithKey(data: Omit<ValueType, "_key">) {
   return { ...data, _key: uuidV4() }
 }
+
+export function excludeKeyAndEmptyFieldFromData(data: ValueType[]) {
+  return data
+    .filter(({ key, value }) => key !== "" && value !== "")
+    .map(({ _key, ...rest }) => rest)
+}

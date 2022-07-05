@@ -2,6 +2,7 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH } from "@/style"
 
 export const formStyle = css`
   overflow: auto;
@@ -30,6 +31,60 @@ export const paramGridRowContainerStyle = css`
   display: grid;
   grid: auto/repeat(auto-fit, minmax(15%, min-content) minmax(280px, 1fr));
 `
+
+export function applyGridRowContainerInSmallWidthStyle(
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
+): SerializedStyles {
+  return applyMediaQueryStyle(
+    leftPanelVisible,
+    rightPanelVisible,
+    css`
+      display: grid;
+      gap: 8px;
+      grid: auto/auto;
+    `,
+  )
+}
+
+export function applyLabelTextInSmallWidthStyle(
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
+): SerializedStyles {
+  return applyMediaQueryStyle(
+    leftPanelVisible,
+    rightPanelVisible,
+    css`
+      text-align: left;
+      justify-content: start;
+    `,
+  )
+}
+
+function applyMediaQueryStyle(
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
+  style: SerializedStyles,
+): SerializedStyles {
+  const MEDIA_QUERY_WIDTH = 1600
+  const WIDTH_THRESHOLD = 1000
+
+  const active =
+    MEDIA_QUERY_WIDTH -
+      (leftPanelVisible ? LEFT_PANEL_WIDTH : 0) -
+      (rightPanelVisible ? RIGHT_PANEL_WIDTH : 0) <=
+    WIDTH_THRESHOLD
+
+  if (!active) {
+    return css``
+  }
+
+  return css`
+    @media screen and (max-width: ${MEDIA_QUERY_WIDTH}px) {
+      ${style}
+    }
+  `
+}
 
 export const gridRowCenterItemStyle = css`
   align-items: center;

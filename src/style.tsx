@@ -23,3 +23,6 @@ export const globalStyle = css`
     box-sizing: border-box;
   }
 `
+
+export const LEFT_PANEL_WIDTH = 280
+export const RIGHT_PANEL_WIDTH = 320

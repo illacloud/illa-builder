@@ -6,15 +6,20 @@ import { Input } from "@illa-design/input"
 import { debounce } from "@illa-design/system"
 import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
 import { useSelector } from "react-redux"
-import { getSelectedAction } from "@/redux/config/configSelector"
+import { useFirstMountState } from "react-use"
+import {
+  getSelectedAction,
+  isOpenLeftPanel,
+  isOpenRightPanel,
+} from "@/redux/config/configSelector"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
   configContainerStyle,
-  descriptionStyle,
   paramGridRowContainerStyle,
   labelTextStyle,
-  applyGridColIndex,
   labelTextAlignSelfStartStyle,
+  applyGridRowContainerInSmallWidthStyle,
+  applyLabelTextInSmallWidthStyle,
 } from "@/page/App/components/ActionEditor/Resource/style"
 import {
   RESTAPIParamProps,
@@ -35,9 +40,11 @@ import {
   updateArrayField,
   wrappedWithKey,
   getEmptyField,
+  excludeKeyAndEmptyFieldFromData,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray/util"
 import { Body } from "./Body"
-import { actionTypeStyle } from "./style"
+
+import { actionTypeStyle, descriptionStyle } from "./style"
 
 export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { onChange } = props
@@ -45,7 +52,9 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const { t } = useTranslation()
   const { resourceId, actionTemplate } = useSelector(getSelectedAction)
   const [isEditingUrl, setIsEditingUrl] = useState(false)
-
+  const isFirstMount = useFirstMountState()
+  const leftPanelVisible = useSelector(isOpenLeftPanel)
+  const rightPanelVisible = useSelector(isOpenRightPanel)
   const baseURL =
     (
       useSelector(selectAllResource).find(
@@ -67,10 +76,20 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
   const hasBody = params.method.indexOf("GET") === -1
 
   const debounceOnChange = debounce(() => {
-    onChange?.(params)
+    // remove `_key` when update
+    onChange?.({
+      ...params,
+      urlParams: excludeKeyAndEmptyFieldFromData(params.urlParams),
+      headers: excludeKeyAndEmptyFieldFromData(params.headers),
+      cookies: excludeKeyAndEmptyFieldFromData(params.cookies),
+    })
   }, 200)
 
   useEffect(() => {
+    if (isFirstMount) {
+      return
+    }
+
     debounceOnChange()
   }, [params])
 
@@ -124,46 +143,88 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   return (
     <div css={configContainerStyle}>
-      <div css={paramGridRowContainerStyle}>
-        <label css={labelTextStyle}>
+      <div
+        css={css(
+          paramGridRowContainerStyle,
+          applyGridRowContainerInSmallWidthStyle(
+            leftPanelVisible,
+            rightPanelVisible,
+          ),
+        )}
+      >
+        <label
+          css={css(
+            labelTextStyle,
+            labelTextAlignSelfStartStyle,
+            applyLabelTextInSmallWidthStyle(
+              leftPanelVisible,
+              rightPanelVisible,
+            ),
+          )}
+        >
           {t("editor.action.resource.rest_api.label.action_type")}
         </label>
-        <div css={actionTypeStyle}>
-          <Select
-            value={params.method}
-            onChange={(value) => {
-              setParams((prev) => {
-                return { ...prev, method: value }
-              })
-            }}
-            options={["GET", "POST", "PUT", "DELETE", "PATCH"]}
-            size="small"
-            colorScheme="techPurple"
-          />
-          <Input
-            value={params.url}
-            onFocus={() => setIsEditingUrl(true)}
-            onBlur={() => setIsEditingUrl(false)}
-            onChange={(value) => {
-              setParams((prev) => {
-                return { ...prev, url: value }
-              })
-              isEditingUrl && updateUrlParams()
-            }}
-            placeholder={t(
-              "editor.action.resource.rest_api.placeholder.action_url_path",
-            )}
-            borderColor="techPurple"
-            addonBefore={{ render: baseURL ?? null }}
-          />
+        <div>
+          <div css={actionTypeStyle}>
+            <Select
+              value={params.method}
+              onChange={(value) => {
+                setParams((prev) => {
+                  return { ...prev, method: value }
+                })
+              }}
+              options={["GET", "POST", "PUT", "DELETE", "PATCH"]}
+              size="small"
+              colorScheme="techPurple"
+            />
+            <Input
+              value={params.url}
+              onFocus={() => setIsEditingUrl(true)}
+              onBlur={() => setIsEditingUrl(false)}
+              onChange={(value) => {
+                setParams((prev) => {
+                  return { ...prev, url: value }
+                })
+                isEditingUrl && updateUrlParams()
+              }}
+              placeholder={
+                baseURL
+                  ? t(
+                      "editor.action.resource.rest_api.placeholder.action_url_path_with_base_url",
+                    )
+                  : t(
+                      "editor.action.resource.rest_api.placeholder.action_url_path",
+                    )
+              }
+              borderColor="techPurple"
+              addonBefore={{ render: baseURL ?? null }}
+            />
+          </div>
+          <dd css={descriptionStyle}>
+            {t("editor.action.resource.rest_api.tip.get_req_auto_run")}
+          </dd>
         </div>
-        <dd css={css(applyGridColIndex(2), descriptionStyle)}>
-          {t("editor.action.resource.rest_api.tip.get_req_auto_run")}
-        </dd>
       </div>
 
-      <div css={paramGridRowContainerStyle}>
-        <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
+      <div
+        css={css(
+          paramGridRowContainerStyle,
+          applyGridRowContainerInSmallWidthStyle(
+            leftPanelVisible,
+            rightPanelVisible,
+          ),
+        )}
+      >
+        <label
+          css={css(
+            labelTextStyle,
+            labelTextAlignSelfStartStyle,
+            applyLabelTextInSmallWidthStyle(
+              leftPanelVisible,
+              rightPanelVisible,
+            ),
+          )}
+        >
           {t("editor.action.resource.rest_api.label.url_parameters")}
         </label>
         <FieldArray
@@ -201,8 +262,25 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
         />
       </div>
 
-      <div css={paramGridRowContainerStyle}>
-        <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
+      <div
+        css={css(
+          paramGridRowContainerStyle,
+          applyGridRowContainerInSmallWidthStyle(
+            leftPanelVisible,
+            rightPanelVisible,
+          ),
+        )}
+      >
+        <label
+          css={css(
+            labelTextStyle,
+            labelTextAlignSelfStartStyle,
+            applyLabelTextInSmallWidthStyle(
+              leftPanelVisible,
+              rightPanelVisible,
+            ),
+          )}
+        >
           {t("editor.action.resource.rest_api.label.headers")}
         </label>
         <FieldArray
@@ -232,16 +310,50 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       </div>
 
       {hasBody && (
-        <div css={paramGridRowContainerStyle}>
-          <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
+        <div
+          css={css(
+            paramGridRowContainerStyle,
+            applyGridRowContainerInSmallWidthStyle(
+              leftPanelVisible,
+              rightPanelVisible,
+            ),
+          )}
+        >
+          <label
+            css={css(
+              labelTextStyle,
+              labelTextAlignSelfStartStyle,
+              applyLabelTextInSmallWidthStyle(
+                leftPanelVisible,
+                rightPanelVisible,
+              ),
+            )}
+          >
             {t("editor.action.resource.rest_api.label.body")}
           </label>
           <Body value={params.body} />
         </div>
       )}
 
-      <div css={paramGridRowContainerStyle}>
-        <label css={css(labelTextStyle, labelTextAlignSelfStartStyle)}>
+      <div
+        css={css(
+          paramGridRowContainerStyle,
+          applyGridRowContainerInSmallWidthStyle(
+            leftPanelVisible,
+            rightPanelVisible,
+          ),
+        )}
+      >
+        <label
+          css={css(
+            labelTextStyle,
+            labelTextAlignSelfStartStyle,
+            applyLabelTextInSmallWidthStyle(
+              leftPanelVisible,
+              rightPanelVisible,
+            ),
+          )}
+        >
           {t("editor.action.resource.rest_api.label.cookies")}
         </label>
         <FieldArray
