@@ -5,11 +5,12 @@ export const actionTypeStyle = css`
   display: grid;
   align-items: center;
   grid-template-columns: 160px 1fr;
-  gap: 16px;
+  gap: 8px;
 `
 
 export const descriptionStyle = css`
   margin: 0;
+  margin-top: 8px;
   align-items: center;
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};

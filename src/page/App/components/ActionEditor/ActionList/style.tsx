@@ -5,7 +5,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const actionListContainerStyle = css`
   display: flex;
   flex-direction: column;
-  width: 255px;
+  min-width: 255px;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   position: relative;
   font-size: 14px;
@@ -89,6 +89,7 @@ export function applyActionItemStyle(isSelected: boolean): SerializedStyles {
 export const actionItemIconStyle = css`
   position: relative;
   display: flex;
+  margin-right: 8px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-07`)};
 `
 
@@ -96,7 +97,6 @@ export const actionItemNameStyle = css`
   flex: 1 1 0;
   display: flex;
   align-items: center;
-  margin-left: 8px;
   max-width: 164px;
   overflow: hidden;
   margin-rigth: 8px;

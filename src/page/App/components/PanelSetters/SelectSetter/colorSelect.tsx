@@ -1,14 +1,15 @@
 import { FC, useMemo, useState } from "react"
 import chroma from "chroma-js"
-import { Trigger } from "@illa-design/trigger"
 import { ColorSelectSetterProps } from "./interface"
 import {
   colorSelectMenuItemWrapperStyle,
-  colorSelectMenuWrapperStyle,
   applyColorSelectPreviewColorStyle,
   colorSelectPreviewNameStyle,
   colorSelectWrapperStyle,
 } from "./style"
+import { Dropdown, DropList } from "@illa-design/dropdown"
+
+const { Item } = DropList
 
 const renderContent = (color: string = "transparent") => (
   <>
@@ -27,11 +28,11 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
 
   const renderMenuList = useMemo(() => {
     return (
-      <div css={colorSelectMenuWrapperStyle}>
+      <DropList width="120px">
         {options?.map((color) => {
           const { key, value } = color
           return (
-            <div
+            <Item
               css={colorSelectMenuItemWrapperStyle}
               key={key}
               onClick={() => {
@@ -40,10 +41,10 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
               }}
             >
               {renderContent(key)}
-            </div>
+            </Item>
           )
         })}
-      </div>
+      </DropList>
     )
   }, [options, attrName, handleUpdateDsl])
 
@@ -53,19 +54,16 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
   }, [value, options])
 
   return (
-    <Trigger
-      colorScheme="white"
-      trigger="click"
-      clickOutsideToClose
-      withoutPadding={true}
-      popupVisible={menuVisible}
+    <Dropdown
+      dropList={renderMenuList}
       position="bottom"
       onVisibleChange={setMenuVisible}
-      content={renderMenuList}
+      popupVisible={menuVisible}
+      trigger="click"
     >
       <div css={colorSelectWrapperStyle}>
         {renderContent(translateValueToKey)}
       </div>
-    </Trigger>
+    </Dropdown>
   )
 }

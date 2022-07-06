@@ -209,7 +209,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         signal: controller.signal,
       },
       ({ data }: { data: ActionItem[] }) => {
-        dispatch(actionActions.addActionListReducer(data))
+        dispatch(actionActions.updateActionListReducer(data))
 
         if (data.length) {
           setActiveActionItemId(data[0].actionId)
