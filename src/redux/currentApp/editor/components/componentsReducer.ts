@@ -3,8 +3,8 @@ import { cloneDeep } from "lodash"
 import {
   ComponentNode,
   ComponentsState,
-  deleteComponentNodePayload,
-  updateComponentPropsPayload,
+  DeleteComponentNodePayload,
+  UpdateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
@@ -63,7 +63,7 @@ export const addOrUpdateComponentReducer: CaseReducer<
 
 export const deleteComponentNodeReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<deleteComponentNodePayload>
+  PayloadAction<DeleteComponentNodePayload>
 > = (state, action) => {
   const { displayName, parentDisplayName } = action.payload
   if (state.rootDsl == null) {
@@ -83,7 +83,7 @@ export const deleteComponentNodeReducer: CaseReducer<
 
 export const updateComponentPropsReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<updateComponentPropsPayload>
+  PayloadAction<UpdateComponentPropsPayload>
 > = (state, action) => {
   const { displayName, updateSlice } = action.payload
   if (!isObject(updateSlice) || !displayName) {

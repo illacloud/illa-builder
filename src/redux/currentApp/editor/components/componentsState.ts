@@ -38,12 +38,12 @@ export const ComponentsInitialState: ComponentsState = {
   rootDsl: null,
 }
 
-export interface deleteComponentNodePayload {
+export interface DeleteComponentNodePayload {
   displayName: string
   parentDisplayName: string
 }
 
-export interface updateComponentPropsPayload {
+export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
 }
