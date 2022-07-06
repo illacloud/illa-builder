@@ -359,7 +359,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         ctx.stroke()
       }
     }
-  }, [canvasHeight, canvasWidth])
+  }, [canvasHeight, canvasWidth, window.devicePixelRatio])
 
   // render dotted line
   useEffect(() => {
@@ -391,7 +391,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         })
       }
     }
-  }, [dottedLineSquareMap, canvasHeight, canvasWidth])
+  }, [dottedLineSquareMap, canvasHeight, canvasWidth, window.devicePixelRatio])
 
   useEffect(() => {
     let maxY = 0
