@@ -16,6 +16,7 @@ import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
 import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
 import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
+import { ActionResultErrorIndicator } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResultErrorIndicator"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ActionEditorPanelProps } from "./interface"
 import {
@@ -159,8 +160,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           actionActions.updateActionItemReducer({
             ...activeActionItem,
             // TODO: apply Transfomer
-            data: {},
-            rawData: {},
+            data: response.data,
+            rawData: response.data,
             error: true,
           }),
         )
@@ -290,6 +291,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         <>
           {editorNode}
           <AnimatePresence>
+            {activeActionItem?.error && (
+              <ActionResultErrorIndicator
+                errorMessage={activeActionItem?.data?.errorMessage}
+              />
+            )}
             {actionResVisible && (
               <ActionResult
                 result={result}
