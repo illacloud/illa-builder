@@ -14,7 +14,7 @@
   "share": "Share",
   "rename": "Rename",
   "duplicate": "Duplicate",
-  "network_error": "Network Error",
+  "network_error": "Network disconnected. Please check this device's network",
   "create_fail": "Create fail",
   "remove_fail": "Remove fail",
   "retry": "Retry",
