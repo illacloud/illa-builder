@@ -327,6 +327,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth * radio,
           (canvasHeight + edgeWidth) * radio,
         )
+        ctx.globalAlpha = 0.16
         Object.keys(dragShadowMap).forEach((value) => {
           const item = dragShadowMap[value]
           ctx.beginPath()
@@ -338,8 +339,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           )
           ctx.closePath()
           ctx.fillStyle = item.isConflict
-            ? globalColor(`--${illaPrefix}-red-06`)
-            : globalColor(`--${illaPrefix}-techPurple-06`)
+            ? globalColor(`--${illaPrefix}-red-03`)
+            : globalColor(`--${illaPrefix}-techPurple-01`)
           ctx.fill()
         })
       }
@@ -489,7 +490,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         />
         <div
           ref={componentsTreeRef}
-          css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
+          css={applyChildrenContainerStyle(0, canvasWidth, canvasHeight)}
           onClick={(e) => {
             if (e.target == componentsTreeRef.current) {
               dispatch(configActions.updateSelectedComponent([]))
