@@ -487,7 +487,9 @@
         "show_notification": "Show notification",
         "set_temporary_state": "Set temporary state",
         "text_align": "Text align",
-        "text_size": "Text size"
+        "text_size": "Text size",
+        "start_date": "Start date",
+        "end_data": "End date"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -524,7 +526,8 @@
       "name": "Date"
     },
     "date_range": {
-      "name": "Date range"
+      "name": "Date range",
+      "start_date": "Start date"
     },
     "image": {
       "name": "Image"
