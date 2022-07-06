@@ -1,7 +1,7 @@
 import { InputProps } from "@illa-design/input"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
-export interface WrappedInputProps
+export interface WrappedEditableTextProps
   extends ValidateMessageProps,
     Pick<InputProps, "placeholder" | "disabled" | "readOnly"> {
   showCharacterCount?: InputProps["showCount"]

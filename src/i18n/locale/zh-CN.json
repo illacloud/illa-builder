@@ -562,6 +562,9 @@
     },
     "divider_progress": {
       "name": "Divider"
+    },
+    "editable_text": {
+      "name": "Editable Text"
     }
   },
   "Setting": "设置",
