@@ -3,7 +3,7 @@ import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { useSelector, useDispatch } from "react-redux"
 import { Select, Option } from "@illa-design/select"
-import { PenIcon, PlusIcon } from "@illa-design/icon"
+import { PenIcon, AddIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -80,7 +80,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
             <span
               css={css(resourceSelectOptionStyle, resourceSelectNewOptionStyle)}
             >
-              <PlusIcon
+              <AddIcon
                 css={css(
                   resourceSelectOptionIconStyle,
                   resourceSelectOptionNewIconStyle,

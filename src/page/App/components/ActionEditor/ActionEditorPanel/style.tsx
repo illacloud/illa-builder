@@ -161,7 +161,7 @@ export const resourceSelectOptionIconStyle = css`
 `
 
 export const resourceSelectOptionNewIconStyle = css`
-  font-size: 12px;
+  font-size: 14px;
 `
 
 export const resourceOptionStyle = css`
