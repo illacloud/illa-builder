@@ -53,10 +53,3 @@ export const renameDashboardAppReducer: CaseReducer<
     }
   }
 }
-
-export const getDashboardAppShareLink: CaseReducer<
-  DashboardAppsState,
-  PayloadAction<string>
-> = (state, action) => {
-  state.url = action.payload
-}

@@ -5,7 +5,6 @@ import {
   removeDashboardAppReducer,
   renameDashboardAppReducer,
   updateDashboardAppListReducer,
-  getDashboardAppShareLink,
 } from "@/redux/dashboard/apps/dashboardAppReducer"
 
 const dashboardAppSlice = createSlice({
@@ -16,7 +15,6 @@ const dashboardAppSlice = createSlice({
     removeDashboardAppReducer,
     renameDashboardAppReducer,
     updateDashboardAppListReducer,
-    getDashboardAppShareLink,
   },
 })
 
