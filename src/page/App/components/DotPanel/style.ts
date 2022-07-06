@@ -31,14 +31,17 @@ export function applyChildrenContainerStyle(
 }
 
 export function applyDotCanvasStyle(
-  edgeWidth: number,
   showDot: boolean,
   z: number,
+  w: number,
+  h: number,
 ): SerializedStyles {
   return css`
     z-index: ${z};
     visibility: ${showDot ? "visible" : "hidden"};
     position: absolute;
+    width: ${w}px;
+    height: ${h}px;
   `
 }
 

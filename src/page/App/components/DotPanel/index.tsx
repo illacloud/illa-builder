@@ -67,6 +67,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     return pre === after
   })
 
+  // radio
+  const [radio, setRadio] = useState<number>(1)
+
   // config
   const leftPanelState = useSelector(isOpenLeftPanel)
   const rightPanelState = useSelector(isOpenRightPanel)
@@ -307,19 +310,32 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     [canvasWidth, canvasHeight],
   )
 
+  useEffect(() => {
+    setRadio(window.devicePixelRatio)
+  }, [window.devicePixelRatio])
+
   // render drag
   useEffect(() => {
-    console.log(window.devicePixelRatio)
     let canvas = document.getElementById(`${componentNode.displayName}-dragged`)
     if (canvas != null) {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
+        ctx.clearRect(
+          0,
+          0,
+          canvasWidth * radio,
+          (canvasHeight + edgeWidth) * radio,
+        )
         Object.keys(dragShadowMap).forEach((value) => {
           const item = dragShadowMap[value]
           ctx.beginPath()
-          ctx.rect(item.renderX, item.renderY, item.w, item.h)
+          ctx.rect(
+            item.renderX * radio,
+            item.renderY * radio,
+            item.w * radio,
+            item.h * radio,
+          )
           ctx.closePath()
           ctx.fillStyle = item.isConflict
             ? globalColor(`--${illaPrefix}-red-06`)
@@ -328,7 +344,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         })
       }
     }
-  }, [dragShadowMap, canvasHeight, canvasWidth])
+  }, [dragShadowMap, canvasHeight, canvasWidth, radio])
 
   // render dot
   useEffect(() => {
@@ -337,26 +353,31 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
+        ctx.clearRect(
+          0,
+          0,
+          canvasWidth * radio,
+          (canvasHeight + edgeWidth) * radio,
+        )
         for (let i = 1; i < blockRows; i++) {
           for (let j = 1; j < blockColumns; j++) {
             ctx.beginPath()
-            const x = j * unitWidth + 1
-            const y = i * unitHeight + 1
-            ctx.arc(x, y, 1, 0, 2 * Math.PI)
+            const x = j * unitWidth * radio + radio
+            const y = i * unitHeight * radio + radio
+            ctx.arc(x, y, radio, 0, 2 * Math.PI)
             ctx.closePath()
             ctx.fillStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
             ctx.fill()
           }
         }
         ctx.beginPath()
-        ctx.rect(0, 0, canvasWidth, canvasHeight)
+        ctx.rect(0, 0, canvasWidth * radio, canvasHeight * radio)
         ctx.closePath()
         ctx.strokeStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
         ctx.stroke()
       }
     }
-  }, [canvasHeight, canvasWidth])
+  }, [canvasHeight, canvasWidth, radio])
 
   // render dotted line
   useEffect(() => {
@@ -365,19 +386,24 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
+        ctx.clearRect(
+          0,
+          0,
+          canvasWidth * radio,
+          (canvasHeight + edgeWidth) * radio,
+        )
         Object.keys(dottedLineSquareMap).forEach((value) => {
           const item = dottedLineSquareMap[value]
-          const h = item.h
-          const w = item.w
+          const h = item.h * radio
+          const w = item.w * radio
           const [l, t] = calculateXY(
             item.squareX,
             item.squareY,
-            unitWidth,
-            unitHeight,
+            unitWidth * radio,
+            unitHeight * radio,
           )
           ctx.beginPath()
-          ctx.setLineDash([4, 2])
+          ctx.setLineDash([4 * radio, 2 * radio])
           ctx.rect(l, t, w, h)
           ctx.closePath()
           ctx.lineWidth = 1
@@ -386,7 +412,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         })
       }
     }
-  }, [dottedLineSquareMap, canvasHeight, canvasWidth])
+  }, [dottedLineSquareMap, canvasHeight, canvasWidth, radio])
 
   useEffect(() => {
     let maxY = 0
@@ -441,15 +467,25 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       <Scrollbars autoHide>
         <canvas
           id={`${componentNode.displayName}-canvas`}
-          css={applyDotCanvasStyle(edgeWidth, showDot, 0)}
-          width={canvasWidth}
-          height={canvasHeight + edgeWidth}
+          css={applyDotCanvasStyle(
+            showDot,
+            0,
+            canvasWidth,
+            canvasHeight + edgeWidth,
+          )}
+          width={canvasWidth * radio}
+          height={(canvasHeight + edgeWidth) * radio}
         />
         <canvas
           id={`${componentNode.displayName}-dotted`}
-          css={applyDotCanvasStyle(edgeWidth, showDot, 1)}
-          width={canvasWidth}
-          height={canvasHeight + edgeWidth}
+          css={applyDotCanvasStyle(
+            showDot,
+            0,
+            canvasWidth,
+            canvasHeight + edgeWidth,
+          )}
+          width={canvasWidth * radio}
+          height={(canvasHeight + edgeWidth) * radio}
         />
         <div
           ref={componentsTreeRef}
@@ -464,9 +500,14 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         </div>
         <canvas
           id={`${componentNode.displayName}-dragged`}
-          css={applyDotCanvasStyle(edgeWidth, showDot, 100)}
-          width={canvasWidth}
-          height={canvasHeight + edgeWidth}
+          css={applyDotCanvasStyle(
+            showDot,
+            0,
+            canvasWidth,
+            canvasHeight + edgeWidth,
+          )}
+          width={canvasWidth * radio}
+          height={(canvasHeight + edgeWidth) * radio}
         />
       </Scrollbars>
     </div>
