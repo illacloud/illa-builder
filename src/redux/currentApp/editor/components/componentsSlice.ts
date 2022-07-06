@@ -5,7 +5,6 @@ import {
   bringToFrontReducer,
   copyComponentNodeReducer,
   deleteComponentNodeReducer,
-  removeComponentReducer,
   updateComponentPropsReducer,
   updateComponentReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
@@ -14,7 +13,6 @@ const componentsSlice = createSlice({
   name: "components",
   initialState: ComponentsInitialState,
   reducers: {
-    removeComponentReducer,
     addOrUpdateComponentReducer,
     updateComponentReducer,
     copyComponentNodeReducer,

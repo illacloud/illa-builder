@@ -4,7 +4,7 @@ import { v4 } from "uuid"
 
 export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   type: "CHECKBOX_GROUP_WIDGET",
-  widgetName: "checkbox",
+  widgetName: "Checkbox",
   displayName: "checkboxGroup",
   icon: <CheckboxWidgetIcon size="100%" />,
   sessionType: "SELECT",
