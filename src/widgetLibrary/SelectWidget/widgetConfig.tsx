@@ -18,7 +18,7 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
     labelPosition: "left",
     labelWidth: "{{33}}",
     value: "Option 1",
-    options: [
+    manualOptions: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },
       { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },
       { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },

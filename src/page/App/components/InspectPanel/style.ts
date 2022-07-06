@@ -157,7 +157,7 @@ export const singleSelectedPanelSetterWrapperStyle = css`
 `
 
 export const ghostEmptyStyle = css`
-  margin-top: 8px;
+  margin-bottom: 8px;
 `
 
 export const applySetterPublicWrapperStyle = (
