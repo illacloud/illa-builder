@@ -6,9 +6,7 @@ export interface ComponentNode {
   showName: string
   error: boolean
   isDragging: boolean
-  childrenNode: {
-    [key: string]: ComponentNode
-  } | null
+  childrenNode: ComponentNode[]
   type: string
   containerType: ContainerType
   verticalResize: boolean

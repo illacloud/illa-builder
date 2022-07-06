@@ -417,12 +417,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   useEffect(() => {
     let maxY = 0
-    for (let item in componentNode.childrenNode) {
-      maxY = Math.max(
-        maxY,
-        componentNode.childrenNode[item].y + componentNode.childrenNode[item].h,
-      )
-    }
+    componentNode.childrenNode.forEach((item) => {
+      maxY = Math.max(maxY, item.y + item.h)
+    })
     if (maxY < blockRows) {
       setBlockRows(Math.max(maxY, minBlockRows))
     }
@@ -433,9 +430,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     if (childrenNode == null) {
       return null
     }
-    return Object.keys(childrenNode).map<ReactNode>((key) => {
-      const item = childrenNode[key]
 
+    return childrenNode.map<ReactNode>((item) => {
       const h = item.h * unitHeight
       const w = item.w * unitWidth
 
@@ -481,7 +477,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           id={`${componentNode.displayName}-dotted`}
           css={applyDotCanvasStyle(
             showDot,
-            0,
+            1,
             canvasWidth,
             canvasHeight + edgeWidth,
           )}
