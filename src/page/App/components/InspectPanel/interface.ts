@@ -22,7 +22,8 @@ export interface PanelBarProps {
   title: string
   children?: ReactNode
   isOpened?: boolean
-  saveToggleState: (value: boolean) => void
+  hasGhostEmpty?: boolean
+  saveToggleState?: (value: boolean) => void
 }
 
 export interface PanelFieldConfig extends PanelLabelProps {

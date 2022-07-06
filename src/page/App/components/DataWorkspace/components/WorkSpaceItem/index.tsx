@@ -15,7 +15,7 @@ export const WorkSpaceItem: FC<WorkSpaceItemProps> = (props) => {
     dispatch(configActions.setExpandedKey(keys))
   }
   return (
-    <PanelBar title={title} saveToggleState={() => {}}>
+    <PanelBar title={title} hasGhostEmpty={false}>
       <div css={applyTreeContainerStyle(dataList.length > 0)}>
         <Tree
           defaultExpandedKeys={expandedKeys}
