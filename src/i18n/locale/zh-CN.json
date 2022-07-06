@@ -167,7 +167,8 @@
         },
         "contextMenu": {
           "delete": "删除",
-          "duplicate": "复制"
+          "duplicate": "复制",
+          "rename": "重命名"
         },
         "tips": {
           "not_found": "Sorry, No Search result",

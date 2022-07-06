@@ -32,6 +32,7 @@ import {
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 const DropListItem = DropList.Item
 
@@ -78,7 +79,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function updateName(originName: string) {
-    if (originName !== editingName && !isRenameError) {
+    if (originName !== editingName && !isRenameError.error) {
       onUpdateActionItem(editingActionItemId, {
         ...activeActionItem,
         displayName: editingName,
@@ -90,11 +91,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     setEditingName("")
   }
 
-  function onClickActionItem(id: string, name: string) {
-    if (actionItems.length === 1) {
-      editName(id, name)
-    }
-
+  function onClickActionItem(id: string) {
     onSelectActionItem(id)
   }
 
@@ -164,7 +161,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       <li
         key={id}
         css={applyActionItemStyle(isSelected)}
-        onClick={() => onClickActionItem(id, name)}
+        onClick={() => onClickActionItem(id)}
         onContextMenu={() => {
           setContextMenuActionId(id)
         }}
@@ -238,9 +235,19 @@ export const ActionList: FC<ActionListProps> = (props) => {
                 case "delete":
                   onDeleteActionItem(contextMenuActionId)
                   break
+                case "rename":
+                  const target = actionItems.find(
+                    ({ actionId }) => actionId === contextMenuActionId,
+                  ) as ActionItem
+                  editName(target?.actionId, target?.displayName)
+                  break
               }
             }}
           >
+            <DropListItem
+              key={"rename"}
+              title={t("editor.action.action_list.contextMenu.rename")}
+            />
             <DropListItem
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
