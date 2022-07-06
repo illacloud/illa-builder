@@ -15,6 +15,7 @@ export const panelScrollStyle = css`
   flex: 1;
   user-select: none;
   position: relative;
+  padding-bottom: 16px;
 `
 
 export const headerStyle = css`
