@@ -7,13 +7,13 @@ import { DropList, Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
 import { illaPrefix, globalColor } from "@illa-design/theme"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
-import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
 import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
 import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
-import { useIsValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
+import { isValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
 import { ActionDisplayNameValidateResult } from "@/page/App/components/ActionEditor/interface"
 import {
   actionListContainerStyle,
@@ -56,7 +56,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [isRenameError, setIsRenameError] =
     useState<ActionDisplayNameValidateResult>({ error: false })
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const { isValidActionDisplayName } = useIsValidActionDisplayName()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -83,6 +82,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       onUpdateActionItem(editingActionItemId, {
         ...activeActionItem,
         displayName: editingName,
+        oldDisplayName: originName,
       })
     }
     setEditingActionItemId("")
@@ -104,7 +104,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     setActionGeneratorVisible(false)
 
     onAddActionItem({
-      displayName: ActionDisplayNameGenerator.getDisplayName(actionType),
+      displayName: DisplayNameGenerator.getDisplayName(actionType),
       actionType,
       resourceId,
       actionTemplate: {},
