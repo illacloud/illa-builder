@@ -243,7 +243,6 @@ import CodeMirror from "codemirror"
   // Completion
 
   function hint(ts, cm, c) {
-    console.log({ ts, cm, c }, "getHint")
     ts.request(
       cm,
       {
@@ -255,7 +254,7 @@ import CodeMirror from "codemirror"
         caseInsensitive: true,
         depths: true,
         inLiteral: false,
-        expandWordForward: false,
+        expandWordForward: true,
       },
       function (error, data) {
         if (error) return showError(ts, cm, error)
@@ -268,7 +267,6 @@ import CodeMirror from "codemirror"
           cm.getRange(to, Pos(to.line, to.ch + 2)) != '"]'
         )
           after = '"]'
-        console.log(data.completions, data, ts.server.cx, cm.getTokenTypeAt(cm.getCursor()), "completions")
         for (var i = 0; i < data.completions.length; ++i) {
           var completion = data.completions[i],
             className = typeToIcon(completion.type)

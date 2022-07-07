@@ -183,7 +183,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
     } else if (modeName == "javascript") {
       sever.current?.complete(cm)
-      console.log(cm.getLineTokens(0), 'token')
       // cm.showHint({
       //   hint: CodeMirror.hint.javascript,
       //   completeSingle: false, // 是否立即补全
@@ -193,7 +192,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   useEffect(() => {
     console.log(globalData, 'globalData')
-    sever.current = TernServer(languageValue, globalData)
+    sever.current = TernServer(languageValue, {...globalData?.result})
   }, [globalData, languageValue])
 
   useEffect(() => {

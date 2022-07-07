@@ -47,7 +47,38 @@ const transTernTypeName = (value: any): string => {
   }
 }
 
-const transDataToDefs = (data?: Record<string, any>) => {
+const transDatas = (
+  data?: Record<string, any>,
+  current?: string,
+  path = "",
+) => {
+  if (data) {
+    const def: Record<string, any> = {}
+    if (current) {
+      path = path ? path + "." + current : current
+      def["!doc"] = JSON.stringify({ path })
+    }
+    for (const dataKey in data) {
+      if (isObject(data[dataKey])) {
+        let a = data[dataKey] as Object
+        def[dataKey] = {
+          ...a,
+          ...transDatas(a, dataKey, path),
+        }
+      } else {
+        let newPath = path ? path + "." + dataKey : dataKey
+        def[dataKey] = {
+          "!type": transTernTypeName(data[dataKey]),
+          "!doc": JSON.stringify({ path: newPath }),
+        }
+      }
+    }
+    return def
+  }
+  return {}
+}
+
+const transDataToDefs = (data?: Record<string, any>, path?: string) => {
   if (data) {
     const def: Record<string, any> = {}
     for (const dataKey in data) {
@@ -69,21 +100,17 @@ export const TernServer = (
   data?: Record<string, any>,
 ) => {
   let currentDef = getCurrentDef(language)
-  let transData = transDataToDefs(data)
+  let transData = transDatas(data)
 
   return new CodeMirror.TernServer({
     // @ts-ignore: type define error
     defs: [ecmascript, { ...currentDef, ...transData }],
     // @ts-ignore: type define error
-    completionTip: (data: TypeQueryResult) => {
-      console.log(data, 'data')
+    completionTip: (completion: TypeQueryResult) => {
+      console.log(completion, "completion Data")
       let div = document.createElement("div")
-      ReactDOM.render(<HintTooltip data={data} />, div)
+      ReactDOM.render(<HintTooltip data={completion} globalData={data??{}} />, div)
       return div
-    },
-    responseFilter: (doc, query, request, error, data) => {
-      console.log({doc, query, request, error, data}, 'responseFilter')
-      return data
     },
   })
 }

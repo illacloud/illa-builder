@@ -4,9 +4,17 @@
     "Demo": {
       "!url": "",
       "!doc": "demo Component.",
+      "aaa": "Error.aaa",
+      "Error.bbb": "Error.bbb",
+      "Error.bbb.ccc": "Error.bbb.ccc",
+      "Error.ccc.ccc": {
+        "ddd": "Demo.Error.ccc.ccc.ddd"
+      },
       "name": {
         "!type": "string",
-        "!doc": "The name of the API whose permissions you want to query. Valid values are 'geolocation', 'midi', 'notifications', 'push', 'persistent-storage', 'camera' and 'microphone'."
+        "!data": "Demo.xx",
+        "!span": "Demo.xx",
+        "!doc":  "Demo.xx"
       },
       "userVisibleOnly": {
         "!type": "bool",
@@ -17,5 +25,9 @@
         "!doc": "Indicates whether you need and/or receive system exclusive messages. The default is false."
       }
     }
+  },
+  "xx": {
+    "!type": "Demo",
+    "!doc": "Demo Demo Demo"
   }
 }
