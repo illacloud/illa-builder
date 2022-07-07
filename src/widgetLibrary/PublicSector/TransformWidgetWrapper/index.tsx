@@ -37,17 +37,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     )
   }
 
-  const ref = useRef<Record<string, any>>()
-
-  useEffect(() => {
-    if (ref.current) {
-      handleUpdateGlobalData(componentNode.displayName, {
-        ...ref.current,
-        type: "widget",
-      })
-    }
-  }, [])
-
   const getOnChangeEventScripts = () => {
     if (componentNode.props?.events) {
       return getEventScripts(componentNode.props.events, "onChange")
@@ -71,19 +60,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     })
   }
 
-  const realProps = useMemo(() => {
-    const result: Record<string, any> = {}
-    const calcProps = displayNameMapProps[displayName] ?? {}
-    Object.keys(calcProps).forEach((key) => {
-      // TODO: weichen move to evalTree
-      if (isObject(calcProps[key] && key !== "styles")) {
-        result[key] = JSON.stringify(calcProps[key])
-      } else {
-        result[key] = calcProps[key]
-      }
-    })
-    return result
-  }, [displayNameMapProps, displayName])
+  const realProps = displayNameMapProps[displayName] ?? {}
 
   if (!type) return null
   const COMP = widgetBuilder(type).widget
@@ -117,9 +94,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
       />
       <COMP
         {...realProps}
+        handleUpdateGlobalData={handleUpdateGlobalData}
         handleOnChange={handleOnChange}
         handleUpdateDsl={handleUpdateDsl}
-        ref={ref}
+        displayName={displayName}
       />
     </BasicWrapper>
   )
