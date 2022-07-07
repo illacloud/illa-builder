@@ -15,7 +15,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
   const handleToggle = useCallback(() => {
-    saveToggleState(!isOpenedState)
+    saveToggleState?.(!isOpenedState)
     setIsOpenedState(!isOpenedState)
   }, [isOpenedState, saveToggleState])
 

@@ -28,6 +28,7 @@ import { LocationState, LoginFields, LoginResult } from "./interface"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState({ email: "", password: "" })
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
@@ -57,10 +58,26 @@ export const Login: FC = () => {
         Message.success(t("user.sign_in.tips.success"))
       },
       (res) => {
-        // Message.error(t("user.sign_in.tips.fail"))
-        Message.error(res.data.errorMessage)
+        Message.error(t("user.sign_in.tips.fail"))
+        switch (res.data.errorMessage) {
+          case "no such user":
+            setErrorMsg({
+              ...errorMsg,
+              email: t("user.sign_in.error_message.email.registered"),
+            })
+            break
+          case "invalid password":
+            setErrorMsg({
+              ...errorMsg,
+              password: t("user.sign_in.error_message.password.incorrect"),
+            })
+            break
+          default:
+        }
       },
-      () => {},
+      () => {
+        Message.warning(t("network_error"))
+      },
       (loading) => {
         setSubmitLoading(loading)
       },
@@ -95,8 +112,14 @@ export const Login: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  onChange={(value, event) => {
+                    field.onChange(event)
+                    if (errorMsg.email !== "") {
+                      setErrorMsg({ ...errorMsg, email: "" })
+                    }
+                  }}
                   size="large"
-                  error={!!errors.email}
+                  error={!!errors.email || !!errorMsg.email}
                   variant="fill"
                   placeholder={t("user.sign_in.placeholder.email")}
                   borderColor="techPurple"
@@ -112,10 +135,10 @@ export const Login: FC = () => {
                 },
               }}
             />
-            {errors.email && (
+            {(errors.email || errorMsg.email) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.email.message}
+                {errors.email?.message || errorMsg.email}
               </div>
             )}
           </div>
@@ -141,8 +164,14 @@ export const Login: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
+                  onChange={(event) => {
+                    field.onChange(event)
+                    if (errorMsg.password !== "") {
+                      setErrorMsg({ ...errorMsg, password: "" })
+                    }
+                  }}
                   size="large"
-                  error={!!errors.password}
+                  error={!!errors.password || !!errorMsg.password}
                   variant="fill"
                   placeholder={t("user.sign_in.placeholder.password")}
                   borderColor="techPurple"
@@ -160,10 +189,10 @@ export const Login: FC = () => {
                 },
               }}
             />
-            {errors.password && (
+            {(errors.password || errorMsg.password) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.password.message}
+                {errors.password?.message || errorMsg.password}
               </div>
             )}
           </div>

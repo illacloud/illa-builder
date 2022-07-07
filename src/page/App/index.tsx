@@ -89,10 +89,12 @@ export const Editor: FC = () => {
   const [loadingState, setLoadingState] = useState(true)
 
   useEffect(() => {
+    const controller = new AbortController()
     Api.request<CurrentAppResp>(
       {
         url: `/apps/${appId}/versions/${versionId}`,
         method: "GET",
+        signal: controller.signal,
       },
       (response) => {
         dispatch(
@@ -129,13 +131,16 @@ export const Editor: FC = () => {
         setLoadingState(loading)
       },
     )
+    return () => {
+      controller.abort()
+    }
   }, [])
 
   return (
     <DndProvider backend={HTML5Backend}>
       <GlobalDataProvider>
         <div css={editorContainerStyle}>
-          {loadingState && <div css={loadingStyle}></div>}
+          {loadingState && <div css={loadingStyle} />}
           {!loadingState && (
             <>
               <PageNavBar css={navbarStyle} />
