@@ -25,6 +25,7 @@ import {
 } from "@/page/User/style"
 import { TextLink } from "@/page/User/components/TextLink"
 import { LocationState, LoginFields, LoginResult } from "./interface"
+import { setLocalStorage } from "@/utils/storage"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -44,6 +45,9 @@ export const Login: FC = () => {
     Api.request<LoginResult>(
       { method: "POST", url: "/auth/signin", data },
       (res) => {
+        const token = res.headers["illa-token"]
+        if (!token) return
+        setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
