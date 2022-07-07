@@ -11,16 +11,16 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "select-options-mode",
-        attrName: "optionMode",
+        attrName: "optionConfigureMode",
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
             label: "Manual",
-            value: "manual",
+            value: "static",
           },
           {
             label: "Mapped",
-            value: "mapped",
+            value: "dynamic",
           },
         ],
       },
@@ -29,8 +29,8 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "manualOptions",
         setterType: "OPTION_LIST_SETTER",
-        bindAttrName: "optionMode",
-        shown: (value) => !value || value === "manual",
+        bindAttrName: "optionConfigureMode",
+        shown: (value) => !value || value === "static",
         childrenSetter: [
           {
             id: "select-options-label",
@@ -59,9 +59,9 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
-        bindAttrName: "optionMode",
+        bindAttrName: "optionConfigureMode",
         expectedType: VALIDATION_TYPES.ARRAY,
-        shown: (value) => value === "mapped",
+        shown: (value) => value === "dynamic",
         isSetterSingleRow: true,
       },
       {
@@ -70,8 +70,8 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
-        bindAttrName: "optionMode",
-        shown: (value) => value === "mapped",
+        bindAttrName: "optionConfigureMode",
+        shown: (value) => value === "dynamic",
         childrenSetter: [
           {
             id: `select-mappedOption-labels`,

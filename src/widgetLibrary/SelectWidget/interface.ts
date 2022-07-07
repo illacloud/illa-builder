@@ -23,4 +23,17 @@ export interface WrappedSelectProps
   prefixText?: string // TODO: not support yet
   suffixText?: string // TODO: not support yet
   handleUpdateDsl: (value: Record<string, any>) => void
+  manualOptions?: {
+    label: string
+    value: string | number
+    disabled?: boolean
+    extra?: any
+  }[]
+  mappedOption?: {
+    labels: string[]
+    values: any[]
+    disables: boolean[]
+  }
+  handleUpdateGlobalData?: (key: string, value: any) => void
+  displayName?: string
 }
