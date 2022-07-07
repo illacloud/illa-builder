@@ -6,9 +6,7 @@ export interface ComponentNode {
   showName: string
   error: boolean
   isDragging: boolean
-  childrenNode: {
-    [key: string]: ComponentNode
-  } | null
+  childrenNode: ComponentNode[]
   type: string
   containerType: ContainerType
   verticalResize: boolean
@@ -38,12 +36,12 @@ export const ComponentsInitialState: ComponentsState = {
   rootDsl: null,
 }
 
-export interface deleteComponentNodePayload {
+export interface DeleteComponentNodePayload {
   displayName: string
   parentDisplayName: string
 }
 
-export interface updateComponentPropsPayload {
+export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
 }

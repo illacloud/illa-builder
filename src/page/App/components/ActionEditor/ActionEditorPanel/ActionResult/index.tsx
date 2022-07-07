@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { motion } from "framer-motion"
 import { css } from "@emotion/react"
-import { RightIcon, CloseIcon, WarningCircleIcon } from "@illa-design/icon"
+import { RightIcon, CloseIcon } from "@illa-design/icon"
 import { useResize } from "@/utils/hooks/useResize"
 import { AxiosResponse } from "axios"
 import {
@@ -24,20 +24,11 @@ import {
   resTitleStyle,
   resContentStyle,
   resSuccessStatusIconStyle,
-  resFailStatusIconStyle,
 } from "./style"
 import { ActionResultProps, ActionResultType } from "./interface"
 import { TransformerResult } from "./TransformerResult"
 
 const CONTAINER_DEFAULT_HEIGHT = 180
-
-function renderStatusNode(error?: boolean) {
-  if (error) {
-    return <WarningCircleIcon css={resFailStatusIconStyle} size="10px" />
-  }
-
-  return <RightIcon css={resSuccessStatusIconStyle} size="10px" />
-}
 
 function renderResult(activeActionItem: ActionItem, result?: ActionResultType) {
   const { actionType } = activeActionItem
@@ -100,7 +91,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         )}
       >
         <div css={resHeaderStyle}>
-          {renderStatusNode(error)}
+          <RightIcon css={resSuccessStatusIconStyle} size="10px" />
           <span css={resTitleStyle}>{title}</span>
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
         </div>

@@ -84,7 +84,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             }}
           />
         </span>
-        {/* <ZoomControl /> */}
+        {/*<ZoomControl />*/}
       </div>
       <div>
         <ButtonGroup spacing={"8px"}>

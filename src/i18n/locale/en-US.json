@@ -487,7 +487,9 @@
         "show_notification": "Show notification",
         "set_temporary_state": "Set temporary state",
         "text_align": "Text align",
-        "text_size": "Text size"
+        "text_size": "Text size",
+        "start_date": "Start date",
+        "end_data": "End date"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -495,7 +497,7 @@
       },
       "setter_content": {
         "option_list": {
-          "action_menu":{
+          "action_menu": {
             "delete": "Delete",
             "duplicate": "Duplicate"
           },
