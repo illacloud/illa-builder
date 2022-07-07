@@ -49,6 +49,7 @@ export const Login: FC = () => {
             userName: res.data.username,
             language: res.data.language === "zh-cn" ? "简体中文" : "English",
             userAvatar: "",
+            email: res.data.email,
           }),
         )
         navigate((location.state as LocationState)?.from?.pathname ?? "/", {

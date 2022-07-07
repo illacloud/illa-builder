@@ -25,6 +25,7 @@ export const SettingPassword: FC = () => {
     useState<string>("")
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false)
 
   const paramData = [
     {
@@ -90,6 +91,7 @@ export const SettingPassword: FC = () => {
           type: "button",
           value: t("setting.password.submit_button"),
           disabled: buttonDisabled,
+          loading: buttonLoading,
         },
       ],
     },
@@ -149,6 +151,9 @@ export const SettingPassword: FC = () => {
       (failure) => {},
       (crash) => {
         Message.error(t("network_error"))
+      },
+      (loading) => {
+        setButtonLoading(loading)
       },
     )
   }

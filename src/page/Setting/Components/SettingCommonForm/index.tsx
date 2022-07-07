@@ -70,6 +70,7 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                           size="large"
                           fullWidth
                           disabled={contentItem.disabled}
+                          loading={contentItem.loading}
                           onClick={onSubmit}
                         >
                           {contentItem.value}

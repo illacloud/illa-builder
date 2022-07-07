@@ -578,7 +578,8 @@
       "duplicate_placeholder": "请输入项目名称",
       "trash_success": "删除成功",
       "trash_failure": "删除失败",
-      "name_empty": "命名不能为空"
+      "name_empty": "请输入项目名称",
+      "name_existed": "名称已被占用"
     },
     "resources": {
       "table_name": "资源名",

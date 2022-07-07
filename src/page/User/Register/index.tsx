@@ -65,6 +65,7 @@ export const Register: FC = () => {
             userName: res.data.username,
             language: "English",
             userAvatar: "",
+            email: res.data.email,
           }),
         )
         navigate((location.state as LocationState)?.from?.pathname ?? "/", {

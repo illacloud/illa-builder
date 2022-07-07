@@ -578,7 +578,8 @@
       "duplicate_placeholder": "Enter your app name here",
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure",
-      "name_empty": "name can't be empty"
+      "name_empty": "Please enter a name",
+      "name_existed": "Name already taken"
     },
     "resources": {
       "table_name": "Resource Name",

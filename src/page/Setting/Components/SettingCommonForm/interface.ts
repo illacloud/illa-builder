@@ -1,6 +1,7 @@
 export type contentItemType = {
   type: string
   disabled?: boolean
+  loading?: boolean
   value?: string
   selectOptions?: string[]
   defaultSelectValue?: string

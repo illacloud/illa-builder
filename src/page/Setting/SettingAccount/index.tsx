@@ -13,6 +13,7 @@ export const SettingAccount: FC = () => {
   const [showUserError, setShowUserError] = useState<boolean>(false)
   const [userErrorMsg, setUserErrorMsg] = useState<string>("")
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false)
 
   const userInfo = useSelector(getCurrentUser)
 
@@ -23,7 +24,7 @@ export const SettingAccount: FC = () => {
       content: [
         {
           type: "input",
-          value: userInfo?.username,
+          value: userInfo?.email,
           disabled: true,
         },
       ],
@@ -53,6 +54,7 @@ export const SettingAccount: FC = () => {
           type: "button",
           value: t("setting.account.save"),
           disabled: buttonDisabled,
+          loading: buttonLoading,
         },
       ],
     },
@@ -93,6 +95,9 @@ export const SettingAccount: FC = () => {
       },
       (crash) => {
         Message.error(t("network_error"))
+      },
+      (loading) => {
+        setButtonLoading(loading)
       },
     )
   }

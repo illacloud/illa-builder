@@ -1,7 +1,7 @@
 import { css, Global } from "@emotion/react"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { globalStyle } from "./style"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
 import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { IllaApp } from "@/page/Dashboard"
@@ -30,6 +30,10 @@ import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AxiosInterceptor } from "@/api/AxiosInterceptor"
 
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { useEffect } from "react"
+import { Api } from "@/api/base"
+
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {
   let selectedLocale: Locale
@@ -49,7 +53,34 @@ function getLocaleFromLanguage(language?: string): Locale {
 }
 
 function App() {
-  const currentUser = useSelector(getCurrentUser)
+  const dispatch = useDispatch()
+
+  // const currentUser = useSelector(getCurrentUser)
+  let currentUser: any
+  useEffect(() => {
+    Api.request(
+      {
+        url: "/apps",
+        method: "GET",
+      },
+      (response) => {
+        dispatch(
+          currentUserActions.updateCurrentUserReducer({
+            userId: "userId",
+            userName: "userName",
+            language: "English",
+            userAvatar: "userAvatar",
+            email: "email",
+          }),
+        )
+        currentUser.language = "English"
+      },
+      (failure) => {},
+      (crash) => {},
+      (loading) => {},
+      (errorState) => {},
+    )
+  }, [])
 
   return (
     <BrowserRouter>

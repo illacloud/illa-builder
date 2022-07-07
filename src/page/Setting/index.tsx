@@ -83,7 +83,7 @@ export const Setting: FC = () => {
               navigate("./account")
               break
             case "password":
-              navigate("./newPassword")
+              navigate("./password")
               break
             case "others":
               navigate("./others")
