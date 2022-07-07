@@ -10,24 +10,6 @@ import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelect
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
 
-export const removeComponentReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<ComponentNode>
-> = (state, action) => {
-  const removeNode = action.payload
-  if (state.rootDsl == null || removeNode.parentNode == null) {
-    return
-  } else {
-    const parentNode = searchDsl(state.rootDsl, removeNode.parentNode)
-    if (parentNode != null) {
-      const children = parentNode.childrenNode
-      if (children != null) {
-        delete children[removeNode.displayName]
-      }
-    }
-  }
-}
-
 export const bringToFrontReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode[]>

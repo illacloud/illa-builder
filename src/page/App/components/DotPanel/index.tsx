@@ -309,14 +309,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   // render drag
   useEffect(() => {
+    console.log(window.devicePixelRatio)
     let canvas = document.getElementById(`${componentNode.displayName}-dragged`)
     if (canvas != null) {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
         ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
-        const ratio = window.devicePixelRatio
-        ctx.scale(ratio, ratio)
         Object.keys(dragShadowMap).forEach((value) => {
           const item = dragShadowMap[value]
           ctx.beginPath()
@@ -338,9 +337,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        const ratio = window.devicePixelRatio
         ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
-        ctx.scale(ratio, ratio)
         for (let i = 1; i < blockRows; i++) {
           for (let j = 1; j < blockColumns; j++) {
             ctx.beginPath()
@@ -379,8 +376,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             unitWidth,
             unitHeight,
           )
-          const ratio = window.devicePixelRatio
-          ctx.scale(ratio, ratio)
           ctx.beginPath()
           ctx.setLineDash([4, 2])
           ctx.rect(l, t, w, h)

@@ -9,7 +9,7 @@ export function applyTreeContainerStyle(
   showPadding?: boolean,
 ): SerializedStyles {
   return css`
-    padding-bottom: ${showPadding ? "16px" : "0"};
+    margin-bottom: ${showPadding ? "8px" : "0px"};
     font-size: 0;
   `
 }

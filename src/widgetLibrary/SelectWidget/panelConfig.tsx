@@ -27,7 +27,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-basic-options",
         useCustomLayout: true,
-        attrName: "options",
+        attrName: "manualOptions",
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: "optionMode",
         shown: (value) => !value || value === "manual",
