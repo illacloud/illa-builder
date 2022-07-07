@@ -32,17 +32,19 @@ export const addOrUpdateComponentReducer: CaseReducer<
   } else {
     const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
     if (parentNode != null) {
-      if (parentNode.childrenNode == null) {
-        parentNode.childrenNode = []
-      }
-      if (parentNode.childrenNode.includes(dealNode)) {
+      if (
+        parentNode.childrenNode.find((value) => {
+          return value.displayName === dealNode.displayName
+        })
+      ) {
         parentNode.childrenNode.splice(
-          parentNode.childrenNode.indexOf(dealNode),
+          parentNode.childrenNode.findIndex((value, index, obj) => {
+            return value.displayName === dealNode.displayName
+          }),
           1,
         )
-      } else {
-        parentNode.childrenNode.push(dealNode)
       }
+      parentNode.childrenNode.push(dealNode)
     }
   }
 }

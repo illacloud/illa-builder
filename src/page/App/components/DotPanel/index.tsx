@@ -427,10 +427,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    if (childrenNode == null) {
-      return null
-    }
-
     return childrenNode.map<ReactNode>((item) => {
       const h = item.h * unitHeight
       const w = item.w * unitWidth
