@@ -15,7 +15,6 @@ const axios = Axios.create({
     "Content-Encoding": "gzip",
     "Content-Type": "application/json",
   },
-  withCredentials: true,
 })
 
 export class Api {

@@ -22,6 +22,7 @@
     "choose_file": "Choose a file"
   },
   "user": {
+    "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
       "title": "Sign up",
       "fields": {

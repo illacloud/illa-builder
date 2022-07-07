@@ -22,6 +22,7 @@
     "choose_file": "Choose a file"
   },
   "user": {
+    "description": "专属于开发者的开源低代码平台。",
     "sign_up": {
       "title": "注册",
       "fields": {
