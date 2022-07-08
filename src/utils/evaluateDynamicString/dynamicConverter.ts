@@ -73,12 +73,7 @@ export const getDynamicValue = (
   if (stringSnippets.length) {
     const values = jsSnippets.map((jsSnippet, index) => {
       if (jsSnippet) {
-        console.log("jsSnippet", jsSnippet)
-        console.log("dataTree", dataTree)
-        console.log("isTriggerBased", isTriggerBased)
-        const result = evalScript(jsSnippet, dataTree, isTriggerBased)
-        console.log("result", result)
-        return result
+        return evalScript(jsSnippet, dataTree, isTriggerBased)
       } else {
         return stringSnippets[index]
       }
