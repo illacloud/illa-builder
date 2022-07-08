@@ -23,7 +23,11 @@ import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
-import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import {
+  getExecution,
+  getExecutionError,
+  getExecutionResult,
+} from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
@@ -46,8 +50,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   } = props
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
   const languageValue = useSelector(getLanguageValue)
-  const { error: executionError, result: executionResult } =
-    useSelector(getExecution)
+  const executionError = useSelector(getExecutionError)
+  const executionResult = useSelector(getExecutionResult)
   const codeTargetRef = useRef<HTMLDivElement>(null)
   const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
@@ -193,9 +197,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }
 
   useEffect(() => {
-    console.log(globalData, 'globalData')
-    sever.current = TernServer(languageValue, {...globalData?.result})
-  }, [globalData, languageValue])
+    sever.current = TernServer(languageValue, { ...executionResult })
+  }, [executionResult, languageValue])
 
   useEffect(() => {
     if (!editor) {

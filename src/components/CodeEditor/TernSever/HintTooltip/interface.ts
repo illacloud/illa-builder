@@ -13,5 +13,5 @@ export interface TernTypeQueryResult {
 
 export interface HintTooltipProps extends HTMLAttributes<HTMLDivElement> {
   data: TypeQueryResult
-  globalData: { [key: string]: any }
+  globalData?: { [key: string]: any }
 }

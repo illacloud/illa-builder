@@ -11,11 +11,16 @@ import {
   infoTextHeightStyle,
   docTextStyle,
   evaluationStyle,
+  evaluationContentStyle,
 } from "./styles"
 import { TypeQueryResult } from "tern/lib/tern"
 import { useSelector } from "react-redux"
 import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
-import { get } from "lodash"
+import { forEach, get } from "lodash"
+import { getValueType } from "@/components/CodeEditor/utils"
+import { Trigger } from "@illa-design/trigger"
+import pre from "@changesets/cli/dist/declarations/src/commands/pre"
+import { isArray, isObject, isString } from "@illa-design/system"
 
 export interface TransQuery {
   type: string
@@ -23,15 +28,83 @@ export interface TransQuery {
   doc?: string
   url?: string
   path?: string
+  data?: any
+}
+
+const formatObjOrArr = (type: string, data: any) => {
+  let format = ""
+  for (const key in data) {
+    let current = data[key]
+    if (isObject(current)) {
+      current = "#Object#"
+    } else if (isArray(current)) {
+      current = "#Array#"
+    } else if (isString(current)) {
+      current = `"${current}"`
+    }
+    format = format + `  ${key}: ${current},\n`
+  }
+  return (
+    <Trigger
+      content={
+        <pre>{type === "Array" ? `[${format}]` : `Object {\n${format}}`}</pre>
+      }
+      colorScheme={"techPurple"}
+      position="right"
+      openDelay={10}
+      closeDelay={10}
+      showArrow={false}
+      trigger={"hover"}
+    >
+      {type === "Array" ? "[ ... ]" : "{ ... }"}
+    </Trigger>
+  )
+}
+
+const formatEvaluate = (type: string, data?: any) => {
+  // let res = getValueType(value)
+  switch (type) {
+    case "String":
+      return `"${data}"`
+    case "Array":
+    case "Object":
+      return formatObjOrArr(type, data)
+  }
+  return data.toString()
+}
+
+const transTypeFromTern = (type: string, value?: any): string => {
+  switch (type) {
+    case "string":
+      return "String"
+    case "number":
+      return "Number"
+    case "array":
+      return "Array"
+    case "object":
+      return "Object"
+    case "bool":
+      return "Boolean"
+  }
+  if (value) {
+    return getValueType(value)
+  }
+  return type
 }
 
 const handleTernCompletions = (data: TypeQueryResult): TransQuery => {
   const result: TransQuery = data ?? {}
   if (data.doc?.slice(0, 1) === "{") {
     const format = JSON.parse(data.doc)
+    result["data"] = format.data
     result["path"] = format.path
     result["name"] = format.path
     result["doc"] = format.doc ?? ""
+  }
+  if (result?.data) {
+    result["type"] = transTypeFromTern(data.type, result.data)
+  } else {
+    result["type"] = transTypeFromTern(data.type)
   }
   return result
 }
@@ -58,10 +131,10 @@ export const HintTooltip: FC<HintTooltipProps> = (props) => {
           ) : null}
           {/*[TODO] Evaluate */}
           {data?.path?.length ? (
-            <div>
+            <div css={evaluationContentStyle}>
               <div css={css(evaluationStyle)}>Evaluates to</div>
               <Tag size="small">
-                {get(executionResult, data.path)?.toString()}
+                {formatEvaluate(data.type, data.data)}
               </Tag>
             </div>
           ) : null}

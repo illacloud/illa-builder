@@ -47,7 +47,40 @@ const transTernTypeName = (value: any): string => {
   }
 }
 
-const transDatas = (
+// contain data and path
+const transDataToDefs = (
+  data?: Record<string, any>,
+  current?: string,
+  path = "",
+) => {
+  if (data) {
+    const def: Record<string, any> = {}
+    if (current) {
+      path = path ? path + "." + current : current
+      def["!doc"] = JSON.stringify({ path, data })
+    }
+    for (const dataKey in data) {
+      let newPath = path ? path + "." + dataKey : dataKey
+      if (isObject(data[dataKey])) {
+        let d = data[dataKey] as Object
+        def[dataKey] = {
+          ...d,
+          ...transDataToDefs(d),
+          "!doc": JSON.stringify({ path: newPath, data: data[dataKey] }),
+        }
+      } else {
+        def[dataKey] = {
+          "!type": transTernTypeName(data[dataKey]),
+          "!doc": JSON.stringify({ path: newPath, data: data[dataKey] }),
+        }
+      }
+    }
+    return def
+  }
+  return {}
+}
+
+const transPathToDefs = (
   data?: Record<string, any>,
   current?: string,
   path = "",
@@ -63,7 +96,7 @@ const transDatas = (
         let a = data[dataKey] as Object
         def[dataKey] = {
           ...a,
-          ...transDatas(a, dataKey, path),
+          ...transPathToDefs(a, dataKey, path),
         }
       } else {
         let newPath = path ? path + "." + dataKey : dataKey
@@ -78,39 +111,31 @@ const transDatas = (
   return {}
 }
 
-const transDataToDefs = (data?: Record<string, any>, path?: string) => {
-  if (data) {
-    const def: Record<string, any> = {}
-    for (const dataKey in data) {
-      if (isObject(data[dataKey])) {
-        let a = data[dataKey] as Object
-        def[dataKey] = { ...a, ...transDataToDefs(a) }
-      } else {
-        def[dataKey] = {}
-        def[dataKey]["!type"] = transTernTypeName(data[dataKey])
-      }
-    }
-    return def
-  }
-  return {}
-}
-
 export const TernServer = (
   language: string = "English",
   data?: Record<string, any>,
 ) => {
   let currentDef = getCurrentDef(language)
-  let transData = transDatas(data)
-
+  let transData = transDataToDefs(data)
   return new CodeMirror.TernServer({
     // @ts-ignore: type define error
     defs: [ecmascript, { ...currentDef, ...transData }],
     // @ts-ignore: type define error
     completionTip: (completion: TypeQueryResult) => {
-      console.log(completion, "completion Data")
       let div = document.createElement("div")
-      ReactDOM.render(<HintTooltip data={completion} globalData={data??{}} />, div)
+      ReactDOM.render(<HintTooltip data={completion} />, div)
       return div
     },
   })
 }
+
+export const BaseTern = new CodeMirror.TernServer({
+  // @ts-ignore: type define error
+  defs: [ecmascript],
+  // @ts-ignore: type define error
+  completionTip: (completion: TypeQueryResult) => {
+    let div = document.createElement("div")
+    ReactDOM.render(<HintTooltip data={completion} />, div)
+    return div
+  },
+})

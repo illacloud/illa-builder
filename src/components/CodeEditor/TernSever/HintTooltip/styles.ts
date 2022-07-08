@@ -29,6 +29,10 @@ export const evaluationStyle = css`
   font-weight: 500;
 `
 
+export const evaluationContentStyle = css`
+  font-family: 'Helvetica Neue';
+`
+
 export const docIconStyle = css`
   text-decoration: none;
   width: 16px;
