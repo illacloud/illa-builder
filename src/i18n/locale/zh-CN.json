@@ -22,6 +22,7 @@
     "choose_file": "Choose a file"
   },
   "user": {
+    "description": "专属于开发者的开源低代码平台。",
     "sign_up": {
       "title": "注册",
       "fields": {
@@ -85,8 +86,8 @@
         "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>"
       },
       "tips": {
-        "success": "注册成功",
-        "fail": "注册失败"
+        "success": "登录成功",
+        "fail": "登录失败"
       },
       "placeholder": {
         "email": "请输入邮箱",
@@ -488,7 +489,9 @@
         "show_notification": "Show notification",
         "set_temporary_state": "Set temporary state",
         "text_align": "Text align",
-        "text_size": "Text size"
+        "text_size": "Text size",
+        "start_date": "Start date",
+        "end_data": "End date"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -525,7 +528,8 @@
       "name": "Date"
     },
     "date_range": {
-      "name": "Date range"
+      "name": "Date range",
+      "start_date": "Start date"
     },
     "image": {
       "name": "Image"

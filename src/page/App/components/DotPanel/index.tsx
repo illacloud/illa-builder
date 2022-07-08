@@ -1,5 +1,4 @@
 import { FC, ReactNode, useEffect, useMemo, useRef, useState } from "react"
-import { Scrollbars } from "react-custom-scrollbars"
 import {
   DotPanelProps,
   DropCollectedInfo,
@@ -327,6 +326,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth * radio,
           (canvasHeight + edgeWidth) * radio,
         )
+        ctx.globalAlpha = 0.16
         Object.keys(dragShadowMap).forEach((value) => {
           const item = dragShadowMap[value]
           ctx.beginPath()
@@ -338,8 +338,8 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           )
           ctx.closePath()
           ctx.fillStyle = item.isConflict
-            ? globalColor(`--${illaPrefix}-red-06`)
-            : globalColor(`--${illaPrefix}-techPurple-06`)
+            ? globalColor(`--${illaPrefix}-red-03`)
+            : globalColor(`--${illaPrefix}-techPurple-01`)
           ctx.fill()
         })
       }
@@ -416,12 +416,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   useEffect(() => {
     let maxY = 0
-    for (let item in componentNode.childrenNode) {
-      maxY = Math.max(
-        maxY,
-        componentNode.childrenNode[item].y + componentNode.childrenNode[item].h,
-      )
-    }
+    componentNode.childrenNode.forEach((item) => {
+      maxY = Math.max(maxY, item.y + item.h)
+    })
     if (maxY < blockRows) {
       setBlockRows(Math.max(maxY, minBlockRows))
     }
@@ -429,12 +426,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    if (childrenNode == null) {
-      return null
-    }
-    return Object.keys(childrenNode).map<ReactNode>((key) => {
-      const item = childrenNode[key]
-
+    return childrenNode.map<ReactNode>((item) => {
       const h = item.h * unitHeight
       const w = item.w * unitWidth
 
@@ -464,52 +456,50 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
       {...otherProps}
     >
-      <Scrollbars autoHide>
-        <canvas
-          id={`${componentNode.displayName}-canvas`}
-          css={applyDotCanvasStyle(
-            showDot,
-            0,
-            canvasWidth,
-            canvasHeight + edgeWidth,
-          )}
-          width={canvasWidth * radio}
-          height={(canvasHeight + edgeWidth) * radio}
-        />
-        <canvas
-          id={`${componentNode.displayName}-dotted`}
-          css={applyDotCanvasStyle(
-            showDot,
-            0,
-            canvasWidth,
-            canvasHeight + edgeWidth,
-          )}
-          width={canvasWidth * radio}
-          height={(canvasHeight + edgeWidth) * radio}
-        />
-        <div
-          ref={componentsTreeRef}
-          css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
-          onClick={(e) => {
-            if (e.target == componentsTreeRef.current) {
-              dispatch(configActions.updateSelectedComponent([]))
-            }
-          }}
-        >
-          {componentTree}
-        </div>
-        <canvas
-          id={`${componentNode.displayName}-dragged`}
-          css={applyDotCanvasStyle(
-            showDot,
-            0,
-            canvasWidth,
-            canvasHeight + edgeWidth,
-          )}
-          width={canvasWidth * radio}
-          height={(canvasHeight + edgeWidth) * radio}
-        />
-      </Scrollbars>
+      <canvas
+        id={`${componentNode.displayName}-canvas`}
+        css={applyDotCanvasStyle(
+          showDot,
+          0,
+          canvasWidth,
+          canvasHeight + edgeWidth,
+        )}
+        width={canvasWidth * radio}
+        height={(canvasHeight + edgeWidth) * radio}
+      />
+      <canvas
+        id={`${componentNode.displayName}-dotted`}
+        css={applyDotCanvasStyle(
+          showDot,
+          1,
+          canvasWidth,
+          canvasHeight + edgeWidth,
+        )}
+        width={canvasWidth * radio}
+        height={(canvasHeight + edgeWidth) * radio}
+      />
+      <div
+        ref={componentsTreeRef}
+        css={applyChildrenContainerStyle(10, canvasWidth, canvasHeight)}
+        onClick={(e) => {
+          if (e.target == componentsTreeRef.current) {
+            dispatch(configActions.updateSelectedComponent([]))
+          }
+        }}
+      >
+        {componentTree}
+      </div>
+      <canvas
+        id={`${componentNode.displayName}-dragged`}
+        css={applyDotCanvasStyle(
+          showDot,
+          100,
+          canvasWidth,
+          canvasHeight + edgeWidth,
+        )}
+        width={canvasWidth * radio}
+        height={(canvasHeight + edgeWidth) * radio}
+      />
     </div>
   )
 }

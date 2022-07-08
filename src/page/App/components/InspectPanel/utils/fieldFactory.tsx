@@ -1,10 +1,9 @@
-import { Divider } from "@illa-design/divider"
 import {
   PanelConfig,
   PanelFieldConfig,
   PanelFieldGroupConfig,
 } from "@/page/App/components/InspectPanel/interface"
-import { PanelBar } from "@/page/App/components/InspectPanel/bar"
+import { PanelBar } from "@/components/PanelBar"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { getLocalStorage, setLocalStorage } from "@/utils/storage"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"

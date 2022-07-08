@@ -62,6 +62,7 @@ export const applyLabelTitleStyle = (hasTooltip: boolean) => {
     : css``
   return css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    font-size: 14px;
     ${borderCss}
   `
 }

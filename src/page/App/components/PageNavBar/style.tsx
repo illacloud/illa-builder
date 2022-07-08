@@ -62,6 +62,7 @@ export const windowIconBodyStyle = css`
   text-align: center;
   margin-right: 2px;
   border-radius: 4px;
+  cursor: pointer;
   &: hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }

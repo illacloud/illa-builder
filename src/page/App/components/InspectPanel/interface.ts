@@ -18,12 +18,6 @@ export interface PanelLabelProps {
   labelDesc?: string
   isInList?: boolean
 }
-export interface PanelBarProps {
-  title: string
-  children?: ReactNode
-  isOpened?: boolean
-  saveToggleState: (value: boolean) => void
-}
 
 export interface PanelFieldConfig extends PanelLabelProps {
   id: string
