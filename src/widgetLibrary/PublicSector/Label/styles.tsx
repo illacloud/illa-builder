@@ -26,7 +26,7 @@ function applyLeftLabelStyle(
     ${baseLabelCss};
     width: ${width};
     max-width: 80%;
-    flex: 0 1 ${width};
+    flex: none;
     align-self: center;
     text-align: ${alignment};
     ${marginCss}
