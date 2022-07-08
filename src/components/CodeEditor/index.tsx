@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
-import { get } from "lodash"
+import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/lib/codemirror"
@@ -128,6 +128,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
   }
 
+  const debounceHandleChange = debounce(handleChange, 300)
+
   const handleKeyUp = (editor: Editor, event: KeyboardEvent) => {
     const key = event.key
     const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
@@ -203,7 +205,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       if (noTab) {
         editor?.setOption("extraKeys", { Tab: false })
       }
-      editor.on("change", handleChange)
+      editor.on("change", debounceHandleChange)
       editor.on("keyup", handleKeyUp)
       editor.on("focus", handleFocus)
       editor.on("blur", handleBlur)
@@ -211,7 +213,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
 
     return () => {
-      editor?.off("change", handleChange)
+      editor?.off("change", debounceHandleChange)
       editor?.off("keyup", handleKeyUp)
       editor?.off("focus", handleFocus)
       editor?.off("blur", handleBlur)
