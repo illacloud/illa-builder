@@ -44,7 +44,7 @@ export const Register: FC = () => {
     getValues,
     formState: { errors },
   } = useForm<RegisterFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
     defaultValues: {
       isSubscribed: true,
     },
@@ -228,6 +228,7 @@ export const Register: FC = () => {
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
+                            setShowCountDown(true)
                             Api.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
@@ -235,14 +236,19 @@ export const Register: FC = () => {
                                 data: { email: getValues("email") },
                               },
                               (res) => {
-                                setVerificationToken(res.data.verificationToken)
                                 Message.success(
                                   t("user.sign_up.tips.verificationCode"),
                                 )
-                                setShowCountDown(true)
+                                setVerificationToken(res.data.verificationToken)
                               },
-                              () => {},
-                              () => {},
+                              () => {
+                                Message.error(t("user.sign_up.tips.fail_sent"))
+                                setShowCountDown(false)
+                              },
+                              () => {
+                                Message.warning(t("network_error"))
+                                setShowCountDown(false)
+                              },
                               () => {},
                             )
                           }

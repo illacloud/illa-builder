@@ -40,9 +40,10 @@
         "subscribe": "订阅ILLA的动态"
       },
       "tips": {
-        "success": "登录成功",
-        "fail": "登录失败",
-        "verificationCode": "验证码已发送"
+        "success": "注册成功",
+        "fail": "注册失败",
+        "verificationCode": "验证码已发送",
+        "fail_sent": "发送验证码失败"
       },
       "placeholder": {
         "username": "请输入用户名",
@@ -121,7 +122,8 @@
       "tips": {
         "success": "重置密码成功",
         "fail": "重置密码失败",
-        "verificationCode": "验证码已发送"
+        "verificationCode": "验证码已发送",
+        "fail_sent": "发送验证码失败"
       },
       "placeholder": {
         "email": "请输入邮箱",

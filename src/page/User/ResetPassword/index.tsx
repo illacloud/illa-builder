@@ -36,7 +36,7 @@ export const ResetPassword: FC = () => {
     getValues,
     formState: { errors },
   } = useForm<ResetPwdFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
   })
   const onSubmit: SubmitHandler<ResetPwdFields> = (data) => {
     Api.request(
@@ -167,6 +167,7 @@ export const ResetPassword: FC = () => {
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
+                            setShowCountDown(true)
                             Api.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
@@ -174,16 +175,23 @@ export const ResetPassword: FC = () => {
                                 data: { email: getValues("email") },
                               },
                               (res) => {
-                                setVerificationToken(res.data.verificationToken)
-                                setShowCountDown(true)
                                 Message.success(
                                   t(
                                     "user.forgot_password.tips.verificationCode",
                                   ),
                                 )
+                                setVerificationToken(res.data.verificationToken)
                               },
-                              () => {},
-                              () => {},
+                              () => {
+                                Message.error(
+                                  t("user.forgot_password.tips.fail_sent"),
+                                )
+                                setShowCountDown(false)
+                              },
+                              () => {
+                                Message.warning(t("network_error"))
+                                setShowCountDown(false)
+                              },
                               () => {},
                             )
                           }

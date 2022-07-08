@@ -52,7 +52,7 @@ export const RESTAPIConfigure = forwardRef<
     watch,
     formState: { errors },
   } = useForm<RESTAPIConfigureValues>({
-    mode: "onBlur",
+    mode: "onSubmit",
     defaultValues: {
       urlParams: [EmptyField],
       headers: [EmptyField],

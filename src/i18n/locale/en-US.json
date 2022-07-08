@@ -40,9 +40,10 @@
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail",
-        "verificationCode": "Verification code sent"
+        "success": "Signed up successfully",
+        "fail": "Failed to sign up",
+        "verificationCode": "Verification code sent",
+        "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "username": "Enter your username",
@@ -86,8 +87,8 @@
         "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail"
+        "success": "Signed in successfully",
+        "fail": "Failed to sign in"
       },
       "placeholder": {
         "email": "Enter your email",
@@ -119,9 +120,10 @@
         "reset": "Reset"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail",
-        "verificationCode": "Verification code sent"
+        "success": "Reset password successfully",
+        "fail": "Failed to reset password",
+        "verificationCode": "Verification code sent",
+        "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "email": "Enter your email",

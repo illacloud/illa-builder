@@ -27,3 +27,11 @@ export const getWidgetExecutionResult = createSelector(
     return widgetExecutionResult
   },
 )
+
+export const getWidgetExecutionResultArray = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const widgetExecutionResultArray: Record<string, any>[] = []
+    Object.keys
+  },
+)
