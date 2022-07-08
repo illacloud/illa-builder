@@ -90,7 +90,7 @@ export const Register: FC = () => {
             setErrorMsg({
               ...errorMsg,
               verificationCode: t(
-                "user.sign_up.error_message.verificationCode.invalid",
+                "user.sign_up.error_message.verification_code.invalid",
               ),
             })
             break
@@ -189,7 +189,7 @@ export const Register: FC = () => {
         </section>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
-            {t("user.sign_up.fields.verificationCode")}
+            {t("user.sign_up.fields.verification_code")}
           </label>
           <div css={gridValidStyle}>
             <Controller
@@ -237,7 +237,7 @@ export const Register: FC = () => {
                               },
                               (res) => {
                                 Message.success(
-                                  t("user.sign_up.tips.verificationCode"),
+                                  t("user.sign_up.tips.verification_code"),
                                 )
                                 setVerificationToken(res.data.verificationToken)
                               },
@@ -258,12 +258,12 @@ export const Register: FC = () => {
                       </Link>
                     ),
                   }}
-                  placeholder={t("user.sign_up.placeholder.verificationCode")}
+                  placeholder={t("user.sign_up.placeholder.verification_code")}
                 />
               )}
               rules={{
                 required: t(
-                  "user.sign_up.error_message.verificationCode.require",
+                  "user.sign_up.error_message.verification_code.require",
                 ),
               }}
             />

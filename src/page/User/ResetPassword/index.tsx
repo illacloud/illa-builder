@@ -65,7 +65,7 @@ export const ResetPassword: FC = () => {
             setErrorMsg({
               ...errorMsg,
               verificationCode: t(
-                "user.forgot_password.error_message.verificationCode.invalid",
+                "user.forgot_password.error_message.verification_code.invalid",
               ),
             })
             break
@@ -128,7 +128,7 @@ export const ResetPassword: FC = () => {
         </section>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
-            {t("user.forgot_password.fields.verificationCode")}
+            {t("user.forgot_password.fields.verification_code")}
           </label>
           <div css={gridValidStyle}>
             <Controller
@@ -177,7 +177,7 @@ export const ResetPassword: FC = () => {
                               (res) => {
                                 Message.success(
                                   t(
-                                    "user.forgot_password.tips.verificationCode",
+                                    "user.forgot_password.tips.verification_code",
                                   ),
                                 )
                                 setVerificationToken(res.data.verificationToken)
@@ -202,13 +202,13 @@ export const ResetPassword: FC = () => {
                     ),
                   }}
                   placeholder={t(
-                    "user.forgot_password.placeholder.verificationCode",
+                    "user.forgot_password.placeholder.verification_code",
                   )}
                 />
               )}
               rules={{
                 required: t(
-                  "user.forgot_password.error_message.verificationCode.require",
+                  "user.forgot_password.error_message.verification_code.require",
                 ),
               }}
             />

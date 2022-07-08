@@ -28,7 +28,7 @@
       "fields": {
         "username": "Username",
         "email": "Email",
-        "verificationCode": "Verification code",
+        "verification_code": "Verification code",
         "password": "Password"
       },
       "actions": {
@@ -42,13 +42,13 @@
       "tips": {
         "success": "Signed up successfully",
         "fail": "Failed to sign up",
-        "verificationCode": "Verification code sent",
+        "verification_code": "Verification code sent",
         "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "username": "Enter your username",
         "email": "Enter your email",
-        "verificationCode": "Please enter verification code",
+        "verification_code": "Please enter verification code",
         "password": "Create a password(6~20 characters)"
       },
       "error_message": {
@@ -65,7 +65,7 @@
           "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
@@ -113,7 +113,7 @@
       "fields": {
         "email": "Email",
         "newPassword": "New Password",
-        "verificationCode": "Verification code"
+        "verification_code": "Verification code"
       },
       "actions": {
         "send": "Send code",
@@ -122,12 +122,12 @@
       "tips": {
         "success": "Reset password successfully",
         "fail": "Failed to reset password",
-        "verificationCode": "Verification code sent",
+        "verification_code": "Verification code sent",
         "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "email": "Enter your email",
-        "verificationCode": "Please enter verification code",
+        "verification_code": "Please enter verification code",
         "newPassword": "Enter your new password(6~20 characters)"
       },
       "error_message": {
@@ -136,7 +136,7 @@
           "invalid_pattern": "Please enter a valid email address",
           "registered": "The email address doesn't associate with an account."
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
