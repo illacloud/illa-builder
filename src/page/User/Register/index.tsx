@@ -26,6 +26,7 @@ import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { LocationState } from "@/page/User/Login/interface"
+import { setLocalStorage } from "@/utils/storage"
 
 export const Register: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -60,6 +61,9 @@ export const Register: FC = () => {
         },
       },
       (res) => {
+        const token = res.headers["illa-token"]
+        if (!token) return
+        setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
