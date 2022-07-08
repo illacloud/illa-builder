@@ -1,4 +1,4 @@
-import { isAnyOf, Unsubscribe } from "@reduxjs/toolkit"
+import { AnyAction, isAnyOf, Unsubscribe } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
@@ -8,7 +8,7 @@ import dependenciesTreeWorker from "@/utils/worker/exectionTreeWorker?worker"
 export const worker = new dependenciesTreeWorker()
 
 async function handleUpdateDependencies(
-  action: unknown,
+  action: AnyAction,
   listenerApi: AppListenerEffectAPI,
 ) {
   const rootState = listenerApi.getState()
