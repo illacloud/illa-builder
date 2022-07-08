@@ -14,7 +14,7 @@
   "share": "Share",
   "rename": "Rename",
   "duplicate": "Duplicate",
-  "network_error": "Network Error",
+  "network_error": "Network disconnected. Please check this device's network",
   "create_fail": "Create fail",
   "remove_fail": "Remove fail",
   "retry": "Retry",
@@ -22,12 +22,13 @@
     "choose_file": "Choose a file"
   },
   "user": {
+    "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
       "title": "Sign up",
       "fields": {
         "username": "Username",
         "email": "Email",
-        "verificationCode": "Verification code",
+        "verification_code": "Verification code",
         "password": "Password"
       },
       "actions": {
@@ -39,14 +40,15 @@
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail",
-        "verificationCode": "Verification code sent"
+        "success": "Signed up successfully",
+        "fail": "Failed to sign up",
+        "verification_code": "Verification code sent",
+        "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "username": "Enter your username",
         "email": "Enter your email",
-        "verificationCode": "Please enter verification code",
+        "verification_code": "Please enter verification code",
         "password": "Create a password(6~20 characters)"
       },
       "error_message": {
@@ -63,7 +65,7 @@
           "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
@@ -85,8 +87,8 @@
         "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail"
+        "success": "Signed in successfully",
+        "fail": "Failed to sign in"
       },
       "placeholder": {
         "email": "Enter your email",
@@ -111,20 +113,21 @@
       "fields": {
         "email": "Email",
         "newPassword": "New Password",
-        "verificationCode": "Verification code"
+        "verification_code": "Verification code"
       },
       "actions": {
         "send": "Send code",
         "reset": "Reset"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail",
-        "verificationCode": "Verification code sent"
+        "success": "Reset password successfully",
+        "fail": "Failed to reset password",
+        "verification_code": "Verification code sent",
+        "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "email": "Enter your email",
-        "verificationCode": "Please enter verification code",
+        "verification_code": "Please enter verification code",
         "newPassword": "Enter your new password(6~20 characters)"
       },
       "error_message": {
@@ -133,7 +136,7 @@
           "invalid_pattern": "Please enter a valid email address",
           "registered": "The email address doesn't associate with an account."
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
@@ -167,7 +170,8 @@
         },
         "contextMenu": {
           "delete": "Delete",
-          "duplicate": "Duplicate"
+          "duplicate": "Duplicate",
+          "rename": "Rename"
         },
         "tips": {
           "not_found": "Sorry, No Search result",
@@ -487,7 +491,9 @@
         "show_notification": "Show notification",
         "set_temporary_state": "Set temporary state",
         "text_align": "Text align",
-        "text_size": "Text size"
+        "text_size": "Text size",
+        "start_date": "Start date",
+        "end_data": "End date"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -495,7 +501,7 @@
       },
       "setter_content": {
         "option_list": {
-          "action_menu":{
+          "action_menu": {
             "delete": "Delete",
             "duplicate": "Duplicate"
           },

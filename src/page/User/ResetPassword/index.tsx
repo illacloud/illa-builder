@@ -24,6 +24,7 @@ import { ResetPwdFields } from "./interface"
 
 export const ResetPassword: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState({ email: "", verificationCode: "" })
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [verificationToken, setVerificationToken] = useState("")
@@ -35,7 +36,7 @@ export const ResetPassword: FC = () => {
     getValues,
     formState: { errors },
   } = useForm<ResetPwdFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
   })
   const onSubmit: SubmitHandler<ResetPwdFields> = (data) => {
     Api.request(
@@ -51,10 +52,29 @@ export const ResetPassword: FC = () => {
         navigate("/user/login")
         Message.success(t("user.forgot_password.tips.success"))
       },
-      () => {
+      (res) => {
         Message.error(t("user.forgot_password.tips.fail"))
+        switch (res.data.errorMessage) {
+          case "no such user":
+            setErrorMsg({
+              ...errorMsg,
+              email: t("user.forgot_password.error_message.email.registered"),
+            })
+            break
+          case "invalid verification code":
+            setErrorMsg({
+              ...errorMsg,
+              verificationCode: t(
+                "user.forgot_password.error_message.verification_code.invalid",
+              ),
+            })
+            break
+          default:
+        }
       },
-      () => {},
+      () => {
+        Message.warning(t("network_error"))
+      },
       (loading) => {
         setSubmitLoading(loading)
       },
@@ -75,9 +95,15 @@ export const ResetPassword: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  onChange={(value, event) => {
+                    field.onChange(event)
+                    if (errorMsg.email !== "") {
+                      setErrorMsg({ ...errorMsg, email: "" })
+                    }
+                  }}
                   borderColor="techPurple"
                   size="large"
-                  error={!!errors.email}
+                  error={!!errors.email || !!errorMsg.email}
                   variant="fill"
                   placeholder={t("user.forgot_password.placeholder.email")}
                 />
@@ -92,17 +118,17 @@ export const ResetPassword: FC = () => {
                 },
               }}
             />
-            {errors.email && (
+            {(errors.email || errorMsg.email) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.email.message}
+                {errors.email?.message || errorMsg.email}
               </div>
             )}
           </div>
         </section>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
-            {t("user.forgot_password.fields.verificationCode")}
+            {t("user.forgot_password.fields.verification_code")}
           </label>
           <div css={gridValidStyle}>
             <Controller
@@ -112,8 +138,16 @@ export const ResetPassword: FC = () => {
                 <Input
                   {...field}
                   borderColor="techPurple"
+                  onChange={(value, event) => {
+                    field.onChange(event)
+                    if (errorMsg.verificationCode !== "") {
+                      setErrorMsg({ ...errorMsg, verificationCode: "" })
+                    }
+                  }}
                   size="large"
-                  error={!!errors.verificationCode}
+                  error={
+                    !!errors.verificationCode || !!errorMsg.verificationCode
+                  }
                   variant="fill"
                   suffix={{
                     render: showCountDown ? (
@@ -133,6 +167,7 @@ export const ResetPassword: FC = () => {
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
+                            setShowCountDown(true)
                             Api.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
@@ -140,16 +175,23 @@ export const ResetPassword: FC = () => {
                                 data: { email: getValues("email") },
                               },
                               (res) => {
-                                setVerificationToken(res.data.verificationToken)
-                                setShowCountDown(true)
                                 Message.success(
                                   t(
-                                    "user.forgot_password.tips.verificationCode",
+                                    "user.forgot_password.tips.verification_code",
                                   ),
                                 )
+                                setVerificationToken(res.data.verificationToken)
                               },
-                              () => {},
-                              () => {},
+                              () => {
+                                Message.error(
+                                  t("user.forgot_password.tips.fail_sent"),
+                                )
+                                setShowCountDown(false)
+                              },
+                              () => {
+                                Message.warning(t("network_error"))
+                                setShowCountDown(false)
+                              },
                               () => {},
                             )
                           }
@@ -160,20 +202,20 @@ export const ResetPassword: FC = () => {
                     ),
                   }}
                   placeholder={t(
-                    "user.forgot_password.placeholder.verificationCode",
+                    "user.forgot_password.placeholder.verification_code",
                   )}
                 />
               )}
               rules={{
                 required: t(
-                  "user.forgot_password.error_message.verificationCode.require",
+                  "user.forgot_password.error_message.verification_code.require",
                 ),
               }}
             />
-            {errors.verificationCode && (
+            {(errors.verificationCode || errorMsg.verificationCode) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.verificationCode.message}
+                {errors.verificationCode?.message || errorMsg.verificationCode}
               </div>
             )}
           </div>

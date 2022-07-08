@@ -16,6 +16,7 @@ import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel/TitleInput"
 import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
 import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
+import { ActionResultErrorIndicator } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResultErrorIndicator"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ActionEditorPanelProps } from "./interface"
 import {
@@ -159,8 +160,8 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           actionActions.updateActionItemReducer({
             ...activeActionItem,
             // TODO: apply Transfomer
-            data: {},
-            rawData: {},
+            data: response.data,
+            rawData: response.data,
             error: true,
           }),
         )
@@ -255,6 +256,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           trigger={"click"}
           popupVisible={moreBtnMenuVisible}
           onVisibleChange={setMoreBtnMenuVisible}
+          disabled={activeActionItem.actionId === ""}
           triggerProps={{
             position: "br",
             clickOutsideToClose: true,
@@ -279,7 +281,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           variant="light"
           leftIcon={<CaretRightIcon />}
           loading={isRuning}
-          disabled={isRuning}
+          disabled={isRuning || activeActionItem.actionId === ""}
           onClick={saveOrRun}
         >
           {runBtnText}
@@ -290,6 +292,11 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         <>
           {editorNode}
           <AnimatePresence>
+            {activeActionItem?.error && (
+              <ActionResultErrorIndicator
+                errorMessage={activeActionItem?.data?.errorMessage}
+              />
+            )}
             {actionResVisible && (
               <ActionResult
                 result={result}

@@ -83,10 +83,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             }}
           />
         </span>
-<<<<<<< Updated upstream
-        {/* <ZoomControl /> */}
-=======
->>>>>>> Stashed changes
       </div>
       <div>
         <ButtonGroup spacing={"8px"}>

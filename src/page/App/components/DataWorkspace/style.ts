@@ -14,7 +14,7 @@ export const itemNameDescStyle: SerializedStyles = css`
 export const jsonNameStyle: SerializedStyles = css`
   display: inline-block;
   font-size: 12px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const jsonValueStyle: SerializedStyles = css`

@@ -1,13 +1,13 @@
-import { forwardRef } from "react"
+import { forwardRef, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/select"
 import { WrappedSelectProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
 export const WrappedSelect = forwardRef<any, WrappedSelectProps>(
   (props, ref) => {
     const {
       showClear,
-      options,
       value,
       placeholder,
       disabled,
@@ -16,13 +16,35 @@ export const WrappedSelect = forwardRef<any, WrappedSelectProps>(
       showSearch,
       inputValue,
       colorScheme,
+      optionConfigureMode,
+      mappedOption,
+      manualOptions,
+      displayName,
       handleUpdateDsl,
+      handleUpdateGlobalData,
     } = props
+
+    const finalOptions = useMemo(() => {
+      return formatSelectOptions(
+        optionConfigureMode,
+        manualOptions,
+        mappedOption,
+      )
+    }, [optionConfigureMode, manualOptions, mappedOption])
+
+    useEffect(() => {
+      if (!displayName) return
+      handleUpdateGlobalData?.(displayName, {
+        ...props,
+        options: finalOptions,
+      })
+    }, [displayName, finalOptions])
+
     return (
       <div css={containerStyle}>
         <Select
           allowClear={showClear}
-          options={options}
+          options={finalOptions}
           value={value}
           placeholder={placeholder}
           disabled={disabled}

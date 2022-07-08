@@ -7,13 +7,13 @@ import { DropList, Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
 import { illaPrefix, globalColor } from "@illa-design/theme"
 import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
-import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionGenerator } from "@/page/App/components/ActionEditor/ActionGenerator"
 import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/interface"
 import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
-import { useIsValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
+import { isValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
 import { ActionDisplayNameValidateResult } from "@/page/App/components/ActionEditor/interface"
 import {
   actionListContainerStyle,
@@ -32,6 +32,7 @@ import {
 } from "./style"
 import { ActionListProps } from "./interface"
 import { SearchHeader } from "./SearchHeader"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 const DropListItem = DropList.Item
 
@@ -56,7 +57,6 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [isRenameError, setIsRenameError] =
     useState<ActionDisplayNameValidateResult>({ error: false })
   const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
-  const { isValidActionDisplayName } = useIsValidActionDisplayName()
 
   const inputRef = useRef<HTMLInputElement | null>(null)
 
@@ -79,10 +79,11 @@ export const ActionList: FC<ActionListProps> = (props) => {
   }
 
   function updateName(originName: string) {
-    if (originName !== editingName && !isRenameError) {
+    if (originName !== editingName && !isRenameError.error) {
       onUpdateActionItem(editingActionItemId, {
         ...activeActionItem,
         displayName: editingName,
+        oldDisplayName: originName,
       })
     }
     setEditingActionItemId("")
@@ -90,11 +91,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     setEditingName("")
   }
 
-  function onClickActionItem(id: string, name: string) {
-    if (actionItems.length === 1) {
-      editName(id, name)
-    }
-
+  function onClickActionItem(id: string) {
     onSelectActionItem(id)
   }
 
@@ -104,7 +101,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     setActionGeneratorVisible(false)
 
     onAddActionItem({
-      displayName: ActionDisplayNameGenerator.getDisplayName(actionType),
+      displayName: DisplayNameGenerator.getDisplayName(actionType),
       actionType,
       resourceId,
       actionTemplate: {},
@@ -164,7 +161,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       <li
         key={id}
         css={applyActionItemStyle(isSelected)}
-        onClick={() => onClickActionItem(id, name)}
+        onClick={() => onClickActionItem(id)}
         onContextMenu={() => {
           setContextMenuActionId(id)
         }}
@@ -238,9 +235,19 @@ export const ActionList: FC<ActionListProps> = (props) => {
                 case "delete":
                   onDeleteActionItem(contextMenuActionId)
                   break
+                case "rename":
+                  const target = actionItems.find(
+                    ({ actionId }) => actionId === contextMenuActionId,
+                  ) as ActionItem
+                  editName(target?.actionId, target?.displayName)
+                  break
               }
             }}
           >
+            <DropListItem
+              key={"rename"}
+              title={t("editor.action.action_list.contextMenu.rename")}
+            />
             <DropListItem
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}

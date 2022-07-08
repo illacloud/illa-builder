@@ -26,7 +26,7 @@ function applyLeftLabelStyle(
     ${baseLabelCss};
     width: ${width};
     max-width: 80%;
-    flex: 0 1 ${width};
+    flex: none;
     align-self: center;
     text-align: ${alignment};
     ${marginCss}
@@ -62,6 +62,7 @@ export const applyLabelTitleStyle = (hasTooltip: boolean) => {
     : css``
   return css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    font-size: 14px;
     ${borderCss}
   `
 }

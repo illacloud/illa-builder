@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { Outlet } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import { ReactComponent as Logo } from "@/assets/illa-logo-white.svg"
 import {
   asideStyle,
@@ -10,13 +11,12 @@ import {
 } from "./style"
 
 export const UserLogin: FC = () => {
+  const { t } = useTranslation()
   return (
     <div css={containerStyle}>
       <aside css={asideStyle}>
         <Logo css={logoStyle} />
-        <section css={introductionStyle}>
-          An open-source low-code Platform for Developers.
-        </section>
+        <section css={introductionStyle}>{t("user.description")}</section>
       </aside>
       <div css={contentStyle}>
         <Outlet />

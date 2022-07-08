@@ -54,7 +54,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       getValues,
       setValue,
     } = useForm<MySQLConfigureValues>({
-      mode: "onBlur",
+      mode: "onSubmit",
       defaultValues: {
         resourceName: resourceConfig?.resourceName,
         ...resourceConfig?.options,

@@ -7,13 +7,15 @@ import {
   ALL_ACTION,
 } from "./data"
 
+const ACTION_BASE_URL = `${baseUrl}/versions/:versionId`
+
 export default [
-  rest.get(`${baseUrl}/actions`, (_, res, ctx) => {
+  rest.get(`${ACTION_BASE_URL}/actions`, (_, res, ctx) => {
     return res(ctx.delay(1000), ctx.status(200), ctx.json(ALL_ACTION))
   }),
 
   rest.post<{ actionType: string }>(
-    `${baseUrl}/actions/:actionId/run`,
+    `${ACTION_BASE_URL}/actions/:actionId/run`,
     (req, res, ctx) => {
       const { actionType } = req.body
 
@@ -40,7 +42,7 @@ export default [
     },
   ),
 
-  rest.post(`${baseUrl}/actions`, (req, res, ctx) => {
+  rest.post(`${ACTION_BASE_URL}/actions`, (req, res, ctx) => {
     const data = req.body
 
     return res(
@@ -53,7 +55,7 @@ export default [
     )
   }),
 
-  rest.put(`${baseUrl}/actions/:actionId`, (req, res, ctx) => {
+  rest.put(`${ACTION_BASE_URL}/actions/:actionId`, (req, res, ctx) => {
     const { actionId } = req.params
     const data = req.body
 
@@ -67,7 +69,7 @@ export default [
     )
   }),
 
-  rest.delete(`${baseUrl}/actions/:actionId`, (req, res, ctx) => {
+  rest.delete(`${ACTION_BASE_URL}/actions/:actionId`, (req, res, ctx) => {
     const { actionId } = req.params
     return res(
       ctx.delay(1000),

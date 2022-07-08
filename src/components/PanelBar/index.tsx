@@ -5,7 +5,6 @@ import {
   panelBarTitleStyle,
   panelBarItemContentStyle,
   panelBarItemAnimation,
-  ghostEmptyStyle,
 } from "./style"
 import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
@@ -16,7 +15,7 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
   const handleToggle = useCallback(() => {
-    saveToggleState(!isOpenedState)
+    saveToggleState?.(!isOpenedState)
     setIsOpenedState(!isOpenedState)
   }, [isOpenedState, saveToggleState])
 
@@ -41,7 +40,6 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           {children}
         </motion.div>
       </AnimatePresence>
-      {isOpenedState && children && <div css={ghostEmptyStyle} />}
     </>
   )
 }
