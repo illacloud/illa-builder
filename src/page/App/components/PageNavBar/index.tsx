@@ -12,7 +12,6 @@ import {
   WindowRightIcon,
 } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
-import { ZoomControl } from "@/page/App/components/PageNavBar/ZoomControl"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -24,13 +23,13 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import {
   descriptionStyle,
   informationStyle,
+  logoCursorStyle,
   nameStyle,
   navBarStyle,
   rowCenter,
   viewControlStyle,
-  windowIconStyle,
-  logoCursorStyle,
   windowIconBodyStyle,
+  windowIconStyle,
 } from "./style"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
@@ -41,7 +40,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const appInfo = useSelector(getAppInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
-  const rightPanelVsible = useSelector(isOpenRightPanel)
+  const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
 
   return (
@@ -70,9 +69,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         </span>
         <span css={windowIconBodyStyle}>
           <WindowRightIcon
-            _css={windowIconStyle(rightPanelVsible)}
+            _css={windowIconStyle(rightPanelVisible)}
             onClick={() => {
-              dispatch(configActions.updateRightPanel(!rightPanelVsible))
+              dispatch(configActions.updateRightPanel(!rightPanelVisible))
             }}
           />
         </span>
@@ -84,7 +83,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             }}
           />
         </span>
+<<<<<<< Updated upstream
         {/* <ZoomControl /> */}
+=======
+>>>>>>> Stashed changes
       </div>
       <div>
         <ButtonGroup spacing={"8px"}>
@@ -102,6 +104,11 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             colorScheme="techPurple"
             size="medium"
             leftIcon={<CaretRightIcon />}
+            onClick={() => {
+              navigate(
+                `/deploy/app/${appInfo?.appId}/version/${appInfo?.appVersion}`,
+              )
+            }}
           >
             {t("deploy")}
           </Button>

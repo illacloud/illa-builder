@@ -10,6 +10,12 @@ export interface DashboardApp {
   appActivity?: string
 }
 
+export const DashboardAppInitialState: DashboardApp = {
+  appId: "",
+  appName: "",
+  currentVersionId: "",
+}
+
 export const DashboardAppsInitialState: DashboardAppsState = {
   list: [],
   url: "",

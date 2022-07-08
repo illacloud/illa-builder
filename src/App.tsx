@@ -29,6 +29,7 @@ import "@/api/base"
 import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AxiosInterceptor } from "@/api/AxiosInterceptor"
+import { Deploy } from "@/page/Deploy"
 
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {
@@ -76,6 +77,10 @@ function App() {
               <Route path="password" element={<SettingPassword />} />
               <Route path="others" element={<SettingOthers />} />
             </Route>
+            <Route
+              path="deploy/:appId/version/:versionId"
+              element={<Deploy />}
+            />
             <Route path="403" element={<Page403 />} />
             <Route path="500" element={<Page500 />} />
             <Route path="*" element={<Page404 />} />
