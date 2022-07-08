@@ -1,9 +1,2 @@
-export interface DisplayNameState {
-  cacheMap: {
-    [type: string]: string[]
-  }
-}
-
-export const DisplayNameInitialState: DisplayNameState = {
-  cacheMap: {},
-}
+export type DisplayNameState = string[]
+export const DisplayNameInitialState: DisplayNameState = []

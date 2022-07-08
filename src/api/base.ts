@@ -1,4 +1,5 @@
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
+import { getLocalStorage } from "@/utils/storage"
 
 export interface Success {
   status: string // always ok
@@ -15,6 +16,17 @@ const axios = Axios.create({
     "Content-Encoding": "gzip",
     "Content-Type": "application/json",
   },
+})
+
+axios.interceptors.request.use((config) => {
+  const token = getLocalStorage("token")
+  if (token) {
+    config.headers = {
+      ...(config.headers ?? {}),
+      Authorization: token,
+    }
+  }
+  return config
 })
 
 export class Api {

@@ -105,14 +105,6 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       // eventHandle @aoao
       {
-        id: "date-interaction-loading",
-        labelName: i18n.t("editor.inspect.setter_label.loading"),
-        labelDesc: "xxxxx",
-        attrName: "loading",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-      {
         id: "date-interaction-disabled",
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: "xxxxx",
@@ -124,7 +116,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-interaction-readonly",
         labelName: i18n.t("editor.inspect.setter_label.read_only"),
         labelDesc: "xxxxx",
-        attrName: "readonly",
+        attrName: "readOnly",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
@@ -135,6 +127,13 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
+        id: "date-adornments-tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        attrName: "tooltipText",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+      },
+      {
         id: "date-adornments-showClear",
         labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "showClear",
@@ -143,11 +142,12 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: "date-adornments-tooltip",
-        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
-        attrName: "tooltipText",
+        id: "date-interaction-loading",
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
+        labelDesc: "xxxxx",
+        attrName: "loading",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -162,13 +162,6 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
-      },
-      {
-        id: "input-validation-custom",
-        labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
-        setterType: "INPUT_SETTER",
-        attrName: "custom rule",
-        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "input-validation-hide-message",

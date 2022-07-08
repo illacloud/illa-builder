@@ -53,5 +53,6 @@ export interface MySQLParamProps {
 }
 
 export interface MySQLParamValues {
+  mode?: string
   query?: string
 }

@@ -14,6 +14,7 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "items",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.ARRAY,
+        isSetterSingleRow: true,
       },
       {
         id: `${baseWidgetName}-direction`,

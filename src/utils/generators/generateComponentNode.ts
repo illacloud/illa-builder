@@ -1,7 +1,7 @@
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateComponentNodeDisplayName"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,
@@ -18,18 +18,14 @@ export const generateComponentNode = (
   if (widgetInfo.w == undefined || widgetInfo.h == undefined) {
     throw new Error("dsl must have default width and height")
   }
-  let childrenNodeDSL: {
-    [key: string]: ComponentNode
-  } = {}
+  let childrenNodeDSL: ComponentNode[] = []
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
     widgetInfo.childrenNode.map((childNode) => {
-      const { displayName } = childNode
-      if (!childrenNodeDSL) childrenNodeDSL = {}
-      childrenNodeDSL[displayName] = generateComponentNode(childNode)
+      if (!childrenNodeDSL) childrenNodeDSL = []
+      const child = generateComponentNode(childNode)
+      childrenNodeDSL.push(child)
     })
   }
-
-  const childrenNodeDSLKeys = Object.keys(childrenNodeDSL)
 
   const { defaults, w, h, type, displayName = "" } = widgetInfo
   baseDSL = {
@@ -45,13 +41,10 @@ export const generateComponentNode = (
     z: 0,
     showName: displayName,
     type,
-    displayName: ComponentNodeDisplayNameGenerator.getDisplayName(
-      type,
-      displayName,
-    ),
+    displayName: DisplayNameGenerator.getDisplayName(type, displayName),
     containerType: "EDITOR_SCALE_SQUARE",
     parentNode: null,
-    childrenNode: childrenNodeDSLKeys.length > 0 ? childrenNodeDSL : null,
+    childrenNode: childrenNodeDSL,
     props: defaults ?? {},
   }
   return baseDSL

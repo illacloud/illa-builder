@@ -31,6 +31,28 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: "optionMode",
         shown: (value) => !value || value === "manual",
+        childrenSetter: [
+          {
+            id: "radioGroup-options-label",
+            labelName: "Label",
+            attrName: "label",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: "radioGroup-options-value",
+            labelName: "Value",
+            attrName: "value",
+            setterType: "INPUT_SETTER",
+          },
+          {
+            id: "radioGroup-options-disabled",
+            labelName: "Disabled",
+            attrName: "disabled",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+          },
+        ],
       },
       {
         id: "radioGroup-option-data-sources",
@@ -40,6 +62,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         bindAttrName: "optionMode",
         expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "mapped",
+        isSetterSingleRow: true,
       },
       {
         id: "radioGroup-option-mapped",

@@ -8,7 +8,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "yarn build-all && vite --mode cloud",
-    "build": "yarn build-all && vite build --mode cloud",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 yarn build-all && vite build --mode cloud",
     "build-self": "yarn build-all && vite build --mode self",
     "build-all": "yarn turbo run build",
     "preview": "yarn build-all && vite preview",
@@ -38,10 +38,12 @@
     "jshint": "^2.13.4",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",
+    "react-hotkeys-hook": "^3.4.6",
     "react-i18next": "^11.16.7",
     "react-json-view": "^1.21.3",
     "react-redux": "^8.0.1",
@@ -72,6 +74,7 @@
     "@types/codemirror": "^5.60.5",
     "@types/jest": "^27.4.1",
     "@types/react": "^17.0.2",
+    "@types/react-custom-scrollbars": "^4.0.10",
     "@types/react-dom": "^17.0.2",
     "@types/redux-logger": "^3.0.9",
     "@types/sinon": "^10.0.11",
@@ -87,7 +90,6 @@
     "husky": "^7.0.4",
     "jest": "^27.4.1",
     "jest-environment-jsdom": "^27.4.1",
-    "msw": "^0.41.0",
     "prettier": "^2.5.1",
     "sinon": "^13.0.1",
     "ts-jest": "^27.1.5",
@@ -108,8 +110,5 @@
     "reporter": [
       "lcov"
     ]
-  },
-  "msw": {
-    "workerDirectory": "public"
   }
 }

@@ -16,17 +16,23 @@ export const fieldItemStyle = css`
 `
 
 export const fieldItemKeyStyle = css`
-  width: 160px;
+  min-width: 160px;
 
-  & > .CodeMirror {
+  & .CodeMirror.CodeMirror-wrap {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  & .CodeMirror:not(.CodeMirror-focused) {
+    border-right: 0;
   }
 `
 
 export const fieldItemTypeStyle = css`
   width: 120px !important;
   border-radius: 0 !important;
+  border-right: 0 !important;
+
   & > div {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -36,13 +42,20 @@ export const fieldItemTypeStyle = css`
 export const fieldItemValueStyle = css`
   flex: 1;
 
-  & > .CodeMirror {
+  & .CodeMirror {
     border-radius: 0;
   }
 `
 
 export const newButtonStyle = css`
   margin-top: 8px;
+  padding: 0 8px;
+  height: 24px;
+  font-size: 14px;
+
+  & > span:first-child {
+    margin-right: 4px;
+  }
 `
 
 export const deleteIconWrapperStyle = css`
@@ -58,6 +71,6 @@ export const deleteIconWrapperStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
 
   &:hover {
-    color: ${globalColor(`--${illaPrefix}-red-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
 `

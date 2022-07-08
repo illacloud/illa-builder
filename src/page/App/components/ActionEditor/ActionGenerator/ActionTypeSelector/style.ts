@@ -8,7 +8,7 @@ export const containerStyle = css`
 export const titleStyle = css`
   margin-bottom: 16px;
   font-size: 20px;
-  font-weight: 5000;
+  font-weight: 500;
   text-align: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `

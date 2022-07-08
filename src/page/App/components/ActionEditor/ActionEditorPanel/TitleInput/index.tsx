@@ -3,11 +3,14 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useSelector, useDispatch } from "react-redux"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
+import { Message } from "@illa-design/Message"
 import { Api } from "@/api/base"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
+import { isValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
   applyTitleContainerStyle,
   titleEditIconStyle,
@@ -19,12 +22,12 @@ import { TitleInputProps } from "./interface"
 
 export const TitleInput: FC<TitleInputProps> = () => {
   const dispatch = useDispatch()
-  const { setActionListLoading } = useContext(ActionEditorContext)
   const activeActionItem = useSelector(getSelectedAction)
+  const { setActionListLoading, baseActionApi } =
+    useContext(ActionEditorContext)
   const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-
   const [title, setTitle] = useState(name)
   const editable = title !== ""
   const variants = {
@@ -49,13 +52,27 @@ export const TitleInput: FC<TitleInputProps> = () => {
   function handleOnBlur() {
     setIsEditing(false)
 
+    const { error, errorMsg } = isValidActionDisplayName(title)
+
+    if (error) {
+      Message.warning(errorMsg as string)
+      setTitle(name)
+      return
+    }
+
     if (title !== name) {
+      const { resourceId, actionType, actionTemplate } = activeActionItem
+
+      DisplayNameGenerator.updateDisplayName(title)
+
       Api.request<ActionItem>(
         {
-          url: `/actions/${activeActionItem.actionId}`,
+          url: baseActionApi,
           method: "PUT",
           data: {
-            ...activeActionItem,
+            resourceId,
+            actionType,
+            actionTemplate,
             displayName: title,
           },
         },
@@ -65,8 +82,13 @@ export const TitleInput: FC<TitleInputProps> = () => {
               ...data,
             }),
           )
+          // remove old name
+          DisplayNameGenerator.removeDisplayName(name)
         },
-        () => {},
+        () => {
+          // remove new name
+          DisplayNameGenerator.removeDisplayName(title)
+        },
         () => {},
         (loading) => {
           setActionListLoading?.(loading)

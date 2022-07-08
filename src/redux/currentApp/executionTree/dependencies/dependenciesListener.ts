@@ -1,23 +1,28 @@
-import { Unsubscribe } from "@reduxjs/toolkit"
+import { isAnyOf, Unsubscribe } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
-import { generateDependencies } from "@/utils/generators/generateDependenciesMap"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
+import dependenciesTreeWorker from "@/utils/worker/exectionTreeWorker?worker"
+
+export const worker = new dependenciesTreeWorker()
 
 async function handleUpdateDependencies(
-  action: ReturnType<typeof componentsActions.updateComponentPropsReducer>,
+  action: unknown,
   listenerApi: AppListenerEffectAPI,
 ) {
   const rootState = listenerApi.getState()
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
   if (!displayNameMapProps) return
-  const inverseDependencies = generateDependencies(displayNameMapProps)
-  listenerApi.dispatch(
-    dependenciesActions.setDependenciesReducer({
-      dependencies: inverseDependencies,
-    }),
-  )
+  worker.postMessage({
+    action: "GENERATE_DEPENDENCIES",
+    displayNameMapProps: displayNameMapProps,
+  })
+  worker.onmessage = (e) => {
+    const { data } = e
+    const { result = {} } = data
+    listenerApi.dispatch(dependenciesActions.setDependenciesReducer(result))
+  }
 }
 
 export function setupDependenciesListeners(
@@ -25,7 +30,10 @@ export function setupDependenciesListeners(
 ): Unsubscribe {
   const subscriptions = [
     startListening({
-      actionCreator: componentsActions.updateComponentPropsReducer,
+      matcher: isAnyOf(
+        componentsActions.updateComponentPropsReducer,
+        componentsActions.deleteComponentNodeReducer,
+      ),
       effect: handleUpdateDependencies,
     }),
   ]

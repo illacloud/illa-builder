@@ -21,7 +21,7 @@ export const applyColorSelectPreviewColorStyle = (
     width: 24px;
     height: 24px;
     border-radius: 12px;
-    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+    border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     background-color: ${color};
     box-sizing: border-box;
     display: inline-block;
@@ -33,11 +33,8 @@ export const colorSelectPreviewNameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   margin-left: 8px;
   display: inline-block;
-`
-
-export const colorSelectMenuWrapperStyle = css`
-  width: 120px;
-  padding: 8px 0;
+  width: 56px;
+  font-size: 12px;
 `
 
 export const colorSelectMenuItemWrapperStyle = css`

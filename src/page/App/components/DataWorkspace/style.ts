@@ -1,11 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const splitLineStyle: SerializedStyles = css`
-  height: 1px;
-  background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
-
 export const itemNameStyle: SerializedStyles = css`
   font-size: 12px;
   font-weight: 500;
@@ -19,7 +14,7 @@ export const itemNameDescStyle: SerializedStyles = css`
 export const jsonNameStyle: SerializedStyles = css`
   display: inline-block;
   font-size: 12px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const jsonValueStyle: SerializedStyles = css`
@@ -44,7 +39,7 @@ export function applyJsonValueColorStyle(type: any): SerializedStyles {
       `
     case "string":
       return css`
-        color: #f50;
+        color: #219;
       `
     case "undefined":
       return css`

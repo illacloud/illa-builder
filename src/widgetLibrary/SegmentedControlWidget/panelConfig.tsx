@@ -41,6 +41,7 @@ export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
         bindAttrName: "optionMode",
         expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "mapped",
+        isSetterSingleRow: true,
       },
       {
         id: `${baseWidgetName}-options-mapped`,

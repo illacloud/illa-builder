@@ -11,9 +11,15 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "date-range-basic-start-date",
-        attrName: "value",
-        setterType: "DATE_RANGE_VALUE_SETTER",
-        useCustomLayout: true,
+        labelName: i18n.t("editor.inspect.setter_label.start_date"),
+        attrName: "startValue",
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: "date-range-basic-end-date",
+        labelName: i18n.t("editor.inspect.setter_label.end_data"),
+        attrName: "endValue",
+        setterType: "INPUT_SETTER",
       },
       {
         id: "date-basic-Format",
@@ -110,18 +116,12 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       // eventHandle @aoao
       {
-        id: "date-range-interaction-loading",
-        labelName: i18n.t("editor.inspect.setter_label.loading"),
-        labelDesc: "xxxxx",
-        attrName: "loading",
-        setterType: "INPUT_SETTER",
-      },
-      {
         id: "date-range-interaction-disabled",
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: "xxxxx",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: "date-range-interaction-readonly",
@@ -129,6 +129,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: "xxxxx",
         attrName: "readonly",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -136,6 +137,12 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
     id: "date-range-adornments",
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
+      {
+        id: "date-range-adornments-tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        attrName: "tooltipText",
+        setterType: "INPUT_SETTER",
+      },
       {
         id: "date-range-adornments-showClear",
         labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
@@ -145,10 +152,12 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: "date-range-adornments-tooltip",
-        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
-        attrName: "tooltipText",
+        id: "date-range-interaction-loading",
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
+        labelDesc: "xxxxx",
+        attrName: "loading",
         setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },
@@ -163,12 +172,6 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
-      },
-      {
-        id: "date-range-validation-custom",
-        labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
-        setterType: "INPUT_SETTER",
-        attrName: "customRule",
       },
       {
         id: "date-range-validation-hide-message",
@@ -191,6 +194,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         attrName: "hidden",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
   },

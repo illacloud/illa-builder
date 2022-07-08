@@ -90,7 +90,7 @@ import {
   DividerWidget,
 } from "@/widgetLibrary/DividerWidget"
 
-const WidgetConfig: WidgetConfigs = {
+export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
     widget: TextWidget,
     config: TEXT_WIDGET_CONFIG,

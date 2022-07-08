@@ -1,14 +1,10 @@
 import { HTMLAttributes } from "react"
+import { AxiosResponse } from "axios"
 
-export type ActionResult = {
-  request?: object
-  response?: { [key: string]: any }
-}
+export type ActionResultType = AxiosResponse | string
 
 export interface ActionResultProps extends HTMLAttributes<HTMLDivElement> {
-  actionType: string
-  result?: object
-  type?: string
+  result?: ActionResultType
   error?: boolean
   onClose?: () => void
 }

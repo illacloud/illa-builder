@@ -1,19 +1,32 @@
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import i18n from "@/i18n/config"
+import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameReducer"
+import { isValidDisplayName } from "@/utils/typeHelper"
+import { ActionDisplayNameValidateResult } from "./interface"
 
-export function generateName(actionType: string, actionItems: ActionItem[]) {
-  const actionItemsNameSet = new Set(actionItems.map((i) => i.displayName))
-  const length = actionItems.filter((i) => i.actionType === actionType).length
-  const prefix = actionType
-
-  const getUniqueName = (length: number): string => {
-    const name = `${prefix}${length + 1}`
-
-    if (actionItemsNameSet.has(name)) {
-      return getUniqueName(length + 1)
+export function isValidActionDisplayName(
+  name: string,
+): ActionDisplayNameValidateResult {
+  if (name === "") {
+    return {
+      error: true,
+      errorMsg: i18n.t("editor.action.action_list.message.please_input_name"),
     }
-
-    return name
   }
 
-  return getUniqueName(length)
+  if (!isValidDisplayName(name)) {
+    return {
+      error: true,
+      errorMsg: i18n.t("editor.action.action_list.message.valid_name"),
+    }
+  }
+
+  // check if unique in all actions and cache map
+  if (isAlreadyGenerate(name)) {
+    return {
+      error: true,
+      errorMsg: i18n.t("editor.action.action_list.message.name_already_exist"),
+    }
+  }
+
+  return { error: false }
 }

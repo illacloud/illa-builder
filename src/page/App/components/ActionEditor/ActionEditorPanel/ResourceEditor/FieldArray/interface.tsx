@@ -1,12 +1,18 @@
+import { SelectProps } from "@illa-design/select"
+
 export interface ValueType {
   key: string
   value: string
-  type?: "text" | "file"
+  _key: string
+  type?: string
 }
 
 export interface FieldArrayProps {
   value?: ValueType[]
-  onChange?: (newValue: ValueType[]) => void
+  onChange?: (newValue: ValueType) => void
   autoNewField?: boolean
   hasType?: boolean
+  typeOptions?: SelectProps["options"]
+  onAdd?: () => void
+  onRemove?: (_key: string) => void
 }

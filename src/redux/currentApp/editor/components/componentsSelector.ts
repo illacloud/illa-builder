@@ -19,9 +19,9 @@ export function searchDsl(
     }
     queue.pop()
     if (head.childrenNode) {
-      Object.keys(head.childrenNode).forEach((key) => {
-        if (head.childrenNode && head.childrenNode[key]) {
-          queue.push(head.childrenNode[key])
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
         }
       })
     }
@@ -42,9 +42,9 @@ export function flattenDsl(rootNode: ComponentNode): {
     }
     queue.pop()
     if (head.childrenNode) {
-      Object.keys(head.childrenNode).forEach((key) => {
-        if (head.childrenNode && head.childrenNode[key]) {
-          queue.push(head.childrenNode[key])
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
         }
       })
     }

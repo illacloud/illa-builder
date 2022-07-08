@@ -12,13 +12,13 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 5,
   defaults: {
-    optionMode: "manual",
+    optionConfigureMode: "static",
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
     labelWidth: "{{33}}",
     value: "Option 1",
-    options: [
+    manualOptions: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },
       { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },
       { id: `option-${v4()}`, label: "Option 3", value: "Option 3" },

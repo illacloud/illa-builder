@@ -4,7 +4,6 @@ export interface ActionEditorPanelProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   isActionDirty?: boolean
   onEditResource?: (id: string) => void
-  onChangeResource?: (id: string) => void
   onCreateResource?: () => void
   onDeleteActionItem: () => void
   onDuplicateActionItem: () => void
@@ -13,11 +12,4 @@ export interface ActionEditorPanelProps
   onSave?: () => void
 }
 
-export interface ActionEditorPanelContextProps {
-  onLoadingActionResult?: (loading: boolean) => void
-}
-
-export type triggerRunRef = {
-  run: () => void
-  saveAndRun: () => void
-}
+export type TriggerMode = "manual" | "onChange"

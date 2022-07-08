@@ -1,8 +1,8 @@
-import { toPath, get, flatten } from "lodash"
+import { flatten, get, toPath } from "lodash"
 import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import { extractIdentifiersFromCode } from "@/utils/ast/ast"
 import { isInt } from "@/utils/typeHelper"
-import { DependencyMap } from "@/redux/currentApp/executionTree/dependencies/dependenciesState"
+import { DependenciesState } from "@/redux/currentApp/executionTree/dependencies/dependenciesState"
 import {
   getAllPaths,
   getWidgetOrActionDynamicAttrPaths,
@@ -51,8 +51,8 @@ export const extractReferencesFromScript = (
 export const generateDependencies = (
   displayNameMapProps: Record<string, any>,
 ) => {
-  let dependenciesMap: DependencyMap = {}
-  let inverseDependenciesMap: DependencyMap = {}
+  let dependenciesMap: DependenciesState = {}
+  let inverseDependenciesMap: DependenciesState = {}
   const allKeys = getAllPaths(displayNameMapProps)
   Object.keys(displayNameMapProps).forEach((displayName) => {
     const widgetProps = displayNameMapProps[displayName]
@@ -82,9 +82,10 @@ export const generateDependencies = (
       }),
     )
   })
+
   Object.keys(dependenciesMap).forEach((path) => {
     if (dependenciesMap[path].length === 0) {
-      inverseDependenciesMap[path] = []
+      inverseDependenciesMap[path] = inverseDependenciesMap[path] || []
     } else {
       dependenciesMap[path].forEach((dependency) => {
         inverseDependenciesMap[dependency] =

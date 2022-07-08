@@ -12,6 +12,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "imageSrc",
         expectedType: VALIDATION_TYPES.STRING,
         labelName: i18n.t("editor.inspect.setter_label.image_source"),
+        isSetterSingleRow: true,
         setterType: "INPUT_SETTER",
       },
       {

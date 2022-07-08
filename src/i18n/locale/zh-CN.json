@@ -22,12 +22,13 @@
     "choose_file": "Choose a file"
   },
   "user": {
+    "description": "专属于开发者的开源低代码平台。",
     "sign_up": {
       "title": "注册",
       "fields": {
         "username": "用户名",
         "email": "邮箱",
-        "verify": "验证码",
+        "verificationCode": "验证码",
         "password": "密码"
       },
       "actions": {
@@ -41,12 +42,12 @@
       "tips": {
         "success": "登录成功",
         "fail": "登录失败",
-        "verify": "验证码已发送"
+        "verificationCode": "验证码已发送"
       },
       "placeholder": {
         "username": "请输入用户名",
         "email": "请输入邮箱",
-        "verify": "请输入验证码",
+        "verificationCode": "请输入验证码",
         "password": "请输入密码（6-20个字符）"
       },
       "error_message": {
@@ -63,7 +64,7 @@
           "require": "密码不能为空",
           "length": "密码须为6～20个字符"
         },
-        "verify": {
+        "verificationCode": {
           "require": "请输入验证码",
           "invalid": "验证码错误",
           "expired": "验证码已过期"
@@ -85,8 +86,8 @@
         "policy": "点击「登录」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>"
       },
       "tips": {
-        "success": "注册成功",
-        "fail": "注册失败"
+        "success": "登录成功",
+        "fail": "登录失败"
       },
       "placeholder": {
         "email": "请输入邮箱",
@@ -110,8 +111,8 @@
       "title": "重置密码",
       "fields": {
         "email": "邮箱",
-        "password": "新密码",
-        "verify": "验证码"
+        "newPassword": "新密码",
+        "verificationCode": "验证码"
       },
       "actions": {
         "send": "获取验证码",
@@ -120,12 +121,12 @@
       "tips": {
         "success": "重置密码成功",
         "fail": "重置密码失败",
-        "verify": "验证码已发送"
+        "verificationCode": "验证码已发送"
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "verify": "请输入验证码",
-        "password": "请输入密码（6-20个字符）"
+        "verificationCode": "请输入验证码",
+        "newPassword": "请输入密码（6-20个字符）"
       },
       "error_message": {
         "email": {
@@ -133,12 +134,12 @@
           "invalid_pattern": "邮箱格式不正确",
           "registered": "此邮箱未注册"
         },
-        "verify": {
+        "verificationCode": {
           "require": "请输入验证码",
           "invalid": "验证码错误",
           "expired": "验证码已过期"
         },
-        "password": {
+        "newPassword": {
           "require": "密码不能为空",
           "length": "密码须为6～20个字符"
         }
@@ -167,14 +168,18 @@
         },
         "contextMenu": {
           "delete": "删除",
-          "duplicate": "复制"
+          "duplicate": "复制",
+          "rename": "重命名"
         },
         "tips": {
           "not_found": "Sorry, No Search result",
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
-          "confirm_switch": "您没有保存查询。确定要放弃更改吗？"
+          "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
+          "name_already_exist": "名称已经存在",
+          "please_input_name": "请输入名称",
+          "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头"
         },
         "action_generator": {
           "selector": {
@@ -195,6 +200,7 @@
         },
         "btn": {
           "run": "运行",
+          "save": "保存",
           "save_and_run": "保存&运行",
           "disable": "禁用",
           "enable": "使用",
@@ -319,7 +325,8 @@
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
             "access_token_lifespan": "Access Token lifespan(optiinal)",
-            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "bearerToken": "Bearer Token"
           },
           "tip": {
             "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
@@ -329,7 +336,8 @@
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "action_url_path": "api/v2/endpoint.json",
+            "action_url_path_with_base_url": "api/v2/endpoint.json",
+            "action_url_path": "http://www.api.com/api/v2/endpoint.json",
             "base_url": "Use the absolute URL (e.g https://example.com)",
             "username": "用户名",
             "password": "密码",
@@ -342,7 +350,10 @@
           },
           "option": {
             "authentication": {
-              "basicAuth": "基础认证"
+              "none": "无",
+              "basic_auth": "基础认证",
+              "bearer": "Bearer",
+              "oauth2": "OAuth 2.0"
             }
           }
         },
@@ -478,7 +489,9 @@
         "show_notification": "Show notification",
         "set_temporary_state": "Set temporary state",
         "text_align": "Text align",
-        "text_size": "Text size"
+        "text_size": "Text size",
+        "start_date": "Start date",
+        "end_data": "End date"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -515,7 +528,8 @@
       "name": "Date"
     },
     "date_range": {
-      "name": "Date range"
+      "name": "Date range",
+      "start_date": "Start date"
     },
     "image": {
       "name": "Image"

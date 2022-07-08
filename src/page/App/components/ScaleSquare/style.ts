@@ -8,7 +8,7 @@ export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
   switch (scaleSquareType) {
     case "error":
-      stateColor = globalColor(`--${illaPrefix}-orange-03`)
+      stateColor = globalColor(`--${illaPrefix}-red-03`)
       break
     case "normal":
       stateColor = globalColor(`--${illaPrefix}-techPurple-01`)
@@ -18,6 +18,10 @@ export function getStateColor(scaleSquareType: ScaleSquareType): string {
       break
   }
   return stateColor
+}
+
+export function getSelectedColor(selected: boolean): string {
+  return selected ? globalColor(`--${illaPrefix}-techPurple-01`) : "transparent"
 }
 
 export function applyOuterStyle(
@@ -73,12 +77,12 @@ export function applySquarePointerStyle(
       break
   }
 
-  let stateColor = getStateColor(scaleSquareType)
+  const baseColor = getSelectedColor(selected)
 
   return css`
     ${positionStyle};
     box-sizing: border-box;
-    border: 1px solid ${selected ? stateColor : "transparent"};
+    border: 1px solid ${baseColor};
     height: 5px;
     width: 5px;
     position: absolute;
@@ -87,11 +91,11 @@ export function applySquarePointerStyle(
       : "transparent"};
 
     &:active {
-      background: ${selected ? stateColor : "transparent"};
+      background: ${baseColor};
     }
 
     &:hover {
-      background: ${selected ? stateColor : "transparent"};
+      background: ${baseColor};
     }
   `
 }
@@ -118,7 +122,7 @@ export function applyHandlerStyle(
   state: ScaleSquareType,
 ): SerializedStyles {
   return css`
-    visibility: ${selected ? "visible" : "hidden"};
+    visibility: ${state === "error" || selected ? "visible" : "hidden"};
     display: flex;
     left: 0;
     cursor: grab;
@@ -148,8 +152,6 @@ export function applyBarPointerStyle(
   scaleSquareType: ScaleSquareType,
   barPosition: BarPosition,
 ): SerializedStyles {
-  let stateColor = getStateColor(scaleSquareType)
-
   let barPositionStyle: SerializedStyles
   switch (barPosition) {
     case "t":
@@ -200,22 +202,23 @@ export function applyBarPointerStyle(
       barPositionStyle = css``
   }
 
+  const baseColor = getSelectedColor(selected)
   return css`
     ${barPositionStyle};
     box-sizing: border-box;
     position: absolute;
     border-radius: 2.5px;
-    border: 1px solid ${selected ? stateColor : "transparent"};
+    border: 1px solid ${baseColor};
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)
       : "transparent"};
 
     &:active {
-      background: ${selected ? stateColor : "transparent"};
+      background: ${baseColor};
     }
 
     &:hover {
-      background: ${selected ? stateColor : "transparent"};
+      background: ${baseColor};
     }
   `
 }
@@ -241,11 +244,15 @@ export function applyBorderStyle(
     height: calc(100%);
     position: absolute;
     cursor: move;
-    border: 1px solid
-      ${selected ? getStateColor(scaleSquareState) : "transparent"};
-
+    border: 1px solid ${getSelectedColor(selected)};
+    background-color: ${scaleSquareState === "error" && !selected
+      ? globalColor(`--${illaPrefix}-red-07`)
+      : "transparent"};
     &:hover {
-      border-color: ${getStateColor(scaleSquareState)};
+      border-color: ${selected
+        ? globalColor(`--${illaPrefix}-techPurple-01`)
+        : getStateColor(scaleSquareState)};
+      background-color: transparent;
 
       .handler {
         visibility: visible;
@@ -253,7 +260,7 @@ export function applyBorderStyle(
     }
 
     &:active {
-      border-color: ${getStateColor(scaleSquareState)};
+      border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
     }
   `
 }

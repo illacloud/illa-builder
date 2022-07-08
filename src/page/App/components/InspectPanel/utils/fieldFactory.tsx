@@ -1,12 +1,12 @@
-import { Divider } from "@illa-design/divider"
 import {
   PanelConfig,
   PanelFieldConfig,
   PanelFieldGroupConfig,
 } from "@/page/App/components/InspectPanel/interface"
-import { PanelBar } from "@/page/App/components/InspectPanel/bar"
+import { PanelBar } from "@/components/PanelBar"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { getLocalStorage, setLocalStorage } from "@/utils/storage"
+import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
@@ -45,16 +45,16 @@ export const renderPanelBar = (
   }
 
   return (
-    <>
-      <PanelBar
-        key={key}
-        title={groupName}
-        isOpened={isOpened}
-        saveToggleState={saveToggleState}
-      >
-        {children && children.length > 0 && fieldFactory(children, displayName)}
-      </PanelBar>
-    </>
+    <PanelBar
+      key={key}
+      title={groupName}
+      isOpened={isOpened}
+      saveToggleState={saveToggleState}
+    >
+      {children && children.length > 0 && (
+        <div css={ghostEmptyStyle}>{fieldFactory(children, displayName)}</div>
+      )}
+    </PanelBar>
   )
 }
 

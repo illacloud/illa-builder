@@ -1,13 +1,14 @@
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
-import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
-async function handleUpdateExecution(
-  action: ReturnType<typeof configActions.updateSelectedComponent>,
+async function handleDeleteExecution(
+  action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
   listenerApi: AppListenerEffectAPI,
 ) {
-  listenerApi.dispatch(componentsActions.bringToFrontReducer(action.payload))
+  DisplayNameGenerator.removeDisplayName(action.payload.displayName)
 }
 
 export function setupComponentsListeners(
@@ -15,8 +16,8 @@ export function setupComponentsListeners(
 ): Unsubscribe {
   const subscriptions = [
     startListening({
-      actionCreator: configActions.updateSelectedComponent,
-      effect: handleUpdateExecution,
+      actionCreator: componentsActions.deleteComponentNodeReducer,
+      effect: handleDeleteExecution,
     }),
   ]
 

@@ -1,16 +1,14 @@
-import { FC, SyntheticEvent } from "react"
+import { FC } from "react"
 import { useDispatch } from "react-redux"
-import { css } from "@emotion/react"
-import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
+import { useTranslation } from "react-i18next"
+import { DropList } from "@illa-design/dropdown"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+import { PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { configActions } from "@/redux/config/configSlice"
-import {
-  actionMenuContainerStyle,
-  baseActionMenuItemStyle,
-  deleteActionMenuItemStyle,
-} from "./style"
-import { useTranslation } from "react-i18next"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+
+const { Item } = DropList
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const {
@@ -23,58 +21,47 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
 
   const dispatch = useDispatch()
 
-  const handleClickMenuItem = (e: SyntheticEvent<EventTarget>) => {
-    if (!(e.target instanceof HTMLDivElement)) {
-      handleCloseMenu()
-      return
-    }
-    const key = e.target.dataset["key"]
-    switch (key) {
-      case ACTION_TYPE.VIEW_DOCUMENT: {
-        //  TODO: wait for redux to find componentType map docs;
-        // getComponentDoc(componentType)
-        window.open("https://www.baidu.com")
-        break
-      }
-      case ACTION_TYPE.RESET_STATE: {
-        const defaultProps = widgetBuilder(componentType).config.defaults
-        dispatch(
-          componentsActions.updateComponentPropsReducer({
-            displayName: widgetDisplayName,
-            updateSlice: defaultProps ?? {},
-          }),
-        )
-        break
-      }
-      case ACTION_TYPE.DELETE: {
-        dispatch(
-          componentsActions.deleteComponentNodeReducer({
-            displayName: widgetDisplayName,
-            parentDisplayName: widgetParentDisplayName,
-          }),
-        )
-        dispatch(configActions.clearSelectedComponent())
-        break
-      }
-    }
-    handleCloseMenu()
-  }
-
   return (
-    <div css={actionMenuContainerStyle} onClick={handleClickMenuItem}>
-      <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.VIEW_DOCUMENT}>
-        {t("editor.inspect.header.action_menu.view_documentation")}
-      </div>
-      <div css={baseActionMenuItemStyle} data-key={ACTION_TYPE.RESET_STATE}>
-        {t("editor.inspect.header.action_menu.reset_state")}
-      </div>
-      <div
-        css={css(baseActionMenuItemStyle, deleteActionMenuItemStyle)}
-        data-key={ACTION_TYPE.DELETE}
-      >
-        {t("editor.inspect.header.action_menu.delete")}
-      </div>
-    </div>
+    <DropList width="184px">
+      <Item
+        key="duplicate"
+        title={t("editor.inspect.header.action_menu.view_documentation")}
+        onClick={() => {
+          //  TODO: wait for redux to find componentType map docs;
+          window.open("https://www.baidu.com")
+          handleCloseMenu()
+        }}
+      />
+      <Item
+        key="reset"
+        title={t("editor.inspect.header.action_menu.reset_state")}
+        onClick={() => {
+          const defaultProps = widgetBuilder(componentType).config.defaults
+          dispatch(
+            componentsActions.updateComponentPropsReducer({
+              displayName: widgetDisplayName,
+              updateSlice: defaultProps ?? {},
+            }),
+          )
+          handleCloseMenu()
+        }}
+      />
+      <Item
+        key="delete"
+        title={t("editor.inspect.header.action_menu.delete")}
+        fontColor={globalColor(`--${illaPrefix}-red-03`)}
+        onClick={() => {
+          dispatch(
+            componentsActions.deleteComponentNodeReducer({
+              displayName: widgetDisplayName,
+              parentDisplayName: widgetParentDisplayName,
+            }),
+          )
+          dispatch(configActions.clearSelectedComponent())
+          handleCloseMenu()
+        }}
+      />
+    </DropList>
   )
 }
 
