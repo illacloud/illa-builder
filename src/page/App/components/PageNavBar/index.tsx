@@ -47,7 +47,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
         <Logo
-          width={"34px"}
+          width="34px"
           onClick={() => {
             navigate("/")
           }}
@@ -55,7 +55,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         />
         <section css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
-          <div css={descriptionStyle}>{appInfo?.appActivity}</div>
+          <div css={descriptionStyle}>{appInfo?.updatedAt}</div>
         </section>
       </div>
       <div css={viewControlStyle}>
@@ -102,7 +102,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             leftIcon={<CaretRightIcon />}
             onClick={() => {
               navigate(
-                `/deploy/app/${appInfo?.appId}/version/${appInfo?.appVersion}`,
+                `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
               )
             }}
           >

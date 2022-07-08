@@ -30,6 +30,9 @@ import i18n from "@/i18n/config"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { AxiosInterceptor } from "@/api/AxiosInterceptor"
 import { Deploy } from "@/page/Deploy"
+import { HTML5Backend } from "react-dnd-html5-backend"
+import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
+import { DndProvider } from "react-dnd"
 
 // user language > builder language
 function getLocaleFromLanguage(language?: string): Locale {
@@ -54,39 +57,46 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>
-        <Global styles={css(globalStyle)} />
-        <AxiosInterceptor>
-          <Routes>
-            <Route path="dashboard" element={<IllaApp />}>
-              <Route index element={<Navigate to="./apps" />} />
-              <Route path="apps" element={<DashboardApps />} />
-              <Route path="resources" element={<DashboardResources />} />
-            </Route>
-            <Route path="user" element={<UserLogin />}>
-              <Route index element={<Navigate to="./login" />} />
-              <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
-              <Route path="forgotPassword" element={<ResetPassword />} />
-            </Route>
-            <Route index element={<Navigate to="/dashboard" />} />
-            <Route path="app/:appId/version/:versionId" element={<Editor />} />
-            <Route path="setting" element={<Setting />}>
-              <Route index element={<Navigate to="./account" />} />
-              <Route path="account" element={<SettingAccount />} />
-              <Route path="password" element={<SettingPassword />} />
-              <Route path="others" element={<SettingOthers />} />
-            </Route>
-            <Route
-              path="deploy/:appId/version/:versionId"
-              element={<Deploy />}
-            />
-            <Route path="403" element={<Page403 />} />
-            <Route path="500" element={<Page500 />} />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </AxiosInterceptor>
-      </ConfigProvider>
+      <DndProvider backend={HTML5Backend}>
+        <GlobalDataProvider>
+          <ConfigProvider locale={getLocaleFromLanguage(currentUser?.language)}>
+            <Global styles={css(globalStyle)} />
+            <AxiosInterceptor>
+              <Routes>
+                <Route path="dashboard" element={<IllaApp />}>
+                  <Route index element={<Navigate to="./apps" />} />
+                  <Route path="apps" element={<DashboardApps />} />
+                  <Route path="resources" element={<DashboardResources />} />
+                </Route>
+                <Route path="user" element={<UserLogin />}>
+                  <Route index element={<Navigate to="./login" />} />
+                  <Route path="login" element={<Login />} />
+                  <Route path="register" element={<Register />} />
+                  <Route path="forgotPassword" element={<ResetPassword />} />
+                </Route>
+                <Route index element={<Navigate to="/dashboard" />} />
+                <Route
+                  path="app/:appId/version/:versionId"
+                  element={<Editor />}
+                />
+                <Route path="setting" element={<Setting />}>
+                  <Route index element={<Navigate to="./account" />} />
+                  <Route path="account" element={<SettingAccount />} />
+                  <Route path="password" element={<SettingPassword />} />
+                  <Route path="others" element={<SettingOthers />} />
+                </Route>
+                <Route
+                  path="deploy/app/:appId/version/:versionId"
+                  element={<Deploy />}
+                />
+                <Route path="403" element={<Page403 />} />
+                <Route path="500" element={<Page500 />} />
+                <Route path="*" element={<Page404 />} />
+              </Routes>
+            </AxiosInterceptor>
+          </ConfigProvider>
+        </GlobalDataProvider>
+      </DndProvider>
     </BrowserRouter>
   )
 }

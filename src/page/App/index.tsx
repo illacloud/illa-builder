@@ -40,7 +40,8 @@ import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShad
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { useParams } from "react-router-dom"
-import { updateComponentReducer } from "@/redux/currentApp/editor/components/componentsReducer"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { Loading } from "@illa-design/loading"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -97,6 +98,10 @@ export const Editor: FC = () => {
         signal: controller.signal,
       },
       (response) => {
+        dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
+        dispatch(
+          componentsActions.updateComponentReducer(response.data.components),
+        )
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),
         )
@@ -137,28 +142,26 @@ export const Editor: FC = () => {
   }, [])
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <GlobalDataProvider>
-        <div css={editorContainerStyle}>
-          {loadingState && <div css={loadingStyle} />}
-          {!loadingState && (
-            <>
-              <PageNavBar css={navbarStyle} />
-              <div css={contentStyle}>
-                <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
-                <div css={middlePanelStyle}>
-                  <CanvasPanel css={centerPanelStyle} />
-                  <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
-                </div>
-                <WidgetPickerEditor
-                  css={applyRightPanelStyle(showRightPanel)}
-                />
-              </div>
-            </>
-          )}
+    <div css={editorContainerStyle}>
+      {loadingState && (
+        <div css={loadingStyle}>
+          <Loading colorScheme="techPurple" />
         </div>
-      </GlobalDataProvider>
-    </DndProvider>
+      )}
+      {!loadingState && (
+        <>
+          <PageNavBar css={navbarStyle} />
+          <div css={contentStyle}>
+            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+            <div css={middlePanelStyle}>
+              <CanvasPanel css={centerPanelStyle} />
+              <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+            </div>
+            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
+          </div>
+        </>
+      )}
+    </div>
   )
 }
 

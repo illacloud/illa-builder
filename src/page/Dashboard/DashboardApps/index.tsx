@@ -255,7 +255,7 @@ export const DashboardApps: FC = () => {
                     css={hoverableStyle}
                     title={<span css={listItemTitleStyle}>{item.appName}</span>}
                     description={`${item.updatedBy} ${dayjs
-                      .utc(item.lastModifiedAt)
+                      .utc(item.updatedAt)
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
                       navigate(
@@ -273,7 +273,6 @@ export const DashboardApps: FC = () => {
         )}
         {appsList.length == 0 && <Empty paddingVertical="120px" />}
       </div>
-      {/* create new Modal */}
       <Modal
         simple
         closable
@@ -310,7 +309,6 @@ export const DashboardApps: FC = () => {
           }}
         />
       </Modal>
-      {/* Rename Modal */}
       {appsList.length !== 0 && (
         <Modal
           simple
