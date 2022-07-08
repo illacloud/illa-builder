@@ -44,7 +44,7 @@ export const Register: FC = () => {
     getValues,
     formState: { errors },
   } = useForm<RegisterFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
     defaultValues: {
       isSubscribed: true,
     },
@@ -90,7 +90,7 @@ export const Register: FC = () => {
             setErrorMsg({
               ...errorMsg,
               verificationCode: t(
-                "user.sign_up.error_message.verificationCode.invalid",
+                "user.sign_up.error_message.verification_code.invalid",
               ),
             })
             break
@@ -189,7 +189,7 @@ export const Register: FC = () => {
         </section>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
-            {t("user.sign_up.fields.verificationCode")}
+            {t("user.sign_up.fields.verification_code")}
           </label>
           <div css={gridValidStyle}>
             <Controller
@@ -228,6 +228,7 @@ export const Register: FC = () => {
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
+                            setShowCountDown(true)
                             Api.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
@@ -235,14 +236,19 @@ export const Register: FC = () => {
                                 data: { email: getValues("email") },
                               },
                               (res) => {
-                                setVerificationToken(res.data.verificationToken)
                                 Message.success(
-                                  t("user.sign_up.tips.verificationCode"),
+                                  t("user.sign_up.tips.verification_code"),
                                 )
-                                setShowCountDown(true)
+                                setVerificationToken(res.data.verificationToken)
                               },
-                              () => {},
-                              () => {},
+                              () => {
+                                Message.error(t("user.sign_up.tips.fail_sent"))
+                                setShowCountDown(false)
+                              },
+                              () => {
+                                Message.warning(t("network_error"))
+                                setShowCountDown(false)
+                              },
                               () => {},
                             )
                           }
@@ -252,12 +258,12 @@ export const Register: FC = () => {
                       </Link>
                     ),
                   }}
-                  placeholder={t("user.sign_up.placeholder.verificationCode")}
+                  placeholder={t("user.sign_up.placeholder.verification_code")}
                 />
               )}
               rules={{
                 required: t(
-                  "user.sign_up.error_message.verificationCode.require",
+                  "user.sign_up.error_message.verification_code.require",
                 ),
               }}
             />

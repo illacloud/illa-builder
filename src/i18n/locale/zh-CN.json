@@ -28,7 +28,7 @@
       "fields": {
         "username": "用户名",
         "email": "邮箱",
-        "verificationCode": "验证码",
+        "verification_code": "验证码",
         "password": "密码"
       },
       "actions": {
@@ -40,14 +40,15 @@
         "subscribe": "订阅ILLA的动态"
       },
       "tips": {
-        "success": "登录成功",
-        "fail": "登录失败",
-        "verificationCode": "验证码已发送"
+        "success": "注册成功",
+        "fail": "注册失败",
+        "verification_code": "验证码已发送",
+        "fail_sent": "发送验证码失败"
       },
       "placeholder": {
         "username": "请输入用户名",
         "email": "请输入邮箱",
-        "verificationCode": "请输入验证码",
+        "verification_code": "请输入验证码",
         "password": "请输入密码（6-20个字符）"
       },
       "error_message": {
@@ -64,7 +65,7 @@
           "require": "密码不能为空",
           "length": "密码须为6～20个字符"
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "请输入验证码",
           "invalid": "验证码错误",
           "expired": "验证码已过期"
@@ -112,7 +113,7 @@
       "fields": {
         "email": "邮箱",
         "newPassword": "新密码",
-        "verificationCode": "验证码"
+        "verification_code": "验证码"
       },
       "actions": {
         "send": "获取验证码",
@@ -121,11 +122,12 @@
       "tips": {
         "success": "重置密码成功",
         "fail": "重置密码失败",
-        "verificationCode": "验证码已发送"
+        "verification_code": "验证码已发送",
+        "fail_sent": "发送验证码失败"
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "verificationCode": "请输入验证码",
+        "verification_code": "请输入验证码",
         "newPassword": "请输入密码（6-20个字符）"
       },
       "error_message": {
@@ -134,7 +136,7 @@
           "invalid_pattern": "邮箱格式不正确",
           "registered": "此邮箱未注册"
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "请输入验证码",
           "invalid": "验证码错误",
           "expired": "验证码已过期"
