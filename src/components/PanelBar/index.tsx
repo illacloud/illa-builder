@@ -23,8 +23,8 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
     <>
       <div css={panelBarHeaderStyle} onClick={handleToggle}>
         <span css={panelBarTitleStyle}>{title}</span>
-        <span css={applyPanelBarOpenedIconStyle(isOpenedState)}>
-          <UpIcon />
+        <span>
+          <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState)} />
         </span>
       </div>
       <AnimatePresence initial={false}>

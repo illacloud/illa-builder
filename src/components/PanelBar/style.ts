@@ -30,8 +30,8 @@ export function applyPanelBarOpenedIconStyle(
         transform: rotate(180deg);
       `
   return css`
-    font-size: 12px;
     transition: transform 200ms;
+    transform-origin: center;
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     ${rotate}
   `
