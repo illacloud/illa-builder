@@ -68,3 +68,12 @@ export const movableIconWrapperStyle = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
+
+export const emptyEmptyBodyStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+`

@@ -26,9 +26,11 @@ import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { LocationState } from "@/page/User/Login/interface"
+import { setLocalStorage } from "@/utils/storage"
 
 export const Register: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState({ email: "", verificationCode: "" })
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
@@ -59,6 +61,9 @@ export const Register: FC = () => {
         },
       },
       (res) => {
+        const token = res.headers["illa-token"]
+        if (!token) return
+        setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
@@ -73,10 +78,29 @@ export const Register: FC = () => {
         })
         Message.success(t("user.sign_up.tips.success"))
       },
-      () => {
+      (res) => {
         Message.error(t("user.sign_up.tips.fail"))
+        switch (res.data.errorMessage) {
+          case "duplicate email address":
+            setErrorMsg({
+              ...errorMsg,
+              email: t("user.sign_up.error_message.email.registered"),
+            })
+            break
+          case "invalid verification code":
+            setErrorMsg({
+              ...errorMsg,
+              verificationCode: t(
+                "user.sign_up.error_message.verificationCode.invalid",
+              ),
+            })
+            break
+          default:
+        }
       },
-      () => {},
+      () => {
+        Message.warning(t("network_error"))
+      },
       (loading) => {
         setSubmitLoading(loading)
       },
@@ -133,9 +157,15 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  onChange={(value, event) => {
+                    field.onChange(event)
+                    if (errorMsg.email !== "") {
+                      setErrorMsg({ ...errorMsg, email: "" })
+                    }
+                  }}
                   borderColor="techPurple"
                   size="large"
-                  error={!!errors.email}
+                  error={!!errors.email || !!errorMsg.email}
                   variant="fill"
                   placeholder={t("user.sign_up.placeholder.email")}
                 />
@@ -150,10 +180,10 @@ export const Register: FC = () => {
                 },
               }}
             />
-            {errors.email && (
+            {(errors.email || errorMsg.email) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.email.message}
+                {errors.email?.message || errorMsg.email}
               </div>
             )}
           </div>
@@ -170,8 +200,16 @@ export const Register: FC = () => {
                 <Input
                   {...field}
                   borderColor="techPurple"
+                  onChange={(value, event) => {
+                    field.onChange(event)
+                    if (errorMsg.verificationCode !== "") {
+                      setErrorMsg({ ...errorMsg, verificationCode: "" })
+                    }
+                  }}
                   size="large"
-                  error={!!errors.verificationCode}
+                  error={
+                    !!errors.verificationCode || !!errorMsg.verificationCode
+                  }
                   variant="fill"
                   suffix={{
                     render: showCountDown ? (
@@ -224,10 +262,10 @@ export const Register: FC = () => {
                 ),
               }}
             />
-            {errors.verificationCode && (
+            {(errors.verificationCode || errorMsg.verificationCode) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.verificationCode.message}
+                {errors.verificationCode?.message || errorMsg.verificationCode}
               </div>
             )}
           </div>

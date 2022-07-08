@@ -256,6 +256,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           trigger={"click"}
           popupVisible={moreBtnMenuVisible}
           onVisibleChange={setMoreBtnMenuVisible}
+          disabled={activeActionItem.actionId === ""}
           triggerProps={{
             position: "br",
             clickOutsideToClose: true,
@@ -280,7 +281,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
           variant="light"
           leftIcon={<CaretRightIcon />}
           loading={isRuning}
-          disabled={isRuning}
+          disabled={isRuning || activeActionItem.actionId === ""}
           onClick={saveOrRun}
         >
           {runBtnText}

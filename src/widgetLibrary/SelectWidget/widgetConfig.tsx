@@ -12,7 +12,7 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 5,
   defaults: {
-    optionMode: "manual",
+    optionConfigureMode: "static",
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",

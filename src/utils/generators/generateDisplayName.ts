@@ -17,6 +17,21 @@ export class DisplayNameGenerator {
     return name
   }
 
+  static updateDisplayName(
+    displayName: string,
+    oldDisplayName?: string,
+  ): boolean | void {
+    if (isAlreadyGenerate(displayName)) {
+      return false
+    }
+
+    if (oldDisplayName !== undefined) {
+      this.removeDisplayName(oldDisplayName)
+    }
+
+    store.dispatch(displayNameActions.addDisplayNameReducer(displayName))
+  }
+
   static removeDisplayName(displayName: string) {
     store.dispatch(displayNameActions.removeDisplayNameReducer(displayName))
   }

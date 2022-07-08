@@ -9,8 +9,8 @@ import { getSelectedAction } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
-import { useIsValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
-import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
+import { isValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
   applyTitleContainerStyle,
   titleEditIconStyle,
@@ -28,8 +28,6 @@ export const TitleInput: FC<TitleInputProps> = () => {
   const name = activeActionItem?.displayName || ""
   const [isEditing, setIsEditing] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const { isValidActionDisplayName } = useIsValidActionDisplayName()
-
   const [title, setTitle] = useState(name)
   const editable = title !== ""
   const variants = {
@@ -65,7 +63,7 @@ export const TitleInput: FC<TitleInputProps> = () => {
     if (title !== name) {
       const { resourceId, actionType, actionTemplate } = activeActionItem
 
-      ActionDisplayNameGenerator.cacheDisplayName(title)
+      DisplayNameGenerator.updateDisplayName(title)
 
       Api.request<ActionItem>(
         {
@@ -84,11 +82,12 @@ export const TitleInput: FC<TitleInputProps> = () => {
               ...data,
             }),
           )
-
-          ActionDisplayNameGenerator.removeDisplayName(title)
+          // remove old name
+          DisplayNameGenerator.removeDisplayName(name)
         },
         () => {
-          ActionDisplayNameGenerator.removeDisplayName(title)
+          // remove new name
+          DisplayNameGenerator.removeDisplayName(title)
         },
         () => {},
         (loading) => {

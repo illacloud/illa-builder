@@ -43,6 +43,7 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",
+    "react-hotkeys-hook": "^3.4.6",
     "react-i18next": "^11.16.7",
     "react-json-view": "^1.21.3",
     "react-redux": "^8.0.1",
@@ -55,8 +56,7 @@
     "toposort": "^2.0.2",
     "use-bus": "^2.5.1",
     "uuid": "^8.3.2",
-    "ws": "^8.7.0",
-    "react-hotkeys-hook": "^3.4.6"
+    "ws": "^8.7.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -90,7 +90,6 @@
     "husky": "^7.0.4",
     "jest": "^27.4.1",
     "jest-environment-jsdom": "^27.4.1",
-    "msw": "^0.41.0",
     "prettier": "^2.5.1",
     "sinon": "^13.0.1",
     "ts-jest": "^27.1.5",
@@ -111,8 +110,5 @@
     "reporter": [
       "lcov"
     ]
-  },
-  "msw": {
-    "workerDirectory": "public"
   }
 }

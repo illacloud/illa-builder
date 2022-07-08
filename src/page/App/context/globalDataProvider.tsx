@@ -1,8 +1,6 @@
-import { createContext, ReactNode, FC, useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import { createContext, ReactNode, FC, useState } from "react"
 import { NotificationType, Notification } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
-import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
 
 interface Injected {
   globalData: { [key: string]: any }
@@ -59,24 +57,15 @@ const initState = {
 }
 
 export const GlobalDataProvider: FC<Props> = ({ children }) => {
-  const displayNameMapProps = useSelector(getExecution)
   const [globalData, setGlobalData] = useState<Record<string, any>>({
-    ...displayNameMapProps,
     ...initState,
   })
 
-  useEffect(() => {
-    setGlobalData({
-      ...displayNameMapProps,
-      ...initState,
-    })
-  }, [displayNameMapProps])
-
   const handleUpdateGlobalData = (key: string, value: any) => {
-    setGlobalData({
-      ...globalData,
+    setGlobalData((prevState) => ({
+      ...prevState,
       [key]: value,
-    })
+    }))
   }
 
   const value = {

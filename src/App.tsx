@@ -60,7 +60,7 @@ function App() {
   useEffect(() => {
     Api.request(
       {
-        url: "/apps",
+        url: "/users",
         method: "GET",
       },
       (response) => {
@@ -75,10 +75,10 @@ function App() {
         )
         currentUser.language = "English"
       },
-      (failure) => {},
-      (crash) => {},
-      (loading) => {},
-      (errorState) => {},
+      (failure) => { },
+      (crash) => { },
+      (loading) => { },
+      (errorState) => { },
     )
   }, [])
 
