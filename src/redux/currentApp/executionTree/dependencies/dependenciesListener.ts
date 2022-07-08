@@ -3,9 +3,8 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import dependenciesTreeWorker from "@/utils/worker/dependenciesTreeWorker?worker"
+import dependenciesTreeWorker from "@/utils/worker/exectionTreeWorker?worker"
 
-// TODO: need a channel
 export const worker = new dependenciesTreeWorker()
 
 async function handleUpdateDependencies(
