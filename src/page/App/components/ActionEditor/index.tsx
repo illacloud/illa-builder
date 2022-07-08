@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 import { Api } from "@/api/base"
-import { ActionDisplayNameGenerator } from "@/utils/generators/generateActionDisplayName"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
@@ -83,10 +83,9 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       ({ data }: { data: ActionItem }) => {
         dispatch(actionActions.addActionItemReducer(data))
         updateActiveActionItemId(data.actionId)
-        ActionDisplayNameGenerator.removeDisplayName(data.displayName)
       },
       () => {
-        ActionDisplayNameGenerator.removeDisplayName(data.displayName)
+        DisplayNameGenerator.removeDisplayName(data.displayName)
       },
       () => {},
       (loading) => {
@@ -95,10 +94,20 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     )
   }
 
-  function onUpdateActionItem(actionId: string, data: ActionItem) {
-    const { resourceId, actionType, displayName, actionTemplate } = data
+  function onUpdateActionItem(
+    actionId: string,
+    data: ActionItem & { oldDisplayName?: string },
+  ) {
+    const {
+      resourceId,
+      actionType,
+      displayName,
+      actionTemplate,
+      oldDisplayName,
+    } = data
 
-    ActionDisplayNameGenerator.cacheDisplayName(displayName)
+    // cache new name
+    DisplayNameGenerator.updateDisplayName(displayName)
 
     Api.request(
       {
@@ -117,8 +126,14 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
             ...data,
           }),
         )
+
+        // remove old name from cache
+        oldDisplayName && DisplayNameGenerator.removeDisplayName(oldDisplayName)
       },
-      () => {},
+      () => {
+        // remove new name from cache
+        oldDisplayName && DisplayNameGenerator.removeDisplayName(displayName)
+      },
       () => {},
       (loading) => {
         setActionListLoading(loading)
@@ -131,7 +146,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
     if (targetItem) {
       const { resourceId, actionType, actionTemplate = {} } = targetItem
-      const displayName = ActionDisplayNameGenerator.getDisplayName(actionType)
+      const displayName = DisplayNameGenerator.getDisplayName(actionType)
 
       Api.request(
         {
@@ -147,10 +162,9 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         ({ data }: { data: ActionItem }) => {
           dispatch(actionActions.addActionItemReducer(data))
           onDuplicateActionItem(data?.actionId)
-          ActionDisplayNameGenerator.removeDisplayName(data.displayName)
         },
         () => {
-          ActionDisplayNameGenerator.removeDisplayName(displayName)
+          DisplayNameGenerator.removeDisplayName(displayName)
         },
         () => {},
         (loading) => {
@@ -168,7 +182,12 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       },
       ({ data }: { data: { actionId: string } }) => {
         const removedActionId = data.actionId
+        const removedActionName = actionItems.find(
+          ({ actionId }) => actionId === removedActionId,
+        )?.displayName
 
+        removedActionName &&
+          DisplayNameGenerator.removeDisplayName(removedActionName)
         dispatch(actionActions.removeActionItemReducer(removedActionId))
         setIsActionDirty(false)
         updateSeletedItemId(removedActionId)

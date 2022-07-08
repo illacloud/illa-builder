@@ -6,6 +6,7 @@ export const actionListContainerStyle = css`
   display: flex;
   flex-direction: column;
   min-width: 255px;
+  width: 255px;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   position: relative;
   font-size: 14px;

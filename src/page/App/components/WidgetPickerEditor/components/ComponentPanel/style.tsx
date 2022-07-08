@@ -89,6 +89,7 @@ export const nameStyle = css`
   padding: 4px 8px 0 8px;
   overflow: hidden;
   text-align: center;
+  line-height: 14px;
 `
 
 export const emptyStyle = css`

@@ -168,7 +168,8 @@
         },
         "contextMenu": {
           "delete": "Delete",
-          "duplicate": "Duplicate"
+          "duplicate": "Duplicate",
+          "rename": "Rename"
         },
         "tips": {
           "not_found": "Sorry, No Search result",
