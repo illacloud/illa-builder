@@ -11,26 +11,26 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "radioGroup-options-mode",
-        attrName: "optionMode",
+        attrName: "optionConfigureMode",
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
             label: "Manual",
-            value: "manual",
+            value: "static",
           },
           {
             label: "Mapped",
-            value: "mapped",
+            value: "dynamic",
           },
         ],
       },
       {
         id: "radioGroup-basic-options",
         useCustomLayout: true,
-        attrName: "options",
+        attrName: "manualOptions",
         setterType: "OPTION_LIST_SETTER",
-        bindAttrName: "optionMode",
-        shown: (value) => !value || value === "manual",
+        bindAttrName: "optionConfigureMode",
+        shown: (value) => !value || value === "static",
         childrenSetter: [
           {
             id: "radioGroup-options-label",
@@ -59,19 +59,42 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
-        bindAttrName: "optionMode",
+        bindAttrName: "optionConfigureMode",
         expectedType: VALIDATION_TYPES.ARRAY,
-        shown: (value) => value === "mapped",
+        shown: (value) => value === "dynamic",
         isSetterSingleRow: true,
       },
       {
-        id: "radioGroup-option-mapped",
+        id: `radioGroup-options-mapped`,
         labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
         useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
-        bindAttrName: "optionMode",
-        shown: (value) => value === "mapped",
+        bindAttrName: "optionConfigureMode",
+        shown: (value) => value === "dynamic",
+        childrenSetter: [
+          {
+            id: `radioGroup-mappedOption-labels`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
+            attrName: "labels",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `radioGroup-mappedOption-values`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
+            attrName: "values",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+          {
+            id: `radioGroup-mappedOption-disables`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
+            attrName: "disables",
+            setterType: "OPTION_MAPPED_INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.ARRAY,
+          },
+        ],
       },
       {
         id: "radioGroup-basic-defaultValue",
