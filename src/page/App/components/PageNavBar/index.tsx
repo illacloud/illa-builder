@@ -101,8 +101,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             size="medium"
             leftIcon={<CaretRightIcon />}
             onClick={() => {
-              navigate(
-                `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+              window.open(
+                window.location.protocol +
+                  "//" +
+                  window.location.host +
+                  `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+                "_blank",
               )
             }}
           >
