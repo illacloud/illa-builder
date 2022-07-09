@@ -13,6 +13,10 @@ export const isOpenRightPanel = (state: RootState) => {
   return state.config.openRightPanel
 }
 
+export const getIllaMode = (state: RootState) => {
+  return state.config.mode
+}
+
 export const isShowDot = (state: RootState) => {
   return state.config.showDot
 }

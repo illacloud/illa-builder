@@ -1,6 +1,8 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 
+export type IllaMode = "preview" | "edit" | "production"
+
 export interface ConfigState {
   openLeftPanel: boolean
   openBottomPanel: boolean
@@ -10,10 +12,12 @@ export interface ConfigState {
   selectedComponents: ComponentNode[]
   selectedAction: ActionItem
   expandedKeys: string[]
+  mode: IllaMode
 }
 
 export const ConfigInitialState: ConfigState = {
   openLeftPanel: true,
+  mode: "preview",
   openBottomPanel: true,
   openRightPanel: true,
   scale: 100,

@@ -12,6 +12,7 @@ import {
 } from "@/page/App/components/DotPanel/style"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  getIllaMode,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -46,6 +47,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const componentsTreeRef = useRef<HTMLDivElement>(null)
 
   const dispatch = useDispatch()
+
+  // mode
+  const illaMode = useSelector(getIllaMode)
+
   // window
   const { width, height } = useWindowSize()
 
@@ -482,7 +487,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         ref={componentsTreeRef}
         css={applyChildrenContainerStyle(10, canvasWidth, canvasHeight)}
         onClick={(e) => {
-          if (e.target == componentsTreeRef.current) {
+          if (e.target == componentsTreeRef.current && illaMode == "edit") {
             dispatch(configActions.updateSelectedComponent([]))
           }
         }}

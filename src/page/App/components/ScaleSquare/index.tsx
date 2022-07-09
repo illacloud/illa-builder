@@ -3,6 +3,7 @@ import {
   DragResize,
   DragResizeCollected,
   ScaleSquareProps,
+  ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
 import {
   applyBarPointerStyle,
@@ -30,6 +31,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
 import { getExecutionError } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getIllaMode } from "@/redux/config/configSelector"
 
 const { Item } = DropList
 
@@ -59,12 +61,17 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
 
   const { t } = useTranslation()
 
+  const illaMode = useSelector(getIllaMode)
   const displayName = componentNode.displayName
   const errors = useSelector(getExecutionError)
   const widgetErrors = errors[displayName] ?? {}
   const hasError = Object.keys(widgetErrors).length > 0
 
-  const scaleSquareState = hasError ? "error" : "normal"
+  let scaleSquareState: ScaleSquareType = hasError ? "error" : "normal"
+  if (illaMode !== "edit") {
+    scaleSquareState = "production"
+  }
+
   const dispatch = useDispatch()
   const selected = useSelector<RootState, boolean>((state) => {
     return (
@@ -155,6 +162,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
 
   return (
     <Dropdown
+      disabled={illaMode !== "edit"}
       trigger="contextmenu"
       dropList={
         <DropList width="184px">
@@ -187,7 +195,9 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         css={applyOuterStyle(componentNode.isDragging, h, w)}
         className={className}
         onClick={(e) => {
-          dispatch(configActions.updateSelectedComponent([componentNode]))
+          if (illaMode === "edit") {
+            dispatch(configActions.updateSelectedComponent([componentNode]))
+          }
         }}
         {...otherProps}
       >
