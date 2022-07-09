@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC, useLayoutEffect } from "react"
 import { AxiosResponse } from "axios"
 import { useNavigate, useLocation } from "react-router-dom"
 import { Api } from "./base"
@@ -8,7 +8,7 @@ export const AxiosInterceptor: FC<{ children: JSX.Element }> = ({
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
-  useEffect(() => {
+  useLayoutEffect(() => {
     const resInterceptor = (response: AxiosResponse) => {
       return response
     }
