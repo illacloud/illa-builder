@@ -14,6 +14,7 @@ import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSl
 import { useDispatch } from "react-redux"
 import { deployContainerStyle } from "@/page/Deploy/style"
 import { Loading } from "@illa-design/loading"
+import { configActions } from "@/redux/config/configSlice"
 
 export const Deploy: FC = () => {
   let { appId, versionId } = useParams()
@@ -29,6 +30,7 @@ export const Deploy: FC = () => {
         signal: controller.signal,
       },
       (response) => {
+        dispatch(configActions.updateIllaMode("production"))
         dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),

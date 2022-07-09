@@ -83,6 +83,9 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
 
   const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
     () => ({
+      canDrag: () => {
+        return illaMode === "edit"
+      },
       type: "components",
       item: () => {
         const item = {

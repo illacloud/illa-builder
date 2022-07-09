@@ -15,13 +15,16 @@ import {
 } from "@/page/App/components/DotPanel/interface"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import store from "@/store"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
+import { getIllaMode } from "@/redux/config/configSelector"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
   const { widgetName, icon, id, ...partialDragInfo } = props
 
   const dispatch = useDispatch()
+
+  const illaMode = useSelector(getIllaMode)
 
   const [, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
@@ -30,6 +33,9 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
   >(
     () => ({
       type: "components",
+      canDrag: () => {
+        return illaMode === "edit"
+      },
       end: (draggedItem, monitor) => {
         if (
           searchDsl(

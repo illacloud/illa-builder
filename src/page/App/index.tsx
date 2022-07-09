@@ -1,6 +1,4 @@
 import { FC, useEffect, useState } from "react"
-import { DndProvider } from "react-dnd"
-import { HTML5Backend } from "react-dnd-html5-backend"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { ActionEditor } from "./components/ActionEditor"
@@ -24,7 +22,6 @@ import {
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
-import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { startAppListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
@@ -42,6 +39,7 @@ import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSl
 import { useParams } from "react-router-dom"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { Loading } from "@illa-design/loading"
+import { configActions } from "@/redux/config/configSlice"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -98,6 +96,7 @@ export const Editor: FC = () => {
         signal: controller.signal,
       },
       (response) => {
+        dispatch(configActions.updateIllaMode("edit"))
         dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),

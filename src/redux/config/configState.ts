@@ -17,7 +17,7 @@ export interface ConfigState {
 
 export const ConfigInitialState: ConfigState = {
   openLeftPanel: true,
-  mode: "preview",
+  mode: "edit",
   openBottomPanel: true,
   openRightPanel: true,
   scale: 100,

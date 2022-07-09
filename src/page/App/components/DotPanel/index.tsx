@@ -133,6 +133,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   >(
     () => ({
       accept: ["components"],
+      canDrop: () => {
+        return illaMode === "edit"
+      },
       drop: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
@@ -257,6 +260,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const [, resizeDropTarget] = useDrop<DragResize>(
     () => ({
       accept: ["resize"],
+      canDrop: () => {
+        return illaMode === "edit"
+      },
       drop: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
