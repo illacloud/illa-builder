@@ -515,6 +515,9 @@
     "context_menu": {
       "duplicate": "复制",
       "delete": "删除"
+    },
+    "deploy": {
+      "fail": "部署失败"
     }
   },
   "widget": {

@@ -515,6 +515,9 @@
     "context_menu": {
       "duplicate": "Duplicate",
       "delete": "Delete"
+    },
+    "deploy": {
+      "fail": "Deploy fail"
     }
   },
   "widget": {

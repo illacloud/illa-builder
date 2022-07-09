@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
@@ -31,6 +31,8 @@ import {
   windowIconBodyStyle,
   windowIconStyle,
 } from "./style"
+import { Api } from "@/api/base"
+import { Message } from "@illa-design/message"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
@@ -42,6 +44,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
+
+  const [deployLoading, setDeployLoading] = useState(false)
 
   return (
     <div className={className} css={navBarStyle}>
@@ -97,16 +101,34 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             leftIcon={<MoreIcon size="14px" />}
           />
           <Button
+            loading={deployLoading}
             colorScheme="techPurple"
             size="medium"
             leftIcon={<CaretRightIcon />}
             onClick={() => {
-              window.open(
-                window.location.protocol +
-                  "//" +
-                  window.location.host +
-                  `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
-                "_blank",
+              Api.request(
+                {
+                  url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
+                  method: "GET",
+                },
+                (response) => {
+                  window.open(
+                    window.location.protocol +
+                      "//" +
+                      window.location.host +
+                      `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+                    "_blank",
+                  )
+                },
+                (e) => {
+                  Message.error(t("editor.deploy.fail"))
+                },
+                (e) => {
+                  Message.error(t("editor.deploy.fail"))
+                },
+                (loading) => {
+                  setDeployLoading(loading)
+                },
               )
             }}
           >
