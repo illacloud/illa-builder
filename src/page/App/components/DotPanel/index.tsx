@@ -24,7 +24,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
-import store, { RootState } from "@/store"
+import { RootState } from "@/store"
 import { calculateDragPosition, calculateNearXY, calculateXY } from "./calc"
 import {
   updateDottedLineSquareData,
@@ -175,14 +175,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             dispatch(configActions.updateSelectedComponent([newItem]))
           },
         )
-        // remove dotted line square
-        dispatch(
-          dottedLineSquareActions.removeDottedLineSquareReducer(
-            item.displayName,
-          ),
-        )
-        // remove drag
-        dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
         return {} as DropResultInfo
       },
       hover: (item, monitor) => {
@@ -215,6 +207,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         }
         // drag shadow
         updateDragShadowData(
+          componentNode.displayName,
           item,
           calculateResult.renderX,
           calculateResult.renderY,
@@ -232,6 +225,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
         // dotted line square
         updateDottedLineSquareData(
+          componentNode.displayName,
           item,
           calculateResult.squareX,
           calculateResult.squareY,
@@ -324,18 +318,20 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         ctx.globalAlpha = 0.16
         Object.keys(dragShadowMap).forEach((value) => {
           const item = dragShadowMap[value]
-          ctx.beginPath()
-          ctx.rect(
-            item.renderX * radio,
-            item.renderY * radio,
-            item.w * radio,
-            item.h * radio,
-          )
-          ctx.closePath()
-          ctx.fillStyle = item.isConflict
-            ? globalColor(`--${illaPrefix}-red-03`)
-            : globalColor(`--${illaPrefix}-techPurple-01`)
-          ctx.fill()
+          if (item.parentNode === componentNode.displayName) {
+            ctx.beginPath()
+            ctx.rect(
+              item.renderX * radio,
+              item.renderY * radio,
+              item.w * radio,
+              item.h * radio,
+            )
+            ctx.closePath()
+            ctx.fillStyle = item.isConflict
+              ? globalColor(`--${illaPrefix}-red-03`)
+              : globalColor(`--${illaPrefix}-techPurple-01`)
+            ctx.fill()
+          }
         })
       }
     }
@@ -389,21 +385,23 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
         Object.keys(dottedLineSquareMap).forEach((value) => {
           const item = dottedLineSquareMap[value]
-          const h = item.h * radio
-          const w = item.w * radio
-          const [l, t] = calculateXY(
-            item.squareX,
-            item.squareY,
-            unitWidth * radio,
-            unitHeight * radio,
-          )
-          ctx.beginPath()
-          ctx.setLineDash([4 * radio, 2 * radio])
-          ctx.rect(l, t, w, h)
-          ctx.closePath()
-          ctx.lineWidth = 1
-          ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
-          ctx.stroke()
+          if (item.parentNode === componentNode.displayName) {
+            const h = item.h * radio
+            const w = item.w * radio
+            const [l, t] = calculateXY(
+              item.squareX,
+              item.squareY,
+              unitWidth * radio,
+              unitHeight * radio,
+            )
+            ctx.beginPath()
+            ctx.setLineDash([4 * radio, 2 * radio])
+            ctx.rect(l, t, w, h)
+            ctx.closePath()
+            ctx.lineWidth = 1
+            ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
+            ctx.stroke()
+          }
         })
       }
     }

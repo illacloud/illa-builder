@@ -32,6 +32,7 @@ import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
 import { getExecutionError } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { getIllaMode } from "@/redux/config/configSelector"
+import { endDrag, startDrag } from "@/utils/drag/drag"
 
 const { Item } = DropList
 
@@ -105,21 +106,16 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         return scaleSquareState !== "production"
       },
       end: (draggedItem, monitor) => {
-        dispatch(configActions.updateShowDot(false))
-        dispatch(
-          componentsActions.updateComponentDraggingState({
-            displayName: draggedItem.displayName,
-            isDragging: false,
-          }),
-        )
+        endDrag(draggedItem)
       },
       type: "components",
       item: () => {
-        dispatch(configActions.updateShowDot(true))
-        return {
+        const item = {
           ...componentNode,
           isDragging: true,
         }
+        startDrag(item)
+        return item
       },
     }),
     [componentNode, scaleSquareState],
@@ -132,20 +128,15 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       },
       type: "components",
       end: (draggedItem, monitor) => {
-        dispatch(configActions.updateShowDot(false))
-        dispatch(
-          componentsActions.updateComponentDraggingState({
-            displayName: draggedItem.displayName,
-            isDragging: false,
-          }),
-        )
+        endDrag(draggedItem)
       },
       item: () => {
-        dispatch(configActions.updateShowDot(true))
-        return {
+        const item = {
           ...componentNode,
           isDragging: true,
         }
+        startDrag(item)
+        return item
       },
     }),
     [componentNode, scaleSquareState],
