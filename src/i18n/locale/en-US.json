@@ -1,6 +1,7 @@
 {
   "deploy": "Deploy",
   "preview": "Preview",
+  "exit_preview": "Exit Preview",
   "edit": "Edit",
   "title": "Welcome to illa",
   "description": {

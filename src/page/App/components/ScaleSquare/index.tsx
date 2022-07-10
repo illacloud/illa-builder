@@ -36,6 +36,7 @@ import { getIllaMode } from "@/redux/config/configSelector"
 const { Item } = DropList
 
 function getDragConfig(
+  type: ScaleSquareType,
   componentNode: ComponentNode,
   barPosition: BarPosition,
 ): FactoryOrInstance<
@@ -52,7 +53,9 @@ function getDragConfig(
         resizing: monitor.isDragging(),
       } as DragResizeCollected
     },
-    canDrag: !componentNode.isDragging,
+    canDrag: () => {
+      return type !== "production"
+    },
   })
 }
 
@@ -84,7 +87,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
     () => ({
       canDrag: () => {
-        return illaMode === "edit"
+        return scaleSquareState !== "production"
       },
       type: "components",
       item: () => {
@@ -96,11 +99,14 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         return item
       },
     }),
-    [componentNode],
+    [componentNode, scaleSquareState],
   )
 
   const [, dragHandlerRef, dragPreviewHandlerRef] = useDrag<ComponentNode>(
     () => ({
+      canDrag: () => {
+        return scaleSquareState !== "production"
+      },
       type: "components",
       item: () => {
         const item = {
@@ -111,7 +117,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         return item
       },
     }),
-    [componentNode],
+    [componentNode, scaleSquareState],
   )
 
   // register resize
@@ -119,49 +125,73 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "t"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "t"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   const [collectR, resizeR, resizeRPreviewRef] = useDrag<
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "r"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "r"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   const [collectB, resizeB, resizeBPreviewRef] = useDrag<
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "b"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "b"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   const [collectL, resizeL, resizeLPreviewRef] = useDrag<
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "l"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "l"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   const [collectTl, resizeTl, resizeTlPreviewRef] = useDrag<
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "tl"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "tl"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   const [collectTr, resizeTr, resizeTrPreviewRef] = useDrag<
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "tr"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "tr"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   const [collectBl, resizeBl, resizeBlPreviewRef] = useDrag<
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "bl"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "bl"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   const [collectBr, resizeBr, resizeBrPreviewRef] = useDrag<
     DragResize,
     unknown,
     DragResizeCollected
-  >(getDragConfig(componentNode, "br"), [componentNode])
+  >(getDragConfig(scaleSquareState, componentNode, "br"), [
+    componentNode,
+    scaleSquareState,
+  ])
 
   return (
     <Dropdown
@@ -198,7 +228,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         css={applyOuterStyle(componentNode.isDragging, h, w)}
         className={className}
         onClick={(e) => {
-          if (illaMode === "edit") {
+          if (scaleSquareState !== "production") {
             dispatch(configActions.updateSelectedComponent([componentNode]))
           }
         }}

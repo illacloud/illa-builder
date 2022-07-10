@@ -6,7 +6,6 @@ import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import {
   BugIcon,
   CaretRightIcon,
-  MoreIcon,
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
@@ -15,6 +14,7 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  getIllaMode,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -33,6 +33,7 @@ import {
 } from "./style"
 import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
+import { ExitIcon } from "@illa-design/icon"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
@@ -44,6 +45,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
+
+  const mode = useSelector(getIllaMode)
 
   const [deployLoading, setDeployLoading] = useState(false)
 
@@ -63,73 +66,92 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         </section>
       </div>
       <div css={viewControlStyle}>
-        <span css={windowIconBodyStyle}>
-          <WindowLeftIcon
-            _css={windowIconStyle(leftPanelVisible)}
-            onClick={() => {
-              dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-            }}
-          />
-        </span>
-        <span css={windowIconBodyStyle}>
-          <WindowRightIcon
-            _css={windowIconStyle(rightPanelVisible)}
-            onClick={() => {
-              dispatch(configActions.updateRightPanel(!rightPanelVisible))
-            }}
-          />
-        </span>
-        <span css={windowIconBodyStyle}>
-          <WindowBottomIcon
-            _css={windowIconStyle(bottomPanelVisible)}
-            onClick={() => {
-              dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-            }}
-          />
-        </span>
+        {mode === "edit" && (
+          <>
+            <span css={windowIconBodyStyle}>
+              <WindowLeftIcon
+                _css={windowIconStyle(leftPanelVisible)}
+                onClick={() => {
+                  dispatch(configActions.updateLeftPanel(!leftPanelVisible))
+                }}
+              />
+            </span>
+            <span css={windowIconBodyStyle}>
+              <WindowRightIcon
+                _css={windowIconStyle(rightPanelVisible)}
+                onClick={() => {
+                  dispatch(configActions.updateRightPanel(!rightPanelVisible))
+                }}
+              />
+            </span>
+            <span css={windowIconBodyStyle}>
+              <WindowBottomIcon
+                _css={windowIconStyle(bottomPanelVisible)}
+                onClick={() => {
+                  dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
+                }}
+              />
+            </span>
+          </>
+        )}
       </div>
       <div>
-        <ButtonGroup spacing={"8px"}>
-          <Button
-            colorScheme="gray"
-            size="medium"
-            leftIcon={<BugIcon size="14px" />}
-          />
-          <Button
-            loading={deployLoading}
-            colorScheme="techPurple"
-            size="medium"
-            leftIcon={<CaretRightIcon />}
-            onClick={() => {
-              Api.request(
-                {
-                  url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
-                  method: "GET",
-                },
-                (response) => {
-                  window.open(
-                    window.location.protocol +
-                      "//" +
-                      window.location.host +
-                      `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
-                    "_blank",
-                  )
-                },
-                (e) => {
-                  Message.error(t("editor.deploy.fail"))
-                },
-                (e) => {
-                  Message.error(t("editor.deploy.fail"))
-                },
-                (loading) => {
-                  setDeployLoading(loading)
-                },
-              )
-            }}
-          >
-            {t("deploy")}
-          </Button>
-        </ButtonGroup>
+        {mode === "edit" && (
+          <ButtonGroup spacing={"8px"}>
+            <Button
+              colorScheme="gray"
+              size="medium"
+              leftIcon={<BugIcon size="14px" />}
+            />
+            <Button
+              loading={deployLoading}
+              colorScheme="techPurple"
+              size="medium"
+              leftIcon={<CaretRightIcon />}
+              onClick={() => {
+                Api.request(
+                  {
+                    url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
+                    method: "GET",
+                  },
+                  (response) => {
+                    window.open(
+                      window.location.protocol +
+                        "//" +
+                        window.location.host +
+                        `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+                      "_blank",
+                    )
+                  },
+                  (e) => {
+                    Message.error(t("editor.deploy.fail"))
+                  },
+                  (e) => {
+                    Message.error(t("editor.deploy.fail"))
+                  },
+                  (loading) => {
+                    setDeployLoading(loading)
+                  },
+                )
+              }}
+            >
+              {t("deploy")}
+            </Button>
+          </ButtonGroup>
+        )}
+        {mode === "preview" && (
+          <ButtonGroup spacing={"8px"}>
+            <Button
+              onClick={() => {
+                dispatch(configActions.updateIllaMode("edit"))
+              }}
+              colorScheme="techPurple"
+              leftIcon={<ExitIcon />}
+            >
+              {t("exit_preview")}
+            </Button>
+          </ButtonGroup>
+        )}
       </div>
     </div>
   )
