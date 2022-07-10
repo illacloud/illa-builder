@@ -17,6 +17,7 @@ import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection, Room } from "@/api/ws/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  getIllaMode,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -81,9 +82,10 @@ export const Editor: FC = () => {
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
-  const showLeftPanel = useSelector(isOpenLeftPanel)
-  const showRightPanel = useSelector(isOpenRightPanel)
-  const showBottomPanel = useSelector(isOpenBottomPanel)
+  const illaMode = useSelector(getIllaMode)
+  const showLeftPanel = useSelector(isOpenLeftPanel) && illaMode == "edit"
+  const showRightPanel = useSelector(isOpenRightPanel) && illaMode == "edit"
+  const showBottomPanel = useSelector(isOpenBottomPanel) && illaMode == "edit"
 
   const [loadingState, setLoadingState] = useState(true)
 

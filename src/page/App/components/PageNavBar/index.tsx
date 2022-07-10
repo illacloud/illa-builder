@@ -96,11 +96,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             leftIcon={<BugIcon size="14px" />}
           />
           <Button
-            colorScheme="gray"
-            size="medium"
-            leftIcon={<MoreIcon size="14px" />}
-          />
-          <Button
             loading={deployLoading}
             colorScheme="techPurple"
             size="medium"
