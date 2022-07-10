@@ -18,6 +18,8 @@ import store from "@/store"
 import { useDispatch, useSelector } from "react-redux"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { getIllaMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
   const { widgetName, icon, id, ...partialDragInfo } = props
@@ -37,6 +39,13 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
         return illaMode === "edit"
       },
       end: (draggedItem, monitor) => {
+        dispatch(configActions.updateShowDot(false))
+        dispatch(
+          componentsActions.updateComponentDraggingState({
+            displayName: draggedItem.displayName,
+            isDragging: false,
+          }),
+        )
         if (
           searchDsl(
             store.getState().currentApp.editor.components.rootDsl,
@@ -51,13 +60,14 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
         }
       },
       item: () => {
+        dispatch(configActions.updateShowDot(true))
         return generateComponentNode({
           widgetName,
           ...partialDragInfo,
         })
       },
     }),
-    [],
+    [illaMode],
   )
 
   return (

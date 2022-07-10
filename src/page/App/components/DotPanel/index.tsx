@@ -140,8 +140,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        // set dot show
-        dispatch(configActions.updateShowDot(false))
         const calculateResult = calculateDragPosition(
           item,
           canvasWidth,
@@ -190,10 +188,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       hover: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
-        }
-        // set dot show
-        if (store.getState().config.showDot == false) {
-          dispatch(configActions.updateShowDot(true))
         }
         const calculateResult = calculateDragPosition(
           item,
@@ -263,19 +257,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       canDrop: () => {
         return illaMode === "edit"
       },
-      drop: (item, monitor) => {
-        if (!monitor.isOver({ shallow: true })) {
-          return
-        }
-        // set dot show
-        dispatch(configActions.updateShowDot(false))
-      },
       hover: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
-        }
-        if (store.getState().config.showDot == false) {
-          dispatch(configActions.updateShowDot(true))
         }
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
@@ -504,7 +488,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         id={`${componentNode.displayName}-dragged`}
         css={applyDotCanvasStyle(
           showDot,
-          100,
+          0,
           canvasWidth,
           canvasHeight + edgeWidth,
         )}

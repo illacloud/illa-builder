@@ -21,7 +21,7 @@ import {
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { mergeRefs } from "@illa-design/system"
@@ -44,10 +44,25 @@ function getDragConfig(
 > {
   return () => ({
     type: "resize",
-    item: {
-      node: componentNode,
-      position: barPosition,
-    } as DragResize,
+    item: () => {
+      store.dispatch(configActions.updateShowDot(true))
+      return {
+        node: {
+          ...componentNode,
+          isResizing: true,
+        },
+        position: barPosition,
+      } as DragResize
+    },
+    end: (draggedItem, monitor) => {
+      store.dispatch(configActions.updateShowDot(false))
+      store.dispatch(
+        componentsActions.updateComponentResizeState({
+          displayName: draggedItem.node.displayName,
+          isResizing: false,
+        }),
+      )
+    },
     collect: (monitor) => {
       return {
         resizing: monitor.isDragging(),
@@ -89,14 +104,22 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       canDrag: () => {
         return scaleSquareState !== "production"
       },
+      end: (draggedItem, monitor) => {
+        dispatch(configActions.updateShowDot(false))
+        dispatch(
+          componentsActions.updateComponentDraggingState({
+            displayName: draggedItem.displayName,
+            isDragging: false,
+          }),
+        )
+      },
       type: "components",
       item: () => {
-        const item = {
+        dispatch(configActions.updateShowDot(true))
+        return {
           ...componentNode,
           isDragging: true,
         }
-        dispatch(componentsActions.addOrUpdateComponentReducer(item))
-        return item
       },
     }),
     [componentNode, scaleSquareState],
@@ -108,13 +131,21 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
         return scaleSquareState !== "production"
       },
       type: "components",
+      end: (draggedItem, monitor) => {
+        dispatch(configActions.updateShowDot(false))
+        dispatch(
+          componentsActions.updateComponentDraggingState({
+            displayName: draggedItem.displayName,
+            isDragging: false,
+          }),
+        )
+      },
       item: () => {
-        const item = {
+        dispatch(configActions.updateShowDot(true))
+        return {
           ...componentNode,
           isDragging: true,
         }
-        dispatch(componentsActions.addOrUpdateComponentReducer(item))
-        return item
       },
     }),
     [componentNode, scaleSquareState],

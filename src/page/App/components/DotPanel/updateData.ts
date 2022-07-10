@@ -85,7 +85,6 @@ export function updateScaleSquare(
     ...componentNode,
   } as ComponentNode
   newItem.parentNode = parentDisplayName
-  newItem.isDragging = false
   newItem.containerType = "EDITOR_SCALE_SQUARE"
   newItem.x = squareX
   newItem.y = squareY
