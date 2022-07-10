@@ -1,6 +1,7 @@
 {
   "deploy": "发布",
   "preview": "预览",
+  "exit_preview": "退出预览",
   "edit": "编辑",
   "title": "欢迎来到艾拉云",
   "description": {
@@ -515,6 +516,9 @@
     "context_menu": {
       "duplicate": "复制",
       "delete": "删除"
+    },
+    "deploy": {
+      "fail": "部署失败"
     }
   },
   "widget": {

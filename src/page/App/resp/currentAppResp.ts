@@ -5,11 +5,10 @@ import { DragShadowState } from "@/redux/currentApp/editor/dragShadow/dragShadow
 import { DottedLineSquareState } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareState"
 import { DisplayNameState } from "@/redux/currentApp/displayName/displayNameState"
 import { ComponentsState } from "@/redux/currentApp/editor/components/componentsState"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
 export interface CurrentAppResp {
-  versionId: string
-  appId: string
-  versionName: string
+  appInfo: DashboardApp
   components: ComponentsState
   actions: ActionListState
   dependenciesState: DependenciesState

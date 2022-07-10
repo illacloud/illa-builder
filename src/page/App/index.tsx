@@ -1,6 +1,4 @@
 import { FC, useEffect, useState } from "react"
-import { DndProvider } from "react-dnd"
-import { HTML5Backend } from "react-dnd-html5-backend"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import { ActionEditor } from "./components/ActionEditor"
@@ -19,12 +17,12 @@ import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection, Room } from "@/api/ws/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  getIllaMode,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
 import { CanvasPanel } from "@/page/App/components/CanvasPanel"
-import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { startAppListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
@@ -40,7 +38,9 @@ import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShad
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { useParams } from "react-router-dom"
-import { updateComponentReducer } from "@/redux/currentApp/editor/components/componentsReducer"
+import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
+import { Loading } from "@illa-design/loading"
+import { configActions } from "@/redux/config/configSlice"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -82,9 +82,10 @@ export const Editor: FC = () => {
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
-  const showLeftPanel = useSelector(isOpenLeftPanel)
-  const showRightPanel = useSelector(isOpenRightPanel)
-  const showBottomPanel = useSelector(isOpenBottomPanel)
+  const illaMode = useSelector(getIllaMode)
+  const showLeftPanel = useSelector(isOpenLeftPanel) && illaMode == "edit"
+  const showRightPanel = useSelector(isOpenRightPanel) && illaMode == "edit"
+  const showBottomPanel = useSelector(isOpenBottomPanel) && illaMode == "edit"
 
   const [loadingState, setLoadingState] = useState(true)
 
@@ -97,6 +98,11 @@ export const Editor: FC = () => {
         signal: controller.signal,
       },
       (response) => {
+        dispatch(configActions.updateIllaMode("edit"))
+        dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
+        dispatch(
+          componentsActions.updateComponentReducer(response.data.components),
+        )
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),
         )
@@ -137,28 +143,26 @@ export const Editor: FC = () => {
   }, [])
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <GlobalDataProvider>
-        <div css={editorContainerStyle}>
-          {loadingState && <div css={loadingStyle} />}
-          {!loadingState && (
-            <>
-              <PageNavBar css={navbarStyle} />
-              <div css={contentStyle}>
-                <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
-                <div css={middlePanelStyle}>
-                  <CanvasPanel css={centerPanelStyle} />
-                  <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
-                </div>
-                <WidgetPickerEditor
-                  css={applyRightPanelStyle(showRightPanel)}
-                />
-              </div>
-            </>
-          )}
+    <div css={editorContainerStyle}>
+      {loadingState && (
+        <div css={loadingStyle}>
+          <Loading colorScheme="techPurple" />
         </div>
-      </GlobalDataProvider>
-    </DndProvider>
+      )}
+      {!loadingState && (
+        <>
+          <PageNavBar css={navbarStyle} />
+          <div css={contentStyle}>
+            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+            <div css={middlePanelStyle}>
+              <CanvasPanel css={centerPanelStyle} />
+              <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+            </div>
+            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
+          </div>
+        </>
+      )}
+    </div>
   )
 }
 
