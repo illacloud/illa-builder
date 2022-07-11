@@ -81,7 +81,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         attrName: "events",
         labelName: i18n.t("editor.inspect.setter_label.event_handler"),
         labelDesc: "xxxxx",
-        setterType: "TEST_SETTER",
+        setterType: "EVENT_HANDLER_SETTER",
         useCustomLayout: true,
         childrenSetter: [
           {
