@@ -62,4 +62,4 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   )
 }
 
-EventHandlerSetter.displayName = "NewBaseEventHandlerSetter"
+EventHandlerSetter.displayName = "EventHandlerSetter"
