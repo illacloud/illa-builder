@@ -31,9 +31,11 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   )
   const handleAddItemAsync = useCallback(async () => {
     const { events: defaultEvents } = eventHandlerConfig
+    let oldEventItem = Array.isArray(value) ? value : []
     const newEventItem = generateNewEventItem(defaultEvents[0], "query1")
-    handleUpdateDsl("events", [newEventItem])
+    handleUpdateDsl("events", [...oldEventItem, newEventItem])
   }, [handleUpdateDsl, eventHandlerConfig])
+
   if (
     !childrenSetter ||
     !Array.isArray(childrenSetter) ||

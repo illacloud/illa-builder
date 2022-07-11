@@ -8,7 +8,7 @@ import {
 } from "./style"
 import { EventAndMethodLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/NewBaseEventHandlerSetter/context"
+import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
 
 const getMethodName = (
   actionType: string,
@@ -59,7 +59,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       }}
     >
       <div css={eventAndMethodWrapperStyle}>
-        <div css={eventNameStyle}>{eventType}</div>
+        <div css={eventNameStyle}>{eventType ?? "No event"}</div>
         <div css={methodNameStyle}>
           {getMethodName(actionType, widgetID, widgetMethod, queryID)}
         </div>
