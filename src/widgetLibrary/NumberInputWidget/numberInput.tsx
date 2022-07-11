@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo, useState } from "react"
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react"
 import { InputNumber } from "@illa-design/input-number"
 import { LoadingIcon } from "@illa-design/icon"
 import { WrappedNumberInputProps } from "@/widgetLibrary/NumberInputWidget/interface"
@@ -23,9 +23,13 @@ export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>(
       loading,
       colorScheme,
       handleUpdateDsl,
+      handleUpdateGlobalData,
+      displayName,
     } = props
 
     const [finalValue, setFinalValue] = useState(value)
+
+    const numberInputRef = useRef<HTMLInputElement>(null)
 
     const changeValue = (value: number | undefined) => {
       setFinalValue(value)
@@ -49,9 +53,52 @@ export const WrappedInputNumber = forwardRef<any, WrappedNumberInputProps>(
       return suffix
     }, [loading, suffix])
 
+    useEffect(() => {
+      handleUpdateGlobalData(displayName, {
+        openThousandSeparator,
+        max,
+        min,
+        placeholder,
+        value,
+        precision,
+        disabled,
+        readOnly,
+        prefix,
+        suffix,
+        loading,
+        colorScheme,
+        focus: () => {
+          numberInputRef.current?.focus()
+        },
+        setValue: (value: number) => {
+          changeValue(value)
+        },
+        clearValue: () => {
+          changeValue(undefined)
+        },
+        validate: () => {},
+        clearValidation: () => {},
+      })
+    }, [
+      openThousandSeparator,
+      max,
+      min,
+      placeholder,
+      value,
+      precision,
+      disabled,
+      readOnly,
+      prefix,
+      suffix,
+      loading,
+      colorScheme,
+      displayName,
+    ])
+
     return (
       <div css={containerStyle}>
         <InputNumber
+          inputRef={numberInputRef}
           max={max}
           min={min}
           formatter={formatDisplayValue}

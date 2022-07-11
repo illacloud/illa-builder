@@ -11,6 +11,7 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
     handleUpdateDsl,
     handleOnChange,
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
     displayName,
   } = props
 
@@ -29,6 +30,9 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
         handleUpdateDsl({ value: !value })
       },
     })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
   }, [displayName, value, disabled, colorScheme])
 
   return (

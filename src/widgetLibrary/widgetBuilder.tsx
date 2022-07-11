@@ -76,6 +76,7 @@ import {
 import {
   NUMBER_INPUT_PANEL_CONFIG,
   NUMBER_INPUT_WIDGET_CONFIG,
+  INPUT_NUMBER_EVENT_HANDLER_CONFIG,
   NumberInputWidget,
 } from "@/widgetLibrary/NumberInputWidget"
 import {
@@ -180,6 +181,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: NumberInputWidget,
     config: NUMBER_INPUT_WIDGET_CONFIG,
     panelConfig: NUMBER_INPUT_PANEL_CONFIG,
+    eventHandlerConfig: INPUT_NUMBER_EVENT_HANDLER_CONFIG,
   },
   CHECKBOX_GROUP_WIDGET: {
     widget: CheckboxWidget,

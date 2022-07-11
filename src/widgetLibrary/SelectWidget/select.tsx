@@ -21,6 +21,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -43,6 +44,9 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       manualOptions,
       options: finalOptions,
     })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
   }, [
     displayName,
     finalOptions,

@@ -20,6 +20,7 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
     allowClear,
     pattern,
     regex,
@@ -66,6 +67,9 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
       validate: () => {},
       clearValidation: () => {},
     })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
   }, [
     value,
     placeholder,
@@ -114,7 +118,7 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
         maxLength={maxLength}
       />
       <InvalidMessage
-        value={value}
+        value={currentValue}
         pattern={pattern}
         regex={regex}
         minLength={minLength}
