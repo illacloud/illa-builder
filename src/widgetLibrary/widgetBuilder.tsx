@@ -8,6 +8,7 @@ import {
 import {
   IMAGE_PANEL_CONFIG,
   IMAGE_WIDGET_CONFIG,
+  IMAGE_EVENT_HANDLER_CONFIG,
   ImageWidget,
 } from "@/widgetLibrary/ImageWidget"
 import {
@@ -43,21 +44,25 @@ import {
 import {
   DATE_PANEL_CONFIG,
   DATE_WIDGET_CONFIG,
+  DATE_EVENT_HANDLER_CONFIG,
   DateWidget,
 } from "@/widgetLibrary/DateWidget"
 import {
   DATE_TIME_PANEL_CONFIG,
   DATE_TIME_WIDGET_CONFIG,
+  DATE_TIME_EVENT_HANDLER_CONFIG,
   DateTimeWidget,
 } from "@/widgetLibrary/DateTimeWidget"
 import {
   DATE_RANGE_PANEL_CONFIG,
   DATE_RANGE_WIDGET_CONFIG,
+  DATE_RANGE_EVENT_HANDLER_CONFIG,
   DateRangeWidget,
 } from "@/widgetLibrary/DateRangeWidget"
 import {
   RATE_PANEL_CONFIG,
   RATE_WIDGET_CONFIG,
+  RATE_EVENT_HANDLER_CONFIG,
   RateWidget,
 } from "@/widgetLibrary/RateWidget"
 import {
@@ -90,6 +95,7 @@ import {
 import {
   SEGMENTED_CONTROL_PANEL_CONFIG,
   SEGMENTED_CONTROL_WIDGET_CONFIG,
+  SEGMENTED_CONTROL_EVENT_HANDLER_CONFIG,
   SegmentedControlWidget,
 } from "@/widgetLibrary/SegmentedControlWidget"
 import {
@@ -100,6 +106,7 @@ import {
 import {
   EDITABLE_TEXT_PANEL_CONFIG,
   EDITABLE_TEXT_WIDGET_CONFIG,
+  EDITABLE_EVENT_HANDLER_CONFIG,
   EditableTextWidget,
 } from "@/widgetLibrary/EditableWidget"
 
@@ -114,6 +121,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: ImageWidget,
     config: IMAGE_WIDGET_CONFIG,
     panelConfig: IMAGE_PANEL_CONFIG,
+    eventHandlerConfig: IMAGE_EVENT_HANDLER_CONFIG,
   },
   SWITCH_WIDGET: {
     widget: SwitchWidget,
@@ -149,21 +157,25 @@ export const WidgetConfig: WidgetConfigs = {
     widget: DateWidget,
     config: DATE_WIDGET_CONFIG,
     panelConfig: DATE_PANEL_CONFIG,
+    eventHandlerConfig: DATE_EVENT_HANDLER_CONFIG,
   },
   DATE_RANGE_WIDGET: {
     widget: DateRangeWidget,
     config: DATE_RANGE_WIDGET_CONFIG,
     panelConfig: DATE_RANGE_PANEL_CONFIG,
+    eventHandlerConfig: DATE_RANGE_EVENT_HANDLER_CONFIG,
   },
   DATE_TIME_WIDGET: {
     widget: DateTimeWidget,
     config: DATE_TIME_WIDGET_CONFIG,
     panelConfig: DATE_TIME_PANEL_CONFIG,
+    eventHandlerConfig: DATE_TIME_EVENT_HANDLER_CONFIG,
   },
   RATE_WIDGET: {
     widget: RateWidget,
     config: RATE_WIDGET_CONFIG,
     panelConfig: RATE_PANEL_CONFIG,
+    eventHandlerConfig: RATE_EVENT_HANDLER_CONFIG,
   },
   BAR_PROGRESS_WIDGET: {
     widget: BarProgressWidget,
@@ -196,6 +208,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: SegmentedControlWidget,
     config: SEGMENTED_CONTROL_WIDGET_CONFIG,
     panelConfig: SEGMENTED_CONTROL_PANEL_CONFIG,
+    eventHandlerConfig: SEGMENTED_CONTROL_EVENT_HANDLER_CONFIG,
   },
   DIVIDER_WIDGET: {
     widget: DividerWidget,
@@ -206,6 +219,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: EditableTextWidget,
     config: EDITABLE_TEXT_WIDGET_CONFIG,
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
+    eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
   },
 }
 
