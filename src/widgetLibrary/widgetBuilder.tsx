@@ -30,6 +30,7 @@ import {
 import {
   INPUT_PANEL_CONFIG,
   INPUT_WIDGET_CONFIG,
+  INPUT_EVENT_HANDLER_CONFIG,
   InputWidget,
 } from "@/widgetLibrary/InputWidget"
 import {
@@ -136,6 +137,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: InputWidget,
     config: INPUT_WIDGET_CONFIG,
     panelConfig: INPUT_PANEL_CONFIG,
+    eventHandlerConfig: INPUT_EVENT_HANDLER_CONFIG,
   },
   DATE_WIDGET: {
     widget: DateWidget,
