@@ -1,6 +1,6 @@
 import { EventHandlerConfig } from "@/widgetLibrary/interface"
 
-export const SELECT_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
-  events: ["onInputValueChange", "onChange", "onFocus", "onBlur"],
+export const RADIO_GROUP_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
+  events: ["onChange"],
   methods: ["setValue", "clearValue", "validate", "clearValidation"],
 }

@@ -25,6 +25,7 @@ import {
 import {
   SELECT_PANEL_CONFIG,
   SELECT_WIDGET_CONFIG,
+  SELECT_EVENT_HANDLER_CONFIG,
   SelectWidget,
 } from "@/widgetLibrary/SelectWidget"
 import {
@@ -36,6 +37,7 @@ import {
 import {
   RADIO_GROUP_PANEL_CONFIG,
   RADIO_GROUP_WIDGET_CONFIG,
+  RADIO_GROUP_EVENT_HANDLER_CONFIG,
   RadioGroupWidget,
 } from "@/widgetLibrary/RadioGroupWidget"
 import {
@@ -82,6 +84,7 @@ import {
 import {
   CHECKBOX_GROUP_PANEL_CONFIG,
   CHECKBOX_GROUP_WIDGET_CONFIG,
+  CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
   CheckboxWidget,
 } from "@/widgetLibrary/CheckboxGroupWidget"
 import {
@@ -99,7 +102,6 @@ import {
   EDITABLE_TEXT_WIDGET_CONFIG,
   EditableTextWidget,
 } from "@/widgetLibrary/EditableWidget"
-import { SELECT_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SelectWidget/eventHandlerConfig"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -135,6 +137,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: RadioGroupWidget,
     config: RADIO_GROUP_WIDGET_CONFIG,
     panelConfig: RADIO_GROUP_PANEL_CONFIG,
+    eventHandlerConfig: RADIO_GROUP_EVENT_HANDLER_CONFIG,
   },
   INPUT_WIDGET: {
     widget: InputWidget,
@@ -187,6 +190,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: CheckboxWidget,
     config: CHECKBOX_GROUP_WIDGET_CONFIG,
     panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
+    eventHandlerConfig: CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
   },
   SEGMENTED_CONTROL_WIDGET: {
     widget: SegmentedControlWidget,
