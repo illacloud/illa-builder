@@ -32,7 +32,7 @@ export const transformEvents = (event: any) => {
     }
   }
   return {
-    script: `{{console.log("xxx")}}`,
+    script: `{{}}`,
     enabled: "{{false}}",
   }
 }

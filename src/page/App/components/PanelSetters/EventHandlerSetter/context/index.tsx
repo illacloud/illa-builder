@@ -23,7 +23,6 @@ export const BaseEventHandlerProvider: FC<ProviderProps> = (props) => {
 
   const handleDeleteEventItem = useCallback(
     (index: number) => {
-      console.log("index", index)
       const updatedArray = eventItems.filter(
         (optionItem: Record<string, any>, i: number) => {
           return i !== index
