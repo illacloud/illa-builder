@@ -13,15 +13,14 @@ import {
   DragCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-import store from "@/store"
-import { useDispatch } from "react-redux"
-import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
+import { useSelector } from "react-redux"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { endDrag, startDrag } from "@/utils/drag/drag"
 
 export const ComponentItem: FC<ComponentItemProps> = (props) => {
   const { widgetName, icon, id, ...partialDragInfo } = props
 
-  const dispatch = useDispatch()
+  const illaMode = useSelector(getIllaMode)
 
   const [, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
@@ -30,28 +29,22 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
   >(
     () => ({
       type: "components",
+      canDrag: () => {
+        return illaMode === "edit"
+      },
       end: (draggedItem, monitor) => {
-        if (
-          searchDsl(
-            store.getState().currentApp.editor.components.rootDsl,
-            draggedItem.displayName,
-          ) == null
-        ) {
-          dispatch(
-            displayNameActions.removeDisplayNameReducer(
-              draggedItem.displayName,
-            ),
-          )
-        }
+        endDrag(draggedItem)
       },
       item: () => {
-        return generateComponentNode({
+        const item = generateComponentNode({
           widgetName,
           ...partialDragInfo,
         })
+        startDrag(item)
+        return item
       },
     }),
-    [],
+    [illaMode],
   )
 
   return (

@@ -39,7 +39,7 @@ export const Login: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
   })
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
     Api.request<LoginResult>(

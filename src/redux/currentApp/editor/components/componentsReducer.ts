@@ -9,12 +9,36 @@ import {
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
+import {
+  ComponentDraggingPayload,
+  ComponentResizePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
 
 export const updateComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentsState>
 > = (state, action) => {
   return action.payload
+}
+
+export const updateComponentDraggingState: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentDraggingPayload>
+> = (state, action) => {
+  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  if (node != null) {
+    node.isDragging = action.payload.isDragging
+  }
+}
+
+export const updateComponentResizeState: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentResizePayload>
+> = (state, action) => {
+  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  if (node != null) {
+    node.isResizing = action.payload.isResizing
+  }
 }
 
 export const copyComponentNodeReducer: CaseReducer<

@@ -1,6 +1,9 @@
 import { createContext, ReactNode, FC, useState } from "react"
 import { NotificationType, Notification } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
+import { useSelector } from "react-redux"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 
 interface Injected {
   globalData: { [key: string]: any }
@@ -57,8 +60,12 @@ const initState = {
 }
 
 export const GlobalDataProvider: FC<Props> = ({ children }) => {
+  const userInfo = useSelector(getCurrentUser)
+  const builderInfo = useSelector(getBuilderInfo)
   const [globalData, setGlobalData] = useState<Record<string, any>>({
     ...initState,
+    userInfo,
+    builderInfo,
   })
 
   const handleUpdateGlobalData = (key: string, value: any) => {

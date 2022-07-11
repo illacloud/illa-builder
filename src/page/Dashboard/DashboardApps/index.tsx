@@ -265,7 +265,6 @@ export const DashboardApps: FC = () => {
         )}
         {appsList.length == 0 && <Empty paddingVertical="120px" />}
       </div>
-      {/* create new Modal */}
       <Modal
         simple
         closable
@@ -302,7 +301,6 @@ export const DashboardApps: FC = () => {
           }}
         />
       </Modal>
-      {/* Rename Modal */}
       {appsList.length !== 0 && (
         <Modal
           simple

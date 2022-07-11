@@ -36,7 +36,7 @@ export const ResetPassword: FC = () => {
     getValues,
     formState: { errors },
   } = useForm<ResetPwdFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
   })
   const onSubmit: SubmitHandler<ResetPwdFields> = (data) => {
     Api.request(
@@ -65,7 +65,7 @@ export const ResetPassword: FC = () => {
             setErrorMsg({
               ...errorMsg,
               verificationCode: t(
-                "user.forgot_password.error_message.verificationCode.invalid",
+                "user.forgot_password.error_message.verification_code.invalid",
               ),
             })
             break
@@ -128,7 +128,7 @@ export const ResetPassword: FC = () => {
         </section>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
-            {t("user.forgot_password.fields.verificationCode")}
+            {t("user.forgot_password.fields.verification_code")}
           </label>
           <div css={gridValidStyle}>
             <Controller
@@ -167,6 +167,7 @@ export const ResetPassword: FC = () => {
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
+                            setShowCountDown(true)
                             Api.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
@@ -174,16 +175,23 @@ export const ResetPassword: FC = () => {
                                 data: { email: getValues("email") },
                               },
                               (res) => {
-                                setVerificationToken(res.data.verificationToken)
-                                setShowCountDown(true)
                                 Message.success(
                                   t(
-                                    "user.forgot_password.tips.verificationCode",
+                                    "user.forgot_password.tips.verification_code",
                                   ),
                                 )
+                                setVerificationToken(res.data.verificationToken)
                               },
-                              () => {},
-                              () => {},
+                              () => {
+                                Message.error(
+                                  t("user.forgot_password.tips.fail_sent"),
+                                )
+                                setShowCountDown(false)
+                              },
+                              () => {
+                                Message.warning(t("network_error"))
+                                setShowCountDown(false)
+                              },
                               () => {},
                             )
                           }
@@ -194,13 +202,13 @@ export const ResetPassword: FC = () => {
                     ),
                   }}
                   placeholder={t(
-                    "user.forgot_password.placeholder.verificationCode",
+                    "user.forgot_password.placeholder.verification_code",
                   )}
                 />
               )}
               rules={{
                 required: t(
-                  "user.forgot_password.error_message.verificationCode.require",
+                  "user.forgot_password.error_message.verification_code.require",
                 ),
               }}
             />
