@@ -128,7 +128,6 @@ export const SettingPassword: FC = () => {
     if (newPasswordValue.length < 6 || newPasswordValue.length > 15) {
       setShowNewPasswordError(true)
       setNewPasswordErrorMsg(t("setting.password.error_format_password"))
-      console.log("1")
       return false
     }
     if (newPasswordValue !== confirmPasswordValue) {

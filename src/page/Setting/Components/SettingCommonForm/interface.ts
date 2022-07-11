@@ -5,7 +5,10 @@ export type contentItemType = {
   disabled?: boolean
   loading?: boolean
   value?: string
-  selectOptions?: string[]
+  selectOptions?: {
+    label: string
+    value: string
+  }[]
   defaultSelectValue?: string
   showError?: boolean
   errorMsg?: string

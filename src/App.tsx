@@ -34,7 +34,7 @@ import { HTML5Backend } from "react-dnd-html5-backend"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { DndProvider } from "react-dnd"
 
-import AuthInit from "./authInit"
+import AuthInit from "./AuthInit"
 
 // user language > builder language
 function getLocaleFromLanguage(): Locale {
