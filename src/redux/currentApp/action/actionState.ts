@@ -7,6 +7,18 @@ export interface ActionItemConfig {
   events?: []
 }
 
+export interface Runtime {
+  // unit: ms
+  prepareQuery?: number
+  executeResource?: number
+  transferData?: number
+  handleResponse?: number
+  transformer?: number
+  postProcessing?: number
+  // unit: B
+  responseSize?: number
+}
+
 export interface ActionItem {
   actionId: string
   displayName: string
@@ -16,6 +28,7 @@ export interface ActionItem {
   error?: boolean
   data?: any
   rawData?: any
+  runtime?: Runtime
 }
 
 export type ActionListState = ActionItem[]

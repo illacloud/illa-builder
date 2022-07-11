@@ -142,6 +142,14 @@ export const Editor: FC = () => {
     }
   }, [])
 
+  useEffect(() => {
+    performance.setResourceTimingBufferSize(1000000)
+
+    return () => {
+      performance.clearResourceTimings()
+    }
+  }, [])
+
   return (
     <div css={editorContainerStyle}>
       {loadingState && (

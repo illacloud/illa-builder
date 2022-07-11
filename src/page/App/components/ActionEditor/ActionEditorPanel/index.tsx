@@ -62,10 +62,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       } else {
         // save and run
         save()
+        performance.mark(`${activeActionItem.actionId}_prepareQuery:start`)
         run()
       }
     } else {
       // run
+      performance.mark(`${activeActionItem.actionId}_prepareQuery:start`)
       run()
     }
   }
@@ -107,12 +109,28 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     const { resourceId, actionType, actionTemplate, displayName } =
       activeActionItem
 
+    // init runtime
+    dispatch(
+      actionActions.updateActionItemReducer({
+        ...activeActionItem,
+        runtime: {},
+      }),
+    )
+
+    performance.mark(`${activeActionItem.actionId}_prepareQuery:end`)
+
     if (actionType === "transformer") {
       // TODO: run transformer
       setResult(activeActionItem.actionTemplate?.transformer)
       setActionResVisible(true)
       return
     }
+
+    const url = `${import.meta.env.VITE_API_BASE_URL}${baseActionApi}/${
+      activeActionItem?.actionId
+    }/run`
+
+    const resourceIndex = performance.getEntriesByName(url).length
 
     Api.request(
       {
@@ -141,6 +159,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       },
       (response) => {
         // save data to action
+
+        performance.measure(
+          `${activeActionItem.actionId}_prepareQuery`,
+          `${activeActionItem.actionId}_prepareQuery:start`,
+          `${activeActionItem.actionId}_prepareQuery:end`,
+        )
+
+        console.log(performance.getEntriesByName(url)[resourceIndex])
+
         dispatch(
           actionActions.updateActionItemReducer({
             ...activeActionItem,
@@ -148,6 +175,15 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             data: response.data,
             rawData: response.data,
             error: false,
+            runtime: {
+              ...activeActionItem.runtime,
+              responseSize: response.request.responseText.length,
+              executeResource:
+                performance.getEntriesByName(url)[resourceIndex].duration,
+              prepareQuery: performance.getEntriesByName(
+                `${activeActionItem.actionId}_prepareQuery`,
+              )[0].duration,
+            },
           }),
         )
 

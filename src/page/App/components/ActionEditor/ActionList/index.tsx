@@ -15,6 +15,9 @@ import { ActionInfo } from "@/page/App/components/ActionEditor/ActionGenerator/i
 import { ActionTypeIcon } from "@/page/App/components/ActionEditor/components/ActionTypeIcon"
 import { isValidActionDisplayName } from "@/page/App/components/ActionEditor/utils"
 import { ActionDisplayNameValidateResult } from "@/page/App/components/ActionEditor/interface"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { SearchHeader } from "./SearchHeader"
+import { Runtime } from "./Runtime"
 import {
   actionListContainerStyle,
   newBtnContainerStyle,
@@ -29,10 +32,9 @@ import {
   noMatchFoundWrapperStyle,
   emptyActionListPlaceholderStyle,
   nameErrorMsgStyle,
+  actionItemRuntimeStyle,
 } from "./style"
 import { ActionListProps } from "./interface"
-import { SearchHeader } from "./SearchHeader"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 const DropListItem = DropList.Item
 
@@ -173,6 +175,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
           )}
         </span>
         {renderName()}
+        <Runtime actionItem={item} />
       </li>
     )
   })
