@@ -1,4 +1,4 @@
-import { forwardRef } from "react"
+import { forwardRef, useEffect } from "react"
 import { css } from "@emotion/react"
 import MarkdownView, { ShowdownExtension } from "react-showdown"
 import { TextProps } from "./interface"
@@ -19,12 +19,52 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
     backgroundColor,
     textColor,
     linkColor,
+    displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   } = props
 
   const alignCss = css`
     justify-content: ${horizontalAlign};
     align-items: ${verticalAlign};
   `
+
+  const handleSetValue = (value: string) => {
+    handleUpdateDsl({ value })
+  }
+
+  const handleClearValue = () => {
+    handleUpdateDsl({ value: undefined })
+  }
+
+  useEffect(() => {
+    if (!displayName) return
+    handleUpdateGlobalData?.(displayName, {
+      value,
+      disableMarkdown,
+      horizontalAlign,
+      verticalAlign,
+      backgroundColor,
+      textColor,
+      linkColor,
+      setValue: handleSetValue,
+      clearValue: handleClearValue,
+    })
+
+    return () => {
+      handleDeleteGlobalData?.(displayName)
+    }
+  }, [
+    displayName,
+    value,
+    disableMarkdown,
+    horizontalAlign,
+    verticalAlign,
+    backgroundColor,
+    textColor,
+    linkColor,
+  ])
 
   return (
     <div css={css(applyTextContainerStyle(horizontalAlign, verticalAlign))}>

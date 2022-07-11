@@ -2,6 +2,7 @@ import { WidgetConfigs } from "./interface"
 import {
   TEXT_PANEL_CONFIG,
   TEXT_WIDGET_CONFIG,
+  TEXT_EVENT_HANDLER_CONFIG,
   TextWidget,
 } from "@/widgetLibrary/TextWidget"
 import {
@@ -10,6 +11,7 @@ import {
   ImageWidget,
 } from "@/widgetLibrary/ImageWidget"
 import {
+  SWITCH_EVENT_HANDLER_CONFIG,
   SWITCH_PANEL_CONFIG,
   SWITCH_WIDGET_CONFIG,
   SwitchWidget,
@@ -100,6 +102,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: TextWidget,
     config: TEXT_WIDGET_CONFIG,
     panelConfig: TEXT_PANEL_CONFIG,
+    eventHandlerConfig: TEXT_EVENT_HANDLER_CONFIG,
   },
   IMAGE_WIDGET: {
     widget: ImageWidget,
@@ -110,6 +113,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: SwitchWidget,
     config: SWITCH_WIDGET_CONFIG,
     panelConfig: SWITCH_PANEL_CONFIG,
+    eventHandlerConfig: SWITCH_EVENT_HANDLER_CONFIG,
   },
   BUTTON_WIDGET: {
     widget: ButtonWidget,

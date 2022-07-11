@@ -4,10 +4,12 @@ import { isValidUrlScheme } from "@/utils/typeHelper"
 import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
+import { cloneDeep, unset } from "lodash"
 
 interface Injected {
   globalData: { [key: string]: any }
   handleUpdateGlobalData: (key: string, value: any) => void
+  handleDeleteGlobalData: (key: string) => void
 }
 
 export const GLOBAL_DATA_CONTEXT = createContext<Injected>({} as Injected)
@@ -75,9 +77,16 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
     }))
   }
 
+  const handleDeleteGlobalData = (key: string) => {
+    const newGlobalData = cloneDeep(globalData)
+    unset(newGlobalData, key)
+    setGlobalData(newGlobalData)
+  }
+
   const value = {
     globalData: { ...globalData },
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
   }
 
   return (
