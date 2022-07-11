@@ -89,6 +89,11 @@ import {
   DIVIDER_WIDGET_CONFIG,
   DividerWidget,
 } from "@/widgetLibrary/DividerWidget"
+import {
+  EDITABLE_TEXT_PANEL_CONFIG,
+  EDITABLE_TEXT_WIDGET_CONFIG,
+  EditableTextWidget,
+} from "@/widgetLibrary/EditableWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -180,6 +185,11 @@ export const WidgetConfig: WidgetConfigs = {
     widget: DividerWidget,
     config: DIVIDER_WIDGET_CONFIG,
     panelConfig: DIVIDER_PANEL_CONFIG,
+  },
+  EDITABLE_TEXT_WIDGET: {
+    widget: EditableTextWidget,
+    config: EDITABLE_TEXT_WIDGET_CONFIG,
+    panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
   },
 }
 

@@ -1,9 +1,9 @@
-import { forwardRef, useState } from "react"
+import { forwardRef } from "react"
 import { Input } from "@illa-design/input"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import { WrappedInputProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { WrappedInputProps } from "./interface"
 
 export const WrappedInput = forwardRef<any, WrappedInputProps>((props, ref) => {
   const {
@@ -18,10 +18,15 @@ export const WrappedInput = forwardRef<any, WrappedInputProps>((props, ref) => {
     showCharacterCount,
     colorScheme,
     handleUpdateDsl,
+    allowClear,
+    pattern,
+    regex,
+    minLength,
+    maxLength,
+    required,
+    customRule,
+    hideValidationMessage,
   } = props
-
-  const validateProps: ValidateMessageProps = props
-  const [currentValue, setCurrentValue] = useState("")
 
   return (
     <div css={containerStyle}>
@@ -35,13 +40,24 @@ export const WrappedInput = forwardRef<any, WrappedInputProps>((props, ref) => {
         suffix={suffixIcon}
         addonAfter={suffixText}
         onChange={(value) => {
-          setCurrentValue(value)
           handleUpdateDsl({ value })
         }}
         showCount={showCharacterCount}
         borderColor={colorScheme}
+        allowClear={allowClear}
+        onClear={() => handleUpdateDsl({ value: "" })}
+        maxLength={maxLength}
       />
-      <InvalidMessage value={currentValue} {...validateProps} />
+      <InvalidMessage
+        value={value}
+        pattern={pattern}
+        regex={regex}
+        minLength={minLength}
+        maxLength={maxLength}
+        required={required}
+        customRule={customRule}
+        hideValidationMessage={hideValidationMessage}
+      />
     </div>
   )
 })
