@@ -45,3 +45,9 @@ export interface EventsInProps {
   eventType: string
   enabled?: string
 }
+
+export interface BaseWidgetProps {
+  displayName: string
+  handleUpdateGlobalData: (key: string, value: any) => void
+  handleUpdateDsl: (value: any) => void
+}

@@ -5,7 +5,7 @@ export const generateEventItemId = () => `events-${v4()}`
 export const generateNewEventItem = (event: string, targetId?: string) => {
   return {
     id: generateEventItemId(),
-    event,
+    eventType: event,
     targetId,
     type: "datasource",
     method: "trigger",

@@ -1,5 +1,6 @@
 import { SelectProps } from "@illa-design/select"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedSelectProps
   extends Omit<ValidateMessageProps, "value">,
@@ -14,7 +15,8 @@ export interface WrappedSelectProps
       | "showSearch"
       | "inputValue"
       | "colorScheme"
-    > {
+    >,
+    BaseWidgetProps {
   optionConfigureMode?: "dynamic" | "static"
   showClear?: SelectProps["allowClear"]
   invalid?: boolean
@@ -22,7 +24,6 @@ export interface WrappedSelectProps
   suffixIcon?: string // TODO: not support yet
   prefixText?: string // TODO: not support yet
   suffixText?: string // TODO: not support yet
-  handleUpdateDsl: (value: Record<string, any>) => void
   manualOptions?: {
     label: string
     value: string | number
@@ -34,6 +35,4 @@ export interface WrappedSelectProps
     values: any[]
     disables: boolean[]
   }
-  handleUpdateGlobalData?: (key: string, value: any) => void
-  displayName?: string
 }
