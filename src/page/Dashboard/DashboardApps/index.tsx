@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
+import copy from "copy-to-clipboard"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
 import { CloseIcon, MoreIcon } from "@illa-design/icon"
@@ -73,10 +74,6 @@ export const DashboardApps: FC = () => {
   const showRenameModal = () => {
     setRenameModalVisible(true)
   }
-  const closeRenameModal = () => {
-    setRenameModalLoading(false)
-    setRenameModalVisible(false)
-  }
   const renameRequest = () => {
     Api.request(
       {
@@ -93,18 +90,18 @@ export const DashboardApps: FC = () => {
             newName: renameValue,
           }),
         )
-        closeRenameModal()
       },
       (failure) => {
         Message.error(t("dashboard.app.rename_fail"))
-        closeRenameModal()
       },
       (crash) => {
         Message.error(t("network_error"))
-        closeRenameModal()
       },
       (loading) => {
-        setRenameModalLoading(true)
+        setRenameModalLoading(loading)
+        if (!loading) {
+          setRenameModalVisible(loading)
+        }
       },
     )
   }
@@ -112,10 +109,6 @@ export const DashboardApps: FC = () => {
   // duplicate funciton
   const showDuplicateModal = () => {
     setDuplicateModalVisible(true)
-  }
-  const closeDuplicateModal = () => {
-    setDuplicateModalLoading(false)
-    setDuplicateModalVisible(false)
   }
   const duplicateRequest = () => {
     Api.request<DashboardApp>(
@@ -130,19 +123,18 @@ export const DashboardApps: FC = () => {
             app: response.data,
           }),
         )
-
-        closeDuplicateModal()
       },
       (failure) => {
         Message.error(t("dashboard.app.duplicate_fail"))
-        closeDuplicateModal()
       },
       (crash) => {
         Message.error(t("network_error"))
-        closeDuplicateModal()
       },
       (loading) => {
-        setDuplicateModalLoading(true)
+        setDuplicateModalLoading(loading)
+        if (!loading) {
+          setDuplicateModalVisible(loading)
+        }
       },
     )
   }
@@ -165,15 +157,14 @@ export const DashboardApps: FC = () => {
         )
         navigate(`/app/${response.data.appId}`)
       },
-      (response) => {},
+      (failure) => {},
       (error) => {},
       (loading) => {
-        setCreateNewLoading(true)
+        setCreateNewLoading(loading)
       },
       (errorState) => {
         if (errorState) {
           Message.error({ content: t("create_fail") })
-          setCreateNewLoading(false)
         }
       },
     )
@@ -183,10 +174,11 @@ export const DashboardApps: FC = () => {
     <>
       <div css={appsContainerStyle}>
         <div css={listTitleContainerStyle}>
-          <span css={listTitleStyle}>{t("all_apps")}</span>
+          <span css={listTitleStyle}>{t("dashboard.app.all_apps")}</span>
           <Button
             colorScheme="gray"
             onClick={() => {
+              copy(`${location.protocol}//${location.host}/user/login`)
               Message.success({ content: t("link_copied") })
             }}
           >
@@ -327,7 +319,9 @@ export const DashboardApps: FC = () => {
             </div>
           }
           confirmLoading={renameModalLoading}
-          onCancel={closeRenameModal}
+          onCancel={() => {
+            setRenameModalVisible(false)
+          }}
           onOk={() => {
             if (!renameValue) {
               Message.error(t("dashboard.app.name_empty"))
@@ -364,19 +358,26 @@ export const DashboardApps: FC = () => {
             </div>
           }
           confirmLoading={duplicateModalLoading}
-          onCancel={closeDuplicateModal}
+          onCancel={() => {
+            setDuplicateModalVisible(false)
+          }}
           onOk={() => {
             if (!duplicateValue) {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
+            if (appsList.some((item) => item.appName === duplicateValue)) {
+              Message.error(t("dashboard.app.name_existed"))
+              return
+            }
+
             // TODO: @zch unique name
             duplicateRequest()
           }}
         >
-          <div css={modalTitleStyle}>{`${t("duplicate")} '${
-            appsList[currentAppIdx].appName
-          }'`}</div>
+          <div css={modalTitleStyle}>
+            {`${t("duplicate")} '${appsList[currentAppIdx].appName}'`}
+          </div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {

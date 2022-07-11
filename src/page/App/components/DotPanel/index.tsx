@@ -166,12 +166,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           componentNode.displayName,
           (newItem) => {
             dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
-            dispatch(
-              componentsActions.updateComponentPropsReducer({
-                displayName: newItem.displayName,
-                updateSlice: newItem.props ?? {},
-              }),
-            )
+            if (item.x === -1 && item.y === -1) {
+              dispatch(
+                componentsActions.updateComponentPropsReducer({
+                  displayName: newItem.displayName,
+                  updateSlice: newItem.props ?? {},
+                }),
+              )
+            }
+
             dispatch(configActions.updateSelectedComponent([newItem]))
           },
         )
