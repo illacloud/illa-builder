@@ -2,10 +2,10 @@ import { FC } from "react"
 import {
   groupWrapperStyle,
   listItemWrapperStyle,
-} from "@/page/App/components/PanelSetters/NewBaseEventHandlerSetter/List/style"
-import { More } from "@/page/App/components/PanelSetters/NewBaseEventHandlerSetter/List/more"
-import { EventAndMethodLabel } from "@/page/App/components/PanelSetters/NewBaseEventHandlerSetter/List/eventAndMethodLabel"
-import { ListItemProps } from "@/page/App/components/PanelSetters/NewBaseEventHandlerSetter/List/interface"
+} from "@/page/App/components/PanelSetters/EventHandlerSetter/List/style"
+import { More } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/more"
+import { EventAndMethodLabel } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/eventAndMethodLabel"
+import { ListItemProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/interface"
 
 export const ListItem: FC<ListItemProps> = (props) => {
   const { index } = props
