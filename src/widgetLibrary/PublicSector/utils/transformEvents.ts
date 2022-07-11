@@ -24,7 +24,11 @@ export const transformEvents = (event: any) => {
         enabled,
       }
     }
-    if (widgetMethod === "clearValue" || widgetMethod === "toggle") {
+    if (
+      widgetMethod === "clearValue" ||
+      widgetMethod === "toggle" ||
+      widgetMethod === "focus"
+    ) {
       return {
         script: `{{${widgetID}.${widgetMethod}()}}`,
         enabled,
