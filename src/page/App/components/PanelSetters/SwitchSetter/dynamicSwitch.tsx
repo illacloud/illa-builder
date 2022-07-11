@@ -67,6 +67,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             expectedType={expectedType}
             isSetterSingleRow
             widgetDisplayName={widgetDisplayName}
+            widgetType={""}
           />
         </div>
       )}

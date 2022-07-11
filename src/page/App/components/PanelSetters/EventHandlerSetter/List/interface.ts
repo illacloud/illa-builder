@@ -1,29 +1,18 @@
-import {
-  ActionsProps,
-  BaseEventItem,
-} from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
-import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { EventsInProps } from "@/widgetLibrary/interface"
+import { PanelLabelProps } from "@/page/App/components/InspectPanel/interface"
 
-export interface ActionMenuProps {
-  index: number
-  handleCopyItem: (index: number) => void
-  handleCloseMode: () => void
-  handleDeleteItem: (index: number) => void
+export interface EventHandlerSetterHeaderProps
+  extends Pick<PanelLabelProps, "labelName" | "labelDesc"> {
+  handleAddItemAsync: () => void
 }
 
-export interface ListProps {
-  events: BaseEventItem[]
-  childrenSetter?: PanelFieldConfig[]
-  handleUpdate: (
-    events: BaseEventItem[],
-    dslValue?: Record<string, any>,
-  ) => void
-  dslEvents: EventsInProps[]
+export interface EventAndMethodLabelProps {
+  index: number
 }
 
-export interface ListItemProps extends ActionsProps {
+export interface MoreProps {
   index: number
-  event: BaseEventItem
-  childrenSetter?: PanelFieldConfig[]
+}
+
+export interface ListItemProps {
+  index: number
 }

@@ -1,15 +1,16 @@
-import { FC, useContext, useEffect, useMemo, useRef } from "react"
+import { FC, useContext } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { get } from "lodash"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
-import { isObject } from "@/utils/typeHelper"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { BasicWrapper } from "@/widgetLibrary/PublicSector/BasicWrapper"
 import Label from "@/widgetLibrary/PublicSector/Label"
+import { transformEvents } from "@/widgetLibrary/PublicSector/utils/transformEvents"
 
 const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -23,10 +24,14 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   const { displayName, type } = componentNode
 
   const displayNameMapProps = useSelector(getExecutionResult)
-
-  const { handleUpdateGlobalData, globalData } = useContext(GLOBAL_DATA_CONTEXT)
-
+  const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+    useContext(GLOBAL_DATA_CONTEXT)
   const dispatch = useDispatch()
+
+  const realProps = displayNameMapProps[displayName] ?? {}
+  if (!type) return null
+  const COMP = widgetBuilder(type).widget
+  if (!COMP) return null
 
   const handleUpdateDsl = (value: Record<string, any>) => {
     dispatch(
@@ -38,33 +43,24 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   }
 
   const getOnChangeEventScripts = () => {
-    if (componentNode.props?.events) {
-      return getEventScripts(componentNode.props.events, "onChange")
+    const events = get(realProps, "events")
+    if (events) {
+      return getEventScripts(events, "onChange")
     }
     return []
   }
 
   const handleOnChange = () => {
     getOnChangeEventScripts().forEach((scriptObj) => {
-      const { enabled, script } = scriptObj
-      if (enabled == "undefined") {
+      const eventObj = transformEvents(scriptObj)
+      if (!eventObj) return
+      const { script, enabled } = eventObj
+      if (enabled || enabled == undefined) {
         evaluateDynamicString("events", script, globalData)
         return
       }
-      if (
-        typeof enabled === "string" &&
-        evaluateDynamicString("events", enabled, globalData)
-      ) {
-        evaluateDynamicString("events", script, globalData)
-      }
     })
   }
-
-  const realProps = displayNameMapProps[displayName] ?? {}
-
-  if (!type) return null
-  const COMP = widgetBuilder(type).widget
-  if (!COMP) return null
 
   const {
     tooltipText,
@@ -95,6 +91,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
       <COMP
         {...realProps}
         handleUpdateGlobalData={handleUpdateGlobalData}
+        handleDeleteGlobalData={handleDeleteGlobalData}
         handleOnChange={handleOnChange}
         handleUpdateDsl={handleUpdateDsl}
         displayName={displayName}

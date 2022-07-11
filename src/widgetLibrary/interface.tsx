@@ -3,11 +3,17 @@ import { SessionType } from "./componentListBuilder"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
 
+export interface EventHandlerConfig {
+  events: string[]
+  methods: string[]
+}
+
 export interface WidgetConfigs {
   [key: string]: {
     widget: FC<any>
     config: WidgetConfig
     panelConfig: PanelConfig[]
+    eventHandlerConfig?: EventHandlerConfig
   }
 }
 
