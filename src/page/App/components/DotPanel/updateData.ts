@@ -5,6 +5,7 @@ import { DottedLineSquare } from "@/redux/currentApp/editor/dottedLineSquare/dot
 import { BarPosition } from "@/page/App/components/ScaleSquare/style"
 
 export function updateDottedLineSquareData(
+  currentParent: string,
   componentNode: ComponentNode,
   squareX: number,
   squareY: number,
@@ -25,6 +26,7 @@ export function updateDottedLineSquareData(
 
   // set shadow
   const dottedLineSquare = {
+    parentNode: currentParent,
     displayName: componentNode.displayName,
     squareX,
     squareY,
@@ -35,6 +37,7 @@ export function updateDottedLineSquareData(
 }
 
 export function updateDragShadowData(
+  currentParent: string,
   componentNode: ComponentNode,
   renderX: number,
   renderY: number,
@@ -57,6 +60,7 @@ export function updateDragShadowData(
 
   // set shadow
   const renderDragShadow = {
+    parentNode: currentParent,
     displayName: componentNode.displayName,
     renderX,
     renderY,
@@ -85,7 +89,6 @@ export function updateScaleSquare(
     ...componentNode,
   } as ComponentNode
   newItem.parentNode = parentDisplayName
-  newItem.isDragging = false
   newItem.containerType = "EDITOR_SCALE_SQUARE"
   newItem.x = squareX
   newItem.y = squareY

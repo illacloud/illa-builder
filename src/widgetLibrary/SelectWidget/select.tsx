@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/select"
 import { WrappedSelectProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
 export const WrappedSelect = forwardRef<any, WrappedSelectProps>(
   (props, ref) => {
@@ -24,31 +25,11 @@ export const WrappedSelect = forwardRef<any, WrappedSelectProps>(
     } = props
 
     const finalOptions = useMemo(() => {
-      if (optionConfigureMode === "static") {
-        return manualOptions ?? []
-      } else {
-        const label = mappedOption?.labels ?? []
-        const value = mappedOption?.values ?? []
-        const disabled = mappedOption?.disables ?? []
-        const maxLength = Math.max(label.length, value.length, disabled.length)
-        const options: {
-          label: string
-          value: string | number
-          disabled?: boolean
-          extra?: any
-        }[] = []
-        for (let i = 0; i < maxLength; i++) {
-          const labelItem = label[i] || value[i] || i
-          const valueItem = value[i] || label[i] || i
-          const disabledItem = !!disabled[i]
-          options.push({
-            label: labelItem,
-            value: valueItem,
-            disabled: disabledItem,
-          })
-        }
-        return options
-      }
+      return formatSelectOptions(
+        optionConfigureMode,
+        manualOptions,
+        mappedOption,
+      )
     }, [optionConfigureMode, manualOptions, mappedOption])
 
     useEffect(() => {
