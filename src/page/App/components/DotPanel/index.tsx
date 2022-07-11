@@ -476,7 +476,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       />
       <div
         ref={componentsTreeRef}
-        css={applyChildrenContainerStyle(10, canvasWidth, canvasHeight)}
+        css={applyChildrenContainerStyle(1, canvasWidth, canvasHeight)}
         onClick={(e) => {
           if (e.target == componentsTreeRef.current && illaMode == "edit") {
             dispatch(configActions.updateSelectedComponent([]))

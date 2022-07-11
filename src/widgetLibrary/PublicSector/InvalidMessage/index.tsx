@@ -7,7 +7,10 @@ import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessag
 export const InvalidMessage: FC<ValidateMessageProps> = (props) => {
   const { value, hideValidationMessage, customRule, ...res } = props
 
-  const message = customRule ?? handleValidateCheck({ value, ...res })
+  const message =
+    customRule && customRule.length > 0
+      ? customRule
+      : handleValidateCheck({ value, ...res })
   const showMessage = !hideValidationMessage && message && message.length > 0
 
   return (

@@ -2,8 +2,8 @@ import { FC, useEffect, useRef, useState } from "react"
 import { Input } from "@illa-design/input"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
-import { WrappedInputProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { WrappedInputProps } from "./interface"
 
 export const WrappedInput: FC<WrappedInputProps> = (props) => {
   const {
@@ -21,6 +21,14 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    allowClear,
+    pattern,
+    regex,
+    minLength,
+    maxLength,
+    required,
+    customRule,
+    hideValidationMessage,
   } = props
 
   const validateProps: ValidateMessageProps = props
@@ -39,7 +47,14 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
       suffixText,
       showCharacterCount,
       colorScheme,
-      displayName,
+      allowClear,
+      pattern,
+      regex,
+      minLength,
+      maxLength,
+      required,
+      customRule,
+      hideValidationMessage,
       focus: () => {
         inputRef.current?.focus()
       },
@@ -67,6 +82,14 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
     showCharacterCount,
     colorScheme,
     displayName,
+    allowClear,
+    pattern,
+    regex,
+    minLength,
+    maxLength,
+    required,
+    customRule,
+    hideValidationMessage,
   ])
 
   return (
@@ -87,8 +110,23 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
         }}
         showCount={showCharacterCount}
         borderColor={colorScheme}
+        allowClear={allowClear}
+        onClear={() => {
+          setCurrentValue("")
+          handleUpdateDsl({ value: "" })
+        }}
+        maxLength={maxLength}
       />
-      <InvalidMessage value={currentValue} {...validateProps} />
+      <InvalidMessage
+        value={currentValue}
+        pattern={pattern}
+        regex={regex}
+        minLength={minLength}
+        maxLength={maxLength}
+        required={required}
+        customRule={customRule}
+        hideValidationMessage={hideValidationMessage}
+      />
     </div>
   )
 }

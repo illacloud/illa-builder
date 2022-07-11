@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, ChangeEvent } from "react"
 import { useTranslation } from "react-i18next"
 import { Message } from "@illa-design/message"
 import { Api } from "@/api/base"
@@ -25,15 +25,17 @@ export const SettingPassword: FC = () => {
     useState<string>("")
 
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false)
 
   const paramData = [
     {
       title: t("setting.password.current_password"),
       content: [
         {
-          type: "input",
+          type: "input-password",
           value: currentPasswordValue,
-          onChange: (value: string) => {
+          onPasswordChange: (event: ChangeEvent<HTMLInputElement>) => {
+            const value = event.target.value
             if (!value || !confirmPasswordValue || !newPasswordValue) {
               setButtonDisabled(true)
             } else {
@@ -43,6 +45,9 @@ export const SettingPassword: FC = () => {
           },
           showError: showCurrentPasswordError,
           errorMsg: currentPasswordErrorMsg,
+          onFocus: () => {
+            setShowCurrentPasswordError(false)
+          },
         },
       ],
     },
@@ -50,9 +55,10 @@ export const SettingPassword: FC = () => {
       title: t("setting.password.new_password"),
       content: [
         {
-          type: "input",
+          type: "input-password",
           value: newPasswordValue,
-          onChange: (value: string) => {
+          onPasswordChange: (event: ChangeEvent<HTMLInputElement>) => {
+            const value = event.target.value
             if (!value || !confirmPasswordValue || !currentPasswordValue) {
               setButtonDisabled(true)
             } else {
@@ -62,6 +68,9 @@ export const SettingPassword: FC = () => {
           },
           showError: showNewPasswordError,
           errorMsg: newPasswordErrorMsg,
+          onFocus: () => {
+            setShowNewPasswordError(false)
+          },
         },
       ],
     },
@@ -69,9 +78,10 @@ export const SettingPassword: FC = () => {
       title: t("setting.password.confirm_password"),
       content: [
         {
-          type: "input",
+          type: "input-password",
           value: confirmPasswordValue,
-          onChange: (value: string) => {
+          onPasswordChange: (event: ChangeEvent<HTMLInputElement>) => {
+            const value = event.target.value
             if (!value || !newPasswordValue || !currentPasswordValue) {
               setButtonDisabled(true)
             } else {
@@ -81,6 +91,9 @@ export const SettingPassword: FC = () => {
           },
           showError: showConfirmPasswordError,
           errorMsg: confirmPasswordErrorMsg,
+          onFocus: () => {
+            setShowConfirmPasswordError(false)
+          },
         },
       ],
     },
@@ -90,6 +103,7 @@ export const SettingPassword: FC = () => {
           type: "button",
           value: t("setting.password.submit_button"),
           disabled: buttonDisabled,
+          loading: buttonLoading,
         },
       ],
     },
@@ -111,7 +125,7 @@ export const SettingPassword: FC = () => {
       setConfirmPasswordErrorMsg(t("setting.password.empty_password"))
       return false
     }
-    if (newPasswordValue.length < 3 || newPasswordValue.length > 15) {
+    if (newPasswordValue.length < 6 || newPasswordValue.length > 15) {
       setShowNewPasswordError(true)
       setNewPasswordErrorMsg(t("setting.password.error_format_password"))
       return false
@@ -144,11 +158,21 @@ export const SettingPassword: FC = () => {
         },
       },
       (response) => {
-        Message.success("success!")
+        setCurrentPasswordValue("")
+        setNewPasswordValue("")
+        setConfirmPasswordValue("")
+        Message.success(t("edit_success"))
       },
-      (failure) => {},
+      (failure) => {
+        if (failure) {
+          Message.error(failure.data.errorMessage)
+        }
+      },
       (crash) => {
         Message.error(t("network_error"))
+      },
+      (loading) => {
+        setButtonLoading(loading)
       },
     )
   }

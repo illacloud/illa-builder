@@ -12,7 +12,6 @@ export interface DashboardResource {
   lastModifiedBy: string
   createdAt: string
   updatedAt: string
-  lastModifiedAt: string
 }
 
 export interface Resource extends DashboardResource {

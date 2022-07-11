@@ -1,10 +1,11 @@
 import { FC, useContext, useState, useCallback } from "react"
 import { MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
+import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { EditableTextWidget } from "@/widgetLibrary/EditableWidget"
 import { panelHeaderWrapperStyle, panelHeaderIconWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"
 import { HeaderProps } from "./interface"
-import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 
 export const PanelHeader: FC<HeaderProps> = (props) => {
   const { widgetDisplayName, widgetParentDisplayName, widgetType } =
@@ -19,7 +20,11 @@ export const PanelHeader: FC<HeaderProps> = (props) => {
   return (
     <div css={panelHeaderWrapperStyle}>
       {/*  TODO: wait for editable component*/}
-      <div>{widgetDisplayName}</div>
+      <EditableTextWidget
+        colorScheme={"techPurple"}
+        value={widgetDisplayName}
+        handleUpdateDsl={() => {}}
+      />
       <div css={panelHeaderIconWrapperStyle}>
         <Dropdown
           popupVisible={menuVisible}

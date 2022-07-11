@@ -41,6 +41,9 @@ import { useParams } from "react-router-dom"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
+import hotkeys from "hotkeys-js"
+import { Message } from "@illa-design/message"
+import { useTranslation } from "react-i18next"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -56,6 +59,8 @@ export const Editor: FC = () => {
   const dispatch = useDispatch()
 
   let { appId, versionId } = useParams()
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     Connection.enterRoom(
@@ -140,6 +145,35 @@ export const Editor: FC = () => {
     return () => {
       controller.abort()
     }
+  }, [])
+
+  useEffect(() => {
+    hotkeys("command+s,ctrl+s", function (event, handler) {
+      switch (handler.key) {
+        case "command+s":
+        case "ctrl+s":
+          event.preventDefault()
+          Message.success(t("dont_need_save"))
+          break
+      }
+    })
+    hotkeys(
+      "*",
+      {
+        keydown: true,
+        keyup: true,
+      },
+      function (keyboardEvent, hotkeysEvent) {
+        if (hotkeys.ctrl || hotkeys.command) {
+          keyboardEvent.preventDefault()
+          if (keyboardEvent.type === "keydown") {
+            dispatch(configActions.updateShowDot(true))
+          } else if (keyboardEvent.type === "keyup") {
+            dispatch(configActions.updateShowDot(false))
+          }
+        }
+      },
+    )
   }, [])
 
   return (

@@ -7,8 +7,8 @@
   "description": {
     "part1": "这是一个示例。"
   },
+  "dont_need_save": "ILLA会自动保存你的创作.",
   "apps": "项目",
-  "allApps": "所有项目",
   "resources": "资源",
   "create_new": "创建",
   "create_new_app": "创建项目",
@@ -22,6 +22,8 @@
   "btn": {
     "choose_file": "Choose a file"
   },
+  "back": "后退",
+  "edit_success": "修改成功！",
   "user": {
     "description": "专属于开发者的开源低代码平台。",
     "sign_up": {
@@ -566,6 +568,9 @@
     },
     "divider_progress": {
       "name": "Divider"
+    },
+    "editable_text": {
+      "name": "Editable Text"
     }
   },
   "Setting": "设置",
@@ -583,13 +588,15 @@
       "error_button": "重试"
     },
     "app": {
+      "all_apps": "所有项目",
       "create_app": "创建App",
       "duplicate_fail": "复制失败",
       "rename_fail": "重命名失败",
       "duplicate_placeholder": "请输入项目名称",
       "trash_success": "删除成功",
       "trash_failure": "删除失败",
-      "name_empty": "命名不能为空"
+      "name_empty": "请输入项目名称",
+      "name_existed": "名称已被占用"
     },
     "resources": {
       "table_name": "资源名",
@@ -598,6 +605,7 @@
       "table_ctime": "创建时间",
       "trash_success": "删除成功",
       "trash_failure": "删除失败",
+      "create_resources": "创建资源",
       "create_success": "创建成功！",
       "edit_success": "修改成功",
       "create_new_title": "选择资源类型"
@@ -605,6 +613,8 @@
   },
   "setting": {
     "account": {
+      "email": "邮箱",
+      "uneditable": "不可编辑",
       "title": "账号",
       "username": "用户名",
       "empty_username": "用户名不能为空",
@@ -618,7 +628,7 @@
       "new_password": "新密码",
       "confirm_password": "确认新密码",
       "empty_password": "密码不能为空",
-      "error_format_password": "密码须为3～20个字符",
+      "error_format_password": "密码须为6～15个字符",
       "error_match_password": "密码不匹配",
       "submit_button": "提交"
     },

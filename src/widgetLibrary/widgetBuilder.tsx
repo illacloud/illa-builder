@@ -76,6 +76,7 @@ import {
 import {
   NUMBER_INPUT_PANEL_CONFIG,
   NUMBER_INPUT_WIDGET_CONFIG,
+  INPUT_NUMBER_EVENT_HANDLER_CONFIG,
   NumberInputWidget,
 } from "@/widgetLibrary/NumberInputWidget"
 import {
@@ -93,7 +94,12 @@ import {
   DIVIDER_WIDGET_CONFIG,
   DividerWidget,
 } from "@/widgetLibrary/DividerWidget"
-import { INPUT_NUMBER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/NumberInputWidget/eventHandlerConfig"
+import {
+  EDITABLE_TEXT_PANEL_CONFIG,
+  EDITABLE_TEXT_WIDGET_CONFIG,
+  EditableTextWidget,
+} from "@/widgetLibrary/EditableWidget"
+import { SELECT_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SelectWidget/eventHandlerConfig"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -123,6 +129,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: SelectWidget,
     config: SELECT_WIDGET_CONFIG,
     panelConfig: SELECT_PANEL_CONFIG,
+    eventHandlerConfig: SELECT_EVENT_HANDLER_CONFIG,
   },
   RADIO_GROUP_WIDGET: {
     widget: RadioGroupWidget,
@@ -190,6 +197,11 @@ export const WidgetConfig: WidgetConfigs = {
     widget: DividerWidget,
     config: DIVIDER_WIDGET_CONFIG,
     panelConfig: DIVIDER_PANEL_CONFIG,
+  },
+  EDITABLE_TEXT_WIDGET: {
+    widget: EditableTextWidget,
+    config: EDITABLE_TEXT_WIDGET_CONFIG,
+    panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
   },
 }
 
