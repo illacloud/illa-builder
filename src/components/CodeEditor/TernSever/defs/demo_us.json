@@ -6,10 +6,6 @@
       "!doc": "demo Component.",
       "aaa": "Error.aaa",
       "Error.bbb": "Error.bbb",
-      "Error.bbb.ccc": "Error.bbb.ccc",
-      "Error.ccc.ccc": {
-        "ddd": "Demo.Error.ccc.ccc.ddd"
-      },
       "name": {
         "!type": "string",
         "!data": "Demo.xx",
@@ -25,9 +21,5 @@
         "!doc": "Indicates whether you need and/or receive system exclusive messages. The default is false."
       }
     }
-  },
-  "xx": {
-    "!type": "Demo",
-    "!doc": "Demo Demo Demo"
   }
 }
