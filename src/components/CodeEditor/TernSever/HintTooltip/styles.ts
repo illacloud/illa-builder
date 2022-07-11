@@ -30,7 +30,11 @@ export const evaluationStyle = css`
 `
 
 export const evaluationContentStyle = css`
-  font-family: 'Helvetica Neue';
+  font-family: "Helvetica Neue";
+`
+
+export const evaluationTriggerStyle = css`
+  white-space: pre;
 `
 
 export const docIconStyle = css`
@@ -43,9 +47,11 @@ export const docIconStyle = css`
   border-radius: 2px;
   cursor: pointer;
   transition: background 0.3s ease;
+
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
+
   &:active,
   &:visited,
   &:link,

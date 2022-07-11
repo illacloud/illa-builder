@@ -1,7 +1,9 @@
 import { FC, useRef } from "react"
-import { DocsIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
+import { DocsIcon } from "@illa-design/icon"
 import { Tag } from "@illa-design/tag"
+import { Trigger } from "@illa-design/trigger"
+import { isArray, isObject, isString } from "@illa-design/system"
 import { HintTooltipProps } from "./interface"
 import {
   mainTitleStyle,
@@ -12,15 +14,10 @@ import {
   docTextStyle,
   evaluationStyle,
   evaluationContentStyle,
+  evaluationTriggerStyle,
 } from "./styles"
 import { TypeQueryResult } from "tern/lib/tern"
-import { useSelector } from "react-redux"
-import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
-import { forEach, get } from "lodash"
 import { getValueType } from "@/components/CodeEditor/utils"
-import { Trigger } from "@illa-design/trigger"
-import pre from "@changesets/cli/dist/declarations/src/commands/pre"
-import { isArray, isObject, isString } from "@illa-design/system"
 
 export interface TransQuery {
   type: string
@@ -44,17 +41,20 @@ const formatObjOrArr = (type: string, data: any) => {
     }
     format = format + `  ${key}: ${current},\n`
   }
+  if (format) {
+    format = `\n${format}`
+  }
   return (
     <Trigger
-      content={
-        <pre>{type === "Array" ? `[${format}]` : `Object {\n${format}}`}</pre>
-      }
+      _css={evaluationTriggerStyle}
+      content={type === "Array" ? `[${format}]` : `Object {${format}}`}
       colorScheme={"techPurple"}
       position="right"
       openDelay={10}
       closeDelay={10}
       showArrow={false}
       trigger={"hover"}
+      zIndex={11}
     >
       {type === "Array" ? "[ ... ]" : "{ ... }"}
     </Trigger>
@@ -133,9 +133,7 @@ export const HintTooltip: FC<HintTooltipProps> = (props) => {
           {data?.path?.length ? (
             <div css={evaluationContentStyle}>
               <div css={css(evaluationStyle)}>Evaluates to</div>
-              <Tag size="small">
-                {formatEvaluate(data.type, data.data)}
-              </Tag>
+              <Tag size="small">{formatEvaluate(data.type, data.data)}</Tag>
             </div>
           ) : null}
         </div>
