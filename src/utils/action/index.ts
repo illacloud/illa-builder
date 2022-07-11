@@ -1,22 +1,25 @@
-import { AxiosResponse, AxiosError } from "axios"
+import store from "@/store"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 
-export function executeAction(
-  action: Partial<ActionItem>,
-  versionId: string,
-  successCallback?: (response: AxiosResponse) => void,
-  failureCallback?: (response: AxiosResponse) => void,
-  crashCallback?: (error: AxiosError) => void,
-  loadingCallback?: (loading: boolean) => void,
-) {
+export function executeAction(action: Partial<ActionItem>, versionId: string) {
   const { actionId, resourceId, actionType, actionTemplate, displayName } =
     action
 
   if (actionType === "transformer") {
-    // TODO: run transformer
-    successCallback?.()
+    // TODO: eval transfomer
+    // save to redux
+    store.dispatch(
+      actionActions.updateActionItemReducer({
+        ...action,
+        // TODO: apply Transfomer
+        data: {},
+        rawData: {},
+        error: false,
+      }),
+    )
     return
   }
 
@@ -46,16 +49,33 @@ export function executeAction(
       ],
     },
     (response) => {
-      successCallback?.(response)
+      // TODO: eval transfomer
+      // save rawData & transformData to redux
+      store.dispatch(
+        actionActions.updateActionItemReducer({
+          ...action,
+          // TODO: apply Transfomer
+          data: response.data,
+          rawData: response.data,
+          error: false,
+        }),
+      )
+
+      // TODO: trigger success eventhandler
     },
     (response) => {
-      failureCallback?.(response)
-    },
-    (error) => {
-      crashCallback?.(error)
-    },
-    (loading) => {
-      loadingCallback?.(loading)
+      // save rawData to redux
+      store.dispatch(
+        actionActions.updateActionItemReducer({
+          ...action,
+          // TODO: apply Transfomer
+          data: response.data,
+          rawData: response.data,
+          error: false,
+        }),
+      )
+
+      // TODO: trigger error eventhandler
     },
   )
 }
