@@ -13,7 +13,7 @@ import "codemirror/addon/display/autorefresh"
 import "./modes"
 import "./hinter"
 import "./lintHelper"
-import { TernServer } from "./TernSever"
+import { BaseTern, TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
@@ -24,7 +24,6 @@ import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 import {
-  getExecution,
   getExecutionError,
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/execution/executionSelector"
@@ -182,17 +181,17 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const handleAutocomplete = (cm: CodeMirror.Editor, line: string) => {
     const modeName = cm.getModeAt(cm.getCursor()).name
+    // @ts-ignore: type define error
+    const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
         tables,
         completeSingle: false,
       })
-    } else if (modeName == "javascript") {
+    } else if (modeHelperType == "json") {
       sever.current?.complete(cm)
-      // cm.showHint({
-      //   hint: CodeMirror.hint.javascript,
-      //   completeSingle: false, // 是否立即补全
-      // })
+    } else if (modeName == "javascript") {
+      BaseTern?.complete(cm)
     }
   }
 
