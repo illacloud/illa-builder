@@ -67,7 +67,7 @@ export const Register: FC = () => {
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
-            userName: res.data.username,
+            username: res.data.username,
             language: "English",
             userAvatar: "",
             email: res.data.email,

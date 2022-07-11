@@ -68,7 +68,7 @@ export const Setting: FC = () => {
               }}
             >
               <PreIcon css={preIconStyle} />
-              <span css={tabPreTextStyle}>back</span>
+              <span css={tabPreTextStyle}>{t("back")}</span>
             </div>
           </div>
         }

@@ -7,7 +7,6 @@
     "part1": "This is an example without namespaces."
   },
   "apps": "Apps",
-  "all_apps": "All Apps",
   "resources": "Resources",
   "create_new": "Create New",
   "create_new_app": "Create New",
@@ -21,6 +20,8 @@
   "btn": {
     "choose_file": "Choose a file"
   },
+  "back": "back",
+  "edit_success": "edit success！",
   "user": {
     "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
@@ -576,6 +577,7 @@
       "error_button": "Retry"
     },
     "app": {
+      "all_apps": "All Apps",
       "create_app": "Create App",
       "rename_fail": "Rename fail",
       "duplicate_fail": "Duplicate fail",
@@ -592,6 +594,7 @@
       "table_ctime": "Created",
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure",
+      "create_resources": "Create New",
       "create_success": "Create Success!",
       "edit_success": "Edit Success",
       "create_new_title": "Select resource type"
@@ -599,6 +602,8 @@
   },
   "setting": {
     "account": {
+      "email": "Email",
+      "uneditable": "uneditable",
       "title": "ACCOUNT",
       "username": "Username",
       "empty_username": "Please enter your username",
@@ -612,7 +617,7 @@
       "new_password": "New password",
       "confirm_password": "Confirm password",
       "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 3～15 characters",
+      "error_format_password": "Password must be 6～15 characters",
       "error_match_password": "Passwords do not match",
       "submit_button": "Submit"
     },

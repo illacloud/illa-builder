@@ -4,10 +4,12 @@ import { Message } from "@illa-design/message"
 import { Api } from "@/api/base"
 import { SettingCommonForm } from "../Components/SettingCommonForm"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
   const [usernameValue, setUsernameValue] = useState<string>("")
   const [showUserError, setShowUserError] = useState<boolean>(false)
@@ -19,8 +21,8 @@ export const SettingAccount: FC = () => {
 
   const paramData = [
     {
-      title: "Email",
-      subTitle: "(uneditable)",
+      title: t("setting.account.email"),
+      subTitle: `(${t("setting.account.uneditable")})`,
       content: [
         {
           type: "input",
@@ -45,6 +47,9 @@ export const SettingAccount: FC = () => {
           },
           showError: showUserError,
           errorMsg: userErrorMsg,
+          onFocus: () => {
+            setShowUserError(false)
+          },
         },
       ],
     },
@@ -73,7 +78,6 @@ export const SettingAccount: FC = () => {
   }
 
   const handleSubmit = () => {
-    setShowUserError(false)
     if (!beforeFormat()) {
       setShowUserError(true)
       return
@@ -84,10 +88,12 @@ export const SettingAccount: FC = () => {
         url: "/users/username",
         method: "PATCH",
         data: {
-          userName: usernameValue,
+          username: usernameValue,
         },
       },
       (response) => {
+        dispatch(currentUserActions.updateCurrentUserReducer(response.data))
+        setUsernameValue("")
         Message.success("success!")
       },
       (failure) => {

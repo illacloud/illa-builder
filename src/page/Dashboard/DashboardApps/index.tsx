@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
+import copy from "copy-to-clipboard"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
 import { CloseIcon, MoreIcon } from "@illa-design/icon"
@@ -173,10 +174,11 @@ export const DashboardApps: FC = () => {
     <>
       <div css={appsContainerStyle}>
         <div css={listTitleContainerStyle}>
-          <span css={listTitleStyle}>{t("all_apps")}</span>
+          <span css={listTitleStyle}>{t("dashboard.app.all_apps")}</span>
           <Button
             colorScheme="gray"
             onClick={() => {
+              copy(`${location.protocol}//${location.host}/user/login`)
               Message.success({ content: t("link_copied") })
             }}
           >
@@ -245,7 +247,7 @@ export const DashboardApps: FC = () => {
                     css={hoverableStyle}
                     title={<span css={listItemTitleStyle}>{item.appName}</span>}
                     description={`${item.updatedBy} ${dayjs
-                      .utc(item.lastModifiedAt)
+                      .utc(item.updatedAt)
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
                       navigate(
