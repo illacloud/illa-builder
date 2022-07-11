@@ -12,3 +12,10 @@ export function applyScaleContainerStyle(scale: number): SerializedStyles {
     width: 100%;
   `
 }
+
+export const previewStyle = css`
+  position: absolute;
+  z-index: 1;
+  bottom: 8px;
+  right: 8px;
+`

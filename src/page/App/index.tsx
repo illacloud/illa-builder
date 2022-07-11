@@ -157,6 +157,23 @@ export const Editor: FC = () => {
           break
       }
     })
+    hotkeys(
+      "*",
+      {
+        keydown: true,
+        keyup: true,
+      },
+      function (keyboardEvent, hotkeysEvent) {
+        if (hotkeys.ctrl || hotkeys.command) {
+          keyboardEvent.preventDefault()
+          if (keyboardEvent.type === "keydown") {
+            dispatch(configActions.updateShowDot(true))
+          } else if (keyboardEvent.type === "keyup") {
+            dispatch(configActions.updateShowDot(false))
+          }
+        }
+      },
+    )
   }, [])
 
   return (
