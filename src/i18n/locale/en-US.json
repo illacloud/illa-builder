@@ -1,13 +1,14 @@
 {
   "deploy": "Deploy",
   "preview": "Preview",
+  "exit_preview": "Exit Preview",
   "edit": "Edit",
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
   },
+  "dont_need_save": "ILLA will continue to try auto-saving your work.",
   "apps": "Apps",
-  "all_apps": "All Apps",
   "resources": "Resources",
   "create_new": "Create New",
   "create_new_app": "Create New",
@@ -21,6 +22,8 @@
   "btn": {
     "choose_file": "Choose a file"
   },
+  "back": "back",
+  "edit_success": "edit success！",
   "user": {
     "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
@@ -28,7 +31,7 @@
       "fields": {
         "username": "Username",
         "email": "Email",
-        "verificationCode": "Verification code",
+        "verification_code": "Verification code",
         "password": "Password"
       },
       "actions": {
@@ -42,13 +45,13 @@
       "tips": {
         "success": "Signed up successfully",
         "fail": "Failed to sign up",
-        "verificationCode": "Verification code sent",
+        "verification_code": "Verification code sent",
         "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "username": "Enter your username",
         "email": "Enter your email",
-        "verificationCode": "Please enter verification code",
+        "verification_code": "Please enter verification code",
         "password": "Create a password(6~20 characters)"
       },
       "error_message": {
@@ -65,7 +68,7 @@
           "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
@@ -113,7 +116,7 @@
       "fields": {
         "email": "Email",
         "newPassword": "New Password",
-        "verificationCode": "Verification code"
+        "verification_code": "Verification code"
       },
       "actions": {
         "send": "Send code",
@@ -122,12 +125,12 @@
       "tips": {
         "success": "Reset password successfully",
         "fail": "Failed to reset password",
-        "verificationCode": "Verification code sent",
+        "verification_code": "Verification code sent",
         "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "email": "Enter your email",
-        "verificationCode": "Please enter verification code",
+        "verification_code": "Please enter verification code",
         "newPassword": "Enter your new password(6~20 characters)"
       },
       "error_message": {
@@ -136,7 +139,7 @@
           "invalid_pattern": "Please enter a valid email address",
           "registered": "The email address doesn't associate with an account."
         },
-        "verificationCode": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
@@ -515,6 +518,9 @@
     "context_menu": {
       "duplicate": "Duplicate",
       "delete": "Delete"
+    },
+    "deploy": {
+      "fail": "Deploy fail"
     }
   },
   "widget": {
@@ -561,6 +567,9 @@
     },
     "divider_progress": {
       "name": "Divider"
+    },
+    "editable_text": {
+      "name": "Editable Text"
     }
   },
   "Setting": "Setting",
@@ -578,13 +587,15 @@
       "error_button": "Retry"
     },
     "app": {
+      "all_apps": "All Apps",
       "create_app": "Create App",
       "rename_fail": "Rename fail",
       "duplicate_fail": "Duplicate fail",
       "duplicate_placeholder": "Enter your app name here",
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure",
-      "name_empty": "name can't be empty"
+      "name_empty": "Please enter a name",
+      "name_existed": "Name already taken"
     },
     "resources": {
       "table_name": "Resource Name",
@@ -593,6 +604,7 @@
       "table_ctime": "Created",
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure",
+      "create_resources": "Create New",
       "create_success": "Create Success!",
       "edit_success": "Edit Success",
       "create_new_title": "Select resource type"
@@ -600,6 +612,8 @@
   },
   "setting": {
     "account": {
+      "email": "Email",
+      "uneditable": "uneditable",
       "title": "ACCOUNT",
       "username": "Username",
       "empty_username": "Please enter your username",
@@ -613,7 +627,7 @@
       "new_password": "New password",
       "confirm_password": "Confirm password",
       "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 3～15 characters",
+      "error_format_password": "Password must be 6～15 characters",
       "error_match_password": "Passwords do not match",
       "submit_button": "Submit"
     },

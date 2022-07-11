@@ -1,9 +1,9 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { AppInfo } from "./appInfoState"
+import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 
 export const updateAppInfoReducer: CaseReducer<
-  AppInfo | null,
-  PayloadAction<AppInfo | null>
+  DashboardApp,
+  PayloadAction<DashboardApp>
 > = (state, action) => {
   return action.payload
 }
