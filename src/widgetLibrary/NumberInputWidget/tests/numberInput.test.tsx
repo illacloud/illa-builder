@@ -9,6 +9,9 @@ test("Input Number renders correctly", async () => {
     <WrappedInputNumber
       placeholder="test-mode"
       handleUpdateDsl={handleUpdateDSL}
+      handleDeleteGlobalData={() => {}}
+      handleUpdateGlobalData={() => {}}
+      displayName=""
     />,
   )
   expect(screen.getByPlaceholderText("test-mode")).toBeInTheDocument()
@@ -22,6 +25,9 @@ test("Input Number thousandSeparator", async () => {
       value={11111}
       handleUpdateDsl={handleUpdateDSL}
       openThousandSeparator
+      handleDeleteGlobalData={() => {}}
+      handleUpdateGlobalData={() => {}}
+      displayName=""
     />,
   )
   expect(screen.getByDisplayValue("111,11")).toBeInTheDocument()
@@ -35,6 +41,9 @@ test("Input Number onChange", async () => {
       placeholder="test-mode"
       handleUpdateDsl={handleUpdateDSL}
       openThousandSeparator
+      handleDeleteGlobalData={() => {}}
+      handleUpdateGlobalData={() => {}}
+      displayName=""
     />,
   )
   const input = screen.getByPlaceholderText("test-mode")
@@ -54,6 +63,9 @@ test("Input Number loading", async () => {
       placeholder="test-mode"
       handleUpdateDsl={handleUpdateDSL}
       loading
+      handleDeleteGlobalData={() => {}}
+      handleUpdateGlobalData={() => {}}
+      displayName=""
     />,
   )
   expect(screen.getByTitle("LoadingIcon"))

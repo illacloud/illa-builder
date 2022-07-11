@@ -20,6 +20,7 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
   } = props
 
   const validateProps: ValidateMessageProps = props
@@ -51,6 +52,9 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
       validate: () => {},
       clearValidation: () => {},
     })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
   }, [
     value,
     placeholder,

@@ -75,7 +75,6 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
       const eventObj = transformEvents(scriptObj)
       if (!eventObj) return
       const { script, enabled } = eventObj
-      console.log("eventObj", eventObj)
       if (enabled || enabled == undefined) {
         evaluateDynamicString("events", script, globalData)
         return

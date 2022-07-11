@@ -17,6 +17,7 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
     colorScheme,
     handleUpdateGlobalData,
     handleOnClick,
+    handleDeleteGlobalData,
     displayName,
   } = props
 
@@ -32,6 +33,9 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
       alignment,
       colorScheme,
     })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
   }, [
     text,
     variant,

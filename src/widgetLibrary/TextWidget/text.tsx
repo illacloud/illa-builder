@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from "react"
+import { FC, useEffect } from "react"
 import { css } from "@emotion/react"
 import MarkdownView, { ShowdownExtension } from "react-showdown"
 import { TextProps } from "./interface"
@@ -10,7 +10,7 @@ const transLink: ShowdownExtension = {
   replace: `<a  href='$1' >$1</a>`,
 }
 
-export const Text = forwardRef<any, TextProps>((props, ref) => {
+export const Text: FC<TextProps> = (props) => {
   const {
     value,
     disableMarkdown,
@@ -40,7 +40,7 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
 
   useEffect(() => {
     if (!displayName) return
-    handleUpdateGlobalData?.(displayName, {
+    handleUpdateGlobalData(displayName, {
       value,
       disableMarkdown,
       horizontalAlign,
@@ -53,7 +53,7 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
     })
 
     return () => {
-      handleDeleteGlobalData?.(displayName)
+      handleDeleteGlobalData(displayName)
     }
   }, [
     displayName,
@@ -85,7 +85,7 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
       )}
     </div>
   )
-})
+}
 
 Text.displayName = "TextWidget"
 

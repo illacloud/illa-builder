@@ -49,5 +49,6 @@ export interface EventsInProps {
 export interface BaseWidgetProps {
   displayName: string
   handleUpdateGlobalData: (key: string, value: any) => void
+  handleDeleteGlobalData: (key: string) => void
   handleUpdateDsl: (value: any) => void
 }
