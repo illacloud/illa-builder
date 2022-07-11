@@ -47,6 +47,25 @@ const transTernTypeName = (value: any): string => {
   }
 }
 
+export const transTypeFromTern = (type: string, value?: any): string => {
+  switch (type) {
+    case "string":
+      return "String"
+    case "number":
+      return "Number"
+    case "array":
+      return "Array"
+    case "object":
+      return "Object"
+    case "bool":
+      return "Boolean"
+  }
+  if (value) {
+    return getValueType(value)
+  }
+  return type
+}
+
 // contain data and path
 const transDataToDefs = (
   data?: Record<string, any>,

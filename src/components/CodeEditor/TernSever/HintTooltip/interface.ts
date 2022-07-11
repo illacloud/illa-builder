@@ -15,3 +15,12 @@ export interface HintTooltipProps extends HTMLAttributes<HTMLDivElement> {
   data: TypeQueryResult
   globalData?: { [key: string]: any }
 }
+
+export interface TransQuery {
+  type: string
+  name?: string
+  doc?: string
+  url?: string
+  path?: string
+  data?: any
+}

@@ -4,7 +4,7 @@ import { DocsIcon } from "@illa-design/icon"
 import { Tag } from "@illa-design/tag"
 import { Trigger } from "@illa-design/trigger"
 import { isArray, isObject, isString } from "@illa-design/system"
-import { HintTooltipProps } from "./interface"
+import { HintTooltipProps, TransQuery } from "./interface"
 import {
   mainTitleStyle,
   contentAreaStyle,
@@ -17,16 +17,7 @@ import {
   evaluationTriggerStyle,
 } from "./styles"
 import { TypeQueryResult } from "tern/lib/tern"
-import { getValueType } from "@/components/CodeEditor/utils"
-
-export interface TransQuery {
-  type: string
-  name?: string
-  doc?: string
-  url?: string
-  path?: string
-  data?: any
-}
+import { transTypeFromTern } from "@/components/CodeEditor/TernSever"
 
 const formatObjOrArr = (type: string, data: any) => {
   let format = ""
@@ -62,7 +53,6 @@ const formatObjOrArr = (type: string, data: any) => {
 }
 
 const formatEvaluate = (type: string, data?: any) => {
-  // let res = getValueType(value)
   switch (type) {
     case "String":
       return `"${data}"`
@@ -71,25 +61,6 @@ const formatEvaluate = (type: string, data?: any) => {
       return formatObjOrArr(type, data)
   }
   return data.toString()
-}
-
-const transTypeFromTern = (type: string, value?: any): string => {
-  switch (type) {
-    case "string":
-      return "String"
-    case "number":
-      return "Number"
-    case "array":
-      return "Array"
-    case "object":
-      return "Object"
-    case "bool":
-      return "Boolean"
-  }
-  if (value) {
-    return getValueType(value)
-  }
-  return type
 }
 
 const handleTernCompletions = (data: TypeQueryResult): TransQuery => {
