@@ -102,7 +102,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       resourceId,
       actionType,
       displayName,
-      actionTemplate,
+      actionTemplate = {},
       oldDisplayName,
     } = data
 
