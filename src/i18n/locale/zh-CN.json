@@ -188,6 +188,18 @@
           "selector": {
             "title": "Select action type"
           }
+        },
+        "runtime": {
+          "total": "Total",
+          "prepare_query": "Prepare query",
+          "backend": "Backend",
+          "execute_resource": "execute resource",
+          "transfer_data": "transfer data",
+          "frontend": "Frontend",
+          "handle_response": "handle response",
+          "transformer": "transformer",
+          "post_processing": "post processing",
+          "response_size": "Response size"
         }
       },
       "panel": {
