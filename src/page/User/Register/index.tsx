@@ -233,7 +233,10 @@ export const Register: FC = () => {
                               {
                                 method: "POST",
                                 url: "/auth/verification",
-                                data: { email: getValues("email") },
+                                data: {
+                                  email: getValues("email"),
+                                  usage: "signup",
+                                },
                               },
                               (res) => {
                                 Message.success(

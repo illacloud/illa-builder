@@ -80,5 +80,5 @@ export const removeExpandedKey: CaseReducer<
   PayloadAction<string>
 > = (state, action) => {
   const index = state.expandedKeys.findIndex((key) => key === action.payload)
-  index > -1 && state.expandedKeys.splice(index)
+  index > -1 && state.expandedKeys.splice(index, 1)
 }

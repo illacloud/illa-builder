@@ -32,6 +32,12 @@ export const getWidgetExecutionResultArray = createSelector(
   [getWidgetExecutionResult],
   (widgetExecutionResult) => {
     const widgetExecutionResultArray: Record<string, any>[] = []
-    Object.keys
+    Object.keys(widgetExecutionResult).forEach((key) => {
+      widgetExecutionResultArray.push({
+        ...widgetExecutionResult[key],
+        displayName: key,
+      })
+    })
+    return widgetExecutionResultArray
   },
 )
