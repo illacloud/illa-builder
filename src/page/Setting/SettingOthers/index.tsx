@@ -45,7 +45,6 @@ export const SettingOthers: FC = () => {
               ],
               defaultSelectValue: languageValue,
               onChange: (value: string) => {
-                console.log("value", value)
                 setLanguageValue(value)
               },
             },
