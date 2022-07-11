@@ -13,12 +13,7 @@ import {
 } from "@/widgetLibrary/Chart/interface"
 import { DatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter"
 import { CHART_DATASET_CONFIG } from "@/widgetLibrary/Chart/panelConfig"
-import {
-  applyBaseSelectWrapperStyle,
-  chartDynamicSelectStyle,
-  dynamicSelectHeaderStyle,
-  dynamicSelectStyle,
-} from "@/page/App/components/PanelSetters/SelectSetter/style"
+import { chartDynamicSelectStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { Select } from "@illa-design/select"
 
 const DATA_SOURCE = "dataSource"
@@ -58,7 +53,7 @@ export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
           handleUpdateDsl(attrName, value)
           const _data =
             panelConfig?.[DATA_SOURCE]?.[value] &&
-            initData(panelConfig?.[DATA_SOURCE]?.[value])
+            initData(panelConfig?.[DATA_SOURCE]?.[value], panelConfig?.type)
           handleUpdateDsl("data", panelConfig?.[DATA_SOURCE]?.[value])
           handleUpdateDsl("xAxisValuesOptions", _data?.xAxis)
           handleUpdateDsl("groupByOptions", _data?.groupBy)
@@ -85,7 +80,7 @@ export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
             },
             {
               label: "ScatterPlot",
-              value: "scatterPlot",
+              value: "scatter",
             },
           ]}
           size="small"
@@ -107,18 +102,20 @@ export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
           }}
         />
       </div>
-      <div css={chartDynamicSelectStyle}>
-        <PanelLabel labelName={"Group By"} />
-        <Select
-          allowClear
-          options={panelConfig?.["groupByOptions"]}
-          size="small"
-          value={panelConfig?.["groupBy"]}
-          onChange={(value) => {
-            handleUpdateDsl("groupBy", value)
-          }}
-        />
-      </div>
+      {panelConfig?.["type"] !== "pie" && (
+        <div css={chartDynamicSelectStyle}>
+          <PanelLabel labelName={"Group By"} />
+          <Select
+            allowClear
+            options={panelConfig?.["groupByOptions"]}
+            size="small"
+            value={panelConfig?.["groupBy"]}
+            onChange={(value) => {
+              handleUpdateDsl("groupBy", value)
+            }}
+          />
+        </div>
+      )}
       <DatasetsSetter
         expectedType={VALIDATION_TYPES.STRING}
         widgetDisplayName={widgetDisplayName}

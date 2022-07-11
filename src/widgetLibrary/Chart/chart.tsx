@@ -1,6 +1,6 @@
 import {
-  defaultChartData,
   defaultChartData02,
+  defaultOptionsJson,
   WrappedChartProps,
 } from "./interface"
 import { FC, useEffect, useMemo, useRef, useState } from "react"
@@ -18,19 +18,14 @@ import {
   TimeScale,
   ArcElement,
   LogarithmicScale,
+  ScatterController,
 } from "chart.js"
 import { Line, Bar, Pie, Scatter } from "react-chartjs-2"
-import {
-  initData,
-  wrapData,
-  wrapDataWithGroupBy,
-  wrapPieDataset,
-} from "./utils"
+import { wrapData, wrapDataWithGroupBy, wrapPieDataset } from "./utils"
 import "chartjs-adapter-moment"
 import ChartDataLabels from "chartjs-plugin-datalabels"
 import { formatPropsToChartOptions } from "./formatData"
 
-ChartJS.register(ArcElement, Tooltip, Legend, Title)
 ChartJS.register(
   CategoryScale,
   TimeScale,
@@ -40,6 +35,11 @@ ChartJS.register(
   BarElement,
   LogarithmicScale,
   ChartDataLabels,
+  ScatterController,
+  ArcElement,
+  Tooltip,
+  Legend,
+  Title,
 )
 export const WrappedChart: FC<WrappedChartProps> = (props) => {
   const {
@@ -55,7 +55,11 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
     xAxisValues = "date",
     chartJson,
     configType = "UIForm",
+    layoutConfigType = "UIForm",
+    layoutJson = defaultOptionsJson,
   } = props
+
+  console.log("WrappedChart", type)
 
   const dataMap = useRef<{ [key: string]: any }>()
 
@@ -93,16 +97,28 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
   }, [data, xAxisValues, datasets, type, dataMap.current, groupBy])
 
   const _options: any = useMemo(() => {
-    return formatPropsToChartOptions(
-      type,
-      title,
-      xType,
-      xTitle,
-      yTitle,
-      legendPosition,
-      _tooltips,
-    )
-  }, [type, title, xType, xTitle, yTitle, legendPosition, _tooltips])
+    return layoutConfigType !== "UIForm"
+      ? layoutJson
+      : formatPropsToChartOptions(
+          type,
+          title,
+          xType,
+          xTitle,
+          yTitle,
+          legendPosition,
+          _tooltips,
+        )
+  }, [
+    type,
+    title,
+    xType,
+    xTitle,
+    yTitle,
+    legendPosition,
+    _tooltips,
+    layoutConfigType,
+    layoutJson,
+  ])
 
   const ref = useRef<HTMLCanvasElement>(null)
   useEffect(() => {

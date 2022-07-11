@@ -12,7 +12,6 @@ export const DatasetsSetter: FC<DatasetSetterProps> = (props) => {
     handleUpdateDsl,
     widgetDisplayName,
     childrenSetter,
-    panelConfig,
     value = [],
   } = props
 

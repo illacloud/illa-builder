@@ -20,6 +20,7 @@ export interface DataObject {
 
 export interface WrappedChartProps {
   configType?: ConfigType // todo@aoao
+  layoutConfigType?: ConfigType
   data?: DataObject[]
   title?: string
   type?: ChartType
@@ -30,6 +31,7 @@ export interface WrappedChartProps {
   xType?: string
   yTitle?: string
   chartJson?: string
+  layoutJson?: string
   legendPosition?: LegendPosition
   initConfigByData?: (
     xAxis?: string[],
@@ -108,25 +110,6 @@ export const XAXISTYPE = [
   "Logarithmic",
   "Time",
 ]
-export const LEGEND_POSITION = ["top", "bottom", "right", "left", "hidden"]
-export const CHART_TYPE = [
-  {
-    label: "Bar Chart",
-    value: "bar",
-  },
-  {
-    label: "Line Chart",
-    value: "line",
-  },
-  {
-    label: "Pie Chart",
-    value: "pie",
-  },
-  {
-    label: "Scatterplot",
-    value: "scatter",
-  },
-]
 
 export const COLOR_SCHEME = [
   "#165dff",
@@ -177,3 +160,34 @@ export const defaultChartJsonObj = {
   },
 }
 export const defaultChartJsonData = JSON.stringify(defaultChartJsonObj)
+
+const defaultChartOptionsData = {
+  responsive: true,
+  interaction: {
+    mode: "index" as const,
+    intersect: false,
+  },
+  stacked: false,
+  plugins: {
+    title: {
+      display: true,
+      text: "Chart.js Line Chart - Multi Axis",
+    },
+  },
+  scales: {
+    y: {
+      type: "linear" as const,
+      display: true,
+      position: "left" as const,
+    },
+    y1: {
+      type: "linear" as const,
+      display: true,
+      position: "right" as const,
+      grid: {
+        drawOnChartArea: false,
+      },
+    },
+  },
+}
+export const defaultOptionsJson = JSON.stringify(defaultChartOptionsData)

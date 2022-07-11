@@ -80,7 +80,6 @@ export const ListItem: FC<ListItemProps> = (props) => {
             <div>
               <span css={applyColorIndentStyle(lineColor ?? "")} />
               <span css={labelNameWrapper}>{name || "No label"}</span>
-              <span css={aggregationMethodStyle}>{aggregationMethod}</span>
             </div>
           </div>
         </Trigger>

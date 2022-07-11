@@ -4,7 +4,7 @@ import { values } from "lodash"
 
 export const DEFAULT_TOOLTIP = "%{fullData.name} %{x}: %{y}"
 
-export const initData = (data?: object[]) => {
+export const initData = (data?: object[], type: ChartType = "line") => {
   if (!data || data.length === 0) return {}
   const allAttr: string[] = []
   const _dataSet: DatasetConfig[] = []
@@ -31,7 +31,6 @@ export const initData = (data?: object[]) => {
         aggregationMethod: "NONE",
         hidden: false,
         toolTip: DEFAULT_TOOLTIP,
-        type: "line",
       })
       datasetsIndex++
     }
@@ -69,7 +68,6 @@ export const wrapData = (
     })
   }
 
-  console.log("wrapData", data, p, _addDataset)
   const wrappedDatasets = datasets
     ?.filter((set) => {
       return set.hidden !== true
@@ -141,17 +139,6 @@ export const wrapDataWithGroupBy = (
   })
 
   return wrapData(_data, xAxisValues, _datasets, type, true)
-}
-
-// todo@aoao no Aggregation method in chartJS
-export function aggregationDatasets(
-  data?: DataObject[],
-  type: string = "None",
-) {
-  switch (type) {
-    case "None":
-      return data
-  }
 }
 
 export const wrapPieDataset = (datasets?: DatasetConfig[]) => {

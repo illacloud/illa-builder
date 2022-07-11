@@ -1,10 +1,16 @@
-import { COLOR_SCHEME, LEGEND_POSITION, XAXISTYPE } from "./interface"
+import { COLOR_SCHEME, XAXISTYPE } from "./interface"
 import {
   PanelConfig,
   PanelFieldConfig,
 } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  HorizontalEndIcon,
+  HorizontalStartIcon,
+  MinusIcon,
+  VerticalEndIcon,
+  VerticalStartIcon,
+} from "@illa-design/icon"
 
 export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
   {
@@ -22,13 +28,13 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
     isSetterSingleRow: true,
     expectedType: VALIDATION_TYPES.ARRAY,
   },
-  {
-    id: "dataset-aggregationMethod",
-    labelName: "Aggregation method",
-    attrName: "aggregationMethod",
-    setterType: "BASE_SELECT_SETTER",
-    isSetterSingleRow: true,
-  },
+  // {
+  //   id: "dataset-aggregationMethod",
+  //   labelName: "Aggregation method",
+  //   attrName: "aggregationMethod",
+  //   setterType: "BASE_SELECT_SETTER",
+  //   isSetterSingleRow: true,
+  // },
   {
     id: "dataset-type",
     labelName: "Type",
@@ -132,16 +138,51 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
     groupName: "LAYOUT",
     children: [
       {
+        id: "chart-layout-config-type",
+        attrName: "layoutConfigType",
+        setterType: "RADIO_GROUP_SETTER",
+        options: [
+          {
+            label: "UI Form",
+            value: "UIForm",
+          },
+          {
+            label: "Chart JSON",
+            value: "JSON",
+          },
+        ],
+      },
+
+      {
+        id: "chart-chartJson",
+        labelName: "data",
+        isSetterSingleRow: true,
+        attrName: "layoutJson",
+        setterType: "TEXT_AREA",
+        bindAttrName: ["layoutConfigType", "type"],
+        shown: (value) => {
+          return value["configType"] === "JSON"
+        },
+      },
+      {
         id: "chart-title",
         labelName: "Title",
         attrName: "title", // todo@aoao
         setterType: "INPUT_SETTER",
+        bindAttrName: ["layoutConfigType", "type"],
+        shown: (value) => {
+          return value["configType"] === "JSON"
+        },
       },
       {
         id: "chart-xAxisTitle",
         labelName: "xAxisTitle",
         attrName: "xTitle",
         setterType: "INPUT_SETTER",
+        bindAttrName: ["layoutConfigType", "type"],
+        shown: (value) => {
+          return value["configType"] === "JSON"
+        },
       },
 
       {
@@ -150,10 +191,13 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "xAxisType",
         setterType: "BASE_SELECT_SETTER",
         options: XAXISTYPE,
+        bindAttrName: ["layoutConfigType", "type"],
+        shown: (value) => {
+          return value["configType"] === "JSON"
+        },
       },
       {
         id: "chart-yAxisTitle",
-
         labelName: "yAxisTitle",
         attrName: "yTitle",
         setterType: "INPUT_SETTER",
@@ -161,9 +205,33 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "chart-legend-position",
         labelName: "Legend position",
-        attrName: "type",
+        attrName: "legendPosition",
         setterType: "RADIO_GROUP_SETTER",
-        options: LEGEND_POSITION, // @todo 等晨哥把方位抽出
+        bindAttrName: "type",
+        shown: (value) => {
+          return value !== "pie"
+        },
+        options: [
+          {
+            label: <VerticalStartIcon />,
+            value: "top",
+          },
+          { label: <HorizontalStartIcon />, value: "left" },
+          { label: <HorizontalEndIcon />, value: "right" },
+
+          {
+            label: <VerticalEndIcon />,
+            value: "bottom",
+          },
+          {
+            label: (
+              <span>
+                <MinusIcon />
+              </span>
+            ),
+            value: "hidden",
+          },
+        ],
       },
     ],
   },
