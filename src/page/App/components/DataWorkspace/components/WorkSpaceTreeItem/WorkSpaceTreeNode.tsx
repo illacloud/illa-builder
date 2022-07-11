@@ -89,3 +89,5 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = (props) => {
     )
   }
 }
+
+WorkSpaceTreeNode.displayName = "WorkSpaceTreeNode"
