@@ -7,6 +7,7 @@
   "description": {
     "part1": "这是一个示例。"
   },
+  "dont_need_save": "ILLA会自动保存你的创作.",
   "apps": "项目",
   "allApps": "所有项目",
   "resources": "资源",
