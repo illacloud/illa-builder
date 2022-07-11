@@ -19,6 +19,7 @@ import {
 import {
   BUTTON_PANEL_CONFIG,
   BUTTON_WIDGET_CONFIG,
+  BUTTON_EVENT_HANDLER_CONFIG,
   ButtonWidget,
 } from "@/widgetLibrary/ButtonWidget"
 import {
@@ -119,6 +120,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: ButtonWidget,
     config: BUTTON_WIDGET_CONFIG,
     panelConfig: BUTTON_PANEL_CONFIG,
+    eventHandlerConfig: BUTTON_EVENT_HANDLER_CONFIG,
   },
   SELECT_WIDGET: {
     widget: SelectWidget,

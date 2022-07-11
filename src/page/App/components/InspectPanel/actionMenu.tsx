@@ -23,15 +23,16 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
 
   return (
     <DropList width="184px">
-      <Item
-        key="duplicate"
-        title={t("editor.inspect.header.action_menu.view_documentation")}
-        onClick={() => {
-          //  TODO: wait for redux to find componentType map docs;
-          window.open("https://www.baidu.com")
-          handleCloseMenu()
-        }}
-      />
+      {/*  TODO: aruseito wait document*/}
+      {/*<Item*/}
+      {/*  key="duplicate"*/}
+      {/*  title={t("editor.inspect.header.action_menu.view_documentation")}*/}
+      {/*  onClick={() => {*/}
+      {/*    //  TODO: wait for redux to find componentType map docs;*/}
+      {/*    window.open("https://www.baidu.com")*/}
+      {/*    handleCloseMenu()*/}
+      {/*  }}*/}
+      {/*/>*/}
       <Item
         key="reset"
         title={t("editor.inspect.header.action_menu.reset_state")}

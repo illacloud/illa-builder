@@ -50,11 +50,32 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     return []
   }
 
+  const getOnClickEventScripts = () => {
+    const events = get(realProps, "events")
+    if (events) {
+      return getEventScripts(events, "onClick")
+    }
+    return []
+  }
+
   const handleOnChange = () => {
     getOnChangeEventScripts().forEach((scriptObj) => {
       const eventObj = transformEvents(scriptObj)
       if (!eventObj) return
       const { script, enabled } = eventObj
+      if (enabled || enabled == undefined) {
+        evaluateDynamicString("events", script, globalData)
+        return
+      }
+    })
+  }
+
+  const handleOnClick = () => {
+    getOnClickEventScripts().forEach((scriptObj) => {
+      const eventObj = transformEvents(scriptObj)
+      if (!eventObj) return
+      const { script, enabled } = eventObj
+      console.log("eventObj", eventObj)
       if (enabled || enabled == undefined) {
         evaluateDynamicString("events", script, globalData)
         return
@@ -93,6 +114,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
         handleUpdateGlobalData={handleUpdateGlobalData}
         handleDeleteGlobalData={handleDeleteGlobalData}
         handleOnChange={handleOnChange}
+        handleOnClick={handleOnClick}
         handleUpdateDsl={handleUpdateDsl}
         displayName={displayName}
       />
