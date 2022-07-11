@@ -4,6 +4,8 @@ import "@testing-library/jest-dom"
 
 test("RadioGroup renders correctly", () => {
   const handleUpdateDSL = jest.fn()
+  const handleUpdateGlobal = jest.fn()
+  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedRadioGroup
       manualOptions={[
@@ -12,6 +14,9 @@ test("RadioGroup renders correctly", () => {
       ]}
       value={2}
       handleUpdateDsl={handleUpdateDSL}
+      handleDeleteGlobalData={handleDeleteGlobal}
+      handleUpdateGlobalData={handleUpdateGlobal}
+      displayName="test-radio-group"
     />,
   )
   expect(screen.getByText("1")).toBeInTheDocument()

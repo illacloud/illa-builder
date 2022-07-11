@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react"
 import { Input } from "@illa-design/input"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { WrappedInputProps } from "./interface"
 
@@ -31,7 +30,6 @@ export const WrappedInput: FC<WrappedInputProps> = (props) => {
     hideValidationMessage,
   } = props
 
-  const validateProps: ValidateMessageProps = props
   const [currentValue, setCurrentValue] = useState("")
   const inputRef = useRef<HTMLInputElement>(null)
 

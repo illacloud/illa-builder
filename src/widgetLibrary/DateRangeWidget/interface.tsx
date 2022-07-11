@@ -1,10 +1,12 @@
 import { ReactNode } from "react"
 import { CommonRangeProps } from "@illa-design/date-picker"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateRangeProps
   extends Omit<ValidateMessageProps, "value">,
-    Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {
+    Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme">,
+    BaseWidgetProps {
   startValue: string
   endValue: string
   startPlaceholder?: string

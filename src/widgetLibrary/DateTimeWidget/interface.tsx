@@ -1,12 +1,14 @@
 import { DatePickerProps } from "@illa-design/date-picker"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateTimeProps
   extends ValidateMessageProps,
     Pick<
       DatePickerProps,
       "placeholder" | "disabled" | "readOnly" | "colorScheme"
-    > {
+    >,
+    BaseWidgetProps {
   value?: string
   dateFormat?: string
   timeFormat?: string

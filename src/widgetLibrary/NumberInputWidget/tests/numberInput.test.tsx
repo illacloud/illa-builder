@@ -4,14 +4,15 @@ import "@testing-library/jest-dom"
 
 test("Input Number renders correctly", async () => {
   const handleUpdateDSL = jest.fn()
-
+  const handleUpdateGlobal = jest.fn()
+  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedInputNumber
       placeholder="test-mode"
       handleUpdateDsl={handleUpdateDSL}
-      handleDeleteGlobalData={() => {}}
-      handleUpdateGlobalData={() => {}}
-      displayName=""
+      handleDeleteGlobalData={handleDeleteGlobal}
+      handleUpdateGlobalData={handleUpdateGlobal}
+      displayName="test-number-input"
     />,
   )
   expect(screen.getByPlaceholderText("test-mode")).toBeInTheDocument()
@@ -19,15 +20,16 @@ test("Input Number renders correctly", async () => {
 
 test("Input Number thousandSeparator", async () => {
   const handleUpdateDSL = jest.fn()
-
+  const handleUpdateGlobal = jest.fn()
+  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedInputNumber
       value={11111}
       handleUpdateDsl={handleUpdateDSL}
       openThousandSeparator
-      handleDeleteGlobalData={() => {}}
-      handleUpdateGlobalData={() => {}}
-      displayName=""
+      handleDeleteGlobalData={handleDeleteGlobal}
+      handleUpdateGlobalData={handleUpdateGlobal}
+      displayName="test-number-input"
     />,
   )
   expect(screen.getByDisplayValue("111,11")).toBeInTheDocument()
@@ -35,15 +37,16 @@ test("Input Number thousandSeparator", async () => {
 
 test("Input Number onChange", async () => {
   const handleUpdateDSL = jest.fn()
-
+  const handleUpdateGlobal = jest.fn()
+  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedInputNumber
       placeholder="test-mode"
       handleUpdateDsl={handleUpdateDSL}
       openThousandSeparator
-      handleDeleteGlobalData={() => {}}
-      handleUpdateGlobalData={() => {}}
-      displayName=""
+      handleDeleteGlobalData={handleDeleteGlobal}
+      handleUpdateGlobalData={handleUpdateGlobal}
+      displayName="test-number-input"
     />,
   )
   const input = screen.getByPlaceholderText("test-mode")
@@ -57,15 +60,16 @@ test("Input Number onChange", async () => {
 
 test("Input Number loading", async () => {
   const handleUpdateDSL = jest.fn()
-
+  const handleUpdateGlobal = jest.fn()
+  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedInputNumber
       placeholder="test-mode"
       handleUpdateDsl={handleUpdateDSL}
       loading
-      handleDeleteGlobalData={() => {}}
-      handleUpdateGlobalData={() => {}}
-      displayName=""
+      handleDeleteGlobalData={handleDeleteGlobal}
+      handleUpdateGlobalData={handleUpdateGlobal}
+      displayName="test-number-input"
     />,
   )
   expect(screen.getByTitle("LoadingIcon"))

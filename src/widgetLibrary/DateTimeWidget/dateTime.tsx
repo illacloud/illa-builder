@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useState } from "react"
+import { forwardRef, useCallback, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -22,6 +22,9 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       hideValidationMessage,
       colorScheme,
       handleUpdateDsl,
+      displayName,
+      handleUpdateGlobalData,
+      handleDeleteGlobalData,
     } = props
 
     const [currentValue, setCurrentValue] = useState(value)
@@ -38,6 +41,42 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       },
       [minDate, maxDate],
     )
+
+    useEffect(() => {
+      handleUpdateGlobalData(displayName, {
+        value,
+        dateFormat,
+        placeholder,
+        showClear,
+        required,
+        minDate,
+        disabled,
+        maxDate,
+        readOnly,
+        minuteStep,
+        timeFormat,
+        hideValidationMessage,
+        colorScheme,
+      })
+      return () => {
+        handleDeleteGlobalData(displayName)
+      }
+    }, [
+      displayName,
+      value,
+      dateFormat,
+      placeholder,
+      showClear,
+      required,
+      minDate,
+      disabled,
+      maxDate,
+      readOnly,
+      minuteStep,
+      timeFormat,
+      hideValidationMessage,
+      colorScheme,
+    ])
 
     return (
       <div css={containerStyle}>

@@ -1,11 +1,11 @@
-import { forwardRef, useCallback, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { WrappedDateProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
-export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
+export const WrappedDate: FC<WrappedDateProps> = (props) => {
   const {
     value,
     dateFormat,
@@ -19,6 +19,9 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
     hideValidationMessage,
     colorScheme,
     handleUpdateDsl,
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
   } = props
 
   const [currentValue, setCurrentValue] = useState(value)
@@ -33,6 +36,42 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
     },
     [minDate, maxDate],
   )
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      value,
+      dateFormat,
+      placeholder,
+      showClear,
+      required,
+      minDate,
+      disabled,
+      maxDate,
+      readOnly,
+      hideValidationMessage,
+      colorScheme,
+      handleUpdateDsl,
+      displayName,
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    value,
+    dateFormat,
+    placeholder,
+    showClear,
+    required,
+    minDate,
+    disabled,
+    maxDate,
+    readOnly,
+    hideValidationMessage,
+    colorScheme,
+    handleUpdateDsl,
+    displayName,
+  ])
 
   return (
     <div css={containerStyle}>
@@ -62,7 +101,7 @@ export const WrappedDate = forwardRef<any, WrappedDateProps>((props, ref) => {
       />
     </div>
   )
-})
+}
 
 WrappedDate.displayName = "WrappedDate"
 

@@ -1,12 +1,11 @@
-import { forwardRef, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { WrappedSegmentedControlProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
-export const WrappedSegmentedControl = forwardRef<
-  any,
-  WrappedSegmentedControlProps
->((props, ref) => {
+export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
+  props,
+) => {
   const {
     value,
     disabled,
@@ -18,6 +17,7 @@ export const WrappedSegmentedControl = forwardRef<
     handleUpdateDsl,
     displayName,
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -25,12 +25,30 @@ export const WrappedSegmentedControl = forwardRef<
   }, [optionConfigureMode, manualOptions, mappedOption])
 
   useEffect(() => {
-    if (!displayName) return
-    handleUpdateGlobalData?.(displayName, {
-      ...props,
+    handleUpdateGlobalData(displayName, {
+      value,
+      disabled,
+      direction,
+      colorScheme,
+      optionConfigureMode,
+      manualOptions,
+      mappedOption,
       options: finalOptions,
     })
-  }, [displayName, finalOptions])
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    value,
+    disabled,
+    direction,
+    colorScheme,
+    optionConfigureMode,
+    manualOptions,
+    mappedOption,
+    finalOptions,
+  ])
 
   return (
     <RadioGroup
@@ -45,7 +63,7 @@ export const WrappedSegmentedControl = forwardRef<
       }}
     />
   )
-})
+}
 
 WrappedSegmentedControl.displayName = "WrappedSegmentedControl"
 

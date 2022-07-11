@@ -4,6 +4,8 @@ import "@testing-library/jest-dom"
 
 test("segmentedControl renders correctly", () => {
   const handleUpdateDSL = jest.fn()
+  const handleUpdateGlobal = jest.fn()
+  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedSegmentedControl
       manualOptions={[
@@ -12,6 +14,9 @@ test("segmentedControl renders correctly", () => {
       ]}
       value={2}
       handleUpdateDsl={handleUpdateDSL}
+      handleDeleteGlobalData={handleDeleteGlobal}
+      handleUpdateGlobalData={handleUpdateGlobal}
+      displayName="test-segmentControl"
     />,
   )
   expect(screen.getByText("1")).toBeInTheDocument()
