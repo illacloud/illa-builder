@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState } from "react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import { css, Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
@@ -12,7 +12,8 @@ import "codemirror/addon/display/autorefresh"
 // defineMode
 import "./modes"
 import "./hinter"
-import { TernServer } from "./TernSever"
+import "./lintHelper"
+import { BaseTern, TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
@@ -22,7 +23,11 @@ import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
-import { getExecution } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import {
+  getExecutionError,
+  getExecutionResult,
+} from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
@@ -44,8 +49,8 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   } = props
   const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
   const languageValue = useSelector(getLanguageValue)
-  const { error: executionError, result: executionResult } =
-    useSelector(getExecution)
+  const executionError = useSelector(getExecutionError)
+  const executionResult = useSelector(getExecutionResult)
   const codeTargetRef = useRef<HTMLDivElement>(null)
   const sever = useRef<CodeMirror.TernServer>()
   const [editor, setEditor] = useState<Editor>()
@@ -100,14 +105,25 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   useEffect(() => {
     if (path) {
-      let error = get(executionError, path)
-      let result = get(executionResult, path)
-      if (error?.length) {
-        setError(true)
-        setPreview({
-          state: "error",
-          content: error[0]?.errorMessage,
+      const error = get(executionError, path)
+      const result = get(executionResult, path)
+      if (error) {
+        const evalError = error?.find((item) => {
+          return item.errorType !== "LINT"
         })
+        const lintError = error?.find((item) => {
+          return item.errorType === "LINT"
+        })
+        if (evalError) {
+          setError(true)
+          setPreview({
+            state: "error",
+            content: evalError.errorMessage,
+          })
+        }
+        if (lintError?.errorLine && editor) {
+          lineMarker(editor, lintError.errorLine)
+        }
       } else {
         setError(false)
         setPreview({
@@ -121,6 +137,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     const currentValue = editor?.getValue()
+    clearMarks(editor)
     if (path) {
       latestProps.current.onChange?.(currentValue)
     } else {
@@ -152,7 +169,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
       /* Autocomplete should be triggered only for characters that make up valid variable names */
     }
-    showAutocomplete && handleAutocomplete(editor)
+    showAutocomplete && handleAutocomplete(editor, line)
   }
 
   useEffect(() => {
@@ -162,25 +179,25 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
   }, [value])
 
-  const handleAutocomplete = (cm: CodeMirror.Editor) => {
+  const handleAutocomplete = (cm: CodeMirror.Editor, line: string) => {
     const modeName = cm.getModeAt(cm.getCursor()).name
+    // @ts-ignore: type define error
+    const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
         tables,
         completeSingle: false,
       })
-    } else if (modeName == "javascript") {
+    } else if (modeHelperType == "json") {
       sever.current?.complete(cm)
-      // cm.showHint({
-      //   hint: CodeMirror.hint.javascript,
-      //   completeSingle: false, // 是否立即补全
-      // })
+    } else if (modeName == "javascript") {
+      BaseTern?.complete(cm)
     }
   }
 
   useEffect(() => {
-    sever.current = TernServer(languageValue, globalData)
-  }, [globalData, languageValue])
+    sever.current = TernServer(languageValue, { ...executionResult })
+  }, [executionResult, languageValue])
 
   useEffect(() => {
     if (!editor) {
@@ -200,10 +217,12 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         hintOptions: {
           completeSingle: false,
         },
-        lint: true,
       })
       if (noTab) {
         editor?.setOption("extraKeys", { Tab: false })
+      }
+      if (lineNumbers) {
+        editor?.setOption("gutters", ["CodeMirror-lint-markers"])
       }
       editor.on("change", debounceHandleChange)
       editor.on("keyup", handleKeyUp)

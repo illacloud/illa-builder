@@ -50,7 +50,7 @@ CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
       open: "{{",
       close: "}}",
       mode: CodeMirror.getMode(config, {
-        name: "application/javascript",
+        name: "application/json",
       }),
       delimStyle: "illa-expression",
       innerStyle: "illa-expression",

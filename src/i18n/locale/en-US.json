@@ -523,6 +523,12 @@
     "deploy": {
       "fail": "Deploy fail"
     },
+    "component": {
+      "delete": "Delete",
+      "delete_title": "Are you sure you want to delete {{ displayName}}?",
+      "delete_content": "Delete the {{ displayName }} maybe make some bugs，please confirm.",
+      "cancel": "Cancel"
+    },
     "data_work_space": {
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
