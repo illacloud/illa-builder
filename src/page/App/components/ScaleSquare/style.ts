@@ -179,7 +179,7 @@ export function applyBarPointerStyle(
         margin: auto;
         cursor: ${selected ? "row-resize" : "default"};
         height: 5px;
-        width: 18px;
+        width: 24px;
       `
       break
     case "b":
@@ -190,7 +190,7 @@ export function applyBarPointerStyle(
         cursor: ${selected ? "row-resize" : "default"};
         margin: auto;
         height: 5px;
-        width: 18px;
+        width: 24px;
       `
       break
     case "l":
@@ -201,7 +201,7 @@ export function applyBarPointerStyle(
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 5px;
-        height: 18px;
+        height: 24px;
       `
       break
     case "r":
@@ -212,7 +212,7 @@ export function applyBarPointerStyle(
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 5px;
-        height: 18px;
+        height: 24px;
       `
       break
     default:
