@@ -584,8 +584,8 @@
     "number_input": {
       "name": "Number Input"
     },
-    "segmented_control": {
-      "name": "Segmented control"
+    "radio_button": {
+      "name": "Radio Button"
     },
     "timeline": {
       "name": "Timeline"

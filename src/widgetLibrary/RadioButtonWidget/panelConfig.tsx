@@ -4,8 +4,8 @@ import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOpti
 
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-const baseWidgetName = "segmented-control"
-export const SEGMENTED_CONTROL_PANEL_CONFIG: PanelConfig[] = [
+const baseWidgetName = "radioButton"
+export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-options`,
     groupName: "editor.inspect.setter_group.options",
