@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { get } from "lodash"
 import { Select } from "@illa-design/select"
@@ -18,7 +18,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
 
-  const finalOptions = () => {
+  const finalOptions = useMemo(() => {
     const tmpOptions: { label: string; value: string }[] = []
     Object.keys(widgetDisplayNameMapProps).forEach((key) => {
       if (key !== widgetDisplayName) {
@@ -34,14 +34,28 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
       }
     })
     return tmpOptions
-  }
+  }, [widgetDisplayNameMapProps])
+
+  const finalValue = useMemo(() => {
+    const index = finalOptions.findIndex((option) => {
+      return option.value === value
+    })
+    if (index !== -1) return value
+    return undefined
+  }, [finalOptions, attrName])
+
+  useEffect(() => {
+    if (finalValue === undefined) {
+      handleUpdateDsl(attrName, undefined)
+    }
+  }, [finalValue, attrName])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
-        options={finalOptions()}
+        options={finalOptions}
         size="small"
-        value={value}
+        value={finalValue}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}

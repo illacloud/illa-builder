@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/select"
 import { get } from "lodash"
 import { BaseSelectSetterProps } from "./interface"
@@ -19,30 +19,47 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
 
-  const finalOptions = () => {
-    let tmpOptions: string[] = []
-    const selectedWidgetID = get(
+  const selectedWidgetID = useMemo(() => {
+    return get(
       widgetDisplayNameMapProps,
       `${widgetDisplayName}.${parentAttrName}.widgetID`,
     )
-    const selectedWidgetType = get(
-      widgetDisplayNameMapProps,
-      `${selectedWidgetID}.$widgetType`,
-    )
+  }, [widgetDisplayNameMapProps, widgetDisplayName, parentAttrName])
+  const selectedWidgetType = useMemo(() => {
+    return get(widgetDisplayNameMapProps, `${selectedWidgetID}.$widgetType`)
+  }, [widgetDisplayNameMapProps, selectedWidgetID])
+  const finalOptions = useMemo(() => {
+    let tmpOptions: string[] = []
+
     const eventHandlerConfig =
       widgetBuilder(selectedWidgetType)?.eventHandlerConfig
     if (eventHandlerConfig) {
       tmpOptions = eventHandlerConfig.methods
     }
     return tmpOptions
-  }
+  }, [selectedWidgetID, selectedWidgetType])
+
+  const finalValue = useMemo(() => {
+    const index = finalOptions.findIndex((option) => {
+      return option === value
+    })
+    console.log("index", index)
+    if (index !== -1 && selectedWidgetType !== undefined) return value
+    return undefined
+  }, [finalOptions, value, selectedWidgetType])
+
+  useEffect(() => {
+    if (finalValue === undefined) {
+      handleUpdateDsl(attrName, undefined)
+    }
+  }, [attrName, finalValue])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
-        options={finalOptions()}
+        options={finalOptions}
         size="small"
-        value={value}
+        value={finalValue}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
