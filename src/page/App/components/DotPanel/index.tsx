@@ -364,11 +364,14 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             ctx.fill()
           }
         }
-        ctx.beginPath()
-        ctx.rect(0, 0, canvasWidth * radio, canvasHeight * radio)
-        ctx.closePath()
+        ctx.lineWidth = radio
         ctx.strokeStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
-        ctx.stroke()
+        ctx.strokeRect(
+          radio / 2,
+          radio / 2,
+          canvasWidth * radio - radio,
+          canvasHeight * radio - radio,
+        )
       }
     }
   }, [canvasHeight, canvasWidth, radio])

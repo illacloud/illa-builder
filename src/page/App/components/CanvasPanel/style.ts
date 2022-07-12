@@ -18,5 +18,5 @@ export const previewStyle = css`
   z-index: 1;
   box-shadow: 0 0 6px 0 ${globalColor(`--${illaPrefix}-blackAlpha-06`)};
   bottom: 8px;
-  right: 8px;
+  right: 16px;
 `
