@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
+import { Modal } from "@illa-design/modal"
 import { Api } from "@/api/base"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
@@ -62,10 +63,15 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   }
 
   function updateActiveActionItemId(id: string) {
-    if (
-      isActionDirty &&
-      !confirm(t("editor.action.action_list.message.confirm_switch"))
-    ) {
+    if (isActionDirty) {
+      Modal.confirm({
+        content: t("editor.action.action_list.message.confirm_switch"),
+        onOk: () => {
+          setIsActionDirty(false)
+          setActiveActionItemId(id)
+        },
+      })
+
       return
     }
 
