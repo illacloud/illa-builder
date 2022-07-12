@@ -15,15 +15,18 @@ export interface WrappedSelectProps
       | "showSearch"
       | "inputValue"
       | "colorScheme"
-    >,
-    BaseWidgetProps {
-  optionConfigureMode?: "dynamic" | "static"
+    > {
   showClear?: SelectProps["allowClear"]
   invalid?: boolean
   prefixIcon?: string // TODO: not support yet
   suffixIcon?: string // TODO: not support yet
   prefixText?: string // TODO: not support yet
   suffixText?: string // TODO: not support yet
+  handleUpdateDsl: (value: any) => void
+}
+
+export interface SelectWidgetProps extends WrappedSelectProps, BaseWidgetProps {
+  optionConfigureMode?: "dynamic" | "static"
   manualOptions?: {
     label: string
     value: string | number

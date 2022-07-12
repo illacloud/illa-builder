@@ -1,10 +1,32 @@
 import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
-import { WrappedRadioGroupProps } from "./interface"
+import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
 export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
+  const { value, disabled, options, direction, colorScheme, handleUpdateDsl } =
+    props
+
+  return (
+    <div css={containerStyle}>
+      <RadioGroup
+        value={value}
+        disabled={disabled}
+        options={options}
+        direction={direction}
+        colorScheme={colorScheme}
+        onChange={(value) => {
+          handleUpdateDsl({ value })
+        }}
+      />
+    </div>
+  )
+}
+
+WrappedRadioGroup.displayName = "RadioGroupWidget"
+
+export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   const {
     value,
     disabled,
@@ -22,6 +44,7 @@ export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
   const finalOptions = useMemo(() => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
   }, [optionConfigureMode, manualOptions, mappedOption])
+
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       value,
@@ -44,23 +67,16 @@ export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [displayName, finalOptions])
-  return (
-    <div css={containerStyle}>
-      <RadioGroup
-        value={value}
-        disabled={disabled}
-        options={finalOptions}
-        direction={direction}
-        colorScheme={colorScheme}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
-  )
+  }, [
+    displayName,
+    finalOptions,
+    value,
+    disabled,
+    direction,
+    colorScheme,
+    optionConfigureMode,
+    manualOptions,
+    mappedOption,
+  ])
+  return <WrappedRadioGroup {...props} options={finalOptions} />
 }
-
-WrappedRadioGroup.displayName = "RadioGroupWidget"
-
-export const RadioGroupWidget = WrappedRadioGroup

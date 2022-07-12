@@ -16,3 +16,5 @@ export interface WrappedInputProps
   colorScheme?: InputProps["borderColor"]
   allowClear?: InputProps["allowClear"]
 }
+
+export interface InputWidgetProps extends WrappedInputProps, BaseWidgetProps {}

@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { DateRangePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { invalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
-import { WrappedDateRangeProps } from "./interface"
+import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
@@ -23,9 +23,6 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
     hideValidationMessage,
     colorScheme,
     handleUpdateDsl,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    displayName,
   } = props
 
   const _placeholder = [startPlaceholder ?? "", endPlaceholder ?? ""]
@@ -52,6 +49,56 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
     },
     [minDate, maxDate],
   )
+
+  return (
+    <div css={containerStyle}>
+      <DateRangePicker
+        colorScheme={colorScheme}
+        format={dateFormat}
+        value={dateRangeValue}
+        readOnly={readOnly}
+        disabled={disabled}
+        placeholder={_placeholder}
+        allowClear={showClear}
+        disabledDate={checkRange}
+        // todo @aoao handleUpdateDsl?
+        onClear={() => {
+          handleUpdateDsl({ value: [] })
+        }}
+        onChange={(value) => {
+          handleUpdateDsl({ value })
+        }}
+      />
+      <InvalidMessage
+        customRule={_customValue}
+        hideValidationMessage={hideValidationMessage}
+      />
+    </div>
+  )
+}
+
+WrappedDateRange.displayName = "WrappedDateRange"
+
+export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
+  const {
+    startValue,
+    endValue,
+    dateFormat,
+    startPlaceholder,
+    endPlaceholder,
+    showClear,
+    required,
+    minDate,
+    disabled,
+    maxDate,
+    readOnly,
+    customRule,
+    hideValidationMessage,
+    colorScheme,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    displayName,
+  } = props
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -90,34 +137,5 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
     hideValidationMessage,
     colorScheme,
   ])
-
-  return (
-    <div css={containerStyle}>
-      <DateRangePicker
-        colorScheme={colorScheme}
-        format={dateFormat}
-        value={dateRangeValue}
-        readOnly={readOnly}
-        disabled={disabled}
-        placeholder={_placeholder}
-        allowClear={showClear}
-        disabledDate={checkRange}
-        // todo @aoao handleUpdateDsl?
-        onClear={() => {
-          handleUpdateDsl({ value: [] })
-        }}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
-      />
-      <InvalidMessage
-        customRule={_customValue}
-        hideValidationMessage={hideValidationMessage}
-      />
-    </div>
-  )
+  return <WrappedDateRange {...props} />
 }
-
-WrappedDateRange.displayName = "WrappedDateRange"
-
-export const DateRangeWidget = WrappedDateRange

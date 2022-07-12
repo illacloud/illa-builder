@@ -1,4 +1,4 @@
-import { createContext, ReactNode, FC, useState } from "react"
+import { createContext, ReactNode, FC, useState, useCallback } from "react"
 import { NotificationType, Notification } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { useSelector } from "react-redux"
@@ -70,18 +70,20 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
     builderInfo,
   })
 
-  const handleUpdateGlobalData = (key: string, value: any) => {
+  const handleUpdateGlobalData = useCallback((key: string, value: any) => {
     setGlobalData((prevState) => ({
       ...prevState,
       [key]: value,
     }))
-  }
+  }, [])
 
-  const handleDeleteGlobalData = (key: string) => {
-    const newGlobalData = cloneDeep(globalData)
-    unset(newGlobalData, key)
-    setGlobalData(newGlobalData)
-  }
+  const handleDeleteGlobalData = useCallback((key: string) => {
+    setGlobalData((prevState) => {
+      const newGlobalData = cloneDeep(prevState)
+      unset(newGlobalData, key)
+      return newGlobalData
+    })
+  }, [])
 
   const value = {
     globalData: { ...globalData },

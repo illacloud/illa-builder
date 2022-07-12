@@ -12,8 +12,6 @@ const options = [
 
 test("select renders correctly", () => {
   const handleChange = jest.fn()
-  const handleUpdateGlobal = jest.fn()
-  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedSelect
       required
@@ -21,9 +19,6 @@ test("select renders correctly", () => {
       placeholder="test-WrappedSelect"
       options={options}
       handleUpdateDsl={handleChange}
-      handleDeleteGlobalData={handleDeleteGlobal}
-      handleUpdateGlobalData={handleUpdateGlobal}
-      displayName="test-select"
     />,
   )
   expect(screen.getByDisplayValue("Beijing")).toBeInTheDocument()

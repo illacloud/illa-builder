@@ -3,18 +3,11 @@ import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
 test("Image render", () => {
-  const handleUpdateDSL = jest.fn()
-  const handleUpdateGlobal = jest.fn()
-  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedImage
       height="200px"
       width="200px"
       imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-      handleUpdateDsl={handleUpdateDSL}
-      handleDeleteGlobalData={handleDeleteGlobal}
-      handleUpdateGlobalData={handleUpdateGlobal}
-      displayName="test-image"
     />,
   )
   expect(screen.getByRole("img")).toHaveAttribute(
@@ -24,19 +17,12 @@ test("Image render", () => {
 })
 
 test("Image render with radius", () => {
-  const handleUpdateDSL = jest.fn()
-  const handleUpdateGlobal = jest.fn()
-  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedImage
       height="200px"
       width="200px"
       imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-      handleUpdateDsl={handleUpdateDSL}
       radius="20"
-      handleDeleteGlobalData={handleDeleteGlobal}
-      handleUpdateGlobalData={handleUpdateGlobal}
-      displayName="test-image"
     />,
   )
   expect(screen.getByRole("img")).toHaveAttribute(

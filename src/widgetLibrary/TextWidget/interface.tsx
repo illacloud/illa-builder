@@ -12,8 +12,6 @@ export interface TextProps extends Pick<TooltipWrapperProps, "tooltipText"> {
   backgroundColor?: string // TODO: add colorScheme type
   textColor?: string // TODO: add colorScheme type
   linkColor?: string // TODO: add colorScheme type
-  displayName?: string
-  handleUpdateGlobalData?: (key: string, value: any) => void
-  handleDeleteGlobalData?: (key: string) => void
-  handleUpdateDsl?: (value: any) => void
 }
+
+export interface TextWidgetProps extends TextProps, BaseWidgetProps {}

@@ -10,8 +10,7 @@ export interface WrappedDateProps
     Pick<
       DatePickerProps,
       "value" | "readOnly" | "disabled" | "placeholder" | "colorScheme"
-    >,
-    BaseWidgetProps {
+    > {
   value?: string
   dateFormat?: string
   loading?: boolean
@@ -22,5 +21,7 @@ export interface WrappedDateProps
   afterText?: string // TODO: not support yet
   minDate?: string
   maxDate?: string
-  handleUpdateDsl: (value: Record<string, string>) => void
+  handleUpdateDsl: (value: any) => void
 }
+
+export interface DateWidgetProps extends WrappedDateProps, BaseWidgetProps {}

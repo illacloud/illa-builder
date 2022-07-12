@@ -1,15 +1,35 @@
 import { FC, useEffect } from "react"
 import { Switch } from "@illa-design/switch"
-import { WrappedSwitchProps } from "./interface"
+import { SwitchWidgetProps, WrappedSwitchProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
+  const { value, disabled, colorScheme, handleUpdateDsl, handleOnChange } =
+    props
+
+  return (
+    <div css={containerStyle}>
+      <Switch
+        checked={value}
+        disabled={disabled}
+        colorScheme={colorScheme}
+        onChange={(value) => {
+          handleOnChange()
+          handleUpdateDsl({ value })
+        }}
+      />
+    </div>
+  )
+}
+
+WrappedSwitch.displayName = "SwitchWidget"
+
+export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   const {
     value,
     disabled,
     colorScheme,
     handleUpdateDsl,
-    handleOnChange,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
@@ -34,22 +54,5 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
       handleDeleteGlobalData(displayName)
     }
   }, [displayName, value, disabled, colorScheme])
-
-  return (
-    <div css={containerStyle}>
-      <Switch
-        checked={value}
-        disabled={disabled}
-        colorScheme={colorScheme}
-        onChange={(value) => {
-          handleOnChange()
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
-  )
+  return <WrappedSwitch {...props} />
 }
-
-WrappedSwitch.displayName = "SwitchWidget"
-
-export const SwitchWidget = WrappedSwitch

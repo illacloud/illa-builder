@@ -5,15 +5,10 @@ import "@testing-library/jest-dom"
 test("switch renders correctly", () => {
   const handleUpdateDSL = jest.fn()
   const handleOnChange = jest.fn()
-  const handleUpdateGlobal = jest.fn()
-  const handleDeleteGlobal = jest.fn()
   render(
     <WrappedSwitch
       handleUpdateDsl={handleUpdateDSL}
       handleOnChange={handleOnChange}
-      handleUpdateGlobalData={handleUpdateGlobal}
-      handleDeleteGlobalData={handleDeleteGlobal}
-      displayName="test-switch"
     />,
   )
   expect(screen.getByRole("button")).toBeInTheDocument()

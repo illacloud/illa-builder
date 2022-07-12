@@ -3,12 +3,16 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedSegmentedControlProps
   extends Pick<
-      RadioGroupProps<any>,
-      "value" | "disabled" | "options" | "direction" | "colorScheme"
-    >,
+    RadioGroupProps<any>,
+    "value" | "disabled" | "options" | "direction" | "colorScheme"
+  > {
+  handleUpdateDsl: (value: any) => void
+}
+
+export interface SegmentedControlWidgetProps
+  extends WrappedSegmentedControlProps,
     BaseWidgetProps {
-  optionConfigureMode?: "static" | "dynamic"
-  handleUpdateDsl: (value: Record<string, any>) => void
+  optionConfigureMode?: "dynamic" | "static"
   manualOptions?: {
     label: string
     value: string | number

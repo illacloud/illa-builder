@@ -3,12 +3,17 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedCheckboxGroupProps
   extends Pick<
-      CheckboxGroupProps,
-      "value" | "disabled" | "options" | "direction" | "colorScheme"
-    >,
+    CheckboxGroupProps,
+    "value" | "disabled" | "options" | "direction" | "colorScheme"
+  > {
+  handleUpdateDsl: (value: any) => void
+  handleOnChange?: (value: Record<string, any>) => void
+}
+
+export interface CheckboxGroupWidgetProps
+  extends WrappedCheckboxGroupProps,
     BaseWidgetProps {
   optionConfigureMode?: "dynamic" | "static"
-  handleUpdateDsl: (value: Record<string, any>) => void
   manualOptions?: {
     label: string
     value: string | number
@@ -20,5 +25,4 @@ export interface WrappedCheckboxGroupProps
     values: any[]
     disables: boolean[]
   }
-  handleOnChange?: (value: Record<string, any>) => void
 }

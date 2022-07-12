@@ -5,8 +5,7 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateRangeProps
   extends Omit<ValidateMessageProps, "value">,
-    Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme">,
-    BaseWidgetProps {
+    Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {
   startValue: string
   endValue: string
   startPlaceholder?: string
@@ -20,5 +19,9 @@ export interface WrappedDateRangeProps
   afterText?: string // TODO: not support yet
   minDate?: string
   maxDate?: string
-  handleUpdateDsl: (value: Record<string, string[]>) => void
+  handleUpdateDsl: (value: any) => void
 }
+
+export interface DateWidgetProps
+  extends WrappedDateRangeProps,
+    BaseWidgetProps {}

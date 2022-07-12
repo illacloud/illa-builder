@@ -1,6 +1,9 @@
 import { FC, useEffect, useMemo } from "react"
 import { CheckboxGroup } from "@illa-design/checkbox"
-import { WrappedCheckboxGroupProps } from "./interface"
+import {
+  CheckboxGroupWidgetProps,
+  WrappedCheckboxGroupProps,
+} from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
@@ -10,11 +13,40 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
     disabled,
     direction,
     colorScheme,
+    options,
+    handleUpdateDsl,
+    handleOnChange,
+  } = props
+
+  return (
+    <div css={containerStyle}>
+      <CheckboxGroup
+        value={value}
+        disabled={disabled}
+        options={options}
+        direction={direction}
+        colorScheme={colorScheme}
+        onChange={(value) => {
+          handleOnChange?.({ value })
+          handleUpdateDsl({ value })
+        }}
+      />
+    </div>
+  )
+}
+
+WrappedCheckbox.displayName = "RadioGroupWidget"
+
+export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
+  const {
+    value,
+    disabled,
+    direction,
+    colorScheme,
     optionConfigureMode,
     manualOptions,
     mappedOption,
     handleUpdateDsl,
-    handleOnChange,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
@@ -57,24 +89,5 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
     displayName,
     finalOptions,
   ])
-
-  return (
-    <div css={containerStyle}>
-      <CheckboxGroup
-        value={value}
-        disabled={disabled}
-        options={finalOptions}
-        direction={direction}
-        colorScheme={colorScheme}
-        onChange={(value) => {
-          handleOnChange?.({ value })
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
-  )
+  return <WrappedCheckbox {...props} options={finalOptions} />
 }
-
-WrappedCheckbox.displayName = "RadioGroupWidget"
-
-export const CheckboxWidget = WrappedCheckbox

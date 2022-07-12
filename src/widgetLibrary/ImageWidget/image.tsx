@@ -1,10 +1,27 @@
 import { useMemo, FC, useEffect } from "react"
 import { Image } from "@illa-design/image"
 import { isValidUrlScheme } from "@/utils/typeHelper"
-import { WrappedImageProps } from "./interface"
+import { ImageWidgetProps, WrappedImageProps } from "./interface"
 import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"
 
-export const WrappedImage: FC<WrappedImageProps> = (props, ref) => {
+export const WrappedImage: FC<WrappedImageProps> = (props) => {
+  const { imageSrc, altText, radius } = props
+
+  return (
+    <Image
+      fallbackSrc={imageSrc}
+      alt={altText}
+      radius={radius}
+      height="100%"
+      width="100%"
+      css={ImageWrapperStyle}
+    />
+  )
+}
+
+WrappedImage.displayName = "ImageWidget"
+
+export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const {
     imageSrc,
     altText,
@@ -14,6 +31,20 @@ export const WrappedImage: FC<WrappedImageProps> = (props, ref) => {
     handleUpdateGlobalData,
     displayName,
   } = props
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      imageSrc,
+      altText,
+      radius,
+      setImageUrl: (url: string) => {
+        handleUpdateDsl({ imageSrc: url })
+      },
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [displayName, imageSrc, altText, radius])
 
   const finalSrc = useMemo(() => {
     let finalURL = imageSrc
@@ -32,32 +63,5 @@ export const WrappedImage: FC<WrappedImageProps> = (props, ref) => {
     return radius
   }, [radius])
 
-  useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      imageSrc,
-      altText,
-      radius,
-      setImageUrl: (url: string) => {
-        handleUpdateDsl({ imageSrc: url })
-      },
-    })
-    return () => {
-      handleDeleteGlobalData(displayName)
-    }
-  }, [displayName, imageSrc, altText, radius])
-
-  return (
-    <Image
-      fallbackSrc={finalSrc}
-      alt={altText}
-      radius={finalRadius}
-      height="100%"
-      width="100%"
-      css={ImageWrapperStyle}
-    />
-  )
+  return <WrappedImage {...props} imageSrc={finalSrc} radius={finalRadius} />
 }
-
-WrappedImage.displayName = "ImageWidget"
-
-export const ImageWidget = WrappedImage

@@ -7,8 +7,7 @@ export interface WrappedDateTimeProps
     Pick<
       DatePickerProps,
       "placeholder" | "disabled" | "readOnly" | "colorScheme"
-    >,
-    BaseWidgetProps {
+    > {
   value?: string
   dateFormat?: string
   timeFormat?: string
@@ -18,5 +17,9 @@ export interface WrappedDateTimeProps
   showClear?: DatePickerProps["allowClear"]
   minDate?: string
   maxDate?: string
-  handleUpdateDsl: (value: Record<string, string>) => void
+  handleUpdateDsl: (value: any) => void
 }
+
+export interface DateTimeWidgetProps
+  extends WrappedDateTimeProps,
+    BaseWidgetProps {}

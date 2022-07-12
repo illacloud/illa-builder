@@ -3,7 +3,7 @@ import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
-import { WrappedEditableTextProps } from "./interface"
+import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
 
 export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
@@ -27,59 +27,10 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
     customRule,
     hideValidationMessage,
     allowClear,
-    displayName,
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
   const [focus, setFocus] = useState(false)
-
-  useEffect(() => {
-    handleUpdateGlobalData(displayName, {
-      value,
-      placeholder,
-      disabled,
-      readOnly,
-      prefixIcon,
-      prefixText,
-      suffixIcon,
-      suffixText,
-      showCharacterCount,
-      colorScheme,
-      pattern,
-      regex,
-      minLength,
-      maxLength,
-      required,
-      customRule,
-      hideValidationMessage,
-      allowClear,
-    })
-    return () => {
-      handleDeleteGlobalData(displayName)
-    }
-  }, [
-    displayName,
-    value,
-    placeholder,
-    disabled,
-    readOnly,
-    prefixIcon,
-    prefixText,
-    suffixIcon,
-    suffixText,
-    showCharacterCount,
-    colorScheme,
-    pattern,
-    regex,
-    minLength,
-    maxLength,
-    required,
-    customRule,
-    hideValidationMessage,
-    allowClear,
-  ])
 
   return (
     <div css={containerStyle}>
@@ -133,5 +84,76 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
   )
 }
 
-export const EditableTextWidget = WrappedEditableText
+export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
+  const {
+    value,
+    placeholder,
+    disabled,
+    readOnly,
+    prefixIcon,
+    prefixText,
+    suffixIcon,
+    suffixText,
+    showCharacterCount,
+    colorScheme,
+    pattern,
+    regex,
+    minLength,
+    maxLength,
+    required,
+    customRule,
+    hideValidationMessage,
+    allowClear,
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+  } = props
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      value,
+      placeholder,
+      disabled,
+      readOnly,
+      prefixIcon,
+      prefixText,
+      suffixIcon,
+      suffixText,
+      showCharacterCount,
+      colorScheme,
+      pattern,
+      regex,
+      minLength,
+      maxLength,
+      required,
+      customRule,
+      hideValidationMessage,
+      allowClear,
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    value,
+    placeholder,
+    disabled,
+    readOnly,
+    prefixIcon,
+    prefixText,
+    suffixIcon,
+    suffixText,
+    showCharacterCount,
+    colorScheme,
+    pattern,
+    regex,
+    minLength,
+    maxLength,
+    required,
+    customRule,
+    hideValidationMessage,
+    allowClear,
+  ])
+  return <WrappedEditableText {...props} />
+}
 WrappedEditableText.displayName = "WrappedEditableText"
