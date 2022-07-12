@@ -22,7 +22,7 @@ test("Image render with radius", () => {
       height="200px"
       width="200px"
       imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-      radius="20"
+      radius="20px"
     />,
   )
   expect(screen.getByRole("img")).toHaveAttribute(
