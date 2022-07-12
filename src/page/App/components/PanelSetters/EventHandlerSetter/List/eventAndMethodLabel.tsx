@@ -68,4 +68,4 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   )
 }
 
-EventAndMethodLabel.displayName = "DragIconAndLabel"
+EventAndMethodLabel.displayName = "EventAndMethodLabel"
