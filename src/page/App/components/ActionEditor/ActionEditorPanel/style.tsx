@@ -126,16 +126,12 @@ export const runBtnStyle = css`
 
 export const actionSelectStyle = css`
   font-size: 14px;
-
-  & > div {
-    padding: 0 16px;
-  }
 `
 
 export const triggerSelectStyle = css`
   max-width: 400px;
-  border-radius: 8px !important;
 `
+
 export const resourceSelectContainerStyle = css``
 
 export const resourceSelectStyle = css`

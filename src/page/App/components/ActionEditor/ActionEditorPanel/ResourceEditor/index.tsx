@@ -115,6 +115,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
         <Select
           value={triggerMode}
           colorScheme="techPurple"
+          size="large"
           onChange={(value) => {
             setIsActionDirty?.(true)
             dispatch(
