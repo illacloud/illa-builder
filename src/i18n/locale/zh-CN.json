@@ -346,7 +346,7 @@
             "bearerToken": "Bearer Token"
           },
           "tip": {
-            "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
+            "get_req_auto_run": "(GET 请求) 当参数改变时会自动执行",
             "name": "The name for resource when creating queries in the ILLA.",
             "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
             "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
@@ -387,7 +387,7 @@
       "result": {
         "title": {
           "success": "查询成功",
-          "error": "Query ran fail",
+          "error": "查询失败",
           "table": "表格",
           "json": "JSON",
           "response": "返回结果",

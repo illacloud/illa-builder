@@ -103,6 +103,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         )
 
         setIsActionDirty?.(false)
+
+        // (get req) will run automatically whenever a parameter changes.
+        if (
+          data.actionType === ACTION_TYPE.REST_API &&
+          data.actionTemplate.method === "GET"
+        ) {
+          run()
+        }
       },
       () => {},
       () => {},
