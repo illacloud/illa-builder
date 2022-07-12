@@ -1,4 +1,5 @@
 import store from "@/store"
+import { AxiosResponse, AxiosError } from "axios"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -8,7 +9,14 @@ import {
   getResourcePerformance,
 } from "@/utils/action/performance"
 
-export function executeAction(action: ActionItem, versionId: string) {
+export function executeAction(
+  action: ActionItem,
+  versionId: string,
+  success?: (response: AxiosResponse) => void,
+  failure?: (response: AxiosResponse) => void,
+  crash?: (error: AxiosError) => void,
+  loadingCallback?: (loading: boolean) => void,
+) {
   PrepareQueryPerformance.start(action.actionId)
 
   const url = `${
@@ -37,7 +45,7 @@ export function executeAction(action: ActionItem, versionId: string) {
   PrepareQueryPerformance.end(action.actionId)
   Api.request(
     {
-      url: `/versions/${versionId}/${actionId}/run`,
+      url: `/versions/${versionId}/actions/${actionId}/run`,
       method: "POST",
       data: {
         resourceId,
@@ -77,6 +85,8 @@ export function executeAction(action: ActionItem, versionId: string) {
               PrepareQueryPerformance.measure(action.actionId) ?? undefined,
           },
         }),
+
+        success?.(response),
       )
 
       // TODO: trigger success eventhandler
@@ -100,6 +110,14 @@ export function executeAction(action: ActionItem, versionId: string) {
       )
 
       // TODO: trigger error eventhandler
+
+      failure?.(response)
+    },
+    (error) => {
+      crash?.(error)
+    },
+    (loading) => {
+      loadingCallback?.(loading)
     },
   )
 }
