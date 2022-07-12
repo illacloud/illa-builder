@@ -172,7 +172,10 @@ export const ResetPassword: FC = () => {
                               {
                                 method: "POST",
                                 url: "/auth/verification",
-                                data: { email: getValues("email") },
+                                data: {
+                                  email: getValues("email"),
+                                  usage: "forgetpwd",
+                                },
                               },
                               (res) => {
                                 Message.success(
