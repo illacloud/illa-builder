@@ -1,5 +1,4 @@
 import tern from "tern"
-import "codemirror/addon/tern/worker"
 import "codemirror/addon/tern/tern"
 import "./tern/tern"
 import ecmascript from "tern/defs/ecmascript.json"
