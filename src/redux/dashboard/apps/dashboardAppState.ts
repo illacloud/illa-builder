@@ -7,7 +7,16 @@ export interface DashboardApp {
   appId: string
   appName: string
   currentVersionId: string
-  appActivity?: string
+  updatedAt: string
+  updatedBy: string
+}
+
+export const DashboardAppInitialState: DashboardApp = {
+  updatedAt: "",
+  updatedBy: "",
+  appId: "",
+  appName: "",
+  currentVersionId: "",
 }
 
 export const DashboardAppsInitialState: DashboardAppsState = {

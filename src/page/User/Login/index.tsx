@@ -39,7 +39,7 @@ export const Login: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
   })
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
     Api.request<LoginResult>(
@@ -51,9 +51,10 @@ export const Login: FC = () => {
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
-            userName: res.data.username,
+            username: res.data.username,
             language: res.data.language === "zh-cn" ? "简体中文" : "English",
             userAvatar: "",
+            email: res.data.email,
           }),
         )
         navigate((location.state as LocationState)?.from?.pathname ?? "/", {

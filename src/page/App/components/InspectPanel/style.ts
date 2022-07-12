@@ -53,6 +53,7 @@ export const panelHeaderWrapperStyle = css`
 `
 
 export const panelHeaderIconWrapperStyle = css`
+  margin-left: 16px;
   cursor: pointer;
 `
 

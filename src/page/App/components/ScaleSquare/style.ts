@@ -42,6 +42,11 @@ export function applySquarePointerStyle(
   scaleSquareType: ScaleSquareType,
   pointerPosition: BarPosition,
 ): SerializedStyles {
+  if (scaleSquareType === "production") {
+    return css`
+      visibility: hidden;
+    `
+  }
   let positionStyle: SerializedStyles
   switch (pointerPosition) {
     case "tl":
@@ -121,6 +126,12 @@ export function applyHandlerStyle(
   maxWidth: number,
   state: ScaleSquareType,
 ): SerializedStyles {
+  if (state === "production") {
+    return css`
+      visibility: hidden;
+    `
+  }
+
   return css`
     visibility: ${state === "error" || selected ? "visible" : "hidden"};
     display: flex;
@@ -152,6 +163,12 @@ export function applyBarPointerStyle(
   scaleSquareType: ScaleSquareType,
   barPosition: BarPosition,
 ): SerializedStyles {
+  if (scaleSquareType === "production") {
+    return css`
+      visibility: hidden;
+    `
+  }
+
   let barPositionStyle: SerializedStyles
   switch (barPosition) {
     case "t":
@@ -162,7 +179,7 @@ export function applyBarPointerStyle(
         margin: auto;
         cursor: ${selected ? "row-resize" : "default"};
         height: 5px;
-        width: 18px;
+        width: 24px;
       `
       break
     case "b":
@@ -173,7 +190,7 @@ export function applyBarPointerStyle(
         cursor: ${selected ? "row-resize" : "default"};
         margin: auto;
         height: 5px;
-        width: 18px;
+        width: 24px;
       `
       break
     case "l":
@@ -184,7 +201,7 @@ export function applyBarPointerStyle(
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 5px;
-        height: 18px;
+        height: 24px;
       `
       break
     case "r":
@@ -195,7 +212,7 @@ export function applyBarPointerStyle(
         cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 5px;
-        height: 18px;
+        height: 24px;
       `
       break
     default:
@@ -239,6 +256,14 @@ export function applyBorderStyle(
   selected: boolean,
   scaleSquareState: ScaleSquareType,
 ): SerializedStyles {
+  if (scaleSquareState === "production") {
+    return css`
+      width: calc(100%);
+      height: calc(100%);
+      position: absolute;
+    `
+  }
+
   return css`
     width: calc(100%);
     height: calc(100%);
@@ -248,6 +273,7 @@ export function applyBorderStyle(
     background-color: ${scaleSquareState === "error" && !selected
       ? globalColor(`--${illaPrefix}-red-07`)
       : "transparent"};
+
     &:hover {
       border-color: ${selected
         ? globalColor(`--${illaPrefix}-techPurple-01`)

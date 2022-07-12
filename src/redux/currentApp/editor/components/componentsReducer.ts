@@ -9,12 +9,36 @@ import {
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
+import {
+  ComponentDraggingPayload,
+  ComponentResizePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
 
 export const updateComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentsState>
 > = (state, action) => {
   return action.payload
+}
+
+export const updateComponentDraggingState: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentDraggingPayload>
+> = (state, action) => {
+  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  if (node != null) {
+    node.isDragging = action.payload.isDragging
+  }
+}
+
+export const updateComponentResizeState: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentResizePayload>
+> = (state, action) => {
+  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  if (node != null) {
+    node.isResizing = action.payload.isResizing
+  }
 }
 
 export const copyComponentNodeReducer: CaseReducer<
@@ -53,25 +77,30 @@ export const deleteComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<DeleteComponentNodePayload>
 > = (state, action) => {
-  const { displayName, parentDisplayName } = action.payload
+  const { displayName } = action.payload
   if (state.rootDsl == null) {
     return
   }
   const rootNode = state.rootDsl
-  const parentNode = searchDsl(rootNode, parentDisplayName)
-  if (parentNode == null) {
-    return
-  }
-  const childrenNodes = parentNode.childrenNode
-  if (childrenNodes == null) {
-    return
-  }
-  childrenNodes.splice(
-    childrenNodes.findIndex((value, index, obj) => {
-      return value.displayName === displayName
-    }),
-    1,
-  )
+  displayName.forEach((value, index) => {
+    const searchNode = searchDsl(rootNode, value)
+    if (searchNode != null) {
+      const parentNode = searchDsl(rootNode, searchNode.parentNode)
+      if (parentNode == null) {
+        return
+      }
+      const childrenNodes = parentNode.childrenNode
+      if (childrenNodes == null) {
+        return
+      }
+      childrenNodes.splice(
+        childrenNodes.findIndex((value, index, obj) => {
+          return value.displayName === searchNode.displayName
+        }),
+        1,
+      )
+    }
+  })
 }
 
 export const updateComponentPropsReducer: CaseReducer<

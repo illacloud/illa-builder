@@ -31,6 +31,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
           handleUpdateDsl(attrName, value)
         }}
         mode={"TEXT_JS"}
+        // @ts-ignore todo: weichen
         expectedType={expectedType}
         path={getPath(attrName, widgetDisplayName)}
       />

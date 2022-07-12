@@ -6,6 +6,7 @@ export interface ComponentNode {
   showName: string
   error: boolean
   isDragging: boolean
+  isResizing: boolean
   childrenNode: ComponentNode[]
   type: string
   containerType: ContainerType
@@ -37,8 +38,7 @@ export const ComponentsInitialState: ComponentsState = {
 }
 
 export interface DeleteComponentNodePayload {
-  displayName: string
-  parentDisplayName: string
+  displayName: string[]
 }
 
 export interface UpdateComponentPropsPayload {

@@ -1,4 +1,5 @@
 export interface DragShadow {
+  parentNode: string
   isConflict: boolean
   displayName: string
   renderX: number

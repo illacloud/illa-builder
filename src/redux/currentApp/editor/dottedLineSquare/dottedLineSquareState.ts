@@ -1,4 +1,5 @@
 export interface DottedLineSquare {
+  parentNode: string
   displayName: string
   squareX: number
   squareY: number

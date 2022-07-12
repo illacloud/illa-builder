@@ -1,19 +1,40 @@
 import { FC, ReactNode } from "react"
-import { applyScaleContainerStyle } from "./style"
+import { useTranslation } from "react-i18next"
+import { applyScaleContainerStyle, previewStyle } from "./style"
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { FullScreenIcon } from "@illa-design/icon"
+import { Button } from "@illa-design/button"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
 
+  const { t } = useTranslation()
   const canvasTree = useSelector(getCanvas)
+  const mode = useSelector(getIllaMode)
+  const dispatch = useDispatch()
 
   return (
     <div {...otherProps} css={applyScaleContainerStyle(100)}>
       {applyCanvasTree(canvasTree)}
+      {mode === "edit" && (
+        <Button
+          css={previewStyle}
+          colorScheme="white"
+          variant="fill"
+          leftIcon={<FullScreenIcon />}
+          onClick={() => {
+            dispatch(configActions.updateIllaMode("preview"))
+          }}
+        >
+          {t("preview")}
+        </Button>
+      )}
     </div>
   )
 }
@@ -25,7 +46,6 @@ function applyCanvasTree(
   if (componentNode == null) {
     return null
   }
-  console.log(componentNode)
   switch (componentNode.containerType) {
     case "EDITOR_DOT_PANEL":
       return (

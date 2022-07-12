@@ -68,7 +68,7 @@ export const Setting: FC = () => {
               }}
             >
               <PreIcon css={preIconStyle} />
-              <span css={tabPreTextStyle}>back</span>
+              <span css={tabPreTextStyle}>{t("back")}</span>
             </div>
           </div>
         }
@@ -83,7 +83,7 @@ export const Setting: FC = () => {
               navigate("./account")
               break
             case "password":
-              navigate("./newPassword")
+              navigate("./password")
               break
             case "others":
               navigate("./others")

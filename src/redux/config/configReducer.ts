@@ -1,5 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { ConfigState } from "@/redux/config/configState"
+import { ConfigState, IllaMode } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -10,6 +10,13 @@ export const updateLeftPanel: CaseReducer<
   PayloadAction<boolean>
 > = (state, action) => {
   state.openLeftPanel = action.payload
+}
+
+export const updateIllaMode: CaseReducer<
+  ConfigState,
+  PayloadAction<IllaMode>
+> = (state, action) => {
+  state.mode = action.payload
 }
 
 export const updateRightPanel: CaseReducer<
@@ -80,5 +87,5 @@ export const removeExpandedKey: CaseReducer<
   PayloadAction<string>
 > = (state, action) => {
   const index = state.expandedKeys.findIndex((key) => key === action.payload)
-  index > -1 && state.expandedKeys.splice(index)
+  index > -1 && state.expandedKeys.splice(index, 1)
 }

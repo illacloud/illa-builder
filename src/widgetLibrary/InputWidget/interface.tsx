@@ -13,4 +13,5 @@ export interface WrappedInputProps
   tooltipText?: string
   handleUpdateDsl: (value: Record<string, string>) => void
   colorScheme?: InputProps["borderColor"]
+  allowClear?: InputProps["allowClear"]
 }
