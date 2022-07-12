@@ -1,3 +1,5 @@
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
+
 export type HorizontalAlign = "start" | "center" | "end"
 export type VerticalAlign = "start" | "center" | "end"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
@@ -11,3 +13,5 @@ export interface TextProps extends Pick<TooltipWrapperProps, "tooltipText"> {
   textColor?: string // TODO: add colorScheme type
   linkColor?: string // TODO: add colorScheme type
 }
+
+export interface TextWidgetProps extends TextProps, BaseWidgetProps {}

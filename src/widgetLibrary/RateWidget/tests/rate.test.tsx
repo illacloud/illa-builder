@@ -4,6 +4,7 @@ import "@testing-library/jest-dom"
 
 test("WrappedRate renders correctly", () => {
   const handleUpdateDSL = jest.fn()
+
   render(
     <WrappedRate allowHalf value={2.5} handleUpdateDsl={handleUpdateDSL} />,
   )

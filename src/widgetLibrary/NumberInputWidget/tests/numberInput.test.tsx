@@ -4,7 +4,6 @@ import "@testing-library/jest-dom"
 
 test("Input Number renders correctly", async () => {
   const handleUpdateDSL = jest.fn()
-
   render(
     <WrappedInputNumber
       placeholder="test-mode"
@@ -16,7 +15,6 @@ test("Input Number renders correctly", async () => {
 
 test("Input Number thousandSeparator", async () => {
   const handleUpdateDSL = jest.fn()
-
   render(
     <WrappedInputNumber
       value={11111}
@@ -29,7 +27,6 @@ test("Input Number thousandSeparator", async () => {
 
 test("Input Number onChange", async () => {
   const handleUpdateDSL = jest.fn()
-
   render(
     <WrappedInputNumber
       placeholder="test-mode"
@@ -48,7 +45,6 @@ test("Input Number onChange", async () => {
 
 test("Input Number loading", async () => {
   const handleUpdateDSL = jest.fn()
-
   render(
     <WrappedInputNumber
       placeholder="test-mode"

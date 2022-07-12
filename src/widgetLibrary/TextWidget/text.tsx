@@ -1,7 +1,7 @@
-import { forwardRef } from "react"
+import { FC, useEffect } from "react"
 import { css } from "@emotion/react"
 import MarkdownView, { ShowdownExtension } from "react-showdown"
-import { TextProps } from "./interface"
+import { TextProps, TextWidgetProps } from "./interface"
 import { applyTextContainerStyle, applyTextStyle } from "./style"
 
 const transLink: ShowdownExtension = {
@@ -10,7 +10,7 @@ const transLink: ShowdownExtension = {
   replace: `<a  href='$1' >$1</a>`,
 }
 
-export const Text = forwardRef<any, TextProps>((props, ref) => {
+export const Text: FC<TextProps> = (props) => {
   const {
     value,
     disableMarkdown,
@@ -45,8 +45,55 @@ export const Text = forwardRef<any, TextProps>((props, ref) => {
       )}
     </div>
   )
-})
+}
 
-Text.displayName = "TextWidget"
+Text.displayName = "Text"
 
-export const TextWidget = Text
+export const TextWidget: FC<TextWidgetProps> = (props) => {
+  const {
+    value,
+    disableMarkdown,
+    horizontalAlign,
+    verticalAlign,
+    backgroundColor,
+    textColor,
+    linkColor,
+    displayName,
+    handleUpdateDsl,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+  } = props
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      value,
+      disableMarkdown,
+      horizontalAlign,
+      verticalAlign,
+      backgroundColor,
+      textColor,
+      linkColor,
+      setValue: (value: string) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: undefined })
+      },
+    })
+
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    value,
+    disableMarkdown,
+    horizontalAlign,
+    verticalAlign,
+    backgroundColor,
+    textColor,
+    linkColor,
+  ])
+  return <Text {...props} />
+}
+TextWidget.displayName = "TextWidget"

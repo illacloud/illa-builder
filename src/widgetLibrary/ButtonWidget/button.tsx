@@ -1,69 +1,87 @@
-import { forwardRef, useImperativeHandle, useMemo } from "react"
+import { FC, useEffect } from "react"
 import { Button } from "@illa-design/button"
-import { WrappedButtonProps } from "./interface"
+import { ButtonWidgetProps, WrappedButtonProps } from "./interface"
 import { applyButtonLayoutStyle } from "./style"
 
-export const WrappedButton = forwardRef<any, WrappedButtonProps>(
-  (props, ref) => {
-    // TODO:
-    useImperativeHandle(ref, () => ({}))
-    const {
+export const WrappedButton: FC<WrappedButtonProps> = (props) => {
+  const {
+    text,
+    variant,
+    leftIcon,
+    rightIcon,
+    disabled,
+    borderRadius,
+    loading,
+    alignment,
+    colorScheme,
+    handleOnClick,
+  } = props
+
+  return (
+    <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
+      <Button
+        disabled={disabled}
+        variant={variant}
+        autoFullVertically
+        autoFullHorizontal={alignment === "fullWidth"}
+        buttonRadius={borderRadius}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        colorScheme={colorScheme}
+        loading={loading}
+        fullWidth={alignment === "fullWidth"}
+        onClick={handleOnClick}
+      >
+        {text}
+      </Button>
+    </div>
+  )
+}
+WrappedButton.displayName = "WrappedButton"
+
+export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
+  const {
+    text,
+    variant,
+    leftIcon,
+    rightIcon,
+    disabled,
+    borderRadius,
+    loading,
+    alignment,
+    colorScheme,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    displayName,
+  } = props
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
       text,
       variant,
       leftIcon,
       rightIcon,
       disabled,
-      submit,
       borderRadius,
       loading,
       alignment,
       colorScheme,
-    } = props
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    text,
+    variant,
+    leftIcon,
+    rightIcon,
+    disabled,
+    borderRadius,
+    loading,
+    alignment,
+    colorScheme,
+  ])
+  return <WrappedButton {...props} />
+}
 
-    // TODOS : P1,wait PM
-
-    // const _textColor = useMemo(() => {
-    //   return (
-    //     textColor ??
-    //     (variant === "outline"
-    //       ? globalColor(`--${illaPrefix}-blue-01`)
-    //       : globalColor(`--${illaPrefix}-white-01`))
-    //   )
-    // }, [variant, textColor])
-    //
-    // const _borderColor = useMemo(() => {
-    //   return (
-    //     borderColor ??
-    //     (variant === "outline"
-    //       ? globalColor(`--${illaPrefix}-blue-01`)
-    //       : undefined)
-    //   )
-    // }, [variant, borderColor])
-
-    return (
-      <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
-        <Button
-          disabled={disabled}
-          variant={variant}
-          autoFullVertically
-          autoFullHorizontal={alignment === "fullWidth"}
-          buttonRadius={borderRadius}
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
-          // borderColor={_borderColor}
-          // backgroundColor={backgroundColor}
-          // textColor={_textColor}
-          colorScheme={colorScheme}
-          loading={loading}
-          fullWidth={alignment === "fullWidth"}
-        >
-          {text}
-        </Button>
-      </div>
-    )
-  },
-)
-
-WrappedButton.displayName = "ButtonWidget"
-
-export const ButtonWidget = WrappedButton
+ButtonWidget.displayName = "ButtonWidget"

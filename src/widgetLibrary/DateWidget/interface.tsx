@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 import { DatePickerProps } from "@illa-design/date-picker"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
@@ -20,5 +21,7 @@ export interface WrappedDateProps
   afterText?: string // TODO: not support yet
   minDate?: string
   maxDate?: string
-  handleUpdateDsl: (value: Record<string, string>) => void
+  handleUpdateDsl: (value: any) => void
 }
+
+export interface DateWidgetProps extends WrappedDateProps, BaseWidgetProps {}

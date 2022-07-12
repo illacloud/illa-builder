@@ -1,13 +1,15 @@
-import { createContext, ReactNode, FC, useState } from "react"
+import { createContext, ReactNode, FC, useState, useCallback } from "react"
 import { NotificationType, Notification } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
+import { cloneDeep, unset } from "lodash"
 
 interface Injected {
   globalData: { [key: string]: any }
   handleUpdateGlobalData: (key: string, value: any) => void
+  handleDeleteGlobalData: (key: string) => void
 }
 
 export const GLOBAL_DATA_CONTEXT = createContext<Injected>({} as Injected)
@@ -68,16 +70,25 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
     builderInfo,
   })
 
-  const handleUpdateGlobalData = (key: string, value: any) => {
+  const handleUpdateGlobalData = useCallback((key: string, value: any) => {
     setGlobalData((prevState) => ({
       ...prevState,
       [key]: value,
     }))
-  }
+  }, [])
+
+  const handleDeleteGlobalData = useCallback((key: string) => {
+    setGlobalData((prevState) => {
+      const newGlobalData = cloneDeep(prevState)
+      unset(newGlobalData, key)
+      return newGlobalData
+    })
+  }, [])
 
   const value = {
     globalData: { ...globalData },
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
   }
 
   return (

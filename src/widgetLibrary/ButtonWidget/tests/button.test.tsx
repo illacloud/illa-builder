@@ -3,7 +3,9 @@ import { WrappedButton } from "../index"
 import "@testing-library/jest-dom"
 
 test("WrappedButton renders correctly", () => {
-  render(<WrappedButton text={"Button"} />)
+  const handleOnClick = jest.fn()
+
+  render(<WrappedButton text={"Button"} handleOnClick={handleOnClick} />)
   expect(screen.getByText("Button")).toBeInTheDocument()
 })
 

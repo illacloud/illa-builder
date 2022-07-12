@@ -1,12 +1,37 @@
-import { forwardRef, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
-import { WrappedSegmentedControlProps } from "./interface"
+import {
+  SegmentedControlWidgetProps,
+  WrappedSegmentedControlProps,
+} from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
-export const WrappedSegmentedControl = forwardRef<
-  any,
-  WrappedSegmentedControlProps
->((props, ref) => {
+export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
+  props,
+) => {
+  const { value, options, disabled, direction, colorScheme, handleUpdateDsl } =
+    props
+
+  return (
+    <RadioGroup
+      type="button"
+      value={value}
+      disabled={disabled}
+      options={options}
+      direction={direction}
+      colorScheme={colorScheme}
+      onChange={(value) => {
+        handleUpdateDsl({ value })
+      }}
+    />
+  )
+}
+
+WrappedSegmentedControl.displayName = "WrappedSegmentedControl"
+
+export const SegmentedControlWidget: FC<SegmentedControlWidgetProps> = (
+  props,
+) => {
   const {
     value,
     disabled,
@@ -18,6 +43,7 @@ export const WrappedSegmentedControl = forwardRef<
     handleUpdateDsl,
     displayName,
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -25,28 +51,38 @@ export const WrappedSegmentedControl = forwardRef<
   }, [optionConfigureMode, manualOptions, mappedOption])
 
   useEffect(() => {
-    if (!displayName) return
-    handleUpdateGlobalData?.(displayName, {
-      ...props,
+    handleUpdateGlobalData(displayName, {
+      value,
+      disabled,
+      direction,
+      colorScheme,
+      optionConfigureMode,
+      manualOptions,
+      mappedOption,
       options: finalOptions,
-    })
-  }, [displayName, finalOptions])
-
-  return (
-    <RadioGroup
-      type="button"
-      value={value}
-      disabled={disabled}
-      options={finalOptions}
-      direction={direction}
-      colorScheme={colorScheme}
-      onChange={(value) => {
+      setValue: (value: any) => {
         handleUpdateDsl({ value })
-      }}
-    />
-  )
-})
-
-WrappedSegmentedControl.displayName = "WrappedSegmentedControl"
-
-export const SegmentedControlWidget = WrappedSegmentedControl
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: undefined })
+      },
+      validate: () => {},
+      clearValidation: () => {},
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    value,
+    disabled,
+    direction,
+    colorScheme,
+    optionConfigureMode,
+    manualOptions,
+    mappedOption,
+    finalOptions,
+  ])
+  return <WrappedSegmentedControl {...props} options={finalOptions} />
+}
+SegmentedControlWidget.displayName = "SegmentedControlWidget"
