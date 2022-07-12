@@ -39,6 +39,7 @@
         "create": "Create Account"
       },
       "description": {
+        "login": "Already have an account? <0>Sign in</0>",
         "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
@@ -521,6 +522,11 @@
     },
     "deploy": {
       "fail": "Deploy fail"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONS & TRANSFORMERS ",
+      "components_title": "COMPONENTS ",
+      "globals_title": "GLOBALS "
     }
   },
   "widget": {
