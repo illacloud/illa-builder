@@ -3,7 +3,7 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   type: "TIMELINE_WIDGET",
-  widgetName: "timeline",
+  widgetName: "widget.timeline.name",
   displayName: "timeline",
   icon: <TimelineWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",

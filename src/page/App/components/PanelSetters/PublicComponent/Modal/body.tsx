@@ -12,7 +12,7 @@ export const ModalBody: FC<BodyProps> = (props) => {
         return renderFieldAndLabel(
           child,
           widgetDisplayName ?? "",
-          true,
+          false,
           attrPath,
         )
       })}

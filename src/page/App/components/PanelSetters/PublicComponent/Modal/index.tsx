@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { modalWrapperStyle } from "./style"
 import { ModalHeader } from "./header"
 import { ModalBody } from "./body"
@@ -11,15 +11,24 @@ export const BaseModal: FC<ModalProps> = (props) => {
     childrenSetter,
     widgetDisplayName,
     attrPath,
+    children,
   } = props
-  return (
-    <div css={modalWrapperStyle}>
-      <ModalHeader title={title} handleCloseModal={handleCloseModal} />
+  const renderBody = useMemo(() => {
+    if (!childrenSetter || !widgetDisplayName || !attrPath) {
+      return children
+    }
+    return (
       <ModalBody
         childrenSetter={childrenSetter}
         widgetDisplayName={widgetDisplayName}
         attrPath={attrPath}
       />
+    )
+  }, [childrenSetter, widgetDisplayName, attrPath, children])
+  return (
+    <div css={modalWrapperStyle}>
+      <ModalHeader title={title} handleCloseModal={handleCloseModal} />
+      {renderBody}
     </div>
   )
 }

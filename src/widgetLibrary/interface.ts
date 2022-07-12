@@ -3,11 +3,17 @@ import { SessionType } from "./componentListBuilder"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
 
+export interface EventHandlerConfig {
+  events: string[]
+  methods: string[]
+}
+
 export interface WidgetConfigs {
   [key: string]: {
     widget: FC<any>
     config: WidgetConfig
     panelConfig: PanelConfig[]
+    eventHandlerConfig?: EventHandlerConfig
   }
 }
 
@@ -18,7 +24,7 @@ export interface DraggableWrapperShape {
 
 export interface BaseWidgetInfo {
   displayName: string
-  widgetName: string
+  widgetName: any
   icon: ReactNode
   type: WidgetType
   sessionType?: SessionType
@@ -38,4 +44,11 @@ export interface EventsInProps {
   script: string
   eventType: string
   enabled?: string
+}
+
+export interface BaseWidgetProps {
+  displayName: string
+  handleUpdateGlobalData: (key: string, value: any) => void
+  handleDeleteGlobalData: (key: string) => void
+  handleUpdateDsl: (value: any) => void
 }

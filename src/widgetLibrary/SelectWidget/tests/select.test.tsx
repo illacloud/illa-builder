@@ -10,7 +10,7 @@ const options = [
   "Wuhan",
 ]
 
-test("Text renders correctly", () => {
+test("select renders correctly", () => {
   const handleChange = jest.fn()
   render(
     <WrappedSelect

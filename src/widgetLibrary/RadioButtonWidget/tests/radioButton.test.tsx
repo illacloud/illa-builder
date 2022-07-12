@@ -1,12 +1,12 @@
-import { WrappedSegmentedControl } from "../index"
+import { WrappedRadioButton } from "../index"
 import { fireEvent, render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
-test("segmentedControl renders correctly", () => {
+test("radioButton renders correctly", () => {
   const handleUpdateDSL = jest.fn()
   render(
-    <WrappedSegmentedControl
-      manualOptions={[
+    <WrappedRadioButton
+      options={[
         { label: "1", value: 1 },
         { label: "2", value: 2 },
       ]}

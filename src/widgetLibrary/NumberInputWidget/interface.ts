@@ -1,4 +1,5 @@
 import { InputNumberProps } from "@illa-design/input-number"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedNumberInputProps
   extends Pick<
@@ -14,7 +15,11 @@ export interface WrappedNumberInputProps
     | "suffix"
   > {
   openThousandSeparator?: boolean
-  handleUpdateDsl: (value: Record<string, number | undefined>) => void
   loading?: boolean
   colorScheme?: InputNumberProps["borderColor"]
+  handleUpdateDsl: (value: any) => void
 }
+
+export interface NumberInputWidgetProps
+  extends WrappedNumberInputProps,
+    BaseWidgetProps {}

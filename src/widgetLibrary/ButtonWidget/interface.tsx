@@ -1,5 +1,5 @@
-import { ButtonProps } from "@illa-design/button/src"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { ButtonProps } from "@illa-design/button"
 
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
@@ -21,4 +21,9 @@ export interface WrappedButtonProps
   submitTargetId?: string
   alignment?: alignmentType
   borderRadius?: string
+  handleOnClick: () => void
+}
+
+export interface ButtonWidgetProps extends WrappedButtonProps, BaseWidgetProps {
+  handleOnclick: () => void
 }

@@ -1,24 +1,24 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import i18n from "@/i18n/config"
+
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "image-basic",
-    groupName: i18n.t("editor.inspect.setter_group.basic"),
+    groupName: "editor.inspect.setter_group.basic",
     children: [
       {
         id: "image-basic-source",
         attrName: "imageSrc",
         expectedType: VALIDATION_TYPES.STRING,
-        labelName: i18n.t("editor.inspect.setter_label.image_source"),
+        labelName: "editor.inspect.setter_label.image_source",
         isSetterSingleRow: true,
         setterType: "INPUT_SETTER",
       },
       {
         id: "image-basic-alt-text",
-        labelName: i18n.t("editor.inspect.setter_label.alt_text"),
-        labelDesc: i18n.t("editor.inspect.setter_label.alt_text_desc"),
+        labelName: "editor.inspect.setter_label.alt_text",
+        labelDesc: "editor.inspect.setter_label.alt_text_desc",
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "altText",
         setterType: "INPUT_SETTER",
@@ -27,7 +27,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   },
   // {
   //   id: "image-Interaction",
-  //   groupName: i18n.t("editor.inspect.setter_group.interaction")
+  //   groupName: "editor.inspect.setter_group.interaction"
   //   children: [
   //     {
   //       id: "image-interaction-event",
@@ -40,11 +40,11 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   // },
   {
     id: "image-adornments",
-    groupName: i18n.t("editor.inspect.setter_group.adornments"),
+    groupName: "editor.inspect.setter_group.adornments",
     children: [
       {
         id: "image-adornments-tooltip",
-        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelName: "editor.inspect.setter_label.tooltip",
         attrName: "tooltipText",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -53,25 +53,25 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "image-layout",
-    groupName: i18n.t("editor.inspect.setter_group.layout"),
+    groupName: "editor.inspect.setter_group.layout",
     children: [
       {
         id: "image-layout-height",
-        labelName: i18n.t("editor.inspect.setter_label.img_height"),
+        labelName: "editor.inspect.setter_label.img_height",
         attrName: "height",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
         id: "image-layout-width",
-        labelName: i18n.t("editor.inspect.setter_label.img_width"),
+        labelName: "editor.inspect.setter_label.img_width",
         attrName: "width",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
         id: "image-layout-hidden",
-        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelName: "editor.inspect.setter_label.hidden",
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -80,19 +80,19 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "image-style",
-    groupName: i18n.t("editor.inspect.setter_group.style"),
+    groupName: "editor.inspect.setter_group.style",
     children: [
       {
         id: "date-style-list",
         setterType: "LIST_SETTER",
         isSetterSingleRow: true,
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: "editor.inspect.setter_label.styles",
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "image-style-radius",
-            labelName: i18n.t("editor.inspect.setter_label.radius"),
+            labelName: "editor.inspect.setter_label.radius",
             setterType: "INPUT_SETTER",
             attrName: "radius",
             defaultValue: "0px",

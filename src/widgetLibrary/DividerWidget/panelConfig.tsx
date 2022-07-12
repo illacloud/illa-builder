@@ -5,24 +5,24 @@ import {
 } from "@illa-design/icon"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import i18n from "@/i18n/config"
+
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "divider-basic",
-    groupName: i18n.t("editor.inspect.setter_group.basic"),
+    groupName: "editor.inspect.setter_group.basic",
     children: [
       {
         id: "divider-basic-text",
-        labelName: i18n.t("editor.inspect.setter_label.text"),
+        labelName: "editor.inspect.setter_label.text",
         attrName: "text",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "divider-basic-text-align",
-        labelName: i18n.t("editor.inspect.setter_label.text_align"),
+        labelName: "editor.inspect.setter_label.text_align",
         attrName: "textAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -44,12 +44,12 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "divider-layout",
-    groupName: i18n.t("editor.inspect.setter_group.label"),
+    groupName: "editor.inspect.setter_group.label",
     children: [
       {
         id: "divider-layout-hidden",
         setterType: "INPUT_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelName: "editor.inspect.setter_label.hidden",
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
@@ -57,18 +57,18 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "divider-style",
-    groupName: i18n.t("editor.inspect.setter_group.style"),
+    groupName: "editor.inspect.setter_group.style",
     children: [
       {
         id: "divider-style-list",
         setterType: "LIST_SETTER",
         attrName: "styles",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: "editor.inspect.setter_label.styles",
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "divider-style-color",
-            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
+            labelName: "editor.inspect.setter_label.theme_color",
             setterType: "COLOR_SELECT_SETTER",
             attrName: "colorScheme",
             defaultValue: "grayBlue",
@@ -76,7 +76,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "divider-style-text-size",
-            labelName: i18n.t("editor.inspect.setter_label.text_size"),
+            labelName: "editor.inspect.setter_label.text_size",
             setterType: "INPUT_SETTER",
             attrName: "textSize",
             defaultValue: "14px",

@@ -1,8 +1,8 @@
-import { forwardRef, useCallback, useState } from "react"
+import { FC, forwardRef, useCallback, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { WrappedDateTimeProps } from "./interface"
+import { DateTimeWidgetProps, WrappedDateTimeProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
@@ -70,6 +70,64 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
   },
 )
 
-WrappedDateTime.displayName = "WrappedDate"
+WrappedDateTime.displayName = "WrappedDateTime"
 
-export const DateTimeWidget = WrappedDateTime
+export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
+  const {
+    value,
+    dateFormat,
+    placeholder,
+    showClear,
+    required,
+    minDate,
+    disabled,
+    maxDate,
+    readOnly,
+    minuteStep,
+    timeFormat,
+    hideValidationMessage,
+    colorScheme,
+    displayName,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+  } = props
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      value,
+      dateFormat,
+      placeholder,
+      showClear,
+      required,
+      minDate,
+      disabled,
+      maxDate,
+      readOnly,
+      minuteStep,
+      timeFormat,
+      hideValidationMessage,
+      colorScheme,
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    value,
+    dateFormat,
+    placeholder,
+    showClear,
+    required,
+    minDate,
+    disabled,
+    maxDate,
+    readOnly,
+    minuteStep,
+    timeFormat,
+    hideValidationMessage,
+    colorScheme,
+  ])
+  return <WrappedDateTime {...props} />
+}
+
+DateTimeWidget.displayName = "DateTimeWidget"

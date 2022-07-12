@@ -15,18 +15,10 @@ interface Injected {
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
 
 interface Props {
-  propsPanelConfig?: Record<string, any>
-  handleUpdateItemPanelConfig?: (value: Record<string, any>) => void
-  handleUpdateItemDsl?: (value: Record<string, any>) => void
   children?: ReactNode
 }
 
-export const SelectedProvider: FC<Props> = ({
-  propsPanelConfig,
-  children,
-  handleUpdateItemPanelConfig,
-  handleUpdateItemDsl,
-}) => {
+export const SelectedProvider: FC<Props> = ({ children }) => {
   const singleSelectedComponentNode = useSelector(
     getComponentNodeBySingleSelected,
   )

@@ -6,7 +6,7 @@ test("RadioGroup renders correctly", () => {
   const handleUpdateDSL = jest.fn()
   render(
     <WrappedRadioGroup
-      manualOptions={[
+      options={[
         { label: "1", value: 1 },
         { label: "2", value: 2 },
       ]}
