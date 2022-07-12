@@ -56,7 +56,7 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = (props) => {
           </span>
           <label css={itemNameStyle}>{name}&nbsp;</label>
           <label css={itemNameDescStyle}>
-            {`${isObject(value) ? "{}" : "[]"}`}&nbsp;&nbsp;{keyArr.length}
+            {`${isObject(value) ? "{}" : "[]"}`}&nbsp;{keyArr.length}
             {keyArr.length > 1 ? "keys" : "key"}
           </label>
         </div>
