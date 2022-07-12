@@ -20,7 +20,7 @@
   "remove_fail": "删除失败",
   "retry": "重试",
   "btn": {
-    "choose_file": "Choose a file"
+    "choose_file": "选择文件"
   },
   "user": {
     "description": "专属于开发者的开源低代码平台。",
@@ -152,22 +152,22 @@
   "editor": {
     "action": {
       "type": {
-        "database": "Databases",
+        "database": "数据库",
         "api": "Apis",
-        "js_transformer": "Javascript Transformer"
+        "js_transformer": "JavaScript 转换器"
       },
       "action_list": {
         "title": "Action List",
         "placeholder": {
-          "search": "search"
+          "search": "搜索"
         },
         "btn": {
-          "new": "new",
-          "close": "close"
+          "new": "新建",
+          "close": "关闭"
         },
         "menu": {
           "resource_action": "Resource action",
-          "javascript_transformer": "JavaScript transformer"
+          "javascript_transformer": "JavaScript 转换器"
         },
         "contextMenu": {
           "delete": "删除",
@@ -175,7 +175,7 @@
           "rename": "重命名"
         },
         "tips": {
-          "not_found": "Sorry, No Search result",
+          "not_found": "抱歉，没有搜索结果",
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
@@ -209,7 +209,7 @@
             "on_change": "自动触发"
           },
           "resource": {
-            "new": "新家资源",
+            "new": "添加资源",
             "rest_query": "RESTQuery(restapi)"
           }
         },
@@ -228,21 +228,21 @@
           }
         },
         "label": {
-          "resource": "Resource",
+          "resource": "资源",
           "transformer": "转换器",
           "success": "成功",
           "failure": "失败",
-          "event_handler": "Event Handler"
+          "event_handler": "事件处理器"
         },
         "tips": {
-          "transformer": "Enable transformers to transform the result of the query to a different format."
+          "transformer": "启用转换器将查询结果转换为不同的格式"
         }
       },
       "form": {
         "required": "这是必填项",
         "title": {
-          "select": "Select Resource Type",
-          "database": "DATABASES",
+          "select": "选择资源类型",
+          "database": "数据库",
           "api": "APIS",
           "configure": "配置 {{name}}"
         },
@@ -253,7 +253,7 @@
           "save_changes": "保存修改"
         },
         "validate": {
-          "required": "{name} is required"
+          "required": "请输入{name}"
         }
       },
       "resource": {
@@ -266,10 +266,10 @@
           }
         },
         "js_transformer": {
-          "name": "Transformer"
+          "name": "转换器"
         },
         "label": {
-          "comming_soon": "Comming Soon"
+          "comming_soon": "即将更新"
         },
         "my_sql": {
           "name": "MySQL",
@@ -321,9 +321,9 @@
             "body": "载荷",
             "extra_body_values": "载荷",
             "list_of_cookies_to_forward": "要转发的 cookie 列表",
-            "forward_all_cookies": "转发所有Cookies",
-            "base_url": "基础URL",
-            "authentication": "API认证",
+            "forward_all_cookies": "转发所有 Cookies",
+            "base_url": "基础 URL",
+            "authentication": "API 认证",
             "basic_auth_username": "基础认证用户名",
             "basic_auth_password": "基础认证密码",
             "configure_oauth2": "配置OAuth 2.0",
@@ -384,12 +384,12 @@
       },
       "result": {
         "title": {
-          "success": "Query ran successfully",
+          "success": "查询成功",
           "error": "Query ran fail",
-          "table": "Table",
+          "table": "表格",
           "json": "JSON",
-          "response": "Response",
-          "api_request": "Api Request"
+          "response": "返回结果",
+          "api_request": "API 请求参数"
         }
       }
     },

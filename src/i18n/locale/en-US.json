@@ -154,7 +154,7 @@
       "type": {
         "database": "Databases",
         "api": "Apis",
-        "js_transformer": "Javascript Transformer"
+        "js_transformer": "JavaScript Transformer"
       },
       "action_list": {
         "title": "Action List",
