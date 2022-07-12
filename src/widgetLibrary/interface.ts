@@ -24,7 +24,7 @@ export interface DraggableWrapperShape {
 
 export interface BaseWidgetInfo {
   displayName: string
-  widgetName: string
+  widgetName: any
   icon: ReactNode
   type: WidgetType
   sessionType?: SessionType

@@ -395,7 +395,8 @@
         "data": "Data",
         "container": "Container and form",
         "navigation": "Navigation"
-      }
+      },
+      "empty_tip": "Sorry, No search result"
     },
     "inspect": {
       "tab_title": "Inspect",
@@ -570,6 +571,18 @@
     },
     "editable_text": {
       "name": "Editable Text"
+    },
+    "check_box_group": {
+      "name": "Checkbox Group"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "segmented_control": {
+      "name": "Segmented control"
+    },
+    "timeline": {
+      "name": "Timeline"
     }
   },
   "Setting": "Setting",

@@ -6,6 +6,7 @@ import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { useTranslation } from "react-i18next"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -22,6 +23,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     expectedType,
   } = props
   const Comp = getSetterByType(setterType)
+  const { t } = useTranslation()
 
   const { widgetProps, handleUpdateDsl, widgetDisplayName, widgetType } =
     useContext(SelectedPanelContext)
@@ -40,7 +42,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   const renderLabel = useMemo(() => {
     return !useCustomLayout && labelName ? (
       <PanelLabel
-        labelName={labelName}
+        labelName={t(labelName)}
         labelDesc={labelDesc}
         isInList={isInList}
       />

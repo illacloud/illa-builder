@@ -118,7 +118,6 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     hideValidationMessage,
     colorScheme,
     handleUpdateDsl,
-    displayName,
   ])
 
   return <WrappedDate {...props} />

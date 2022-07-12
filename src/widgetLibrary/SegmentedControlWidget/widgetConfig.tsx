@@ -4,7 +4,7 @@ import { v4 } from "uuid"
 
 export const SEGMENTED_CONTROL_WIDGET_CONFIG: WidgetConfig = {
   type: "SEGMENTED_CONTROL_WIDGET",
-  widgetName: "Segmented control",
+  widgetName: "widget.segmented_control.name",
   displayName: "segmentControl",
   w: 10,
   h: 5,

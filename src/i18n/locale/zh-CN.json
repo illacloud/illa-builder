@@ -384,119 +384,120 @@
       }
     },
     "widget_picker": {
-      "tab_title": "Insert",
-      "search_placeholder": "search",
+      "tab_title": "组件",
+      "search_placeholder": "搜索",
       "sessions": {
-        "commonly": "Commonly components",
-        "inputs": "Inputs",
-        "selects": "Select inputs",
-        "calendar": "Calendar inputs",
-        "presentation": "Presentation",
-        "data": "Data",
-        "container": "Container and form",
+        "commonly": "常用组件",
+        "inputs": "输入类组件",
+        "selects": "选择类组件",
+        "calendar": "日历类组件",
+        "presentation": "展示类组件",
+        "data": "日期类组件",
+        "container": "容器类组件",
         "navigation": "Navigation"
-      }
+      },
+      "empty_tip": "抱歉，没有搜索结果"
     },
     "inspect": {
-      "tab_title": "Inspect",
-      "unselected_tip1": "No components selected.",
-      "unselected_tip2": "Click on a component to select it.",
+      "tab_title": "属性",
+      "unselected_tip1": "没有组件被选中。",
+      "unselected_tip2": "请点击组件以选中。",
       "header": {
         "action_menu": {
           "view_documentation": "View documentation",
-          "reset_state": "Reset state",
-          "delete": "Delete"
+          "reset_state": "重置状态",
+          "delete": "删除"
         }
       },
       "setter_group": {
-        "basic": "BASIC",
-        "label": "LABEL",
-        "adornments": "ADORNMENTS",
-        "interaction": "INTERACTION",
-        "layout": "LAYOUT",
-        "style": "STYLE",
-        "validation": "VALIDATION",
-        "options": "OPTIONS"
+        "basic": "基础",
+        "label": "标签",
+        "adornments": "额外修饰属性",
+        "interaction": "交互",
+        "layout": "布局",
+        "style": "样式",
+        "validation": "验证",
+        "options": "选项"
       },
       "setter_label": {
-        "text": "Text",
-        "type": "Type",
-        "submit_form": "Submit form",
-        "loading": "Loading",
-        "disabled": "Disabled",
-        "tooltip": "Tooltip",
-        "align": "Align",
-        "hidden": "Hidden",
-        "variant": "Variant",
-        "color": "Color",
-        "theme_color": "Theme color",
-        "default_value": "Default value",
-        "format": "Format",
-        "placeholder": "Placeholder",
-        "max_date": "Max date",
-        "min_date": "Min date",
-        "label": "Label",
-        "caption": "Caption",
-        "label_position": "Position",
-        "label_alignment": "Alignment",
-        "label_width": "Width(%)",
-        "read_only": "Read only",
-        "show_clear_button": "Show clear button",
-        "required_field": "Required field",
-        "custom_rule": "Custom rule",
-        "hide_validation_message": "Hide validation message",
-        "start_placeholder": "Start placeholder",
-        "end_placeholder": "End placeholder",
-        "image_source": "Image source",
-        "alt_text": "Alt text",
+        "text": "文本",
+        "type": "类型",
+        "submit_form": "提交表单",
+        "loading": "加载中",
+        "disabled": "禁用",
+        "tooltip": "提示",
+        "align": "对齐",
+        "hidden": "隐藏",
+        "variant": "变体",
+        "color": "颜色",
+        "theme_color": "主题色",
+        "default_value": "默认值",
+        "format": "格式化",
+        "placeholder": "占位符",
+        "max_date": "最大日期",
+        "min_date": "最小日期",
+        "label": "标签",
+        "caption": "纵标题",
+        "label_position": "位置",
+        "label_alignment": "对齐",
+        "label_width": "宽度(%)",
+        "read_only": "只读",
+        "show_clear_button": "展示清除按钮",
+        "required_field": "必需字段",
+        "custom_rule": "自定义规则",
+        "hide_validation_message": "隐藏验证信息",
+        "start_placeholder": "开始日期占位符",
+        "end_placeholder": "结束日期占位符",
+        "image_source": "图片来源",
+        "alt_text": "替换文本",
         "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
-        "img_height": "Height",
-        "img_width": "Width",
-        "radius": "Radius",
-        "show_character_count": "Show character count",
-        "prefix_text": "Prefix text",
-        "suffix_text": "Suffix text",
-        "pattern": "Pattern",
-        "regex": "Regex",
-        "max_length": "Max length",
-        "min_length": "Min Length",
-        "data_sources": "Data sources",
-        "mapped_option": "Mapped Option",
-        "value": "Value",
-        "horizontal_alignment": "Horizontal alignment",
-        "vertical_alignment": "Vertical alignment",
-        "links_color": "Links",
-        "background_color": "Background",
-        "icon": "Icon",
-        "max_count": "Max count",
-        "allow_half": "Allow half",
-        "allow_clear": "Allow clear",
-        "time_format": "Time format",
-        "step_size": "Step size",
-        "hide_value_label": "Hide value label",
-        "styles": "Styles",
-        "trail_color": "Trail color",
-        "stroke_width": "Stroke width",
-        "decimal_place": "Decimal place",
-        "minimum": "Minimum",
-        "maximum": "Maximum",
-        "thousand_separator": "Thousand separator",
-        "items": "Items",
-        "direction": "Direction",
-        "pending": "Pending",
-        "event_handler": "Event handler",
-        "event": "Event",
-        "action": "Action",
-        "trigger_query": "Trigger query",
-        "control_component": "Control component",
-        "run_script": "Run script",
-        "go_to_url": "Go to URL",
-        "show_notification": "Show notification",
-        "set_temporary_state": "Set temporary state",
-        "text_align": "Text align",
-        "text_size": "Text size",
-        "start_date": "Start date",
-        "end_data": "End date"
+        "img_height": "高度",
+        "img_width": "宽度",
+        "radius": "圆角",
+        "show_character_count": "展示字符数量",
+        "prefix_text": "前缀文本",
+        "suffix_text": "后缀文本",
+        "pattern": "模式",
+        "regex": "正则表达式",
+        "max_length": "最大长度",
+        "min_length": "最小长度",
+        "data_sources": "数据源",
+        "mapped_option": "映射选项",
+        "value": "值",
+        "horizontal_alignment": "水平对齐",
+        "vertical_alignment": "垂直对齐",
+        "links_color": "链接色",
+        "background_color": "背景色",
+        "icon": "图标",
+        "max_count": "最大数量",
+        "allow_half": "允许一半",
+        "allow_clear": "允许清除",
+        "time_format": "时间格式化",
+        "step_size": "步长",
+        "hide_value_label": "隐藏值标签",
+        "styles": "样式",
+        "trail_color": "描边颜色",
+        "stroke_width": "描边宽度",
+        "decimal_place": "小数位",
+        "minimum": "最小值",
+        "maximum": "最大值",
+        "thousand_separator": "千位分隔符",
+        "items": "项",
+        "direction": "方向",
+        "pending": "等待",
+        "event_handler": "事件处理器",
+        "event": "事件",
+        "action": "动作",
+        "trigger_query": "触发请求",
+        "control_component": "控制组件",
+        "run_script": "运行脚本",
+        "go_to_url": "跳转链接",
+        "show_notification": "展示通知",
+        "set_temporary_state": "设置临时状态",
+        "text_align": "文本对齐",
+        "text_size": "文本大小",
+        "start_date": "开始日期",
+        "end_data": "结束日期"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -505,13 +506,13 @@
       "setter_content": {
         "option_list": {
           "action_menu": {
-            "delete": "Delete",
-            "duplicate": "Duplicate"
+            "delete": "删除",
+            "duplicate": "复制"
           },
-          "list_no_label": "No label"
+          "list_no_label": "无标签"
         },
         "list_setter": {
-          "reset": "Reset"
+          "reset": "重置"
         }
       }
     },
@@ -525,52 +526,64 @@
   },
   "widget": {
     "text": {
-      "name": "Text",
+      "name": "文本",
       "default_value": "This is a text"
     },
     "button": {
-      "name": "Button",
+      "name": "按钮",
       "default_text": "Button"
     },
     "date": {
-      "name": "Date"
+      "name": "日期选择器"
     },
     "date_range": {
-      "name": "Date range",
+      "name": "日期范围选择器",
       "start_date": "Start date"
     },
     "image": {
-      "name": "Image"
+      "name": "图片"
     },
     "input": {
-      "name": "Input"
+      "name": "输入框"
     },
     "radio_group": {
-      "name": "Radio group"
+      "name": "单选框组"
     },
     "select": {
-      "name": "Select"
+      "name": "选择器"
     },
     "switch": {
-      "name": "Switch"
+      "name": "开关"
     },
     "rate": {
-      "name": "Rate"
+      "name": "评分"
     },
     "date_time": {
-      "name": "Datetime"
+      "name": "日期时间选择器"
     },
     "circle_progress": {
-      "name": "Circle Progress"
+      "name": "环形进度条"
     },
     "bar_progress": {
-      "name": "Bar Progress"
+      "name": "进度条"
     },
     "divider_progress": {
-      "name": "Divider"
+      "name": "分割线"
     },
     "editable_text": {
-      "name": "Editable Text"
+      "name": "可编辑文本"
+    },
+    "check_box_group": {
+      "name": "复选框组"
+    },
+    "number_input": {
+      "name": "数字输入框"
+    },
+    "segmented_control": {
+      "name": "按钮类型单选组"
+    },
+    "timeline": {
+      "name": "时间线"
     }
   },
   "Setting": "设置",

@@ -4,7 +4,7 @@ import i18n from "@/i18n/config"
 
 export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "text",
-  widgetName: i18n.t("widget.text.name"),
+  widgetName: "widget.text.name",
   h: 5,
   w: 10,
   type: "TEXT_WIDGET",
