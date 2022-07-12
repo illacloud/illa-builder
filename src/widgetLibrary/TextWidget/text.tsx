@@ -31,16 +31,16 @@ export const Text: FC<TextProps> = (props) => {
   `
 
   const handleSetValue = (value: string) => {
-    handleUpdateDsl({ value })
+    handleUpdateDsl?.({ value })
   }
 
   const handleClearValue = () => {
-    handleUpdateDsl({ value: undefined })
+    handleUpdateDsl?.({ value: undefined })
   }
 
   useEffect(() => {
     if (!displayName) return
-    handleUpdateGlobalData(displayName, {
+    handleUpdateGlobalData?.(displayName, {
       value,
       disableMarkdown,
       horizontalAlign,
@@ -53,7 +53,7 @@ export const Text: FC<TextProps> = (props) => {
     })
 
     return () => {
-      handleDeleteGlobalData(displayName)
+      handleDeleteGlobalData?.(displayName)
     }
   }, [
     displayName,
