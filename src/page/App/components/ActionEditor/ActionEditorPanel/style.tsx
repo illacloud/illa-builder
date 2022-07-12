@@ -125,7 +125,6 @@ export const runBtnStyle = css`
 `
 
 export const actionSelectStyle = css`
-  height: 32px;
   font-size: 14px;
 
   & > div {

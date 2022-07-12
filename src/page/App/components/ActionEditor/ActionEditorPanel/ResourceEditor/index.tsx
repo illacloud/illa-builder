@@ -60,6 +60,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
         </label>
         <span css={fillingStyle} />
         <Select
+          size="large"
           css={css(actionSelectStyle, resourceSelectStyle)}
           value={resourceId}
           colorScheme="techPurple"
