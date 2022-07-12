@@ -19,11 +19,13 @@ export const PanelHeader: FC<HeaderProps> = (props) => {
 
   return (
     <div css={panelHeaderWrapperStyle}>
-      {/*  TODO: wait for editable component*/}
       <EditableTextWidget
         colorScheme={"techPurple"}
         value={widgetDisplayName}
         handleUpdateDsl={() => {}}
+        handleDeleteGlobalData={() => {}}
+        handleUpdateGlobalData={() => {}}
+        displayName="header-editable"
       />
       <div css={panelHeaderIconWrapperStyle}>
         <Dropdown

@@ -20,11 +20,9 @@ export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = (
   return (
     <div css={headerWrapperStyle}>
       <PanelLabel labelName={labelName} labelDesc={labelDesc} />
-      <div css={fontButtonWrapperStyle}>
+      <div css={fontButtonWrapperStyle} onClick={handleClickNewButton}>
         <AddIcon />
-        <span css={fontButtonStyle} onClick={handleClickNewButton}>
-          New
-        </span>
+        <span css={fontButtonStyle}>New</span>
       </div>
     </div>
   )

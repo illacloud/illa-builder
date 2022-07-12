@@ -30,6 +30,7 @@ export const fontButtonWrapperStyle = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-purple-01`)};
   cursor: pointer;
+  height: 100%;
 `
 
 export const fontButtonStyle = css`
