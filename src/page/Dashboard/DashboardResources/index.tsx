@@ -198,7 +198,7 @@ export const DashboardResources: FC = () => {
               setDashboardGeneratorVisible(true)
             }}
           >
-            {t("create_new")}
+            {t("dashboard.resources.create_resources")}
           </Button>
         </div>
         {resourcesList?.length ? (

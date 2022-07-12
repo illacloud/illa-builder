@@ -10,6 +10,7 @@ export function applyTreeContainerStyle(
 ): SerializedStyles {
   return css`
     margin-bottom: ${showPadding ? "8px" : "0px"};
-    font-size: 0;
+    font-family: "Fira Code", monospace;
+    font-size: ${showPadding ? "8px" : "0px"};
   `
 }

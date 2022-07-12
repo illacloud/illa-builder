@@ -1,7 +1,6 @@
 import { FC, HTMLAttributes, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Scrollbars } from "react-custom-scrollbars"
-import { WorkSpaceItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceItem"
 import {
   getCanvas,
   searchDsl,
@@ -10,16 +9,12 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import {
-  actionListTransformer,
-  widgetListTransformer,
-  globalInfoTransformer,
-} from "./utils"
-import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getWidgetExecutionResultArray } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import {
   getSelectedAction,
   getSelectedComponentsDisplayName,
 } from "@/redux/config/configSelector"
+import { WorkSpaceTree } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -27,24 +22,19 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const { className } = props
   const dispatch = useDispatch()
   const actionList = useSelector(selectAllActionItem)
-  const _actionList = actionListTransformer(actionList)
-  const widgetExecution = useSelector(getWidgetExecutionResult)
-  const widgetList = widgetListTransformer(widgetExecution)
+  const widgetExecutionArray = useSelector(getWidgetExecutionResultArray)
   const userInfo = useSelector(getCurrentUser)
   const builderInfo = useSelector(getBuilderInfo)
   const globalInfoList = [
     {
       ...builderInfo,
       displayName: "builderInfo",
-      treeId: "builderInfo",
     },
     {
       ...userInfo,
       displayName: "currentUser",
-      treeId: userInfo?.userId ?? "currentUser",
     },
   ]
-  const _globalInfoList = globalInfoTransformer(globalInfoList)
 
   const selectedComponents = useSelector(getSelectedComponentsDisplayName)
   const selectedAction = useSelector(getSelectedAction)
@@ -60,28 +50,30 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   )
 
   const handleActionSelect = (selectedKeys: string[]) => {
-    const action = actionList.find((item) => item.actionId === selectedKeys[0])
+    const action = actionList.find(
+      (item) => item.displayName === selectedKeys[0],
+    )
     action && dispatch(configActions.updateSelectedAction(action))
   }
 
   return (
     <div className={className}>
       <Scrollbars autoHide>
-        <WorkSpaceItem
-          title={`ACTIONS & TRANSFORMERS (${_actionList.length})`}
-          dataList={_actionList}
-          selectedKeys={[selectedAction.actionId]}
+        <WorkSpaceTree
+          title={`ACTIONS & TRANSFORMERS (${actionList.length})`}
+          dataList={actionList}
+          selectedKeys={[selectedAction.displayName]}
           handleSelect={handleActionSelect}
         />
-        <WorkSpaceItem
-          title={`COMPONENTS (${widgetList.length})`}
-          dataList={widgetList}
+        <WorkSpaceTree
+          title={`COMPONENTS (${widgetExecutionArray.length})`}
+          dataList={widgetExecutionArray}
           selectedKeys={selectedComponents}
           handleSelect={handleComponentSelect}
         />
-        <WorkSpaceItem
-          title={`GLOBALS (${_globalInfoList.length})`}
-          dataList={_globalInfoList}
+        <WorkSpaceTree
+          title={`GLOBALS (${globalInfoList.length})`}
+          dataList={globalInfoList}
         />
       </Scrollbars>
     </div>

@@ -38,8 +38,7 @@ export const ComponentsInitialState: ComponentsState = {
 }
 
 export interface DeleteComponentNodePayload {
-  displayName: string
-  parentDisplayName: string
+  displayName: string[]
 }
 
 export interface UpdateComponentPropsPayload {

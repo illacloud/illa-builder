@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 import { TabPane, Tabs } from "@illa-design/tabs"
 import { Avatar } from "@illa-design/avatar"
 import { DownIcon } from "@illa-design/icon"
@@ -20,15 +21,18 @@ import {
   settingItemStyle,
   settingListStyle,
 } from "./style"
+import { clearLocalStorage } from "@/utils/storage"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 const SettingTrigger: FC = () => {
   const { t } = useTranslation()
-  let navigate = useNavigate()
+  const navigate = useNavigate()
+  const userInfo = useSelector(getCurrentUser)
   return (
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
         <Avatar size="small" css={userAvatarStyle} />
-        <span css={usernameStyle}>OnlyBoA</span>
+        <span css={usernameStyle}>{userInfo?.username}</span>
       </div>
       <Divider />
       <div css={settingListStyle}>
@@ -43,6 +47,7 @@ const SettingTrigger: FC = () => {
         <div
           css={settingItemStyle}
           onClick={() => {
+            clearLocalStorage()
             navigate("/user/login")
           }}
         >

@@ -1,12 +1,20 @@
+import { ChangeEvent } from "react"
+
 export type contentItemType = {
   type: string
   disabled?: boolean
+  loading?: boolean
   value?: string
-  selectOptions?: string[]
+  selectOptions?: {
+    label: string
+    value: string
+  }[]
   defaultSelectValue?: string
   showError?: boolean
   errorMsg?: string
   onChange?: (value: string) => void
+  onFocus?: () => void
+  onPasswordChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export type paramDataType = {

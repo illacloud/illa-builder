@@ -166,12 +166,15 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           componentNode.displayName,
           (newItem) => {
             dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
-            dispatch(
-              componentsActions.updateComponentPropsReducer({
-                displayName: newItem.displayName,
-                updateSlice: newItem.props ?? {},
-              }),
-            )
+            if (item.x === -1 && item.y === -1) {
+              dispatch(
+                componentsActions.updateComponentPropsReducer({
+                  displayName: newItem.displayName,
+                  updateSlice: newItem.props ?? {},
+                }),
+              )
+            }
+
             dispatch(configActions.updateSelectedComponent([newItem]))
           },
         )
@@ -361,11 +364,14 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             ctx.fill()
           }
         }
-        ctx.beginPath()
-        ctx.rect(0, 0, canvasWidth * radio, canvasHeight * radio)
-        ctx.closePath()
+        ctx.lineWidth = radio
         ctx.strokeStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
-        ctx.stroke()
+        ctx.strokeRect(
+          radio / 2,
+          radio / 2,
+          canvasWidth * radio - radio,
+          canvasHeight * radio - radio,
+        )
       }
     }
   }, [canvasHeight, canvasWidth, radio])
@@ -473,7 +479,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       />
       <div
         ref={componentsTreeRef}
-        css={applyChildrenContainerStyle(10, canvasWidth, canvasHeight)}
+        css={applyChildrenContainerStyle(1, canvasWidth, canvasHeight)}
         onClick={(e) => {
           if (e.target == componentsTreeRef.current && illaMode == "edit") {
             dispatch(configActions.updateSelectedComponent([]))

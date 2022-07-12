@@ -67,9 +67,10 @@ export const Register: FC = () => {
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
-            userName: res.data.username,
+            username: res.data.username,
             language: "English",
             userAvatar: "",
+            email: res.data.email,
           }),
         )
         navigate((location.state as LocationState)?.from?.pathname ?? "/", {
@@ -233,7 +234,10 @@ export const Register: FC = () => {
                               {
                                 method: "POST",
                                 url: "/auth/verification",
-                                data: { email: getValues("email") },
+                                data: {
+                                  email: getValues("email"),
+                                  usage: "signup",
+                                },
                               },
                               (res) => {
                                 Message.success(
