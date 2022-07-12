@@ -2,6 +2,8 @@ import { FC, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
+import dayjs from "dayjs"
+import utc from "dayjs/plugin/utc"
 import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import {
   BugIcon,
@@ -35,6 +37,8 @@ import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
 import { ExitIcon } from "@illa-design/icon"
 
+dayjs.extend(utc)
+
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
@@ -42,6 +46,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const navigate = useNavigate()
 
   const appInfo = useSelector(getAppInfo)
+  console.log("appInfo", appInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
@@ -62,7 +67,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         />
         <section css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
-          <div css={descriptionStyle}>{appInfo?.updatedAt}</div>
+          <div css={descriptionStyle}>
+            {dayjs.utc(appInfo?.updatedAt).format("YYYY-MM-DD HH:mm:ss")}
+          </div>
         </section>
       </div>
       <div css={viewControlStyle}>

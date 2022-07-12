@@ -7,7 +7,7 @@ import utc from "dayjs/plugin/utc"
 import copy from "copy-to-clipboard"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
-import { CloseIcon, MoreIcon } from "@illa-design/icon"
+import { MoreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { Empty } from "@illa-design/empty"
 import { Message } from "@illa-design/message"
@@ -20,7 +20,6 @@ import { DashboardItemMenu } from "@/page/Dashboard/components/DashboardItemMenu
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { modalStyle } from "@/page/Dashboard/components/DashboardItemMenu/style"
-import { dashboardCloseIconStyle } from "@/page/Dashboard/style"
 import {
   appsContainerStyle,
   editButtonStyle,
@@ -275,11 +274,6 @@ export const DashboardApps: FC = () => {
         okButtonProps={{
           colorScheme: "techPurple",
         }}
-        closeElement={
-          <div css={dashboardCloseIconStyle}>
-            <CloseIcon />
-          </div>
-        }
         visible={createNewVisible}
         confirmLoading={createLoading}
         onCancel={() => {
@@ -313,11 +307,6 @@ export const DashboardApps: FC = () => {
           okButtonProps={{
             colorScheme: "techPurple",
           }}
-          closeElement={
-            <div css={dashboardCloseIconStyle}>
-              <CloseIcon />
-            </div>
-          }
           confirmLoading={renameModalLoading}
           onCancel={() => {
             setRenameModalVisible(false)
@@ -352,11 +341,6 @@ export const DashboardApps: FC = () => {
           okButtonProps={{
             colorScheme: "techPurple",
           }}
-          closeElement={
-            <div css={dashboardCloseIconStyle}>
-              <CloseIcon />
-            </div>
-          }
           confirmLoading={duplicateModalLoading}
           onCancel={() => {
             setDuplicateModalVisible(false)
@@ -370,8 +354,6 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_existed"))
               return
             }
-
-            // TODO: @zch unique name
             duplicateRequest()
           }}
         >

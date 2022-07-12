@@ -4,12 +4,10 @@ import { useDispatch } from "react-redux"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Message } from "@illa-design/message"
-import { CloseIcon } from "@illa-design/icon"
 import { Api } from "@/api/base"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
-import { dashboardCloseIconStyle } from "@/page/Dashboard/style"
 import {
   triggerContentContainerCss,
   applyTriggerContentItemStyle,
