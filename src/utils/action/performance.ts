@@ -64,3 +64,35 @@ export class HandleResponsePerformance {
     return handleResponsePerformanceInstance.measure(actionId)
   }
 }
+
+const transformerPerformanceInstance = new ActionPerformance("transformer")
+export class TransformerPerformance {
+  static start(actionId: string) {
+    transformerPerformanceInstance.start(actionId)
+  }
+
+  static end(actionId: string) {
+    transformerPerformanceInstance.end(actionId)
+  }
+
+  static measure(actionId: string): number | void {
+    return transformerPerformanceInstance.measure(actionId)
+  }
+}
+
+const postProcessingPerformanceInstance = new ActionPerformance(
+  "postProcessing",
+)
+export class PostProcessingPerformanceInstance {
+  static start(actionId: string) {
+    postProcessingPerformanceInstance.start(actionId)
+  }
+
+  static end(actionId: string) {
+    postProcessingPerformanceInstance.end(actionId)
+  }
+
+  static measure(actionId: string): number | void {
+    return postProcessingPerformanceInstance.measure(actionId)
+  }
+}
