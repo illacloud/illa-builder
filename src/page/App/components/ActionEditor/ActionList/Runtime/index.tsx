@@ -15,11 +15,32 @@ import {
 } from "./style"
 
 function formatTimeStr(time?: number): string {
-  return time ? `${time.toFixed(2)} ms` : ""
+  if (time === undefined) {
+    return ""
+  }
+
+  if (time < 1000) {
+    return `${time.toFixed(2)} ms`
+  }
+
+  const seconds = time / 1000
+
+  const unit = ["s", "m", "h"]
+  const index = Math.floor(Math.log(seconds) / Math.log(60))
+  const transformTime = (seconds / Math.pow(60, index)).toFixed(2)
+
+  return `${transformTime} ${unit[index]}`
 }
 
 function formatSizeStr(size: number): string {
-  return size ? `${size} B` : ""
+  if (size === undefined) {
+    return ""
+  }
+  const unit = ["B", "KB", "MB", "GB", "TB"]
+  const index = Math.floor(Math.log(size) / Math.log(1000))
+  const transformSize = (size / Math.pow(1000, index)).toFixed(2)
+
+  return `${transformSize} ${unit[index]}`
 }
 
 export const Runtime: FC<RuntimeProps> = (props) => {
@@ -56,7 +77,7 @@ export const Runtime: FC<RuntimeProps> = (props) => {
       closeDelay={0}
       content={
         <div css={runtimeContainerStyle}>
-          {total && (
+          {total === undefined ? null : (
             <>
               <span css={runtimeItemStyle}>
                 {t("editor.action.action_list.runtime.total")}:
@@ -66,21 +87,21 @@ export const Runtime: FC<RuntimeProps> = (props) => {
             </>
           )}
 
-          {prepareQuery && (
+          {prepareQuery === undefined ? null : (
             <span css={runtimeItemStyle}>
               {t("editor.action.action_list.runtime.prepare_query")}:
               <span css={runtimeValueStyle}>{formatTimeStr(prepareQuery)}</span>
             </span>
           )}
 
-          {backend && (
+          {backend === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupStyle)}>
               {t("editor.action.action_list.runtime.backend")}:{" "}
               <span css={runtimeValueStyle}>{formatTimeStr(backend)}</span>
             </span>
           )}
 
-          {executeResource && (
+          {executeResource === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupChildrenStyle)}>
               {t("editor.action.action_list.runtime.execute_resource")}:
               <span css={runtimeValueStyle}>
@@ -89,21 +110,21 @@ export const Runtime: FC<RuntimeProps> = (props) => {
             </span>
           )}
 
-          {transferData && (
+          {transferData === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupChildrenStyle)}>
               {t("editor.action.action_list.runtime.transfer_data")}:
               <span css={runtimeValueStyle}>{formatTimeStr(transferData)}</span>
             </span>
           )}
 
-          {frontend && (
+          {frontend === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupStyle)}>
               {t("editor.action.action_list.runtime.frontend")}:
               <span css={runtimeValueStyle}>{formatTimeStr(frontend)}</span>
             </span>
           )}
 
-          {handleResponse && (
+          {handleResponse === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupChildrenStyle)}>
               {t("editor.action.action_list.runtime.handle_response")}:
               <span css={runtimeValueStyle}>
@@ -112,14 +133,14 @@ export const Runtime: FC<RuntimeProps> = (props) => {
             </span>
           )}
 
-          {transformer && (
+          {transformer === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupChildrenStyle)}>
               {t("editor.action.action_list.runtime.transformer")}:
               <span css={runtimeValueStyle}>{formatTimeStr(transformer)}</span>
             </span>
           )}
 
-          {postProcessing && (
+          {postProcessing === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupChildrenStyle)}>
               {t("editor.action.action_list.runtime.post_processing")}:
               <span css={runtimeValueStyle}>
@@ -128,7 +149,7 @@ export const Runtime: FC<RuntimeProps> = (props) => {
             </span>
           )}
 
-          {responseSize && (
+          {responseSize === undefined ? null : (
             <span css={css(runtimeItemStyle, runtimeGroupStyle)}>
               {t("editor.action.action_list.runtime.response_size")}:
               <span css={runtimeValueStyle}>{formatSizeStr(responseSize)}</span>

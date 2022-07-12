@@ -19,7 +19,6 @@ export const runtimeContainerStyle = css`
   font-size: 14px;
   font-weigth: 500;
   padding: 8px;
-  width: 200px;
 `
 
 export const runtimeItemStyle = css`
