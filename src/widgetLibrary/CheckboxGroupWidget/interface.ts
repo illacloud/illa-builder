@@ -20,4 +20,5 @@ export interface WrappedCheckboxGroupProps
     values: any[]
     disables: boolean[]
   }
+  handleOnChange?: (value: Record<string, any>) => void
 }

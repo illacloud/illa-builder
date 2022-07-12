@@ -17,7 +17,7 @@ export const transformEvents = (event: any) => {
   }
   if (actionType === "widget") {
     const { widgetID, widgetMethod, enabled } = event
-    if (widgetMethod === "setValue") {
+    if (widgetMethod === "setValue" || widgetMethod === "setImageUrl") {
       const { widgetTargetValue } = event
       return {
         script: `{{${widgetID}.${widgetMethod}("${widgetTargetValue}")}}`,

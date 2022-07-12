@@ -1,4 +1,4 @@
-import { useMemo, FC, useImperativeHandle, useEffect } from "react"
+import { useMemo, FC, useEffect } from "react"
 import { Image } from "@illa-design/image"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { WrappedImageProps } from "./interface"
@@ -14,12 +14,6 @@ export const WrappedImage: FC<WrappedImageProps> = (props, ref) => {
     handleUpdateGlobalData,
     displayName,
   } = props
-
-  useImperativeHandle(ref, () => ({
-    setImageUrl: (src: string) => {
-      handleUpdateDsl({ imageSrc: src })
-    },
-  }))
 
   const finalSrc = useMemo(() => {
     let finalURL = imageSrc
@@ -43,6 +37,9 @@ export const WrappedImage: FC<WrappedImageProps> = (props, ref) => {
       imageSrc,
       altText,
       radius,
+      setImageUrl: (url: string) => {
+        handleUpdateDsl({ imageSrc: url })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)

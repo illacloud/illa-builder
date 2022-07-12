@@ -43,6 +43,14 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       mappedOption,
       manualOptions,
       options: finalOptions,
+      setValue: (value: any) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: undefined })
+      },
+      validate: () => {},
+      clearValidation: () => {},
     })
     return () => {
       handleDeleteGlobalData(displayName)

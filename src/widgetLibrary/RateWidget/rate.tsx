@@ -43,6 +43,14 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
       allowHalf,
       hideValidationMessage,
       maxCount,
+      setValue: (value: number) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: 0 })
+      },
+      validate: () => {},
+      clearValidation: () => {},
     })
     return () => {
       handleDeleteGlobalData(displayName)

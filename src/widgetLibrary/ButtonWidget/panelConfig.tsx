@@ -103,6 +103,14 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
             shown: (widgetMethod) => widgetMethod === "setValue",
           },
           {
+            id: "imageUrl",
+            labelName: "Value",
+            setterType: "INPUT_SETTER",
+            attrName: "widgetTargetValue",
+            bindAttrName: "widgetMethod",
+            shown: (widgetMethod) => widgetMethod === "setImageUrl",
+          },
+          {
             id: "disabled",
             labelName: i18n.t("editor.inspect.setter_label.disabled"),
             setterType: "DYNAMIC_SWITCH_SETTER",

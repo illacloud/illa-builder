@@ -34,6 +34,14 @@ export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
       manualOptions,
       mappedOption,
       options: finalOptions,
+      setValue: (value: any) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: undefined })
+      },
+      validate: () => {},
+      clearValidation: () => {},
     })
     return () => {
       handleDeleteGlobalData(displayName)

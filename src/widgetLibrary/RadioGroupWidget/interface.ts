@@ -20,4 +20,5 @@ export interface WrappedRadioGroupProps
     values: any[]
     disables: boolean[]
   }
+  handleOnChange?: (value: Record<string, any>) => void
 }

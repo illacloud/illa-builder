@@ -14,6 +14,7 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
     manualOptions,
     mappedOption,
     handleUpdateDsl,
+    handleOnChange,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
@@ -33,6 +34,14 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
       manualOptions,
       mappedOption,
       options: finalOptions,
+      setValue: (value: any) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: undefined })
+      },
+      validate: () => {},
+      clearValidation: () => {},
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -58,6 +67,7 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
         direction={direction}
         colorScheme={colorScheme}
         onChange={(value) => {
+          handleOnChange?.({ value })
           handleUpdateDsl({ value })
         }}
       />
