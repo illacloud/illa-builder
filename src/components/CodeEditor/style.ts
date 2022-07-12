@@ -25,7 +25,7 @@ export const codemirrorStyle = css`
   .CodeMirror-crosshair {
     cursor: crosshair;
   }
-  
+
   .CodeMirror-lines {
     padding: 7px 0;
   }
