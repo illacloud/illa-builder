@@ -12,6 +12,7 @@ import {
   dynamicSwitchWrapperStyle,
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
+import { useTranslation } from "react-i18next"
 
 export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const {
@@ -24,6 +25,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     widgetDisplayName,
     expectedType,
   } = props
+  const { t } = useTranslation()
 
   const dynamicAttrPath = get(panelConfig, "$dynamicAttrPaths", [])
 
@@ -32,7 +34,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
       <div css={dynamicSwitchWrapperStyle}>
-        <PanelLabel labelName={labelName} labelDesc={labelDesc} />
+        <PanelLabel labelName={t(labelName)} labelDesc={labelDesc} />
         <div css={customAndSwitchWrapperStyle}>
           <div
             css={applyCustomIconStyle(customSelected)}
