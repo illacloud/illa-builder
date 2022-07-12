@@ -18,6 +18,10 @@ import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEdito
 import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
 import { ActionResultErrorIndicator } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResultErrorIndicator"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
+import {
+  HandleResponsePerformance,
+  PrepareQueryPerformance,
+} from "@/utils/action/performance"
 import { ActionEditorPanelProps } from "./interface"
 import {
   containerStyle,
@@ -62,12 +66,12 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       } else {
         // save and run
         save()
-        performance.mark(`${activeActionItem.actionId}_prepareQuery:start`)
+        PrepareQueryPerformance.start(activeActionItem.actionId)
         run()
       }
     } else {
       // run
-      performance.mark(`${activeActionItem.actionId}_prepareQuery:start`)
+      PrepareQueryPerformance.start(activeActionItem.actionId)
       run()
     }
   }
@@ -109,15 +113,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     const { resourceId, actionType, actionTemplate, displayName } =
       activeActionItem
 
-    // init runtime
-    dispatch(
-      actionActions.updateActionItemReducer({
-        ...activeActionItem,
-        runtime: {},
-      }),
-    )
-
-    performance.mark(`${activeActionItem.actionId}_prepareQuery:end`)
+    PrepareQueryPerformance.end(activeActionItem.actionId)
 
     if (actionType === "transformer") {
       // TODO: run transformer
@@ -158,15 +154,20 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         ],
       },
       (response) => {
+        HandleResponsePerformance.start(activeActionItem.actionId)
         // save data to action
+        const {
+          connectStart,
+          connectEnd,
+          requestStart,
+          responseEnd,
+          responseStart,
+          encodedBodySize,
+        } = performance.getEntriesByName(url)[
+          resourceIndex
+        ] as PerformanceResourceTiming
 
-        performance.measure(
-          `${activeActionItem.actionId}_prepareQuery`,
-          `${activeActionItem.actionId}_prepareQuery:start`,
-          `${activeActionItem.actionId}_prepareQuery:end`,
-        )
-
-        console.log(performance.getEntriesByName(url)[resourceIndex])
+        HandleResponsePerformance.end(activeActionItem.actionId)
 
         dispatch(
           actionActions.updateActionItemReducer({
@@ -177,12 +178,16 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             error: false,
             runtime: {
               ...activeActionItem.runtime,
-              responseSize: response.request.responseText.length,
-              executeResource:
-                performance.getEntriesByName(url)[resourceIndex].duration,
-              prepareQuery: performance.getEntriesByName(
-                `${activeActionItem.actionId}_prepareQuery`,
-              )[0].duration,
+              responseSize: encodedBodySize,
+              executeResource: responseStart - requestStart,
+              transferData:
+                connectEnd - connectStart + (responseEnd - responseStart),
+              prepareQuery:
+                PrepareQueryPerformance.measure(activeActionItem.actionId) ??
+                undefined,
+              handleResponse:
+                HandleResponsePerformance.measure(activeActionItem.actionId) ??
+                undefined,
             },
           }),
         )
