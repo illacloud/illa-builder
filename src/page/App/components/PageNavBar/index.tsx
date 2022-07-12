@@ -46,7 +46,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const navigate = useNavigate()
 
   const appInfo = useSelector(getAppInfo)
-  console.log("appInfo", appInfo)
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
