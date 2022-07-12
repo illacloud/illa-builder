@@ -118,7 +118,6 @@ export const ternStyle = css`
   }
 
   .CodeMirror-Tern-tooltip {
-    margin: 0 8px;
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-radius: 8px;
     color: #444;

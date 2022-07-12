@@ -818,7 +818,7 @@ import CodeMirror from "codemirror"
 
   function makeTooltip(x, y, content, cm, className) {
     var node = elt("div", cls + "tooltip" + " " + (className || ""), content)
-    node.style.left = x + "px"
+    node.style.left = x + 8 + "px"
     node.style.top = y + "px"
     var container =
       ((cm.options || {}).hintOptions || {}).container || document.body
@@ -835,7 +835,7 @@ import CodeMirror from "codemirror"
     if (hints && overlapX > 0) {
       node.style.left = 0
       var box = node.getBoundingClientRect()
-      node.style.left = (x = x - hints.offsetWidth - box.width) + "px"
+      node.style.left = (x = x - hints.offsetWidth - box.width - 8) + "px"
       overlapX = box.right - winW
     }
     if (overlapY > 0) {
