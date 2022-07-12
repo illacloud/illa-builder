@@ -71,7 +71,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
             mode="TEXT_JS"
             expectedType="String"
             height="32px"
-            placeholder="key"
+            placeholder={t(
+              "editor.action.resource.rest_api.placeholder.param_key",
+            )}
             value={field.key}
             css={fieldItemKeyStyle}
             onChange={(v) => {
@@ -85,7 +87,9 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
           mode="TEXT_JS"
           expectedType="String"
           height="32px"
-          placeholder="value"
+          placeholder={t(
+            "editor.action.resource.rest_api.placeholder.param_value",
+          )}
           value={field.value}
           css={fieldItemValueStyle}
           onChange={(v) => {

@@ -159,17 +159,13 @@
         "js_transformer": "JavaScript 转换器"
       },
       "action_list": {
-        "title": "Action List",
+        "title": "Action 列表",
         "placeholder": {
           "search": "搜索"
         },
         "btn": {
           "new": "新建",
           "close": "关闭"
-        },
-        "menu": {
-          "resource_action": "Resource action",
-          "javascript_transformer": "JavaScript 转换器"
         },
         "contextMenu": {
           "delete": "删除",
@@ -178,7 +174,7 @@
         },
         "tips": {
           "not_found": "抱歉，没有搜索结果",
-          "empty": "Add a action to begin working with data from a connected resource."
+          "empty": "添加 action 以开始处理连接资源中的数据"
         },
         "message": {
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
@@ -188,20 +184,28 @@
         },
         "action_generator": {
           "selector": {
-            "title": "Select action type"
+            "title": "选择 Action 类型"
+          },
+          "title": {
+            "choose_resource": "资源选择 "
+          },
+          "btns": {
+            "back": "返回",
+            "new_resource": "添加资源",
+            "create_action": "创建 Action"
           }
         },
         "runtime": {
-          "total": "Total",
-          "prepare_query": "Prepare query",
-          "backend": "Backend",
-          "execute_resource": "execute resource",
-          "transfer_data": "transfer data",
-          "frontend": "Frontend",
-          "handle_response": "handle response",
-          "transformer": "transformer",
-          "post_processing": "post processing",
-          "response_size": "Response size"
+          "total": "总用时",
+          "prepare_query": "查询准备",
+          "backend": "后端",
+          "execute_resource": "服务器处理",
+          "transfer_data": "传输数据",
+          "frontend": "前端",
+          "handle_response": "处理返回",
+          "transformer": "转换器",
+          "post_processing": "后处理",
+          "response_size": "响应大小 "
         }
       },
       "panel": {
@@ -211,8 +215,7 @@
             "on_change": "自动触发"
           },
           "resource": {
-            "new": "添加资源",
-            "rest_query": "RESTQuery(restapi)"
+            "new": "添加资源"
           }
         },
         "btn": {
@@ -275,12 +278,15 @@
         },
         "my_sql": {
           "name": "MySQL",
+          "title": {
+            "advanced_option": "高级配置"
+          },
           "label": {
             "name": "名称",
             "hostname_port": "主机/端口",
             "database": "数据库名称",
             "username_password": "用户名/密码",
-            "connect_type": "Connect Type",
+            "connect_type": "连接类型",
             "connect_over_ssh": "通过 SSH 连接",
             "ssh_hostname_port": "SSH 主机名/端口",
             "ssh_credentials": "SSH 凭证",
@@ -292,11 +298,11 @@
             "client_certificate": "客户端证书"
           },
           "tip": {
-            "username_password": "Credentials will be encrypted & stored securely on our servers.",
-            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "username_password": "凭证将被加密并安全存储在我们的服务器上",
+            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
             "connect_over_ssh": "用于连接到专用网络",
-            "ssl_options": "SSL is used when available",
-            "ssh_passphrase": "used if provided"
+            "ssl_options": "可用时使用 SSL",
+            "ssh_passphrase": "如果提供则使用"
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
@@ -343,19 +349,21 @@
             "refresh_token": "Refresh Token",
             "access_token_lifespan": "Access Token lifespan(optiinal)",
             "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
-            "bearerToken": "Bearer Token"
+            "bearerToken": "Bearer 令牌"
           },
           "tip": {
             "get_req_auto_run": "(GET 请求) 当参数改变时会自动执行",
-            "name": "The name for resource when creating queries in the ILLA.",
+            "name": "在 ILLA 中创建 actions 时的资源名称",
             "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
             "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "api": "i.e.\"Internal Admin API\"",
+            "database": "i.e.\"Users DB(readonly)\"",
             "action_url_path_with_base_url": "api/v2/endpoint.json",
             "action_url_path": "http://www.api.com/api/v2/endpoint.json",
-            "base_url": "Use the absolute URL (e.g https://example.com)",
+            "base_url": "请使用绝对 URL (e.g https://example.com)",
             "username": "用户名",
             "password": "密码",
             "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
@@ -372,6 +380,9 @@
               "bearer": "Bearer",
               "oauth2": "OAuth 2.0"
             }
+          },
+          "btns": {
+            "new": "新增"
           }
         },
         "postgres": {

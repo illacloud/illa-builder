@@ -60,7 +60,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
         </label>
         <span css={fillingStyle} />
         <Select
-          size="large"
+          size="medium"
           css={css(actionSelectStyle, resourceSelectStyle)}
           value={resourceId}
           colorScheme="techPurple"
@@ -115,7 +115,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
         <Select
           value={triggerMode}
           colorScheme="techPurple"
-          size="large"
+          size="medium"
           onChange={(value) => {
             setIsActionDirty?.(true)
             dispatch(
