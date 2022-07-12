@@ -96,3 +96,26 @@ export class PostProcessingPerformanceInstance {
     return postProcessingPerformanceInstance.measure(actionId)
   }
 }
+
+// https://developer.mozilla.org/en-US/docs/Web/Performance/Navigation_and_resource_timings
+export function getResourcePerformance(
+  resourceName: string,
+  resourceIndex: number,
+) {
+  const {
+    connectStart,
+    connectEnd,
+    requestStart,
+    responseEnd,
+    responseStart,
+    encodedBodySize,
+  } = performance.getEntriesByName(resourceName)[
+    resourceIndex
+  ] as PerformanceResourceTiming
+
+  return {
+    responseSize: encodedBodySize,
+    executeResource: responseStart - requestStart,
+    transferData: connectEnd - connectStart + (responseEnd - responseStart),
+  }
+}

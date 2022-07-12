@@ -19,8 +19,8 @@ import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPan
 import { ActionResultErrorIndicator } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResultErrorIndicator"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import {
-  HandleResponsePerformance,
   PrepareQueryPerformance,
+  getResourcePerformance,
 } from "@/utils/action/performance"
 import { ActionEditorPanelProps } from "./interface"
 import {
@@ -154,21 +154,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         ],
       },
       (response) => {
-        HandleResponsePerformance.start(activeActionItem.actionId)
         // save data to action
-        const {
-          connectStart,
-          connectEnd,
-          requestStart,
-          responseEnd,
-          responseStart,
-          encodedBodySize,
-        } = performance.getEntriesByName(url)[
-          resourceIndex
-        ] as PerformanceResourceTiming
-
-        HandleResponsePerformance.end(activeActionItem.actionId)
-
         dispatch(
           actionActions.updateActionItemReducer({
             ...activeActionItem,
@@ -178,15 +164,9 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             error: false,
             runtime: {
               ...activeActionItem.runtime,
-              responseSize: encodedBodySize,
-              executeResource: responseStart - requestStart,
-              transferData:
-                connectEnd - connectStart + (responseEnd - responseStart),
+              ...getResourcePerformance(url, resourceIndex),
               prepareQuery:
                 PrepareQueryPerformance.measure(activeActionItem.actionId) ??
-                undefined,
-              handleResponse:
-                HandleResponsePerformance.measure(activeActionItem.actionId) ??
                 undefined,
             },
           }),
@@ -204,6 +184,13 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
             data: response.data,
             rawData: response.data,
             error: true,
+            runtime: {
+              ...activeActionItem.runtime,
+              ...getResourcePerformance(url, resourceIndex),
+              prepareQuery:
+                PrepareQueryPerformance.measure(activeActionItem.actionId) ??
+                undefined,
+            },
           }),
         )
         setResult(response)

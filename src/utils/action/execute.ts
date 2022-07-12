@@ -3,8 +3,19 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
+import {
+  PrepareQueryPerformance,
+  getResourcePerformance,
+} from "@/utils/action/performance"
 
-export function executeAction(action: Partial<ActionItem>, versionId: string) {
+export function executeAction(action: ActionItem, versionId: string) {
+  PrepareQueryPerformance.start(action.actionId)
+
+  const url = `${
+    import.meta.env.VITE_API_BASE_URL
+  }/versions/${versionId}/actions/${action.actionId}/run`
+  const resourceIndex = performance.getEntriesByName(url).length
+
   const { actionId, resourceId, actionType, actionTemplate, displayName } =
     action
 
@@ -23,6 +34,7 @@ export function executeAction(action: Partial<ActionItem>, versionId: string) {
     return
   }
 
+  PrepareQueryPerformance.end(action.actionId)
   Api.request(
     {
       url: `/versions/${versionId}/${actionId}/run`,
@@ -58,6 +70,12 @@ export function executeAction(action: Partial<ActionItem>, versionId: string) {
           data: response.data,
           rawData: response.data,
           error: false,
+          runtime: {
+            ...action.runtime,
+            ...getResourcePerformance(url, resourceIndex),
+            prepareQuery:
+              PrepareQueryPerformance.measure(action.actionId) ?? undefined,
+          },
         }),
       )
 
@@ -72,6 +90,12 @@ export function executeAction(action: Partial<ActionItem>, versionId: string) {
           data: response.data,
           rawData: response.data,
           error: false,
+          runtime: {
+            ...action.runtime,
+            ...getResourcePerformance(url, resourceIndex),
+            prepareQuery:
+              PrepareQueryPerformance.measure(action.actionId) ?? undefined,
+          },
         }),
       )
 
