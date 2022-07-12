@@ -19,10 +19,6 @@ import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEdito
 import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
 import { ActionResultErrorIndicator } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResultErrorIndicator"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
-import {
-  PrepareQueryPerformance,
-  getResourcePerformance,
-} from "@/utils/action/performance"
 import { executeAction } from "@/utils/action/execute"
 import { ActionEditorPanelProps } from "./interface"
 import {
@@ -69,12 +65,10 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
       } else {
         // save and run
         save()
-        PrepareQueryPerformance.start(activeActionItem.actionId)
         run()
       }
     } else {
       // run
-      PrepareQueryPerformance.start(activeActionItem.actionId)
       run()
     }
   }

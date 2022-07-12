@@ -42,7 +42,6 @@ export function executeAction(
     return
   }
 
-  PrepareQueryPerformance.end(action.actionId)
   Api.request(
     {
       url: `/versions/${versionId}/actions/${actionId}/run`,
@@ -65,6 +64,10 @@ export function executeAction(
           }
 
           return JSON.stringify(data)
+        },
+        function (data) {
+          PrepareQueryPerformance.end(action.actionId)
+          return data
         },
       ],
     },
@@ -99,7 +102,7 @@ export function executeAction(
           // TODO: apply Transfomer
           data: response.data,
           rawData: response.data,
-          error: false,
+          error: true,
           runtime: {
             ...action.runtime,
             ...getResourcePerformance(url, resourceIndex),
