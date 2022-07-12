@@ -521,6 +521,12 @@
     },
     "deploy": {
       "fail": "部署失败"
+    },
+    "component": {
+      "delete": "删除",
+      "delete_content": "删除 {{ displayName }} 后无法恢复，可能会导致程序出错，请确认引用后删除",
+      "delete_title": "你想要删除 {{ displayName }} 吗？",
+      "cancel": "取消"
     }
   },
   "widget": {

@@ -33,6 +33,7 @@ import { useTranslation } from "react-i18next"
 import { getExecutionError } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
+import { Modal } from "@illa-design/modal"
 
 const { Item } = DropList
 
@@ -235,12 +236,27 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             key="delete"
             title={t("editor.context_menu.delete")}
             onClick={() => {
-              dispatch(
-                componentsActions.deleteComponentNodeReducer({
+              Modal.confirm({
+                title: t("editor.component.delete_title", {
                   displayName: componentNode.displayName,
-                  parentDisplayName: componentNode.parentNode || "",
                 }),
-              )
+                content: t("editor.component.delete_content", {
+                  displayName: componentNode.displayName,
+                }),
+                cancelText: t("editor.component.cancel"),
+                okText: t("editor.component.delete"),
+                okButtonProps: {
+                  colorScheme: "techPurple",
+                },
+                closable: true,
+                onOk: () => {
+                  dispatch(
+                    componentsActions.deleteComponentNodeReducer({
+                      displayName: [componentNode.displayName],
+                    }),
+                  )
+                },
+              })
             }}
           />
         </DropList>
