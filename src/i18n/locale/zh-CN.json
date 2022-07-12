@@ -591,8 +591,8 @@
     "number_input": {
       "name": "数字输入框"
     },
-    "segmented_control": {
-      "name": "按钮类型单选组"
+    "radio_button": {
+      "name": "按钮单选"
     },
     "timeline": {
       "name": "时间线"

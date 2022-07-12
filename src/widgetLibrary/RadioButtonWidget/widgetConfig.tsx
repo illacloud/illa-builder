@@ -2,10 +2,10 @@ import { RadioButtonWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 
-export const SEGMENTED_CONTROL_WIDGET_CONFIG: WidgetConfig = {
-  type: "SEGMENTED_CONTROL_WIDGET",
-  widgetName: "widget.segmented_control.name",
-  displayName: "segmentControl",
+export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
+  type: "RADIO_BUTTON_WIDGET",
+  widgetName: "widget.radio_button.name",
+  displayName: "radioButton",
   w: 10,
   h: 5,
   icon: <RadioButtonWidgetIcon size="100%" />,
