@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useEffect } from "react"
+import { FC, HTMLAttributes } from "react"
 import { ResultPreview } from "./interface"
 import {
   applyPreviewStyle,

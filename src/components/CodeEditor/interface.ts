@@ -1,5 +1,4 @@
 import { HTMLAttributes } from "react"
-import { EditorConfiguration } from "codemirror"
 import { ExpectedType } from "./utils"
 
 export enum EditorModes {

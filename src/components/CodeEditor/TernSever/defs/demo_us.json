@@ -4,9 +4,13 @@
     "Demo": {
       "!url": "",
       "!doc": "demo Component.",
+      "aaa": "Error.aaa",
+      "Error.bbb": "Error.bbb",
       "name": {
         "!type": "string",
-        "!doc": "The name of the API whose permissions you want to query. Valid values are 'geolocation', 'midi', 'notifications', 'push', 'persistent-storage', 'camera' and 'microphone'."
+        "!data": "Demo.xx",
+        "!span": "Demo.xx",
+        "!doc":  "Demo.xx"
       },
       "userVisibleOnly": {
         "!type": "bool",
