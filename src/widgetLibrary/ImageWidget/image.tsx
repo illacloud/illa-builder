@@ -19,7 +19,7 @@ export const WrappedImage: FC<WrappedImageProps> = (props) => {
   )
 }
 
-WrappedImage.displayName = "ImageWidget"
+WrappedImage.displayName = "WrappedImage"
 
 export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   const {
@@ -65,3 +65,4 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
 
   return <WrappedImage {...props} imageSrc={finalSrc} radius={finalRadius} />
 }
+ImageWidget.displayName = "ImageWidget"

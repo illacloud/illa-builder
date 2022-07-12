@@ -69,6 +69,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
     )
   },
 )
+WrappedInput.displayName = "WrappedInput"
 
 export const InputWidget: FC<InputWidgetProps> = (props) => {
   const {
@@ -157,4 +158,4 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
   return <WrappedInput {...props} ref={inputRef} />
 }
 
-WrappedInput.displayName = "WrappedInput"
+InputWidget.displayName = "InputWidget"

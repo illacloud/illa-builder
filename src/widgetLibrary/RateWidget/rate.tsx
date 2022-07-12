@@ -109,3 +109,4 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
   ])
   return <WrappedRate {...props} />
 }
+RateWidget.displayName = "RateWidget"

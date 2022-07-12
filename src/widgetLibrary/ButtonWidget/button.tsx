@@ -37,7 +37,7 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
     </div>
   )
 }
-WrappedButton.displayName = "ButtonWidget"
+WrappedButton.displayName = "WrappedButton"
 
 export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
   const {
@@ -83,3 +83,5 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
   ])
   return <WrappedButton {...props} />
 }
+
+ButtonWidget.displayName = "ButtonWidget"

@@ -47,7 +47,7 @@ export const Text: FC<TextProps> = (props) => {
   )
 }
 
-Text.displayName = "TextWidget"
+Text.displayName = "Text"
 
 export const TextWidget: FC<TextWidgetProps> = (props) => {
   const {
@@ -96,3 +96,4 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
   ])
   return <Text {...props} />
 }
+TextWidget.displayName = "TextWidget"

@@ -123,3 +123,4 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
 
   return <WrappedDate {...props} />
 }
+DateWidget.displayName = "DateWidget"

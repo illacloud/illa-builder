@@ -35,7 +35,7 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   )
 }
 
-WrappedCheckbox.displayName = "RadioGroupWidget"
+WrappedCheckbox.displayName = "WrappedCheckbox"
 
 export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
   const {
@@ -91,3 +91,5 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
   ])
   return <WrappedCheckbox {...props} options={finalOptions} />
 }
+
+CheckboxWidget.displayName = "CheckboxWidget"

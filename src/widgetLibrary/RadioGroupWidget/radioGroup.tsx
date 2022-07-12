@@ -24,7 +24,7 @@ export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
   )
 }
 
-WrappedRadioGroup.displayName = "RadioGroupWidget"
+WrappedRadioGroup.displayName = "WrappedRadioGroup"
 
 export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   const {
@@ -80,3 +80,4 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
   ])
   return <WrappedRadioGroup {...props} options={finalOptions} />
 }
+RadioGroupWidget.displayName = "RadioGroupWidget"

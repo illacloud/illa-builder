@@ -22,7 +22,7 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
   )
 }
 
-WrappedSwitch.displayName = "SwitchWidget"
+WrappedSwitch.displayName = "WrappedSwitch"
 
 export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   const {
@@ -56,3 +56,4 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
   }, [displayName, value, disabled, colorScheme])
   return <WrappedSwitch {...props} />
 }
+SwitchWidget.displayName = "SwitchWidget"

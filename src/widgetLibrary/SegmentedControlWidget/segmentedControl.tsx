@@ -85,3 +85,4 @@ export const SegmentedControlWidget: FC<SegmentedControlWidgetProps> = (
   ])
   return <WrappedSegmentedControl {...props} options={finalOptions} />
 }
+SegmentedControlWidget.displayName = "SegmentedControlWidget"

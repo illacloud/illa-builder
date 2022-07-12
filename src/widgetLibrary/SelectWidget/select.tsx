@@ -41,7 +41,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   )
 }
 
-WrappedSelect.displayName = "SelectWidget"
+WrappedSelect.displayName = "WrappedSelect"
 
 export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   const {
@@ -112,3 +112,4 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   ])
   return <WrappedSelect {...props} options={finalOptions} />
 }
+SelectWidget.displayName = "SelectWidget"

@@ -139,3 +139,4 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   ])
   return <WrappedDateRange {...props} />
 }
+DateRangeWidget.displayName = "DateRangeWidget"

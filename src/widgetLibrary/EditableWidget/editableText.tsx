@@ -83,6 +83,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
     </div>
   )
 }
+WrappedEditableText.displayName = "WrappedEditableText"
 
 export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
   const {
@@ -156,4 +157,4 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
   ])
   return <WrappedEditableText {...props} />
 }
-WrappedEditableText.displayName = "WrappedEditableText"
+EditableTextWidget.displayName = "EditableTextWidget"

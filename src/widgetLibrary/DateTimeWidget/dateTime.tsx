@@ -70,7 +70,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
   },
 )
 
-WrappedDateTime.displayName = "WrappedDate"
+WrappedDateTime.displayName = "WrappedDateTime"
 
 export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   const {
@@ -129,3 +129,5 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   ])
   return <WrappedDateTime {...props} />
 }
+
+DateTimeWidget.displayName = "DateTimeWidget"

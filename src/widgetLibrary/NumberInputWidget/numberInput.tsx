@@ -75,7 +75,7 @@ export const WrappedInputNumber = forwardRef<
     </div>
   )
 })
-
+WrappedInputNumber.displayName = "WrappedInputNumber"
 export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   const {
     openThousandSeparator,
@@ -140,3 +140,4 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
 
   return <WrappedInputNumber {...props} ref={numberInputRef} />
 }
+NumberInputWidget.displayName = "NumberInputWidget"
