@@ -232,7 +232,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
             id: "editable-text-style-color",
             labelName: "editor.inspect.setter_label.theme_color",
             attrName: "colorScheme",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
             options: colorSchemeOptions,
           },
