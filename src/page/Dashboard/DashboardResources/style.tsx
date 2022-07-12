@@ -35,7 +35,7 @@ export const tableStyle = css`
     height: 56px;
     border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-  tr:last-child {
+  tbody tr:last-child {
     border-bottom: none;
   }
   tbody tr {
