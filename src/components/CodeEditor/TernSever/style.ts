@@ -15,6 +15,7 @@ export const ternStyle = css`
     padding-left: 30px;
     position: relative;
     height: 24px;
+    font-size: 12px;
   }
 
   .CodeMirror-Tern-completion:before {

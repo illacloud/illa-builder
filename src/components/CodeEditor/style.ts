@@ -25,6 +25,10 @@ export const codemirrorStyle = css`
   .CodeMirror-crosshair {
     cursor: crosshair;
   }
+  
+  .CodeMirror-lines {
+    padding: 7px 0;
+  }
 
   .CodeMirror pre.CodeMirror-line,
   .CodeMirror pre.CodeMirror-line-like {
@@ -134,7 +138,8 @@ export function applyCodeEditorStyle(
       border-radius: ${inputState.borderRadius};
       border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       transition: all 200ms ease-in-out;
-
+      line-height: 16px;
+      font-size: 12px;
       ${stateStyle}
     }
 
