@@ -20,6 +20,7 @@ import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/
 import displayNameReducer from "@/redux/currentApp/displayName/displayNameSlice"
 import executionReducer from "@/redux/currentApp/executionTree/execution/executionSlice"
 import dependenciesReducer from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
+import { reduxAsync } from "@/middleware/redux/redux-async"
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -59,6 +60,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(logger)
+      .concat(reduxAsync)
       .prepend(listenerMiddleware.middleware),
 })
 
