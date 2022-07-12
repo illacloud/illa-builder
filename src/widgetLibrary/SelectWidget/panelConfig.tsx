@@ -1,6 +1,6 @@
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import i18n from "@/i18n/config"
+
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

@@ -1,5 +1,5 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import i18n from "@/i18n/config"
+
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [

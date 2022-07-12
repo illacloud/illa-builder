@@ -6,7 +6,7 @@ import {
   HorizontalStartIcon,
 } from "@illa-design/react"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
-import i18n from "@/i18n/config"
+
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [

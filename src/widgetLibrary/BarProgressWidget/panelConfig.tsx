@@ -1,7 +1,6 @@
 import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
