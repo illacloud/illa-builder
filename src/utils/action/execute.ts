@@ -8,6 +8,7 @@ import {
   PrepareQueryPerformance,
   getResourcePerformance,
 } from "@/utils/action/performance"
+import { errorHandler } from "@/utils/action/errorHandler"
 
 export function executeAction(
   action: ActionItem,
@@ -111,6 +112,8 @@ export function executeAction(
           },
         }),
       )
+
+      errorHandler(action, response)
 
       // TODO: trigger error eventhandler
 
