@@ -18,15 +18,6 @@ export const panelScrollStyle = css`
   padding-bottom: 16px;
 `
 
-export const headerStyle = css`
-  display: flex;
-  align-items: center;
-  padding: 8px 16px 8px 0;
-  height: 48px;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  box-sizing: border-box;
-`
-
 export const titleContainerStyle = css`
   display: flex;
   align-items: center;
@@ -107,10 +98,6 @@ export const headerButtonStyle = css`
   & * {
     font-size: 14px !important;
   }
-`
-
-export const moreBtnStyle = css`
-  margin-right: 8px;
 `
 
 export const runBtnStyle = css`
@@ -283,12 +270,6 @@ export const moreListItemStyle = css`
 export const moreListItemWarnStyle = css`
   ${moreListItemStyle};
   color: ${globalColor(`--${illaPrefix}-red-03`)};
-`
-
-export const moreBtnMenuStyle = css`
-  padding: 8px 0;
-  width: 180px;
-  box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
 `
 
 export const handlerItemWrapperStyle = css`
