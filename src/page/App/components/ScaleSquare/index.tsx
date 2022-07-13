@@ -34,7 +34,6 @@ import { useTranslation } from "react-i18next"
 import { getExecutionError } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { Modal } from "@illa-design/modal"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
 const { Item } = DropList

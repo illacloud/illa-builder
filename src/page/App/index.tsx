@@ -41,8 +41,8 @@ import { useParams } from "react-router-dom"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
-import { useTranslation } from "react-i18next"
 import { Shortcut } from "@/utils/shortcut"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -55,29 +55,29 @@ export type PanelState = keyof PanelConfigProps
 const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
 
 export const Editor: FC = () => {
-  const [room, setRoom] = useState<Room>()
-
   const dispatch = useDispatch()
 
   let { appId, versionId } = useParams()
 
-  const { t } = useTranslation()
+  const currentUser = useSelector(getCurrentUser)
 
   useEffect(() => {
+    let currentRoom: Room
     Connection.enterRoom(
       "app",
+      appId ?? "",
       (loading) => {},
       (errorState) => {},
       (room) => {
-        setRoom(room)
+        currentRoom = room
       },
     )
     return () => {
-      if (room !== undefined) {
-        Connection.leaveRoom(room.roomId)
+      if (currentRoom !== undefined) {
+        Connection.leaveRoom(currentRoom.wsURL)
       }
     }
-  }, [])
+  }, [currentUser])
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
