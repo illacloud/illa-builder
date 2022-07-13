@@ -1,4 +1,4 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const paramListWrapperStyle = css`
@@ -23,12 +23,19 @@ export const paramItemKeyStyle = css`
   }
 `
 
-export const paramItemValueStyle = css`
-  & > span {
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-  }
-`
+export function applyParamItemValueStyle(isFocus: boolean): SerializedStyles {
+  return css`
+    & > span {
+      ${!isFocus &&
+      css`
+        border-left: 0px;
+      `}
+      transition: all .2s ease-in-out;
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+  `
+}
 
 export const newButtonStyle = css`
   display: flex;
