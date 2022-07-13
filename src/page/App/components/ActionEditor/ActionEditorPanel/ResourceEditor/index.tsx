@@ -75,6 +75,7 @@ export const ResourceEditor: FC<ResourceEditorProps> = (props) => {
           }}
           triggerProps={{
             autoAlignPopupWidth: false,
+            disabledOutsideScrollable: true,
           }}
         >
           <Option onClick={onCreateResource} isSelectOption={false}>
