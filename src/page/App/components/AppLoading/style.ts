@@ -52,9 +52,10 @@ export const navStyle = css`
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
-export const loadingStyle = css`
+export const containerStyle = css`
   background: #fafafb;
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
 `
