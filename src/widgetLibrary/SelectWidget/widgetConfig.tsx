@@ -24,5 +24,6 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
     ],
     dataSources: "{{[]}}",
     colorScheme: "blue",
+    hidden: false,
   },
 }

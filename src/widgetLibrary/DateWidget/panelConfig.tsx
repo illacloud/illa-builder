@@ -179,9 +179,10 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "date-layout-hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
         attrName: "hidden",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
@@ -201,7 +202,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "date-style-colorScheme",
             labelName: "editor.inspect.setter_label.theme_color",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",
             options: colorSchemeOptions,

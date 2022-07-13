@@ -42,7 +42,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
               if (customSelected) {
                 handleUpdateDsl(attrName, false)
               } else {
-                handleUpdateDsl(attrName, "{{}}")
+                handleUpdateDsl(attrName, `{{false}}`)
               }
             }}
           >
