@@ -7,7 +7,7 @@ export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export type ComponentSessionProps = {
-  title: ReactNode
+  title: any
   widgetCardInfos: WidgetCardInfo[]
 }
 

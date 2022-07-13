@@ -7,6 +7,7 @@ import { PanelBar } from "@/components/PanelBar"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { getLocalStorage, setLocalStorage } from "@/utils/storage"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
+import i18n from "@/i18n/config"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
@@ -47,7 +48,7 @@ export const renderPanelBar = (
   return (
     <PanelBar
       key={key}
-      title={groupName}
+      title={i18n.t(groupName)}
       isOpened={isOpened}
       saveToggleState={saveToggleState}
     >

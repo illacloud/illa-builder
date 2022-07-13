@@ -4,12 +4,10 @@ import { useDispatch } from "react-redux"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Message } from "@illa-design/message"
-import { CloseIcon } from "@illa-design/icon"
 import { Api } from "@/api/base"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
-import { dashboardCloseIconStyle } from "@/page/Dashboard/style"
 import {
   triggerContentContainerCss,
   applyTriggerContentItemStyle,
@@ -62,18 +60,13 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           Modal.confirm({
             _css: modalStyle,
             title: t("dashboard.common.delete_title"),
-            content: <span>{t("dashboard.common.delete_content")}</span>,
+            content: t("dashboard.common.delete_content"),
             cancelText: t("dashboard.common.delete_cancel_text"),
             okText: t("dashboard.common.delete_ok_text"),
             okButtonProps: {
               colorScheme: "techPurple",
             },
             closable: true,
-            closeElement: (
-              <div css={dashboardCloseIconStyle}>
-                <CloseIcon />
-              </div>
-            ),
             onOk: () => {
               Api.request<DashboardApp>(
                 {
@@ -86,7 +79,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                       response.data.appId,
                     ),
                   )
-
                   Message.success(t("dashboard.app.trash_success"))
                 },
                 (failure) => {

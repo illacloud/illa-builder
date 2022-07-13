@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { css } from "@emotion/react"
+import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
@@ -35,6 +36,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
   const [selectedResourceId, setSelectedResourceId] = useState<string>("")
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (resourceList.length === 0) {
@@ -50,7 +52,9 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
 
   return (
     <div css={containerStyle}>
-      <div css={titleStyle}>Choose a resource</div>
+      <div css={titleStyle}>
+        {t("editor.action.action_list.action_generator.title.choose_resource")}
+      </div>
 
       <div css={listStyle}>
         {resourceList.map((r) => (
@@ -79,7 +83,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
           colorScheme="gray"
           onClick={onBack}
         >
-          Back
+          {t("editor.action.action_list.action_generator.btns.back")}
         </Button>
         <ButtonGroup spacing="8px">
           <Button
@@ -89,13 +93,13 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
               onCreateResource?.(resourceType)
             }}
           >
-            New Resource
+            {t("editor.action.action_list.action_generator.btns.new_resource")}
           </Button>
           <Button
             colorScheme="techPurple"
             onClick={() => onCreateAction?.(resourceType, selectedResourceId)}
           >
-            Create Action
+            {t("editor.action.action_list.action_generator.btns.create_action")}
           </Button>
         </ButtonGroup>
       </div>

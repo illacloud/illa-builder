@@ -25,8 +25,8 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
       {mode === "edit" && (
         <Button
           css={previewStyle}
-          colorScheme="grayBlue"
-          variant="outline"
+          colorScheme="white"
+          variant="fill"
           leftIcon={<FullScreenIcon />}
           onClick={() => {
             dispatch(configActions.updateIllaMode("preview"))

@@ -1,12 +1,19 @@
 import { RadioGroupProps } from "@illa-design/radio"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedRadioGroupProps
   extends Pick<
     RadioGroupProps<any>,
     "value" | "disabled" | "options" | "direction" | "colorScheme"
   > {
+  handleUpdateDsl: (value: any) => void
+  handleOnChange?: (value: Record<string, any>) => void
+}
+
+export interface RadioGroupWidgetProps
+  extends WrappedRadioGroupProps,
+    BaseWidgetProps {
   optionConfigureMode?: "static" | "dynamic"
-  handleUpdateDsl: (value: Record<string, any>) => void
   manualOptions?: {
     label: string
     value: string | number
@@ -18,6 +25,4 @@ export interface WrappedRadioGroupProps
     values: any[]
     disables: boolean[]
   }
-  handleUpdateGlobalData?: (key: string, value: any) => void
-  displayName?: string
 }

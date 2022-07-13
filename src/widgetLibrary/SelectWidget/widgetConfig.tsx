@@ -6,7 +6,7 @@ import i18n from "@/i18n/config"
 export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "SELECT_WIDGET",
   displayName: "select",
-  widgetName: i18n.t("widget.select.name"),
+  widgetName: "widget.select.name",
   icon: <SelectWidgetIcon size="100%" />,
   sessionType: "SELECT",
   w: 10,
@@ -24,5 +24,6 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
     ],
     dataSources: "{{[]}}",
     colorScheme: "blue",
+    hidden: false,
   },
 }

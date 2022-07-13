@@ -6,7 +6,7 @@ test("checkboxGroup renders correctly", () => {
   const handleUpdateDSL = jest.fn()
   render(
     <WrappedCheckbox
-      manualOptions={[{ label: "1", value: 1 }]}
+      options={[{ label: "1", value: 1 }]}
       handleUpdateDsl={handleUpdateDSL}
     />,
   )

@@ -173,46 +173,38 @@ export function applyBarPointerStyle(
   switch (barPosition) {
     case "t":
       barPositionStyle = css`
-        top: -2px;
         left: 0;
         right: 0;
         margin: auto;
-        cursor: ${selected ? "row-resize" : "default"};
         height: 5px;
-        width: 18px;
+        width: 24px;
       `
       break
     case "b":
       barPositionStyle = css`
-        bottom: -2px;
         left: 0;
         right: 0;
-        cursor: ${selected ? "row-resize" : "default"};
         margin: auto;
         height: 5px;
-        width: 18px;
+        width: 24px;
       `
       break
     case "l":
       barPositionStyle = css`
         bottom: 0;
-        left: -2px;
         top: 0;
-        cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 5px;
-        height: 18px;
+        height: 24px;
       `
       break
     case "r":
       barPositionStyle = css`
         bottom: 0;
-        right: -2px;
         top: 0;
-        cursor: ${selected ? "col-resize" : "default"};
         margin: auto;
         width: 5px;
-        height: 18px;
+        height: 24px;
       `
       break
     default:
@@ -229,14 +221,6 @@ export function applyBarPointerStyle(
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)
       : "transparent"};
-
-    &:active {
-      background: ${baseColor};
-    }
-
-    &:hover {
-      background: ${baseColor};
-    }
   `
 }
 
@@ -287,6 +271,77 @@ export function applyBorderStyle(
 
     &:active {
       border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    }
+  `
+}
+
+export function applyBarHandlerStyle(
+  selected: boolean,
+  scaleSquareType: ScaleSquareType,
+  barPosition: BarPosition,
+): SerializedStyles {
+  if (scaleSquareType === "production") {
+    return css`
+      visibility: hidden;
+    `
+  }
+  let barPositionStyle: SerializedStyles
+  switch (barPosition) {
+    case "t":
+      barPositionStyle = css`
+        top: -2px;
+        left: 0;
+        right: 0;
+        height: 5px;
+        cursor: ${selected ? "row-resize" : "default"};
+      `
+      break
+    case "b":
+      barPositionStyle = css`
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 5px;
+        cursor: ${selected ? "row-resize" : "default"};
+      `
+      break
+    case "l":
+      barPositionStyle = css`
+        bottom: 0;
+        left: -2px;
+        top: 0;
+        width: 5px;
+        cursor: ${selected ? "col-resize" : "default"};
+      `
+      break
+    case "r":
+      barPositionStyle = css`
+        bottom: 0;
+        right: -2px;
+        top: 0;
+        cursor: ${selected ? "col-resize" : "default"};
+        width: 5px;
+      `
+      break
+    default:
+      barPositionStyle = css``
+  }
+
+  const baseColor = getSelectedColor(selected)
+
+  return css`
+    ${barPositionStyle};
+    position: absolute;
+    &:active {
+      .handler {
+        background: ${baseColor};
+      }
+    }
+
+    &:hover {
+      .handler {
+        background: ${baseColor};
+      }
     }
   `
 }

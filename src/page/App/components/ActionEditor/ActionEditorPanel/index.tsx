@@ -3,6 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AnimatePresence } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
+import { useParams } from "react-router-dom"
 import { Api } from "@/api/base"
 import { Button } from "@illa-design/button"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
@@ -18,6 +19,7 @@ import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEdito
 import { ActionResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult"
 import { ActionResultErrorIndicator } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResultErrorIndicator"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
+import { executeAction } from "@/utils/action/execute"
 import { ActionEditorPanelProps } from "./interface"
 import {
   containerStyle,
@@ -40,6 +42,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const params = useParams()
   const { setIsActionDirty, baseActionApi } = useContext(ActionEditorContext)
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const [actionResVisible, setActionResVisible] = useState(false)
@@ -94,6 +97,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         )
 
         setIsActionDirty?.(false)
+
+        // (get req) will run automatically whenever a parameter changes.
+        if (
+          data.actionType === ACTION_TYPE.REST_API &&
+          data.actionTemplate.method === "GET"
+        ) {
+          run()
+        }
       },
       () => {},
       () => {},
@@ -104,67 +115,14 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   }
 
   function run() {
-    const { resourceId, actionType, actionTemplate, displayName } =
-      activeActionItem
-
-    if (actionType === "transformer") {
-      // TODO: run transformer
-      setResult(activeActionItem.actionTemplate?.transformer)
-      setActionResVisible(true)
-      return
-    }
-
-    Api.request(
-      {
-        url: `${baseActionApi}/${activeActionItem?.actionId}/run`,
-        method: "POST",
-        data: {
-          resourceId,
-          actionType,
-          actionTemplate,
-          displayName,
-        },
-        // TODO: @spike temporay set `User-Agent` in headers,
-        // will be removed after handle by server later
-        transformRequest: [
-          function (data) {
-            if (actionType === ACTION_TYPE.REST_API) {
-              data.actionTemplate.headers = [
-                ...data.actionTemplate.headers,
-                ["User-Agent", navigator.userAgent],
-              ]
-            }
-
-            return JSON.stringify(data)
-          },
-        ],
-      },
+    executeAction(
+      activeActionItem,
+      params.versionId || "",
       (response) => {
-        // save data to action
-        dispatch(
-          actionActions.updateActionItemReducer({
-            ...activeActionItem,
-            // TODO: apply Transfomer
-            data: response.data,
-            rawData: response.data,
-            error: false,
-          }),
-        )
-
         setResult(response)
         setActionResVisible(true)
       },
       (response) => {
-        // empty data if has error
-        dispatch(
-          actionActions.updateActionItemReducer({
-            ...activeActionItem,
-            // TODO: apply Transfomer
-            data: response.data,
-            rawData: response.data,
-            error: true,
-          }),
-        )
         setResult(response)
         setActionResVisible(true)
       },

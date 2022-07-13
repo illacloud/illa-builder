@@ -1,5 +1,6 @@
 import { DatePickerProps } from "@illa-design/date-picker"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateTimeProps
   extends ValidateMessageProps,
@@ -16,5 +17,9 @@ export interface WrappedDateTimeProps
   showClear?: DatePickerProps["allowClear"]
   minDate?: string
   maxDate?: string
-  handleUpdateDsl: (value: Record<string, string>) => void
+  handleUpdateDsl: (value: any) => void
 }
+
+export interface DateTimeWidgetProps
+  extends WrappedDateTimeProps,
+    BaseWidgetProps {}

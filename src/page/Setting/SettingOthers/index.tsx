@@ -15,6 +15,7 @@ export const SettingOthers: FC = () => {
   const [buttonLoading, setButtonLoading] = useState<boolean>(false)
   const [languageValue, setLanguageValue] = useState<string>("")
   const [dataList, setDataList] = useState<any[]>([])
+  const [refresh, setRefresh] = useState<number>(0)
 
   useMemo(() => {
     if (!userInfo?.userId) {
@@ -26,7 +27,7 @@ export const SettingOthers: FC = () => {
   }, [userInfo])
 
   useEffect(() => {
-    if (languageValue && !dataList.length) {
+    if (languageValue) {
       setDataList([
         {
           title: t("setting.other.language"),
@@ -61,7 +62,7 @@ export const SettingOthers: FC = () => {
         },
       ])
     }
-  }, [languageValue])
+  }, [languageValue, refresh])
 
   const handleSubmit = () => {
     if (languageValue === userInfo?.language) {
@@ -79,6 +80,7 @@ export const SettingOthers: FC = () => {
       (response) => {
         dispatch(currentUserActions.updateCurrentUserReducer(response.data))
         Message.success(t("edit_success"))
+        setRefresh(refresh + 1)
       },
       (failure) => {},
       (crash) => {},

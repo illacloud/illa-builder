@@ -6,6 +6,7 @@ import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { useTranslation } from "react-i18next"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -22,20 +23,26 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     expectedType,
   } = props
   const Comp = getSetterByType(setterType)
+  const { t } = useTranslation()
 
-  const { widgetProps, handleUpdateDsl, widgetDisplayName } =
+  const { widgetProps, handleUpdateDsl, widgetDisplayName, widgetType } =
     useContext(SelectedPanelContext)
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
-    const bindAttrNameValue = widgetProps[bindAttrName]
+    let bindAttrNameValue
+    if (parentAttrName) {
+      bindAttrNameValue = get(widgetProps, `${parentAttrName}.${bindAttrName}`)
+    } else {
+      bindAttrNameValue = get(widgetProps, bindAttrName)
+    }
     return shown(bindAttrNameValue)
   }, [shown, widgetProps, bindAttrName])
 
   const renderLabel = useMemo(() => {
     return !useCustomLayout && labelName ? (
       <PanelLabel
-        labelName={labelName}
+        labelName={t(labelName)}
         labelDesc={labelDesc}
         isInList={isInList}
       />
@@ -68,6 +75,8 @@ export const Setter: FC<PanelSetterProps> = (props) => {
           handleUpdateDsl={handleUpdateDsl}
           widgetDisplayName={widgetDisplayName}
           expectedType={expectedType ?? VALIDATION_TYPES.STRING}
+          widgetType={widgetType}
+          parentAttrName={parentAttrName}
         />
       </div>
     ) : null

@@ -5,7 +5,7 @@ import i18n from "@/i18n/config"
 export const DIVIDER_WIDGET_CONFIG: WidgetConfig = {
   type: "DIVIDER_WIDGET",
   displayName: "divider",
-  widgetName: i18n.t("widget.divider_progress.name"),
+  widgetName: "widget.divider_progress.name",
   icon: <DividerWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   w: 30,
@@ -13,5 +13,6 @@ export const DIVIDER_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     colorScheme: "grayBlue",
     textSize: "14px",
+    hidden: false,
   },
 }

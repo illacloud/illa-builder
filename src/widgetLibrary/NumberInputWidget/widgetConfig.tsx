@@ -3,7 +3,7 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 
 export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
   type: "NUMBER_INPUT_WIDGET",
-  widgetName: "Number Input",
+  widgetName: "widget.number_input.name",
   displayName: "numberInput",
   icon: <NumberInputWidgetIcon size="100%" />,
   sessionType: "INPUTS",
@@ -17,5 +17,6 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
     colorScheme: "blue",
     max: "{{Infinity}}",
     min: "{{-Infinity}}",
+    hidden: false,
   },
 }

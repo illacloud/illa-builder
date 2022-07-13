@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { Table } from "@illa-design/table"
 import { Tabs, TabPane } from "@illa-design/tabs"
@@ -11,14 +11,18 @@ export const DatabaseResult: FC<DatabaseResultProps> = (props) => {
   const { t } = useTranslation()
   const [activeKey, setActiveKey] = useState<string>("table")
 
-  const columns = data?.length
-    ? Object.keys(data[0]).map((k) => {
-        return {
-          accessor: k,
-          Header: `${k}`,
-        }
-      })
-    : []
+  const keys = data?.length ? Object.keys(data[0]).map((k) => k) : []
+
+  const columns = useMemo(() => {
+    return keys.length
+      ? keys.map((k) => {
+          return {
+            accessor: k,
+            Header: `${k}`,
+          }
+        })
+      : []
+  }, [keys])
 
   return (
     <Tabs variant="text" onChange={setActiveKey} activeKey={activeKey}>

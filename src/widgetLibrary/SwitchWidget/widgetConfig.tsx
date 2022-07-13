@@ -4,7 +4,7 @@ import i18n from "@/i18n/config"
 
 export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
   displayName: "switch",
-  widgetName: i18n.t("widget.switch.name"),
+  widgetName: "widget.switch.name",
   h: 5,
   w: 10,
   type: "SWITCH_WIDGET",
@@ -16,5 +16,6 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
     labelPosition: "left",
     labelWidth: "{{33}}",
     colorScheme: "blue",
+    hidden: false,
   },
 }

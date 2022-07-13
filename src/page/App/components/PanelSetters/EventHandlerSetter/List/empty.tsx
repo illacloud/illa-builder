@@ -1,7 +1,13 @@
 import { FC } from "react"
+import { emptyBodyStyle } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/style"
 
-export const ListEmpty: FC = () => {
-  return <div>Empty</div>
+export const EventHandlerEmpty: FC = () => {
+  return (
+    <div css={emptyBodyStyle}>
+      Trigger queries, control components, or call other APIs in response to
+      component events.
+    </div>
+  )
 }
 
-ListEmpty.displayName = "ListEmpty"
+EventHandlerEmpty.displayName = "EventHandlerEmpty"

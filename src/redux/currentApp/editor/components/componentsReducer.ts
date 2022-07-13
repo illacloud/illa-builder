@@ -77,25 +77,30 @@ export const deleteComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<DeleteComponentNodePayload>
 > = (state, action) => {
-  const { displayName, parentDisplayName } = action.payload
+  const { displayName } = action.payload
   if (state.rootDsl == null) {
     return
   }
   const rootNode = state.rootDsl
-  const parentNode = searchDsl(rootNode, parentDisplayName)
-  if (parentNode == null) {
-    return
-  }
-  const childrenNodes = parentNode.childrenNode
-  if (childrenNodes == null) {
-    return
-  }
-  childrenNodes.splice(
-    childrenNodes.findIndex((value, index, obj) => {
-      return value.displayName === displayName
-    }),
-    1,
-  )
+  displayName.forEach((value, index) => {
+    const searchNode = searchDsl(rootNode, value)
+    if (searchNode != null) {
+      const parentNode = searchDsl(rootNode, searchNode.parentNode)
+      if (parentNode == null) {
+        return
+      }
+      const childrenNodes = parentNode.childrenNode
+      if (childrenNodes == null) {
+        return
+      }
+      childrenNodes.splice(
+        childrenNodes.findIndex((value, index, obj) => {
+          return value.displayName === searchNode.displayName
+        }),
+        1,
+      )
+    }
+  })
 }
 
 export const updateComponentPropsReducer: CaseReducer<

@@ -41,9 +41,8 @@ import { useParams } from "react-router-dom"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
-import hotkeys from "hotkeys-js"
-import { Message } from "@illa-design/message"
 import { useTranslation } from "react-i18next"
+import { Shortcut } from "@/utils/shortcut"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -52,6 +51,8 @@ interface PanelConfigProps {
 }
 
 export type PanelState = keyof PanelConfigProps
+
+const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
 
 export const Editor: FC = () => {
   const [room, setRoom] = useState<Room>()
@@ -148,32 +149,13 @@ export const Editor: FC = () => {
   }, [])
 
   useEffect(() => {
-    hotkeys("command+s,ctrl+s", function (event, handler) {
-      switch (handler.key) {
-        case "command+s":
-        case "ctrl+s":
-          event.preventDefault()
-          Message.success(t("dont_need_save"))
-          break
-      }
-    })
-    hotkeys(
-      "*",
-      {
-        keydown: true,
-        keyup: true,
-      },
-      function (keyboardEvent, hotkeysEvent) {
-        if (hotkeys.ctrl || hotkeys.command) {
-          keyboardEvent.preventDefault()
-          if (keyboardEvent.type === "keydown") {
-            dispatch(configActions.updateShowDot(true))
-          } else if (keyboardEvent.type === "keyup") {
-            dispatch(configActions.updateShowDot(false))
-          }
-        }
-      },
+    performance.setResourceTimingBufferSize(
+      INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE,
     )
+
+    return () => {
+      performance.clearResourceTimings()
+    }
   }, [])
 
   return (
@@ -184,7 +166,7 @@ export const Editor: FC = () => {
         </div>
       )}
       {!loadingState && (
-        <>
+        <Shortcut>
           <PageNavBar css={navbarStyle} />
           <div css={contentStyle}>
             <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
@@ -194,7 +176,7 @@ export const Editor: FC = () => {
             </div>
             <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
           </div>
-        </>
+        </Shortcut>
       )}
     </div>
   )

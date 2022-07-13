@@ -1,10 +1,8 @@
 import { FC, useEffect, useState } from "react"
 import { Modal } from "@illa-design/modal"
-import { CloseIcon } from "@illa-design/icon"
 import { ActionTypeSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector"
 import { ActionTypeInfo } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector/interface"
 import { ResourceFormEditor } from "@/page/App/components/ActionEditor/ResourceForm/Editor"
-import { dashboardCloseIconStyle } from "@/page/Dashboard/style"
 import {
   DashboardGeneratorProps,
   DashboardGeneratorSteps,
@@ -103,11 +101,6 @@ export const DashboardGenerator: FC<DashboardGeneratorProps> = function (
       closable
       maskClosable={false}
       withoutPadding
-      closeElement={
-        <div css={dashboardCloseIconStyle}>
-          <CloseIcon />
-        </div>
-      }
       onCancel={onClose}
     >
       {renderStep(

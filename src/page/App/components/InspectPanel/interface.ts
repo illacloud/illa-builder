@@ -14,7 +14,7 @@ export interface PanelHeaderActionProps {
 }
 
 export interface PanelLabelProps {
-  labelName?: string
+  labelName?: any
   labelDesc?: string
   isInList?: boolean
 }

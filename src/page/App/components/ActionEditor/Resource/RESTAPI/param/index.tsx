@@ -174,7 +174,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
                 })
               }}
               options={["GET", "POST", "PUT", "DELETE", "PATCH"]}
-              size="small"
+              size="medium"
               colorScheme="techPurple"
             />
             <Input

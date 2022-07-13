@@ -42,7 +42,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = (props) => {
         </span>
         <label css={itemNameStyle}>{title}&nbsp;</label>
         <label css={itemNameDescStyle}>
-          {`{}`}&nbsp;&nbsp;{keyArr.length}
+          {`{}`}&nbsp;{keyArr.length}
           {keyArr.length > 1 ? "keys" : "key"}
         </label>
       </div>

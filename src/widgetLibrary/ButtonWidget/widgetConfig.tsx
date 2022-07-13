@@ -5,7 +5,7 @@ import i18n from "@/i18n/config"
 export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   type: "BUTTON_WIDGET",
   displayName: "button",
-  widgetName: i18n.t("widget.button.name"),
+  widgetName: "widget.button.name",
   icon: <ButtonWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   w: 10,
@@ -17,5 +17,6 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
     width: "200px",
     alignment: "fullWidth",
     colorScheme: "blue",
+    hidden: false,
   },
 }

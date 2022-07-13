@@ -32,7 +32,7 @@ function updateAlphaInputValue(alpha: number) {
 }
 
 function ColorPicker(props: ColorPickerProps) {
-  const { defaultColor = "#FFFFFF", labelName = "background" } = props
+  const { defaultColor = "#FFFFFF" } = props
   const defaultHsva = useMemo(
     () => hexToHsva(defaultColor.substring(0, 7)),
     [defaultColor],
@@ -42,12 +42,15 @@ function ColorPicker(props: ColorPickerProps) {
   const [inputValue, setInputValue] = useState(hsvaToHex(hsva))
   const [alphaPercentValue, setAlphaPercentValue] = useState("100%")
 
-  const handleColorPick = useCallback((hsva: HsvaColor) => {
-    setHsva(hsva)
-    setAlphaPercentValue(updateAlphaInputValue(hsva.a))
-    setInputValue(hsvaToHex(hsva))
-    props.onColorChange && props.onColorChange(hsva)
-  }, [])
+  const handleColorPick = useCallback(
+    (hsva: HsvaColor) => {
+      setHsva(hsva)
+      setAlphaPercentValue(updateAlphaInputValue(hsva.a))
+      setInputValue(hsvaToHex(hsva))
+      props.onColorChange?.(hsva)
+    },
+    [props.onColorChange],
+  )
 
   const [inputFocus, setInputFocus] = useState(false)
   const [debouncedInputFocus, setDebouncedInputFocus] = useState(false)
@@ -65,7 +68,6 @@ function ColorPicker(props: ColorPickerProps) {
 
   return (
     <div placeholder={props.placeholder} css={colorInputContainerCss}>
-      <span css={labelCss}>{labelName}</span>
       <div css={colorInputCss}>
         <Input
           inputRef={inputRef}
@@ -112,6 +114,7 @@ function ColorPicker(props: ColorPickerProps) {
           }}
           onBlur={() => {
             setInputFocus(false)
+            props.onColorChange?.(hsva)
             setInputValue(hsvaToHex(hsva))
           }}
           withoutNormalBorder={true}
@@ -148,6 +151,7 @@ function ColorPicker(props: ColorPickerProps) {
                 onBlur={() => {
                   setInputFocus(false)
                   setAlphaPercentValue(hsva.a * 100 + "%")
+                  props.onColorChange?.(hsva)
                 }}
                 css={percentInputCss}
               />

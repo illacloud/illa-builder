@@ -101,9 +101,7 @@ export const RESTAPIConfigure = forwardRef<
           render={({ field }) => (
             <Input
               {...field}
-              placeholder={t(
-                "editor.action.resource.rest_api.placeholder.name",
-              )}
+              placeholder={t("editor.action.resource.rest_api.placeholder.api")}
               error={!!errors.resourceName}
               maxLength={200}
               borderColor="techPurple"
@@ -208,7 +206,7 @@ export const RESTAPIConfigure = forwardRef<
         <Controller
           render={({ field }) => (
             <Select
-              size={"small"}
+              size="medium"
               colorScheme="techPurple"
               {...field}
               triggerProps={{ _css: topZIndexStyle }}

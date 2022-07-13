@@ -44,13 +44,3 @@ export const errorDescriptionStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   margin-bottom: 24px;
 `
-
-export const dashboardCloseIconStyle = css`
-  position: absolute;
-  line-height: 0;
-  font-size: 14px;
-  top: 28px;
-  right: 28px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  cursor: pointer;
-`
