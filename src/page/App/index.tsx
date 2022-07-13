@@ -54,6 +54,8 @@ interface PanelConfigProps {
 
 export type PanelState = keyof PanelConfigProps
 
+const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
+
 export const Editor: FC = () => {
   const [room, setRoom] = useState<Room>()
 
@@ -149,11 +151,9 @@ export const Editor: FC = () => {
   }, [])
 
   useEffect(() => {
-    performance.setResourceTimingBufferSize(1000000)
-
-    return () => {
-      performance.clearResourceTimings()
-    }
+    performance.setResourceTimingBufferSize(
+      INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE,
+    )
 
     hotkeys("command+s,ctrl+s,Backspace", function (event, handler) {
       switch (handler.key) {
@@ -199,6 +199,7 @@ export const Editor: FC = () => {
           break
       }
     })
+
     hotkeys(
       "*",
       {
@@ -216,6 +217,10 @@ export const Editor: FC = () => {
         }
       },
     )
+
+    return () => {
+      performance.clearResourceTimings()
+    }
   }, [])
 
   return (
