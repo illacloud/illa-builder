@@ -67,6 +67,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <section css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
           <div css={descriptionStyle}>
+            {t("edit_at")}{" "}
             {dayjs.utc(appInfo?.updatedAt).format("YYYY-MM-DD HH:mm:ss")}
           </div>
         </section>
@@ -74,29 +75,29 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={viewControlStyle}>
         {mode === "edit" && (
           <>
-            <span css={windowIconBodyStyle}>
-              <WindowLeftIcon
-                _css={windowIconStyle(leftPanelVisible)}
-                onClick={() => {
-                  dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-                }}
-              />
+            <span
+              css={windowIconBodyStyle}
+              onClick={() => {
+                dispatch(configActions.updateLeftPanel(!leftPanelVisible))
+              }}
+            >
+              <WindowLeftIcon _css={windowIconStyle(leftPanelVisible)} />
             </span>
-            <span css={windowIconBodyStyle}>
-              <WindowRightIcon
-                _css={windowIconStyle(rightPanelVisible)}
-                onClick={() => {
-                  dispatch(configActions.updateRightPanel(!rightPanelVisible))
-                }}
-              />
+            <span
+              css={windowIconBodyStyle}
+              onClick={() => {
+                dispatch(configActions.updateRightPanel(!rightPanelVisible))
+              }}
+            >
+              <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
-            <span css={windowIconBodyStyle}>
-              <WindowBottomIcon
-                _css={windowIconStyle(bottomPanelVisible)}
-                onClick={() => {
-                  dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-                }}
-              />
+            <span
+              css={windowIconBodyStyle}
+              onClick={() => {
+                dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
+              }}
+            >
+              <WindowBottomIcon _css={windowIconStyle(bottomPanelVisible)} />
             </span>
           </>
         )}

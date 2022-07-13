@@ -23,7 +23,9 @@ import {
 import { clearLocalStorage } from "@/utils/storage"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
-const SettingTrigger: FC<{ avatarBgColor: string, avatarText: string }> = (props) => {
+const SettingTrigger: FC<{ avatarBgColor: string; avatarText: string }> = (
+  props,
+) => {
   const { avatarBgColor, avatarText } = props
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -70,15 +72,15 @@ export const DashboardTitleBar: FC = () => {
     key: string
     title: string
   }[] = [
-      {
-        key: "apps",
-        title: t("apps"),
-      },
-      {
-        key: "resources",
-        title: t("resources"),
-      },
-    ]
+    {
+      key: "apps",
+      title: t("apps"),
+    },
+    {
+      key: "resources",
+      title: t("resources"),
+    },
+  ]
 
   return (
     <Tabs
@@ -97,10 +99,17 @@ export const DashboardTitleBar: FC = () => {
             position="br"
             trigger="click"
             triggerProps={{ closeDelay: 0, openDelay: 0 }}
-            dropList={<SettingTrigger avatarBgColor={avatarBgColor} avatarText={avatarText} />}
+            dropList={
+              <SettingTrigger
+                avatarBgColor={avatarBgColor}
+                avatarText={avatarText}
+              />
+            }
           >
             <div>
-              <span css={applyUserAvatarStyle(avatarBgColor)}>{avatarText}</span>
+              <span css={applyUserAvatarStyle(avatarBgColor)}>
+                {avatarText}
+              </span>
               <DownIcon
                 _css={expandStyle}
                 size="12px"

@@ -76,9 +76,7 @@ export const settingItemStyle = css`
   }
 `
 
-export function applyUserAvatarStyle(
-  background: string
-): SerializedStyles {
+export function applyUserAvatarStyle(background: string): SerializedStyles {
   return css`
     display: inline-block;
     background: #${background};
