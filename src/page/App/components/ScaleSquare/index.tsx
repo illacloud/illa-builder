@@ -240,15 +240,12 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
                 title: t("editor.component.delete_title", {
                   displayName: componentNode.displayName,
                 }),
-                content: t("editor.component.delete_content", {
-                  displayName: componentNode.displayName,
-                }),
+                content: t("editor.component.delete_content"),
                 cancelText: t("editor.component.cancel"),
                 okText: t("editor.component.delete"),
                 okButtonProps: {
-                  colorScheme: "techPurple",
+                  colorScheme: "red",
                 },
-                closable: true,
                 onOk: () => {
                   dispatch(
                     componentsActions.deleteComponentNodeReducer({

@@ -164,9 +164,7 @@ export const Editor: FC = () => {
             title: t("editor.component.delete_title", {
               displayName: textList,
             }),
-            content: t("editor.component.delete_content", {
-              displayName: textList,
-            }),
+            content: t("editor.component.delete_content"),
             cancelText: t("editor.component.cancel"),
             okText: t("editor.component.delete"),
             okButtonProps: {
