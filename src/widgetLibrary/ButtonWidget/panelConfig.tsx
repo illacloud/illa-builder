@@ -323,7 +323,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "button-style-bg",
             labelName: "editor.inspect.setter_label.theme_color",
-            setterType: "COLOR_PICKER_SETTER",
+            setterType: "COLOR_SELECT_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",
             options: colorSchemeOptions,

@@ -12,7 +12,6 @@ export interface ColorPickerOperationProps {
 export interface ColorPickerProps {
   defaultColor?: string
   color?: string
-  labelName?: string
   placeholder?: string
   prefabricatedColors?: { key: string; value: string }[]
   onHueChange?: (newHue: { h: number }) => void

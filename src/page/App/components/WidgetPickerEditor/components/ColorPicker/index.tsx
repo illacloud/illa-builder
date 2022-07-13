@@ -32,7 +32,7 @@ function updateAlphaInputValue(alpha: number) {
 }
 
 function ColorPicker(props: ColorPickerProps) {
-  const { defaultColor = "#FFFFFF", labelName = "background" } = props
+  const { defaultColor = "#FFFFFF" } = props
   const defaultHsva = useMemo(
     () => hexToHsva(defaultColor.substring(0, 7)),
     [defaultColor],
