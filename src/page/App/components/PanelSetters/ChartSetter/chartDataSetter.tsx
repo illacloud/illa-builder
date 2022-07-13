@@ -1,5 +1,4 @@
 import { FC, useEffect } from "react"
-import { DynamicSelectSetterProps } from "../SelectSetter/interface"
 
 import { DynamicSelectSetter } from "../SelectSetter/dynamicSelect"
 import { getDefaultColorScheme, initData } from "@/widgetLibrary/Chart/utils"
@@ -12,12 +11,13 @@ import {
 } from "@/widgetLibrary/Chart/interface"
 import { DatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter"
 import { CHART_DATASET_CONFIG } from "@/widgetLibrary/Chart/panelConfig"
-import { chartDynamicSelectStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { Select } from "@illa-design/select"
+import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
+import { chartDynamicSelectStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
 const DATA_SOURCE = "dataSource"
 
-export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
+export const ChartDataSetter: FC<BaseSetter> = (props) => {
   const { handleUpdateDsl, panelConfig, widgetDisplayName } = props
 
   useEffect(() => {
@@ -41,13 +41,13 @@ export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
     <div>
       <DynamicSelectSetter
         widgetType={""}
-        expectedType={VALIDATION_TYPES.STRING}
+        expectedType={VALIDATION_TYPES.ARRAY}
         widgetDisplayName={widgetDisplayName}
         isSetterSingleRow
         labelName={"Data source"}
         attrName={"dataSource"}
         panelConfig={panelConfig}
-        handleUpdateDsl={(attrName, value) => {
+        handleUpdateDsl={(attrName: string, value: any) => {
           handleUpdateDsl(attrName, value)
           const _data =
             panelConfig?.[DATA_SOURCE]?.[value] &&

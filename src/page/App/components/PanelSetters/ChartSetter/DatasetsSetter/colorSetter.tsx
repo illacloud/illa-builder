@@ -3,7 +3,7 @@ import { ColorListSetter } from "@/page/App/components/PanelSetters/ChartSetter/
 import { COLOR_SCHEME } from "@/widgetLibrary/Chart/interface"
 import ColorPicker from "@/page/App/components/WidgetPickerEditor/components/ColorPicker"
 import { get } from "lodash"
-import { hsvaToHex } from "@uiw/color-convert"
+import { hsvaToHexa } from "@uiw/color-convert"
 
 export const DataSetColorListSetter: FC<ColorListSetter> = (props) => {
   const { handleUpdateDsl, attrName, panelConfig, parentAttrName } = props
@@ -18,18 +18,34 @@ export const DataSetColorListSetter: FC<ColorListSetter> = (props) => {
 
   return (
     <div>
-      {lineColor.map((color: string, index: number) => (
+      {typeof lineColor === "string" ? (
         <ColorPicker
-          color={color}
-          prefabricatedColors={COLOR_SCHEME}
+          color={lineColor}
+          prefabricatedColors={COLOR_SCHEME.map((item) => ({
+            key: item,
+            value: item,
+          }))}
           onColorChange={(value) => {
-            const newValue = lineColor.map((item: string, i: number) => {
-              return i === index ? hsvaToHex(value) : item
-            })
-            setLineColor(newValue)
+            setLineColor(hsvaToHexa(value))
           }}
         />
-      ))}
+      ) : (
+        lineColor.map((color: string, index: number) => (
+          <ColorPicker
+            color={color}
+            prefabricatedColors={COLOR_SCHEME.map((item) => ({
+              key: item,
+              value: item,
+            }))}
+            onColorChange={(value) => {
+              const newValue = lineColor.map((item: string, i: number) => {
+                return i === index ? hsvaToHexa(value) : item
+              })
+              setLineColor(newValue)
+            }}
+          />
+        ))
+      )}
     </div>
   )
 }

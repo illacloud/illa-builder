@@ -129,13 +129,6 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "chart-interaction",
-    groupName: "INTERACTION",
-    children: [
-      // eventHandle
-    ],
-  },
-  {
     id: "chart-layout",
     groupName: "LAYOUT",
     children: [

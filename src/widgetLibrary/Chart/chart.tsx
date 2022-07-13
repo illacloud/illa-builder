@@ -43,7 +43,7 @@ ChartJS.register(
 )
 export const WrappedChart: FC<WrappedChartProps> = (props) => {
   const {
-    data = defaultChartData02,
+    data = [],
     legendPosition = "bottom",
     title = "Chart",
     xTitle = "x-title",
@@ -91,6 +91,7 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
     } else {
       res = wrapData(data, xAxisValues, datasets, type)
     }
+    console.log("_datasets", res)
     return [{ datasets: res?.datasets ?? [] }, res?.tooltips]
   }, [data, xAxisValues, datasets, type, dataMap.current, groupBy])
 
@@ -145,7 +146,11 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
               options={_options}
             />
           ) : (
-            <_Chart redraw data={_datasets} options={_options} />
+            <_Chart
+              redraw
+              data={wrapData(data, xAxisValues, datasets, type)}
+              options={_options}
+            />
           )}
         </>
       )}
