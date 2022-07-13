@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useMemo, useState, useCallback } from "react"
 import { AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -11,6 +11,7 @@ import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ActionEditorPanelProps } from "./interface"
 import { containerStyle } from "./style"
 import { ActionEditorHeader } from "@/page/App/components/ActionEditor/ActionEditorPanel/EditorHeader"
+import { ActionEditorProvider } from "@/page/App/components/ActionEditor/ActionEditorPanel/context/ActionEditorPanelContext"
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
@@ -24,55 +25,62 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const [result, setResult] = useState<ActionResultType>()
 
   const activeActionItem = useSelector(getSelectedAction)
-  const actionType = activeActionItem?.actionType ?? ""
-  let editorNode = null
 
-  switch (actionType) {
-    case ACTION_TYPE.REST_API:
-    case ACTION_TYPE.MYSQL:
-      editorNode = (
-        <ResourceEditor
-          key={activeActionItem.actionId}
-          onCreateResource={onCreateResource}
-          onEditResource={onEditResource}
-        />
-      )
-      break
-    case ACTION_TYPE.TRANSFORMER:
-      editorNode = <TransformerEditor key={activeActionItem.actionId} />
-      break
-    default:
-      break
-  }
+  const editorNode = useMemo(() => {
+    const { actionType, actionId } = activeActionItem
+    switch (actionType) {
+      case ACTION_TYPE.REST_API:
+      case ACTION_TYPE.MYSQL:
+        return (
+          <ResourceEditor
+            key={actionId}
+            onCreateResource={onCreateResource}
+            onEditResource={onEditResource}
+          />
+        )
+      case ACTION_TYPE.TRANSFORMER:
+        return <TransformerEditor key={actionId} />
+      default:
+        return null
+    }
+  }, [activeActionItem, onEditResource, onCreateResource])
+
+  const handleUpdateResult = useCallback((result: ActionResultType) => {
+    setResult(result)
+    setActionResVisible(true)
+  }, [])
 
   return (
-    <div css={containerStyle}>
-      <ActionEditorHeader
-        onDuplicateActionItem={onDuplicateActionItem}
-        onDeleteActionItem={onDeleteActionItem}
-      />
-      {activeActionItem && (
-        <>
-          {editorNode}
-          <AnimatePresence>
-            {activeActionItem?.error && (
-              <ActionResultErrorIndicator
-                errorMessage={activeActionItem?.data?.errorMessage}
-              />
-            )}
-            {actionResVisible && (
-              <ActionResult
-                result={result}
-                error={activeActionItem?.error}
-                onClose={() => {
-                  setActionResVisible(false)
-                }}
-              />
-            )}
-          </AnimatePresence>
-        </>
-      )}
-    </div>
+    <ActionEditorProvider
+      onDeleteActionItem={onDeleteActionItem}
+      onDuplicateActionItem={onDuplicateActionItem}
+      handleUpdateResult={handleUpdateResult}
+    >
+      <div css={containerStyle}>
+        <ActionEditorHeader />
+        {activeActionItem && (
+          <>
+            {editorNode}
+            <AnimatePresence>
+              {activeActionItem?.error && (
+                <ActionResultErrorIndicator
+                  errorMessage={activeActionItem?.data?.errorMessage}
+                />
+              )}
+              {actionResVisible && (
+                <ActionResult
+                  result={result}
+                  error={activeActionItem?.error}
+                  onClose={() => {
+                    setActionResVisible(false)
+                  }}
+                />
+              )}
+            </AnimatePresence>
+          </>
+        )}
+      </div>
+    </ActionEditorProvider>
   )
 }
 

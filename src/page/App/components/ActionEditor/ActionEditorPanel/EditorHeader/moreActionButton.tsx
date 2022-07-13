@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button } from "@illa-design/button"
@@ -8,10 +8,7 @@ import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { TriggerProps } from "@illa-design/trigger"
 import { moreBtnMenuStyle, moreBtnStyle } from "./style"
-import {
-  ActionEditorHeaderMoreButtonProps,
-  DropDownListProps,
-} from "./interface"
+import { ACTION_EDITOR_CONTEXT } from "@/page/App/components/ActionEditor/ActionEditorPanel/context/ActionEditorPanelContext"
 
 const { Item } = DropList
 
@@ -24,19 +21,25 @@ const triggerProps: TriggerProps = {
   showArrow: false,
 }
 
-const DropDownList: FC<DropDownListProps> = (props) => {
+const DropDownList: FC = () => {
   const { t } = useTranslation()
-  const { onDuplicateActionItem, onDeleteActionItem } = props
-  const onClickItemDropList = useCallback((key: string) => {
-    switch (key) {
-      case "duplicate":
-        onDuplicateActionItem()
-        break
-      case "delete":
-        onDeleteActionItem()
-        break
-    }
-  }, [])
+
+  const { onDuplicateActionItem, onDeleteActionItem } = useContext(
+    ACTION_EDITOR_CONTEXT,
+  )
+  const onClickItemDropList = useCallback(
+    (key: string) => {
+      switch (key) {
+        case "duplicate":
+          onDuplicateActionItem()
+          break
+        case "delete":
+          onDeleteActionItem()
+          break
+      }
+    },
+    [onDuplicateActionItem, onDeleteActionItem],
+  )
 
   return (
     <DropList css={moreBtnMenuStyle} onClickItem={onClickItemDropList}>
@@ -55,22 +58,13 @@ const DropDownList: FC<DropDownListProps> = (props) => {
 
 DropDownList.displayName = "DropDownList"
 
-export const ActionEditorHeaderMoreButton: FC<
-  ActionEditorHeaderMoreButtonProps
-> = (props) => {
-  const { onDuplicateActionItem, onDeleteActionItem } = props
-
+export const ActionEditorHeaderMoreButton: FC = () => {
   const [moreBtnMenuVisible, setMoreBtnMenuVisible] = useState(false)
   const activeActionItem = useSelector(getSelectedAction)
 
   return (
     <Dropdown
-      dropList={
-        <DropDownList
-          onDuplicateActionItem={onDuplicateActionItem}
-          onDeleteActionItem={onDeleteActionItem}
-        />
-      }
+      dropList={<DropDownList />}
       trigger="click"
       popupVisible={moreBtnMenuVisible}
       onVisibleChange={setMoreBtnMenuVisible}

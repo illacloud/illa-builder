@@ -3,19 +3,13 @@ import { TitleInput } from "@/page/App/components/ActionEditor/ActionEditorPanel
 import { ActionEditorHeaderMoreButton } from "./moreActionButton"
 import { headerStyle } from "./style"
 import { RunActionButton } from "./runActionButton"
-import { ActionEditorHeaderProps } from "./interface"
 
-export const ActionEditorHeader: FC<ActionEditorHeaderProps> = (props) => {
-  const { onDuplicateActionItem, onDeleteActionItem } = props
-
+export const ActionEditorHeader: FC = () => {
   return (
     <header css={headerStyle}>
       <TitleInput />
       <div>
-        <ActionEditorHeaderMoreButton
-          onDuplicateActionItem={onDuplicateActionItem}
-          onDeleteActionItem={onDeleteActionItem}
-        />
+        <ActionEditorHeaderMoreButton />
         <RunActionButton />
       </div>
     </header>

@@ -9,7 +9,7 @@ import { Api } from "@/api/base"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
-import { ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
+import { ACTION_EDITOR_CONTEXT } from "@/page/App/components/ActionEditor/ActionEditorPanel/context/ActionEditorPanelContext"
 
 export const RunActionButton: FC = () => {
   const [isRunning, setIsRunning] = useState(false)
@@ -17,14 +17,13 @@ export const RunActionButton: FC = () => {
   const { isActionDirty, baseActionApi, setIsActionDirty } =
     useContext(ActionEditorContext)
 
+  const { handleUpdateResult } = useContext(ACTION_EDITOR_CONTEXT)
   const activeActionItem = useSelector(getSelectedAction)
   const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
 
   const dispatch = useDispatch()
   const runningIntervalRef = useRef<NodeJS.Timer>()
   const [duration, setDuration] = useState<string>()
-  const [result, setResult] = useState<ActionResultType>()
-  const [actionResVisible, setActionResVisible] = useState(false)
 
   const runBtnText = useMemo(() => {
     if (isRunning) {
@@ -136,9 +135,7 @@ export const RunActionButton: FC = () => {
             error: false,
           }),
         )
-
-        setResult(response)
-        setActionResVisible(true)
+        handleUpdateResult(response)
       },
       (response) => {
         // empty data if has error
@@ -151,8 +148,7 @@ export const RunActionButton: FC = () => {
             error: true,
           }),
         )
-        setResult(response)
-        setActionResVisible(true)
+        handleUpdateResult(response)
       },
       () => {},
       (loading) => {
