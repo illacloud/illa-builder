@@ -1,10 +1,9 @@
 import { FC, useState, useMemo, useLayoutEffect } from "react"
-import { CloseIcon } from "@illa-design/icon"
 import { Modal } from "@illa-design/modal"
 import { ResourceFormSelector } from "./Selector"
 import { ResourceFormEditor } from "./Editor"
 import { ResourceFormProps, ActionType } from "./interface"
-import { modalStyle, closeIconStyle } from "./style"
+import { modalStyle } from "./style"
 
 export const ResourceForm: FC<ResourceFormProps> = (props) => {
   const { actionType: propActionType, visible, onCancel, resourceId } = props
@@ -67,11 +66,6 @@ export const ResourceForm: FC<ResourceFormProps> = (props) => {
       footer={false}
       closable={true}
       withoutPadding
-      closeElement={
-        <div css={closeIconStyle} onClick={handleClose}>
-          <CloseIcon />
-        </div>
-      }
       onCancel={handleClose}
     >
       {renderForm}

@@ -1,13 +1,11 @@
 import { FC, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { Modal } from "@illa-design/modal"
-import { CloseIcon } from "@illa-design/icon"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import { ActionTypeSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/ActionEditor/ActionGenerator/ActionResourceSelector"
 import { ActionTypeInfo } from "@/page/App/components/ActionEditor/ActionGenerator/ActionTypeSelector/interface"
 import { ResourceFormEditor } from "@/page/App/components/ActionEditor/ResourceForm/Editor"
-import { closeIconStyle } from "@/page/App/components/ActionEditor/ResourceForm/style"
 import { Resource } from "@/redux/resource/resourceState"
 import { ActionGeneratorProps, ActionGeneratorSteps } from "./interface"
 import { modalStyle } from "./style"
@@ -111,11 +109,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       visible={visible}
       footer={false}
       closable
-      closeElement={
-        <div css={closeIconStyle} onClick={onClose}>
-          <CloseIcon />
-        </div>
-      }
       withoutPadding
       onCancel={onClose}
     >

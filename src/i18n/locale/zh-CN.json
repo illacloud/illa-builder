@@ -39,6 +39,7 @@
         "create": "创建账户"
       },
       "description": {
+        "login": "已有账户？ <0>登录</0>",
         "policy": "点击「立即注册」表示已阅读并同意<0>服务条款</0>和<1>隐私协议</1>",
         "subscribe": "订阅ILLA的动态"
       },
@@ -528,6 +529,11 @@
       "delete_content": "删除 {{ displayName }} 后无法恢复，可能会导致程序出错，请确认引用后删除",
       "delete_title": "你想要删除 {{ displayName }} 吗？",
       "cancel": "取消"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONS 列表 ",
+      "components_title": "组件列表 ",
+      "globals_title": "全局变量 "
     }
   },
   "widget": {
@@ -585,8 +591,8 @@
     "number_input": {
       "name": "数字输入框"
     },
-    "segmented_control": {
-      "name": "按钮类型单选组"
+    "radio_button": {
+      "name": "按钮单选"
     },
     "timeline": {
       "name": "时间线"

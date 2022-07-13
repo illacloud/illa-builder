@@ -39,6 +39,7 @@
         "create": "Create Account"
       },
       "description": {
+        "login": "Already have an account? <0>Sign in</0>",
         "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
@@ -528,6 +529,11 @@
       "delete_title": "Are you sure you want to delete {{ displayName}}?",
       "delete_content": "Delete the {{ displayName }} maybe make some bugs，please confirm.",
       "cancel": "Cancel"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONS & TRANSFORMERS ",
+      "components_title": "COMPONENTS ",
+      "globals_title": "GLOBALS "
     }
   },
   "widget": {
@@ -584,8 +590,8 @@
     "number_input": {
       "name": "Number Input"
     },
-    "segmented_control": {
-      "name": "Segmented control"
+    "radio_button": {
+      "name": "Radio Button"
     },
     "timeline": {
       "name": "Timeline"

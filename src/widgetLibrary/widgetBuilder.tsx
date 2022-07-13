@@ -93,11 +93,11 @@ import {
   CheckboxWidget,
 } from "@/widgetLibrary/CheckboxGroupWidget"
 import {
-  SEGMENTED_CONTROL_PANEL_CONFIG,
-  SEGMENTED_CONTROL_WIDGET_CONFIG,
-  SEGMENTED_CONTROL_EVENT_HANDLER_CONFIG,
-  SegmentedControlWidget,
-} from "@/widgetLibrary/SegmentedControlWidget"
+  RADIO_BUTTON_PANEL_CONFIG,
+  RADIO_BUTTON_WIDGET_CONFIG,
+  RADIO_BUTTON_EVENT_HANDLER_CONFIG,
+  RadioButtonWidget,
+} from "@/widgetLibrary/RadioButtonWidget"
 import {
   DIVIDER_PANEL_CONFIG,
   DIVIDER_WIDGET_CONFIG,
@@ -204,11 +204,11 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: CHECKBOX_GROUP_PANEL_CONFIG,
     eventHandlerConfig: CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
   },
-  SEGMENTED_CONTROL_WIDGET: {
-    widget: SegmentedControlWidget,
-    config: SEGMENTED_CONTROL_WIDGET_CONFIG,
-    panelConfig: SEGMENTED_CONTROL_PANEL_CONFIG,
-    eventHandlerConfig: SEGMENTED_CONTROL_EVENT_HANDLER_CONFIG,
+  RADIO_BUTTON_WIDGET: {
+    widget: RadioButtonWidget,
+    config: RADIO_BUTTON_WIDGET_CONFIG,
+    panelConfig: RADIO_BUTTON_PANEL_CONFIG,
+    eventHandlerConfig: RADIO_BUTTON_EVENT_HANDLER_CONFIG,
   },
   DIVIDER_WIDGET: {
     widget: DividerWidget,

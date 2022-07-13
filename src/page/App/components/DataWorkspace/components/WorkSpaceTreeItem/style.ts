@@ -8,9 +8,17 @@ export const itemNameStyle: SerializedStyles = css`
   font-weight: bold;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  vertical-align: bottom;
+  display: inline-block;
 `
 
 export const itemNameDescStyle: SerializedStyles = css`
+  display: inline-block;
+  vertical-align: bottom;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 export function applyExpandIconStyle(

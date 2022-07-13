@@ -33,6 +33,7 @@ import { Deploy } from "@/page/Deploy"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { DndProvider } from "react-dnd"
+
 import AuthInit from "./authInit"
 
 // user language > builder language

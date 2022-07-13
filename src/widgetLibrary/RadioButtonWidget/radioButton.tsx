@@ -1,14 +1,9 @@
 import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
-import {
-  SegmentedControlWidgetProps,
-  WrappedSegmentedControlProps,
-} from "./interface"
+import { RadioButtonWidgetProps, WrappedRadioButtonProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
-export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
-  props,
-) => {
+export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
   const { value, options, disabled, direction, colorScheme, handleUpdateDsl } =
     props
 
@@ -27,11 +22,9 @@ export const WrappedSegmentedControl: FC<WrappedSegmentedControlProps> = (
   )
 }
 
-WrappedSegmentedControl.displayName = "WrappedSegmentedControl"
+WrappedRadioButton.displayName = "WrappedRadioButton"
 
-export const SegmentedControlWidget: FC<SegmentedControlWidgetProps> = (
-  props,
-) => {
+export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
   const {
     value,
     disabled,
@@ -83,6 +76,6 @@ export const SegmentedControlWidget: FC<SegmentedControlWidgetProps> = (
     mappedOption,
     finalOptions,
   ])
-  return <WrappedSegmentedControl {...props} options={finalOptions} />
+  return <WrappedRadioButton {...props} options={finalOptions} />
 }
-SegmentedControlWidget.displayName = "SegmentedControlWidget"
+RadioButtonWidget.displayName = "RadioButtonWidget"

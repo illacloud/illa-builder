@@ -1,5 +1,5 @@
-import { ButtonProps } from "@illa-design/button/src"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { ButtonProps } from "@illa-design/button"
 
 export type alignmentType = "start" | "center" | "end" | "fullWidth"
 
