@@ -41,6 +41,7 @@ export const fieldItemTypeStyle = css`
 
 export const fieldItemValueStyle = css`
   flex: 1;
+  overflow: hidden;
 
   & .CodeMirror {
     border-radius: 0;

@@ -23,7 +23,6 @@ import {
   createResourceBtnStyle,
   formTitleStyle,
 } from "./style"
-import { AxiosResponse } from "axios"
 
 const renderResourceNode = (
   resourceType: ResourceType | undefined,

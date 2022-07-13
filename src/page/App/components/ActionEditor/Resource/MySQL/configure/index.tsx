@@ -108,7 +108,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 <Input
                   {...field}
                   placeholder={t(
-                    "editor.action.resource.my_sql.placeholder.name",
+                    "editor.action.resource.my_sql.placeholder.database",
                   )}
                   error={!!errors.resourceName}
                   maxLength={200}
@@ -237,7 +237,9 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             </div>
           </div>
           <div css={splitLineStyle} />
-          <h4 css={groupTitleStyle}>Advanced Options</h4>
+          <h4 css={groupTitleStyle}>
+            {t("editor.action.resource.my_sql.title.advanced_option")}
+          </h4>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
               {t("editor.action.resource.my_sql.label.connect_over_ssh")}
@@ -377,7 +379,9 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={css(labelTextStyle, labelTextVerticalStyle)}>
-                  <div>SSH passphrase</div>
+                  <div>
+                    {t("editor.action.resource.my_sql.label.ssh_passphrase")}
+                  </div>
                   <div css={labelTextSmallSizeStyle}>
                     {t("editor.action.resource.my_sql.tip.ssh_passphrase")}
                   </div>
