@@ -5,7 +5,7 @@ import { Loading } from "@illa-design/loading"
 import { CloseIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
-import { Connection } from "@/api/ws/ws"
+import { Connection } from "@/api/ws"
 import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -93,20 +93,15 @@ export const IllaApp: FC = () => {
   const currentUser = useSelector(getCurrentUser)
 
   useEffect(() => {
-    let currentRoom: Room
     Connection.enterRoom(
       "dashboard",
-      "dashboard",
+      "",
       (loading) => {},
       (errorState) => {},
-      (room) => {
-        currentRoom = room
-      },
+      (room) => {},
     )
     return () => {
-      if (currentRoom !== undefined) {
-        Connection.leaveRoom(currentRoom.wsURL)
-      }
+      Connection.leaveRoom("dashboard", "")
     }
   }, [currentUser])
 

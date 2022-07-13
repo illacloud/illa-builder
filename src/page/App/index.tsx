@@ -14,7 +14,7 @@ import {
   navbarStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
-import { Connection, Room } from "@/api/ws/ws"
+import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
   getIllaMode,
@@ -62,20 +62,15 @@ export const Editor: FC = () => {
   const currentUser = useSelector(getCurrentUser)
 
   useEffect(() => {
-    let currentRoom: Room
     Connection.enterRoom(
       "app",
       appId ?? "",
       (loading) => {},
       (errorState) => {},
-      (room) => {
-        currentRoom = room
-      },
+      (room) => {},
     )
     return () => {
-      if (currentRoom !== undefined) {
-        Connection.leaveRoom(currentRoom.wsURL)
-      }
+      Connection.leaveRoom("app", appId ?? "")
     }
   }, [currentUser])
 

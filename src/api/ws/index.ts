@@ -30,11 +30,11 @@ function generateWs(wsUrl: string): WebSocket {
       let callback: Callback<any> = JSON.parse(data.toString())
       if (callback.errorCode === 0) {
         let broadcast = callback.broadcast
-        let action = broadcast.action
+        let type = broadcast.type
         let payload = broadcast.payload
         try {
           store.dispatch({
-            type: action,
+            type,
             payload: JSON.parse(payload),
           })
         } catch (ignore) {}
@@ -77,7 +77,7 @@ export class Connection {
       config,
       (response) => {
         let ws = generateWs(response.data.wsURL)
-        this.roomMap.set(response.data.wsURL, ws)
+        this.roomMap.set(type + roomId, ws)
         getRoom(response.data)
         ws.send(
           getPayload(Signal.SIGNAL_ENTER, Target.TARGET_NOTHING, false, [
@@ -94,12 +94,12 @@ export class Connection {
     )
   }
 
-  static getRoom(wsURL: string): WebSocket | undefined {
-    return this.roomMap.get(wsURL)
+  static getRoom(type: RoomType, roomId: string): WebSocket | undefined {
+    return this.roomMap.get(type + roomId)
   }
 
-  static leaveRoom(roomId: string) {
-    let ws = this.roomMap.get(roomId)
+  static leaveRoom(type: RoomType, roomId: string) {
+    let ws = this.roomMap.get(type + roomId)
     if (ws != undefined) {
       ws.send(getPayload(Signal.SIGNAL_LEAVE, Target.TARGET_NOTHING, false, []))
       ws.close()

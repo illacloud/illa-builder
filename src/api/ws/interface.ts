@@ -12,6 +12,7 @@ export enum Signal {
   SIGNAL_UPDATE_STATE = 5,
   SIGNAL_MOVE_STATE = 6,
   SIGNAL_CREATE_OR_UPDATE = 7,
+  SIGNAL_ONLY_BROADCAST = 8,
 }
 
 export enum Target {
@@ -21,10 +22,12 @@ export enum Target {
   TARGET_DRAG_SHADOW = 3,
   TARGET_DOTTED_LINE_SQUARE = 4,
   TARGET_DISPLAY_NAME = 5,
+  TARGET_APPS = 6,
+  TARGET_RESOURCE = 7,
 }
 
 export interface Broadcast {
-  action: string
+  type: string
   payload: string
 }
 
