@@ -200,13 +200,8 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "date_time-layout-hidden",
-<<<<<<< HEAD
-        setterType: "INPUT_SETTER",
-        labelName: "editor.inspect.setter_label.hidden",
-=======
         setterType: "DYNAMIC_SWITCH_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.hidden"),
->>>>>>> 45f8347a (feat: update hidden input)
+        labelName: "editor.inspect.setter_label.hidden",
         attrName: "hidden",
         useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
