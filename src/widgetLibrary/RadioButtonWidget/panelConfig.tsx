@@ -236,7 +236,7 @@ export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-color`,
             labelName: "editor.inspect.setter_label.theme_color",
             attrName: "colorScheme",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
             options: colorSchemeOptions,
           },

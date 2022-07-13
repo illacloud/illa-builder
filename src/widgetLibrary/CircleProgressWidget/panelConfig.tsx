@@ -88,7 +88,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "circle-progress-color",
             labelName: "editor.inspect.setter_label.styles",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "color",
             defaultValue: "blue",
             options: colorSchemeOptions,
@@ -96,7 +96,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "circle-progress-trailColor",
             labelName: "editor.inspect.setter_label.trail_color",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "trailColor",
             defaultValue: "gray",
             options: colorSchemeOptions,

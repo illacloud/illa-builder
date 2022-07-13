@@ -109,16 +109,16 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
       </div>
       <span css={sessionTitleCss}>Prefabricated color</span>
       <div css={swatchContainerCss}>
-        {prefabricatedColors?.map((colorStr) => {
+        {prefabricatedColors?.map((item) => {
           return (
             <Point
               checked={
-                JSON.stringify(hexToHsva(colorStr)) ===
+                JSON.stringify(hexToHsva(item.key)) ===
                 JSON.stringify(props.color)
               }
-              color={colorStr}
+              color={item.key}
               handleClick={() => {
-                swatchItemClick(colorStr)
+                swatchItemClick(item.key)
               }}
             />
           )

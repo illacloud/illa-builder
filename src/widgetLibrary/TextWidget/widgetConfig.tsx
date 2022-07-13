@@ -16,7 +16,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     horizontalAlign: "start",
     verticalAlign: "start",
     disableMarkdown: false,
-    linkColor: globalColor(`--${illaPrefix}-blue-01`),
-    textColor: globalColor(`--${illaPrefix}-grayBlue-01`),
+    linkColor: "blue",
+    textColor: "grayBlue",
   },
 }
