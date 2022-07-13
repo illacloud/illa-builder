@@ -201,7 +201,6 @@ export const Editor: FC = () => {
       },
       function (keyboardEvent, hotkeysEvent) {
         if (hotkeys.ctrl || hotkeys.command) {
-          keyboardEvent.preventDefault()
           if (keyboardEvent.type === "keydown") {
             dispatch(configActions.updateShowDot(true))
           } else if (keyboardEvent.type === "keyup") {
