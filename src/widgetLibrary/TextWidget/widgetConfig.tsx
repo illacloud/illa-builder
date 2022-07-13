@@ -1,6 +1,7 @@
 import { TextWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "text",
@@ -15,7 +16,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     horizontalAlign: "start",
     verticalAlign: "start",
     disableMarkdown: false,
-    linkColor: "blue",
-    textColor: "gray",
+    linkColor: globalColor(`--${illaPrefix}-blue-01`),
+    textColor: globalColor(`--${illaPrefix}-grayBlue-01`),
   },
 }

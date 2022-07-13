@@ -21,6 +21,7 @@ import { PointerProps } from "@uiw/react-color-alpha/cjs/Pointer"
 import { ColorPickerOperationProps } from "./interface"
 import { CloseIcon } from "@illa-design/icon"
 import { useCallback } from "react"
+import { css } from "@emotion/react"
 
 const HueBar = (props: PointerProps) => (
   <div css={applyHuePointCss(props.left)} />
@@ -59,7 +60,12 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
     <div css={saturationCss}>
       <div css={titleCss}>
         <span>edit color</span>
-        <CloseIcon onClick={props.handleClosePanel} />
+        <CloseIcon
+          _css={css`
+            cursor: pointer;
+          `}
+          onClick={props.handleClosePanel}
+        />
       </div>
       <Saturation
         radius={4}
@@ -106,7 +112,10 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
         {prefabricatedColors?.map((colorStr) => {
           return (
             <Point
-              checked={colorStr.toLowerCase() === hsvaToHex(props.color)}
+              checked={
+                JSON.stringify(hexToHsva(colorStr)) ===
+                JSON.stringify(props.color)
+              }
               color={colorStr}
               handleClick={() => {
                 swatchItemClick(colorStr)

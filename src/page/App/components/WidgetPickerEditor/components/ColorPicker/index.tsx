@@ -42,12 +42,15 @@ function ColorPicker(props: ColorPickerProps) {
   const [inputValue, setInputValue] = useState(hsvaToHex(hsva))
   const [alphaPercentValue, setAlphaPercentValue] = useState("100%")
 
-  const handleColorPick = useCallback((hsva: HsvaColor) => {
-    setHsva(hsva)
-    setAlphaPercentValue(updateAlphaInputValue(hsva.a))
-    setInputValue(hsvaToHex(hsva))
-    props.onColorChange && props.onColorChange(hsva)
-  }, [])
+  const handleColorPick = useCallback(
+    (hsva: HsvaColor) => {
+      setHsva(hsva)
+      setAlphaPercentValue(updateAlphaInputValue(hsva.a))
+      setInputValue(hsvaToHex(hsva))
+      props.onColorChange && props.onColorChange(hsva)
+    },
+    [props.onColorChange],
+  )
 
   const [inputFocus, setInputFocus] = useState(false)
   const [debouncedInputFocus, setDebouncedInputFocus] = useState(false)
@@ -112,6 +115,7 @@ function ColorPicker(props: ColorPickerProps) {
           }}
           onBlur={() => {
             setInputFocus(false)
+            props.onColorChange && props.onColorChange(hsva)
             setInputValue(hsvaToHex(hsva))
           }}
           withoutNormalBorder={true}
@@ -148,6 +152,7 @@ function ColorPicker(props: ColorPickerProps) {
                 onBlur={() => {
                   setInputFocus(false)
                   setAlphaPercentValue(hsva.a * 100 + "%")
+                  props.onColorChange && props.onColorChange(hsva)
                 }}
                 css={percentInputCss}
               />
