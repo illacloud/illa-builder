@@ -189,9 +189,10 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "date-range-layout-hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
         attrName: "hidden",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],

@@ -250,8 +250,9 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
+        useCustomLayout: true,
         placeholder: "false",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },

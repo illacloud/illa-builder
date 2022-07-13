@@ -13,5 +13,6 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
     items: `{{["The first milestone","The second milestone","The third milestone"]}}`,
     width: "200px",
     height: "20px",
+    hidden: false,
   },
 }

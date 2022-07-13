@@ -18,5 +18,6 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
     labelAlign: "left",
     labelPosition: "left",
     labelWidth: "{{33}}",
+    hidden: false,
   },
 }

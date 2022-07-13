@@ -47,9 +47,15 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "circle-progress-layout-hidden",
+<<<<<<< HEAD
         setterType: "INPUT_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
+=======
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+>>>>>>> 45f8347a (feat: update hidden input)
         attrName: "hidden",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {

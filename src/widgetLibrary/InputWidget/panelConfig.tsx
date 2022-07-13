@@ -209,9 +209,10 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "input-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],

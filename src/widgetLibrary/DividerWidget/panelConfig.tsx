@@ -47,9 +47,10 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: "divider-layout-hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
         attrName: "hidden",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],

@@ -18,5 +18,6 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     disableMarkdown: false,
     linkColor: "blue",
     textColor: "grayBlue",
+    hidden: false,
   },
 }
