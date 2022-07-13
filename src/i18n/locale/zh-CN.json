@@ -156,7 +156,7 @@
     "action": {
       "type": {
         "database": "数据库",
-        "api": "Apis",
+        "api": "API",
         "js_transformer": "JavaScript 转换器"
       },
       "action_list": {

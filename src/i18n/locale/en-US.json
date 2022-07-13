@@ -155,8 +155,8 @@
   "editor": {
     "action": {
       "type": {
-        "database": "Databases",
-        "api": "Apis",
+        "database": "Database",
+        "api": "API",
         "js_transformer": "JavaScript Transformer"
       },
       "action_list": {
