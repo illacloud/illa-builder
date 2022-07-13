@@ -6,6 +6,20 @@ import {
   VerticalAlign,
 } from "@/widgetLibrary/TextWidget/interface"
 
+const innerColor = [
+  "blackAlpha",
+  "gray",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "cyan",
+  "purple",
+  "grayBlue",
+  "techPurple",
+  "techPink",
+]
 export const applyTextContainerStyle = (
   horizontalAlign: HorizontalAlign = "start",
   verticalAlign: VerticalAlign = "start",
@@ -27,8 +41,12 @@ export function applyTextStyle(
   linkColor?: string,
   backgroundColor?: string,
 ): SerializedStyles {
+  const _color =
+    textColor && innerColor.indexOf(textColor) > -1
+      ? globalColor(`--${illaPrefix}-${textColor}-01`)
+      : textColor
   return css`
-    color: ${globalColor(`--${illaPrefix}-${textColor}-01`)};
+    color: ${_color ?? globalColor(`--${illaPrefix}-grayBlue-01`)};
     background-color: ${backgroundColor &&
     colorSchemes.includes(backgroundColor)
       ? globalColor(`--${illaPrefix}-${backgroundColor}-01`)
@@ -38,11 +56,15 @@ export function applyTextStyle(
 }
 
 export function applyLinkStyle(linkColor?: string): SerializedStyles {
+  const _linkColor =
+    linkColor && innerColor.indexOf(linkColor) > -1
+      ? globalColor(`--${illaPrefix}-${linkColor}-01`)
+      : linkColor
   return linkColor
     ? css`
         a {
           cursor: pointer;
-          color: ${globalColor(`--${illaPrefix}-${linkColor}-01`)};
+          color: ${_linkColor};
         }
       `
     : css``

@@ -16,5 +16,6 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
     labelPosition: "left",
     labelWidth: "{{33}}",
     colorScheme: "blue",
+    hidden: false,
   },
 }

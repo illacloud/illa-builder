@@ -44,7 +44,7 @@ function renderResult(activeActionItem: ActionItem, result?: ActionResultType) {
 }
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose, result, error, className } = props
+  const { onClose, result, className } = props
   const { t } = useTranslation()
   const activeActionItem = useSelector(getSelectedAction)
   const { editorHeight } = useContext(ActionEditorContext)
@@ -58,11 +58,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
   }
 
   const resizer = useResize("vertical", resultContainerRef, onHeightChange)
-
-  const title = error
-    ? t("editor.action.result.title.error")
-    : t("editor.action.result.title.success")
-
+  const title = t("editor.action.result.title.success")
   const resultNode = useMemo(
     () => renderResult(activeActionItem, result),
     [activeActionItem, result],

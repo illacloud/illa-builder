@@ -286,8 +286,9 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "button-layout-hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
+        useCustomLayout: true,
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },

@@ -119,6 +119,14 @@ export function applyactionItemNameTextStyle(
   `
 }
 
+export const actionItemRuntimeStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+
+  &:hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
+  }
+`
+
 export const warningIndicatorStyle = css`
   position: absolute;
   color: ${globalColor(`--${illaPrefix}-orange-06`)};

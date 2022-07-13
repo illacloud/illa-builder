@@ -215,9 +215,10 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-layout-hidden`,
         labelName: "editor.inspect.setter_label.hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
@@ -244,7 +245,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-coloScheme`,
             labelName: "editor.inspect.setter_label.theme_color",
             attrName: "colorScheme",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
             options: colorSchemeOptions,
           },
