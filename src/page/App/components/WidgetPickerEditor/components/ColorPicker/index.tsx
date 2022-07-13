@@ -47,7 +47,7 @@ function ColorPicker(props: ColorPickerProps) {
       setHsva(hsva)
       setAlphaPercentValue(updateAlphaInputValue(hsva.a))
       setInputValue(hsvaToHex(hsva))
-      props.onColorChange && props.onColorChange(hsva)
+      props.onColorChange?.(hsva)
     },
     [props.onColorChange],
   )
@@ -114,7 +114,7 @@ function ColorPicker(props: ColorPickerProps) {
           }}
           onBlur={() => {
             setInputFocus(false)
-            props.onColorChange && props.onColorChange(hsva)
+            props.onColorChange?.(hsva)
             setInputValue(hsvaToHex(hsva))
           }}
           withoutNormalBorder={true}
@@ -151,7 +151,7 @@ function ColorPicker(props: ColorPickerProps) {
                 onBlur={() => {
                   setInputFocus(false)
                   setAlphaPercentValue(hsva.a * 100 + "%")
-                  props.onColorChange && props.onColorChange(hsva)
+                  props.onColorChange?.(hsva)
                 }}
                 css={percentInputCss}
               />

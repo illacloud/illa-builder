@@ -26,4 +26,4 @@ export const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
   )
 }
 
-ColorPickerSetter.displayName = "BaseInput"
+ColorPickerSetter.displayName = "ColorPickerSetter"
