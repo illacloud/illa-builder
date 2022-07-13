@@ -17,5 +17,6 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
     width: "200px",
     alignment: "fullWidth",
     colorScheme: "blue",
+    hidden: false,
   },
 }

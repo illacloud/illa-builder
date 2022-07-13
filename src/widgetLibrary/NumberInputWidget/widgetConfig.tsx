@@ -17,5 +17,6 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
     colorScheme: "blue",
     max: "{{Infinity}}",
     min: "{{-Infinity}}",
+    hidden: false,
   },
 }

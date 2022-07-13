@@ -20,10 +20,11 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     expectedType,
     value,
     widgetDisplayName,
+    isInList,
   } = props
 
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
+    <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
         value={value ?? ""}
         placeholder={placeholder}
