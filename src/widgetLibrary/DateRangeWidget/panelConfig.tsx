@@ -212,7 +212,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "date-range-styles-colorScheme",
             labelName: "editor.inspect.setter_label.theme_color",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",
             options: colorSchemeOptions,

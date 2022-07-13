@@ -202,7 +202,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "date-style-colorScheme",
             labelName: "editor.inspect.setter_label.theme_color",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
             defaultValue: "blue",
             options: colorSchemeOptions,
