@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import {
   DragResize,
   DragResizeCollected,
@@ -6,6 +6,7 @@ import {
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
 import {
+  applyBarHandlerStyle,
   applyBarPointerStyle,
   applyBorderStyle,
   applyHandlerStyle,
@@ -34,6 +35,7 @@ import { getExecutionError } from "@/redux/currentApp/executionTree/execution/ex
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { Modal } from "@illa-design/modal"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
 const { Item } = DropList
 
@@ -86,6 +88,8 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   const errors = useSelector(getExecutionError)
   const widgetErrors = errors[displayName] ?? {}
   const hasError = Object.keys(widgetErrors).length > 0
+
+  const shortcut = useContext(ShortCutContext)
 
   let scaleSquareState: ScaleSquareType = hasError ? "error" : "normal"
   if (illaMode !== "edit") {
@@ -236,24 +240,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             key="delete"
             title={t("editor.context_menu.delete")}
             onClick={() => {
-              Modal.confirm({
-                title: t("editor.component.delete_title", {
-                  displayName: componentNode.displayName,
-                }),
-                content: t("editor.component.delete_content"),
-                cancelText: t("editor.component.cancel"),
-                okText: t("editor.component.delete"),
-                okButtonProps: {
-                  colorScheme: "red",
-                },
-                onOk: () => {
-                  dispatch(
-                    componentsActions.deleteComponentNodeReducer({
-                      displayName: [componentNode.displayName],
-                    }),
-                  )
-                },
-              })
+              shortcut.showDeleteDialog([componentNode.displayName])
             }}
           />
         </DropList>
@@ -277,7 +264,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             <TransformWidgetWrapper componentNode={componentNode} />
           </div>
           <div
-            className={"handler"}
+            className="handler"
             ref={dragHandlerRef}
             css={applyHandlerStyle(selected, w, scaleSquareState)}
           >
@@ -292,41 +279,61 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           </div>
         </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectT.resizing,
-            scaleSquareState,
-            "t",
-          )}
           ref={resizeT}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "t")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectT.resizing,
+              scaleSquareState,
+              "t",
+            )}
+          />
+        </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectR.resizing,
-            scaleSquareState,
-            "r",
-          )}
           ref={resizeR}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "r")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectR.resizing,
+              scaleSquareState,
+              "r",
+            )}
+          />
+        </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectB.resizing,
-            scaleSquareState,
-            "b",
-          )}
           ref={resizeB}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "b")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectB.resizing,
+              scaleSquareState,
+              "b",
+            )}
+          />
+        </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectL.resizing,
-            scaleSquareState,
-            "l",
-          )}
           ref={resizeL}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "l")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectL.resizing,
+              scaleSquareState,
+              "l",
+            )}
+          />
+        </div>
         <div
           css={applySquarePointerStyle(
             selected,

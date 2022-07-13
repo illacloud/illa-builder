@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
+import { useTranslation, Trans } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"
@@ -21,12 +21,14 @@ import {
   errorMsgStyle,
   errorIconStyle,
   checkboxTextStyle,
+  descriptionStyle,
 } from "@/page/User/style"
 import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { LocationState } from "@/page/User/Login/interface"
 import { setLocalStorage } from "@/utils/storage"
+import { TextLink } from "@/page/User/components/TextLink"
 
 export const Register: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -108,7 +110,22 @@ export const Register: FC = () => {
   }
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
-      <header css={formTitleStyle}>{t("user.sign_up.title")}</header>
+      <header css={gridItemStyle}>
+        <div css={formTitleStyle}>{t("user.sign_up.title")}</div>
+        <div css={descriptionStyle}>
+          <Trans
+            i18nKey="user.sign_up.description.login"
+            t={t}
+            components={[
+              <TextLink
+                onClick={() => {
+                  navigate("/user/login")
+                }}
+              />,
+            ]}
+          />
+        </div>
+      </header>
       <section css={gridFormFieldStyle}>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>

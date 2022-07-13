@@ -10,12 +10,15 @@ import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ACTION_EDITOR_CONTEXT } from "@/page/App/components/ActionEditor/ActionEditorPanel/context/ActionEditorPanelContext"
+import { executeAction } from "@/utils/action/execute"
+import { useParams } from "react-router-dom"
 
 export const RunActionButton: FC = () => {
   const [isRunning, setIsRunning] = useState(false)
   const { t } = useTranslation()
   const { isActionDirty, baseActionApi, setIsActionDirty } =
     useContext(ActionEditorContext)
+  const params = useParams()
 
   const { handleUpdateResult } = useContext(ACTION_EDITOR_CONTEXT)
   const activeActionItem = useSelector(getSelectedAction)
@@ -79,6 +82,14 @@ export const RunActionButton: FC = () => {
         )
 
         setIsActionDirty?.(false)
+
+        // (get req) will run automatically whenever a parameter changes.
+        if (
+          data.actionType === ACTION_TYPE.REST_API &&
+          data.actionTemplate.method === "GET"
+        ) {
+          run()
+        }
       },
       () => {},
       () => {},
@@ -89,65 +100,13 @@ export const RunActionButton: FC = () => {
   }, [activeActionItem, baseActionApi, onLoadingActionResult])
 
   const run = useCallback(() => {
-    const { resourceId, actionType, actionTemplate, displayName } =
-      activeActionItem
-
-    if (actionType === "transformer") {
-      // TODO: run transformer
-      // setResult(activeActionItem.actionTemplate?.transformer)
-      // setActionResVisible(true)
-      return
-    }
-
-    Api.request(
-      {
-        url: `${baseActionApi}/${activeActionItem?.actionId}/run`,
-        method: "POST",
-        data: {
-          resourceId,
-          actionType,
-          actionTemplate,
-          displayName,
-        },
-        // TODO: @spike temporay set `User-Agent` in headers,
-        // will be removed after handle by server later
-        transformRequest: [
-          function (data) {
-            if (actionType === ACTION_TYPE.REST_API) {
-              data.actionTemplate.headers = [
-                ...data.actionTemplate.headers,
-                ["User-Agent", navigator.userAgent],
-              ]
-            }
-
-            return JSON.stringify(data)
-          },
-        ],
-      },
+    executeAction(
+      activeActionItem,
+      params.versionId || "",
       (response) => {
-        // save data to action
-        dispatch(
-          actionActions.updateActionItemReducer({
-            ...activeActionItem,
-            // TODO: apply Transfomer
-            data: response.data,
-            rawData: response.data,
-            error: false,
-          }),
-        )
         handleUpdateResult(response)
       },
       (response) => {
-        // empty data if has error
-        dispatch(
-          actionActions.updateActionItemReducer({
-            ...activeActionItem,
-            // TODO: apply Transfomer
-            data: response.data,
-            rawData: response.data,
-            error: true,
-          }),
-        )
         handleUpdateResult(response)
       },
       () => {},
@@ -155,7 +114,7 @@ export const RunActionButton: FC = () => {
         onLoadingActionResult(loading)
       },
     )
-  }, [activeActionItem, baseActionApi, onLoadingActionResult])
+  }, [activeActionItem, handleUpdateResult, onLoadingActionResult])
 
   const saveOrRun = useCallback(() => {
     if (isActionDirty) {

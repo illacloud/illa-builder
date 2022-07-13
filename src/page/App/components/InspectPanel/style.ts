@@ -73,7 +73,7 @@ export function applySetterWrapperStyle(
 
   const basicStyle = css`
     display: flex;
-    align-items: baseline;
+    align-items: ${isInList ? "center" : "baseline"};
     justify-content: space-between;
   `
   return css`

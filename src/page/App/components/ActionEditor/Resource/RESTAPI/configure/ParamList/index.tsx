@@ -88,7 +88,7 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
         {paramList}
         <span css={css(newButtonStyle, actionTextStyle)} onClick={addParamItem}>
           <AddIcon />
-          New
+          {t("editor.action.resource.rest_api.btns.new")}
         </span>
       </div>
     )
