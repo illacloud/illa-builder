@@ -16,7 +16,7 @@ import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/inte
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
 import { ResourceForm } from "./ResourceForm"
-import { ActionEditorLayout } from "./layout"
+import { ActionEditorLayout } from "./Layout"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorContext } from "./context"
 
