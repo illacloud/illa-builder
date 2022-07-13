@@ -30,7 +30,10 @@ it("change color by ColorPicker Saturation", () => {
     />,
   )
   cy.findByDisplayValue("#ffffff").prev().trigger("click")
-  cy.findByText("edit color").parent().next().trigger("mousedown", 30, 50)
+  cy.findByText("edit color")
+    .parent()
+    .next()
+    .trigger("mousedown", 30, 50, { force: true })
   cy.get("@onChangeEvent")
     .should("be.called")
     .then(() => {
