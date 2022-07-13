@@ -13,17 +13,17 @@ export const BaseModal: FC<ModalProps> = (props) => {
     widgetDisplayName,
     attrPath,
     children,
-       _css,
-        header,
+    _css,
+    header,
   } = props
-    const _header = useMemo(() => {
-      return (
-        header ?? (
-          <ModalHeader title={title} handleCloseModal={handleCloseModal} />
-        )
+  
+  const _header = useMemo(() => {
+    return (
+      header ?? (
+        <ModalHeader title={title} handleCloseModal={handleCloseModal} />
       )
-    }, [header, title, handleCloseModal])
-
+    )
+  }, [header, title, handleCloseModal])
 
   const renderBody = useMemo(() => {
     if (!childrenSetter || !widgetDisplayName || !attrPath) {
@@ -39,9 +39,8 @@ export const BaseModal: FC<ModalProps> = (props) => {
   }, [childrenSetter, widgetDisplayName, attrPath, children])
 
   return (
-   <div css={css(modalWrapperStyle, _css)}>
+    <div css={css(modalWrapperStyle, _css)}>
       {_header}
-      <ModalHeader title={title} handleCloseModal={handleCloseModal} />
       {renderBody}
     </div>
   )
