@@ -52,6 +52,8 @@ interface PanelConfigProps {
 
 export type PanelState = keyof PanelConfigProps
 
+const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
+
 export const Editor: FC = () => {
   const [room, setRoom] = useState<Room>()
 
@@ -143,6 +145,16 @@ export const Editor: FC = () => {
     )
     return () => {
       controller.abort()
+    }
+  }, [])
+
+  useEffect(() => {
+    performance.setResourceTimingBufferSize(
+      INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE,
+    )
+
+    return () => {
+      performance.clearResourceTimings()
     }
   }, [])
 
