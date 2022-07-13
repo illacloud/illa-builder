@@ -6,6 +6,7 @@ import {
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
 import {
+  applyBarHandlerStyle,
   applyBarPointerStyle,
   applyBorderStyle,
   applyHandlerStyle,
@@ -280,7 +281,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             <TransformWidgetWrapper componentNode={componentNode} />
           </div>
           <div
-            className={"handler"}
+            className="handler"
             ref={dragHandlerRef}
             css={applyHandlerStyle(selected, w, scaleSquareState)}
           >
@@ -295,41 +296,61 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           </div>
         </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectT.resizing,
-            scaleSquareState,
-            "t",
-          )}
           ref={resizeT}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "t")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectT.resizing,
+              scaleSquareState,
+              "t",
+            )}
+          />
+        </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectR.resizing,
-            scaleSquareState,
-            "r",
-          )}
           ref={resizeR}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "r")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectR.resizing,
+              scaleSquareState,
+              "r",
+            )}
+          />
+        </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectB.resizing,
-            scaleSquareState,
-            "b",
-          )}
           ref={resizeB}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "b")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectB.resizing,
+              scaleSquareState,
+              "b",
+            )}
+          />
+        </div>
         <div
-          css={applyBarPointerStyle(
-            selected,
-            collectL.resizing,
-            scaleSquareState,
-            "l",
-          )}
           ref={resizeL}
-        />
+          css={applyBarHandlerStyle(selected, scaleSquareState, "l")}
+        >
+          <div
+            className="handler"
+            css={applyBarPointerStyle(
+              selected,
+              collectL.resizing,
+              scaleSquareState,
+              "l",
+            )}
+          />
+        </div>
         <div
           css={applySquarePointerStyle(
             selected,
