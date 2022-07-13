@@ -109,6 +109,12 @@ import {
   EDITABLE_EVENT_HANDLER_CONFIG,
   EditableTextWidget,
 } from "@/widgetLibrary/EditableWidget"
+import {
+  DROPDOWN_BUTTON_PANEL_CONFIG,
+  DROPDOWN_BUTTON_WIDGET_CONFIG,
+  DROPDOWN_BUTTON_EVENT_HANDLER_CONFIG,
+  DropdownButtonWidget,
+} from "@/widgetLibrary/DropdownButtonWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -220,6 +226,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: EDITABLE_TEXT_WIDGET_CONFIG,
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
+  },
+  DROPDOWN_BUTTON_WIDGET: {
+    widget: DropdownButtonWidget,
+    config: DROPDOWN_BUTTON_WIDGET_CONFIG,
+    panelConfig: DROPDOWN_BUTTON_PANEL_CONFIG,
+    eventHandlerConfig: DROPDOWN_BUTTON_EVENT_HANDLER_CONFIG,
   },
 }
 

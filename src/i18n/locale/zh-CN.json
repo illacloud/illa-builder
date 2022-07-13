@@ -619,6 +619,9 @@
     },
     "timeline": {
       "name": "时间线"
+    },
+    "dropdown_button": {
+      "name": "下拉菜单按钮"
     }
   },
   "Setting": "设置",

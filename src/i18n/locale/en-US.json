@@ -618,6 +618,9 @@
     },
     "timeline": {
       "name": "Timeline"
+    },
+    "dropdown_button": {
+      "name": "Dropdown Button"
     }
   },
   "Setting": "Setting",
