@@ -68,7 +68,6 @@ function ColorPicker(props: ColorPickerProps) {
 
   return (
     <div placeholder={props.placeholder} css={colorInputContainerCss}>
-      <span css={labelCss}>{labelName}</span>
       <div css={colorInputCss}>
         <Input
           inputRef={inputRef}
