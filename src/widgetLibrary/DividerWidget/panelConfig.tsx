@@ -67,14 +67,6 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "divider-style-color",
-            labelName: "editor.inspect.setter_label.theme_color",
-            setterType: "COLOR_SELECT_SETTER",
-            attrName: "colorScheme",
-            defaultValue: "grayBlue",
-            options: colorSchemeOptions,
-          },
-          {
             id: "divider-style-text-size",
             labelName: "editor.inspect.setter_label.text_size",
             setterType: "INPUT_SETTER",
