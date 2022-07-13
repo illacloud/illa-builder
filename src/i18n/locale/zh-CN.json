@@ -620,6 +620,9 @@
     },
     "timeline": {
       "name": "时间线"
+    },
+    "chart": {
+      "name": "图表"
     }
   },
   "Setting": "设置",
