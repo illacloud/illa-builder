@@ -3,6 +3,7 @@ import { modalWrapperStyle } from "./style"
 import { ModalHeader } from "./header"
 import { ModalBody } from "./body"
 import { ModalProps } from "./interface"
+import { css } from "@emotion/react"
 
 export const BaseModal: FC<ModalProps> = (props) => {
   const {
@@ -12,7 +13,18 @@ export const BaseModal: FC<ModalProps> = (props) => {
     widgetDisplayName,
     attrPath,
     children,
+       _css,
+        header,
   } = props
+    const _header = useMemo(() => {
+      return (
+        header ?? (
+          <ModalHeader title={title} handleCloseModal={handleCloseModal} />
+        )
+      )
+    }, [header, title, handleCloseModal])
+
+
   const renderBody = useMemo(() => {
     if (!childrenSetter || !widgetDisplayName || !attrPath) {
       return children
@@ -25,8 +37,10 @@ export const BaseModal: FC<ModalProps> = (props) => {
       />
     )
   }, [childrenSetter, widgetDisplayName, attrPath, children])
+
   return (
-    <div css={modalWrapperStyle}>
+   <div css={css(modalWrapperStyle, _css)}>
+      {_header}
       <ModalHeader title={title} handleCloseModal={handleCloseModal} />
       {renderBody}
     </div>

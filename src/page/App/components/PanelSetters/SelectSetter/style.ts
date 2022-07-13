@@ -43,7 +43,6 @@ export const colorSelectMenuItemWrapperStyle = css`
   align-items: center;
   height: 34px;
   cursor: pointer;
-
   :hover {
     background-color: ${globalColor(`--${illaPrefix}-techPurple-07`)};
   }
@@ -58,3 +57,33 @@ export const applyBaseSelectWrapperStyle = (
       `
     : fixedWidthStyle
 }
+
+export const dynamicSelectStyle: SerializedStyles = css`
+  padding: 0 16px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`
+
+export const chartDynamicSelectStyle = css`
+  padding: 0 16px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0;
+`
+
+export const dynamicSelectHeaderStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+`
+
+export const useTypeTextStyle: SerializedStyles = css`
+  size: 14px;
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+  cursor: pointer;
+`

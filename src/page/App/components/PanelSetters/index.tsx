@@ -14,6 +14,10 @@ import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHand
 import { EventWidgetMethodSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventWidgetMethodSelect"
 import { EventActionTypeSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventActionTypeSelect"
 import { ColorPickerSetter } from "@/page/App/components/PanelSetters/ColorPickerSetter"
+import { TextAreaInput } from "@/page/App/components/PanelSetters/InputSetter/textArea"
+import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/dynamicSelect"
+import { ChartDataSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSetter"
+import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/removeDatasetButton"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -32,6 +36,10 @@ const SetterTypeMapSetter = {
   OPTION_MAPPED_INPUT_SETTER: OptionMappedInputSetter,
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
+  DYNAMIC_SELECT_SETTER: DynamicSelectSetter,
+  TEXT_AREA: TextAreaInput,
+  CHART_DATA_SETTER: ChartDataSetter,
+  CHART_REMOVE_BUTTON: RemoveDatasetButton,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

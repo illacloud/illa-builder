@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
+import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/dynamicSelect"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 function ComponentsManager() {
   const { t } = useTranslation()
