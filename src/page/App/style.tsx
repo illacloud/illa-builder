@@ -27,6 +27,7 @@ export const loadingStyle = css`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: #fafafb;
 `
 
 export const navbarStyle = css`
