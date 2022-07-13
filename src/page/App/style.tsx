@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
-import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH } from "@/style"
+import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH, NAVBAR_HEIGHT } from "@/style"
 
 export const editorContainerStyle = css`
   display: flex;
@@ -21,17 +21,18 @@ export const contentStyle = css`
 `
 
 export const loadingStyle = css`
+  width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
 `
 
 export const navbarStyle = css`
   box-sizing: border-box;
   width: 100%;
-  height: 48px;
+  height: ${NAVBAR_HEIGHT}px;
 `
 
 export function applyLeftPanelStyle(display: boolean): SerializedStyles {

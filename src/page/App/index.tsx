@@ -9,7 +9,6 @@ import {
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
-  loadingStyle,
   middlePanelStyle,
   navbarStyle,
 } from "./style"
@@ -45,6 +44,7 @@ import hotkeys from "hotkeys-js"
 import { Message } from "@illa-design/message"
 import { useTranslation } from "react-i18next"
 import { Modal } from "@illa-design/modal"
+import { AppLoading } from "@/page/App/components/AppLoading"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -214,11 +214,7 @@ export const Editor: FC = () => {
 
   return (
     <div css={editorContainerStyle}>
-      {loadingState && (
-        <div css={loadingStyle}>
-          <Loading colorScheme="techPurple" />
-        </div>
-      )}
+      {loadingState && <AppLoading />}
       {!loadingState && (
         <>
           <PageNavBar css={navbarStyle} />
