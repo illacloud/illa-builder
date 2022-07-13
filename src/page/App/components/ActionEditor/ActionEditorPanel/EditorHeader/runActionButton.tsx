@@ -25,7 +25,7 @@ export const RunActionButton: FC = () => {
   const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
 
   const dispatch = useDispatch()
-  const runningIntervalRef = useRef<NodeJS.Timer>()
+  const runningIntervalRef = useRef<number>()
   const [duration, setDuration] = useState<string>()
 
   const runBtnText = useMemo(() => {
@@ -48,7 +48,7 @@ export const RunActionButton: FC = () => {
     if (loading) {
       clearInterval(runningIntervalRef.current)
       const start = Date.now()
-      runningIntervalRef.current = setInterval(() => {
+      runningIntervalRef.current = window.setInterval(() => {
         const duration = ((Date.now() - start) / 1000).toFixed(1)
         setDuration(`${duration}s`)
       }, 50)
