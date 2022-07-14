@@ -92,7 +92,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       setIsRenameError({ error: false })
       setEditingName("")
     },
-    [onUpdateActionItem],
+    [onUpdateActionItem, editingActionItemId, editingName],
   )
 
   const onAddAction = useCallback(
@@ -212,6 +212,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     activeActionItem,
     editingActionItemId,
     isActionDirty,
+    editingName,
   ])
 
   const handleContextMenu = useCallback(
@@ -264,6 +265,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
       <Dropdown
         trigger="contextmenu"
+        triggerProps={{ position: "br" }}
         dropList={
           <DropList width={"184px"} onClickItem={handleContextMenu}>
             <DropListItem
