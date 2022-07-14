@@ -90,12 +90,12 @@ export const deleteComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<DeleteComponentNodePayload>
 > = (state, action) => {
-  const { displayName } = action.payload
+  const { displayNames } = action.payload
   if (state.rootDsl == null) {
     return
   }
   const rootNode = state.rootDsl
-  displayName.forEach((value, index) => {
+  displayNames.forEach((value, index) => {
     const searchNode = searchDsl(rootNode, value)
     if (searchNode != null) {
       const parentNode = searchDsl(rootNode, searchNode.parentNode)

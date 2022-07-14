@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import {
   getIllaMode,
+  getPreviewEdgeWidth,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -55,7 +56,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const { width, height } = useWindowSize()
 
   // canvas field
-  const edgeWidth = 18
+  const edgeWidth = useSelector(getPreviewEdgeWidth)
   const [canvasHeight, setCanvasHeight] = useState<number>(0)
   const [canvasWidth, setCanvasWidth] = useState<number>(0)
   const blockColumns = 64
@@ -101,7 +102,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setMinBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [bottomPanelState, height])
+  }, [bottomPanelState, height, edgeWidth])
 
   // calculate scale height
   useEffect(() => {
@@ -123,7 +124,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setUnitWidth(finalBlockWidth)
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState, width])
+  }, [
+    canvasRef.current?.scrollWidth,
+    leftPanelState,
+    rightPanelState,
+    width,
+    edgeWidth,
+  ])
 
   // drag move
   const [, dropTarget] = useDrop<

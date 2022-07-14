@@ -38,7 +38,7 @@ export const ComponentsInitialState: ComponentsState = {
 }
 
 export interface DeleteComponentNodePayload {
-  displayName: string[]
+  displayNames: string[]
 }
 
 export interface UpdateComponentPropsPayload {

@@ -7,7 +7,7 @@ async function handleDeleteExecution(
   action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
   listenerApi: AppListenerEffectAPI,
 ) {
-  DisplayNameGenerator.removeDisplayNameMulti(action.payload.displayName)
+  DisplayNameGenerator.removeDisplayNameMulti(action.payload.displayNames)
 }
 
 export function setupComponentsListeners(
