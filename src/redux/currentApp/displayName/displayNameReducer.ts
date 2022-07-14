@@ -18,6 +18,17 @@ export const updateDisplayNameReducer: CaseReducer<
   return action.payload
 }
 
+export const removeDisplayNameMultiReducer: CaseReducer<
+  DisplayNameState,
+  PayloadAction<string[]>
+> = (state, action) => {
+  action.payload.forEach((displayName) => {
+    if (state.includes(displayName)) {
+      state.splice(state.indexOf(displayName), 1)
+    }
+  })
+}
+
 export const removeDisplayNameReducer: CaseReducer<
   DisplayNameState,
   PayloadAction<string>

@@ -2,6 +2,13 @@ import * as Redux from "redux"
 import { addOrUpdateDragShadowReducer } from "@/redux/currentApp/editor/dragShadow/dragShadowReducer"
 import { Connection, getPayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
+import {
+  copyComponentNodeReducer,
+  deleteComponentNodeReducer,
+  updateComponentDraggingState,
+  updateComponentPropsReducer,
+  updateComponentResizeState,
+} from "@/redux/currentApp/editor/components/componentsReducer"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const { type, payload } = action
@@ -14,6 +21,18 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const reduxAction = typeList[1]
   switch (reduxType) {
     case "components":
+      switch (reduxAction) {
+        case "updateComponentDraggingState":
+          break
+        case "copyComponentNodeReducer":
+          break
+        case "updateComponentPropsReducer":
+          break
+        case "updateComponentResizeState":
+          break
+        case "deleteComponentNodeReducer":
+          break
+      }
       break
     case "dependencies":
       switch (reduxAction) {
@@ -117,6 +136,19 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               Target.TARGET_DISPLAY_NAME,
               true,
               [payload],
+            ),
+          )
+          break
+        case "removeDisplayNameMultiReducer":
+          Connection.getRoom(
+            "app",
+            store.getState().currentApp.appInfo.id ?? "",
+          )?.send(
+            getPayload(
+              Signal.SIGNAL_DELETE_STATE,
+              Target.TARGET_DISPLAY_NAME,
+              true,
+              payload,
             ),
           )
           break
