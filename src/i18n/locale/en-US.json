@@ -619,6 +619,9 @@
     },
     "timeline": {
       "name": "Timeline"
+    },
+    "chart": {
+      "name": "Chart"
     }
   },
   "Setting": "Setting",
