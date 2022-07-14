@@ -9,7 +9,6 @@ import {
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
-  loadingStyle,
   middlePanelStyle,
   navbarStyle,
 } from "./style"
@@ -39,10 +38,10 @@ import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSqu
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { useParams } from "react-router-dom"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
 import { Shortcut } from "@/utils/shortcut"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { AppLoading } from "@/page/App/components/AppLoading"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -155,11 +154,7 @@ export const Editor: FC = () => {
 
   return (
     <div css={editorContainerStyle}>
-      {loadingState && (
-        <div css={loadingStyle}>
-          <Loading colorScheme="techPurple" />
-        </div>
-      )}
+      {loadingState && <AppLoading />}
       {!loadingState && (
         <Shortcut>
           <PageNavBar css={navbarStyle} />
