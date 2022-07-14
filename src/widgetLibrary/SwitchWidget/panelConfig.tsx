@@ -98,11 +98,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             attrName: "actionType",
             options: [
               {
-                labelName: "editor.inspect.setter_label.trigger_query",
+                label: "editor.inspect.setter_label.trigger_query",
                 value: "datasource",
               },
               {
-                labelName: "editor.inspect.setter_label.control_component",
+                label: "editor.inspect.setter_label.control_component",
                 value: "widget",
               },
               {

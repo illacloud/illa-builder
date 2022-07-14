@@ -28,11 +28,12 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
 
   const renderMenuList = useMemo(() => {
     return (
-      <DropList width="120px">
+      <DropList>
         {options?.map((color) => {
           const { key, value } = color
           return (
             <Item
+              style={{ padding: 0 }}
               css={colorSelectMenuItemWrapperStyle}
               key={key}
               onClick={() => {
@@ -40,7 +41,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
                 setMenuVisible(false)
               }}
             >
-              {renderContent(key)}
+              <span>{renderContent(key)}</span>
             </Item>
           )
         })}
@@ -57,6 +58,7 @@ export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
     <Dropdown
       dropList={renderMenuList}
       position="bottom"
+      triggerProps={{ autoAlignPopupWidth: true }}
       onVisibleChange={setMenuVisible}
       popupVisible={menuVisible}
       trigger="click"

@@ -3,6 +3,7 @@
   "preview": "预览",
   "exit_preview": "退出预览",
   "edit": "编辑",
+  "edit_at": "上次编辑于",
   "title": "欢迎来到艾拉云",
   "description": {
     "part1": "这是一个示例。"
@@ -416,7 +417,7 @@
         "selects": "选择类组件",
         "calendar": "日历类组件",
         "presentation": "展示类组件",
-        "data": "日期类组件",
+        "data": "数据类组件",
         "container": "容器类组件",
         "navigation": "Navigation"
       },
@@ -619,6 +620,9 @@
     },
     "timeline": {
       "name": "时间线"
+    },
+    "chart": {
+      "name": "图表"
     }
   },
   "Setting": "设置",

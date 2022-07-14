@@ -38,9 +38,11 @@ function ColorPicker(props: ColorPickerProps) {
     onHueChange,
     onAlphaChange,
     prefabricatedColors,
+    color
   } = props
+
   const defaultHsva = useMemo(
-    () => hexToHsva(defaultColor.substring(0, 7)),
+    () => hexToHsva(color?.substring(0, 7) ?? defaultColor.substring(0, 7)),
     [defaultColor],
   )
   const [hsva, setHsva] = useState<HsvaColor>(defaultHsva)

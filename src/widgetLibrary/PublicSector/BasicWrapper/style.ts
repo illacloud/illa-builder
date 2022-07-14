@@ -39,5 +39,6 @@ export const applyBasicWrapperStyle = (
     ${getFlexDirection(labelPosition)}
     justify-content: center;
     align-items: center;
+    user-select: text;
   `
 }
