@@ -1,4 +1,4 @@
-import { FC, useState, useCallback } from "react"
+import { FC, useState, useMemo, useCallback } from "react"
 import { AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -9,7 +9,9 @@ import { ActionEditorPanelProps } from "./interface"
 import { containerStyle } from "./style"
 import { ActionEditorHeader } from "@/page/App/components/ActionEditor/ActionEditorPanel/EditorHeader"
 import { ActionEditorProvider } from "@/page/App/components/ActionEditor/ActionEditorPanel/context/ActionEditorPanelContext"
-import { EditorBody } from "@/page/App/components/ActionEditor/ActionEditorPanel/EditorBody"
+import { ResourceEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor"
+import { TransformerEditor } from "@/page/App/components/ActionEditor/ActionEditorPanel/TransformerEditor"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 
 export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
   const {
@@ -33,6 +35,25 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
     setActionResVisible(false)
   }, [])
 
+  const editorNode = useMemo(() => {
+    const { actionType, actionId } = activeActionItem
+    switch (actionType) {
+      case ACTION_TYPE.REST_API:
+      case ACTION_TYPE.MYSQL:
+        return (
+          <ResourceEditor
+            key={actionId}
+            onCreateResource={onCreateResource}
+            onEditResource={onEditResource}
+          />
+        )
+      case ACTION_TYPE.TRANSFORMER:
+        return <TransformerEditor key={actionId} />
+      default:
+        return null
+    }
+  }, [activeActionItem, onEditResource, onCreateResource])
+
   return (
     <ActionEditorProvider
       onDeleteActionItem={onDeleteActionItem}
@@ -45,7 +66,7 @@ export const ActionEditorPanel: FC<ActionEditorPanelProps> = (props) => {
         <ActionEditorHeader />
         {activeActionItem && (
           <>
-            <EditorBody />
+            {editorNode}
             <AnimatePresence>
               {activeActionItem?.error && (
                 <ActionResultErrorIndicator
