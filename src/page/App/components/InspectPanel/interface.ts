@@ -1,16 +1,10 @@
-import { ReactNode } from "react"
 import { SetterType } from "@/page/App/components/PanelSetters"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-
-export interface HeaderProps {
-  // meta: any // TODO: wait meta interface
-}
 
 export interface PanelHeaderActionProps {
   widgetParentDisplayName: string
   widgetDisplayName: string
   componentType: string
-  handleCloseMenu: () => void
 }
 
 export interface PanelLabelProps {
@@ -32,7 +26,6 @@ export interface PanelFieldConfig extends PanelLabelProps {
   placeholder?: string
   shown?: (value: any) => boolean
   bindAttrName?: string
-  // events?:event[] // TODO:
 }
 
 export interface PanelFieldGroupConfig {

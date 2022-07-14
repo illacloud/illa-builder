@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
 import store from "@/store"
 import { getIllaMode } from "@/redux/config/configSelector"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -66,6 +68,25 @@ export const Shortcut: FC = ({ children }) => {
     }
   }
 
+  const copyComponent = (componentNode: ComponentNode) => {
+    const newDisplayName = DisplayNameGenerator.getDisplayName(
+      componentNode.type,
+      componentNode.showName,
+    )
+    dispatch(
+      componentsActions.copyComponentNodeReducer({
+        newDisplayName: newDisplayName,
+        componentNode: componentNode,
+      }),
+    )
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName: newDisplayName,
+        updateSlice: componentNode.props ?? {},
+      }),
+    )
+  }
+
   useHotkeys(
     "Backspace",
     (event, handler) => {
@@ -98,7 +119,7 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   return (
-    <ShortCutContext.Provider value={{ showDeleteDialog }}>
+    <ShortCutContext.Provider value={{ showDeleteDialog, copyComponent }}>
       {children}
     </ShortCutContext.Provider>
   )
