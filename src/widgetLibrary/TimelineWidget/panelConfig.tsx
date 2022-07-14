@@ -21,7 +21,13 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
         labelName: "editor.inspect.setter_label.direction",
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
-        options: ["vertical", "horizontal"],
+        options: [
+          { label: "vertical", value: "vertical" },
+          {
+            label: "horizontal",
+            value: "horizontal",
+          },
+        ],
       },
       {
         id: `${baseWidgetName}-pending`,
