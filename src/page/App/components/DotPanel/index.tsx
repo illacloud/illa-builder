@@ -172,16 +172,22 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           calculateResult.squareY,
           componentNode.displayName,
           (newItem) => {
-            dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
             if (item.x === -1 && item.y === -1) {
+              dispatch(componentsActions.addComponentReducer(newItem))
               dispatch(
                 componentsActions.updateComponentPropsReducer({
                   displayName: newItem.displayName,
                   updateSlice: newItem.props ?? {},
                 }),
               )
+            } else {
+              dispatch(
+                componentsActions.updateSingleComponentReducer({
+                  isMove: newItem.parentNode !== item.parentNode,
+                  componentNode: newItem,
+                }),
+              )
             }
-
             dispatch(configActions.updateSelectedComponent([newItem]))
           },
         )
@@ -299,7 +305,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             nearY,
             item.position,
             (i) => {
-              dispatch(componentsActions.addOrUpdateComponentReducer(i))
+              dispatch(
+                componentsActions.updateSingleComponentReducer({
+                  isMove: false,
+                  componentNode: i,
+                }),
+              )
             },
           )
         }

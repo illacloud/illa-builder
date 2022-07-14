@@ -32,7 +32,39 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   switch (reduxType) {
     case "components":
       switch (reduxAction) {
-        case "addOrUpdateComponentReducer":
+        case "addComponentReducer":
+          Connection.getRoom(
+            "app",
+            store.getState().currentApp.appInfo.id ?? "",
+          )?.send(
+            getPayload(
+              Signal.SIGNAL_CREATE_STATE,
+              Target.TARGET_COMPONENTS,
+              true,
+              {
+                type,
+                payload,
+              },
+              [payload],
+            ),
+          )
+          break
+        case "updateSingleComponentReducer":
+          Connection.getRoom(
+            "app",
+            store.getState().currentApp.appInfo.id ?? "",
+          )?.send(
+            getPayload(
+              Signal.SIGNAL_UPDATE_STATE,
+              Target.TARGET_COMPONENTS,
+              true,
+              {
+                type,
+                payload,
+              },
+              [payload],
+            ),
+          )
           break
         case "updateComponentDraggingState":
           const dragPayload: ComponentDraggingPayload = payload
