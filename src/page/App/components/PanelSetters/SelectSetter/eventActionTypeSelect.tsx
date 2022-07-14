@@ -5,6 +5,7 @@ import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { useSelector } from "react-redux"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { useTranslation } from "react-i18next"
 
 export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
@@ -18,6 +19,17 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
+  const { t } = useTranslation()
+
+  // TODO: @weichen need remove when use context
+  const finalOptions = useMemo(() => {
+    return options.map((item) => {
+      return {
+        ...item,
+        label: typeof item.label === "string" ? t(item.label) : item.label,
+      }
+    })
+  }, [options])
 
   const oldEvent = useMemo(() => {
     const event = get(
@@ -32,7 +44,7 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
-        options={options}
+        options={finalOptions}
         size="small"
         value={value}
         onChange={(value) => {
