@@ -1671,7 +1671,7 @@
 
 "@illa-design/system@0.0.11":
   version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@illa-design/system/-/system-0.0.11.tgz#38bdafe9c1418f95ecfd16cb469a0578a9d6b927"
+  resolved "https://registry.npmmirror.com/@illa-design/system/-/system-0.0.11.tgz#38bdafe9c1418f95ecfd16cb469a0578a9d6b927"
   integrity sha512-FPb/Pa+E8wJzXv2QRhJ03gm3UCSgCJySJqMcGW38Dv4qF44a5uGC6oKYRDgmGA07nVJhXqA+UDEpBJaKluJeag==
   dependencies:
     dayjs "^1.10.7"
