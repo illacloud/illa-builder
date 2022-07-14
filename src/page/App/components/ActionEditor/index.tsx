@@ -35,7 +35,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const { resourceId = "" } = useSelector(getSelectedAction)
   const baseActionApi = `/versions/${params.versionId}/actions`
 
-  function updateSeletedItemId(id: string) {
+  function updateSelectedItemId(id: string) {
     const { length } = actionItems
 
     if (id !== activeActionItemId) {
@@ -196,7 +196,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           DisplayNameGenerator.removeDisplayName(removedActionName)
         dispatch(actionActions.removeActionItemReducer(removedActionId))
         setIsActionDirty(false)
-        updateSeletedItemId(removedActionId)
+        updateSelectedItemId(removedActionId)
       },
       () => {},
       () => {},
