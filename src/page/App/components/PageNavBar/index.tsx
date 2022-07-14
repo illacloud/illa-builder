@@ -63,6 +63,35 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleClickBottomWindowIcon = useCallback(() => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
   }, [])
+  const handleClickDeploy = useCallback(() => {
+    Api.request(
+      {
+        url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
+        method: "GET",
+      },
+      (response) => {
+        window.open(
+          window.location.protocol +
+            "//" +
+            window.location.host +
+            `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+          "_blank",
+        )
+      },
+      (e) => {
+        Message.error(t("editor.deploy.fail"))
+      },
+      (e) => {
+        Message.error(t("editor.deploy.fail"))
+      },
+      (loading) => {
+        setDeployLoading(loading)
+      },
+    )
+  }, [setDeployLoading])
+  const handleClickPreview = useCallback(() => {
+    dispatch(configActions.updateIllaMode("edit"))
+  }, [])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -116,32 +145,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               colorScheme="techPurple"
               size="medium"
               leftIcon={<CaretRightIcon />}
-              onClick={() => {
-                Api.request(
-                  {
-                    url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
-                    method: "GET",
-                  },
-                  (response) => {
-                    window.open(
-                      window.location.protocol +
-                        "//" +
-                        window.location.host +
-                        `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
-                      "_blank",
-                    )
-                  },
-                  (e) => {
-                    Message.error(t("editor.deploy.fail"))
-                  },
-                  (e) => {
-                    Message.error(t("editor.deploy.fail"))
-                  },
-                  (loading) => {
-                    setDeployLoading(loading)
-                  },
-                )
-              }}
+              onClick={handleClickDeploy}
             >
               {t("deploy")}
             </Button>
@@ -150,9 +154,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {mode === "preview" && (
           <ButtonGroup spacing={"8px"}>
             <Button
-              onClick={() => {
-                dispatch(configActions.updateIllaMode("edit"))
-              }}
+              onClick={handleClickPreview}
               colorScheme="techPurple"
               leftIcon={<ExitIcon />}
             >
