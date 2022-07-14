@@ -1669,6 +1669,18 @@
   resolved "https://registry.npmmirror.com/@fontsource/fira-code/-/fira-code-4.5.10.tgz#e1060a60d08cba1669e1ff2025350aaab7c0e6bc"
   integrity sha512-CF6cBJZcpuW+qxtr7JZt3kPwEHj0xWYgsRr7q3tGhkIqEmxdJ6Omvw61LEFQuRXeAwOnXBGZr42qTrO+vCzvAQ==
 
+"@illa-design/system@0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@illa-design/system/-/system-0.0.11.tgz#38bdafe9c1418f95ecfd16cb469a0578a9d6b927"
+  integrity sha512-FPb/Pa+E8wJzXv2QRhJ03gm3UCSgCJySJqMcGW38Dv4qF44a5uGC6oKYRDgmGA07nVJhXqA+UDEpBJaKluJeag==
+  dependencies:
+    dayjs "^1.10.7"
+    number-precision "^1.5.2"
+    react-fast-compare "^3.2.0"
+    react-focus-lock "^2.8.1"
+    react-remove-scroll "^2.5.4"
+    react-use "^17.3.1"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react"
+import { ReactNode, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { getLocalStorage } from "@/utils/storage"
@@ -10,7 +10,6 @@ import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 const AuthInit = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [loading, setLoading] = useState<boolean>(true)
 
   const token = getLocalStorage("token")
   const currentUserId = useSelector(getCurrentUser)?.userId
@@ -18,7 +17,6 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!token) {
       navigate(`/user/login`)
-      setLoading(false)
       return
     }
     if (!currentUserId) {
@@ -30,17 +28,10 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
         (response) => {
           dispatch(currentUserActions.updateCurrentUserReducer(response.data))
         },
-        () => {},
-        () => {},
-        (loading) => {
-          setLoading(loading)
-        },
       )
-    } else {
-      setLoading(false)
     }
   }, [])
-  return <>{loading ? <div>This is loading</div> : children}</>
+  return <>{currentUserId && children}</>
 }
 
 export default AuthInit

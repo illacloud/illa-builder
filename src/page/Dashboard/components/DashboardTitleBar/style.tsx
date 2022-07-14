@@ -52,17 +52,14 @@ export const coverTriggerStyle = css`
 `
 
 export const settingUserStyle = css`
-  padding: 0 8px;
-`
-
-export const userAvatarStyle = css`
-  margin: 8px;
+  padding: 8px 16px;
 `
 
 export const usernameStyle = css`
   font-size: 12px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  margin-left: 8px;
 `
 
 export const settingListStyle = css`
@@ -78,3 +75,16 @@ export const settingItemStyle = css`
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
+
+export function applyUserAvatarStyle(background: string): SerializedStyles {
+  return css`
+    display: inline-block;
+    background: #${background};
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+  `
+}

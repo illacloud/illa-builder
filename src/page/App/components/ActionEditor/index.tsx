@@ -1,5 +1,5 @@
-import { FC, useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { FC, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 import { Modal } from "@illa-design/modal"
@@ -16,7 +16,7 @@ import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/inte
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
 import { ResourceForm } from "./ResourceForm"
-import { ActionEditorLayout } from "./Layout"
+import { ActionEditorLayout } from "./layout"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorContext } from "./context"
 
@@ -35,7 +35,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const { resourceId = "" } = useSelector(getSelectedAction)
   const baseActionApi = `/versions/${params.versionId}/actions`
 
-  function updateSeletedItemId(id: string) {
+  function updateSelectedItemId(id: string) {
     const { length } = actionItems
 
     if (id !== activeActionItemId) {
@@ -196,7 +196,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           DisplayNameGenerator.removeDisplayName(removedActionName)
         dispatch(actionActions.removeActionItemReducer(removedActionId))
         setIsActionDirty(false)
-        updateSeletedItemId(removedActionId)
+        updateSelectedItemId(removedActionId)
       },
       () => {},
       () => {},
@@ -208,7 +208,6 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
   useEffect(() => {
     const controller = new AbortController()
-
     Api.request(
       {
         method: "GET",
@@ -216,7 +215,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         signal: controller.signal,
       },
       ({ data }: { data: Resource[] }) => {
-        dispatch(resourceActions.addResourceListReducer(data))
+        dispatch(resourceActions.updateResourceListReducer(data))
       },
       () => {
         // TODO: handle error
@@ -269,6 +268,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         setActionListLoading,
         setIsActionDirty,
         baseActionApi,
+        isActionDirty,
       }}
     >
       <div className={className}>

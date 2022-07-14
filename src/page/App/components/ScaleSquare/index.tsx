@@ -34,8 +34,8 @@ import { useTranslation } from "react-i18next"
 import { getExecutionError } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { Modal } from "@illa-design/modal"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 const { Item } = DropList
 
@@ -230,8 +230,15 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             key="duplicate"
             title={t("editor.context_menu.duplicate")}
             onClick={() => {
+              const newDisplayName = DisplayNameGenerator.getDisplayName(
+                componentNode.type,
+                componentNode.showName,
+              )
               dispatch(
-                componentsActions.copyComponentNodeReducer(componentNode),
+                componentsActions.copyComponentNodeReducer({
+                  newDisplayName: newDisplayName,
+                  componentNode: componentNode,
+                }),
               )
             }}
           />

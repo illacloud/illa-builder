@@ -80,6 +80,7 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                       <Select
                         style={{ width: 280 }}
                         colorScheme="techPurple"
+                        size="large"
                         options={contentItem.selectOptions}
                         defaultValue={contentItem.defaultSelectValue}
                         onChange={contentItem.onChange}
