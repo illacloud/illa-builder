@@ -5,6 +5,8 @@ interface Injected {
   onDeleteActionItem: () => void
   onDuplicateActionItem: () => void
   handleUpdateResult: (result: ActionResultType) => void
+  onEditResource?: (id: string) => void
+  onCreateResource?: () => void
 }
 
 interface IProps extends Injected {
@@ -19,6 +21,8 @@ export const ActionEditorProvider: FC<IProps> = (props) => {
     onDeleteActionItem,
     onDuplicateActionItem,
     handleUpdateResult,
+    onEditResource,
+    onCreateResource,
   } = props
 
   const value = useMemo(() => {
@@ -26,8 +30,16 @@ export const ActionEditorProvider: FC<IProps> = (props) => {
       onDuplicateActionItem,
       onDeleteActionItem,
       handleUpdateResult,
+      onEditResource,
+      onCreateResource,
     }
-  }, [onDuplicateActionItem, onDeleteActionItem, handleUpdateResult])
+  }, [
+    onDuplicateActionItem,
+    onDeleteActionItem,
+    handleUpdateResult,
+    onEditResource,
+    onCreateResource,
+  ])
 
   return (
     <ACTION_EDITOR_CONTEXT.Provider value={value}>
