@@ -4,17 +4,18 @@ import { Result403Icon, Result500Icon } from "@illa-design/icon"
 import { buttonStyle, iconCss } from "@/page/status/style"
 import { Button } from "@illa-design/button"
 import { useNavigate } from "react-router-dom"
+import i18n from "@/i18n/config"
 
 export const Page500: FC = () => {
   const navigate = useNavigate()
   return (
     <ErrorPage
-      title={"500"}
-      des={"This page isn‘t working."}
+      title="500"
+      des={i18n.t("status.505.des")}
       img={<Result500Icon css={iconCss} />}
     >
       <div css={buttonStyle}>
-        <Button onClick={() => navigate(-1)}>back</Button>
+        <Button onClick={() => navigate(-1)}>{i18n.t("status.back")}</Button>
       </div>
     </ErrorPage>
   )

@@ -684,5 +684,15 @@
       "language": "Language",
       "save": "Save Changes"
     }
+  },
+  "status": {
+    "back": "Back",
+    "404": {
+      "des": "It seems that the page you were looking for could not be found.",
+      "again": "Again"
+    },
+    "500": {
+      "des": "Oops, something went wrong. Please try again later."
+    }
   }
 }

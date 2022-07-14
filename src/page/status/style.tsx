@@ -10,6 +10,7 @@ export const errorPageStyle = css`
   align-items: center;
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  line-height: 22px;
   span + span {
     color: ${globalColor(`--${illaPrefix}-gray-03`)};
   }
