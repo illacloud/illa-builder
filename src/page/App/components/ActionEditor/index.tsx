@@ -269,6 +269,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         setActionListLoading,
         setIsActionDirty,
         baseActionApi,
+        isActionDirty,
       }}
     >
       <div className={className}>

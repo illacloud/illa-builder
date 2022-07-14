@@ -5,22 +5,24 @@ import { Loading } from "@illa-design/loading"
 import { CloseIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { DashboardTitleBar } from "@/page/Dashboard/components/DashboardTitleBar"
-import { Connection, Room } from "@/api/ws/ws"
+import { Connection } from "@/api/ws"
 import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Resource } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   containerStyle,
-  loadingStyle,
   errorBodyStyle,
-  errorIconContentStyle,
-  errorIconColorStyle,
-  errorTitleStyle,
   errorDescriptionStyle,
+  errorIconColorStyle,
+  errorIconContentStyle,
+  errorTitleStyle,
+  loadingStyle,
 } from "./style"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { Room } from "@/api/ws/interface"
 
 export const IllaApp: FC = () => {
   const { t } = useTranslation()
@@ -28,7 +30,6 @@ export const IllaApp: FC = () => {
   const [pageState, setPageState] = useState<string>("loading")
   const [retryNum, setRetryNum] = useState<number>(0)
 
-  const [room, setRoom] = useState<Room>()
   const dispatch = useDispatch()
   useEffect(() => {
     const controller = new AbortController()
@@ -77,8 +78,6 @@ export const IllaApp: FC = () => {
         },
       )
     })
-    // TODO: @zch app share link
-
     Promise.all([appList, resourceList]).then((result) => {
       if (result.includes("error")) {
         setPageState("error")
@@ -86,22 +85,26 @@ export const IllaApp: FC = () => {
         setPageState("success")
       }
     })
-
-    Connection.enterRoom(
-      "dashboard",
-      (loading) => {},
-      (errorState) => {},
-      (room) => {
-        setRoom(room)
-      },
-    )
     return () => {
-      if (room !== undefined) {
-        Connection.leaveRoom(room.roomId)
-      }
       controller.abort()
     }
   }, [retryNum])
+
+  const currentUser = useSelector(getCurrentUser)
+
+  useEffect(() => {
+    Connection.enterRoom(
+      "dashboard",
+      "",
+      (loading) => {},
+      (errorState) => {},
+      (room) => {},
+    )
+    return () => {
+      Connection.leaveRoom("dashboard", "")
+    }
+  }, [currentUser])
+
   return (
     <div css={containerStyle}>
       <DashboardTitleBar />

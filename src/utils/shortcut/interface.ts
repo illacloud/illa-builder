@@ -1,1 +1,3 @@
-export interface ShortcutContextProp {}
+export interface ShortcutContextProp {
+  showDeleteDialog: (displayName: string[]) => void
+}

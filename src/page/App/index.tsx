@@ -9,12 +9,11 @@ import {
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
-  loadingStyle,
   middlePanelStyle,
   navbarStyle,
 } from "./style"
 import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
-import { Connection, Room } from "@/api/ws/ws"
+import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
   getIllaMode,
@@ -39,10 +38,10 @@ import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSqu
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { useParams } from "react-router-dom"
 import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
-import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
-import { useTranslation } from "react-i18next"
 import { Shortcut } from "@/utils/shortcut"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { AppLoading } from "@/page/App/components/AppLoading"
 
 interface PanelConfigProps {
   showLeftPanel: boolean
@@ -55,29 +54,24 @@ export type PanelState = keyof PanelConfigProps
 const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
 
 export const Editor: FC = () => {
-  const [room, setRoom] = useState<Room>()
-
   const dispatch = useDispatch()
 
   let { appId, versionId } = useParams()
 
-  const { t } = useTranslation()
+  const currentUser = useSelector(getCurrentUser)
 
   useEffect(() => {
     Connection.enterRoom(
       "app",
+      appId ?? "",
       (loading) => {},
       (errorState) => {},
-      (room) => {
-        setRoom(room)
-      },
+      (room) => {},
     )
     return () => {
-      if (room !== undefined) {
-        Connection.leaveRoom(room.roomId)
-      }
+      Connection.leaveRoom("app", appId ?? "")
     }
-  }, [])
+  }, [currentUser])
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
@@ -160,11 +154,7 @@ export const Editor: FC = () => {
 
   return (
     <div css={editorContainerStyle}>
-      {loadingState && (
-        <div css={loadingStyle}>
-          <Loading colorScheme="techPurple" />
-        </div>
-      )}
+      {loadingState && <AppLoading />}
       {!loadingState && (
         <Shortcut>
           <PageNavBar css={navbarStyle} />

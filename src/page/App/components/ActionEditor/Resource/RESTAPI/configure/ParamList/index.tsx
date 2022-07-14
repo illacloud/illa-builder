@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { forwardRef } from "react"
+import { forwardRef, useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Input } from "@illa-design/input"
 import { DeleteIcon, AddIcon } from "@illa-design/icon"
@@ -12,7 +12,7 @@ import {
   paramItemKeyStyle,
   newButtonStyle,
   deleteIconStyle,
-  paramItemValueStyle,
+  applyParamItemValueStyle,
 } from "./style"
 import { ParamListProps } from "./interface"
 
@@ -26,62 +26,74 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
       control,
       name,
     })
-
-    const paramList = fields.map((field, index) => {
-      return (
-        <div css={paramItemStyle} key={field.id}>
-          <Controller
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder={t(
-                  "editor.action.resource.rest_api.placeholder.param_key",
-                )}
-                css={paramItemKeyStyle}
-                borderColor="techPurple"
-              />
-            )}
-            control={control}
-            name={`${name}.${index}.key`}
-          />
-          <Controller
-            render={({ field }) => (
-              <Input
-                {...field}
-                borderColor="techPurple"
-                addonAfter={{
-                  render: (
-                    <DeleteIcon
-                      onClick={() => removeParamItem(index)}
-                      css={deleteIconStyle}
-                    />
-                  ),
-                }}
-                placeholder={t(
-                  "editor.action.resource.rest_api.placeholder.param_value",
-                )}
-                css={paramItemValueStyle}
-              />
-            )}
-            control={control}
-            name={`${name}.${index}.value`}
-          />
-        </div>
-      )
+    const [isValueFocus, setIsValueFocus] = useState({
+      index: 0,
+      focus: false,
     })
 
-    function addParamItem() {
-      append(EmptyField)
-    }
+    const addParamItem = useCallback(() => append(EmptyField), [append])
+    const removeParamItem = useCallback(
+      (index) => {
+        if (fields.length === 1) {
+          update(index, EmptyField)
+          return
+        }
 
-    function removeParamItem(index: number) {
-      if (fields.length === 1) {
-        update(index, EmptyField)
-        return
-      }
+        remove(index)
+      },
+      [update, remove, fields],
+    )
 
-      remove(index)
-    }
+    const paramList = useMemo(
+      () =>
+        fields.map((field, index) => {
+          return (
+            <div css={paramItemStyle} key={field.id}>
+              <Controller
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    placeholder={t(
+                      "editor.action.resource.rest_api.placeholder.param_key",
+                    )}
+                    css={paramItemKeyStyle}
+                    borderColor="techPurple"
+                  />
+                )}
+                control={control}
+                name={`${name}.${index}.key`}
+              />
+              <Controller
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    borderColor="techPurple"
+                    addonAfter={{
+                      render: (
+                        <DeleteIcon
+                          onClick={() => removeParamItem(index)}
+                          css={deleteIconStyle}
+                        />
+                      ),
+                    }}
+                    placeholder={t(
+                      "editor.action.resource.rest_api.placeholder.param_value",
+                    )}
+                    css={applyParamItemValueStyle(
+                      isValueFocus.focus && isValueFocus.index === index,
+                    )}
+                    onFocus={() => setIsValueFocus({ index, focus: true })}
+                    onBlur={() => setIsValueFocus({ index, focus: false })}
+                  />
+                )}
+                control={control}
+                name={`${name}.${index}.value`}
+              />
+            </div>
+          )
+        }),
+      [fields, isValueFocus],
+    )
 
     return (
       <div css={paramListWrapperStyle} ref={ref} {...restProps}>

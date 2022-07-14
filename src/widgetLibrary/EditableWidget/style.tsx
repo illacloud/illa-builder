@@ -6,13 +6,12 @@ export function applyTextCss(isPlaceHolder = false) {
     width: 100%;
     height: 32px;
     max-height: 32px;
-    padding: 0 21px;
+    padding: 0;
     display: inline-flex;
     font-size: 14px;
     align-items: center;
     box-sizing: border-box;
     max-lines: 1;
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -23,10 +22,12 @@ export function applyTextCss(isPlaceHolder = false) {
     &:hover {
       background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
       cursor: pointer;
+      padding-left: 16px;
       svg {
         opacity: 1;
       }
     }
+    transition: all 200ms;
     svg {
       width: 14px;
       height: 14px;
