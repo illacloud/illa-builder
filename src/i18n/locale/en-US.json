@@ -686,7 +686,7 @@
     }
   },
   "status": {
-    "back": "Back",
+    "back": "Back to homepage",
     "404": {
       "des": "It seems that the page you were looking for could not be found.",
       "again": "Again"

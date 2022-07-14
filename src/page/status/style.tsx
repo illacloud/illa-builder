@@ -16,7 +16,7 @@ export const errorPageStyle = css`
   }
 `
 
-export const iconCss = css`
+export const iconStyle = css`
   height: 96px;
   width: 96px;
   border-radius: 50px;
