@@ -109,6 +109,12 @@ import {
   EDITABLE_EVENT_HANDLER_CONFIG,
   EditableTextWidget,
 } from "@/widgetLibrary/EditableWidget"
+import {
+  UPLOAD_PANEL_CONFIG,
+  UPLOAD_WIDGET_CONFIG,
+  UPLOAD_EVENT_HANDLER_CONFIG,
+  UploadWidget,
+} from "@/widgetLibrary/UploadWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -220,6 +226,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: EDITABLE_TEXT_WIDGET_CONFIG,
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
+  },
+  UPLOAD_WIDGET: {
+    widget: UploadWidget,
+    config: UPLOAD_WIDGET_CONFIG,
+    panelConfig: UPLOAD_PANEL_CONFIG,
+    eventHandlerConfig: UPLOAD_EVENT_HANDLER_CONFIG,
   },
 }
 

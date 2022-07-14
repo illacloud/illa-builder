@@ -17,7 +17,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "date-range-basic-end-date",
-        labelName: "editor.inspect.setter_label.end_data",
+        labelName: "editor.inspect.setter_label.end_date",
         attrName: "endValue",
         setterType: "INPUT_SETTER",
       },

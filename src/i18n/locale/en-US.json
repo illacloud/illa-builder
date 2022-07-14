@@ -521,7 +521,10 @@
         "text_align": "Text align",
         "text_size": "Text size",
         "start_date": "Start date",
-        "end_data": "End date"
+        "end_date": "End date",
+        "file_types": "File types",
+        "selection_type": "Selection type",
+        "file_list": "File list"
       },
       "setter_default_value": {
         "solid": "Solid",
@@ -618,6 +621,9 @@
     },
     "timeline": {
       "name": "Timeline"
+    },
+    "upload": {
+      "name": "Upload"
     }
   },
   "Setting": "Setting",
