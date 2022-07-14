@@ -5,20 +5,26 @@ import { Modal } from "@illa-design/modal"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { Message } from "@illa-design/message"
 import { configActions } from "@/redux/config/configSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
 import store from "@/store"
+import { getIllaMode } from "@/redux/config/configSelector"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
+
+  const mode = useSelector(getIllaMode)
 
   useHotkeys(
     "command+s,ctrl+s",
     (event, handler) => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
+    },
+    {
+      enabled: mode === "edit",
     },
     [],
   )
@@ -54,6 +60,7 @@ export const Shortcut: FC = ({ children }) => {
               displayNames: displayName,
             }),
           )
+          dispatch(configActions.clearSelectedComponent())
         },
       })
     }
@@ -69,6 +76,9 @@ export const Shortcut: FC = ({ children }) => {
         }),
       )
     },
+    {
+      enabled: mode === "edit",
+    },
     [showDeleteDialog],
   )
 
@@ -83,7 +93,7 @@ export const Shortcut: FC = ({ children }) => {
         }
       }
     },
-    { keydown: true, keyup: true },
+    { keydown: true, keyup: true, enabled: mode === "edit" },
     [],
   )
 
