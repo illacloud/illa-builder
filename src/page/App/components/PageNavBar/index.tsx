@@ -54,6 +54,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const [deployLoading, setDeployLoading] = useState(false)
 
+  const clickWindowIcon = (icon: "left" | "right" | "bottom") => {
+    switch (icon) {
+      case "left":
+        dispatch(configActions.updateLeftPanel(!leftPanelVisible))
+        break
+      case "right":
+        dispatch(configActions.updateRightPanel(!rightPanelVisible))
+        break
+      case "bottom":
+        dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
+        break
+    }
+  }
+
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
@@ -78,7 +92,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             <span
               css={windowIconBodyStyle}
               onClick={() => {
-                dispatch(configActions.updateLeftPanel(!leftPanelVisible))
+                clickWindowIcon("left")
               }}
             >
               <WindowLeftIcon _css={windowIconStyle(leftPanelVisible)} />
@@ -86,7 +100,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             <span
               css={windowIconBodyStyle}
               onClick={() => {
-                dispatch(configActions.updateRightPanel(!rightPanelVisible))
+                clickWindowIcon("right")
               }}
             >
               <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
@@ -94,7 +108,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             <span
               css={windowIconBodyStyle}
               onClick={() => {
-                dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
+                clickWindowIcon("bottom")
               }}
             >
               <WindowBottomIcon _css={windowIconStyle(bottomPanelVisible)} />
@@ -124,9 +138,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                   (response) => {
                     window.open(
                       window.location.protocol +
-                        "//" +
-                        window.location.host +
-                        `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+                      "//" +
+                      window.location.host +
+                      `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
                       "_blank",
                     )
                   },
