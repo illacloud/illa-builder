@@ -21,6 +21,11 @@ export const headerStyle = css`
   ${publicPaddingCss}
 `
 
+export const removeButtonStyle = css`
+  width: 100%;
+  justify-content: center;
+`
+
 export const closeIconStyle = css`
   display: flex;
   justify-content: center;

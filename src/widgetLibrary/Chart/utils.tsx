@@ -5,7 +5,7 @@ import { values } from "lodash"
 export const DEFAULT_TOOLTIP = "%{fullData.name} %{x}: %{y}"
 
 export const initData = (data?: object[], type: ChartType = "line") => {
-  if (!data || data.length === 0) return {}
+  if (!data || !Array.isArray(data) || data.length === 0) return {}
   const allAttr: string[] = []
   const _dataSet: DatasetConfig[] = []
   const _dataMap: { [key: string]: any } = {}
@@ -30,6 +30,7 @@ export const initData = (data?: object[], type: ChartType = "line") => {
         lineColor: getDefaultColorScheme(datasetsIndex),
         aggregationMethod: "NONE",
         hidden: false,
+        type: type,
         toolTip: DEFAULT_TOOLTIP,
       })
       datasetsIndex++
@@ -56,6 +57,7 @@ export const wrapData = (
   type: ChartType = "line",
   groupby: boolean = false,
 ) => {
+  if (!data || !Array.isArray(data) || data.length === 0) return {}
   const toolTipMap = new Map()
   let p = data
   const _addDataset = datasets?.filter((item) => item._beAdd)

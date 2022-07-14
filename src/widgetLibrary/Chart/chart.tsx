@@ -56,7 +56,7 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
     chartJson,
     configType = "UIForm",
     layoutConfigType = "UIForm",
-    layoutJson = defaultOptionsJson,
+    layoutJson,
   } = props
 
   const dataMap = useRef<{ [key: string]: any }>()
@@ -91,13 +91,12 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
     } else {
       res = wrapData(data, xAxisValues, datasets, type)
     }
-    console.log("_datasets", res)
-    return [{ datasets: res?.datasets ?? [] }, res?.tooltips]
+    return [res?.datasets ?? [], res?.tooltips]
   }, [data, xAxisValues, datasets, type, dataMap.current, groupBy])
 
   const _options: any = useMemo(() => {
     return layoutConfigType !== "UIForm"
-      ? layoutJson
+      ? JSON.parse(layoutJson ?? "")
       : formatPropsToChartOptions(
           type,
           title,
@@ -148,7 +147,9 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
           ) : (
             <_Chart
               redraw
-              data={wrapData(data, xAxisValues, datasets, type)}
+              data={{
+                datasets: [..._datasets],
+              }}
               options={_options}
             />
           )}

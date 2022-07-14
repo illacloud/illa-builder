@@ -17,7 +17,7 @@ import { ColorPickerSetter } from "@/page/App/components/PanelSetters/ColorPicke
 import { TextAreaInput } from "@/page/App/components/PanelSetters/InputSetter/textArea"
 import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/dynamicSelect"
 import { ChartDataSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSetter"
-import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/removeDatasetButton"
+import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/removeDatasetButton"
 import { DataSetColorListSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/colorSetter"
 
 const SetterTypeMapSetter = {

@@ -172,12 +172,6 @@ export const defaultChartJsonObj = {
 export const defaultChartJsonData = JSON.stringify(defaultChartJsonObj)
 
 const defaultChartOptionsData = {
-  responsive: true,
-  interaction: {
-    mode: "index" as const,
-    intersect: false,
-  },
-  stacked: false,
   plugins: {
     title: {
       display: true,
@@ -187,16 +181,8 @@ const defaultChartOptionsData = {
   scales: {
     y: {
       type: "linear" as const,
-      display: true,
+      display: false,
       position: "left" as const,
-    },
-    y1: {
-      type: "linear" as const,
-      display: true,
-      position: "right" as const,
-      grid: {
-        drawOnChartArea: false,
-      },
     },
   },
 }

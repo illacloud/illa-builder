@@ -1,4 +1,4 @@
-import { defaultChartData, defaultChartJsonData } from "./interface"
+import { defaultChartJsonData, defaultOptionsJson } from "./interface"
 import { ChartWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
@@ -15,5 +15,8 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
     type: "line",
     configType: "UIForm",
     chartJson: defaultChartJsonData,
+    layoutConfigType: "UIForm",
+    layoutJson: defaultOptionsJson,
+    title: "chart",
   },
 }

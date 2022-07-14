@@ -5,6 +5,11 @@ import ColorPicker from "@/page/App/components/WidgetPickerEditor/components/Col
 import { get } from "lodash"
 import { hsvaToHexa } from "@uiw/color-convert"
 
+const _colorOptions = COLOR_SCHEME.map((item) => ({
+  key: item,
+  value: item,
+}))
+
 export const DataSetColorListSetter: FC<ColorListSetter> = (props) => {
   const { handleUpdateDsl, attrName, panelConfig, parentAttrName } = props
 
@@ -33,10 +38,7 @@ export const DataSetColorListSetter: FC<ColorListSetter> = (props) => {
         lineColor.map((color: string, index: number) => (
           <ColorPicker
             color={color}
-            prefabricatedColors={COLOR_SCHEME.map((item) => ({
-              key: item,
-              value: item,
-            }))}
+            prefabricatedColors={_colorOptions}
             onColorChange={(value) => {
               const newValue = lineColor.map((item: string, i: number) => {
                 return i === index ? hsvaToHexa(value) : item

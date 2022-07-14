@@ -28,15 +28,6 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
     isSetterSingleRow: true,
     expectedType: VALIDATION_TYPES.ARRAY,
   },
-
-  // {
-  //   id: "dataset-aggregationMethod",
-  //   labelName: "Aggregation method",
-  //   attrName: "aggregationMethod",
-  //   setterType: "BASE_SELECT_SETTER",
-  //   isSetterSingleRow: true,
-  // },
-
   {
     id: "dataset-type",
     labelName: "Type",
@@ -136,6 +127,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         id: "chart-layout-config-type",
         attrName: "layoutConfigType",
         setterType: "RADIO_GROUP_SETTER",
+        defaultValue: "UIForm",
         options: [
           {
             label: "UI Form",
@@ -150,23 +142,24 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
 
       {
         id: "chart-chartJson",
-        labelName: "data",
+        labelName: "Layout",
         isSetterSingleRow: true,
         attrName: "layoutJson",
         setterType: "TEXT_AREA",
         bindAttrName: ["layoutConfigType", "type"],
         shown: (value) => {
-          return value["configType"] === "JSON"
+          return value["layoutConfigType"] === "JSON"
         },
       },
       {
         id: "chart-title",
         labelName: "Title",
-        attrName: "title", // todo@aoao
+        attrName: "title",
         setterType: "INPUT_SETTER",
+        defaultValue: "chart",
         bindAttrName: ["layoutConfigType", "type"],
         shown: (value) => {
-          return value["configType"] === "JSON"
+          return value["layoutConfigType"] === "UIForm"
         },
       },
       {
@@ -176,7 +169,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         bindAttrName: ["layoutConfigType", "type"],
         shown: (value) => {
-          return value["configType"] === "JSON"
+          return value["layoutConfigType"] === "UIForm"
         },
       },
 
@@ -188,7 +181,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         options: XAXISTYPE,
         bindAttrName: ["layoutConfigType", "type"],
         shown: (value) => {
-          return value["configType"] === "JSON"
+          return value["layoutConfigType"] === "UIForm"
         },
       },
       {
@@ -196,6 +189,10 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelName: "yAxisTitle",
         attrName: "yTitle",
         setterType: "INPUT_SETTER",
+        bindAttrName: ["layoutConfigType", "type"],
+        shown: (value) => {
+          return value["layoutConfigType"] === "UIForm"
+        },
       },
       {
         id: "chart-legend-position",
