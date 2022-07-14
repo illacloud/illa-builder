@@ -177,7 +177,7 @@ export const DashboardApps: FC = () => {
           <Button
             colorScheme="gray"
             onClick={() => {
-              copy(`${location.protocol}//${location.host}/user/login`)
+              copy(`${location.protocol}//${location.host}/dashboard/apps`)
               Message.success({ content: t("link_copied") })
             }}
           >
@@ -245,7 +245,7 @@ export const DashboardApps: FC = () => {
                   <ListItemMeta
                     css={hoverableStyle}
                     title={<span css={listItemTitleStyle}>{item.appName}</span>}
-                    description={`${item.updatedBy} ${dayjs
+                    description={`${item.updatedBy} ${t("edit_at")} ${dayjs
                       .utc(item.updatedAt)
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {

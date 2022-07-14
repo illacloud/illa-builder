@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const navBarStyle = css`
   padding: 0 16px;
-  height: 45px;
+  height: 48px;
   display: flex;
   align-items: center;
 `
@@ -40,5 +40,5 @@ export const backAreaStyle = css`
 `
 
 export const tabSuffixStyle = css`
-  flex: 1;
+  visibility: hidden;
 `
