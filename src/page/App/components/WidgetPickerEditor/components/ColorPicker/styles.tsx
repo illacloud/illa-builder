@@ -57,11 +57,15 @@ export const slideCss = css`
 `
 
 export const commonSlidePointCss = css`
-  box-shadow: #cccccc 0 0 1px;
   width: 10px;
   height: 10px;
   border-radius: 5px;
   position: absolute;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+  box-sizing: border-box;
+  box-shadow: ${globalColor(`--${illaPrefix}-blackAlpha-04`)} 0 0 2px;
 `
 
 function toPoint(percent: string) {
@@ -71,26 +75,16 @@ function toPoint(percent: string) {
 export function applyHuePointCss(percent?: string) {
   return css`
     ${commonSlidePointCss};
-    box-shadow: #cccccc 0 0 1px;
-    border-width: 2px;
-    border-style: solid;
     bottom: -0.5px;
     left: ${percent ? toPoint(percent) * 180 : 0}px;
-    border-color: white;
-    box-sizing: border-box;
   `
 }
 
 export function applyAlphaPointCss(percent?: string) {
   return css`
     ${commonSlidePointCss};
-    width: 10px;
-    height: 10px;
     bottom: -2px;
-    border-radius: 5px;
-    position: absolute;
-    left: ${percent ? toPoint(percent) * 180 - 1 : 0}px;
-    background-color: white;
+    left: ${percent ? toPoint(percent) * 180 : 0}px;
   `
 }
 
@@ -176,7 +170,7 @@ export const colorSwatchItemContainer = css`
 export function applyColorCheckedItemContainer(isChecked?: boolean) {
   const borderCss = isChecked
     ? css`
-        border: solid ${globalColor(`--${illaPrefix}-blue-03`)} 1px;
+        border: solid ${globalColor(`--${illaPrefix}-grayBlue-02`)} 1px;
       `
     : css`
         border: solid white 1px;
@@ -192,21 +186,12 @@ export function applyColorCheckedItemContainer(isChecked?: boolean) {
 }
 
 export function applyColorSwatchCss(colorStr?: string) {
-  const borderCss =
-    colorStr?.toLowerCase() === "#ffffff"
-      ? css`
-          border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-        `
-      : css`
-          border: solid 1px ${colorStr};
-        `
-
   return css`
+    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     height: 100%;
     width: 100%;
     background-color: ${colorStr};
-    border-radius: 4px;
+    border-radius: 2px;
     box-sizing: border-box;
-    ${borderCss}
   `
 }
