@@ -31,12 +31,28 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
     let bindAttrNameValue
-    if (parentAttrName) {
-      bindAttrNameValue = get(widgetProps, `${parentAttrName}.${bindAttrName}`)
+    if (typeof bindAttrName === "string") {
+      if (parentAttrName) {
+        bindAttrNameValue = get(
+          widgetProps,
+          `${parentAttrName}.${bindAttrName}`,
+        )
+      } else {
+        bindAttrNameValue = get(widgetProps, bindAttrName)
+      }
+      return shown(bindAttrNameValue)
     } else {
-      bindAttrNameValue = get(widgetProps, bindAttrName)
+      const shownProps: { [attrName: string]: any } = {}
+      bindAttrName.forEach((_attrName: string) => {
+        if (parentAttrName) {
+          bindAttrNameValue = get(widgetProps, `${parentAttrName}.${_attrName}`)
+        } else {
+          bindAttrNameValue = get(widgetProps, _attrName)
+        }
+        shownProps[_attrName] = widgetProps[_attrName]
+      })
+      return shown(shownProps)
     }
-    return shown(bindAttrNameValue)
   }, [shown, widgetProps, bindAttrName])
 
   const renderLabel = useMemo(() => {

@@ -6,7 +6,7 @@ export type DatasetConfig = {
   name?: string
   values?: any[]
   type?: ChartType
-  lineColor?: string
+  lineColor?: string | string[]
   aggregationMethod?: string
   toolTip?: string
   hidden?: boolean

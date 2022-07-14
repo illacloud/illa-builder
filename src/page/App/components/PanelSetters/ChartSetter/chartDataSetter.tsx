@@ -1,13 +1,12 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useEffect } from "react"
 import { DynamicSelectSetterProps } from "../SelectSetter/interface"
 
-import { BaseSelect } from "../SelectSetter/baseSelect"
 import { DynamicSelectSetter } from "../SelectSetter/dynamicSelect"
-import { initData } from "@/widgetLibrary/Chart/utils"
-import { applySetterWrapperStyle } from "@/page/App/components/InspectPanel/style"
+import { getDefaultColorScheme, initData } from "@/widgetLibrary/Chart/utils"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import {
+  DatasetConfig,
   defaultChartData,
   defaultChartData02,
 } from "@/widgetLibrary/Chart/interface"
@@ -19,10 +18,8 @@ import { Select } from "@illa-design/select"
 const DATA_SOURCE = "dataSource"
 
 export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
-  const { options, attrName, handleUpdateDsl, panelConfig, widgetDisplayName } =
-    props
+  const { handleUpdateDsl, panelConfig, widgetDisplayName } = props
 
-  // init dataSource  todo@aoao
   useEffect(() => {
     handleUpdateDsl(DATA_SOURCE, {
       value01: defaultChartData,
@@ -43,6 +40,7 @@ export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
   return (
     <div>
       <DynamicSelectSetter
+        widgetType={""}
         expectedType={VALIDATION_TYPES.STRING}
         widgetDisplayName={widgetDisplayName}
         isSetterSingleRow
@@ -112,11 +110,23 @@ export const ChartDataSetter: FC<DynamicSelectSetterProps> = (props) => {
             value={panelConfig?.["groupBy"]}
             onChange={(value) => {
               handleUpdateDsl("groupBy", value)
+              const data = panelConfig?.["data"]
+              const groups = Array.from(
+                new Set(data?.map((item: any) => item[value])),
+              )
+              const _lineColor = groups.map((item: any, index: number) =>
+                getDefaultColorScheme(index),
+              )
+              const _datasets = panelConfig?.["datasets"].map(
+                (item: DatasetConfig) => ({ ...item, lineColor: _lineColor }),
+              )
+              handleUpdateDsl("datasets", _datasets)
             }}
           />
         </div>
       )}
       <DatasetsSetter
+        widgetType={""}
         expectedType={VALIDATION_TYPES.STRING}
         widgetDisplayName={widgetDisplayName}
         handleUpdateDsl={handleUpdateDsl}

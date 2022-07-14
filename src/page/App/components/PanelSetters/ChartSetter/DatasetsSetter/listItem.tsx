@@ -78,7 +78,13 @@ export const ListItem: FC<ListItemProps> = (props) => {
             onClick={handleClickItemBody}
           >
             <div>
-              <span css={applyColorIndentStyle(lineColor ?? "")} />
+              <span
+                css={applyColorIndentStyle(
+                  typeof lineColor === "string"
+                    ? lineColor
+                    : lineColor?.[0] ?? "",
+                )}
+              />
               <span css={labelNameWrapper}>{name || "No label"}</span>
             </div>
           </div>

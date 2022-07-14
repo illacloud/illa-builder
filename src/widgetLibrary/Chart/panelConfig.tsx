@@ -28,6 +28,7 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
     isSetterSingleRow: true,
     expectedType: VALIDATION_TYPES.ARRAY,
   },
+
   // {
   //   id: "dataset-aggregationMethod",
   //   labelName: "Aggregation method",
@@ -35,6 +36,7 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
   //   setterType: "BASE_SELECT_SETTER",
   //   isSetterSingleRow: true,
   // },
+
   {
     id: "dataset-type",
     labelName: "Type",
@@ -67,13 +69,13 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
     id: "dataset-lineColor",
     labelName: "Color",
     attrName: "lineColor",
-    setterType: "COLOR_SELECT_SETTER",
+    setterType: "CHART_LINE_COLOR_LIST_SETTER",
     isSetterSingleRow: true,
-    options: COLOR_SCHEME.map((color) => ({ key: color, value: color })),
+    options: ["#fff", "#000", "#454545"],
   },
   {
     id: "dataset-remove",
-    labelName: "Remove dataset",
+    useCustomLayout: true,
     attrName: "remove",
     setterType: "CHART_REMOVE_BUTTON",
     isSetterSingleRow: true,

@@ -59,8 +59,6 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
     layoutJson = defaultOptionsJson,
   } = props
 
-  console.log("WrappedChart", type)
-
   const dataMap = useRef<{ [key: string]: any }>()
 
   const _Chart = useMemo(() => {
@@ -81,7 +79,7 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
   const [_datasets, _tooltips] = useMemo(() => {
     let res
     if (groupBy) {
-      const groups = data?.map((item) => item[groupBy])
+      const groups = Array.from(new Set(data?.map((item) => item[groupBy])))
       res = wrapDataWithGroupBy(
         data,
         xAxisValues,
@@ -135,7 +133,7 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
   return (
     <>
       {configType === "JSON" ? (
-        <canvas ref={ref} id={"my-chart-js"} width="400" height="400" />
+        <canvas ref={ref} id={"my-chart-js"} />
       ) : (
         <>
           {type === "pie" ? (

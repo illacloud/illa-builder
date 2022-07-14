@@ -18,6 +18,7 @@ import { TextAreaInput } from "@/page/App/components/PanelSetters/InputSetter/te
 import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/dynamicSelect"
 import { ChartDataSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSetter"
 import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/removeDatasetButton"
+import { DataSetColorListSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/colorSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -39,6 +40,7 @@ const SetterTypeMapSetter = {
   DYNAMIC_SELECT_SETTER: DynamicSelectSetter,
   TEXT_AREA: TextAreaInput,
   CHART_DATA_SETTER: ChartDataSetter,
+  CHART_LINE_COLOR_LIST_SETTER: DataSetColorListSetter,
   CHART_REMOVE_BUTTON: RemoveDatasetButton,
 }
 

@@ -102,7 +102,6 @@ export const wrapDataWithGroupBy = (
   groups?: string[],
 ) => {
   if (!data) return
-  const _group = Array.from(new Set(groups))
   let p = data
   const _addDataset = datasets?.filter((item) => item._beAdd)
   if (_addDataset) {
@@ -116,13 +115,13 @@ export const wrapDataWithGroupBy = (
   const _data: DataObject[] = []
   const _datasets: DatasetConfig[] = []
   const datasetKeys = datasets?.map((value) => value.key)
-  _group?.forEach((group, index) => {
+  groups?.forEach((group, index) => {
     const datasetsWithGroup = datasets?.map((set) => {
       return {
         key: group + set.key,
         name: `${set.name}-${group}`,
         type: set.type ?? type,
-        lineColor: getDefaultColorScheme(index),
+        lineColor: set.lineColor?.[index] ?? getDefaultColorScheme(index),
         toolTip: set.toolTip,
       }
     })

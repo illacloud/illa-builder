@@ -27,10 +27,8 @@ export interface DatasetSetterProps extends BaseSetter {
   childrenSetter?: PanelFieldConfig[]
 }
 
-export interface DragItem {
-  index: number
-  id: string
-  type: string
+export interface ColorListSetter extends BaseSetter {
+  options: any
 }
 
 export interface ActionMenuProps {
