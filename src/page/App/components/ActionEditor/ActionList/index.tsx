@@ -1,4 +1,4 @@
-import { FC, useState, useMemo, useRef } from "react"
+import { FC, useState, useMemo, useRef, useCallback } from "react"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
@@ -79,34 +79,40 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }, 0)
   }
 
-  function updateName(originName: string) {
-    if (originName !== editingName && !isRenameError.error) {
-      onUpdateActionItem(editingActionItemId, {
-        ...activeActionItem,
-        displayName: editingName,
-        oldDisplayName: originName,
+  const updateName = useCallback(
+    (originName: string) => {
+      if (originName !== editingName && !isRenameError.error) {
+        onUpdateActionItem(editingActionItemId, {
+          ...activeActionItem,
+          displayName: editingName,
+          oldDisplayName: originName,
+        })
+      }
+      setEditingActionItemId("")
+      setIsRenameError({ error: false })
+      setEditingName("")
+    },
+    [onUpdateActionItem],
+  )
+
+  const onAddAction = useCallback(
+    (info: ActionInfo) => {
+      const { actionType, resourceId } = info
+
+      setActionGeneratorVisible(false)
+
+      onAddActionItem({
+        displayName: DisplayNameGenerator.getDisplayName(actionType),
+        actionType,
+        resourceId,
+        actionTemplate: {},
       })
-    }
-    setEditingActionItemId("")
-    setIsRenameError({ error: false })
-    setEditingName("")
-  }
+    },
+    [onAddActionItem],
+  )
 
   function onClickActionItem(id: string) {
     onSelectActionItem(id)
-  }
-
-  function onAddAction(info: ActionInfo) {
-    const { actionType, resourceId } = info
-
-    setActionGeneratorVisible(false)
-
-    onAddActionItem({
-      displayName: DisplayNameGenerator.getDisplayName(actionType),
-      actionType,
-      resourceId,
-      actionTemplate: {},
-    })
   }
 
   const actionItemsList = matchedActionItems.map((item) => {
@@ -186,7 +192,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     </div>
   )
 
-  const renderActionItemList = () => {
+  const finalActionItemList = useMemo(() => {
     if (matchedActionItems.length === 0) {
       if (query !== "") {
         return NoMatchFound
@@ -200,7 +206,39 @@ export const ActionList: FC<ActionListProps> = (props) => {
     }
 
     return actionItemsList
-  }
+  }, [
+    query,
+    matchedActionItems,
+    activeActionItem,
+    editingActionItemId,
+    isActionDirty,
+  ])
+
+  const handleContextMenu = useCallback(
+    (key) => {
+      switch (key) {
+        case "duplicate":
+          onDuplicateActionItem(contextMenuActionId)
+          break
+        case "delete":
+          onDeleteActionItem(contextMenuActionId)
+          break
+        case "rename":
+          const target = actionItems.find(
+            ({ actionId }) => actionId === contextMenuActionId,
+          ) as ActionItem
+          editName(target?.actionId, target?.displayName)
+          break
+      }
+    },
+    [
+      onDuplicateActionItem,
+      onDeleteActionItem,
+      editName,
+      contextMenuActionId,
+      actionItems,
+    ],
+  )
 
   return (
     <div css={actionListContainerStyle}>
@@ -227,25 +265,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       <Dropdown
         trigger="contextmenu"
         dropList={
-          <DropList
-            width={"184px"}
-            onClickItem={(key) => {
-              switch (key) {
-                case "duplicate":
-                  onDuplicateActionItem(contextMenuActionId)
-                  break
-                case "delete":
-                  onDeleteActionItem(contextMenuActionId)
-                  break
-                case "rename":
-                  const target = actionItems.find(
-                    ({ actionId }) => actionId === contextMenuActionId,
-                  ) as ActionItem
-                  editName(target?.actionId, target?.displayName)
-                  break
-              }
-            }}
-          >
+          <DropList width={"184px"} onClickItem={handleContextMenu}>
             <DropListItem
               key={"rename"}
               title={t("editor.action.action_list.contextMenu.rename")}
@@ -262,7 +282,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
           </DropList>
         }
       >
-        <ul css={actionItemListStyle}>{renderActionItemList()}</ul>
+        <ul css={actionItemListStyle}>{finalActionItemList}</ul>
       </Dropdown>
 
       <ActionGenerator
