@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
@@ -54,19 +54,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const [deployLoading, setDeployLoading] = useState(false)
 
-  const clickWindowIcon = (icon: "left" | "right" | "bottom") => {
-    switch (icon) {
-      case "left":
-        dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-        break
-      case "right":
-        dispatch(configActions.updateRightPanel(!rightPanelVisible))
-        break
-      case "bottom":
-        dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-        break
-    }
-  }
+  const handleClickLeftWindowIcon = useCallback(() => {
+    dispatch(configActions.updateLeftPanel(!leftPanelVisible))
+  }, [])
+  const handleClickRightWindowIcon = useCallback(() => {
+    dispatch(configActions.updateRightPanel(!rightPanelVisible))
+  }, [])
+  const handleClickBottomWindowIcon = useCallback(() => {
+    dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
+  }, [])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -89,27 +85,18 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={viewControlStyle}>
         {mode === "edit" && (
           <>
-            <span
-              css={windowIconBodyStyle}
-              onClick={() => {
-                clickWindowIcon("left")
-              }}
-            >
+            <span css={windowIconBodyStyle} onClick={handleClickLeftWindowIcon}>
               <WindowLeftIcon _css={windowIconStyle(leftPanelVisible)} />
             </span>
             <span
               css={windowIconBodyStyle}
-              onClick={() => {
-                clickWindowIcon("right")
-              }}
+              onClick={handleClickRightWindowIcon}
             >
               <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
             <span
               css={windowIconBodyStyle}
-              onClick={() => {
-                clickWindowIcon("bottom")
-              }}
+              onClick={handleClickBottomWindowIcon}
             >
               <WindowBottomIcon _css={windowIconStyle(bottomPanelVisible)} />
             </span>
@@ -138,9 +125,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                   (response) => {
                     window.open(
                       window.location.protocol +
-                      "//" +
-                      window.location.host +
-                      `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+                        "//" +
+                        window.location.host +
+                        `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
                       "_blank",
                     )
                   },
