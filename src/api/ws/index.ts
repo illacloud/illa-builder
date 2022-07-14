@@ -11,6 +11,14 @@ export function getPayload<T>(
   broadcast: boolean,
   payload: T[],
 ): string {
+  console.log(
+    JSON.stringify({
+      signal,
+      target,
+      broadcast,
+      payload,
+    }),
+  )
   return JSON.stringify({
     signal,
     target,

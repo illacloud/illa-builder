@@ -1,5 +1,5 @@
-import { FC, useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { FC, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 import { Modal } from "@illa-design/modal"
@@ -208,7 +208,6 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
   useEffect(() => {
     const controller = new AbortController()
-
     Api.request(
       {
         method: "GET",
@@ -216,7 +215,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         signal: controller.signal,
       },
       ({ data }: { data: Resource[] }) => {
-        dispatch(resourceActions.addResourceListReducer(data))
+        dispatch(resourceActions.updateResourceListReducer(data))
       },
       () => {
         // TODO: handle error
