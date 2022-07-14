@@ -550,7 +550,7 @@
     "component": {
       "delete": "Delete",
       "delete_title": "Are you sure you want to delete {{ displayName}}?",
-      "delete_content": "Delete the {{ displayName }} maybe make some bugs，please confirm.",
+      "delete_content": "Delete it maybe make some bugs，please confirm.",
       "cancel": "Cancel"
     },
     "data_work_space": {
