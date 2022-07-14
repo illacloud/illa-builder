@@ -16,7 +16,7 @@ export const BaseModal: FC<ModalProps> = (props) => {
     _css,
     header,
   } = props
-  
+
   const _header = useMemo(() => {
     return (
       header ?? (
