@@ -38,7 +38,7 @@ function ColorPicker(props: ColorPickerProps) {
     onHueChange,
     onAlphaChange,
     prefabricatedColors,
-    color
+    color,
   } = props
 
   const defaultHsva = useMemo(

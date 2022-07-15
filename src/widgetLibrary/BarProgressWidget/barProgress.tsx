@@ -1,6 +1,6 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo, FC, useEffect } from "react"
 import { Progress } from "@illa-design/progress"
-import { WrappedBarProgressProps } from "./interface"
+import { WrappedBarProgressProps, BarProgressWidgetProps } from "./interface"
 
 export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
   (props, ref) => {
@@ -25,4 +25,40 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
 
 WrappedBarProgress.displayName = "WrappedBarProgress"
 
-export const BarProgressWidget = WrappedBarProgress
+export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
+  const {
+    value,
+    showText,
+    strokeWidth,
+    color,
+    trailColor,
+    displayName,
+    handleUpdateDsl,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+  } = props
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      value,
+      showText,
+      strokeWidth,
+      color,
+      trailColor,
+      setValue: (value: string) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: undefined })
+      },
+    })
+
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [value, showText, strokeWidth, color, trailColor, displayName])
+
+  return <WrappedBarProgress {...props} />
+}
+
+BarProgressWidget.displayName = "BarProgressWidget"

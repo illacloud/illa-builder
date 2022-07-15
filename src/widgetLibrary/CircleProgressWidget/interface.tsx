@@ -1,5 +1,5 @@
 import { ProgressProps } from "@illa-design/progress"
-import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 export type Alignment = "start" | "center" | "end"
 export interface WrappedCircleProgressProps
   extends Pick<
@@ -8,3 +8,7 @@ export interface WrappedCircleProgressProps
   > {
   value?: number
 }
+
+export interface CircleProgressWidgetProps
+  extends WrappedCircleProgressProps,
+    BaseWidgetProps {}

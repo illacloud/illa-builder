@@ -108,6 +108,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     displayName,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleUpdateDsl,
   } = props
 
   useEffect(() => {
@@ -130,6 +131,12 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       customRule,
       hideValidationMessage,
       allowClear,
+      setValue: (value: string) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: undefined })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
