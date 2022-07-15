@@ -56,7 +56,7 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         options={finalOptions}
-        size="small"
+        size="medium"
         value={value}
         onChange={(value) => {
           handleUpdateDsl(_finalAttrPath, {

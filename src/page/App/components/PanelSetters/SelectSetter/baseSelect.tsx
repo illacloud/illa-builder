@@ -10,7 +10,7 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         options={options}
-        size="small"
+        size="medium"
         value={value}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
