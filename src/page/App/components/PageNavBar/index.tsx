@@ -55,14 +55,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const [deployLoading, setDeployLoading] = useState(false)
 
   const handleClickLeftWindowIcon = useCallback(() => {
+    console.log(!leftPanelVisible)
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-  }, [])
+  }, [leftPanelVisible])
   const handleClickRightWindowIcon = useCallback(() => {
     dispatch(configActions.updateRightPanel(!rightPanelVisible))
-  }, [])
+  }, [rightPanelVisible])
   const handleClickBottomWindowIcon = useCallback(() => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-  }, [])
+  }, [bottomPanelVisible])
   const handleClickDeploy = useCallback(() => {
     Api.request(
       {
