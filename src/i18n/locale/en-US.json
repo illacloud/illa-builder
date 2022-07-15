@@ -525,6 +525,7 @@
         "text_size": "Text size",
         "start_date": "Start date",
         "end_data": "End date",
+        "group_layout": "Group layout",
         "config_type": "Config type",
         "data_source": "Data source",
         "chart_type": "Chart type",

@@ -1,4 +1,9 @@
-import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
+import {
+  HorizontalStartIcon,
+  HorizontalEndIcon,
+  HorizontalFullIcon,
+  VerticalCenterIcon,
+} from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 
@@ -221,10 +226,19 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "radioGroup-style-direction",
-        labelName: "editor.inspect.setter_label.label_alignment",
+        labelName: "editor.inspect.setter_label.group_layout",
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
-        options: ["vertical", "horizontal"],
+        options: [
+          {
+            label: "horizontal",
+            value: "horizontal",
+          },
+          {
+            label: "vertical",
+            value: "vertical",
+          },
+        ],
       },
     ],
   },

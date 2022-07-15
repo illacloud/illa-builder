@@ -226,7 +226,16 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: "editor.inspect.setter_label.label_alignment",
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
-        options: ["vertical", "horizontal"],
+        options: [
+          {
+            label: "horizontal",
+            value: "horizontal",
+          },
+          {
+            label: "vertical",
+            value: "vertical",
+          },
+        ],
       },
     ],
   },

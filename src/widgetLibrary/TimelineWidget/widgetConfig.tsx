@@ -7,8 +7,8 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "timeline",
   icon: <TimelineWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
-  w: 10,
-  h: 5,
+  w: 12,
+  h: 28,
   defaults: {
     items: `{{["The first milestone","The second milestone","The third milestone"]}}`,
     width: "200px",

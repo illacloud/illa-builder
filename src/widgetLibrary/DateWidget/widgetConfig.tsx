@@ -8,7 +8,7 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
   widgetName: "widget.date.name",
   icon: <DateWidgetIcon size="100%" />,
   sessionType: "CALENDAR",
-  w: 21,
+  w: 12,
   h: 5,
   defaults: {
     value: dayjs().format("YYYY-MM-DD"),

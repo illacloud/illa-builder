@@ -86,7 +86,7 @@ export const SettingAccount: FC = () => {
 
     Api.request<CurrentUser>(
       {
-        url: "/users/username",
+        url: "/users/nickname",
         method: "PATCH",
         data: {
           nickname: usernameValue,
@@ -96,7 +96,7 @@ export const SettingAccount: FC = () => {
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             ...response.data,
-            username: response.data.nickname,
+            nickname: response.data.nickname,
           }),
         )
         setUsernameValue("")

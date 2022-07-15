@@ -7,7 +7,7 @@ export const RATE_WIDGET_CONFIG: WidgetConfig = {
   widgetName: "widget.rate.name",
   icon: <RateWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
-  w: 10,
+  w: 12,
   h: 5,
   defaults: {
     value: "{{4}}",

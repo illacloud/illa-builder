@@ -525,6 +525,7 @@
         "text_size": "文本大小",
         "start_date": "开始日期",
         "end_data": "结束日期",
+        "group_layout": "组内布局",
         "config_type": "Config type",
         "data_source": "Data source",
         "chart_type": "Chart type",
