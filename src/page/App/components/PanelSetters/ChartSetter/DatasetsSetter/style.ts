@@ -77,7 +77,9 @@ export const ListCss = css`
   border-radius: 8px;
 `
 
-export function applyOptionListItemStyle(close: boolean = false) {
+export function applyOptionListItemStyle(
+  close: boolean = false,
+): SerializedStyles {
   return css`
     display: flex;
     justify-content: space-between;
@@ -206,7 +208,7 @@ export const colorPickerContainerStyle = css`
   align-items: center;
   margin-bottom: 8px;
 `
-export function applyIconStyle(close = false) {
+export function applyIconStyle(close: boolean = false): SerializedStyles {
   return css`
     color: ${close
       ? globalColor(`--${illaPrefix}-grayBlue-05`)

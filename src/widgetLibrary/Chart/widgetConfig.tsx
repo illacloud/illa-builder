@@ -18,5 +18,6 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
     layoutConfigType: "UIForm",
     layoutJson: defaultOptionsJson,
     title: "chart",
+    legendPosition: "bottom",
   },
 }

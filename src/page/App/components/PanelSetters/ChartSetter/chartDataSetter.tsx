@@ -22,6 +22,7 @@ import { get } from "lodash"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
+import { t } from "i18next"
 
 const DATA_SOURCE = "dataSource"
 const X_AXIS_VALUES = "xAxisValues"
@@ -165,38 +166,38 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
     <div>
       <DynamicSelectSetter
         widgetOrAction="WIDGET"
-        widgetType={""}
+        widgetType=""
         expectedType={VALIDATION_TYPES.ARRAY}
         widgetDisplayName={widgetDisplayName}
         isSetterSingleRow
-        labelName={"Data source"}
+        labelName={t("editor.inspect.setter_label.data_source")}
         attrName={DATA_SOURCE}
         panelConfig={panelConfig}
         handleUpdateDsl={handleDataEnter}
         parentAttrName={parentAttrName}
       />
       <Setter
-        parentAttrName={""}
+        parentAttrName=""
         attrName={TYPE}
         expectedType={VALIDATION_TYPES.STRING}
-        labelName={"Chart type"}
-        labelDesc={"x xx"}
+        labelName={t("editor.inspect.setter_label.chart_type")}
+        labelDesc="x xx"
         isSetterSingleRow={true}
         isInList={false}
         options={CHART_TYPE_OPTIONS}
-        setterType={"BASE_SELECT_SETTER"}
+        setterType="BASE_SELECT_SETTER"
         defaultValue={panelConfig?.type}
       />
 
       <Setter
-        parentAttrName={""}
+        parentAttrName=""
         attrName={X_AXIS_VALUES}
         expectedType={VALIDATION_TYPES.STRING}
-        labelName={"x Axis Values"}
-        labelDesc={"x xx"}
+        labelName={t("editor.inspect.setter_label.x_values")}
+        labelDesc="x xx"
         isSetterSingleRow={true}
         isInList={false}
-        setterType={"BASE_SELECT_SETTER"}
+        setterType="BASE_SELECT_SETTER"
         defaultValue={panelConfig?.xAxisValues}
         options={panelConfig?.xAxisValuesOptions}
       />
@@ -215,14 +216,14 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
           }}
         >
           <Setter
-            parentAttrName={""}
+            parentAttrName=""
             attrName={GROUP_BY}
             expectedType={VALIDATION_TYPES.STRING}
-            labelName={"Group By"}
-            labelDesc={"x xx"}
+            labelName={t("editor.inspect.setter_label.group_by")}
+            labelDesc="x xx"
             isSetterSingleRow={true}
             isInList={false}
-            setterType={"ALLOW_CLEAR_SELECT_SETTER"}
+            setterType="ALLOW_CLEAR_SELECT_SETTER"
             defaultValue={panelConfig?.groupBy}
             options={panelConfig?.groupByOptions}
           />
@@ -230,7 +231,7 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
       )}
       <DatasetsSetter
         widgetOrAction="WIDGET"
-        widgetType={""}
+        widgetType=""
         expectedType={VALIDATION_TYPES.STRING}
         widgetDisplayName={widgetDisplayName}
         handleUpdateDsl={handleUpdateDsl}

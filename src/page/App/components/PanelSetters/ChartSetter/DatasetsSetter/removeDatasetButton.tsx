@@ -6,6 +6,7 @@ import {
   removeButtonStyle,
 } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/style"
 import { get } from "lodash"
+import { t } from "i18next"
 
 export const RemoveDatasetButton: FC<RemoveButtonSetter> = (props) => {
   const { attrName, panelConfig, handleUpdateDsl, parentAttrName } = props
@@ -27,11 +28,11 @@ export const RemoveDatasetButton: FC<RemoveButtonSetter> = (props) => {
     <div css={buttonContainerStyle}>
       <Button
         variant="light"
-        colorScheme={"red"}
+        colorScheme="red"
         _css={removeButtonStyle}
         onClick={handleClick}
       >
-        remove dataset
+        {t("editor.inspect.setter_label.color")}
       </Button>
     </div>
   )
