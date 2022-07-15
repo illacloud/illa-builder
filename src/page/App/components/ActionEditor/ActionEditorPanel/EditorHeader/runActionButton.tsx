@@ -105,11 +105,9 @@ export const RunActionButton: FC = () => {
       params.versionId || "",
       (response) => {
         handleUpdateResult(response)
-        console.log("success")
       },
       (response) => {
         handleUpdateResult(response)
-        console.log("fail")
       },
       () => {},
       (loading) => {
@@ -121,7 +119,6 @@ export const RunActionButton: FC = () => {
   const saveOrRun = useCallback(() => {
     if (isActionDirty) {
       if (triggerMode === "manual") {
-        console.log("????????")
         // save only
         save()
       } else {
