@@ -51,7 +51,7 @@ export const Shortcut: FC = ({ children }) => {
           setAlreadyShowDeleteDialog(false)
           dispatch(
             componentsActions.deleteComponentNodeReducer({
-              displayName,
+              displayNames: displayName,
             }),
           )
         },

@@ -1,5 +1,12 @@
 import WebSocket from "ws"
-import { Callback, Room, RoomType, Signal, Target } from "./interface"
+import {
+  Broadcast,
+  Callback,
+  Room,
+  RoomType,
+  Signal,
+  Target,
+} from "./interface"
 import store from "@/store"
 import { AxiosRequestConfig } from "axios"
 import { Api } from "@/api/base"
@@ -9,13 +16,15 @@ export function getPayload<T>(
   signal: Signal,
   target: Target,
   broadcast: boolean,
+  reduxBroadcast: Broadcast | null,
   payload: T[],
 ): string {
   return JSON.stringify({
     signal,
     target,
-    broadcast,
+    option: broadcast ? 1 : 0,
     payload,
+    broadcast: reduxBroadcast,
   })
 }
 
@@ -80,7 +89,7 @@ export class Connection {
         this.roomMap.set(type + roomId, ws)
         getRoom(response.data)
         ws.send(
-          getPayload(Signal.SIGNAL_ENTER, Target.TARGET_NOTHING, false, [
+          getPayload(Signal.SIGNAL_ENTER, Target.TARGET_NOTHING, false, null, [
             {
               authToken: getLocalStorage("token"),
             },
@@ -101,7 +110,9 @@ export class Connection {
   static leaveRoom(type: RoomType, roomId: string) {
     let ws = this.roomMap.get(type + roomId)
     if (ws != undefined) {
-      ws.send(getPayload(Signal.SIGNAL_LEAVE, Target.TARGET_NOTHING, false, []))
+      ws.send(
+        getPayload(Signal.SIGNAL_LEAVE, Target.TARGET_NOTHING, false, null, []),
+      )
       ws.close()
     }
   }

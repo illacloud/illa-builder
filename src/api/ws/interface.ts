@@ -28,7 +28,7 @@ export enum Target {
 
 export interface Broadcast {
   type: string
-  payload: string
+  payload: any
 }
 
 export interface Callback<T> {

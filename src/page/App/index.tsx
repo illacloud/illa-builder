@@ -82,10 +82,9 @@ export const Editor: FC = () => {
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
-  const illaMode = useSelector(getIllaMode)
-  const showLeftPanel = useSelector(isOpenLeftPanel) && illaMode == "edit"
-  const showRightPanel = useSelector(isOpenRightPanel) && illaMode == "edit"
-  const showBottomPanel = useSelector(isOpenBottomPanel) && illaMode == "edit"
+  const showLeftPanel = useSelector(isOpenLeftPanel)
+  const showRightPanel = useSelector(isOpenRightPanel)
+  const showBottomPanel = useSelector(isOpenBottomPanel)
 
   const [loadingState, setLoadingState] = useState(true)
 

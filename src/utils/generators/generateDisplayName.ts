@@ -35,4 +35,10 @@ export class DisplayNameGenerator {
   static removeDisplayName(displayName: string) {
     store.dispatch(displayNameActions.removeDisplayNameReducer(displayName))
   }
+
+  static removeDisplayNameMulti(displayNames: string[]) {
+    store.dispatch(
+      displayNameActions.removeDisplayNameMultiReducer(displayNames),
+    )
+  }
 }

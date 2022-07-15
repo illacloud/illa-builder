@@ -3,6 +3,7 @@
   "preview": "Preview",
   "exit_preview": "Exit Preview",
   "edit": "Edit",
+  "edit_at": "Edited at",
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
@@ -618,6 +619,9 @@
     },
     "timeline": {
       "name": "Timeline"
+    },
+    "chart": {
+      "name": "Chart"
     }
   },
   "Setting": "Setting",
@@ -683,6 +687,16 @@
       "title": "SETTING",
       "language": "Language",
       "save": "Save Changes"
+    }
+  },
+  "status": {
+    "back": "Back to homepage",
+    "404": {
+      "des": "It seems that the page you were looking for could not be found.",
+      "again": "Refresh"
+    },
+    "500": {
+      "des": "Oops, something went wrong. Please try again later."
     }
   }
 }

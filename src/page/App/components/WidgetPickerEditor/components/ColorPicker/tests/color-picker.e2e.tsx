@@ -36,6 +36,7 @@ it("change color by ColorPicker Saturation", () => {
     .trigger("mousedown", 30, 50, { force: true })
   cy.get("@onChangeEvent")
     .should("be.called")
+    .wait(100)
     .then(() => {
       const hexStr = hsvaToHex(targetColor)
       cy.findByDisplayValue(hexStr).should("exist")
@@ -92,6 +93,7 @@ it("change alpha by ColorPicker AlphaPicker", () => {
     .trigger("mousedown", "center")
   cy.get("@onChangeEvent")
     .should("be.called")
+    .wait(100)
     .then(() => {
       cy.findByDisplayValue(targetAlpha).should("exist")
     })
@@ -124,6 +126,7 @@ it("change alpha by ColorPicker HuePicker", () => {
     .trigger("mousedown", "center")
   cy.get("@onChangeEvent")
     .should("be.called")
+    .wait(100)
     .then(() => {
       const hexStr = hsvaToHex(targetColor)
       cy.findByDisplayValue(hexStr).should("exist")
@@ -162,7 +165,7 @@ it("change color by ColorPicker SwatchPicker", () => {
     .next()
     .next()
     .children()
-    .should("have.css", "border-color", "rgb(30, 111, 255)")
+    .should("have.css", "border-color", "rgb(29, 33, 41)")
   cy.findByDisplayValue("#e02424").should("exist")
   cy.findByDisplayValue("#e02424")
     .prev()

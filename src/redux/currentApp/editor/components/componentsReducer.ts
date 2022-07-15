@@ -10,6 +10,7 @@ import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelect
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
 import {
+  ComponentCopyPayload,
   ComponentDraggingPayload,
   ComponentResizePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
@@ -43,8 +44,20 @@ export const updateComponentResizeState: CaseReducer<
 
 export const copyComponentNodeReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<ComponentNode>
-> = (state, action) => {}
+  PayloadAction<ComponentCopyPayload>
+> = (state, action) => {
+  const parentNode = searchDsl(
+    state.rootDsl,
+    action.payload.componentNode.parentNode,
+  )
+  if (parentNode != null) {
+    parentNode.childrenNode.push({
+      ...action.payload.componentNode,
+      displayName: action.payload.newDisplayName,
+      y: action.payload.componentNode.y + action.payload.componentNode.h,
+    })
+  }
+}
 
 export const addOrUpdateComponentReducer: CaseReducer<
   ComponentsState,
@@ -77,12 +90,12 @@ export const deleteComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<DeleteComponentNodePayload>
 > = (state, action) => {
-  const { displayName } = action.payload
+  const { displayNames } = action.payload
   if (state.rootDsl == null) {
     return
   }
   const rootNode = state.rootDsl
-  displayName.forEach((value, index) => {
+  displayNames.forEach((value, index) => {
     const searchNode = searchDsl(rootNode, value)
     if (searchNode != null) {
       const parentNode = searchDsl(rootNode, searchNode.parentNode)

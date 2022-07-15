@@ -35,6 +35,7 @@ import { getExecutionError } from "@/redux/currentApp/executionTree/execution/ex
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 const { Item } = DropList
 
@@ -229,8 +230,15 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
             key="duplicate"
             title={t("editor.context_menu.duplicate")}
             onClick={() => {
+              const newDisplayName = DisplayNameGenerator.getDisplayName(
+                componentNode.type,
+                componentNode.showName,
+              )
               dispatch(
-                componentsActions.copyComponentNodeReducer(componentNode),
+                componentsActions.copyComponentNodeReducer({
+                  newDisplayName: newDisplayName,
+                  componentNode: componentNode,
+                }),
               )
             }}
           />

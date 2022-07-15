@@ -65,7 +65,7 @@ export const IllaApp: FC = () => {
           signal: controller.signal,
         },
         (response) => {
-          dispatch(resourceActions.addResourceListReducer(response.data))
+          dispatch(resourceActions.updateResourceListReducer(response.data))
           resolve("success")
         },
         (failure) => {},

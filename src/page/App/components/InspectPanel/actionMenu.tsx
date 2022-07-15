@@ -54,7 +54,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         onClick={() => {
           dispatch(
             componentsActions.deleteComponentNodeReducer({
-              displayName: widgetDisplayName,
+              displayNames: widgetDisplayName,
               parentDisplayName: widgetParentDisplayName,
             }),
           )
