@@ -92,7 +92,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
       setIsRenameError({ error: false })
       setEditingName("")
     },
-    [onUpdateActionItem, editingActionItemId, editingName],
+    [onUpdateActionItem, editingActionItemId, editingName, isRenameError],
   )
 
   const onAddAction = useCallback(
@@ -213,6 +213,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
     editingActionItemId,
     isActionDirty,
     editingName,
+    isRenameError,
   ])
 
   const handleContextMenu = useCallback(
