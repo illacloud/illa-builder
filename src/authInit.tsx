@@ -31,17 +31,21 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
           dispatch(
             currentUserActions.updateCurrentUserReducer({
               ...response.data,
-              username: response.data.nickname,
+              nickname: response.data.nickname,
             }),
           )
         },
       )
     }
   }, [])
-  return isLoginPage ? (
-    children
-  ) : (
-    <>{currentUserId && currentUserId > 0 && children}</>
+  return (
+    <>
+      {isLoginPage
+        ? children
+        : currentUserId && currentUserId > 0
+        ? children
+        : null}
+    </>
   )
 }
 

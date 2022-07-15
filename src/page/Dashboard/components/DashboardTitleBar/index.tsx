@@ -34,7 +34,7 @@ const SettingTrigger: FC<{ avatarBgColor: string; avatarText: string }> = (
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
         <span css={applyUserAvatarStyle(avatarBgColor)}>{avatarText}</span>
-        <span css={usernameStyle}>{userInfo?.username}</span>
+        <span css={usernameStyle}>{userInfo?.nickname}</span>
       </div>
       <Divider />
       <div css={settingListStyle}>
@@ -65,7 +65,7 @@ export const DashboardTitleBar: FC = () => {
   const userInfo = useSelector(getCurrentUser)
   const avatarBgColor =
     `${userInfo?.userId}`.padEnd(6, "0").substring(0, 6) || "654aec"
-  const avatarText = userInfo?.username?.substring?.(0, 1).toUpperCase() || "U"
+  const avatarText = userInfo?.nickname?.substring?.(0, 1).toUpperCase() || "U"
   let navigate = useNavigate()
   let location = useLocation()
   let pathList = location.pathname.split("/")
