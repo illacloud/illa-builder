@@ -646,6 +646,7 @@
     },
     "app": {
       "all_apps": "所有项目",
+      "rename_app": "重命名项目",
       "create_app": "创建App",
       "duplicate_fail": "复制失败",
       "rename_fail": "重命名失败",
