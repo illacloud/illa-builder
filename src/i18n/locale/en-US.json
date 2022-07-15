@@ -623,9 +623,6 @@
     "timeline": {
       "name": "Timeline"
     },
-    "dropdown_button": {
-      "name": "Dropdown Button"
-    },
     "chart": {
       "name": "Chart"
     }

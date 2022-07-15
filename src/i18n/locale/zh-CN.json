@@ -624,9 +624,6 @@
     "timeline": {
       "name": "时间线"
     },
-    "dropdown_button": {
-      "name": "下拉菜单按钮"
-    },
     "chart": {
       "name": "图表"
     }
