@@ -33,7 +33,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
     mode = "TEXT_JS",
-    placeholder = "input sth",
+    placeholder,
     expectedType = "String",
     borderRadius = "8px",
     path,
@@ -80,7 +80,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let previewType = expectedType
     setError(false)
     try {
-      calcResult = evaluateDynamicString("", currentValue, globalData)
+      calcResult = evaluateDynamicString("", currentValue, executionResult)
       // [TODO]: v1 evaluate
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)

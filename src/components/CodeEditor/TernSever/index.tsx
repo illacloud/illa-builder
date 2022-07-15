@@ -129,12 +129,30 @@ const transPathToDefs = (
   return {}
 }
 
+const filterDataWithCallBack = (
+  data: Record<string, any> = {},
+  callback?: (key: string) => boolean,
+) => {
+  return JSON.parse(
+    JSON.stringify(data, function (key, value) {
+      if (callback && callback(key)) {
+        return undefined
+      } else {
+        return value
+      }
+    }),
+  )
+}
+
 export const TernServer = (
   language: string = "English",
   data?: Record<string, any>,
 ) => {
   let currentDef = getCurrentDef(language)
-  let transData = transDataToDefs(data)
+  let transData = filterDataWithCallBack(data, (key: string) =>
+    key.startsWith("$"),
+  )
+  transData = transDataToDefs(transData)
   return new CodeMirror.TernServer({
     // @ts-ignore: type define error
     defs: [ecmascript, { ...currentDef, ...transData }],
