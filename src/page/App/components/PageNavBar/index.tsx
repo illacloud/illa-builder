@@ -67,8 +67,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleClickDeploy = useCallback(() => {
     Api.request(
       {
-        url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
-        method: "GET",
+        url: `/apps/${appInfo.appId}/deploy`,
+        method: "POST",
       },
       (response) => {
         window.open(

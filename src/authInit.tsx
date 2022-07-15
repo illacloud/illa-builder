@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { getLocalStorage } from "@/utils/storage"
@@ -14,11 +14,14 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
   const token = getLocalStorage("token")
   const currentUserId = useSelector(getCurrentUser)?.userId
 
-  const isLoginPage = location.pathname === "/user/login"
+  const [showNextPage, setShowNextPage] = useState<boolean>(
+    !!currentUserId && currentUserId > 0,
+  )
 
   useEffect(() => {
     if (!token) {
       navigate(`/user/login`)
+      setShowNextPage(true)
       return
     }
     if (!currentUserId) {
@@ -34,19 +37,12 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
               nickname: response.data.nickname,
             }),
           )
+          setShowNextPage(true)
         },
       )
     }
   }, [])
-  return (
-    <>
-      {isLoginPage
-        ? children
-        : currentUserId && currentUserId > 0
-        ? children
-        : null}
-    </>
-  )
+  return <>{showNextPage ? children : null}</>
 }
 
 export default AuthInit
