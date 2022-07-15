@@ -14,3 +14,8 @@ export interface ComponentCopyPayload {
   newDisplayName: string
   componentNode: ComponentNode
 }
+
+export interface ComponentDropPayload {
+  isMove: boolean
+  componentNode: ComponentNode
+}

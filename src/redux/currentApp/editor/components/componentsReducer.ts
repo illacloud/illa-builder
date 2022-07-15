@@ -12,6 +12,7 @@ import { isObject } from "@/utils/typeHelper"
 import {
   ComponentCopyPayload,
   ComponentDraggingPayload,
+  ComponentDropPayload,
   ComponentResizePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 
@@ -59,7 +60,7 @@ export const copyComponentNodeReducer: CaseReducer<
   }
 }
 
-export const addOrUpdateComponentReducer: CaseReducer<
+export const addComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode>
 > = (state, action) => {
@@ -69,19 +70,23 @@ export const addOrUpdateComponentReducer: CaseReducer<
   } else {
     const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
     if (parentNode != null) {
-      if (
-        parentNode.childrenNode.find((value) => {
-          return value.displayName === dealNode.displayName
-        })
-      ) {
-        parentNode.childrenNode.splice(
-          parentNode.childrenNode.findIndex((value, index, obj) => {
-            return value.displayName === dealNode.displayName
-          }),
-          1,
-        )
-      }
       parentNode.childrenNode.push(dealNode)
+    }
+  }
+}
+
+export const updateSingleComponentReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentDropPayload>
+> = (state, action) => {
+  const dealNode = action.payload.componentNode
+  const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
+  if (parentNode != null) {
+    const index = parentNode.childrenNode.findIndex((value, index, obj) => {
+      return value.displayName === dealNode.displayName
+    })
+    if (index > -1) {
+      parentNode.childrenNode[index] = dealNode
     }
   }
 }

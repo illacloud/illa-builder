@@ -25,6 +25,14 @@ export function endDrag(dragNode: ComponentNode) {
       isDragging: false,
     }),
   )
+  // remove dotted line square
+  store.dispatch(
+    dottedLineSquareActions.removeDottedLineSquareReducer(dragNode.displayName),
+  )
+  // remove drag
+  store.dispatch(
+    dragShadowActions.removeDragShadowReducer(dragNode.displayName),
+  )
   if (
     searchDsl(
       store.getState().currentApp.editor.components.rootDsl,
@@ -35,12 +43,4 @@ export function endDrag(dragNode: ComponentNode) {
       displayNameActions.removeDisplayNameReducer(dragNode.displayName),
     )
   }
-  // remove dotted line square
-  store.dispatch(
-    dottedLineSquareActions.removeDottedLineSquareReducer(dragNode.displayName),
-  )
-  // remove drag
-  store.dispatch(
-    dragShadowActions.removeDragShadowReducer(dragNode.displayName),
-  )
 }
