@@ -115,7 +115,7 @@ export const RunActionButton: FC = () => {
   const run = useCallback(() => {
     executeAction(
       activeActionItem,
-      params.versionId || "",
+      params.appId || "",
       (response) => {
         handleUpdateResult(response)
         const successEvent = realAction?.successEvent

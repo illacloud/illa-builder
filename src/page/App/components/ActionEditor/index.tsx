@@ -35,7 +35,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
   const actionItems = useSelector(selectAllActionItem)
   const { resourceId = "" } = useSelector(getSelectedAction)
-  const baseActionApi = `/versions/${params.versionId}/actions`
+  const baseActionApi = `/apps/${params.appId}/actions`
 
   const loading = useMemo(
     () => actionListLoading || resourceLoading,
