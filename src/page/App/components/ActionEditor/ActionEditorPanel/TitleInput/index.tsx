@@ -61,13 +61,13 @@ export const TitleInput: FC<TitleInputProps> = () => {
     }
 
     if (title !== name) {
-      const { resourceId, actionType, actionTemplate } = activeActionItem
+      const { resourceId, actionType, actionTemplate = {} } = activeActionItem
 
       DisplayNameGenerator.updateDisplayName(title)
 
       Api.request<ActionItem>(
         {
-          url: baseActionApi,
+          url: `${baseActionApi}/${activeActionItem.actionId}`,
           method: "PUT",
           data: {
             resourceId,
