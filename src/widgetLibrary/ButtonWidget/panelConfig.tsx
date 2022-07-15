@@ -73,10 +73,20 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "query",
             labelName: "Query",
-            setterType: "BASE_SELECT_SETTER",
+            setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
             attrName: "queryID",
             bindAttrName: "actionType",
             shown: (type) => type === "datasource",
+          },
+          {
+            id: "actionMethod",
+            labelName: "Action Method",
+            setterType: "BASE_SELECT_SETTER",
+            attrName: "widgetMethod",
+            bindAttrName: "queryID",
+            shown: (type) => type === "datasource",
+            // TODO: value should as same as action run method name that mounted on `globalData`
+            options: [{ label: "run", value: "executeAction" }],
           },
           {
             id: "component",
@@ -340,9 +350,9 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "button-style-bg",
             labelName: "editor.inspect.setter_label.theme_color",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
-            defaultValue: "blue",
+            defaultValue: "#134ae0",
             options: colorSchemeOptions,
           },
         ],

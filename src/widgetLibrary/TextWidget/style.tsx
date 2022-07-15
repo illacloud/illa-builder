@@ -46,6 +46,7 @@ export function applyTextStyle(
       ? globalColor(`--${illaPrefix}-${textColor}-01`)
       : textColor
   return css`
+    white-space: pre-wrap;
     color: ${_color ?? globalColor(`--${illaPrefix}-grayBlue-01`)};
     background-color: ${backgroundColor &&
     colorSchemes.includes(backgroundColor)

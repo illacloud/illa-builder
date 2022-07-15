@@ -9,7 +9,7 @@ import {
   triggerCss,
 } from "./styles"
 import { HsvaColor, hsvaToRgba, hsvaToHex, hexToHsva } from "@uiw/color-convert"
-import { useCallback, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ColorPickerProps } from "./interface"
 import useDebounce from "react-use/lib/useDebounce"
 
@@ -41,10 +41,13 @@ function ColorPicker(props: ColorPickerProps) {
     color,
   } = props
 
-  const defaultHsva = useMemo(
-    () => hexToHsva(color?.substring(0, 7) ?? defaultColor.substring(0, 7)),
-    [defaultColor],
-  )
+  const defaultHsva = useMemo(() => {
+    return hexToHsva(color?.substring(0, 7) ?? defaultColor.substring(0, 7))
+  }, [defaultColor, color])
+  useEffect(() => {
+    setHsva(defaultHsva)
+    setInputValue(hsvaToHex(defaultHsva))
+  }, [defaultHsva])
   const [hsva, setHsva] = useState<HsvaColor>(defaultHsva)
   const [currentVisible, setCurrentVisible] = useState(false)
   const [inputValue, setInputValue] = useState(hsvaToHex(hsva))
@@ -109,7 +112,11 @@ function ColorPicker(props: ColorPickerProps) {
             custom: true,
           }}
           requirePadding={false}
-          style={{ width: 146, height: 40, fontSize: 12 }}
+          style={{
+            width: "100%",
+            height: 40,
+            fontSize: 12,
+          }}
           borderColor={"purple"}
           value={inputValue}
           onChange={(value) => {

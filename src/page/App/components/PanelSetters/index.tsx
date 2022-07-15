@@ -9,6 +9,7 @@ import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListS
 import { MappedOptionSetter } from "@/page/App/components/PanelSetters/MappedOptionSetter"
 import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/searchSelect"
 import { EventTargetWidgetSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetWidgetSelect"
+import { EventTargetActionSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetActionSelect"
 import { OptionMappedInputSetter } from "@/page/App/components/PanelSetters/InputSetter/optionMappedInputSetter"
 import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
 import { EventWidgetMethodSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventWidgetMethodSelect"
@@ -19,6 +20,7 @@ import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSe
 import { ChartDataSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSetter"
 import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/removeDatasetButton"
 import { DataSetColorListSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/colorSetter"
+import { AllowClearSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/AllowClearSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -34,6 +36,7 @@ const SetterTypeMapSetter = {
   OPTION_MAPPED_SETTER: MappedOptionSetter,
   EVENT_HANDLER_SETTER: EventHandlerSetter,
   EVENT_TARGET_SELECT_SETTER: EventTargetWidgetSelect,
+  EVENT_TARGET_ACTION_SELECT_SETTER: EventTargetActionSelect,
   OPTION_MAPPED_INPUT_SETTER: OptionMappedInputSetter,
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
@@ -42,6 +45,7 @@ const SetterTypeMapSetter = {
   CHART_DATA_SETTER: ChartDataSetter,
   CHART_LINE_COLOR_LIST_SETTER: DataSetColorListSetter,
   CHART_REMOVE_BUTTON: RemoveDatasetButton,
+  ALLOW_CLEAR_SELECT_SETTER: AllowClearSelectSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

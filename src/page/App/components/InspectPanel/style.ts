@@ -126,6 +126,8 @@ export const applySetterPublicWrapperStyle = (
   return isInList
     ? css`
         min-height: 40px;
+        display: flex;
+        align-items: center;
         ${widthStyle}
       `
     : css`

@@ -36,6 +36,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   }, [])
   return (
     <Trigger
+      withoutPadding
       colorScheme="white"
       popupVisible={modalVisible}
       content={

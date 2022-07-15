@@ -1,4 +1,5 @@
 import { ChartType } from "chart.js"
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export type LegendPosition = "top" | "bottom" | "right" | "left" | "hidden"
 export type DatasetConfig = {
@@ -19,7 +20,7 @@ export interface DataObject {
 }
 
 export interface WrappedChartProps {
-  configType?: ConfigType // todo@aoao
+  configType?: ConfigType
   layoutConfigType?: ConfigType
   data?: DataObject[]
   title?: string
@@ -40,6 +41,9 @@ export interface WrappedChartProps {
     dataMap?: { [key: string]: any },
   ) => void
 }
+
+export interface ChartWidgetProps extends WrappedChartProps, BaseWidgetProps {}
+
 export const defaultChartData = [
   {
     region: "East",

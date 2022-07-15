@@ -65,7 +65,7 @@ export const commonSlidePointCss = css`
   border-style: solid;
   border-color: white;
   box-sizing: border-box;
-  box-shadow: ${globalColor(`--${illaPrefix}-blackAlpha-04`)} 0 0 2px;
+  box-shadow: ${globalColor(`--${illaPrefix}-blackAlpha-03`)} 0 0 2px;
 `
 
 function toPoint(percent: string) {
@@ -112,7 +112,6 @@ export const colorInputContainerCss = css`
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
-  padding: 0 12px;
   box-sizing: border-box;
   align-items: center;
 `
@@ -137,7 +136,7 @@ export const colorInputCss = css`
   display: inline-flex;
   border-radius: 8px;
   font-size: 12px;
-
+  width: 100%;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }

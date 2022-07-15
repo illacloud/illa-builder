@@ -39,6 +39,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   }, [])
   return (
     <Trigger
+      withoutPadding
       colorScheme="white"
       popupVisible={modalVisible}
       content={

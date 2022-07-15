@@ -23,19 +23,11 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: (
-              <HeartIcon
-                css={{ color: globalColor(`--${illaPrefix}-red-03`) }}
-              />
-            ),
+            label: <HeartIcon />,
             value: "heart",
           },
           {
-            label: (
-              <StarIcon
-                css={{ color: globalColor(`--${illaPrefix}-yellow-04`) }}
-              />
-            ),
+            label: <StarIcon />,
             value: "star",
           },
         ],

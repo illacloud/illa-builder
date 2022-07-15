@@ -3,9 +3,10 @@ import { ColorPickerSetterProps } from "./interface"
 
 import ColorPicker from "@/page/App/components/WidgetPickerEditor/components/ColorPicker"
 import { hsvaToHexa } from "@uiw/color-convert/src"
+import { applyColorSetterStyle } from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
 
 export const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
-  const { attrName, handleUpdateDsl, value, options } = props
+  const { attrName, handleUpdateDsl, value, options, isSetterSingleRow } = props
 
   const _value = useMemo(() => {
     const index = options?.findIndex((item) => item.value === value)
@@ -13,11 +14,10 @@ export const ColorPickerSetter: FC<ColorPickerSetterProps> = (props) => {
   }, [options, value])
 
   return (
-    <div>
+    <div css={applyColorSetterStyle(isSetterSingleRow)}>
       <ColorPicker
         prefabricatedColors={options}
         color={_value}
-        defaultColor={_value}
         onColorChange={(value) => {
           handleUpdateDsl(attrName, hsvaToHexa(value))
         }}
