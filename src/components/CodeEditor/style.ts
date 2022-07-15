@@ -11,7 +11,7 @@ export const codemirrorStyle = css`
   }
 
   .CodeMirror-empty {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   }
 
   .CodeMirror-selected {
