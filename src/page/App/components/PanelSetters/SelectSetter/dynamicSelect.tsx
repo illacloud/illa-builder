@@ -11,9 +11,6 @@ import { applyInputSetterWrapperStyle } from "@/page/App/components/PanelSetters
 import { CodeEditor } from "@/components/CodeEditor"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { useSelector } from "react-redux"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
-import { get } from "lodash"
 import {
   applySetterPublicWrapperStyle,
   applySetterWrapperStyle,

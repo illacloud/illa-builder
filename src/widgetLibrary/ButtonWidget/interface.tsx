@@ -14,7 +14,6 @@ export interface WrappedButtonProps
     | "borderColor"
     | "backgroundColor"
     | "textColor"
-    | "colorScheme"
   > {
   text?: string
   submit?: boolean
@@ -22,6 +21,7 @@ export interface WrappedButtonProps
   alignment?: alignmentType
   borderRadius?: string
   handleOnClick: () => void
+  colorScheme?: string
 }
 
 export interface ButtonWidgetProps extends WrappedButtonProps, BaseWidgetProps {

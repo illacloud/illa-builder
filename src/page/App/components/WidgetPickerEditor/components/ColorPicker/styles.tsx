@@ -136,6 +136,7 @@ export const colorInputCss = css`
   display: inline-flex;
   border-radius: 8px;
   font-size: 12px;
+  width: 100%;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }

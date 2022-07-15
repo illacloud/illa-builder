@@ -26,7 +26,7 @@ export const RemoveDatasetButton: FC<RemoveButtonSetter> = (props) => {
   return (
     <div css={buttonContainerStyle}>
       <Button
-        variant="outline"
+        variant="light"
         colorScheme={"red"}
         _css={removeButtonStyle}
         onClick={handleClick}

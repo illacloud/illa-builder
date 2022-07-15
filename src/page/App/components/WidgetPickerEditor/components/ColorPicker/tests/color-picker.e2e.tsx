@@ -137,35 +137,37 @@ it("change alpha by ColorPicker HuePicker", () => {
 
 it("change color by ColorPicker SwatchPicker", () => {
   mount(
-    <ColorPicker
-      prefabricatedColors={[
-        "#000000",
-        "#FFFFFF",
-        "#E02424",
-        "#FFAB00",
-        "#00AA5B",
-        "#0CC1E2",
-        "#654AEC",
-        "#1E6FFF",
-      ].map((item) => ({ key: item, value: item }))}
-    />,
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyItems: "end",
+        alignItems: "end",
+      }}
+    >
+      <div style={{ width: 200 }}>
+        <ColorPicker
+          prefabricatedColors={[
+            "#000000",
+            "#FFFFFF",
+            "#E02424",
+            "#FFAB00",
+            "#00AA5B",
+            "#0CC1E2",
+            "#654AEC",
+            "#1E6FFF",
+          ].map((item) => ({ key: item, value: item }))}
+        />
+      </div>
+    </div>,
   )
   cy.findByDisplayValue("#ffffff").prev().trigger("click")
-  cy.findByText("Prefabricated color")
-    .next()
-    .children()
-    .first()
-    .next()
-    .next()
-    .trigger("click", { force: true })
-  cy.findByText("Prefabricated color")
-    .next()
-    .children()
-    .first()
-    .next()
-    .next()
-    .children()
-    .should("have.css", "border-color", "rgb(29, 33, 41)")
+  cy.findByTitle("#E02424").trigger("click")
+  cy.findByTitle("#E02424").should(
+    "have.css",
+    "border-color",
+    "rgb(29, 33, 41)",
+  )
   cy.findByDisplayValue("#e02424").should("exist")
   cy.findByDisplayValue("#e02424")
     .prev()
