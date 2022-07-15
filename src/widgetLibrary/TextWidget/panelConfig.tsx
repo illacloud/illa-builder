@@ -122,7 +122,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
             labelName: "editor.inspect.setter_label.text",
             setterType: "COLOR_PICKER_SETTER",
             attrName: "textColor",
-            defaultValue: "#787e85",
+            defaultValue: "#787e85ff",
             options: colorSchemeOptions,
           },
           {
@@ -130,7 +130,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
             labelName: "editor.inspect.setter_label.links_color",
             setterType: "COLOR_PICKER_SETTER",
             attrName: "linkColor",
-            defaultValue: "#1e6fff",
+            defaultValue: "#1e6fffff",
             options: colorSchemeOptions,
           },
         ],

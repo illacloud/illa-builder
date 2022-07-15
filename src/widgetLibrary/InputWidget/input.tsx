@@ -39,9 +39,9 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
           disabled={disabled}
           readOnly={readOnly}
           prefix={prefixIcon}
-          addonBefore={prefixText}
+          addonBefore={{ render: prefixText, custom: false }}
           suffix={suffixIcon}
-          addonAfter={suffixText}
+          addonAfter={{ render: suffixText, custom: false }}
           onChange={(value) => {
             setCurrentValue(value)
             handleUpdateDsl({ value })

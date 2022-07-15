@@ -65,7 +65,7 @@ export const commonSlidePointCss = css`
   border-style: solid;
   border-color: white;
   box-sizing: border-box;
-  box-shadow: ${globalColor(`--${illaPrefix}-blackAlpha-04`)} 0 0 2px;
+  box-shadow: ${globalColor(`--${illaPrefix}-blackAlpha-03`)} 0 0 2px;
 `
 
 function toPoint(percent: string) {

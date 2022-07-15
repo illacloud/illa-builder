@@ -9,9 +9,9 @@ export interface WrappedInputProps
   showCharacterCount?: InputProps["showCount"]
   value?: string
   prefixIcon?: InputProps["prefix"]
-  prefixText?: InputProps["addonBefore"]
+  prefixText?: string
   suffixIcon?: InputProps["suffix"]
-  suffixText?: InputProps["addonAfter"]
+  suffixText?: string
   tooltipText?: string
   colorScheme?: InputProps["borderColor"]
   allowClear?: InputProps["allowClear"]
