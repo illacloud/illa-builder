@@ -1,13 +1,11 @@
 import { TextWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
-import i18n from "@/i18n/config"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "text",
   widgetName: "widget.text.name",
   h: 5,
-  w: 10,
+  w: 12,
   type: "TEXT_WIDGET",
   icon: <TextWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",

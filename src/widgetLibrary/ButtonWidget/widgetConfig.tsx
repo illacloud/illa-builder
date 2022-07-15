@@ -8,7 +8,7 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   widgetName: "widget.button.name",
   icon: <ButtonWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
-  w: 10,
+  w: 12,
   h: 5,
   defaults: {
     text: i18n.t("widget.button.default_text"),

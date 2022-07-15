@@ -217,7 +217,7 @@ export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         useCustomLayout: true,
-        placeholder: "false",
+        placeholder: "{{false}}",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],

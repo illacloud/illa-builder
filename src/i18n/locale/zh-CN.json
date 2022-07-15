@@ -522,7 +522,8 @@
         "text_align": "文本对齐",
         "text_size": "文本大小",
         "start_date": "开始日期",
-        "end_data": "结束日期"
+        "end_data": "结束日期",
+        "group_layout": "组内布局"
       },
       "setter_default_value": {
         "solid": "Solid",

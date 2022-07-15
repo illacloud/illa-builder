@@ -7,11 +7,10 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   widgetName: "widget.bar_progress.name",
   icon: <LineProgressWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
-  w: 17,
-  h: 10,
+  w: 16,
+  h: 5,
   defaults: {
     value: "50",
-    hidden: "false",
     color: "blue",
     trailColor: "gray",
     strokeWidth: "4px",

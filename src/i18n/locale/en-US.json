@@ -522,7 +522,8 @@
         "text_align": "Text align",
         "text_size": "Text size",
         "start_date": "Start date",
-        "end_data": "End date"
+        "end_data": "End date",
+        "group_layout": "Group layout"
       },
       "setter_default_value": {
         "solid": "Solid",

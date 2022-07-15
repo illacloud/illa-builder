@@ -9,7 +9,7 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   widgetName: "widget.select.name",
   icon: <SelectWidgetIcon size="100%" />,
   sessionType: "SELECT",
-  w: 10,
+  w: 12,
   h: 5,
   defaults: {
     optionConfigureMode: "static",

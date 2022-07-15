@@ -63,13 +63,6 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
-      {
-        id: "switch-label-labelWidth",
-        labelName: "editor.inspect.setter_label.label_width",
-        attrName: "labelWidth",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
-      },
     ],
   },
   {
