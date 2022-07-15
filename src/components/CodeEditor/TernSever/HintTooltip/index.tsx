@@ -46,6 +46,8 @@ const formatObjOrArr = (type: string, data: any) => {
       showArrow={false}
       trigger={"hover"}
       zIndex={11}
+      closeOnNoElementsInside
+      hideOnInnerInVisible={false}
     >
       {type === "Array" ? "[ ... ]" : "{ ... }"}
     </Trigger>
