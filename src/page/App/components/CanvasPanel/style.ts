@@ -15,7 +15,7 @@ export function applyScaleContainerStyle(scale: number): SerializedStyles {
 
 export const previewStyle = css`
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   box-shadow: 0 0 6px 0 ${globalColor(`--${illaPrefix}-blackAlpha-06`)};
   bottom: 8px;
   right: 16px;
