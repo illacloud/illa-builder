@@ -9,6 +9,7 @@ import { OptionListSetter } from "@/page/App/components/PanelSetters/OptionListS
 import { MappedOptionSetter } from "@/page/App/components/PanelSetters/MappedOptionSetter"
 import { SearchSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/searchSelect"
 import { EventTargetWidgetSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetWidgetSelect"
+import { EventTargetActionSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventTargetActionSelect"
 import { OptionMappedInputSetter } from "@/page/App/components/PanelSetters/InputSetter/optionMappedInputSetter"
 import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
 import { EventWidgetMethodSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventWidgetMethodSelect"
@@ -35,6 +36,7 @@ const SetterTypeMapSetter = {
   OPTION_MAPPED_SETTER: MappedOptionSetter,
   EVENT_HANDLER_SETTER: EventHandlerSetter,
   EVENT_TARGET_SELECT_SETTER: EventTargetWidgetSelect,
+  EVENT_TARGET_ACTION_SELECT_SETTER: EventTargetActionSelect,
   OPTION_MAPPED_INPUT_SETTER: OptionMappedInputSetter,
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,

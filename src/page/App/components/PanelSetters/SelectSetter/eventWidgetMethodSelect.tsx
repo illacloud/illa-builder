@@ -68,7 +68,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         options={finalOptions}
-        size="small"
+        size="medium"
         value={finalValue}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)

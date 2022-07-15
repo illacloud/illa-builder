@@ -24,6 +24,15 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
   const selectedAction = useSelector(getSelectedAction)
 
+  const finalOptions = useMemo(() => {
+    return options.map((o: any) => {
+      return {
+        ...o,
+        label: t(o.label),
+      }
+    })
+  }, [options])
+
   const oldEvent = useMemo(() => {
     if (widgetOrAction === "WIDGET") {
       return get(
@@ -43,15 +52,11 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
 
   const _finalAttrPath = parentAttrName ? parentAttrName : attrName
 
-  const finalOptions = options.map((item: Record<string, any>) => {
-    return { ...item, label: t(item.label) }
-  })
-
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
         options={finalOptions}
-        size="small"
+        size="medium"
         value={value}
         onChange={(value) => {
           handleUpdateDsl(_finalAttrPath, {
