@@ -524,7 +524,24 @@
         "text_align": "Text align",
         "text_size": "Text size",
         "start_date": "Start date",
-        "end_data": "End date"
+        "end_data": "End date",
+        "config_type": "Config type",
+        "data_source": "Data source",
+        "chart_type": "Chart type",
+        "x_values": "X-axis Values",
+        "group_by": "Group by",
+        "datasets": "Datasets",
+        "dataset_config": "Dataset config",
+        "title": "Title",
+        "x_axis_title": "X-axis title",
+        "x_axis_type": "X-axis type",
+        "y_axis_title": "Y-axis title",
+        "legend_position": "Legend position",
+        "dataset": {
+          "name": "Dataset name",
+          "value": "Dataset values",
+          "remove": "Remove dataset"
+        }
       },
       "setter_default_value": {
         "solid": "Solid",

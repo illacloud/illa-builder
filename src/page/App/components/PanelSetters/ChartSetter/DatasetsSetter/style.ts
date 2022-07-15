@@ -10,8 +10,8 @@ export const headerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  height: 48px;
+  color: ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
   font-size: 16px;
   font-weight: 500;
   span {
@@ -21,9 +21,20 @@ export const headerStyle = css`
   ${publicPaddingCss}
 `
 
+export const buttonContainerStyle = css`
+  width: 100%;
+  padding: 0 16px;
+`
+
 export const removeButtonStyle = css`
   width: 100%;
   justify-content: center;
+`
+
+export const labelHeightStyle = css`
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
 `
 
 export const closeIconStyle = css`
@@ -66,26 +77,38 @@ export const ListCss = css`
   border-radius: 8px;
 `
 
-export const optionListItemCss = css`
-  display: flex;
-  justify-content: space-between;
-  height: 40px;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 200ms;
-  svg {
-    height: 16px;
-    width: 16px;
-    margin: 0 17px;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
-  }
-  &:hover {
-    .movableIconWrapper {
-      opacity: 1;
+export function applyOptionListItemStyle(
+  close: boolean = false,
+): SerializedStyles {
+  return css`
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    color: ${close
+      ? globalColor(`--${illaPrefix}-grayBlue-05`)
+      : globalColor(`--${illaPrefix}-grayBlue-02`)};
+    transition: background-color 200ms;
+    svg {
+      height: 16px;
+      width: 16px;
+      margin: 0 17px;
+      color: ${close
+        ? globalColor(`--${illaPrefix}-grayBlue-08`)
+        : globalColor(`--${illaPrefix}-grayBlue-05`)};
+      :hover {
+        color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+      }
     }
-  }
-`
+    &:hover {
+      .movableIconWrapper {
+        opacity: 1;
+      }
+    }
+  `
+}
 
 export const labelNameAndIconCss = css`
   width: 100%;
@@ -118,7 +141,6 @@ export function applyColorIndentStyle(bgColor: string): SerializedStyles {
 export const labelNameWrapper = css`
   width: 80px;
   padding: 0 8px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const aggregationMethodStyle = css`
@@ -161,10 +183,6 @@ export const labelAndInputWrapperCss = css`
   justify-content: space-between;
 `
 
-export const modalInputWrapperCss = css`
-  width: 240px;
-`
-
 export const modalLabelCss = css`
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
@@ -190,3 +208,13 @@ export const colorPickerContainerStyle = css`
   align-items: center;
   margin-bottom: 8px;
 `
+export function applyIconStyle(close: boolean = false): SerializedStyles {
+  return css`
+    color: ${close
+      ? globalColor(`--${illaPrefix}-grayBlue-05`)
+      : globalColor(`--${illaPrefix}-grayBlue-08`)};
+    :hover {
+      color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+    }
+  `
+}

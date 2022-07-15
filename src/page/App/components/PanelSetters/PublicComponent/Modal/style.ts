@@ -6,11 +6,11 @@ export const headerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
+  height: 48px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
   font-size: 16px;
+  padding: 0 16px;
   font-weight: 500;
-
   span {
     display: flex;
     align-items: center;
@@ -29,7 +29,6 @@ export const closeIconStyle = css`
 
 export const modalWrapperStyle = css`
   width: 400px;
-  padding: 0 4px;
 `
 export const listWrapperStyle = css`
   width: 100%;

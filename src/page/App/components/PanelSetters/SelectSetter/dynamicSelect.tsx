@@ -11,9 +11,10 @@ import { applyInputSetterWrapperStyle } from "@/page/App/components/PanelSetters
 import { CodeEditor } from "@/components/CodeEditor"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { useSelector } from "react-redux"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
-import { get } from "lodash"
+import {
+  applySetterPublicWrapperStyle,
+  applySetterWrapperStyle,
+} from "@/page/App/components/InspectPanel/style"
 
 export const INPUT_MODE_SUFFIX = "InputMode"
 export const OPTIONS_SUFFIX = "Options"
@@ -65,7 +66,7 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
   const jsValue = attrName + JS_VALUE_SUFFIX
 
   return (
-    <div css={dynamicSelectStyle}>
+    <div css={applySetterWrapperStyle(isSetterSingleRow)}>
       <div css={dynamicSelectHeaderStyle}>
         <PanelLabel labelName={labelName} />
         <span
@@ -77,31 +78,33 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
             )
           }}
         >
-          {isUseJs ? "Use JavaScript" : "Use DropDown"}
+          {!isUseJs ? "Use JavaScript" : "Use DropDown"}
         </span>
       </div>
       <div>
-        {isUseJs ? (
-          <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
-            <CodeEditor
+        <div css={applySetterPublicWrapperStyle(false, false)}>
+          {isUseJs ? (
+            <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
+              <CodeEditor
+                onChange={(value) => {
+                  handleUpdateDsl(jsValue, value)
+                }}
+                path={getPath(attrName, widgetDisplayName)}
+                mode={"TEXT_JS"}
+                expectedType={VALIDATION_TYPES.STRING}
+              />
+            </div>
+          ) : (
+            <Select
+              allowClear
+              options={_options}
+              size="medium"
               onChange={(value) => {
-                handleUpdateDsl(jsValue, value)
+                handleUpdateDsl(dropDownValue, value)
               }}
-              path={getPath(attrName, widgetDisplayName)}
-              mode={"TEXT_JS"}
-              expectedType={expectedType}
             />
-          </div>
-        ) : (
-          <Select
-            allowClear
-            options={_options}
-            size="small"
-            onChange={(value) => {
-              handleUpdateDsl(dropDownValue, value)
-            }}
-          />
-        )}
+          )}
+        </div>
       </div>
     </div>
   )

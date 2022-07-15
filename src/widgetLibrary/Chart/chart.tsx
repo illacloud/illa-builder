@@ -1,4 +1,5 @@
 import {
+  ChartWidgetProps,
   defaultChartData02,
   defaultOptionsJson,
   WrappedChartProps,
@@ -25,6 +26,7 @@ import { wrapData, wrapDataWithGroupBy, wrapPieDataset } from "./utils"
 import "chartjs-adapter-moment"
 import ChartDataLabels from "chartjs-plugin-datalabels"
 import { formatPropsToChartOptions } from "./formatData"
+import { TextWidgetProps } from "@/widgetLibrary/TextWidget/interface"
 
 ChartJS.register(
   CategoryScale,
@@ -41,7 +43,7 @@ ChartJS.register(
   Legend,
   Title,
 )
-export const WrappedChart: FC<WrappedChartProps> = (props) => {
+export const Chart: FC<WrappedChartProps> = (props) => {
   const {
     data = [],
     legendPosition = "bottom",
@@ -159,6 +161,71 @@ export const WrappedChart: FC<WrappedChartProps> = (props) => {
   )
 }
 
-WrappedChart.displayName = "ChartWidget"
+export const ChartWidget: FC<ChartWidgetProps> = (props) => {
+  const {
+    data,
+    legendPosition,
+    title,
+    xTitle,
+    yTitle,
+    groupBy,
+    datasets,
+    type,
+    xType,
+    xAxisValues,
+    chartJson,
+    configType,
+    layoutConfigType,
+    layoutJson,
+    displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  } = props
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      data,
+      legendPosition,
+      title,
+      xTitle,
+      yTitle,
+      groupBy,
+      datasets,
+      type,
+      xType,
+      xAxisValues,
+      chartJson,
+      configType,
+      layoutConfigType,
+      layoutJson,
+      displayName,
+      handleUpdateGlobalData,
+      handleUpdateDsl,
+      handleDeleteGlobalData,
+    })
 
-export const ChartWidget = WrappedChart
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    legendPosition,
+    title,
+    xTitle,
+    yTitle,
+    groupBy,
+    datasets,
+    type,
+    xType,
+    xAxisValues,
+    chartJson,
+    configType,
+    layoutConfigType,
+    layoutJson,
+    displayName,
+  ])
+
+  return <Chart {...props} />
+}
+
+ChartWidget.displayName = "ChartWidget"

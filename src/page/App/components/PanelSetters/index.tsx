@@ -19,6 +19,7 @@ import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSe
 import { ChartDataSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSetter"
 import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/removeDatasetButton"
 import { DataSetColorListSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/colorSetter"
+import { AllowClearSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/AllowClearSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -42,6 +43,7 @@ const SetterTypeMapSetter = {
   CHART_DATA_SETTER: ChartDataSetter,
   CHART_LINE_COLOR_LIST_SETTER: DataSetColorListSetter,
   CHART_REMOVE_BUTTON: RemoveDatasetButton,
+  ALLOW_CLEAR_SELECT_SETTER: AllowClearSelectSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

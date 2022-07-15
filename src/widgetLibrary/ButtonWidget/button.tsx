@@ -27,10 +27,12 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
         buttonRadius={borderRadius}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
-        colorScheme={colorScheme}
         loading={loading}
         fullWidth={alignment === "fullWidth"}
         onClick={handleOnClick}
+        backgroundColor={colorScheme}
+        borderColor={colorScheme}
+        textColor={variant === "outline" ? colorScheme : "#FFF"}
       >
         {text}
       </Button>

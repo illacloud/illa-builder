@@ -39,7 +39,10 @@ function Point(props: {
 }) {
   return (
     <div css={colorSwatchItemContainer}>
-      <div css={applyColorCheckedItemContainer(props.checked)}>
+      <div
+        title={props.color}
+        css={applyColorCheckedItemContainer(props.checked)}
+      >
         <div
           onClick={props.handleClick}
           css={applyColorSwatchCss(props.color)}
