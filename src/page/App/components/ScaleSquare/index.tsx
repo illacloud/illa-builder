@@ -222,6 +222,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
   return (
     <Dropdown
       disabled={illaMode !== "edit"}
+      position="br"
       trigger="contextmenu"
       dropList={
         <DropList width="184px">

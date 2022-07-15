@@ -82,19 +82,11 @@ export const updateSingleComponentReducer: CaseReducer<
   const dealNode = action.payload.componentNode
   const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
   if (parentNode != null) {
-    if (
-      parentNode.childrenNode.find((value) => {
-        return value.displayName === dealNode.displayName
-      })
-    ) {
-      console.log("我找到了！！！")
-      parentNode.childrenNode.splice(
-        parentNode.childrenNode.findIndex((value, index, obj) => {
-          return value.displayName === dealNode.displayName
-        }),
-        1,
-      )
-      parentNode.childrenNode.push(dealNode)
+    const index = parentNode.childrenNode.findIndex((value, index, obj) => {
+      return value.displayName === dealNode.displayName
+    })
+    if (index > -1) {
+      parentNode.childrenNode[index] = dealNode
     }
   }
 }
