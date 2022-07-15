@@ -85,7 +85,12 @@ export const Deploy: FC = () => {
         </div>
       )}
       {!loadingState && <CanvasPanel />}
-      <DeployLogo css={deployLogoStyle} />
+      <DeployLogo
+        css={deployLogoStyle}
+        onClick={() => {
+          window.open("https://illacloud.com", "_blank")
+        }}
+      />
     </div>
   )
 }
