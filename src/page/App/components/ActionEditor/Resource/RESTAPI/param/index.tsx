@@ -67,8 +67,9 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
 
   const [params, setParams] = useState({
     method: config?.method ?? "GET",
-    url: config?.url ?? "",
+    url: (baseURL ? config?.url?.split(`${baseURL}/`)[1] : config?.url) ?? "",
     urlParams: initArrayField(config?.urlParams),
+    fullURL: config?.url ?? "",
     headers: initArrayField(config?.headers),
     bodyType: config?.bodyType,
     body: config?.body,
@@ -81,6 +82,8 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     // remove `_key` when update
     onChange?.({
       ...params,
+      // TODO: handle baseURL, should not save to url
+      url: baseURL ? `${baseURL}/${params.url}` : params.url,
       urlParams: excludeKeyAndEmptyFieldFromData(params.urlParams),
       headers: excludeKeyAndEmptyFieldFromData(params.headers),
       cookies: excludeKeyAndEmptyFieldFromData(params.cookies),
@@ -221,7 +224,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
                     )
               }
               borderColor="techPurple"
-              addonBefore={{ render: baseURL ?? null }}
+              addonBefore={{ render: baseURL ? `${baseURL}/` : null }}
             />
           </div>
           <dd css={descriptionStyle}>
