@@ -35,6 +35,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
     widgetDisplayName,
     parentAttrName,
     selectedAction,
+    widgetOrAction,
   ])
   const selectedWidgetType = useMemo(() => {
     return get(widgetDisplayNameMapProps, `${selectedWidgetID}.$widgetType`)

@@ -5,7 +5,7 @@ import { EVENT_HANDLER_CONFIG } from "@/page/App/components/ActionEditor/ActionE
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { useDispatch, useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
-import { useContext, useMemo } from "react"
+import { useCallback, useContext, useMemo } from "react"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 
@@ -15,32 +15,26 @@ export const EventHandler = () => {
   const dispatch = useDispatch()
   const { setIsActionDirty } = useContext(ActionEditorContext)
 
-  const widgetType = useMemo(
-    () => activeActionItem.actionType,
-    [activeActionItem],
+  const widgetType = activeActionItem.actionType
+
+  const widgetDisplayName = activeActionItem.displayName
+
+  const widgetProps = activeActionItem.actionTemplate || {}
+
+  const handleUpdateDsl = useCallback(
+    (attrPath: string, value: any) => {
+      setIsActionDirty?.(true)
+      const updateSlice = { [attrPath]: value }
+
+      dispatch(
+        configActions.updateSelectActionTemplate({
+          displayName: widgetDisplayName,
+          updateSlice,
+        }),
+      )
+    },
+    [widgetDisplayName],
   )
-
-  const widgetDisplayName = useMemo(
-    () => activeActionItem.displayName,
-    [activeActionItem],
-  )
-
-  const widgetProps = useMemo(
-    () => activeActionItem.actionTemplate || {},
-    [activeActionItem],
-  )
-
-  const handleUpdateDsl = (attrPath: string, value: any) => {
-    setIsActionDirty?.(true)
-    const updateSlice = { [attrPath]: value }
-
-    dispatch(
-      configActions.updateSelectActionTemplate({
-        displayName: widgetDisplayName,
-        updateSlice,
-      }),
-    )
-  }
   return (
     <>
       <div>

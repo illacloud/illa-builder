@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { Divider } from "@illa-design/divider"
 import { PanelHeader } from "@/page/App/components/InspectPanel/header"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
@@ -19,36 +19,26 @@ export const SingleSelectedPanel: FC = () => {
     getComponentNodeBySingleSelected,
   )
 
-  const widgetType = useMemo(
-    () => singleSelectedComponentNode?.type || "",
-    [singleSelectedComponentNode],
-  )
+  const widgetType = singleSelectedComponentNode?.type || ""
 
-  const widgetDisplayName = useMemo(
-    () => singleSelectedComponentNode?.displayName || "",
-    [singleSelectedComponentNode],
-  )
+  const widgetDisplayName = singleSelectedComponentNode?.displayName || ""
 
-  const widgetParentDisplayName = useMemo(
-    () => singleSelectedComponentNode?.parentNode || "",
-    [singleSelectedComponentNode],
-  )
+  const widgetParentDisplayName = singleSelectedComponentNode?.parentNode || ""
 
-  const widgetProps = useMemo(
-    () => singleSelectedComponentNode?.props || {},
-    [singleSelectedComponentNode],
-  )
+  const widgetProps = singleSelectedComponentNode?.props || {}
 
-  const handleUpdateDsl = (attrPath: string, value: any) => {
-    if (!widgetProps || !widgetDisplayName) return
-    const updateSlice = { [attrPath]: value }
-    dispatch(
-      componentsActions.updateComponentPropsReducer({
-        displayName: widgetDisplayName,
-        updateSlice,
-      }),
-    )
-  }
+  const handleUpdateDsl = useCallback(
+    (attrPath: string, value: any) => {
+      const updateSlice = { [attrPath]: value }
+      dispatch(
+        componentsActions.updateComponentPropsReducer({
+          displayName: widgetDisplayName,
+          updateSlice,
+        }),
+      )
+    },
+    [widgetDisplayName],
+  )
 
   const builderPanelConfig = useMemo(() => {
     return panelBuilder(widgetType)

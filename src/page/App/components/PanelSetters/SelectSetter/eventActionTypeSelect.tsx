@@ -32,7 +32,12 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
     } else {
       return get(selectedAction, `actionTemplate.${parentAttrName}`, {})
     }
-  }, [widgetDisplayNameMapProps, parentAttrName, selectedAction])
+  }, [
+    widgetDisplayNameMapProps,
+    parentAttrName,
+    selectedAction,
+    widgetOrAction,
+  ])
 
   const _finalAttrPath = parentAttrName ? parentAttrName : attrName
 

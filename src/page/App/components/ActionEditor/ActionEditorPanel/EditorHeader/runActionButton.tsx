@@ -15,12 +15,11 @@ import { useParams } from "react-router-dom"
 export const RunActionButton: FC = () => {
   const [isRunning, setIsRunning] = useState(false)
   const { t } = useTranslation()
+  const params = useParams()
+  const activeActionItem = useSelector(getSelectedAction)
+  const { handleUpdateResult } = useContext(ACTION_EDITOR_CONTEXT)
   const { isActionDirty, baseActionApi, setIsActionDirty } =
     useContext(ActionEditorContext)
-  const params = useParams()
-
-  const { handleUpdateResult } = useContext(ACTION_EDITOR_CONTEXT)
-  const activeActionItem = useSelector(getSelectedAction)
   const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
 
   const dispatch = useDispatch()
@@ -58,45 +57,49 @@ export const RunActionButton: FC = () => {
   }, [])
 
   const save = useCallback(() => {
-    const { actionId, resourceId, actionType, displayName, actionTemplate } =
-      activeActionItem
+    return new Promise((resolve, reject) => {
+      const { actionId, resourceId, actionType, displayName, actionTemplate } =
+        activeActionItem
 
-    Api.request<ActionItem>(
-      {
-        url: `${baseActionApi}/${actionId}`,
-        method: "PUT",
-        data: {
-          resourceId,
-          actionType,
-          displayName,
-          actionTemplate,
+      Api.request<ActionItem>(
+        {
+          url: `${baseActionApi}/${actionId}`,
+          method: "PUT",
+          data: {
+            resourceId,
+            actionType,
+            displayName,
+            actionTemplate,
+          },
         },
-      },
-      ({ data }) => {
-        dispatch(
-          actionActions.updateActionItemReducer({
-            ...data,
-            actionId,
-          }),
-        )
+        ({ data }) => {
+          dispatch(
+            actionActions.updateActionItemReducer({
+              ...data,
+              actionId,
+            }),
+          )
 
-        setIsActionDirty?.(false)
-
-        // // (get req) will run automatically whenever a parameter changes.
-        // TODO: can't understand why this is needed
-        // if (
-        //   data.actionType === ACTION_TYPE.REST_API &&
-        //   data.actionTemplate.method === "GET"
-        // ) {
-        //   run()
-        // }
-      },
-      () => {},
-      () => {},
-      (loading) => {
-        onLoadingActionResult(loading)
-      },
-    )
+          setIsActionDirty?.(false)
+          resolve("success")
+          // // (get req) will run automatically whenever a parameter changes.
+          // TODO: can't understand why this is needed
+          // if (
+          //   data.actionType === ACTION_TYPE.REST_API &&
+          //   data.actionTemplate.method === "GET"
+          // ) {
+          //   run()
+          // }
+        },
+        () => {
+          resolve("success")
+        },
+        () => {},
+        (loading) => {
+          onLoadingActionResult(loading)
+        },
+      )
+    })
   }, [activeActionItem, baseActionApi, onLoadingActionResult])
 
   const run = useCallback(() => {
@@ -116,14 +119,14 @@ export const RunActionButton: FC = () => {
     )
   }, [activeActionItem, handleUpdateResult, onLoadingActionResult])
 
-  const saveOrRun = useCallback(() => {
+  const saveOrRun = useCallback(async () => {
     if (isActionDirty) {
       if (triggerMode === "manual") {
         // save only
-        save()
+        await save()
       } else {
         // save and run
-        save()
+        await save()
         run()
       }
     } else {
