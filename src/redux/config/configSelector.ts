@@ -22,7 +22,7 @@ export const getIllaMode = (state: RootState) => {
 }
 
 export const isShowDot = (state: RootState) => {
-  return state.config.showDot
+  return state.config.showDot && state.config.mode === "edit"
 }
 
 export const getScale = (state: RootState) => {
