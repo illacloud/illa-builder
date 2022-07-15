@@ -2,18 +2,13 @@ import { FC, useMemo, useCallback } from "react"
 import { Select } from "@illa-design/select"
 import { CodeEditor } from "@/components/CodeEditor"
 import { FieldArray } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray"
+import { ValueType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray/interface"
 import {
   initArrayField,
-  addArrayField,
-  removeArrayField,
-  updateArrayField,
-  wrappedWithKey,
   getEmptyField,
-  excludeKeyAndEmptyFieldFromData,
 } from "@/page/App/components/ActionEditor/ActionEditorPanel/ResourceEditor/FieldArray/util"
 import { BodyParams, BodyProps, ContentType } from "../interface"
 import { bodyFieldStyle, descriptionCodeStyle, descriptionStyle } from "./style"
-import { ValueType } from "../../../ActionEditorPanel/ResourceEditor/FieldArray/interface"
 
 const bodyTypeOptiosn = [
   {
