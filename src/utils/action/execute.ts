@@ -12,7 +12,7 @@ import { errorHandler } from "@/utils/action/errorHandler"
 
 export function executeAction(
   action: ActionItem,
-  versionId: string,
+  appID: string,
   success?: (response: AxiosResponse) => void,
   failure?: (response: AxiosResponse) => void,
   crash?: (error: AxiosError) => void,
@@ -20,9 +20,9 @@ export function executeAction(
 ) {
   PrepareQueryPerformance.start(action.actionId)
 
-  const url = `${
-    import.meta.env.VITE_API_BASE_URL
-  }/versions/${versionId}/actions/${action.actionId}/run`
+  const url = `${import.meta.env.VITE_API_BASE_URL}/apps/${appID}/actions/${
+    action.actionId
+  }/run`
   const resourceIndex = performance.getEntriesByName(url).length
 
   const { actionId, resourceId, actionType, actionTemplate, displayName } =
@@ -45,7 +45,7 @@ export function executeAction(
 
   Api.request(
     {
-      url: `/versions/${versionId}/actions/${actionId}/run`,
+      url: `/apps/${appID}/actions/${actionId}/run`,
       method: "POST",
       data: {
         resourceId,
