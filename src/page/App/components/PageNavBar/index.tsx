@@ -36,6 +36,7 @@ import {
 import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
 import { ExitIcon } from "@illa-design/icon"
+import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 
 dayjs.extend(utc)
 
@@ -65,7 +66,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
   }, [bottomPanelVisible])
   const handleClickDeploy = useCallback(() => {
-    Api.request(
+    Api.request<DeployResp>(
       {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
@@ -75,7 +76,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           window.location.protocol +
             "//" +
             window.location.host +
-            `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+            `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
           "_blank",
         )
       },
