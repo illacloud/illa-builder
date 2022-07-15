@@ -90,6 +90,16 @@ export function executeAction(
           },
         }),
       )
+      store.dispatch(
+        actionActions.updateActionTemplateReducer({
+          actionId,
+          actionTemplate: {
+            ...actionTemplate,
+            data: response.data,
+            rawData: response.data,
+          },
+        }),
+      )
 
       // TODO: trigger success eventhandler
       success?.(response)
@@ -108,6 +118,17 @@ export function executeAction(
             ...getResourcePerformance(url, resourceIndex),
             prepareQuery:
               PrepareQueryPerformance.measure(action.actionId) ?? undefined,
+          },
+        }),
+      )
+
+      store.dispatch(
+        actionActions.updateActionTemplateReducer({
+          actionId,
+          actionTemplate: {
+            ...actionTemplate,
+            data: response.data,
+            rawData: response.data,
           },
         }),
       )

@@ -27,7 +27,6 @@ import {
   itemExtraContainerStyle,
   itemMenuButtonStyle,
   listItemStyle,
-  listItemTitleStyle,
   listTitleContainerStyle,
   listTitleStyle,
   menuButtonStyle,
@@ -244,7 +243,7 @@ export const DashboardApps: FC = () => {
                 >
                   <ListItemMeta
                     css={hoverableStyle}
-                    title={<span css={listItemTitleStyle}>{item.appName}</span>}
+                    title={item.appName}
                     description={`${item.updatedBy} ${t("edit_at")} ${dayjs
                       .utc(item.updatedAt)
                       .format("YYYY-MM-DD HH:mm:ss")}`}

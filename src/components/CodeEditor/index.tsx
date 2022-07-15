@@ -33,7 +33,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
     mode = "TEXT_JS",
-    placeholder = "input sth",
+    placeholder,
     expectedType = "String",
     borderRadius = "8px",
     path,
@@ -80,7 +80,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let previewType = expectedType
     setError(false)
     try {
-      calcResult = evaluateDynamicString("", currentValue, globalData)
+      calcResult = evaluateDynamicString("", currentValue, executionResult)
       // [TODO]: v1 evaluate
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)
@@ -92,7 +92,6 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         content: calcResult,
       })
     } catch (e: any) {
-      console.error(e)
       setError(true)
       setPreview({
         state: "error",
@@ -157,17 +156,14 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const cursor = editor.getCursor()
     const line = editor.getLine(cursor.line)
     let showAutocomplete = false
-    /* Check if the character before cursor is completable to show autocomplete which backspacing */
     if (event.code === "Backspace") {
       const prevChar = line[cursor.ch - 1]
       showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
     } else if (key === "{") {
-      /* Autocomplete for { should show up only when a user attempts to write {{}} and not a code block. */
       const prevChar = line[cursor.ch - 2]
       showAutocomplete = prevChar === "{"
     } else if (key.length == 1) {
       showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
-      /* Autocomplete should be triggered only for characters that make up valid variable names */
     }
     showAutocomplete && handleAutocomplete(editor, line)
   }
