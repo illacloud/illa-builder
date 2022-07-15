@@ -5,6 +5,7 @@ import {
   addActionItemReducer,
   removeActionItemReducer,
   updateActionItemReducer,
+  updateActionTemplateReducer,
 } from "@/redux/currentApp/action/actionReducer"
 
 const actionSlice = createSlice({
@@ -15,6 +16,7 @@ const actionSlice = createSlice({
     addActionItemReducer,
     updateActionItemReducer,
     removeActionItemReducer,
+    updateActionTemplateReducer,
   },
 })
 

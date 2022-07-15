@@ -32,6 +32,20 @@ export const updateActionItemReducer: CaseReducer<
   })
 }
 
+export const updateActionTemplateReducer: CaseReducer<
+  ActionListState,
+  PayloadAction<any>
+> = (state, action) => {
+  const { actionId } = action.payload
+  let targetActionIndex = state.findIndex(
+    (item: ActionItem) => item.actionId === actionId,
+  )
+  if (targetActionIndex === -1) return
+  const oldAction = state[targetActionIndex]
+  oldAction.actionTemplate = action.payload.actionTemplate
+  state[targetActionIndex] = oldAction
+}
+
 export const removeActionItemReducer: CaseReducer<
   ActionListState,
   PayloadAction<string>
