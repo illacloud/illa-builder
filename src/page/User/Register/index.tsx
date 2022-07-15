@@ -58,7 +58,7 @@ export const Register: FC = () => {
         url: "/auth/signup",
         data: {
           verificationToken,
-          language: window.navigator.language === "zh-CN",
+          language: window.navigator.language,
           ...data,
         },
       },
