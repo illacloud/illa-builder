@@ -1,38 +1,25 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import { useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { configActions } from "@/redux/config/configSlice"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
 const { Item } = DropList
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
-  const {
-    widgetDisplayName,
-    componentType,
-    widgetParentDisplayName,
-    handleCloseMenu,
-  } = props
+  const { widgetDisplayName, componentType } = props
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
 
+  const shortcut = useContext(ShortCutContext)
+
   return (
     <DropList width="184px">
-      {/*  TODO: aruseito wait document*/}
-      {/*<Item*/}
-      {/*  key="duplicate"*/}
-      {/*  title={t("editor.inspect.header.action_menu.view_documentation")}*/}
-      {/*  onClick={() => {*/}
-      {/*    //  TODO: wait for redux to find componentType map docs;*/}
-      {/*    window.open("https://www.baidu.com")*/}
-      {/*    handleCloseMenu()*/}
-      {/*  }}*/}
-      {/*/>*/}
       <Item
         key="reset"
         title={t("editor.inspect.header.action_menu.reset_state")}
@@ -44,7 +31,6 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
               updateSlice: defaultProps ?? {},
             }),
           )
-          handleCloseMenu()
         }}
       />
       <Item
@@ -52,14 +38,7 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         title={t("editor.inspect.header.action_menu.delete")}
         fontColor={globalColor(`--${illaPrefix}-red-03`)}
         onClick={() => {
-          dispatch(
-            componentsActions.deleteComponentNodeReducer({
-              displayName: widgetDisplayName,
-              parentDisplayName: widgetParentDisplayName,
-            }),
-          )
-          dispatch(configActions.clearSelectedComponent())
-          handleCloseMenu()
+          shortcut.showDeleteDialog([widgetDisplayName])
         }}
       />
     </DropList>

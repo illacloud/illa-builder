@@ -42,7 +42,7 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
           widgetName,
           ...partialDragInfo,
         })
-        startDrag(item)
+        startDrag(item, false)
         return item
       },
     }),

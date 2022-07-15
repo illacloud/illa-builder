@@ -21,12 +21,18 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     attrName,
     parentAttrName,
     expectedType,
+    defaultValue,
   } = props
   const Comp = getSetterByType(setterType)
   const { t } = useTranslation()
 
-  const { widgetProps, handleUpdateDsl, widgetDisplayName, widgetType } =
-    useContext(SelectedPanelContext)
+  const {
+    widgetProps,
+    handleUpdateDsl,
+    widgetDisplayName,
+    widgetType,
+    widgetOrAction,
+  } = useContext(SelectedPanelContext)
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
@@ -77,6 +83,8 @@ export const Setter: FC<PanelSetterProps> = (props) => {
           expectedType={expectedType ?? VALIDATION_TYPES.STRING}
           widgetType={widgetType}
           parentAttrName={parentAttrName}
+          widgetOrAction={widgetOrAction}
+          defaultValue={defaultValue}
         />
       </div>
     ) : null

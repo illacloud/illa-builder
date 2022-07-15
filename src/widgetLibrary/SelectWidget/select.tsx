@@ -31,7 +31,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
         readOnly={readOnly}
         showSearch={showSearch}
         inputValue={inputValue}
-        size="small"
         colorScheme={colorScheme}
         onChange={(value) => {
           handleUpdateDsl({ value })

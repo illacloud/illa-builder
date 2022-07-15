@@ -8,6 +8,7 @@ import {
   PrepareQueryPerformance,
   getResourcePerformance,
 } from "@/utils/action/performance"
+import { errorHandler } from "@/utils/action/errorHandler"
 
 export function executeAction(
   action: ActionItem,
@@ -88,11 +89,10 @@ export function executeAction(
               PrepareQueryPerformance.measure(action.actionId) ?? undefined,
           },
         }),
-
-        success?.(response),
       )
 
       // TODO: trigger success eventhandler
+      success?.(response)
     },
     (response) => {
       // save rawData to redux
@@ -111,6 +111,8 @@ export function executeAction(
           },
         }),
       )
+
+      errorHandler(action, response)
 
       // TODO: trigger error eventhandler
 

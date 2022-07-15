@@ -1,18 +1,23 @@
 import { FC, useState } from "react"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import hotkeys from "hotkeys-js"
-import store from "@/store"
 import { Modal } from "@illa-design/modal"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { Message } from "@illa-design/message"
 import { configActions } from "@/redux/config/configSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
+import store from "@/store"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
+
+  const mode = useSelector(getIllaMode)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -20,55 +25,80 @@ export const Shortcut: FC = ({ children }) => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
     },
+    {
+      enabled: mode === "edit",
+    },
     [],
   )
 
   // shortcut
-  const [showDeleteDialog, setShowDeleteDialog] = useState<boolean>(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
+    useState<boolean>(false)
+
+  const showDeleteDialog = (displayName: string[]) => {
+    if (!alreadyShowDeleteDialog) {
+      const textList = displayName.join(", ").toString()
+      setAlreadyShowDeleteDialog(true)
+      Modal.confirm({
+        title: t("editor.component.delete_title", {
+          displayName: textList,
+        }),
+        content: t("editor.component.delete_content", {
+          displayName: textList,
+        }),
+        cancelText: t("editor.component.cancel"),
+        okText: t("editor.component.delete"),
+        okButtonProps: {
+          colorScheme: "techPurple",
+        },
+        closable: true,
+        onCancel: () => {
+          setAlreadyShowDeleteDialog(false)
+        },
+        onOk: () => {
+          setAlreadyShowDeleteDialog(false)
+          dispatch(
+            componentsActions.deleteComponentNodeReducer({
+              displayNames: displayName,
+            }),
+          )
+          dispatch(configActions.clearSelectedComponent())
+        },
+      })
+    }
+  }
+
+  const copyComponent = (componentNode: ComponentNode) => {
+    const newDisplayName = DisplayNameGenerator.getDisplayName(
+      componentNode.type,
+      componentNode.showName,
+    )
+    dispatch(
+      componentsActions.copyComponentNodeReducer({
+        newDisplayName: newDisplayName,
+        componentNode: componentNode,
+      }),
+    )
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName: newDisplayName,
+        updateSlice: componentNode.props ?? {},
+      }),
+    )
+  }
 
   useHotkeys(
     "Backspace",
     (event, handler) => {
-      if (!showDeleteDialog) {
-        setShowDeleteDialog(true)
-        event.preventDefault()
-        const textList = store
-          .getState()
-          .config.selectedComponents.map((item) => {
-            return item.displayName
-          })
-          .join(", ")
-          .toString()
-        Modal.confirm({
-          title: t("editor.component.delete_title", {
-            displayName: textList,
-          }),
-          content: t("editor.component.delete_content", {
-            displayName: textList,
-          }),
-          cancelText: t("editor.component.cancel"),
-          okText: t("editor.component.delete"),
-          okButtonProps: {
-            colorScheme: "techPurple",
-          },
-          closable: true,
-          onCancel: () => {
-            setShowDeleteDialog(false)
-          },
-          onOk: () => {
-            setShowDeleteDialog(false)
-            dispatch(
-              componentsActions.deleteComponentNodeReducer({
-                displayName: store
-                  .getState()
-                  .config.selectedComponents.map((item) => {
-                    return item.displayName
-                  }),
-              }),
-            )
-          },
-        })
-      }
+      event.preventDefault()
+      showDeleteDialog(
+        store.getState().config.selectedComponents.map((item) => {
+          return item.displayName
+        }),
+      )
+    },
+    {
+      enabled: mode === "edit",
     },
     [showDeleteDialog],
   )
@@ -84,11 +114,13 @@ export const Shortcut: FC = ({ children }) => {
         }
       }
     },
-    { keydown: true, keyup: true },
-    [showDeleteDialog],
+    { keydown: true, keyup: true, enabled: mode === "edit" },
+    [],
   )
 
   return (
-    <ShortCutContext.Provider value={{}}>{children}</ShortCutContext.Provider>
+    <ShortCutContext.Provider value={{ showDeleteDialog, copyComponent }}>
+      {children}
+    </ShortCutContext.Provider>
   )
 }

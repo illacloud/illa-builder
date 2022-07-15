@@ -23,7 +23,6 @@ export function applyTitleContainerStyle(hoverable: boolean): SerializedStyles {
     height: 32px;
     line-height: 32px;
     transition: all 0.2s ease-in-out;
-    margin: 0 19px 0 16px;
     position: relative;
     ${hoverable && hoverStyle}
   `
@@ -57,7 +56,7 @@ export const titleStyle = css`
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-right: 8px;
-  font-weigth: 500;
+  font-weight: 500;
   font-size: 14px;
 `
 
@@ -65,6 +64,4 @@ export const titleEditIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  position: absolute;
-  right: 16px;
 `

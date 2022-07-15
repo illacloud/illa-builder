@@ -22,7 +22,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
     if (value == undefined || value === "") {
       return {
         isValid: true,
-        safeValue: "",
+        safeValue: value,
       }
     }
     const isString = typeof value === "string"
@@ -42,7 +42,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
     if (value == undefined || value === "") {
       return {
         isValid: true,
-        safeValue: false,
+        safeValue: value,
       }
     }
     const isBoolean = typeof value === "boolean"
@@ -62,7 +62,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
     if (value == undefined || value === "") {
       return {
         isValid: true,
-        safeValue: 0,
+        safeValue: value,
       }
     }
     const isNumber = typeof value === "number"
@@ -82,7 +82,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
     if (value == undefined || value === "") {
       return {
         isValid: true,
-        safeValue: [],
+        safeValue: value,
       }
     }
     const isArray = Array.isArray(value)
@@ -102,7 +102,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
     if (value == undefined || value === "") {
       return {
         isValid: true,
-        safeValue: {},
+        safeValue: value,
       }
     }
     const isObjectValue = isObject(value)

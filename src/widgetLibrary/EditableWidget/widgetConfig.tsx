@@ -16,5 +16,6 @@ export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
     labelWidth: "{{33}}",
     colorScheme: "blue",
     hidden: false,
+    placeholder: "enter sth",
   },
 }

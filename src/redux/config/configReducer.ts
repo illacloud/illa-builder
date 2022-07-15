@@ -2,8 +2,9 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ConfigState, IllaMode } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-import store from "@/store"
+import { cloneDeep } from "lodash"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
+import { isObject } from "@/utils/typeHelper"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -45,6 +46,23 @@ export const updateSelectedAction: CaseReducer<
   PayloadAction<ActionItem>
 > = (state, action) => {
   state.selectedAction = action.payload
+}
+
+export const updateSelectActionTemplate: CaseReducer<
+  ConfigState,
+  PayloadAction<any>
+> = (state, action) => {
+  const { displayName, updateSlice } = action.payload
+  if (!isObject(updateSlice) || !displayName) {
+    return
+  }
+  const oldAction = state.selectedAction.actionTemplate ?? {}
+  const clonedWidgetProps = cloneDeep(oldAction)
+  state.selectedAction.actionTemplate = getNewWidgetPropsByUpdateSlice(
+    displayName,
+    updateSlice,
+    clonedWidgetProps,
+  )
 }
 
 export const updateShowDot: CaseReducer<ConfigState, PayloadAction<boolean>> = (

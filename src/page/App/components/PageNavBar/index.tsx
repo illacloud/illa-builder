@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
@@ -54,6 +54,45 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const [deployLoading, setDeployLoading] = useState(false)
 
+  const handleClickLeftWindowIcon = useCallback(() => {
+    dispatch(configActions.updateLeftPanel(!leftPanelVisible))
+  }, [])
+  const handleClickRightWindowIcon = useCallback(() => {
+    dispatch(configActions.updateRightPanel(!rightPanelVisible))
+  }, [])
+  const handleClickBottomWindowIcon = useCallback(() => {
+    dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
+  }, [])
+  const handleClickDeploy = useCallback(() => {
+    Api.request(
+      {
+        url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
+        method: "GET",
+      },
+      (response) => {
+        window.open(
+          window.location.protocol +
+            "//" +
+            window.location.host +
+            `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
+          "_blank",
+        )
+      },
+      (e) => {
+        Message.error(t("editor.deploy.fail"))
+      },
+      (e) => {
+        Message.error(t("editor.deploy.fail"))
+      },
+      (loading) => {
+        setDeployLoading(loading)
+      },
+    )
+  }, [setDeployLoading, appInfo])
+  const handleClickPreview = useCallback(() => {
+    dispatch(configActions.updateIllaMode("edit"))
+  }, [])
+
   return (
     <div className={className} css={navBarStyle}>
       <div css={rowCenter}>
@@ -67,6 +106,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <section css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
           <div css={descriptionStyle}>
+            {t("edit_at")}{" "}
             {dayjs.utc(appInfo?.updatedAt).format("YYYY-MM-DD HH:mm:ss")}
           </div>
         </section>
@@ -74,29 +114,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div css={viewControlStyle}>
         {mode === "edit" && (
           <>
-            <span css={windowIconBodyStyle}>
-              <WindowLeftIcon
-                _css={windowIconStyle(leftPanelVisible)}
-                onClick={() => {
-                  dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-                }}
-              />
+            <span css={windowIconBodyStyle} onClick={handleClickLeftWindowIcon}>
+              <WindowLeftIcon _css={windowIconStyle(leftPanelVisible)} />
             </span>
-            <span css={windowIconBodyStyle}>
-              <WindowRightIcon
-                _css={windowIconStyle(rightPanelVisible)}
-                onClick={() => {
-                  dispatch(configActions.updateRightPanel(!rightPanelVisible))
-                }}
-              />
+            <span
+              css={windowIconBodyStyle}
+              onClick={handleClickRightWindowIcon}
+            >
+              <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
-            <span css={windowIconBodyStyle}>
-              <WindowBottomIcon
-                _css={windowIconStyle(bottomPanelVisible)}
-                onClick={() => {
-                  dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-                }}
-              />
+            <span
+              css={windowIconBodyStyle}
+              onClick={handleClickBottomWindowIcon}
+            >
+              <WindowBottomIcon _css={windowIconStyle(bottomPanelVisible)} />
             </span>
           </>
         )}
@@ -114,32 +145,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               colorScheme="techPurple"
               size="medium"
               leftIcon={<CaretRightIcon />}
-              onClick={() => {
-                Api.request(
-                  {
-                    url: `/apps/${appInfo.appId}/versions/${appInfo.currentVersionId}/deploy`,
-                    method: "GET",
-                  },
-                  (response) => {
-                    window.open(
-                      window.location.protocol +
-                        "//" +
-                        window.location.host +
-                        `/deploy/app/${appInfo?.appId}/version/${appInfo?.currentVersionId}`,
-                      "_blank",
-                    )
-                  },
-                  (e) => {
-                    Message.error(t("editor.deploy.fail"))
-                  },
-                  (e) => {
-                    Message.error(t("editor.deploy.fail"))
-                  },
-                  (loading) => {
-                    setDeployLoading(loading)
-                  },
-                )
-              }}
+              onClick={handleClickDeploy}
             >
               {t("deploy")}
             </Button>
@@ -148,9 +154,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {mode === "preview" && (
           <ButtonGroup spacing={"8px"}>
             <Button
-              onClick={() => {
-                dispatch(configActions.updateIllaMode("edit"))
-              }}
+              onClick={handleClickPreview}
               colorScheme="techPurple"
               leftIcon={<ExitIcon />}
             >
