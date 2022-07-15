@@ -12,7 +12,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-basic-DefaultValue",
         labelName: "editor.inspect.setter_label.default_value",
-        attrName: "defaultValue",
+        attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
       },
