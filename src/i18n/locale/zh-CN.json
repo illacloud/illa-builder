@@ -182,7 +182,9 @@
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
           "name_already_exist": "名称已经存在",
           "please_input_name": "请输入名称",
-          "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头"
+          "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头",
+          "load_action_list_fail": "获取 Action 列表失败: {{message}}",
+          "load_resource_fail": "获取资源列表失败: {{message}}"
         },
         "action_generator": {
           "selector": {

@@ -43,7 +43,7 @@ export const resourceItemContainerStyle = css`
 `
 
 export const resourceItemSelectedStyle = css`
-  background: ${globalColor(`--${illaPrefix}-techPurple-06`)};
+  background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
 `
 
 export const resourceItemIconStyle = css`

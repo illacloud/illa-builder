@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState, useCallback } from "react"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
@@ -25,6 +25,7 @@ import {
   RESTAPIParamProps,
   RESTAPIConfigureValues,
   RESTAPIParamValues,
+  ContentType,
 } from "@/page/App/components/ActionEditor/Resource/RESTAPI/interface"
 import {
   concatParam,
@@ -69,6 +70,7 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
     url: config?.url ?? "",
     urlParams: initArrayField(config?.urlParams),
     headers: initArrayField(config?.headers),
+    bodyType: config?.bodyType,
     body: config?.body,
     cookies: initArrayField(config?.cookies),
   })
@@ -82,6 +84,10 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       urlParams: excludeKeyAndEmptyFieldFromData(params.urlParams),
       headers: excludeKeyAndEmptyFieldFromData(params.headers),
       cookies: excludeKeyAndEmptyFieldFromData(params.cookies),
+      body:
+        typeof params.body === "object"
+          ? excludeKeyAndEmptyFieldFromData(params.body)
+          : params.body,
     })
   }, 200)
 
@@ -140,6 +146,24 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
       }
     })
   }
+
+  const onChangeBodyType = useCallback((bodyType: ContentType) => {
+    setParams((prev) => {
+      return {
+        ...prev,
+        bodyType,
+      }
+    })
+  }, [])
+
+  const onChangeBodyValue = useCallback((value) => {
+    setParams((prev) => {
+      return {
+        ...prev,
+        body: value,
+      }
+    })
+  }, [])
 
   return (
     <div css={configContainerStyle}>
@@ -331,7 +355,12 @@ export const RESTAPIParam: FC<RESTAPIParamProps> = (props) => {
           >
             {t("editor.action.resource.rest_api.label.body")}
           </label>
-          <Body value={params.body} />
+          <Body
+            value={params.body}
+            bodyType={params.bodyType}
+            onChangeBodyType={onChangeBodyType}
+            onChangeValue={onChangeBodyValue}
+          />
         </div>
       )}
 

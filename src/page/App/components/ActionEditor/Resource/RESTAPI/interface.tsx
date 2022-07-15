@@ -46,12 +46,14 @@ export type ContentType =
   | "none"
 
 export interface BodyParams extends Params {
-  type?: "text" | "file"
+  type?: "text" | "file" | string
 }
 
 export interface BodyProps {
   value?: BodyParams[] | string
-  onChange?: (newValue: BodyParams[] | string) => void
+  bodyType: ContentType
+  onChangeValue?: (newValue: BodyParams[] | string) => void
+  onChangeBodyType?: (bodyType: ContentType) => void
 }
 
 export interface RESTAPIParamValues {
@@ -59,7 +61,7 @@ export interface RESTAPIParamValues {
   url?: string
   urlParams?: Params[]
   headers?: Params[]
-  contentType?: ContentType
+  bodyType?: ContentType
   body?: BodyParams[] | string
   cookies?: Params[]
 }

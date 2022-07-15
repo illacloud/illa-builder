@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { FC, useState, useEffect, useMemo } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 import { Modal } from "@illa-design/modal"
 import { Api } from "@/api/base"
+import { Message } from "@illa-design/message"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -16,7 +17,7 @@ import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/inte
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
 import { ResourceForm } from "./ResourceForm"
-import { ActionEditorLayout } from "./layout"
+import { ActionEditorLayout } from "./Layout"
 import { ActionEditorProps } from "./interface"
 import { ActionEditorContext } from "./context"
 
@@ -30,10 +31,16 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const [isActionDirty, setIsActionDirty] = useState(false)
   const [editorHeight, setEditorHeight] = useState(300)
   const [actionListLoading, setActionListLoading] = useState(false)
+  const [resourceLoading, setResourceLoading] = useState(false)
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
   const actionItems = useSelector(selectAllActionItem)
   const { resourceId = "" } = useSelector(getSelectedAction)
   const baseActionApi = `/apps/${params.appId}/actions`
+
+  const loading = useMemo(
+    () => actionListLoading || resourceLoading,
+    [actionListLoading, resourceLoading],
+  )
 
   function updateSelectedItemId(id: string) {
     const { length } = actionItems
@@ -217,12 +224,16 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       ({ data }: { data: Resource[] }) => {
         dispatch(resourceActions.updateResourceListReducer(data))
       },
-      () => {
-        // TODO: handle error
+      (response) => {
+        Message.error(
+          t("editor.action.action_list.message.load_resource_fail", {
+            message: response.data.errorMessage,
+          }),
+        )
       },
       () => {},
-      () => {
-        // TODO: handle loading
+      (loading) => {
+        setResourceLoading(loading)
       },
     )
 
@@ -239,8 +250,12 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           setActiveActionItemId(data[0].actionId)
         }
       },
-      () => {
-        // TODO: handle error
+      (response) => {
+        Message.error(
+          t("editor.action.action_list.message.load_action_list_fail", {
+            message: response.data.errorMessage,
+          }),
+        )
       },
       () => {},
       (loading) => {
@@ -278,7 +293,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           }}
           actionList={
             <ActionList
-              loading={actionListLoading}
+              loading={loading}
               isActionDirty={isActionDirty}
               onSelectActionItem={updateActiveActionItemId}
               onUpdateActionItem={onUpdateActionItem}

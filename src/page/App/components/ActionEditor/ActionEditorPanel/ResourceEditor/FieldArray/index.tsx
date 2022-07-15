@@ -59,7 +59,7 @@ export const FieldArray: FC<FieldArrayProps> = (props) => {
               value={field.type}
               options={typeOptions}
               css={fieldItemTypeStyle}
-              size="small"
+              size="medium"
               onChange={(v) => {
                 onChange?.({ ...field, type: v })
                 autoAddField(index)
