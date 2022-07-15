@@ -125,11 +125,17 @@ context.addEventListener("message", (event) => {
   const { action } = event.data
   switch (action) {
     case "GENERATE_DEPENDENCIES": {
-      const { displayNameMapProps = {}, builderInfo, currentUser } = event.data
+      const {
+        displayNameMapProps = {},
+        builderInfo,
+        currentUser,
+        displayNameMapActions = {},
+      } = event.data
       const globalData = {
         ...displayNameMapProps,
         builderInfo,
         currentUser,
+        ...displayNameMapActions,
       }
       const result = generateDependencies(globalData)
       context.postMessage({
@@ -145,12 +151,14 @@ context.addEventListener("message", (event) => {
         WidgetConfig = {},
         builderInfo,
         currentUser,
+        displayNameMapActions = {},
       } = event.data
 
       const globalData = {
         ...displayNameMapProps,
         builderInfo,
         currentUser,
+        ...displayNameMapActions,
       }
       const { evaluatedTree, errorTree } = executeAllTree(
         globalData,

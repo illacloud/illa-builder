@@ -8,6 +8,7 @@ import { worker } from "@/redux/currentApp/executionTree/dependencies/dependenci
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getAllActionDisplayNameMapProps } from "@/redux/currentApp/action/actionSelector"
 
 async function handleUpdateExecution(
   action: ReturnType<typeof dependenciesActions.setDependenciesReducer>,
@@ -15,6 +16,7 @@ async function handleUpdateExecution(
 ) {
   const rootState = listenerApi.getState()
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
+  const displayNameMapActions = getAllActionDisplayNameMapProps(rootState)
   const builderInfo = getBuilderInfo(rootState)
   const currentUser = getCurrentUser(rootState)
   if (!displayNameMapProps) return
@@ -28,6 +30,7 @@ async function handleUpdateExecution(
     evalOrder: order,
     point,
     WidgetConfig: deepCloned,
+    displayNameMapActions,
   })
   worker.onmessage = (e) => {
     const { data } = e

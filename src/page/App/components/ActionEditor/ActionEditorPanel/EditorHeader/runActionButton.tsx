@@ -8,7 +8,6 @@ import { getSelectedAction } from "@/redux/config/configSelector"
 import { Api } from "@/api/base"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ACTION_EDITOR_CONTEXT } from "@/page/App/components/ActionEditor/ActionEditorPanel/context/ActionEditorPanelContext"
 import { executeAction } from "@/utils/action/execute"
 import { useParams } from "react-router-dom"
@@ -83,13 +82,14 @@ export const RunActionButton: FC = () => {
 
         setIsActionDirty?.(false)
 
-        // (get req) will run automatically whenever a parameter changes.
-        if (
-          data.actionType === ACTION_TYPE.REST_API &&
-          data.actionTemplate.method === "GET"
-        ) {
-          run()
-        }
+        // // (get req) will run automatically whenever a parameter changes.
+        // TODO: can't understand why this is needed
+        // if (
+        //   data.actionType === ACTION_TYPE.REST_API &&
+        //   data.actionTemplate.method === "GET"
+        // ) {
+        //   run()
+        // }
       },
       () => {},
       () => {},
@@ -105,9 +105,11 @@ export const RunActionButton: FC = () => {
       params.versionId || "",
       (response) => {
         handleUpdateResult(response)
+        console.log("success")
       },
       (response) => {
         handleUpdateResult(response)
+        console.log("fail")
       },
       () => {},
       (loading) => {
@@ -119,6 +121,7 @@ export const RunActionButton: FC = () => {
   const saveOrRun = useCallback(() => {
     if (isActionDirty) {
       if (triggerMode === "manual") {
+        console.log("????????")
         // save only
         save()
       } else {

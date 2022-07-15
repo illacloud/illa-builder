@@ -6,6 +6,8 @@ import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import dependenciesTreeWorker from "@/utils/worker/exectionTreeWorker?worker"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getAllActionDisplayNameMapProps } from "@/redux/currentApp/action/actionSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 export const worker = new dependenciesTreeWorker()
 
@@ -15,6 +17,7 @@ async function handleUpdateDependencies(
 ) {
   const rootState = listenerApi.getState()
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
+  const displayNameMapActions = getAllActionDisplayNameMapProps(rootState)
   const builderInfo = getBuilderInfo(rootState)
   const currentUser = getCurrentUser(rootState)
   if (!displayNameMapProps) return
@@ -23,6 +26,7 @@ async function handleUpdateDependencies(
     displayNameMapProps: displayNameMapProps,
     builderInfo: builderInfo,
     currentUser: currentUser,
+    displayNameMapActions,
   })
   worker.onmessage = (e) => {
     const { data } = e
@@ -39,6 +43,7 @@ export function setupDependenciesListeners(
       matcher: isAnyOf(
         componentsActions.updateComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
+        configActions.updateSelectActionTemplate,
       ),
       effect: handleUpdateDependencies,
     }),
