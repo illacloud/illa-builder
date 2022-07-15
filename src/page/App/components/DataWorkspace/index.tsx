@@ -6,12 +6,11 @@ import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import {
   getActionExecutionResultArray,
+  getGlobalInfoExecutionResult,
   getWidgetExecutionResultArray,
 } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import {
@@ -29,19 +28,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const actionList = useSelector(selectAllActionItem)
   const widgetExecutionArray = useSelector(getWidgetExecutionResultArray)
   const actionExecutionArray = useSelector(getActionExecutionResultArray)
-  const userInfo = useSelector(getCurrentUser)
-  const builderInfo = useSelector(getBuilderInfo)
-  const globalInfoList = [
-    {
-      ...builderInfo,
-      displayName: "builderInfo",
-    },
-    {
-      ...userInfo,
-      displayName: "currentUser",
-    },
-  ]
-
+  const globalInfoList = useSelector(getGlobalInfoExecutionResult)
   const selectedComponents = useSelector(getSelectedComponentsDisplayName)
   const selectedAction = useSelector(getSelectedAction)
 

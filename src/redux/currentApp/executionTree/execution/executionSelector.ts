@@ -73,3 +73,16 @@ export const getActionExecutionResultArray = createSelector(
     return actionExecutionResultArray
   },
 )
+
+export const getGlobalInfoExecutionResult = createSelector(
+  [getExecutionResult],
+  (executionResult) => {
+    const globalInfo: Record<string, any>[] = []
+    Object.keys(executionResult).forEach((key) => {
+      if (key === "builderInfo" || key === "currentUser") {
+        globalInfo.push({ ...executionResult[key], displayName: key })
+      }
+    })
+    return globalInfo
+  },
+)
