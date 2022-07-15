@@ -40,14 +40,13 @@ import AuthInit from "./authInit"
 function getLocaleFromLanguage(): Locale {
   let selectedLocale: Locale
   const currentUser = useSelector(getCurrentUser)
+  i18n.changeLanguage(currentUser?.language).then()
   switch (currentUser?.language) {
-    case "en-us":
+    case "en-US":
       selectedLocale = enUS
-      i18n.changeLanguage("en-US").then()
       break
-    case "zh-cn":
+    case "zh-CN":
       selectedLocale = zhCN
-      i18n.changeLanguage("zh-CN").then()
       break
     default:
       selectedLocale = enUS

@@ -38,11 +38,11 @@ export const SettingOthers: FC = () => {
               selectOptions: [
                 {
                   label: "English",
-                  value: "en-us",
+                  value: "en-US",
                 },
                 {
                   label: "简体中文",
-                  value: "zh-cn",
+                  value: "zh-CN",
                 },
               ],
               defaultSelectValue: languageValue,
@@ -79,12 +79,7 @@ export const SettingOthers: FC = () => {
         },
       },
       (response) => {
-        dispatch(
-          currentUserActions.updateCurrentUserReducer({
-            ...response.data,
-            username: response.data.nickname,
-          }),
-        )
+        dispatch(currentUserActions.updateCurrentUserReducer(response.data))
         Message.success(t("edit_success"))
         setRefresh(refresh + 1)
       },
