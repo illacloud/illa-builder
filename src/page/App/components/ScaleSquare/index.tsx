@@ -118,7 +118,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           ...componentNode,
           isDragging: true,
         }
-        startDrag(item)
+        startDrag(item, true)
         return item
       },
     }),
@@ -139,7 +139,7 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
           ...componentNode,
           isDragging: true,
         }
-        startDrag(item)
+        startDrag(item, true)
         return item
       },
     }),

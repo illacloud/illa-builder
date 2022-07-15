@@ -11,4 +11,6 @@ export interface BaseSetter {
   isInList?: boolean
   widgetDisplayName: string
   widgetType: string
+  widgetOrAction: "ACTION" | "WIDGET"
+  defaultValue?: any
 }
