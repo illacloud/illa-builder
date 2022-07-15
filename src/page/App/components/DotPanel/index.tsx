@@ -522,7 +522,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         id={`${componentNode.displayName}-dotted`}
         css={applyDotCanvasStyle(
           showDot,
-          1,
+          0,
           canvasWidth,
           canvasHeight + edgeWidth,
         )}
