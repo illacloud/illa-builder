@@ -538,6 +538,9 @@
         },
         "list_setter": {
           "reset": "重置"
+        },
+        "event_handler_list": {
+          "empty": "触发查询、控制组件或调用其他API以响应组件事件。"
         }
       }
     },

@@ -6,13 +6,16 @@ export const errorPageStyle = css`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  padding-top: 30vh;
   font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-gray-02`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-weight: bold;
   line-height: 22px;
   span + span {
-    color: ${globalColor(`--${illaPrefix}-gray-03`)};
+    font-weight: normal;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   }
 `
 

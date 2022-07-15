@@ -141,7 +141,7 @@ export function applyCodeEditorStyle(
       height: ${inputState.height};
       border-radius: ${inputState.borderRadius};
       border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      transition: all 200ms ease-in-out;
+      transition: border 200ms ease-in-out;
       line-height: 16px;
       font-size: 12px;
       ${stateStyle}

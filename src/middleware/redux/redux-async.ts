@@ -12,6 +12,7 @@ import {
 import {
   ComponentCopyPayload,
   ComponentDraggingPayload,
+  ComponentDropPayload,
   ComponentResizePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -32,7 +33,42 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   switch (reduxType) {
     case "components":
       switch (reduxAction) {
-        case "addOrUpdateComponentReducer":
+        case "addComponentReducer":
+          Connection.getRoom(
+            "app",
+            store.getState().currentApp.appInfo.id ?? "",
+          )?.send(
+            getPayload(
+              Signal.SIGNAL_CREATE_STATE,
+              Target.TARGET_COMPONENTS,
+              true,
+              {
+                type,
+                payload,
+              },
+              [payload],
+            ),
+          )
+          break
+        case "updateSingleComponentReducer":
+          const singleComponentPayload: ComponentDropPayload = payload
+          Connection.getRoom(
+            "app",
+            store.getState().currentApp.appInfo.id ?? "",
+          )?.send(
+            getPayload(
+              singleComponentPayload.isMove
+                ? Signal.SIGNAL_MOVE_STATE
+                : Signal.SIGNAL_UPDATE_STATE,
+              Target.TARGET_COMPONENTS,
+              true,
+              {
+                type,
+                payload,
+              },
+              [singleComponentPayload.componentNode],
+            ),
+          )
           break
         case "updateComponentDraggingState":
           const dragPayload: ComponentDraggingPayload = payload

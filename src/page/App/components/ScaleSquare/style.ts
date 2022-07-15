@@ -30,6 +30,7 @@ export function applyOuterStyle(
   w: number,
 ): SerializedStyles {
   return css`
+    z-index: 1;
     opacity: ${isDragging ? 0 : 100};
     height: ${h}px;
     width: ${w}px;

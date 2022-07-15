@@ -5,20 +5,28 @@ import { Modal } from "@illa-design/modal"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { Message } from "@illa-design/message"
 import { configActions } from "@/redux/config/configSlice"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
 import store from "@/store"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
+
+  const mode = useSelector(getIllaMode)
 
   useHotkeys(
     "command+s,ctrl+s",
     (event, handler) => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
+    },
+    {
+      enabled: mode === "edit",
     },
     [],
   )
@@ -54,9 +62,29 @@ export const Shortcut: FC = ({ children }) => {
               displayNames: displayName,
             }),
           )
+          dispatch(configActions.clearSelectedComponent())
         },
       })
     }
+  }
+
+  const copyComponent = (componentNode: ComponentNode) => {
+    const newDisplayName = DisplayNameGenerator.getDisplayName(
+      componentNode.type,
+      componentNode.showName,
+    )
+    dispatch(
+      componentsActions.copyComponentNodeReducer({
+        newDisplayName: newDisplayName,
+        componentNode: componentNode,
+      }),
+    )
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName: newDisplayName,
+        updateSlice: componentNode.props ?? {},
+      }),
+    )
   }
 
   useHotkeys(
@@ -68,6 +96,9 @@ export const Shortcut: FC = ({ children }) => {
           return item.displayName
         }),
       )
+    },
+    {
+      enabled: mode === "edit",
     },
     [showDeleteDialog],
   )
@@ -83,12 +114,12 @@ export const Shortcut: FC = ({ children }) => {
         }
       }
     },
-    { keydown: true, keyup: true },
+    { keydown: true, keyup: true, enabled: mode === "edit" },
     [],
   )
 
   return (
-    <ShortCutContext.Provider value={{ showDeleteDialog }}>
+    <ShortCutContext.Provider value={{ showDeleteDialog, copyComponent }}>
       {children}
     </ShortCutContext.Provider>
   )
