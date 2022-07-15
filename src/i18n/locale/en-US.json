@@ -538,6 +538,9 @@
         },
         "list_setter": {
           "reset": "Reset"
+        },
+        "event_handler_list": {
+          "empty": "Trigger queries, control components, or call other APIs in response to component events."
         }
       }
     },

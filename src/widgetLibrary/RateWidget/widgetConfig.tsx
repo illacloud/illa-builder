@@ -10,7 +10,7 @@ export const RATE_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   h: 5,
   defaults: {
-    defaultValue: "{{4.5}}",
+    value: "{{4}}",
     allowHalf: true,
     maxCount: "{{5}}",
     icon: "star",

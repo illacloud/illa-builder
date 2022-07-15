@@ -69,16 +69,19 @@ import {
   BAR_PROGRESS_PANEL_CONFIG,
   BAR_PROGRESS_WIDGET_CONFIG,
   BarProgressWidget,
+  BAR_PROGRESS_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/BarProgressWidget"
 import {
   CIRCLE_PROGRESS_PANEL_CONFIG,
   CIRCLE_PROGRESS_WIDGET_CONFIG,
   CircleProgressWidget,
+  CIRCLE_PROGRESS_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/CircleProgressWidget"
 import {
   TIMELINE_PANEL_CONFIG,
   TIMELINE_WIDGET_CONFIG,
   TimelineWidget,
+  TIMELINE_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/TimelineWidget"
 import {
   NUMBER_INPUT_PANEL_CONFIG,
@@ -102,6 +105,7 @@ import {
   DIVIDER_PANEL_CONFIG,
   DIVIDER_WIDGET_CONFIG,
   DividerWidget,
+  DIVIDER_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/DividerWidget"
 import {
   EDITABLE_TEXT_PANEL_CONFIG,
@@ -186,16 +190,19 @@ export const WidgetConfig: WidgetConfigs = {
     widget: BarProgressWidget,
     config: BAR_PROGRESS_WIDGET_CONFIG,
     panelConfig: BAR_PROGRESS_PANEL_CONFIG,
+    eventHandlerConfig: BAR_PROGRESS_EVENT_HANDLER_CONFIG,
   },
   CIRCLE_PROGRESS_WIDGET: {
     widget: CircleProgressWidget,
     config: CIRCLE_PROGRESS_WIDGET_CONFIG,
     panelConfig: CIRCLE_PROGRESS_PANEL_CONFIG,
+    eventHandlerConfig: CIRCLE_PROGRESS_EVENT_HANDLER_CONFIG,
   },
   TIMELINE_WIDGET: {
     widget: TimelineWidget,
     config: TIMELINE_WIDGET_CONFIG,
     panelConfig: TIMELINE_PANEL_CONFIG,
+    eventHandlerConfig: TIMELINE_EVENT_HANDLER_CONFIG,
   },
   NUMBER_INPUT_WIDGET: {
     widget: NumberInputWidget,
@@ -219,6 +226,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: DividerWidget,
     config: DIVIDER_WIDGET_CONFIG,
     panelConfig: DIVIDER_PANEL_CONFIG,
+    eventHandlerConfig: DIVIDER_EVENT_HANDLER_CONFIG,
   },
   EDITABLE_TEXT_WIDGET: {
     widget: EditableTextWidget,

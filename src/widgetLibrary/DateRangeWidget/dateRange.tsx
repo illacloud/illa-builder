@@ -98,6 +98,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
+    handleUpdateDsl,
   } = props
 
   useEffect(() => {
@@ -116,6 +117,15 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
       customRule,
       hideValidationMessage,
       colorScheme,
+      setStartValue: (startValue: string) => {
+        handleUpdateDsl({ startValue })
+      },
+      setEndValue: (endValue: string) => {
+        handleUpdateDsl({ endValue })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ startValue: "", endValue: "" })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)

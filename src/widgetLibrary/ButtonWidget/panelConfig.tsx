@@ -113,6 +113,22 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
             shown: (widgetMethod) => widgetMethod === "setValue",
           },
           {
+            id: "startValue",
+            labelName: "startValue",
+            setterType: "INPUT_SETTER",
+            attrName: "widgetTargetValue",
+            bindAttrName: "widgetMethod",
+            shown: (widgetMethod) => widgetMethod === "setStartValue",
+          },
+          {
+            id: "endValue",
+            labelName: "endValue",
+            setterType: "INPUT_SETTER",
+            attrName: "widgetTargetValue",
+            bindAttrName: "widgetMethod",
+            shown: (widgetMethod) => widgetMethod === "setEndValue",
+          },
+          {
             id: "imageUrl",
             labelName: "Value",
             setterType: "INPUT_SETTER",

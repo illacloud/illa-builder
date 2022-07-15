@@ -99,6 +99,12 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
       hideValidationMessage,
       colorScheme,
       displayName,
+      setValue: (value: string) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: "" })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
