@@ -16,7 +16,9 @@ import { useTranslation } from "react-i18next"
 export const ListSetter: FC<ListSetterProps> = (props) => {
   const {
     labelName,
+    labelNameOption,
     labelDesc,
+    labelDescOption,
     childrenSetter,
     attrName,
     handleUpdateDsl,
@@ -58,7 +60,12 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
   return (
     <div css={listSetterWrapperStyle}>
       <div css={labelStyle}>
-        <PanelLabel labelName={t(labelName)} labelDesc={labelDesc} />
+        <PanelLabel
+          labelName={labelName}
+          labelDesc={labelDesc}
+          labelDescOption={labelDescOption}
+          labelNameOption={labelNameOption}
+        />
         {canReset && (
           <div onClick={onClickReset} css={resetButtonStyle}>
             <span css={resetIconStyle}>

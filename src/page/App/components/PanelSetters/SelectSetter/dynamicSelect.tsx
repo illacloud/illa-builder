@@ -41,6 +41,9 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
     handleUpdateDsl,
     panelConfig,
     labelName,
+    labelNameOption,
+    labelDesc,
+    labelDescOption,
     isSetterSingleRow,
     widgetDisplayName,
     expectedType,
@@ -68,7 +71,12 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
   return (
     <div css={applySetterWrapperStyle(isSetterSingleRow)}>
       <div css={dynamicSelectHeaderStyle}>
-        <PanelLabel labelName={labelName} />
+        <PanelLabel
+          labelName={labelName}
+          labelDesc={labelDesc}
+          labelNameOption={labelNameOption}
+          labelDescOption={labelDescOption}
+        />
         <span
           css={useTypeTextStyle}
           onClick={() => {

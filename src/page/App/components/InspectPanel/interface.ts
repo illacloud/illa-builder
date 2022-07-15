@@ -9,7 +9,9 @@ export interface PanelHeaderActionProps {
 
 export interface PanelLabelProps {
   labelName?: any
+  labelNameOption?: Record<string, string>
   labelDesc?: string
+  labelDescOption?: Record<string, string>
   isInList?: boolean
 }
 
