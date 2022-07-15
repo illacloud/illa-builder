@@ -1,6 +1,7 @@
 import { FC, useMemo } from "react"
 import { Select } from "@illa-design/select"
 import { get } from "lodash"
+import { useTranslation } from "react-i18next"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { useSelector } from "react-redux"
@@ -19,8 +20,18 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
     widgetOrAction,
   } = props
 
+  const { t } = useTranslation()
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
   const selectedAction = useSelector(getSelectedAction)
+
+  const finalOptions = useMemo(() => {
+    return options.map((o: any) => {
+      return {
+        ...o,
+        label: t(o.label),
+      }
+    })
+  }, [options])
 
   const oldEvent = useMemo(() => {
     if (widgetOrAction === "WIDGET") {
@@ -44,7 +55,7 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
-        options={options}
+        options={finalOptions}
         size="small"
         value={value}
         onChange={(value) => {
