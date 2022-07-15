@@ -14,7 +14,9 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
   const token = getLocalStorage("token")
   const currentUserId = useSelector(getCurrentUser)?.userId
 
-  const [showNextPage, setShowNextPage] = useState<boolean>(!!currentUserId && currentUserId > 0)
+  const [showNextPage, setShowNextPage] = useState<boolean>(
+    !!currentUserId && currentUserId > 0,
+  )
 
   useEffect(() => {
     if (!token) {
@@ -40,11 +42,7 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
       )
     }
   }, [])
-  return (
-    <>
-      {showNextPage ? children : null}
-    </>
-  )
+  return <>{showNextPage ? children : null}</>
 }
 
 export default AuthInit
