@@ -98,7 +98,12 @@
     "vite": "^2.9.9",
     "vite-plugin-chunk-split": "^0.2.2",
     "vite-plugin-istanbul": "^2.7.3",
-    "vite-plugin-svgr": "^2.1.0"
+    "vite-plugin-svgr": "^2.1.0",
+    "chart.js": "^3.7.1",
+    "chartjs-adapter-moment": "^1.0.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
+    "react-chartjs-2": "^4.1.0",
+    "moment": "^2.29.3"
   },
   "workspaces": [
     "src/*",

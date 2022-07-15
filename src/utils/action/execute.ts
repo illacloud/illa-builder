@@ -89,11 +89,10 @@ export function executeAction(
               PrepareQueryPerformance.measure(action.actionId) ?? undefined,
           },
         }),
-
-        success?.(response),
       )
 
       // TODO: trigger success eventhandler
+      success?.(response)
     },
     (response) => {
       // save rawData to redux

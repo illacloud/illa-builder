@@ -10,6 +10,10 @@ export const codemirrorStyle = css`
     font-family: "Fira Code", monospace;
   }
 
+  .CodeMirror-empty {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
+  }
+
   .CodeMirror-selected {
     background: ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
       .alpha(0.12)
@@ -127,7 +131,7 @@ export function applyCodeEditorStyle(
       border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 
       &:hover {
-        border-color: ${globalColor(`--${illaPrefix}-green-06`)};
+        border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
       }
     `
   }
@@ -137,14 +141,10 @@ export function applyCodeEditorStyle(
       height: ${inputState.height};
       border-radius: ${inputState.borderRadius};
       border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-      transition: all 200ms ease-in-out;
+      transition: border 200ms ease-in-out;
       line-height: 16px;
       font-size: 12px;
       ${stateStyle}
-    }
-
-    & > .CodeMirror-empty {
-      color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
     }
   `
 }

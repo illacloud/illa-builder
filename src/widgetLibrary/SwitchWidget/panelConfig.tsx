@@ -98,11 +98,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             attrName: "actionType",
             options: [
               {
-                labelName: "editor.inspect.setter_label.trigger_query",
+                label: "editor.inspect.setter_label.trigger_query",
                 value: "datasource",
               },
               {
-                labelName: "editor.inspect.setter_label.control_component",
+                label: "editor.inspect.setter_label.control_component",
                 value: "widget",
               },
               {
@@ -292,9 +292,10 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
@@ -314,7 +315,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             id: "switch-style-radius",
             labelName: "editor.inspect.setter_label.theme_color",
             attrName: "colorScheme",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
             options: colorSchemeOptions,
           },

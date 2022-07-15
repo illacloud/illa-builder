@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 import { DisplayNameInitialState } from "@/redux/currentApp/displayName/displayNameState"
 import {
   addDisplayNameReducer,
+  removeDisplayNameMultiReducer,
   removeDisplayNameReducer,
   updateDisplayNameReducer,
 } from "@/redux/currentApp/displayName/displayNameReducer"
@@ -13,6 +14,7 @@ const displayNameSlice = createSlice({
     updateDisplayNameReducer,
     addDisplayNameReducer,
     removeDisplayNameReducer,
+    removeDisplayNameMultiReducer,
   },
 })
 

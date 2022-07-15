@@ -6,6 +6,7 @@ import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/
 import { useSelector } from "react-redux"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { getSelectedAction } from "@/redux/config/configSelector"
 
 export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
@@ -15,22 +16,32 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
     handleUpdateDsl,
     value,
     widgetDisplayName,
+    widgetOrAction,
   } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
-
+  const selectedAction = useSelector(getSelectedAction)
   const selectedWidgetID = useMemo(() => {
-    return get(
-      widgetDisplayNameMapProps,
-      `${widgetDisplayName}.${parentAttrName}.widgetID`,
-    )
-  }, [widgetDisplayNameMapProps, widgetDisplayName, parentAttrName])
+    if (widgetOrAction === "WIDGET") {
+      return get(
+        widgetDisplayNameMapProps,
+        `${widgetDisplayName}.${parentAttrName}.widgetID`,
+      )
+    } else {
+      return get(selectedAction, `actionTemplate.${parentAttrName}.widgetID`)
+    }
+  }, [
+    widgetDisplayNameMapProps,
+    widgetDisplayName,
+    parentAttrName,
+    selectedAction,
+    widgetOrAction,
+  ])
   const selectedWidgetType = useMemo(() => {
     return get(widgetDisplayNameMapProps, `${selectedWidgetID}.$widgetType`)
   }, [widgetDisplayNameMapProps, selectedWidgetID])
   const finalOptions = useMemo(() => {
     let tmpOptions: string[] = []
-
     const eventHandlerConfig =
       widgetBuilder(selectedWidgetType)?.eventHandlerConfig
     if (eventHandlerConfig) {
@@ -43,7 +54,6 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
     const index = finalOptions.findIndex((option) => {
       return option === value
     })
-    console.log("index", index)
     if (index !== -1 && selectedWidgetType !== undefined) return value
     return undefined
   }, [finalOptions, value, selectedWidgetType])

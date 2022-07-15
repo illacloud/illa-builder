@@ -42,7 +42,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     [actionListLoading, resourceLoading],
   )
 
-  function updateSeletedItemId(id: string) {
+  function updateSelectedItemId(id: string) {
     const { length } = actionItems
 
     if (id !== activeActionItemId) {
@@ -203,7 +203,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           DisplayNameGenerator.removeDisplayName(removedActionName)
         dispatch(actionActions.removeActionItemReducer(removedActionId))
         setIsActionDirty(false)
-        updateSeletedItemId(removedActionId)
+        updateSelectedItemId(removedActionId)
       },
       () => {},
       () => {},
@@ -215,7 +215,6 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
   useEffect(() => {
     const controller = new AbortController()
-
     Api.request(
       {
         method: "GET",
@@ -223,7 +222,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         signal: controller.signal,
       },
       ({ data }: { data: Resource[] }) => {
-        dispatch(resourceActions.addResourceListReducer(data))
+        dispatch(resourceActions.updateResourceListReducer(data))
       },
       (response) => {
         Message.error(
@@ -284,6 +283,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         setActionListLoading,
         setIsActionDirty,
         baseActionApi,
+        isActionDirty,
       }}
     >
       <div className={className}>

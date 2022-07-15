@@ -6,6 +6,7 @@ import { generateNewEventItem } from "@/page/App/components/PanelSetters/EventHa
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { NewBaseEventHandlerSetterProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
+import { useTranslation } from "react-i18next"
 
 export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   props,
@@ -19,21 +20,24 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     widgetDisplayName,
     labelName,
     labelDesc,
+    defaultValue,
   } = props
+
+  const { t } = useTranslation()
 
   const eventHandlerConfig = useMemo(
     () =>
-      widgetBuilder(widgetType).eventHandlerConfig ?? {
-        events: [],
+      widgetBuilder(widgetType)?.eventHandlerConfig ?? {
+        events: [`${defaultValue}`],
         method: [],
       },
-    [widgetType],
+    [widgetType, defaultValue],
   )
   const handleAddItemAsync = useCallback(async () => {
     const { events: defaultEvents } = eventHandlerConfig
     let oldEventItem = Array.isArray(value) ? value : []
     const newEventItem = generateNewEventItem(defaultEvents[0], "query1")
-    handleUpdateDsl("events", [...oldEventItem, newEventItem])
+    handleUpdateDsl(attrName, [...oldEventItem, newEventItem])
   }, [handleUpdateDsl, eventHandlerConfig])
 
   if (
@@ -52,7 +56,7 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     >
       <div css={publicPaddingStyle}>
         <EventHandlerSetterHeader
-          labelName={labelName}
+          labelName={t(labelName)}
           labelDesc={labelDesc}
           handleAddItemAsync={handleAddItemAsync}
         />

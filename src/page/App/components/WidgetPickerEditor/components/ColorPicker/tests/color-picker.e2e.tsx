@@ -9,14 +9,8 @@ import {
   rgbaToRgb,
 } from "@uiw/color-convert"
 
-it("ColorPicker renders correctly", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
-  cy.findByText("ColorPicker").should("exist")
-  unmount()
-})
-
 it("ColorPickerPanel render and close correctly", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
+  mount(<ColorPicker />)
   cy.findByDisplayValue("#ffffff").prev().trigger("click")
   cy.findByText("Prefabricated color").should("exist")
   cy.findByTitle("CloseIcon").parent().trigger("click")
@@ -29,7 +23,6 @@ it("change color by ColorPicker Saturation", () => {
   let targetColor: HsvaColor
   mount(
     <ColorPicker
-      labelName={"ColorPicker"}
       onColorChange={(hsva) => {
         targetColor = hsva
         onChangeEvent()
@@ -37,9 +30,13 @@ it("change color by ColorPicker Saturation", () => {
     />,
   )
   cy.findByDisplayValue("#ffffff").prev().trigger("click")
-  cy.findByText("edit color").parent().next().trigger("mousedown", 30, 50)
+  cy.findByText("edit color")
+    .parent()
+    .next()
+    .trigger("mousedown", 30, 50, { force: true })
   cy.get("@onChangeEvent")
     .should("be.called")
+    .wait(100)
     .then(() => {
       const hexStr = hsvaToHex(targetColor)
       cy.findByDisplayValue(hexStr).should("exist")
@@ -53,7 +50,6 @@ it("change color by ColorPicker Saturation", () => {
       })
       rgbStr += ")"
 
-      console.log(rgbaStr)
       cy.findByDisplayValue(hexStr)
         .prev()
         .children()
@@ -77,7 +73,6 @@ it("change alpha by ColorPicker AlphaPicker", () => {
   let targetAlpha: string
   mount(
     <ColorPicker
-      labelName={"ColorPicker"}
       onAlphaChange={(newAlpha) => {
         targetAlpha = (newAlpha.a * 100).toFixed(1) + "%"
         onChangeEvent()
@@ -98,6 +93,7 @@ it("change alpha by ColorPicker AlphaPicker", () => {
     .trigger("mousedown", "center")
   cy.get("@onChangeEvent")
     .should("be.called")
+    .wait(100)
     .then(() => {
       cy.findByDisplayValue(targetAlpha).should("exist")
     })
@@ -109,7 +105,6 @@ it("change alpha by ColorPicker HuePicker", () => {
   let targetColor: HsvaColor
   mount(
     <ColorPicker
-      labelName={"ColorPicker"}
       onHueChange={(newHue) => {
         const currentHsva = hexToHsva("#ffffff")
         targetColor = { ...currentHsva, ...newHue }
@@ -131,6 +126,7 @@ it("change alpha by ColorPicker HuePicker", () => {
     .trigger("mousedown", "center")
   cy.get("@onChangeEvent")
     .should("be.called")
+    .wait(100)
     .then(() => {
       const hexStr = hsvaToHex(targetColor)
       cy.findByDisplayValue(hexStr).should("exist")
@@ -142,7 +138,6 @@ it("change alpha by ColorPicker HuePicker", () => {
 it("change color by ColorPicker SwatchPicker", () => {
   mount(
     <ColorPicker
-      labelName={"ColorPicker"}
       prefabricatedColors={[
         "#000000",
         "#FFFFFF",
@@ -152,7 +147,7 @@ it("change color by ColorPicker SwatchPicker", () => {
         "#0CC1E2",
         "#654AEC",
         "#1E6FFF",
-      ]}
+      ].map((item) => ({ key: item, value: item }))}
     />,
   )
   cy.findByDisplayValue("#ffffff").prev().trigger("click")
@@ -170,7 +165,7 @@ it("change color by ColorPicker SwatchPicker", () => {
     .next()
     .next()
     .children()
-    .should("have.css", "border-color", "rgb(30, 111, 255)")
+    .should("have.css", "border-color", "rgb(29, 33, 41)")
   cy.findByDisplayValue("#e02424").should("exist")
   cy.findByDisplayValue("#e02424")
     .prev()
@@ -180,7 +175,7 @@ it("change color by ColorPicker SwatchPicker", () => {
 })
 
 it("change alpha by input", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
+  mount(<ColorPicker />)
   cy.findByDisplayValue("#ffffff").clear().type("#007a41")
   cy.findByDisplayValue("#007a41")
     .prev()
@@ -190,7 +185,7 @@ it("change alpha by input", () => {
 })
 
 it("change alpha by input invalidly", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
+  mount(<ColorPicker />)
   cy.findByDisplayValue("#ffffff").clear().type("#007a41-error").blur()
   cy.findByDisplayValue("#007a41")
     .prev()
@@ -200,7 +195,7 @@ it("change alpha by input invalidly", () => {
 })
 
 it("change alpha by input alphaValue", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
+  mount(<ColorPicker />)
   cy.findByDisplayValue("100%").clear().type("50%")
   cy.findByDisplayValue("#ffffff")
     .prev()
@@ -210,7 +205,7 @@ it("change alpha by input alphaValue", () => {
 })
 
 it("change alpha by input invalid alphaValue", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
+  mount(<ColorPicker />)
   cy.findByDisplayValue("100%").clear().type("error-input").blur()
   cy.findByDisplayValue("#ffffff")
     .prev()
@@ -220,7 +215,7 @@ it("change alpha by input invalid alphaValue", () => {
 })
 
 it("change alpha by input alphaValue over 1", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
+  mount(<ColorPicker />)
   cy.findByDisplayValue("100%").clear().type("155")
   cy.findByDisplayValue("#ffffff")
     .prev()
@@ -230,7 +225,7 @@ it("change alpha by input alphaValue over 1", () => {
 })
 
 it("change alpha by input alphaValue less-than 0", () => {
-  mount(<ColorPicker labelName={"ColorPicker"} />)
+  mount(<ColorPicker />)
   cy.findByDisplayValue("100%").clear().type("-15")
   cy.findByDisplayValue("#ffffff")
     .prev()

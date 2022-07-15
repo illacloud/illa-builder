@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { css } from "@emotion/react"
 import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import { useNavigate, useLocation, Outlet } from "react-router-dom"
 import { useTranslation } from "react-i18next"
@@ -72,7 +73,14 @@ export const Setting: FC = () => {
             </div>
           </div>
         }
-        suffix={<div css={tabSuffixStyle}></div>}
+        suffix={
+          <div css={css(tabPrefixStyle, tabSuffixStyle)}>
+            <div css={backAreaStyle}>
+              <PreIcon css={preIconStyle} />
+              <span css={tabPreTextStyle}>{t("back")}</span>
+            </div>
+          </div>
+        }
         activeKey={pathList[pathList.length - 1]}
         withoutContent
         colorScheme="grayBlue"

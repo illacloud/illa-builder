@@ -5,6 +5,7 @@ import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { useSelector } from "react-redux"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getSelectedAction } from "@/redux/config/configSelector"
 
 export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
@@ -15,17 +16,28 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
     value,
     widgetDisplayName,
     options,
+    widgetOrAction,
   } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
+  const selectedAction = useSelector(getSelectedAction)
 
   const oldEvent = useMemo(() => {
-    const event = get(
-      widgetDisplayNameMapProps,
-      `${widgetDisplayName}.${parentAttrName}`,
-    )
-    return event ?? {}
-  }, [widgetDisplayNameMapProps, parentAttrName])
+    if (widgetOrAction === "WIDGET") {
+      return get(
+        widgetDisplayNameMapProps,
+        `${widgetDisplayName}.${parentAttrName}`,
+        {},
+      )
+    } else {
+      return get(selectedAction, `actionTemplate.${parentAttrName}`, {})
+    }
+  }, [
+    widgetDisplayNameMapProps,
+    parentAttrName,
+    selectedAction,
+    widgetOrAction,
+  ])
 
   const _finalAttrPath = parentAttrName ? parentAttrName : attrName
 

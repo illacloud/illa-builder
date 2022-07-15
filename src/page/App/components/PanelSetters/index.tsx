@@ -13,6 +13,12 @@ import { OptionMappedInputSetter } from "@/page/App/components/PanelSetters/Inpu
 import { EventHandlerSetter } from "@/page/App/components/PanelSetters/EventHandlerSetter"
 import { EventWidgetMethodSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventWidgetMethodSelect"
 import { EventActionTypeSelect } from "@/page/App/components/PanelSetters/SelectSetter/eventActionTypeSelect"
+import { ColorPickerSetter } from "@/page/App/components/PanelSetters/ColorPickerSetter"
+import { TextAreaInput } from "@/page/App/components/PanelSetters/InputSetter/textArea"
+import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/dynamicSelect"
+import { ChartDataSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSetter"
+import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/removeDatasetButton"
+import { DataSetColorListSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/colorSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -23,6 +29,7 @@ const SetterTypeMapSetter = {
   DYNAMIC_SWITCH_SETTER: DynamicSwitchSetter,
   BASE_SELECT_SETTER: BaseSelectSetter,
   COLOR_SELECT_SETTER: ColorSelectSetter,
+  COLOR_PICKER_SETTER: ColorPickerSetter,
   OPTION_LIST_SETTER: OptionListSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,
   EVENT_HANDLER_SETTER: EventHandlerSetter,
@@ -30,6 +37,11 @@ const SetterTypeMapSetter = {
   OPTION_MAPPED_INPUT_SETTER: OptionMappedInputSetter,
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
+  DYNAMIC_SELECT_SETTER: DynamicSelectSetter,
+  TEXT_AREA: TextAreaInput,
+  CHART_DATA_SETTER: ChartDataSetter,
+  CHART_LINE_COLOR_LIST_SETTER: DataSetColorListSetter,
+  CHART_REMOVE_BUTTON: RemoveDatasetButton,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

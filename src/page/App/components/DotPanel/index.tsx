@@ -13,6 +13,8 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import {
   getIllaMode,
+  getPreviewEdgeWidth,
+  getSelectedComponents,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -55,7 +57,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const { width, height } = useWindowSize()
 
   // canvas field
-  const edgeWidth = 18
+  const edgeWidth = useSelector(getPreviewEdgeWidth)
   const [canvasHeight, setCanvasHeight] = useState<number>(0)
   const [canvasWidth, setCanvasWidth] = useState<number>(0)
   const blockColumns = 64
@@ -84,6 +86,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   // dotted line square
   const dottedLineSquareMap = useSelector(getDottedLineSquareMap)
+  // selected
+
+  const selectedComponents = useSelector(getSelectedComponents)
 
   // calculate first height
   useEffect(() => {
@@ -101,7 +106,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setMinBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [bottomPanelState, height])
+  }, [bottomPanelState, height, edgeWidth])
 
   // calculate scale height
   useEffect(() => {
@@ -123,7 +128,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setUnitWidth(finalBlockWidth)
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState, width])
+  }, [
+    canvasRef.current?.scrollWidth,
+    leftPanelState,
+    rightPanelState,
+    width,
+    edgeWidth,
+  ])
 
   // drag move
   const [, dropTarget] = useDrop<
@@ -165,16 +176,22 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           calculateResult.squareY,
           componentNode.displayName,
           (newItem) => {
-            dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
             if (item.x === -1 && item.y === -1) {
+              dispatch(componentsActions.addComponentReducer(newItem))
               dispatch(
                 componentsActions.updateComponentPropsReducer({
                   displayName: newItem.displayName,
                   updateSlice: newItem.props ?? {},
                 }),
               )
+            } else {
+              dispatch(
+                componentsActions.updateSingleComponentReducer({
+                  isMove: newItem.parentNode !== item.parentNode,
+                  componentNode: newItem,
+                }),
+              )
             }
-
             dispatch(configActions.updateSelectedComponent([newItem]))
           },
         )
@@ -292,7 +309,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             nearY,
             item.position,
             (i) => {
-              dispatch(componentsActions.addOrUpdateComponentReducer(i))
+              dispatch(
+                componentsActions.updateSingleComponentReducer({
+                  isMove: false,
+                  componentNode: i,
+                }),
+              )
             },
           )
         }
@@ -353,6 +375,30 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth * radio,
           (canvasHeight + edgeWidth) * radio,
         )
+        componentNode.childrenNode.forEach((item) => {
+          if (
+            !item.isDragging &&
+            !selectedComponents.find((s) => {
+              return s.displayName === item.displayName
+            })
+          ) {
+            const h = item.h * unitHeight * radio
+            const w = item.w * unitWidth * radio
+            const [l, t] = calculateXY(
+              item.x,
+              item.y,
+              unitWidth * radio,
+              unitHeight * radio,
+            )
+            ctx.beginPath()
+            ctx.setLineDash([4 * radio, 2 * radio])
+            ctx.rect(l, t, w, h)
+            ctx.closePath()
+            ctx.lineWidth = 1
+            ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
+            ctx.stroke()
+          }
+        })
         for (let i = 1; i < blockRows; i++) {
           for (let j = 1; j < blockColumns; j++) {
             ctx.beginPath()
@@ -374,7 +420,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
       }
     }
-  }, [canvasHeight, canvasWidth, radio])
+  }, [
+    componentNode.childrenNode,
+    selectedComponents,
+    canvasHeight,
+    canvasWidth,
+    radio,
+  ])
 
   // render dotted line
   useEffect(() => {
@@ -470,7 +522,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         id={`${componentNode.displayName}-dotted`}
         css={applyDotCanvasStyle(
           showDot,
-          1,
+          0,
           canvasWidth,
           canvasHeight + edgeWidth,
         )}

@@ -1,7 +1,7 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ResourceListState, Resource } from "@/redux/resource/resourceState"
 
-export const addResourceListReducer: CaseReducer<
+export const updateResourceListReducer: CaseReducer<
   ResourceListState,
   PayloadAction<Resource[]>
 > = (_, action) => {

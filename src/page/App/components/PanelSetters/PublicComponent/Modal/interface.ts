@@ -1,5 +1,7 @@
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
+import { SerializedStyles } from "@emotion/react"
 import { ReactNode } from "react"
+
 export interface HeaderProps {
   title: string
   handleCloseModal: () => void
@@ -20,4 +22,6 @@ export interface ModalProps extends HeaderProps {
   widgetDisplayName?: string
   attrPath?: string
   children?: ReactNode
+  _css?: SerializedStyles
+  header?: ReactNode
 }

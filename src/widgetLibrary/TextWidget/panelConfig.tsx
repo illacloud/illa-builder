@@ -99,8 +99,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
-        setterType: "INPUT_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
+        useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
@@ -119,7 +120,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "text-style-color",
             labelName: "editor.inspect.setter_label.text",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "textColor",
             defaultValue: "gray",
             options: colorSchemeOptions,
@@ -127,7 +128,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "text-style-link-color",
             labelName: "editor.inspect.setter_label.links_color",
-            setterType: "COLOR_SELECT_SETTER",
+            setterType: "COLOR_PICKER_SETTER",
             attrName: "linkColor",
             defaultValue: "blue",
             options: colorSchemeOptions,

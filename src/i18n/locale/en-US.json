@@ -3,6 +3,7 @@
   "preview": "Preview",
   "exit_preview": "Exit Preview",
   "edit": "Edit",
+  "edit_at": "Edited at",
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
@@ -539,6 +540,9 @@
         },
         "list_setter": {
           "reset": "Reset"
+        },
+        "event_handler_list": {
+          "empty": "Trigger queries, control components, or call other APIs in response to component events."
         }
       }
     },
@@ -552,7 +556,7 @@
     "component": {
       "delete": "Delete",
       "delete_title": "Are you sure you want to delete {{ displayName}}?",
-      "delete_content": "Delete the {{ displayName }} maybe make some bugs，please confirm.",
+      "delete_content": "Delete it maybe make some bugs，please confirm.",
       "cancel": "Cancel"
     },
     "data_work_space": {
@@ -601,7 +605,7 @@
       "name": "Rate"
     },
     "date_time": {
-      "name": "Datetime"
+      "name": "Date Time"
     },
     "divider_progress": {
       "name": "Divider"
@@ -620,6 +624,9 @@
     },
     "timeline": {
       "name": "Timeline"
+    },
+    "chart": {
+      "name": "Chart"
     }
   },
   "Setting": "Setting",
@@ -685,6 +692,16 @@
       "title": "SETTING",
       "language": "Language",
       "save": "Save Changes"
+    }
+  },
+  "status": {
+    "back": "Back to homepage",
+    "404": {
+      "des": "It seems that the page you were looking for could not be found.",
+      "again": "Refresh"
+    },
+    "500": {
+      "des": "Oops, something went wrong. Please try again later."
     }
   }
 }

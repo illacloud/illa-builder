@@ -20,7 +20,9 @@ import { hsvaToRgba, hexToHsva, hsvaToHex } from "@uiw/color-convert"
 import { PointerProps } from "@uiw/react-color-alpha/cjs/Pointer"
 import { ColorPickerOperationProps } from "./interface"
 import { CloseIcon } from "@illa-design/icon"
-import { useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
+import { css } from "@emotion/react"
+import useDebounce from "react-use/lib/useDebounce"
 
 const HueBar = (props: PointerProps) => (
   <div css={applyHuePointCss(props.left)} />
@@ -48,28 +50,52 @@ function Point(props: {
 }
 
 function ColorPickerOperation(props: ColorPickerOperationProps) {
-  const { prefabricatedColors } = props
+  const { prefabricatedColors, color } = props
+  const [selectedColor, setSelectedColor] = useState(color)
+  const [debouncedColor, setDebouncedColor] = useState(color)
+
+  useDebounce(
+    () => {
+      setDebouncedColor(selectedColor)
+    },
+    50,
+    [selectedColor],
+  )
+
+  useEffect(() => {
+    props.handleColorPick({
+      ...color,
+      ...debouncedColor,
+    })
+  }, [debouncedColor])
+
   const swatchItemClick = useCallback(
     (hexStr: string) => {
       props.handleColorPick(hexToHsva(hexStr))
     },
     [props.handleColorPick],
   )
+
   return (
     <div css={saturationCss}>
       <div css={titleCss}>
         <span>edit color</span>
-        <CloseIcon onClick={props.handleClosePanel} />
+        <CloseIcon
+          _css={css`
+            cursor: pointer;
+          `}
+          onClick={props.handleClosePanel}
+        />
       </div>
       <Saturation
         radius={4}
         style={{ width: 230, height: 171 }}
-        hsva={props.color}
+        hsva={selectedColor}
         onChange={(newColor) => {
-          props.handleColorPick({
-            ...props.color,
+          setSelectedColor({
+            ...color,
             ...newColor,
-            a: props.color.a,
+            a: color.a,
           })
         }}
       />
@@ -80,9 +106,9 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
             height={8}
             radius={4}
             pointer={HueBar}
-            hue={props.color.h}
+            hue={selectedColor.h}
             onChange={(newHue) => {
-              props.handleColorPick({ ...props.color, ...newHue })
+              setSelectedColor({ ...color, ...newHue })
               props.handleHueChange && props.handleHueChange(newHue)
             }}
           />
@@ -92,24 +118,26 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
             height={8}
             radius={4}
             pointer={AlphaBar}
-            hsva={props.color}
+            hsva={selectedColor}
             onChange={(newAlpha) => {
-              props.handleColorPick({ ...props.color, ...newAlpha })
+              setSelectedColor({ ...props.color, ...newAlpha })
               props.handleAlphaChange && props.handleAlphaChange(newAlpha)
             }}
           />
         </div>
-        <div css={applyColorLumpCss(hsvaToRgba(props.color))} />
+        <div css={applyColorLumpCss(hsvaToRgba(selectedColor))} />
       </div>
       <span css={sessionTitleCss}>Prefabricated color</span>
       <div css={swatchContainerCss}>
-        {prefabricatedColors?.map((colorStr) => {
+        {prefabricatedColors?.map((item) => {
           return (
             <Point
-              checked={colorStr.toLowerCase() === hsvaToHex(props.color)}
-              color={colorStr}
+              checked={
+                JSON.stringify(hexToHsva(item.key)) === JSON.stringify(color)
+              }
+              color={item.key}
               handleClick={() => {
-                swatchItemClick(colorStr)
+                swatchItemClick(item.key)
               }}
             />
           )

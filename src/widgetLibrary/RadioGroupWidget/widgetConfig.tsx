@@ -23,5 +23,6 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
     ],
     dataSources: "{{[]}}",
     colorScheme: "blue",
+    hidden: false,
   },
 }
