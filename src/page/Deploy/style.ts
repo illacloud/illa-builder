@@ -9,6 +9,5 @@ export const deployContainerStyle = css`
 export const deployLogoStyle = css`
   position: absolute;
   bottom: 16px;
-  box-shadow: 0 0 6px 0 ${globalColor(`--${illaPrefix}-blackAlpha-06`)};
   right: 16px;
 `
