@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {
   getIllaMode,
   getPreviewEdgeWidth,
+  getSelectedComponents,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -85,6 +86,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   // dotted line square
   const dottedLineSquareMap = useSelector(getDottedLineSquareMap)
+  // selected
+
+  const selectedComponents = useSelector(getSelectedComponents)
 
   // calculate first height
   useEffect(() => {
@@ -372,7 +376,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           (canvasHeight + edgeWidth) * radio,
         )
         componentNode.childrenNode.forEach((item) => {
-          if (!item.isDragging) {
+          if (
+            !item.isDragging &&
+            !selectedComponents.find((s) => {
+              return s.displayName === item.displayName
+            })
+          ) {
             const h = item.h * unitHeight * radio
             const w = item.w * unitWidth * radio
             const [l, t] = calculateXY(
@@ -411,7 +420,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
       }
     }
-  }, [componentNode.childrenNode, canvasHeight, canvasWidth, radio])
+  }, [
+    componentNode.childrenNode,
+    selectedComponents,
+    canvasHeight,
+    canvasWidth,
+    radio,
+  ])
 
   // render dotted line
   useEffect(() => {
