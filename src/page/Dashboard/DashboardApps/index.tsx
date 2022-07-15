@@ -111,13 +111,15 @@ export const DashboardApps: FC = () => {
   const duplicateRequest = () => {
     Api.request<DashboardApp>(
       {
-        url: `/apps/${appsList[currentAppIdx].appId}/duplicate`,
+        url: `/apps/${appsList[currentAppIdx].appId}/duplication`,
         method: "POST",
+        data: {
+          appName: duplicateValue,
+        },
       },
       (response) => {
         dispatch(
           dashboardAppActions.addDashboardAppReducer({
-            index: currentAppIdx,
             app: response.data,
           }),
         )
@@ -153,7 +155,7 @@ export const DashboardApps: FC = () => {
             app: response.data,
           }),
         )
-        navigate(`/app/${response.data.appId}`)
+        navigate(`/app/${response.data.appId}/version/0`)
       },
       (failure) => {},
       (error) => {},
@@ -209,9 +211,7 @@ export const DashboardApps: FC = () => {
                       <Button
                         colorScheme="techPurple"
                         onClick={() => {
-                          navigate(
-                            `/app/${item.appId}/version/${item.currentVersionId}`,
-                          )
+                          navigate(`/app/${item.appId}/version/0`)
                         }}
                         _css={editButtonStyle}
                         title="editButton"
@@ -248,9 +248,7 @@ export const DashboardApps: FC = () => {
                       .utc(item.updatedAt)
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
-                      navigate(
-                        `/app/${item.appId}/version/${item.currentVersionId}`,
-                      )
+                      navigate(`/app/${item.appId}/version/0`)
                     }}
                   />
                 </ListItem>
@@ -318,7 +316,7 @@ export const DashboardApps: FC = () => {
             renameRequest()
           }}
         >
-          <div css={modalTitleStyle}>{t("dashboard.app.create_app")}</div>
+          <div css={modalTitleStyle}>{t("dashboard.app.rename_app")}</div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {
@@ -357,7 +355,7 @@ export const DashboardApps: FC = () => {
           }}
         >
           <div css={modalTitleStyle}>
-            {`${t("duplicate")} '${appsList[currentAppIdx].appName}'`}
+            {`${t("duplicate")} "${appsList[currentAppIdx].appName}"`}
           </div>
           <Input
             css={modalInputStyle}

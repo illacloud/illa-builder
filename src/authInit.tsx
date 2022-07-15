@@ -14,6 +14,8 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
   const token = getLocalStorage("token")
   const currentUserId = useSelector(getCurrentUser)?.userId
 
+  const isLoginPage = location.pathname === "/user/login"
+
   useEffect(() => {
     if (!token) {
       navigate(`/user/login`)
@@ -26,12 +28,21 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
           method: "GET",
         },
         (response) => {
-          dispatch(currentUserActions.updateCurrentUserReducer(response.data))
+          dispatch(
+            currentUserActions.updateCurrentUserReducer({
+              ...response.data,
+              username: response.data.nickname,
+            }),
+          )
         },
       )
     }
   }, [])
-  return <>{children}</>
+  return isLoginPage ? (
+    children
+  ) : (
+    <>{currentUserId && currentUserId > 0 && children}</>
+  )
 }
 
 export default AuthInit

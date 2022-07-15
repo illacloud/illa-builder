@@ -64,7 +64,7 @@ export const DashboardTitleBar: FC = () => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
   const avatarBgColor =
-    userInfo?.username?.padEnd(6, "0").substring(0, 6) || "654aec"
+    `${userInfo?.userId}`.padEnd(6, "0").substring(0, 6) || "654aec"
   const avatarText = userInfo?.username?.substring?.(0, 1).toUpperCase() || "U"
   let navigate = useNavigate()
   let location = useLocation()

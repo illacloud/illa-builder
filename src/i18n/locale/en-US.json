@@ -182,7 +182,9 @@
           "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
           "name_already_exist": "Already exists",
           "please_input_name": "Please input name",
-          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter"
+          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter",
+          "load_action_list_fail": "Get Action list fail: {{message}}",
+          "load_resource_fail": "Get resource list fail: {{message}}"
         },
         "action_generator": {
           "selector": {
@@ -645,6 +647,7 @@
     "app": {
       "all_apps": "All Apps",
       "create_app": "Create App",
+      "rename_app": "Rename App",
       "rename_fail": "Rename fail",
       "duplicate_fail": "Duplicate fail",
       "duplicate_placeholder": "Enter your app name here",
