@@ -62,7 +62,7 @@ const formatEvaluate = (type: string, data?: any) => {
     case "Object":
       return formatObjOrArr(type, data)
   }
-  return data.toString()
+  return data?.toString()
 }
 
 const handleTernCompletions = (data: TypeQueryResult): TransQuery => {
