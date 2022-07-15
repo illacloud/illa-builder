@@ -90,6 +90,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     displayName,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleUpdateDsl,
   } = props
 
   useEffect(() => {
@@ -107,6 +108,12 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       timeFormat,
       hideValidationMessage,
       colorScheme,
+      setValue: (value: string) => {
+        handleUpdateDsl({ value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ value: "" })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)

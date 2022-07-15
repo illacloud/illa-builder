@@ -17,7 +17,11 @@ export const transformEvents = (event: any) => {
   }
   if (actionType === "widget") {
     const { widgetID, widgetMethod, enabled } = event
-    if (widgetMethod === "setValue" || widgetMethod === "setImageUrl") {
+    if (
+      ["setValue", "setImageUrl", "setStartValue", "setEndValue"].includes(
+        widgetMethod,
+      )
+    ) {
       const { widgetTargetValue } = event
       return {
         script: `{{${widgetID}.${widgetMethod}("${widgetTargetValue}")}}`,

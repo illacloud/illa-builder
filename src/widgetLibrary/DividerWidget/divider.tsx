@@ -1,6 +1,6 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo, FC, useEffect } from "react"
 import { Divider } from "@illa-design/divider"
-import { WrappedDividerProps } from "./interface"
+import { WrappedDividerProps, DividerWidgetProps } from "./interface"
 
 export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
   (props, ref) => {
@@ -23,4 +23,38 @@ export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
 
 WrappedDivider.displayName = "WrappedDivider"
 
-export const DividerWidget = WrappedDivider
+export const DividerWidget: FC<DividerWidgetProps> = (props) => {
+  const {
+    text,
+    textAlign,
+    colorScheme,
+    textSize,
+    displayName,
+    handleUpdateDsl,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+  } = props
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      text,
+      textAlign,
+      colorScheme,
+      textSize,
+      setValue: (value: string) => {
+        handleUpdateDsl({ text: value })
+      },
+      clearValue: () => {
+        handleUpdateDsl({ text: "" })
+      },
+    })
+
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [text, textAlign, colorScheme, textSize, displayName])
+
+  return <WrappedDivider {...props} />
+}
+
+DividerWidget.displayName = "DividerWidget"

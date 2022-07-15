@@ -92,6 +92,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     colorScheme,
     handleUpdateDsl,
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
     displayName,
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
@@ -117,11 +118,15 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
         handleUpdateDsl({ value })
       },
       clearValue: () => {
-        handleUpdateDsl({ value })
+        handleUpdateDsl({ value: 0 })
       },
       validate: () => {},
       clearValidation: () => {},
     })
+
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
   }, [
     openThousandSeparator,
     max,
