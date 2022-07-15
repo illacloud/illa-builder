@@ -1,5 +1,6 @@
 import { RootState } from "@/store"
 import { createSelector } from "@reduxjs/toolkit"
+import { SELECTED_ACTION_DISPALY_NAME } from "@/redux/currentApp/action/actionSelector"
 
 export const getExecution = (state: RootState) =>
   state.currentApp.executionTree.execution
@@ -39,5 +40,49 @@ export const getWidgetExecutionResultArray = createSelector(
       })
     })
     return widgetExecutionResultArray
+  },
+)
+
+export const getActionExecutionResult = createSelector(
+  [getExecutionResult],
+  (executionResult) => {
+    const actionExecutionResult: Record<string, any> = {}
+    Object.keys(executionResult).forEach((key) => {
+      const widgetOrAction = executionResult[key]
+      if (
+        widgetOrAction.$type === "ACTION" &&
+        key !== SELECTED_ACTION_DISPALY_NAME
+      ) {
+        actionExecutionResult[key] = widgetOrAction
+      }
+    })
+    return actionExecutionResult
+  },
+)
+
+export const getActionExecutionResultArray = createSelector(
+  [getActionExecutionResult],
+  (actionExecutionResult) => {
+    const actionExecutionResultArray: Record<string, any>[] = []
+    Object.keys(actionExecutionResult).forEach((key) => {
+      actionExecutionResultArray.push({
+        ...actionExecutionResult[key],
+        displayName: key,
+      })
+    })
+    return actionExecutionResultArray
+  },
+)
+
+export const getGlobalInfoExecutionResult = createSelector(
+  [getExecutionResult],
+  (executionResult) => {
+    const globalInfo: Record<string, any>[] = []
+    Object.keys(executionResult).forEach((key) => {
+      if (key === "builderInfo" || key === "currentUser") {
+        globalInfo.push({ ...executionResult[key], displayName: key })
+      }
+    })
+    return globalInfo
   },
 )
