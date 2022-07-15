@@ -157,7 +157,7 @@ it("change color by ColorPicker SwatchPicker", () => {
     .first()
     .next()
     .next()
-    .trigger("click")
+    .trigger("click", { force: true })
   cy.findByText("Prefabricated color")
     .next()
     .children()

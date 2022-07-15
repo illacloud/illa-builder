@@ -109,7 +109,7 @@ function ColorPicker(props: ColorPickerProps) {
             custom: true,
           }}
           requirePadding={false}
-          style={{ width: 146, height: 40, fontSize: 12 }}
+          style={{ width: "100%", height: 40, fontSize: 12 }}
           borderColor={"purple"}
           value={inputValue}
           onChange={(value) => {

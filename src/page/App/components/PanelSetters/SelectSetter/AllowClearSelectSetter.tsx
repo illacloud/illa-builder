@@ -3,7 +3,7 @@ import { Select } from "@illa-design/select"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
-export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
+export const AllowClearSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   const { isSetterSingleRow, options, attrName, handleUpdateDsl, value } = props
 
   return (
@@ -12,6 +12,7 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
         options={options}
         size="medium"
         value={value}
+        allowClear
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
@@ -20,4 +21,4 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
   )
 }
 
-BaseSelectSetter.displayName = "BaseSelect"
+AllowClearSelectSetter.displayName = "BaseSelect"

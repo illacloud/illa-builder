@@ -28,7 +28,7 @@ export interface DatasetSetterProps extends BaseSetter {
 }
 
 export interface ColorListSetter extends BaseSetter {
-  options: any
+  options?: any
 }
 
 export interface ActionMenuProps {

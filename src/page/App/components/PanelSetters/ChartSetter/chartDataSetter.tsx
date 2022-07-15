@@ -8,7 +8,6 @@ import {
 } from "../SelectSetter/dynamicSelect"
 import { getDefaultColorScheme, initData } from "@/widgetLibrary/Chart/utils"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import {
   DatasetConfig,
   defaultChartData,
@@ -16,12 +15,13 @@ import {
 } from "@/widgetLibrary/Chart/interface"
 import { DatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter"
 import { CHART_DATASET_CONFIG } from "@/widgetLibrary/Chart/panelConfig"
-import { Select } from "@illa-design/select"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
-import { chartDynamicSelectStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { get } from "lodash"
+import { Setter } from "@/page/App/components/InspectPanel/setter"
+import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
 const DATA_SOURCE = "dataSource"
 const X_AXIS_VALUES = "xAxisValues"
@@ -134,13 +134,6 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
     [handleUpdateDsl, panelConfig],
   )
 
-  const handelUpdateAttr = useCallback(
-    (attr, value) => {
-      handleUpdateDsl(attr, value)
-    },
-    [handleUpdateDsl],
-  )
-
   const handleGroupByChange = useCallback(
     (value) => {
       handleUpdateDsl(GROUP_BY, value)
@@ -155,12 +148,23 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
       }))
       handleUpdateDsl("datasets", _datasets)
     },
-    [handleUpdateDsl],
+    [handleUpdateDsl, panelConfig],
   )
+
+  const singleSelectedComponentNode = useSelector(
+    getComponentNodeBySingleSelected,
+  )
+
+  const widgetType = singleSelectedComponentNode?.type || ""
+
+  const widgetParentDisplayName = singleSelectedComponentNode?.parentNode || ""
+
+  const widgetProps = singleSelectedComponentNode?.props || {}
 
   return (
     <div>
       <DynamicSelectSetter
+        widgetOrAction="WIDGET"
         widgetType={""}
         expectedType={VALIDATION_TYPES.ARRAY}
         widgetDisplayName={widgetDisplayName}
@@ -171,44 +175,61 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
         handleUpdateDsl={handleDataEnter}
         parentAttrName={parentAttrName}
       />
-      <div css={chartDynamicSelectStyle}>
-        <PanelLabel labelName={"Chart type"} />
-        <Select
-          options={CHART_TYPE_OPTIONS}
-          size="small"
-          value={panelConfig?.type}
-          onChange={(value) => {
-            handelUpdateAttr(TYPE, value)
-          }}
-        />
-      </div>
-      <div css={chartDynamicSelectStyle}>
-        <PanelLabel labelName={"x Axis Values"} />
-        <Select
-          allowClear
-          options={panelConfig?.xAxisValuesOptions}
-          size="small"
-          value={panelConfig?.xAxisValues}
-          onChange={(value) => {
-            handelUpdateAttr(X_AXIS_VALUES, value)
-          }}
-        />
-      </div>
+      <Setter
+        parentAttrName={""}
+        attrName={TYPE}
+        expectedType={VALIDATION_TYPES.STRING}
+        labelName={"Chart type"}
+        labelDesc={"x xx"}
+        isSetterSingleRow={true}
+        isInList={false}
+        options={CHART_TYPE_OPTIONS}
+        setterType={"BASE_SELECT_SETTER"}
+        defaultValue={panelConfig?.type}
+      />
+
+      <Setter
+        parentAttrName={""}
+        attrName={X_AXIS_VALUES}
+        expectedType={VALIDATION_TYPES.STRING}
+        labelName={"x Axis Values"}
+        labelDesc={"x xx"}
+        isSetterSingleRow={true}
+        isInList={false}
+        setterType={"BASE_SELECT_SETTER"}
+        defaultValue={panelConfig?.xAxisValues}
+        options={panelConfig?.xAxisValuesOptions}
+      />
+
       {panelConfig?.type !== "pie" && (
-        <div css={chartDynamicSelectStyle}>
-          <PanelLabel labelName={"Group By"} />
-          <Select
-            allowClear
-            options={panelConfig?.groupByOptions}
-            size="small"
-            value={panelConfig?.groupBy}
-            onChange={(value) => {
+        <SelectedPanelContext.Provider
+          value={{
+            widgetType: widgetType,
+            widgetDisplayName: widgetDisplayName,
+            widgetProps: widgetProps,
+            widgetOrAction: "WIDGET",
+            widgetParentDisplayName: null,
+            handleUpdateDsl: (attrPath, value) => {
               handleGroupByChange(value)
-            }}
+            },
+          }}
+        >
+          <Setter
+            parentAttrName={""}
+            attrName={GROUP_BY}
+            expectedType={VALIDATION_TYPES.STRING}
+            labelName={"Group By"}
+            labelDesc={"x xx"}
+            isSetterSingleRow={true}
+            isInList={false}
+            setterType={"ALLOW_CLEAR_SELECT_SETTER"}
+            defaultValue={panelConfig?.groupBy}
+            options={panelConfig?.groupByOptions}
           />
-        </div>
+        </SelectedPanelContext.Provider>
       )}
       <DatasetsSetter
+        widgetOrAction="WIDGET"
         widgetType={""}
         expectedType={VALIDATION_TYPES.STRING}
         widgetDisplayName={widgetDisplayName}

@@ -1,11 +1,10 @@
 import { FC, useCallback, useContext, useMemo, useRef, useState } from "react"
 import { Trigger } from "@illa-design/trigger"
 import {
-  aggregationMethodStyle,
   applyColorIndentStyle,
   labelNameAndIconCss,
   labelNameWrapper,
-  optionListItemCss,
+  applyOptionListItemStyle,
 } from "./style"
 import { EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
@@ -39,8 +38,9 @@ export const ListItem: FC<ListItemProps> = (props) => {
 
   return (
     <div ref={ref}>
-      <div css={optionListItemCss}>
+      <div css={applyOptionListItemStyle(hidden)}>
         <Trigger
+          withoutPadding={true}
           colorScheme="white"
           popupVisible={modalVisible}
           content={

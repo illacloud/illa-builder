@@ -70,16 +70,13 @@ export const chartDynamicSelectStyle = css`
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 8px;
-  margin: 8px 0;
+  justify-content: space-between;
 `
 
 export const dynamicSelectHeaderStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  height: 40px;
 `
 
 export const useTypeTextStyle: SerializedStyles = css`

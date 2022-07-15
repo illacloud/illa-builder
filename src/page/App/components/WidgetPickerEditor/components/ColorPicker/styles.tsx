@@ -112,7 +112,6 @@ export const colorInputContainerCss = css`
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
-  padding: 0 12px;
   box-sizing: border-box;
   align-items: center;
 `
@@ -137,7 +136,6 @@ export const colorInputCss = css`
   display: inline-flex;
   border-radius: 8px;
   font-size: 12px;
-
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }

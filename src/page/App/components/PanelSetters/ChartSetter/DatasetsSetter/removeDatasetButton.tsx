@@ -1,7 +1,10 @@
 import { FC, useCallback } from "react"
 import { Button } from "@illa-design/button"
 import { RemoveButtonSetter } from "@/page/App/components/PanelSetters/ChartSetter/interface"
-import { removeButtonStyle } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/style"
+import {
+  buttonContainerStyle,
+  removeButtonStyle,
+} from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/style"
 import { get } from "lodash"
 
 export const RemoveDatasetButton: FC<RemoveButtonSetter> = (props) => {
@@ -21,9 +24,16 @@ export const RemoveDatasetButton: FC<RemoveButtonSetter> = (props) => {
   }, [attrName, panelConfig, handleUpdateDsl])
 
   return (
-    <Button colorScheme={"red"} _css={removeButtonStyle} onClick={handleClick}>
-      remove dataset
-    </Button>
+    <div css={buttonContainerStyle}>
+      <Button
+        variant="outline"
+        colorScheme={"red"}
+        _css={removeButtonStyle}
+        onClick={handleClick}
+      >
+        remove dataset
+      </Button>
+    </div>
   )
 }
 
