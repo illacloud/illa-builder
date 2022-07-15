@@ -138,6 +138,14 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
             options: [{ label: "run", value: "executeAction" }],
           },
           {
+            id: "component",
+            labelName: "Component",
+            setterType: "EVENT_TARGET_SELECT_SETTER",
+            attrName: "widgetID",
+            bindAttrName: "actionType",
+            shown: (type) => type === "widget",
+          },
+          {
             id: "Method",
             labelName: "Method",
             setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
