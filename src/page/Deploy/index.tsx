@@ -12,9 +12,10 @@ import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShad
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { useDispatch } from "react-redux"
-import { deployContainerStyle } from "@/page/Deploy/style"
+import { deployContainerStyle, deployLogoStyle } from "@/page/Deploy/style"
 import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
+import { ReactComponent as DeployLogo } from "@assets/deploy-powered-by.svg"
 
 export const Deploy: FC = () => {
   let { appId, versionId } = useParams()
@@ -84,6 +85,7 @@ export const Deploy: FC = () => {
         </div>
       )}
       {!loadingState && <CanvasPanel />}
+      <DeployLogo css={deployLogoStyle} />
     </div>
   )
 }
