@@ -1,4 +1,5 @@
 import { FC, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
 import { get } from "lodash"
 import { BaseSelectSetterProps } from "./interface"
@@ -19,6 +20,7 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
     widgetOrAction,
   } = props
 
+  const { t } = useTranslation()
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
   const selectedAction = useSelector(getSelectedAction)
 
@@ -41,10 +43,14 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
 
   const _finalAttrPath = parentAttrName ? parentAttrName : attrName
 
+  const finalOptions = options.map((item: Record<string, any>) => {
+    return { ...item, label: t(item.label) }
+  })
+
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
-        options={options}
+        options={finalOptions}
         size="small"
         value={value}
         onChange={(value) => {

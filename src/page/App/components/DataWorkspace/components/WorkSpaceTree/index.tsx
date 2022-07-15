@@ -5,6 +5,16 @@ import { WorkSpaceTreeProps } from "./interface"
 import { applyTreeContainerStyle } from "./style"
 import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem"
 
+const hiddenFields = [
+  "displayName",
+  "actionId",
+  "resourceId",
+  "createdBy",
+  "createdAt",
+  "updatedBy",
+  "updatedAt",
+]
+
 export const WorkSpaceTree: FC<WorkSpaceTreeProps> = (props) => {
   const { title, dataList = [], selectedKeys, handleSelect } = props
   return (
@@ -14,7 +24,7 @@ export const WorkSpaceTree: FC<WorkSpaceTreeProps> = (props) => {
           <WorkSpaceTreeItem
             key={data.displayName}
             title={data.displayName}
-            data={omit(data, ["displayName"])}
+            data={omit(data, hiddenFields)}
             handleSelect={handleSelect}
             isSelected={selectedKeys?.includes(data.displayName)}
           />
