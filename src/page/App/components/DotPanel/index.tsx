@@ -320,7 +320,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         }
       },
     }),
-    [canvasWidth, canvasHeight],
+    [canvasWidth, canvasHeight, componentNode],
   )
 
   useEffect(() => {
