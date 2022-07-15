@@ -1,5 +1,5 @@
 export interface CurrentUser {
-  userId: string
+  userId: number
   username: string
   userAvatar: string
   language: string
@@ -7,7 +7,7 @@ export interface CurrentUser {
 }
 
 export const CurrentUserInitialState: CurrentUser = {
-  userId: "",
+  userId: 0,
   username: "",
   userAvatar: "",
   language: "English",

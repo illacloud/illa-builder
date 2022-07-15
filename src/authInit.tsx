@@ -31,7 +31,7 @@ const AuthInit = ({ children }: { children: ReactNode }) => {
       )
     }
   }, [])
-  return <>{currentUserId && children}</>
+  return <>{children}</>
 }
 
 export default AuthInit
