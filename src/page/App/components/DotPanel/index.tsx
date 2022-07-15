@@ -371,6 +371,25 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth * radio,
           (canvasHeight + edgeWidth) * radio,
         )
+        componentNode.childrenNode.forEach((item) => {
+          if (!item.isDragging) {
+            const h = item.h * unitHeight * radio
+            const w = item.w * unitWidth * radio
+            const [l, t] = calculateXY(
+              item.x,
+              item.y,
+              unitWidth * radio,
+              unitHeight * radio,
+            )
+            ctx.beginPath()
+            ctx.setLineDash([4 * radio, 2 * radio])
+            ctx.rect(l, t, w, h)
+            ctx.closePath()
+            ctx.lineWidth = 1
+            ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
+            ctx.stroke()
+          }
+        })
         for (let i = 1; i < blockRows; i++) {
           for (let j = 1; j < blockColumns; j++) {
             ctx.beginPath()
@@ -392,7 +411,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
       }
     }
-  }, [canvasHeight, canvasWidth, radio])
+  }, [componentNode.childrenNode, canvasHeight, canvasWidth, radio])
 
   // render dotted line
   useEffect(() => {
