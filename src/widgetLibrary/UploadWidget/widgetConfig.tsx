@@ -11,10 +11,6 @@ export const UPLOAD_WIDGET_CONFIG: WidgetConfig = {
   icon: <SwitchWidgetIcon size="100%" />,
   sessionType: "SELECT",
   defaults: {
-    label: "Label",
-    labelAlign: "left",
-    labelPosition: "left",
-    labelWidth: "{{33}}",
     colorScheme: "blue",
     hidden: false,
   },

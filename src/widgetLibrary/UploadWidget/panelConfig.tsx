@@ -15,6 +15,13 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
     groupName: "editor.inspect.setter_group.basic",
     children: [
       {
+        id: "upload-basic-text",
+        labelName: "editor.inspect.setter_label.text",
+        attrName: "text",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+      },
+      {
         id: "upload-basic-fileTypes",
         labelName: "editor.inspect.setter_label.file_types",
         attrName: "value",
@@ -34,19 +41,6 @@ export const UPLOAD_PANEL_CONFIG: PanelConfig[] = [
         attrName: "value",
         setterType: "SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-    ],
-  },
-  {
-    id: "upload-label",
-    groupName: "editor.inspect.setter_group.label",
-    children: [
-      {
-        id: "upload-label-label",
-        labelName: "editor.inspect.setter_label.label",
-        attrName: "label",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
       },
     ],
   },
