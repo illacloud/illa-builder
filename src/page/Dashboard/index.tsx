@@ -22,7 +22,6 @@ import {
   loadingStyle,
 } from "./style"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { Room } from "@/api/ws/interface"
 
 export const IllaApp: FC = () => {
   const { t } = useTranslation()

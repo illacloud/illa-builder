@@ -57,18 +57,12 @@ export const editButtonStyle = css`
 export const listItemStyle = css`
   padding: 12px 16px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  &: hover {
+  &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     [title="editButton"] {
       opacity: 1;
     }
   }
-`
-
-export const listItemTitleStyle = css`
-  font-size: 14px;
-  font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
 export const modalInputStyle = css`
