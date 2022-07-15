@@ -12,6 +12,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-basic-DefaultValue",
         labelName: "editor.inspect.setter_label.default_value",
+        labelDesc: "editor.inspect.setter_tooltip.component_default_value",
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -114,7 +115,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-interaction-disabled",
         labelName: "editor.inspect.setter_label.disabled",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.disabled",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -122,7 +123,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-interaction-readonly",
         labelName: "editor.inspect.setter_label.read_only",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.read_only",
         attrName: "readonly",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -136,6 +137,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -149,6 +151,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-validation-required",
         labelName: "editor.inspect.setter_label.required_field",
+        labelDesc: "editor.inspect.setter_tooltip.required_field",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -157,6 +160,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-validation-custom",
         labelName: "editor.inspect.setter_label.custom_rule",
+        labelDesc: "editor.inspect.setter_tooltip.custom_rule",
         setterType: "INPUT_SETTER",
         attrName: "customRule",
         expectedType: VALIDATION_TYPES.STRING,
@@ -164,6 +168,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "rate-validation-hide-message",
         labelName: "editor.inspect.setter_label.hide_validation_message",
+        labelDesc: "editor.inspect.setter_tooltip.hide_validation_message",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -179,6 +184,8 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         id: "rate-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "rateName" },
         useCustomLayout: true,
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,

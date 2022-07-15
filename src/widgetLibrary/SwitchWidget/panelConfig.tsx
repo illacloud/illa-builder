@@ -12,6 +12,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-basic-defaultValue",
         labelName: "editor.inspect.setter_label.default_value",
+        labelDesc: "editor.inspect.setter_tooltip.switch_default_value",
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -73,7 +74,6 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         id: "switch-interaction-event-handler",
         attrName: "events",
         labelName: "editor.inspect.setter_label.event_handler",
-        labelDesc: "xxxxx",
         setterType: "EVENT_HANDLER_SETTER",
         useCustomLayout: true,
         childrenSetter: [
@@ -87,6 +87,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "action",
             labelName: "editor.inspect.setter_label.action",
+            labelDesc: "editor.inspect.setter_tooltip.action",
             setterType: "EVENT_ACTION_SELECT_SETTER",
             attrName: "actionType",
             options: [
@@ -235,7 +236,6 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "enabled",
             labelName: "Only run when",
-            labelDesc: "xxxxx",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
             attrName: "enabled",
@@ -245,6 +245,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-interaction-disabled",
         labelName: "editor.inspect.setter_label.disabled",
+        labelDesc: "editor.inspect.setter_tooltip.disabled",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
@@ -259,6 +260,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -272,6 +274,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-validation-required",
         labelName: "editor.inspect.setter_label.required_field",
+        labelDesc: "editor.inspect.setter_tooltip.required_field",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -280,6 +283,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-validation-hide-message",
         labelName: "editor.inspect.setter_label.hide_validation_message",
+        labelDesc: "editor.inspect.setter_tooltip.hide_validation_message",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -294,6 +298,8 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "switch-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "switchName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",

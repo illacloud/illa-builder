@@ -19,6 +19,7 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-direction`,
         labelName: "editor.inspect.setter_label.direction",
+        labelDesc: "editor.inspect.setter_tooltip.timeline_direction",
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
         options: [
@@ -45,6 +46,8 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "timelineName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         useCustomLayout: true,

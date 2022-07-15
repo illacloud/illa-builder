@@ -49,6 +49,8 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
         id: "divider-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "dividerName" },
         attrName: "hidden",
         useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,

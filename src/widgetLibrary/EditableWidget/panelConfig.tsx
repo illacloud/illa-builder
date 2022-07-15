@@ -12,6 +12,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-basic-defaultValue",
         labelName: "editor.inspect.setter_label.default_value",
+        labelDesc: "editor.inspect.setter_tooltip.default_value",
         attrName: "value",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -19,6 +20,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-basic-placeholder",
         labelName: "editor.inspect.setter_label.placeholder",
+        labelDesc: "editor.inspect.setter_tooltip.placeholder",
         attrName: "placeholder",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -85,6 +87,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-interaction-disabled",
         labelName: "editor.inspect.setter_label.disabled",
+        labelDesc: "editor.inspect.setter_tooltip.disabled",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -93,6 +96,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-interaction-readonly",
         labelName: "editor.inspect.setter_label.read_only",
+        labelDesc: "editor.inspect.setter_tooltip.read_only",
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
@@ -137,6 +141,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -150,6 +155,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-validation-required",
         labelName: "editor.inspect.setter_label.required_field",
+        labelDesc: "editor.inspect.setter_tooltip.required_field",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -188,6 +194,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-validation-custom",
         labelName: "editor.inspect.setter_label.custom_rule",
+        labelDesc: "editor.inspect.setter_tooltip.custom_rule",
         setterType: "INPUT_SETTER",
         attrName: "customRule",
         expectedType: VALIDATION_TYPES.STRING,
@@ -195,6 +202,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-validation-hide-message",
         labelName: "editor.inspect.setter_label.hide_validation_message",
+        labelDesc: "editor.inspect.setter_tooltip.hide_validation_message",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -209,6 +217,8 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "editable-text-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "editableTextName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",

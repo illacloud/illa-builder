@@ -181,7 +181,6 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
         attrName={TYPE}
         expectedType={VALIDATION_TYPES.STRING}
         labelName={t("editor.inspect.setter_label.chart_type")}
-        labelDesc="x xx"
         isSetterSingleRow={true}
         isInList={false}
         options={CHART_TYPE_OPTIONS}
@@ -194,7 +193,6 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
         attrName={X_AXIS_VALUES}
         expectedType={VALIDATION_TYPES.STRING}
         labelName={t("editor.inspect.setter_label.x_values")}
-        labelDesc="x xx"
         isSetterSingleRow={true}
         isInList={false}
         setterType="BASE_SELECT_SETTER"
@@ -220,7 +218,6 @@ export const ChartDataSetter: FC<BaseSetter> = (props) => {
             attrName={GROUP_BY}
             expectedType={VALIDATION_TYPES.STRING}
             labelName={t("editor.inspect.setter_label.group_by")}
-            labelDesc="x xx"
             isSetterSingleRow={true}
             isInList={false}
             setterType="ALLOW_CLEAR_SELECT_SETTER"

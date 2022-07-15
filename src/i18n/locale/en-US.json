@@ -544,6 +544,26 @@
           "remove": "Remove dataset"
         }
       },
+      "setter_tooltip": {
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
+        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
+        "hidden": "Dynamically control whether the component is hidden. You can also change the hidden status through <strong>{{ name }}.hidden</strong>",
+        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannont be modified.",
+        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
+        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
+        "required_field": "Valid only when the switch is on.",
+        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "placeholder": "The value will be shown when the input field is empty.",
+        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
+        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
+        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option",
+        "date_format": "A valid date format string. See dayJS (https://day.js.org/docs/en/parse/string-format)",
+        "loading": "Whether the component should show a loading indicator.",
+        "progress_percentage": "The percentage value is between 0 and 100",
+        "timeline_direction": "Change the direction of the timeline."
+      },
       "setter_default_value": {
         "solid": "Solid",
         "outline": "Outline"

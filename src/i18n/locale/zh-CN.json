@@ -477,7 +477,7 @@
         "end_placeholder": "结束日期占位符",
         "image_source": "图片来源",
         "alt_text": "替换文本",
-        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "alt_text_desc": "屏幕阅读器可访问的图像描述。如果无法加载图像，这也会作为备用方案进行渲染。",
         "img_height": "高度",
         "img_width": "宽度",
         "radius": "圆角",
@@ -543,6 +543,26 @@
           "value": "Dataset values",
           "remove": "Remove dataset"
         }
+      },
+      "setter_tooltip": {
+        "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
+        "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
+        "hidden": "动态控制组件是否为隐藏状态。您可以通过调用 <strong>{{ name }}.hidden</strong> 修改文本组件的隐藏状态",
+        "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
+        "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
+        "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
+        "hide_validation_message": "当验证输入有误时隐藏错误信息。您可以通过编写 JavaScript 对是否隐藏进行动态修改。",
+        "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
+        "required_field": "在开关开启后对输入框执行验证。",
+        "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
+        "placeholder": "当输入中没有值时，展示的信息。",
+        "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
+        "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
+        "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项",
+        "date_format": "一个符合规范的时间格式，请参考 dayJS（https://day.js.org/docs/en/parse/string-format）",
+        "loading": "控制组件是否为加载状态。",
+        "progress_percentage": "进度条的数值范围为 0-100",
+        "timeline_direction": "切换时间轴的方向"
       },
       "setter_default_value": {
         "solid": "Solid",

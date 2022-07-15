@@ -16,6 +16,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "circle-progress-basic-Value",
         labelName: "editor.inspect.setter_label.value",
+        labelDesc: "editor.inspect.setter_label.progress_percentage",
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -35,6 +36,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "circle-progress-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -49,6 +51,8 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         id: "circle-progress-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "circelProgressName" },
         attrName: "hidden",
         useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
