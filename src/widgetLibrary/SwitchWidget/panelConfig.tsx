@@ -122,19 +122,20 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "query",
             labelName: "Query",
-            setterType: "BASE_SELECT_SETTER",
+            setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
             attrName: "queryID",
             bindAttrName: "actionType",
             shown: (type) => type === "datasource",
-            options: [],
           },
           {
-            id: "component",
-            labelName: "Component",
-            setterType: "EVENT_TARGET_SELECT_SETTER",
-            attrName: "widgetID",
-            bindAttrName: "actionType",
-            shown: (type) => type === "widget",
+            id: "actionMethod",
+            labelName: "Action Method",
+            setterType: "BASE_SELECT_SETTER",
+            attrName: "widgetMethod",
+            bindAttrName: "queryID",
+            shown: (type) => type === "datasource",
+            // TODO: value should as same as action run method name that mounted on `globalData`
+            options: [{ label: "run", value: "executeAction" }],
           },
           {
             id: "Method",
