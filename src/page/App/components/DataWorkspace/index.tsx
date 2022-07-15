@@ -6,11 +6,13 @@ import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
-import { getWidgetExecutionResultArray } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import {
+  getActionExecutionResultArray,
+  getGlobalInfoExecutionResult,
+  getWidgetExecutionResultArray,
+} from "@/redux/currentApp/executionTree/execution/executionSelector"
 import {
   getSelectedAction,
   getSelectedComponentsDisplayName,
@@ -25,19 +27,8 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const dispatch = useDispatch()
   const actionList = useSelector(selectAllActionItem)
   const widgetExecutionArray = useSelector(getWidgetExecutionResultArray)
-  const userInfo = useSelector(getCurrentUser)
-  const builderInfo = useSelector(getBuilderInfo)
-  const globalInfoList = [
-    {
-      ...builderInfo,
-      displayName: "builderInfo",
-    },
-    {
-      ...userInfo,
-      displayName: "currentUser",
-    },
-  ]
-
+  const actionExecutionArray = useSelector(getActionExecutionResultArray)
+  const globalInfoList = useSelector(getGlobalInfoExecutionResult)
   const selectedComponents = useSelector(getSelectedComponentsDisplayName)
   const selectedAction = useSelector(getSelectedAction)
 
@@ -63,9 +54,9 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       <Scrollbars autoHide>
         <WorkSpaceTree
           title={`${t("editor.data_work_space.actions_title")}(${
-            actionList.length
+            actionExecutionArray.length
           })`}
-          dataList={actionList}
+          dataList={actionExecutionArray}
           selectedKeys={[selectedAction.displayName]}
           handleSelect={handleActionSelect}
         />
