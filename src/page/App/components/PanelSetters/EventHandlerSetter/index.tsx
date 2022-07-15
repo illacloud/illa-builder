@@ -38,7 +38,7 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     let oldEventItem = Array.isArray(value) ? value : []
     const newEventItem = generateNewEventItem(defaultEvents[0], "query1")
     handleUpdateDsl(attrName, [...oldEventItem, newEventItem])
-  }, [handleUpdateDsl, eventHandlerConfig])
+  }, [handleUpdateDsl, eventHandlerConfig, value])
 
   if (
     !childrenSetter ||
