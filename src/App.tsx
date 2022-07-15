@@ -60,10 +60,10 @@ function App() {
     <BrowserRouter>
       <DndProvider backend={HTML5Backend}>
         <GlobalDataProvider>
-          <AuthInit>
-            <ConfigProvider locale={getLocaleFromLanguage()}>
-              <Global styles={css(globalStyle)} />
-              <AxiosInterceptor>
+          <AxiosInterceptor>
+            <AuthInit>
+              <ConfigProvider locale={getLocaleFromLanguage()}>
+                <Global styles={css(globalStyle)} />
                 <Routes>
                   <Route path="dashboard" element={<IllaApp />}>
                     <Route index element={<Navigate to="./apps" />} />
@@ -95,9 +95,9 @@ function App() {
                   <Route path="500" element={<Page500 />} />
                   <Route path="*" element={<Page404 />} />
                 </Routes>
-              </AxiosInterceptor>
-            </ConfigProvider>
-          </AuthInit>
+              </ConfigProvider>
+            </AuthInit>
+          </AxiosInterceptor>
         </GlobalDataProvider>
       </DndProvider>
     </BrowserRouter>

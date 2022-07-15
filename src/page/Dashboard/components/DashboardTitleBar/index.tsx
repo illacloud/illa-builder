@@ -63,8 +63,9 @@ const SettingTrigger: FC<{ avatarBgColor: string; avatarText: string }> = (
 export const DashboardTitleBar: FC = () => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
-  const avatarBgColor = userInfo?.userId.substring(0, 6) || "654aec"
-  const avatarText = userInfo?.username.substring(0, 1).toUpperCase() || "U"
+  const avatarBgColor =
+    userInfo?.username?.padEnd(6, "0").substring(0, 6) || "654aec"
+  const avatarText = userInfo?.username?.substring?.(0, 1).toUpperCase() || "U"
   let navigate = useNavigate()
   let location = useLocation()
   let pathList = location.pathname.split("/")

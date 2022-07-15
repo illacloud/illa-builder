@@ -375,6 +375,17 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth * radio,
           (canvasHeight + edgeWidth) * radio,
         )
+        for (let i = 1; i < blockRows; i++) {
+          for (let j = 1; j < blockColumns; j++) {
+            ctx.beginPath()
+            const x = j * unitWidth * radio + radio
+            const y = i * unitHeight * radio + radio
+            ctx.arc(x, y, radio, 0, 2 * Math.PI)
+            ctx.closePath()
+            ctx.fillStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
+            ctx.fill()
+          }
+        }
         componentNode.childrenNode.forEach((item) => {
           if (
             !item.isDragging &&
@@ -394,22 +405,11 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             ctx.setLineDash([4 * radio, 2 * radio])
             ctx.rect(l, t, w, h)
             ctx.closePath()
-            ctx.lineWidth = 1
+            ctx.lineWidth = radio
             ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
             ctx.stroke()
           }
         })
-        for (let i = 1; i < blockRows; i++) {
-          for (let j = 1; j < blockColumns; j++) {
-            ctx.beginPath()
-            const x = j * unitWidth * radio + radio
-            const y = i * unitHeight * radio + radio
-            ctx.arc(x, y, radio, 0, 2 * Math.PI)
-            ctx.closePath()
-            ctx.fillStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
-            ctx.fill()
-          }
-        }
         ctx.lineWidth = radio
         ctx.strokeStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
         ctx.strokeRect(
@@ -456,7 +456,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             ctx.setLineDash([4 * radio, 2 * radio])
             ctx.rect(l, t, w, h)
             ctx.closePath()
-            ctx.lineWidth = 1
+            ctx.lineWidth = radio
             ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
             ctx.stroke()
           }
@@ -522,7 +522,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         id={`${componentNode.displayName}-dotted`}
         css={applyDotCanvasStyle(
           showDot,
-          0,
+          1,
           canvasWidth,
           canvasHeight + edgeWidth,
         )}
@@ -531,7 +531,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       />
       <div
         ref={componentsTreeRef}
-        css={applyChildrenContainerStyle(1, canvasWidth, canvasHeight)}
+        css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
         onClick={(e) => {
           if (e.target == componentsTreeRef.current && illaMode == "edit") {
             dispatch(configActions.updateSelectedComponent([]))
@@ -544,7 +544,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         id={`${componentNode.displayName}-dragged`}
         css={applyDotCanvasStyle(
           showDot,
-          0,
+          1,
           canvasWidth,
           canvasHeight + edgeWidth,
         )}

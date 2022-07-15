@@ -69,7 +69,7 @@ export const Register: FC = () => {
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
-            username: res.data.username,
+            username: res.data.nickname,
             language: "English",
             userAvatar: "",
             email: res.data.email,
@@ -133,14 +133,14 @@ export const Register: FC = () => {
           </label>
           <div css={gridValidStyle}>
             <Controller
-              name="username"
+              name="nickname"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
                   borderColor="techPurple"
                   size="large"
-                  error={!!errors.username}
+                  error={!!errors.nickname}
                   variant="fill"
                   placeholder={t("user.sign_up.placeholder.username")}
                 />
@@ -157,10 +157,10 @@ export const Register: FC = () => {
                 },
               }}
             />
-            {errors.username && (
+            {errors.nickname && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.username.message}
+                {errors.nickname.message}
               </div>
             )}
           </div>

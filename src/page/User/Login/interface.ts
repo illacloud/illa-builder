@@ -7,7 +7,7 @@ export interface LoginFields {
 
 export interface LoginResult {
   userId: string
-  username: string
+  nickname: string
   email: string
   createdAt: string
   language: string

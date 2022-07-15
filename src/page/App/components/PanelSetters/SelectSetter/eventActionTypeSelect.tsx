@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react"
+import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
 import { get } from "lodash"
-import { useTranslation } from "react-i18next"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { useSelector } from "react-redux"
