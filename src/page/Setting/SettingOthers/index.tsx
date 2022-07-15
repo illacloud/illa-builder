@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { Api } from "@/api/base"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { Message } from "@illa-design/message"
+import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { SettingCommonForm } from "../Components/SettingCommonForm"
 
 export const SettingOthers: FC = () => {
@@ -69,7 +70,7 @@ export const SettingOthers: FC = () => {
       return
     }
 
-    Api.request(
+    Api.request<CurrentUser>(
       {
         url: "/users/language",
         method: "PATCH",
@@ -78,7 +79,12 @@ export const SettingOthers: FC = () => {
         },
       },
       (response) => {
-        dispatch(currentUserActions.updateCurrentUserReducer(response.data))
+        dispatch(
+          currentUserActions.updateCurrentUserReducer({
+            ...response.data,
+            username: response.data.nickname,
+          }),
+        )
         Message.success(t("edit_success"))
         setRefresh(refresh + 1)
       },

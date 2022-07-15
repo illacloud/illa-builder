@@ -6,6 +6,7 @@ import { SettingCommonForm } from "../Components/SettingCommonForm"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { useSelector, useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
@@ -83,16 +84,21 @@ export const SettingAccount: FC = () => {
       return
     }
 
-    Api.request(
+    Api.request<CurrentUser>(
       {
         url: "/users/username",
         method: "PATCH",
         data: {
-          username: usernameValue,
+          nickname: usernameValue,
         },
       },
       (response) => {
-        dispatch(currentUserActions.updateCurrentUserReducer(response.data))
+        dispatch(
+          currentUserActions.updateCurrentUserReducer({
+            ...response.data,
+            username: response.data.nickname,
+          }),
+        )
         setUsernameValue("")
         Message.success("success!")
       },
