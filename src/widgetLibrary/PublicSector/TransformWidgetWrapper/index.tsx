@@ -12,7 +12,7 @@ import { BasicWrapper } from "@/widgetLibrary/PublicSector/BasicWrapper"
 import Label from "@/widgetLibrary/PublicSector/Label"
 import { transformEvents } from "@/widgetLibrary/PublicSector/utils/transformEvents"
 
-const getEventScripts = (events: EventsInProps[], eventType: string) => {
+export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
     return event.eventType === eventType
   })

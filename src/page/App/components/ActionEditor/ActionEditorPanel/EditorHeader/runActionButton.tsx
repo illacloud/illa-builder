@@ -11,6 +11,10 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { ACTION_EDITOR_CONTEXT } from "@/page/App/components/ActionEditor/ActionEditorPanel/context/ActionEditorPanelContext"
 import { executeAction } from "@/utils/action/execute"
 import { useParams } from "react-router-dom"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { transformEvents } from "@/widgetLibrary/PublicSector/utils/transformEvents"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 
 export const RunActionButton: FC = () => {
   const [isRunning, setIsRunning] = useState(false)
@@ -21,6 +25,12 @@ export const RunActionButton: FC = () => {
   const { isActionDirty, baseActionApi, setIsActionDirty } =
     useContext(ActionEditorContext)
   const triggerMode = activeActionItem.actionTemplate?.triggerMode ?? "manual"
+  const displayName = activeActionItem.displayName
+  const displayNameMapProps = useSelector(getExecutionResult)
+  const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+    useContext(GLOBAL_DATA_CONTEXT)
+
+  const realAction = displayNameMapProps["ILLA_REDUX_CONFIG_SELECTED_ACTION"]
 
   const dispatch = useDispatch()
   const runningIntervalRef = useRef<number>()
@@ -108,9 +118,33 @@ export const RunActionButton: FC = () => {
       params.versionId || "",
       (response) => {
         handleUpdateResult(response)
+        const successEvent = realAction?.successEvent
+        if (successEvent) {
+          successEvent.forEach((event: any) => {
+            const eventObj = transformEvents(event)
+            if (!eventObj) return
+            const { script, enabled } = eventObj
+            if (enabled || enabled == undefined) {
+              evaluateDynamicString("events", script, globalData)
+              return
+            }
+          })
+        }
       },
       (response) => {
         handleUpdateResult(response)
+        const failedEvents = realAction?.failedEvents
+        if (failedEvents) {
+          failedEvents.forEach((event: any) => {
+            const eventObj = transformEvents(event)
+            if (!eventObj) return
+            const { script, enabled } = eventObj
+            if (enabled || enabled == undefined) {
+              evaluateDynamicString("events", script, globalData)
+              return
+            }
+          })
+        }
       },
       () => {},
       (loading) => {
