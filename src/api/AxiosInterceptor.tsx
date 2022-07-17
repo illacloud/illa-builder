@@ -32,7 +32,7 @@ export const AxiosInterceptor: FC<{ children: JSX.Element }> = ({
     )
 
     return () => Api.removeResponseInterceptor(interceptor)
-  }, [location, navigate])
+  }, [])
 
   return children
 }
