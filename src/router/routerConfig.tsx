@@ -17,6 +17,7 @@ import { Page500 } from "@/page/status/500"
 import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
 
+// TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const routerConfig: RoutesObjectPro[] = [
   {
     index: true,
