@@ -6,6 +6,7 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { Api } from "@/api/base"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { clearRequestPendingPool } from "@/api/helpers/axiosPendingPool"
 
 interface CheckIsLoginWrapperProps {
   children: ReactNode
@@ -20,6 +21,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
 
   useEffect(() => {
     if (!token) {
+      clearRequestPendingPool()
       navigate("/user/login", { state: { from: location } })
       return
     }
@@ -40,7 +42,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
         },
         () => {},
         () => {
-          // TODO:need message
+          clearRequestPendingPool()
           navigate("/user/login", { state: { from: location } })
         },
       )
