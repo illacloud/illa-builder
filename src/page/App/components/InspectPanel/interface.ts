@@ -2,7 +2,6 @@ import { SetterType } from "@/page/App/components/PanelSetters"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface PanelHeaderActionProps {
-  widgetParentDisplayName: string
   widgetDisplayName: string
   componentType: string
 }

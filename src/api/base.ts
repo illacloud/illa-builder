@@ -1,5 +1,5 @@
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { getLocalStorage } from "@/utils/storage"
+import { clearLocalStorage, getLocalStorage } from "@/utils/storage"
 
 export interface Success {
   status: string // always ok
@@ -18,16 +18,41 @@ const axios = Axios.create({
   },
 })
 
-axios.interceptors.request.use((config) => {
-  const token = getLocalStorage("token")
-  if (token) {
-    config.headers = {
-      ...(config.headers ?? {}),
-      Authorization: token,
+axios.interceptors.request.use(
+  (config) => {
+    const token = getLocalStorage("token")
+    if (token) {
+      config.headers = {
+        ...(config.headers ?? {}),
+        Authorization: token,
+      }
     }
-  }
-  return config
-})
+    return config
+  },
+  (err) => {
+    return Promise.reject(err)
+  },
+)
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const { response } = error as AxiosError
+    if (response) {
+      const { status } = response
+      if (status === 401) {
+        clearLocalStorage()
+        const { pathname } = location
+        location.href = "/user/login?from=" + pathname
+      } else if (status === 403) {
+        location.href = "/403"
+      } else if (status >= 500) {
+        location.href = "/500"
+      }
+    }
+    return Promise.reject(error)
+  },
+)
 
 export class Api {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
