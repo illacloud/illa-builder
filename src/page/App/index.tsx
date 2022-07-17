@@ -61,13 +61,14 @@ export const Editor: FC = () => {
   const currentUser = useSelector(getCurrentUser)
 
   useEffect(() => {
-    Connection.enterRoom(
-      "app",
-      appId ?? "",
-      (loading) => {},
-      (errorState) => {},
-      (room) => {},
-    )
+    if (currentUser != null && currentUser.userId != 0) {
+      Connection.enterRoom(
+        "app",
+        appId ?? "",
+        (loading) => {},
+        (errorState) => {},
+      )
+    }
     return () => {
       Connection.leaveRoom("app", appId ?? "")
     }

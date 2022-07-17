@@ -57,8 +57,7 @@
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
     "use-bus": "^2.5.1",
-    "uuid": "^8.3.2",
-    "ws": "^8.7.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
