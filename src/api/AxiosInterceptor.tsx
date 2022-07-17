@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect } from "react"
 import { AxiosResponse } from "axios"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Api } from "./base"
 import { removeLocalStorage } from "@/utils/storage"
 
@@ -18,6 +18,8 @@ export const AxiosInterceptor: FC<{ children: JSX.Element }> = ({
       if (error.response.status === 401) {
         removeLocalStorage("token")
         navigate("/user/login", { replace: true, state: { from: location } })
+      } else if (error.response.status === 403) {
+        navigate(`/403`)
       } else if (error.response.status >= 500) {
         navigate(`/500`)
       }
