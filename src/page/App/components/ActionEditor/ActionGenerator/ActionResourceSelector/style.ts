@@ -9,7 +9,7 @@ export const containerStyle = css`
 export const titleStyle = css`
   padding: 24px 0 16px 0;
   font-size: 20px;
-  font-weight: 5000;
+  font-weight: 500;
   text-align: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
@@ -38,12 +38,12 @@ export const resourceItemContainerStyle = css`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
 
 export const resourceItemSelectedStyle = css`
-  background: ${globalColor(`--${illaPrefix}-techPurple-06`)};
+  background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
 `
 
 export const resourceItemIconStyle = css`
@@ -53,6 +53,7 @@ export const resourceItemIconStyle = css`
 export const resourceItemTitleStyle = css`
   margin-left: 8px;
   flex: 1;
+  font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 

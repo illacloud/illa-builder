@@ -8,10 +8,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "yarn build-all && vite --mode cloud",
-    "build": "vite build --mode cloud",
-    "build-self": "vite build --mode self",
+    "build": "NODE_OPTIONS=--max-old-space-size=8192 yarn build-all && vite build --mode cloud",
+    "build-self": "yarn build-all && vite build --mode self",
     "build-all": "yarn turbo run build",
-    "preview": "vite preview",
+    "preview": "yarn build-all && vite preview",
     "test": "npx patch-package && yarn build-all && npx jest && npx cypress run-ct -b chrome",
     "report:combined": "sh ./scripts/merge-coverage.sh",
     "posttest": "yarn report:combined",
@@ -26,17 +26,24 @@
     "@illa-design/react": "*",
     "@lezer/common": "^1.0.0",
     "@reduxjs/toolkit": "^1.8.1",
+    "@types/jshint": "^2.12.1",
     "@uiw/react-codemirror": "^4.8.1",
+    "acorn": "^8.7.1",
+    "acorn-walk": "^8.2.0",
     "axios": "^0.26.1",
     "codemirror": "^5.65.5",
     "framer-motion": "^6.3.0",
     "i18next": "^21.6.16",
     "immer": "^9.0.14",
+    "jshint": "^2.13.4",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",
+    "react-hotkeys-hook": "^3.4.6",
     "react-i18next": "^11.16.7",
     "react-json-view": "^1.21.3",
     "react-redux": "^8.0.1",
@@ -46,6 +53,7 @@
     "redux-logger": "^3.0.6",
     "scenejs": "^1.6.0",
     "tern": "^0.24.3",
+    "toposort": "^2.0.2",
     "use-bus": "^2.5.1",
     "uuid": "^8.3.2",
     "ws": "^8.7.0"
@@ -66,9 +74,11 @@
     "@types/codemirror": "^5.60.5",
     "@types/jest": "^27.4.1",
     "@types/react": "^17.0.2",
+    "@types/react-custom-scrollbars": "^4.0.10",
     "@types/react-dom": "^17.0.2",
     "@types/redux-logger": "^3.0.9",
     "@types/sinon": "^10.0.11",
+    "@types/toposort": "^2.0.3",
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",
     "@uiw/react-color-alpha": "^1.0.10",
@@ -80,7 +90,6 @@
     "husky": "^7.0.4",
     "jest": "^27.4.1",
     "jest-environment-jsdom": "^27.4.1",
-    "msw": "^0.41.0",
     "prettier": "^2.5.1",
     "sinon": "^13.0.1",
     "ts-jest": "^27.1.5",
@@ -89,7 +98,12 @@
     "vite": "^2.9.9",
     "vite-plugin-chunk-split": "^0.2.2",
     "vite-plugin-istanbul": "^2.7.3",
-    "vite-plugin-svgr": "^2.1.0"
+    "vite-plugin-svgr": "^2.1.0",
+    "chart.js": "^3.7.1",
+    "chartjs-adapter-moment": "^1.0.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
+    "react-chartjs-2": "^4.1.0",
+    "moment": "^2.29.3"
   },
   "workspaces": [
     "src/*",
@@ -101,8 +115,5 @@
     "reporter": [
       "lcov"
     ]
-  },
-  "msw": {
-    "workerDirectory": "public"
   }
 }

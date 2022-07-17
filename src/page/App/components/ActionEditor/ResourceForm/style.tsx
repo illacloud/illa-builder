@@ -14,13 +14,3 @@ export const titleStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   text-align: center;
 `
-
-export const closeIconStyle = css`
-  position: absolute;
-  line-height: 0;
-  font-size: 14px;
-  top: 32.8px;
-  right: 30.8px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  cursor: pointer;
-`

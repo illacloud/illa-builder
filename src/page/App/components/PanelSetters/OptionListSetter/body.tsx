@@ -1,78 +1,25 @@
-import { FC, useCallback, useContext, useEffect } from "react"
-import { OptionListSetterContext } from "./context/optionListContext"
+import { FC, useContext } from "react"
 import { ListItem } from "./listItem"
-import { v4 } from "uuid"
+import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+import { EmptyBody } from "@/page/App/components/PanelSetters/OptionListSetter/empty"
 
 export const ListBody: FC = () => {
-  const { options, handleUpdateDsl, widgetId } = useContext(
-    OptionListSetterContext,
-  )
+  const { optionItems } = useContext(OptionListSetterContext)
 
-  if (!options || !Array.isArray(options)) return null
-
-  useEffect(() => {
-    handleUpdateDsl(options)
-  }, [])
-
-  const handleUpdateItem = useCallback(
-    (index: number, value: Record<string, any>) => {
-      const newOptions = [...options]
-      newOptions[index] = {
-        ...newOptions[index],
-        ...value,
-      }
-      handleUpdateDsl(newOptions)
-    },
-    [options, handleUpdateDsl],
-  )
-
-  const handleCopyItem = useCallback(
-    (index) => {
-      const newOptions = [...options]
-      const newItem = { ...newOptions[index] }
-      newItem.id = `option-${v4()}`
-      newOptions.splice(index + 1, 0, newItem)
-      handleUpdateDsl(newOptions)
-    },
-    [options, handleUpdateDsl],
-  )
-
-  const handleDeleteItem = useCallback(
-    (index) => {
-      const newOptions = [...options]
-      newOptions.splice(index, 1)
-      handleUpdateDsl(newOptions)
-    },
-    [options, handleUpdateDsl],
-  )
-
-  const moveItem = useCallback(
-    (dragIndex: number, hoverIndex: number) => {
-      const dragOptionItem = options[dragIndex]
-      const newOptions = [...options]
-      newOptions.splice(dragIndex, 1)
-      newOptions.splice(hoverIndex, 0, dragOptionItem)
-      handleUpdateDsl(newOptions)
-    },
-    [options, handleUpdateDsl],
-  )
+  if (!optionItems || !Array.isArray(optionItems) || optionItems.length === 0)
+    return <EmptyBody />
 
   return (
     <>
-      {options.map((item, index) => {
-        const { label, value, disabled, id } = item
+      {optionItems.map((item, index) => {
+        const { label, value, id } = item
         return (
           <ListItem
-            key={`${widgetId}-${id}`}
+            key={id}
+            id={id}
             label={label}
             value={value}
-            disabled={disabled}
             index={index}
-            id={id}
-            moveItem={moveItem}
-            handleUpdateItem={handleUpdateItem}
-            handleCopyItem={handleCopyItem}
-            handleDeleteItem={handleDeleteItem}
           />
         )
       })}

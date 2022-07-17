@@ -1,11 +1,8 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
-const publicPaddingCss = css`
-  padding: 0 16px;
-`
-
-export const optionListHeaderCss = css`
+export const optionListHeaderStyle = css`
   width: 100%;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   display: flex;
@@ -15,10 +12,10 @@ export const optionListHeaderCss = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   font-weight: 500;
   box-sizing: border-box;
-  ${publicPaddingCss}
+  ${publicPaddingStyle}
 `
 
-export const headerActionButtonCss = css`
+export const headerActionButtonStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,17 +24,17 @@ export const headerActionButtonCss = css`
   font-weight: 400;
 `
 
-export const addIconCss = css`
+export const addIconStyle = css`
   margin-right: 4px;
 `
 
-export const ListCss = css`
+export const ListStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-  margin: 16px 16px 0 16px;
+  margin: 0 16px;
   border-radius: 8px;
 `
 
-export const optionListItemCss = css`
+export const optionListItemStyle = css`
   display: flex;
   justify-content: space-between;
   padding-right: 16px;
@@ -52,70 +49,31 @@ export const optionListItemCss = css`
   }
 `
 
-export const labelNameAndIconCss = css`
+export const labelNameAndIconStyle = css`
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
 `
 
-export const labelNameWrapper = css`
+export const labelNameWrapperStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const movableIconWrapperCss = css`
+export const movableIconWrapperStyle = css`
   opacity: 0;
   cursor: grab;
   display: flex;
   align-items: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
-export const modalWrapperCss = css`
-  width: 400px;
-  padding: 0 4px;
-`
-
-export const modalHeaderCss = css`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  height: 40px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
-  font-size: 16px;
-  font-weight: 500;
-
-  span {
-    display: flex;
-    align-items: center;
-  }
-`
-
-export const labelAndInputWrapperCss = css`
+export const emptyEmptyBodyStyle = css`
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
-  justify-content: space-between;
-`
-
-export const modalInputWrapperCss = css`
-  width: 240px;
-`
-
-export const modalLabelCss = css`
-  font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-`
-
-export const modalCloseIconCss = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  cursor: pointer;
-`
-
-export const listWrapperCss = css`
+  justify-content: center;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: 12px 0;
+  height: 40px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `

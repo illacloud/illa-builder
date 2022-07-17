@@ -4,6 +4,9 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const containerStyle: SerializedStyles = css`
   box-sizing: border-box;
   width: 100%;
+  & > div {
+    height: 48px;
+  }
 `
 
 export const navBarLogoContainerStyle: SerializedStyles = css`
@@ -36,7 +39,6 @@ export const settingBodyStyle = css`
   width: 200px;
   height: 120px;
   border-radius: 8px;
-  box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
@@ -50,17 +52,14 @@ export const coverTriggerStyle = css`
 `
 
 export const settingUserStyle = css`
-  padding: 0 8px;
-`
-
-export const userAvatarStyle = css`
-  margin: 8px;
+  padding: 8px 16px;
 `
 
 export const usernameStyle = css`
   font-size: 12px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  margin-left: 8px;
 `
 
 export const settingListStyle = css`
@@ -72,4 +71,20 @@ export const settingItemStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   cursor: pointer;
+  &: hover {
+    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  }
 `
+
+export function applyUserAvatarStyle(background: string): SerializedStyles {
+  return css`
+    display: inline-block;
+    background: #${background};
+    color: ${globalColor(`--${illaPrefix}-white-01`)};
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+  `
+}

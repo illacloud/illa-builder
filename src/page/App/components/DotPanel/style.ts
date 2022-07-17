@@ -18,10 +18,12 @@ export function applyScaleStyle(
 }
 
 export function applyChildrenContainerStyle(
+  z: number,
   w: number | null,
   h?: number | null,
 ): SerializedStyles {
   return css`
+    z-index: ${z};
     position: absolute;
     width: ${w}px;
     height: ${h}px;
@@ -29,20 +31,29 @@ export function applyChildrenContainerStyle(
 }
 
 export function applyDotCanvasStyle(
-  edgeWidth: number,
   showDot: boolean,
+  z: number,
+  w: number,
+  h: number,
 ): SerializedStyles {
   return css`
-    z-index: -1;
+    z-index: ${z};
     visibility: ${showDot ? "visible" : "hidden"};
     position: absolute;
+    width: ${w}px;
+    height: ${h}px;
   `
 }
 
-export function applyDragObjectStyle(t: number, l: number): SerializedStyles {
+export function applyDragObjectStyle(
+  t: number,
+  l: number,
+  z: number,
+): SerializedStyles {
   return css`
     position: absolute;
     top: ${t}px;
     left: ${l}px;
+    z-index: ${z};
   `
 }

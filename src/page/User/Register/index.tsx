@@ -21,15 +21,18 @@ import {
   errorMsgStyle,
   errorIconStyle,
   checkboxTextStyle,
+  descriptionStyle,
 } from "@/page/User/style"
-import { TextLink } from "@/page/User/components/TextLink"
 import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { LocationState } from "@/page/User/Login/interface"
+import { setLocalStorage } from "@/utils/storage"
+import { TextLink } from "@/page/User/components/TextLink"
 
 export const Register: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
+  const [errorMsg, setErrorMsg] = useState({ email: "", verificationCode: "" })
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
@@ -43,9 +46,9 @@ export const Register: FC = () => {
     getValues,
     formState: { errors },
   } = useForm<RegisterFields>({
-    mode: "onBlur",
+    mode: "onSubmit",
     defaultValues: {
-      isSubscribe: true,
+      isSubscribed: true,
     },
   })
   const onSubmit: SubmitHandler<RegisterFields> = (data) => {
@@ -55,16 +58,21 @@ export const Register: FC = () => {
         url: "/auth/signup",
         data: {
           verificationToken,
+          language: window.navigator.language,
           ...data,
         },
       },
       (res) => {
+        const token = res.headers["illa-token"]
+        if (!token) return
+        setLocalStorage("token", token, -1)
         dispatch(
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
-            userName: res.data.userName,
+            nickname: res.data.nickname,
             language: "English",
             userAvatar: "",
+            email: res.data.email,
           }),
         )
         navigate((location.state as LocationState)?.from?.pathname ?? "/", {
@@ -72,10 +80,29 @@ export const Register: FC = () => {
         })
         Message.success(t("user.sign_up.tips.success"))
       },
-      () => {
+      (res) => {
         Message.error(t("user.sign_up.tips.fail"))
+        switch (res.data.errorMessage) {
+          case "duplicate email address":
+            setErrorMsg({
+              ...errorMsg,
+              email: t("user.sign_up.error_message.email.registered"),
+            })
+            break
+          case "invalid verification code":
+            setErrorMsg({
+              ...errorMsg,
+              verificationCode: t(
+                "user.sign_up.error_message.verification_code.invalid",
+              ),
+            })
+            break
+          default:
+        }
       },
-      () => {},
+      () => {
+        Message.warning(t("network_error"))
+      },
       (loading) => {
         setSubmitLoading(loading)
       },
@@ -83,7 +110,22 @@ export const Register: FC = () => {
   }
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
-      <header css={formTitleStyle}>{t("user.sign_up.title")}</header>
+      <header css={gridItemStyle}>
+        <div css={formTitleStyle}>{t("user.sign_up.title")}</div>
+        <div css={descriptionStyle}>
+          <Trans
+            i18nKey="user.sign_up.description.login"
+            t={t}
+            components={[
+              <TextLink
+                onClick={() => {
+                  navigate("/user/login")
+                }}
+              />,
+            ]}
+          />
+        </div>
+      </header>
       <section css={gridFormFieldStyle}>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>
@@ -91,13 +133,14 @@ export const Register: FC = () => {
           </label>
           <div css={gridValidStyle}>
             <Controller
-              name="username"
+              name="nickname"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
                   size="large"
-                  error={!!errors.username}
+                  error={!!errors.nickname}
                   variant="fill"
                   placeholder={t("user.sign_up.placeholder.username")}
                 />
@@ -114,10 +157,10 @@ export const Register: FC = () => {
                 },
               }}
             />
-            {errors.username && (
+            {errors.nickname && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.username.message}
+                {errors.nickname.message}
               </div>
             )}
           </div>
@@ -131,8 +174,15 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  onChange={(value, event) => {
+                    field.onChange(event)
+                    if (errorMsg.email !== "") {
+                      setErrorMsg({ ...errorMsg, email: "" })
+                    }
+                  }}
+                  borderColor="techPurple"
                   size="large"
-                  error={!!errors.email}
+                  error={!!errors.email || !!errorMsg.email}
                   variant="fill"
                   placeholder={t("user.sign_up.placeholder.email")}
                 />
@@ -147,30 +197,42 @@ export const Register: FC = () => {
                 },
               }}
             />
-            {errors.email && (
+            {(errors.email || errorMsg.email) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.email.message}
+                {errors.email?.message || errorMsg.email}
               </div>
             )}
           </div>
         </section>
         <section css={gridItemStyle}>
-          <label css={formLabelStyle}>{t("user.sign_up.fields.verify")}</label>
+          <label css={formLabelStyle}>
+            {t("user.sign_up.fields.verification_code")}
+          </label>
           <div css={gridValidStyle}>
             <Controller
-              name="verify"
+              name="verificationCode"
               control={control}
               render={({ field }) => (
                 <Input
                   {...field}
+                  borderColor="techPurple"
+                  onChange={(value, event) => {
+                    field.onChange(event)
+                    if (errorMsg.verificationCode !== "") {
+                      setErrorMsg({ ...errorMsg, verificationCode: "" })
+                    }
+                  }}
                   size="large"
-                  error={!!errors.verify}
+                  error={
+                    !!errors.verificationCode || !!errorMsg.verificationCode
+                  }
                   variant="fill"
                   suffix={{
                     render: showCountDown ? (
                       <Countdown
                         value={Date.now() + 1000 * 60}
+                        mode="builder"
                         now={Date.now()}
                         format="ss"
                         onFinish={() => {
@@ -184,19 +246,30 @@ export const Register: FC = () => {
                         onClick={async () => {
                           const res = await trigger("email")
                           if (res) {
+                            setShowCountDown(true)
                             Api.request<{ verificationToken: string }>(
                               {
                                 method: "POST",
                                 url: "/auth/verification",
-                                data: { email: getValues("email") },
+                                data: {
+                                  email: getValues("email"),
+                                  usage: "signup",
+                                },
                               },
                               (res) => {
+                                Message.success(
+                                  t("user.sign_up.tips.verification_code"),
+                                )
                                 setVerificationToken(res.data.verificationToken)
-                                Message.success(t("user.sign_up.tips.verify"))
-                                setShowCountDown(true)
                               },
-                              () => {},
-                              () => {},
+                              () => {
+                                Message.error(t("user.sign_up.tips.fail_sent"))
+                                setShowCountDown(false)
+                              },
+                              () => {
+                                Message.warning(t("network_error"))
+                                setShowCountDown(false)
+                              },
                               () => {},
                             )
                           }
@@ -206,17 +279,19 @@ export const Register: FC = () => {
                       </Link>
                     ),
                   }}
-                  placeholder={t("user.sign_up.placeholder.verify")}
+                  placeholder={t("user.sign_up.placeholder.verification_code")}
                 />
               )}
               rules={{
-                required: t("user.sign_up.error_message.verify.require"),
+                required: t(
+                  "user.sign_up.error_message.verification_code.require",
+                ),
               }}
             />
-            {errors.verify && (
+            {(errors.verificationCode || errorMsg.verificationCode) && (
               <div css={errorMsgStyle}>
                 <WarningCircleIcon css={errorIconStyle} />
-                {errors.verify.message}
+                {errors.verificationCode?.message || errorMsg.verificationCode}
               </div>
             )}
           </div>
@@ -232,6 +307,7 @@ export const Register: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
+                  borderColor="techPurple"
                   size="large"
                   error={!!errors.password}
                   variant="fill"
@@ -262,7 +338,7 @@ export const Register: FC = () => {
       <section css={gridItemStyle}>
         <div>
           <Controller
-            name="isSubscribe"
+            name="isSubscribed"
             control={control}
             render={({ field }) => (
               <Checkbox
@@ -278,24 +354,15 @@ export const Register: FC = () => {
           />
         </div>
       </section>
-      <section css={gridFormFieldStyle}>
-        <Button
-          colorScheme="techPurple"
-          size="large"
-          buttonRadius="8px"
-          loading={submitLoading}
-          fullWidth
-        >
-          {t("user.sign_up.actions.create")}
-        </Button>
-        <span css={checkboxTextStyle}>
-          <Trans
-            i18nKey="user.sign_up.description.policy"
-            t={t}
-            components={[<TextLink />, <TextLink />]}
-          />
-        </span>
-      </section>
+      <Button
+        colorScheme="techPurple"
+        size="large"
+        buttonRadius="8px"
+        loading={submitLoading}
+        fullWidth
+      >
+        {t("user.sign_up.actions.create")}
+      </Button>
     </form>
   )
 }

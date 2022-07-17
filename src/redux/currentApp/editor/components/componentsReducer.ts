@@ -1,34 +1,66 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
+import { cloneDeep } from "lodash"
 import {
   ComponentNode,
   ComponentsState,
-  deleteComponentNodePayload,
-  updateComponentDynamicStringsPayload,
-  updateComponentPropsPayload,
+  DeleteComponentNodePayload,
+  UpdateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
-// TODO: @longbo file path error
-// import { ComponentNodeDisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
+import { isObject } from "@/utils/typeHelper"
+import {
+  ComponentCopyPayload,
+  ComponentDraggingPayload,
+  ComponentDropPayload,
+  ComponentResizePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
 
-export const removeComponentReducer: CaseReducer<
+export const updateComponentReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<ComponentNode>
+  PayloadAction<ComponentsState>
 > = (state, action) => {
-  const removeNode = action.payload
-  if (state.rootDsl == null || removeNode.parentNode == null) {
-    return
-  } else {
-    const parentNode = searchDsl(state.rootDsl, removeNode.parentNode)
-    if (parentNode != null) {
-      const children = parentNode.childrenNode
-      if (children != null) {
-        delete children[removeNode.displayName]
-      }
-    }
+  return action.payload
+}
+
+export const updateComponentDraggingState: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentDraggingPayload>
+> = (state, action) => {
+  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  if (node != null) {
+    node.isDragging = action.payload.isDragging
   }
 }
 
-export const addOrUpdateComponentReducer: CaseReducer<
+export const updateComponentResizeState: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentResizePayload>
+> = (state, action) => {
+  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  if (node != null) {
+    node.isResizing = action.payload.isResizing
+  }
+}
+
+export const copyComponentNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentCopyPayload>
+> = (state, action) => {
+  const parentNode = searchDsl(
+    state.rootDsl,
+    action.payload.componentNode.parentNode,
+  )
+  if (parentNode != null) {
+    parentNode.childrenNode.push({
+      ...action.payload.componentNode,
+      displayName: action.payload.newDisplayName,
+      y: action.payload.componentNode.y + action.payload.componentNode.h,
+    })
+  }
+}
+
+export const addComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode>
 > = (state, action) => {
@@ -38,58 +70,72 @@ export const addOrUpdateComponentReducer: CaseReducer<
   } else {
     const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
     if (parentNode != null) {
-      if (parentNode.childrenNode == null) {
-        parentNode.childrenNode = {}
-      }
-      parentNode.childrenNode[dealNode.displayName] = dealNode
+      parentNode.childrenNode.push(dealNode)
+    }
+  }
+}
+
+export const updateSingleComponentReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentDropPayload>
+> = (state, action) => {
+  const dealNode = action.payload.componentNode
+  const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
+  if (parentNode != null) {
+    const index = parentNode.childrenNode.findIndex((value, index, obj) => {
+      return value.displayName === dealNode.displayName
+    })
+    if (index > -1) {
+      parentNode.childrenNode[index] = dealNode
     }
   }
 }
 
 export const deleteComponentNodeReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<deleteComponentNodePayload>
+  PayloadAction<DeleteComponentNodePayload>
 > = (state, action) => {
-  const { displayName, parentDisplayName } = action.payload
+  const { displayNames } = action.payload
   if (state.rootDsl == null) {
     return
   }
   const rootNode = state.rootDsl
-  const parentNode = searchDsl(rootNode, parentDisplayName)
-  if (parentNode == null) {
-    return
-  }
-  const childrenNodes = parentNode.childrenNode
-  if (childrenNodes == null) {
-    return
-  }
-  delete childrenNodes[displayName]
+  displayNames.forEach((value, index) => {
+    const searchNode = searchDsl(rootNode, value)
+    if (searchNode != null) {
+      const parentNode = searchDsl(rootNode, searchNode.parentNode)
+      if (parentNode == null) {
+        return
+      }
+      const childrenNodes = parentNode.childrenNode
+      if (childrenNodes == null) {
+        return
+      }
+      childrenNodes.splice(
+        childrenNodes.findIndex((value, index, obj) => {
+          return value.displayName === searchNode.displayName
+        }),
+        1,
+      )
+    }
+  })
 }
 
 export const updateComponentPropsReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<updateComponentPropsPayload>
+  PayloadAction<UpdateComponentPropsPayload>
 > = (state, action) => {
-  const { displayName, newProps } = action.payload
-  const node = searchDsl(state.rootDsl, displayName)
-  if (!node) return
-  const oldProps = node.props || {}
-  node.props = {
-    ...oldProps,
-    ...newProps,
+  const { displayName, updateSlice } = action.payload
+  if (!isObject(updateSlice) || !displayName) {
+    return
   }
-}
-
-export const updateComponentDynamicStringsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<updateComponentDynamicStringsPayload>
-> = (state, action) => {
-  const { displayName, dynamicStrings } = action.payload
   const node = searchDsl(state.rootDsl, displayName)
   if (!node) return
-  if (!node.panelConfig)
-    node.panelConfig = {
-      dynamicStrings: [],
-    }
-  node.panelConfig.dynamicStrings = dynamicStrings
+  const widgetProps = node.props || {}
+  const clonedWidgetProps = cloneDeep(widgetProps)
+  node.props = getNewWidgetPropsByUpdateSlice(
+    displayName,
+    updateSlice,
+    clonedWidgetProps,
+  )
 }

@@ -1,33 +1,38 @@
 {
   "deploy": "Deploy",
   "preview": "Preview",
+  "exit_preview": "Exit Preview",
   "edit": "Edit",
+  "edit_at": "Edited at",
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
   },
+  "dont_need_save": "ILLA will continue to try auto-saving your work.",
   "apps": "Apps",
-  "all_apps": "All Apps",
   "resources": "Resources",
   "create_new": "Create New",
   "create_new_app": "Create New",
   "share": "Share",
   "rename": "Rename",
   "duplicate": "Duplicate",
-  "network_error": "Network Error",
+  "network_error": "Network disconnected. Please check this device's network",
   "create_fail": "Create fail",
   "remove_fail": "Remove fail",
   "retry": "Retry",
   "btn": {
     "choose_file": "Choose a file"
   },
+  "back": "back",
+  "edit_success": "edit success！",
   "user": {
+    "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
       "title": "Sign up",
       "fields": {
         "username": "Username",
         "email": "Email",
-        "verify": "Verification code",
+        "verification_code": "Verification code",
         "password": "Password"
       },
       "actions": {
@@ -35,18 +40,20 @@
         "create": "Create Account"
       },
       "description": {
+        "login": "Already have an account? <0>Sign in</0>",
         "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail",
-        "verify": "Verification code sent"
+        "success": "Signed up successfully",
+        "fail": "Failed to sign up",
+        "verification_code": "Verification code sent",
+        "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "username": "Enter your username",
         "email": "Enter your email",
-        "verify": "Please enter verification code",
+        "verification_code": "Please enter verification code",
         "password": "Create a password(6~20 characters)"
       },
       "error_message": {
@@ -63,7 +70,7 @@
           "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         },
-        "verify": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
@@ -85,8 +92,8 @@
         "policy": "By clicking Sign in, I agree to <0>Privacy Policy</0> and <1>terms</1>"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail"
+        "success": "Signed in successfully",
+        "fail": "Failed to sign in"
       },
       "placeholder": {
         "email": "Enter your email",
@@ -110,22 +117,23 @@
       "title": "Reset Password",
       "fields": {
         "email": "Email",
-        "password": "New Password",
-        "verify": "Verification code"
+        "newPassword": "New Password",
+        "verification_code": "Verification code"
       },
       "actions": {
         "send": "Send code",
         "reset": "Reset"
       },
       "tips": {
-        "success": "Success",
-        "fail": "Fail",
-        "verify": "Verification code sent"
+        "success": "Reset password successfully",
+        "fail": "Failed to reset password",
+        "verification_code": "Verification code sent",
+        "fail_sent": "Failed to send verification code"
       },
       "placeholder": {
         "email": "Enter your email",
-        "verify": "Please enter verification code",
-        "password": "Enter your new password(6~20 characters)"
+        "verification_code": "Please enter verification code",
+        "newPassword": "Enter your new password(6~20 characters)"
       },
       "error_message": {
         "email": {
@@ -133,12 +141,12 @@
           "invalid_pattern": "Please enter a valid email address",
           "registered": "The email address doesn't associate with an account."
         },
-        "verify": {
+        "verification_code": {
           "require": "Please enter verification code",
           "invalid": "Invalid verification code",
           "expired": "Verification code expired"
         },
-        "password": {
+        "newPassword": {
           "require": "Please enter password",
           "length": "The password must be 6~20 characters"
         }
@@ -148,9 +156,9 @@
   "editor": {
     "action": {
       "type": {
-        "database": "Databases",
-        "api": "Apis",
-        "js_transformer": "Javascript Transformer"
+        "database": "Database",
+        "api": "API",
+        "js_transformer": "JavaScript Transformer"
       },
       "action_list": {
         "title": "Action List",
@@ -161,25 +169,47 @@
           "new": "New",
           "close": "close"
         },
-        "menu": {
-          "resource_action": "Resource action",
-          "javascript_transformer": "JavaScript transformer"
-        },
         "contextMenu": {
           "delete": "Delete",
-          "duplicate": "Duplicate"
+          "duplicate": "Duplicate",
+          "rename": "Rename"
         },
         "tips": {
           "not_found": "Sorry, No Search result",
           "empty": "Add a action to begin working with data from a connected resource."
         },
         "message": {
-          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?"
+          "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
+          "name_already_exist": "Already exists",
+          "please_input_name": "Please input name",
+          "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter",
+          "load_action_list_fail": "Get Action list fail: {{message}}",
+          "load_resource_fail": "Get resource list fail: {{message}}"
         },
         "action_generator": {
           "selector": {
             "title": "Select action type"
+          },
+          "title": {
+            "choose_resource": "Choose a resource "
+          },
+          "btns": {
+            "back": "Back",
+            "new_resource": "New Resource",
+            "create_action": "Create Action"
           }
+        },
+        "runtime": {
+          "total": "Total",
+          "prepare_query": "Prepare query",
+          "backend": "Backend",
+          "execute_resource": "execute resource",
+          "transfer_data": "transfer data",
+          "frontend": "Frontend",
+          "handle_response": "handle response",
+          "transformer": "transformer",
+          "post_processing": "post processing",
+          "response_size": "Response size"
         }
       },
       "panel": {
@@ -189,12 +219,12 @@
             "on_change": "Run action automatically when inputs change"
           },
           "resource": {
-            "new": "Create a new resource",
-            "rest_query": "RESTQuery(restapi)"
+            "new": "Create a new resource"
           }
         },
         "btn": {
           "run": "Run",
+          "save": "Save",
           "save_and_run": "Save&Run",
           "disable": "Disable",
           "enable": "Enable",
@@ -252,6 +282,9 @@
         },
         "my_sql": {
           "name": "MySQL",
+          "title": {
+            "advanced_option": "Advanced Options"
+          },
           "label": {
             "name": "Name",
             "hostname_port": "Hostname/Port",
@@ -319,29 +352,41 @@
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
             "access_token_lifespan": "Access Token\n lifespan(optiinal)",
-            "enable_auth_verification_endpoint": "Enable an auth verification endpoint"
+            "enable_auth_verification_endpoint": "Enable an auth verification endpoint",
+            "bearerToken": "Bearer Token"
           },
           "tip": {
             "get_req_auto_run": "(GET REQ) WILL RUN AUTOMATICALLY WHENEVER A PARAMETER CHANGES.",
-            "name": "The name for resource when creating queries in the ILLA.",
+            "name": "The name for resource when creating actions in the ILLA.",
             "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
             "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "action_url_path": "api/v2/endpoint.json",
+            "api": "i.e.\"Internal Admin API\"",
+            "database": "i.e.\"Users DB(readonly)\"",
+            "action_url_path_with_base_url": "api/v2/endpoint.json",
+            "action_url_path": "http://www.api.com/api/v2/endpoint.json",
             "base_url": "Use the absolute URL (e.g https://example.com)",
             "username": "username",
             "password": "password",
             "oauth_callback_url": "https://oauth.retool.com/oauth/user/oauthcallback",
             "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
             "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
-            "access_token_lifespan": "Token Lifespan in seconds"
+            "access_token_lifespan": "Token Lifespan in seconds",
+            "param_key": "key",
+            "param_value": "value"
           },
           "option": {
             "authentication": {
-              "basicAuth": "Basic Auth"
+              "none": "None",
+              "basic_auth": "Basic Auth",
+              "bearer": "Bearer",
+              "oauth2": "OAuth 2.0"
             }
+          },
+          "btns": {
+            "new": "New"
           }
         },
         "postgres": {
@@ -377,12 +422,20 @@
         "data": "Data",
         "container": "Container and form",
         "navigation": "Navigation"
-      }
+      },
+      "empty_tip": "Sorry, No search result"
     },
     "inspect": {
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it.",
+      "header": {
+        "action_menu": {
+          "view_documentation": "View documentation",
+          "reset_state": "Reset state",
+          "delete": "Delete"
+        }
+      },
       "setter_group": {
         "basic": "BASIC",
         "label": "LABEL",
@@ -469,12 +522,65 @@
         "show_notification": "Show notification",
         "set_temporary_state": "Set temporary state",
         "text_align": "Text align",
-        "text_size": "Text size"
+        "text_size": "Text size",
+        "start_date": "Start date",
+        "end_data": "End date",
+        "group_layout": "Group layout",
+        "config_type": "Config type",
+        "data_source": "Data source",
+        "chart_type": "Chart type",
+        "x_values": "X-axis Values",
+        "group_by": "Group by",
+        "datasets": "Datasets",
+        "dataset_config": "Dataset config",
+        "title": "Title",
+        "x_axis_title": "X-axis title",
+        "x_axis_type": "X-axis type",
+        "y_axis_title": "Y-axis title",
+        "legend_position": "Legend position",
+        "dataset": {
+          "name": "Dataset name",
+          "value": "Dataset values",
+          "remove": "Remove dataset"
+        }
       },
       "setter_default_value": {
         "solid": "Solid",
         "outline": "Outline"
+      },
+      "setter_content": {
+        "option_list": {
+          "action_menu": {
+            "delete": "Delete",
+            "duplicate": "Duplicate"
+          },
+          "list_no_label": "No label"
+        },
+        "list_setter": {
+          "reset": "Reset"
+        },
+        "event_handler_list": {
+          "empty": "Trigger queries, control components, or call other APIs in response to component events."
+        }
       }
+    },
+    "context_menu": {
+      "duplicate": "Duplicate",
+      "delete": "Delete"
+    },
+    "deploy": {
+      "fail": "Deploy fail"
+    },
+    "component": {
+      "delete": "Delete",
+      "delete_title": "Are you sure you want to delete {{ displayName}}?",
+      "delete_content": "Delete it maybe make some bugs，please confirm.",
+      "cancel": "Cancel"
+    },
+    "data_work_space": {
+      "actions_title": "ACTIONS & TRANSFORMERS ",
+      "components_title": "COMPONENTS ",
+      "globals_title": "GLOBALS "
     }
   },
   "widget": {
@@ -517,10 +623,28 @@
       "name": "Rate"
     },
     "date_time": {
-      "name": "Datetime"
+      "name": "Date Time"
     },
     "divider_progress": {
       "name": "Divider"
+    },
+    "editable_text": {
+      "name": "Editable Text"
+    },
+    "check_box_group": {
+      "name": "Checkbox Group"
+    },
+    "number_input": {
+      "name": "Number Input"
+    },
+    "radio_button": {
+      "name": "Radio Button"
+    },
+    "timeline": {
+      "name": "Timeline"
+    },
+    "chart": {
+      "name": "Chart"
     }
   },
   "Setting": "Setting",
@@ -532,16 +656,22 @@
       "delete_content": "This will break Apps and Query Library queries that use this resource",
       "delete_cancel_text": "Cancel",
       "delete_ok_text": "Delete",
-      "delete": "Delete"
+      "delete": "Delete",
+      "error_title": "Error",
+      "error_description": "There is a problem with your operation.",
+      "error_button": "Retry"
     },
     "app": {
+      "all_apps": "All Apps",
       "create_app": "Create App",
+      "rename_app": "Rename App",
       "rename_fail": "Rename fail",
       "duplicate_fail": "Duplicate fail",
       "duplicate_placeholder": "Enter your app name here",
       "trash_success": "Delete successfully",
       "trash_failure": "Delete failure",
-      "name_empty": "name can't be empty"
+      "name_empty": "Please enter a name",
+      "name_existed": "Name already taken"
     },
     "resources": {
       "table_name": "Resource Name",
@@ -549,11 +679,17 @@
       "table_dbname": "Database Name",
       "table_ctime": "Created",
       "trash_success": "Delete successfully",
-      "trash_failure": "Delete failure"
+      "trash_failure": "Delete failure",
+      "create_resources": "Create New",
+      "create_success": "Create Success!",
+      "edit_success": "Edit Success",
+      "create_new_title": "Select resource type"
     }
   },
   "setting": {
     "account": {
+      "email": "Email",
+      "uneditable": "uneditable",
       "title": "ACCOUNT",
       "username": "Username",
       "empty_username": "Please enter your username",
@@ -567,7 +703,7 @@
       "new_password": "New password",
       "confirm_password": "Confirm password",
       "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 3～15 characters",
+      "error_format_password": "Password must be 6～15 characters",
       "error_match_password": "Passwords do not match",
       "submit_button": "Submit"
     },
@@ -575,6 +711,16 @@
       "title": "SETTING",
       "language": "Language",
       "save": "Save Changes"
+    }
+  },
+  "status": {
+    "back": "Back to homepage",
+    "404": {
+      "des": "It seems that the page you were looking for could not be found.",
+      "again": "Refresh"
+    },
+    "500": {
+      "des": "Oops, something went wrong. Please try again later."
     }
   }
 }

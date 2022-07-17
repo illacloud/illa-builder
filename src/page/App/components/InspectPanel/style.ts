@@ -1,6 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Variants } from "framer-motion"
 
 export const publicPaddingStyle = css`
   padding: 0 16px;
@@ -10,7 +9,6 @@ export const publicPaddingStyle = css`
 export const baseLabelStyle = css`
   font-size: 14px;
   font-weight: 500;
-  line-height: 22px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -19,17 +17,28 @@ export const baseLabelStyle = css`
 export const ListLabelStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export function applyLabelStyle(isInList?: boolean): SerializedStyles {
   return isInList ? ListLabelStyle : baseLabelStyle
 }
 
-export function applyLabelTipsStyle(isInList?: boolean): SerializedStyles {
+export function applyLabelTipsStyle(
+  isInList?: boolean,
+  hasLabelDesc?: boolean,
+): SerializedStyles {
   const labelStyle = applyLabelStyle(isInList)
+  const borderBottomStyle = hasLabelDesc
+    ? css`
+        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+      `
+    : css``
   return css`
     ${labelStyle};
-    border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
+    ${borderBottomStyle};
   `
 }
 
@@ -43,51 +52,9 @@ export const panelHeaderWrapperStyle = css`
 `
 
 export const panelHeaderIconWrapperStyle = css`
+  margin-left: 16px;
   cursor: pointer;
 `
-
-export const panelBarHeaderStyle = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 48px;
-  cursor: pointer;
-  ${publicPaddingStyle};
-`
-
-export const panelBarTitleStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-  font-weight: 500;
-  font-size: 14px;
-`
-
-export function applyPanelBarOpenedIconStyle(
-  isOpened: boolean,
-): SerializedStyles {
-  const rotate = isOpened
-    ? ""
-    : css`
-        transform: rotate(180deg);
-      `
-  return css`
-    font-size: 12px;
-    transition: transform 200ms;
-    color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-    ${rotate}
-  `
-}
-
-export const panelBarItemContentStyle = css`
-  font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  position: relative;
-  overflow: hidden;
-`
-
-export const panelBarItemAnimation: Variants = {
-  enter: { height: "auto", opacity: 1 },
-  exit: { height: 0, opacity: 0 },
-}
 
 export function applySetterWrapperStyle(
   isSetterSingleRow: boolean = false,
@@ -106,16 +73,12 @@ export function applySetterWrapperStyle(
 
   const basicStyle = css`
     display: flex;
-    align-items: center;
+    align-items: ${isInList ? "center" : "baseline"};
     justify-content: space-between;
-    height: ${isInList ? "40px" : "48px"};
-  `
-  const wrappedStyle = css`
-    height: auto;
   `
   return css`
     ${publicPaddingStyle};
-    ${isSetterSingleRowWrapper ? wrappedStyle : basicStyle};
+    ${basicStyle};
   `
 }
 
@@ -146,3 +109,30 @@ export const singleSelectedPanelSetterWrapperStyle = css`
   max-height: calc(100vh - 150px);
   overflow-y: auto;
 `
+
+export const ghostEmptyStyle = css`
+  margin-bottom: 8px;
+`
+
+export const applySetterPublicWrapperStyle = (
+  isInList: boolean = false,
+  isSetterSingleRowWrapper: boolean = false,
+) => {
+  const widthStyle = isSetterSingleRowWrapper
+    ? css`
+        width: 100%;
+      `
+    : css``
+  return isInList
+    ? css`
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        ${widthStyle}
+      `
+    : css`
+        padding: 8px 0;
+        min-height: 48px;
+        ${widthStyle}
+      `
+}

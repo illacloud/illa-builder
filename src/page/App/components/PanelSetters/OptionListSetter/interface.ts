@@ -1,34 +1,34 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
+
+export interface OptionItemShape {
+  id: string
+  value?: string
+  label?: string
+  disabled?: string
+}
 
 export interface HeaderProps {
   labelName: string
+  handleAddOption: () => void
 }
 
-export interface ActionsProps {
-  handleUpdateItem: (index: number, value: any) => void
-  handleCopyItem: (index: number) => void
-  handleDeleteItem: (index: number) => void
-}
-
-export interface ListItemProps extends ActionsProps {
-  id: string
-  label: string
-  value: any
-  disabled?: string
+export interface ListItemProps extends Omit<OptionItemShape, "disabled"> {
   index: number
-  moveItem: (dragIndex: number, hoverIndex: number) => void
 }
 
-export interface ModalProps
-  extends Omit<
-    ListItemProps,
-    "id" | "moveItem" | "handleCopyItem" | "handleDeleteItem"
-  > {
-  title: string
-  handleCloseModal: () => void
+export interface DragIconAndLabelProps {
+  index: number
 }
 
-export interface OptionListSetterProps extends BaseSetter {}
+export interface MoreProps {
+  index: number
+}
+
+export interface OptionListSetterProps extends BaseSetter {
+  value: OptionItemShape[]
+  childrenSetter?: PanelFieldConfig[]
+}
 
 export interface DragItem {
   index: number
@@ -38,7 +38,5 @@ export interface DragItem {
 
 export interface ActionMenuProps {
   index: number
-  handleCopyItem: (index: number) => void
   handleCloseMode: () => void
-  handleDeleteItem: (index: number) => void
 }

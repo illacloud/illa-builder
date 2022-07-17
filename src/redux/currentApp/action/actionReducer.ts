@@ -4,7 +4,7 @@ import {
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 
-export const addActionListReducer: CaseReducer<
+export const updateActionListReducer: CaseReducer<
   ActionListState,
   PayloadAction<ActionItem[]>
 > = (_, action) => {
@@ -30,8 +30,20 @@ export const updateActionItemReducer: CaseReducer<
     ...state[targetActionIndex],
     ...action.payload,
   })
+}
 
-  return state
+export const updateActionTemplateReducer: CaseReducer<
+  ActionListState,
+  PayloadAction<any>
+> = (state, action) => {
+  const { actionId } = action.payload
+  let targetActionIndex = state.findIndex(
+    (item: ActionItem) => item.actionId === actionId,
+  )
+  if (targetActionIndex === -1) return
+  const oldAction = state[targetActionIndex]
+  oldAction.actionTemplate = action.payload.actionTemplate
+  state[targetActionIndex] = oldAction
 }
 
 export const removeActionItemReducer: CaseReducer<
@@ -42,5 +54,4 @@ export const removeActionItemReducer: CaseReducer<
     state.findIndex((item: ActionItem) => item.actionId === action.payload),
     1,
   )
-  return state
 }

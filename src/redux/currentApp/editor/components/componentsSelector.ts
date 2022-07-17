@@ -19,14 +19,37 @@ export function searchDsl(
     }
     queue.pop()
     if (head.childrenNode) {
-      Object.keys(head.childrenNode).forEach((key) => {
-        if (head.childrenNode && head.childrenNode[key]) {
-          queue.push(head.childrenNode[key])
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
         }
       })
     }
   }
   return null
+}
+
+export function flattenDsl(rootNode: ComponentNode): {
+  [key: string]: ComponentNode
+} {
+  const queue = [rootNode]
+  let res = {}
+  while (queue.length > 0) {
+    const head = queue[queue.length - 1]
+
+    if (head.containerType !== "EDITOR_DOT_PANEL") {
+      res = { ...res, [head.displayName]: head || {} }
+    }
+    queue.pop()
+    if (head.childrenNode) {
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
+        }
+      })
+    }
+  }
+  return res
 }
 
 export const getCanvas = (state: RootState) => {
@@ -40,5 +63,25 @@ export const getComponentNodeBySingleSelected = createSelector(
       return searchDsl(rootDsl, selectedComponentDisplayNames[0])
     }
     return null
+  },
+)
+
+export const getAllComponentDisplayNameMapProps = createSelector(
+  [getCanvas],
+  (rootDSL) => {
+    if (rootDSL == null) {
+      return null
+    }
+    const components = flattenDsl(rootDSL)
+    if (!components) return
+    const res: Record<string, any> = {}
+    Object.keys(components).forEach((key) => {
+      res[key] = {
+        ...components[key].props,
+        $type: "WIDGET",
+        $widgetType: components[key].type,
+      }
+    })
+    return res
   },
 )

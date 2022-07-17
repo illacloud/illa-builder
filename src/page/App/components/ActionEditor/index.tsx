@@ -1,8 +1,13 @@
-import { FC, useState, useEffect } from "react"
+import { FC, useState, useEffect, useMemo } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
+import { useParams } from "react-router-dom"
+import { Modal } from "@illa-design/modal"
 import { Api } from "@/api/base"
+import { Message } from "@illa-design/message"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -11,26 +16,33 @@ import { Resource } from "@/redux/resource/resourceState"
 import { ActionType } from "@/page/App/components/ActionEditor/ResourceForm/interface"
 import { ActionList } from "@/page/App/components/ActionEditor/ActionList"
 import { ActionEditorPanel } from "@/page/App/components/ActionEditor/ActionEditorPanel"
-import { generateName } from "@/page/App/components/ActionEditor/utils"
 import { ResourceForm } from "./ResourceForm"
+import { ActionEditorLayout } from "./Layout"
 import { ActionEditorProps } from "./interface"
-import { ActionEditorLayout } from "./layout"
 import { ActionEditorContext } from "./context"
 
 export const ActionEditor: FC<ActionEditorProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const params = useParams()
   const [formVisible, setFormVisible] = useState(false)
   const [actionType, setActionType] = useState<ActionType>("select")
-  const [resourceId, setResourceId] = useState("")
   const [isActionDirty, setIsActionDirty] = useState(false)
   const [editorHeight, setEditorHeight] = useState(300)
   const [actionListLoading, setActionListLoading] = useState(false)
+  const [resourceLoading, setResourceLoading] = useState(false)
   const [activeActionItemId, setActiveActionItemId] = useState<string>("")
   const actionItems = useSelector(selectAllActionItem)
+  const { resourceId = "" } = useSelector(getSelectedAction)
+  const baseActionApi = `/apps/${params.appId}/actions`
 
-  function updateSeletedItemId(id: string) {
+  const loading = useMemo(
+    () => actionListLoading || resourceLoading,
+    [actionListLoading, resourceLoading],
+  )
+
+  function updateSelectedItemId(id: string) {
     const { length } = actionItems
 
     if (id !== activeActionItemId) {
@@ -39,18 +51,34 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
     const lastItemId = actionItems[length - 1].actionId
 
-    if (id === lastItemId && length > 1) {
-      updateActiveActionItemId(actionItems[length - 2].actionId)
+    if (id === lastItemId) {
+      if (length === 1) {
+        dispatch(
+          configActions.updateSelectedAction({
+            actionId: "",
+            displayName: "",
+            actionType: "",
+            actionTemplate: {},
+          }),
+        )
+      } else {
+        updateActiveActionItemId(actionItems[length - 2].actionId)
+      }
     } else {
       updateActiveActionItemId(lastItemId)
     }
   }
 
   function updateActiveActionItemId(id: string) {
-    if (
-      isActionDirty &&
-      !confirm(t("editor.action.action_list.message.confirm_switch"))
-    ) {
+    if (isActionDirty) {
+      Modal.confirm({
+        content: t("editor.action.action_list.message.confirm_switch"),
+        onOk: () => {
+          setIsActionDirty(false)
+          setActiveActionItemId(id)
+        },
+      })
+
       return
     }
 
@@ -58,10 +86,10 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     setActiveActionItemId(id)
   }
 
-  function onAddActionItem(data: Partial<ActionItem>) {
+  function onAddActionItem(data: Omit<ActionItem, "actionId">) {
     Api.request(
       {
-        url: "/actions",
+        url: baseActionApi,
         method: "POST",
         data,
       },
@@ -69,7 +97,9 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         dispatch(actionActions.addActionItemReducer(data))
         updateActiveActionItemId(data.actionId)
       },
-      () => {},
+      () => {
+        DisplayNameGenerator.removeDisplayName(data.displayName)
+      },
       () => {},
       (loading) => {
         setActionListLoading(loading)
@@ -77,12 +107,31 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     )
   }
 
-  function onUpdateActionItem(actionId: string, data: Partial<ActionItem>) {
+  function onUpdateActionItem(
+    actionId: string,
+    data: ActionItem & { oldDisplayName?: string },
+  ) {
+    const {
+      resourceId,
+      actionType,
+      displayName,
+      actionTemplate = {},
+      oldDisplayName,
+    } = data
+
+    // cache new name
+    DisplayNameGenerator.updateDisplayName(displayName)
+
     Api.request(
       {
-        url: `/actions/${actionId}`,
+        url: `${baseActionApi}/${actionId}`,
         method: "PUT",
-        data: data,
+        data: {
+          resourceId,
+          actionType,
+          displayName,
+          actionTemplate,
+        },
       },
       ({ data }: { data: ActionItem }) => {
         dispatch(
@@ -90,8 +139,14 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
             ...data,
           }),
         )
+
+        // remove old name from cache
+        oldDisplayName && DisplayNameGenerator.removeDisplayName(oldDisplayName)
       },
-      () => {},
+      () => {
+        // remove new name from cache
+        oldDisplayName && DisplayNameGenerator.removeDisplayName(displayName)
+      },
       () => {},
       (loading) => {
         setActionListLoading(loading)
@@ -103,23 +158,27 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
     const targetItem = actionItems.find((i) => i.actionId === actionId)
 
     if (targetItem) {
-      const actionType = targetItem.actionType
-      const { actionId, ...duplicateActionData } = targetItem
+      const { resourceId, actionType, actionTemplate = {} } = targetItem
+      const displayName = DisplayNameGenerator.getDisplayName(actionType)
 
       Api.request(
         {
-          url: "/actions",
+          url: baseActionApi,
           method: "POST",
           data: {
-            ...duplicateActionData,
-            displayName: generateName(actionType, actionItems),
+            resourceId,
+            actionType,
+            actionTemplate,
+            displayName,
           },
         },
         ({ data }: { data: ActionItem }) => {
           dispatch(actionActions.addActionItemReducer(data))
           onDuplicateActionItem(data?.actionId)
         },
-        () => {},
+        () => {
+          DisplayNameGenerator.removeDisplayName(displayName)
+        },
         () => {},
         (loading) => {
           setActionListLoading(loading)
@@ -131,12 +190,20 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
   function onDeleteActionItem(actionId: string = activeActionItemId) {
     Api.request(
       {
-        url: `/actions/${actionId}`,
+        url: `${baseActionApi}/${actionId}`,
         method: "DELETE",
       },
       ({ data }: { data: { actionId: string } }) => {
-        dispatch(actionActions.removeActionItemReducer(data?.actionId))
-        updateSeletedItemId(data?.actionId)
+        const removedActionId = data.actionId
+        const removedActionName = actionItems.find(
+          ({ actionId }) => actionId === removedActionId,
+        )?.displayName
+
+        removedActionName &&
+          DisplayNameGenerator.removeDisplayName(removedActionName)
+        dispatch(actionActions.removeActionItemReducer(removedActionId))
+        setIsActionDirty(false)
+        updateSelectedItemId(removedActionId)
       },
       () => {},
       () => {},
@@ -148,7 +215,6 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
 
   useEffect(() => {
     const controller = new AbortController()
-
     Api.request(
       {
         method: "GET",
@@ -156,32 +222,40 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
         signal: controller.signal,
       },
       ({ data }: { data: Resource[] }) => {
-        dispatch(resourceActions.addResourceListReducer(data))
+        dispatch(resourceActions.updateResourceListReducer(data))
       },
-      () => {
-        // TODO: handle error
+      (response) => {
+        Message.error(
+          t("editor.action.action_list.message.load_resource_fail", {
+            message: response.data.errorMessage,
+          }),
+        )
       },
       () => {},
-      () => {
-        // TODO: handle loading
+      (loading) => {
+        setResourceLoading(loading)
       },
     )
 
     Api.request(
       {
         method: "GET",
-        url: "/actions",
+        url: baseActionApi,
         signal: controller.signal,
       },
       ({ data }: { data: ActionItem[] }) => {
-        dispatch(actionActions.addActionListReducer(data))
+        dispatch(actionActions.updateActionListReducer(data))
 
         if (data.length) {
           setActiveActionItemId(data[0].actionId)
         }
       },
-      () => {
-        // TODO: handle error
+      (response) => {
+        Message.error(
+          t("editor.action.action_list.message.load_action_list_fail", {
+            message: response.data.errorMessage,
+          }),
+        )
       },
       () => {},
       (loading) => {
@@ -207,6 +281,9 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
       value={{
         editorHeight,
         setActionListLoading,
+        setIsActionDirty,
+        baseActionApi,
+        isActionDirty,
       }}
     >
       <div className={className}>
@@ -216,7 +293,7 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
           }}
           actionList={
             <ActionList
-              loading={actionListLoading}
+              loading={loading}
               isActionDirty={isActionDirty}
               onSelectActionItem={updateActiveActionItemId}
               onUpdateActionItem={onUpdateActionItem}
@@ -235,14 +312,10 @@ export const ActionEditor: FC<ActionEditorProps> = (props) => {
                 setActionType("select")
                 setFormVisible(true)
               }}
-              onEditResource={(id: string) => {
-                setResourceId(id)
+              onEditResource={() => {
                 setActionType("edit")
                 setFormVisible(true)
               }}
-              onChangeResource={setResourceId}
-              onChange={() => setIsActionDirty(true)}
-              onSave={() => setIsActionDirty(false)}
             />
           }
         />

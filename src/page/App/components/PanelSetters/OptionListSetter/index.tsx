@@ -1,26 +1,44 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { OptionListHeader } from "./header"
 import { ListBody } from "./body"
 import { OptionListSetterProps } from "./interface"
-import { OptionListSetterProvider } from "./context/optionListContext"
-import { ListCss } from "./style"
-import { DndProvider } from "react-dnd"
-import { HTML5Backend } from "react-dnd-html5-backend"
+import { ListStyle } from "./style"
+import { generateNewOptionItem } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
+import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
-  const { attrName, panelConfig, handleUpdateDsl } = props
+  const {
+    attrName,
+    handleUpdateDsl,
+    value = [],
+    childrenSetter,
+    widgetDisplayName,
+  } = props
+
+  const handleAddOption = useCallback(() => {
+    const num = value.length + 1
+    const newItem = generateNewOptionItem(num)
+    handleUpdateDsl(attrName, [...value, newItem])
+  }, [value, attrName, handleUpdateDsl])
+
+  if (!Array.isArray(childrenSetter) || childrenSetter.length === 0) {
+    return null
+  }
 
   return (
     <OptionListSetterProvider
-      panelConfig={panelConfig}
-      attrName={attrName}
-      handleUpdateAllDsl={handleUpdateDsl}
+      childrenSetter={childrenSetter}
+      widgetDisplayName={widgetDisplayName}
+      optionItems={value}
+      attrPath={attrName}
+      handleUpdateDsl={handleUpdateDsl}
     >
-      <div css={ListCss}>
-        <OptionListHeader labelName="label" />
-        <DndProvider backend={HTML5Backend}>
-          <ListBody />
-        </DndProvider>
+      <div css={ListStyle}>
+        <OptionListHeader
+          labelName="Options"
+          handleAddOption={handleAddOption}
+        />
+        <ListBody />
       </div>
     </OptionListSetterProvider>
   )

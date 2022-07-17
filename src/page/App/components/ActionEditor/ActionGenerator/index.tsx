@@ -109,7 +109,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       visible={visible}
       footer={false}
       closable
-      maskClosable={false}
       withoutPadding
       onCancel={onClose}
     >

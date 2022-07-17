@@ -1,18 +1,22 @@
 import { FC, useRef, useState, useContext, useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import { css } from "@emotion/react"
-import { RightIcon, CloseIcon, WarningCircleIcon } from "@illa-design/icon"
-import { useResize } from "@/utils/hooks/useResize"
+import { useSelector } from "react-redux"
 import { motion } from "framer-motion"
+import { css } from "@emotion/react"
+import { RightIcon, CloseIcon } from "@illa-design/icon"
+import { useResize } from "@/utils/hooks/useResize"
+import { AxiosResponse } from "axios"
 import {
   actionEditorPanelLayoutWrapper,
   applyContainerHeight,
   applyResizerStyle,
 } from "@/page/App/components/ActionEditor/style"
+import { getSelectedAction } from "@/redux/config/configSelector"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { ActionEditorContext } from "@/page/App/components/ActionEditor/context"
 import { ApiResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/ApiResult"
 import { DatabaseResult } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/DatabaseResult"
-import { ActionResult as ActionResultType } from "@/page/App/components/ActionEditor/ActionEditorPanel/ActionResult/interface"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import {
   resCloseIconStyle,
   applyResContainerStyle,
@@ -20,32 +24,29 @@ import {
   resTitleStyle,
   resContentStyle,
   resSuccessStatusIconStyle,
-  resFailStatusIconStyle,
 } from "./style"
-import { ActionResultProps } from "./interface"
+import { ActionResultProps, ActionResultType } from "./interface"
+import { TransformerResult } from "./TransformerResult"
 
 const CONTAINER_DEFAULT_HEIGHT = 180
 
-function renderStatusNode(error?: boolean) {
-  if (error) {
-    return <WarningCircleIcon css={resFailStatusIconStyle} size="10px" />
-  }
+function renderResult(activeActionItem: ActionItem, result?: ActionResultType) {
+  const { actionType } = activeActionItem
 
-  return <RightIcon css={resSuccessStatusIconStyle} size="10px" />
-}
-
-function renderResult(actionType: string, result?: ActionResultType) {
   switch (actionType) {
-    case "restapi":
-      return <ApiResult result={result} />
-    case "mysql":
-      return <DatabaseResult result={result} />
+    case ACTION_TYPE.REST_API:
+      return <ApiResult result={result as AxiosResponse} />
+    case ACTION_TYPE.MYSQL:
+      return <DatabaseResult result={result as AxiosResponse} />
+    case ACTION_TYPE.TRANSFORMER:
+      return <TransformerResult result={result as string} />
   }
 }
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { onClose, result, error, className, actionType } = props
+  const { onClose, result, className } = props
   const { t } = useTranslation()
+  const activeActionItem = useSelector(getSelectedAction)
   const { editorHeight } = useContext(ActionEditorContext)
   const resultContainerRef = useRef<HTMLDivElement>(null)
   const [containerHeight, setContainerHeight] = useState(
@@ -57,13 +58,10 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
   }
 
   const resizer = useResize("vertical", resultContainerRef, onHeightChange)
-  const title = error
-    ? t("editor.action.result.title.error")
-    : t("editor.action.result.title.success")
-
+  const title = t("editor.action.result.title.success")
   const resultNode = useMemo(
-    () => renderResult(actionType, result),
-    [actionType, result],
+    () => renderResult(activeActionItem, result),
+    [activeActionItem, result],
   )
 
   return (
@@ -89,7 +87,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         )}
       >
         <div css={resHeaderStyle}>
-          {renderStatusNode(error)}
+          <RightIcon css={resSuccessStatusIconStyle} size="10px" />
           <span css={resTitleStyle}>{title}</span>
           <CloseIcon css={resCloseIconStyle} onClick={onClose} />
         </div>

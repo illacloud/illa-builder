@@ -2,19 +2,27 @@ import { RootState } from "@/store"
 import { createSelector } from "@reduxjs/toolkit"
 
 export const isOpenLeftPanel = (state: RootState) => {
-  return state.config.openLeftPanel
+  return state.config.openLeftPanel && state.config.mode === "edit"
 }
 
 export const isOpenBottomPanel = (state: RootState) => {
-  return state.config.openBottomPanel
+  return state.config.openBottomPanel && state.config.mode === "edit"
 }
 
 export const isOpenRightPanel = (state: RootState) => {
-  return state.config.openRightPanel
+  return state.config.openRightPanel && state.config.mode === "edit"
+}
+
+export const getPreviewEdgeWidth = (state: RootState) => {
+  return state.config.mode === "edit" ? 18 : 0
+}
+
+export const getIllaMode = (state: RootState) => {
+  return state.config.mode
 }
 
 export const isShowDot = (state: RootState) => {
-  return state.config.showDot
+  return state.config.showDot && state.config.mode === "edit"
 }
 
 export const getScale = (state: RootState) => {
@@ -37,14 +45,13 @@ export const isSelected = (state: RootState, displayName: string) => {
   )
 }
 
+export const getExpandedKeys = (state: RootState) => {
+  return state.config.expandedKeys
+}
+
 export const getSelectedComponentsDisplayName = createSelector(
   [getSelectedComponents],
   (selectedComponents) => {
     return selectedComponents.map((component) => component.displayName)
   },
-)
-
-export const getIsSelectedComponent = createSelector(
-  [getSelectedComponentsDisplayName],
-  (displayNames) => displayNames.length > 0,
 )

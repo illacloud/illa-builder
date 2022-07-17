@@ -1,3 +1,5 @@
+import { isString } from "@illa-design/system"
+
 const DISPLAY_NAME_REGEX =
   /^([^\x00-\xff]|[a-zA-Z_$])([^\x00-\xff]|[a-zA-Z0-9_$])*$/
 
@@ -35,19 +37,19 @@ export const getType = (value: unknown) => {
 
 export function isWidget(entity: Record<string, any>) {
   return (
-      typeof entity === "object" && "TYPE" in entity && entity.TYPE === "WIDGET"
+    typeof entity === "object" && "TYPE" in entity && entity.TYPE === "WIDGET"
   )
 }
 
 export function isURL(str: string) {
   const pattern = new RegExp(
-      "^((blob:)?https?:\\/\\/)?" + // protocol
+    "^((blob:)?https?:\\/\\/)?" + // protocol
       "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
       "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
       "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
       "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
       "(\\#[-a-z\\d_]*)?$",
-      "i",
+    "i",
   ) // fragment locator
   return !!pattern.test(str)
 }
@@ -63,6 +65,10 @@ export const isValidUrlScheme = (url: string): boolean => {
     // Tel url to directly open phone app prefilled
     url.startsWith("tel:")
   )
+}
+
+export const isInt = (val: string | number): boolean => {
+  return Number.isInteger(val) || (isString(val) && /^\d+$/.test(val))
 }
 
 export const isValidDisplayName = (displayName: string): boolean =>

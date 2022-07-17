@@ -1,54 +1,47 @@
-import { FC } from "react"
-import { Menu } from "@illa-design/menu"
-import { ACTION_TYPE, PanelHeaderActionProps } from "./interface"
+import { FC, useContext } from "react"
 import { useDispatch } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { DropList } from "@illa-design/dropdown"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+import { PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { configActions } from "@/redux/config/configSlice"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 
-const Item = Menu.Item
+const { Item } = DropList
 
 export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
-  const { widgetDisplayName, componentType, widgetParentDisplayName } = props
-  const dispatch = useDispatch()
-  const handleClickMenuItem = (key: string) => {
-    switch (key) {
-      case ACTION_TYPE.VIEW_DOCUMENT: {
-        //  TODO: wait for redux to find componentType map docs;
-        // getComponentDoc(componentType)
-        window.open("https://www.baidu.com")
-        break
-      }
-      case ACTION_TYPE.SWITCH_COMPONENT: {
-        //  TODO: wait to do smt
-        console.log("SwitchComponent")
-        break
-      }
-      case ACTION_TYPE.RESET_STATE: {
-        //  TODO: wait for componentDSL to change redux DSL
-        console.log("ResetState")
-        break
-      }
-      case ACTION_TYPE.DELETE: {
-        dispatch(
-          componentsActions.deleteComponentNodeReducer({
-            displayName: widgetDisplayName,
-            parentDisplayName: widgetParentDisplayName,
-          }),
-        )
-        dispatch(configActions.clearSelectedComponent())
-        break
-      }
-    }
-  }
+  const { widgetDisplayName, componentType } = props
+  const { t } = useTranslation()
 
-  // TODO: wait for design to change style
+  const dispatch = useDispatch()
+
+  const shortcut = useContext(ShortCutContext)
+
   return (
-    <Menu style={{ width: "200px" }} onClickMenuItem={handleClickMenuItem}>
-      <Item title="View documentation" key={ACTION_TYPE.VIEW_DOCUMENT} />
-      <Item title="Switch component" key={ACTION_TYPE.SWITCH_COMPONENT} />
-      <Item title="Reset state" key={ACTION_TYPE.RESET_STATE} />
-      <Item title="delete" key={ACTION_TYPE.DELETE} />
-    </Menu>
+    <DropList width="184px">
+      <Item
+        key="reset"
+        title={t("editor.inspect.header.action_menu.reset_state")}
+        onClick={() => {
+          const defaultProps = widgetBuilder(componentType).config.defaults
+          dispatch(
+            componentsActions.updateComponentPropsReducer({
+              displayName: widgetDisplayName,
+              updateSlice: defaultProps ?? {},
+            }),
+          )
+        }}
+      />
+      <Item
+        key="delete"
+        title={t("editor.inspect.header.action_menu.delete")}
+        fontColor={globalColor(`--${illaPrefix}-red-03`)}
+        onClick={() => {
+          shortcut.showDeleteDialog([widgetDisplayName])
+        }}
+      />
+    </DropList>
   )
 }
 

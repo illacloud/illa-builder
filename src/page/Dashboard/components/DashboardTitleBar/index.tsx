@@ -1,35 +1,40 @@
 import { FC } from "react"
+import { useTranslation } from "react-i18next"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { TabPane, Tabs } from "@illa-design/tabs"
+import { DownIcon } from "@illa-design/icon"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Divider } from "@illa-design/divider"
+import { Dropdown } from "@illa-design/dropdown"
+import { ReactComponent as Logo } from "@assets/illa-logo.svg"
 import {
   containerStyle,
   expandStyle,
   navBarAvatarContainerStyle,
   navBarLogoContainerStyle,
   settingBodyStyle,
-  coverTriggerStyle,
   settingUserStyle,
-  userAvatarStyle,
+  applyUserAvatarStyle,
   usernameStyle,
   settingItemStyle,
   settingListStyle,
 } from "./style"
-import { TabPane, Tabs } from "@illa-design/tabs"
-import { useTranslation } from "react-i18next"
-import { ReactComponent as Logo } from "@assets/illa-logo.svg"
-import { useLocation, useNavigate } from "react-router-dom"
-import { Avatar } from "@illa-design/avatar"
-import { DownIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Trigger } from "@illa-design/trigger"
-import { Divider } from "@illa-design/divider"
+import { clearLocalStorage } from "@/utils/storage"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
-const SettingTrigger: FC = () => {
+const SettingTrigger: FC<{ avatarBgColor: string; avatarText: string }> = (
+  props,
+) => {
+  const { avatarBgColor, avatarText } = props
   const { t } = useTranslation()
-  let navigate = useNavigate()
+  const navigate = useNavigate()
+  const userInfo = useSelector(getCurrentUser)
   return (
     <div css={settingBodyStyle}>
       <div css={settingUserStyle}>
-        <Avatar size="small" css={userAvatarStyle} />
-        <span css={usernameStyle}>OnlyBoA</span>
+        <span css={applyUserAvatarStyle(avatarBgColor)}>{avatarText}</span>
+        <span css={usernameStyle}>{userInfo?.nickname}</span>
       </div>
       <Divider />
       <div css={settingListStyle}>
@@ -44,6 +49,7 @@ const SettingTrigger: FC = () => {
         <div
           css={settingItemStyle}
           onClick={() => {
+            clearLocalStorage()
             navigate("/user/login")
           }}
         >
@@ -56,6 +62,10 @@ const SettingTrigger: FC = () => {
 
 export const DashboardTitleBar: FC = () => {
   const { t } = useTranslation()
+  const userInfo = useSelector(getCurrentUser)
+  const avatarBgColor =
+    `${userInfo?.userId}`.padEnd(6, "0").substring(0, 6) || "654aec"
+  const avatarText = userInfo?.nickname?.substring?.(0, 1).toUpperCase() || "U"
   let navigate = useNavigate()
   let location = useLocation()
   let pathList = location.pathname.split("/")
@@ -72,6 +82,7 @@ export const DashboardTitleBar: FC = () => {
       title: t("resources"),
     },
   ]
+
   return (
     <Tabs
       prefix={
@@ -85,24 +96,28 @@ export const DashboardTitleBar: FC = () => {
       }
       suffix={
         <div css={navBarAvatarContainerStyle} key="suffix">
-          <Trigger
-            trigger="hover"
+          <Dropdown
             position="br"
-            showArrow={false}
-            colorScheme="white"
-            clickOutsideToClose
-            content={<SettingTrigger />}
-            _css={coverTriggerStyle}
+            trigger="click"
+            triggerProps={{ closeDelay: 0, openDelay: 0 }}
+            dropList={
+              <SettingTrigger
+                avatarBgColor={avatarBgColor}
+                avatarText={avatarText}
+              />
+            }
           >
             <div>
-              <Avatar colorScheme="techPurple" size="small" />
+              <span css={applyUserAvatarStyle(avatarBgColor)}>
+                {avatarText}
+              </span>
               <DownIcon
                 _css={expandStyle}
                 size="12px"
                 color={globalColor(`--${illaPrefix}-grayBlue-05`)}
               />
             </div>
-          </Trigger>
+          </Dropdown>
         </div>
       }
       activeKey={pathList[pathList.length - 1]}

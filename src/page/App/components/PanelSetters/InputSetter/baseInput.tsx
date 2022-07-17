@@ -1,8 +1,15 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { BaseInputSetterProps } from "./interface"
-import { applyInputSetterStyle, applyInputSetterWrapperStyle } from "./style"
+import { applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+
+function getPath(attrName?: string, widgetDisplayName?: string) {
+  if (attrName && widgetDisplayName) {
+    return `${widgetDisplayName}.${attrName}`
+  } else {
+    return widgetDisplayName
+  }
+}
 
 export const BaseInput: FC<BaseInputSetterProps> = (props) => {
   const {
@@ -12,25 +19,30 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
     handleUpdateDsl,
     expectedType,
     value,
-    handleUpdateDynamicStrings,
+    widgetDisplayName,
+    isInList,
   } = props
 
+  const _value = useMemo(() => {
+    if (typeof value === "object") {
+      return `{{${JSON.stringify(value)}}}`
+    } else {
+      return value
+    }
+  }, [value])
+
   return (
-    <div css={applyInputSetterWrapperStyle(isSetterSingleRow)}>
+    <div css={applyInputSetterWrapperStyle(isSetterSingleRow, isInList)}>
       <CodeEditor
-        css={applyInputSetterStyle}
-        placeholder={placeholder ?? ""}
-        value={value ?? ""}
-        expectedType={expectedType || "String"}
-        mode="TEXT_JS"
-        onChange={(value, calcResult) => {
-          handleUpdateDsl({ [attrName]: value })
-          if (isDynamicString(value)) {
-            handleUpdateDynamicStrings?.("add", attrName)
-          } else {
-              handleUpdateDynamicStrings?.("delete", attrName)
-          }
+        value={_value ?? ""}
+        placeholder={placeholder}
+        onChange={(value) => {
+          handleUpdateDsl(attrName, value)
         }}
+        mode={"TEXT_JS"}
+        // @ts-ignore todo: weichen
+        expectedType={expectedType}
+        path={getPath(attrName, widgetDisplayName)}
       />
     </div>
   )

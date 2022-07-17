@@ -1,5 +1,25 @@
 import { FC } from "react"
+import { ErrorPage } from "@/page/status/errorPage"
+import { Result404Icon } from "@illa-design/icon"
+import { buttonStyle, iconStyle } from "@/page/status/style"
+import { Button } from "@illa-design/button"
+import { useNavigate } from "react-router-dom"
+import i18n from "@/i18n/config"
 
 export const Page404: FC = () => {
-  return <div>404</div>
+  const navigate = useNavigate()
+  return (
+    <ErrorPage
+      title="404"
+      des={i18n.t("status.404.des")}
+      img={<Result404Icon css={iconStyle} />}
+    >
+      <div css={buttonStyle}>
+        <Button onClick={() => navigate(0)} colorScheme={"gray"}>
+          {i18n.t("status.404.again")}
+        </Button>
+        <Button onClick={() => navigate("./")}>{i18n.t("status.back")}</Button>
+      </div>
+    </ErrorPage>
+  )
 }

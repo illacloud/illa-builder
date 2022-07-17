@@ -26,6 +26,7 @@ export const SearchHeader: FC<SearchHeaderProps> = (props) => {
     forwardRef<HTMLDivElement>((_, ref) => (
       <Input
         ref={ref}
+        borderColor="techPurple"
         prefix={{
           render: <SearchIcon size={"12px"} css={searchInputIconStyle} />,
         }}

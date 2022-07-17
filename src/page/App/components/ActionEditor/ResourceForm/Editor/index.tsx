@@ -13,6 +13,7 @@ import {
   RESTAPIConfigure,
 } from "@/page/App/components/ActionEditor/Resource"
 import { ResourceType } from "@/page/App/components/ActionEditor/interface"
+import { ACTION_TYPE } from "@/page/App/components/ActionEditor/constant"
 import { ResourceFormEditorProps, ConnectionRef } from "./interface"
 import {
   formContainerStyle,
@@ -34,7 +35,7 @@ const renderResourceNode = (
   let node: JSX.Element
   const { resourceId } = props
   switch (resourceType) {
-    case "restapi":
+    case ACTION_TYPE.REST_API:
       node = (
         <RESTAPIConfigure
           resourceId={resourceId}
@@ -42,7 +43,7 @@ const renderResourceNode = (
         />
       )
       break
-    case "mysql":
+    case ACTION_TYPE.MYSQL:
       node = (
         <MySQLConfigure
           connectionRef={connectionRef}
@@ -62,9 +63,9 @@ const renderResourceNode = (
 
 const getResourceTypeNameKey = (resourceType: string) => {
   switch (resourceType) {
-    case "restapi":
+    case ACTION_TYPE.REST_API:
       return "rest_api"
-    case "mysql":
+    case ACTION_TYPE.MYSQL:
       return "my_sql"
     default:
       return ""
@@ -132,17 +133,17 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
   }
 
   function onTestConnection(data: any) {
-    Api.request<string>(
+    Api.request<{ message: string }>(
       {
         url: "/resources/testConnection",
         method: "POST",
         data,
       },
       ({ data }) => {
-        Notification.success({ title: <span>{data}</span> })
+        Notification.success({ title: <span>{data.message}</span> })
       },
       ({ data }) => {
-        Notification.error({ title: <span>{data}</span> })
+        Notification.error({ title: <span>{data.errorMessage}</span> })
       },
       () => {},
       (loading) => setTestConnectionLoading(loading),
@@ -165,16 +166,18 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
         )}
       </div>
       <div css={formFooterStyle}>
-        <Button
-          variant="text"
-          size="medium"
-          colorScheme="grayBlue"
-          type="button"
-          onClick={back}
-        >
-          <PaginationPreIcon css={backIconStyle} />
-          {t("editor.action.form.btn.back")}
-        </Button>
+        {back && (
+          <Button
+            variant="text"
+            size="medium"
+            colorScheme="grayBlue"
+            type="button"
+            onClick={back}
+          >
+            <PaginationPreIcon css={backIconStyle} />
+            {t("editor.action.form.btn.back")}
+          </Button>
+        )}
 
         <div css={formFooterFillingStyle} />
 

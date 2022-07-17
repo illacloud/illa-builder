@@ -1,18 +1,18 @@
 import { HTMLAttributes, ReactNode } from "react"
-import { WidgetCardInfo } from "@/wrappedComponents/interface"
-import { NewSessionType } from "@/wrappedComponents/ComponentListBuilder"
+import { WidgetCardInfo } from "@/widgetLibrary/interface"
+import { SessionType } from "@/widgetLibrary/componentListBuilder"
 
 export interface ComponentPanelProps extends HTMLAttributes<HTMLDivElement> {
   componentList?: ComponentSessionProps[]
 }
 
 export type ComponentSessionProps = {
-  title: ReactNode
+  title: any
   widgetCardInfos: WidgetCardInfo[]
 }
 
 export type NewTypeMapComponent = {
-  [key in NewSessionType]: WidgetCardInfo[]
+  [key in SessionType]: WidgetCardInfo[]
 }
 
 export interface ComponentItemProps extends WidgetCardInfo {}

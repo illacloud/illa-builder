@@ -12,19 +12,25 @@ export const dynamicSwitchWrapperStyle = css`
 export const customAndSwitchWrapperStyle = css`
   display: flex;
   align-items: center;
+  min-height: 28px;
 `
 
 export const applyCustomIconStyle = (
   isSelected: boolean = false,
 ): SerializedStyles => {
-  const color = isSelected
-    ? globalColor(`--${illaPrefix}-purple-01`)
-    : globalColor(`--${illaPrefix}-grayBlue-06`)
+  const selectedStyle = isSelected
+    ? css`
+        color: ${globalColor(`--${illaPrefix}-purple-01`)};
+      `
+    : css`
+        color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+        margin-right: 10px;
+      `
   return css`
-    margin-right: 10px;
-    color: ${color};
+    ${selectedStyle};
     width: 16px;
     height: 16px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,7 +43,6 @@ export const applyCustomIconStyle = (
 }
 
 const singleRowStyle = css`
-  min-height: 48px;
   width: 100%;
   ${publicPaddingStyle}
 `
@@ -47,11 +52,17 @@ const doubleRowStyle = css`
   width: 100%;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   ${publicPaddingStyle}
 `
 
 export const applyLabelWrapperStyle = (
   isCustom: boolean = false,
 ): SerializedStyles => {
-  return isCustom ? singleRowStyle : doubleRowStyle
+  return isCustom ? doubleRowStyle : singleRowStyle
 }
+
+export const dynamicSwitchInputStyle = css`
+  padding: 8px 0;
+  width: 100%;
+`

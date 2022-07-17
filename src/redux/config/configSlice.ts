@@ -1,21 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { ConfigInitialState } from "@/redux/config/configState"
 import {
+  clearSelectedComponent,
+  minusScale,
+  plusScale,
+  setExpandedKey,
   updateBottomPanel,
+  updateIllaMode,
   updateLeftPanel,
   updateRightPanel,
-  plusScale,
-  minusScale,
-  updateSelectedComponent,
   updateSelectedAction,
+  updateSelectedComponent,
   updateShowDot,
-  clearSelectedComponent,
+  removeExpandedKey,
+  updateSelectActionTemplate,
 } from "@/redux/config/configReducer"
 
 const configSlice = createSlice({
   name: "builderInfo",
   initialState: ConfigInitialState,
   reducers: {
+    updateIllaMode,
     updateLeftPanel,
     updateRightPanel,
     updateBottomPanel,
@@ -25,6 +30,9 @@ const configSlice = createSlice({
     updateSelectedAction,
     plusScale,
     minusScale,
+    setExpandedKey,
+    removeExpandedKey,
+    updateSelectActionTemplate,
   },
 })
 

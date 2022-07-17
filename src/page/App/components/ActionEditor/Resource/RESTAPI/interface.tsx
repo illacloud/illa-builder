@@ -19,6 +19,7 @@ export interface RESTAPIConfigureValues {
   authentication?: string
   basicUsername?: string
   basicPassword?: string
+  bearerToken?: string
   oauth2UseClientCredentialsAuth?: boolean
   oauth2CallbackUrl?: string
   oauthAuthUrl?: string
@@ -31,6 +32,7 @@ export interface RESTAPIConfigureValues {
   oauth2RefreshToken?: string
   oauth2AccessTokenLifespanSeconds?: number
   oauth2ShareUserCredentials?: boolean
+  databaseName: string
 }
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
@@ -44,20 +46,22 @@ export type ContentType =
   | "none"
 
 export interface BodyParams extends Params {
-  type?: "text" | "file"
+  type?: "text" | "file" | string
 }
 
 export interface BodyProps {
   value?: BodyParams[] | string
-  onChange?: (newValue: BodyParams[] | string) => void
+  bodyType: ContentType
+  onChangeValue?: (newValue: BodyParams[] | string) => void
+  onChangeBodyType?: (bodyType: ContentType) => void
 }
 
 export interface RESTAPIParamValues {
   method?: HTTPMethod
-  path?: string
+  url?: string
   urlParams?: Params[]
   headers?: Params[]
-  contentType?: ContentType
+  bodyType?: ContentType
   body?: BodyParams[] | string
   cookies?: Params[]
 }

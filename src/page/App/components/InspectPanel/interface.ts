@@ -1,17 +1,5 @@
-import { ReactNode } from "react"
 import { SetterType } from "@/page/App/components/PanelSetters"
-import { ExpectedType } from "@/components/CodeEditor/utils"
-
-export enum ACTION_TYPE {
-  VIEW_DOCUMENT = "VIEW_DOCUMENT",
-  SWITCH_COMPONENT = "SWITCH_COMPONENT",
-  RESET_STATE = "RESET_STATE",
-  DELETE = "DELETE",
-}
-
-export interface HeaderProps {
-  // meta: any // TODO: wait meta interface
-}
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export interface PanelHeaderActionProps {
   widgetParentDisplayName: string
@@ -20,21 +8,15 @@ export interface PanelHeaderActionProps {
 }
 
 export interface PanelLabelProps {
-  labelName?: string
+  labelName?: any
   labelDesc?: string
   isInList?: boolean
-}
-export interface PanelBarProps {
-  title: string
-  children?: ReactNode
-  isOpened?: boolean
-  saveToggleState: (value: boolean) => void
 }
 
 export interface PanelFieldConfig extends PanelLabelProps {
   id: string
   setterType: SetterType
-  expectedType?: ExpectedType
+  expectedType?: VALIDATION_TYPES
   attrName: string
   childrenSetter?: PanelFieldConfig[]
   useCustomLayout?: boolean
@@ -42,9 +24,8 @@ export interface PanelFieldConfig extends PanelLabelProps {
   isSetterSingleRow?: boolean
   defaultValue?: any
   placeholder?: string
-  shown?: (value: any) => boolean
-  bindAttrName?: string
-  // events?:event[] // TODO:
+  shown?: (value: any | { [attrName: string]: any }) => boolean
+  bindAttrName?: string | string[]
 }
 
 export interface PanelFieldGroupConfig {
@@ -55,7 +36,9 @@ export interface PanelFieldGroupConfig {
 
 export type PanelConfig = PanelFieldConfig | PanelFieldGroupConfig
 
-export interface PanelSetterProps extends Omit<PanelFieldConfig, "id"> {}
+export interface PanelSetterProps extends Omit<PanelFieldConfig, "id"> {
+  parentAttrName: string
+}
 
 export interface SelectedPanelProps {
   selectedDisplayNames: string[]

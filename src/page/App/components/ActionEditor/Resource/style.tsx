@@ -2,6 +2,7 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH } from "@/style"
 
 export const formStyle = css`
   overflow: auto;
@@ -31,6 +32,60 @@ export const paramGridRowContainerStyle = css`
   grid: auto/repeat(auto-fit, minmax(15%, min-content) minmax(280px, 1fr));
 `
 
+export function applyGridRowContainerInSmallWidthStyle(
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
+): SerializedStyles {
+  return applyMediaQueryStyle(
+    leftPanelVisible,
+    rightPanelVisible,
+    css`
+      display: grid;
+      gap: 8px;
+      grid: auto/auto;
+    `,
+  )
+}
+
+export function applyLabelTextInSmallWidthStyle(
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
+): SerializedStyles {
+  return applyMediaQueryStyle(
+    leftPanelVisible,
+    rightPanelVisible,
+    css`
+      text-align: left;
+      justify-content: start;
+    `,
+  )
+}
+
+function applyMediaQueryStyle(
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
+  style: SerializedStyles,
+): SerializedStyles {
+  const MEDIA_QUERY_WIDTH = 1600
+  const WIDTH_THRESHOLD = 1000
+
+  const active =
+    MEDIA_QUERY_WIDTH -
+      (leftPanelVisible ? LEFT_PANEL_WIDTH : 0) -
+      (rightPanelVisible ? RIGHT_PANEL_WIDTH : 0) <=
+    WIDTH_THRESHOLD
+
+  if (!active) {
+    return css``
+  }
+
+  return css`
+    @media screen and (max-width: ${MEDIA_QUERY_WIDTH}px) {
+      ${style}
+    }
+  `
+}
+
 export const gridRowCenterItemStyle = css`
   align-items: center;
 `
@@ -54,9 +109,9 @@ export const splitLineStyle = css`
 `
 
 export const labelTextStyle = css`
-  padding-top: 5px;
   display: flex;
   justify-content: end;
+  align-items: center;
   font-size: 14px;
   font-weight: 500;
   text-align: right;
@@ -64,9 +119,31 @@ export const labelTextStyle = css`
   white-space: pre;
 `
 
-export const itemTextStyle = css`
-  ${labelTextStyle};
+export const labelTextAlignSelfStartStyle = css`
+  align-self: flex-start;
+  /* vertical center to input, lineHeight same with input */
+  line-height: 30px;
+`
+
+export const dynamicLabelTextStyle = css`
+  display: flex;
+  justify-content: end;
+  padding-top: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  white-space: pre;
+`
+
+export const connectTextStyle = css`
+  display: flex;
   justify-content: start;
+  align-items: center;
+  font-size: 14px;
+  text-align: right;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  white-space: pre;
 `
 
 export const requiredLabelTextStyle = css`
@@ -76,7 +153,7 @@ export const requiredLabelTextStyle = css`
   &:before {
     content: "*";
     margin-right: 5px;
-    margin-top: 5px;
+    margin-top: 3px;
     font-weight: bold;
     color: ${globalColor(`--${illaPrefix}-red-03`)};
   }
@@ -146,7 +223,7 @@ export const errorMessageStyle = css`
 `
 
 export const configContainerStyle = css`
-  padding: 8px 16px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;

@@ -1,5 +1,5 @@
 import { FC, Fragment } from "react"
-import { Input } from "@illa-design/input"
+import { Input, Password } from "@illa-design/input"
 import { Select } from "@illa-design/select"
 import { Button } from "@illa-design/button"
 import { WarningCircleIcon } from "@illa-design/icon"
@@ -38,10 +38,33 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                       <>
                         <Input
                           size="large"
+                          borderColor="techPurple"
                           style={{ width: 280 }}
                           disabled={contentItem.disabled}
                           value={contentItem.value}
                           onChange={contentItem.onChange}
+                          onFocus={contentItem.onFocus}
+                        />
+                        {contentItem.showError && (
+                          <div css={errorLineStyle}>
+                            <WarningCircleIcon />
+                            <span css={errorTextStyle}>
+                              {contentItem.errorMsg}
+                            </span>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {contentItem.type === "input-password" && (
+                      <>
+                        <Password
+                          size="large"
+                          borderColor="techPurple"
+                          style={{ width: 280 }}
+                          disabled={contentItem.disabled}
+                          value={contentItem.value}
+                          onChange={contentItem.onPasswordChange}
+                          onFocus={contentItem.onFocus}
                         />
                         {contentItem.showError && (
                           <div css={errorLineStyle}>
@@ -56,6 +79,8 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                     {contentItem.type === "select" && (
                       <Select
                         style={{ width: 280 }}
+                        colorScheme="techPurple"
+                        size="large"
                         options={contentItem.selectOptions}
                         defaultValue={contentItem.defaultSelectValue}
                         onChange={contentItem.onChange}
@@ -68,6 +93,7 @@ export const SettingCommonForm: FC<SettingCommonFormProps> = (props) => {
                           size="large"
                           fullWidth
                           disabled={contentItem.disabled}
+                          loading={contentItem.loading}
                           onClick={onSubmit}
                         >
                           {contentItem.value}

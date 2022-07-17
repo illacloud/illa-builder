@@ -34,7 +34,11 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
         </dd>
         <Controller
           render={({ field }) => (
-            <Checkbox css={css(applyGridColIndex(2), checkboxStyle)} {...field}>
+            <Checkbox
+              colorScheme="techPurple"
+              css={css(applyGridColIndex(2), checkboxStyle)}
+              {...field}
+            >
               {t(
                 "editor.action.resource.rest_api.label.use_client_credentials_auth",
               )}
@@ -57,6 +61,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
                 placeholder={t(
                   "editor.action.resource.rest_api.placeholder.oauth_callback_url",
                 )}
+                borderColor="techPurple"
               />
             )}
             control={control}
@@ -69,6 +74,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           <Controller
             render={({ field }) => (
               <Checkbox
+                colorScheme="techPurple"
                 css={css(applyGridColIndex(2), checkboxStyle)}
                 {...field}
               >
@@ -94,6 +100,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
               placeholder={t(
                 "editor.action.resource.rest_api.placeholder.authorization_url",
               )}
+              borderColor="techPurple"
             />
           )}
           control={control}
@@ -112,6 +119,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
               placeholder={t(
                 "editor.action.resource.rest_api.placeholder.access_token_url",
               )}
+              borderColor="techPurple"
             />
           )}
           control={control}
@@ -124,7 +132,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           {t("editor.action.resource.rest_api.label.client_id")}
         </label>
         <Controller
-          render={({ field }) => <Input {...field} />}
+          render={({ field }) => <Input {...field} borderColor="techPurple" />}
           control={control}
           name="oauth2ClientId"
         />
@@ -135,7 +143,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           {t("editor.action.resource.rest_api.label.client_secret")}
         </label>
         <Controller
-          render={({ field }) => <Input {...field} />}
+          render={({ field }) => <Input {...field} borderColor="techPurple" />}
           control={control}
           name="oauth2ClientSecret"
         />
@@ -146,7 +154,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           {t("editor.action.resource.rest_api.label.scopes")}
         </label>
         <Controller
-          render={({ field }) => <Input {...field} />}
+          render={({ field }) => <Input {...field} borderColor="techPurple" />}
           control={control}
           name="oauth2Scope"
         />
@@ -157,7 +165,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
           {t("editor.action.resource.rest_api.label.audience")}
         </label>
         <Controller
-          render={({ field }) => <Input {...field} />}
+          render={({ field }) => <Input {...field} borderColor="techPurple" />}
           control={control}
           name="oauth2Audience"
         />
@@ -170,7 +178,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
               {t("editor.action.resource.rest_api.label.access_token")}
             </label>
             <Controller
-              render={({ field }) => <Input {...field} />}
+              render={({ field }) => (
+                <Input {...field} borderColor="techPurple" />
+              )}
               control={control}
               name="oauth2AccessToken"
             />
@@ -180,7 +190,9 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
               {t("editor.action.resource.rest_api.label.refresh_token")}
             </label>
             <Controller
-              render={({ field }) => <Input {...field} />}
+              render={({ field }) => (
+                <Input {...field} borderColor="techPurple" />
+              )}
               control={control}
               name="oauth2RefreshToken"
             />
@@ -199,6 +211,7 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
               placeholder={t(
                 "editor.action.resource.rest_api.placeholder.access_token_lifespan",
               )}
+              borderColor="techPurple"
             />
           )}
           control={control}
@@ -208,3 +221,5 @@ export const OAuth2: FC<OAuth2Props> = (props) => {
     </>
   )
 }
+
+OAuth2.displayName = "OAuth2"

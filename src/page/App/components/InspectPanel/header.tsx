@@ -1,38 +1,36 @@
 import { FC, useContext } from "react"
 import { MoreIcon } from "@illa-design/icon"
-import { panelHeaderWrapperStyle, panelHeaderIconWrapperStyle } from "./style"
-import { Trigger } from "@illa-design/trigger"
-import { ActionMenu } from "./actionMenu"
-import { HeaderProps } from "./interface"
+import { Dropdown } from "@illa-design/dropdown"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { WrappedEditableText } from "@/widgetLibrary/EditableWidget"
+import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
+import { ActionMenu } from "./actionMenu"
 
-export const PanelHeader: FC<HeaderProps> = (props) => {
+export const PanelHeader: FC = (props) => {
   const { widgetDisplayName, widgetParentDisplayName, widgetType } =
     useContext(SelectedPanelContext)
 
   return (
     <div css={panelHeaderWrapperStyle}>
-      {/*  TODO: wait for editable component*/}
-      <div>{widgetDisplayName}</div>
+      <WrappedEditableText
+        colorScheme={"techPurple"}
+        value={widgetDisplayName}
+        handleUpdateDsl={() => {}}
+      />
       <div css={panelHeaderIconWrapperStyle}>
-        <Trigger
+        <Dropdown
           position="br"
           trigger="click"
-          content={
+          dropList={
             <ActionMenu
               widgetParentDisplayName={widgetParentDisplayName}
               widgetDisplayName={widgetDisplayName}
               componentType={widgetType}
             />
           }
-          withoutPadding
-          closeOnClick
-          clickOutsideToClose
-          showArrow={false}
-          colorScheme="white"
         >
           <MoreIcon />
-        </Trigger>
+        </Dropdown>
       </div>
     </div>
   )

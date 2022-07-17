@@ -1,33 +1,21 @@
-import { createContext, ReactNode, FC, useState, useEffect } from "react"
+import { createContext, ReactNode, FC, useState, useCallback } from "react"
 import { NotificationType, Notification } from "@illa-design/notification"
 import { isValidUrlScheme } from "@/utils/typeHelper"
+import { useSelector } from "react-redux"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
+import { cloneDeep, unset } from "lodash"
 
 interface Injected {
   globalData: { [key: string]: any }
   handleUpdateGlobalData: (key: string, value: any) => void
+  handleDeleteGlobalData: (key: string) => void
 }
 
 export const GLOBAL_DATA_CONTEXT = createContext<Injected>({} as Injected)
 
 interface Props {
   children?: ReactNode
-}
-
-// {{builder.user}}
-// TODO: @WeiChen wait to real global data
-const dataTree = {
-  builder: {
-    user: "weichen",
-    email: "weichen@test.com",
-  },
-  query1: {
-    run: () => {
-      return [1, 2, 3, 4, 5]
-    },
-    run2: (a: string) => {
-      return a
-    },
-  },
 }
 
 // {{showNotification("info","222","333")}}
@@ -68,25 +56,39 @@ const goToURL = (url: string, isNewTab?: boolean) => {
 }
 
 const initState = {
-  ...dataTree,
   showNotification,
   runScript,
   goToURL,
 }
 
 export const GlobalDataProvider: FC<Props> = ({ children }) => {
-  const [globalData, setGlobalData] = useState<Record<string, any>>(initState)
+  const userInfo = useSelector(getCurrentUser)
+  const builderInfo = useSelector(getBuilderInfo)
+  const [globalData, setGlobalData] = useState<Record<string, any>>({
+    ...initState,
+    userInfo,
+    builderInfo,
+  })
 
-  const handleUpdateGlobalData = (key: string, value: any) => {
-    setGlobalData({
-      ...globalData,
+  const handleUpdateGlobalData = useCallback((key: string, value: any) => {
+    setGlobalData((prevState) => ({
+      ...prevState,
       [key]: value,
+    }))
+  }, [])
+
+  const handleDeleteGlobalData = useCallback((key: string) => {
+    setGlobalData((prevState) => {
+      const newGlobalData = cloneDeep(prevState)
+      unset(newGlobalData, key)
+      return newGlobalData
     })
-  }
+  }, [])
 
   const value = {
     globalData: { ...globalData },
     handleUpdateGlobalData,
+    handleDeleteGlobalData,
   }
 
   return (

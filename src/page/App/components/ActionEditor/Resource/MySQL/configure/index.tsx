@@ -4,19 +4,18 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { Input, Password } from "@illa-design/input"
 import { Switch } from "@illa-design/switch"
-import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { applyGridColIndex } from "@/page/App/components/ActionEditor/style"
 import { useSelector } from "react-redux"
 import { selectAllResource } from "@/redux/resource/resourceSelector"
 import {
+  connectTextStyle,
   descriptionStyle,
   errorMessageStyle,
   formStyle,
   gridContainerStyle,
   gridRowContainerStyle,
   groupTitleStyle,
-  itemTextStyle,
   labelTextSmallSizeStyle,
   labelTextStyle,
   labelTextVerticalStyle,
@@ -40,8 +39,12 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const resourceConfig = useSelector(selectAllResource).find(
       (i) => i.resourceId === resourceId,
     )
-    const [enableSSH, setEnableSSH] = useState(false)
-    const [enableSSL, setEnableSSL] = useState(false)
+    const [enableSSH, setEnableSSH] = useState(
+      (resourceConfig?.options as MySQLConfigureValues)?.ssh,
+    )
+    const [enableSSL, setEnableSSL] = useState(
+      (resourceConfig?.options as MySQLConfigureValues)?.ssl,
+    )
     const {
       handleSubmit,
       control,
@@ -51,7 +54,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       getValues,
       setValue,
     } = useForm<MySQLConfigureValues>({
-      mode: "onBlur",
+      mode: "onSubmit",
       defaultValues: {
         resourceName: resourceConfig?.resourceName,
         ...resourceConfig?.options,
@@ -66,8 +69,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
 
       onTestConnection?.({
         resourceName: resourceName,
-        resourceType: "MySQL",
-        options,
+        resourceType: "mysql",
+        options: {
+          ...options,
+          port: "" + options.port,
+        },
       })
     }
 
@@ -82,7 +88,12 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       onSubmit?.({
         resourceName: resourceName,
         resourceType: "mysql",
-        options,
+        options: {
+          ...options,
+          port: "" + options.port,
+          ssh: enableSSH,
+          ssl: enableSSL,
+        },
       })
     }
     return (
@@ -97,10 +108,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 <Input
                   {...field}
                   placeholder={t(
-                    "editor.action.resource.my_sql.placeholder.name",
+                    "editor.action.resource.my_sql.placeholder.database",
                   )}
                   error={!!errors.resourceName}
                   maxLength={200}
+                  borderColor="techPurple"
                 />
               )}
               rules={{
@@ -129,6 +141,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     )}
                     error={!!errors.host}
                     maxLength={200}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -143,6 +156,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     {...field}
                     placeholder="3306"
                     error={!!errors.port}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -170,6 +184,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                   placeholder={t(
                     "editor.action.resource.my_sql.placeholder.database",
                   )}
+                  borderColor="techPurple"
                 />
               )}
               control={control}
@@ -188,6 +203,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     placeholder={t(
                       "editor.action.resource.my_sql.placeholder.username",
                     )}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -201,6 +217,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                     placeholder={t(
                       "editor.action.resource.my_sql.placeholder.password",
                     )}
+                    borderColor="techPurple"
                   />
                 )}
                 control={control}
@@ -215,12 +232,14 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             <label css={labelTextStyle}>
               {t("editor.action.resource.my_sql.label.connect_type")}
             </label>
-            <div css={itemTextStyle}>
+            <div css={connectTextStyle}>
               {t("editor.action.resource.my_sql.tip.connect_type")}
             </div>
           </div>
-          <Divider css={splitLineStyle} />
-          <h4 css={groupTitleStyle}>Advanced Options</h4>
+          <div css={splitLineStyle} />
+          <h4 css={groupTitleStyle}>
+            {t("editor.action.resource.my_sql.title.advanced_option")}
+          </h4>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
               {t("editor.action.resource.my_sql.label.connect_over_ssh")}
@@ -234,7 +253,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.connect_over_ssh")}
                 </div>
               </div>
@@ -256,6 +275,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         )}
                         maxLength={200}
                         error={!!errors.advancedOptions?.sshHost}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -270,6 +290,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         {...field}
                         placeholder="22"
                         error={!!errors.advancedOptions?.sshPort}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -304,6 +325,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                           "editor.action.resource.my_sql.placeholder.ssh_credentials",
                         )}
                         error={!!errors.advancedOptions?.sshUsername}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -319,6 +341,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                         placeholder="•••••••••"
                         invisibleButton={false}
                         error={!!errors.advancedOptions?.sshPassword}
+                        borderColor="techPurple"
                       />
                     )}
                     rules={{
@@ -356,7 +379,9 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               </div>
               <div css={gridRowContainerStyle}>
                 <label css={css(labelTextStyle, labelTextVerticalStyle)}>
-                  <div>SSH passphrase</div>
+                  <div>
+                    {t("editor.action.resource.my_sql.label.ssh_passphrase")}
+                  </div>
                   <div css={labelTextSmallSizeStyle}>
                     {t("editor.action.resource.my_sql.tip.ssh_passphrase")}
                   </div>
@@ -367,6 +392,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       {...field}
                       placeholder="•••••••••"
                       invisibleButton={false}
+                      borderColor="techPurple"
                     />
                   )}
                   control={control}
@@ -388,7 +414,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 }}
               />
               <div css={switchDescriptionStyle}>
-                <div css={labelTextStyle}>
+                <div css={connectTextStyle}>
                   {t("editor.action.resource.my_sql.tip.ssl_options")}
                 </div>
               </div>

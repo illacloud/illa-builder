@@ -1,54 +1,101 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
-import i18n from "@/i18n/config"
-import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
-import { builderInfoActions } from "@/redux/builderInfo/builderInfoSlice"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { Api } from "@/api/base"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { Message } from "@illa-design/message"
+import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { SettingCommonForm } from "../Components/SettingCommonForm"
 
 export const SettingOthers: FC = () => {
   const { t } = useTranslation()
-
   const dispatch = useDispatch()
+  const userInfo = useSelector(getCurrentUser)
 
-  const [languageValue, setLanguageValue] = useState<string>(
-    useSelector(getBuilderInfo).language,
-  )
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false)
+  const [languageValue, setLanguageValue] = useState<string>("")
+  const [dataList, setDataList] = useState<any[]>([])
+  const [refresh, setRefresh] = useState<number>(0)
 
-  const paramData = [
-    {
-      title: t("setting.other.language"),
-      content: [
+  useMemo(() => {
+    if (!userInfo?.userId) {
+      return
+    }
+    if (!languageValue) {
+      setLanguageValue(userInfo?.language as string)
+    }
+  }, [userInfo])
+
+  useEffect(() => {
+    if (languageValue) {
+      setDataList([
         {
-          type: "select",
-          selectOptions: ["English", "简体中文"],
-          defaultSelectValue: languageValue,
-          onChange: (value: string) => {
-            setLanguageValue(value)
-          },
+          title: t("setting.other.language"),
+          content: [
+            {
+              type: "select",
+              selectOptions: [
+                {
+                  label: "English",
+                  value: "en-US",
+                },
+                {
+                  label: "简体中文",
+                  value: "zh-CN",
+                },
+              ],
+              defaultSelectValue: languageValue,
+              onChange: (value: string) => {
+                setLanguageValue(value)
+              },
+            },
+          ],
         },
-      ],
-    },
-    {
-      content: [
         {
-          type: "button",
-          value: t("setting.other.save"),
+          content: [
+            {
+              type: "button",
+              value: t("setting.other.save"),
+              loading: buttonLoading,
+            },
+          ],
         },
-      ],
-    },
-  ]
+      ])
+    }
+  }, [languageValue, refresh])
 
   const handleSubmit = () => {
-    if (languageValue === "English") {
-      i18n.changeLanguage("en-US")
-    } else if (languageValue === "简体中文") {
-      i18n.changeLanguage("zh-CN")
+    if (languageValue === userInfo?.language) {
+      return
     }
-    dispatch(builderInfoActions.updateLanguageReducer(languageValue))
+
+    Api.request<CurrentUser>(
+      {
+        url: "/users/language",
+        method: "PATCH",
+        data: {
+          language: languageValue,
+        },
+      },
+      (response) => {
+        dispatch(currentUserActions.updateCurrentUserReducer(response.data))
+        Message.success(t("edit_success"))
+        setRefresh(refresh + 1)
+      },
+      (failure) => {},
+      (crash) => {},
+      (loading) => {
+        setButtonLoading(loading)
+      },
+    )
   }
 
-  return <SettingCommonForm paramData={paramData} onSubmit={handleSubmit} />
+  return dataList.length ? (
+    <SettingCommonForm paramData={dataList} onSubmit={handleSubmit} />
+  ) : (
+    <></>
+  )
 }
 
 SettingOthers.displayName = "SettingOthers"

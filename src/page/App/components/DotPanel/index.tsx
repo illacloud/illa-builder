@@ -12,6 +12,9 @@ import {
 } from "@/page/App/components/DotPanel/style"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  getIllaMode,
+  getPreviewEdgeWidth,
+  getSelectedComponents,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -23,7 +26,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { getDragShadowMap } from "@/redux/currentApp/editor/dragShadow/dragShadowSelector"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
-import store, { RootState } from "@/store"
+import { RootState } from "@/store"
 import { calculateDragPosition, calculateNearXY, calculateXY } from "./calc"
 import {
   updateDottedLineSquareData,
@@ -37,16 +40,24 @@ import { getDottedLineSquareMap } from "@/redux/currentApp/editor/dottedLineSqua
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { DragResize } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import useWindowSize from "react-use/lib/useWindowSize"
 
 export const DotPanel: FC<DotPanelProps> = (props) => {
   const { componentNode, ...otherProps } = props
 
   const canvasRef = useRef<HTMLDivElement>(null)
+  const componentsTreeRef = useRef<HTMLDivElement>(null)
 
   const dispatch = useDispatch()
 
+  // mode
+  const illaMode = useSelector(getIllaMode)
+
+  // window
+  const { width, height } = useWindowSize()
+
   // canvas field
-  const edgeWidth = 18
+  const edgeWidth = useSelector(getPreviewEdgeWidth)
   const [canvasHeight, setCanvasHeight] = useState<number>(0)
   const [canvasWidth, setCanvasWidth] = useState<number>(0)
   const blockColumns = 64
@@ -62,6 +73,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     return pre === after
   })
 
+  // radio
+  const [radio, setRadio] = useState<number>(1)
+
   // config
   const leftPanelState = useSelector(isOpenLeftPanel)
   const rightPanelState = useSelector(isOpenRightPanel)
@@ -72,6 +86,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   // dotted line square
   const dottedLineSquareMap = useSelector(getDottedLineSquareMap)
+  // selected
+
+  const selectedComponents = useSelector(getSelectedComponents)
 
   // calculate first height
   useEffect(() => {
@@ -89,7 +106,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setMinBlockRows(finalBlockRows)
       setCanvasHeight(finalHeight)
     }
-  }, [bottomPanelState])
+  }, [bottomPanelState, height, edgeWidth])
 
   // calculate scale height
   useEffect(() => {
@@ -111,7 +128,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       setUnitWidth(finalBlockWidth)
       setCanvasWidth(containerWidth - edgeWidth * 2)
     }
-  }, [canvasRef.current?.scrollWidth, leftPanelState, rightPanelState])
+  }, [
+    canvasRef.current?.scrollWidth,
+    leftPanelState,
+    rightPanelState,
+    width,
+    edgeWidth,
+  ])
 
   // drag move
   const [, dropTarget] = useDrop<
@@ -121,12 +144,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   >(
     () => ({
       accept: ["components"],
+      canDrop: () => {
+        return illaMode === "edit"
+      },
       drop: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
         }
-        // set dot show
-        dispatch(configActions.updateShowDot(false))
         const calculateResult = calculateDragPosition(
           item,
           canvasWidth,
@@ -152,26 +176,30 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           calculateResult.squareY,
           componentNode.displayName,
           (newItem) => {
-            dispatch(componentsActions.addOrUpdateComponentReducer(newItem))
+            if (item.x === -1 && item.y === -1) {
+              dispatch(componentsActions.addComponentReducer(newItem))
+              dispatch(
+                componentsActions.updateComponentPropsReducer({
+                  displayName: newItem.displayName,
+                  updateSlice: newItem.props ?? {},
+                }),
+              )
+            } else {
+              dispatch(
+                componentsActions.updateSingleComponentReducer({
+                  isMove: newItem.parentNode !== item.parentNode,
+                  componentNode: newItem,
+                }),
+              )
+            }
+            dispatch(configActions.updateSelectedComponent([newItem]))
           },
         )
-        // remove dotted line square
-        dispatch(
-          dottedLineSquareActions.removeDottedLineSquareReducer(
-            item.displayName,
-          ),
-        )
-        // remove drag
-        dispatch(dragShadowActions.removeDragShadowReducer(item.displayName))
         return {} as DropResultInfo
       },
       hover: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
-        }
-        // set dot show
-        if (store.getState().config.showDot == false) {
-          dispatch(configActions.updateShowDot(true))
         }
         const calculateResult = calculateDragPosition(
           item,
@@ -199,6 +227,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         }
         // drag shadow
         updateDragShadowData(
+          componentNode.displayName,
           item,
           calculateResult.renderX,
           calculateResult.renderY,
@@ -216,6 +245,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         )
         // dotted line square
         updateDottedLineSquareData(
+          componentNode.displayName,
           item,
           calculateResult.squareX,
           calculateResult.squareY,
@@ -238,19 +268,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   const [, resizeDropTarget] = useDrop<DragResize>(
     () => ({
       accept: ["resize"],
-      drop: (item, monitor) => {
-        if (!monitor.isOver({ shallow: true })) {
-          return
-        }
-        // set dot show
-        dispatch(configActions.updateShowDot(false))
+      canDrop: () => {
+        return illaMode === "edit"
       },
       hover: (item, monitor) => {
         if (!monitor.isOver({ shallow: true })) {
           return
-        }
-        if (store.getState().config.showDot == false) {
-          dispatch(configActions.updateShowDot(true))
         }
         const monitorRect = monitor.getClientOffset()
         const canvasRect = canvasRef.current?.getBoundingClientRect()
@@ -286,14 +309,23 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             nearY,
             item.position,
             (i) => {
-              dispatch(componentsActions.addOrUpdateComponentReducer(i))
+              dispatch(
+                componentsActions.updateSingleComponentReducer({
+                  isMove: false,
+                  componentNode: i,
+                }),
+              )
             },
           )
         }
       },
     }),
-    [canvasWidth, canvasHeight],
+    [canvasWidth, canvasHeight, componentNode],
   )
+
+  useEffect(() => {
+    setRadio(window.devicePixelRatio)
+  }, [window.devicePixelRatio])
 
   // render drag
   useEffect(() => {
@@ -302,22 +334,33 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
-        const ratio = window.devicePixelRatio
-        ctx.scale(ratio, ratio)
+        ctx.clearRect(
+          0,
+          0,
+          canvasWidth * radio,
+          (canvasHeight + edgeWidth) * radio,
+        )
+        ctx.globalAlpha = 0.16
         Object.keys(dragShadowMap).forEach((value) => {
           const item = dragShadowMap[value]
-          ctx.beginPath()
-          ctx.rect(item.renderX, item.renderY, item.w, item.h)
-          ctx.closePath()
-          ctx.fillStyle = item.isConflict
-            ? globalColor(`--${illaPrefix}-red-06`)
-            : globalColor(`--${illaPrefix}-techPurple-06`)
-          ctx.fill()
+          if (item.parentNode === componentNode.displayName) {
+            ctx.beginPath()
+            ctx.rect(
+              item.renderX * radio,
+              item.renderY * radio,
+              item.w * radio,
+              item.h * radio,
+            )
+            ctx.closePath()
+            ctx.fillStyle = item.isConflict
+              ? globalColor(`--${illaPrefix}-red-03`)
+              : globalColor(`--${illaPrefix}-techPurple-01`)
+            ctx.fill()
+          }
         })
       }
     }
-  }, [dragShadowMap, canvasHeight, canvasWidth])
+  }, [dragShadowMap, canvasHeight, canvasWidth, radio])
 
   // render dot
   useEffect(() => {
@@ -326,28 +369,64 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        const ratio = window.devicePixelRatio
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
-        ctx.scale(ratio, ratio)
+        ctx.clearRect(
+          0,
+          0,
+          canvasWidth * radio,
+          (canvasHeight + edgeWidth) * radio,
+        )
         for (let i = 1; i < blockRows; i++) {
           for (let j = 1; j < blockColumns; j++) {
             ctx.beginPath()
-            const x = j * unitWidth + 1
-            const y = i * unitHeight + 1
-            ctx.arc(x, y, 1, 0, 2 * Math.PI)
+            const x = j * unitWidth * radio + radio
+            const y = i * unitHeight * radio + radio
+            ctx.arc(x, y, radio, 0, 2 * Math.PI)
             ctx.closePath()
             ctx.fillStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
             ctx.fill()
           }
         }
-        ctx.beginPath()
-        ctx.rect(0, 0, canvasWidth, canvasHeight)
-        ctx.closePath()
+        componentNode.childrenNode.forEach((item) => {
+          if (
+            !item.isDragging &&
+            !selectedComponents.find((s) => {
+              return s.displayName === item.displayName
+            })
+          ) {
+            const h = item.h * unitHeight * radio
+            const w = item.w * unitWidth * radio
+            const [l, t] = calculateXY(
+              item.x,
+              item.y,
+              unitWidth * radio,
+              unitHeight * radio,
+            )
+            ctx.beginPath()
+            ctx.setLineDash([4 * radio, 2 * radio])
+            ctx.rect(l, t, w, h)
+            ctx.closePath()
+            ctx.lineWidth = radio
+            ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
+            ctx.stroke()
+          }
+        })
+        ctx.lineWidth = radio
         ctx.strokeStyle = globalColor(`--${illaPrefix}-grayBlue-08`)
-        ctx.stroke()
+        ctx.strokeRect(
+          radio / 2,
+          radio / 2,
+          canvasWidth * radio - radio,
+          canvasHeight * radio - radio,
+        )
       }
     }
-  }, [canvasHeight, canvasWidth])
+  }, [
+    componentNode.childrenNode,
+    selectedComponents,
+    canvasHeight,
+    canvasWidth,
+    radio,
+  ])
 
   // render dotted line
   useEffect(() => {
@@ -356,39 +435,41 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       let dotCanvas = canvas as HTMLCanvasElement
       const ctx = dotCanvas.getContext("2d")
       if (ctx != null) {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight + edgeWidth)
+        ctx.clearRect(
+          0,
+          0,
+          canvasWidth * radio,
+          (canvasHeight + edgeWidth) * radio,
+        )
         Object.keys(dottedLineSquareMap).forEach((value) => {
           const item = dottedLineSquareMap[value]
-          const h = item.h
-          const w = item.w
-          const [l, t] = calculateXY(
-            item.squareX,
-            item.squareY,
-            unitWidth,
-            unitHeight,
-          )
-          const ratio = window.devicePixelRatio
-          ctx.scale(ratio, ratio)
-          ctx.beginPath()
-          ctx.setLineDash([4, 2])
-          ctx.rect(l, t, w, h)
-          ctx.closePath()
-          ctx.lineWidth = 1
-          ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
-          ctx.stroke()
+          if (item.parentNode === componentNode.displayName) {
+            const h = item.h * radio
+            const w = item.w * radio
+            const [l, t] = calculateXY(
+              item.squareX,
+              item.squareY,
+              unitWidth * radio,
+              unitHeight * radio,
+            )
+            ctx.beginPath()
+            ctx.setLineDash([4 * radio, 2 * radio])
+            ctx.rect(l, t, w, h)
+            ctx.closePath()
+            ctx.lineWidth = radio
+            ctx.strokeStyle = globalColor(`--${illaPrefix}-techPurple-01`)
+            ctx.stroke()
+          }
         })
       }
     }
-  }, [dottedLineSquareMap, canvasHeight, canvasWidth])
+  }, [dottedLineSquareMap, canvasHeight, canvasWidth, radio])
 
   useEffect(() => {
     let maxY = 0
-    for (let item in componentNode.childrenNode) {
-      maxY = Math.max(
-        maxY,
-        componentNode.childrenNode[item].y + componentNode.childrenNode[item].h,
-      )
-    }
+    componentNode.childrenNode.forEach((item) => {
+      maxY = Math.max(maxY, item.y + item.h)
+    })
     if (maxY < blockRows) {
       setBlockRows(Math.max(maxY, minBlockRows))
     }
@@ -396,12 +477,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    if (childrenNode == null) {
-      return null
-    }
-    return Object.keys(childrenNode).map<ReactNode>((key) => {
-      const item = childrenNode[key]
-
+    return childrenNode.map<ReactNode>((item) => {
       const h = item.h * unitHeight
       const w = item.w * unitWidth
 
@@ -413,7 +489,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           return (
             <ScaleSquare
               key={item.displayName}
-              css={applyDragObjectStyle(t, l)}
+              css={applyDragObjectStyle(t, l, item.z)}
               componentNode={item}
               h={h}
               w={w}
@@ -427,33 +503,53 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   return (
     <div
-      ref={mergeRefs(canvasRef, mergeRefs(dropTarget, resizeDropTarget))}
+      ref={mergeRefs(canvasRef, dropTarget, resizeDropTarget)}
       css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
-      onClick={() => {
-        dispatch(configActions.updateSelectedComponent([]))
-      }}
       {...otherProps}
     >
       <canvas
         id={`${componentNode.displayName}-canvas`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
-        width={canvasWidth}
-        height={canvasHeight + edgeWidth}
+        css={applyDotCanvasStyle(
+          showDot,
+          0,
+          canvasWidth,
+          canvasHeight + edgeWidth,
+        )}
+        width={canvasWidth * radio}
+        height={(canvasHeight + edgeWidth) * radio}
       />
       <canvas
         id={`${componentNode.displayName}-dotted`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
-        width={canvasWidth}
-        height={canvasHeight + edgeWidth}
+        css={applyDotCanvasStyle(
+          showDot,
+          1,
+          canvasWidth,
+          canvasHeight + edgeWidth,
+        )}
+        width={canvasWidth * radio}
+        height={(canvasHeight + edgeWidth) * radio}
       />
-      <div css={applyChildrenContainerStyle(canvasWidth, canvasHeight)}>
+      <div
+        ref={componentsTreeRef}
+        css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
+        onClick={(e) => {
+          if (e.target == componentsTreeRef.current && illaMode == "edit") {
+            dispatch(configActions.updateSelectedComponent([]))
+          }
+        }}
+      >
         {componentTree}
       </div>
       <canvas
         id={`${componentNode.displayName}-dragged`}
-        css={applyDotCanvasStyle(edgeWidth, showDot)}
-        width={canvasWidth}
-        height={canvasHeight + edgeWidth}
+        css={applyDotCanvasStyle(
+          showDot,
+          1,
+          canvasWidth,
+          canvasHeight + edgeWidth,
+        )}
+        width={canvasWidth * radio}
+        height={(canvasHeight + edgeWidth) * radio}
       />
     </div>
   )

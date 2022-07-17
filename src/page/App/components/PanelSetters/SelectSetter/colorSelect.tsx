@@ -1,77 +1,71 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
+import chroma from "chroma-js"
+import { ColorSelectSetterProps } from "./interface"
 import {
   colorSelectMenuItemWrapperStyle,
-  colorSelectMenuWrapperStyle,
   applyColorSelectPreviewColorStyle,
   colorSelectPreviewNameStyle,
   colorSelectWrapperStyle,
 } from "./style"
-import { Trigger } from "@illa-design/trigger"
-import { ColorSelectSetterProps } from "./interface"
-import chroma from "chroma-js"
+import { Dropdown, DropList } from "@illa-design/dropdown"
+
+const { Item } = DropList
+
+const renderContent = (color: string = "transparent") => (
+  <>
+    <span css={applyColorSelectPreviewColorStyle(color)} />
+    <span css={colorSelectPreviewNameStyle}>
+      {color !== "transparent"
+        ? chroma(color).hex().toLocaleUpperCase()
+        : color}
+    </span>
+  </>
+)
 
 export const ColorSelectSetter: FC<ColorSelectSetterProps> = (props) => {
-  const { defaultValue, options, attrName, panelConfig, handleUpdateDsl } =
-    props
+  const { value, options, attrName, handleUpdateDsl } = props
   const [menuVisible, setMenuVisible] = useState(false)
-
-  const renderContent = useCallback((color: string = "transparent") => {
-    return (
-      <>
-        <div css={applyColorSelectPreviewColorStyle(color)} />
-        <div css={colorSelectPreviewNameStyle}>
-          {color !== "transparent"
-            ? chroma(color).hex().toLocaleUpperCase()
-            : color}
-        </div>
-      </>
-    )
-  }, [])
 
   const renderMenuList = useMemo(() => {
     return (
-      <div css={colorSelectMenuWrapperStyle}>
+      <DropList>
         {options?.map((color) => {
           const { key, value } = color
           return (
-            <div
+            <Item
+              style={{ padding: 0 }}
               css={colorSelectMenuItemWrapperStyle}
               key={key}
               onClick={() => {
-                handleUpdateDsl({ [attrName]: value })
+                handleUpdateDsl(attrName, value)
                 setMenuVisible(false)
               }}
             >
-              {renderContent(key)}
-            </div>
+              <span>{renderContent(key)}</span>
+            </Item>
           )
         })}
-      </div>
+      </DropList>
     )
-  }, [renderContent, options, attrName])
+  }, [options, attrName, handleUpdateDsl])
 
   const translateValueToKey = useMemo(() => {
-    const value = panelConfig[attrName]
-    const key = options?.find(
-      (item) => item.value === (value ?? defaultValue),
-    )?.key
+    const key = options?.find((item) => item.value === value)?.key
     return key ?? "transparent"
-  }, [panelConfig, options])
+  }, [value, options])
 
   return (
-    <Trigger
-      colorScheme="white"
-      trigger="click"
-      clickOutsideToClose
-      withoutPadding={true}
-      popupVisible={menuVisible}
+    <Dropdown
+      dropList={renderMenuList}
       position="bottom"
+      triggerProps={{ autoAlignPopupWidth: true }}
       onVisibleChange={setMenuVisible}
-      content={renderMenuList}
+      popupVisible={menuVisible}
+      trigger="click"
     >
       <div css={colorSelectWrapperStyle}>
         {renderContent(translateValueToKey)}
       </div>
-    </Trigger>
+    </Dropdown>
   )
 }

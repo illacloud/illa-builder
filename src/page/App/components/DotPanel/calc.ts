@@ -29,8 +29,8 @@ export function calculateNotExistDragPosition(
   let renderX: number
   let renderY: number
 
-  squareX = Math.floor(centerX - componentW / 2)
-  squareY = Math.floor(centerY - componentH / 2)
+  squareX = Math.round(centerX - componentW / 2)
+  squareY = Math.round(centerY - componentH / 2)
   renderX = relativeX - (componentW * unitWidth) / 2
   renderY = relativeY - (componentH * unitHeight) / 2
 
@@ -63,8 +63,8 @@ export function calculateExistDragPosition(
   let renderX = relativeX - offsetRecord.x
   let renderY = relativeY - offsetRecord.y
 
-  let squareX = Math.floor(renderX / unitWidth)
-  let squareY = Math.floor(renderY / unitHeight)
+  let squareX = Math.round(renderX / unitWidth)
+  let squareY = Math.round(renderY / unitHeight)
 
   return {
     renderX,

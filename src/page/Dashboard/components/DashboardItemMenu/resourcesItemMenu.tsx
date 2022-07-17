@@ -3,12 +3,10 @@ import { useDispatch } from "react-redux"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Message } from "@illa-design/message"
-import { CloseIcon } from "@illa-design/icon"
 import {
   triggerContentContainerCss,
   applyTriggerContentItemStyle,
   modalStyle,
-  closeIconStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
@@ -19,7 +17,7 @@ import { DashboardResourcesItemMenuProps } from "./interface"
 export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
   props,
 ) => {
-  const { resourceId, showFormVisible, setCurId } = props
+  const { resourceId, showFormVisible, setCurId, editActionType } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -36,6 +34,7 @@ export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
           )}
           onClick={() => {
             setCurId(resourceId)
+            editActionType()
             showFormVisible()
           }}
         >
@@ -57,11 +56,7 @@ export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
                 colorScheme: "techPurple",
               },
               closable: true,
-              // closeElement: <div css={closeIconStyle}>
-              //   <CloseIcon size="14px" />
-              // </div>,
               onOk: () => {
-                setConfirmLoading(true)
                 return new Promise((resolve) => {
                   Api.request<DashboardResource>(
                     {
@@ -76,20 +71,20 @@ export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
                       )
                       Message.success(t("dashboard.resources.trash_success"))
 
-                      setConfirmLoading(false)
                       resolve("finish")
                     },
                     (failure) => {
                       Message.error(t("dashboard.resources.trash_failure"))
 
-                      setConfirmLoading(false)
                       resolve("finish")
                     },
                     (crash) => {
                       Message.error(t("network_error"))
 
-                      setConfirmLoading(false)
                       resolve("finish")
+                    },
+                    (loading) => {
+                      setConfirmLoading(loading)
                     },
                   )
                 })
