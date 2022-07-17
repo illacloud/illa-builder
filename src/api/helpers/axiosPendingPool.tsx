@@ -14,7 +14,7 @@ export const generateUniqueKey = (config: AxiosRequestConfig) =>
 
 export const clearRequestPendingPool = () => {
   pendingPollMap.forEach((cancel) => {
-    cancel && isFunction(cancel) && cancel()
+    cancel?.()
   })
   pendingPollMap.clear()
 }
@@ -23,7 +23,7 @@ export const removeRequestPendingPool = (config: AxiosRequestConfig) => {
   const key = generateUniqueKey(config)
   if (pendingPollMap.has(key)) {
     const cancel = pendingPollMap.get(key)
-    cancel && cancel()
+    cancel?.()
     pendingPollMap.delete(key)
   }
 }
