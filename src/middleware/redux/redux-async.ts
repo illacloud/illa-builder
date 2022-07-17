@@ -23,20 +23,23 @@ import {
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const { type, payload } = action
-  const resp = next(action)
   const typeList = type.split("/")
-  if (typeList[typeList.length] === "remote") {
-    return
-  }
   const reduxType = typeList[0]
   const reduxAction = typeList[1]
+  if (typeList[typeList.length - 1] === "remote") {
+    return next({
+      ...action,
+      type: `${reduxType}/${reduxAction}`,
+    })
+  }
+  const resp = next(action)
   switch (reduxType) {
     case "components":
       switch (reduxAction) {
         case "addComponentReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_CREATE_STATE,
@@ -54,7 +57,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           const singleComponentPayload: ComponentDropPayload = payload
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               singleComponentPayload.isMove
@@ -76,7 +79,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           if (dragNode != null) {
             Connection.getRoom(
               "app",
-              store.getState().currentApp.appInfo.id ?? "",
+              store.getState().currentApp.appInfo.appId ?? "",
             )?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -95,7 +98,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           const copyPayload: ComponentCopyPayload = payload
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_CREATE_STATE,
@@ -118,7 +121,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           if (finalNode != null) {
             Connection.getRoom(
               "app",
-              store.getState().currentApp.appInfo.id ?? "",
+              store.getState().currentApp.appInfo.appId ?? "",
             )?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -142,7 +145,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           if (resizeNode != null) {
             Connection.getRoom(
               "app",
-              store.getState().currentApp.appInfo.id ?? "",
+              store.getState().currentApp.appInfo.appId ?? "",
             )?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -161,7 +164,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           const deletePayload: DeleteComponentNodePayload = payload
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_DELETE_STATE,
@@ -182,7 +185,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "setDependenciesReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_UPDATE_STATE,
@@ -203,7 +206,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "addOrUpdateDragShadowReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_CREATE_OR_UPDATE,
@@ -220,7 +223,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "removeDragShadowReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_DELETE_STATE,
@@ -241,7 +244,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "addOrUpdateDottedLineSquareReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_CREATE_OR_UPDATE,
@@ -258,7 +261,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "removeDottedLineSquareReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_DELETE_STATE,
@@ -279,7 +282,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "addDisplayNameReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_CREATE_OR_UPDATE,
@@ -296,7 +299,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "removeDisplayNameReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_DELETE_STATE,
@@ -313,7 +316,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "removeDisplayNameMultiReducer":
           Connection.getRoom(
             "app",
-            store.getState().currentApp.appInfo.id ?? "",
+            store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
               Signal.SIGNAL_DELETE_STATE,

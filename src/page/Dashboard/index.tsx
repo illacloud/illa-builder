@@ -97,7 +97,6 @@ export const IllaApp: FC = () => {
       "",
       (loading) => {},
       (errorState) => {},
-      (room) => {},
     )
     return () => {
       Connection.leaveRoom("dashboard", "")
