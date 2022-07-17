@@ -68,12 +68,14 @@ export class Connection {
     switch (type) {
       case "dashboard":
         config = {
+          baseURL: "http://10.242.213.21:8080/api/v1",
           url: `/room/${instanceId}/dashboard`,
           method: "get",
         }
         break
       case "app":
         config = {
+          baseURL: "http://10.242.213.21:8080/api/v1",
           url: `/room/${instanceId}/app/${roomId}`,
           method: "get",
         }

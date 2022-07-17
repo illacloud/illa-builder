@@ -26,7 +26,7 @@ import { HTML5Backend } from "react-dnd-html5-backend"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { DndProvider } from "react-dnd"
 
-import AuthInit from "./authInit"
+import SettingsInfoRequest from "./middleware/settingsInfoRequest"
 import { useSelector } from "react-redux"
 import {
   getCurrentConfigLanguage,
@@ -48,7 +48,7 @@ function App() {
       <DndProvider backend={HTML5Backend}>
         <GlobalDataProvider>
           <AxiosInterceptor>
-            <AuthInit>
+            <SettingsInfoRequest>
               <ConfigProvider locale={configLanguage}>
                 <Global styles={css(globalStyle)} />
                 <Routes>
@@ -83,7 +83,7 @@ function App() {
                   <Route path="*" element={<Page404 />} />
                 </Routes>
               </ConfigProvider>
-            </AuthInit>
+            </SettingsInfoRequest>
           </AxiosInterceptor>
         </GlobalDataProvider>
       </DndProvider>
