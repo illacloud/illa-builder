@@ -16,6 +16,7 @@ export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = (
     labelDesc,
     labelDescOption,
     labelNameOption,
+    transComponents,
     handleAddItemAsync,
   } = props
 
@@ -30,6 +31,7 @@ export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = (
         labelDesc={labelDesc}
         labelNameOption={labelNameOption}
         labelDescOption={labelDescOption}
+        transComponents={transComponents}
       />
       <div css={fontButtonWrapperStyle} onClick={handleClickNewButton}>
         <AddIcon />

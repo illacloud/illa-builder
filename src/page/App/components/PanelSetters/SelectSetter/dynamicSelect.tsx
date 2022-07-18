@@ -44,6 +44,7 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
     labelNameOption,
     labelDesc,
     labelDescOption,
+    transComponents,
     isSetterSingleRow,
     widgetDisplayName,
     expectedType,
@@ -76,6 +77,7 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
           labelDesc={labelDesc}
           labelNameOption={labelNameOption}
           labelDescOption={labelDescOption}
+          transComponents={transComponents}
         />
         <span
           css={useTypeTextStyle}

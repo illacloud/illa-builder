@@ -12,6 +12,7 @@ export interface PanelLabelProps {
   labelNameOption?: Record<string, string>
   labelDesc?: string
   labelDescOption?: Record<string, string>
+  transComponents?: Record<string, any>
   isInList?: boolean
 }
 

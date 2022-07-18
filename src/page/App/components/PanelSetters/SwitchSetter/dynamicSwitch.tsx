@@ -21,6 +21,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     labelNameOption,
     labelDesc,
     labelDescOption,
+    transComponents,
     panelConfig,
     handleUpdateDsl,
     value,
@@ -41,6 +42,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           labelDesc={labelDesc}
           labelNameOption={labelNameOption}
           labelDescOption={labelDescOption}
+          transComponents={transComponents}
         />
         <div css={customAndSwitchWrapperStyle}>
           <div

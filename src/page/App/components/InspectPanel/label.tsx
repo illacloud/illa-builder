@@ -5,7 +5,14 @@ import { applyLabelTipsStyle, labelTipsTextStyle } from "./style"
 import { PanelLabelProps } from "./interface"
 
 export const PanelLabel: FC<PanelLabelProps> = (props) => {
-  const { labelDesc, labelName, isInList, labelDescOption, labelNameOption } = props
+  const {
+    labelDesc,
+    labelName,
+    isInList,
+    labelDescOption,
+    labelNameOption,
+    transComponents,
+  } = props
 
   const { t } = useTranslation()
 
@@ -13,7 +20,7 @@ export const PanelLabel: FC<PanelLabelProps> = (props) => {
     <Tooltip
       content={
         <span css={labelTipsTextStyle}>
-          <Trans style={{ color: "red", background: "red" }}>
+          <Trans components={{ ...transComponents }}>
             {t(labelDesc, labelDescOption)}
           </Trans>
         </span>
@@ -23,7 +30,9 @@ export const PanelLabel: FC<PanelLabelProps> = (props) => {
       maxWidth="240px"
       disabled={!labelDesc}
     >
-      <span css={applyLabelTipsStyle(isInList, !!labelDesc)}>{t(labelName, labelNameOption)}</span>
+      <span css={applyLabelTipsStyle(isInList, !!labelDesc)}>
+        {t(labelName, labelNameOption)}
+      </span>
     </Tooltip>
   )
 }

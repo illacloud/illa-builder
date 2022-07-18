@@ -19,6 +19,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     labelNameOption,
     labelDesc,
     labelDescOption,
+    transComponents,
     childrenSetter,
     attrName,
     handleUpdateDsl,
@@ -65,6 +66,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
           labelDesc={labelDesc}
           labelDescOption={labelDescOption}
           labelNameOption={labelNameOption}
+          transComponents={transComponents}
         />
         {canReset && (
           <div onClick={onClickReset} css={resetButtonStyle}>
