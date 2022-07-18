@@ -239,7 +239,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-interaction-formId",
         labelName: "editor.inspect.setter_label.submit_form",
-        labelDesc: "xxxxx",
+        // labelDesc: "xxxxx",
         attrName: "formId",
         setterType: "INPUT_SETTER",
         bindAttrName: "submit",

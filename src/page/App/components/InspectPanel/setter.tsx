@@ -60,7 +60,14 @@ export const Setter: FC<PanelSetterProps> = (props) => {
         isInList={isInList}
       />
     ) : null
-  }, [useCustomLayout, labelName, labelDesc, isInList, labelNameOption, labelDescOption])
+  }, [
+    useCustomLayout,
+    labelName,
+    labelDesc,
+    isInList,
+    labelNameOption,
+    labelDescOption,
+  ])
 
   const _finalAttrName = useMemo(() => {
     if (parentAttrName) {

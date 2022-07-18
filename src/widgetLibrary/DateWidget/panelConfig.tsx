@@ -148,7 +148,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-interaction-loading",
         labelName: "editor.inspect.setter_label.loading",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.loading",
         attrName: "loading",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
