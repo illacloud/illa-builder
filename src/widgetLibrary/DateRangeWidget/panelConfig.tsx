@@ -25,6 +25,9 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-basic-Format",
         labelName: "editor.inspect.setter_label.format",
         labelDesc: "editor.inspect.setter_tooltip.date_format",
+        transComponents: {
+          DayJS: <a href="https://day.js.org/docs/en/parse/string-format"></a>,
+        },
         attrName: "dateFormat",
         setterType: "INPUT_SETTER",
       },
