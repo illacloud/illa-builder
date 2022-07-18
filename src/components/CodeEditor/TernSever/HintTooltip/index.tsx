@@ -37,9 +37,13 @@ const formatObjOrArr = (type: string, data: any) => {
   }
   return (
     <Trigger
-      _css={evaluationTriggerStyle}
-      content={type === "Array" ? `[${format}]` : `Object {${format}}`}
-      colorScheme={"techPurple"}
+      content={
+        <div css={evaluationTriggerStyle}>
+          {type === "Array" ? `[${format}]` : `Object {${format}}`}
+        </div>
+      }
+      withoutPadding
+      colorScheme={"white"}
       position="right"
       openDelay={10}
       closeDelay={10}
