@@ -67,6 +67,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-option-mapped",
         labelName: "editor.inspect.setter_label.mapped_option",
+        labelDesc: "editor.inspect.setter_tooltip.map_data_option",
         useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
@@ -99,12 +100,14 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-basic-defaultValue",
         labelName: "editor.inspect.setter_label.default_value",
+        labelDesc: "editor.inspect.setter_tooltip.component_default_value",
         attrName: "value",
         setterType: "INPUT_SETTER",
       },
       {
         id: "select-basic-placeholder",
         labelName: "editor.inspect.setter_label.placeholder",
+        labelDesc: "editor.inspect.setter_tooltip.placeholder",
         attrName: "placeholder",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -171,6 +174,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-validation-required",
         labelName: "editor.inspect.setter_label.required_field",
+        labelDesc: "editor.inspect.setter_tooltip.required_field",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -179,6 +183,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-validation-hide-message",
         labelName: "editor.inspect.setter_label.hide_validation_message",
+        labelDesc: "editor.inspect.setter_tooltip.hide_validation_message",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -193,6 +198,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-interaction-disabled",
         labelName: "editor.inspect.setter_label.disabled",
+        labelDesc: "editor.inspect.setter_tooltip.disabled",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
@@ -201,6 +207,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-interaction-readonly",
         labelName: "editor.inspect.setter_label.read_only",
+        labelDesc: "editor.inspect.setter_tooltip.read_only",
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
@@ -237,6 +244,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -250,6 +258,8 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "select-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "selectName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         useCustomLayout: true,

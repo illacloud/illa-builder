@@ -31,7 +31,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         id: "button-interaction-event-handler",
         attrName: "events",
         labelName: "editor.inspect.setter_label.event_handler",
-        labelDesc: "xxxxx",
         setterType: "EVENT_HANDLER_SETTER",
         useCustomLayout: true,
         childrenSetter: [
@@ -45,6 +44,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "action",
             labelName: "editor.inspect.setter_label.action",
+            labelDesc: "editor.inspect.setter_tooltip.action",
             setterType: "EVENT_ACTION_SELECT_SETTER",
             attrName: "actionType",
             options: [
@@ -217,7 +217,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "enabled",
             labelName: "Only run when",
-            labelDesc: "xxxxx",
+            // labelDesc: "xxxxx",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
             attrName: "enabled",
@@ -239,7 +239,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-interaction-formId",
         labelName: "editor.inspect.setter_label.submit_form",
-        labelDesc: "xxxxx",
+        // labelDesc: "xxxxx",
         attrName: "formId",
         setterType: "INPUT_SETTER",
         bindAttrName: "submit",
@@ -248,7 +248,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-interaction-loading",
         labelName: "editor.inspect.setter_label.loading",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.loading",
         attrName: "loading",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -260,7 +260,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-interaction-disabled",
         labelName: "editor.inspect.setter_label.disabled",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.disabled",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -276,6 +276,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -314,6 +315,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         id: "button-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "buttonName" },
         useCustomLayout: true,
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,

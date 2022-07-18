@@ -45,6 +45,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "image-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -72,6 +73,8 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "image-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "imageName" },
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         setterType: "DYNAMIC_SWITCH_SETTER",

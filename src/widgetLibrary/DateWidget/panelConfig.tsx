@@ -12,6 +12,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-basic-DefaultValue",
         labelName: "editor.inspect.setter_label.default_value",
+        labelDesc: "editor.inspect.setter_tooltip.component_default_value",
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -19,6 +20,10 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-basic-Format",
         labelName: "editor.inspect.setter_label.format",
+        labelDesc: "editor.inspect.setter_tooltip.date_format",
+        transComponents: {
+          DayJS: <a href="https://day.js.org/docs/en/parse/string-format"></a>,
+        },
         attrName: "dateFormat",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -26,6 +31,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-basic-placeholder",
         labelName: "editor.inspect.setter_label.placeholder",
+        labelDesc: "editor.inspect.setter_tooltip.placeholder",
         attrName: "placeholder",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -107,7 +113,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-interaction-disabled",
         labelName: "editor.inspect.setter_label.disabled",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.disabled",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -115,7 +121,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-interaction-readonly",
         labelName: "editor.inspect.setter_label.read_only",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.read_only",
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -129,6 +135,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-adornments-tooltip",
         labelName: "editor.inspect.setter_label.tooltip",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -144,7 +151,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "date-interaction-loading",
         labelName: "editor.inspect.setter_label.loading",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.loading",
         attrName: "loading",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -158,6 +165,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "input-validation-required",
         labelName: "editor.inspect.setter_label.required_field",
+        labelDesc: "editor.inspect.setter_tooltip.required_field",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -166,6 +174,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "input-validation-hide-message",
         labelName: "editor.inspect.setter_label.hide_validation_message",
+        labelDesc: "editor.inspect.setter_tooltip.hide_validation_message",
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -181,6 +190,8 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "dateName" },
         attrName: "hidden",
         useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,

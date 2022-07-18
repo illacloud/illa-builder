@@ -14,7 +14,10 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     isSetterSingleRow,
     isInList,
     labelName,
+    labelNameOption,
     labelDesc,
+    labelDescOption,
+    transComponents,
     useCustomLayout = false,
     shown,
     bindAttrName,
@@ -51,12 +54,23 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   const renderLabel = useMemo(() => {
     return !useCustomLayout && labelName ? (
       <PanelLabel
-        labelName={t(labelName)}
+        labelName={labelName}
         labelDesc={labelDesc}
+        labelNameOption={labelNameOption}
+        labelDescOption={labelDescOption}
+        transComponents={transComponents}
         isInList={isInList}
       />
     ) : null
-  }, [useCustomLayout, labelName, labelDesc, isInList])
+  }, [
+    useCustomLayout,
+    labelName,
+    labelDesc,
+    isInList,
+    labelNameOption,
+    labelDescOption,
+    transComponents,
+  ])
 
   const _finalAttrName = useMemo(() => {
     if (parentAttrName) {

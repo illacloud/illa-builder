@@ -1,7 +1,14 @@
 import { PanelLabelProps } from "@/page/App/components/InspectPanel/interface"
 
 export interface EventHandlerSetterHeaderProps
-  extends Pick<PanelLabelProps, "labelName" | "labelDesc"> {
+  extends Pick<
+    PanelLabelProps,
+    | "labelName"
+    | "labelDesc"
+    | "labelNameOption"
+    | "labelDescOption"
+    | "transComponents"
+  > {
   handleAddItemAsync: () => void
 }
 

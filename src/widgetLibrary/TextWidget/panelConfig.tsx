@@ -18,6 +18,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-basic-inputModal",
         labelName: "editor.inspect.setter_label.value",
+        labelDesc: "editor.inspect.setter_tooltip.text_value",
         attrName: "disableMarkdown",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -41,7 +42,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-adornments-startAdornment",
         labelName: "editor.inspect.setter_label.tooltip",
-        labelDesc: "xxxxx",
+        labelDesc: "editor.inspect.setter_tooltip.tooltip",
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -56,7 +57,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-layout-col",
         labelName: "editor.inspect.setter_label.horizontal_alignment",
         attrName: "horizontalAlign",
-        labelDesc: "xxxxxxx",
         setterType: "RADIO_GROUP_SETTER",
         isSetterSingleRow: true,
         options: [
@@ -78,7 +78,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-layout-row",
         labelName: "editor.inspect.setter_label.vertical_alignment",
         setterType: "RADIO_GROUP_SETTER",
-        labelDesc: "xxxxxxx",
         attrName: "verticalAlign",
         isSetterSingleRow: true,
         options: [
@@ -99,6 +98,8 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-layout-hidden",
         labelName: "editor.inspect.setter_label.hidden",
+        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelDescOption: { name: "textName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         useCustomLayout: true,
