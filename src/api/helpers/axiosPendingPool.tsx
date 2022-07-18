@@ -1,8 +1,7 @@
-import axios, { AxiosRequestConfig, Canceler } from "axios"
+import { AxiosRequestConfig } from "axios"
 import qs from "qs"
-import { isFunction } from "@/utils/typeHelper"
 
-let pendingPollMap = new Map<string, Canceler>()
+let pendingPollMap = new Map<string, (reason?: any) => void>()
 
 export const generateUniqueKey = (config: AxiosRequestConfig) =>
   [
@@ -31,11 +30,9 @@ export const removeRequestPendingPool = (config: AxiosRequestConfig) => {
 export const addRequestPendingPool = (config: AxiosRequestConfig) => {
   removeRequestPendingPool(config)
   const key = generateUniqueKey(config)
-  config.cancelToken =
-    config.cancelToken ||
-    new axios.CancelToken((cancel) => {
-      if (!pendingPollMap.has(key)) {
-        pendingPollMap.set(key, cancel)
-      }
-    })
+  const controller = new AbortController()
+  config.signal = controller.signal
+  if (!pendingPollMap.has(key)) {
+    pendingPollMap.set(key, controller.abort.bind(controller))
+  }
 }

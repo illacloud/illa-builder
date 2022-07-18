@@ -4,7 +4,6 @@ import {
   addRequestPendingPool,
   removeRequestPendingPool,
 } from "@/api/helpers/axiosPendingPool"
-import { Message } from "@illa-design/message"
 
 export interface Success {
   status: string // always ok
