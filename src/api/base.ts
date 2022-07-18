@@ -48,11 +48,6 @@ axios.interceptors.response.use(
     return response
   },
   (error: AxiosError) => {
-    if (!window.navigator.onLine) {
-      //  TODO: @aruseito handle offline,need message
-      Message.warning("xxxxxxxx")
-      return
-    }
     const { response } = error
     if (response) {
       const { status } = response
