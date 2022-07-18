@@ -7,8 +7,7 @@ import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"
 
 export const PanelHeader: FC = (props) => {
-  const { widgetDisplayName, widgetParentDisplayName, widgetType } =
-    useContext(SelectedPanelContext)
+  const { widgetDisplayName, widgetType } = useContext(SelectedPanelContext)
 
   return (
     <div css={panelHeaderWrapperStyle}>
@@ -23,7 +22,6 @@ export const PanelHeader: FC = (props) => {
           trigger="click"
           dropList={
             <ActionMenu
-              widgetParentDisplayName={widgetParentDisplayName}
               widgetDisplayName={widgetDisplayName}
               componentType={widgetType}
             />

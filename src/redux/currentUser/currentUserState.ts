@@ -10,6 +10,6 @@ export const CurrentUserInitialState: CurrentUser = {
   userId: 0,
   nickname: "",
   userAvatar: "",
-  language: "English",
+  language: "",
   email: "",
 }
