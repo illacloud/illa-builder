@@ -35,6 +35,9 @@ export const evaluationContentStyle = css`
 
 export const evaluationTriggerStyle = css`
   white-space: pre;
+  padding: 12px 16px;
+  background: #DCCFF9;
+  border-radius: 4px;
 `
 
 export const docIconStyle = css`

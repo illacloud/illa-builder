@@ -8,6 +8,14 @@ export enum VALIDATION_TYPES {
   OBJECT = "OBJECT",
 }
 
+export enum VALIDATION_TYPES_TRANS {
+  STRING = "String",
+  NUMBER = "Number",
+  BOOLEAN = "Boolean",
+  ARRAY = "Array",
+  OBJECT = "Object",
+}
+
 export interface ValidationResponse {
   isValid: boolean
   safeValue: any
