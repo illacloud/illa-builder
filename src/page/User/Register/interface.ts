@@ -7,7 +7,7 @@ export interface RegisterFields {
 }
 
 export interface RegisterResult {
-  userId: string
+  userId: number
   nickname: string
   email: string
   createdAt: string
