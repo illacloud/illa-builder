@@ -1,13 +1,13 @@
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
 
 export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "select-options",
-    groupName: "editor.inspect.setter_group.options",
+    groupName: i18n.t("editor.inspect.setter_group.options"),
     children: [
       {
         id: "select-options-mode",
@@ -34,20 +34,20 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: "select-options-label",
-            labelName: "Label",
+            labelName: i18n.t("Label"),
             attrName: "label",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
             id: "select-options-value",
-            labelName: "Value",
+            labelName: i18n.t("Value"),
             attrName: "value",
             setterType: "INPUT_SETTER",
           },
           {
             id: "select-options-disabled",
-            labelName: "Disabled",
+            labelName: i18n.t("Disabled"),
             attrName: "disabled",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -56,7 +56,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-option-data-sources",
-        labelName: "editor.inspect.setter_label.data_sources",
+        labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
         bindAttrName: "optionConfigureMode",
@@ -66,8 +66,8 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-option-mapped",
-        labelName: "editor.inspect.setter_label.mapped_option",
-        labelDesc: "editor.inspect.setter_tooltip.map_data_option",
+        labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.map_data_option"),
         useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
@@ -76,21 +76,21 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: `select-mappedOption-labels`,
-            labelName: "editor.inspect.setter_label.label",
+            labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "labels",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `select-mappedOption-values`,
-            labelName: "editor.inspect.setter_label.value",
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "values",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
             id: `select-mappedOption-disables`,
-            labelName: "editor.inspect.setter_label.disabled",
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disables",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
             expectedType: VALIDATION_TYPES.ARRAY,
@@ -99,15 +99,17 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-basic-defaultValue",
-        labelName: "editor.inspect.setter_label.default_value",
-        labelDesc: "editor.inspect.setter_tooltip.component_default_value",
+        labelName: i18n.t("editor.inspect.setter_label.default_value"),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tooltip.component_default_value",
+        ),
         attrName: "value",
         setterType: "INPUT_SETTER",
       },
       {
         id: "select-basic-placeholder",
-        labelName: "editor.inspect.setter_label.placeholder",
-        labelDesc: "editor.inspect.setter_tooltip.placeholder",
+        labelName: i18n.t("editor.inspect.setter_label.placeholder"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.placeholder"),
         attrName: "placeholder",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -116,25 +118,25 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-label",
-    groupName: "editor.inspect.setter_group.label",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "select-label-label",
-        labelName: "editor.inspect.setter_label.label",
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-label-caption",
-        labelName: "editor.inspect.setter_label.caption",
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-label-position",
-        labelName: "editor.inspect.setter_label.label_position",
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -144,7 +146,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-label-alignment",
-        labelName: "editor.inspect.setter_label.label_alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -160,7 +162,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-label-labelWidth",
-        labelName: "editor.inspect.setter_label.label_width",
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -169,12 +171,12 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-validation",
-    groupName: "editor.inspect.setter_group.validation",
+    groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
         id: "select-validation-required",
-        labelName: "editor.inspect.setter_label.required_field",
-        labelDesc: "editor.inspect.setter_tooltip.required_field",
+        labelName: i18n.t("editor.inspect.setter_label.required_field"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -182,8 +184,12 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-validation-hide-message",
-        labelName: "editor.inspect.setter_label.hide_validation_message",
-        labelDesc: "editor.inspect.setter_tooltip.hide_validation_message",
+        labelName: i18n.t(
+          "editor.inspect.setter_label.hide_validation_message",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tooltip.hide_validation_message",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -193,12 +199,12 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-interaction",
-    groupName: "editor.inspect.setter_group.interaction",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
         id: "select-interaction-disabled",
-        labelName: "editor.inspect.setter_label.disabled",
-        labelDesc: "editor.inspect.setter_tooltip.disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
@@ -206,8 +212,8 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-interaction-readonly",
-        labelName: "editor.inspect.setter_label.read_only",
-        labelDesc: "editor.inspect.setter_tooltip.read_only",
+        labelName: i18n.t("editor.inspect.setter_label.read_only"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.read_only"),
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
@@ -217,11 +223,11 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-Adornments",
-    groupName: "editor.inspect.setter_group.adornments",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "select-adornments-showClear",
-        labelName: "editor.inspect.setter_label.show_clear_button",
+        labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "showClear",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
@@ -229,22 +235,22 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "select-adornments-prefixText",
-        labelName: "editor.inspect.setter_label.prefix_text",
+        labelName: i18n.t("editor.inspect.setter_label.prefix_text"),
         attrName: "prefixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-adornments-suffixText",
-        labelName: "editor.inspect.setter_label.suffix_text",
+        labelName: i18n.t("editor.inspect.setter_label.suffix_text"),
         attrName: "suffixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "select-adornments-tooltip",
-        labelName: "editor.inspect.setter_label.tooltip",
-        labelDesc: "editor.inspect.setter_tooltip.tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -253,12 +259,12 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "select-layout",
-    groupName: "editor.inspect.setter_group.layout",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "select-layout-hidden",
-        labelName: "editor.inspect.setter_label.hidden",
-        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         labelDescOption: { name: "selectName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
@@ -270,18 +276,18 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `select-style`,
-    groupName: "editor.inspect.setter_group.style",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: `select-style-styles`,
         setterType: "LIST_SETTER",
-        labelName: "editor.inspect.setter_label.styles",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
             id: `select-style-color`,
-            labelName: "editor.inspect.setter_label.theme_color",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",

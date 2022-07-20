@@ -6,7 +6,6 @@ import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { useTranslation } from "react-i18next"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -27,7 +26,6 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     defaultValue,
   } = props
   const Comp = getSetterByType(setterType)
-  const { t } = useTranslation()
 
   const {
     widgetProps,
@@ -39,8 +37,17 @@ export const Setter: FC<PanelSetterProps> = (props) => {
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
+    let bindAttrNameValue
     if (typeof bindAttrName === "string") {
-      return shown(widgetProps[bindAttrName])
+      if (parentAttrName) {
+        bindAttrNameValue = get(
+          widgetProps,
+          `${parentAttrName}.${bindAttrName}`,
+        )
+      } else {
+        bindAttrNameValue = get(widgetProps, bindAttrName)
+      }
+      return shown(bindAttrNameValue)
     } else if (Array.isArray(bindAttrName)) {
       const shownProps: { [attrName: string]: any } = {}
       bindAttrName.forEach((_attrName: string) => {

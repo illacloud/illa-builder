@@ -4,24 +4,24 @@ import {
   HorizontalStartIcon,
 } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
 
 export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "divider-basic",
-    groupName: "editor.inspect.setter_group.basic",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "divider-basic-text",
-        labelName: "editor.inspect.setter_label.text",
+        labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "text",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: "divider-basic-text-align",
-        labelName: "editor.inspect.setter_label.text_align",
+        labelName: i18n.t("editor.inspect.setter_label.text_align"),
         attrName: "textAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -43,13 +43,13 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "divider-layout",
-    groupName: "editor.inspect.setter_group.label",
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
         id: "divider-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
-        labelName: "editor.inspect.setter_label.hidden",
-        labelDesc: "editor.inspect.setter_tooltip.hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         labelDescOption: { name: "dividerName" },
         attrName: "hidden",
         useCustomLayout: true,
@@ -59,18 +59,18 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "divider-style",
-    groupName: "editor.inspect.setter_group.style",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "divider-style-list",
         setterType: "LIST_SETTER",
         attrName: "styles",
-        labelName: "editor.inspect.setter_label.styles",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "divider-style-text-size",
-            labelName: "editor.inspect.setter_label.text_size",
+            labelName: i18n.t("editor.inspect.setter_label.text_size"),
             setterType: "INPUT_SETTER",
             attrName: "textSize",
             defaultValue: "14px",
