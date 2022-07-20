@@ -721,10 +721,12 @@
       "title": "PASSWORD",
       "current_password": "Old password",
       "new_password": "New password",
-      "confirm_password": "Confirm password",
+      "confirm_password": "Confirmation password",
       "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 6～15 characters",
-      "error_match_password": "Passwords do not match",
+      "error_format_password": "Password must be 6～20 characters",
+      "error_match_password": "Your password and confirmation password do not match",
+      "error_password_has_empty": "Password cannot include spaces",
+      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
       "submit_button": "Submit"
     },
     "other": {

@@ -1,170 +1,165 @@
-import { FC, useState, ChangeEvent } from "react"
+import { FC, useCallback, useMemo, useState, ChangeEvent } from "react"
 import { useTranslation } from "react-i18next"
-import { Message } from "@illa-design/message"
+import { Password } from "@illa-design/input"
+import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
+import { Button } from "@illa-design/button"
+import { LabelAndSetter } from "@/page/Setting/components/LabelAndSetter"
 import { Api } from "@/api/base"
-import { SettingCommonForm } from "../Components/SettingCommonForm"
+import { Message } from "@illa-design/message"
+
+const validatePasswordEmpty = (password: string) => {
+  return !password
+}
+
+const validatePasswordLength = (password: string) => {
+  return password.length < 6 || password.length > 20
+}
+
+const validateNewPassword = (password: string) => {
+  return password.includes(" ")
+}
+
+const validateConfirmationAndNewEqual = (
+  newPassword: string,
+  confirmation: string,
+) => {
+  return newPassword !== confirmation
+}
 
 export const SettingPassword: FC = () => {
   const { t } = useTranslation()
-
-  const [currentPasswordValue, setCurrentPasswordValue] = useState<string>("")
-  const [newPasswordValue, setNewPasswordValue] = useState<string>("")
-  const [confirmPasswordValue, setConfirmPasswordValue] = useState<string>("")
-
-  const [showCurrentPasswordError, setShowCurrentPasswordError] =
-    useState<boolean>(false)
-  const [showNewPasswordError, setShowNewPasswordError] =
-    useState<boolean>(false)
-  const [showConfirmPasswordError, setShowConfirmPasswordError] =
-    useState<boolean>(false)
-
-  const [currentPasswordErrorMsg, setCurrentPasswordErrorMsg] =
-    useState<string>("")
-  const [newPasswordErrorMsg, setNewPasswordErrorMsg] = useState<string>("")
-  const [confirmPasswordErrorMsg, setConfirmPasswordErrorMsg] =
+  const [currentPassword, setCurrentPassword] = useState<string>("")
+  const [currentPasswordErrorMessage, setCurrentPasswordErrorMessage] =
     useState<string>("")
 
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
-  const [buttonLoading, setButtonLoading] = useState<boolean>(false)
+  const [newPassword, setNewPassword] = useState<string>("")
+  const [newPasswordErrorMessage, setNewPasswordErrorMessage] =
+    useState<string>("")
 
-  const paramData = [
-    {
-      title: t("setting.password.current_password"),
-      content: [
-        {
-          type: "input-password",
-          value: currentPasswordValue,
-          onPasswordChange: (event: ChangeEvent<HTMLInputElement>) => {
-            const value = event.target.value
-            if (!value || !confirmPasswordValue || !newPasswordValue) {
-              setButtonDisabled(true)
-            } else {
-              setButtonDisabled(false)
-            }
-            setCurrentPasswordValue(value)
-          },
-          showError: showCurrentPasswordError,
-          errorMsg: currentPasswordErrorMsg,
-          onFocus: () => {
-            setShowCurrentPasswordError(false)
-          },
-        },
-      ],
+  const [confirmPassword, setConfirmPassword] = useState<string>("")
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+    useState("")
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const isButtonDisabled = useMemo(() => {
+    return (
+      !currentPassword ||
+      !newPassword ||
+      !confirmPassword ||
+      !!currentPasswordErrorMessage ||
+      !!newPasswordErrorMessage ||
+      !!confirmPasswordErrorMessage
+    )
+  }, [
+    currentPassword,
+    newPassword,
+    confirmPassword,
+    currentPasswordErrorMessage,
+    newPasswordErrorMessage,
+    confirmPasswordErrorMessage,
+  ])
+
+  const handleChangeNewPassword = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value
+      setNewPassword(value)
+      if (validatePasswordEmpty(value)) {
+        setNewPasswordErrorMessage(t("setting.password.empty_password"))
+        return
+      }
+      if (validatePasswordLength(value)) {
+        setNewPasswordErrorMessage(t("setting.password.error_format_password"))
+        return
+      }
+
+      if (validateNewPassword(value)) {
+        setNewPasswordErrorMessage(
+          t("setting.password.error_password_has_empty"),
+        )
+        return
+      }
+
+      setNewPasswordErrorMessage("")
     },
-    {
-      title: t("setting.password.new_password"),
-      content: [
-        {
-          type: "input-password",
-          value: newPasswordValue,
-          onPasswordChange: (event: ChangeEvent<HTMLInputElement>) => {
-            const value = event.target.value
-            if (!value || !confirmPasswordValue || !currentPasswordValue) {
-              setButtonDisabled(true)
-            } else {
-              setButtonDisabled(false)
-            }
-            setNewPasswordValue(value)
-          },
-          showError: showNewPasswordError,
-          errorMsg: newPasswordErrorMsg,
-          onFocus: () => {
-            setShowNewPasswordError(false)
-          },
-        },
-      ],
+    [],
+  )
+
+  const handleChangeConfirmPassword = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value
+      setConfirmPassword(value)
+      if (validatePasswordEmpty(value)) {
+        setConfirmPasswordErrorMessage(t("setting.password.empty_password"))
+        return
+      }
+
+      if (validatePasswordLength(value)) {
+        setConfirmPasswordErrorMessage(
+          t("setting.password.error_format_password"),
+        )
+        return
+      }
+
+      if (validateNewPassword(value)) {
+        setConfirmPasswordErrorMessage(
+          t("setting.password.error_password_has_empty"),
+        )
+        return
+      }
+
+      if (validateConfirmationAndNewEqual(newPassword, value)) {
+        setConfirmPasswordErrorMessage(
+          t("setting.password.error_match_password"),
+        )
+        return
+      }
+
+      setConfirmPasswordErrorMessage("")
     },
-    {
-      title: t("setting.password.confirm_password"),
-      content: [
-        {
-          type: "input-password",
-          value: confirmPasswordValue,
-          onPasswordChange: (event: ChangeEvent<HTMLInputElement>) => {
-            const value = event.target.value
-            if (!value || !newPasswordValue || !currentPasswordValue) {
-              setButtonDisabled(true)
-            } else {
-              setButtonDisabled(false)
-            }
-            setConfirmPasswordValue(value)
-          },
-          showError: showConfirmPasswordError,
-          errorMsg: confirmPasswordErrorMsg,
-          onFocus: () => {
-            setShowConfirmPasswordError(false)
-          },
-        },
-      ],
+    [newPassword],
+  )
+
+  const handleChangeCurrentPassword = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value
+      setCurrentPassword(value)
+      if (validatePasswordEmpty(value)) {
+        setCurrentPasswordErrorMessage(t("setting.password.empty_password"))
+        return
+      }
+      setCurrentPasswordErrorMessage("")
     },
-    {
-      content: [
-        {
-          type: "button",
-          value: t("setting.password.submit_button"),
-          disabled: buttonDisabled,
-          loading: buttonLoading,
-        },
-      ],
-    },
-  ]
+    [],
+  )
 
-  const beforeFormat = () => {
-    if (!currentPasswordValue) {
-      setShowCurrentPasswordError(true)
-      setCurrentPasswordErrorMsg(t("setting.password.empty_password"))
-      return false
-    }
-    if (!newPasswordValue) {
-      setShowNewPasswordError(true)
-      setNewPasswordErrorMsg(t("setting.password.empty_password"))
-      return false
-    }
-    if (!confirmPasswordValue) {
-      setShowConfirmPasswordError(true)
-      setConfirmPasswordErrorMsg(t("setting.password.empty_password"))
-      return false
-    }
-    if (newPasswordValue.length < 6 || newPasswordValue.length > 15) {
-      setShowNewPasswordError(true)
-      setNewPasswordErrorMsg(t("setting.password.error_format_password"))
-      return false
-    }
-    if (newPasswordValue !== confirmPasswordValue) {
-      setShowConfirmPasswordError(true)
-      setConfirmPasswordErrorMsg(t("setting.password.error_match_password"))
-      return false
-    }
-
-    return true
-  }
-
-  const handleSubmit = () => {
-    setShowCurrentPasswordError(false)
-    setShowNewPasswordError(false)
-    setShowConfirmPasswordError(false)
-
-    if (!beforeFormat()) {
+  const onClickSubmitButton = useCallback(() => {
+    if (
+      currentPassword === "" ||
+      newPassword === "" ||
+      confirmPassword === ""
+    ) {
       return
     }
-
     Api.request(
       {
         url: "/users/password",
         method: "PATCH",
         data: {
-          currentPassword: currentPasswordValue,
-          newPassword: newPasswordValue,
+          currentPassword,
+          newPassword,
         },
       },
       (response) => {
-        setCurrentPasswordValue("")
-        setNewPasswordValue("")
-        setConfirmPasswordValue("")
+        setCurrentPassword("")
+        setNewPassword("")
+        setConfirmPassword("")
         Message.success(t("edit_success"))
       },
       (failure) => {
-        if (failure) {
+        //  TODO: need error code unique,to show error message
+        const { data } = failure
+        if (data?.errorCode === 400) {
           Message.error(failure.data.errorMessage)
         }
       },
@@ -172,12 +167,63 @@ export const SettingPassword: FC = () => {
         Message.error(t("network_error"))
       },
       (loading) => {
-        setButtonLoading(loading)
+        setIsLoading(loading)
       },
     )
-  }
+  }, [currentPassword, newPassword, confirmPassword])
 
-  return <SettingCommonForm paramData={paramData} onSubmit={handleSubmit} />
+  return (
+    <>
+      <LabelAndSetter
+        errorMessage={currentPasswordErrorMessage}
+        label={t("setting.password.current_password")}
+      >
+        <Password
+          size="large"
+          value={currentPassword}
+          onChange={handleChangeCurrentPassword}
+          borderColor="techPurple"
+        />
+      </LabelAndSetter>
+
+      <LabelAndSetter
+        errorMessage={newPasswordErrorMessage}
+        label={t("setting.password.new_password")}
+      >
+        <Password
+          size="large"
+          value={newPassword}
+          onChange={handleChangeNewPassword}
+          borderColor="techPurple"
+        />
+      </LabelAndSetter>
+
+      <LabelAndSetter
+        errorMessage={confirmPasswordErrorMessage}
+        label={t("setting.password.confirm_password")}
+      >
+        <Password
+          size="large"
+          value={confirmPassword}
+          onChange={handleChangeConfirmPassword}
+          borderColor="techPurple"
+        />
+      </LabelAndSetter>
+
+      <div css={publicButtonWrapperStyle}>
+        <Button
+          size="large"
+          autoFullHorizontal
+          disabled={isButtonDisabled}
+          loading={isLoading}
+          colorScheme="techPurple"
+          onClick={onClickSubmitButton}
+        >
+          {t("setting.password.submit_button")}
+        </Button>
+      </div>
+    </>
+  )
 }
 
 SettingPassword.displayName = "SettingPassword"

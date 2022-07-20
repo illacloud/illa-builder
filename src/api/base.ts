@@ -10,7 +10,7 @@ export interface Success {
 }
 
 export interface ApiError {
-  errorCode: string
+  errorCode: string | number
   errorMessage: string
 }
 // TODO: @aruseito use OOP to create request
