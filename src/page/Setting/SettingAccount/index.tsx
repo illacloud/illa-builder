@@ -89,6 +89,7 @@ export const SettingAccount: FC = () => {
           disabled
           size="large"
           borderColor="techPurple"
+          variant="fill"
         />
       </LabelAndSetter>
 
@@ -101,6 +102,7 @@ export const SettingAccount: FC = () => {
           value={nickNameValue}
           onChange={handleChangeUserName}
           borderColor={errorMessage ? "red" : "techPurple"}
+          variant="fill"
         />
       </LabelAndSetter>
 

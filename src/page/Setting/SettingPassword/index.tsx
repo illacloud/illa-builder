@@ -183,6 +183,7 @@ export const SettingPassword: FC = () => {
           value={currentPassword}
           onChange={handleChangeCurrentPassword}
           borderColor="techPurple"
+          variant="fill"
         />
       </LabelAndSetter>
 
@@ -195,6 +196,7 @@ export const SettingPassword: FC = () => {
           value={newPassword}
           onChange={handleChangeNewPassword}
           borderColor="techPurple"
+          variant="fill"
         />
       </LabelAndSetter>
 
@@ -207,6 +209,7 @@ export const SettingPassword: FC = () => {
           value={confirmPassword}
           onChange={handleChangeConfirmPassword}
           borderColor="techPurple"
+          variant="fill"
         />
       </LabelAndSetter>
 
