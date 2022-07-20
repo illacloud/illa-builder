@@ -13,6 +13,7 @@ import {
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
 import { useTranslation } from "react-i18next"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const {
@@ -27,6 +28,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     value,
     widgetDisplayName,
     expectedType,
+    widgetOrAction,
   } = props
   const { t } = useTranslation()
 
@@ -78,7 +80,8 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             expectedType={expectedType}
             isSetterSingleRow
             widgetDisplayName={widgetDisplayName}
-            widgetType={""}
+            widgetType={VALIDATION_TYPES.BOOLEAN}
+            widgetOrAction={widgetOrAction}
           />
         </div>
       )}

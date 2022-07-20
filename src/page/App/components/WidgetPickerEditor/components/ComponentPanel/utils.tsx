@@ -1,5 +1,5 @@
 import { ComponentSessionProps } from "./interface"
-import i18n from "@/i18n/config"
+import { sessionTypeMapSessionNameKey } from "@/widgetLibrary/componentListBuilder"
 export function getMatchComponent(
   value?: string,
   options?: ComponentSessionProps[],
@@ -14,13 +14,11 @@ export function getMatchComponent(
 
   const newSessionList: ComponentSessionProps[] = []
   const removeCommonlyOptions = options?.filter((option) => {
-    return (
-      i18n.t(option.title) !== i18n.t("editor.widget_picker.sessions.commonly")
-    )
+    return option.title !== sessionTypeMapSessionNameKey.COMMON
   })
   removeCommonlyOptions?.forEach((session) => {
     const res = session.widgetCardInfos.filter((widgetCardInfo) =>
-      i18n.t(widgetCardInfo.widgetName).toLocaleLowerCase().match(reg),
+      widgetCardInfo.widgetName.toLocaleLowerCase().match(reg),
     )
     if (res.length > 0) {
       newSessionList.push({ ...session, widgetCardInfos: res })

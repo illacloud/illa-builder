@@ -1,4 +1,4 @@
-import { COLOR_SCHEME, XAXISTYPE } from "./interface"
+import { XAXISTYPE } from "./interface"
 import {
   PanelConfig,
   PanelFieldConfig,
@@ -11,18 +11,19 @@ import {
   VerticalEndIcon,
   VerticalStartIcon,
 } from "@illa-design/icon"
+import i18n from "@/i18n/config"
 
 export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
   {
     id: "dataset-name",
-    labelName: "editor.inspect.setter_label.dataset.name",
+    labelName: i18n.t("editor.inspect.setter_label.dataset.name"),
     attrName: "name",
     setterType: "INPUT_SETTER",
     isSetterSingleRow: true,
   },
   {
     id: "dataset-values",
-    labelName: "editor.inspect.setter_label.dataset.value",
+    labelName: i18n.t("editor.inspect.setter_label.dataset.value"),
     attrName: "values",
     setterType: "INPUT_SETTER",
     isSetterSingleRow: true,
@@ -30,7 +31,7 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
   },
   {
     id: "dataset-type",
-    labelName: "editor.inspect.setter_label.type",
+    labelName: i18n.t("editor.inspect.setter_label.type"),
     attrName: "type",
     setterType: "BASE_SELECT_SETTER",
     options: [
@@ -51,14 +52,14 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
   },
   {
     id: "dataset-toolTip",
-    labelName: "editor.inspect.setter_label.tooltip",
+    labelName: i18n.t("editor.inspect.setter_label.tooltip"),
     attrName: "toolTip",
     setterType: "INPUT_SETTER",
     isSetterSingleRow: true,
   },
   {
     id: "dataset-lineColor",
-    labelName: "editor.inspect.setter_label.color",
+    labelName: i18n.t("editor.inspect.setter_label.color"),
     attrName: "lineColor",
     setterType: "CHART_LINE_COLOR_LIST_SETTER",
     isSetterSingleRow: true,
@@ -76,7 +77,7 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
 export const CHART_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "chart-data",
-    groupName: "DATA",
+    groupName: i18n.t("DATA"),
     children: [
       {
         id: "chart-data-config-type",
@@ -96,7 +97,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
 
       {
         id: "chart-chartJson",
-        labelName: "data",
+        labelName: i18n.t("data"),
         isSetterSingleRow: true,
         attrName: "chartJson",
         setterType: "TEXT_AREA",
@@ -107,7 +108,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "chart-data",
-        labelName: "X-axis values",
+        labelName: i18n.t("X-axis values"),
         attrName: "xAxis",
         isSetterSingleRow: true,
         useCustomLayout: true,
@@ -121,7 +122,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "chart-layout",
-    groupName: "LAYOUT",
+    groupName: i18n.t("LAYOUT"),
     children: [
       {
         id: "chart-layout-config-type",
@@ -141,7 +142,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "chart-chartJson",
-        labelName: "Layout",
+        labelName: i18n.t("Layout"),
         isSetterSingleRow: true,
         attrName: "layoutJson",
         setterType: "TEXT_AREA",
@@ -152,7 +153,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "chart-title",
-        labelName: "editor.inspect.setter_label.title",
+        labelName: i18n.t("editor.inspect.setter_label.title"),
         attrName: "title",
         setterType: "INPUT_SETTER",
         defaultValue: "chart",
@@ -163,7 +164,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "chart-xAxisTitle",
-        labelName: "editor.inspect.setter_label.x_axis_title",
+        labelName: i18n.t("editor.inspect.setter_label.x_axis_title"),
         attrName: "xTitle",
         setterType: "INPUT_SETTER",
         bindAttrName: ["layoutConfigType", "type"],
@@ -174,7 +175,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
 
       {
         id: "chart-xAxisType",
-        labelName: "editor.inspect.setter_label.x_axis_type",
+        labelName: i18n.t("editor.inspect.setter_label.x_axis_type"),
         attrName: "xAxisType",
         setterType: "BASE_SELECT_SETTER",
         options: XAXISTYPE,
@@ -185,7 +186,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "chart-yAxisTitle",
-        labelName: "editor.inspect.setter_label.y_axis_title",
+        labelName: i18n.t("editor.inspect.setter_label.y_axis_title"),
         attrName: "yTitle",
         setterType: "INPUT_SETTER",
         bindAttrName: ["layoutConfigType", "type"],
@@ -195,7 +196,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "chart-legend-position",
-        labelName: "editor.inspect.setter_label.legend_position",
+        labelName: i18n.t("editor.inspect.setter_label.legend_position"),
         attrName: "legendPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: "type",

@@ -7,7 +7,6 @@ import { Login } from "@/page/User/Login"
 import { Register } from "@/page/User/Register"
 import { ResetPassword } from "@/page/User/ResetPassword"
 import { Editor } from "@/page/App"
-import { Setting } from "@/page/Setting"
 import { SettingAccount } from "@/page/Setting/SettingAccount"
 import { SettingPassword } from "@/page/Setting/SettingPassword"
 import { SettingOthers } from "@/page/Setting/SettingOthers"
@@ -16,6 +15,7 @@ import { Page403 } from "@/page/status/403"
 import { Page500 } from "@/page/status/500"
 import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
+import { Setting } from "@/page/Setting"
 
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const routerConfig: RoutesObjectPro[] = [

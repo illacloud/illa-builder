@@ -101,7 +101,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <Logo
           width="34px"
           onClick={() => {
-            navigate("/")
+            window.location.href = "/"
           }}
           css={logoCursorStyle}
         />

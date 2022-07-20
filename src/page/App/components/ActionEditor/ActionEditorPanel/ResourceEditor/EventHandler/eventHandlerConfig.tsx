@@ -1,5 +1,6 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
 
 const BASE_TYPE = "ACTION_TYPE"
 
@@ -7,22 +8,22 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
   {
     id: `${BASE_TYPE}-interaction-success-event-handler`,
     attrName: "successEvents",
-    labelName: "Success",
-    // labelDesc: "xxxxx",
+    labelName: i18n.t("Success"),
+    // labelDesc: i18n.t("xxxxx"),
     setterType: "EVENT_HANDLER_SETTER",
     defaultValue: "success",
     useCustomLayout: true,
     childrenSetter: [
       {
         id: "event",
-        labelName: "editor.inspect.setter_label.event",
+        labelName: i18n.t("editor.inspect.setter_label.event"),
         setterType: "BASE_SELECT_SETTER",
         attrName: "eventType",
         options: [{ label: "Success", value: "success" }],
       },
       {
         id: "action",
-        labelName: "editor.inspect.setter_label.action",
+        labelName: i18n.t("editor.inspect.setter_label.action"),
         setterType: "EVENT_ACTION_SELECT_SETTER",
         attrName: "actionType",
         options: [
@@ -50,7 +51,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "query",
-        labelName: "Query",
+        labelName: i18n.t("Query"),
         setterType: "BASE_SELECT_SETTER",
         attrName: "queryID",
         bindAttrName: "actionType",
@@ -58,7 +59,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "component",
-        labelName: "Component",
+        labelName: i18n.t("Component"),
         setterType: "EVENT_TARGET_SELECT_SETTER",
         attrName: "widgetID",
         bindAttrName: "actionType",
@@ -66,7 +67,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "Method",
-        labelName: "Method",
+        labelName: i18n.t("Method"),
         setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
         attrName: "widgetMethod",
         bindAttrName: "widgetID",
@@ -74,7 +75,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "Value",
-        labelName: "Value",
+        labelName: i18n.t("Value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
@@ -82,7 +83,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "imageUrl",
-        labelName: "Value",
+        labelName: i18n.t("Value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
@@ -90,7 +91,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "disabled",
-        labelName: "editor.inspect.setter_label.disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "disabled",
@@ -108,7 +109,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "URL",
-        labelName: "URL",
+        labelName: i18n.t("URL"),
         setterType: "INPUT_SETTER",
         attrName: "url",
         bindAttrName: "actionType",
@@ -117,7 +118,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "newTab",
-        labelName: "New Tab",
+        labelName: i18n.t("New Tab"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "newTab",
@@ -127,7 +128,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "title",
-        labelName: "Title",
+        labelName: i18n.t("Title"),
         setterType: "INPUT_SETTER",
         attrName: "title",
         bindAttrName: "actionType",
@@ -136,7 +137,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "description",
-        labelName: "Description",
+        labelName: i18n.t("Description"),
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "description",
@@ -145,7 +146,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "notification-type",
-        labelName: "Type",
+        labelName: i18n.t("Type"),
         setterType: "BASE_SELECT_SETTER",
         attrName: "notificationType",
         bindAttrName: "actionType",
@@ -159,7 +160,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "duration",
-        labelName: "Duration",
+        labelName: i18n.t("Duration"),
         setterType: "INPUT_SETTER",
         attrName: "duration",
         bindAttrName: "actionType",
@@ -168,8 +169,8 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "enabled",
-        labelName: "Only run when",
-        // labelDesc: "xxxxx",
+        labelName: i18n.t("Only run when"),
+        // labelDesc: i18n.t("xxxxx"),
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "enabled",
@@ -179,22 +180,22 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
   {
     id: `${BASE_TYPE}-interaction-failed-event-handler`,
     attrName: "failedEvents",
-    labelName: "Failed",
-    // labelDesc: "xxxxx",
+    labelName: i18n.t("Failed"),
+    // labelDesc: i18n.t("xxxxx"),
     setterType: "EVENT_HANDLER_SETTER",
     defaultValue: "failed",
     useCustomLayout: true,
     childrenSetter: [
       {
         id: "event",
-        labelName: "editor.inspect.setter_label.event",
+        labelName: i18n.t("editor.inspect.setter_label.event"),
         setterType: "BASE_SELECT_SETTER",
         attrName: "eventType",
         options: [{ label: "Failed", value: "failed" }],
       },
       {
         id: "action",
-        labelName: "editor.inspect.setter_label.action",
+        labelName: i18n.t("editor.inspect.setter_label.action"),
         setterType: "EVENT_ACTION_SELECT_SETTER",
         attrName: "actionType",
         options: [
@@ -222,7 +223,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "query",
-        labelName: "Query",
+        labelName: i18n.t("Query"),
         setterType: "BASE_SELECT_SETTER",
         attrName: "queryID",
         bindAttrName: "actionType",
@@ -230,7 +231,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "component",
-        labelName: "Component",
+        labelName: i18n.t("Component"),
         setterType: "EVENT_TARGET_SELECT_SETTER",
         attrName: "widgetID",
         bindAttrName: "actionType",
@@ -238,7 +239,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "Method",
-        labelName: "Method",
+        labelName: i18n.t("Method"),
         setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
         attrName: "widgetMethod",
         bindAttrName: "widgetID",
@@ -246,7 +247,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "Value",
-        labelName: "Value",
+        labelName: i18n.t("Value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
@@ -254,7 +255,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "imageUrl",
-        labelName: "Value",
+        labelName: i18n.t("Value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
@@ -262,7 +263,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "disabled",
-        labelName: "editor.inspect.setter_label.disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "disabled",
@@ -280,7 +281,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "URL",
-        labelName: "URL",
+        labelName: i18n.t("URL"),
         setterType: "INPUT_SETTER",
         attrName: "url",
         bindAttrName: "actionType",
@@ -289,7 +290,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "newTab",
-        labelName: "New Tab",
+        labelName: i18n.t("New Tab"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "newTab",
@@ -299,7 +300,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "title",
-        labelName: "Title",
+        labelName: i18n.t("Title"),
         setterType: "INPUT_SETTER",
         attrName: "title",
         bindAttrName: "actionType",
@@ -308,7 +309,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "description",
-        labelName: "Description",
+        labelName: i18n.t("Description"),
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "description",
@@ -317,7 +318,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "notification-type",
-        labelName: "Type",
+        labelName: i18n.t("Type"),
         setterType: "BASE_SELECT_SETTER",
         attrName: "notificationType",
         bindAttrName: "actionType",
@@ -331,7 +332,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "duration",
-        labelName: "Duration",
+        labelName: i18n.t("Duration"),
         setterType: "INPUT_SETTER",
         attrName: "duration",
         bindAttrName: "actionType",
@@ -340,8 +341,8 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "enabled",
-        labelName: "Only run when",
-        // labelDesc: "xxxxx",
+        labelName: i18n.t("Only run when"),
+        // labelDesc: i18n.t("xxxxx"),
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "enabled",

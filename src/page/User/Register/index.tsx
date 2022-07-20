@@ -324,6 +324,11 @@ export const Register: FC = () => {
                   value: 6,
                   message: t("user.sign_up.error_message.password.length"),
                 },
+                validate: (value) => {
+                  return value.includes(" ")
+                    ? t("setting.password.error_password_has_empty")
+                    : true
+                },
               }}
             />
             {errors.password && (
