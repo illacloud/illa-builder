@@ -65,7 +65,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
                 handleUpdateDsl(attrName, value)
               }}
               checked={value}
-              colorScheme="purple"
+              colorScheme="techPurple"
             />
           )}
         </div>

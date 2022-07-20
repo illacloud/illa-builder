@@ -45,3 +45,8 @@ export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
 }
+
+export interface ResetComponentPropsPayload {
+  displayName: string
+  resetSlice: Record<string, any>
+}
