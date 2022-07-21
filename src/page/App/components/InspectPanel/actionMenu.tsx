@@ -26,9 +26,9 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         onClick={() => {
           const defaultProps = widgetBuilder(componentType).config.defaults
           dispatch(
-            componentsActions.updateComponentPropsReducer({
+            componentsActions.resetComponentPropsReducer({
               displayName: widgetDisplayName,
-              updateSlice: defaultProps ?? {},
+              resetSlice: defaultProps ?? {},
             }),
           )
         }}

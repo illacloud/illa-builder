@@ -4,6 +4,7 @@ import {
   ComponentNode,
   ComponentsState,
   DeleteComponentNodePayload,
+  ResetComponentPropsPayload,
   UpdateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -136,6 +137,25 @@ export const updateComponentPropsReducer: CaseReducer<
   node.props = getNewWidgetPropsByUpdateSlice(
     displayName,
     updateSlice,
+    clonedWidgetProps,
+  )
+}
+
+export const resetComponentPropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ResetComponentPropsPayload>
+> = (state, action) => {
+  const { displayName, resetSlice } = action.payload
+  if (!isObject(resetSlice) || !displayName) {
+    return
+  }
+  const node = searchDsl(state.rootDsl, displayName)
+  if (!node) return
+  const widgetProps = resetSlice || {}
+  const clonedWidgetProps = cloneDeep(widgetProps)
+  node.props = getNewWidgetPropsByUpdateSlice(
+    displayName,
+    resetSlice,
     clonedWidgetProps,
   )
 }
