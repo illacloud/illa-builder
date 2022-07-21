@@ -581,6 +581,10 @@
         },
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。"
+        },
+        "color_picker": {
+          "title": "Edit color",
+          "prefabricated": "Prefabricated color"
         }
       }
     },

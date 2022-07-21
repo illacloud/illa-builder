@@ -87,12 +87,12 @@ function ColorPicker(props: ColorPickerProps) {
             render: (
               <div css={triggerCss}>
                 <Trigger
-                  colorScheme={"white"}
-                  trigger={"click"}
+                  colorScheme="white"
+                  trigger="click"
                   clickOutsideToClose
-                  withoutPadding={true}
+                  withoutPadding
                   popupVisible={currentVisible}
-                  position={"bottom"}
+                  position="bottom"
                   onVisibleChange={setCurrentVisible}
                   content={
                     <ColorPickerOperation
@@ -117,7 +117,7 @@ function ColorPicker(props: ColorPickerProps) {
             height: 40,
             fontSize: 12,
           }}
-          borderColor={"purple"}
+          borderColor="purple"
           value={inputValue}
           onChange={(value) => {
             setInputValue(value)

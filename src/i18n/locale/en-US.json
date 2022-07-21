@@ -581,6 +581,10 @@
         },
         "event_handler_list": {
           "empty": "Trigger queries, control components, or call other APIs in response to component events."
+        },
+        "color_picker": {
+          "title": "Edit color",
+          "prefabricated": "Prefabricated color"
         }
       }
     },

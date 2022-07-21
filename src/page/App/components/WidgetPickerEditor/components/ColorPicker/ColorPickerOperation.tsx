@@ -16,13 +16,14 @@ import {
 } from "./styles"
 import Alpha from "@uiw/react-color-alpha"
 import Hue from "@uiw/react-color-hue"
-import { hsvaToRgba, hexToHsva, hsvaToHex } from "@uiw/color-convert"
+import { hsvaToRgba, hexToHsva } from "@uiw/color-convert"
 import { PointerProps } from "@uiw/react-color-alpha/cjs/Pointer"
 import { ColorPickerOperationProps } from "./interface"
 import { CloseIcon } from "@illa-design/icon"
-import { useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { css } from "@emotion/react"
 import useDebounce from "react-use/lib/useDebounce"
+import { useTranslation } from "react-i18next"
 
 const HueBar = (props: PointerProps) => (
   <div css={applyHuePointCss(props.left)} />
@@ -52,10 +53,13 @@ function Point(props: {
   )
 }
 
-function ColorPickerOperation(props: ColorPickerOperationProps) {
+const ColorPickerOperation: FC<ColorPickerOperationProps> = (
+  props: ColorPickerOperationProps,
+) => {
   const { prefabricatedColors, color } = props
   const [selectedColor, setSelectedColor] = useState(color)
   const [debouncedColor, setDebouncedColor] = useState(color)
+  const { t } = useTranslation()
 
   useDebounce(
     () => {
@@ -82,7 +86,7 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
   return (
     <div css={saturationCss}>
       <div css={titleCss}>
-        <span>edit color</span>
+        <span>{t("editor.inspect.setter_content.color_picker.title")}</span>
         <CloseIcon
           _css={css`
             cursor: pointer;
@@ -130,7 +134,9 @@ function ColorPickerOperation(props: ColorPickerOperationProps) {
         </div>
         <div css={applyColorLumpCss(hsvaToRgba(selectedColor))} />
       </div>
-      <span css={sessionTitleCss}>Prefabricated color</span>
+      <span css={sessionTitleCss}>
+        {t("editor.inspect.setter_content.color_picker.prefabricated")}
+      </span>
       <div css={swatchContainerCss}>
         {prefabricatedColors?.map((item) => {
           return (
