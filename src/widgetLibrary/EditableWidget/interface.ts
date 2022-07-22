@@ -7,6 +7,7 @@ export interface WrappedEditableTextProps
     Pick<InputProps, "placeholder" | "disabled" | "readOnly"> {
   showCharacterCount?: InputProps["showCount"]
   value?: string
+  className?: string
   prefixIcon?: InputProps["prefix"]
   prefixText?: InputProps["addonBefore"]
   suffixIcon?: InputProps["suffix"]

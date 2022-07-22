@@ -22,13 +22,12 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
       <Button
         disabled={disabled}
         variant={variant}
-        autoFullVertically
-        autoFullHorizontal={alignment === "fullWidth"}
+        fullHeight
+        fullWidth={alignment === "fullWidth"}
         buttonRadius={borderRadius}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
         loading={loading}
-        fullWidth={alignment === "fullWidth"}
         onClick={handleOnClick}
         backgroundColor={colorScheme}
         borderColor={colorScheme}

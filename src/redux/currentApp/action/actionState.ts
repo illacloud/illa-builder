@@ -1,36 +1,23 @@
-export interface ActionItemConfig {
-  [index: string]: any
-
-  triggerMode?: "manual" | "change"
-  transformer?: string
-  enableTransformer?: boolean
-  events?: []
+export interface Transformer {
+  rawData: string
+  enable: boolean
 }
 
-export interface Runtime {
-  // unit: ms
-  prepareQuery?: number
-  executeResource?: number
-  transferData?: number
-  handleResponse?: number
-  transformer?: number
-  postProcessing?: number
-  // unit: B
-  responseSize?: number
-}
+export type ActionType =
+  | "mysql"
+  | "restapi"
+  | "mongodb"
+  | "redis"
+  | "postgresql"
+  | "transformer"
 
 export interface ActionItem {
   actionId: string
   displayName: string
-  actionType: string
+  actionType: ActionType
+  transformer: Transformer
+  triggerMode: "manually" | "automate"
   resourceId?: string
-  actionTemplate: ActionItemConfig
-  error?: boolean
-  data?: any
-  rawData?: any
-  runtime?: Runtime
 }
 
-export type ActionListState = ActionItem[]
-
-export const actionInitialState: ActionListState = []
+export const actionInitialState: ActionItem[] = []

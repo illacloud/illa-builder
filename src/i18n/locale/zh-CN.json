@@ -252,7 +252,7 @@
         "title": {
           "select": "选择资源类型",
           "database": "数据库",
-          "api": "APIS",
+          "api": "API",
           "configure": "配置 {{name}}"
         },
         "btn": {

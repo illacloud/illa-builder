@@ -27,13 +27,14 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
     customRule,
     hideValidationMessage,
     allowClear,
+    className,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
   const [focus, setFocus] = useState(false)
 
   return (
-    <div css={containerStyle}>
+    <div css={containerStyle} className={className}>
       {focus ? (
         <Input
           autoFocus

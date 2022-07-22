@@ -1,5 +1,8 @@
 import { Unsubscribe } from "@reduxjs/toolkit"
-import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getAllActionDisplayNameMapProps,
+  getAllComponentDisplayNameMapProps,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { getEvalOrderSelector } from "@/redux/currentApp/executionTree/dependencies/dependenciesSelector"
@@ -8,7 +11,6 @@ import { worker } from "@/redux/currentApp/executionTree/dependencies/dependenci
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { getAllActionDisplayNameMapProps } from "@/redux/currentApp/action/actionSelector"
 
 async function handleUpdateExecution(
   action: ReturnType<typeof dependenciesActions.setDependenciesReducer>,

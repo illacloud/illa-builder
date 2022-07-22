@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom"
 import { IllaApp } from "@/page/Dashboard"
 import { DashboardApps } from "@/page/Dashboard/DashboardApps"
-import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 import { UserLogin } from "@/page/User"
 import { Login } from "@/page/User/Login"
 import { Register } from "@/page/User/Register"
@@ -16,6 +15,7 @@ import { Page403 } from "@/page/status/403"
 import { Page500 } from "@/page/status/500"
 import { Page404 } from "@/page/status/404"
 import { RoutesObjectPro } from "@/router/interface"
+import { DashboardResources } from "@/page/Dashboard/DashboardResources"
 
 // TODO: may be need lazy load, use Suspense Component And Lazy function ,see: https://reacttraining.com/react-router/web/guides/code-splitting
 export const routerConfig: RoutesObjectPro[] = [

@@ -1,51 +1,52 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useContext, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Select } from "@illa-design/select"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
-import {
-  getAllActionDisplayNameMapProps,
-  SELECTED_ACTION_DISPALY_NAME,
-} from "@/redux/currentApp/action/actionSelector"
 import { BaseSelectSetterProps } from "./interface"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { getSelectedAction } from "@/redux/config/configSelector"
 
 export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
   const { isSetterSingleRow, attrName, handleUpdateDsl, value } = props
 
-  const actionDisplayNameMapProps = useSelector(getAllActionDisplayNameMapProps)
+  const actionList = useSelector(getActionList)
 
-  const finalOptions = useMemo(() => {
-    const tmpOptions: { label: string; value: string }[] = []
-    Object.keys(actionDisplayNameMapProps).forEach((key) => {
-      if (key !== SELECTED_ACTION_DISPALY_NAME) {
-        tmpOptions.push({
-          label: key,
-          value: key,
-        })
-      }
-    })
-    return tmpOptions
-  }, [actionDisplayNameMapProps])
-
-  const finalValue = useMemo(() => {
-    const index = finalOptions.findIndex((option) => {
-      return option.value === value
-    })
-    if (index !== -1) return value
-    return undefined
-  }, [finalOptions, attrName, value])
+  const selectedContext = useContext(SelectedPanelContext)
+  const selectedAction = useSelector(getSelectedAction)
 
   useEffect(() => {
-    if (finalValue === undefined) {
+    if (value === undefined) {
       handleUpdateDsl(attrName, undefined)
     }
-  }, [finalValue, attrName])
+  }, [value])
+
+  const actionOptions = useMemo(() => {
+    if (selectedContext.widgetOrAction === "ACTION") {
+      const i = actionList.findIndex((value) => {
+        return value.displayName === selectedAction?.displayName
+      })
+      if (i != -1) {
+        actionList.splice(i, 1)
+      }
+      return actionList.map((item) => {
+        return item.displayName
+      })
+    }
+    if (selectedContext.widgetOrAction === "WIDGET") {
+      return actionList.map((item) => {
+        return item.displayName
+      })
+    }
+    return []
+  }, [actionList])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
       <Select
-        options={finalOptions}
+        options={actionOptions}
         size="medium"
-        value={finalValue}
+        value={value}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}

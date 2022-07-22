@@ -10,7 +10,7 @@ export interface ConfigState {
   showDot: boolean
   scale: number
   selectedComponents: ComponentNode[]
-  selectedAction: ActionItem
+  selectedAction: ActionItem | null
   expandedKeys: string[]
   mode: IllaMode
 }
@@ -22,12 +22,7 @@ export const ConfigInitialState: ConfigState = {
   openRightPanel: true,
   scale: 100,
   selectedComponents: [],
-  selectedAction: {
-    actionId: "",
-    displayName: "",
-    actionType: "",
-    actionTemplate: { transformer: "" },
-  },
+  selectedAction: null,
   showDot: false,
   expandedKeys: [],
 }

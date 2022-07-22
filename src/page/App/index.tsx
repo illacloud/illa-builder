@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
-import { ActionEditor } from "./components/ActionEditor"
 import {
   applyBottomPanelStyle,
   applyLeftPanelStyle,
@@ -16,7 +15,6 @@ import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getIllaMode,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -42,14 +40,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { Shortcut } from "@/utils/shortcut"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { AppLoading } from "@/page/App/components/AppLoading"
-
-interface PanelConfigProps {
-  showLeftPanel: boolean
-  showRightPanel: boolean
-  showBottomPanel: boolean
-}
-
-export type PanelState = keyof PanelConfigProps
+import { ActionEditor } from "@/page/App/components/Actions"
 
 const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
 

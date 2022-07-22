@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { actionInitialState } from "@/redux/currentApp/action/actionState"
 import {
-  updateActionListReducer,
   addActionItemReducer,
   removeActionItemReducer,
   updateActionItemReducer,
-  updateActionTemplateReducer,
+  updateActionListReducer,
 } from "@/redux/currentApp/action/actionReducer"
 
 const actionSlice = createSlice({
@@ -16,7 +15,6 @@ const actionSlice = createSlice({
     addActionItemReducer,
     updateActionItemReducer,
     removeActionItemReducer,
-    updateActionTemplateReducer,
   },
 })
 

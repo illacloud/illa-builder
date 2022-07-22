@@ -48,23 +48,6 @@ export const updateSelectedAction: CaseReducer<
   state.selectedAction = action.payload
 }
 
-export const updateSelectActionTemplate: CaseReducer<
-  ConfigState,
-  PayloadAction<any>
-> = (state, action) => {
-  const { displayName, updateSlice } = action.payload
-  if (!isObject(updateSlice) || !displayName) {
-    return
-  }
-  const oldAction = state.selectedAction.actionTemplate ?? {}
-  const clonedWidgetProps = cloneDeep(oldAction)
-  state.selectedAction.actionTemplate = getNewWidgetPropsByUpdateSlice(
-    displayName,
-    updateSlice,
-    clonedWidgetProps,
-  )
-}
-
 export const updateShowDot: CaseReducer<ConfigState, PayloadAction<boolean>> = (
   state,
   action,

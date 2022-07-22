@@ -2,6 +2,7 @@ import { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
 import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
 
 export function searchDsl(
   rootNode: ComponentNode | null,
@@ -83,5 +84,19 @@ export const getAllComponentDisplayNameMapProps = createSelector(
       }
     })
     return res
+  },
+)
+
+export const getAllActionDisplayNameMapProps = createSelector(
+  [getActionList],
+  (list) => {
+    const res: Record<string, any> = {}
+    list.forEach((key) => {
+      res[key.displayName] = {
+        displayName: key.displayName,
+        $type: "ACTION",
+      }
+    })
+    return list
   },
 )

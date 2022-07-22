@@ -1,57 +1,38 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import {
-  ActionListState,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export const updateActionListReducer: CaseReducer<
-  ActionListState,
+  ActionItem[],
   PayloadAction<ActionItem[]>
 > = (_, action) => {
   return action.payload
 }
 
 export const addActionItemReducer: CaseReducer<
-  ActionListState,
+  ActionItem[],
   PayloadAction<ActionItem>
 > = (state, action) => {
-  return [...state, action.payload]
+  state.push(action.payload)
 }
 
 export const updateActionItemReducer: CaseReducer<
-  ActionListState,
-  PayloadAction<Partial<ActionItem>>
+  ActionItem[],
+  PayloadAction<ActionItem>
 > = (state, action) => {
-  let targetActionIndex = state.findIndex(
-    (item: ActionItem) => item.actionId === action.payload.actionId,
+  const index = state.findIndex(
+    (item: ActionItem) => item.displayName === action.payload.displayName,
   )
-
-  state.splice(targetActionIndex, 1, {
-    ...state[targetActionIndex],
-    ...action.payload,
-  })
-}
-
-export const updateActionTemplateReducer: CaseReducer<
-  ActionListState,
-  PayloadAction<any>
-> = (state, action) => {
-  const { actionId } = action.payload
-  let targetActionIndex = state.findIndex(
-    (item: ActionItem) => item.actionId === actionId,
-  )
-  if (targetActionIndex === -1) return
-  const oldAction = state[targetActionIndex]
-  oldAction.actionTemplate = action.payload.actionTemplate
-  state[targetActionIndex] = oldAction
+  if (index != -1) {
+    state[index] = action.payload
+  }
 }
 
 export const removeActionItemReducer: CaseReducer<
-  ActionListState,
+  ActionItem[],
   PayloadAction<string>
 > = (state, action) => {
   state.splice(
-    state.findIndex((item: ActionItem) => item.actionId === action.payload),
+    state.findIndex((item: ActionItem) => item.displayName === action.payload),
     1,
   )
 }

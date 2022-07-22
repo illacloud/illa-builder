@@ -4,7 +4,6 @@ export interface ComponentNode {
   displayName: string
   parentNode: string | null
   showName: string
-  error: boolean
   isDragging: boolean
   isResizing: boolean
   childrenNode: ComponentNode[]

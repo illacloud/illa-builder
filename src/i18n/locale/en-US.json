@@ -252,7 +252,7 @@
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
-          "api": "APIS",
+          "api": "API",
           "configure": "Configure {{name}}"
         },
         "btn": {

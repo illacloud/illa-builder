@@ -1,12 +1,7 @@
-import {
-  RESTAPIConfigureValues,
-  MySQLConfigureValues,
-} from "@/page/App/components/ActionEditor/Resource"
-
 export interface DashboardResource {
   resourceId: string
   resourceName: string
-  resourceType: string
+  resourceType: ResourceType
   databaseName: string
   createdBy: string
   lastModifiedBy: string
@@ -14,9 +9,14 @@ export interface DashboardResource {
   updatedAt: string
 }
 
-export interface Resource extends DashboardResource {
-  options: MySQLConfigureValues | RESTAPIConfigureValues
-}
+export type ResourceType =
+  | "mysql"
+  | "restapi"
+  | "mongodb"
+  | "redis"
+  | "postgresql"
+
+export interface Resource extends DashboardResource {}
 
 export type ResourceListState = Resource[]
 export const resourceInitialState: ResourceListState = []
