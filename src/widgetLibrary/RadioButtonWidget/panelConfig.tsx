@@ -165,34 +165,6 @@ export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: `${baseWidgetName}-validation`,
-    groupName: i18n.t("editor.inspect.setter_group.validation"),
-    children: [
-      {
-        id: `${baseWidgetName}-validation-required`,
-        labelName: i18n.t("editor.inspect.setter_label.required_field"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.required_field"),
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-        useCustomLayout: true,
-        attrName: "required",
-      },
-      {
-        id: `${baseWidgetName}-validation-hide-message`,
-        labelName: i18n.t(
-          "editor.inspect.setter_label.hide_validation_message",
-        ),
-        labelDesc: i18n.t(
-          "editor.inspect.setter_tooltip.hide_validation_message",
-        ),
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-        useCustomLayout: true,
-        attrName: "hideValidationMessage",
-      },
-    ],
-  },
-  {
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
