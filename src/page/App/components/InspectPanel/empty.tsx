@@ -5,7 +5,7 @@ import {
   unselectedTipTextStyle,
   unselectedTipWrapperStyle,
 } from "@/page/App/components/InspectPanel/style"
-import { UnselectedWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as NoComponentSelected } from "@/assets/no-component-selected-icon.svg"
 import { Empty } from "@illa-design/empty"
 
 export const EmptySelected: FC = () => {
@@ -15,7 +15,7 @@ export const EmptySelected: FC = () => {
       <Empty
         icon={
           <div css={unselectedTipIconStyle}>
-            <UnselectedWidgetIcon />
+            <NoComponentSelected />
           </div>
         }
         description={
