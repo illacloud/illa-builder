@@ -563,7 +563,7 @@
         "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
         "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
         "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项",
-        "date_format": "一个符合规范的时间格式，请参考 <DayJS>dayJS</DayJS>",
+        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
         "loading": "控制组件是否为加载状态。",
         "progress_percentage": "进度条的数值范围为 0-100",
         "timeline_direction": "切换时间轴的方向"
