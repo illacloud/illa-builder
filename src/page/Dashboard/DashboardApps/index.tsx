@@ -283,8 +283,9 @@ export const DashboardApps: FC = () => {
           }
           createNewRequest()
         }}
+        title={t("dashboard.app.create_app")}
+        okText={t("save")}
       >
-        <div css={modalTitleStyle}>{t("dashboard.app.create_app")}</div>
         <Input
           css={modalInputStyle}
           onChange={(res) => {

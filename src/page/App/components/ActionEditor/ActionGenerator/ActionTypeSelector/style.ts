@@ -3,11 +3,11 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const containerStyle = css`
   overflow: auto;
-  padding: 24px;
+  padding: 16px 24px 24px 24px;
 `
 export const titleStyle = css`
   margin-bottom: 16px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   text-align: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
