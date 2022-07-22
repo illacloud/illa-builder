@@ -89,7 +89,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "component",
-            labelName: "Component",
+            labelName: i18n.t("editor.inspect.setter_label.component"),
             setterType: "EVENT_TARGET_SELECT_SETTER",
             attrName: "widgetID",
             bindAttrName: "actionType",
@@ -97,7 +97,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "Method",
-            labelName: i18n.t("Method"),
+            labelName: i18n.t("editor.inspect.setter_label.method"),
             setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
             attrName: "widgetMethod",
             bindAttrName: "widgetID",
@@ -105,7 +105,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "Value",
-            labelName: i18n.t("Value"),
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -113,7 +113,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "startValue",
-            labelName: i18n.t("startValue"),
+            labelName: i18n.t("editor.inspect.setter_label.start_date"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -121,7 +121,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "endValue",
-            labelName: i18n.t("endValue"),
+            labelName: i18n.t("editor.inspect.setter_label.end_date"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -129,7 +129,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "imageUrl",
-            labelName: i18n.t("Value"),
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -215,7 +215,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "enabled",
-            labelName: i18n.t("Only run when"),
+            labelName: i18n.t("editor.inspect.setter_label.only_run_when"),
             // labelDesc: i18n.t("xxxxx"),
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -315,7 +315,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
-        labelDescOption: { name: "buttonName" },
         useCustomLayout: true,
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -333,7 +332,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         attrName: "variant",
         options: [
           {
-            label: i18n.t("editor.inspect.setter_default_value.solid"),
+            label: i18n.t("editor.inspect.setter_default_value.fill"),
             value: "fill",
           },
           {
@@ -345,7 +344,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-style-list",
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [

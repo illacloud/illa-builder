@@ -442,7 +442,7 @@
         "adornments": "额外修饰属性",
         "interaction": "交互",
         "layout": "布局",
-        "style": "样式",
+        "style": "风格",
         "validation": "验证",
         "options": "选项"
       },
@@ -455,7 +455,7 @@
         "tooltip": "提示",
         "align": "对齐",
         "hidden": "隐藏",
-        "variant": "变体",
+        "variant": "样式",
         "color": "颜色",
         "theme_color": "主题色",
         "default_value": "默认值",
@@ -514,6 +514,8 @@
         "pending": "等待",
         "event_handler": "事件处理器",
         "event": "事件",
+        "component": "组件",
+        "method": "方法",
         "action": "动作",
         "trigger_query": "触发请求",
         "control_component": "控制组件",
@@ -538,6 +540,7 @@
         "x_axis_type": "X-axis type",
         "y_axis_title": "Y-axis title",
         "legend_position": "Legend position",
+        "only_run_when": "执行条件",
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
@@ -565,8 +568,8 @@
         "timeline_direction": "切换时间轴的方向"
       },
       "setter_default_value": {
-        "solid": "Solid",
-        "outline": "Outline"
+        "fill": "填充",
+        "outline": "描边"
       },
       "setter_content": {
         "option_list": {
@@ -580,7 +583,9 @@
           "reset": "重置"
         },
         "event_handler_list": {
-          "empty": "触发查询、控制组件或调用其他API以响应组件事件。"
+          "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
+          "new": "新建",
+          "title": "编辑事件处理器"
         },
         "color_picker": {
           "title": "Edit color",

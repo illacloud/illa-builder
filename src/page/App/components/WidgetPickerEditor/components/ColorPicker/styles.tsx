@@ -10,7 +10,7 @@ export const saturationCss = css`
   justify-content: center;
 `
 export const slideContainerCss = css`
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -18,14 +18,14 @@ export const slideContainerCss = css`
 `
 
 export const slideAndLumpContainerCss = css`
-  display: inline-flex;
+  display: flex;
   width: 100%;
-  margin-top: 20px;
+  height: 64px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-bottom: 21px;
   border-bottom: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  padding: 0 16px;
 `
 
 export const titleCss = css`
@@ -35,18 +35,15 @@ export const titleCss = css`
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   box-sizing: border-box;
-  padding: 0 12px;
+  padding: 0 16px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
-  margin-bottom: 8px;
 `
 
 export const sessionTitleCss = css`
-  width: 100%;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-01`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-weight: 500;
   font-size: 12px;
-  padding: 10px 0 0 8px;
   box-sizing: border-box;
 `
 
@@ -57,8 +54,8 @@ export const slideCss = css`
 `
 
 export const commonSlidePointCss = css`
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 5px;
   position: absolute;
   border-width: 2px;
@@ -76,23 +73,34 @@ export function applyHuePointCss(percent?: string) {
   return css`
     ${commonSlidePointCss};
     bottom: -0.5px;
-    left: ${percent ? toPoint(percent) * 180 : 0}px;
+    left: ${percent ? toPoint(percent) * 150 : 0}px;
   `
 }
 
 export function applyAlphaPointCss(percent?: string) {
   return css`
     ${commonSlidePointCss};
-    bottom: -2px;
-    left: ${percent ? toPoint(percent) * 180 : 0}px;
+    bottom: -0.5px;
+    left: ${percent ? toPoint(percent) * 150 : 0}px;
+  `
+}
+
+export function applyColorLumpRadioStyle(colorStr: RgbaColor) {
+  console.log("colorStr", colorStr)
+  return css`
+    ${applyColorLumpCss(colorStr)};
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
   `
 }
 
 export function applyColorLumpCss(colorStr: RgbaColor) {
   return css`
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    flex: none;
     &:hover {
       cursor: pointer;
     }
@@ -124,12 +132,10 @@ export const labelCss = css`
 
 export const swatchContainerCss = css`
   width: 100%;
-  margin-bottom: 4px;
-  display: inline-flex;
-  padding: 0 3px;
-  margin-top: 8px;
+  display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
+  margin-top: 5px;
 `
 
 export const colorInputCss = css`
@@ -158,39 +164,33 @@ export const percentInputCss = css`
   background-color: transparent;
 `
 
-export const colorSwatchItemContainer = css`
-  width: 34px;
-  height: 22px;
-  padding: 0 6px;
-  margin-bottom: 6px;
-  box-sizing: border-box;
-`
+export const colorSwatchItemContainer = css``
 
 export function applyColorCheckedItemContainer(isChecked?: boolean) {
-  const borderCss = isChecked
-    ? css`
-        border: solid ${globalColor(`--${illaPrefix}-grayBlue-02`)} 1px;
-      `
-    : css`
-        border: solid white 1px;
-      `
   return css`
-    width: 100%;
-    height: 100%;
-    padding: 1px;
+    padding: 3px;
     border-radius: 4px;
     box-sizing: border-box;
-    ${borderCss}
+    border: 1px solid
+      ${isChecked ? globalColor(`--${illaPrefix}-grayBlue-07`) : "transparent"};
   `
 }
 
 export function applyColorSwatchCss(colorStr?: string) {
   return css`
-    border: solid 1px ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-    height: 100%;
-    width: 100%;
+    border: 1px solid
+      ${colorStr === "#fff"
+        ? `${globalColor(`--${illaPrefix}-grayBlue-08`)}`
+        : "transparent"};
+    height: 16px;
+    width: 16px;
     background-color: ${colorStr};
     border-radius: 2px;
     box-sizing: border-box;
   `
 }
+
+export const swatchWrapperStyle = css`
+  width: 100%;
+  padding: 8px 12px;
+`
