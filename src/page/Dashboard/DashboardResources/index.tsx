@@ -30,6 +30,7 @@ import {
   tableInfoTextStyle,
   tableStyle,
 } from "./style"
+import { cloneDeep } from "lodash"
 
 dayjs.extend(utc)
 
@@ -167,22 +168,27 @@ export const DashboardResources: FC = () => {
   )
   const data = useMemo(() => {
     const result: any[] = []
-    resourcesList.forEach((item: Resource, idx: number) => {
-      result.push({
-        nameCol: NameColComponent(item.resourceType, item.resourceName),
-        typeCol: TypeColComponent(item.resourceType),
-        dbNameCol: DbNameColComponent(item.options?.databaseName),
-        ctimeCol: CtimeColComponent(item.updatedAt),
-        extraCol: (
-          <ExtraColComponent
-            resourceId={item.resourceId}
-            showFormVisible={() => showFromFunction()}
-            setCurId={changeCurResourceId}
-            editActionType={editActionType}
-          />
-        ),
+    const tmpResourcesList = cloneDeep(resourcesList)
+    tmpResourcesList
+      .sort((a, b) => {
+        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       })
-    })
+      .forEach((item: Resource) => {
+        result.push({
+          nameCol: NameColComponent(item.resourceType, item.resourceName),
+          typeCol: TypeColComponent(item.resourceType),
+          dbNameCol: DbNameColComponent(item.options?.databaseName),
+          ctimeCol: CtimeColComponent(item.updatedAt),
+          extraCol: (
+            <ExtraColComponent
+              resourceId={item.resourceId}
+              showFormVisible={() => showFromFunction()}
+              setCurId={changeCurResourceId}
+              editActionType={editActionType}
+            />
+          ),
+        })
+      })
     return result
   }, [resourcesList])
 

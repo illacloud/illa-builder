@@ -1,7 +1,8 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
+import { cloneDeep } from "lodash"
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
 import copy from "copy-to-clipboard"
@@ -170,6 +171,16 @@ export const DashboardApps: FC = () => {
     )
   }
 
+  const sortedAppsList = useMemo(() => {
+    if (Array.isArray(appsList) && appsList.length > 0) {
+      const tmpAppList = cloneDeep(appsList)
+      return tmpAppList.sort((a, b) => {
+        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+      })
+    }
+    return []
+  }, [appsList])
+
   return (
     <>
       <div css={appsContainerStyle}>
@@ -195,10 +206,10 @@ export const DashboardApps: FC = () => {
           </Button>
         </div>
         <Divider direction="horizontal" />
-        {appsList.length !== 0 && (
+        {sortedAppsList.length !== 0 && (
           <List
             size="medium"
-            data={appsList}
+            data={sortedAppsList}
             bordered={false}
             hoverable={true}
             renderRaw
