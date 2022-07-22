@@ -12,22 +12,6 @@ import { css } from "@emotion/react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { SettingLayout } from "@/page/Setting/components/Layout"
-import i18n from "@/i18n/config"
-
-const TabItems = [
-  {
-    title: i18n.t("setting.account.title"),
-    key: "account",
-  },
-  {
-    title: i18n.t("setting.password.title"),
-    key: "password",
-  },
-  {
-    title: i18n.t("setting.other.title"),
-    key: "others",
-  },
-]
 
 export const SettingTabNavBar: FC = () => {
   const navigate = useNavigate()
@@ -35,6 +19,21 @@ export const SettingTabNavBar: FC = () => {
   const location = useLocation()
   const pathList = location.pathname.split("/")
   const key = pathList[pathList.length - 1]
+
+  const TabItems = [
+    {
+      title: t("setting.account.title"),
+      key: "account",
+    },
+    {
+      title: t("setting.password.title"),
+      key: "password",
+    },
+    {
+      title: t("setting.other.title"),
+      key: "others",
+    },
+  ]
 
   const prefixTabs = (
     <div key="tab-prefix" css={tabPrefixStyle}>

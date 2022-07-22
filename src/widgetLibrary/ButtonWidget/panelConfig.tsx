@@ -287,30 +287,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "button-layout-alignment",
-        setterType: "RADIO_GROUP_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.align"),
-        attrName: "alignment",
-        options: [
-          {
-            label: <HorizontalStartIcon />,
-            value: "start",
-          },
-          {
-            label: <HorizontalCenterIcon />,
-            value: "center",
-          },
-          {
-            label: <HorizontalEndIcon />,
-            value: "end",
-          },
-          {
-            label: <HorizontalFullIcon />,
-            value: "fullWidth",
-          },
-        ],
-      },
-      {
         id: "button-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),

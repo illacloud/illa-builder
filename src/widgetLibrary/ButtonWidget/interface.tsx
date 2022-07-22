@@ -1,8 +1,6 @@
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import { ButtonProps } from "@illa-design/button"
 
-export type alignmentType = "start" | "center" | "end" | "fullWidth"
-
 export interface WrappedButtonProps
   extends Pick<
     ButtonProps,
@@ -18,7 +16,6 @@ export interface WrappedButtonProps
   text?: string
   submit?: boolean
   submitTargetId?: string
-  alignment?: alignmentType
   borderRadius?: string
   handleOnClick: () => void
   colorScheme?: string
