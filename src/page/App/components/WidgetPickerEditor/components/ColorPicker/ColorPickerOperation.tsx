@@ -14,6 +14,8 @@ import {
   swatchContainerCss,
   swatchWrapperStyle,
   titleCss,
+  closeIconStyle,
+  titleStyle,
 } from "./styles"
 import Alpha from "@uiw/react-color-alpha"
 import Hue from "@uiw/react-color-hue"
@@ -23,10 +25,6 @@ import { ColorPickerOperationProps } from "./interface"
 import { CloseIcon } from "@illa-design/icon"
 import { FC, useCallback } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  closeIconStyle,
-  titleStyle,
-} from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
 
 const HueBar = (props: PointerProps) => (
   <div css={applyHuePointCss(props.left)} />
@@ -86,7 +84,6 @@ const ColorPickerOperation: FC<ColorPickerOperationProps> = (
             ...newColor,
             a: color.a,
           }
-          console.log("newColors", newColors)
           props.handleColorPick && props.handleColorPick(newColors)
         }}
       />

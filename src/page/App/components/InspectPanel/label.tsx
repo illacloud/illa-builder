@@ -10,16 +10,11 @@ export const PanelLabel: FC<PanelLabelProps> = (props) => {
 
   return (
     <Tooltip
-      content={
-        <Text
-          value={labelDesc}
-          disableMarkdown
-          textColor={globalColor(`--${illaPrefix}-white-01`)}
-        />
-      }
+      content={<Text value={labelDesc} disableMarkdown />}
       trigger="hover"
       position="left"
       maxWidth="240px"
+      colorScheme="white"
       disabled={!labelDesc}
     >
       <span css={applyLabelTipsStyle(isInList, !!labelDesc)}>{labelName}</span>

@@ -194,3 +194,15 @@ export const swatchWrapperStyle = css`
   width: 100%;
   padding: 8px 12px;
 `
+
+export const titleStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-size: 12px;
+  font-weight: 500;
+`
+
+export const closeIconStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-size: 14px;
+  cursor: pointer;
+`
