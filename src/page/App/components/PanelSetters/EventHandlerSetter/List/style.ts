@@ -33,6 +33,7 @@ export const fontButtonWrapperStyle = css`
   height: 24px;
   padding: 1px 8px;
   border-radius: 8px;
+  font-size: 14px;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
@@ -99,4 +100,5 @@ export const emptyBodyStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   margin-bottom: 8px;
   border-radius: 8px;
+  font-size: 14px;
 `
