@@ -86,7 +86,6 @@ export function applyAlphaPointCss(percent?: string) {
 }
 
 export function applyColorLumpRadioStyle(colorStr: RgbaColor) {
-  console.log("colorStr", colorStr)
   return css`
     ${applyColorLumpCss(colorStr)};
     border-radius: 50%;
