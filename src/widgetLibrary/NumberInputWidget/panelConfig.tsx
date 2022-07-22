@@ -215,7 +215,6 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         id: `${widgetBaseName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
-        labelDescOption: { name: "numberInputName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",
