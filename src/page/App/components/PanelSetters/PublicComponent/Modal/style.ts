@@ -7,7 +7,7 @@ export const headerStyle = css`
   justify-content: space-between;
   align-items: center;
   height: 48px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   font-size: 16px;
   padding: 0 16px;
   font-weight: 500;

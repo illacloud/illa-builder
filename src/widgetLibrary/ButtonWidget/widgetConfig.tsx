@@ -15,7 +15,6 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
     variant: "fill",
     submit: false,
     width: "200px",
-    alignment: "fullWidth",
     colorScheme: "#134ae0",
     hidden: false,
   },

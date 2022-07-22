@@ -78,6 +78,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "labels",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
+            placeholder: "{{item}}",
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
@@ -85,6 +86,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "values",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
+            placeholder: "{{item}}",
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
@@ -92,6 +94,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disables",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
+            placeholder: "{{false}}",
             expectedType: VALIDATION_TYPES.ARRAY,
           },
         ],
@@ -225,7 +228,6 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: "radioGroup-layout-hidden",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
-        labelDescOption: { name: "radioGroupName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",

@@ -74,7 +74,6 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         id: "image-layout-hidden",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
-        labelDescOption: { name: "imageName" },
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         setterType: "DYNAMIC_SWITCH_SETTER",

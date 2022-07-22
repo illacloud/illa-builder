@@ -29,13 +29,8 @@ export interface ComponentNode {
   }
 }
 
-export interface ComponentsState {
-  rootDsl: ComponentNode | null
-}
-
-export const ComponentsInitialState: ComponentsState = {
-  rootDsl: null,
-}
+export type ComponentsState = ComponentNode | null
+export const ComponentsInitialState: ComponentsState = null
 
 export interface DeleteComponentNodePayload {
   displayNames: string[]

@@ -22,6 +22,7 @@ import {
   formFooterFillingStyle,
   createResourceBtnStyle,
   formTitleStyle,
+  formBodyStyle,
 } from "./style"
 
 const renderResourceNode = (
@@ -155,7 +156,7 @@ export const ResourceFormEditor: FC<ResourceFormEditorProps> = (props) => {
       <div css={formTitleStyle}>
         {t("editor.action.form.title.configure", { name: resourceTitle })}
       </div>
-      <div>
+      <div css={formBodyStyle}>
         {renderResourceNode(
           resourceType,
           connectionRef,

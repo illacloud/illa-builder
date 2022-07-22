@@ -100,7 +100,6 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         id: "text-layout-hidden",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
-        labelDescOption: { name: "textName" },
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         useCustomLayout: true,

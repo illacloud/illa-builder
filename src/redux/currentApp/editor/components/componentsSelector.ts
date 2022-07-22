@@ -53,7 +53,7 @@ export function flattenDsl(rootNode: ComponentNode): {
 }
 
 export const getCanvas = (state: RootState) => {
-  return state.currentApp.editor.components.rootDsl
+  return state.currentApp.editor.components
 }
 
 export const getComponentNodeBySingleSelected = createSelector(

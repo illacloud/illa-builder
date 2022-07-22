@@ -6,7 +6,7 @@ import { Trigger } from "@illa-design/trigger"
 import { DropList, Dropdown } from "@illa-design/dropdown"
 import { Input } from "@illa-design/input"
 import { illaPrefix, globalColor } from "@illa-design/theme"
-import { AddIcon, WarningCircleIcon, EmptyStateIcon } from "@illa-design/icon"
+import { AddIcon, WarningCircleIcon } from "@illa-design/icon"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { selectAllActionItem } from "@/redux/currentApp/action/actionSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -34,6 +34,7 @@ import {
   nameErrorMsgStyle,
 } from "./style"
 import { ActionListProps } from "./interface"
+import { ReactComponent as EmptySearchIcon } from "@/assets/empty-search-icon.svg"
 
 const DropListItem = DropList.Item
 
@@ -187,7 +188,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
   const NoMatchFound = (
     <div css={noMatchFoundWrapperStyle}>
-      <EmptyStateIcon size={"48px"} viewBox={"0 0 48 48"} />
+      <EmptySearchIcon />
       <span>{t("editor.action.action_list.tips.not_found")}</span>
     </div>
   )

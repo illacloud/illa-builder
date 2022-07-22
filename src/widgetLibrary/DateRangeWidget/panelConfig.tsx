@@ -25,9 +25,6 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-basic-Format",
         labelName: i18n.t("editor.inspect.setter_label.format"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.date_format"),
-        transComponents: {
-          DayJS: <a href="https://day.js.org/docs/en/parse/string-format"></a>,
-        },
         attrName: "dateFormat",
         setterType: "INPUT_SETTER",
       },
@@ -205,7 +202,6 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
-        labelDescOption: { name: "dateRangeName" },
         attrName: "hidden",
         useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
