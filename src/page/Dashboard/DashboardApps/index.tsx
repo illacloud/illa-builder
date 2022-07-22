@@ -300,6 +300,7 @@ export const DashboardApps: FC = () => {
           autoFocus={false}
           footerAlign="right"
           visible={renameModalVisible}
+          title={t("dashboard.app.rename_app")}
           _css={modalStyle}
           okButtonProps={{
             colorScheme: "techPurple",
@@ -308,6 +309,7 @@ export const DashboardApps: FC = () => {
           onCancel={() => {
             setRenameModalVisible(false)
           }}
+          okText={t("save")}
           onOk={() => {
             if (!renameValue) {
               Message.error(t("dashboard.app.name_empty"))
@@ -316,7 +318,6 @@ export const DashboardApps: FC = () => {
             renameRequest()
           }}
         >
-          <div css={modalTitleStyle}>{t("dashboard.app.rename_app")}</div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {
@@ -353,10 +354,9 @@ export const DashboardApps: FC = () => {
             }
             duplicateRequest()
           }}
+          title={`${t("duplicate")} "${appsList[currentAppIdx].appName}"`}
+          okText={t("save")}
         >
-          <div css={modalTitleStyle}>
-            {`${t("duplicate")} "${appsList[currentAppIdx].appName}"`}
-          </div>
           <Input
             css={modalInputStyle}
             onChange={(res) => {

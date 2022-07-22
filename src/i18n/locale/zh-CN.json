@@ -25,6 +25,7 @@
   },
   "back": "后退",
   "edit_success": "修改成功！",
+  "save": "保存",
   "user": {
     "description": "专属于开发者的开源低代码平台。",
     "sign_up": {

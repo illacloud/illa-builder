@@ -25,6 +25,7 @@
   },
   "back": "back",
   "edit_success": "edit success！",
+  "save": "Save",
   "user": {
     "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
