@@ -5,7 +5,7 @@ type ActionTypeNameKey =
   | "my_sql"
   | "postgres"
   | "redis"
-  | "mongo_db"
+  | "mongodb"
   | "rest_api"
   | "js_transformer"
 
@@ -31,7 +31,7 @@ export const Databases: ResourceDataItem[] = [
     actionType: "redis",
   },
   {
-    nameKey: "mongo_db",
+    nameKey: "mongodb",
     isDraft: true,
     actionType: "mongodb",
   },

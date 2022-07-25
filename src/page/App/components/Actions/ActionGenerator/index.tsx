@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { Modal } from "@illa-design/modal"
 import { ActionGeneratorProps } from "./interface"
-import { ActionTypeSelector } from "@/page/App/components/Actions/ActionGenerator/ActionTypeSelector"
+import { ActionTypeSelector } from "./ActionTypeSelector"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
@@ -19,7 +19,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       withoutPadding
       onCancel={onClose}
     >
-      {step === 0 ? <ActionTypeSelector /> : step === 1 ? "1" : "2"}
+      {step === 0 ? <ActionTypeSelector /> : step === 1 ? "step 1" : "step 2"}
     </Modal>
   )
 }

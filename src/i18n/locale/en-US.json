@@ -396,7 +396,7 @@
         "redis": {
           "name": "Redis"
         },
-        "mongo_db": {
+        "mongodb": {
           "name": "MongoDB"
         }
       },
