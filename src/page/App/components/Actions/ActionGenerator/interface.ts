@@ -1,4 +1,6 @@
-export interface ActionInfo {
+import { ActionTypeInfo } from "@/page/App/components/Actions/ActionGenerator/ActionTypeSelector/interface"
+
+export interface ActionInfo extends ActionTypeInfo {
   resourceId?: string
 }
 

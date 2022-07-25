@@ -7,13 +7,6 @@ export interface ActionTypeSelectorProps {
   resourceOnly?: boolean
 }
 
-export interface ActionTypeSelectorListProps {
-  title: string
-  category: ActionTypeCategory
-  list: ResourceDataItem[]
-  onSelect?: (item: ActionTypeInfo) => void
-}
-
 export interface ActionTypeSelectorCardProps extends ResourceDataItem {
   onSelect?: (item: ActionTypeInfo) => void
   category: ActionTypeCategory
