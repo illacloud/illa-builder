@@ -233,7 +233,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-style`,
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
