@@ -16,11 +16,11 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: "Manual",
+            label: i18n.t("widget.public.select_options.manual"),
             value: "static",
           },
           {
-            label: "Mapped",
+            label: i18n.t("widget.public.select_options.mapped"),
             value: "dynamic",
           },
         ],
@@ -35,20 +35,20 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: "select-options-label",
-            labelName: i18n.t("Label"),
+            labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "label",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
             id: "select-options-value",
-            labelName: i18n.t("Value"),
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "value",
             setterType: "INPUT_SETTER",
           },
           {
             id: "select-options-disabled",
-            labelName: i18n.t("Disabled"),
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disabled",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -144,8 +144,8 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         bindAttrName: "labelHidden",
         shown: (value) => !value,
         options: [
-          { label: "Left", value: "left" },
-          { label: "Top", value: "top" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "top" },
         ],
       },
       {

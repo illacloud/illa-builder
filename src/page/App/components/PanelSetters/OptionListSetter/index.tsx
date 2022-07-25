@@ -5,6 +5,7 @@ import { OptionListSetterProps } from "./interface"
 import { ListStyle } from "./style"
 import { generateNewOptionItem } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
 import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+import { useTranslation } from "react-i18next"
 
 export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
   const {
@@ -14,6 +15,7 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
     childrenSetter,
     widgetDisplayName,
   } = props
+  const { t } = useTranslation()
 
   const handleAddOption = useCallback(() => {
     const num = value.length + 1
@@ -35,7 +37,7 @@ export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
     >
       <div css={ListStyle}>
         <OptionListHeader
-          labelName="Options"
+          labelName={t("editor.inspect.setter_content.option_list.title")}
           handleAddOption={handleAddOption}
         />
         <ListBody />

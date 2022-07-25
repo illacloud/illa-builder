@@ -51,8 +51,8 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
-          { label: "Left", value: "left" },
-          { label: "Top", value: "top" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "top" },
         ],
       },
       {

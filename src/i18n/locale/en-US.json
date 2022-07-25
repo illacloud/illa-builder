@@ -580,7 +580,10 @@
             "delete": "Delete",
             "duplicate": "Duplicate"
           },
-          "list_no_label": "No label"
+          "list_no_label": "No label",
+          "model_title": "Edit Options",
+          "title": "Options",
+          "new": "New"
         },
         "list_setter": {
           "reset": "Reset"
@@ -616,9 +619,19 @@
     }
   },
   "widget": {
+    "public": {
+      "left": "Left",
+      "right": "Right",
+      "top": "Top",
+      "select_options": {
+        "manual": "Manual",
+        "mapped": "Mapped"
+      }
+    },
     "text": {
       "name": "Text",
-      "default_value": "This is a text"
+      "default_value": "\uD83D\uDC4B Hello!",
+      "text_model": "Plain text"
     },
     "button": {
       "name": "Button",

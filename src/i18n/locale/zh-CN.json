@@ -580,7 +580,10 @@
             "delete": "删除",
             "duplicate": "复制"
           },
-          "list_no_label": "无标签"
+          "list_no_label": "无标签",
+          "model_title": "编辑选项",
+          "title": "选项",
+          "new": "新建"
         },
         "list_setter": {
           "reset": "重置"
@@ -616,9 +619,19 @@
     }
   },
   "widget": {
+    "public": {
+      "left": "左",
+      "right": "右",
+      "top": "上",
+      "select_options": {
+        "manual": "自动",
+        "mapped": "手动"
+      }
+    },
     "text": {
       "name": "文本",
-      "default_value": "This is a text"
+      "default_value": "\uD83D\uDC4B 嗨！",
+      "text_model": "纯文本"
     },
     "button": {
       "name": "按钮",

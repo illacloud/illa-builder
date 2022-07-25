@@ -51,8 +51,8 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         bindAttrName: "labelHidden",
         shown: (value) => !value,
         options: [
-          { label: "Left", value: "left" },
-          { label: "Top", value: "top" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "top" },
         ],
       },
       {
