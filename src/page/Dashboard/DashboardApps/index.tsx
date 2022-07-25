@@ -299,6 +299,7 @@ export const DashboardApps: FC = () => {
       >
         <Input
           css={modalInputStyle}
+          borderColor="techPurple"
           onChange={(res) => {
             setCreateNewValue(res)
           }}
@@ -332,6 +333,7 @@ export const DashboardApps: FC = () => {
         >
           <Input
             css={modalInputStyle}
+            borderColor="techPurple"
             onChange={(res) => {
               setRenameValue(res)
             }}
@@ -371,6 +373,7 @@ export const DashboardApps: FC = () => {
         >
           <Input
             css={modalInputStyle}
+            borderColor="techPurple"
             onChange={(res) => {
               setDuplicateValue(res)
             }}
