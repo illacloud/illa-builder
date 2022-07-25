@@ -1,9 +1,10 @@
 import { NumberInputWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
   type: "NUMBER_INPUT_WIDGET",
-  widgetName: "widget.number_input.name",
+  widgetName: i18n.t("widget.number_input.name"),
   displayName: "numberInput",
   icon: <NumberInputWidgetIcon size="100%" />,
   sessionType: "INPUTS",

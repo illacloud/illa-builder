@@ -5,18 +5,18 @@ import {
 } from "@illa-design/icon"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
 
 export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "circle-progress-basic",
-    groupName: "editor.inspect.setter_group.basic",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "circle-progress-basic-Value",
-        labelName: "editor.inspect.setter_label.value",
-        labelDesc: "editor.inspect.setter_label.progress_percentage",
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        labelDesc: i18n.t("editor.inspect.setter_label.progress_percentage"),
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -25,18 +25,18 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "circle-progress-adornments",
-    groupName: "editor.inspect.setter_group.adornments",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "circle-progress-adornments-showText",
-        labelName: "editor.inspect.setter_label.hide_value_label",
+        labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
         attrName: "showText",
         setterType: "SWITCH_SETTER",
       },
       {
         id: "circle-progress-adornments-tooltip",
-        labelName: "editor.inspect.setter_label.tooltip",
-        labelDesc: "editor.inspect.setter_tooltip.tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -45,14 +45,13 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "circle-progress-layout",
-    groupName: "editor.inspect.setter_group.layout",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: "circle-progress-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
-        labelName: "editor.inspect.setter_label.hidden",
-        labelDesc: "editor.inspect.setter_tooltip.hidden",
-        labelDescOption: { name: "circelProgressName" },
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         attrName: "hidden",
         useCustomLayout: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -60,7 +59,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "circle-progress-layout-alignment",
         setterType: "RADIO_GROUP_SETTER",
-        labelName: "editor.inspect.setter_label.label_alignment",
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "alignment",
         options: [
           {
@@ -81,18 +80,18 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "circle-progress-style",
-    groupName: "editor.inspect.setter_group.style",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "circle-progress-style-list",
         setterType: "LIST_SETTER",
-        labelName: "editor.inspect.setter_label.styles",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "circle-progress-color",
-            labelName: "editor.inspect.setter_label.styles",
+            labelName: i18n.t("editor.inspect.setter_label.styles"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "color",
             defaultValue: "blue",
@@ -100,7 +99,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "circle-progress-trailColor",
-            labelName: "editor.inspect.setter_label.trail_color",
+            labelName: i18n.t("editor.inspect.setter_label.trail_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "trailColor",
             defaultValue: "gray",
@@ -108,7 +107,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "circle-progress-strokeWidth",
-            labelName: "editor.inspect.setter_label.stroke_width",
+            labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
             setterType: "INPUT_SETTER",
             attrName: "strokeWidth",
             defaultValue: "4px",

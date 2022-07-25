@@ -4,18 +4,19 @@ import {
   NewTypeMapComponent,
 } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
 import { WidgetCardInfo, WidgetConfig } from "./interface"
+import i18n from "@/i18n/config"
 
 export type SessionType = keyof typeof sessionTypeMapSessionNameKey
 
-const sessionTypeMapSessionNameKey = {
-  COMMON: "editor.widget_picker.sessions.commonly",
-  INPUTS: "editor.widget_picker.sessions.inputs",
-  SELECT: "editor.widget_picker.sessions.selects",
-  CALENDAR: "editor.widget_picker.sessions.calendar",
-  PRESENTATION: "editor.widget_picker.sessions.presentation",
-  DATE: "editor.widget_picker.sessions.data",
-  CONTAINER: "editor.widget_picker.sessions.container",
-  NAVIGATION: "editor.widget_picker.sessions.navigation",
+export const sessionTypeMapSessionNameKey = {
+  COMMON: i18n.t("editor.widget_picker.sessions.commonly"),
+  INPUTS: i18n.t("editor.widget_picker.sessions.inputs"),
+  SELECT: i18n.t("editor.widget_picker.sessions.selects"),
+  CALENDAR: i18n.t("editor.widget_picker.sessions.calendar"),
+  PRESENTATION: i18n.t("editor.widget_picker.sessions.presentation"),
+  DATE: i18n.t("editor.widget_picker.sessions.data"),
+  CONTAINER: i18n.t("editor.widget_picker.sessions.container"),
+  NAVIGATION: i18n.t("editor.widget_picker.sessions.navigation"),
 }
 
 const COMMONLY_WIDGET = new Set([

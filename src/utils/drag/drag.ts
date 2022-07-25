@@ -38,7 +38,7 @@ export function endDrag(dragNode: ComponentNode) {
   )
   if (
     searchDsl(
-      store.getState().currentApp.editor.components.rootDsl,
+      store.getState().currentApp.editor.components,
       dragNode.displayName,
     ) == null
   ) {

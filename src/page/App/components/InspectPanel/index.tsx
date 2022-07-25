@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { SelectedPanel } from "./selectedPanel"
-import { Empty } from "./empty"
+import { EmptySelected } from "./empty"
 import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
 
 export const InspectPanel: FC = () => {
@@ -14,7 +14,7 @@ export const InspectPanel: FC = () => {
   }, [selectedComponentsDisplayNames])
 
   return isNotSelected ? (
-    <Empty />
+    <EmptySelected />
   ) : (
     <SelectedPanel selectedDisplayNames={selectedComponentsDisplayNames} />
   )

@@ -121,7 +121,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           })
         }
         if (lintError?.errorLine && editor) {
-          lineMarker(editor, lintError.errorLine)
+          lineMarker(editor, lintError.errorLine - 1)
         }
       } else {
         setError(false)

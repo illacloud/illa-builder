@@ -1,11 +1,12 @@
 import { RadioGroupWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
+import i18n from "@/i18n/config"
 
 export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   displayName: "radioGroup",
   type: "RADIO_GROUP_WIDGET",
-  widgetName: "widget.radio_group.name",
+  widgetName: i18n.t("widget.radio_group.name"),
   icon: <RadioGroupWidgetIcon size="100%" />,
   sessionType: "SELECT",
   w: 20,

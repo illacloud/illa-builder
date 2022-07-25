@@ -105,8 +105,6 @@ export const unselectedTipIconStyle = css`
 
 export const unselectedTipTextStyle = css`
   margin-top: 4px;
-  font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const singleSelectedPanelWrapperStyle = css`

@@ -25,6 +25,7 @@
   },
   "back": "back",
   "edit_success": "edit success！",
+  "save": "Save",
   "user": {
     "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
@@ -514,6 +515,8 @@
         "pending": "Pending",
         "event_handler": "Event handler",
         "event": "Event",
+        "component": "Component",
+        "method": "Method",
         "action": "Action",
         "trigger_query": "Trigger query",
         "control_component": "Control component",
@@ -538,6 +541,7 @@
         "x_axis_type": "X-axis type",
         "y_axis_title": "Y-axis title",
         "legend_position": "Legend position",
+        "only_run_when": "Only run when",
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
@@ -559,13 +563,13 @@
         "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
         "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
         "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option",
-        "date_format": "A valid date format string. See <DayJS>dayJS</DayJS>",
+        "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format)",
         "loading": "Whether the component should show a loading indicator.",
         "progress_percentage": "The percentage value is between 0 and 100",
         "timeline_direction": "Change the direction of the timeline."
       },
       "setter_default_value": {
-        "solid": "Solid",
+        "fill": "Fill",
         "outline": "Outline"
       },
       "setter_content": {
@@ -580,7 +584,13 @@
           "reset": "Reset"
         },
         "event_handler_list": {
-          "empty": "Trigger queries, control components, or call other APIs in response to component events."
+          "empty": "Trigger queries, control components, or call other APIs in response to component events.",
+          "new": "New",
+          "title": "Edit event handler"
+        },
+        "color_picker": {
+          "title": "Edit color",
+          "prefabricated": "Prefabricated color"
         }
       }
     },
@@ -721,10 +731,12 @@
       "title": "PASSWORD",
       "current_password": "Old password",
       "new_password": "New password",
-      "confirm_password": "Confirm password",
+      "confirm_password": "Confirmation password",
       "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 6～15 characters",
-      "error_match_password": "Passwords do not match",
+      "error_format_password": "Password must be 6～20 characters",
+      "error_match_password": "Your password and confirmation password do not match",
+      "error_password_has_empty": "Password cannot include spaces",
+      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
       "submit_button": "Submit"
     },
     "other": {

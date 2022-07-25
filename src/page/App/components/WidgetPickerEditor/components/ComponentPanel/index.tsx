@@ -8,7 +8,7 @@ import {
 import { ComponentPanelProps, ComponentSessionProps } from "./interface"
 import { ComponentSession } from "./ComponentSession"
 import { getMatchComponent } from "./utils"
-import { Empty } from "./Empty"
+import { EmptySearchResult } from "./Empty"
 import { buildComponentList } from "@/widgetLibrary/componentListBuilder"
 import { useTranslation } from "react-i18next"
 
@@ -45,7 +45,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
             <ComponentSession key={"session-" + session.title} {...session} />
           ))
         ) : (
-          <Empty />
+          <EmptySearchResult />
         )}
       </div>
     </div>

@@ -2,6 +2,7 @@ import { FC, useMemo } from "react"
 import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
+import { VALIDATION_TYPES_TRANS } from "@/utils/validationFactory"
 
 function getPath(attrName?: string, widgetDisplayName?: string) {
   if (attrName && widgetDisplayName) {
@@ -40,8 +41,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
           handleUpdateDsl(attrName, value)
         }}
         mode={"TEXT_JS"}
-        // @ts-ignore todo: weichen
-        expectedType={expectedType}
+        expectedType={VALIDATION_TYPES_TRANS[expectedType]}
         path={getPath(attrName, widgetDisplayName)}
       />
     </div>

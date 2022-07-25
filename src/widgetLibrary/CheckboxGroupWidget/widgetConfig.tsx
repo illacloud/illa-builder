@@ -1,10 +1,11 @@
 import { CheckboxWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
+import i18n from "@/i18n/config"
 
 export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   type: "CHECKBOX_GROUP_WIDGET",
-  widgetName: "widget.check_box_group.name",
+  widgetName: i18n.t("widget.check_box_group.name"),
   displayName: "checkboxGroup",
   icon: <CheckboxWidgetIcon size="100%" />,
   sessionType: "SELECT",
