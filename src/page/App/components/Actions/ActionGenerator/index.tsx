@@ -1,15 +1,19 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { Modal } from "@illa-design/modal"
 import { ActionGeneratorProps } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose, onAddAction } = props
-  const [step, setStep] = useState<0 | 1 | 2>(0)
-  const [resourceType, setResourceType] = useState<string>("")
+  const actionInfo = useRef({
+    step: 0,
+    resourceType: "",
+  })
+
+  const step = actionInfo.current.step
 
   useEffect(() => {
-    setStep(0)
+    actionInfo.current.step = 0
   }, [visible])
 
   return (
@@ -32,8 +36,8 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
               }
               case "apis":
               case "databases": {
-                setResourceType(actionType)
-                setStep(1)
+                actionInfo.current.resourceType = actionType
+                actionInfo.current.step = 1
                 break
               }
             }
