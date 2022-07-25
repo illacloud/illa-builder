@@ -23,6 +23,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   isSetterSingleRow?: boolean
   defaultValue?: any
   placeholder?: string
+  iconName?: string
   shown?: (value: any | { [attrName: string]: any }) => boolean
   bindAttrName?: string | string[]
 }

@@ -64,7 +64,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
         id: "divider-style-list",
         setterType: "LIST_SETTER",
         attrName: "styles",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         useCustomLayout: true,
         childrenSetter: [
           {

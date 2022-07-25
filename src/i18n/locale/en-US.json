@@ -503,6 +503,7 @@
         "time_format": "Time format",
         "step_size": "Step size",
         "hide_value_label": "Hide value label",
+        "colors": "Colors",
         "styles": "Styles",
         "trail_color": "Trail color",
         "stroke_width": "Stroke width",

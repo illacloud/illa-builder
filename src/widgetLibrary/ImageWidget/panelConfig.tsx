@@ -57,20 +57,6 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "image-layout-height",
-        labelName: i18n.t("editor.inspect.setter_label.img_height"),
-        attrName: "height",
-        expectedType: VALIDATION_TYPES.STRING,
-        setterType: "INPUT_SETTER",
-      },
-      {
-        id: "image-layout-width",
-        labelName: i18n.t("editor.inspect.setter_label.img_width"),
-        attrName: "width",
-        expectedType: VALIDATION_TYPES.STRING,
-        setterType: "INPUT_SETTER",
-      },
-      {
         id: "image-layout-hidden",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
@@ -96,8 +82,9 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: "image-style-radius",
             labelName: i18n.t("editor.inspect.setter_label.radius"),
-            setterType: "INPUT_SETTER",
+            setterType: "EDITABLE_INPUT_SETTER",
             attrName: "radius",
+            iconName: "radius",
             defaultValue: "0px",
             expectedType: VALIDATION_TYPES.STRING,
           },

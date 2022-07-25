@@ -230,7 +230,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${widgetBaseName}-styles-styles`,
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
