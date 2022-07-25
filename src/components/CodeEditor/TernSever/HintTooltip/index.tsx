@@ -19,7 +19,7 @@ import {
 import { TypeQueryResult } from "tern/lib/tern"
 import { transTypeFromTern } from "@/components/CodeEditor/TernSever"
 
-const formatObjOrArr = (type: string, data: any) => {
+const formatEvaluate = (data: any) => {
   let format = ""
   for (const key in data) {
     let current = data[key]
@@ -35,11 +35,26 @@ const formatObjOrArr = (type: string, data: any) => {
   if (format) {
     format = `\n${format}`
   }
+  return format
+}
+
+const Evaluate: FC<{ type: string; data?: any }> = (props) => {
+  const { type, data } = props
+
   return (
     <Trigger
-      _css={evaluationTriggerStyle}
-      content={type === "Array" ? `[${format}]` : `Object {${format}}`}
-      colorScheme={"techPurple"}
+      _css={css`
+        padding-right: 4px;
+      `}
+      content={
+        <div css={evaluationTriggerStyle}>
+          {type === "Array"
+            ? `[${formatEvaluate(data)}]`
+            : `Object {${formatEvaluate(data)}}`}
+        </div>
+      }
+      withoutPadding
+      colorScheme={"white"}
       position="right"
       openDelay={10}
       closeDelay={10}
@@ -49,20 +64,9 @@ const formatObjOrArr = (type: string, data: any) => {
       closeOnNoElementsInside
       hideOnInnerInVisible={false}
     >
-      {type === "Array" ? "[ ... ]" : "{ ... }"}
+      <Tag size="small">{type === "Array" ? "[ ... ]" : "{ ... }"}</Tag>
     </Trigger>
   )
-}
-
-const formatEvaluate = (type: string, data?: any) => {
-  switch (type) {
-    case "String":
-      return `"${data}"`
-    case "Array":
-    case "Object":
-      return formatObjOrArr(type, data)
-  }
-  return data?.toString()
 }
 
 const handleTernCompletions = (data: TypeQueryResult): TransQuery => {
@@ -106,7 +110,13 @@ export const HintTooltip: FC<HintTooltipProps> = (props) => {
           {data?.path?.length ? (
             <div css={evaluationContentStyle}>
               <div css={css(evaluationStyle)}>Evaluates to</div>
-              <Tag size="small">{formatEvaluate(data.type, data.data)}</Tag>
+              {data.type === "Array" || data.type === "Object" ? (
+                <Evaluate type={data.type} data={data.data} />
+              ) : data.type === "String" ? (
+                <Tag size="small">{`"${data.data}"`}</Tag>
+              ) : (
+                <Tag size="small">{data.data?.toString()}</Tag>
+              )}
             </div>
           ) : null}
         </div>

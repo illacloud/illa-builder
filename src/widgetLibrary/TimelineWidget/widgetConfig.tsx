@@ -1,9 +1,10 @@
 import { TimelineWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   type: "TIMELINE_WIDGET",
-  widgetName: "widget.timeline.name",
+  widgetName: i18n.t("widget.timeline.name"),
   displayName: "timeline",
   icon: <TimelineWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",

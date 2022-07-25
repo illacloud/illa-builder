@@ -4,6 +4,7 @@ import {
   ComponentNode,
   ComponentsState,
   DeleteComponentNodePayload,
+  ResetComponentPropsPayload,
   UpdateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -27,7 +28,7 @@ export const updateComponentDraggingState: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentDraggingPayload>
 > = (state, action) => {
-  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  const node = searchDsl(state, action.payload.displayName)
   if (node != null) {
     node.isDragging = action.payload.isDragging
   }
@@ -37,7 +38,7 @@ export const updateComponentResizeState: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentResizePayload>
 > = (state, action) => {
-  const node = searchDsl(state.rootDsl, action.payload.displayName)
+  const node = searchDsl(state, action.payload.displayName)
   if (node != null) {
     node.isResizing = action.payload.isResizing
   }
@@ -47,10 +48,7 @@ export const copyComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentCopyPayload>
 > = (state, action) => {
-  const parentNode = searchDsl(
-    state.rootDsl,
-    action.payload.componentNode.parentNode,
-  )
+  const parentNode = searchDsl(state, action.payload.componentNode.parentNode)
   if (parentNode != null) {
     parentNode.childrenNode.push({
       ...action.payload.componentNode,
@@ -65,10 +63,11 @@ export const addComponentReducer: CaseReducer<
   PayloadAction<ComponentNode>
 > = (state, action) => {
   const dealNode = action.payload
-  if (state.rootDsl == null || dealNode.parentNode == null) {
-    state.rootDsl = dealNode
+  if (state == null || dealNode.parentNode == null) {
+    state = dealNode
+    return state
   } else {
-    const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
+    const parentNode = searchDsl(state, dealNode.parentNode)
     if (parentNode != null) {
       parentNode.childrenNode.push(dealNode)
     }
@@ -80,7 +79,7 @@ export const updateSingleComponentReducer: CaseReducer<
   PayloadAction<ComponentDropPayload>
 > = (state, action) => {
   const dealNode = action.payload.componentNode
-  const parentNode = searchDsl(state.rootDsl, dealNode.parentNode)
+  const parentNode = searchDsl(state, dealNode.parentNode)
   if (parentNode != null) {
     const index = parentNode.childrenNode.findIndex((value, index, obj) => {
       return value.displayName === dealNode.displayName
@@ -96,10 +95,10 @@ export const deleteComponentNodeReducer: CaseReducer<
   PayloadAction<DeleteComponentNodePayload>
 > = (state, action) => {
   const { displayNames } = action.payload
-  if (state.rootDsl == null) {
+  if (state == null) {
     return
   }
-  const rootNode = state.rootDsl
+  const rootNode = state
   displayNames.forEach((value, index) => {
     const searchNode = searchDsl(rootNode, value)
     if (searchNode != null) {
@@ -129,13 +128,32 @@ export const updateComponentPropsReducer: CaseReducer<
   if (!isObject(updateSlice) || !displayName) {
     return
   }
-  const node = searchDsl(state.rootDsl, displayName)
+  const node = searchDsl(state, displayName)
   if (!node) return
   const widgetProps = node.props || {}
   const clonedWidgetProps = cloneDeep(widgetProps)
   node.props = getNewWidgetPropsByUpdateSlice(
     displayName,
     updateSlice,
+    clonedWidgetProps,
+  )
+}
+
+export const resetComponentPropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ResetComponentPropsPayload>
+> = (state, action) => {
+  const { displayName, resetSlice } = action.payload
+  if (!isObject(resetSlice) || !displayName) {
+    return
+  }
+  const node = searchDsl(state, displayName)
+  if (!node) return
+  const widgetProps = resetSlice || {}
+  const clonedWidgetProps = cloneDeep(widgetProps)
+  node.props = getNewWidgetPropsByUpdateSlice(
+    displayName,
+    resetSlice,
     clonedWidgetProps,
   )
 }

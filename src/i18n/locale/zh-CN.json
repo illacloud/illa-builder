@@ -25,6 +25,7 @@
   },
   "back": "后退",
   "edit_success": "修改成功！",
+  "save": "保存",
   "user": {
     "description": "专属于开发者的开源低代码平台。",
     "sign_up": {
@@ -442,7 +443,7 @@
         "adornments": "额外修饰属性",
         "interaction": "交互",
         "layout": "布局",
-        "style": "样式",
+        "style": "风格",
         "validation": "验证",
         "options": "选项"
       },
@@ -455,7 +456,7 @@
         "tooltip": "提示",
         "align": "对齐",
         "hidden": "隐藏",
-        "variant": "变体",
+        "variant": "样式",
         "color": "颜色",
         "theme_color": "主题色",
         "default_value": "默认值",
@@ -514,6 +515,8 @@
         "pending": "等待",
         "event_handler": "事件处理器",
         "event": "事件",
+        "component": "组件",
+        "method": "方法",
         "action": "动作",
         "trigger_query": "触发请求",
         "control_component": "控制组件",
@@ -538,6 +541,7 @@
         "x_axis_type": "X-axis type",
         "y_axis_title": "Y-axis title",
         "legend_position": "Legend position",
+        "only_run_when": "执行条件",
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
@@ -559,14 +563,14 @@
         "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
         "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
         "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项",
-        "date_format": "一个符合规范的时间格式，请参考 <DayJS>dayJS</DayJS>",
+        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
         "loading": "控制组件是否为加载状态。",
         "progress_percentage": "进度条的数值范围为 0-100",
         "timeline_direction": "切换时间轴的方向"
       },
       "setter_default_value": {
-        "solid": "Solid",
-        "outline": "Outline"
+        "fill": "填充",
+        "outline": "描边"
       },
       "setter_content": {
         "option_list": {
@@ -580,7 +584,13 @@
           "reset": "重置"
         },
         "event_handler_list": {
-          "empty": "触发查询、控制组件或调用其他API以响应组件事件。"
+          "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
+          "new": "新建",
+          "title": "编辑事件处理器"
+        },
+        "color_picker": {
+          "title": "Edit color",
+          "prefabricated": "Prefabricated color"
         }
       }
     },
@@ -724,8 +734,10 @@
       "new_password": "新密码",
       "confirm_password": "确认新密码",
       "empty_password": "密码不能为空",
-      "error_format_password": "密码须为6～15个字符",
-      "error_match_password": "密码不匹配",
+      "error_format_password": "密码须为6～20个字符",
+      "error_match_password": "新密码不一致，请重试 ",
+      "error_password_has_empty": "密码不能包含空格",
+      "error_validate_password": "密码只能包含数字、字母、标点符号",
       "submit_button": "提交"
     },
     "other": {

@@ -6,17 +6,17 @@ import {
   HorizontalStartIcon,
 } from "@illa-design/react"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
-
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
 
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
     id: "button-basic",
-    groupName: "editor.inspect.setter_group.basic",
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
         id: "button-basic-Text",
-        labelName: "editor.inspect.setter_label.text",
+        labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "text",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -25,54 +25,54 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-interaction",
-    groupName: "editor.inspect.setter_group.interaction",
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
         id: "button-interaction-event-handler",
         attrName: "events",
-        labelName: "editor.inspect.setter_label.event_handler",
+        labelName: i18n.t("editor.inspect.setter_label.event_handler"),
         setterType: "EVENT_HANDLER_SETTER",
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "event",
-            labelName: "editor.inspect.setter_label.event",
+            labelName: i18n.t("editor.inspect.setter_label.event"),
             setterType: "BASE_SELECT_SETTER",
             attrName: "eventType",
             options: [{ label: "Click", value: "onClick" }],
           },
           {
             id: "action",
-            labelName: "editor.inspect.setter_label.action",
-            labelDesc: "editor.inspect.setter_tooltip.action",
+            labelName: i18n.t("editor.inspect.setter_label.action"),
+            labelDesc: i18n.t("editor.inspect.setter_tooltip.action"),
             setterType: "EVENT_ACTION_SELECT_SETTER",
             attrName: "actionType",
             options: [
               {
-                label: "editor.inspect.setter_label.trigger_query",
+                label: i18n.t("editor.inspect.setter_label.trigger_query"),
                 value: "datasource",
               },
               {
-                label: "editor.inspect.setter_label.control_component",
+                label: i18n.t("editor.inspect.setter_label.control_component"),
                 value: "widget",
               },
               {
-                label: "editor.inspect.setter_label.run_script",
+                label: i18n.t("editor.inspect.setter_label.run_script"),
                 value: "script",
               },
               {
-                label: "editor.inspect.setter_label.go_to_url",
+                label: i18n.t("editor.inspect.setter_label.go_to_url"),
                 value: "openUrl",
               },
               {
-                label: "editor.inspect.setter_label.show_notification",
+                label: i18n.t("editor.inspect.setter_label.show_notification"),
                 value: "showNotification",
               },
             ],
           },
           {
             id: "query",
-            labelName: "Query",
+            labelName: i18n.t("Query"),
             setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
             attrName: "queryID",
             bindAttrName: "actionType",
@@ -80,17 +80,16 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "actionMethod",
-            labelName: "Action Method",
+            labelName: i18n.t("Action Method"),
             setterType: "BASE_SELECT_SETTER",
             attrName: "widgetMethod",
             bindAttrName: "queryID",
             shown: (type) => type === "datasource",
-            // TODO: value should as same as action run method name that mounted on `globalData`
             options: [{ label: "run", value: "executeAction" }],
           },
           {
             id: "component",
-            labelName: "Component",
+            labelName: i18n.t("editor.inspect.setter_label.component"),
             setterType: "EVENT_TARGET_SELECT_SETTER",
             attrName: "widgetID",
             bindAttrName: "actionType",
@@ -98,7 +97,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "Method",
-            labelName: "Method",
+            labelName: i18n.t("editor.inspect.setter_label.method"),
             setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
             attrName: "widgetMethod",
             bindAttrName: "widgetID",
@@ -106,7 +105,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "Value",
-            labelName: "Value",
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -114,7 +113,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "startValue",
-            labelName: "startValue",
+            labelName: i18n.t("editor.inspect.setter_label.start_date"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -122,7 +121,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "endValue",
-            labelName: "endValue",
+            labelName: i18n.t("editor.inspect.setter_label.end_date"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -130,7 +129,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "imageUrl",
-            labelName: "Value",
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",
@@ -138,7 +137,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "disabled",
-            labelName: "editor.inspect.setter_label.disabled",
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
             setterType: "DYNAMIC_SWITCH_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
             attrName: "disabled",
@@ -156,7 +155,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "URL",
-            labelName: "URL",
+            labelName: i18n.t("URL"),
             setterType: "INPUT_SETTER",
             attrName: "url",
             bindAttrName: "actionType",
@@ -165,7 +164,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "newTab",
-            labelName: "New Tab",
+            labelName: i18n.t("New Tab"),
             setterType: "DYNAMIC_SWITCH_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
             attrName: "newTab",
@@ -175,7 +174,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "title",
-            labelName: "Title",
+            labelName: i18n.t("Title"),
             setterType: "INPUT_SETTER",
             attrName: "title",
             bindAttrName: "actionType",
@@ -184,7 +183,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "description",
-            labelName: "Description",
+            labelName: i18n.t("Description"),
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
             attrName: "description",
@@ -193,7 +192,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "notification-type",
-            labelName: "Type",
+            labelName: i18n.t("Type"),
             setterType: "BASE_SELECT_SETTER",
             attrName: "notificationType",
             bindAttrName: "actionType",
@@ -207,7 +206,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "duration",
-            labelName: "Duration",
+            labelName: i18n.t("Duration"),
             setterType: "INPUT_SETTER",
             attrName: "duration",
             bindAttrName: "actionType",
@@ -216,8 +215,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "enabled",
-            labelName: "Only run when",
-            // labelDesc: "xxxxx",
+            labelName: i18n.t("editor.inspect.setter_label.only_run_when"),
+            // labelDesc: i18n.t("xxxxx"),
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
             attrName: "enabled",
@@ -227,8 +226,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       // TODO: wait form container
       // {
       //   id: "button-interaction-type",
-      //   labelName: "editor.inspect.setter_label.type",
-      //   labelDesc: "xxxxx",
+      //   labelName: i18n.t("editor.inspect.setter_label.type"),
+      //   labelDesc: i18n.t("xxxxx"),
       //   attrName: "submit",
       //   setterType: "RADIO_GROUP_SETTER",
       //   options: [
@@ -238,8 +237,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       // },
       {
         id: "button-interaction-formId",
-        labelName: "editor.inspect.setter_label.submit_form",
-        // labelDesc: "xxxxx",
+        labelName: i18n.t("editor.inspect.setter_label.submit_form"),
+        // labelDesc: i18n.t("xxxxx"),
         attrName: "formId",
         setterType: "INPUT_SETTER",
         bindAttrName: "submit",
@@ -247,8 +246,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "button-interaction-loading",
-        labelName: "editor.inspect.setter_label.loading",
-        labelDesc: "editor.inspect.setter_tooltip.loading",
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
         attrName: "loading",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -259,8 +258,8 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: "button-interaction-disabled",
-        labelName: "editor.inspect.setter_label.disabled",
-        labelDesc: "editor.inspect.setter_tooltip.disabled",
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -271,12 +270,12 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-adornments",
-    groupName: "editor.inspect.setter_group.adornments",
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
         id: "button-adornments-tooltip",
-        labelName: "editor.inspect.setter_label.tooltip",
-        labelDesc: "editor.inspect.setter_tooltip.tooltip",
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -285,38 +284,13 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-layout",
-    groupName: "editor.inspect.setter_group.layout",
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
-      {
-        id: "button-layout-alignment",
-        setterType: "RADIO_GROUP_SETTER",
-        labelName: "editor.inspect.setter_label.align",
-        attrName: "alignment",
-        options: [
-          {
-            label: <HorizontalStartIcon />,
-            value: "start",
-          },
-          {
-            label: <HorizontalCenterIcon />,
-            value: "center",
-          },
-          {
-            label: <HorizontalEndIcon />,
-            value: "end",
-          },
-          {
-            label: <HorizontalFullIcon />,
-            value: "fullWidth",
-          },
-        ],
-      },
       {
         id: "button-layout-hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
-        labelName: "editor.inspect.setter_label.hidden",
-        labelDesc: "editor.inspect.setter_tooltip.hidden",
-        labelDescOption: { name: "buttonName" },
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         useCustomLayout: true,
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -325,20 +299,20 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: "button-style",
-    groupName: "editor.inspect.setter_group.style",
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
         id: "button-style-variant",
         setterType: "RADIO_GROUP_SETTER",
-        labelName: "editor.inspect.setter_label.variant",
+        labelName: i18n.t("editor.inspect.setter_label.variant"),
         attrName: "variant",
         options: [
           {
-            label: "editor.inspect.setter_default_value.solid",
+            label: i18n.t("editor.inspect.setter_default_value.fill"),
             value: "fill",
           },
           {
-            label: "editor.inspect.setter_default_value.outline",
+            label: i18n.t("editor.inspect.setter_default_value.outline"),
             value: "outline",
           },
         ],
@@ -346,13 +320,13 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "button-style-list",
         setterType: "LIST_SETTER",
-        labelName: "editor.inspect.setter_label.styles",
+        labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "button-style-bg",
-            labelName: "editor.inspect.setter_label.theme_color",
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
             defaultValue: "#134ae0",

@@ -36,9 +36,6 @@ export const Deploy: FC = () => {
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),
         )
-        dispatch(
-          componentsActions.updateComponentReducer(response.data.components),
-        )
         dispatch(actionActions.updateActionListReducer(response.data.actions))
         dispatch(
           dependenciesActions.setDependenciesReducer(

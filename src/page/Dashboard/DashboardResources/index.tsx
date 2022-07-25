@@ -26,6 +26,7 @@ import {
   tableStyle,
 } from "./style"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
+import { cloneDeep } from "lodash"
 
 dayjs.extend(utc)
 
@@ -106,14 +107,19 @@ export const DashboardResources: FC = () => {
   )
   const data = useMemo(() => {
     const result: any[] = []
-    resourcesList.forEach((item: Resource, idx: number) => {
-      result.push({
-        nameCol: NameColComponent(item.resourceType, item.resourceName),
-        typeCol: TypeColComponent(item.resourceType),
-        dbNameCol: "",
-        ctimeCol: CtimeColComponent(item.updatedAt),
+    const tmpResourcesList = cloneDeep(resourcesList)
+    tmpResourcesList
+      .sort((a, b) => {
+        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       })
-    })
+      .forEach((item: Resource) => {
+        result.push({
+          nameCol: NameColComponent(item.resourceType, item.resourceName),
+          typeCol: TypeColComponent(item.resourceType),
+          dbNameCol: "",
+          ctimeCol: CtimeColComponent(item.updatedAt),
+        })
+      })
     return result
   }, [resourcesList])
 

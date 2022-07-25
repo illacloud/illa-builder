@@ -11,13 +11,14 @@ import {
   getCurrentConfigLanguage,
   getCurrentTranslateLanguage,
 } from "@/redux/currentUser/currentUserSelector"
-import i18n from "./i18n/config"
 import { useEffect } from "react"
 import { ILLARoute } from "@/router"
+import { useTranslation } from "react-i18next"
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)
   const currentUserLanguage = useSelector(getCurrentTranslateLanguage)
+  const { i18n } = useTranslation()
 
   useEffect(() => {
     if (!!currentUserLanguage) {
