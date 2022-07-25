@@ -177,7 +177,7 @@
         },
         "tips": {
           "not_found": "抱歉，没有搜索结果",
-          "empty": "添加 action 以开始处理连接资源中的数据"
+          "empty": "添加 Action 以开始处理连接资源中的数据"
         },
         "message": {
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
