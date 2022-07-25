@@ -90,6 +90,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     labelPosition,
     labelCaption,
     labelWidthUnit,
+    labelHidden,
     required,
     hidden,
   } = realProps
@@ -107,6 +108,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
         labelWidthUnit={labelWidthUnit}
         labelPosition={labelPosition}
         required={required}
+        labelHidden={labelHidden}
       />
       <COMP
         {...realProps}
