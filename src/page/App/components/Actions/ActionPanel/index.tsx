@@ -21,14 +21,14 @@ export const ActionPanel: FC = () => {
     case "restapi":
       actionPanel = <RestApiPanel action={selectedAction} />
       break
+    case "transformer":
+      actionPanel = <TransformerPanel action={selectedAction} />
+      break
     case "mongodb":
       break
     case "redis":
       break
     case "postgresql":
-      break
-    case "transformer":
-      actionPanel = <TransformerPanel action={selectedAction} />
       break
     default:
       break
@@ -36,6 +36,7 @@ export const ActionPanel: FC = () => {
   return (
     <div css={actionPanelStyle}>
       <ActionTitleBar action={selectedAction} />
+      {actionPanel}
     </div>
   )
 }

@@ -5,7 +5,7 @@ export type ResourceType =
   | "redis"
   | "postgresql"
 
-export interface ResourceContent {}
+export type ResourceContent = object
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string

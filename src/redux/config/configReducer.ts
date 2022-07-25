@@ -1,7 +1,10 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ConfigState, IllaMode } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 import { cloneDeep } from "lodash"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
@@ -43,7 +46,7 @@ export const updateSelectedComponent: CaseReducer<
 
 export const updateSelectedAction: CaseReducer<
   ConfigState,
-  PayloadAction<ActionItem>
+  PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
   state.selectedAction = action.payload
 }

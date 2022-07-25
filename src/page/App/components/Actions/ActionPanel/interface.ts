@@ -1,6 +1,10 @@
 import { HTMLAttributes } from "react"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 
-export interface ActionPanelProps extends HTMLAttributes<HTMLDivElement> {
-  action: ActionItem
+export interface ActionPanelProps<T extends ActionContent>
+  extends HTMLAttributes<HTMLDivElement> {
+  action: ActionItem<T>
 }

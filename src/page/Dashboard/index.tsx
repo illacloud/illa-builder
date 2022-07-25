@@ -10,7 +10,7 @@ import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { Resource } from "@/redux/resource/resourceState"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   containerStyle,
@@ -57,7 +57,7 @@ export const IllaApp: FC = () => {
     })
 
     const resourceList = new Promise((resolve) => {
-      Api.request<Resource[]>(
+      Api.request<Resource<ResourceContent>[]>(
         {
           url: "/resources",
           method: "GET",

@@ -11,7 +11,7 @@ export type ActionType =
   | "postgresql"
   | "transformer"
 
-export interface ActionContent {}
+export type ActionContent = object
 
 export interface ActionItem<T extends ActionContent> {
   actionId: string
@@ -24,8 +24,14 @@ export interface ActionItem<T extends ActionContent> {
   content: T
 }
 
-export interface MysqlAction extends ActionContent {}
+export interface MysqlAction extends ActionContent {
+  sqlString: string
+}
 
 export interface RestApiAction extends ActionContent {}
+
+export interface TransformerAction extends ActionContent {
+  transformerString: string
+}
 
 export const actionInitialState: ActionItem<ActionContent>[] = []

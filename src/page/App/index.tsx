@@ -41,8 +41,8 @@ import { Shortcut } from "@/utils/shortcut"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { AppLoading } from "@/page/App/components/AppLoading"
 import { ActionEditor } from "@/page/App/components/Actions"
-
-const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -80,6 +80,7 @@ export const Editor: FC = () => {
 
   const [loadingState, setLoadingState] = useState(true)
 
+  // init app
   useEffect(() => {
     const controller = new AbortController()
     Api.request<CurrentAppResp>(
@@ -131,13 +132,21 @@ export const Editor: FC = () => {
     }
   }, [])
 
+  // init resource
   useEffect(() => {
-    performance.setResourceTimingBufferSize(
-      INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE,
+    const controller = new AbortController()
+    Api.request<Resource<ResourceContent>[]>(
+      {
+        url: "/resources",
+        method: "GET",
+        signal: controller.signal,
+      },
+      (response) => {
+        dispatch(resourceActions.updateResourceListReducer(response.data))
+      },
     )
-
     return () => {
-      performance.clearResourceTimings()
+      controller.abort()
     }
   }, [])
 
