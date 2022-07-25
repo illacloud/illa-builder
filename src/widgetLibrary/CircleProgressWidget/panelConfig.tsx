@@ -83,9 +83,9 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "circle-progress-style-list",
+        id: "circle-progress-color-list",
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
@@ -105,10 +105,20 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             defaultValue: "gray",
             options: colorSchemeOptions,
           },
+        ],
+      },
+      {
+        id: "circle-progress-style-list",
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        attrName: "styles",
+        useCustomLayout: true,
+        childrenSetter: [
           {
             id: "circle-progress-strokeWidth",
             labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
-            setterType: "INPUT_SETTER",
+            setterType: "EDITABLE_INPUT_SETTER",
+            iconName: "strokeWidth",
             attrName: "strokeWidth",
             defaultValue: "4px",
             expectedType: VALIDATION_TYPES.STRING,

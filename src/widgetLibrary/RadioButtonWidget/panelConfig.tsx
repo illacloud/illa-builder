@@ -216,7 +216,7 @@ export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-style-styles`,
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [

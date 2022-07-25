@@ -5,6 +5,7 @@ import {
   JSTransformerIcon,
   MongoDbIcon,
   MySqlIcon,
+  PostgresIcon,
   RedisIcon,
   RestApiIcon,
 } from "@illa-design/icon"
@@ -33,6 +34,8 @@ export function getIconFromActionType(
   switch (type) {
     case "mysql":
       return <MySqlIcon size={size} />
+    case "postgresql":
+      return <PostgresIcon size={size} />
     case "restapi":
       return <RestApiIcon size={size} />
     case "mongodb":

@@ -17,10 +17,12 @@ import { configActions } from "@/redux/config/configSlice"
 import { Modal } from "@illa-design/modal"
 import { Empty } from "@illa-design/empty"
 import { ReactComponent as ActionListEmptyState } from "@assets/action-list-empty-state.svg"
+import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
 
 export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className } = props
 
+  const [generatorVisible, setGeneratorVisible] = useState<boolean>()
   const [searchActionValue, setSearchActionValue] = useState("")
   const actionList = useSelector((state: RootState) => {
     return state.currentApp.action.filter((value) => {
@@ -44,6 +46,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
         colorScheme="techPurple"
         variant="light"
         css={addNewActionButtonStyle}
+        onClick={() => setGeneratorVisible(true)}
       >
         + {t("editor.action.action_list.btn.new")}
       </Button>
@@ -113,6 +116,10 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
           </div>
         )}
       </div>
+      <ActionGenerator
+        visible={generatorVisible}
+        onClose={() => setGeneratorVisible(false)}
+      />
     </div>
   )
 }

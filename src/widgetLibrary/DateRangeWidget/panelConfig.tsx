@@ -216,7 +216,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         id: "date-range-style-list",
         setterType: "LIST_SETTER",
         isSetterSingleRow: true,
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [

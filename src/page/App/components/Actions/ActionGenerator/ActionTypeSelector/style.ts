@@ -33,6 +33,7 @@ export const resourceListStyle = css`
 export function applyResourceItemStyle(isDraft?: boolean): SerializedStyles {
   const draftStyle = css`
     cursor: not-allowed;
+
     &:after {
       top: 0;
       position: absolute;
