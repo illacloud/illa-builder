@@ -149,7 +149,7 @@ export const colorInputCss = css`
 
 export const triggerCss = css`
   width: fit-content;
-  margin-right: 4px;
+  margin-right: 8px;
 `
 
 export const percentInputCss = css`
