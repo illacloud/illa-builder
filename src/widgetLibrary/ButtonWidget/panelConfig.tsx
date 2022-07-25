@@ -51,10 +51,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
                 value: "widget",
               },
               {
-                label: i18n.t("editor.inspect.setter_label.run_script"),
-                value: "script",
-              },
-              {
                 label: i18n.t("editor.inspect.setter_label.go_to_url"),
                 value: "openUrl",
               },
