@@ -1,10 +1,4 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import {
-  HorizontalCenterIcon,
-  HorizontalEndIcon,
-  HorizontalFullIcon,
-  HorizontalStartIcon,
-} from "@illa-design/react"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
@@ -55,10 +49,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
               {
                 label: i18n.t("editor.inspect.setter_label.control_component"),
                 value: "widget",
-              },
-              {
-                label: i18n.t("editor.inspect.setter_label.run_script"),
-                value: "script",
               },
               {
                 label: i18n.t("editor.inspect.setter_label.go_to_url"),
@@ -249,6 +239,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.loading"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
         attrName: "loading",
+        placeholder: "{{false}}",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: "submit",
@@ -260,6 +251,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         id: "button-interaction-disabled",
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
+        placeholder: "{{false}}",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,

@@ -114,7 +114,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "text-style-list",
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [

@@ -237,7 +237,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
       {
         id: "input-style",
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [

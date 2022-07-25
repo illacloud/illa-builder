@@ -6,7 +6,6 @@ import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH } from "@/style"
 
 export const formStyle = css`
   overflow: auto;
-  padding: 0 24px;
   max-height: 716px;
 `
 

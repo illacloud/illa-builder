@@ -33,6 +33,9 @@ export const applyTextContainerStyle = (
     p {
       margin: 0;
     }
+    a:visited {
+      color: #c58af9;
+    }
   `
 }
 
