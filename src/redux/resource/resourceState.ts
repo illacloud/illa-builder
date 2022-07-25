@@ -1,14 +1,3 @@
-export interface DashboardResource {
-  resourceId: string
-  resourceName: string
-  resourceType: ResourceType
-  databaseName: string
-  createdBy: string
-  lastModifiedBy: string
-  createdAt: string
-  updatedAt: string
-}
-
 export type ResourceType =
   | "mysql"
   | "restapi"
@@ -16,7 +5,23 @@ export type ResourceType =
   | "redis"
   | "postgresql"
 
-export interface Resource extends DashboardResource {}
+export interface ResourceContent {}
 
-export type ResourceListState = Resource[]
+export interface Resource<T extends ResourceContent> {
+  resourceId: string
+  resourceName: string
+  resourceType: ResourceType
+  databaseName: string
+  createdBy: string
+  updatedBy: string
+  createdAt: string
+  updatedAt: string
+  content: T
+}
+
+export interface MysqlResource extends ResourceContent {}
+
+export interface RestApiResource extends ResourceContent {}
+
+export type ResourceListState = Resource<ResourceContent>[]
 export const resourceInitialState: ResourceListState = []

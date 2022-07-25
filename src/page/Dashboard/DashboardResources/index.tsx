@@ -9,6 +9,7 @@ import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
 import {
   Resource,
+  ResourceContent,
   ResourceListState,
   ResourceType,
 } from "@/redux/resource/resourceState"
@@ -106,7 +107,7 @@ export const DashboardResources: FC = () => {
   )
   const data = useMemo(() => {
     const result: any[] = []
-    resourcesList.forEach((item: Resource, idx: number) => {
+    resourcesList.forEach((item: Resource<ResourceContent>, idx: number) => {
       result.push({
         nameCol: NameColComponent(item.resourceType, item.resourceName),
         typeCol: TypeColComponent(item.resourceType),
