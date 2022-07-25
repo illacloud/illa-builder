@@ -54,7 +54,6 @@ export const Login: FC = () => {
             userId: res.data.userId,
             nickname: res.data.nickname,
             language: res.data.language || "en-US",
-            userAvatar: "",
             email: res.data.email,
           }),
         )

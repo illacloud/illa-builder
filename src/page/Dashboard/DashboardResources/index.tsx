@@ -125,25 +125,23 @@ export const DashboardResources: FC = () => {
   }, [resourcesList])
 
   return (
-    <>
-      <div css={appsContainerStyle}>
-        <div css={listTitleContainerStyle}>
-          <span css={listTitleStyle}>{t("resources")}</span>
-          <Button colorScheme="techPurple">
-            {t("dashboard.resources.create_resources")}
-          </Button>
-        </div>
-        {resourcesList?.length ? (
-          <Table
-            _css={tableStyle}
-            data={data}
-            columns={columns}
-            disableRowSelect
-          />
-        ) : null}
-        {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
+    <div css={appsContainerStyle}>
+      <div css={listTitleContainerStyle}>
+        <span css={listTitleStyle}>{t("resources")}</span>
+        <Button colorScheme="techPurple">
+          {t("dashboard.resources.create_resources")}
+        </Button>
       </div>
-    </>
+      {resourcesList?.length ? (
+        <Table
+          _css={tableStyle}
+          data={data}
+          columns={columns}
+          disableRowSelect
+        />
+      ) : null}
+      {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
+    </div>
   )
 }
 

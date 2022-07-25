@@ -71,7 +71,6 @@ export const Register: FC = () => {
             userId: res.data.userId,
             nickname: res.data.nickname,
             language: "English",
-            userAvatar: "",
             email: res.data.email,
           }),
         )
