@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import { Modal } from "@illa-design/modal"
 import { ActionGeneratorProps } from "./interface"
+import { ActionTypeSelector } from "@/page/App/components/Actions/ActionGenerator/ActionTypeSelector"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
@@ -8,7 +9,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   useEffect(() => {
     setStep(0)
-    console.log({visible})
   }, [visible])
 
   return (
@@ -19,7 +19,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       withoutPadding
       onCancel={onClose}
     >
-      resource
+      {step === 0 ? <ActionTypeSelector /> : step === 1 ? "1" : "2"}
     </Modal>
   )
 }

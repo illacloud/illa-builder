@@ -58,7 +58,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
   const [contextMenuActionId, setContextMenuActionId] = useState("")
   const [isRenameError, setIsRenameError] =
     useState<ActionDisplayNameValidateResult>({ error: false })
-  const [actionGeneratorVisible, setActionGeneratorVisible] = useState(false)
+  const [actionGeneratorVisible, setActionGeneratorVisible] = useState(true)
 
   const inputRef = useRef<HTMLInputElement | null>(null)
 

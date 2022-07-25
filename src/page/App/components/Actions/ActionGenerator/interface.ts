@@ -3,7 +3,7 @@ export interface ActionInfo {
 }
 
 export interface ActionGeneratorProps {
-  visible: boolean
+  visible?: boolean
   onClose: () => void
   onAddAction?: (info: ActionInfo) => void
 }
