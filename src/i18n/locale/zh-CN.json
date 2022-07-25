@@ -466,6 +466,7 @@
         "min_date": "最小日期",
         "label": "标签",
         "caption": "纵标题",
+        "hidden_label": "隐藏标签",
         "label_position": "位置",
         "label_alignment": "对齐",
         "label_width": "宽度(%)",

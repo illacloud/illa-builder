@@ -39,10 +39,18 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
+        id: "select-label-hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
+        attrName: "labelHidden",
+        setterType: "SWITCH_SETTER",
+      },
+      {
         id: "switch-label-position",
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
           { label: "Left", value: "left" },
           { label: "Right", value: "right" },
@@ -53,6 +61,8 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
           {
             label: <HorizontalStartIcon />,

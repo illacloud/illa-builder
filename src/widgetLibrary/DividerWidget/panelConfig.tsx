@@ -64,14 +64,15 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
         id: "divider-style-list",
         setterType: "LIST_SETTER",
         attrName: "styles",
-        labelName: i18n.t("editor.inspect.setter_label.colors"),
+        labelName: i18n.t("editor.inspect.setter_label.styles"),
         useCustomLayout: true,
         childrenSetter: [
           {
             id: "divider-style-text-size",
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
-            setterType: "INPUT_SETTER",
+            setterType: "EDITABLE_INPUT_SETTER",
             attrName: "textSize",
+            iconName: "textSize",
             defaultValue: "14px",
             expectedType: VALIDATION_TYPES.STRING,
           },

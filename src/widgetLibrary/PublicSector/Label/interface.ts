@@ -7,9 +7,9 @@ export default interface LabelProps {
   hideLabel?: boolean
   labelAlign?: LabelAlignType
   labelCaption?: string
+  labelHidden?: boolean
   labelPosition?: LabelPositionType
   labelWidth?: number
   labelWidthUnit?: "px" | "%" | "col"
-  hidden?: boolean
   hasTooltip?: boolean
 }

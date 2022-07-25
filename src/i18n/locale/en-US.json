@@ -466,6 +466,7 @@
         "min_date": "Min date",
         "label": "Label",
         "caption": "Caption",
+        "hidden_label": "Hidden label",
         "label_position": "Position",
         "label_alignment": "Alignment",
         "label_width": "Width(%)",

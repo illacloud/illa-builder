@@ -77,10 +77,18 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
+        id: "select-label-hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
+        attrName: "labelHidden",
+        setterType: "SWITCH_SETTER",
+      },
+      {
         id: `${widgetBaseName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
           { label: "Left", value: "left" },
           { label: "Top", value: "top" },
@@ -91,6 +99,8 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -108,6 +118,8 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
       },
     ],
   },
