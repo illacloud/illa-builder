@@ -52,8 +52,8 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         bindAttrName: "labelHidden",
         shown: (value) => !value,
         options: [
-          { label: "Left", value: "left" },
-          { label: "Right", value: "right" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "right" },
         ],
       },
       {
@@ -155,7 +155,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: "Value",
-            labelName: i18n.t("Value"),
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             setterType: "INPUT_SETTER",
             attrName: "widgetTargetValue",
             bindAttrName: "widgetMethod",

@@ -24,7 +24,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           { label: "Markdown", value: true },
-          { label: "Plain Text", value: false },
+          { label: i18n.t("widget.text.text_model"), value: false },
         ],
       },
       {

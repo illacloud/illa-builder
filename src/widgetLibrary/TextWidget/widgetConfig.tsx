@@ -11,9 +11,9 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   icon: <TextWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   defaults: {
-    value: "This is a text",
+    value: i18n.t("widget.text.default_value"),
     horizontalAlign: "start",
-    verticalAlign: "start",
+    verticalAlign: "center",
     disableMarkdown: false,
     linkColor: "#1e6fffff",
     textColor: "#787e85ff",

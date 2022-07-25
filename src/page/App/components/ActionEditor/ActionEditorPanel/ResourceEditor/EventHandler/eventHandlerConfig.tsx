@@ -75,7 +75,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "Value",
-        labelName: i18n.t("Value"),
+        labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
@@ -83,7 +83,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "imageUrl",
-        labelName: i18n.t("Value"),
+        labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
@@ -247,7 +247,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "Value",
-        labelName: i18n.t("Value"),
+        labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
@@ -255,7 +255,7 @@ export const EVENT_HANDLER_CONFIG: PanelConfig[] = [
       },
       {
         id: "imageUrl",
-        labelName: i18n.t("Value"),
+        labelName: i18n.t("editor.inspect.setter_label.value"),
         setterType: "INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
