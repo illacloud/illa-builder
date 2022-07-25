@@ -49,7 +49,7 @@ export const Shortcut: FC = ({ children }) => {
         cancelText: t("editor.component.cancel"),
         okText: t("editor.component.delete"),
         okButtonProps: {
-          colorScheme: "techPurple",
+          colorScheme: "red",
         },
         closable: true,
         onCancel: () => {
