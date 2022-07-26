@@ -553,7 +553,7 @@
       "setter_tooltip": {
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
         "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
-        "hidden": "Dynamically control whether the component is hidden. You can also change the hidden status through <strong>{{ name }}.hidden</strong>",
+        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
         "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannont be modified.",
         "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -616,6 +616,10 @@
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
       "globals_title": "GLOBALS "
+    },
+    "display_name": {
+      "validate_error": "\"{{ displayName }}\" must start with a letter or \"_\", and can only contain letters, numbers, \"_\", or \"$\"",
+      "duplicate_error": "\"{{ displayName }}\" already exists"
     }
   },
   "widget": {
