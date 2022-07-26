@@ -16,13 +16,13 @@ export const ActionPanel: FC = () => {
   let actionPanel: ReactNode
   switch (selectedAction.actionType) {
     case "mysql":
-      actionPanel = <MysqlPanel action={selectedAction} />
+      actionPanel = <MysqlPanel />
       break
     case "restapi":
-      actionPanel = <RestApiPanel action={selectedAction} />
+      actionPanel = <RestApiPanel />
       break
     case "transformer":
-      actionPanel = <TransformerPanel action={selectedAction} />
+      actionPanel = <TransformerPanel />
       break
     case "mongodb":
       break
@@ -35,7 +35,7 @@ export const ActionPanel: FC = () => {
   }
   return (
     <div css={actionPanelStyle}>
-      <ActionTitleBar action={selectedAction} />
+      <ActionTitleBar />
       {actionPanel}
     </div>
   )

@@ -15,8 +15,6 @@ import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { ButtonProps } from "@illa-design/button"
 
 export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
-  const { onModeChange, onResourceChange } = props
-
   const { t } = useTranslation()
 
   const resourceList = useSelector(getAllResources)

@@ -37,6 +37,15 @@ export const getSelectedAction = (state: RootState) => {
   return state.config.selectedAction
 }
 
+export const isCurrentSelectedActionChanged = (state: RootState) => {
+  return (
+    state.config.selectedAction ===
+    state.currentApp.action.find((v) => {
+      return v.displayName === state.config.selectedAction.displayName
+    })
+  )
+}
+
 export const isSelected = (state: RootState, displayName: string) => {
   return (
     state.config.selectedComponents.findIndex((value) => {

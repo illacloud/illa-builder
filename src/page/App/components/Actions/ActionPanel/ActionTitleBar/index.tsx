@@ -12,13 +12,28 @@ import { ActionTitleBarProps } from "@/page/App/components/Actions/ActionPanel/A
 import { useTranslation } from "react-i18next"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { useSelector } from "react-redux"
+import {
+  getSelectedAction,
+  isCurrentSelectedActionChanged,
+} from "@/redux/config/configSelector"
 
 const Item = DropList.Item
+export type RunMode = "save" | "run" | "save_and_run"
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { action } = props
-
+  const action = useSelector(getSelectedAction)
+  const isChanged = useSelector(isCurrentSelectedActionChanged)
   const { t } = useTranslation()
+
+  let runMode: RunMode = "run"
+  if (isChanged) {
+    if (action.triggerMode === "manually") {
+      runMode = "save"
+    } else if (action.triggerMode === "automate") {
+      runMode = "save_and_run"
+    }
+  }
 
   return (
     <div css={actionTitleBarStyle}>
@@ -51,11 +66,11 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       <Button
         _css={actionTitleBarRunStyle}
         colorScheme="techPurple"
-        variant="light"
+        variant={isChanged ? "fill" : "light"}
         size="medium"
         leftIcon={<CaretRightIcon />}
       >
-        {t("editor.action.panel.btn.run")}
+        {t(`editor.action.panel.btn.${runMode}`)}
       </Button>
     </div>
   )

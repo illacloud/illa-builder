@@ -5,7 +5,7 @@ export type ResourceType =
   | "redis"
   | "postgresql"
 
-export type ResourceContent = object
+export type ResourceContent = MysqlResource | RestApiResource<RestApiAuth>
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string
@@ -18,7 +18,7 @@ export interface Resource<T extends ResourceContent> {
   content: T
 }
 
-export interface MysqlResource extends ResourceContent {
+export interface MysqlResource {
   host: string
   port: string
   databaseName: string
@@ -45,9 +45,7 @@ export interface MysqlSSL {
   clientCert: string
 }
 
-export interface RestApiResource<T extends RestApiAuth>
-  extends ResourceContent {
-  method: string
+export interface RestApiResource<T extends RestApiAuth> {
   baseUrl: string
   urlParams: Record<string, string>
   headers: Record<string, string>
@@ -56,14 +54,14 @@ export interface RestApiResource<T extends RestApiAuth>
   authContent: T
 }
 
-export type RestApiAuth = object
+export type RestApiAuth = BasicAuth | BearerAuth
 
-export interface BasicAuth extends RestApiAuth {
+export interface BasicAuth {
   username: string
   password: string
 }
 
-export interface BearerAuth extends RestApiAuth {
+export interface BearerAuth {
   token: string
 }
 

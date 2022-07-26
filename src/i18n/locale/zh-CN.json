@@ -226,7 +226,7 @@
         "btn": {
           "run": "运行",
           "save": "保存",
-          "save_and_run": "保存&运行",
+          "save_and_run": "保存 & 运行",
           "disable": "禁用",
           "enable": "使用",
           "new": "新增"
