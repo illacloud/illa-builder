@@ -36,6 +36,5 @@ export function applyTextCss(isPlaceHolder = false) {
       color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
       transition: all 200ms;
     }
-    transition: all 200ms;
   `
 }
