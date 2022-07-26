@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { cloneDeep } from "lodash"
+// TODO: @aruseito Abstract into tool function
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
 import copy from "copy-to-clipboard"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
@@ -36,6 +38,7 @@ import {
 } from "./style"
 
 dayjs.extend(utc)
+dayjs.extend(timezone)
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -255,8 +258,10 @@ export const DashboardApps: FC = () => {
                   <ListItemMeta
                     css={hoverableStyle}
                     title={item.appName}
-                    description={`${item.updatedBy} ${t("edit_at")} ${dayjs
-                      .utc(item.updatedAt)
+                    description={`${item.updatedBy} ${t("edit_at")} ${dayjs(
+                      item.updatedAt,
+                    )
+                      .tz(dayjs.tz.guess())
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
                       navigate(`/app/${item.appId}/version/0`)
