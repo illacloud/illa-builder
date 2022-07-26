@@ -38,12 +38,10 @@ export const getSelectedAction = (state: RootState) => {
 }
 
 export const isCurrentSelectedActionChanged = (state: RootState) => {
-  return (
-    state.config.selectedAction ===
-    state.currentApp.action.find((v) => {
-      return v.displayName === state.config.selectedAction.displayName
-    })
-  )
+  const originAction = state.currentApp.action.find((v) => {
+    return v.displayName === state.config.selectedAction.displayName
+  })
+  return state.config.selectedAction !== originAction
 }
 
 export const isSelected = (state: RootState, displayName: string) => {

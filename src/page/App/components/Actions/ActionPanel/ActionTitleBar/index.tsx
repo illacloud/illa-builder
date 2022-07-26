@@ -35,6 +35,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }
 
+  console.log("longbo", action.triggerMode, runMode)
+
   return (
     <div css={actionTitleBarStyle}>
       <WrappedEditableText

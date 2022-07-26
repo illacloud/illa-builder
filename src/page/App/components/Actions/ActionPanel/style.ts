@@ -2,18 +2,17 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const actionPanelStyle = css`
-  display: flex;
   flex-grow: 1;
-  min-width: 670px;
   height: 100%;
-  flex-direction: column;
   overflow-x: auto;
   overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 `
 
 export const actionTitleBarStyle = css`
-  width: 100%;
   display: flex;
+  min-width: 700px;
   flex-direction: row;
   align-items: center;
   padding: 0 16px;

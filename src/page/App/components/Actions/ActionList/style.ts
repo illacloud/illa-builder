@@ -3,6 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const searchHeaderContainerStyle = css`
   width: 255px;
+  min-width: 255px;
   display: flex;
   flex-direction: column;
   border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};

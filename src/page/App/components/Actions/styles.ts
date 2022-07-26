@@ -26,6 +26,6 @@ export const contentContainerStyle = css`
   width: 100%;
   display: flex;
   flex-direction: row;
-  overflow-y: hidden;
+  overflow: hidden;
   height: 100%;
 `

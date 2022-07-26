@@ -82,7 +82,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                             value.displayName === selectedAction?.displayName
                           )
                         })
-                      // if changed
+                      // if not changed
                       if (lastAction === selectedAction) {
                         dispatch(configActions.updateSelectedAction(action))
                       } else {

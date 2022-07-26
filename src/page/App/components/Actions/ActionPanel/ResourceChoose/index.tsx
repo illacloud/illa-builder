@@ -1,5 +1,4 @@
 import { FC } from "react"
-import { ResourceChooseProps } from "./interface"
 import {
   createNewStyle,
   resourceChooseContainerStyle,
@@ -7,71 +6,84 @@ import {
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Option, Select } from "@illa-design/select"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Space } from "@illa-design/space"
 import { AddIcon, EditableTextWidgetIcon } from "@illa-design/icon"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
+import { configActions } from "@/redux/config/configSlice"
+import { getSelectedAction } from "@/redux/config/configSelector"
 import { ButtonProps } from "@illa-design/button"
 
-export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
+export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
-
+  const dispatch = useDispatch()
+  const action = useSelector(getSelectedAction)
   const resourceList = useSelector(getAllResources)
 
   return (
     <div css={resourceChooseContainerStyle}>
       <span css={resourceTitleStyle}>{t("resources")}</span>
-      <Select
-        width="200px"
-        addonAfter={{
-          buttonProps: {
-            leftIcon: <EditableTextWidgetIcon />,
-          } as ButtonProps,
-        }}
-      >
-        {resourceList.map((item) => {
-          return (
-            <Option>
-              <Space
-                size="8px"
-                direction="horizontal"
-                align="center"
-                css={createNewStyle}
-              >
-                {getIconFromResourceType(item.resourceType, "14px")}
-                {t("editor.action.panel.option.resource.new")}
-              </Space>
-            </Option>
-          )
-        })}
-      </Select>
-      <Select
-        width="400px"
-        defaultValue={props.actionItem.triggerMode}
-        onChange={(value) => {}}
-      >
-        <Option value="manually" key="manually">
-          {t("editor.action.panel.option.trigger.manually")}
-        </Option>
-        <Option value="trigger" key="trigger">
-          {t("editor.action.panel.option.trigger.on_change")}
-        </Option>
-        <Option value="trigger" key="create">
-          {t("editor.action.panel.option.trigger.on_change")}
-        </Option>
-        <Option key="create" isSelectOption={false}>
-          <Space
-            size="8px"
-            direction="horizontal"
-            align="center"
-            css={createNewStyle}
-          >
-            <AddIcon size="14px" />
-            {t("editor.action.panel.option.resource.new")}
-          </Space>
-        </Option>
-      </Select>
+      <Space direction="horizontal" size="8px">
+        <Select
+          width="200px"
+          value={action.resourceId}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateSelectedAction({
+                ...action,
+                resourceId: value,
+              }),
+            )
+          }}
+          addonAfter={{
+            buttonProps: {
+              leftIcon: <EditableTextWidgetIcon />,
+            } as ButtonProps,
+          }}
+        >
+          <Option key="create" isSelectOption={false}>
+            <Space
+              size="8px"
+              direction="horizontal"
+              align="center"
+              css={createNewStyle}
+            >
+              <AddIcon size="14px" />
+              {t("editor.action.panel.option.resource.new")}
+            </Space>
+          </Option>
+          {resourceList.map((item) => {
+            return (
+              <Option value={item.resourceId} key={item.resourceId}>
+                <Space size="8px" direction="horizontal" align="center">
+                  {getIconFromResourceType(item.resourceType, "14px")}
+                  {item.resourceName}
+                </Space>
+              </Option>
+            )
+          })}
+        </Select>
+        <Select
+          width="400px"
+          value={action.triggerMode}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateSelectedAction({
+                ...action,
+                triggerMode: value,
+              }),
+            )
+          }}
+        >
+          <Option value="manually" key="manually">
+            {t("editor.action.panel.option.trigger.manually")}
+          </Option>
+          <Option value="automate" key="automate">
+            {t("editor.action.panel.option.trigger.on_change")}
+          </Option>
+        </Select>
+      </Space>
     </div>
   )
 }

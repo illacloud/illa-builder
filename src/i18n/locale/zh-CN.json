@@ -216,8 +216,8 @@
       "panel": {
         "option": {
           "trigger": {
-            "manually": "手动触发",
-            "on_change": "自动触发"
+            "manually": "手动触发时执行",
+            "on_change": "当输入更改时自动执行"
           },
           "resource": {
             "new": "添加资源"
