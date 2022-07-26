@@ -62,7 +62,13 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
           defaultSelected={defaultSelectedResourceId}
         />
       ) : (
-        <ActionResourceCreator actionType={actionType} />
+        <ActionResourceCreator
+          actionType={actionType}
+          onBack={() => {
+            setStep(0)
+            setResourceType(undefined)
+          }}
+        />
       )}
     </Modal>
   )

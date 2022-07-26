@@ -15,6 +15,7 @@ import {
 import i18n from "@/i18n/config"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import dayjs from "dayjs"
 
 export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
   props,
@@ -64,7 +65,9 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
           >
             {getIconFromActionType(r.actionType, "24px")}
             <span css={resourceItemTitleStyle}>{r.displayName}</span>
-            <span css={resourceItemTimeStyle}>{r.createdAt}</span>
+            <span css={resourceItemTimeStyle}>
+              {dayjs.utc(r.createdAt).format("YYYY-MM-DD HH:mm:ss")}
+            </span>
           </div>
         ))}
       </div>

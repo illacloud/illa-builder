@@ -20,7 +20,7 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
 ) => {
   const {
     resourceId,
-    back,
+    onBack,
     onSubmit,
     resourceType: resourceTypeProps,
     actionType,
@@ -62,13 +62,13 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         {/*)}*/}
       </div>
       <div css={formFooterStyle}>
-        {back && (
+        {onBack && (
           <Button
             variant="text"
             size="medium"
             colorScheme="grayBlue"
             type="button"
-            onClick={back}
+            onClick={onBack}
           >
             <PaginationPreIcon css={backIconStyle} />
             {i18n.t("back")}
