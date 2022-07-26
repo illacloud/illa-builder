@@ -12,6 +12,7 @@ export type ActionType =
   | "transformer"
 
 export type ActionContent = object
+export type ActionTriggerMode = "manually" | "automate"
 
 export interface ActionItem<T extends ActionContent> {
   actionId: string
@@ -19,7 +20,7 @@ export interface ActionItem<T extends ActionContent> {
   displayName: string
   actionType: ActionType
   transformer: Transformer
-  triggerMode: "manually" | "automate"
+  triggerMode: ActionTriggerMode
   resourceId?: string
   content: T
 }

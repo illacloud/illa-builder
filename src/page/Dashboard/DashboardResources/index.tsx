@@ -8,6 +8,7 @@ import { Button } from "@illa-design/button"
 import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
 import {
+  MysqlResource,
   Resource,
   ResourceContent,
   ResourceListState,
@@ -30,6 +31,24 @@ import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { cloneDeep } from "lodash"
 
 dayjs.extend(utc)
+
+function getDbName(resource: Resource<ResourceContent>): string {
+  let name = ""
+  switch (resource.resourceType) {
+    case "mongodb":
+      break
+    case "mysql":
+      name = (resource.content as MysqlResource).databaseName
+      break
+    case "postgresql":
+      break
+    case "redis":
+      break
+    case "restapi":
+      break
+  }
+  return name
+}
 
 function NameColComponent(type: ResourceType, text: string) {
   const icon = getIconFromResourceType(type, "24px")
@@ -106,6 +125,7 @@ export const DashboardResources: FC = () => {
     ],
     [],
   )
+
   const data = useMemo(() => {
     const result: any[] = []
     const tmpResourcesList = cloneDeep(resourcesList)
@@ -117,7 +137,7 @@ export const DashboardResources: FC = () => {
         result.push({
           nameCol: NameColComponent(item.resourceType, item.resourceName),
           typeCol: TypeColComponent(item.resourceType),
-          dbNameCol: "",
+          dbNameCol: DbNameColComponent(getDbName(item)),
           ctimeCol: CtimeColComponent(item.updatedAt),
         })
       })

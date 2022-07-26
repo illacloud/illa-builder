@@ -18,6 +18,8 @@ import { Modal } from "@illa-design/modal"
 import { Empty } from "@illa-design/empty"
 import { ReactComponent as ActionListEmptyState } from "@assets/action-list-empty-state.svg"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
+import { AddIcon } from "@illa-design/icon"
+import { Space } from "@illa-design/space"
 
 export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className } = props
@@ -48,7 +50,10 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
         css={addNewActionButtonStyle}
         onClick={() => setGeneratorVisible(true)}
       >
-        + {t("editor.action.action_list.btn.new")}
+        <Space size="8px" direction="horizontal">
+          <AddIcon size="14px" />
+          {t("editor.action.action_list.btn.new")}
+        </Space>
       </Button>
       <div css={listContainerStyle}>
         {actionList.length != 0 && (

@@ -4,10 +4,14 @@ import { mysqlContainerStyle } from "@/page/App/components/Actions/ActionPanel/M
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { MysqlAction } from "@/redux/currentApp/action/actionState"
 
-export const MysqlPanel: FC<ActionPanelProps<MysqlAction>> = () => {
+export const MysqlPanel: FC<ActionPanelProps<MysqlAction>> = (props) => {
   return (
     <div css={mysqlContainerStyle}>
-      <ResourceChoose />
+      <ResourceChoose
+        actionItem={props.action}
+        onResourceChange={(resource) => {}}
+        onModeChange={(mode) => {}}
+      />
     </div>
   )
 }

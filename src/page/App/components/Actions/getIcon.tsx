@@ -23,6 +23,8 @@ export function getIconFromResourceType(
       return <MongoDbIcon size={size} />
     case "redis":
       return <RedisIcon size={size} />
+    case "postgresql":
+      return <PostgresIcon size={size} />
   }
   return null
 }
