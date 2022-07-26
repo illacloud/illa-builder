@@ -21,13 +21,11 @@ import {
   errorTitleStyle,
   loadingStyle,
 } from "./style"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const IllaApp: FC = () => {
   const { t } = useTranslation()
 
   const [pageState, setPageState] = useState<string>("loading")
-  const [retryNum, setRetryNum] = useState<number>(0)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -87,9 +85,7 @@ export const IllaApp: FC = () => {
     return () => {
       controller.abort()
     }
-  }, [retryNum])
-
-  const currentUser = useSelector(getCurrentUser)
+  }, [])
 
   useEffect(() => {
     Connection.enterRoom(
@@ -101,7 +97,7 @@ export const IllaApp: FC = () => {
     return () => {
       Connection.leaveRoom("dashboard", "")
     }
-  }, [currentUser])
+  }, [])
 
   return (
     <div css={containerStyle}>
@@ -118,12 +114,8 @@ export const IllaApp: FC = () => {
           <div css={errorDescriptionStyle}>
             {t("dashboard.common.error_description")}
           </div>
-          <Button
-            colorScheme="techPurple"
-            onClick={() => {
-              setRetryNum(retryNum + 1)
-            }}
-          >
+          {/*TODO: @aruseito retry function */}
+          <Button colorScheme="techPurple">
             {t("dashboard.common.error_button")}
           </Button>
         </div>

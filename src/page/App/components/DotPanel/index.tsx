@@ -74,7 +74,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   })
 
   // radio
-  const [radio, setRadio] = useState<number>(1)
+  const radio = useMemo(
+    () => window.devicePixelRatio,
+    [window.devicePixelRatio],
+  )
 
   // config
   const leftPanelState = useSelector(isOpenLeftPanel)
@@ -178,12 +181,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           (newItem) => {
             if (item.x === -1 && item.y === -1) {
               dispatch(componentsActions.addComponentReducer(newItem))
-              dispatch(
-                componentsActions.updateComponentPropsReducer({
-                  displayName: newItem.displayName,
-                  updateSlice: newItem.props ?? {},
-                }),
-              )
             } else {
               dispatch(
                 componentsActions.updateSingleComponentReducer({
@@ -322,10 +319,6 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     }),
     [canvasWidth, canvasHeight, componentNode],
   )
-
-  useEffect(() => {
-    setRadio(window.devicePixelRatio)
-  }, [window.devicePixelRatio])
 
   // render drag
   useEffect(() => {

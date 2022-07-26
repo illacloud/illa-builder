@@ -33,20 +33,27 @@ function generateWs(wsUrl: string): WebSocket {
     Connection.roomMap.delete(wsUrl)
   }
   ws.onmessage = (event) => {
-    let callback: Callback<any> = JSON.parse(event.data)
-    if (callback.errorCode === 0) {
-      if (callback.broadcast != null) {
-        let broadcast = callback.broadcast
-        let type = broadcast.type
-        let payload = broadcast.payload
-        try {
-          store.dispatch({
-            type,
-            payload,
-          })
-        } catch (ignore) {}
-      }
+    const message = event.data
+    if (typeof message !== "string") {
+      return
     }
+    const datas = message.split("\n")
+    datas.forEach((data: string) => {
+      let callback: Callback<any> = JSON.parse(data)
+      if (callback.errorCode === 0) {
+        if (callback.broadcast != null) {
+          let broadcast = callback.broadcast
+          let type = broadcast.type
+          let payload = broadcast.payload
+          try {
+            store.dispatch({
+              type,
+              payload,
+            })
+          } catch (ignore) {}
+        }
+      }
+    })
   }
   ws.onopen = () => {
     ws.send(
@@ -74,14 +81,14 @@ export class Connection {
     switch (type) {
       case "dashboard":
         config = {
-          baseURL: "http://10.37.48.163:8080/api/v1",
+          baseURL: "http://10.37.55.222:8080/api/v1",
           url: `/room/${instanceId}/dashboard`,
           method: "GET",
         }
         break
       case "app":
         config = {
-          baseURL: "http://10.37.48.163:8080/api/v1",
+          baseURL: "http://10.37.55.222:8080/api/v1",
           url: `/room/${instanceId}/app/${roomId}`,
           method: "GET",
         }

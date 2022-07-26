@@ -79,12 +79,6 @@ export const Shortcut: FC = ({ children }) => {
         componentNode: componentNode,
       }),
     )
-    dispatch(
-      componentsActions.updateComponentPropsReducer({
-        displayName: newDisplayName,
-        updateSlice: componentNode.props ?? {},
-      }),
-    )
   }
 
   useHotkeys(
