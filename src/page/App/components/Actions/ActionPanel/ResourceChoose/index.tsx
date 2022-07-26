@@ -10,8 +10,9 @@ import { Option, Select } from "@illa-design/select"
 import { useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Space } from "@illa-design/space"
-import { AddIcon } from "@illa-design/icon"
+import { AddIcon, EditableTextWidgetIcon } from "@illa-design/icon"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
+import { ButtonProps } from "@illa-design/button"
 
 export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { onModeChange, onResourceChange } = props
@@ -23,7 +24,14 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   return (
     <div css={resourceChooseContainerStyle}>
       <span css={resourceTitleStyle}>{t("resources")}</span>
-      <Select>
+      <Select
+        width="200px"
+        addonAfter={{
+          buttonProps: {
+            leftIcon: <EditableTextWidgetIcon />,
+          } as ButtonProps,
+        }}
+      >
         {resourceList.map((item) => {
           return (
             <Option>
@@ -41,6 +49,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
         })}
       </Select>
       <Select
+        width="400px"
         defaultValue={props.actionItem.triggerMode}
         onChange={(value) => {}}
       >

@@ -16,7 +16,6 @@ export type ActionTriggerMode = "manually" | "automate"
 
 export interface ActionItem<T extends ActionContent> {
   actionId: string
-  contentId: string
   displayName: string
   actionType: ActionType
   transformer: Transformer

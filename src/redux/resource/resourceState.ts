@@ -26,6 +26,15 @@ export interface MysqlResource extends ResourceContent {
   databasePassword: string
   ssl: boolean
   ssh: boolean
+  sshHost: string
+  sshPort: string
+  sshUsername: string
+  sshPassword: string
+  sshPrivateKey: string
+  sshPassphrase: string
+  serverCert: string
+  clientKey: string
+  clientCert: string
 }
 
 export interface RestApiResource extends ResourceContent {}
