@@ -23,7 +23,7 @@
   "btn": {
     "choose_file": "选择文件"
   },
-  "back": "后退",
+  "back": "返回",
   "edit_success": "修改成功！",
   "save": "保存",
   "user": {
@@ -281,7 +281,7 @@
         "label": {
           "comming_soon": "即将更新"
         },
-        "my_sql": {
+        "mysql": {
           "name": "MySQL",
           "title": {
             "advanced_option": "高级配置"
@@ -323,7 +323,7 @@
             "client_certificate": "e.g.path/to/root.crt"
           }
         },
-        "rest_api": {
+        "restapi": {
           "name": "REST API",
           "label": {
             "name": "名称",

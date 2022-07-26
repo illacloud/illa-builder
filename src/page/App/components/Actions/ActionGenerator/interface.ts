@@ -7,5 +7,4 @@ export interface ActionInfo extends ActionTypeInfo {
 export interface ActionGeneratorProps {
   visible?: boolean
   onClose: () => void
-  onAddAction?: (info: ActionInfo) => void
 }

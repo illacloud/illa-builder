@@ -20,6 +20,10 @@ export interface ActionItem<T extends ActionContent> {
   transformer: Transformer
   triggerMode: ActionTriggerMode
   resourceId?: string
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
   content: T
 }
 

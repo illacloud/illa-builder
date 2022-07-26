@@ -1,4 +1,5 @@
 import { ResourceDataItem } from "../config"
+import {ActionType} from "@/redux/currentApp/action/actionState";
 
 export type ActionTypeCategory = "databases" | "apis" | "jsTransformer"
 
@@ -13,6 +14,6 @@ export interface ActionTypeSelectorCardProps extends ResourceDataItem {
 }
 
 export interface ActionTypeInfo {
-  actionType: string
+  actionType: ActionType
   category?: ActionTypeCategory
 }

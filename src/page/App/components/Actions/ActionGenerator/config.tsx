@@ -2,11 +2,11 @@ import { ActionType } from "@/redux/currentApp/action/actionState"
 import i18n from "@/i18n/config";
 
 type ActionTypeNameKey =
-  | "my_sql"
+  | "mysql"
   | "postgres"
   | "redis"
   | "mongodb"
-  | "rest_api"
+  | "restapi"
   | "js_transformer"
 
 export interface ResourceDataItem {
@@ -17,7 +17,7 @@ export interface ResourceDataItem {
 
 export const Databases: ResourceDataItem[] = [
   {
-    nameKey: "my_sql",
+    nameKey: "mysql",
     actionType: "mysql",
   },
   {
@@ -39,7 +39,7 @@ export const Databases: ResourceDataItem[] = [
 
 export const Apis: ResourceDataItem[] = [
   {
-    nameKey: "rest_api",
+    nameKey: "restapi",
     actionType: "restapi",
   },
 ]
