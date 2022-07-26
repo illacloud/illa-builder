@@ -1,18 +1,22 @@
 import { FC, useEffect, useState } from "react"
 import { Modal } from "@illa-design/modal"
-import { ActionGeneratorProps } from "./interface"
+import { ActionGeneratorProps, ActionInfo } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
+import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
+import { ActionType } from "@/redux/currentApp/action/actionState"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
-  const { visible, onClose, onAddAction } = props
+  const { visible, onClose } = props
   const [step, setStep] = useState<0 | 1 | 2>(0)
-  const [actionType, setResourceType] = useState<string>("")
+  const [actionType, setResourceType] = useState<ActionType>()
   const [defaultSelectedResourceId, setDefaultSelectedResourceId] = useState("")
 
   useEffect(() => {
     setStep(0)
   }, [visible])
+
+  const onAddAction = (info: ActionInfo) => {}
 
   return (
     <Modal
@@ -29,7 +33,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
             switch (category) {
               case "jsTransformer": {
-                onAddAction?.(info)
+                onAddAction(info)
                 break
               }
               case "apis":
@@ -46,19 +50,19 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
           actionType={actionType}
           onBack={() => {
             setStep(0)
-            setResourceType("")
+            setResourceType(undefined)
           }}
           onCreateResource={(actionType) => {
             setResourceType(actionType)
             setStep(2)
           }}
           onCreateAction={(actionType, resourceId) => {
-            onAddAction?.({ actionType, resourceId })
+            actionType && onAddAction({ actionType, resourceId })
           }}
           defaultSelected={defaultSelectedResourceId}
         />
       ) : (
-        "step 2"
+        <ActionResourceCreator actionType={actionType} />
       )}
     </Modal>
   )

@@ -1,7 +1,9 @@
+import { ActionType } from "@/redux/currentApp/action/actionState"
+
 export interface ActionResourceSeletorProps {
-  actionType: string
+  actionType?: ActionType
   defaultSelected?: string
   onBack?: () => void
-  onCreateResource?: (resbourceType: string) => void
-  onCreateAction?: (resourceType: string, resourceId: string) => void
+  onCreateResource?: (actionType?: ActionType) => void
+  onCreateAction?: (actionType?: ActionType, resourceId?: string) => void
 }

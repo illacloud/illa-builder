@@ -23,7 +23,7 @@
   "btn": {
     "choose_file": "Choose a file"
   },
-  "back": "back",
+  "back": "Back",
   "edit_success": "edit success！",
   "save": "Save",
   "user": {
@@ -281,7 +281,7 @@
         "label": {
           "comming_soon": "Comming Soon"
         },
-        "my_sql": {
+        "mysql": {
           "name": "MySQL",
           "title": {
             "advanced_option": "Advanced Options"
@@ -323,7 +323,7 @@
             "client_certificate": "e.g.path/to/root.crt"
           }
         },
-        "rest_api": {
+        "restapi": {
           "name": "REST API",
           "label": {
             "name": "Name",

@@ -76,7 +76,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
           colorScheme="gray"
           onClick={onBack}
         >
-          {i18n.t("editor.action.action_list.action_generator.btns.back")}
+          {i18n.t("back")}
         </Button>
         <ButtonGroup spacing="8px">
           <Button
