@@ -1,26 +1,30 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 
 export const updateActionListReducer: CaseReducer<
-  ActionItem[],
-  PayloadAction<ActionItem[]>
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>[]>
 > = (_, action) => {
   return action.payload
 }
 
 export const addActionItemReducer: CaseReducer<
-  ActionItem[],
-  PayloadAction<ActionItem>
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
   state.push(action.payload)
 }
 
 export const updateActionItemReducer: CaseReducer<
-  ActionItem[],
-  PayloadAction<ActionItem>
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
   const index = state.findIndex(
-    (item: ActionItem) => item.displayName === action.payload.displayName,
+    (item: ActionItem<ActionContent>) =>
+      item.displayName === action.payload.displayName,
   )
   if (index != -1) {
     state[index] = action.payload
@@ -28,11 +32,13 @@ export const updateActionItemReducer: CaseReducer<
 }
 
 export const removeActionItemReducer: CaseReducer<
-  ActionItem[],
+  ActionItem<ActionContent>[],
   PayloadAction<string>
 > = (state, action) => {
   state.splice(
-    state.findIndex((item: ActionItem) => item.displayName === action.payload),
+    state.findIndex(
+      (item: ActionItem<ActionContent>) => item.displayName === action.payload,
+    ),
     1,
   )
 }
