@@ -1,5 +1,3 @@
-import { extend } from "lodash"
-
 export type ResourceType =
   | "mysql"
   | "restapi"
