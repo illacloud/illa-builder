@@ -45,11 +45,16 @@ export interface MysqlSSL {
   clientCert: string
 }
 
+export interface Params {
+  key: string
+  value: string
+}
+
 export interface RestApiResource<T extends RestApiAuth> {
   baseUrl: string
-  urlParams: Record<string, string>
-  headers: Record<string, string>
-  cookies: Record<string, string>
+  urlParams: Params[]
+  headers: Params[]
+  cookies: Params[]
   authentication: string
   authContent: T
 }

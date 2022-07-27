@@ -15,6 +15,7 @@ import {
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import i18n from "@/i18n/config"
 import { MySQLConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/MySQLConfigure"
+import { RESTAPIConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/RestAPIConfigure"
 
 export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
   props,
@@ -59,6 +60,8 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
             connectionRef={connectionRef}
             resourceId={resourceId}
           />
+        ) : resourceType === "restapi" ? (
+          <RESTAPIConfigure />
         ) : null}
         {/*{renderResourceNode(*/}
         {/*    resourceType,*/}

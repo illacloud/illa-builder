@@ -15,5 +15,4 @@ export interface MySQLConfigureProps {
 
 export interface MySQLConfigureValues extends MysqlResource {
   resourceName: string
-  resourceType: ResourceType
 }
