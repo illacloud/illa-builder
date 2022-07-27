@@ -13,8 +13,8 @@ import Label from "@/widgetLibrary/PublicSector/Label"
 import { transformEvents } from "@/widgetLibrary/PublicSector/utils/transformEvents"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import {
+  applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
-  labelAndComponentWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
@@ -107,12 +107,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     hideValidationMessage,
   } = realProps
   return (
-    <BasicWrapper
-      tooltipText={tooltipText}
-      hidden={hidden}
-      labelPosition={labelPosition}
-    >
-      <div css={labelAndComponentWrapperStyle}>
+    <BasicWrapper tooltipText={tooltipText} hidden={hidden}>
+      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
         <Label
           label={label}
           labelAlign={labelAlign}
@@ -133,7 +129,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
           displayName={displayName}
         />
       </div>
-      <div css={applyValidateMessageWrapperStyle(labelWidth)}>
+      <div css={applyValidateMessageWrapperStyle(labelWidth, labelPosition)}>
         <InvalidMessage
           value={value}
           pattern={pattern}
