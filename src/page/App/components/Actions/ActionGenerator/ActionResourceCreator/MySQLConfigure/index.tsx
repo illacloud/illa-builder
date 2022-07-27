@@ -37,10 +37,10 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       (i) => i.resourceId === resourceId,
     )
     const [enableSSH, setEnableSSH] = useState(
-      (resourceConfig?.content as MysqlResource)?.ssh,
+      (resourceConfig?.content as MysqlResource)?.ssh?.ssh,
     )
     const [enableSSL, setEnableSSL] = useState(
-      (resourceConfig?.content as MysqlResource)?.ssl,
+      (resourceConfig?.content as MysqlResource)?.ssl?.ssl,
     )
     const {
       handleSubmit,
@@ -62,14 +62,14 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
 
     const testConnection = () => {
       const data = getValues()
-      const { resourceName, ...options } = data
+      const { resourceName, ...content } = data
 
       onTestConnection?.({
         resourceName: resourceName,
         resourceType: "mysql",
-        options: {
-          ...options,
-          port: "" + options.port,
+        content: {
+          ...content,
+          port: content.port?.toString(),
         },
       })
     }
@@ -81,15 +81,15 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     })
 
     const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
-      const { resourceName, ...options } = data
+      const { resourceName, ...content } = data
       onSubmit?.({
         resourceName: resourceName,
         resourceType: "mysql",
-        options: {
-          ...options,
-          port: "" + options.port,
-          ssh: enableSSH,
-          ssl: enableSSL,
+        content: {
+          ...content,
+          port: content.port?.toString(),
+          ssh: { ...content.ssh, ssh: enableSSH },
+          ssl: { ...content.ssl, ssl: enableSSL },
         },
       })
     }
@@ -113,7 +113,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 />
               )}
               rules={{
-                required: i18n.t("editor.action.form.required"),
+                required: i18n.t("editor.action.form.required") as string,
               }}
               control={control}
               name="resourceName"
@@ -144,7 +144,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 control={control}
                 name="host"
                 rules={{
-                  required: i18n.t("editor.action.form.required"),
+                  required: i18n.t("editor.action.form.required") as string,
                 }}
               />
               <Controller
@@ -159,7 +159,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                 control={control}
                 name="port"
                 rules={{
-                  required: i18n.t("editor.action.form.required"),
+                  required: i18n.t("editor.action.form.required") as string,
                 }}
               />
             </div>
@@ -278,7 +278,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: i18n.t("editor.action.form.required"),
+                      required: i18n.t("editor.action.form.required") as string,
                     }}
                     control={control}
                     name="ssh.sshHost"
@@ -293,7 +293,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: i18n.t("editor.action.form.required"),
+                      required: i18n.t("editor.action.form.required") as string,
                     }}
                     control={control}
                     name="ssh.sshPort"
@@ -327,7 +327,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: i18n.t("editor.action.form.required"),
+                      required: i18n.t("editor.action.form.required") as string,
                     }}
                     control={control}
                     name="ssh.sshUsername"
@@ -343,7 +343,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
                       />
                     )}
                     rules={{
-                      required: i18n.t("editor.action.form.required"),
+                      required: i18n.t("editor.action.form.required") as string,
                     }}
                     control={control}
                     name="ssh.sshPassword"
