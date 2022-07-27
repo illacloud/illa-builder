@@ -24,7 +24,7 @@ const Card: FC<ActionTypeSelectorCardProps> = (props) => {
   return (
     <div
       css={applyResourceItemStyle(isDraft)}
-      data-draft-tip={i18n.t("editor.action.resource.label.comming_soon")}
+      data-draft-tip={i18n.t("editor.action.resource.label.coming_soon")}
       onClick={() => !isDraft && onSelect?.({ actionType, category })}
     >
       {getIconFromActionType(actionType, "32px")}

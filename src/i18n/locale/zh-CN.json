@@ -279,7 +279,7 @@
           "name": "转换器"
         },
         "label": {
-          "comming_soon": "即将更新"
+          "coming_soon": "即将更新"
         },
         "mysql": {
           "name": "MySQL",

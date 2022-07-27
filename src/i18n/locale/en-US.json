@@ -279,7 +279,7 @@
           "name": "Transformer"
         },
         "label": {
-          "comming_soon": "Comming Soon"
+          "coming_soon": "Comming Soon"
         },
         "mysql": {
           "name": "MySQL",
