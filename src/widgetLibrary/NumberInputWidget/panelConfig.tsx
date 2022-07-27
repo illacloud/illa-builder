@@ -3,6 +3,9 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
+import { INPUT_NUMBER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/NumberInputWidget/eventHandlerConfig"
 
 const widgetBaseName = "number-input"
 export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
@@ -126,6 +129,12 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
     id: `${widgetBaseName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
+      {
+        ...generatorEventHanlderConfig(
+          widgetBaseName,
+          INPUT_NUMBER_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
       {
         id: `${widgetBaseName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),

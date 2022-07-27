@@ -21,10 +21,61 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    ...generatorEventHanlderConfig(
-      baseWidgetName,
-      BUTTON_EVENT_HANDLER_CONFIG.events,
-    ),
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          BUTTON_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
+      // TODO: wait form container
+      // {
+      //   id: `${baseWidgetName}-interaction-type`,
+      //   labelName: i18n.t("editor.inspect.setter_label.type"),
+      //   labelDesc: i18n.t("xxxxx"),
+      //   attrName: "submit",
+      //   setterType: "RADIO_GROUP_SETTER",
+      //   options: [
+      //     { label: "Default", value: false },
+      //     { label: "Submit", value: true },
+      //   ],
+      // },
+      {
+        id: `${baseWidgetName}-interaction-formId`,
+        labelName: i18n.t("editor.inspect.setter_label.submit_form"),
+        // labelDesc: i18n.t("xxxxx"),
+        attrName: "formId",
+        setterType: "INPUT_SETTER",
+        bindAttrName: "submit",
+        shown: (value) => value === true,
+      },
+      {
+        id: `${baseWidgetName}-interaction-loading`,
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
+        attrName: "loading",
+        placeholder: "{{false}}",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        bindAttrName: "submit",
+        shown: (value) => {
+          return value === false
+        },
+      },
+      {
+        id: `${baseWidgetName}-interaction-disabled`,
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
+        placeholder: "{{false}}",
+        attrName: "disabled",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        bindAttrName: "submit",
+        shown: (value) => value === false,
+      },
+    ],
   },
   {
     id: `${baseWidgetName}-adornments`,

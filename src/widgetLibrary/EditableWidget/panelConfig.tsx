@@ -3,6 +3,9 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
+import { EDITABLE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/EditableWidget/eventHandlerConfig"
 
 const baseWidgetName = "editable-text"
 export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
@@ -85,6 +88,12 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
+      {
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          EDITABLE_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
       {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),

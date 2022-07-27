@@ -3,6 +3,9 @@ import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOpti
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
+import { DATE_TIME_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/DateTimeWidget/eventHandlerConfig"
 
 const baseWidgetName = "date-time"
 export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
@@ -133,7 +136,12 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
-      // eventHandle @aoao
+      {
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          DATE_TIME_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
       {
         id: `${baseWidgetName}-interaction-loading`,
         labelName: i18n.t("editor.inspect.setter_label.loading"),

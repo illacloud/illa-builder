@@ -3,6 +3,8 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { SWITCH_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SwitchWidget/eventHandlerConfig"
 
 const baseWidgetName = "switch"
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
@@ -82,172 +84,10 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        id: `${baseWidgetName}-interaction-event-handler`,
-        attrName: "events",
-        labelName: i18n.t("editor.inspect.setter_label.event_handler"),
-        setterType: "EVENT_HANDLER_SETTER",
-        useCustomLayout: true,
-        childrenSetter: [
-          {
-            id: "event",
-            labelName: i18n.t("editor.inspect.setter_label.event"),
-            setterType: "BASE_SELECT_SETTER",
-            attrName: "eventType",
-            options: [{ label: "Change", value: "onChange" }],
-          },
-          {
-            id: "action",
-            labelName: i18n.t("editor.inspect.setter_label.action"),
-            labelDesc: i18n.t("editor.inspect.setter_tooltip.action"),
-            setterType: "EVENT_ACTION_SELECT_SETTER",
-            attrName: "actionType",
-            options: [
-              {
-                label: i18n.t("editor.inspect.setter_label.trigger_query"),
-                value: "datasource",
-              },
-              {
-                label: i18n.t("editor.inspect.setter_label.control_component"),
-                value: "widget",
-              },
-              {
-                label: i18n.t("editor.inspect.setter_label.go_to_url"),
-                value: "openUrl",
-              },
-              {
-                label: i18n.t("editor.inspect.setter_label.show_notification"),
-                value: "showNotification",
-              },
-            ],
-          },
-          {
-            id: "query",
-            labelName: i18n.t("Query"),
-            setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
-            attrName: "queryID",
-            bindAttrName: "actionType",
-            shown: (type) => type === "datasource",
-          },
-          {
-            id: "actionMethod",
-            labelName: i18n.t("Action Method"),
-            setterType: "BASE_SELECT_SETTER",
-            attrName: "widgetMethod",
-            bindAttrName: "queryID",
-            shown: (type) => type === "datasource",
-            // TODO: value should as same as action run method name that mounted on `globalData`
-            options: [{ label: "run", value: "executeAction" }],
-          },
-          {
-            id: "component",
-            labelName: i18n.t("Component"),
-            setterType: "EVENT_TARGET_SELECT_SETTER",
-            attrName: "widgetID",
-            bindAttrName: "actionType",
-            shown: (type) => type === "widget",
-          },
-          {
-            id: "Method",
-            labelName: i18n.t("Method"),
-            setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
-            attrName: "widgetMethod",
-            bindAttrName: "widgetID",
-            shown: (widgetID) => !!widgetID,
-          },
-          {
-            id: "Value",
-            labelName: i18n.t("editor.inspect.setter_label.value"),
-            setterType: "INPUT_SETTER",
-            attrName: "widgetTargetValue",
-            bindAttrName: "widgetMethod",
-            shown: (widgetMethod) => widgetMethod === "setValue",
-          },
-          {
-            id: "disabled",
-            labelName: i18n.t("editor.inspect.setter_label.disabled"),
-            setterType: "DYNAMIC_SWITCH_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-            attrName: "disabled",
-            bindAttrName: "type",
-            useCustomLayout: true,
-            shown: (type) => type === "widget",
-          },
-          {
-            id: "script",
-            setterType: "INPUT_SETTER",
-            attrName: "script",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.STRING,
-            shown: (type) => type === "script",
-          },
-          {
-            id: "URL",
-            labelName: i18n.t("URL"),
-            setterType: "INPUT_SETTER",
-            attrName: "url",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.STRING,
-            shown: (type) => type === "openUrl",
-          },
-          {
-            id: "newTab",
-            labelName: i18n.t("New Tab"),
-            setterType: "DYNAMIC_SWITCH_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-            attrName: "newTab",
-            bindAttrName: "actionType",
-            useCustomLayout: true,
-            shown: (type) => type === "openUrl",
-          },
-          {
-            id: "title",
-            labelName: i18n.t("Title"),
-            setterType: "INPUT_SETTER",
-            attrName: "title",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.STRING,
-            shown: (type) => type === "showNotification",
-          },
-          {
-            id: "description",
-            labelName: i18n.t("Description"),
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-            attrName: "description",
-            bindAttrName: "actionType",
-            shown: (type) => type === "showNotification",
-          },
-          {
-            id: "notification-type",
-            labelName: i18n.t("Type"),
-            setterType: "BASE_SELECT_SETTER",
-            attrName: "notificationType",
-            bindAttrName: "actionType",
-            shown: (type) => type === "showNotification",
-            options: [
-              { label: "Success", value: "success" },
-              { label: "Error", value: "error" },
-              { label: "Warning", value: "warning" },
-              { label: "Info", value: "info" },
-            ],
-          },
-          {
-            id: "duration",
-            labelName: i18n.t("Duration"),
-            setterType: "INPUT_SETTER",
-            attrName: "duration",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.NUMBER,
-            shown: (type) => type === "showNotification",
-          },
-          {
-            id: "enabled",
-            labelName: i18n.t("Only run when"),
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-            attrName: "enabled",
-          },
-        ],
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          SWITCH_EVENT_HANDLER_CONFIG.events,
+        ),
       },
       {
         id: `${baseWidgetName}-interaction-disabled`,
