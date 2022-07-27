@@ -5,6 +5,7 @@ import {
   ComponentsState,
   DeleteComponentNodePayload,
   ResetComponentPropsPayload,
+  UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -88,7 +89,7 @@ export const updateSingleComponentReducer: CaseReducer<
   const dealNode = action.payload.componentNode
   const parentNode = searchDsl(state, dealNode.parentNode)
   if (parentNode != null) {
-    const index = parentNode.childrenNode.findIndex((value, index, obj) => {
+    const index = parentNode.childrenNode.findIndex((value) => {
       return value.displayName === dealNode.displayName
     })
     if (index > -1) {
@@ -106,7 +107,7 @@ export const deleteComponentNodeReducer: CaseReducer<
     return
   }
   const rootNode = state
-  displayNames.forEach((value, index) => {
+  displayNames.forEach((value) => {
     const searchNode = searchDsl(rootNode, value)
     if (searchNode != null) {
       const parentNode = searchDsl(rootNode, searchNode.parentNode)
@@ -118,7 +119,7 @@ export const deleteComponentNodeReducer: CaseReducer<
         return
       }
       childrenNodes.splice(
-        childrenNodes.findIndex((value, index, obj) => {
+        childrenNodes.findIndex((value) => {
           return value.displayName === searchNode.displayName
         }),
         1,
@@ -163,4 +164,18 @@ export const resetComponentPropsReducer: CaseReducer<
     resetSlice,
     clonedWidgetProps,
   )
+}
+
+export const updateComponentDisplayNameReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentDisplayNamePayload>
+> = (state, action) => {
+  const { displayName, newDisplayName } = action.payload
+  if (!newDisplayName || !displayName) {
+    return
+  }
+  const node = searchDsl(state, displayName)
+  console.log("node", node)
+  if (!node) return
+  node.displayName = newDisplayName
 }

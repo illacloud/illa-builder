@@ -7,6 +7,7 @@ import { EditableTextProps } from "./interface"
 import { EditableTextWrapperStyle, textStyle } from "./style"
 import { isValidDisplayName } from "@/utils/typeHelper"
 import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameReducer"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const EditableText: FC<EditableTextProps> = (props) => {
   const { displayName, updateDisplayNameByBlur } = props
@@ -37,6 +38,7 @@ export const EditableText: FC<EditableTextProps> = (props) => {
       setInputValue(displayName)
       return
     }
+    DisplayNameGenerator.updateDisplayName(inputValue, displayName)
     updateDisplayNameByBlur(inputValue)
   }, [inputValue])
   return (
