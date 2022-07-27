@@ -109,7 +109,7 @@ export const SettingAccount: FC = () => {
       <div css={publicButtonWrapperStyle}>
         <Button
           size="large"
-          autoFullHorizontal
+          fullWidth
           disabled={!!errorMessage}
           loading={isLoading}
           onClick={handleSubmit}

@@ -5,6 +5,7 @@ import {
   copyComponentNodeReducer,
   deleteComponentNodeReducer,
   resetComponentPropsReducer,
+  updateComponentDisplayNameReducer,
   updateComponentDraggingState,
   updateComponentPropsReducer,
   updateComponentReducer,
@@ -25,6 +26,7 @@ const componentsSlice = createSlice({
     updateComponentResizeState,
     deleteComponentNodeReducer,
     resetComponentPropsReducer,
+    updateComponentDisplayNameReducer,
   },
 })
 

@@ -466,6 +466,7 @@
         "min_date": "Min date",
         "label": "Label",
         "caption": "Caption",
+        "hidden_label": "Hidden label",
         "label_position": "Position",
         "label_alignment": "Alignment",
         "label_width": "Width(%)",
@@ -547,12 +548,15 @@
           "name": "Dataset name",
           "value": "Dataset values",
           "remove": "Remove dataset"
-        }
+        },
+        "new_tab": "New tab",
+        "description": "Description",
+        "duration":"Duration"
       },
       "setter_tooltip": {
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
         "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
-        "hidden": "Dynamically control whether the component is hidden. You can also change the hidden status through <strong>{{ name }}.hidden</strong>",
+        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
         "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannont be modified.",
         "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -567,11 +571,18 @@
         "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format)",
         "loading": "Whether the component should show a loading indicator.",
         "progress_percentage": "The percentage value is between 0 and 100",
-        "timeline_direction": "Change the direction of the timeline."
+        "timeline_direction": "Change the direction of the timeline.",
+        "only_run_when": "Conditions that must be met before the event executes"
       },
       "setter_default_value": {
         "fill": "Fill",
-        "outline": "Outline"
+        "outline": "Outline",
+        "message_type": {
+          "success": "Success",
+            "info": "Info",
+            "warning": "Warning",
+            "error": "Error"
+        }
       },
       "setter_content": {
         "option_list": {
@@ -579,7 +590,10 @@
             "delete": "Delete",
             "duplicate": "Duplicate"
           },
-          "list_no_label": "No label"
+          "list_no_label": "No label",
+          "model_title": "Edit Options",
+          "title": "Options",
+          "new": "New"
         },
         "list_setter": {
           "reset": "Reset"
@@ -612,12 +626,26 @@
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
       "globals_title": "GLOBALS "
+    },
+    "display_name": {
+      "validate_error": "\"{{ displayName }}\" must start with a letter or \"_\", and can only contain letters, numbers, \"_\", or \"$\"",
+      "duplicate_error": "\"{{ displayName }}\" already exists"
     }
   },
   "widget": {
+    "public": {
+      "left": "Left",
+      "right": "Right",
+      "top": "Top",
+      "select_options": {
+        "manual": "Manual",
+        "mapped": "Mapped"
+      }
+    },
     "text": {
       "name": "Text",
-      "default_value": "This is a text"
+      "default_value": "\uD83D\uDC4B Hello!",
+      "text_model": "Plain text"
     },
     "button": {
       "name": "Button",

@@ -4,8 +4,7 @@ import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessag
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateRangeProps
-  extends Omit<ValidateMessageProps, "value">,
-    Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {
+  extends Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {
   startValue: string
   endValue: string
   startPlaceholder?: string

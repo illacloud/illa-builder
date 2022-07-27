@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
@@ -19,13 +18,8 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
     showCharacterCount,
     colorScheme,
     handleUpdateDsl,
-    pattern,
-    regex,
-    minLength,
     maxLength,
-    required,
-    customRule,
-    hideValidationMessage,
+    minLength,
     allowClear,
     className,
   } = props
@@ -57,6 +51,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
           disabled={disabled}
           borderColor={colorScheme}
           maxLength={maxLength}
+          minLength={minLength}
           onClear={() => handleUpdateDsl({ value: "" })}
         />
       ) : (
@@ -70,17 +65,6 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
           <PenIcon />
         </span>
       )}
-
-      <InvalidMessage
-        value={value}
-        pattern={pattern}
-        regex={regex}
-        minLength={minLength}
-        maxLength={maxLength}
-        required={required}
-        customRule={customRule}
-        hideValidationMessage={hideValidationMessage}
-      />
     </div>
   )
 }
@@ -98,13 +82,8 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     suffixText,
     showCharacterCount,
     colorScheme,
-    pattern,
-    regex,
     minLength,
     maxLength,
-    required,
-    customRule,
-    hideValidationMessage,
     allowClear,
     displayName,
     handleUpdateGlobalData,
@@ -124,13 +103,8 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       suffixText,
       showCharacterCount,
       colorScheme,
-      pattern,
-      regex,
       minLength,
       maxLength,
-      required,
-      customRule,
-      hideValidationMessage,
       allowClear,
       setValue: (value: string) => {
         handleUpdateDsl({ value })
@@ -154,13 +128,8 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     suffixText,
     showCharacterCount,
     colorScheme,
-    pattern,
-    regex,
     minLength,
     maxLength,
-    required,
-    customRule,
-    hideValidationMessage,
     allowClear,
   ])
   return <WrappedEditableText {...props} />

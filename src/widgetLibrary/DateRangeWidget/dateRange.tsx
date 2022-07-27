@@ -1,8 +1,6 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
 import dayjs from "dayjs"
 import { DateRangePicker } from "@illa-design/date-picker"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { invalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
@@ -14,13 +12,10 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
     startPlaceholder,
     endPlaceholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
-    customRule,
-    hideValidationMessage,
     colorScheme,
     handleUpdateDsl,
   } = props
@@ -30,14 +25,6 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const dateRangeValue = useMemo(() => {
     return [startValue, endValue]
   }, [startValue, endValue])
-
-  const _customValue = useMemo(() => {
-    if (customRule) {
-      return customRule
-    } else if (required && !startValue && !endValue) {
-      return invalidMessage.get("required")
-    }
-  }, [customRule, required, startValue, endValue])
 
   const checkRange = useCallback(
     (current) => {
@@ -69,10 +56,6 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
           handleUpdateDsl({ value })
         }}
       />
-      <InvalidMessage
-        customRule={_customValue}
-        hideValidationMessage={hideValidationMessage}
-      />
     </div>
   )
 }
@@ -87,13 +70,10 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     startPlaceholder,
     endPlaceholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
-    customRule,
-    hideValidationMessage,
     colorScheme,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -109,13 +89,10 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
       startPlaceholder,
       endPlaceholder,
       showClear,
-      required,
       minDate,
       disabled,
       maxDate,
       readOnly,
-      customRule,
-      hideValidationMessage,
       colorScheme,
       setStartValue: (startValue: string) => {
         handleUpdateDsl({ startValue })
@@ -138,13 +115,10 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     startPlaceholder,
     endPlaceholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
-    customRule,
-    hideValidationMessage,
     colorScheme,
   ])
   return <WrappedDateRange {...props} />

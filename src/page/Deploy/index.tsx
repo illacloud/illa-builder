@@ -43,9 +43,6 @@ export const Deploy: FC = () => {
           ),
         )
         dispatch(
-          executionActions.setExecutionReducer(response.data.executionState),
-        )
-        dispatch(
           dragShadowActions.updateDragShadowReducer(
             response.data.dragShadowState,
           ),
