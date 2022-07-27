@@ -10,6 +10,7 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const MysqlPanel: FC = () => {
   const action = useSelector(getSelectedAction)!!
@@ -25,7 +26,7 @@ export const MysqlPanel: FC = () => {
         height="88px"
         css={sqlInputStyle}
         mode="SQL_JS"
-        expectedType="String"
+        expectedType={VALIDATION_TYPES.STRING}
         onChange={(value) => {
           dispatch(
             configActions.updateSelectedAction({

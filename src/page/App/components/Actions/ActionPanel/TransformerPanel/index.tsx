@@ -10,6 +10,7 @@ import {
   transformerPanelContainerStyle,
   transformerTipStyle,
 } from "./style"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const TransformerPanel: FC = () => {
   const action = useSelector(getSelectedAction)!!
@@ -25,7 +26,7 @@ export const TransformerPanel: FC = () => {
         css={transformerEditorStyle}
         lineNumbers
         height="88px"
-        expectedType="String"
+        expectedType={VALIDATION_TYPES.STRING}
         mode="JAVASCRIPT"
         onChange={(value) => {
           dispatch(

@@ -12,6 +12,7 @@ import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { useTranslation } from "react-i18next"
 import { RadioGroup } from "@illa-design/radio"
 import { configActions } from "@/redux/config/configSlice"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const TransformerComponent: FC = () => {
   const action = useSelector(getSelectedAction)!!
@@ -62,7 +63,7 @@ export const TransformerComponent: FC = () => {
           css={codeMirrorStyle}
           lineNumbers
           height="88px"
-          expectedType="String"
+          expectedType={VALIDATION_TYPES.STRING}
           mode="JAVASCRIPT"
           onChange={(value) => {
             dispatch(
