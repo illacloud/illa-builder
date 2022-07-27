@@ -706,7 +706,7 @@
       "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
       "delete_cancel_text": "取消",
       "delete_ok_text": "删除",
-      "delete": "移到回收站",
+      "delete": "删除",
       "error_title": "错误",
       "error_description": "请求错误",
       "error_button": "重试"

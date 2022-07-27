@@ -333,12 +333,17 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
+            if (sortedAppsList.some((item) => item.appName === renameValue)) {
+              Message.error(t("dashboard.app.name_existed"))
+              return
+            }
             renameRequest()
           }}
         >
           <Input
             css={modalInputStyle}
             borderColor="techPurple"
+            placeholder={sortedAppsList[currentAppIdx].appName}
             onChange={(res) => {
               setRenameValue(res)
             }}
