@@ -69,6 +69,13 @@ export const addComponentReducer: CaseReducer<
   } else {
     const parentNode = searchDsl(state, dealNode.parentNode)
     if (parentNode != null) {
+      if (dealNode.props) {
+        dealNode.props = getNewWidgetPropsByUpdateSlice(
+          dealNode.displayName,
+          dealNode.props ?? {},
+          dealNode.props ?? {},
+        )
+      }
       parentNode.childrenNode.push(dealNode)
     }
   }

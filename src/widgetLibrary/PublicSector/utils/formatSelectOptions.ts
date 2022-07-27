@@ -1,3 +1,4 @@
+// TODO:@aruseito - abstract this function to a common library
 export const formatSelectOptions = (
   optionConfigureMode: "dynamic" | "static" = "static",
   manualOptions: {
@@ -28,9 +29,12 @@ export const formatSelectOptions = (
       extra?: any
     }[] = []
     for (let i = 0; i < maxLength; i++) {
-      const labelItem = label[i] || value[i] || i
+      let labelItem = label[i] || value[i] || i
       const valueItem = value[i] || label[i] || i
       const disabledItem = !!disabled[i]
+      if (typeof labelItem === "object") {
+        labelItem = i
+      }
       options.push({
         label: labelItem,
         value: valueItem,
@@ -39,6 +43,28 @@ export const formatSelectOptions = (
     }
     return options
   } else {
-    return manualOptions ?? []
+    if (!Array.isArray(manualOptions)) {
+      return []
+    }
+    const options: {
+      label: string | number
+      value: string | number
+      disabled?: boolean
+      extra?: any
+    }[] = []
+    manualOptions.forEach((option, index) => {
+      let labelItem = option.label || option.value || index
+      const valueItem = option.value || labelItem || index
+      const disabledItem = option.disabled
+      if (typeof labelItem === "object") {
+        labelItem = index
+      }
+      options.push({
+        label: labelItem,
+        value: valueItem,
+        disabled: disabledItem,
+      })
+    })
+    return options
   }
 }
