@@ -3,8 +3,7 @@ import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessag
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedRateProps
-  extends Omit<ValidateMessageProps, "value">,
-    Pick<RateProps, "allowHalf" | "allowClear" | "disabled"> {
+  extends Pick<RateProps, "allowHalf" | "allowClear" | "disabled"> {
   value?: number
   loading?: boolean
   readOnly?: boolean

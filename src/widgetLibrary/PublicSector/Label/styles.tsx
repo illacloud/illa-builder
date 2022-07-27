@@ -4,7 +4,6 @@ import { LabelAlignType, LabelPositionType } from "./interface"
 
 const baseLabelCss = css`
   display: block;
-  overflow-wrap: break-word;
   font-size: 12px;
   font-weight: 500;
 `
@@ -25,6 +24,7 @@ function applyLeftLabelStyle(
   return css`
     ${baseLabelCss};
     width: ${width};
+    overflow: hidden;
     max-width: 80%;
     flex: none;
     align-self: center;
@@ -66,6 +66,12 @@ export const applyLabelTitleStyle = (hasTooltip: boolean) => {
     ${borderCss}
   `
 }
+
+export const labelNameStyle = css`
+  overflow: hidden;
+  width: fit-content;
+  white-space: nowrap;
+`
 
 export const labelCaptionCss = css`
   color: ${globalColor(`--${illaPrefix}-gray-04`)};

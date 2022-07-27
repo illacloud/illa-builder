@@ -11,6 +11,11 @@ import { executionActions } from "@/redux/currentApp/executionTree/execution/exe
 import { BasicWrapper } from "@/widgetLibrary/PublicSector/BasicWrapper"
 import Label from "@/widgetLibrary/PublicSector/Label"
 import { transformEvents } from "@/widgetLibrary/PublicSector/utils/transformEvents"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import {
+  applyValidateMessageWrapperStyle,
+  labelAndComponentWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -93,6 +98,13 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     labelHidden,
     required,
     hidden,
+    value,
+    regex,
+    pattern,
+    minLength,
+    maxLength,
+    customRule,
+    hideValidationMessage,
   } = realProps
   return (
     <BasicWrapper
@@ -100,25 +112,39 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
       hidden={hidden}
       labelPosition={labelPosition}
     >
-      <Label
-        label={label}
-        labelAlign={labelAlign}
-        labelWidth={labelWidth}
-        labelCaption={labelCaption}
-        labelWidthUnit={labelWidthUnit}
-        labelPosition={labelPosition}
-        required={required}
-        labelHidden={labelHidden}
-      />
-      <COMP
-        {...realProps}
-        handleUpdateGlobalData={handleUpdateGlobalData}
-        handleDeleteGlobalData={handleDeleteGlobalData}
-        handleOnChange={handleOnChange}
-        handleOnClick={handleOnClick}
-        handleUpdateDsl={handleUpdateDsl}
-        displayName={displayName}
-      />
+      <div css={labelAndComponentWrapperStyle}>
+        <Label
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          required={required}
+          labelHidden={labelHidden}
+        />
+        <COMP
+          {...realProps}
+          handleUpdateGlobalData={handleUpdateGlobalData}
+          handleDeleteGlobalData={handleDeleteGlobalData}
+          handleOnChange={handleOnChange}
+          handleOnClick={handleOnClick}
+          handleUpdateDsl={handleUpdateDsl}
+          displayName={displayName}
+        />
+      </div>
+      <div css={applyValidateMessageWrapperStyle(labelWidth)}>
+        <InvalidMessage
+          value={value}
+          pattern={pattern}
+          regex={regex}
+          minLength={minLength}
+          maxLength={maxLength}
+          required={required}
+          customRule={customRule}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
     </BasicWrapper>
   )
 }
