@@ -66,7 +66,7 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
   const builderInfo = useSelector(getBuilderInfo)
   const [globalData, setGlobalData] = useState<Record<string, any>>({
     ...initState,
-    userInfo,
+    currentUser: userInfo,
     builderInfo,
   })
 

@@ -41,7 +41,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       popupVisible={modalVisible}
       content={
         <BaseModal
-          title="Edit Options"
+          title={t("editor.inspect.setter_content.option_list.model_title")}
           handleCloseModal={handleCloseModal}
           attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}

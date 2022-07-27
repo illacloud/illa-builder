@@ -1,10 +1,11 @@
 import { InputProps } from "@illa-design/input"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedInputProps
-  extends ValidateMessageProps,
-    Pick<InputProps, "placeholder" | "disabled" | "readOnly">,
+  extends Pick<
+      InputProps,
+      "placeholder" | "disabled" | "readOnly" | "maxLength" | "minLength"
+    >,
     BaseWidgetProps {
   showCharacterCount?: InputProps["showCount"]
   value?: string

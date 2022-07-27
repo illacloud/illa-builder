@@ -15,7 +15,10 @@ import {
   ComponentDropPayload,
   ComponentResizePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
-import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getCanvas,
+  searchDsl,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DeleteComponentNodePayload,
   UpdateComponentPropsPayload,
@@ -27,10 +30,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const reduxType = typeList[0]
   const reduxAction = typeList[1]
   if (typeList[typeList.length - 1] === "remote") {
-    return next({
-      ...action,
-      type: `${reduxType}/${reduxAction}`,
-    })
+    action.type = `${reduxType}/${reduxAction}`
+    return next(action)
   }
   const resp = next(action)
   switch (reduxType) {
@@ -75,7 +76,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           break
         case "updateComponentDraggingState":
           const dragPayload: ComponentDraggingPayload = payload
-          const dragNode = searchDsl(store.getState(), dragPayload.displayName)
+          const dragNode = searchDsl(
+            getCanvas(store.getState()),
+            dragPayload.displayName,
+          )
           if (dragNode != null) {
             Connection.getRoom(
               "app",
@@ -115,7 +119,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "updateComponentPropsReducer":
           const updatePayload: UpdateComponentPropsPayload = payload
           const finalNode = searchDsl(
-            store.getState(),
+            getCanvas(store.getState()),
             updatePayload.displayName,
           )
           if (finalNode != null) {
@@ -139,7 +143,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         case "updateComponentResizeState":
           const resizePayload: ComponentResizePayload = payload
           const resizeNode = searchDsl(
-            store.getState(),
+            getCanvas(store.getState()),
             resizePayload.displayName,
           )
           if (resizeNode != null) {
@@ -209,7 +213,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
-              Signal.SIGNAL_CREATE_OR_UPDATE,
+              Signal.SIGNAL_ONLY_BROADCAST,
               Target.TARGET_DRAG_SHADOW,
               true,
               {
@@ -226,7 +230,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
-              Signal.SIGNAL_DELETE_STATE,
+              Signal.SIGNAL_ONLY_BROADCAST,
               Target.TARGET_DRAG_SHADOW,
               true,
               {
@@ -247,7 +251,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
-              Signal.SIGNAL_CREATE_OR_UPDATE,
+              Signal.SIGNAL_ONLY_BROADCAST,
               Target.TARGET_DOTTED_LINE_SQUARE,
               true,
               {
@@ -264,7 +268,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
-              Signal.SIGNAL_DELETE_STATE,
+              Signal.SIGNAL_ONLY_BROADCAST,
               Target.TARGET_DOTTED_LINE_SQUARE,
               true,
               {
@@ -332,7 +336,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           break
       }
       break
-    case "app":
+    case "apps":
       switch (reduxAction) {
         case "addDashboardAppReducer":
           Connection.getRoom("dashboard", "")?.send(

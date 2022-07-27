@@ -216,7 +216,7 @@ export const SettingPassword: FC = () => {
       <div css={publicButtonWrapperStyle}>
         <Button
           size="large"
-          autoFullHorizontal
+          fullWidth
           disabled={isButtonDisabled}
           loading={isLoading}
           colorScheme="techPurple"

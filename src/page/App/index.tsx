@@ -103,9 +103,6 @@ export const Editor: FC = () => {
           ),
         )
         dispatch(
-          executionActions.setExecutionReducer(response.data.executionState),
-        )
-        dispatch(
           dragShadowActions.updateDragShadowReducer(
             response.data.dragShadowState,
           ),

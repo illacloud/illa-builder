@@ -1,7 +1,6 @@
 import { FC, forwardRef, useCallback, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { DateTimeWidgetProps, WrappedDateTimeProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
@@ -12,19 +11,15 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       dateFormat,
       placeholder,
       showClear,
-      required,
       minDate,
       disabled,
       maxDate,
       readOnly,
       minuteStep,
       timeFormat,
-      hideValidationMessage,
       colorScheme,
       handleUpdateDsl,
     } = props
-
-    const [currentValue, setCurrentValue] = useState(value)
 
     const checkRange = useCallback(
       (current) => {
@@ -52,18 +47,11 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
           allowClear={showClear}
           disabledDate={checkRange}
           onClear={() => {
-            setCurrentValue(undefined)
             handleUpdateDsl({ value: "" })
           }}
           onChange={(value) => {
-            setCurrentValue(value)
             handleUpdateDsl({ value })
           }}
-        />
-        <InvalidMessage
-          value={currentValue}
-          required={required}
-          hideValidationMessage={hideValidationMessage}
         />
       </div>
     )
@@ -78,14 +66,12 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     dateFormat,
     placeholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
     minuteStep,
     timeFormat,
-    hideValidationMessage,
     colorScheme,
     displayName,
     handleUpdateGlobalData,
@@ -99,14 +85,12 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       dateFormat,
       placeholder,
       showClear,
-      required,
       minDate,
       disabled,
       maxDate,
       readOnly,
       minuteStep,
       timeFormat,
-      hideValidationMessage,
       colorScheme,
       setValue: (value: string) => {
         handleUpdateDsl({ value })
@@ -124,14 +108,12 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     dateFormat,
     placeholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
     minuteStep,
     timeFormat,
-    hideValidationMessage,
     colorScheme,
   ])
   return <WrappedDateTime {...props} />

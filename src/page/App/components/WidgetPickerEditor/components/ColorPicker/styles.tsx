@@ -171,7 +171,7 @@ export function applyColorCheckedItemContainer(isChecked?: boolean) {
     border-radius: 4px;
     box-sizing: border-box;
     border: 1px solid
-      ${isChecked ? globalColor(`--${illaPrefix}-grayBlue-07`) : "transparent"};
+      ${isChecked ? globalColor(`--${illaPrefix}-grayBlue-06`) : "transparent"};
   `
 }
 

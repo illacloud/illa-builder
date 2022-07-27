@@ -1,6 +1,5 @@
 import { FC, useEffect, useMemo } from "react"
 import { DynamicSelectSetterProps } from "./interface"
-
 import { dynamicSelectHeaderStyle, useTypeTextStyle } from "./style"
 import { Select } from "@illa-design/select"
 import { applyInputSetterWrapperStyle } from "@/page/App/components/PanelSetters/InputSetter/style"
@@ -92,7 +91,7 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
                 }}
                 path={getPath(attrName, widgetDisplayName)}
                 mode="TEXT_JS"
-                expectedType="String"
+                expectedType={VALIDATION_TYPES.STRING}
               />
             </div>
           ) : (

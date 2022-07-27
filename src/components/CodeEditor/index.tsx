@@ -28,13 +28,14 @@ import {
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
     mode = "TEXT_JS",
     placeholder,
-    expectedType = "String",
+    expectedType = VALIDATION_TYPES.STRING,
     borderRadius = "8px",
     path,
     tables = {},

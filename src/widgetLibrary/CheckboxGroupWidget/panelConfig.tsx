@@ -3,6 +3,9 @@ import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
+import { CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CheckboxGroupWidget/eventHandlerConfig"
 
 const baseWidgetName = "checkboxGroup"
 export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
@@ -16,11 +19,11 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: "Manual",
+            label: i18n.t("widget.public.select_options.manual"),
             value: "static",
           },
           {
-            label: "Mapped",
+            label: i18n.t("widget.public.select_options.mapped"),
             value: "dynamic",
           },
         ],
@@ -34,21 +37,21 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => !value || value === "static",
         childrenSetter: [
           {
-            id: "select-options-label",
-            labelName: i18n.t("Label"),
+            id: `${baseWidgetName}-options-label`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "label",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
-            id: "select-options-value",
-            labelName: i18n.t("Value"),
+            id: `${baseWidgetName}-options-value`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "value",
             setterType: "INPUT_SETTER",
           },
           {
-            id: "select-options-disabled",
-            labelName: i18n.t("Disabled"),
+            id: `${baseWidgetName}-options-disabled`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disabled",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -75,7 +78,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => value === "dynamic",
         childrenSetter: [
           {
-            id: `select-mappedOption-labels`,
+            id: `${baseWidgetName}-mappedOption-labels`,
             labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "labels",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -83,7 +86,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `select-mappedOption-values`,
+            id: `${baseWidgetName}-mappedOption-values`,
             labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "values",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -91,7 +94,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `select-mappedOption-disables`,
+            id: `${baseWidgetName}-mappedOption-disables`,
             labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disables",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -131,13 +134,21 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
+        id: `${baseWidgetName}-label-hidden`,
+        labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
+        attrName: "labelHidden",
+        setterType: "SWITCH_SETTER",
+      },
+      {
         id: `${baseWidgetName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
-          { label: "Left", value: "left" },
-          { label: "Top", value: "top" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "top" },
         ],
       },
       {
@@ -145,6 +156,8 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -162,6 +175,8 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
       },
     ],
   },
@@ -169,6 +184,12 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
+      {
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
       {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
