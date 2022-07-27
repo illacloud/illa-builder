@@ -249,7 +249,7 @@ export const ActionList: FC<ActionListProps> = (props) => {
 
       <div css={newBtnContainerStyle}>
         <Button
-          autoFullHorizontal
+          fullWidth
           colorScheme="techPurple"
           variant="light"
           buttonRadius="8px"

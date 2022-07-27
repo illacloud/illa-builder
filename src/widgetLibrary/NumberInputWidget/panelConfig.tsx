@@ -5,10 +5,9 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 
 const widgetBaseName = "number-input"
-
 export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: `${widgetBaseName}-BASIC`,
+    id: `${widgetBaseName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
@@ -77,7 +76,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "select-label-hidden",
+        id: `${widgetBaseName}-label-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
         attrName: "labelHidden",
         setterType: "SWITCH_SETTER",

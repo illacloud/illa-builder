@@ -4,13 +4,14 @@ import { HeartIcon, StarIcon } from "@illa-design/icon"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 
+const baseWidgetName = "rate"
 export const RATE_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "rate-basic",
+    id: `${baseWidgetName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: "rate-basic-DefaultValue",
+        id: `${baseWidgetName}-basic-DefaultValue`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t(
           "editor.inspect.setter_tooltip.component_default_value",
@@ -20,7 +21,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
-        id: "rate-basic-icon",
+        id: `${baseWidgetName}-basic-icon`,
         labelName: i18n.t("editor.inspect.setter_label.icon"),
         attrName: "icon",
         setterType: "RADIO_GROUP_SETTER",
@@ -36,20 +37,20 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "rate-basic-max-rate",
+        id: `${baseWidgetName}-basic-max-rate`,
         labelName: i18n.t("editor.inspect.setter_label.max_count"),
         attrName: "maxCount",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
-        id: "rate-basic-allow-half",
+        id: `${baseWidgetName}-basic-allow-half`,
         labelName: i18n.t("editor.inspect.setter_label.allow_half"),
         attrName: "allowHalf",
         setterType: "SWITCH_SETTER",
       },
       {
-        id: "rate-basic-allow-clear",
+        id: `${baseWidgetName}-basic-allow-clear`,
         labelName: i18n.t("editor.inspect.setter_label.allow_clear"),
         attrName: "allowClear",
         setterType: "SWITCH_SETTER",
@@ -57,18 +58,18 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "rate-label",
+    id: `${baseWidgetName}-label`,
     groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
-        id: "rate-label-label",
+        id: `${baseWidgetName}-label-label`,
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "rate-label-caption",
+        id: `${baseWidgetName}-label-caption`,
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
@@ -81,7 +82,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "SWITCH_SETTER",
       },
       {
-        id: "rate-label-position",
+        id: `${baseWidgetName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
@@ -93,7 +94,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "rate-label-alignment",
+        id: `${baseWidgetName}-label-alignment`,
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
@@ -111,7 +112,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "select-label-labelWidth",
+        id: `${baseWidgetName}-label-label-width`,
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
@@ -122,12 +123,12 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "rate-interaction",
+    id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       // eventHandle @aoao
       {
-        id: "rate-interaction-disabled",
+        id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
         attrName: "disabled",
@@ -135,7 +136,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: "rate-interaction-readonly",
+        id: `${baseWidgetName}-interaction-readonly`,
         labelName: i18n.t("editor.inspect.setter_label.read_only"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.read_only"),
         attrName: "readonly",
@@ -145,11 +146,11 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "rate-adornments",
+    id: `${baseWidgetName}-adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
-        id: "rate-adornments-tooltip",
+        id: `${baseWidgetName}-adornments-tooltip`,
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
@@ -159,11 +160,11 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "rate-validation",
+    id: `${baseWidgetName}-validation`,
     groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
-        id: "rate-validation-required",
+        id: `${baseWidgetName}-validation-required`,
         labelName: i18n.t("editor.inspect.setter_label.required_field"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
@@ -172,7 +173,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "required",
       },
       {
-        id: "rate-validation-custom",
+        id: `${baseWidgetName}-validation-custom`,
         labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.custom_rule"),
         setterType: "INPUT_SETTER",
@@ -180,7 +181,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "rate-validation-hide-message",
+        id: `${baseWidgetName}-validation-hide-message`,
         labelName: i18n.t(
           "editor.inspect.setter_label.hide_validation_message",
         ),
@@ -195,11 +196,11 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "rate-layout",
+    id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "rate-layout-hidden",
+        id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),

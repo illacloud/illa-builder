@@ -538,17 +538,20 @@
         "group_by": "Group by",
         "datasets": "Datasets",
         "dataset_config": "Dataset config",
-        "title": "Title",
+        "title": " 标题",
         "x_axis_title": "X-axis title",
         "x_axis_type": "X-axis type",
         "y_axis_title": "Y-axis title",
         "legend_position": "Legend position",
-        "only_run_when": "执行条件",
+        "only_run_when": "先决条件",
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
           "remove": "Remove dataset"
-        }
+        },
+        "new_tab": "在新标签中打开",
+        "description": "描述",
+        "duration":"持续时间"
       },
       "setter_tooltip": {
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
@@ -568,11 +571,18 @@
         "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
         "loading": "控制组件是否为加载状态。",
         "progress_percentage": "进度条的数值范围为 0-100",
-        "timeline_direction": "切换时间轴的方向"
+        "timeline_direction": "切换时间轴的方向",
+        "only_run_when": "在此输入该事件执行前必须满足的条件"
       },
       "setter_default_value": {
         "fill": "填充",
-        "outline": "描边"
+        "outline": "描边",
+        "message_type": {
+          "success": "成功",
+          "info": "信息",
+          "warning": "警告",
+          "error": "错误"
+        }
       },
       "setter_content": {
         "option_list": {

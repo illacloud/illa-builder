@@ -34,20 +34,20 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => !value || value === "static",
         childrenSetter: [
           {
-            id: "select-options-label",
+            id: `${baseWidgetName}-options-label`,
             labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "label",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
-            id: "select-options-value",
+            id: `${baseWidgetName}-options-value`,
             labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "value",
             setterType: "INPUT_SETTER",
           },
           {
-            id: "select-options-disabled",
+            id: `${baseWidgetName}-options-disabled`,
             labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disabled",
             setterType: "INPUT_SETTER",
@@ -75,7 +75,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => value === "dynamic",
         childrenSetter: [
           {
-            id: `select-mappedOption-labels`,
+            id: `${baseWidgetName}-mappedOption-labels`,
             labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "labels",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -83,7 +83,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `select-mappedOption-values`,
+            id: `${baseWidgetName}-mappedOption-values`,
             labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "values",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -91,7 +91,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `select-mappedOption-disables`,
+            id: `${baseWidgetName}-mappedOption-disables`,
             labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disables",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -131,7 +131,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "select-label-hidden",
+        id: `${baseWidgetName}-label-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
         attrName: "labelHidden",
         setterType: "SWITCH_SETTER",

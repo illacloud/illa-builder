@@ -4,13 +4,14 @@ import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOpti
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 
+const baseWidgetName = "switch"
 export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "switch-basic",
+    id: `${baseWidgetName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: "switch-basic-defaultValue",
+        id: `${baseWidgetName}-basic-defaultValue`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.switch_default_value"),
         attrName: "value",
@@ -21,18 +22,18 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "switch-label",
+    id: `${baseWidgetName}-label`,
     groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
-        id: "switch-label-label",
+        id: `${baseWidgetName}-label-label`,
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "switch-label-caption",
+        id: `${baseWidgetName}-label-caption`,
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
@@ -45,7 +46,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         setterType: "SWITCH_SETTER",
       },
       {
-        id: "switch-label-position",
+        id: `${baseWidgetName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
@@ -57,7 +58,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "switch-label-alignment",
+        id: `${baseWidgetName}-label-alignment`,
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
@@ -77,11 +78,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "switch-interaction",
+    id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        id: "switch-interaction-event-handler",
+        id: `${baseWidgetName}-interaction-event-handler`,
         attrName: "events",
         labelName: i18n.t("editor.inspect.setter_label.event_handler"),
         setterType: "EVENT_HANDLER_SETTER",
@@ -249,7 +250,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "switch-interaction-disabled",
+        id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
         attrName: "disabled",
@@ -260,11 +261,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "switch-Adornments",
+    id: `${baseWidgetName}-Adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
-        id: "switch-adornments-tooltip",
+        id: `${baseWidgetName}-adornments-tooltip`,
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
@@ -274,11 +275,11 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "switch-layout",
+    id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "switch-layout-hidden",
+        id: `${baseWidgetName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         setterType: "DYNAMIC_SWITCH_SETTER",
@@ -290,18 +291,18 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: `switch-style`,
+    id: `${baseWidgetName}-style`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "switch-style",
+        id: `${baseWidgetName}-style-color`,
         setterType: "LIST_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "switch-style-radius",
+            id: `${baseWidgetName}-style-radius`,
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",

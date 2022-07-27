@@ -8,20 +8,21 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
 
+const baseWidgetName = "divider"
 export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "divider-basic",
+    id: `${baseWidgetName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: "divider-basic-text",
+        id: `${baseWidgetName}-basic-text`,
         labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "text",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "divider-basic-text-align",
+        id: `${baseWidgetName}-basic-text-align`,
         labelName: i18n.t("editor.inspect.setter_label.text_align"),
         attrName: "textAlign",
         setterType: "RADIO_GROUP_SETTER",
@@ -43,11 +44,11 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "divider-layout",
+    id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
-        id: "divider-layout-hidden",
+        id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
@@ -58,18 +59,18 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "divider-style",
+    id: `${baseWidgetName}-style`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "divider-style-list",
+        id: `${baseWidgetName}-style-list`,
         setterType: "LIST_SETTER",
         attrName: "styles",
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "divider-style-text-size",
+            id: `${baseWidgetName}-style-text-size`,
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
             setterType: "EDITABLE_INPUT_SETTER",
             attrName: "textSize",
