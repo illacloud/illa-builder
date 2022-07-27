@@ -39,6 +39,7 @@ export const applyBasicWrapperStyle = (
     ${getFlexDirection(labelPosition)}
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     user-select: text;
   `
 }

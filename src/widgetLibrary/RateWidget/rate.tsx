@@ -9,24 +9,13 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
   const {
     value,
     allowClear,
-    required,
     disabled,
-    customRule,
     icon,
     readOnly,
     allowHalf,
-    hideValidationMessage,
     maxCount,
     handleUpdateDsl,
   } = props
-
-  const _customValue = useMemo(() => {
-    if (customRule) {
-      return customRule
-    } else if (required && !value) {
-      return invalidMessage.get("required")
-    }
-  }, [customRule, required, value])
 
   return (
     <div css={inputContainerCss}>
@@ -42,10 +31,6 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
           handleUpdateDsl({ value })
         }}
       />
-      <InvalidMessage
-        customRule={_customValue}
-        hideValidationMessage={hideValidationMessage}
-      />
     </div>
   )
 }
@@ -56,13 +41,10 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
   const {
     value,
     allowClear,
-    required,
     disabled,
-    customRule,
     icon,
     readOnly,
     allowHalf,
-    hideValidationMessage,
     maxCount,
     handleUpdateDsl,
     displayName,
@@ -74,13 +56,10 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     handleUpdateGlobalData(displayName, {
       value,
       allowClear,
-      required,
       disabled,
-      customRule,
       icon,
       readOnly,
       allowHalf,
-      hideValidationMessage,
       maxCount,
       setValue: (value: number) => {
         handleUpdateDsl({ value })
@@ -98,13 +77,10 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     displayName,
     value,
     allowClear,
-    required,
     disabled,
-    customRule,
     icon,
     readOnly,
     allowHalf,
-    hideValidationMessage,
     maxCount,
   ])
   return <WrappedRate {...props} />
