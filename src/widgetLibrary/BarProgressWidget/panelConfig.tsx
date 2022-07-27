@@ -5,13 +5,14 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
 
+const baseWidgetName = "bar-progress"
 export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "bar-progress-basic",
+    id: `${baseWidgetName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: "bar-progress-basic-Value",
+        id: `${baseWidgetName}-basic-Value`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.progress_percentage"),
         attrName: "value",
@@ -21,31 +22,31 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "bar-progress-label",
+    id: `${baseWidgetName}-label`,
     groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
-        id: "bar-progress-label-label",
+        id: `${baseWidgetName}-label-label`,
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "bar-progress-label-caption",
+        id: `${baseWidgetName}-label-caption`,
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "select-label-hidden",
+        id: `${baseWidgetName}-label-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
         attrName: "labelHidden",
         setterType: "SWITCH_SETTER",
       },
       {
-        id: "bar-progress-label-position",
+        id: `${baseWidgetName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
@@ -57,7 +58,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "bar-progress-label-alignment",
+        id: `${baseWidgetName}-label-alignment`,
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
@@ -75,7 +76,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "bar-progress-label-labelWidth",
+        id: `${baseWidgetName}-label-labelWidth`,
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
@@ -86,17 +87,17 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "bar-progress-adornments",
+    id: `${baseWidgetName}-adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
-        id: "bar-progress-adornments-showText",
+        id: `${baseWidgetName}-adornments-showText`,
         labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
         attrName: "showText",
         setterType: "SWITCH_SETTER",
       },
       {
-        id: "bar-progress-adornments-tooltip",
+        id: `${baseWidgetName}-adornments-tooltip`,
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
@@ -106,11 +107,11 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "bar-progress-layout",
+    id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "bar-progress-layout-hidden",
+        id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
@@ -121,18 +122,18 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "bar-progress-style",
+    id: `${baseWidgetName}-style`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "bar-progress-color-list",
+        id: `${baseWidgetName}-color-list`,
         setterType: "LIST_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "bar-progress-color",
+            id: `${baseWidgetName}-color`,
             labelName: i18n.t("editor.inspect.setter_label.styles"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "color",
@@ -140,7 +141,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             options: colorSchemeOptions,
           },
           {
-            id: "bar-progress-trailColor",
+            id: `${baseWidgetName}-trailColor`,
             labelName: i18n.t("editor.inspect.setter_label.trail_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "trailColor",
@@ -150,14 +151,14 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "bar-progress-style-list",
+        id: `${baseWidgetName}-style-list`,
         setterType: "LIST_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.styles"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "bar-progress-strokeWidth",
+            id: `${baseWidgetName}-strokeWidth`,
             labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
             setterType: "EDITABLE_INPUT_SETTER",
             iconName: EditableInputIconType.STROKE_WIDTH,
