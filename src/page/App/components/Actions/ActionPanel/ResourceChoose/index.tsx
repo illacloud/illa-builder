@@ -18,7 +18,7 @@ import { ButtonProps } from "@illa-design/button"
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const action = useSelector(getSelectedAction)
+  const action = useSelector(getSelectedAction)!!
   const resourceList = useSelector(getAllResources)
 
   return (

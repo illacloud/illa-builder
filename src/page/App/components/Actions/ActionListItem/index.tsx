@@ -35,7 +35,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     const isChanged = useSelector((state: RootState) => {
       return (
         state.config.selectedAction?.displayName === action.displayName &&
-        selectedAction !== action
+        JSON.stringify(selectedAction) !== JSON.stringify(action)
       )
     })
 

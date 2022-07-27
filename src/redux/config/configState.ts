@@ -1,5 +1,8 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 
 export type IllaMode = "preview" | "edit" | "production"
 
@@ -10,7 +13,7 @@ export interface ConfigState {
   showDot: boolean
   scale: number
   selectedComponents: ComponentNode[]
-  selectedAction: ActionItem | null
+  selectedAction: ActionItem<ActionContent> | null
   expandedKeys: string[]
   mode: IllaMode
 }

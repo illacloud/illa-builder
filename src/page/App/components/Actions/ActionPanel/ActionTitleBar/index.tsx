@@ -5,25 +5,26 @@ import {
   actionTitleBarRunStyle,
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
-} from "@/page/App/components/Actions/ActionPanel/style"
+} from "./style"
 import { Button } from "@illa-design/button"
 import { WrappedEditableText } from "@/widgetLibrary/EditableWidget"
-import { ActionTitleBarProps } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar/interface"
 import { useTranslation } from "react-i18next"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {
   getSelectedAction,
   isCurrentSelectedActionChanged,
 } from "@/redux/config/configSelector"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
 
-export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const action = useSelector(getSelectedAction)
+export const ActionTitleBar: FC = () => {
+  const action = useSelector(getSelectedAction)!!
   const isChanged = useSelector(isCurrentSelectedActionChanged)
+  const dispatch = useDispatch()
   const { t } = useTranslation()
 
   let runMode: RunMode = "run"
@@ -35,10 +36,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }
 
-  console.log("longbo", action.triggerMode, runMode)
-
   return (
     <div css={actionTitleBarStyle}>
+      {/*TODO @weichen change new component*/}
       <WrappedEditableText
         css={actionTitleBarDisplayNameStyle}
         colorScheme={"techPurple"}
@@ -71,6 +71,20 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         variant={isChanged ? "fill" : "light"}
         size="medium"
         leftIcon={<CaretRightIcon />}
+        onClick={() => {
+          switch (runMode) {
+            case "run":
+              // TODO @weichen run
+              break
+            case "save":
+              dispatch(actionActions.updateActionItemReducer(action))
+              break
+            case "save_and_run":
+              dispatch(actionActions.updateActionItemReducer(action))
+              // TODO @weichen run
+              break
+          }
+        }}
       >
         {t(`editor.action.panel.btn.${runMode}`)}
       </Button>

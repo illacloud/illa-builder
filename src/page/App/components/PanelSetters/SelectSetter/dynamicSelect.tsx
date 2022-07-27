@@ -1,11 +1,7 @@
-import { FC, useContext, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { DynamicSelectSetterProps } from "./interface"
 
-import {
-  dynamicSelectHeaderStyle,
-  dynamicSelectStyle,
-  useTypeTextStyle,
-} from "./style"
+import { dynamicSelectHeaderStyle, useTypeTextStyle } from "./style"
 import { Select } from "@illa-design/select"
 import { applyInputSetterWrapperStyle } from "@/page/App/components/PanelSetters/InputSetter/style"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -41,13 +37,10 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
     handleUpdateDsl,
     panelConfig,
     labelName,
-    labelNameOption,
     labelDesc,
-    labelDescOption,
-    transComponents,
     isSetterSingleRow,
     widgetDisplayName,
-    expectedType,
+    isInList,
   } = props
 
   const isUseJsKey = attrName + INPUT_MODE_SUFFIX
@@ -75,9 +68,7 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
         <PanelLabel
           labelName={labelName}
           labelDesc={labelDesc}
-          labelNameOption={labelNameOption}
-          labelDescOption={labelDescOption}
-          transComponents={transComponents}
+          isInList={isInList}
         />
         <span
           css={useTypeTextStyle}
@@ -100,8 +91,8 @@ export const DynamicSelectSetter: FC<DynamicSelectSetterProps> = (props) => {
                   handleUpdateDsl(jsValue, value)
                 }}
                 path={getPath(attrName, widgetDisplayName)}
-                mode={"TEXT_JS"}
-                expectedType={VALIDATION_TYPES.STRING}
+                mode="TEXT_JS"
+                expectedType="String"
               />
             </div>
           ) : (

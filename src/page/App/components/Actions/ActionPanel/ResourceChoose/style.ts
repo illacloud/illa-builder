@@ -6,7 +6,7 @@ export const resourceChooseContainerStyle = css`
   align-items: center;
   padding: 0 16px;
   flex-direction: row;
-  height: 64px;
+  min-height: 64px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 

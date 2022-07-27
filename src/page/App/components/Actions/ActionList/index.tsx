@@ -83,7 +83,10 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                           )
                         })
                       // if not changed
-                      if (lastAction === selectedAction) {
+                      if (
+                        JSON.stringify(lastAction) ===
+                        JSON.stringify(selectedAction)
+                      ) {
                         dispatch(configActions.updateSelectedAction(action))
                       } else {
                         // show dialog
