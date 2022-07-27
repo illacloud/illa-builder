@@ -24,6 +24,10 @@ export const MysqlPanel: FC = () => {
         css={sqlInputStyle}
         mode="SQL_JS"
         expectedType="String"
+        onChange={(value, calcResult) => {
+          console.log(value)
+          console.log(calcResult)
+        }}
       />
       <TransformerComponent />
     </div>
