@@ -9,7 +9,7 @@ import { Option, Select } from "@illa-design/select"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Space } from "@illa-design/space"
-import { AddIcon, EditableTextWidgetIcon } from "@illa-design/icon"
+import { AddIcon, EditableTextWidgetIcon, PenIcon } from "@illa-design/icon"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { configActions } from "@/redux/config/configSlice"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -38,7 +38,9 @@ export const ResourceChoose: FC = () => {
           }}
           addonAfter={{
             buttonProps: {
-              leftIcon: <EditableTextWidgetIcon />,
+              variant: "outline",
+              colorScheme: "gray",
+              leftIcon: <PenIcon />,
             } as ButtonProps,
           }}
         >
