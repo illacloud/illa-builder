@@ -272,7 +272,7 @@
             "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
-            "external_reference": "您可以创建对已定义变量的外部引用。 例如，{{ transformer2.value }}"
+            "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
           }
         },
         "js_transformer": {
