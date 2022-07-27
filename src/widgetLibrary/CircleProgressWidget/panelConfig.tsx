@@ -7,6 +7,7 @@ import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOpti
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
 
 export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -118,7 +119,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             id: "circle-progress-strokeWidth",
             labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
             setterType: "EDITABLE_INPUT_SETTER",
-            iconName: "strokeWidth",
+            iconName: EditableInputIconType.STROKE_WIDTH,
             attrName: "strokeWidth",
             defaultValue: "4px",
             expectedType: VALIDATION_TYPES.STRING,
