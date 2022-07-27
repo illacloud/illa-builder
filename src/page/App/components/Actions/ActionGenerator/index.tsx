@@ -5,6 +5,7 @@ import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { ActionType } from "@/redux/currentApp/action/actionState"
+import { css } from "@emotion/react"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
@@ -20,6 +21,9 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   return (
     <Modal
+      _css={css`
+        width: 696px;
+      `}
       visible={visible}
       footer={false}
       closable
@@ -63,7 +67,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         />
       ) : (
         <ActionResourceCreator
-          actionType={actionType}
+          resourceType={actionType}
           onBack={() => {
             setStep(0)
             setResourceType(undefined)

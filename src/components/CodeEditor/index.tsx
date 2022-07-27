@@ -80,7 +80,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let previewType = expectedType
     setError(false)
     try {
-      calcResult = evaluateDynamicString("", currentValue, executionResult)
+      calcResult = evaluateDynamicString("", currentValue, globalData)
       // [TODO]: v1 evaluate
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)

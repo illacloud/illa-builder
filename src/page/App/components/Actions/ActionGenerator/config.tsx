@@ -1,5 +1,5 @@
 import { ActionType } from "@/redux/currentApp/action/actionState"
-import i18n from "@/i18n/config";
+import i18n from "@/i18n/config"
 
 type ActionTypeNameKey =
   | "mysql"
@@ -81,3 +81,13 @@ export const GeneratorTypeList = [
     category: "apis" as const,
   },
 ]
+
+export const SSLClientKey = `
+-----BEGIN CERTIFICATE-----
+MIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm
+DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4
+DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4
+DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4
+...
+-----END CERTIFICATE-----
+`

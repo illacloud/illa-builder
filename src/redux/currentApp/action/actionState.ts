@@ -1,3 +1,5 @@
+import { Params } from "@/redux/resource/resourceState"
+
 export interface Transformer {
   rawData: string
   enable: boolean
@@ -33,9 +35,9 @@ export interface MysqlAction {
 
 export interface RestApiAction<T extends BodyContent> {
   method: string
-  urlParams: Record<string, string>
-  headers: Record<string, string>
-  cookies: Record<string, string>
+  urlParams: Params[]
+  headers: Params[]
+  cookies: Params[]
   bodyType: BodyType
   body: T
 }

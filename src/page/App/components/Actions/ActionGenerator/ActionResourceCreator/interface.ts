@@ -5,9 +5,8 @@ export type ConnectionRef = {
 }
 
 export interface ActionResourceCreatorProps {
-  actionType?: ActionType
   resourceId?: string
-  resourceType?: string
+  resourceType?: ActionType
   ResourceFormEditor?: boolean
   onBack?: () => void
   onSubmit?: (resourceId: string) => void
