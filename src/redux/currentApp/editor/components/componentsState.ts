@@ -45,3 +45,8 @@ export interface ResetComponentPropsPayload {
   displayName: string
   resetSlice: Record<string, any>
 }
+
+export interface UpdateComponentDisplayNamePayload {
+  displayName: string
+  newDisplayName: string
+}

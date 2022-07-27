@@ -5,16 +5,27 @@ import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context
 import { panelHeaderIconWrapperStyle, panelHeaderWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"
 import { EditableText } from "@/components/EditableText"
+import { useDispatch } from "react-redux"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
-export const PanelHeader: FC = (props) => {
-  const { widgetDisplayName, widgetType, handleUpdateDsl } =
-    useContext(SelectedPanelContext)
+export const PanelHeader: FC = () => {
+  const { widgetDisplayName, widgetType } = useContext(SelectedPanelContext)
+  const dispatch = useDispatch()
+
+  const handleUpdateDisplayNameByBlur = (newDisplayName: string) => {
+    dispatch(
+      componentsActions.updateComponentDisplayNameReducer({
+        displayName: widgetDisplayName,
+        newDisplayName,
+      }),
+    )
+  }
   return (
     <div css={panelHeaderWrapperStyle}>
       <EditableText
         key={widgetDisplayName}
         displayName={widgetDisplayName}
-        updateDisplayNameByBlur={() => {}}
+        updateDisplayNameByBlur={handleUpdateDisplayNameByBlur}
       />
       <div css={panelHeaderIconWrapperStyle}>
         <Dropdown

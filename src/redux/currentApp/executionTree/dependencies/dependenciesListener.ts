@@ -9,7 +9,6 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { getAllActionDisplayNameMapProps } from "@/redux/currentApp/action/actionSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
-import { addActionItemReducer } from "@/redux/currentApp/action/actionReducer"
 
 export const worker = new dependenciesTreeWorker()
 
@@ -47,6 +46,7 @@ export function setupDependenciesListeners(
         componentsActions.updateComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
         componentsActions.copyComponentNodeReducer,
+        componentsActions.updateComponentDisplayNameReducer,
         configActions.updateSelectActionTemplate,
         actionActions.updateActionTemplateReducer,
         actionActions.addActionItemReducer,
