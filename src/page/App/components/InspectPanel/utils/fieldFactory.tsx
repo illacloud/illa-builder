@@ -33,7 +33,7 @@ export const renderPanelBar = (
   const key = `${id}-${displayName}`
 
   return (
-    <PanelBar key={key} title={i18n.t(groupName)}>
+    <PanelBar key={key} title={groupName}>
       {children && children.length > 0 && (
         <div css={ghostEmptyStyle}>{fieldFactory(children, displayName)}</div>
       )}
