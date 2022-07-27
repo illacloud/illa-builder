@@ -3,12 +3,14 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
+import { INPUT_NUMBER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/NumberInputWidget/eventHandlerConfig"
 
 const widgetBaseName = "number-input"
-
 export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: `${widgetBaseName}-BASIC`,
+    id: `${widgetBaseName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
@@ -77,13 +79,21 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
+        id: `${widgetBaseName}-label-hidden`,
+        labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
+        attrName: "labelHidden",
+        setterType: "SWITCH_SETTER",
+      },
+      {
         id: `${widgetBaseName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
-          { label: "Left", value: "left" },
-          { label: "Top", value: "top" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "top" },
         ],
       },
       {
@@ -91,6 +101,8 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -108,6 +120,8 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
       },
     ],
   },
@@ -115,6 +129,12 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
     id: `${widgetBaseName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
+      {
+        ...generatorEventHanlderConfig(
+          widgetBaseName,
+          INPUT_NUMBER_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
       {
         id: `${widgetBaseName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),

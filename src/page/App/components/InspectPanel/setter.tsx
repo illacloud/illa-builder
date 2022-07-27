@@ -21,6 +21,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     parentAttrName,
     expectedType,
     defaultValue,
+    iconName,
   } = props
   const Comp = getSetterByType(setterType)
 
@@ -95,6 +96,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
           parentAttrName={parentAttrName}
           widgetOrAction={widgetOrAction}
           defaultValue={defaultValue}
+          iconName={iconName}
         />
       </div>
     ) : null

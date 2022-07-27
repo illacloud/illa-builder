@@ -49,7 +49,7 @@ export const Shortcut: FC = ({ children }) => {
         cancelText: t("editor.component.cancel"),
         okText: t("editor.component.delete"),
         okButtonProps: {
-          colorScheme: "techPurple",
+          colorScheme: "red",
         },
         closable: true,
         onCancel: () => {
@@ -77,12 +77,6 @@ export const Shortcut: FC = ({ children }) => {
       componentsActions.copyComponentNodeReducer({
         newDisplayName: newDisplayName,
         componentNode: componentNode,
-      }),
-    )
-    dispatch(
-      componentsActions.updateComponentPropsReducer({
-        displayName: newDisplayName,
-        updateSlice: componentNode.props ?? {},
       }),
     )
   }

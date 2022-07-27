@@ -3,11 +3,10 @@ import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessag
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 
 export interface WrappedDateTimeProps
-  extends ValidateMessageProps,
-    Pick<
-      DatePickerProps,
-      "placeholder" | "disabled" | "readOnly" | "colorScheme"
-    > {
+  extends Pick<
+    DatePickerProps,
+    "placeholder" | "disabled" | "readOnly" | "colorScheme"
+  > {
   value?: string
   dateFormat?: string
   timeFormat?: string

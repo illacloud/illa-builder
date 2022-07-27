@@ -1,7 +1,6 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useCallback, useEffect } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { DateWidgetProps, WrappedDateProps } from "./interface"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
@@ -11,17 +10,13 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
     dateFormat,
     placeholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
-    hideValidationMessage,
     colorScheme,
     handleUpdateDsl,
   } = props
-
-  const [currentValue, setCurrentValue] = useState(value)
 
   const checkRange = useCallback(
     (current) => {
@@ -47,18 +42,11 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
         disabledDate={checkRange}
         // todo @aoao handleUpdateDsl?
         onClear={() => {
-          setCurrentValue("")
           handleUpdateDsl({ value: "" })
         }}
         onChange={(value) => {
-          setCurrentValue(value)
           handleUpdateDsl({ value })
         }}
-      />
-      <InvalidMessage
-        value={currentValue}
-        required={required}
-        hideValidationMessage={hideValidationMessage}
       />
     </div>
   )
@@ -72,12 +60,10 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     dateFormat,
     placeholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
-    hideValidationMessage,
     colorScheme,
     handleUpdateDsl,
     displayName,
@@ -91,12 +77,10 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
       dateFormat,
       placeholder,
       showClear,
-      required,
       minDate,
       disabled,
       maxDate,
       readOnly,
-      hideValidationMessage,
       colorScheme,
       displayName,
       setValue: (value: string) => {
@@ -115,12 +99,10 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     dateFormat,
     placeholder,
     showClear,
-    required,
     minDate,
     disabled,
     maxDate,
     readOnly,
-    hideValidationMessage,
     colorScheme,
   ])
 

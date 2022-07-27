@@ -13,6 +13,7 @@ import {
 } from "@illa-design/icon"
 import i18n from "@/i18n/config"
 
+const baseWidgetName = "chart"
 export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
   {
     id: "dataset-name",
@@ -76,11 +77,11 @@ export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
 
 export const CHART_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "chart-data",
+    id: `${baseWidgetName}-data`,
     groupName: i18n.t("DATA"),
     children: [
       {
-        id: "chart-data-config-type",
+        id: `${baseWidgetName}-data-config-type`,
         attrName: "configType",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -96,7 +97,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
 
       {
-        id: "chart-chartJson",
+        id: `${baseWidgetName}-chartJson`,
         labelName: i18n.t("data"),
         isSetterSingleRow: true,
         attrName: "chartJson",
@@ -107,7 +108,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         },
       },
       {
-        id: "chart-data",
+        id: `${baseWidgetName}-data`,
         labelName: i18n.t("X-axis values"),
         attrName: "xAxis",
         isSetterSingleRow: true,
@@ -121,11 +122,11 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "chart-layout",
+    id: `${baseWidgetName}-layout`,
     groupName: i18n.t("LAYOUT"),
     children: [
       {
-        id: "chart-layout-config-type",
+        id: `${baseWidgetName}-layout-config-type`,
         attrName: "layoutConfigType",
         setterType: "RADIO_GROUP_SETTER",
         defaultValue: "UIForm",
@@ -141,7 +142,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "chart-chartJson",
+        id: `${baseWidgetName}-chartJson`,
         labelName: i18n.t("Layout"),
         isSetterSingleRow: true,
         attrName: "layoutJson",
@@ -152,7 +153,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         },
       },
       {
-        id: "chart-title",
+        id: `${baseWidgetName}-title`,
         labelName: i18n.t("editor.inspect.setter_label.title"),
         attrName: "title",
         setterType: "INPUT_SETTER",
@@ -163,7 +164,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         },
       },
       {
-        id: "chart-xAxisTitle",
+        id: `${baseWidgetName}-xAxisTitle`,
         labelName: i18n.t("editor.inspect.setter_label.x_axis_title"),
         attrName: "xTitle",
         setterType: "INPUT_SETTER",
@@ -174,7 +175,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
 
       {
-        id: "chart-xAxisType",
+        id: `${baseWidgetName}-xAxisType`,
         labelName: i18n.t("editor.inspect.setter_label.x_axis_type"),
         attrName: "xAxisType",
         setterType: "BASE_SELECT_SETTER",
@@ -185,7 +186,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         },
       },
       {
-        id: "chart-yAxisTitle",
+        id: `${baseWidgetName}-yAxisTitle`,
         labelName: i18n.t("editor.inspect.setter_label.y_axis_title"),
         attrName: "yTitle",
         setterType: "INPUT_SETTER",
@@ -195,7 +196,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         },
       },
       {
-        id: "chart-legend-position",
+        id: `${baseWidgetName}-legend-position`,
         labelName: i18n.t("editor.inspect.setter_label.legend_position"),
         attrName: "legendPosition",
         setterType: "RADIO_GROUP_SETTER",

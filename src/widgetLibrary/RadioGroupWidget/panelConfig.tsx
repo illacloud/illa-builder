@@ -3,29 +3,32 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget/eventHandlerConfig"
 
+const baseWidgetName = "radio-group"
 export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "radioGroup-options",
+    id: `${baseWidgetName}-options`,
     groupName: i18n.t("editor.inspect.setter_group.options"),
     children: [
       {
-        id: "radioGroup-options-mode",
+        id: `${baseWidgetName}-options-mode`,
         attrName: "optionConfigureMode",
         setterType: "RADIO_GROUP_SETTER",
         options: [
           {
-            label: "Manual",
+            label: i18n.t("widget.public.select_options.manual"),
             value: "static",
           },
           {
-            label: "Mapped",
+            label: i18n.t("widget.public.select_options.mapped"),
             value: "dynamic",
           },
         ],
       },
       {
-        id: "radioGroup-basic-options",
+        id: `${baseWidgetName}-basic-options`,
         useCustomLayout: true,
         attrName: "manualOptions",
         setterType: "OPTION_LIST_SETTER",
@@ -33,21 +36,21 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => !value || value === "static",
         childrenSetter: [
           {
-            id: "radioGroup-options-label",
-            labelName: i18n.t("Label"),
+            id: `${baseWidgetName}-options-label`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "label",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
-            id: "radioGroup-options-value",
-            labelName: i18n.t("Value"),
+            id: `${baseWidgetName}-options-value`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "value",
             setterType: "INPUT_SETTER",
           },
           {
-            id: "radioGroup-options-disabled",
-            labelName: i18n.t("Disabled"),
+            id: `${baseWidgetName}-options-disabled`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disabled",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -55,7 +58,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "radioGroup-option-data-sources",
+        id: `${baseWidgetName}-option-data-sources`,
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
@@ -65,7 +68,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
       },
       {
-        id: `radioGroup-options-mapped`,
+        id: `${baseWidgetName}-options-mapped`,
         labelName: i18n.t("editor.inspect.setter_label.mapped_option"),
         useCustomLayout: true,
         attrName: "mappedOption",
@@ -74,7 +77,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => value === "dynamic",
         childrenSetter: [
           {
-            id: `radioGroup-mappedOption-labels`,
+            id: `${baseWidgetName}-mappedOption-labels`,
             labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "labels",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -82,7 +85,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `radioGroup-mappedOption-values`,
+            id: `${baseWidgetName}-mappedOption-values`,
             labelName: i18n.t("editor.inspect.setter_label.value"),
             attrName: "values",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -90,7 +93,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
             expectedType: VALIDATION_TYPES.ARRAY,
           },
           {
-            id: `radioGroup-mappedOption-disables`,
+            id: `${baseWidgetName}-mappedOption-disables`,
             labelName: i18n.t("editor.inspect.setter_label.disabled"),
             attrName: "disables",
             setterType: "OPTION_MAPPED_INPUT_SETTER",
@@ -100,7 +103,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "radioGroup-basic-defaultValue",
+        id: `${baseWidgetName}-basic-defaultValue`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
         labelDesc: i18n.t(
           "editor.inspect.setter_tooltip.component_default_value",
@@ -111,38 +114,48 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-label",
+    id: `${baseWidgetName}-label`,
     groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
-        id: "radioGroup-label-label",
+        id: `${baseWidgetName}-label-label`,
         labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "radioGroup-label-caption",
+        id: `${baseWidgetName}-label-caption`,
         labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "radioGroup-label-position",
+        id: `${baseWidgetName}-label-hidden`,
+        labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
+        attrName: "labelHidden",
+        setterType: "SWITCH_SETTER",
+      },
+      {
+        id: `${baseWidgetName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
-          { label: "Left", value: "left" },
-          { label: "Top", value: "top" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "top" },
         ],
       },
       {
-        id: "radioGroup-label-alignment",
+        id: `${baseWidgetName}-label-alignment`,
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -155,20 +168,28 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "radioGroup-label-labelWidth",
+        id: `${baseWidgetName}-label-labelWidth`,
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
+        bindAttrName: "labelHidden",
+        shown: (value) => !value,
       },
     ],
   },
   {
-    id: "radioGroup-interaction",
+    id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        id: "radioGroup-interaction-disabled",
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          RADIO_GROUP_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
+      {
+        id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
         attrName: "disabled",
@@ -179,11 +200,11 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-Adornments",
+    id: `${baseWidgetName}-Adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
-        id: "radioGroup-adornments-tooltip",
+        id: `${baseWidgetName}-adornments-tooltip`,
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
@@ -193,11 +214,11 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "radioGroup-layout",
+    id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "radioGroup-layout-hidden",
+        id: `${baseWidgetName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         setterType: "DYNAMIC_SWITCH_SETTER",
@@ -207,7 +228,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: "radioGroup-style-direction",
+        id: `${baseWidgetName}-style-direction`,
         labelName: i18n.t("editor.inspect.setter_label.group_layout"),
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
@@ -225,18 +246,18 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: `radioGroup-styles`,
+    id: `${baseWidgetName}-styles`,
     groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "radioGroup-style",
+        id: `${baseWidgetName}-style`,
         setterType: "LIST_SETTER",
         labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "radioGroup-style-color",
+            id: `${baseWidgetName}-style-color`,
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",

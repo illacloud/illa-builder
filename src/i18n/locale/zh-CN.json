@@ -466,6 +466,7 @@
         "min_date": "最小日期",
         "label": "标签",
         "caption": "纵标题",
+        "hidden_label": "隐藏标签",
         "label_position": "位置",
         "label_alignment": "对齐",
         "label_width": "宽度(%)",
@@ -537,22 +538,25 @@
         "group_by": "Group by",
         "datasets": "Datasets",
         "dataset_config": "Dataset config",
-        "title": "Title",
+        "title": " 标题",
         "x_axis_title": "X-axis title",
         "x_axis_type": "X-axis type",
         "y_axis_title": "Y-axis title",
         "legend_position": "Legend position",
-        "only_run_when": "执行条件",
+        "only_run_when": "先决条件",
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
           "remove": "Remove dataset"
-        }
+        },
+        "new_tab": "在新标签中打开",
+        "description": "描述",
+        "duration":"持续时间"
       },
       "setter_tooltip": {
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
         "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
-        "hidden": "动态控制组件是否为隐藏状态。您可以通过调用 <strong>{{ name }}.hidden</strong> 修改文本组件的隐藏状态",
+        "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态",
         "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
         "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
@@ -567,11 +571,18 @@
         "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
         "loading": "控制组件是否为加载状态。",
         "progress_percentage": "进度条的数值范围为 0-100",
-        "timeline_direction": "切换时间轴的方向"
+        "timeline_direction": "切换时间轴的方向",
+        "only_run_when": "在此输入该事件执行前必须满足的条件"
       },
       "setter_default_value": {
         "fill": "填充",
-        "outline": "描边"
+        "outline": "描边",
+        "message_type": {
+          "success": "成功",
+          "info": "信息",
+          "warning": "警告",
+          "error": "错误"
+        }
       },
       "setter_content": {
         "option_list": {
@@ -579,7 +590,10 @@
             "delete": "删除",
             "duplicate": "复制"
           },
-          "list_no_label": "无标签"
+          "list_no_label": "无标签",
+          "model_title": "编辑选项",
+          "title": "选项",
+          "new": "新建"
         },
         "list_setter": {
           "reset": "重置"
@@ -612,12 +626,26 @@
       "actions_title": "ACTIONS 列表 ",
       "components_title": "组件列表 ",
       "globals_title": "全局变量 "
+    },
+    "display_name": {
+      "validate_error": "\"{{ displayName }}\" 必须由字母或\"_\"开始, 并且只能包含字符，数字，\"_\", 或者 \"$\"",
+      "duplicate_error": "\"{{ displayName }}\" 已存在"
     }
   },
   "widget": {
+    "public": {
+      "left": "左",
+      "right": "右",
+      "top": "上",
+      "select_options": {
+        "manual": "自动",
+        "mapped": "手动"
+      }
+    },
     "text": {
       "name": "文本",
-      "default_value": "This is a text"
+      "default_value": "\uD83D\uDC4B 嗨！",
+      "text_model": "纯文本"
     },
     "button": {
       "name": "按钮",
@@ -688,7 +716,7 @@
       "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
       "delete_cancel_text": "取消",
       "delete_ok_text": "删除",
-      "delete": "移到回收站",
+      "delete": "删除",
       "error_title": "错误",
       "error_description": "请求错误",
       "error_button": "重试"
