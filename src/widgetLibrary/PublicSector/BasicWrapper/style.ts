@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 
-const getFlexDirection = (
+export const getFlexDirection = (
   labelPosition: "left" | "right" | "top" = "left",
 ): SerializedStyles => {
   switch (labelPosition) {
@@ -19,10 +19,7 @@ const getFlexDirection = (
   }
 }
 
-export const applyBasicWrapperStyle = (
-  hidden?: boolean,
-  labelPosition?: "left" | "right" | "top",
-): SerializedStyles => {
+export const applyBasicWrapperStyle = (hidden?: boolean): SerializedStyles => {
   const shapeStyle = hidden
     ? css`
         width: 0;
@@ -36,10 +33,9 @@ export const applyBasicWrapperStyle = (
     ${shapeStyle};
     overflow: hidden;
     display: flex;
-    ${getFlexDirection(labelPosition)}
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     user-select: text;
   `
 }
