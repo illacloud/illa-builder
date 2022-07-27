@@ -14,6 +14,7 @@ import {
 } from "./style"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import i18n from "@/i18n/config"
+import { MySQLConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/MySQLConfigure"
 
 export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
   props,
@@ -23,7 +24,6 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
     onBack,
     onSubmit,
     resourceType: resourceTypeProps,
-    actionType,
   } = props
   const dispatch = useDispatch()
   const resource = useSelector(getActionList).find(
@@ -46,12 +46,20 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
     formRef.current?.requestSubmit()
   }
 
+  console.log({ resourceTitle }, resourceTypeProps, resource?.actionType)
+
   return (
     <div css={formContainerStyle}>
       <div css={formTitleStyle}>
         {i18n.t("editor.action.form.title.configure", { name: resourceTitle })}
       </div>
       <div css={formBodyStyle}>
+        {resourceType === "mysql" ? (
+          <MySQLConfigure
+            connectionRef={connectionRef}
+            resourceId={resourceId}
+          />
+        ) : null}
         {/*{renderResourceNode(*/}
         {/*    resourceType,*/}
         {/*    connectionRef,*/}
