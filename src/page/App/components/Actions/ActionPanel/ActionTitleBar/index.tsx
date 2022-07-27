@@ -33,6 +33,8 @@ export const ActionTitleBar: FC = () => {
       runMode = "save"
     } else if (action.triggerMode === "automate") {
       runMode = "save_and_run"
+    } else {
+      runMode = "save"
     }
   }
 

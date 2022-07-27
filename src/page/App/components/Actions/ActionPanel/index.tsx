@@ -9,6 +9,7 @@ import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/Tran
 
 export const ActionPanel: FC = () => {
   const selectedAction = useSelector(getSelectedAction)
+  console.log("longbo", selectedAction)
   // null selected
   if (selectedAction === null) {
     return null

@@ -9,11 +9,12 @@ import { Option, Select } from "@illa-design/select"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { Space } from "@illa-design/space"
-import { AddIcon, EditableTextWidgetIcon, PenIcon } from "@illa-design/icon"
+import { AddIcon, PenIcon } from "@illa-design/icon"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { configActions } from "@/redux/config/configSlice"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ButtonProps } from "@illa-design/button"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
@@ -29,12 +30,17 @@ export const ResourceChoose: FC = () => {
           width="200px"
           value={action.resourceId}
           onChange={(value) => {
-            dispatch(
-              configActions.updateSelectedAction({
-                ...action,
-                resourceId: value,
-              }),
-            )
+            const resource = resourceList.find((r) => r.resourceId === value)
+            if (resource != undefined) {
+              dispatch(
+                configActions.updateSelectedAction({
+                  ...action,
+                  actionType: resource.resourceType,
+                  resourceId: value,
+                  content: getInitialContent(resource.resourceType),
+                }),
+              )
+            }
           }}
           addonAfter={{
             buttonProps: {

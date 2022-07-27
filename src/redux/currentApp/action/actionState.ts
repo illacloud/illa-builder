@@ -1,4 +1,9 @@
-import { Params } from "@/redux/resource/resourceState"
+import { MysqlAction } from "./mysqlAction"
+import { PostgresqlAction } from "./postgresqlAction"
+import { RedisAction } from "./redisAction"
+import { BodyContent, RestApiAction } from "./restapiAction"
+import { MongodbAction } from "./mongodbAction"
+import { TransformerAction } from "./transformerAction"
 
 export interface Transformer {
   rawData: string
@@ -29,42 +34,12 @@ export interface ActionItem<T extends ActionContent> {
   content: T
 }
 
-export interface MysqlAction {
-  sqlString: string
-}
-
-export interface RestApiAction<T extends BodyContent> {
-  method: string
-  urlParams: Params[]
-  headers: Params[]
-  cookies: Params[]
-  bodyType: BodyType
-  body: T
-}
-
-export interface TransformerAction {
-  transformerString: string
-}
-
 export type ActionContent =
   | MysqlAction
   | RestApiAction<BodyContent>
   | TransformerAction
-
-export type BodyType = "JSON" | "none" | "form-data" | "x-www-form-urlencoded"
-
-export type JSONBody = Record<string, string>
-
-export type NoneBody = null
-
-export type XWWWFormURLEncodedBody = Record<string, string>
-
-export type FormDataBody = Record<string, string>
-
-export type BodyContent =
-  | JSONBody
-  | NoneBody
-  | FormDataBody
-  | XWWWFormURLEncodedBody
+  | MongodbAction
+  | PostgresqlAction
+  | RedisAction
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
