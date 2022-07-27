@@ -6,6 +6,7 @@ import {
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
 
 export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   {
@@ -72,7 +73,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
             setterType: "EDITABLE_INPUT_SETTER",
             attrName: "textSize",
-            iconName: "textSize",
+            iconName: EditableInputIconType.TEXT_SIZE,
             defaultValue: "14px",
             expectedType: VALIDATION_TYPES.STRING,
           },

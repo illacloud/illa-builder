@@ -1,5 +1,6 @@
 import { SetterType } from "@/page/App/components/PanelSetters"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
 
 export interface PanelHeaderActionProps {
   widgetDisplayName: string
@@ -23,7 +24,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   isSetterSingleRow?: boolean
   defaultValue?: any
   placeholder?: string
-  iconName?: string
+  iconName?: EditableInputIconType
   shown?: (value: any | { [attrName: string]: any }) => boolean
   bindAttrName?: string | string[]
 }

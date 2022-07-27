@@ -4,6 +4,12 @@ export interface BaseInputSetterProps extends BaseSetter {
   placeholder?: string
 }
 
+export enum EditableInputIconType {
+  RADIUS = "radius",
+  STROKE_WIDTH = "strokeWidth",
+  TEXT_SIZE = "textSize",
+}
+
 export interface EditableInputSetterProps extends BaseInputSetterProps {
-  iconName?: "radius" | "strokeWidth" | "textSize"
+  iconName?: EditableInputIconType
 }

@@ -46,4 +46,4 @@ export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
   )
 }
 
-OptionMappedInputSetter.displayName = "BaseInput"
+OptionMappedInputSetter.displayName = "OptionMappedInputSetter"
