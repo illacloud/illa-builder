@@ -123,7 +123,7 @@ export const RESTAPIConfigure = forwardRef<
       </div>
 
       <div css={gridRowContainerStyle}>
-        <label css={labelTextStyle}>
+        <label css={requiredLabelTextStyle}>
           {i18n.t("editor.action.resource.restapi.label.base_url")}
         </label>
         <Controller
@@ -131,15 +131,24 @@ export const RESTAPIConfigure = forwardRef<
             <Input
               borderColor="techPurple"
               {...field}
+              error={!!errors.baseUrl}
               placeholder={i18n.t(
                 "editor.action.resource.restapi.placeholder.base_url",
               )}
               maxLength={200}
             />
           )}
+          rules={{
+            required: i18n.t("editor.action.form.required") as string,
+          }}
           control={control}
           name="baseUrl"
         />
+        {errors.baseUrl && (
+          <div css={css(errorMessageStyle, applyGridColIndex(2))}>
+            {errors.baseUrl.message}
+          </div>
+        )}
       </div>
 
       <div css={gridRowContainerStyle}>
