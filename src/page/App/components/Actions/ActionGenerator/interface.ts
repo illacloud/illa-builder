@@ -6,5 +6,7 @@ export interface ActionInfo extends ActionTypeInfo {
 
 export interface ActionGeneratorProps {
   visible?: boolean
+  edit?: boolean
+  resourceId?: string
   onClose: () => void
 }

@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
@@ -19,6 +19,8 @@ import {
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
   appsContainerStyle,
+  editButtonStyle,
+  itemMenuButtonStyle,
   listTitleContainerStyle,
   listTitleStyle,
 } from "@/page/Dashboard/DashboardApps/style"
@@ -32,6 +34,12 @@ import {
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { cloneDeep } from "lodash"
 import { Divider } from "@illa-design/divider"
+import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEditor"
+import { Dropdown } from "@illa-design/dropdown"
+import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
+import { MoreIcon } from "@illa-design/icon"
+import { Modal } from "@illa-design/modal"
+import { Message } from "@illa-design/message"
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -52,6 +60,52 @@ function getDbName(resource: Resource<ResourceContent>): string {
       break
   }
   return name
+}
+
+const ExtraColComponent: FC<{
+  resourceId: string
+  showFormVisible: () => void
+  setCurId: (curResourceId: string) => void
+  editActionType: () => void
+}> = (props) => {
+  const { t } = useTranslation()
+  const { resourceId, showFormVisible, setCurId, editActionType } = props
+  return (
+    <>
+      <Button
+        className="edit-button"
+        _css={editButtonStyle}
+        colorScheme="techPurple"
+        onClick={() => {
+          setCurId(resourceId)
+          editActionType()
+          showFormVisible()
+        }}
+        title="editButton"
+      >
+        {t("edit")}
+      </Button>
+      <Dropdown
+        position="br"
+        trigger="click"
+        triggerProps={{ closeDelay: 0, openDelay: 0 }}
+        dropList={
+          <DashboardResourcesItemMenu
+            resourceId={resourceId}
+            setCurId={setCurId}
+            showFormVisible={showFormVisible}
+            editActionType={editActionType}
+          />
+        }
+      >
+        <Button
+          _css={itemMenuButtonStyle}
+          colorScheme="grayBlue"
+          leftIcon={<MoreIcon size="14px" />}
+        />
+      </Dropdown>
+    </>
+  )
 }
 
 function NameColComponent(type: ResourceType, text: string) {
@@ -89,6 +143,9 @@ export const DashboardResources: FC = () => {
   const { t } = useTranslation()
 
   const resourcesList: ResourceListState = useSelector(getAllResources)
+  const [generatorVisible, setGeneratorVisible] = useState<boolean>()
+  const [curResourceId, setCurResourceId] = useState<string>("")
+  const [edit, setEdit] = useState<boolean>()
 
   const countColumnsWidth = (itemWidth: number, minWidth: number) => {
     const windowSizeRate = +(
@@ -131,6 +188,16 @@ export const DashboardResources: FC = () => {
     [],
   )
 
+  const showFromFunction = () => {
+    setGeneratorVisible(true)
+  }
+  const changeCurResourceId = (curResourceId: string) => {
+    setCurResourceId(curResourceId)
+  }
+  const editActionType = () => {
+    setEdit(true)
+  }
+
   const data = useMemo(() => {
     const result: any[] = []
     const tmpResourcesList = cloneDeep(resourcesList)
@@ -144,6 +211,14 @@ export const DashboardResources: FC = () => {
           typeCol: TypeColComponent(item.resourceType),
           dbNameCol: DbNameColComponent(getDbName(item)),
           ctimeCol: CtimeColComponent(item.updatedAt),
+          extraCol: (
+            <ExtraColComponent
+              resourceId={item.resourceId}
+              showFormVisible={() => showFromFunction()}
+              setCurId={changeCurResourceId}
+              editActionType={editActionType}
+            />
+          ),
         })
       })
     return result
@@ -153,7 +228,13 @@ export const DashboardResources: FC = () => {
     <div css={appsContainerStyle}>
       <div css={listTitleContainerStyle}>
         <span css={listTitleStyle}>{t("resources")}</span>
-        <Button colorScheme="techPurple">
+        <Button
+          colorScheme="techPurple"
+          onClick={() => {
+            setEdit(false)
+            setGeneratorVisible(true)
+          }}
+        >
           {t("dashboard.resources.create_resources")}
         </Button>
       </div>
@@ -167,6 +248,14 @@ export const DashboardResources: FC = () => {
         />
       ) : null}
       {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
+      <ResourceEditor
+        visible={generatorVisible}
+        edit={edit}
+        resourceId={curResourceId}
+        onClose={() => {
+          setGeneratorVisible(false)
+        }}
+      />
     </div>
   )
 }

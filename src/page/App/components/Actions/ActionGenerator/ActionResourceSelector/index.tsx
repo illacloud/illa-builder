@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { ActionResourceSeletorProps } from "./interface"
@@ -28,7 +28,6 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
     onCreateResource,
     defaultSelected = "",
   } = props
-  const dispatch = useDispatch()
   const resourceList = useSelector(getAllResources)
     .filter((r) => r.resourceType === actionType)
     .sort(
@@ -36,7 +35,6 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
   const [selectedResourceId, setSelectedResourceId] = useState<string>("")
-
 
   useEffect(() => {
     if (resourceList.length === 0) {
@@ -97,7 +95,9 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
           </Button>
           <Button
             colorScheme="techPurple"
-            onClick={() => actionType && onCreateAction?.(actionType, selectedResourceId)}
+            onClick={() =>
+              actionType && onCreateAction?.(actionType, selectedResourceId)
+            }
             loading={loading}
           >
             {i18n.t(

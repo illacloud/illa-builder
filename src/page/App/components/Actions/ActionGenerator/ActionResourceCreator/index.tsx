@@ -5,7 +5,6 @@ import { PaginationPreIcon } from "@illa-design/icon"
 import { Notification } from "@illa-design/notification"
 import i18n from "@/i18n/config"
 import { Api } from "@/api/base"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { MySQLConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/MySQLConfigure"
 import { RESTAPIConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/RestAPIConfigure"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
@@ -21,6 +20,7 @@ import {
   formBodyStyle,
 } from "./style"
 import { Message } from "@illa-design/message"
+import { getAllResources } from "@/redux/resource/resourceSelector"
 
 export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
   props,
@@ -33,12 +33,11 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
     resourceType: resourceTypeProps,
   } = props
   const dispatch = useDispatch()
-  const resource = useSelector(getActionList).find(
+  const resource = useSelector(getAllResources).find(
     (i) => i.resourceId === resourceId,
   )
   // if receive `resourceTypeProps` means add new
-  const resourceType = resourceTypeProps || resource?.actionType
-
+  const resourceType = resourceTypeProps || resource?.resourceType
   const connectionRef = useRef<ConnectionRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 

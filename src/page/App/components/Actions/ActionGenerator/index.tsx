@@ -20,7 +20,6 @@ import i18n from "@/i18n/config"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { ActionTypeCategory } from "./ActionTypeSelector/interface"
-import { updateSelectedAction } from "@/redux/config/configReducer"
 import { configActions } from "@/redux/config/configSlice"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
