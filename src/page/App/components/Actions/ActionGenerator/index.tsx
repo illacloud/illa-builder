@@ -20,6 +20,8 @@ import i18n from "@/i18n/config"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { ActionTypeCategory } from "./ActionTypeSelector/interface"
+import { updateSelectedAction } from "@/redux/config/configReducer"
+import { configActions } from "@/redux/config/configSlice"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
@@ -53,12 +55,12 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         data,
       },
       ({ data }: { data: ActionItem<ActionContent> }) => {
-        dispatch(actionActions.addActionItemReducer(data))
         Message.success(
           i18n.t("editor.action.action_list.message.success_created"),
         )
+        dispatch(actionActions.addActionItemReducer(data))
+        dispatch(configActions.updateSelectedAction(data))
         onClose()
-        // updateActiveActionItemId(actionId)
       },
       () => {
         Message.error(i18n.t("editor.action.action_list.message.failed"))
