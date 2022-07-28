@@ -39,7 +39,6 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
 
 
   useEffect(() => {
-    console.log({ resourceList })
     if (resourceList.length === 0) {
       onCreateResource?.(actionType)
     }

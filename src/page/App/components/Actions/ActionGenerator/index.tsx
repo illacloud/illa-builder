@@ -19,11 +19,13 @@ import { Message } from "@illa-design/message"
 import i18n from "@/i18n/config"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
+import { ActionTypeCategory } from "./ActionTypeSelector/interface"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
   const [step, setStep] = useState<0 | 1 | 2>(0)
   const [actionType, setResourceType] = useState<ActionType>()
+  const [category, setCategory] = useState<ActionTypeCategory>()
   const [defaultSelectedResourceId, setDefaultSelectedResourceId] = useState("")
   const [loading, setLoading] = useState<boolean>()
   const dispatch = useDispatch()
@@ -68,9 +70,8 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       },
     )
   }
-  
+
   const onAddAction = (info: ActionInfo) => {
-    console.log(info)
     const { actionType, resourceId } = info
     onAddActionItem(actionType, resourceId)
   }
@@ -92,6 +93,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
           onSelect={(info) => {
             const { category, actionType } = info
 
+            setCategory(category)
             switch (category) {
               case "jsTransformer": {
                 onAddAction(info)
@@ -125,6 +127,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         />
       ) : (
         <ActionResourceCreator
+          category={category}
           resourceType={actionType}
           onBack={() => {
             setStep(0)
