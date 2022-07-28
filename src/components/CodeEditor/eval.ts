@@ -13,7 +13,6 @@ export async function executeMultilineJS(code: string) {
       // evalFn(currentState.components)
     }
   } catch (err: any) {
-    console.log("JS execution failed: ", err)
     error = err?.stack?.split?.("\n")?.[0]
     result = { status: "failed", data: { message: error, description: error } }
   }

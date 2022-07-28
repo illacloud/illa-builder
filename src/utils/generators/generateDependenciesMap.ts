@@ -76,7 +76,6 @@ export const generateDependencies = (
         try {
           return extractReferencesFromScript(script, allKeys)
         } catch (e) {
-          console.log("error", e)
           return []
         }
       }),

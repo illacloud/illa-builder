@@ -40,7 +40,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
 
   return (
     <div css={restapiPanelContainerStyle}>
-      <ResourceChoose />
+      <ResourceChoose action={currentAction} />
       <div css={restapiItemStyle}>
         <span css={restapiItemLabelStyle}>
           {t("editor.action.resource.restapi.label.action_type")}

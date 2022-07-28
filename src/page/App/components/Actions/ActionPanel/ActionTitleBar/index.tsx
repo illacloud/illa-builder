@@ -18,7 +18,7 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { Message } from "@illa-design/message"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionTitleBarProps } from "./interface"
-import store from "@/store"
+import { RootState } from "@/store"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -26,8 +26,8 @@ export type RunMode = "save" | "run" | "save_and_run"
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { action, onCopy, onDelete } = props
 
-  const originAction = store.getState().currentApp.action.find((v) => {
-    return v.displayName === action.displayName
+  const originAction = useSelector((state: RootState) => {
+    return state.currentApp.action.find((a) => a.actionId === action.actionId)
   })
 
   const isChanged = JSON.stringify(action) !== JSON.stringify(originAction)
