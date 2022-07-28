@@ -17,7 +17,10 @@ import { ButtonProps } from "@illa-design/button"
 import store from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 
-export const ResourceChoose: FC = () => {
+export const ResourceChoose: FC<{
+  onChange?: (edit?: boolean) => void
+}> = (props) => {
+  const { onChange } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const action = useSelector(getSelectedAction)!!
@@ -53,10 +56,19 @@ export const ResourceChoose: FC = () => {
               variant: "outline",
               colorScheme: "gray",
               leftIcon: <PenIcon />,
+              onClick: () => {
+                onChange?.(true)
+              },
             } as ButtonProps,
           }}
         >
-          <Option key="create" isSelectOption={false}>
+          <Option
+            key="create"
+            isSelectOption={false}
+            onClick={() => {
+              onChange?.(false)
+            }}
+          >
             <Space
               size="8px"
               direction="horizontal"
