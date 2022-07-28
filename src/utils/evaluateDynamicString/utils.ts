@@ -133,3 +133,11 @@ export const isPathInDynamicAttrPaths = (
   }
   return false
 }
+
+export const wrapFunctionCode = (code: string) => {
+  return `
+    (function (){
+      ${code}
+    })
+  `
+}

@@ -1,6 +1,9 @@
 import store from "@/store"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { Message } from "@illa-design/message"
 
 export const transformEvents = (event: any) => {
   if (!event) return
@@ -62,5 +65,27 @@ export const transformEvents = (event: any) => {
   return {
     script: `{{}}`,
     enabled: "{{false}}",
+  }
+}
+
+export const runEventHandler = (
+  scriptObj: any,
+  globalData: Record<string, any>,
+) => {
+  const eventObj = transformEvents(scriptObj)
+  if (!eventObj) return
+  const { script, enabled } = eventObj
+  if (enabled || enabled == undefined) {
+    if (typeof script === "string" && isDynamicString(script)) {
+      try {
+        evaluateDynamicString("events", script, globalData)
+      } catch (e) {
+        Message.error("eventHandler run error")
+      }
+      return
+    }
+    if (typeof script === "function") {
+      script()
+    }
   }
 }

@@ -5,12 +5,17 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import store from "@/store"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { isDynamicString, wrapCode } from "@/utils/evaluateDynamicString/utils"
+import {
+  isDynamicString,
+  wrapFunctionCode,
+} from "@/utils/evaluateDynamicString/utils"
 import { Api } from "@/api/base"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { transformEvents } from "@/widgetLibrary/PublicSector/utils/transformEvents"
+import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import { Message } from "@illa-design/message"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
 
 export const runMysql = (
   resourceId: string,
@@ -35,44 +40,39 @@ export const runMysql = (
       },
     },
     (data) => {
+      // @ts-ignore
+      //TODO: @aruseito not use any
+      const rawData = data.data.Rows
+      let calcResult = rawData
       if (transformer?.enable) {
-        const evaluateTransform = `(function (){
-          ${transformer.rawData}
-        })`
+        const evaluateTransform = wrapFunctionCode(transformer.rawData)
         const canEvalString = `{{${evaluateTransform}()}}`
-        const calcContext = data.data.Rows
         try {
-          const res = evaluateDynamicString("events", canEvalString, {
+          calcResult = evaluateDynamicString("events", canEvalString, {
             ...BUILDER_CALC_CONTEXT,
-            data: calcContext,
+            data: rawData,
           })
         } catch (e) {
           console.log(e)
         }
       }
+      store.dispatch(
+        actionActions.updateActionItemResultReducer({
+          displayName,
+          data: calcResult,
+        }),
+      )
       successEvent.forEach((scriptObj) => {
-        const eventObj = transformEvents(scriptObj)
-        if (!eventObj) return
-        const { script, enabled } = eventObj
-        if (enabled || enabled == undefined) {
-          evaluateDynamicString("events", script, BUILDER_CALC_CONTEXT)
-          return
-        }
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     },
     (res) => {
       failedEvent.forEach((scriptObj) => {
-        const eventObj = transformEvents(scriptObj)
-        if (!eventObj) return
-        const { script, enabled } = eventObj
-        if (enabled || enabled == undefined) {
-          evaluateDynamicString("events", script, BUILDER_CALC_CONTEXT)
-          return
-        }
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     },
     () => {
-      console.log("crash")
+      Message.error("not online")
     },
     (loading) => {},
   )

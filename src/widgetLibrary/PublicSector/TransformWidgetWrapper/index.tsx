@@ -4,19 +4,17 @@ import { get } from "lodash"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
-import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { BasicWrapper } from "@/widgetLibrary/PublicSector/BasicWrapper"
 import Label from "@/widgetLibrary/PublicSector/Label"
-import { transformEvents } from "@/widgetLibrary/PublicSector/utils/transformEvents"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
+import { runEventHandler } from "@/utils/eventHandlerHelper"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -66,36 +64,13 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
 
   const handleOnChange = () => {
     getOnChangeEventScripts().forEach((scriptObj) => {
-      const eventObj = transformEvents(scriptObj)
-      if (!eventObj) return
-      const { script, enabled } = eventObj
-      if (enabled || enabled == undefined) {
-        if (typeof script === "string" && isDynamicString(script)) {
-          evaluateDynamicString("events", script, globalData)
-          return
-        }
-        if (typeof script === "function") {
-          script()
-        }
-      }
+      runEventHandler(scriptObj, globalData)
     })
   }
 
   const handleOnClick = () => {
     getOnClickEventScripts().forEach((scriptObj) => {
-      const eventObj = transformEvents(scriptObj)
-      if (!eventObj) return
-      const { script, enabled } = eventObj
-      console.log(eventObj)
-      if (enabled || enabled == undefined) {
-        if (typeof script === "string" && isDynamicString(script)) {
-          evaluateDynamicString("events", script, globalData)
-          return
-        }
-        if (typeof script === "function") {
-          script()
-        }
-      }
+      runEventHandler(scriptObj, globalData)
     })
   }
 

@@ -37,6 +37,7 @@ export interface ActionItem<T extends ActionContent> {
   createdBy: string
   updatedAt: string
   updatedBy: string
+  data?: Record<string, any>
   content: T
 }
 
@@ -49,3 +50,8 @@ export type ActionContent =
   | RedisAction
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
+
+export interface UpdateActionItemPayload {
+  displayName: string
+  data: Record<string, any>
+}
