@@ -6,8 +6,8 @@ import { MongodbActionInitial } from "./mongodbAction"
 import { PostgresqlActionInitial } from "@/redux/currentApp/action/postgresqlAction"
 import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
 
-export function getInitialContent(resourceType: ActionType): ActionContent {
-  switch (resourceType) {
+export function getInitialContent(actionType: ActionType): ActionContent {
+  switch (actionType) {
     case "mongodb":
       return MongodbActionInitial
     case "mysql":

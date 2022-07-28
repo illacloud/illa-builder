@@ -14,12 +14,16 @@ export interface ConfigState {
   scale: number
   selectedComponents: ComponentNode[]
   selectedAction: ActionItem<ActionContent> | null
+  cacheActionContent: {
+    [key: string]: ActionContent
+  }
   expandedKeys: string[]
   mode: IllaMode
 }
 
 export const ConfigInitialState: ConfigState = {
   openLeftPanel: true,
+  cacheActionContent: {},
   mode: "edit",
   openBottomPanel: true,
   openRightPanel: true,

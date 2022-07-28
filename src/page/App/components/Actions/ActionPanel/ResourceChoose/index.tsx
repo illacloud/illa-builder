@@ -37,7 +37,7 @@ export const ResourceChoose: FC = () => {
                   ...action,
                   actionType: resource.resourceType,
                   resourceId: value,
-                  content: getInitialContent(resource.resourceType),
+                  content: getInitialContent(action.actionType),
                 }),
               )
             }
