@@ -330,7 +330,7 @@
           "name": "REST API",
           "label": {
             "name": "Name",
-            "action_type": "Action Type",
+            "action_type": "Method",
             "url_parameters": "URL Parameters",
             "headers": "Headers",
             "cookies": "Cookies",
