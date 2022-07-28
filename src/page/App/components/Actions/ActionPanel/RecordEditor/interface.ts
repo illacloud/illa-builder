@@ -1,7 +1,8 @@
 import { Params } from "@/redux/resource/resourceState"
 
 export interface RecordEditorProps {
-  label: string
+  label: any
   records: Params[]
-  onChange: (records: Params[]) => void
+  onAdd: () => void
+  onDelete: (index: number, record: Params) => void
 }
