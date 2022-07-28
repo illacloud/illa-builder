@@ -66,7 +66,7 @@ export const ActionPanel: FC = () => {
   }
 
   function onCopyActionItem(action: ActionItem<ActionContent>) {
-    const newAction = omit(action, ["resourceId"])
+    const newAction = omit(action, ["displayName"])
     const displayName = DisplayNameGenerator.getDisplayName(action.actionType)
     const data: Partial<ActionItem<{}>> = {
       ...newAction,
@@ -86,7 +86,7 @@ export const ActionPanel: FC = () => {
         dispatch(configActions.updateSelectedAction(data))
       },
       () => {
-        Message.error(i18n.t("dashboard.resources.trash_success"))
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
         DisplayNameGenerator.removeDisplayName(displayName)
       },
       () => {},
@@ -107,7 +107,7 @@ export const ActionPanel: FC = () => {
         const { displayName } = data
         DisplayNameGenerator.removeDisplayName(displayName)
         dispatch(actionActions.removeActionItemReducer(displayName))
-        Message.error(i18n.t("dashboard.resources.trash_success"))
+        Message.success(i18n.t("dashboard.resources.trash_success"))
       },
       () => {
         Message.error(i18n.t("editor.action.action_list.message.failed"))
