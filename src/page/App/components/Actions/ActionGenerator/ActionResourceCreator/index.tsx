@@ -20,12 +20,14 @@ import {
   formTitleStyle,
   formBodyStyle,
 } from "./style"
+import { Message } from "@illa-design/message"
 
 export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
   props,
 ) => {
   const {
     resourceId,
+    category,
     onBack,
     onCreated,
     resourceType: resourceTypeProps,
@@ -77,10 +79,15 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         data,
       },
       ({ data }) => {
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_created"),
+        )
         dispatch(resourceActions.addResourceItemReducer(data))
         onCreated?.(data.resourceId)
       },
-      () => {},
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+      },
       () => {},
       (loading) => setCreateBtnLoading(loading),
     )
@@ -97,10 +104,15 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         data,
       },
       ({ data }) => {
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_saved"),
+        )
         dispatch(resourceActions.updateResourceItemReducer(data))
         onCreated?.(resourceId)
       },
-      () => {},
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+      },
       () => {},
       (loading) => setCreateBtnLoading(loading),
     )
@@ -155,17 +167,19 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
 
         <div css={formFooterFillingStyle} />
 
-        <Button
-          size="medium"
-          colorScheme="gray"
-          type="button"
-          onClick={() => {
-            connectionRef.current?.testConnection()
-          }}
-          loading={testConnectLoading}
-        >
-          {i18n.t("editor.action.form.btn.test_connection")}
-        </Button>
+        {category === "databases" ? (
+          <Button
+            size="medium"
+            colorScheme="gray"
+            type="button"
+            onClick={() => {
+              connectionRef.current?.testConnection()
+            }}
+            loading={testConnectLoading}
+          >
+            {i18n.t("editor.action.form.btn.test_connection")}
+          </Button>
+        ) : null}
 
         <Button
           size="medium"
