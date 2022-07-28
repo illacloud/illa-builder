@@ -52,7 +52,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
-                selectedAction && onCopyItem(selectedAction)
+                onCopyItem(action)
               }}
             />
             <Item
@@ -60,7 +60,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               title={t("editor.action.action_list.contextMenu.delete")}
               fontColor={globalColor(`--${illaPrefix}-red-03`)}
               onClick={() => {
-                selectedAction && onDeleteItem(selectedAction)
+                onDeleteItem(action)
               }}
             />
           </DropList>
