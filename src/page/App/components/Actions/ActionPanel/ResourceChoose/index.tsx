@@ -14,9 +14,13 @@ import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { configActions } from "@/redux/config/configSlice"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ButtonProps } from "@illa-design/button"
+import store from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 
-export const ResourceChoose: FC = () => {
+export const ResourceChoose: FC<{
+  onChange?: (edit?: boolean) => void
+}> = (props) => {
+  const { onChange } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const action = useSelector(getSelectedAction)!!
@@ -27,6 +31,7 @@ export const ResourceChoose: FC = () => {
       <span css={resourceTitleStyle}>{t("resources")}</span>
       <Space direction="horizontal" size="8px">
         <Select
+          colorScheme="techPurple"
           width="200px"
           value={action.resourceId}
           onChange={(value) => {
@@ -35,9 +40,13 @@ export const ResourceChoose: FC = () => {
               dispatch(
                 configActions.updateSelectedAction({
                   ...action,
+                  // selected resource is same as action type
                   actionType: resource.resourceType,
                   resourceId: value,
-                  content: getInitialContent(resource.resourceType),
+                  content:
+                    store.getState().config.cacheActionContent[
+                      resource.resourceType
+                    ] ?? getInitialContent(resource.resourceType),
                 }),
               )
             }
@@ -47,10 +56,19 @@ export const ResourceChoose: FC = () => {
               variant: "outline",
               colorScheme: "gray",
               leftIcon: <PenIcon />,
+              onClick: () => {
+                onChange?.(true)
+              },
             } as ButtonProps,
           }}
         >
-          <Option key="create" isSelectOption={false}>
+          <Option
+            key="create"
+            isSelectOption={false}
+            onClick={() => {
+              onChange?.(false)
+            }}
+          >
             <Space
               size="8px"
               direction="horizontal"
@@ -73,6 +91,7 @@ export const ResourceChoose: FC = () => {
           })}
         </Select>
         <Select
+          colorScheme="techPurple"
           width="400px"
           value={action.triggerMode}
           onChange={(value) => {

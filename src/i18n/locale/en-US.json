@@ -187,6 +187,7 @@
           "load_action_list_fail": "Get Action list fail: {{message}}",
           "load_resource_fail": "Get resource list fail: {{message}}",
           "success_created": "Successfully created!",
+          "success_saved": "Successfully saved!",
           "failed": "Failed to connect to server"
         },
         "action_generator": {
@@ -330,7 +331,7 @@
           "name": "REST API",
           "label": {
             "name": "Name",
-            "action_type": "Action Type",
+            "action_type": "Method",
             "url_parameters": "URL Parameters",
             "headers": "Headers",
             "cookies": "Cookies",

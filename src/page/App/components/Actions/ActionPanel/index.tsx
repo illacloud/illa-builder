@@ -6,24 +6,40 @@ import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/Action
 import { MysqlPanel } from "./MysqlPanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import {
+  BodyContent,
+  RestApiAction,
+} from "@/redux/currentApp/action/restapiAction"
+import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 
 export const ActionPanel: FC = () => {
   const selectedAction = useSelector(getSelectedAction)
-  console.log("longbo", selectedAction)
   // null selected
-  if (selectedAction === null) {
+  if (selectedAction === null || selectedAction === undefined) {
     return null
   }
   let actionPanel: ReactNode
   switch (selectedAction.actionType) {
     case "mysql":
-      actionPanel = <MysqlPanel />
+      actionPanel = (
+        <MysqlPanel action={selectedAction as ActionItem<MysqlAction>} />
+      )
       break
     case "restapi":
-      actionPanel = <RestApiPanel />
+      actionPanel = (
+        <RestApiPanel
+          action={selectedAction as ActionItem<RestApiAction<BodyContent>>}
+        />
+      )
       break
     case "transformer":
-      actionPanel = <TransformerPanel />
+      actionPanel = (
+        <TransformerPanel
+          action={selectedAction as ActionItem<TransformerAction>}
+        />
+      )
       break
     case "mongodb":
       break
@@ -36,7 +52,11 @@ export const ActionPanel: FC = () => {
   }
   return (
     <div css={actionPanelStyle}>
-      <ActionTitleBar />
+      <ActionTitleBar
+        action={selectedAction}
+        onCopy={() => {}}
+        onDelete={() => {}}
+      />
       {actionPanel}
     </div>
   )

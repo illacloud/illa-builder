@@ -51,6 +51,15 @@ export type ActionContent =
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 
+export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
+  transformer: {
+    enable: false,
+    rawData:
+      "// The variable 'data' allows you to reference the request's data in the transformer. \n// example: return data.find(element => element.isError)\nreturn data.error",
+  },
+  triggerMode: "manually",
+}
+
 export interface UpdateActionItemPayload {
   displayName: string
   data: Record<string, any>

@@ -69,7 +69,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                     const selectedAction =
                       store.getState().config.selectedAction
                     if (selectedAction === null) {
-                      dispatch(configActions.updateSelectedAction(action))
+                      dispatch(configActions.changeSelectedAction(action))
                       return
                     }
                     // is a change action
@@ -87,7 +87,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                         JSON.stringify(lastAction) ===
                         JSON.stringify(selectedAction)
                       ) {
-                        dispatch(configActions.updateSelectedAction(action))
+                        dispatch(configActions.changeSelectedAction(action))
                       } else {
                         // show dialog
                         Modal.confirm({
@@ -95,7 +95,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                             "editor.action.action_list.message.confirm_switch",
                           ),
                           onOk: () => {
-                            dispatch(configActions.updateSelectedAction(action))
+                            dispatch(configActions.changeSelectedAction(action))
                           },
                         })
                       }

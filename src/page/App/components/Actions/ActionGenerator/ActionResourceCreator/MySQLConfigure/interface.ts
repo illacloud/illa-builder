@@ -1,10 +1,6 @@
 import { RefObject } from "react"
 import { ConnectionRef } from "../interface"
-import {
-  MysqlResource,
-  Resource,
-  ResourceType,
-} from "@/redux/resource/resourceState"
+import { MysqlResource, Resource } from "@/redux/resource/resourceState"
 
 export interface MySQLConfigureProps {
   resourceId?: string

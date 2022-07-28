@@ -5,7 +5,6 @@ import { PaginationPreIcon } from "@illa-design/icon"
 import { Notification } from "@illa-design/notification"
 import i18n from "@/i18n/config"
 import { Api } from "@/api/base"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { MySQLConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/MySQLConfigure"
 import { RESTAPIConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/RestAPIConfigure"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
@@ -20,23 +19,25 @@ import {
   formTitleStyle,
   formBodyStyle,
 } from "./style"
+import { Message } from "@illa-design/message"
+import { getAllResources } from "@/redux/resource/resourceSelector"
 
 export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
   props,
 ) => {
   const {
     resourceId,
+    category,
     onBack,
     onCreated,
     resourceType: resourceTypeProps,
   } = props
   const dispatch = useDispatch()
-  const resource = useSelector(getActionList).find(
+  const resource = useSelector(getAllResources).find(
     (i) => i.resourceId === resourceId,
   )
   // if receive `resourceTypeProps` means add new
-  const resourceType = resourceTypeProps || resource?.actionType
-
+  const resourceType = resourceTypeProps || resource?.resourceType
   const connectionRef = useRef<ConnectionRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -77,10 +78,15 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         data,
       },
       ({ data }) => {
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_created"),
+        )
         dispatch(resourceActions.addResourceItemReducer(data))
         onCreated?.(data.resourceId)
       },
-      () => {},
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+      },
       () => {},
       (loading) => setCreateBtnLoading(loading),
     )
@@ -97,10 +103,15 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         data,
       },
       ({ data }) => {
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_saved"),
+        )
         dispatch(resourceActions.updateResourceItemReducer(data))
         onCreated?.(resourceId)
       },
-      () => {},
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+      },
       () => {},
       (loading) => setCreateBtnLoading(loading),
     )
@@ -155,17 +166,19 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
 
         <div css={formFooterFillingStyle} />
 
-        <Button
-          size="medium"
-          colorScheme="gray"
-          type="button"
-          onClick={() => {
-            connectionRef.current?.testConnection()
-          }}
-          loading={testConnectLoading}
-        >
-          {i18n.t("editor.action.form.btn.test_connection")}
-        </Button>
+        {category === "databases" ? (
+          <Button
+            size="medium"
+            colorScheme="gray"
+            type="button"
+            onClick={() => {
+              connectionRef.current?.testConnection()
+            }}
+            loading={testConnectLoading}
+          >
+            {i18n.t("editor.action.form.btn.test_connection")}
+          </Button>
+        ) : null}
 
         <Button
           size="medium"

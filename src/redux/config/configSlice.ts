@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { ConfigInitialState } from "@/redux/config/configState"
 import {
+  changeSelectedAction,
+  clearCacheActionContent,
   clearSelectedComponent,
   minusScale,
   plusScale,
   removeExpandedKey,
   setExpandedKey,
   updateBottomPanel,
+  updateCacheActionContent,
   updateIllaMode,
   updateLeftPanel,
   updateRightPanel,
@@ -25,8 +28,11 @@ const configSlice = createSlice({
     updateBottomPanel,
     updateShowDot,
     updateSelectedComponent,
+    updateCacheActionContent,
+    clearCacheActionContent,
     clearSelectedComponent,
     updateSelectedAction,
+    changeSelectedAction,
     plusScale,
     minusScale,
     setExpandedKey,

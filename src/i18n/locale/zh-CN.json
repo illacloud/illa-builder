@@ -186,7 +186,8 @@
           "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头",
           "load_action_list_fail": "获取 Action 列表失败: {{message}}",
           "load_resource_fail": "获取资源列表失败: {{message}}",
-          "success_created": "创建成功!",
+          "success_created": "保存成功!",
+          "success_saved": "Successfully saved!",
           "failed": "服务器连接失败"
         },
         "action_generator": {

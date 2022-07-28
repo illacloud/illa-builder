@@ -12,23 +12,28 @@ import { useTranslation } from "react-i18next"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useDispatch, useSelector } from "react-redux"
-import {
-  getSelectedAction,
-  isCurrentSelectedActionChanged,
-} from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { Message } from "@illa-design/message"
+import { configActions } from "@/redux/config/configSlice"
+import { ActionTitleBarProps } from "./interface"
+import store from "@/store"
 import { EditableText } from "@/components/EditableText"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
 
-export const ActionTitleBar: FC = () => {
-  const action = useSelector(getSelectedAction)!!
-  const isChanged = useSelector(isCurrentSelectedActionChanged)
+export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
+  const { action, onCopy, onDelete } = props
+
+  const originAction = store.getState().currentApp.action.find((v) => {
+    return v.displayName === action.displayName
+  })
+
+  const isChanged = JSON.stringify(action) !== JSON.stringify(originAction)
+
   const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -59,15 +64,21 @@ export const ActionTitleBar: FC = () => {
         position="br"
         trigger="click"
         dropList={
-          <DropList width="184px">
+          <DropList width={"184px"}>
             <Item
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
+              onClick={() => {
+                onCopy(action)
+              }}
             />
             <Item
               key={"delete"}
               title={t("editor.action.action_list.contextMenu.delete")}
               fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              onClick={() => {
+                onDelete(action)
+              }}
             />
           </DropList>
         }
@@ -84,8 +95,6 @@ export const ActionTitleBar: FC = () => {
         onClick={() => {
           switch (runMode) {
             case "run":
-              // TODO @weichen run
-              console.log("action", action)
               runAction(action)
               break
             case "save":
@@ -97,6 +106,7 @@ export const ActionTitleBar: FC = () => {
                 },
                 () => {
                   dispatch(actionActions.updateActionItemReducer(action))
+                  dispatch(configActions.changeSelectedAction(action))
                 },
                 () => {
                   Message.error(t("create_fail"))
@@ -118,6 +128,8 @@ export const ActionTitleBar: FC = () => {
                 },
                 () => {
                   dispatch(actionActions.updateActionItemReducer(action))
+                  dispatch(configActions.changeSelectedAction(action))
+                    runAction(action)
                 },
                 () => {
                   Message.error(t("create_fail"))

@@ -171,13 +171,14 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
             )}
           </div>
           <div css={gridRowContainerStyle}>
-            <label css={labelTextStyle}>
+            <label css={requiredLabelTextStyle}>
               {i18n.t("editor.action.resource.mysql.label.database")}
             </label>
             <Controller
               render={({ field }) => (
                 <Input
                   {...field}
+                  error={!!errors.databaseName}
                   placeholder={i18n.t(
                     "editor.action.resource.mysql.placeholder.database",
                   )}
@@ -186,7 +187,15 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               )}
               control={control}
               name="databaseName"
+              rules={{
+                required: i18n.t("editor.action.form.required") as string,
+              }}
             />
+            {errors.databaseName && (
+              <div css={css(errorMessageStyle, applyGridColIndex(2))}>
+                {errors.databaseName.message}
+              </div>
+            )}
           </div>
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
