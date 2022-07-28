@@ -129,7 +129,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 () => {
                   dispatch(actionActions.updateActionItemReducer(action))
                   dispatch(configActions.changeSelectedAction(action))
-                    runAction(action)
+                  runAction(action)
                 },
                 () => {
                   Message.error(t("create_fail"))
