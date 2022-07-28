@@ -17,7 +17,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     setStep(0)
   }, [visible])
 
-  const onAddAction = (info: ActionInfo) => {}
+  const onAddAction = (info: ActionInfo) => {
+    // updateActiveActionItemId(actionId)
+    onClose()
+  }
 
   return (
     <Modal

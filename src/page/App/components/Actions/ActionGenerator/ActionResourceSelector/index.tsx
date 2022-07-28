@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { ActionResourceSeletorProps } from "./interface"
@@ -16,6 +16,16 @@ import i18n from "@/i18n/config"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import dayjs from "dayjs"
 import { getAllResources } from "@/redux/resource/resourceSelector"
+import { useParams } from "react-router-dom"
+import {
+  ActionContent,
+  ActionItem,
+  ActionType,
+} from "@/redux/currentApp/action/actionState"
+import { Api } from "@/api/base"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { Message } from "@illa-design/message"
 
 export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
   props,
@@ -27,6 +37,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
     onCreateResource,
     defaultSelected = "",
   } = props
+  const dispatch = useDispatch()
   const resourceList = useSelector(getAllResources)
     .filter((r) => r.resourceType === actionType)
     .sort(
@@ -34,6 +45,42 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
   const [selectedResourceId, setSelectedResourceId] = useState<string>("")
+  const [loading, setLoading] = useState<boolean>()
+
+  const params = useParams()
+  const baseActionUrl = `/apps/${params.appId}/actions`
+
+  function onAddActionItem(actionType: ActionType) {
+    const displayName = DisplayNameGenerator.getDisplayName(actionType)
+    const data: Partial<ActionItem<{}>> = {
+      displayName,
+      actionType,
+      resourceId: selectedResourceId,
+      content: {},
+    }
+    Api.request(
+      {
+        url: baseActionUrl,
+        method: "POST",
+        data,
+      },
+      ({ data }: { data: ActionItem<ActionContent> }) => {
+        dispatch(actionActions.addActionItemReducer(data))
+        onCreateAction?.(actionType, selectedResourceId)
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_created"),
+        )
+      },
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+        DisplayNameGenerator.removeDisplayName(displayName)
+      },
+      () => {},
+      (loading) => {
+        setLoading(loading)
+      },
+    )
+  }
 
   useEffect(() => {
     console.log({ resourceList })
@@ -95,7 +142,8 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
           </Button>
           <Button
             colorScheme="techPurple"
-            onClick={() => onCreateAction?.(actionType, selectedResourceId)}
+            onClick={() => actionType && onAddActionItem(actionType)}
+            loading={loading}
           >
             {i18n.t(
               "editor.action.action_list.action_generator.btns.create_action",
