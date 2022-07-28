@@ -10,43 +10,21 @@ import {
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
-import { useDispatch, useSelector } from "react-redux"
-import {
-  getSelectedAction,
-  getSelectedContent,
-} from "@/redux/config/configSelector"
-import {
-  BodyContent,
-  RestApiAction,
-} from "@/redux/currentApp/action/restapiAction"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { RootState } from "@/store"
+import { useDispatch } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import {
-  Resource,
-  RestApiAuth,
-  RestApiResource,
-} from "@/redux/resource/resourceState"
 import { Input } from "@illa-design/input"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 
-export const RestApiPanel: FC = () => {
+export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const currentAction = useSelector(getSelectedAction) as ActionItem<
-    RestApiAction<BodyContent>
-  >
+  const currentAction = props.action
 
-  const currentResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === currentAction.resourceId)
-  }) as Resource<RestApiResource<RestApiAuth>>
-
-  const currentContent = (useSelector(getSelectedContent) ??
-    getInitialContent(currentAction.actionType)) as RestApiAction<BodyContent>
+  const currentContent = props.action.content
 
   return (
     <div css={restapiPanelContainerStyle}>
@@ -74,17 +52,27 @@ export const RestApiPanel: FC = () => {
           }}
         />
         <Input
-          borderRadius="0px"
           borderColor="techPurple"
           css={restApiItemBaseUrlStyle}
           readOnly
-          value={currentResource.content.baseUrl}
         />
         <CodeEditor
           borderRadius="0 8px 8px 0"
           css={restapiItemInputStyle}
           expectedType={VALIDATION_TYPES.STRING}
+          value={currentContent.url}
           mode="TEXT_JS"
+          onChange={(value) => {
+            dispatch(
+              configActions.updateSelectedAction({
+                ...currentAction,
+                content: {
+                  ...currentContent,
+                  url: value,
+                },
+              }),
+            )
+          }}
         />
       </div>
       <TransformerComponent />

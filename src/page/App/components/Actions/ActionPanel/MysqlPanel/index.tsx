@@ -4,29 +4,20 @@ import {
   sqlInputStyle,
 } from "@/page/App/components/Actions/ActionPanel/MysqlPanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
-import { useDispatch, useSelector } from "react-redux"
-import {
-  getSelectedAction,
-  getSelectedContent,
-} from "@/redux/config/configSelector"
+import { useDispatch } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import { MysqlPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 
-export const MysqlPanel: FC = () => {
+export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
   const dispatch = useDispatch()
 
-  const currentAction = useSelector(
-    getSelectedAction,
-  ) as ActionItem<MysqlAction>
+  const currentAction = props.action
 
-  const currentContent = (useSelector(getSelectedContent) ??
-    getInitialContent(currentAction.actionType)) as MysqlAction
+  const currentContent = props.action.content
 
   return (
     <div css={mysqlContainerStyle}>

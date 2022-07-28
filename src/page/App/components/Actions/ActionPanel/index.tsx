@@ -10,7 +10,7 @@ import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/Tran
 export const ActionPanel: FC = () => {
   const selectedAction = useSelector(getSelectedAction)
   // null selected
-  if (selectedAction === null) {
+  if (selectedAction === null || selectedAction === undefined) {
     return null
   }
   let actionPanel: ReactNode
@@ -35,7 +35,11 @@ export const ActionPanel: FC = () => {
   }
   return (
     <div css={actionPanelStyle}>
-      <ActionTitleBar />
+      <ActionTitleBar
+        action={selectedAction}
+        onCopy={() => {}}
+        onDelete={() => {}}
+      />
       {actionPanel}
     </div>
   )
