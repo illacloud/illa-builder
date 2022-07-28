@@ -1,7 +1,6 @@
 import { FC, useState } from "react"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import {
-  actionTitleBarDisplayNameStyle,
   actionTitleBarRunStyle,
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
@@ -18,7 +17,7 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { Message } from "@illa-design/message"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionTitleBarProps } from "./interface"
-import store from "@/store"
+import { RootState } from "@/store"
 import { EditableText } from "@/components/EditableText"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
@@ -28,8 +27,8 @@ export type RunMode = "save" | "run" | "save_and_run"
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { action, onCopy, onDelete } = props
 
-  const originAction = store.getState().currentApp.action.find((v) => {
-    return v.displayName === action.displayName
+  const originAction = useSelector((state: RootState) => {
+    return state.currentApp.action.find((a) => a.actionId === action.actionId)
   })
 
   const isChanged = JSON.stringify(action) !== JSON.stringify(originAction)
@@ -132,10 +131,10 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                   runAction(action)
                 },
                 () => {
-                  Message.error(t("create_fail"))
+                  Message.error(t("editor.action.panel.btn.save_fail"))
                 },
                 () => {
-                  Message.error(t("create_fail"))
+                  Message.error(t("editor.action.panel.btn.save_fail"))
                 },
                 (l) => {
                   setLoading(l)

@@ -175,7 +175,6 @@ export const updateComponentDisplayNameReducer: CaseReducer<
     return
   }
   const node = searchDsl(state, displayName)
-  console.log("node", node)
   if (!node) return
   node.displayName = newDisplayName
 }

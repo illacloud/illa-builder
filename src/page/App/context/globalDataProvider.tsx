@@ -38,10 +38,7 @@ const runScript = (script: string) => {
   try {
     // TODO: @WeiChen wait use parser
     const result = eval(script)
-    console.log(result)
-  } catch (error) {
-    console.log(error)
-  }
+  } catch (ignore) {}
 }
 
 // {{goToURL("https://www.baidu.com",true)}}

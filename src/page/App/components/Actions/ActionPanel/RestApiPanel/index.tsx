@@ -19,10 +19,12 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import store from "@/store"
 import {
+  Params,
   Resource,
   RestApiAuth,
   RestApiResource,
 } from "@/redux/resource/resourceState"
+import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 
 export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()
@@ -40,7 +42,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
 
   return (
     <div css={restapiPanelContainerStyle}>
-      <ResourceChoose />
+      <ResourceChoose action={currentAction} />
       <div css={restapiItemStyle}>
         <span css={restapiItemLabelStyle}>
           {t("editor.action.resource.restapi.label.action_type")}
@@ -65,6 +67,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
         />
         <Input
           borderColor="techPurple"
+          borderRadius="8px 0 0 8px"
           value={currentResource.content.baseUrl}
           css={restApiItemBaseUrlStyle}
           readOnly
@@ -88,6 +91,99 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           }}
         />
       </div>
+      {/*<RecordEditor*/}
+      {/*  label={t("editor.action.resource.restapi.label.url_parameters")}*/}
+      {/*  records={currentAction.content.urlParams}*/}
+      {/*  onDelete={(index) => {*/}
+      {/*    dispatch(*/}
+      {/*      configActions.updateSelectedAction({*/}
+      {/*        ...currentAction,*/}
+      {/*        content: {*/}
+      {/*          ...currentContent,*/}
+      {/*          urlParams: [*/}
+      {/*            ...currentContent.urlParams.slice(0, index),*/}
+      {/*            ...currentContent.urlParams.slice(*/}
+      {/*              index,*/}
+      {/*              currentContent.urlParams.length,*/}
+      {/*            ),*/}
+      {/*          ],*/}
+      {/*        },*/}
+      {/*      }),*/}
+      {/*    )*/}
+      {/*  }}*/}
+      {/*  onAdd={() => {*/}
+      {/*    dispatch(*/}
+      {/*      configActions.updateSelectedAction({*/}
+      {/*        ...currentAction,*/}
+      {/*        content: {*/}
+      {/*          ...currentContent,*/}
+      {/*          urlParams: [*/}
+      {/*            ...currentContent.urlParams,*/}
+      {/*            { key: "", value: "" } as Params,*/}
+      {/*          ],*/}
+      {/*        },*/}
+      {/*      }),*/}
+      {/*    )*/}
+      {/*  }}*/}
+      {/*/>*/}
+      {/*<RecordEditor*/}
+      {/*  label={t("editor.action.resource.restapi.label.headers")}*/}
+      {/*  records={currentAction.content.headers}*/}
+      {/*  onDelete={(index) => {*/}
+      {/*    dispatch(*/}
+      {/*      configActions.updateSelectedAction({*/}
+      {/*        ...currentAction,*/}
+      {/*        content: {*/}
+      {/*          ...currentContent,*/}
+      {/*          headers: currentAction.content.headers.splice(index, 1),*/}
+      {/*        },*/}
+      {/*      }),*/}
+      {/*    )*/}
+      {/*  }}*/}
+      {/*  onAdd={() => {*/}
+      {/*    dispatch(*/}
+      {/*      configActions.updateSelectedAction({*/}
+      {/*        ...currentAction,*/}
+      {/*        content: {*/}
+      {/*          ...currentContent,*/}
+      {/*          headers: [*/}
+      {/*            ...currentAction.content.headers,*/}
+      {/*            { key: "", value: "" } as Params,*/}
+      {/*          ],*/}
+      {/*        },*/}
+      {/*      }),*/}
+      {/*    )*/}
+      {/*  }}*/}
+      {/*/>*/}
+      {/*<RecordEditor*/}
+      {/*  label={t("editor.action.resource.restapi.label.cookies")}*/}
+      {/*  records={currentAction.content.cookies}*/}
+      {/*  onDelete={(index) => {*/}
+      {/*    dispatch(*/}
+      {/*      configActions.updateSelectedAction({*/}
+      {/*        ...currentAction,*/}
+      {/*        content: {*/}
+      {/*          ...currentContent,*/}
+      {/*          cookies: currentAction.content.cookies.splice(index, 1),*/}
+      {/*        },*/}
+      {/*      }),*/}
+      {/*    )*/}
+      {/*  }}*/}
+      {/*  onAdd={() => {*/}
+      {/*    dispatch(*/}
+      {/*      configActions.updateSelectedAction({*/}
+      {/*        ...currentAction,*/}
+      {/*        content: {*/}
+      {/*          ...currentContent,*/}
+      {/*          cookies: [*/}
+      {/*            ...currentAction.content.cookies,*/}
+      {/*            { key: "", value: "" } as Params,*/}
+      {/*          ],*/}
+      {/*        },*/}
+      {/*      }),*/}
+      {/*    )*/}
+      {/*  }}*/}
+      {/*/>*/}
       <TransformerComponent />
     </div>
   )

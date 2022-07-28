@@ -1,4 +1,7 @@
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
 import {
   BodyContent,
@@ -16,4 +19,8 @@ export interface MysqlPanelProps {
 
 export interface TransformerPanelProps {
   action: ActionItem<TransformerAction>
+}
+
+export interface ResourceChooseProps {
+  action: ActionItem<ActionContent>
 }

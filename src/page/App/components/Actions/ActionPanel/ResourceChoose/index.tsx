@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import {
   createNewStyle,
   resourceChooseContainerStyle,
@@ -12,19 +12,25 @@ import { Space } from "@illa-design/space"
 import { AddIcon, PenIcon } from "@illa-design/icon"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { configActions } from "@/redux/config/configSlice"
-import { getSelectedAction } from "@/redux/config/configSelector"
 import { ButtonProps } from "@illa-design/button"
-import store from "@/store"
+import { RootState } from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { ResourceChooseProps } from "@/page/App/components/Actions/ActionPanel/interface"
+import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEditor"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const ResourceChoose: FC<{
-  onChange?: (edit?: boolean) => void
-}> = (props) => {
-  const { onChange } = props
+export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const action = useSelector(getSelectedAction)!!
+
+  const [editorVisible, setEditorVisible] = useState(false)
+  const [editType, setEditType] = useState(false)
+
   const resourceList = useSelector(getAllResources)
+  const action = props.action
+  const contentMap = useSelector(
+    (state: RootState) => state.config.cacheActionContent,
+  )
 
   return (
     <div css={resourceChooseContainerStyle}>
@@ -44,9 +50,8 @@ export const ResourceChoose: FC<{
                   actionType: resource.resourceType,
                   resourceId: value,
                   content:
-                    store.getState().config.cacheActionContent[
-                      resource.resourceType
-                    ] ?? getInitialContent(resource.resourceType),
+                    contentMap[resource.resourceType] ??
+                    getInitialContent(resource.resourceType),
                 }),
               )
             }
@@ -55,9 +60,12 @@ export const ResourceChoose: FC<{
             buttonProps: {
               variant: "outline",
               colorScheme: "gray",
-              leftIcon: <PenIcon />,
+              leftIcon: (
+                <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-08`)} />
+              ),
               onClick: () => {
-                onChange?.(true)
+                setEditType(true)
+                setEditorVisible(true)
               },
             } as ButtonProps,
           }}
@@ -66,7 +74,8 @@ export const ResourceChoose: FC<{
             key="create"
             isSelectOption={false}
             onClick={() => {
-              onChange?.(false)
+              setEditType(false)
+              setEditorVisible(true)
             }}
           >
             <Space
@@ -111,6 +120,14 @@ export const ResourceChoose: FC<{
           </Option>
         </Select>
       </Space>
+      <ResourceEditor
+        visible={editorVisible}
+        edit={editType}
+        resourceId={action.resourceId}
+        onClose={() => {
+          setEditorVisible(false)
+        }}
+      />
     </div>
   )
 }

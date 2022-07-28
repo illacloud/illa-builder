@@ -19,8 +19,7 @@ export const restapiItemStyle = css`
 `
 
 export const restapiItemLabelStyle = css`
-  min-width: 200px;
-  text-align: end;
+  min-width: 100px;
   font-size: 14px;
   font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
@@ -28,13 +27,15 @@ export const restapiItemLabelStyle = css`
 
 export const restApiItemSelectStyle = css`
   margin-left: 16px;
+  min-width: 160px;
 `
 
 export const restapiItemInputStyle = css`
-  width: 420px;
+  min-width: 420px;
+  margin-right: 16px;
 `
 
 export const restApiItemBaseUrlStyle = css`
   margin-left: 8px;
-  width: 230px;
+  min-width: 230px;
 `
