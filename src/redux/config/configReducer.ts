@@ -8,6 +8,8 @@ import {
 import { cloneDeep } from "lodash"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
+import { ResourceType } from "@/redux/resource/resourceState"
+import { CacheContentPayload } from "@/redux/config/configPayload"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -44,7 +46,28 @@ export const updateSelectedComponent: CaseReducer<
   state.selectedComponents = action.payload
 }
 
+export const updateCacheActionContent: CaseReducer<
+  ConfigState,
+  PayloadAction<CacheContentPayload>
+> = (state, action) => {
+  state.cacheActionContent[action.payload.resourceType] = action.payload.content
+}
+
+export const clearCacheActionContent: CaseReducer<
+  ConfigState,
+  PayloadAction<void>
+> = (state, action) => {
+  state.cacheActionContent = {}
+}
+
 export const updateSelectedAction: CaseReducer<
+  ConfigState,
+  PayloadAction<ActionItem<ActionContent>>
+> = (state, action) => {
+  state.selectedAction = action.payload
+}
+
+export const changeSelectedAction: CaseReducer<
   ConfigState,
   PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {

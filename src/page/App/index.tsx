@@ -30,7 +30,6 @@ import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
@@ -43,6 +42,7 @@ import { AppLoading } from "@/page/App/components/AppLoading"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
+import { setupConfigListener } from "@/redux/config/configListener"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -70,6 +70,7 @@ export const Editor: FC = () => {
       setupDependenciesListeners(startAppListening),
       setupExecutionListeners(startAppListening),
       setupComponentsListeners(startAppListening),
+      setupConfigListener(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
@@ -117,6 +118,9 @@ export const Editor: FC = () => {
             response.data.displayNameState,
           ),
         )
+        if (response.data.actions.length > 0) {
+          dispatch(configActions.changeSelectedAction(response.data.actions[0]))
+        }
       },
       (e) => {},
       (e) => {},
