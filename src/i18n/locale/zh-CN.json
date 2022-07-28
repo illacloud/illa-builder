@@ -553,7 +553,7 @@
         },
         "new_tab": "在新标签中打开",
         "description": "描述",
-        "duration":"持续时间"
+        "duration": "持续时间"
       },
       "setter_tooltip": {
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
@@ -751,7 +751,6 @@
   "setting": {
     "account": {
       "email": "邮箱",
-      "uneditable": "不可编辑",
       "title": "账号",
       "username": "用户名",
       "empty_username": "用户名不能为空",
