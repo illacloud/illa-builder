@@ -192,7 +192,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
-              Signal.SIGNAL_UPDATE_STATE,
+              Signal.SIGNAL_PUT_STATE,
               Target.TARGET_DEPENDENCIES,
               true,
               {
@@ -289,7 +289,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             store.getState().currentApp.appInfo.appId ?? "",
           )?.send(
             getPayload(
-              Signal.SIGNAL_CREATE_OR_UPDATE,
+              Signal.SIGNAL_CREATE_OR_UPDATE_STATE,
               Target.TARGET_DISPLAY_NAME,
               true,
               {

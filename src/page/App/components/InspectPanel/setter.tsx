@@ -77,8 +77,12 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     return isSetterSingleRow || !labelName
   }, [isSetterSingleRow, labelName])
 
+  const finalValue = useMemo(
+    () => get(widgetProps, _finalAttrName),
+    [widgetProps, _finalAttrName],
+  )
+
   const renderSetter = useMemo(() => {
-    const value = get(widgetProps, _finalAttrName)
     return Comp ? (
       <div
         css={applySetterPublicWrapperStyle(isInList, isSetterSingleRowWrapper)}
@@ -87,7 +91,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
           {...props}
           attrName={_finalAttrName}
           isSetterSingleRow={isSetterSingleRowWrapper}
-          value={value}
+          value={finalValue}
           panelConfig={widgetProps}
           handleUpdateDsl={handleUpdateDsl}
           widgetDisplayName={widgetDisplayName}
