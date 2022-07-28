@@ -10,7 +10,7 @@ export interface MySQLConfigureProps {
   resourceId?: string
   connectionRef: RefObject<ConnectionRef>
   onSubmit?: (data: Partial<Resource<MysqlResource>>) => void
-  onTestConnection?: (data: any) => void
+  onTestConnection?: (data: Partial<Resource<MysqlResource>>) => void
 }
 
 export interface MySQLConfigureValues extends MysqlResource {

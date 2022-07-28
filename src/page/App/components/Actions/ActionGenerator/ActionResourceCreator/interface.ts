@@ -9,5 +9,5 @@ export interface ActionResourceCreatorProps {
   resourceType?: ActionType
   ResourceFormEditor?: boolean
   onBack?: () => void
-  onSubmit?: (resourceId: string) => void
+  onCreated?: (resourceId: string) => void
 }

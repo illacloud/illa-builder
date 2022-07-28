@@ -185,7 +185,9 @@
           "please_input_name": "Please input name",
           "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter",
           "load_action_list_fail": "Get Action list fail: {{message}}",
-          "load_resource_fail": "Get resource list fail: {{message}}"
+          "load_resource_fail": "Get resource list fail: {{message}}",
+          "success_created": "Successfully created!",
+          "failed": "Failed to connect to server"
         },
         "action_generator": {
           "selector": {
