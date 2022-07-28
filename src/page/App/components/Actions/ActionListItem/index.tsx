@@ -15,7 +15,6 @@ import { useTranslation } from "react-i18next"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import { configActions } from "@/redux/config/configSlice"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 
@@ -23,7 +22,7 @@ const Item = DropList.Item
 
 export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
   (props, ref) => {
-    const { action, onItemClick } = props
+    const { action, onItemClick, onCopyItem, onDeleteItem } = props
 
     const { t } = useTranslation()
     const selectedAction = useSelector(getSelectedAction)
@@ -52,11 +51,17 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             <Item
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
+              onClick={() => {
+                selectedAction && onCopyItem(selectedAction)
+              }}
             />
             <Item
               key={"delete"}
               title={t("editor.action.action_list.contextMenu.delete")}
               fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              onClick={() => {
+                selectedAction && onDeleteItem(selectedAction)
+              }}
             />
           </DropList>
         }

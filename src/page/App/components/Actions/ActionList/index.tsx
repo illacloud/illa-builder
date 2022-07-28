@@ -20,6 +20,10 @@ import { ReactComponent as ActionListEmptyState } from "@assets/action-list-empt
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
 import { AddIcon } from "@illa-design/icon"
 import { Space } from "@illa-design/space"
+import {
+  onCopyActionItem,
+  onDeleteActionItem,
+} from "@/page/App/components/Actions/api"
 
 export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className } = props
@@ -65,6 +69,8 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
               return (
                 <ActionListItem
                   action={data}
+                  onCopyItem={onCopyActionItem}
+                  onDeleteItem={onDeleteActionItem}
                   onItemClick={(action) => {
                     const selectedAction =
                       store.getState().config.selectedAction
