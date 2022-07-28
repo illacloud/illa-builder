@@ -80,7 +80,6 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
             </div>
             {isChanged && <div css={actionItemDotStyle} />}
           </div>
-          <div css={timeStyle}>0.7s</div>
         </div>
       </Dropdown>
     )

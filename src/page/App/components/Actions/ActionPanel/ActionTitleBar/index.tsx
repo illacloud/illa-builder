@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import {
   actionTitleBarDisplayNameStyle,
@@ -17,6 +17,9 @@ import {
   isCurrentSelectedActionChanged,
 } from "@/redux/config/configSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { Api } from "@/api/base"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { Message } from "@illa-design/message"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -24,8 +27,10 @@ export type RunMode = "save" | "run" | "save_and_run"
 export const ActionTitleBar: FC = () => {
   const action = useSelector(getSelectedAction)!!
   const isChanged = useSelector(isCurrentSelectedActionChanged)
+  const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  const [loading, setLoading] = useState(false)
 
   let runMode: RunMode = "run"
   if (isChanged) {
@@ -72,18 +77,53 @@ export const ActionTitleBar: FC = () => {
         colorScheme="techPurple"
         variant={isChanged ? "fill" : "light"}
         size="medium"
+        loading={loading}
         leftIcon={<CaretRightIcon />}
         onClick={() => {
           switch (runMode) {
             case "run":
-              // TODO @weichen run
               break
             case "save":
-              dispatch(actionActions.updateActionItemReducer(action))
+              Api.request(
+                {
+                  method: "PUT",
+                  url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
+                  data: action,
+                },
+                () => {
+                  dispatch(actionActions.updateActionItemReducer(action))
+                },
+                () => {
+                  Message.error(t("create_fail"))
+                },
+                () => {
+                  Message.error(t("create_fail"))
+                },
+                (l) => {
+                  setLoading(l)
+                },
+              )
               break
             case "save_and_run":
-              dispatch(actionActions.updateActionItemReducer(action))
-              // TODO @weichen run
+              Api.request(
+                {
+                  method: "PUT",
+                  url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
+                  data: action,
+                },
+                () => {
+                  dispatch(actionActions.updateActionItemReducer(action))
+                },
+                () => {
+                  Message.error(t("create_fail"))
+                },
+                () => {
+                  Message.error(t("create_fail"))
+                },
+                (l) => {
+                  setLoading(l)
+                },
+              )
               break
           }
         }}
