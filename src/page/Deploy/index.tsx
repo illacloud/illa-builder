@@ -7,7 +7,6 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
@@ -16,6 +15,7 @@ import { deployContainerStyle, deployLogoStyle } from "@/page/Deploy/style"
 import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
 import { ReactComponent as DeployLogo } from "@assets/deploy-powered-by.svg"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 export const Deploy: FC = () => {
   let { appId, versionId } = useParams()
@@ -57,6 +57,13 @@ export const Deploy: FC = () => {
             response.data.displayNameState,
           ),
         )
+
+        const autoRunAction = response.data.actions.filter((item) => {
+          return item.triggerMode === "automate"
+        })
+        autoRunAction.forEach((item) => {
+          runAction(item)
+        })
       },
       (e) => {},
       (e) => {},

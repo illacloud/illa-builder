@@ -43,6 +43,7 @@ import { ActionEditor } from "@/page/App/components/Actions"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { setupConfigListener } from "@/redux/config/configListener"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -118,6 +119,13 @@ export const Editor: FC = () => {
             response.data.displayNameState,
           ),
         )
+        const autoRunAction = response.data.actions.filter((item) => {
+          return item.triggerMode === "automate"
+        })
+        autoRunAction.forEach((item) => {
+          runAction(item)
+        })
+
         if (response.data.actions.length > 0) {
           dispatch(configActions.changeSelectedAction(response.data.actions[0]))
         }

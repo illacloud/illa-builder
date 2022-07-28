@@ -81,14 +81,12 @@ export class Connection {
     switch (type) {
       case "dashboard":
         config = {
-          baseURL: "http://10.37.55.222:8080/api/v1",
           url: `/room/${instanceId}/dashboard`,
           method: "GET",
         }
         break
       case "app":
         config = {
-          baseURL: "http://10.37.55.222:8080/api/v1",
           url: `/room/${instanceId}/app/${roomId}`,
           method: "GET",
         }
