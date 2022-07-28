@@ -44,7 +44,6 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   )
     return null
 
-  console.log("value", value)
   return (
     <BaseEventHandlerProvider
       eventItems={value}

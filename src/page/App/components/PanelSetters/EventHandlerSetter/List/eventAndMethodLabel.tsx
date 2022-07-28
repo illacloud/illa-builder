@@ -22,8 +22,8 @@ const getMethodName = (
       ? `${widgetId}.${widgetMethod}()`
       : `No Method`
   }
-  if (actionType === "query") {
-    return queryID ? `${queryID}.trigger()` : "No Method"
+  if (actionType === "datasource") {
+    return queryID ? `${queryID}.run()` : "No Method"
   }
   if (actionType) {
     return `${actionType}()`

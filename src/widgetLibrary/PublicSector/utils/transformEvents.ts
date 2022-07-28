@@ -1,3 +1,7 @@
+import store from "@/store"
+import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+
 export const transformEvents = (event: any) => {
   if (!event) return
   const { actionType } = event
@@ -37,6 +41,22 @@ export const transformEvents = (event: any) => {
         script: `{{${widgetID}.${widgetMethod}()}}`,
         enabled,
       }
+    }
+  }
+  if (actionType === "datasource") {
+    const rootState = store.getState()
+    const { queryID, enabled } = event
+    const actionItem = getActionItemByDisplayName(rootState, queryID)
+    if (!actionItem)
+      return {
+        script: `{{}}`,
+        enabled,
+      }
+    return {
+      script: () => {
+        runAction(actionItem)
+      },
+      enabled,
     }
   }
   return {

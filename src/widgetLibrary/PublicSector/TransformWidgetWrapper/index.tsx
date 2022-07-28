@@ -16,6 +16,7 @@ import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -69,8 +70,13 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
       if (!eventObj) return
       const { script, enabled } = eventObj
       if (enabled || enabled == undefined) {
-        evaluateDynamicString("events", script, globalData)
-        return
+        if (typeof script === "string" && isDynamicString(script)) {
+          evaluateDynamicString("events", script, globalData)
+          return
+        }
+        if (typeof script === "function") {
+          script()
+        }
       }
     })
   }
@@ -80,9 +86,15 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
       const eventObj = transformEvents(scriptObj)
       if (!eventObj) return
       const { script, enabled } = eventObj
+      console.log(eventObj)
       if (enabled || enabled == undefined) {
-        evaluateDynamicString("events", script, globalData)
-        return
+        if (typeof script === "string" && isDynamicString(script)) {
+          evaluateDynamicString("events", script, globalData)
+          return
+        }
+        if (typeof script === "function") {
+          script()
+        }
       }
     })
   }
