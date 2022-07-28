@@ -66,7 +66,7 @@ export const ActionPanel: FC = () => {
   }
 
   function onCopyActionItem(action: ActionItem<ActionContent>) {
-    const newAction = omit(action, ["displayName"])
+    const newAction = omit(action, ["displayName", "actionId"])
     const displayName = DisplayNameGenerator.getDisplayName(action.actionType)
     const data: Partial<ActionItem<{}>> = {
       ...newAction,
