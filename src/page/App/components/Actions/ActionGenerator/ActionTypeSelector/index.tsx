@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import {
   ActionTypeSelectorCardProps,
   ActionTypeSelectorProps,
@@ -17,6 +17,7 @@ import {
 } from "@/page/App/components/Actions/ActionGenerator/config"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import i18n from "@/i18n/config"
+import { Spin } from "@illa-design/spin"
 
 const Card: FC<ActionTypeSelectorCardProps> = (props) => {
   const { nameKey, isDraft, category, actionType, onSelect } = props
@@ -36,31 +37,35 @@ const Card: FC<ActionTypeSelectorCardProps> = (props) => {
 }
 
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
-  const { resourceOnly, onSelect } = props
+  const { resourceOnly, loading = false, onSelect } = props
   const typeList = resourceOnly ? GeneratorTypeList : ActionTypeList
 
   return (
-    <div css={containerStyle}>
-      <div css={titleStyle}>
-        {resourceOnly
-          ? i18n.t("dashboard.resources.create_new_title")
-          : i18n.t("editor.action.action_list.action_generator.selector.title")}
-      </div>
-      {typeList.map(({ title, item, category }) => (
-        <div key={category}>
-          <span css={categoryStyle}>{title}</span>
-          <div css={resourceListStyle}>
-            {item.map((prop) => (
-              <Card
-                key={prop.nameKey}
-                onSelect={onSelect}
-                category={category}
-                {...prop}
-              />
-            ))}
-          </div>
+    <div>
+      <Spin css={containerStyle} colorScheme="techPurple" loading={loading}>
+        <div css={titleStyle}>
+          {resourceOnly
+            ? i18n.t("dashboard.resources.create_new_title")
+            : i18n.t(
+                "editor.action.action_list.action_generator.selector.title",
+              )}
         </div>
-      ))}
+        {typeList.map(({ title, item, category }) => (
+          <div key={category}>
+            <span css={categoryStyle}>{title}</span>
+            <div css={resourceListStyle}>
+              {item.map((prop) => (
+                <Card
+                  key={prop.nameKey}
+                  onSelect={onSelect}
+                  category={category}
+                  {...prop}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </Spin>
     </div>
   )
 }

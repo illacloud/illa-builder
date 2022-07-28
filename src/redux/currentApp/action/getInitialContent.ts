@@ -1,12 +1,12 @@
-import { ActionContent } from "./actionState"
+import { ActionContent, ActionType } from "./actionState"
+import { TransformerActionInitial } from "./transformerAction"
 import { MysqlActionInitial } from "./mysqlAction"
 import { RestApiActionInitial } from "./restapiAction"
 import { MongodbActionInitial } from "./mongodbAction"
 import { PostgresqlActionInitial } from "@/redux/currentApp/action/postgresqlAction"
 import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
-import { ResourceType } from "@/redux/resource/resourceState"
 
-export function getInitialContent(resourceType: ResourceType): ActionContent {
+export function getInitialContent(resourceType: ActionType): ActionContent {
   switch (resourceType) {
     case "mongodb":
       return MongodbActionInitial
@@ -18,5 +18,7 @@ export function getInitialContent(resourceType: ResourceType): ActionContent {
       return RedisActionInitial
     case "restapi":
       return RestApiActionInitial
+    case "transformer":
+      return TransformerActionInitial
   }
 }

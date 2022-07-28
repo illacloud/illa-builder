@@ -4,22 +4,75 @@ import { ActionGeneratorProps, ActionInfo } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
-import { ActionType } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+  ActionType,
+} from "@/redux/currentApp/action/actionState"
 import { css } from "@emotion/react"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { Api } from "@/api/base"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { Message } from "@illa-design/message"
+import i18n from "@/i18n/config"
+import { useParams } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
   const [step, setStep] = useState<0 | 1 | 2>(0)
   const [actionType, setResourceType] = useState<ActionType>()
   const [defaultSelectedResourceId, setDefaultSelectedResourceId] = useState("")
+  const [loading, setLoading] = useState<boolean>()
+  const dispatch = useDispatch()
+  const params = useParams()
+  const baseActionUrl = `/apps/${params.appId}/actions`
 
   useEffect(() => {
     setStep(0)
   }, [visible])
 
+  function onAddActionItem(actionType: ActionType, resourceId?: string) {
+    const displayName = DisplayNameGenerator.getDisplayName(actionType)
+    const initialContent = getInitialContent(actionType)
+    const data: Partial<ActionItem<{}>> = {
+      actionType,
+      displayName,
+      resourceId,
+      content: initialContent,
+    }
+    Api.request(
+      {
+        url: baseActionUrl,
+        method: "POST",
+        data,
+      },
+      ({ data }: { data: ActionItem<ActionContent> }) => {
+        dispatch(actionActions.addActionItemReducer(data))
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_created"),
+        )
+        onClose()
+        // updateActiveActionItemId(actionId)
+      },
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+        DisplayNameGenerator.removeDisplayName(displayName)
+      },
+      () => {},
+      (loading) => {
+        setLoading(loading)
+      },
+    )
+  }
+
+  console.log({loading})
+
   const onAddAction = (info: ActionInfo) => {
-    // updateActiveActionItemId(actionId)
-    onClose()
+    console.log(info)
+    const { actionType, resourceId } = info
+    onAddActionItem(actionType, resourceId)
   }
 
   return (
@@ -35,6 +88,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     >
       {step === 0 ? (
         <ActionTypeSelector
+          loading={loading}
           onSelect={(info) => {
             const { category, actionType } = info
 
@@ -55,6 +109,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       ) : step === 1 ? (
         <ActionResourceSelector
           actionType={actionType}
+          loading={loading}
           onBack={() => {
             setStep(0)
             setResourceType(undefined)

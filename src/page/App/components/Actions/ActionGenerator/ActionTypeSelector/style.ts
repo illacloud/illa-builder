@@ -2,6 +2,9 @@ import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const containerStyle = css`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   overflow: auto;
   padding: 16px 24px 24px 24px;
 `

@@ -33,53 +33,53 @@ export const paramGridRowContainerStyle = css`
 `
 
 export function applyGridRowContainerInSmallWidthStyle(
-    leftPanelVisible: boolean,
-    rightPanelVisible: boolean,
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
 ): SerializedStyles {
-    return applyMediaQueryStyle(
-        leftPanelVisible,
-        rightPanelVisible,
-        css`
+  return applyMediaQueryStyle(
+    leftPanelVisible,
+    rightPanelVisible,
+    css`
       display: grid;
       gap: 8px;
       grid: auto/auto;
     `,
-    )
+  )
 }
 
 export function applyLabelTextInSmallWidthStyle(
-    leftPanelVisible: boolean,
-    rightPanelVisible: boolean,
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
 ): SerializedStyles {
-    return applyMediaQueryStyle(
-        leftPanelVisible,
-        rightPanelVisible,
-        css`
+  return applyMediaQueryStyle(
+    leftPanelVisible,
+    rightPanelVisible,
+    css`
       text-align: left;
       justify-content: start;
     `,
-    )
+  )
 }
 
 function applyMediaQueryStyle(
-    leftPanelVisible: boolean,
-    rightPanelVisible: boolean,
-    style: SerializedStyles,
+  leftPanelVisible: boolean,
+  rightPanelVisible: boolean,
+  style: SerializedStyles,
 ): SerializedStyles {
-    const MEDIA_QUERY_WIDTH = 1600
-    const WIDTH_THRESHOLD = 1000
+  const MEDIA_QUERY_WIDTH = 1600
+  const WIDTH_THRESHOLD = 1000
 
-    const active =
-        MEDIA_QUERY_WIDTH -
-        (leftPanelVisible ? LEFT_PANEL_WIDTH : 0) -
-        (rightPanelVisible ? RIGHT_PANEL_WIDTH : 0) <=
-        WIDTH_THRESHOLD
+  const active =
+    MEDIA_QUERY_WIDTH -
+      (leftPanelVisible ? LEFT_PANEL_WIDTH : 0) -
+      (rightPanelVisible ? RIGHT_PANEL_WIDTH : 0) <=
+    WIDTH_THRESHOLD
 
-    if (!active) {
-        return css``
-    }
+  if (!active) {
+    return css``
+  }
 
-    return css`
+  return css`
     @media screen and (max-width: ${MEDIA_QUERY_WIDTH}px) {
       ${style}
     }
@@ -91,7 +91,7 @@ export const gridRowCenterItemStyle = css`
 `
 
 export function applyGridColIndex(index: number): SerializedStyles {
-    return css`
+  return css`
     grid-column-start: ${index};
   `
 }
@@ -255,4 +255,3 @@ export const switchDescriptionStyle = css`
 export const formPaddingStyle = css`
   padding: 8px 0;
 `
-
