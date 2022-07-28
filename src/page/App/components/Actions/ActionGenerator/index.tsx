@@ -133,6 +133,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
             setStep(0)
             setResourceType(undefined)
           }}
+          onCreated={(resourceId) => {
+            setDefaultSelectedResourceId(resourceId)
+            setStep(1)
+          }}
         />
       )}
     </Modal>

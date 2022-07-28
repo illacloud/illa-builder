@@ -20,6 +20,7 @@ import {
   formTitleStyle,
   formBodyStyle,
 } from "./style"
+import { Message } from "@illa-design/message"
 
 export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
   props,
@@ -78,10 +79,15 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         data,
       },
       ({ data }) => {
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_created"),
+        )
         dispatch(resourceActions.addResourceItemReducer(data))
         onCreated?.(data.resourceId)
       },
-      () => {},
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+      },
       () => {},
       (loading) => setCreateBtnLoading(loading),
     )
@@ -98,10 +104,15 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         data,
       },
       ({ data }) => {
+        Message.success(
+          i18n.t("editor.action.action_list.message.success_saved"),
+        )
         dispatch(resourceActions.updateResourceItemReducer(data))
         onCreated?.(resourceId)
       },
-      () => {},
+      () => {
+        Message.error(i18n.t("editor.action.action_list.message.failed"))
+      },
       () => {},
       (loading) => setCreateBtnLoading(loading),
     )
