@@ -17,8 +17,8 @@
   "rename": "Rename",
   "duplicate": "Duplicate",
   "network_error": "Network disconnected. Please check this device's network",
-  "create_fail": "Create fail",
-  "remove_fail": "Remove fail",
+  "create_fail": "Failed to create",
+  "remove_fail": "Failed to remove",
   "retry": "Retry",
   "btn": {
     "choose_file": "Choose a file"
@@ -229,6 +229,7 @@
           "run": "Run",
           "save": "Save",
           "save_and_run": "Save & Run",
+          "save_fail": "Failed to save",
           "disable": "Disable",
           "enable": "Enable",
           "new": "New"
@@ -616,7 +617,7 @@
       "delete": "Delete"
     },
     "deploy": {
-      "fail": "Deploy fail"
+      "fail": "Failed to deploy"
     },
     "component": {
       "delete": "Delete",
@@ -726,11 +727,11 @@
       "all_apps": "All Apps",
       "create_app": "Create App",
       "rename_app": "Rename App",
-      "rename_fail": "Rename fail",
-      "duplicate_fail": "Duplicate fail",
+      "rename_fail": "Failed to rename",
+      "duplicate_fail": "Failed to duplicate",
       "duplicate_placeholder": "Enter your app name here",
-      "trash_success": "Delete successfully",
-      "trash_failure": "Delete failure",
+      "trash_success": "Successfully deleted",
+      "trash_failure": "Failed to delete",
       "name_empty": "Please enter a name",
       "name_existed": "Name already taken"
     },
@@ -756,7 +757,7 @@
       "empty_username": "Please enter your username",
       "error_username": "Username must be 3～15 characters",
       "save": "Save Changes",
-      "save_fail": "Save fail"
+      "save_fail": "Save Fail"
     },
     "password": {
       "title": "PASSWORD",
