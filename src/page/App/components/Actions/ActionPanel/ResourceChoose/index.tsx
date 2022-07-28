@@ -31,6 +31,7 @@ export const ResourceChoose: FC<{
       <span css={resourceTitleStyle}>{t("resources")}</span>
       <Space direction="horizontal" size="8px">
         <Select
+          colorScheme="techPurple"
           width="200px"
           value={action.resourceId}
           onChange={(value) => {
@@ -90,6 +91,7 @@ export const ResourceChoose: FC<{
           })}
         </Select>
         <Select
+          colorScheme="techPurple"
           width="400px"
           value={action.triggerMode}
           onChange={(value) => {
