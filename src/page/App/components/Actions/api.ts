@@ -50,14 +50,13 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
 
 export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
-  const { actionId } = action
+  const { actionId, displayName } = action
   Api.request(
     {
       url: `${baseActionUrl}/${actionId}`,
       method: "DELETE",
     },
     ({ data }: { data: ActionItem<ActionContent> }) => {
-      const { displayName } = data
       DisplayNameGenerator.removeDisplayName(displayName)
       store.dispatch(actionActions.removeActionItemReducer(displayName))
       Message.success(i18n.t("dashboard.resources.trash_success"))
