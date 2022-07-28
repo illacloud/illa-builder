@@ -33,7 +33,7 @@ export const MysqlPanel: FC = () => {
               ...action,
               content: {
                 ...action.content,
-                sqlString: value,
+                query: value,
               },
             }),
           )

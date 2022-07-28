@@ -1,7 +1,11 @@
+export type MysqlActionMode = "gui" | "sql"
+
 export interface MysqlAction {
-  sqlString: string
+  mode: MysqlActionMode
+  query: string
 }
 
 export const MysqlActionInitial: MysqlAction = {
-  sqlString: "",
+  mode: "sql",
+  query: "",
 }
