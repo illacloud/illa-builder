@@ -11,6 +11,7 @@ import { worker } from "@/redux/currentApp/executionTree/dependencies/dependenci
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { cloneDeep } from "lodash"
 
 async function handleUpdateExecution(
   action: ReturnType<typeof dependenciesActions.setDependenciesReducer>,
@@ -46,6 +47,49 @@ async function handleUpdateExecution(
   }
 }
 
+async function handleUpdateExecutionWithUpdate(
+  action: ReturnType<
+    typeof executionActions.updateExecutionByDisplayNameReducer
+  >,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const rootState = listenerApi.getState()
+  const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
+  const displayNameMapActions = getAllActionDisplayNameMapProps(rootState)
+  const builderInfo = getBuilderInfo(rootState)
+  const currentUser = getCurrentUser(rootState)
+  if (!displayNameMapProps) return
+  const { payload } = action
+  const { displayName, value } = payload
+  const newDisplayNameMapProps = cloneDeep(displayNameMapProps)
+  newDisplayNameMapProps[displayName] = {
+    ...newDisplayNameMapProps[displayName],
+    ...value,
+  }
+  const { order, point } = getEvalOrderSelector(rootState)
+  const deepCloned = JSON.parse(JSON.stringify(WidgetConfig))
+  worker.postMessage({
+    action: "EXECUTION_TREE",
+    displayNameMapProps: newDisplayNameMapProps,
+    builderInfo,
+    currentUser,
+    evalOrder: order,
+    point,
+    WidgetConfig: deepCloned,
+    displayNameMapActions,
+  })
+  worker.onmessage = (e) => {
+    const { data } = e
+    const { newEvaluatedTree = {}, newErrorTree = {} } = data
+    listenerApi.dispatch(
+      executionActions.setExecutionReducer({
+        result: newEvaluatedTree,
+        error: newErrorTree,
+      }),
+    )
+  }
+}
+
 export function setupExecutionListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -53,6 +97,10 @@ export function setupExecutionListeners(
     startListening({
       actionCreator: dependenciesActions.setDependenciesReducer,
       effect: handleUpdateExecution,
+    }),
+    startListening({
+      actionCreator: executionActions.updateExecutionByDisplayNameReducer,
+      effect: handleUpdateExecutionWithUpdate,
     }),
   ]
 
