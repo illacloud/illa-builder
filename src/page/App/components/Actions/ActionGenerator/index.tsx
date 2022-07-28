@@ -7,6 +7,7 @@ import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGener
 import {
   ActionContent,
   ActionItem,
+  actionItemInitial,
   ActionType,
 } from "@/redux/currentApp/action/actionState"
 import { css } from "@emotion/react"
@@ -41,6 +42,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       displayName,
       resourceId,
       content: initialContent,
+      ...actionItemInitial,
     }
     Api.request(
       {
@@ -66,9 +68,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       },
     )
   }
-
-  console.log({loading})
-
+  
   const onAddAction = (info: ActionInfo) => {
     console.log(info)
     const { actionType, resourceId } = info
