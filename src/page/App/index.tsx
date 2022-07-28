@@ -100,11 +100,6 @@ export const Editor: FC = () => {
         dispatch(actionActions.updateActionListReducer(response.data.actions))
 
         dispatch(
-          dependenciesActions.setDependenciesReducer(
-            response.data.dependenciesState,
-          ),
-        )
-        dispatch(
           dragShadowActions.updateDragShadowReducer(
             response.data.dragShadowState,
           ),
@@ -117,6 +112,11 @@ export const Editor: FC = () => {
         dispatch(
           displayNameActions.updateDisplayNameReducer(
             response.data.displayNameState,
+          ),
+        )
+        dispatch(
+          dependenciesActions.setDependenciesReducer(
+            response.data.dependenciesState,
           ),
         )
         const autoRunAction = response.data.actions.filter((item) => {

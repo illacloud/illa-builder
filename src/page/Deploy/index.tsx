@@ -16,11 +16,27 @@ import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
 import { ReactComponent as DeployLogo } from "@assets/deploy-powered-by.svg"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { Unsubscribe } from "@reduxjs/toolkit"
+import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
+import { startAppListening } from "@/store"
+import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
+import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupConfigListener } from "@/redux/config/configListener"
 
 export const Deploy: FC = () => {
   let { appId, versionId } = useParams()
   const dispatch = useDispatch()
   const [loadingState, setLoadingState] = useState(true)
+
+  useEffect(() => {
+    const subscriptions: Unsubscribe[] = [
+      setupDependenciesListeners(startAppListening),
+      setupExecutionListeners(startAppListening),
+      setupComponentsListeners(startAppListening),
+      setupConfigListener(startAppListening),
+    ]
+    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
+  }, [])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -38,11 +54,6 @@ export const Deploy: FC = () => {
         )
         dispatch(actionActions.updateActionListReducer(response.data.actions))
         dispatch(
-          dependenciesActions.setDependenciesReducer(
-            response.data.dependenciesState,
-          ),
-        )
-        dispatch(
           dragShadowActions.updateDragShadowReducer(
             response.data.dragShadowState,
           ),
@@ -55,6 +66,11 @@ export const Deploy: FC = () => {
         dispatch(
           displayNameActions.updateDisplayNameReducer(
             response.data.displayNameState,
+          ),
+        )
+        dispatch(
+          dependenciesActions.setDependenciesReducer(
+            response.data.dependenciesState,
           ),
         )
 
