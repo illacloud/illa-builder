@@ -14,16 +14,14 @@ import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { configActions } from "@/redux/config/configSlice"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ButtonProps } from "@illa-design/button"
-import { RootState } from "@/store"
+import store from "@/store"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const action = useSelector(getSelectedAction)!!
   const resourceList = useSelector(getAllResources)
-  const currentContent = useSelector((state: RootState) => {
-    return state.config.cacheActionContent[action.actionType]
-  })
 
   return (
     <div css={resourceChooseContainerStyle}>
@@ -41,7 +39,10 @@ export const ResourceChoose: FC = () => {
                   // selected resource is same as action type
                   actionType: resource.resourceType,
                   resourceId: value,
-                  content: currentContent,
+                  content:
+                    store.getState().config.cacheActionContent[
+                      resource.resourceType
+                    ] ?? getInitialContent(resource.resourceType),
                 }),
               )
             }
