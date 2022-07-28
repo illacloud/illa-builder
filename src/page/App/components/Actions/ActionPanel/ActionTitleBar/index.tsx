@@ -5,9 +5,9 @@ import {
   actionTitleBarRunStyle,
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
+  editableTitleBarWrapperStyle,
 } from "./style"
 import { Button } from "@illa-design/button"
-import { WrappedEditableText } from "@/widgetLibrary/EditableWidget"
 import { useTranslation } from "react-i18next"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -19,6 +19,8 @@ import { Message } from "@illa-design/message"
 import { configActions } from "@/redux/config/configSlice"
 import { ActionTitleBarProps } from "./interface"
 import store from "@/store"
+import { EditableText } from "@/components/EditableText"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -50,13 +52,13 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   return (
     <div css={actionTitleBarStyle}>
-      {/*TODO @weichen change new component*/}
-      <WrappedEditableText
-        css={actionTitleBarDisplayNameStyle}
-        colorScheme={"techPurple"}
-        value={action.displayName}
-        handleUpdateDsl={() => {}}
-      />
+      <div css={editableTitleBarWrapperStyle}>
+        <EditableText
+          key={action.displayName}
+          displayName={action.displayName}
+          updateDisplayNameByBlur={() => {}}
+        />
+      </div>
       <div css={actionTitleBarSpaceStyle} />
       <Dropdown
         position="br"
@@ -93,6 +95,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         onClick={() => {
           switch (runMode) {
             case "run":
+              runAction(action)
               break
             case "save":
               Api.request(
@@ -126,6 +129,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 () => {
                   dispatch(actionActions.updateActionItemReducer(action))
                   dispatch(configActions.changeSelectedAction(action))
+                    runAction(action)
                 },
                 () => {
                   Message.error(t("create_fail"))

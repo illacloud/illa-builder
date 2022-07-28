@@ -23,3 +23,7 @@ export const actionTitleBarSpaceStyle = css`
 export const actionTitleBarRunStyle = css`
   margin-left: 8px;
 `
+
+export const editableTitleBarWrapperStyle = css`
+  width: 280px;
+`

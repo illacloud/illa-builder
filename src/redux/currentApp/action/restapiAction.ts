@@ -1,4 +1,5 @@
 import { Params } from "@/redux/resource/resourceState"
+import { Events } from "@/redux/currentApp/action/actionState"
 
 export type BodyType = "JSON" | "none" | "form-data" | "x-www-form-urlencoded"
 
@@ -16,7 +17,7 @@ export type BodyContent =
   | FormDataBody
   | XWWWFormURLEncodedBody
 
-export interface RestApiAction<T extends BodyContent> {
+export interface RestApiAction<T extends BodyContent> extends Events {
   method: string
   url: string
   urlParams: Params[]

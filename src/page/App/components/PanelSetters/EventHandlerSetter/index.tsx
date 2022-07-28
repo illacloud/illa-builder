@@ -43,6 +43,7 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     childrenSetter.length < 1
   )
     return null
+
   return (
     <BaseEventHandlerProvider
       eventItems={value}

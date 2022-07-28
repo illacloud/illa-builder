@@ -449,7 +449,8 @@
         "layout": "LAYOUT",
         "style": "STYLE",
         "validation": "VALIDATION",
-        "options": "OPTIONS"
+        "options": "OPTIONS",
+        "data": "DATA"
       },
       "setter_label": {
         "text": "Text",
@@ -555,7 +556,8 @@
         },
         "new_tab": "New tab",
         "description": "Description",
-        "duration":"Duration"
+        "duration":"Duration",
+        "data": "Data"
       },
       "setter_tooltip": {
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
@@ -708,6 +710,9 @@
     },
     "chart": {
       "name": "Chart"
+    },
+    "table": {
+      "name": "Table"
     }
   },
   "Setting": "Setting",

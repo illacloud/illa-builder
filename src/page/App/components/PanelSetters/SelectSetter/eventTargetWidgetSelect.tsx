@@ -41,7 +41,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     })
     if (index !== -1) return value
     return undefined
-  }, [finalOptions, attrName])
+  }, [finalOptions, attrName, value])
 
   useEffect(() => {
     if (finalValue === undefined) {

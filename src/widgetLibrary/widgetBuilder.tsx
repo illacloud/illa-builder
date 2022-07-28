@@ -118,6 +118,11 @@ import {
   CHART_WIDGET_CONFIG,
   ChartWidget,
 } from "@/widgetLibrary/Chart"
+import {
+  TABLE_PANEL_CONFIG,
+  TABLE_WIDGET_CONFIG,
+  TableWidget,
+} from "@/widgetLibrary/TableWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -238,6 +243,11 @@ export const WidgetConfig: WidgetConfigs = {
     widget: ChartWidget,
     config: CHART_WIDGET_CONFIG,
     panelConfig: CHART_PANEL_CONFIG,
+  },
+  TABLE_WIDGET: {
+    widget: TableWidget,
+    config: TABLE_WIDGET_CONFIG,
+    panelConfig: TABLE_PANEL_CONFIG,
   },
 }
 

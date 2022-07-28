@@ -18,6 +18,8 @@ interface Props {
   children?: ReactNode
 }
 
+export let BUILDER_CALC_CONTEXT = {}
+
 // {{showNotification("info","222","333")}}
 const showNotification = (
   type: NotificationType,
@@ -90,6 +92,8 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
   }
+
+  BUILDER_CALC_CONTEXT = globalData
 
   return (
     <GLOBAL_DATA_CONTEXT.Provider value={value}>

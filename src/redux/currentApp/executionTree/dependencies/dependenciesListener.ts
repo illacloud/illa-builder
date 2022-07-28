@@ -51,6 +51,7 @@ export function setupDependenciesListeners(
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
+        actionActions.updateActionItemResultReducer,
       ),
       effect: handleUpdateDependencies,
     }),
