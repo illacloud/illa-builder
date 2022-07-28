@@ -101,20 +101,3 @@ export const emptyStyle = css`
   align-items: center;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
-
-export const emptyTipStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-  margin-top: 4px;
-  font-size: 14px;
-`
-
-function hexToRGBA(hex: string, alpha?: number) {
-  const r = parseInt(hex.slice(1, 3), 16),
-    g = parseInt(hex.slice(3, 5), 16),
-    b = parseInt(hex.slice(5, 7), 16)
-  if (alpha) {
-    return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")"
-  } else {
-    return "rgb(" + r + ", " + g + ", " + b + ")"
-  }
-}

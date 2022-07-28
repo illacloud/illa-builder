@@ -1,120 +1,125 @@
-import { FC, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { Message } from "@illa-design/message"
-import { Api } from "@/api/base"
-import { SettingCommonForm } from "../Components/SettingCommonForm"
+import { FC, useCallback, useEffect, useState } from "react"
+import { debounce } from "lodash"
+import { useDispatch, useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
-import { useSelector, useDispatch } from "react-redux"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { useTranslation } from "react-i18next"
+import { Input } from "@illa-design/input"
+import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
+import { Button } from "@illa-design/button"
+import { Api } from "@/api/base"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
+import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
+import { Message } from "@illa-design/message"
+import { LabelAndSetter } from "@/page/Setting/components/LabelAndSetter"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-
-  const [usernameValue, setUsernameValue] = useState<string>("")
-  const [showUserError, setShowUserError] = useState<boolean>(false)
-  const [userErrorMsg, setUserErrorMsg] = useState<string>("")
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
-  const [buttonLoading, setButtonLoading] = useState<boolean>(false)
-
   const userInfo = useSelector(getCurrentUser)
+  const dispatch = useDispatch()
+  const [nickNameValue, setNickNameValue] = useState<string>(
+    userInfo.nickname ?? "",
+  )
 
-  const paramData = [
-    {
-      title: t("setting.account.email"),
-      subTitle: `(${t("setting.account.uneditable")})`,
-      content: [
-        {
-          type: "input",
-          value: userInfo?.email,
-          disabled: true,
-        },
-      ],
-    },
-    {
-      title: t("setting.account.username"),
-      content: [
-        {
-          type: "input",
-          value: usernameValue,
-          onChange: (value: string) => {
-            if (!value) {
-              setButtonDisabled(true)
-            } else {
-              setButtonDisabled(false)
-            }
-            setUsernameValue(value)
-          },
-          showError: showUserError,
-          errorMsg: userErrorMsg,
-          onFocus: () => {
-            setShowUserError(false)
-          },
-        },
-      ],
-    },
-    {
-      content: [
-        {
-          type: "button",
-          value: t("setting.account.save"),
-          disabled: buttonDisabled,
-          loading: buttonLoading,
-        },
-      ],
-    },
-  ]
+  const [errorMessage, setErrorMessage] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
-  const beforeFormat = () => {
-    if (!usernameValue) {
-      setUserErrorMsg(t("setting.account.empty_username"))
-      return false
-    }
-    if (usernameValue.length < 3 || usernameValue.length > 15) {
-      setUserErrorMsg(t("setting.account.error_username"))
-      return false
-    }
-    return true
-  }
+  // TODO: @aruseito hack method,wait Router defender perfect
+  useEffect(() => {
+    setNickNameValue(userInfo.nickname ?? "")
+  }, [userInfo])
 
-  const handleSubmit = () => {
-    if (!beforeFormat()) {
-      setShowUserError(true)
+  const checkUserNameValidate = useCallback((nickName: string) => {
+    if (!nickName) {
+      setErrorMessage(t("setting.account.empty_username"))
       return
     }
+    if (nickName.length < 3 || nickName.length > 20) {
+      setErrorMessage(t("setting.account.error_username"))
+      return
+    }
+    setErrorMessage("")
+  }, [])
 
-    Api.request<CurrentUser>(
-      {
-        url: "/users/nickname",
-        method: "PATCH",
-        data: {
-          nickname: usernameValue,
+  const handleChangeUserName = useCallback((value: string) => {
+    setNickNameValue(value)
+    checkUserNameValidate(value)
+  }, [])
+
+  const handleSubmit = useCallback(
+    debounce(() => {
+      if (!!errorMessage) {
+        return
+      }
+      Api.request<CurrentUser>(
+        {
+          url: "/users/nickname",
+          method: "PATCH",
+          data: {
+            nickname: nickNameValue,
+          },
         },
-      },
-      (response) => {
-        dispatch(
-          currentUserActions.updateCurrentUserReducer({
-            ...response.data,
-            nickname: response.data.nickname,
-          }),
-        )
-        setUsernameValue("")
-        Message.success("success!")
-      },
-      (failure) => {
-        Message.error(t("setting.account.save_fail"))
-      },
-      (crash) => {
-        Message.error(t("network_error"))
-      },
-      (loading) => {
-        setButtonLoading(loading)
-      },
-    )
-  }
+        (response) => {
+          dispatch(
+            currentUserActions.updateCurrentUserReducer({
+              ...response.data,
+              nickname: response.data.nickname,
+            }),
+          )
+          Message.success("success!")
+        },
+        (failure) => {
+          Message.error(t("setting.account.save_fail"))
+        },
+        (crash) => {
+          Message.error(t("network_error"))
+        },
+        (loading) => {
+          setIsLoading(loading)
+        },
+      )
+    }, 300),
+    [errorMessage, nickNameValue],
+  )
 
-  return <SettingCommonForm paramData={paramData} onSubmit={handleSubmit} />
+  return (
+    <>
+      <LabelAndSetter errorMessage="" label={t("setting.account.email")}>
+        <Input
+          value={userInfo?.email}
+          disabled
+          size="large"
+          borderColor="techPurple"
+          variant="fill"
+        />
+      </LabelAndSetter>
+
+      <LabelAndSetter
+        errorMessage={errorMessage}
+        label={t("setting.account.username")}
+      >
+        <Input
+          size="large"
+          value={nickNameValue}
+          onChange={handleChangeUserName}
+          borderColor={errorMessage ? "red" : "techPurple"}
+          variant="fill"
+        />
+      </LabelAndSetter>
+
+      <div css={publicButtonWrapperStyle}>
+        <Button
+          size="large"
+          fullWidth
+          disabled={!!errorMessage}
+          loading={isLoading}
+          onClick={handleSubmit}
+          colorScheme="techPurple"
+        >
+          {t("setting.account.save")}
+        </Button>
+      </div>
+    </>
+  )
 }
 
 SettingAccount.displayName = "SettingAccount"

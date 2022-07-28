@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react"
-import { ExpectedType } from "./utils"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export enum EditorModes {
   TEXT = "text/plain",
@@ -14,7 +14,7 @@ export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT"
   value?: string
-  expectedType: ExpectedType
+  expectedType: VALIDATION_TYPES
   // Whether to show line numbers to the left of the editor.
   lineNumbers?: boolean
   readOnly?: boolean
@@ -49,7 +49,7 @@ export type FieldEntityInformation = {
 
 export interface ResultPreview {
   state?: "default" | "error"
-  type?: ExpectedType
+  type?: VALIDATION_TYPES
   content?: string
 }
 

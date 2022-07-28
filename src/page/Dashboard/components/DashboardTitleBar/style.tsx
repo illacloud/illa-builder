@@ -4,6 +4,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export const containerStyle: SerializedStyles = css`
   box-sizing: border-box;
   width: 100%;
+
   & > div {
     height: 48px;
   }
@@ -42,15 +43,6 @@ export const settingBodyStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
-export const coverTriggerStyle = css`
-  position: relative;
-  top: 10px;
-  & > div {
-    padding: 0;
-    box-shadow: none;
-  }
-`
-
 export const settingUserStyle = css`
   padding: 8px 16px;
 `
@@ -71,7 +63,8 @@ export const settingItemStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   cursor: pointer;
-  &: hover {
+
+  &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `

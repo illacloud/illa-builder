@@ -1,9 +1,12 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
+import { cloneDeep } from "lodash"
+// TODO: @aruseito Abstract into tool function
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
 import copy from "copy-to-clipboard"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
@@ -35,6 +38,7 @@ import {
 } from "./style"
 
 dayjs.extend(utc)
+dayjs.extend(timezone)
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -60,6 +64,16 @@ export const DashboardApps: FC = () => {
   const [duplicateModalLoading, setDuplicateModalLoading] =
     useState<boolean>(false)
 
+  const sortedAppsList = useMemo(() => {
+    if (Array.isArray(appsList) && appsList.length > 0) {
+      const tmpAppList = cloneDeep(appsList)
+      return tmpAppList.sort((a, b) => {
+        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+      })
+    }
+    return []
+  }, [appsList])
+
   useEffect(() => {
     return () => {
       setCreateNewLoading(false)
@@ -75,7 +89,7 @@ export const DashboardApps: FC = () => {
   const renameRequest = () => {
     Api.request(
       {
-        url: `/apps/${appsList[currentAppIdx].appId}`,
+        url: `/apps/${sortedAppsList[currentAppIdx].appId}`,
         method: "PUT",
         data: {
           appName: renameValue,
@@ -84,7 +98,7 @@ export const DashboardApps: FC = () => {
       (response) => {
         dispatch(
           dashboardAppActions.renameDashboardAppReducer({
-            appId: appsList[currentAppIdx].appId,
+            appId: sortedAppsList[currentAppIdx].appId,
             newName: renameValue,
           }),
         )
@@ -111,7 +125,7 @@ export const DashboardApps: FC = () => {
   const duplicateRequest = () => {
     Api.request<DashboardApp>(
       {
-        url: `/apps/${appsList[currentAppIdx].appId}/duplication`,
+        url: `/apps/${sortedAppsList[currentAppIdx].appId}/duplication`,
         method: "POST",
         data: {
           appName: duplicateValue,
@@ -195,10 +209,10 @@ export const DashboardApps: FC = () => {
           </Button>
         </div>
         <Divider direction="horizontal" />
-        {appsList.length !== 0 && (
+        {sortedAppsList.length !== 0 && (
           <List
             size="medium"
-            data={appsList}
+            data={sortedAppsList}
             bordered={false}
             hoverable={true}
             renderRaw
@@ -244,8 +258,10 @@ export const DashboardApps: FC = () => {
                   <ListItemMeta
                     css={hoverableStyle}
                     title={item.appName}
-                    description={`${item.updatedBy} ${t("edit_at")} ${dayjs
-                      .utc(item.updatedAt)
+                    description={`${item.updatedBy} ${t("edit_at")} ${dayjs(
+                      item.updatedAt,
+                    )
+                      .tz(dayjs.tz.guess())
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
                       navigate(`/app/${item.appId}/version/0`)
@@ -259,7 +275,7 @@ export const DashboardApps: FC = () => {
             }}
           />
         )}
-        {appsList.length == 0 && <Empty paddingVertical="120px" />}
+        {sortedAppsList.length == 0 && <Empty paddingVertical="120px" />}
       </div>
       <Modal
         simple
@@ -283,16 +299,18 @@ export const DashboardApps: FC = () => {
           }
           createNewRequest()
         }}
+        title={t("dashboard.app.create_app")}
+        okText={t("save")}
       >
-        <div css={modalTitleStyle}>{t("dashboard.app.create_app")}</div>
         <Input
           css={modalInputStyle}
+          borderColor="techPurple"
           onChange={(res) => {
             setCreateNewValue(res)
           }}
         />
       </Modal>
-      {appsList.length !== 0 && (
+      {sortedAppsList.length !== 0 && (
         <Modal
           simple
           closable
@@ -300,6 +318,7 @@ export const DashboardApps: FC = () => {
           autoFocus={false}
           footerAlign="right"
           visible={renameModalVisible}
+          title={t("dashboard.app.rename_app")}
           _css={modalStyle}
           okButtonProps={{
             colorScheme: "techPurple",
@@ -308,17 +327,23 @@ export const DashboardApps: FC = () => {
           onCancel={() => {
             setRenameModalVisible(false)
           }}
+          okText={t("save")}
           onOk={() => {
             if (!renameValue) {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
+            if (sortedAppsList.some((item) => item.appName === renameValue)) {
+              Message.error(t("dashboard.app.name_existed"))
+              return
+            }
             renameRequest()
           }}
         >
-          <div css={modalTitleStyle}>{t("dashboard.app.rename_app")}</div>
           <Input
             css={modalInputStyle}
+            borderColor="techPurple"
+            placeholder={sortedAppsList[currentAppIdx].appName}
             onChange={(res) => {
               setRenameValue(res)
             }}
@@ -326,7 +351,7 @@ export const DashboardApps: FC = () => {
         </Modal>
       )}
       {/* Duplicate Modal */}
-      {appsList.length !== 0 && (
+      {sortedAppsList.length !== 0 && (
         <Modal
           simple
           closable
@@ -347,18 +372,20 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
-            if (appsList.some((item) => item.appName === duplicateValue)) {
+            if (
+              sortedAppsList.some((item) => item.appName === duplicateValue)
+            ) {
               Message.error(t("dashboard.app.name_existed"))
               return
             }
             duplicateRequest()
           }}
+          title={`${t("duplicate")} "${sortedAppsList[currentAppIdx].appName}"`}
+          okText={t("save")}
         >
-          <div css={modalTitleStyle}>
-            {`${t("duplicate")} "${appsList[currentAppIdx].appName}"`}
-          </div>
           <Input
             css={modalInputStyle}
+            borderColor="techPurple"
             onChange={(res) => {
               setDuplicateValue(res)
             }}

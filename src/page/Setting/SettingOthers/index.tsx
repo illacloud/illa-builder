@@ -1,75 +1,46 @@
-import { FC, useEffect, useMemo, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
+import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
+import { Button } from "@illa-design/button"
+import { LabelAndSetter } from "@/page/Setting/components/LabelAndSetter"
+import { Select } from "@illa-design/select"
+import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { Api } from "@/api/base"
-import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { Message } from "@illa-design/message"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
-import { SettingCommonForm } from "../Components/SettingCommonForm"
+import i18n from "@/i18n/config"
+
+const options = [
+  {
+    label: "English",
+    value: "en-US",
+  },
+  {
+    label: "简体中文",
+    value: "zh-CN",
+  },
+]
 
 export const SettingOthers: FC = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
-  const userInfo = useSelector(getCurrentUser)
+  const userLanguage = useSelector(getCurrentUser).language || "en-US"
 
-  const [buttonLoading, setButtonLoading] = useState<boolean>(false)
-  const [languageValue, setLanguageValue] = useState<string>("")
-  const [dataList, setDataList] = useState<any[]>([])
-  const [refresh, setRefresh] = useState<number>(0)
+  const [languageValue, setLanguageValue] = useState(userLanguage)
 
-  useMemo(() => {
-    if (!userInfo?.userId) {
-      return
-    }
-    if (!languageValue) {
-      setLanguageValue(userInfo?.language as string)
-    }
-  }, [userInfo])
+  const [isLoading, setIsLoading] = useState(false)
 
+  // TODO: @aruseito hack method,wait Router defender perfect
   useEffect(() => {
-    if (languageValue) {
-      setDataList([
-        {
-          title: t("setting.other.language"),
-          content: [
-            {
-              type: "select",
-              selectOptions: [
-                {
-                  label: "English",
-                  value: "en-US",
-                },
-                {
-                  label: "简体中文",
-                  value: "zh-CN",
-                },
-              ],
-              defaultSelectValue: languageValue,
-              onChange: (value: string) => {
-                setLanguageValue(value)
-              },
-            },
-          ],
-        },
-        {
-          content: [
-            {
-              type: "button",
-              value: t("setting.other.save"),
-              loading: buttonLoading,
-            },
-          ],
-        },
-      ])
-    }
-  }, [languageValue, refresh])
+    setLanguageValue(userLanguage || "en-US")
+  }, [userLanguage])
 
-  const handleSubmit = () => {
-    if (languageValue === userInfo?.language) {
-      return
-    }
+  const handleChangeLanguage = (value: string) => {
+    setLanguageValue(value)
+  }
 
+  const isButtonDisabled = languageValue === userLanguage
+
+  const handleClickSubmit = useCallback(() => {
     Api.request<CurrentUser>(
       {
         url: "/users/language",
@@ -79,22 +50,43 @@ export const SettingOthers: FC = () => {
         },
       },
       (response) => {
-        dispatch(currentUserActions.updateCurrentUserReducer(response.data))
-        Message.success(t("edit_success"))
-        setRefresh(refresh + 1)
+        i18n.changeLanguage(languageValue).then(() => {
+          window.location.reload()
+        })
       },
       (failure) => {},
       (crash) => {},
       (loading) => {
-        setButtonLoading(loading)
+        setIsLoading(loading)
       },
     )
-  }
+  }, [languageValue])
 
-  return dataList.length ? (
-    <SettingCommonForm paramData={dataList} onSubmit={handleSubmit} />
-  ) : (
-    <></>
+  return (
+    <>
+      <LabelAndSetter errorMessage="" label={t("setting.other.language")}>
+        <Select
+          colorScheme="techPurple"
+          size="large"
+          options={options}
+          value={languageValue}
+          onChange={handleChangeLanguage}
+        />
+      </LabelAndSetter>
+
+      <div css={publicButtonWrapperStyle}>
+        <Button
+          size="large"
+          fullWidth
+          disabled={isButtonDisabled}
+          loading={isLoading}
+          colorScheme="techPurple"
+          onClick={handleClickSubmit}
+        >
+          {t("setting.password.submit_button")}
+        </Button>
+      </div>
+    </>
   )
 }
 

@@ -12,7 +12,7 @@ import {
   dynamicSwitchWrapperStyle,
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
-import { useTranslation } from "react-i18next"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   const {
@@ -24,8 +24,8 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     value,
     widgetDisplayName,
     expectedType,
+    widgetOrAction,
   } = props
-  const { t } = useTranslation()
 
   const dynamicAttrPath = get(panelConfig, "$dynamicAttrPaths", [])
 
@@ -34,7 +34,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
       <div css={dynamicSwitchWrapperStyle}>
-        <PanelLabel labelName={t(labelName)} labelDesc={labelDesc} />
+        <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <div css={customAndSwitchWrapperStyle}>
           <div
             css={applyCustomIconStyle(customSelected)}
@@ -54,7 +54,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
                 handleUpdateDsl(attrName, value)
               }}
               checked={value}
-              colorScheme="purple"
+              colorScheme="techPurple"
             />
           )}
         </div>
@@ -69,7 +69,8 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
             expectedType={expectedType}
             isSetterSingleRow
             widgetDisplayName={widgetDisplayName}
-            widgetType={""}
+            widgetType={VALIDATION_TYPES.BOOLEAN}
+            widgetOrAction={widgetOrAction}
           />
         </div>
       )}

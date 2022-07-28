@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
-import { ActionEditor } from "./components/ActionEditor"
 import {
   applyBottomPanelStyle,
   applyLeftPanelStyle,
@@ -16,7 +15,6 @@ import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getIllaMode,
   isOpenBottomPanel,
   isOpenLeftPanel,
   isOpenRightPanel,
@@ -32,7 +30,6 @@ import { CurrentAppResp } from "@/page/App/resp/currentAppResp"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
@@ -42,16 +39,11 @@ import { configActions } from "@/redux/config/configSlice"
 import { Shortcut } from "@/utils/shortcut"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { AppLoading } from "@/page/App/components/AppLoading"
-
-interface PanelConfigProps {
-  showLeftPanel: boolean
-  showRightPanel: boolean
-  showBottomPanel: boolean
-}
-
-export type PanelState = keyof PanelConfigProps
-
-const INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE = 1000000
+import { ActionEditor } from "@/page/App/components/Actions"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { setupConfigListener } from "@/redux/config/configListener"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -61,13 +53,14 @@ export const Editor: FC = () => {
   const currentUser = useSelector(getCurrentUser)
 
   useEffect(() => {
-    Connection.enterRoom(
-      "app",
-      appId ?? "",
-      (loading) => {},
-      (errorState) => {},
-      (room) => {},
-    )
+    if (currentUser != null && currentUser.userId != 0) {
+      Connection.enterRoom(
+        "app",
+        appId ?? "",
+        (loading) => {},
+        (errorState) => {},
+      )
+    }
     return () => {
       Connection.leaveRoom("app", appId ?? "")
     }
@@ -78,6 +71,7 @@ export const Editor: FC = () => {
       setupDependenciesListeners(startAppListening),
       setupExecutionListeners(startAppListening),
       setupComponentsListeners(startAppListening),
+      setupConfigListener(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
@@ -88,6 +82,7 @@ export const Editor: FC = () => {
 
   const [loadingState, setLoadingState] = useState(true)
 
+  // init app
   useEffect(() => {
     const controller = new AbortController()
     Api.request<CurrentAppResp>(
@@ -102,19 +97,8 @@ export const Editor: FC = () => {
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),
         )
-        dispatch(
-          componentsActions.updateComponentReducer(response.data.components),
-        )
         dispatch(actionActions.updateActionListReducer(response.data.actions))
 
-        dispatch(
-          dependenciesActions.setDependenciesReducer(
-            response.data.dependenciesState,
-          ),
-        )
-        dispatch(
-          executionActions.setExecutionReducer(response.data.executionState),
-        )
         dispatch(
           dragShadowActions.updateDragShadowReducer(
             response.data.dragShadowState,
@@ -130,6 +114,21 @@ export const Editor: FC = () => {
             response.data.displayNameState,
           ),
         )
+        dispatch(
+          dependenciesActions.setDependenciesReducer(
+            response.data.dependenciesState,
+          ),
+        )
+        const autoRunAction = response.data.actions.filter((item) => {
+          return item.triggerMode === "automate"
+        })
+        autoRunAction.forEach((item) => {
+          runAction(item)
+        })
+
+        if (response.data.actions.length > 0) {
+          dispatch(configActions.changeSelectedAction(response.data.actions[0]))
+        }
       },
       (e) => {},
       (e) => {},
@@ -142,13 +141,21 @@ export const Editor: FC = () => {
     }
   }, [])
 
+  // init resource
   useEffect(() => {
-    performance.setResourceTimingBufferSize(
-      INIT_PERFORMANCE_RESOURCE_TIMING_BUFFER_SIZE,
+    const controller = new AbortController()
+    Api.request<Resource<ResourceContent>[]>(
+      {
+        url: "/resources",
+        method: "GET",
+        signal: controller.signal,
+      },
+      (response) => {
+        dispatch(resourceActions.updateResourceListReducer(response.data))
+      },
     )
-
     return () => {
-      performance.clearResourceTimings()
+      controller.abort()
     }
   }, [])
 

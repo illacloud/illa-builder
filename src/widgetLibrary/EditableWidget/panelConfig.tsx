@@ -1,24 +1,30 @@
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
+import { EDITABLE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/EditableWidget/eventHandlerConfig"
 
+const baseWidgetName = "editable-text"
 export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "editable-text-basic",
-    groupName: "editor.inspect.setter_group.basic",
+    id: `${baseWidgetName}-basic`,
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: "editable-text-basic-defaultValue",
-        labelName: "editor.inspect.setter_label.default_value",
+        id: `${baseWidgetName}-basic-defaultValue`,
+        labelName: i18n.t("editor.inspect.setter_label.default_value"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.default_value"),
         attrName: "value",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
-        id: "editable-text-basic-placeholder",
-        labelName: "editor.inspect.setter_label.placeholder",
+        id: `${baseWidgetName}-basic-placeholder`,
+        labelName: i18n.t("editor.inspect.setter_label.placeholder"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.placeholder"),
         attrName: "placeholder",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -26,36 +32,36 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "editable-text-label",
-    groupName: "editor.inspect.setter_group.label",
+    id: `${baseWidgetName}-label`,
+    groupName: i18n.t("editor.inspect.setter_group.label"),
     children: [
       {
-        id: "editable-text-label-label",
-        labelName: "editor.inspect.setter_label.label",
+        id: `${baseWidgetName}-label-label`,
+        labelName: i18n.t("editor.inspect.setter_label.label"),
         attrName: "label",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "editable-text-label-caption",
-        labelName: "editor.inspect.setter_label.caption",
+        id: `${baseWidgetName}-label-caption`,
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
         attrName: "labelCaption",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
       },
       {
-        id: "editable-text-label-position",
-        labelName: "editor.inspect.setter_label.label_position",
+        id: `${baseWidgetName}-label-position`,
+        labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         options: [
-          { label: "Left", value: "left" },
-          { label: "Top", value: "top" },
+          { label: i18n.t("widget.public.left"), value: "left" },
+          { label: i18n.t("widget.public.right"), value: "top" },
         ],
       },
       {
-        id: "editable-text-label-alignment",
-        labelName: "editor.inspect.setter_label.label_alignment",
+        id: `${baseWidgetName}-label-alignment`,
+        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         options: [
@@ -70,8 +76,8 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "select-label-labelWidth",
-        labelName: "editor.inspect.setter_label.label_width",
+        id: `${baseWidgetName}-label-label-width`,
+        labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
         expectedType: VALIDATION_TYPES.NUMBER,
         setterType: "INPUT_SETTER",
@@ -79,20 +85,28 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "editable-text-interaction",
-    groupName: "editor.inspect.setter_group.interaction",
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        id: "editable-text-interaction-disabled",
-        labelName: "editor.inspect.setter_label.disabled",
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          EDITABLE_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
+      {
+        id: `${baseWidgetName}-interaction-disabled`,
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         placeholder: "{{false}}",
       },
       {
-        id: "editable-text-interaction-readonly",
-        labelName: "editor.inspect.setter_label.read_only",
+        id: `${baseWidgetName}-interaction-readonly`,
+        labelName: i18n.t("editor.inspect.setter_label.read_only"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.read_only"),
         attrName: "readOnly",
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
@@ -101,42 +115,43 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "editable-text-Adornments",
-    groupName: "editor.inspect.setter_group.adornments",
+    id: `${baseWidgetName}-Adornments`,
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
-        id: "editable-text-adornments-showClear",
-        labelName: "editor.inspect.setter_label.show_clear_button",
+        id: `${baseWidgetName}-adornments-showClear`,
+        labelName: i18n.t("editor.inspect.setter_label.show_clear_button"),
         attrName: "allowClear",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: "editable-text-adornments-showChartCount",
-        labelName: "editor.inspect.setter_label.show_character_count",
+        id: `${baseWidgetName}-adornments-showChartCount`,
+        labelName: i18n.t("editor.inspect.setter_label.show_character_count"),
         attrName: "showCharacterCount",
         useCustomLayout: true,
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: "editable-text-adornments-prefixText",
-        labelName: "editor.inspect.setter_label.prefix_text",
+        id: `${baseWidgetName}-adornments-prefixText`,
+        labelName: i18n.t("editor.inspect.setter_label.prefix_text"),
         attrName: "prefixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "editable-text-adornments-suffixText",
-        labelName: "editor.inspect.setter_label.suffix_text",
+        id: `${baseWidgetName}-adornments-suffixText`,
+        labelName: i18n.t("editor.inspect.setter_label.suffix_text"),
         attrName: "suffixText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "editable-text-adornments-tooltip",
-        labelName: "editor.inspect.setter_label.tooltip",
+        id: `${baseWidgetName}-adornments-tooltip`,
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -144,27 +159,28 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "editable-text-validation",
-    groupName: "editor.inspect.setter_group.validation",
+    id: `${baseWidgetName}-validation`,
+    groupName: i18n.t("editor.inspect.setter_group.validation"),
     children: [
       {
-        id: "editable-text-validation-required",
-        labelName: "editor.inspect.setter_label.required_field",
+        id: `${baseWidgetName}-validation-required`,
+        labelName: i18n.t("editor.inspect.setter_label.required_field"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.required_field"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
         attrName: "required",
       },
       {
-        id: "editable-text-validation-pattern",
-        labelName: "editor.inspect.setter_label.pattern",
+        id: `${baseWidgetName}-validation-pattern`,
+        labelName: i18n.t("editor.inspect.setter_label.pattern"),
         setterType: "SEARCH_SELECT_SETTER",
         attrName: "pattern",
         options: ["Email", "URL", "Regex"],
       },
       {
-        id: "editable-text-validation-regex",
-        labelName: "editor.inspect.setter_label.regex",
+        id: `${baseWidgetName}-validation-regex`,
+        labelName: i18n.t("editor.inspect.setter_label.regex"),
         setterType: "INPUT_SETTER",
         attrName: "regex",
         bindAttrName: "pattern",
@@ -172,29 +188,35 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => value === "Regex",
       },
       {
-        id: "editable-text-validation-max",
-        labelName: "editor.inspect.setter_label.max_length",
+        id: `${baseWidgetName}-validation-max`,
+        labelName: i18n.t("editor.inspect.setter_label.max_length"),
         setterType: "INPUT_SETTER",
         attrName: "maxLength",
         expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
-        id: "editable-text-validation-min",
-        labelName: "editor.inspect.setter_label.min_length",
+        id: `${baseWidgetName}-validation-min`,
+        labelName: i18n.t("editor.inspect.setter_label.min_length"),
         setterType: "INPUT_SETTER",
         attrName: "minLength",
         expectedType: VALIDATION_TYPES.NUMBER,
       },
       {
-        id: "editable-text-validation-custom",
-        labelName: "editor.inspect.setter_label.custom_rule",
+        id: `${baseWidgetName}-validation-custom`,
+        labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.custom_rule"),
         setterType: "INPUT_SETTER",
         attrName: "customRule",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: "editable-text-validation-hide-message",
-        labelName: "editor.inspect.setter_label.hide_validation_message",
+        id: `${baseWidgetName}-validation-hide-message`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.hide_validation_message",
+        ),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tooltip.hide_validation_message",
+        ),
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         useCustomLayout: true,
@@ -203,12 +225,13 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "editable-text-layout",
-    groupName: "editor.inspect.setter_group.layout",
+    id: `${baseWidgetName}-layout`,
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "editable-text-layout-hidden",
-        labelName: "editor.inspect.setter_label.hidden",
+        id: `${baseWidgetName}-layout-hidden`,
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         placeholder: "false",
@@ -218,19 +241,19 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: `editable-text-styles`,
-    groupName: "editor.inspect.setter_group.style",
+    id: `${baseWidgetName}-style`,
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "editable-text-style",
+        id: `${baseWidgetName}-style-colors`,
         setterType: "LIST_SETTER",
-        labelName: "editor.inspect.setter_label.styles",
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "editable-text-style-color",
-            labelName: "editor.inspect.setter_label.theme_color",
+            id: `${baseWidgetName}-style-color`,
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",

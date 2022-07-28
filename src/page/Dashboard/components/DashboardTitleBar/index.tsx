@@ -50,7 +50,7 @@ const SettingTrigger: FC<{ avatarBgColor: string; avatarText: string }> = (
           css={settingItemStyle}
           onClick={() => {
             clearLocalStorage()
-            navigate("/user/login")
+            window.location.href = "/user/login"
           }}
         >
           {t("Logout")}

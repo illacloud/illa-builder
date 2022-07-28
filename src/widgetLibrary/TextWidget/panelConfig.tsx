@@ -9,24 +9,27 @@ import {
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
 
+const baseWidgetName = "text"
 export const TEXT_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "text-basic",
-    groupName: "editor.inspect.setter_group.basic",
+    id: `${baseWidgetName}-basic`,
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: "text-basic-inputModal",
-        labelName: "editor.inspect.setter_label.value",
+        id: `${baseWidgetName}-basic-inputModal`,
+        labelName: i18n.t("editor.inspect.setter_label.value"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.text_value"),
         attrName: "disableMarkdown",
         setterType: "RADIO_GROUP_SETTER",
         options: [
           { label: "Markdown", value: true },
-          { label: "Plain Text", value: false },
+          { label: i18n.t("widget.text.text_model"), value: false },
         ],
       },
       {
-        id: "text-basic-value",
+        id: `${baseWidgetName}-basic-value`,
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -35,13 +38,13 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "text-adornments",
-    groupName: "editor.inspect.setter_group.adornments",
+    id: `${baseWidgetName}-adornments`,
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
-        id: "text-adornments-startAdornment",
-        labelName: "editor.inspect.setter_label.tooltip",
-        labelDesc: "xxxxx",
+        id: `${baseWidgetName}-adornments-startAdornment`,
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -49,14 +52,13 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "text-layout",
-    groupName: "editor.inspect.setter_group.layout",
+    id: `${baseWidgetName}-layout`,
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "text-layout-col",
-        labelName: "editor.inspect.setter_label.horizontal_alignment",
+        id: `${baseWidgetName}-layout-col`,
+        labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
         attrName: "horizontalAlign",
-        labelDesc: "xxxxxxx",
         setterType: "RADIO_GROUP_SETTER",
         isSetterSingleRow: true,
         options: [
@@ -75,10 +77,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "text-layout-row",
-        labelName: "editor.inspect.setter_label.vertical_alignment",
+        id: `${baseWidgetName}-layout-row`,
+        labelName: i18n.t("editor.inspect.setter_label.vertical_alignment"),
         setterType: "RADIO_GROUP_SETTER",
-        labelDesc: "xxxxxxx",
         attrName: "verticalAlign",
         isSetterSingleRow: true,
         options: [
@@ -97,8 +98,9 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: "text-layout-hidden",
-        labelName: "editor.inspect.setter_label.hidden",
+        id: `${baseWidgetName}-layout-hidden`,
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         useCustomLayout: true,
@@ -107,27 +109,27 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "text-style",
-    groupName: "editor.inspect.setter_group.style",
+    id: `${baseWidgetName}-style`,
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "text-style-list",
+        id: `${baseWidgetName}-style-list`,
         setterType: "LIST_SETTER",
-        labelName: "editor.inspect.setter_label.styles",
+        labelName: i18n.t("editor.inspect.setter_label.colors"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "text-style-color",
-            labelName: "editor.inspect.setter_label.text",
+            id: `${baseWidgetName}-style-color`,
+            labelName: i18n.t("editor.inspect.setter_label.text"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "textColor",
             defaultValue: "#787e85ff",
             options: colorSchemeOptions,
           },
           {
-            id: "text-style-link-color",
-            labelName: "editor.inspect.setter_label.links_color",
+            id: `${baseWidgetName}-style-link-color`,
+            labelName: i18n.t("editor.inspect.setter_label.links_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "linkColor",
             defaultValue: "#1e6fffff",

@@ -1,22 +1,19 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import {
-  HorizontalCenterIcon,
-  HorizontalEndIcon,
-  HorizontalFullIcon,
-  HorizontalStartIcon,
-} from "@illa-design/react"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
-
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import i18n from "@/i18n/config"
+import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { BUTTON_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ButtonWidget/eventHandlerConfig"
 
+const baseWidgetName = "button"
 export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: "button-basic",
-    groupName: "editor.inspect.setter_group.basic",
+    id: `${baseWidgetName}-basic`,
+    groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: "button-basic-Text",
-        labelName: "editor.inspect.setter_label.text",
+        id: `${baseWidgetName}-basic-Text`,
+        labelName: i18n.t("editor.inspect.setter_label.text"),
         attrName: "text",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -24,211 +21,20 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "button-interaction",
-    groupName: "editor.inspect.setter_group.interaction",
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        id: "button-interaction-event-handler",
-        attrName: "events",
-        labelName: "editor.inspect.setter_label.event_handler",
-        labelDesc: "xxxxx",
-        setterType: "EVENT_HANDLER_SETTER",
-        useCustomLayout: true,
-        childrenSetter: [
-          {
-            id: "event",
-            labelName: "editor.inspect.setter_label.event",
-            setterType: "BASE_SELECT_SETTER",
-            attrName: "eventType",
-            options: [{ label: "Click", value: "onClick" }],
-          },
-          {
-            id: "action",
-            labelName: "editor.inspect.setter_label.action",
-            setterType: "EVENT_ACTION_SELECT_SETTER",
-            attrName: "actionType",
-            options: [
-              {
-                label: "editor.inspect.setter_label.trigger_query",
-                value: "datasource",
-              },
-              {
-                label: "editor.inspect.setter_label.control_component",
-                value: "widget",
-              },
-              {
-                label: "editor.inspect.setter_label.run_script",
-                value: "script",
-              },
-              {
-                label: "editor.inspect.setter_label.go_to_url",
-                value: "openUrl",
-              },
-              {
-                label: "editor.inspect.setter_label.show_notification",
-                value: "showNotification",
-              },
-            ],
-          },
-          {
-            id: "query",
-            labelName: "Query",
-            setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
-            attrName: "queryID",
-            bindAttrName: "actionType",
-            shown: (type) => type === "datasource",
-          },
-          {
-            id: "actionMethod",
-            labelName: "Action Method",
-            setterType: "BASE_SELECT_SETTER",
-            attrName: "widgetMethod",
-            bindAttrName: "queryID",
-            shown: (type) => type === "datasource",
-            // TODO: value should as same as action run method name that mounted on `globalData`
-            options: [{ label: "run", value: "executeAction" }],
-          },
-          {
-            id: "component",
-            labelName: "Component",
-            setterType: "EVENT_TARGET_SELECT_SETTER",
-            attrName: "widgetID",
-            bindAttrName: "actionType",
-            shown: (type) => type === "widget",
-          },
-          {
-            id: "Method",
-            labelName: "Method",
-            setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
-            attrName: "widgetMethod",
-            bindAttrName: "widgetID",
-            shown: (widgetID) => !!widgetID,
-          },
-          {
-            id: "Value",
-            labelName: "Value",
-            setterType: "INPUT_SETTER",
-            attrName: "widgetTargetValue",
-            bindAttrName: "widgetMethod",
-            shown: (widgetMethod) => widgetMethod === "setValue",
-          },
-          {
-            id: "startValue",
-            labelName: "startValue",
-            setterType: "INPUT_SETTER",
-            attrName: "widgetTargetValue",
-            bindAttrName: "widgetMethod",
-            shown: (widgetMethod) => widgetMethod === "setStartValue",
-          },
-          {
-            id: "endValue",
-            labelName: "endValue",
-            setterType: "INPUT_SETTER",
-            attrName: "widgetTargetValue",
-            bindAttrName: "widgetMethod",
-            shown: (widgetMethod) => widgetMethod === "setEndValue",
-          },
-          {
-            id: "imageUrl",
-            labelName: "Value",
-            setterType: "INPUT_SETTER",
-            attrName: "widgetTargetValue",
-            bindAttrName: "widgetMethod",
-            shown: (widgetMethod) => widgetMethod === "setImageUrl",
-          },
-          {
-            id: "disabled",
-            labelName: "editor.inspect.setter_label.disabled",
-            setterType: "DYNAMIC_SWITCH_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-            attrName: "disabled",
-            bindAttrName: "type",
-            useCustomLayout: true,
-            shown: (type) => type === "widget",
-          },
-          {
-            id: "script",
-            setterType: "INPUT_SETTER",
-            attrName: "script",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.STRING,
-            shown: (type) => type === "script",
-          },
-          {
-            id: "URL",
-            labelName: "URL",
-            setterType: "INPUT_SETTER",
-            attrName: "url",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.STRING,
-            shown: (type) => type === "openUrl",
-          },
-          {
-            id: "newTab",
-            labelName: "New Tab",
-            setterType: "DYNAMIC_SWITCH_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-            attrName: "newTab",
-            bindAttrName: "actionType",
-            useCustomLayout: true,
-            shown: (type) => type === "openUrl",
-          },
-          {
-            id: "title",
-            labelName: "Title",
-            setterType: "INPUT_SETTER",
-            attrName: "title",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.STRING,
-            shown: (type) => type === "showNotification",
-          },
-          {
-            id: "description",
-            labelName: "Description",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-            attrName: "description",
-            bindAttrName: "actionType",
-            shown: (type) => type === "showNotification",
-          },
-          {
-            id: "notification-type",
-            labelName: "Type",
-            setterType: "BASE_SELECT_SETTER",
-            attrName: "notificationType",
-            bindAttrName: "actionType",
-            shown: (type) => type === "showNotification",
-            options: [
-              { label: "Success", value: "success" },
-              { label: "Error", value: "error" },
-              { label: "Warning", value: "warning" },
-              { label: "Info", value: "info" },
-            ],
-          },
-          {
-            id: "duration",
-            labelName: "Duration",
-            setterType: "INPUT_SETTER",
-            attrName: "duration",
-            bindAttrName: "actionType",
-            expectedType: VALIDATION_TYPES.NUMBER,
-            shown: (type) => type === "showNotification",
-          },
-          {
-            id: "enabled",
-            labelName: "Only run when",
-            labelDesc: "xxxxx",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-            attrName: "enabled",
-          },
-        ],
+        ...generatorEventHanlderConfig(
+          baseWidgetName,
+          BUTTON_EVENT_HANDLER_CONFIG.events,
+        ),
       },
       // TODO: wait form container
       // {
-      //   id: "button-interaction-type",
-      //   labelName: "editor.inspect.setter_label.type",
-      //   labelDesc: "xxxxx",
+      //   id: `${baseWidgetName}-interaction-type`,
+      //   labelName: i18n.t("editor.inspect.setter_label.type"),
+      //   labelDesc: i18n.t("xxxxx"),
       //   attrName: "submit",
       //   setterType: "RADIO_GROUP_SETTER",
       //   options: [
@@ -237,19 +43,20 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       //   ],
       // },
       {
-        id: "button-interaction-formId",
-        labelName: "editor.inspect.setter_label.submit_form",
-        labelDesc: "xxxxx",
+        id: `${baseWidgetName}-interaction-formId`,
+        labelName: i18n.t("editor.inspect.setter_label.submit_form"),
+        // labelDesc: i18n.t("xxxxx"),
         attrName: "formId",
         setterType: "INPUT_SETTER",
         bindAttrName: "submit",
         shown: (value) => value === true,
       },
       {
-        id: "button-interaction-loading",
-        labelName: "editor.inspect.setter_label.loading",
-        labelDesc: "xxxxx",
+        id: `${baseWidgetName}-interaction-loading`,
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
         attrName: "loading",
+        placeholder: "{{false}}",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: "submit",
@@ -258,9 +65,10 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         },
       },
       {
-        id: "button-interaction-disabled",
-        labelName: "editor.inspect.setter_label.disabled",
-        labelDesc: "xxxxx",
+        id: `${baseWidgetName}-interaction-disabled`,
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
+        placeholder: "{{false}}",
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -270,12 +78,13 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "button-adornments",
-    groupName: "editor.inspect.setter_group.adornments",
+    id: `${baseWidgetName}-adornments`,
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
       {
-        id: "button-adornments-tooltip",
-        labelName: "editor.inspect.setter_label.tooltip",
+        id: `${baseWidgetName}-adornments-tooltip`,
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "tooltipText",
         expectedType: VALIDATION_TYPES.STRING,
         setterType: "INPUT_SETTER",
@@ -283,37 +92,14 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "button-layout",
-    groupName: "editor.inspect.setter_group.layout",
+    id: `${baseWidgetName}-layout`,
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: "button-layout-alignment",
-        setterType: "RADIO_GROUP_SETTER",
-        labelName: "editor.inspect.setter_label.align",
-        attrName: "alignment",
-        options: [
-          {
-            label: <HorizontalStartIcon />,
-            value: "start",
-          },
-          {
-            label: <HorizontalCenterIcon />,
-            value: "center",
-          },
-          {
-            label: <HorizontalEndIcon />,
-            value: "end",
-          },
-          {
-            label: <HorizontalFullIcon />,
-            value: "fullWidth",
-          },
-        ],
-      },
-      {
-        id: "button-layout-hidden",
+        id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",
-        labelName: "editor.inspect.setter_label.hidden",
+        labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         useCustomLayout: true,
         attrName: "hidden",
         expectedType: VALIDATION_TYPES.BOOLEAN,
@@ -321,35 +107,35 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: "button-style",
-    groupName: "editor.inspect.setter_group.style",
+    id: `${baseWidgetName}-style`,
+    groupName: i18n.t("editor.inspect.setter_group.style"),
     children: [
       {
-        id: "button-style-variant",
+        id: `${baseWidgetName}-style-variant`,
         setterType: "RADIO_GROUP_SETTER",
-        labelName: "editor.inspect.setter_label.variant",
+        labelName: i18n.t("editor.inspect.setter_label.variant"),
         attrName: "variant",
         options: [
           {
-            label: "editor.inspect.setter_default_value.solid",
+            label: i18n.t("editor.inspect.setter_default_value.fill"),
             value: "fill",
           },
           {
-            label: "editor.inspect.setter_default_value.outline",
+            label: i18n.t("editor.inspect.setter_default_value.outline"),
             value: "outline",
           },
         ],
       },
       {
-        id: "button-style-list",
+        id: `${baseWidgetName}-style-list`,
         setterType: "LIST_SETTER",
-        labelName: "editor.inspect.setter_label.styles",
+        labelName: i18n.t("editor.inspect.setter_label.color"),
         attrName: "styles",
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: "button-style-bg",
-            labelName: "editor.inspect.setter_label.theme_color",
+            id: `${baseWidgetName}-style-bg`,
+            labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
             defaultValue: "#134ae0",

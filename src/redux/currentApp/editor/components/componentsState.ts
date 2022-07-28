@@ -4,7 +4,6 @@ export interface ComponentNode {
   displayName: string
   parentNode: string | null
   showName: string
-  error: boolean
   isDragging: boolean
   isResizing: boolean
   childrenNode: ComponentNode[]
@@ -29,13 +28,8 @@ export interface ComponentNode {
   }
 }
 
-export interface ComponentsState {
-  rootDsl: ComponentNode | null
-}
-
-export const ComponentsInitialState: ComponentsState = {
-  rootDsl: null,
-}
+export type ComponentsState = ComponentNode | null
+export const ComponentsInitialState: ComponentsState = null
 
 export interface DeleteComponentNodePayload {
   displayNames: string[]
@@ -44,4 +38,14 @@ export interface DeleteComponentNodePayload {
 export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
+}
+
+export interface ResetComponentPropsPayload {
+  displayName: string
+  resetSlice: Record<string, any>
+}
+
+export interface UpdateComponentDisplayNamePayload {
+  displayName: string
+  newDisplayName: string
 }

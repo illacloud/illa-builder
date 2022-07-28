@@ -1,6 +1,5 @@
-import { FC, forwardRef, useEffect, useRef, useState } from "react"
+import { FC, forwardRef, useEffect, useRef } from "react"
 import { Input } from "@illa-design/input"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
 
@@ -19,16 +18,9 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       colorScheme,
       handleUpdateDsl,
       allowClear,
-      pattern,
-      regex,
-      minLength,
       maxLength,
-      required,
-      customRule,
-      hideValidationMessage,
+      minLength,
     } = props
-
-    const [currentValue, setCurrentValue] = useState("")
 
     return (
       <div css={containerStyle}>
@@ -43,27 +35,16 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
           suffix={suffixIcon}
           addonAfter={{ render: suffixText, custom: false }}
           onChange={(value) => {
-            setCurrentValue(value)
             handleUpdateDsl({ value })
           }}
           showCount={showCharacterCount}
           borderColor={colorScheme}
           allowClear={allowClear}
           onClear={() => {
-            setCurrentValue("")
             handleUpdateDsl({ value: "" })
           }}
           maxLength={maxLength}
-        />
-        <InvalidMessage
-          value={currentValue}
-          pattern={pattern}
-          regex={regex}
           minLength={minLength}
-          maxLength={maxLength}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
         />
       </div>
     )
@@ -88,13 +69,8 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     allowClear,
-    pattern,
-    regex,
     minLength,
     maxLength,
-    required,
-    customRule,
-    hideValidationMessage,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -112,13 +88,8 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       showCharacterCount,
       colorScheme,
       allowClear,
-      pattern,
-      regex,
       minLength,
       maxLength,
-      required,
-      customRule,
-      hideValidationMessage,
       focus: () => {
         inputRef.current?.focus()
       },
@@ -147,13 +118,8 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     colorScheme,
     displayName,
     allowClear,
-    pattern,
-    regex,
     minLength,
     maxLength,
-    required,
-    customRule,
-    hideValidationMessage,
   ])
   return <WrappedInput {...props} ref={inputRef} />
 }

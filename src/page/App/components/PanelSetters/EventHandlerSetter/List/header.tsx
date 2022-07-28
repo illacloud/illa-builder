@@ -1,5 +1,4 @@
 import { FC, useCallback } from "react"
-import { useTranslation } from "react-i18next"
 import { AddIcon } from "@illa-design/icon"
 import {
   fontButtonStyle,
@@ -8,6 +7,7 @@ import {
 } from "./style"
 import { EventHandlerSetterHeaderProps } from "./interface"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
+import { useTranslation } from "react-i18next"
 
 export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = (
   props,
@@ -21,10 +21,12 @@ export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = (
 
   return (
     <div css={headerWrapperStyle}>
-      <PanelLabel labelName={t(labelName)} labelDesc={labelDesc} />
+      <PanelLabel labelName={labelName} labelDesc={labelDesc} />
       <div css={fontButtonWrapperStyle} onClick={handleClickNewButton}>
         <AddIcon />
-        <span css={fontButtonStyle}>New</span>
+        <span css={fontButtonStyle}>
+          {t("editor.inspect.setter_content.event_handler_list.new")}
+        </span>
       </div>
     </div>
   )

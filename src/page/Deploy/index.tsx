@@ -7,7 +7,6 @@ import { appInfoActions } from "@/redux/currentApp/appInfo/appInfoSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
-import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
@@ -16,11 +15,28 @@ import { deployContainerStyle, deployLogoStyle } from "@/page/Deploy/style"
 import { Loading } from "@illa-design/loading"
 import { configActions } from "@/redux/config/configSlice"
 import { ReactComponent as DeployLogo } from "@assets/deploy-powered-by.svg"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { Unsubscribe } from "@reduxjs/toolkit"
+import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
+import { startAppListening } from "@/store"
+import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
+import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
+import { setupConfigListener } from "@/redux/config/configListener"
 
 export const Deploy: FC = () => {
   let { appId, versionId } = useParams()
   const dispatch = useDispatch()
   const [loadingState, setLoadingState] = useState(true)
+
+  useEffect(() => {
+    const subscriptions: Unsubscribe[] = [
+      setupDependenciesListeners(startAppListening),
+      setupExecutionListeners(startAppListening),
+      setupComponentsListeners(startAppListening),
+      setupConfigListener(startAppListening),
+    ]
+    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
+  }, [])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -36,18 +52,7 @@ export const Deploy: FC = () => {
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),
         )
-        dispatch(
-          componentsActions.updateComponentReducer(response.data.components),
-        )
         dispatch(actionActions.updateActionListReducer(response.data.actions))
-        dispatch(
-          dependenciesActions.setDependenciesReducer(
-            response.data.dependenciesState,
-          ),
-        )
-        dispatch(
-          executionActions.setExecutionReducer(response.data.executionState),
-        )
         dispatch(
           dragShadowActions.updateDragShadowReducer(
             response.data.dragShadowState,
@@ -63,6 +68,18 @@ export const Deploy: FC = () => {
             response.data.displayNameState,
           ),
         )
+        dispatch(
+          dependenciesActions.setDependenciesReducer(
+            response.data.dependenciesState,
+          ),
+        )
+
+        const autoRunAction = response.data.actions.filter((item) => {
+          return item.triggerMode === "automate"
+        })
+        autoRunAction.forEach((item) => {
+          runAction(item)
+        })
       },
       (e) => {},
       (e) => {},

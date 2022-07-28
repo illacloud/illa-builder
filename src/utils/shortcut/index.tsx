@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import hotkeys from "hotkeys-js"
 import { Modal } from "@illa-design/modal"
@@ -49,7 +49,7 @@ export const Shortcut: FC = ({ children }) => {
         cancelText: t("editor.component.cancel"),
         okText: t("editor.component.delete"),
         okButtonProps: {
-          colorScheme: "techPurple",
+          colorScheme: "red",
         },
         closable: true,
         onCancel: () => {
@@ -77,12 +77,6 @@ export const Shortcut: FC = ({ children }) => {
       componentsActions.copyComponentNodeReducer({
         newDisplayName: newDisplayName,
         componentNode: componentNode,
-      }),
-    )
-    dispatch(
-      componentsActions.updateComponentPropsReducer({
-        displayName: newDisplayName,
-        updateSlice: componentNode.props ?? {},
       }),
     )
   }
@@ -117,6 +111,19 @@ export const Shortcut: FC = ({ children }) => {
     { keydown: true, keyup: true, enabled: mode === "edit" },
     [],
   )
+
+  // cancel show dot
+  useEffect(() => {
+    const listener = (e: Event) => {
+      if (document.hidden) {
+        dispatch(configActions.updateShowDot(false))
+      }
+    }
+    document.addEventListener("visibilitychange", listener)
+    return () => {
+      document.removeEventListener("visibilitychange", listener)
+    }
+  }, [])
 
   return (
     <ShortCutContext.Provider value={{ showDeleteDialog, copyComponent }}>

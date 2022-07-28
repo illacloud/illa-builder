@@ -37,6 +37,25 @@ export const getSelectedAction = (state: RootState) => {
   return state.config.selectedAction
 }
 
+export const getSelectedContent = (state: RootState) => {
+  if (state.config.selectedAction) {
+    return state.config.cacheActionContent[
+      state.config.selectedAction.actionType
+    ]
+  } else {
+    return null
+  }
+}
+
+export const isCurrentSelectedActionChanged = (state: RootState) => {
+  const originAction = state.currentApp.action.find((v) => {
+    return v.displayName === state.config.selectedAction?.displayName
+  })
+  return (
+    JSON.stringify(state.config.selectedAction) !== JSON.stringify(originAction)
+  )
+}
+
 export const isSelected = (state: RootState, displayName: string) => {
   return (
     state.config.selectedComponents.findIndex((value) => {

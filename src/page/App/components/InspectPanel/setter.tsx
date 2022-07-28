@@ -6,7 +6,6 @@ import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { useTranslation } from "react-i18next"
 
 export const Setter: FC<PanelSetterProps> = (props) => {
   const {
@@ -22,9 +21,9 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     parentAttrName,
     expectedType,
     defaultValue,
+    iconName,
   } = props
   const Comp = getSetterByType(setterType)
-  const { t } = useTranslation()
 
   const {
     widgetProps,
@@ -36,8 +35,17 @@ export const Setter: FC<PanelSetterProps> = (props) => {
 
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
+    let bindAttrNameValue
     if (typeof bindAttrName === "string") {
-      return shown(widgetProps[bindAttrName])
+      if (parentAttrName) {
+        bindAttrNameValue = get(
+          widgetProps,
+          `${parentAttrName}.${bindAttrName}`,
+        )
+      } else {
+        bindAttrNameValue = get(widgetProps, bindAttrName)
+      }
+      return shown(bindAttrNameValue)
     } else if (Array.isArray(bindAttrName)) {
       const shownProps: { [attrName: string]: any } = {}
       bindAttrName.forEach((_attrName: string) => {
@@ -51,7 +59,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
   const renderLabel = useMemo(() => {
     return !useCustomLayout && labelName ? (
       <PanelLabel
-        labelName={t(labelName)}
+        labelName={labelName}
         labelDesc={labelDesc}
         isInList={isInList}
       />
@@ -69,8 +77,12 @@ export const Setter: FC<PanelSetterProps> = (props) => {
     return isSetterSingleRow || !labelName
   }, [isSetterSingleRow, labelName])
 
+  const finalValue = useMemo(
+    () => get(widgetProps, _finalAttrName),
+    [widgetProps, _finalAttrName],
+  )
+
   const renderSetter = useMemo(() => {
-    const value = get(widgetProps, _finalAttrName)
     return Comp ? (
       <div
         css={applySetterPublicWrapperStyle(isInList, isSetterSingleRowWrapper)}
@@ -79,7 +91,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
           {...props}
           attrName={_finalAttrName}
           isSetterSingleRow={isSetterSingleRowWrapper}
-          value={value}
+          value={finalValue}
           panelConfig={widgetProps}
           handleUpdateDsl={handleUpdateDsl}
           widgetDisplayName={widgetDisplayName}
@@ -88,6 +100,7 @@ export const Setter: FC<PanelSetterProps> = (props) => {
           parentAttrName={parentAttrName}
           widgetOrAction={widgetOrAction}
           defaultValue={defaultValue}
+          iconName={iconName}
         />
       </div>
     ) : null

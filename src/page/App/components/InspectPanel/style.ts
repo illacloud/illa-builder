@@ -42,6 +42,14 @@ export function applyLabelTipsStyle(
   `
 }
 
+export const labelTipsTextStyle = css`
+  & > strong {
+    padding: 0 4px;
+    border-raidus: 4px;
+    background: ${globalColor(`--${illaPrefix}-gray-03`)};
+  }
+`
+
 export const panelHeaderWrapperStyle = css`
   display: flex;
   width: 100%;
@@ -97,8 +105,6 @@ export const unselectedTipIconStyle = css`
 
 export const unselectedTipTextStyle = css`
   margin-top: 4px;
-  font-size: 14px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const singleSelectedPanelWrapperStyle = css`

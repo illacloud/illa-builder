@@ -24,8 +24,9 @@ import {
   forgotPwdContainerStyle,
 } from "@/page/User/style"
 import { TextLink } from "@/page/User/components/TextLink"
-import { LocationState, LoginFields, LoginResult } from "./interface"
+import { LocationState, LoginFields } from "./interface"
 import { setLocalStorage } from "@/utils/storage"
+import { CurrentUser } from "@/redux/currentUser/currentUserState"
 
 export const Login: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
@@ -42,7 +43,7 @@ export const Login: FC = () => {
     mode: "onSubmit",
   })
   const onSubmit: SubmitHandler<LoginFields> = (data) => {
-    Api.request<LoginResult>(
+    Api.request<CurrentUser>(
       { method: "POST", url: "/auth/signin", data },
       (res) => {
         const token = res.headers["illa-token"]
@@ -52,8 +53,7 @@ export const Login: FC = () => {
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
             nickname: res.data.nickname,
-            language: res.data.language === "zh-CN" ? "简体中文" : "English",
-            userAvatar: "",
+            language: res.data.language || "en-US",
             email: res.data.email,
           }),
         )

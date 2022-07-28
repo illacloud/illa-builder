@@ -17,14 +17,15 @@
   "rename": "Rename",
   "duplicate": "Duplicate",
   "network_error": "Network disconnected. Please check this device's network",
-  "create_fail": "Create fail",
-  "remove_fail": "Remove fail",
+  "create_fail": "Failed to create",
+  "remove_fail": "Failed to remove",
   "retry": "Retry",
   "btn": {
     "choose_file": "Choose a file"
   },
-  "back": "back",
+  "back": "Back",
   "edit_success": "edit success！",
+  "save": "Save",
   "user": {
     "description": "An open-source low-code Platform for Developers.",
     "sign_up": {
@@ -184,7 +185,10 @@
           "please_input_name": "Please input name",
           "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter",
           "load_action_list_fail": "Get Action list fail: {{message}}",
-          "load_resource_fail": "Get resource list fail: {{message}}"
+          "load_resource_fail": "Get resource list fail: {{message}}",
+          "success_created": "Successfully created!",
+          "success_saved": "Successfully saved!",
+          "failed": "Failed to connect to server"
         },
         "action_generator": {
           "selector": {
@@ -225,7 +229,8 @@
         "btn": {
           "run": "Run",
           "save": "Save",
-          "save_and_run": "Save&Run",
+          "save_and_run": "Save & Run",
+          "save_fail": "Failed to save",
           "disable": "Disable",
           "enable": "Enable",
           "new": "New"
@@ -252,7 +257,7 @@
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
-          "api": "APIS",
+          "api": "API",
           "configure": "Configure {{name}}"
         },
         "btn": {
@@ -271,16 +276,16 @@
             "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
-            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
+            "external_reference": "You can create external references to variables you've defined. For example {{ transformer2.value }}. "
           }
         },
         "js_transformer": {
           "name": "Transformer"
         },
         "label": {
-          "comming_soon": "Comming Soon"
+          "coming_soon": "Comming Soon"
         },
-        "my_sql": {
+        "mysql": {
           "name": "MySQL",
           "title": {
             "advanced_option": "Advanced Options"
@@ -318,15 +323,15 @@
             "ssh_credentials": "e.g.ec2-user",
             "private_key": "e.g.path/to/root.crt",
             "server_root_certificate": "e.g.path/to/root.crt",
-            "client_key": "e.g.path/to/root.crt",
-            "client_certificate": "e.g.path/to/root.crt"
+            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
         },
-        "rest_api": {
+        "restapi": {
           "name": "REST API",
           "label": {
             "name": "Name",
-            "action_type": "Action Type",
+            "action_type": "Method",
             "url_parameters": "URL Parameters",
             "headers": "Headers",
             "cookies": "Cookies",
@@ -395,7 +400,7 @@
         "redis": {
           "name": "Redis"
         },
-        "mongo_db": {
+        "mongodb": {
           "name": "MongoDB"
         }
       },
@@ -444,7 +449,8 @@
         "layout": "LAYOUT",
         "style": "STYLE",
         "validation": "VALIDATION",
-        "options": "OPTIONS"
+        "options": "OPTIONS",
+        "data": "DATA"
       },
       "setter_label": {
         "text": "Text",
@@ -465,6 +471,7 @@
         "min_date": "Min date",
         "label": "Label",
         "caption": "Caption",
+        "hidden_label": "Hidden label",
         "label_position": "Position",
         "label_alignment": "Alignment",
         "label_width": "Width(%)",
@@ -502,6 +509,7 @@
         "time_format": "Time format",
         "step_size": "Step size",
         "hide_value_label": "Hide value label",
+        "colors": "Colors",
         "styles": "Styles",
         "trail_color": "Trail color",
         "stroke_width": "Stroke width",
@@ -514,6 +522,8 @@
         "pending": "Pending",
         "event_handler": "Event handler",
         "event": "Event",
+        "component": "Component",
+        "method": "Method",
         "action": "Action",
         "trigger_query": "Trigger query",
         "control_component": "Control component",
@@ -538,15 +548,47 @@
         "x_axis_type": "X-axis type",
         "y_axis_title": "Y-axis title",
         "legend_position": "Legend position",
+        "only_run_when": "Only run when",
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
           "remove": "Remove dataset"
-        }
+        },
+        "new_tab": "New tab",
+        "description": "Description",
+        "duration":"Duration",
+        "data": "Data"
+      },
+      "setter_tooltip": {
+        "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
+        "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
+        "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
+        "read_only": "Control the status of whether the component is read only. A read only component can be selected and focused but cannont be modified.",
+        "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
+        "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
+        "required_field": "Valid only when the switch is on.",
+        "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
+        "placeholder": "The value will be shown when the input field is empty.",
+        "switch_default_value": "Set the initial status of the switch. You can dynamically change the default value by JavaScript.",
+        "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
+        "map_data_option": "Use either an array of values or an object of keys mapped to arrays. Each item in your data source is mapped to each option",
+        "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format)",
+        "loading": "Whether the component should show a loading indicator.",
+        "progress_percentage": "The percentage value is between 0 and 100",
+        "timeline_direction": "Change the direction of the timeline.",
+        "only_run_when": "Conditions that must be met before the event executes"
       },
       "setter_default_value": {
-        "solid": "Solid",
-        "outline": "Outline"
+        "fill": "Fill",
+        "outline": "Outline",
+        "message_type": {
+          "success": "Success",
+            "info": "Info",
+            "warning": "Warning",
+            "error": "Error"
+        }
       },
       "setter_content": {
         "option_list": {
@@ -554,13 +596,22 @@
             "delete": "Delete",
             "duplicate": "Duplicate"
           },
-          "list_no_label": "No label"
+          "list_no_label": "No label",
+          "model_title": "Edit Options",
+          "title": "Options",
+          "new": "New"
         },
         "list_setter": {
           "reset": "Reset"
         },
         "event_handler_list": {
-          "empty": "Trigger queries, control components, or call other APIs in response to component events."
+          "empty": "Trigger queries, control components, or call other APIs in response to component events.",
+          "new": "New",
+          "title": "Edit event handler"
+        },
+        "color_picker": {
+          "title": "Edit color",
+          "prefabricated": "Prefabricated color"
         }
       }
     },
@@ -569,7 +620,7 @@
       "delete": "Delete"
     },
     "deploy": {
-      "fail": "Deploy fail"
+      "fail": "Failed to deploy"
     },
     "component": {
       "delete": "Delete",
@@ -581,12 +632,26 @@
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
       "globals_title": "GLOBALS "
+    },
+    "display_name": {
+      "validate_error": "\"{{ displayName }}\" must start with a letter or \"_\", and can only contain letters, numbers, \"_\", or \"$\"",
+      "duplicate_error": "\"{{ displayName }}\" already exists"
     }
   },
   "widget": {
+    "public": {
+      "left": "Left",
+      "right": "Right",
+      "top": "Top",
+      "select_options": {
+        "manual": "Manual",
+        "mapped": "Mapped"
+      }
+    },
     "text": {
       "name": "Text",
-      "default_value": "This is a text"
+      "default_value": "\uD83D\uDC4B Hello!",
+      "text_model": "Plain text"
     },
     "button": {
       "name": "Button",
@@ -645,6 +710,9 @@
     },
     "chart": {
       "name": "Chart"
+    },
+    "table": {
+      "name": "Table"
     }
   },
   "Setting": "Setting",
@@ -665,11 +733,11 @@
       "all_apps": "All Apps",
       "create_app": "Create App",
       "rename_app": "Rename App",
-      "rename_fail": "Rename fail",
-      "duplicate_fail": "Duplicate fail",
+      "rename_fail": "Failed to rename",
+      "duplicate_fail": "Failed to duplicate",
       "duplicate_placeholder": "Enter your app name here",
-      "trash_success": "Delete successfully",
-      "trash_failure": "Delete failure",
+      "trash_success": "Successfully deleted",
+      "trash_failure": "Failed to delete",
       "name_empty": "Please enter a name",
       "name_existed": "Name already taken"
     },
@@ -689,22 +757,23 @@
   "setting": {
     "account": {
       "email": "Email",
-      "uneditable": "uneditable",
       "title": "ACCOUNT",
       "username": "Username",
       "empty_username": "Please enter your username",
       "error_username": "Username must be 3～15 characters",
       "save": "Save Changes",
-      "save_fail": "Save fail"
+      "save_fail": "Save Fail"
     },
     "password": {
       "title": "PASSWORD",
       "current_password": "Old password",
       "new_password": "New password",
-      "confirm_password": "Confirm password",
+      "confirm_password": "Confirmation password",
       "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 6～15 characters",
-      "error_match_password": "Passwords do not match",
+      "error_format_password": "Password must be 6～20 characters",
+      "error_match_password": "Your password and confirmation password do not match",
+      "error_password_has_empty": "Password cannot include spaces",
+      "error_validate_password": "Your password can only contain numbers, letters and punctuations",
       "submit_button": "Submit"
     },
     "other": {

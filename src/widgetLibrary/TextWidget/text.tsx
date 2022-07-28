@@ -37,6 +37,10 @@ export const Text: FC<TextProps> = (props) => {
               backgroundColor ?? "transparent",
             )}, ${alignCss}
           `}
+          options={{
+            simplifiedAutoLink: true,
+            openLinksInNewWindow: true,
+          }}
           markdown={value ?? ""}
           extensions={[transLink]}
         />

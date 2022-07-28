@@ -28,13 +28,14 @@ import {
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/execution/executionSelector"
 import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
+import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
     mode = "TEXT_JS",
     placeholder,
-    expectedType = "String",
+    expectedType = VALIDATION_TYPES.STRING,
     borderRadius = "8px",
     path,
     tables = {},
@@ -80,7 +81,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let previewType = expectedType
     setError(false)
     try {
-      calcResult = evaluateDynamicString("", currentValue, executionResult)
+      calcResult = evaluateDynamicString("", currentValue, globalData)
       // [TODO]: v1 evaluate
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)
@@ -121,7 +122,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           })
         }
         if (lintError?.errorLine && editor) {
-          lineMarker(editor, lintError.errorLine)
+          lineMarker(editor, lintError.errorLine - 1)
         }
       } else {
         setError(false)

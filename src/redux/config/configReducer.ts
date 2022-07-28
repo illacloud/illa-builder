@@ -1,10 +1,15 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ConfigState, IllaMode } from "@/redux/config/configState"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 import { cloneDeep } from "lodash"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
+import { ResourceType } from "@/redux/resource/resourceState"
+import { CacheContentPayload } from "@/redux/config/configPayload"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -41,28 +46,32 @@ export const updateSelectedComponent: CaseReducer<
   state.selectedComponents = action.payload
 }
 
+export const updateCacheActionContent: CaseReducer<
+  ConfigState,
+  PayloadAction<CacheContentPayload>
+> = (state, action) => {
+  state.cacheActionContent[action.payload.resourceType] = action.payload.content
+}
+
+export const clearCacheActionContent: CaseReducer<
+  ConfigState,
+  PayloadAction<void>
+> = (state, action) => {
+  state.cacheActionContent = {}
+}
+
 export const updateSelectedAction: CaseReducer<
   ConfigState,
-  PayloadAction<ActionItem>
+  PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
   state.selectedAction = action.payload
 }
 
-export const updateSelectActionTemplate: CaseReducer<
+export const changeSelectedAction: CaseReducer<
   ConfigState,
-  PayloadAction<any>
+  PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
-  const { displayName, updateSlice } = action.payload
-  if (!isObject(updateSlice) || !displayName) {
-    return
-  }
-  const oldAction = state.selectedAction.actionTemplate ?? {}
-  const clonedWidgetProps = cloneDeep(oldAction)
-  state.selectedAction.actionTemplate = getNewWidgetPropsByUpdateSlice(
-    displayName,
-    updateSlice,
-    clonedWidgetProps,
-  )
+  state.selectedAction = action.payload
 }
 
 export const updateShowDot: CaseReducer<ConfigState, PayloadAction<boolean>> = (

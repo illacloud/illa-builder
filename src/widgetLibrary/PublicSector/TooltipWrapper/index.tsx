@@ -13,6 +13,7 @@ export const TooltipWrapper: FC<TooltipWrapperProps> = (props) => {
           value={tooltipText}
           disableMarkdown
           textColor={globalColor(`--${illaPrefix}-white-01`)}
+          linkColor="#8ab4f8"
         />
       }
       disabled={disabled}

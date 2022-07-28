@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react"
 import { Button } from "@illa-design/button"
 import { ButtonWidgetProps, WrappedButtonProps } from "./interface"
-import { applyButtonLayoutStyle } from "./style"
+import { buttonLayoutStyle } from "./style"
 
 export const WrappedButton: FC<WrappedButtonProps> = (props) => {
   const {
@@ -12,23 +12,21 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
     disabled,
     borderRadius,
     loading,
-    alignment,
     colorScheme,
     handleOnClick,
   } = props
 
   return (
-    <div css={applyButtonLayoutStyle(alignment ?? "fullWidth")}>
+    <div css={buttonLayoutStyle}>
       <Button
         disabled={disabled}
         variant={variant}
-        autoFullVertically
-        autoFullHorizontal={alignment === "fullWidth"}
         buttonRadius={borderRadius}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
         loading={loading}
-        fullWidth={alignment === "fullWidth"}
+        fullWidth
+        fullHeight
         onClick={handleOnClick}
         backgroundColor={colorScheme}
         borderColor={colorScheme}
@@ -51,7 +49,6 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     disabled,
     borderRadius,
     loading,
-    alignment,
     colorScheme,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -67,7 +64,6 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
       disabled,
       borderRadius,
       loading,
-      alignment,
       colorScheme,
     })
     return () => {
@@ -81,7 +77,6 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     disabled,
     borderRadius,
     loading,
-    alignment,
     colorScheme,
   ])
   return <WrappedButton {...props} />

@@ -6,7 +6,6 @@ import { generateNewEventItem } from "@/page/App/components/PanelSetters/EventHa
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { NewBaseEventHandlerSetterProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
-import { useTranslation } from "react-i18next"
 
 export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   props,
@@ -22,8 +21,6 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     labelDesc,
     defaultValue,
   } = props
-
-  const { t } = useTranslation()
 
   const eventHandlerConfig = useMemo(
     () =>
@@ -46,6 +43,7 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     childrenSetter.length < 1
   )
     return null
+
   return (
     <BaseEventHandlerProvider
       eventItems={value}
@@ -56,7 +54,7 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
     >
       <div css={publicPaddingStyle}>
         <EventHandlerSetterHeader
-          labelName={t(labelName)}
+          labelName={labelName}
           labelDesc={labelDesc}
           handleAddItemAsync={handleAddItemAsync}
         />

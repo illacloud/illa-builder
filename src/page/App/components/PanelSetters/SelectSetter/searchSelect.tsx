@@ -12,7 +12,7 @@ export const SearchSelectSetter: FC<BaseSelectSetterProps> = (props) => {
         showSearch={true}
         allowClear
         options={options}
-        size="small"
+        size="medium"
         value={value}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)

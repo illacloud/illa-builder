@@ -1,5 +1,4 @@
 import { createContext, ReactNode, FC } from "react"
-import { Empty } from "@/page/App/components/InspectPanel/empty"
 
 interface Injected {
   widgetType: string
@@ -32,8 +31,6 @@ export const SelectedProvider: FC<Props> = (props) => {
     widgetOrAction,
     handleUpdateDsl,
   } = props
-
-  if (!widgetType || !widgetDisplayName) return <Empty />
 
   const value = {
     widgetType,

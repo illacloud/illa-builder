@@ -5,9 +5,7 @@ import {
 } from "@/page/App/components/InspectPanel/interface"
 import { PanelBar } from "@/components/PanelBar"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
-import { getLocalStorage, setLocalStorage } from "@/utils/storage"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
-import i18n from "@/i18n/config"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,
@@ -29,29 +27,12 @@ export const renderFieldAndLabel = (
 export const renderPanelBar = (
   config: PanelFieldGroupConfig,
   displayName: string,
-  index: number,
 ) => {
   const { id, groupName, children } = config as PanelFieldGroupConfig
-  let isOpened = true
   const key = `${id}-${displayName}`
 
-  const saveToggleState = (value: boolean) => {
-    setLocalStorage(key, value, -1)
-  }
-
-  if (getLocalStorage(key) != undefined) {
-    isOpened = getLocalStorage(key)
-  } else {
-    saveToggleState(isOpened)
-  }
-
   return (
-    <PanelBar
-      key={key}
-      title={i18n.t(groupName)}
-      isOpened={isOpened}
-      saveToggleState={saveToggleState}
-    >
+    <PanelBar key={key} title={groupName}>
       {children && children.length > 0 && (
         <div css={ghostEmptyStyle}>{fieldFactory(children, displayName)}</div>
       )}
@@ -63,10 +44,9 @@ export const renderField = (
   item: PanelConfig,
   displayName: string,
   isInList: boolean = false,
-  index: number,
 ) => {
   if ((item as PanelFieldGroupConfig).groupName) {
-    return renderPanelBar(item as PanelFieldGroupConfig, displayName, index)
+    return renderPanelBar(item as PanelFieldGroupConfig, displayName)
   } else if ((item as PanelFieldConfig).setterType) {
     return renderFieldAndLabel(
       item as PanelFieldConfig,
@@ -80,7 +60,7 @@ export const renderField = (
 
 export function fieldFactory(panelConfig: PanelConfig[], displayName: string) {
   if (!displayName || !panelConfig || !panelConfig.length) return null
-  return panelConfig.map((item: PanelConfig, index: number) =>
-    renderField(item, displayName, false, index),
+  return panelConfig.map((item: PanelConfig) =>
+    renderField(item, displayName, false),
   )
 }

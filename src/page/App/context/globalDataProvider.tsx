@@ -18,6 +18,8 @@ interface Props {
   children?: ReactNode
 }
 
+export let BUILDER_CALC_CONTEXT = {}
+
 // {{showNotification("info","222","333")}}
 const showNotification = (
   type: NotificationType,
@@ -36,10 +38,7 @@ const runScript = (script: string) => {
   try {
     // TODO: @WeiChen wait use parser
     const result = eval(script)
-    console.log(result)
-  } catch (error) {
-    console.log(error)
-  }
+  } catch (ignore) {}
 }
 
 // {{goToURL("https://www.baidu.com",true)}}
@@ -66,7 +65,7 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
   const builderInfo = useSelector(getBuilderInfo)
   const [globalData, setGlobalData] = useState<Record<string, any>>({
     ...initState,
-    userInfo,
+    currentUser: userInfo,
     builderInfo,
   })
 
@@ -90,6 +89,8 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
   }
+
+  BUILDER_CALC_CONTEXT = globalData
 
   return (
     <GLOBAL_DATA_CONTEXT.Provider value={value}>

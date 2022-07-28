@@ -1,57 +1,58 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
-  ActionListState,
+  ActionContent,
   ActionItem,
+  UpdateActionItemPayload,
 } from "@/redux/currentApp/action/actionState"
 
 export const updateActionListReducer: CaseReducer<
-  ActionListState,
-  PayloadAction<ActionItem[]>
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>[]>
 > = (_, action) => {
   return action.payload
 }
 
 export const addActionItemReducer: CaseReducer<
-  ActionListState,
-  PayloadAction<ActionItem>
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
-  return [...state, action.payload]
+  state.push(action.payload)
 }
 
 export const updateActionItemReducer: CaseReducer<
-  ActionListState,
-  PayloadAction<Partial<ActionItem>>
+  ActionItem<ActionContent>[],
+  PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
-  let targetActionIndex = state.findIndex(
-    (item: ActionItem) => item.actionId === action.payload.actionId,
+  const index = state.findIndex(
+    (item: ActionItem<ActionContent>) =>
+      item.displayName === action.payload.displayName,
   )
-
-  state.splice(targetActionIndex, 1, {
-    ...state[targetActionIndex],
-    ...action.payload,
-  })
+  if (index != -1) {
+    state[index] = action.payload
+  }
 }
 
-export const updateActionTemplateReducer: CaseReducer<
-  ActionListState,
-  PayloadAction<any>
+export const updateActionItemResultReducer: CaseReducer<
+  ActionItem<ActionContent>[],
+  PayloadAction<UpdateActionItemPayload>
 > = (state, action) => {
-  const { actionId } = action.payload
-  let targetActionIndex = state.findIndex(
-    (item: ActionItem) => item.actionId === actionId,
+  const index = state.findIndex(
+    (item: ActionItem<ActionContent>) =>
+      item.displayName === action.payload.displayName,
   )
-  if (targetActionIndex === -1) return
-  const oldAction = state[targetActionIndex]
-  oldAction.actionTemplate = action.payload.actionTemplate
-  state[targetActionIndex] = oldAction
+  if (index != -1) {
+    state[index].data = action.payload.data
+  }
 }
 
 export const removeActionItemReducer: CaseReducer<
-  ActionListState,
+  ActionItem<ActionContent>[],
   PayloadAction<string>
 > = (state, action) => {
   state.splice(
-    state.findIndex((item: ActionItem) => item.actionId === action.payload),
+    state.findIndex(
+      (item: ActionItem<ActionContent>) => item.displayName === action.payload,
+    ),
     1,
   )
 }

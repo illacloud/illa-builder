@@ -1,10 +1,11 @@
 import { EditableTextWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
+import i18n from "@/i18n/config"
 
 export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
   type: "EDITABLE_TEXT_WIDGET",
   displayName: "editable_text",
-  widgetName: "widget.editable_text.name",
+  widgetName: i18n.t("widget.editable_text.name"),
   icon: <EditableTextWidgetIcon size="100%" />,
   sessionType: "INPUTS",
   w: 10,

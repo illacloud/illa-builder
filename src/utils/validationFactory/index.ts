@@ -1,11 +1,11 @@
 import { isObject } from "@/utils/typeHelper"
 
 export enum VALIDATION_TYPES {
-  STRING = "STRING",
-  NUMBER = "NUMBER",
-  BOOLEAN = "BOOLEAN",
-  ARRAY = "ARRAY",
-  OBJECT = "OBJECT",
+  STRING = "String",
+  NUMBER = "Number",
+  BOOLEAN = "Boolean",
+  ARRAY = "Array",
+  OBJECT = "Object",
 }
 
 export interface ValidationResponse {

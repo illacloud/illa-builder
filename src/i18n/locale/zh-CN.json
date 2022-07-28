@@ -23,10 +23,11 @@
   "btn": {
     "choose_file": "选择文件"
   },
-  "back": "后退",
+  "back": "返回",
   "edit_success": "修改成功！",
+  "save": "保存",
   "user": {
-    "description": "专属于开发者的开源低代码平台。",
+    "description": "专属于开发者的开源低代码平台",
     "sign_up": {
       "title": "注册",
       "fields": {
@@ -176,7 +177,7 @@
         },
         "tips": {
           "not_found": "抱歉，没有搜索结果",
-          "empty": "添加 action 以开始处理连接资源中的数据"
+          "empty": "添加 Action 以开始处理连接资源中的数据"
         },
         "message": {
           "confirm_switch": "您没有保存查询。确定要放弃更改吗？",
@@ -184,7 +185,10 @@
           "please_input_name": "请输入名称",
           "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头",
           "load_action_list_fail": "获取 Action 列表失败: {{message}}",
-          "load_resource_fail": "获取资源列表失败: {{message}}"
+          "load_resource_fail": "获取资源列表失败: {{message}}",
+          "success_created": "保存成功!",
+          "success_saved": "Successfully saved!",
+          "failed": "服务器连接失败"
         },
         "action_generator": {
           "selector": {
@@ -215,8 +219,8 @@
       "panel": {
         "option": {
           "trigger": {
-            "manually": "手动触发",
-            "on_change": "自动触发"
+            "manually": "手动触发时执行",
+            "on_change": "当输入更改时自动执行"
           },
           "resource": {
             "new": "添加资源"
@@ -225,7 +229,7 @@
         "btn": {
           "run": "运行",
           "save": "保存",
-          "save_and_run": "保存&运行",
+          "save_and_run": "保存 & 运行",
           "disable": "禁用",
           "enable": "使用",
           "new": "新增"
@@ -252,7 +256,7 @@
         "title": {
           "select": "选择资源类型",
           "database": "数据库",
-          "api": "APIS",
+          "api": "API",
           "configure": "配置 {{name}}"
         },
         "btn": {
@@ -271,16 +275,16 @@
             "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
-            "external_reference": "您可以创建对已定义变量的外部引用。 例如，{{ transformer2.value }}"
+            "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
           }
         },
         "js_transformer": {
           "name": "转换器"
         },
         "label": {
-          "comming_soon": "即将更新"
+          "coming_soon": "即将更新"
         },
-        "my_sql": {
+        "mysql": {
           "name": "MySQL",
           "title": {
             "advanced_option": "高级配置"
@@ -318,11 +322,11 @@
             "ssh_credentials": "e.g.ec2-user",
             "private_key": "e.g.path/to/root.crt",
             "server_root_certificate": "e.g.path/to/root.crt",
-            "client_key": "e.g.path/to/root.crt",
-            "client_certificate": "e.g.path/to/root.crt"
+            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
         },
-        "rest_api": {
+        "restapi": {
           "name": "REST API",
           "label": {
             "name": "名称",
@@ -395,7 +399,7 @@
         "redis": {
           "name": "Redis"
         },
-        "mongo_db": {
+        "mongodb": {
           "name": "MongoDB"
         }
       },
@@ -442,9 +446,10 @@
         "adornments": "额外修饰属性",
         "interaction": "交互",
         "layout": "布局",
-        "style": "样式",
+        "style": "风格",
         "validation": "验证",
-        "options": "选项"
+        "options": "选项",
+        "data": "数据"
       },
       "setter_label": {
         "text": "文本",
@@ -455,7 +460,7 @@
         "tooltip": "提示",
         "align": "对齐",
         "hidden": "隐藏",
-        "variant": "变体",
+        "variant": "样式",
         "color": "颜色",
         "theme_color": "主题色",
         "default_value": "默认值",
@@ -465,6 +470,7 @@
         "min_date": "最小日期",
         "label": "标签",
         "caption": "纵标题",
+        "hidden_label": "隐藏标签",
         "label_position": "位置",
         "label_alignment": "对齐",
         "label_width": "宽度(%)",
@@ -477,7 +483,7 @@
         "end_placeholder": "结束日期占位符",
         "image_source": "图片来源",
         "alt_text": "替换文本",
-        "alt_text_desc": "An accessible description of the image for screen readers. This is also rendered as a fallback if the image fails to load.",
+        "alt_text_desc": "屏幕阅读器可访问的图像描述。如果无法加载图像，这也会作为备用方案进行渲染。",
         "img_height": "高度",
         "img_width": "宽度",
         "radius": "圆角",
@@ -502,6 +508,7 @@
         "time_format": "时间格式化",
         "step_size": "步长",
         "hide_value_label": "隐藏值标签",
+        "colors": "颜色",
         "styles": "样式",
         "trail_color": "描边颜色",
         "stroke_width": "描边宽度",
@@ -514,6 +521,8 @@
         "pending": "等待",
         "event_handler": "事件处理器",
         "event": "事件",
+        "component": "组件",
+        "method": "方法",
         "action": "动作",
         "trigger_query": "触发请求",
         "control_component": "控制组件",
@@ -533,20 +542,52 @@
         "group_by": "Group by",
         "datasets": "Datasets",
         "dataset_config": "Dataset config",
-        "title": "Title",
+        "title": " 标题",
         "x_axis_title": "X-axis title",
         "x_axis_type": "X-axis type",
         "y_axis_title": "Y-axis title",
         "legend_position": "Legend position",
+        "only_run_when": "先决条件",
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
           "remove": "Remove dataset"
-        }
+        },
+        "new_tab": "在新标签中打开",
+        "description": "描述",
+        "duration": "持续时间",
+        "data": "数据"
+      },
+      "setter_tooltip": {
+        "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
+        "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
+        "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态",
+        "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
+        "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
+        "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
+        "hide_validation_message": "当验证输入有误时隐藏错误信息。您可以通过编写 JavaScript 对是否隐藏进行动态修改。",
+        "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
+        "required_field": "在开关开启后对输入框执行验证。",
+        "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
+        "placeholder": "当输入中没有值时，展示的信息。",
+        "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
+        "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
+        "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项",
+        "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
+        "loading": "控制组件是否为加载状态。",
+        "progress_percentage": "进度条的数值范围为 0-100",
+        "timeline_direction": "切换时间轴的方向",
+        "only_run_when": "在此输入该事件执行前必须满足的条件"
       },
       "setter_default_value": {
-        "solid": "Solid",
-        "outline": "Outline"
+        "fill": "填充",
+        "outline": "描边",
+        "message_type": {
+          "success": "成功",
+          "info": "信息",
+          "warning": "警告",
+          "error": "错误"
+        }
       },
       "setter_content": {
         "option_list": {
@@ -554,13 +595,22 @@
             "delete": "删除",
             "duplicate": "复制"
           },
-          "list_no_label": "无标签"
+          "list_no_label": "无标签",
+          "model_title": "编辑选项",
+          "title": "选项",
+          "new": "新建"
         },
         "list_setter": {
           "reset": "重置"
         },
         "event_handler_list": {
-          "empty": "触发查询、控制组件或调用其他API以响应组件事件。"
+          "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
+          "new": "新建",
+          "title": "编辑事件处理器"
+        },
+        "color_picker": {
+          "title": "Edit color",
+          "prefabricated": "Prefabricated color"
         }
       }
     },
@@ -581,12 +631,26 @@
       "actions_title": "ACTIONS 列表 ",
       "components_title": "组件列表 ",
       "globals_title": "全局变量 "
+    },
+    "display_name": {
+      "validate_error": "\"{{ displayName }}\" 必须由字母或\"_\"开始, 并且只能包含字符，数字，\"_\", 或者 \"$\"",
+      "duplicate_error": "\"{{ displayName }}\" 已存在"
     }
   },
   "widget": {
+    "public": {
+      "left": "左",
+      "right": "右",
+      "top": "上",
+      "select_options": {
+        "manual": "自动",
+        "mapped": "手动"
+      }
+    },
     "text": {
       "name": "文本",
-      "default_value": "This is a text"
+      "default_value": "\uD83D\uDC4B 嗨！",
+      "text_model": "纯文本"
     },
     "button": {
       "name": "按钮",
@@ -646,6 +710,9 @@
     },
     "chart": {
       "name": "图表"
+    },
+    "table": {
+      "name": "表格"
     }
   },
   "Setting": "设置",
@@ -657,7 +724,7 @@
       "delete_content": "删除将中断使用此资源的应用程序和查询库查询",
       "delete_cancel_text": "取消",
       "delete_ok_text": "删除",
-      "delete": "移到回收站",
+      "delete": "删除",
       "error_title": "错误",
       "error_description": "请求错误",
       "error_button": "重试"
@@ -690,7 +757,6 @@
   "setting": {
     "account": {
       "email": "邮箱",
-      "uneditable": "不可编辑",
       "title": "账号",
       "username": "用户名",
       "empty_username": "用户名不能为空",
@@ -704,8 +770,10 @@
       "new_password": "新密码",
       "confirm_password": "确认新密码",
       "empty_password": "密码不能为空",
-      "error_format_password": "密码须为6～15个字符",
-      "error_match_password": "密码不匹配",
+      "error_format_password": "密码须为6～20个字符",
+      "error_match_password": "新密码不一致，请重试 ",
+      "error_password_has_empty": "密码不能包含空格",
+      "error_validate_password": "密码只能包含数字、字母、标点符号",
       "submit_button": "提交"
     },
     "other": {

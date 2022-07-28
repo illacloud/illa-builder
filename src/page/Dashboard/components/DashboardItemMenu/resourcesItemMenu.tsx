@@ -4,15 +4,15 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Message } from "@illa-design/message"
 import {
-  triggerContentContainerCss,
   applyTriggerContentItemStyle,
   modalStyle,
+  triggerContentContainerCss,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { DashboardResource } from "@/redux/resource/resourceState"
 import { DashboardResourcesItemMenuProps } from "./interface"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 
 export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
   props,
@@ -53,12 +53,12 @@ export const DashboardResourcesItemMenu: FC<DashboardResourcesItemMenuProps> = (
               cancelText: t("dashboard.common.delete_cancel_text"),
               okText: t("dashboard.common.delete_ok_text"),
               okButtonProps: {
-                colorScheme: "techPurple",
+                colorScheme: "red",
               },
               closable: true,
               onOk: () => {
                 return new Promise((resolve) => {
-                  Api.request<DashboardResource>(
+                  Api.request<Resource<ResourceContent>>(
                     {
                       url: `/resources/${resourceId}`,
                       method: "DELETE",

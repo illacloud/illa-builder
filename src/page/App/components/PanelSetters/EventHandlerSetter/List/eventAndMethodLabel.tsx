@@ -9,6 +9,7 @@ import {
 import { EventAndMethodLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
+import { useTranslation } from "react-i18next"
 
 const getMethodName = (
   actionType: string,
@@ -21,13 +22,18 @@ const getMethodName = (
       ? `${widgetId}.${widgetMethod}()`
       : `No Method`
   }
-  if (actionType === "query") {
-    return queryID ? `${queryID}.trigger()` : "No Method"
+  if (actionType === "datasource") {
+    return queryID ? `${queryID}.run()` : "No Method"
   }
+  if (actionType) {
+    return `${actionType}()`
+  }
+  return "No Method"
 }
 
 export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   const { index } = props
+  const { t } = useTranslation()
   const [modalVisible, setModalVisible] = useState(false)
   const { widgetDisplayName, attrPath, childrenSetter, eventItems } =
     useContext(BaseEventHandlerContext)
@@ -44,7 +50,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       popupVisible={modalVisible}
       content={
         <BaseModal
-          title="Edit Options"
+          title={t("editor.inspect.setter_content.event_handler_list.title")}
           handleCloseModal={handleCloseModal}
           attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}

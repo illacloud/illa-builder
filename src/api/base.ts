@@ -1,33 +1,70 @@
 import Axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { getLocalStorage } from "@/utils/storage"
+import { clearLocalStorage, getLocalStorage } from "@/utils/storage"
+import {
+  addRequestPendingPool,
+  removeRequestPendingPool,
+} from "@/api/helpers/axiosPendingPool"
 
 export interface Success {
   status: string // always ok
 }
 
 export interface ApiError {
-  errorCode: string
+  errorCode: string | number
   errorMessage: string
 }
-
+// TODO: @aruseito use OOP to create request
 const axios = Axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
+  timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
     "Content-Type": "application/json",
   },
 })
 
-axios.interceptors.request.use((config) => {
-  const token = getLocalStorage("token")
-  if (token) {
-    config.headers = {
-      ...(config.headers ?? {}),
-      Authorization: token,
+axios.interceptors.request.use(
+  (config) => {
+    addRequestPendingPool(config)
+    const token = getLocalStorage("token")
+    if (token) {
+      config.headers = {
+        ...(config.headers ?? {}),
+        Authorization: token,
+      }
     }
-  }
-  return config
-})
+    return config
+  },
+  (err) => {
+    return Promise.reject(err)
+  },
+)
+
+axios.interceptors.response.use(
+  (response) => {
+    const { config } = response
+    removeRequestPendingPool(config)
+    return response
+  },
+  (error: AxiosError) => {
+    const { response } = error
+    if (response) {
+      const { data } = response
+      // TODO: @aruseito maybe need custom error status,because of we'll have plugin to request other's api
+      if (data.errorCode === 401) {
+        clearLocalStorage()
+        const { pathname } = location
+        location.href = "/user/login?from=" + pathname || "/"
+      }
+      // else if (data.errorCode === 403) {
+      //   location.href = "/403"
+      // } else if (data.errorCode >= 500) {
+      //   location.href = "/500"
+      // }
+    }
+    return Promise.reject(error)
+  },
+)
 
 export class Api {
   static request<RespData, RequestBody = any, ErrorResp = ApiError>(
@@ -57,18 +94,5 @@ export class Api {
           crash?.(error)
         }
       })
-  }
-
-  static addResponseInterceptor<RespData, RespConfig>(
-    resInterceptor?: (
-      value: AxiosResponse<RespData, RespConfig>,
-    ) => RespData | Promise<RespData>,
-    errInterceptor?: (error: any) => any,
-  ) {
-    return axios.interceptors.response.use(resInterceptor, errInterceptor)
-  }
-
-  static removeResponseInterceptor(interceptor: number) {
-    axios.interceptors.response.eject(interceptor)
   }
 }

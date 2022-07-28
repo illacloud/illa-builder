@@ -1,4 +1,3 @@
-import WebSocket from "ws"
 import {
   Broadcast,
   Callback,
@@ -29,27 +28,42 @@ export function getPayload<T>(
 }
 
 function generateWs(wsUrl: string): WebSocket {
-  let ws = new WebSocket(wsUrl)
-  ws.on("close", () => {
+  const ws = new WebSocket(wsUrl)
+  ws.onclose = () => {
     Connection.roomMap.delete(wsUrl)
-  })
-  ws.on(
-    "message",
-    (webSocket: WebSocket, data: WebSocket.RawData, isBinary: boolean) => {
-      let callback: Callback<any> = JSON.parse(data.toString())
+  }
+  ws.onmessage = (event) => {
+    const message = event.data
+    if (typeof message !== "string") {
+      return
+    }
+    const datas = message.split("\n")
+    datas.forEach((data: string) => {
+      let callback: Callback<any> = JSON.parse(data)
       if (callback.errorCode === 0) {
-        let broadcast = callback.broadcast
-        let type = broadcast.type
-        let payload = broadcast.payload
-        try {
-          store.dispatch({
-            type,
-            payload: JSON.parse(payload),
-          })
-        } catch (ignore) {}
+        if (callback.broadcast != null) {
+          let broadcast = callback.broadcast
+          let type = broadcast.type
+          let payload = broadcast.payload
+          try {
+            store.dispatch({
+              type,
+              payload,
+            })
+          } catch (ignore) {}
+        }
       }
-    },
-  )
+    })
+  }
+  ws.onopen = () => {
+    ws.send(
+      getPayload(Signal.SIGNAL_ENTER, Target.TARGET_NOTHING, false, null, [
+        {
+          authToken: getLocalStorage("token"),
+        },
+      ]),
+    )
+  }
   return ws
 }
 
@@ -61,7 +75,6 @@ export class Connection {
     roomId: string,
     loading: (loading: boolean) => void,
     errorState: (errorState: boolean) => void,
-    getRoom: (room: Room) => void,
   ) {
     let instanceId = import.meta.env.VITE_INSTANCE_ID
     let config: AxiosRequestConfig
@@ -69,13 +82,13 @@ export class Connection {
       case "dashboard":
         config = {
           url: `/room/${instanceId}/dashboard`,
-          method: "get",
+          method: "GET",
         }
         break
       case "app":
         config = {
           url: `/room/${instanceId}/app/${roomId}`,
-          method: "get",
+          method: "GET",
         }
         break
       default:
@@ -87,14 +100,6 @@ export class Connection {
       (response) => {
         let ws = generateWs(response.data.wsURL)
         this.roomMap.set(type + roomId, ws)
-        getRoom(response.data)
-        ws.send(
-          getPayload(Signal.SIGNAL_ENTER, Target.TARGET_NOTHING, false, null, [
-            {
-              authToken: getLocalStorage("token"),
-            },
-          ]),
-        )
       },
       (error) => {},
       () => {},

@@ -2,6 +2,7 @@ import { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
 import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
 
 export function searchDsl(
   rootNode: ComponentNode | null,
@@ -53,7 +54,7 @@ export function flattenDsl(rootNode: ComponentNode): {
 }
 
 export const getCanvas = (state: RootState) => {
-  return state.currentApp.editor.components.rootDsl
+  return state.currentApp.editor.components
 }
 
 export const getComponentNodeBySingleSelected = createSelector(
@@ -80,6 +81,22 @@ export const getAllComponentDisplayNameMapProps = createSelector(
         ...components[key].props,
         $type: "WIDGET",
         $widgetType: components[key].type,
+      }
+    })
+    return res
+  },
+)
+
+export const getAllActionDisplayNameMapProps = createSelector(
+  [getActionList],
+  (list) => {
+    const res: Record<string, any> = {}
+    list.forEach((key) => {
+      res[key.displayName] = {
+        displayName: key.displayName,
+        content: key.content || {},
+        data: key.data || {},
+        $type: "ACTION",
       }
     })
     return res

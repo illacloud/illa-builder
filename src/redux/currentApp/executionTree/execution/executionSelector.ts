@@ -1,6 +1,5 @@
 import { RootState } from "@/store"
 import { createSelector } from "@reduxjs/toolkit"
-import { SELECTED_ACTION_DISPALY_NAME } from "@/redux/currentApp/action/actionSelector"
 
 export const getExecution = (state: RootState) =>
   state.currentApp.executionTree.execution
@@ -49,10 +48,7 @@ export const getActionExecutionResult = createSelector(
     const actionExecutionResult: Record<string, any> = {}
     Object.keys(executionResult).forEach((key) => {
       const widgetOrAction = executionResult[key]
-      if (
-        widgetOrAction.$type === "ACTION" &&
-        key !== SELECTED_ACTION_DISPALY_NAME
-      ) {
+      if (widgetOrAction.$type === "ACTION") {
         actionExecutionResult[key] = widgetOrAction
       }
     })

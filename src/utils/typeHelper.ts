@@ -1,7 +1,6 @@
 import { isString } from "@illa-design/system"
 
-const DISPLAY_NAME_REGEX =
-  /^([^\x00-\xff]|[a-zA-Z_$])([^\x00-\xff]|[a-zA-Z0-9_$])*$/
+const DISPLAY_NAME_REGEX = /^([a-zA-Z_$])([a-zA-Z0-9_$])*$/
 
 export enum Types {
   STRING = "STRING",

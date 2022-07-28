@@ -64,7 +64,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
             cancelText: t("dashboard.common.delete_cancel_text"),
             okText: t("dashboard.common.delete_ok_text"),
             okButtonProps: {
-              colorScheme: "techPurple",
+              colorScheme: "red",
             },
             closable: true,
             onOk: () => {

@@ -18,7 +18,6 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
     labelName,
     labelDesc,
     childrenSetter,
-    attrName,
     handleUpdateDsl,
     widgetDisplayName,
     panelConfig,
@@ -58,7 +57,7 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
   return (
     <div css={listSetterWrapperStyle}>
       <div css={labelStyle}>
-        <PanelLabel labelName={t(labelName)} labelDesc={labelDesc} />
+        <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         {canReset && (
           <div onClick={onClickReset} css={resetButtonStyle}>
             <span css={resetIconStyle}>

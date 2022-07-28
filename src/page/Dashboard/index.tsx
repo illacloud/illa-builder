@@ -10,7 +10,7 @@ import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { Resource } from "@/redux/resource/resourceState"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   containerStyle,
@@ -21,13 +21,11 @@ import {
   errorTitleStyle,
   loadingStyle,
 } from "./style"
-import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
 export const IllaApp: FC = () => {
   const { t } = useTranslation()
 
   const [pageState, setPageState] = useState<string>("loading")
-  const [retryNum, setRetryNum] = useState<number>(0)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -57,7 +55,7 @@ export const IllaApp: FC = () => {
     })
 
     const resourceList = new Promise((resolve) => {
-      Api.request<Resource[]>(
+      Api.request<Resource<ResourceContent>[]>(
         {
           url: "/resources",
           method: "GET",
@@ -87,9 +85,7 @@ export const IllaApp: FC = () => {
     return () => {
       controller.abort()
     }
-  }, [retryNum])
-
-  const currentUser = useSelector(getCurrentUser)
+  }, [])
 
   useEffect(() => {
     Connection.enterRoom(
@@ -97,12 +93,11 @@ export const IllaApp: FC = () => {
       "",
       (loading) => {},
       (errorState) => {},
-      (room) => {},
     )
     return () => {
       Connection.leaveRoom("dashboard", "")
     }
-  }, [currentUser])
+  }, [])
 
   return (
     <div css={containerStyle}>
@@ -119,12 +114,8 @@ export const IllaApp: FC = () => {
           <div css={errorDescriptionStyle}>
             {t("dashboard.common.error_description")}
           </div>
-          <Button
-            colorScheme="techPurple"
-            onClick={() => {
-              setRetryNum(retryNum + 1)
-            }}
-          >
+          {/*TODO: @aruseito retry function */}
+          <Button colorScheme="techPurple">
             {t("dashboard.common.error_button")}
           </Button>
         </div>

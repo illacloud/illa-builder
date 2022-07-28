@@ -56,7 +56,6 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const [deployLoading, setDeployLoading] = useState(false)
 
   const handleClickLeftWindowIcon = useCallback(() => {
-    console.log(!leftPanelVisible)
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
   }, [leftPanelVisible])
   const handleClickRightWindowIcon = useCallback(() => {
@@ -101,7 +100,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         <Logo
           width="34px"
           onClick={() => {
-            navigate("/")
+            window.location.href = "/"
           }}
           css={logoCursorStyle}
         />
