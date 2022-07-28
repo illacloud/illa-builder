@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import {
   mysqlContainerStyle,
   sqlInputStyle,
@@ -17,10 +17,12 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEditor"
 
 export const MysqlPanel: FC = () => {
   const dispatch = useDispatch()
-
+  const [editorVisible, setEditorVisible] = useState<boolean>()
+  const [editType, setEditType] = useState<boolean>()
   const currentAction = useSelector(
     getSelectedAction,
   ) as ActionItem<MysqlAction>
@@ -30,7 +32,12 @@ export const MysqlPanel: FC = () => {
 
   return (
     <div css={mysqlContainerStyle}>
-      <ResourceChoose />
+      <ResourceChoose
+        onChange={(type) => {
+          setEditType(type)
+          setEditorVisible(true)
+        }}
+      />
       <CodeEditor
         placeholder="select * from users;"
         lineNumbers={true}
@@ -53,6 +60,14 @@ export const MysqlPanel: FC = () => {
       />
       <TransformerComponent />
       <ActionEventHandler />
+      <ResourceEditor
+        visible={editorVisible}
+        edit={editType}
+        resourceId={currentAction.resourceId}
+        onClose={() => {
+          setEditorVisible(false)
+        }}
+      />
     </div>
   )
 }
