@@ -19,6 +19,7 @@ export const MysqlPanel: FC = () => {
   return (
     <div css={mysqlContainerStyle}>
       <ResourceChoose />
+      {/*  TODO: @longbo value is empty*/}
       <CodeEditor
         tables={action.content}
         placeholder="select * from users;"

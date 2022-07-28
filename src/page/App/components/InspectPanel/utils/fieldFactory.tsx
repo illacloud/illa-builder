@@ -6,7 +6,6 @@ import {
 import { PanelBar } from "@/components/PanelBar"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { ghostEmptyStyle } from "@/page/App/components/InspectPanel/style"
-import i18n from "@/i18n/config"
 
 export const renderFieldAndLabel = (
   config: PanelFieldConfig,

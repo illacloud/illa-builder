@@ -28,7 +28,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
         `${widgetDisplayName}.${parentAttrName}.widgetID`,
       )
     } else {
-      return get(selectedAction, `actionTemplate.${parentAttrName}.widgetID`)
+      return get(selectedAction, `content.${parentAttrName}.widgetID`)
     }
   }, [
     widgetDisplayNameMapProps,

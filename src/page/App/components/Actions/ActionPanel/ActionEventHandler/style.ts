@@ -10,3 +10,9 @@ export const actionEventHandlerStyle = css`
   text-align: left;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)}; ;
 `
+
+export const actionEventHandlerWrapperStyle = css`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`

@@ -94,9 +94,10 @@ export const getAllActionDisplayNameMapProps = createSelector(
     list.forEach((key) => {
       res[key.displayName] = {
         displayName: key.displayName,
+        content: key.content || {},
         $type: "ACTION",
       }
     })
-    return list
+    return res
   },
 )

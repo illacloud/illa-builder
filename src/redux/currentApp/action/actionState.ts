@@ -10,6 +10,12 @@ export interface Transformer {
   enable: boolean
 }
 
+// TODO @aruseito not use any
+export interface Events {
+  successEvent?: any[]
+  failedEvent?: any[]
+}
+
 export type ActionType =
   | "mysql"
   | "restapi"
