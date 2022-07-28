@@ -56,7 +56,6 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
       displayName,
       actionType,
       resourceId: selectedResourceId,
-      content: {},
     }
     Api.request(
       {

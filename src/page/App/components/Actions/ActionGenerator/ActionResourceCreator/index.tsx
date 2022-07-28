@@ -138,14 +138,6 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
             onSubmit={(data) => onSubmitForm(data, resourceId)}
           />
         ) : null}
-        {/*{renderResourceNode(*/}
-        {/*    resourceType,*/}
-        {/*    connectionRef,*/}
-        {/*    formRef,*/}
-        {/*    onCreatedForm,*/}
-        {/*    onTestConnection,*/}
-        {/*    props,*/}
-        {/*)}*/}
       </div>
       <div css={formFooterStyle}>
         {onBack && (
