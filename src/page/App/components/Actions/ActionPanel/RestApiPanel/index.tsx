@@ -17,6 +17,12 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { Input } from "@illa-design/input"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
+import store from "@/store"
+import {
+  Resource,
+  RestApiAuth,
+  RestApiResource,
+} from "@/redux/resource/resourceState"
 
 export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()
@@ -25,6 +31,12 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const currentAction = props.action
 
   const currentContent = props.action.content
+
+  const currentResource = store
+    .getState()
+    .resource.find(
+      (r) => r.resourceId === currentAction.resourceId,
+    ) as Resource<RestApiResource<RestApiAuth>>
 
   return (
     <div css={restapiPanelContainerStyle}>
@@ -53,6 +65,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
         />
         <Input
           borderColor="techPurple"
+          value={currentResource.content.baseUrl}
           css={restApiItemBaseUrlStyle}
           readOnly
         />

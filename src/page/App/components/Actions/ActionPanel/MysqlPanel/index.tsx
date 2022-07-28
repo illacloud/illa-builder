@@ -17,8 +17,8 @@ export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
   const dispatch = useDispatch()
   const [editorVisible, setEditorVisible] = useState<boolean>()
   const [editType, setEditType] = useState<boolean>()
-  const currentAction = props.action
 
+  const currentAction = props.action
   const currentContent = props.action.content
 
   return (
