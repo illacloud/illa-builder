@@ -13,6 +13,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     widgetDisplayName,
     handleUpdateDsl,
     value,
+    widgetOrAction,
   } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
@@ -35,13 +36,24 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     return tmpOptions
   }, [widgetDisplayNameMapProps])
 
-  const finalValue = useMemo(() => {
+  const actionFinalValue = useMemo(() => {
     const index = finalOptions.findIndex((option) => {
       return option.value === value
     })
     if (index !== -1) return value
     return undefined
   }, [finalOptions, attrName, value])
+
+  const widgetfinalValue = useMemo(() => {
+    const index = finalOptions.findIndex((option) => {
+      return option.value === value
+    })
+    if (index !== -1) return value
+    return undefined
+  }, [finalOptions, attrName])
+
+  const finalValue =
+    widgetOrAction === "WIDGET" ? widgetfinalValue : actionFinalValue
 
   useEffect(() => {
     if (finalValue === undefined) {
