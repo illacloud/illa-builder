@@ -15,7 +15,6 @@ import { configActions } from "@/redux/config/configSlice"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { RootState } from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
 
@@ -26,10 +25,6 @@ export const MysqlPanel: FC = () => {
     getSelectedAction,
   ) as ActionItem<MysqlAction>
 
-  const currentResource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === currentAction.resourceId)
-  })!!
-
   const currentContent = (useSelector(getSelectedContent) ??
     getInitialContent(currentAction.actionType)) as MysqlAction
 
@@ -37,14 +32,24 @@ export const MysqlPanel: FC = () => {
     <div css={mysqlContainerStyle}>
       <ResourceChoose />
       <CodeEditor
-        tables={currentAction.content}
         placeholder="select * from users;"
         lineNumbers={true}
         height="88px"
         css={sqlInputStyle}
+        value={currentContent.query}
         mode="SQL_JS"
         expectedType={VALIDATION_TYPES.STRING}
-        onChange={(value) => {}}
+        onChange={(value) => {
+          dispatch(
+            configActions.updateSelectedAction({
+              ...currentAction,
+              content: {
+                ...currentContent,
+                query: value,
+              },
+            }),
+          )
+        }}
       />
       <TransformerComponent />
       <ActionEventHandler />

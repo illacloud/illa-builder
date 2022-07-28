@@ -20,6 +20,7 @@ import {
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { RootState } from "@/store"
+import { configActions } from "@/redux/config/configSlice"
 
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
@@ -42,14 +43,24 @@ export const RestApiPanel: FC = () => {
       <div css={restapiItemStyle}>
         <span css={restapiItemLabelStyle}>
           {t("editor.action.resource.restapi.label.action_type")}
-          <Select
-            value={currentContent.method}
-            width="160px"
-            options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
-            onChange={(value) => {}}
-          />
-          <Input />
         </span>
+        <Select
+          value={currentContent.method}
+          width="160px"
+          options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateSelectedAction({
+                ...currentAction,
+                content: {
+                  ...currentContent,
+                  method: value,
+                },
+              }),
+            )
+          }}
+        />
+        <Input />
       </div>
     </div>
   )
