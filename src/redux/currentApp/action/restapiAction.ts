@@ -18,6 +18,7 @@ export type BodyContent =
 
 export interface RestApiAction<T extends BodyContent> {
   method: string
+  url: string
   urlParams: Params[]
   headers: Params[]
   cookies: Params[]
@@ -26,6 +27,7 @@ export interface RestApiAction<T extends BodyContent> {
 }
 
 export const RestApiActionInitial: RestApiAction<BodyContent> = {
+  url: "",
   method: "GET",
   urlParams: [],
   headers: [],
