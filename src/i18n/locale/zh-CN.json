@@ -448,7 +448,8 @@
         "layout": "布局",
         "style": "风格",
         "validation": "验证",
-        "options": "选项"
+        "options": "选项",
+        "data": "数据"
       },
       "setter_label": {
         "text": "文本",
@@ -554,7 +555,8 @@
         },
         "new_tab": "在新标签中打开",
         "description": "描述",
-        "duration": "持续时间"
+        "duration": "持续时间",
+        "data": "数据"
       },
       "setter_tooltip": {
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
@@ -708,6 +710,9 @@
     },
     "chart": {
       "name": "图表"
+    },
+    "table": {
+      "name": "表格"
     }
   },
   "Setting": "设置",

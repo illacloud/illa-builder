@@ -5,12 +5,14 @@ import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 export const generatorEventHanlderConfig = (
   baseWidgetName: string,
   event: any[] = [],
+  labelName: string = i18n.t("editor.inspect.setter_label.event_handler"),
+  attrName: string = "events",
   defaultValue?: string,
 ): PanelFieldConfig => {
   return {
     id: `${baseWidgetName}-interaction-event-handler`,
-    attrName: "events",
-    labelName: i18n.t("editor.inspect.setter_label.event_handler"),
+    attrName: attrName,
+    labelName: labelName,
     setterType: "EVENT_HANDLER_SETTER",
     useCustomLayout: true,
     defaultValue: defaultValue,
@@ -49,7 +51,7 @@ export const generatorEventHanlderConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-query`,
-        labelName: i18n.t("Query"),
+        labelName: "Query",
         setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
         attrName: "queryID",
         bindAttrName: "actionType",
@@ -83,7 +85,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-Value`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
         shown: (widgetMethod) => widgetMethod === "setValue",
@@ -91,7 +93,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-startValue`,
         labelName: i18n.t("editor.inspect.setter_label.start_date"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
         shown: (widgetMethod) => widgetMethod === "setStartValue",
@@ -99,7 +101,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-endValue`,
         labelName: i18n.t("editor.inspect.setter_label.end_date"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
         shown: (widgetMethod) => widgetMethod === "setEndValue",
@@ -107,7 +109,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-imageUrl`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: "widgetMethod",
         shown: (widgetMethod) => widgetMethod === "setImageUrl",
@@ -124,7 +126,7 @@ export const generatorEventHanlderConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-script`,
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "script",
         bindAttrName: "actionType",
         expectedType: VALIDATION_TYPES.STRING,
@@ -133,7 +135,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-URL`,
         labelName: "URL",
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "url",
         bindAttrName: "actionType",
         expectedType: VALIDATION_TYPES.STRING,
@@ -152,7 +154,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-title`,
         labelName: i18n.t("editor.inspect.setter_label.title"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "title",
         bindAttrName: "actionType",
         expectedType: VALIDATION_TYPES.STRING,
@@ -161,7 +163,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-description`,
         labelName: i18n.t("editor.inspect.setter_label.description"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "description",
         bindAttrName: "actionType",
@@ -204,7 +206,7 @@ export const generatorEventHanlderConfig = (
       {
         id: `${baseWidgetName}-interaction-event-handler-duration`,
         labelName: i18n.t("editor.inspect.setter_label.duration"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "duration",
         bindAttrName: "actionType",
         expectedType: VALIDATION_TYPES.NUMBER,
@@ -214,7 +216,7 @@ export const generatorEventHanlderConfig = (
         id: `${baseWidgetName}-interaction-event-handler-enabled`,
         labelName: i18n.t("editor.inspect.setter_label.only_run_when"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.only_run_when"),
-        setterType: "INPUT_SETTER",
+        setterType: "CALC_SELF_INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "enabled",
       },

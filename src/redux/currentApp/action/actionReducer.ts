@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ActionContent,
   ActionItem,
+  UpdateActionItemPayload,
 } from "@/redux/currentApp/action/actionState"
 
 export const updateActionListReducer: CaseReducer<
@@ -28,6 +29,19 @@ export const updateActionItemReducer: CaseReducer<
   )
   if (index != -1) {
     state[index] = action.payload
+  }
+}
+
+export const updateActionItemResultReducer: CaseReducer<
+  ActionItem<ActionContent>[],
+  PayloadAction<UpdateActionItemPayload>
+> = (state, action) => {
+  const index = state.findIndex(
+    (item: ActionItem<ActionContent>) =>
+      item.displayName === action.payload.displayName,
+  )
+  if (index != -1) {
+    state[index].data = action.payload.data
   }
 }
 

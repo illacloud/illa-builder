@@ -10,6 +10,12 @@ export interface Transformer {
   enable: boolean
 }
 
+// TODO @aruseito not use any
+export interface Events {
+  successEvent?: any[]
+  failedEvent?: any[]
+}
+
 export type ActionType =
   | "mysql"
   | "restapi"
@@ -31,6 +37,7 @@ export interface ActionItem<T extends ActionContent> {
   createdBy: string
   updatedAt: string
   updatedBy: string
+  data?: Record<string, any>
   content: T
 }
 
@@ -51,4 +58,9 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
       "// The variable 'data' allows you to reference the request's data in the transformer. \n// example: return data.find(element => element.isError)\nreturn data.error",
   },
   triggerMode: "manually",
+}
+
+export interface UpdateActionItemPayload {
+  displayName: string
+  data: Record<string, any>
 }

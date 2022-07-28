@@ -17,6 +17,7 @@ import { RootState } from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { ResourceChooseProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEditor"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { t } = useTranslation()
@@ -59,7 +60,9 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
             buttonProps: {
               variant: "outline",
               colorScheme: "gray",
-              leftIcon: <PenIcon />,
+              leftIcon: (
+                <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-08`)} />
+              ),
               onClick: () => {
                 setEditType(true)
                 setEditorVisible(true)

@@ -10,3 +10,7 @@ export const applyRadioGroupWrapperStyle = (
       `
     : fixedWidthStyle
 }
+
+export const radioGroupStyle = css`
+  width: 100%;
+`
