@@ -25,6 +25,7 @@ import {
   RestApiResource,
 } from "@/redux/resource/resourceState"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
+import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 
 export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()
@@ -45,7 +46,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
       <ResourceChoose action={currentAction} />
       <div css={restapiItemStyle}>
         <span css={restapiItemLabelStyle}>
-          {t("editor.action.resource.restapi.label.action_type")}
+          {t("editor.action.resource.rest_api.label.action_type")}
         </span>
         <Select
           colorScheme="techPurple"
@@ -97,7 +98,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
       </div>
       <RecordEditor
         records={currentAction.content.urlParams}
-        label={t("editor.action.resource.restapi.label.url_parameters")}
+        label={t("editor.action.resource.rest_api.label.url_parameters")}
         onChangeKey={(index, key, value) => {
           dispatch(
             configActions.addOrUpdateSelectedApiUrlParams({
@@ -134,7 +135,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
       />
       <RecordEditor
         records={currentAction.content.headers}
-        label={t("editor.action.resource.restapi.label.headers")}
+        label={t("editor.action.resource.rest_api.label.headers")}
         onChangeKey={(index, key, value) => {
           dispatch(
             configActions.addOrUpdateSelectedApiHeaders({
@@ -169,9 +170,10 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           dispatch(configActions.addSelectedApiEmptyHeaders())
         }}
       />
+      <BodyEditor />
       <RecordEditor
         records={currentAction.content.cookies}
-        label={t("editor.action.resource.restapi.label.cookies")}
+        label={t("editor.action.resource.rest_api.label.cookies")}
         onChangeKey={(index, key, value) => {
           dispatch(
             configActions.addOrUpdateSelectedApiCookies({
