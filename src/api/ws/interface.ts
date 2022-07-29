@@ -25,6 +25,7 @@ export enum Target {
   TARGET_DISPLAY_NAME = 5,
   TARGET_APPS = 6,
   TARGET_RESOURCE = 7,
+  TARGET_ACTION = 8,
 }
 
 export interface Broadcast {
