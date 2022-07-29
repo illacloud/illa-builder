@@ -27,7 +27,7 @@
   "edit_success": "修改成功！",
   "save": "保存",
   "user": {
-    "description": "专属于开发者的开源低代码平台",
+    "description": "专属于开发者的开源低代码平台。",
     "sign_up": {
       "title": "注册",
       "fields": {
@@ -159,7 +159,7 @@
       "type": {
         "database": "数据库",
         "api": "API",
-        "js_transformer": "JavaScript 转换器"
+        "js_transformer": "JavaScript Transformer"
       },
       "action_list": {
         "title": "Action 列表",
@@ -186,8 +186,7 @@
           "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头",
           "load_action_list_fail": "获取 Action 列表失败: {{message}}",
           "load_resource_fail": "获取资源列表失败: {{message}}",
-          "success_created": "保存成功!",
-          "success_saved": "Successfully saved!",
+          "success_created": "创建成功!",
           "failed": "服务器连接失败"
         },
         "action_generator": {
@@ -211,7 +210,7 @@
           "transfer_data": "传输数据",
           "frontend": "前端",
           "handle_response": "处理返回",
-          "transformer": "转换器",
+          "transformer": "Transformer",
           "post_processing": "后处理",
           "response_size": "响应大小 "
         }
@@ -242,13 +241,13 @@
         },
         "label": {
           "resource": "资源",
-          "transformer": "转换器",
+          "transformer": "Transformer",
           "success": "成功",
           "failure": "失败",
           "event_handler": "事件处理器"
         },
         "tips": {
-          "transformer": "启用转换器将查询结果转换为不同的格式"
+          "transformer": "启用Transformer将查询结果转换为不同的格式"
         }
       },
       "form": {
@@ -279,7 +278,7 @@
           }
         },
         "js_transformer": {
-          "name": "转换器"
+          "name": "Transformer"
         },
         "label": {
           "coming_soon": "即将更新"
@@ -330,15 +329,15 @@
           "name": "REST API",
           "label": {
             "name": "名称",
-            "action_type": "请求方法",
-            "url_parameters": "URL参数",
-            "headers": "头部字段",
+            "action_type": "Action type",
+            "url_parameters": "URL parameters",
+            "headers": "Headers",
             "cookies": "Cookies",
-            "body": "载荷",
-            "extra_body_values": "载荷",
+            "body": "Body",
+            "extra_body_values": "Extra body value",
             "list_of_cookies_to_forward": "要转发的 cookie 列表",
             "forward_all_cookies": "转发所有 Cookies",
-            "base_url": "基础 URL",
+            "base_url": "Base URL",
             "authentication": "API 认证",
             "basic_auth_username": "基础认证用户名",
             "basic_auth_password": "基础认证密码",
@@ -347,12 +346,12 @@
             "oauth_callback_url": "OAuth回调URL",
             "copy_url_to_application": "复制URL",
             "share_oauth2_credentials_between_users": "在用户之间共享 OAuth2.0 凭据",
-            "authorization_url": "授权网址",
-            "access_token_url": "访问令牌",
-            "client_id": "客户编号",
-            "client_secret": "客户密码",
-            "scopes": "范围（以空格分隔）",
-            "audience": "观众",
+            "authorization_url": "authorization url",
+            "access_token_url": "Access token url",
+            "client_id": "Client ID",
+            "client_secret": "Client secret",
+            "scopes": "Scopes",
+            "audience": "Audience",
             "access_token": "Access Token",
             "refresh_token": "Refresh Token",
             "access_token_lifespan": "Access Token lifespan(optiinal)",
@@ -448,8 +447,7 @@
         "layout": "布局",
         "style": "风格",
         "validation": "验证",
-        "options": "选项",
-        "data": "数据"
+        "options": "选项"
       },
       "setter_label": {
         "text": "文本",
@@ -555,8 +553,7 @@
         },
         "new_tab": "在新标签中打开",
         "description": "描述",
-        "duration": "持续时间",
-        "data": "数据"
+        "duration": "持续时间"
       },
       "setter_tooltip": {
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
@@ -710,9 +707,6 @@
     },
     "chart": {
       "name": "图表"
-    },
-    "table": {
-      "name": "表格"
     }
   },
   "Setting": "设置",
