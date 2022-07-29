@@ -24,10 +24,10 @@
     "choose_file": "Choose a file"
   },
   "back": "Back",
-  "edit_success": "edit success！",
+  "edit_success": "Edited successfully",
   "save": "Save",
   "user": {
-    "description": "An open-source low-code Platform for Developers.",
+    "description": "An open-source low-code platform for developers.",
     "sign_up": {
       "title": "Sign up",
       "fields": {
@@ -42,7 +42,7 @@
       },
       "description": {
         "login": "Already have an account? <0>Sign in</0>",
-        "policy": "By clicking Create account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
+        "policy": "By clicking Create Account, I agree to <0>Privacy Policy</0> and <1>terms</1>",
         "subscribe": "I am willing to receive the updates and news about ILLA"
       },
       "tips": {
@@ -79,7 +79,7 @@
       }
     },
     "sign_in": {
-      "title": "Welcome to back",
+      "title": "Welcome back",
       "fields": {
         "email": "Email",
         "password": "Password"
@@ -108,7 +108,7 @@
         },
         "password": {
           "require": "Please enter password",
-          "locked": "Too many bad attempts， please reset your password or try again after 1 hour",
+          "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
           "incorrect": "Incorrect email or password",
           "length": "The password must be 6~20 characters"
         }
@@ -148,7 +148,7 @@
           "expired": "Verification code expired"
         },
         "newPassword": {
-          "require": "Please enter password",
+          "require": "Please enter your password",
           "length": "The password must be 6~20 characters"
         }
       }
@@ -176,19 +176,16 @@
           "rename": "Rename"
         },
         "tips": {
-          "not_found": "Sorry, No Search result",
-          "empty": "Add a action to begin working with data from a connected resource."
+          "not_found": "No search results",
+          "empty": "Add an action to begin working with data from a connected resource."
         },
         "message": {
           "confirm_switch": "You did not save your query. Are you sure you want to discard changes?",
           "name_already_exist": "Already exists",
           "please_input_name": "Please input name",
           "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter",
-          "load_action_list_fail": "Get Action list fail: {{message}}",
-          "load_resource_fail": "Get resource list fail: {{message}}",
-          "success_created": "Successfully created!",
-          "success_saved": "Successfully saved!",
-          "failed": "Failed to connect to server"
+          "load_action_list_fail": "Failed to get Action list: {{message}}",
+          "load_resource_fail": "Failed to get resource list: {{message}}"
         },
         "action_generator": {
           "selector": {
@@ -230,7 +227,6 @@
           "run": "Run",
           "save": "Save",
           "save_and_run": "Save & Run",
-          "save_fail": "Failed to save",
           "disable": "Disable",
           "enable": "Enable",
           "new": "New"
@@ -257,7 +253,7 @@
         "title": {
           "select": "Select Resource Type",
           "database": "DATABASES",
-          "api": "API",
+          "api": "APIs",
           "configure": "Configure {{name}}"
         },
         "btn": {
@@ -276,16 +272,16 @@
             "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
           "tip": {
-            "external_reference": "You can create external references to variables you've defined. For example {{ transformer2.value }}. "
+            "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
           }
         },
         "js_transformer": {
           "name": "Transformer"
         },
         "label": {
-          "coming_soon": "Comming Soon"
+          "coming_soon": "Coming Soon"
         },
-        "mysql": {
+        "my_sql": {
           "name": "MySQL",
           "title": {
             "advanced_option": "Advanced Options"
@@ -323,15 +319,15 @@
             "ssh_credentials": "e.g.ec2-user",
             "private_key": "e.g.path/to/root.crt",
             "server_root_certificate": "e.g.path/to/root.crt",
-            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+            "client_key": "e.g.path/to/root.crt",
+            "client_certificate": "e.g.path/to/root.crt"
           }
         },
-        "restapi": {
+        "rest_api": {
           "name": "REST API",
           "label": {
             "name": "Name",
-            "action_type": "Method",
+            "action_type": "Action Type",
             "url_parameters": "URL Parameters",
             "headers": "Headers",
             "cookies": "Cookies",
@@ -400,7 +396,7 @@
         "redis": {
           "name": "Redis"
         },
-        "mongodb": {
+        "mongo_db": {
           "name": "MongoDB"
         }
       },
@@ -411,7 +407,7 @@
           "table": "Table",
           "json": "JSON",
           "response": "Response",
-          "api_request": "Api Request"
+          "api_request": "API Request"
         }
       }
     },
@@ -428,7 +424,7 @@
         "container": "Container and form",
         "navigation": "Navigation"
       },
-      "empty_tip": "Sorry, No search result"
+      "empty_tip": "Sorry, no search results"
     },
     "inspect": {
       "tab_title": "Inspect",
@@ -449,8 +445,7 @@
         "layout": "LAYOUT",
         "style": "STYLE",
         "validation": "VALIDATION",
-        "options": "OPTIONS",
-        "data": "DATA"
+        "options": "OPTIONS"
       },
       "setter_label": {
         "text": "Text",
@@ -556,8 +551,7 @@
         },
         "new_tab": "New tab",
         "description": "Description",
-        "duration":"Duration",
-        "data": "Data"
+        "duration":"Duration"
       },
       "setter_tooltip": {
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
@@ -710,14 +704,11 @@
     },
     "chart": {
       "name": "Chart"
-    },
-    "table": {
-      "name": "Table"
     }
   },
   "Setting": "Setting",
-  "Logout": "Logout",
-  "link_copied": "Link Copied!",
+  "Logout": "Log out",
+  "link_copied": "Link Copied",
   "dashboard": {
     "common": {
       "delete_title": "Are you sure?",
@@ -736,7 +727,7 @@
       "rename_fail": "Failed to rename",
       "duplicate_fail": "Failed to duplicate",
       "duplicate_placeholder": "Enter your app name here",
-      "trash_success": "Successfully deleted",
+      "trash_success": "Deleted successfully",
       "trash_failure": "Failed to delete",
       "name_empty": "Please enter a name",
       "name_existed": "Name already taken"
@@ -746,8 +737,8 @@
       "table_type": "Database Type",
       "table_dbname": "Database Name",
       "table_ctime": "Created",
-      "trash_success": "Delete successfully",
-      "trash_failure": "Delete failure",
+      "trash_success": "Deleted successfully",
+      "trash_failure": "Failed to delete",
       "create_resources": "Create New",
       "create_success": "Create Success!",
       "edit_success": "Edit Success",
@@ -757,12 +748,13 @@
   "setting": {
     "account": {
       "email": "Email",
+      "uneditable": "uneditable",
       "title": "ACCOUNT",
       "username": "Username",
       "empty_username": "Please enter your username",
-      "error_username": "Username must be 3～15 characters",
+    "error_username": "Username must be 3~15 characters",
       "save": "Save Changes",
-      "save_fail": "Save Fail"
+      "save_fail": "Failed to save"
     },
     "password": {
       "title": "PASSWORD",
@@ -770,7 +762,7 @@
       "new_password": "New password",
       "confirm_password": "Confirmation password",
       "empty_password": "Please enter your password",
-      "error_format_password": "Password must be 6～20 characters",
+      "error_format_password": "Password must be 6~20 characters",
       "error_match_password": "Your password and confirmation password do not match",
       "error_password_has_empty": "Password cannot include spaces",
       "error_validate_password": "Your password can only contain numbers, letters and punctuations",
