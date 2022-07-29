@@ -4,8 +4,10 @@ import {
   recordEditorContainerStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
+  recordKeyStyle,
   recordNewButton,
   recordStyle,
+  recordValueStyle,
 } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -15,7 +17,12 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useTranslation } from "react-i18next"
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
-  const { records, label, onDelete, onAdd } = props
+  const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
+
+  // add default record
+  if (records.length === 0) {
+    records.push({ key: "", value: "" })
+  }
 
   const { t } = useTranslation()
 
@@ -27,16 +34,26 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
           return (
             <div css={recordStyle} key={index}>
               <CodeEditor
+                css={recordKeyStyle}
                 value={record.key}
                 mode="TEXT_JS"
+                placeholder="key"
                 borderRadius="8px 0 0 8px"
                 expectedType={VALIDATION_TYPES.STRING}
+                onChange={(value) => {
+                  onChangeKey(index, value)
+                }}
               />
               <CodeEditor
+                css={recordValueStyle}
                 mode="TEXT_JS"
+                placeholder="value"
                 value={record.value}
                 borderRadius="0 0 0 0"
                 expectedType={VALIDATION_TYPES.STRING}
+                onChange={(value) => {
+                  onChangeValue(index, value)
+                }}
               />
               <Button
                 variant="outline"

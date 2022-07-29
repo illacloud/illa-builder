@@ -5,4 +5,6 @@ export interface RecordEditorProps {
   records: Params[]
   onAdd: () => void
   onDelete: (index: number, record: Params) => void
+  onChangeKey: (index: number, key: string) => void
+  onChangeValue: (index: number, value: string) => void
 }

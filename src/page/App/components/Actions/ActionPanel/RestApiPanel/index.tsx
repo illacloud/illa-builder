@@ -19,7 +19,6 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import store from "@/store"
 import {
-  Params,
   Resource,
   RestApiAuth,
   RestApiResource,
@@ -66,6 +65,10 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           }}
         />
         <Input
+          style={{
+            width: "230px",
+            minWidth: "230px",
+          }}
           borderColor="techPurple"
           borderRadius="8px 0 0 8px"
           value={currentResource.content.baseUrl}
@@ -91,99 +94,30 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           }}
         />
       </div>
-      {/*<RecordEditor*/}
-      {/*  label={t("editor.action.resource.restapi.label.url_parameters")}*/}
-      {/*  records={currentAction.content.urlParams}*/}
-      {/*  onDelete={(index) => {*/}
-      {/*    dispatch(*/}
-      {/*      configActions.updateSelectedAction({*/}
-      {/*        ...currentAction,*/}
-      {/*        content: {*/}
-      {/*          ...currentContent,*/}
-      {/*          urlParams: [*/}
-      {/*            ...currentContent.urlParams.slice(0, index),*/}
-      {/*            ...currentContent.urlParams.slice(*/}
-      {/*              index,*/}
-      {/*              currentContent.urlParams.length,*/}
-      {/*            ),*/}
-      {/*          ],*/}
-      {/*        },*/}
-      {/*      }),*/}
-      {/*    )*/}
-      {/*  }}*/}
-      {/*  onAdd={() => {*/}
-      {/*    dispatch(*/}
-      {/*      configActions.updateSelectedAction({*/}
-      {/*        ...currentAction,*/}
-      {/*        content: {*/}
-      {/*          ...currentContent,*/}
-      {/*          urlParams: [*/}
-      {/*            ...currentContent.urlParams,*/}
-      {/*            { key: "", value: "" } as Params,*/}
-      {/*          ],*/}
-      {/*        },*/}
-      {/*      }),*/}
-      {/*    )*/}
-      {/*  }}*/}
-      {/*/>*/}
-      {/*<RecordEditor*/}
-      {/*  label={t("editor.action.resource.restapi.label.headers")}*/}
-      {/*  records={currentAction.content.headers}*/}
-      {/*  onDelete={(index) => {*/}
-      {/*    dispatch(*/}
-      {/*      configActions.updateSelectedAction({*/}
-      {/*        ...currentAction,*/}
-      {/*        content: {*/}
-      {/*          ...currentContent,*/}
-      {/*          headers: currentAction.content.headers.splice(index, 1),*/}
-      {/*        },*/}
-      {/*      }),*/}
-      {/*    )*/}
-      {/*  }}*/}
-      {/*  onAdd={() => {*/}
-      {/*    dispatch(*/}
-      {/*      configActions.updateSelectedAction({*/}
-      {/*        ...currentAction,*/}
-      {/*        content: {*/}
-      {/*          ...currentContent,*/}
-      {/*          headers: [*/}
-      {/*            ...currentAction.content.headers,*/}
-      {/*            { key: "", value: "" } as Params,*/}
-      {/*          ],*/}
-      {/*        },*/}
-      {/*      }),*/}
-      {/*    )*/}
-      {/*  }}*/}
-      {/*/>*/}
-      {/*<RecordEditor*/}
-      {/*  label={t("editor.action.resource.restapi.label.cookies")}*/}
-      {/*  records={currentAction.content.cookies}*/}
-      {/*  onDelete={(index) => {*/}
-      {/*    dispatch(*/}
-      {/*      configActions.updateSelectedAction({*/}
-      {/*        ...currentAction,*/}
-      {/*        content: {*/}
-      {/*          ...currentContent,*/}
-      {/*          cookies: currentAction.content.cookies.splice(index, 1),*/}
-      {/*        },*/}
-      {/*      }),*/}
-      {/*    )*/}
-      {/*  }}*/}
-      {/*  onAdd={() => {*/}
-      {/*    dispatch(*/}
-      {/*      configActions.updateSelectedAction({*/}
-      {/*        ...currentAction,*/}
-      {/*        content: {*/}
-      {/*          ...currentContent,*/}
-      {/*          cookies: [*/}
-      {/*            ...currentAction.content.cookies,*/}
-      {/*            { key: "", value: "" } as Params,*/}
-      {/*          ],*/}
-      {/*        },*/}
-      {/*      }),*/}
-      {/*    )*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <RecordEditor
+        records={currentAction.content.urlParams}
+        label={t("editor.action.resource.restapi.label.url_parameters")}
+        onChangeKey={(index, key) => {}}
+        onChangeValue={(index, value) => {}}
+        onDelete={(index) => {}}
+        onAdd={() => {}}
+      />
+      <RecordEditor
+        records={currentAction.content.headers}
+        label={t("editor.action.resource.restapi.label.headers")}
+        onChangeKey={(index, key) => {}}
+        onChangeValue={(index, value) => {}}
+        onDelete={(index) => {}}
+        onAdd={() => {}}
+      />
+      <RecordEditor
+        records={currentAction.content.cookies}
+        label={t("editor.action.resource.restapi.label.cookies")}
+        onChangeKey={(index, key) => {}}
+        onChangeValue={(index, value) => {}}
+        onDelete={(index) => {}}
+        onAdd={() => {}}
+      />
       <TransformerComponent />
     </div>
   )
