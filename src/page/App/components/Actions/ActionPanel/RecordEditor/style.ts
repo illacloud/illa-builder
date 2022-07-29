@@ -36,7 +36,7 @@ export const recordNewButton = css`
 `
 
 export const recordEditorLabelStyle = css`
-  min-width: 100px;
+  min-width: 160px;
   height: 48px;
   display: flex;
   flex-direction: row;

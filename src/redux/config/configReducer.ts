@@ -105,6 +105,9 @@ export const removeSelectedApiUrlParams: CaseReducer<
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
     content.urlParams.splice(action.payload.index, 1)
+    if (content.urlParams.length == 0) {
+      content.urlParams.push({ key: "", value: "" } as Params)
+    }
   }
 }
 
@@ -142,6 +145,9 @@ export const removeSelectedApiHeaders: CaseReducer<
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
     content.headers.splice(action.payload.index, 1)
+    if (content.headers.length == 0) {
+      content.headers.push({ key: "", value: "" } as Params)
+    }
   }
 }
 
@@ -179,6 +185,9 @@ export const removeSelectedApiCookies: CaseReducer<
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
     content.cookies.splice(action.payload.index, 1)
+    if (content.cookies.length == 0) {
+      content.cookies.push({ key: "", value: "" } as Params)
+    }
   }
 }
 

@@ -20,7 +20,7 @@ export const restapiItemStyle = css`
 `
 
 export const restapiItemLabelStyle = css`
-  min-width: 100px;
+  min-width: 160px;
   font-size: 14px;
   font-weight: 500;
   text-align: right;
