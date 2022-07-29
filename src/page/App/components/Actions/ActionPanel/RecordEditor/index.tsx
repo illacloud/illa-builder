@@ -30,24 +30,26 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
             <div css={recordStyle} key={index}>
               <CodeEditor
                 css={recordKeyStyle}
+                height="32px"
                 value={record.key}
                 mode="TEXT_JS"
                 placeholder="key"
                 borderRadius="8px 0 0 8px"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeKey(index, record.key, value)
+                  onChangeKey(index, value, record.value)
                 }}
               />
               <CodeEditor
                 css={recordValueStyle}
+                height="32px"
                 mode="TEXT_JS"
                 placeholder="value"
                 value={record.value}
                 borderRadius="0 0 0 0"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeValue(index, value, record.value)
+                  onChangeValue(index, record.key, value)
                 }}
               />
               <Button

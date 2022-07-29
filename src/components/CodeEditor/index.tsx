@@ -9,7 +9,6 @@ import "codemirror/addon/edit/matchbrackets"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
-// defineMode
 import "./modes"
 import "./hinter"
 import "./lintHelper"
@@ -17,7 +16,7 @@ import { BaseTern, TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
-import { ResultPreview, CodeEditorProps, EditorModes } from "./interface"
+import { CodeEditorProps, EditorModes, ResultPreview } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
@@ -158,7 +157,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const line = editor.getLine(cursor.line)
     let showAutocomplete = false
     if (key === "/") {
-      showAutocomplete = true;
+      showAutocomplete = true
     } else if (event.code === "Backspace") {
       const prevChar = line[cursor.ch - 1]
       showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
