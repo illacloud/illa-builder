@@ -451,7 +451,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 store.getState().currentApp.appInfo.appId ?? "",
               )?.send(
                 getPayload(
-                  Signal.SIGNAL_ONLY_BROADCAST,
+                  Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
                   Target.TARGET_RESOURCE,
                   true,
                   {
@@ -464,7 +464,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             } else {
               Connection.getRoom("dashboard", "")?.send(
                 getPayload(
-                  Signal.SIGNAL_CREATE_STATE,
+                  Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
                   Target.TARGET_RESOURCE,
                   true,
                   {
@@ -485,7 +485,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 store.getState().currentApp.appInfo.appId ?? "",
               )?.send(
                 getPayload(
-                  Signal.SIGNAL_ONLY_BROADCAST,
+                  Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
                   Target.TARGET_RESOURCE,
                   true,
                   {
@@ -498,7 +498,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             } else {
               Connection.getRoom("dashboard", "")?.send(
                 getPayload(
-                  Signal.SIGNAL_UPDATE_STATE,
+                  Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
                   Target.TARGET_RESOURCE,
                   true,
                   {
@@ -520,7 +520,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 store.getState().currentApp.appInfo.appId ?? "",
               )?.send(
                 getPayload(
-                  Signal.SIGNAL_DELETE_STATE,
+                  Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
                   Target.TARGET_RESOURCE,
                   true,
                   {
@@ -533,7 +533,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             } else {
               Connection.getRoom("dashboard", "")?.send(
                 getPayload(
-                  Signal.SIGNAL_DELETE_STATE,
+                  Signal.SIGNAL_GLOBAL_BROADCAST_ONLY,
                   Target.TARGET_RESOURCE,
                   true,
                   {
