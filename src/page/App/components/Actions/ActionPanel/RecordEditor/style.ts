@@ -8,7 +8,7 @@ export const recordEditorContainerStyle = css`
 `
 
 export const recordEditorStyle = css`
-  display: inline-flex;
+  display: flex;
   flex-grow: 1;
   flex-direction: column;
 `

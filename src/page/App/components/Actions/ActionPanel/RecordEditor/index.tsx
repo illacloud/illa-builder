@@ -68,20 +68,22 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
             </div>
           )
         })}
-        <Button
-          css={recordNewButton}
-          colorScheme="techPurple"
-          size="medium"
-          variant="text"
-          onClick={() => {
-            onAdd()
-          }}
-          leftIcon={
-            <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
-          }
-        >
-          {t("editor.action.panel.btn.new")}
-        </Button>
+        <span>
+          <Button
+            _css={recordNewButton}
+            colorScheme="techPurple"
+            size="small"
+            variant="text"
+            onClick={() => {
+              onAdd()
+            }}
+            leftIcon={
+              <AddIcon color={globalColor(`--${illaPrefix}-techPurple-08`)} />
+            }
+          >
+            {t("editor.action.panel.btn.new")}
+          </Button>
+        </span>
       </div>
     </div>
   )
