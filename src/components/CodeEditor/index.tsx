@@ -157,7 +157,9 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const cursor = editor.getCursor()
     const line = editor.getLine(cursor.line)
     let showAutocomplete = false
-    if (event.code === "Backspace") {
+    if (key === "/") {
+      showAutocomplete = true;
+    } else if (event.code === "Backspace") {
       const prevChar = line[cursor.ch - 1]
       showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
     } else if (key === "{") {
