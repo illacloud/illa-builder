@@ -5,11 +5,14 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { cloneDeep } from "lodash"
-import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
-import { isObject } from "@/utils/typeHelper"
-import { ResourceType } from "@/redux/resource/resourceState"
-import { CacheContentPayload } from "@/redux/config/configPayload"
+import {
+  CacheContentPayload,
+  UpdateParamsPayload,
+} from "@/redux/config/configPayload"
+import {
+  BodyContent,
+  RestApiAction,
+} from "@/redux/currentApp/action/restapiAction"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -65,6 +68,84 @@ export const updateSelectedAction: CaseReducer<
   PayloadAction<ActionItem<ActionContent>>
 > = (state, action) => {
   state.selectedAction = action.payload
+}
+
+export const addOrUpdateSelectedApiUrlParams: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateParamsPayload>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    if (action.payload.index < content.urlParams.length) {
+      content.urlParams[action.payload.index] = action.payload.params
+    } else {
+      content.urlParams.push(action.payload.params)
+    }
+  }
+}
+
+export const removeSelectedApiUrlParams: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateParamsPayload>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.urlParams.splice(action.payload.index, 1)
+  }
+}
+
+export const addOrUpdateSelectedApiHeaders: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateParamsPayload>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    if (action.payload.index < content.headers.length) {
+      content.headers[action.payload.index] = action.payload.params
+    } else {
+      content.headers.push(action.payload.params)
+    }
+  }
+}
+
+export const removeSelectedApiHeaders: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateParamsPayload>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.headers.splice(action.payload.index, 1)
+  }
+}
+
+export const addOrUpdateSelectedApiCookies: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateParamsPayload>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    if (action.payload.index < content.cookies.length) {
+      content.cookies[action.payload.index] = action.payload.params
+    } else {
+      content.cookies.push(action.payload.params)
+    }
+  }
+}
+
+export const removeSelectedApiCookies: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateParamsPayload>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.cookies.splice(action.payload.index, 1)
+  }
 }
 
 export const changeSelectedAction: CaseReducer<

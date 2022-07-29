@@ -33,10 +33,10 @@ export const restApiItemSelectStyle = css`
 `
 
 export const restapiItemInputStyle = css`
-  min-width: 420px;
+  flex-grow: 1;
+  width: 0;
 `
 
 export const restApiItemBaseUrlStyle = css`
   margin-left: 8px;
-  min-width: 230px;
 `
