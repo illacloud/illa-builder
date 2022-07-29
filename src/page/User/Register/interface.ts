@@ -10,5 +10,5 @@ export interface RegisterResult {
   userId: number
   nickname: string
   email: string
-  createdAt: string
+  language: string
 }

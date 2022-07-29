@@ -386,7 +386,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             break
         }
         break
-      case "resources":
+      case "resource":
         switch (reduxAction) {
           case "addResourceItemReducer":
             Connection.getRoom("dashboard", "")?.send(
