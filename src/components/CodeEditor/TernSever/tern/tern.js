@@ -252,9 +252,8 @@ import CodeMirror from "codemirror"
         urls: true,
         origins: true,
         caseInsensitive: true,
-        depths: true,
+        guess: false,
         inLiteral: false,
-        expandWordForward: true,
       },
       function (error, data) {
         if (error) return showError(ts, cm, error)
