@@ -13,6 +13,7 @@ import {
   BodyContent,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
+import { Params } from "../resource/resourceState"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -85,6 +86,17 @@ export const addOrUpdateSelectedApiUrlParams: CaseReducer<
   }
 }
 
+export const addSelectedApiEmptyUrlParams: CaseReducer<
+  ConfigState,
+  PayloadAction<void>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.urlParams.push({ key: "", value: "" } as Params)
+  }
+}
+
 export const removeSelectedApiUrlParams: CaseReducer<
   ConfigState,
   PayloadAction<UpdateParamsPayload>
@@ -111,6 +123,17 @@ export const addOrUpdateSelectedApiHeaders: CaseReducer<
   }
 }
 
+export const addSelectedApiEmptyHeaders: CaseReducer<
+  ConfigState,
+  PayloadAction<void>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.headers.push({ key: "", value: "" } as Params)
+  }
+}
+
 export const removeSelectedApiHeaders: CaseReducer<
   ConfigState,
   PayloadAction<UpdateParamsPayload>
@@ -134,6 +157,17 @@ export const addOrUpdateSelectedApiCookies: CaseReducer<
     } else {
       content.cookies.push(action.payload.params)
     }
+  }
+}
+
+export const addSelectedApiEmptyCookies: CaseReducer<
+  ConfigState,
+  PayloadAction<void>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.cookies.push({ key: "", value: "" } as Params)
   }
 }
 

@@ -19,11 +19,6 @@ import { useTranslation } from "react-i18next"
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
 
-  // add default record
-  if (records.length === 0) {
-    records.push({ key: "", value: "" })
-  }
-
   const { t } = useTranslation()
 
   return (
@@ -41,7 +36,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 borderRadius="8px 0 0 8px"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeKey(index, value)
+                  onChangeKey(index, record.key, value)
                 }}
               />
               <CodeEditor
@@ -52,7 +47,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 borderRadius="0 0 0 0"
                 expectedType={VALIDATION_TYPES.STRING}
                 onChange={(value) => {
-                  onChangeValue(index, value)
+                  onChangeValue(index, value, record.value)
                 }}
               />
               <Button

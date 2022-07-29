@@ -19,6 +19,7 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import store from "@/store"
 import {
+  Params,
   Resource,
   RestApiAuth,
   RestApiResource,
@@ -97,26 +98,113 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
       <RecordEditor
         records={currentAction.content.urlParams}
         label={t("editor.action.resource.restapi.label.url_parameters")}
-        onChangeKey={(index, key) => {}}
-        onChangeValue={(index, value) => {}}
-        onDelete={(index) => {}}
-        onAdd={() => {}}
+        onChangeKey={(index, key, value) => {
+          dispatch(
+            configActions.addOrUpdateSelectedApiUrlParams({
+              index: index,
+              params: {
+                key: key,
+                value: value,
+              } as Params,
+            }),
+          )
+        }}
+        onChangeValue={(index, key, value) => {
+          dispatch(
+            configActions.addOrUpdateSelectedApiUrlParams({
+              index: index,
+              params: {
+                key: key,
+                value: value,
+              } as Params,
+            }),
+          )
+        }}
+        onDelete={(index, record) => {
+          dispatch(
+            configActions.removeSelectedApiUrlParams({
+              index: index,
+              params: record,
+            }),
+          )
+        }}
+        onAdd={() => {
+          dispatch(configActions.addSelectedApiEmptyUrlParams())
+        }}
       />
       <RecordEditor
         records={currentAction.content.headers}
         label={t("editor.action.resource.restapi.label.headers")}
-        onChangeKey={(index, key) => {}}
-        onChangeValue={(index, value) => {}}
-        onDelete={(index) => {}}
-        onAdd={() => {}}
+        onChangeKey={(index, key, value) => {
+          dispatch(
+            configActions.addOrUpdateSelectedApiHeaders({
+              index: index,
+              params: {
+                key: key,
+                value: value,
+              } as Params,
+            }),
+          )
+        }}
+        onChangeValue={(index, key, value) => {
+          dispatch(
+            configActions.addOrUpdateSelectedApiHeaders({
+              index: index,
+              params: {
+                key: key,
+                value: value,
+              } as Params,
+            }),
+          )
+        }}
+        onDelete={(index, record) => {
+          dispatch(
+            configActions.removeSelectedApiHeaders({
+              index: index,
+              params: record,
+            }),
+          )
+        }}
+        onAdd={() => {
+          dispatch(configActions.addSelectedApiEmptyHeaders())
+        }}
       />
       <RecordEditor
         records={currentAction.content.cookies}
         label={t("editor.action.resource.restapi.label.cookies")}
-        onChangeKey={(index, key) => {}}
-        onChangeValue={(index, value) => {}}
-        onDelete={(index) => {}}
-        onAdd={() => {}}
+        onChangeKey={(index, key, value) => {
+          dispatch(
+            configActions.addOrUpdateSelectedApiCookies({
+              index: index,
+              params: {
+                key: key,
+                value: value,
+              } as Params,
+            }),
+          )
+        }}
+        onChangeValue={(index, key, value) => {
+          dispatch(
+            configActions.addOrUpdateSelectedApiCookies({
+              index: index,
+              params: {
+                key: key,
+                value: value,
+              } as Params,
+            }),
+          )
+        }}
+        onDelete={(index, record) => {
+          dispatch(
+            configActions.removeSelectedApiCookies({
+              index: index,
+              params: record,
+            }),
+          )
+        }}
+        onAdd={() => {
+          dispatch(configActions.addSelectedApiEmptyCookies())
+        }}
       />
       <TransformerComponent />
     </div>
