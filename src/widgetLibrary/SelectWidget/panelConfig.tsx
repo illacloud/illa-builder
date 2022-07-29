@@ -229,20 +229,21 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "DYNAMIC_SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
-      {
-        id: `${baseWidgetName}-adornments-prefixText`,
-        labelName: i18n.t("editor.inspect.setter_label.prefix_text"),
-        attrName: "prefixText",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
-      },
-      {
-        id: `${baseWidgetName}-adornments-suffixText`,
-        labelName: i18n.t("editor.inspect.setter_label.suffix_text"),
-        attrName: "suffixText",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
-      },
+      //  [TODO] Not need it for now
+      // {
+      //   id: `${baseWidgetName}-adornments-prefixText`,
+      //   labelName: i18n.t("editor.inspect.setter_label.prefix_text"),
+      //   attrName: "prefixText",
+      //   setterType: "INPUT_SETTER",
+      //   expectedType: VALIDATION_TYPES.STRING,
+      // },
+      // {
+      //   id: `${baseWidgetName}-adornments-suffixText`,
+      //   labelName: i18n.t("editor.inspect.setter_label.suffix_text"),
+      //   attrName: "suffixText",
+      //   setterType: "INPUT_SETTER",
+      //   expectedType: VALIDATION_TYPES.STRING,
+      // },
       {
         id: `${baseWidgetName}-adornments-tooltip`,
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),
