@@ -1,7 +1,7 @@
-import { FC, useState } from "react"
+import { FC, useRef, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Checkbox } from "@illa-design/checkbox"
 import { Button } from "@illa-design/button"
@@ -26,19 +26,25 @@ import {
 import { RegisterFields, RegisterResult } from "./interface"
 import { useDispatch } from "react-redux"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
-import { LocationState } from "@/page/User/Login/interface"
 import { setLocalStorage } from "@/utils/storage"
 import { TextLink } from "@/page/User/components/TextLink"
+
+export function getLocalLanguage(): string {
+  const lang = window.navigator.language
+  if (lang === "zh-CN" || lang === "zh") {
+    return "zh-CN"
+  }
+  return "en-US"
+}
 
 export const Register: FC = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState({ email: "", verificationCode: "" })
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const location = useLocation()
   const dispatch = useDispatch()
-  const [verificationToken, setVerificationToken] = useState("")
   const [showCountDown, setShowCountDown] = useState(false)
+  const verificationToken = useRef<string>("")
   const {
     control,
     handleSubmit,
@@ -57,12 +63,13 @@ export const Register: FC = () => {
         method: "POST",
         url: "/auth/signup",
         data: {
-          verificationToken,
-          language: window.navigator.language,
+          verificationToken: verificationToken.current,
+          language: getLocalLanguage(),
           ...data,
         },
       },
       (res) => {
+        Message.success(t("user.sign_up.tips.success"))
         const token = res.headers["illa-token"]
         if (!token) return
         setLocalStorage("token", token, -1)
@@ -70,14 +77,13 @@ export const Register: FC = () => {
           currentUserActions.updateCurrentUserReducer({
             userId: res.data.userId,
             nickname: res.data.nickname,
-            language: "English",
+            language: res.data.language,
             email: res.data.email,
           }),
         )
-        navigate((location.state as LocationState)?.from?.pathname ?? "/", {
+        navigate("/", {
           replace: true,
         })
-        Message.success(t("user.sign_up.tips.success"))
       },
       (res) => {
         Message.error(t("user.sign_up.tips.fail"))
@@ -259,7 +265,8 @@ export const Register: FC = () => {
                                 Message.success(
                                   t("user.sign_up.tips.verification_code"),
                                 )
-                                setVerificationToken(res.data.verificationToken)
+                                verificationToken.current =
+                                  res.data.verificationToken
                               },
                               () => {
                                 Message.error(t("user.sign_up.tips.fail_sent"))
