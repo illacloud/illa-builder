@@ -338,6 +338,61 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             break
         }
         break
+      case "action":
+        switch (reduxAction) {
+          case "addActionItemReducer":
+            Connection.getRoom(
+              "app",
+              store.getState().currentApp.appInfo.appId ?? "",
+            )?.send(
+              getPayload(
+                Signal.SIGNAL_ONLY_BROADCAST,
+                Target.TARGET_ACTION,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [payload],
+              ),
+            )
+            break
+          case "removeActionItemReducer":
+            Connection.getRoom(
+              "app",
+              store.getState().currentApp.appInfo.appId ?? "",
+            )?.send(
+              getPayload(
+                Signal.SIGNAL_ONLY_BROADCAST,
+                Target.TARGET_ACTION,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [payload],
+              ),
+            )
+            break
+          case "updateActionItemReducer":
+            Connection.getRoom(
+              "app",
+              store.getState().currentApp.appInfo.appId ?? "",
+            )?.send(
+              getPayload(
+                Signal.SIGNAL_ONLY_BROADCAST,
+                Target.TARGET_ACTION,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [payload],
+              ),
+            )
+            break
+        }
+        break
       case "apps":
         switch (reduxAction) {
           case "addDashboardAppReducer":
@@ -388,48 +443,110 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
         break
       case "resource":
         switch (reduxAction) {
-          case "addResourceItemReducer":
-            Connection.getRoom("dashboard", "")?.send(
-              getPayload(
-                Signal.SIGNAL_CREATE_STATE,
-                Target.TARGET_RESOURCE,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
+          case "addResourceItemReducer": {
+            const appId = store.getState().currentApp.appInfo.appId
+            if (typeof appId === "number" && appId >= 0) {
+              Connection.getRoom(
+                "app",
+                store.getState().currentApp.appInfo.appId ?? "",
+              )?.send(
+                getPayload(
+                  Signal.SIGNAL_ONLY_BROADCAST,
+                  Target.TARGET_RESOURCE,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  [payload],
+                ),
+              )
+            } else {
+              Connection.getRoom("dashboard", "")?.send(
+                getPayload(
+                  Signal.SIGNAL_CREATE_STATE,
+                  Target.TARGET_RESOURCE,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  [payload],
+                ),
+              )
+            }
             break
-          case "updateResourceItemReducer":
-            Connection.getRoom("dashboard", "")?.send(
-              getPayload(
-                Signal.SIGNAL_UPDATE_STATE,
-                Target.TARGET_RESOURCE,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
+          }
+          case "updateResourceItemReducer": {
+            const appId = store.getState().currentApp.appInfo.appId
+            if (typeof appId === "number" && appId >= 0) {
+              Connection.getRoom(
+                "app",
+                store.getState().currentApp.appInfo.appId ?? "",
+              )?.send(
+                getPayload(
+                  Signal.SIGNAL_ONLY_BROADCAST,
+                  Target.TARGET_RESOURCE,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  [payload],
+                ),
+              )
+            } else {
+              Connection.getRoom("dashboard", "")?.send(
+                getPayload(
+                  Signal.SIGNAL_UPDATE_STATE,
+                  Target.TARGET_RESOURCE,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  [payload],
+                ),
+              )
+            }
+
             break
-          case "removeResourceItemReducer":
-            Connection.getRoom("dashboard", "")?.send(
-              getPayload(
-                Signal.SIGNAL_DELETE_STATE,
-                Target.TARGET_RESOURCE,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
+          }
+          case "removeResourceItemReducer": {
+            const appId = store.getState().currentApp.appInfo.appId
+            if (typeof appId === "number" && appId >= 0) {
+              Connection.getRoom(
+                "app",
+                store.getState().currentApp.appInfo.appId ?? "",
+              )?.send(
+                getPayload(
+                  Signal.SIGNAL_DELETE_STATE,
+                  Target.TARGET_RESOURCE,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  [payload],
+                ),
+              )
+            } else {
+              Connection.getRoom("dashboard", "")?.send(
+                getPayload(
+                  Signal.SIGNAL_DELETE_STATE,
+                  Target.TARGET_RESOURCE,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  [payload],
+                ),
+              )
+            }
+
             break
+          }
         }
         break
       default:
