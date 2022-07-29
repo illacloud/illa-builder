@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import {
   createNewStyle,
   resourceChooseContainerStyle,
@@ -32,6 +32,17 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
     (state: RootState) => state.config.cacheActionContent,
   )
 
+  const realResourceId = useMemo(() => {
+    let currentResourceId = action.resourceId
+    const currentResource = resourceList.find(
+      (r) => r.resourceId === currentResourceId,
+    )
+    if (currentResource) {
+      return currentResourceId
+    }
+    return ""
+  }, [resourceList, action.resourceId])
+
   return (
     <div css={resourceChooseContainerStyle}>
       <span css={resourceTitleStyle}>{t("resources")}</span>
@@ -39,7 +50,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
         <Select
           colorScheme="techPurple"
           width="200px"
-          value={action.resourceId}
+          value={realResourceId}
           onChange={(value) => {
             const resource = resourceList.find((r) => r.resourceId === value)
             if (resource != undefined) {
