@@ -9,7 +9,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
 import store from "@/store"
-import { getIllaMode } from "@/redux/config/configSelector"
+import {
+  getIllaMode,
+  getSelectedComponents,
+} from "@/redux/config/configSelector"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
@@ -18,6 +21,7 @@ export const Shortcut: FC = ({ children }) => {
   const { t } = useTranslation()
 
   const mode = useSelector(getIllaMode)
+  const selectedComponent = useSelector(getSelectedComponents)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -36,7 +40,7 @@ export const Shortcut: FC = ({ children }) => {
     useState<boolean>(false)
 
   const showDeleteDialog = (displayName: string[]) => {
-    if (!alreadyShowDeleteDialog) {
+    if (!alreadyShowDeleteDialog && selectedComponent.length > 0) {
       const textList = displayName.join(", ").toString()
       setAlreadyShowDeleteDialog(true)
       Modal.confirm({
