@@ -257,12 +257,5 @@ export function updateResizeScaleSquare(
     default:
       break
   }
-  if (
-    newItem.w != componentNode.w ||
-    newItem.h != componentNode.h ||
-    newItem.x != componentNode.x ||
-    newItem.y != componentNode.y
-  ) {
-    dispatchFn?.(newItem)
-  }
+  dispatchFn?.(newItem)
 }
