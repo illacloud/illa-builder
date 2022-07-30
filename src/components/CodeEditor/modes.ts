@@ -91,3 +91,23 @@ CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
     },
   )
 })
+
+CodeMirror.defineMode(EditorModes.JSON, function (config) {
+  return CodeMirror.multiplexingMode(
+    CodeMirror.getMode(config, {
+      name: "application/json",
+      json: true,
+      jsonld: true,
+    }),
+    {
+      open: "{{",
+      close: "}}",
+      mode: CodeMirror.getMode(config, {
+        name: "application/json",
+      }),
+      delimStyle: "illa-expression",
+      innerStyle: "illa-expression",
+      parseDelimiters: false,
+    },
+  )
+})

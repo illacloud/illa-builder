@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useState } from "react"
 import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -14,9 +14,12 @@ import {
 } from "@/redux/currentApp/action/restapiAction"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { onCopyActionItem, onDeleteActionItem } from "../api"
+import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
+import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 
 export const ActionPanel: FC = () => {
   const selectedAction = useSelector(getSelectedAction)
+  const [actionResult, setActionResult] = useState<ActionResultType>()
   // null selected
   if (selectedAction === null || selectedAction === undefined) {
     return null
@@ -58,8 +61,12 @@ export const ActionPanel: FC = () => {
         action={selectedAction}
         onCopy={onCopyActionItem}
         onDelete={onDeleteActionItem}
+        onActionRun={(result, error) => {
+          setActionResult({ result, error })
+        }}
       />
       {actionPanel}
+      <ActionResult result={actionResult} />
     </div>
   )
 }
