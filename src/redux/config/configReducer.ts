@@ -10,8 +10,14 @@ import {
   UpdateParamsPayload,
 } from "@/redux/config/configPayload"
 import {
+  ApiMethod,
   BodyContent,
+  BodyType,
+  RawBody,
+  RawBodyContent,
+  RawBodyType,
   RestApiAction,
+  TextRawBody,
 } from "@/redux/currentApp/action/restapiAction"
 import { Params } from "../resource/resourceState"
 
@@ -162,6 +168,77 @@ export const addOrUpdateSelectedApiCookies: CaseReducer<
       content.cookies[action.payload.index] = action.payload.params
     } else {
       content.cookies.push(action.payload.params)
+    }
+  }
+}
+
+export const updateSelectedApiMethod: CaseReducer<
+  ConfigState,
+  PayloadAction<ApiMethod>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.method = action.payload
+    content.body = null
+  }
+}
+
+export const updateSelectedApiBodyType: CaseReducer<
+  ConfigState,
+  PayloadAction<BodyType>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    content.bodyType = action.payload
+    switch (action.payload) {
+      case "none":
+        content.body = null
+        break
+      case "form-data":
+        content.body = [{ key: "", value: "" } as Params]
+        break
+      case "x-www-form-urlencoded":
+        content.body = [{ key: "", value: "" } as Params]
+        break
+      case "raw":
+        content.body = {
+          type: "text",
+          content: "",
+        } as RawBody<TextRawBody>
+        break
+      case "binary":
+        content.body = ""
+        break
+    }
+  }
+}
+
+export const updateSelectedApiRawBody: CaseReducer<
+  ConfigState,
+  PayloadAction<RawBody<RawBodyContent>>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    if (content.bodyType === "raw") {
+      content.body = action.payload
+    }
+  }
+}
+
+export const updateSelectedApiRawBodyType: CaseReducer<
+  ConfigState,
+  PayloadAction<RawBodyType>
+> = (state, action) => {
+  const selectedAction = state.selectedAction
+  if (selectedAction != null) {
+    const content = selectedAction.content as RestApiAction<BodyContent>
+    if (content.bodyType === "raw") {
+      const rawBody = content.body as RawBody<RawBodyContent>
+      rawBody.content = ""
+      rawBody.type = action.payload
     }
   }
 }

@@ -55,15 +55,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           width="160px"
           options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
           onChange={(value) => {
-            dispatch(
-              configActions.updateSelectedAction({
-                ...currentAction,
-                content: {
-                  ...currentContent,
-                  method: value,
-                },
-              }),
-            )
+            dispatch(configActions.updateSelectedApiMethod(value))
           }}
         />
         <Input
@@ -170,22 +162,18 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           dispatch(configActions.addSelectedApiEmptyHeaders())
         }}
       />
-      <BodyEditor
-        body={currentAction.content.body}
-        bodyType={currentAction.content.bodyType}
-        onChangeBody={() => {}}
-        onChangeBodyType={(type) => {
-          dispatch(
-            configActions.updateSelectedAction({
-              ...currentAction,
-              content: {
-                ...currentContent,
-                bodyType: type,
-              },
-            }),
-          )
-        }}
-      />
+      {currentContent.method !== "GET" && (
+        <BodyEditor
+          body={currentContent.body}
+          bodyType={currentContent.bodyType}
+          onChangeRawBodyType={(rawBodyType) => {
+            dispatch(configActions.updateSelectedApiRawBodyType(rawBodyType))
+          }}
+          onChangeBodyType={(bodyType) => {
+            dispatch(configActions.updateSelectedApiBodyType(bodyType))
+          }}
+        />
+      )}
       <RecordEditor
         records={currentAction.content.cookies}
         label={t("editor.action.resource.restapi.label.cookies")}
