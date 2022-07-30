@@ -207,6 +207,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   }, [executionResult, languageValue])
 
   useEffect(() => {
+    editor?.setOption("mode", EditorModes[mode])
+  }, [mode])
+
+  useEffect(() => {
     if (!editor) {
       const editor = CodeMirror(codeTargetRef.current!, {
         mode: EditorModes[mode],
