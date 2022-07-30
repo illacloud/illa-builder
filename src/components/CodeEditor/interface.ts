@@ -14,7 +14,7 @@ export enum EditorModes {
 
 export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT"
+  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT" | "XML_JS" | "HTML_JS"
   value?: string
   expectedType: VALIDATION_TYPES
   // Whether to show line numbers to the left of the editor.
