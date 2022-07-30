@@ -10,9 +10,18 @@ export enum EditorModes {
   SQL_JS = "sql-js",
 }
 
+export type CodeEditorMode =
+  | "TEXT_JS"
+  | "SQL_JS"
+  | "SQL"
+  | "JAVASCRIPT"
+  | "JSON_JS"
+  | "HTML_JS"
+  | "XML_JS"
+
 export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  mode: "TEXT_JS" | "SQL_JS" | "SQL" | "JAVASCRIPT"
+  mode: CodeEditorMode
   value?: string
   expectedType: VALIDATION_TYPES
   // Whether to show line numbers to the left of the editor.

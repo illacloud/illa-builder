@@ -215,16 +215,14 @@ export const updateSelectedApiBodyType: CaseReducer<
   }
 }
 
-export const updateSelectedApiRawBody: CaseReducer<
+export const updateSelectedApiBody: CaseReducer<
   ConfigState,
-  PayloadAction<RawBody<RawBodyContent>>
+  PayloadAction<BodyContent>
 > = (state, action) => {
   const selectedAction = state.selectedAction
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
-    if (content.bodyType === "raw") {
-      content.body = action.payload
-    }
+    content.body = action.payload
   }
 }
 
@@ -236,9 +234,10 @@ export const updateSelectedApiRawBodyType: CaseReducer<
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
     if (content.bodyType === "raw") {
-      const rawBody = content.body as RawBody<RawBodyContent>
-      rawBody.content = ""
-      rawBody.type = action.payload
+      content.body = {
+        type: action.payload,
+        content: "",
+      }
     }
   }
 }

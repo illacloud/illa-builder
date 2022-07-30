@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/RecordEditor/interface"
 import {
-  recordEditorContainerStyle,
+  applyRecordEditorContainerStyl,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
@@ -22,8 +22,8 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <div css={recordEditorContainerStyle}>
-      <span css={recordEditorLabelStyle}>{label}</span>
+    <div css={applyRecordEditorContainerStyl(label)}>
+      {label != "" && <span css={recordEditorLabelStyle}>{label}</span>}
       <div css={recordEditorStyle}>
         {records.map((record, index) => {
           return (
