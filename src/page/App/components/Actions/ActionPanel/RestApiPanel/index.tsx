@@ -164,7 +164,9 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
       />
       {currentContent.method !== "GET" && (
         <BodyEditor
-          onChangeBody={(body) => {}}
+          onChangeBody={(body) => {
+            dispatch(configActions.updateSelectedApiBody(body))
+          }}
           body={currentContent.body}
           bodyType={currentContent.bodyType}
           onChangeRawBodyType={(rawBodyType) => {

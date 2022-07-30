@@ -222,6 +222,7 @@ export const updateSelectedApiBody: CaseReducer<
   const selectedAction = state.selectedAction
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
+    console.log(action.payload)
     content.body = action.payload
   }
 }

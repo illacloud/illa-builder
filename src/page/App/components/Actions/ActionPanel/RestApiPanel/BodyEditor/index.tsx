@@ -12,10 +12,8 @@ import {
   BinaryBody,
   BodyContent,
   BodyType,
-  FormDataBody,
   RawBody,
   RawBodyContent,
-  XWWWFormURLEncodedBody,
 } from "@/redux/currentApp/action/restapiAction"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -32,43 +30,48 @@ function getBodyEditorComponent(
     case "none":
       return null
     case "form-data":
-      return (
-        <RecordEditor
-          label=""
-          records={body as FormDataBody}
-          onAdd={() => {
-            onChangeBody([
-              ...(body as FormDataBody),
-              { key: "", value: "" } as Params,
-            ])
-          }}
-          onDelete={(index, record) => {
-            const params = [...(body as FormDataBody)]
-            params.splice(index, 1)
-            onChangeBody(params)
-          }}
-          onChangeKey={(index, key, value) => {}}
-          onChangeValue={(index, key, value) => {}}
-        />
-      )
     case "x-www-form-urlencoded":
+      let r = body as Params[]
       return (
         <RecordEditor
+          key={bodyType}
           label=""
-          records={body as XWWWFormURLEncodedBody}
+          records={r}
           onAdd={() => {
-            onChangeBody([
-              ...(body as FormDataBody),
-              { key: "", value: "" } as Params,
-            ])
-          }}
-          onDelete={(index, record) => {
-            const params = [...(body as FormDataBody)]
-            params.splice(index, 1)
+            const params: Params[] = [...r]
+            params.push({
+              key: "",
+              value: "",
+            } as Params)
             onChangeBody(params)
           }}
-          onChangeKey={(index, key, value) => {}}
-          onChangeValue={(index, key, value) => {}}
+          onDelete={(index, record) => {
+            let params: Params[] = [...r]
+            params.splice(index, 1)
+            if (params.length === 0) {
+              params.push({
+                key: "",
+                value: "",
+              } as Params)
+            }
+            onChangeBody(params)
+          }}
+          onChangeKey={(index, key, value) => {
+            let params: Params[] = [...r]
+            params[index] = {
+              key,
+              value,
+            }
+            onChangeBody(params)
+          }}
+          onChangeValue={(index, key, value) => {
+            let params: Params[] = [...r]
+            params[index] = {
+              key,
+              value,
+            }
+            onChangeBody(params)
+          }}
         />
       )
     case "raw":
@@ -110,6 +113,7 @@ function getBodyEditorComponent(
       return (
         <CodeEditor
           mode="TEXT_JS"
+          lineNumbers
           value={body as BinaryBody}
           expectedType={VALIDATION_TYPES.STRING}
           height="88px"

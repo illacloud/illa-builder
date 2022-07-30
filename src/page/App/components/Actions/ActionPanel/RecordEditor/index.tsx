@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/RecordEditor/interface"
 import {
   applyRecordEditorContainerStyl,
@@ -21,10 +21,9 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
 
   const { t } = useTranslation()
 
-  return (
-    <div css={applyRecordEditorContainerStyl(label)}>
-      {label != "" && <span css={recordEditorLabelStyle}>{label}</span>}
-      <div css={recordEditorStyle}>
+  const recordList = useMemo(() => {
+    return (
+      <>
         {records.map((record, index) => {
           return (
             <div css={recordStyle} key={index}>
@@ -68,6 +67,15 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
             </div>
           )
         })}
+      </>
+    )
+  }, [records])
+
+  return (
+    <div css={applyRecordEditorContainerStyl(label)}>
+      {label != "" && <span css={recordEditorLabelStyle}>{label}</span>}
+      <div css={recordEditorStyle}>
+        {recordList}
         <span>
           <Button
             _css={recordNewButton}
