@@ -185,7 +185,10 @@
           "please_input_name": "Please input name",
           "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter",
           "load_action_list_fail": "Failed to get Action list: {{message}}",
-          "load_resource_fail": "Failed to get resource list: {{message}}"
+          "load_resource_fail": "Failed to get resource list: {{message}}",
+          "success_created": "Successfully created!",
+          "success_saved": "Successfully saved!",
+          "failed": "Failed to connect to server"
         },
         "action_generator": {
           "selector": {
@@ -227,6 +230,7 @@
           "run": "Run",
           "save": "Save",
           "save_and_run": "Save & Run",
+          "save_fail": "Failed to save",
           "disable": "Disable",
           "enable": "Enable",
           "new": "New"
@@ -299,8 +303,8 @@
             "ssh_passphrase": "SSH passphrase",
             "ssl_options": "SSL options",
             "server_root_certificate": "Server Root Certificate",
-            "client_key": "Client Key",
-            "client_certificate": "Client Certificate"
+            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           },
           "tip": {
             "username_password": "Credentials will be encrypted & stored securely on our servers.",
@@ -445,7 +449,8 @@
         "layout": "LAYOUT",
         "style": "STYLE",
         "validation": "VALIDATION",
-        "options": "OPTIONS"
+        "options": "OPTIONS",
+        "data": "DATA"
       },
       "setter_label": {
         "text": "Text",
@@ -551,7 +556,8 @@
         },
         "new_tab": "New tab",
         "description": "Description",
-        "duration":"Duration"
+        "duration": "Duration",
+        "data": "Data"
       },
       "setter_tooltip": {
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
@@ -579,9 +585,9 @@
         "outline": "Outline",
         "message_type": {
           "success": "Success",
-            "info": "Info",
-            "warning": "Warning",
-            "error": "Error"
+          "info": "Info",
+          "warning": "Warning",
+          "error": "Error"
         }
       },
       "setter_content": {
@@ -704,6 +710,9 @@
     },
     "chart": {
       "name": "Chart"
+    },
+    "table": {
+      "name": "Table"
     }
   },
   "Setting": "Setting",
@@ -752,7 +761,7 @@
       "title": "ACCOUNT",
       "username": "Username",
       "empty_username": "Please enter your username",
-    "error_username": "Username must be 3~15 characters",
+      "error_username": "Username must be 3~15 characters",
       "save": "Save Changes",
       "save_fail": "Failed to save"
     },
