@@ -79,6 +79,7 @@ const fetchActionResult = (
   successEvent: any[] = [],
   failedEvent: any[] = [],
   transformer: Transformer,
+  resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
   Api.request(
     {
@@ -96,6 +97,7 @@ const fetchActionResult = (
       //TODO: @aruseito not use any
       const rawData = data.data.Rows
       let calcResult = runTransformer(transformer, rawData)
+      resultCallback?.(calcResult, false)
       store.dispatch(
         actionActions.updateActionItemResultReducer({
           displayName,
@@ -107,11 +109,13 @@ const fetchActionResult = (
       })
     },
     (res) => {
+      resultCallback?.(res, true)
       failedEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     },
-    () => {
+    (res) => {
+      resultCallback?.(res, true)
       Message.error("not online")
     },
     (loading) => {},
@@ -127,7 +131,10 @@ function getRealEventHandler(eventHandler?: any[]) {
   return realEventHandler
 }
 
-export const runAction = (action: ActionItem<ActionContent>) => {
+export const runAction = (
+  action: ActionItem<ActionContent>,
+  resultCallback?: (data: unknown, error: boolean) => void,
+) => {
   const { content, actionId, resourceId, displayName, actionType } = action
   if (!content) return
   const rootState = store.getState()
@@ -150,6 +157,7 @@ export const runAction = (action: ActionItem<ActionContent>) => {
       realSuccessEvent,
       realFailedEvent,
       transformer,
+      resultCallback,
     )
   }
 }
