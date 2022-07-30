@@ -139,12 +139,16 @@ export function applyCodeEditorStyle(
   return css`
     & > .CodeMirror {
       height: ${inputState.height};
+      max-height: ${inputState.maxHeight};
       border-radius: ${inputState.borderRadius};
       border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       transition: border 200ms ease-in-out;
       line-height: 16px;
       font-size: 12px;
       ${stateStyle}
+      .CodeMirror-scroll {
+        max-height: ${inputState.maxHeight};
+      }
     }
   `
 }

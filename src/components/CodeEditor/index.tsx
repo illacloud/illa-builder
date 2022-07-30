@@ -44,6 +44,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     height = "auto",
     readOnly,
     onBlur,
+    maxHeight = "auto",
     onChange,
     ...otherProps
   } = props
@@ -250,6 +251,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     error,
     height,
     borderRadius,
+    maxHeight,
   }
 
   return (
