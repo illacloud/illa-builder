@@ -10,13 +10,19 @@ import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestA
 import { Select } from "@illa-design/select"
 
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
-  const { body, bodyType, onChangeBodyType, onChangeBody } = props
+  const {
+    body,
+    bodyType,
+    onChangeBodyType,
+    onChangeRawBodyType,
+    onChangeBody,
+  } = props
   const { t } = useTranslation()
 
   return (
     <div css={bodyEditorContainerStyle}>
       <span css={bodyLabelStyle}>
-        {t("editor.action.resource.rest_api.label.body")}
+        {t("editor.action.resource.restapi.label.body")}
       </span>
       <div css={bodyChooserStyle}>
         <div css={bodySelectorStyle}>
@@ -39,6 +45,9 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               colorScheme="techPurple"
               width="162px"
               options={["text", "json", "xml", "javascript", "html"]}
+              onChange={(value) => {
+                onChangeRawBodyType(value)
+              }}
             />
           )}
         </div>
