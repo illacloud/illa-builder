@@ -26,6 +26,7 @@ import {
 } from "@/redux/resource/resourceState"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
+import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 
 export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()
@@ -215,6 +216,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
         }}
       />
       <TransformerComponent />
+      <ActionEventHandler />
     </div>
   )
 }
