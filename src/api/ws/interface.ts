@@ -14,6 +14,7 @@ export enum Signal {
   SIGNAL_CREATE_OR_UPDATE_STATE = 7,
   SIGNAL_ONLY_BROADCAST = 8,
   SIGNAL_PUT_STATE = 9,
+  SIGNAL_GLOBAL_BROADCAST_ONLY = 10,
 }
 
 export enum Target {

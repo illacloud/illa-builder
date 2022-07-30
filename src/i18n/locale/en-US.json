@@ -281,7 +281,7 @@
         "label": {
           "coming_soon": "Coming Soon"
         },
-        "my_sql": {
+        "mysql": {
           "name": "MySQL",
           "title": {
             "advanced_option": "Advanced Options"
@@ -323,7 +323,7 @@
             "client_certificate": "e.g.path/to/root.crt"
           }
         },
-        "rest_api": {
+        "restapi": {
           "name": "REST API",
           "label": {
             "name": "Name",
@@ -396,7 +396,7 @@
         "redis": {
           "name": "Redis"
         },
-        "mongo_db": {
+        "mongodb": {
           "name": "MongoDB"
         }
       },
