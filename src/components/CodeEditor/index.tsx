@@ -44,6 +44,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     height = "auto",
     readOnly,
     onBlur,
+    maxHeight = "auto",
     onChange,
     ...otherProps
   } = props
@@ -155,7 +156,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     }
     const cursor = editor.getCursor()
     const line = editor.getLine(cursor.line)
-    let showAutocomplete = false
+    let showAutocomplete = true
     if (key === "/") {
       showAutocomplete = true
     } else if (event.code === "Backspace") {
@@ -250,6 +251,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     error,
     height,
     borderRadius,
+    maxHeight,
   }
 
   return (

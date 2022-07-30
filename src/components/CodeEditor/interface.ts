@@ -12,18 +12,11 @@ export enum EditorModes {
   HTML_JS = "html-js",
 }
 
-export type CodeEditorMode =
-  | "TEXT_JS"
-  | "SQL_JS"
-  | "SQL"
-  | "JAVASCRIPT"
-  | "JSON_JS"
-  | "HTML_JS"
-  | "XML_JS"
+export type EditorMode = keyof typeof EditorModes
 
 export interface CodeEditorProps
   extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  mode: CodeEditorMode
+  mode: EditorMode
   value?: string
   expectedType: VALIDATION_TYPES
   // Whether to show line numbers to the left of the editor.
@@ -38,6 +31,7 @@ export interface CodeEditorProps
   tables?: Record<string, any>
   onBlur?: () => void
   onChange?: (value: string, calcResult?: any) => void
+  maxHeight?: string
 }
 
 export enum DataType {
@@ -69,4 +63,5 @@ export interface EditorInputState {
   error?: boolean
   height: string
   borderRadius: string
+  maxHeight: string
 }

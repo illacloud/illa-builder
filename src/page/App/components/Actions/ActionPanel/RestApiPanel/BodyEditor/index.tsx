@@ -18,8 +18,8 @@ import {
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { CodeEditorMode } from "@/components/CodeEditor/interface"
 import { Params } from "@/redux/resource/resourceState"
+import { EditorMode } from "@/components/CodeEditor/interface"
 
 function getBodyEditorComponent(
   bodyType: BodyType,
@@ -76,13 +76,13 @@ function getBodyEditorComponent(
       )
     case "raw":
       const rawBody = body as RawBody<RawBodyContent>
-      let mode: CodeEditorMode = "TEXT_JS"
+      let mode: EditorMode = "TEXT_JS"
       switch (rawBody.type) {
         case "text":
           mode = "TEXT_JS"
           break
         case "json":
-          mode = "JSON_JS"
+          mode = "JSON"
           break
         case "xml":
           mode = "XML_JS"
@@ -98,7 +98,7 @@ function getBodyEditorComponent(
         <CodeEditor
           lineNumbers
           mode={mode}
-          value={body as RawBodyContent}
+          value={(body as RawBody<RawBodyContent>).content}
           expectedType={VALIDATION_TYPES.STRING}
           height="88px"
           onChange={(value) => {

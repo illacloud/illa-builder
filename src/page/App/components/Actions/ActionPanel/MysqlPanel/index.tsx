@@ -11,6 +11,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { MysqlPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
+import { EditorModes } from "@/components/CodeEditor/interface"
 
 export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
   const dispatch = useDispatch()
