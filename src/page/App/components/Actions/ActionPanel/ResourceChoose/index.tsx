@@ -61,7 +61,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
               variant: "outline",
               colorScheme: "gray",
               leftIcon: (
-                <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-08`)} />
+                <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-04`)} />
               ),
               onClick: () => {
                 setEditType(true)

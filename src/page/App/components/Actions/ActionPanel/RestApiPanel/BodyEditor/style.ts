@@ -21,6 +21,14 @@ export const bodyLabelStyle = css`
 
 export const bodyChooserStyle = css`
   display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  margin-left: 16px;
+`
+
+export const bodySelectorStyle = css`
+  display: flex;
+  height: 48px;
+  align-items: center;
   flex-direction: row;
-  margin-left: 8px;
 `

@@ -3,11 +3,14 @@ import {
   bodyChooserStyle,
   bodyEditorContainerStyle,
   bodyLabelStyle,
+  bodySelectorStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
+import { Select } from "@illa-design/select"
 
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
+  const { body, bodyType, onChangeBodyType, onChangeBody } = props
   const { t } = useTranslation()
 
   return (
@@ -16,8 +19,29 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
         {t("editor.action.resource.rest_api.label.body")}
       </span>
       <div css={bodyChooserStyle}>
-        <div></div>
-        {}
+        <div css={bodySelectorStyle}>
+          <Select
+            colorScheme="techPurple"
+            value={bodyType}
+            options={[
+              "none",
+              "form-data",
+              "x-www-form-urlencoded",
+              "raw",
+              "binary",
+            ]}
+            onChange={(value) => {
+              onChangeBodyType(value)
+            }}
+          />
+          {bodyType === "raw" && (
+            <Select
+              colorScheme="techPurple"
+              width="162px"
+              options={["text", "json", "xml", "javascript", "html"]}
+            />
+          )}
+        </div>
       </div>
     </div>
   )

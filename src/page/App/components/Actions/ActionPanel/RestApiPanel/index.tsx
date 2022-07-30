@@ -170,7 +170,12 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           dispatch(configActions.addSelectedApiEmptyHeaders())
         }}
       />
-      <BodyEditor />
+      <BodyEditor
+        body={currentAction.content.body}
+        bodyType={currentAction.content.bodyType}
+        onChangeBody={() => {}}
+        onChangeBodyType={() => {}}
+      />
       <RecordEditor
         records={currentAction.content.cookies}
         label={t("editor.action.resource.rest_api.label.cookies")}
