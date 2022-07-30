@@ -31,6 +31,7 @@ export interface CodeEditorProps
   tables?: Record<string, any>
   onBlur?: () => void
   onChange?: (value: string, calcResult?: any) => void
+  maxHeight?: string
 }
 
 export enum DataType {
@@ -62,4 +63,5 @@ export interface EditorInputState {
   error?: boolean
   height: string
   borderRadius: string
+  maxHeight: string
 }
