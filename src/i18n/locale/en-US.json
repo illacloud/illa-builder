@@ -303,8 +303,8 @@
             "ssh_passphrase": "SSH passphrase",
             "ssl_options": "SSL options",
             "server_root_certificate": "Server Root Certificate",
-            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+            "client_key": "Client Key",
+            "client_certificate": "Client Certificate"
           },
           "tip": {
             "username_password": "Credentials will be encrypted & stored securely on our servers.",
@@ -323,8 +323,8 @@
             "ssh_credentials": "e.g.ec2-user",
             "private_key": "e.g.path/to/root.crt",
             "server_root_certificate": "e.g.path/to/root.crt",
-            "client_key": "e.g.path/to/root.crt",
-            "client_certificate": "e.g.path/to/root.crt"
+            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
+            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
         },
         "restapi": {
