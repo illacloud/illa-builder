@@ -34,7 +34,6 @@ function getBodyEditorComponent(
       let r = body as Params[]
       return (
         <RecordEditor
-          key={bodyType}
           label=""
           records={r}
           onAdd={() => {
