@@ -41,6 +41,39 @@ CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
   )
 })
 
+CodeMirror.defineMode(EditorModes.XML_JS, function (config) {
+  return CodeMirror.multiplexingMode(
+    CodeMirror.getMode(config, { name: "application/xml" }),
+    {
+      open: "{{",
+      close: "}}",
+      mode: CodeMirror.getMode(config, {
+        name: "application/json",
+      }),
+      delimStyle: "illa-expression",
+      innerStyle: "illa-expression",
+      parseDelimiters: false,
+    },
+  )
+})
+
+CodeMirror.defineMode(EditorModes.HTML_JS, function (config) {
+  return CodeMirror.multiplexingMode(
+    CodeMirror.getMode(config, {
+      name: "text/html",
+    }),
+    {
+      open: "{{",
+      close: "}}",
+      mode: CodeMirror.getMode(config, {
+        name: "application/json",
+      }),
+      delimStyle: "illa-expression",
+      innerStyle: "illa-expression",
+      parseDelimiters: false,
+    },
+  )
+})
 CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
   return CodeMirror.multiplexingMode(
     CodeMirror.getMode(config, {
