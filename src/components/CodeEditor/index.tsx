@@ -186,6 +186,14 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         tables,
         completeSingle: false,
       })
+    } else if (modeHelperType == "xml") {
+      CodeMirror.showHint(cm, CodeMirror.hint.xml, {
+        completeSingle: false,
+      })
+    } else if (modeHelperType == "html") {
+      CodeMirror.showHint(cm, CodeMirror.hint.html, {
+        completeSingle: false,
+      })
     } else if (modeHelperType == "json") {
       sever.current?.complete(cm)
     } else if (modeName == "javascript") {

@@ -1,7 +1,9 @@
 import ReactDOM from "react-dom"
-import CodeMirror, { Hint } from "codemirror"
+import CodeMirror, { Hint, Hints } from "codemirror"
 import "codemirror/addon/hint/sql-hint"
 import "codemirror/addon/hint/javascript-hint"
+import "codemirror/addon/hint/xml-hint"
+import "codemirror/addon/hint/html-hint"
 import { isString } from "@illa-design/system"
 import { AutoCompleteItem } from "./AutoComplete"
 
@@ -15,18 +17,7 @@ CodeMirror.hint.javascript = async function (cm, option) {
   return inner
 }
 
-let origSqlHint = CodeMirror.hint.sql
-CodeMirror.hint.sql = async function (cm, option) {
-  const editor = cm
-  // [TODO] override sql-hint.js
-  // @ts-ignore override doc.modeOption
-  // see in: https://github.com/codemirror/codemirror5/issues/5249
-  editor.doc.modeOption = "sql"
-  let inner = (await origSqlHint(editor, option)) || {
-    from: cm.getCursor(),
-    to: cm.getCursor(),
-    list: [],
-  }
+const transHinters = (inner: Hints) => {
   const newList = []
   for (let i = 0; i < inner.list.length; i++) {
     let item = isString(inner.list[i])
@@ -43,4 +34,39 @@ CodeMirror.hint.sql = async function (cm, option) {
   }
   inner.list = newList
   return inner
+}
+
+let origSqlHint = CodeMirror.hint.sql
+CodeMirror.hint.sql = async function (cm, option) {
+  const editor = cm
+  // [TODO] override sql-hint.js
+  // @ts-ignore override doc.modeOption
+  // see in: https://github.com/codemirror/codemirror5/issues/5249
+  editor.doc.modeOption = "sql"
+  let inner = (await origSqlHint(editor, option)) || {
+    from: cm.getCursor(),
+    to: cm.getCursor(),
+    list: [],
+  }
+  return transHinters(inner)
+}
+
+let origXmlHint = CodeMirror.hint.xml
+CodeMirror.hint.xml = async function (cm, option) {
+  let inner = (await origXmlHint(cm, option)) || {
+    from: cm.getCursor(),
+    to: cm.getCursor(),
+    list: [],
+  }
+  return transHinters(inner)
+}
+
+let origHtmlHint = CodeMirror.hint.html
+CodeMirror.hint.html = async function (cm, option) {
+  let inner = (await origXmlHint(cm, option)) || {
+    from: cm.getCursor(),
+    to: cm.getCursor(),
+    list: [],
+  }
+  return transHinters(inner)
 }

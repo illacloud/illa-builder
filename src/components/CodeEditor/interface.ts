@@ -8,6 +8,8 @@ export enum EditorModes {
   JAVASCRIPT = "custom-javascript",
   TEXT_JS = "text-js",
   SQL_JS = "sql-js",
+  XML_JS = "xml-js",
+  HTML_JS = "html-js",
 }
 
 export interface CodeEditorProps
