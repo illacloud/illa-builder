@@ -7,3 +7,10 @@ export const setDependenciesReducer: CaseReducer<
 > = (state, action) => {
   return action.payload
 }
+
+export const startCalcReducer: CaseReducer<
+  DependenciesState,
+  PayloadAction<void>
+> = (state) => {
+  return state
+}

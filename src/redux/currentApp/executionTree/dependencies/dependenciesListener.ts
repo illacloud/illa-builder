@@ -10,8 +10,24 @@ import dependenciesTreeWorker from "@/utils/worker/exectionTreeWorker?worker"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 export const worker = new dependenciesTreeWorker()
+
+export const mergeActionDisplayNameMapProps = (
+  displayNameMapActions: Record<string, any>,
+) => {
+  const result: Record<string, any> = {}
+  for (const key in displayNameMapActions) {
+    const action = displayNameMapActions[key]
+    const data = actionDisplayNameMapFetchResult[key]
+    result[key] = {
+      ...action,
+      data: data || {},
+    }
+  }
+  return result
+}
 
 async function handleUpdateDependencies(
   action: AnyAction,
@@ -19,7 +35,9 @@ async function handleUpdateDependencies(
 ) {
   const rootState = listenerApi.getState()
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
-  const displayNameMapActions = getAllActionDisplayNameMapProps(rootState)
+  const displayNameMapActions = mergeActionDisplayNameMapProps(
+    getAllActionDisplayNameMapProps(rootState),
+  )
   const builderInfo = getBuilderInfo(rootState)
   const currentUser = getCurrentUser(rootState)
   if (!displayNameMapProps) return
@@ -51,7 +69,7 @@ export function setupDependenciesListeners(
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
-        actionActions.updateActionItemResultReducer,
+        dependenciesActions.startCalcReducer,
       ),
       effect: handleUpdateDependencies,
     }),

@@ -7,7 +7,10 @@ import { dependenciesActions } from "@/redux/currentApp/executionTree/dependenci
 import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { getEvalOrderSelector } from "@/redux/currentApp/executionTree/dependencies/dependenciesSelector"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import { worker } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
+import {
+  mergeActionDisplayNameMapProps,
+  worker,
+} from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
 import { WidgetConfig } from "@/widgetLibrary/widgetBuilder"
 import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -19,7 +22,9 @@ async function handleUpdateExecution(
 ) {
   const rootState = listenerApi.getState()
   const displayNameMapProps = getAllComponentDisplayNameMapProps(rootState)
-  const displayNameMapActions = getAllActionDisplayNameMapProps(rootState)
+  const displayNameMapActions = mergeActionDisplayNameMapProps(
+    getAllActionDisplayNameMapProps(rootState),
+  )
   const builderInfo = getBuilderInfo(rootState)
   const currentUser = getCurrentUser(rootState)
   if (!displayNameMapProps) return
