@@ -62,4 +62,3 @@ export const resCloseIconStyle = css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   }
 `
-
