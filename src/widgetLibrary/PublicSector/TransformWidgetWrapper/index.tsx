@@ -16,6 +16,10 @@ import {
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 
+export const needFullHeightWrapper = (type: string): boolean => {
+  return type === "TEXT_WIDGET" || type === "IMAGE_WIDGET"
+}
+
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
     return event.eventType === eventType
@@ -93,9 +97,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
   } = realProps
+
+  const fullHeight = needFullHeightWrapper(type)
+
   return (
     <BasicWrapper tooltipText={tooltipText} hidden={hidden}>
-      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+      <div css={applyLabelAndComponentWrapperStyle(labelPosition, fullHeight)}>
         <Label
           label={label}
           labelAlign={labelAlign}
