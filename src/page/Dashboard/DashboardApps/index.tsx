@@ -258,9 +258,9 @@ export const DashboardApps: FC = () => {
                   <ListItemMeta
                     css={hoverableStyle}
                     title={item.appName}
-                    description={`${item.updatedBy} ${t("edit_at")} ${dayjs(
-                      item.updatedAt,
-                    )
+                    description={`${item?.appActivity.modifier} ${t(
+                      "edit_at",
+                    )} ${dayjs(item.updatedAt)
                       .tz(dayjs.tz.guess())
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
