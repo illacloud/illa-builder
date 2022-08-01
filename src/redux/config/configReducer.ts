@@ -14,7 +14,6 @@ import {
   BodyContent,
   BodyType,
   RawBody,
-  RawBodyContent,
   RawBodyType,
   RestApiAction,
   TextRawBody,
@@ -180,7 +179,10 @@ export const updateSelectedApiMethod: CaseReducer<
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
     content.method = action.payload
-    content.body = null
+    if (content.method === "GET") {
+      content.bodyType = "none"
+      content.body = null
+    }
   }
 }
 
@@ -222,7 +224,6 @@ export const updateSelectedApiBody: CaseReducer<
   const selectedAction = state.selectedAction
   if (selectedAction != null) {
     const content = selectedAction.content as RestApiAction<BodyContent>
-    console.log(action.payload)
     content.body = action.payload
   }
 }
