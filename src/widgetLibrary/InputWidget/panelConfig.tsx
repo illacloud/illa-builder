@@ -187,7 +187,26 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.pattern"),
         setterType: "SEARCH_SELECT_SETTER",
         attrName: "pattern",
-        options: ["Email", "URL", "Regex"],
+        options: [
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.validation_pattern.email",
+            ),
+            value: "Email",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.validation_pattern.url",
+            ),
+            value: "URL",
+          },
+          {
+            label: i18n.t(
+              "editor.inspect.setter_default_value.validation_pattern.regex",
+            ),
+            value: "Regex",
+          },
+        ],
       },
       {
         id: `${baseWidgetName}-validation-regex`,
