@@ -4,9 +4,11 @@ import { getFlexDirection } from "@/widgetLibrary/PublicSector/BasicWrapper/styl
 
 export const applyLabelAndComponentWrapperStyle = (
   labelPosition: "left" | "right" | "top" = "left",
+  fullHeight: boolean = false,
 ): SerializedStyles => {
   return css`
     width: 100%;
+    height: ${fullHeight ? "100%" : "auto"};
     display: flex;
     ${getFlexDirection(labelPosition)}
   `
