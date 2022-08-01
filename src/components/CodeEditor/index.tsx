@@ -34,6 +34,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     className,
     mode = "TEXT_JS",
     placeholder,
+    border,
     expectedType = VALIDATION_TYPES.STRING,
     borderRadius = "8px",
     path,
@@ -257,6 +258,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     focus,
     error,
     height,
+    border,
     borderRadius,
     maxHeight,
   }

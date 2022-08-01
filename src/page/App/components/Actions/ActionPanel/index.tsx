@@ -66,7 +66,12 @@ export const ActionPanel: FC = () => {
         }}
       />
       {actionPanel}
-      <ActionResult result={actionResult} />
+      <ActionResult
+        result={actionResult}
+        onClose={() => {
+          setActionResult(undefined)
+        }}
+      />
     </div>
   )
 }

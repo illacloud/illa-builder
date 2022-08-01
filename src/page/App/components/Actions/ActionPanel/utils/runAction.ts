@@ -107,7 +107,7 @@ const fetchActionResult = (
       })
     },
     (res) => {
-      resultCallback?.(res, true)
+      resultCallback?.(res.data, true)
       failedEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
