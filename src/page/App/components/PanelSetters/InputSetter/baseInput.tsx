@@ -42,7 +42,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         mode="TEXT_JS"
         expectedType={expectedType}
         path={getPath(attrName, widgetDisplayName)}
-        maxHeight="192px"
+        maxHeight="208px"
       />
     </div>
   )
