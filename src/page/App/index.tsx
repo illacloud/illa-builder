@@ -72,7 +72,7 @@ export const Editor: FC = () => {
   const showBottomPanel = useSelector(isOpenBottomPanel)
 
   // init app
-  const loadingState = useInitBuilderApp()
+  const loadingState = useInitBuilderApp("edit")
   // init resource
   useEffect(() => {
     const controller = new AbortController()

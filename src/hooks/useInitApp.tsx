@@ -12,8 +12,9 @@ import { dependenciesActions } from "@/redux/currentApp/executionTree/dependenci
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
+import { IllaMode } from "@/redux/config/configState"
 
-export const useInitBuilderApp = () => {
+export const useInitBuilderApp = (model: IllaMode) => {
   let { appId, versionId } = useParams()
   const dispatch = useDispatch()
 
@@ -28,7 +29,7 @@ export const useInitBuilderApp = () => {
         signal: controller.signal,
       },
       (response) => {
-        dispatch(configActions.updateIllaMode("edit"))
+        dispatch(configActions.updateIllaMode(model))
         dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
         dispatch(
           componentsActions.updateComponentReducer(response.data.components),
@@ -62,7 +63,7 @@ export const useInitBuilderApp = () => {
           runAction(item)
         })
 
-        if (response.data.actions.length > 0) {
+        if (model === "edit" && response.data.actions.length > 0) {
           dispatch(configActions.changeSelectedAction(response.data.actions[0]))
         }
       },

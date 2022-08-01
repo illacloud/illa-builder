@@ -10,7 +10,7 @@ import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execut
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 
 export const Deploy: FC = () => {
-  const loadingState = useInitBuilderApp()
+  const loadingState = useInitBuilderApp("production")
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
