@@ -17,7 +17,11 @@ import {
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 
 export const needFullHeightWrapper = (type: string): boolean => {
-  return type === "TEXT_WIDGET" || type === "IMAGE_WIDGET"
+  return (
+    type === "TEXT_WIDGET" ||
+    type === "IMAGE_WIDGET" ||
+    type === "BUTTON_WIDGET"
+  )
 }
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
