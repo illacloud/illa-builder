@@ -15,12 +15,14 @@ import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
 import { Message } from "@illa-design/message"
-import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import {
   BodyContent,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { isObject } from "@/utils/typeHelper"
+import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
+
+export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
 function calcRealContent(content: Record<string, any>) {
   let realContent: Record<string, any> = {}
@@ -98,12 +100,8 @@ const fetchActionResult = (
       const rawData = data.data.Rows
       let calcResult = runTransformer(transformer, rawData)
       resultCallback?.(calcResult, false)
-      store.dispatch(
-        actionActions.updateActionItemResultReducer({
-          displayName,
-          data: calcResult,
-        }),
-      )
+      actionDisplayNameMapFetchResult[displayName] = calcResult
+      store.dispatch(dependenciesActions.startCalcReducer())
       successEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })

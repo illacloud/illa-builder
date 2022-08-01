@@ -587,6 +587,11 @@
           "info": "信息",
           "warning": "警告",
           "error": "错误"
+        },
+        "validation_pattern": {
+          "email": " 邮箱",
+          "url": "URL",
+          "regex": "正则表达式"
         }
       },
       "setter_content": {

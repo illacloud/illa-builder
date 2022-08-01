@@ -95,7 +95,6 @@ export const getAllActionDisplayNameMapProps = createSelector(
       res[key.displayName] = {
         displayName: key.displayName,
         content: key.content || {},
-        data: key.data || {},
         $type: "ACTION",
       }
     })
