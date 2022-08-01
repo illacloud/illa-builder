@@ -17,11 +17,12 @@ import { DragBar } from "@/page/App/components/Actions/DragBar"
 
 interface ActionResultProps {
   result?: ActionResultType
+  maxHeight?: number
   onClose: () => void
 }
 
 export const ActionResult: FC<ActionResultProps> = (props) => {
-  const { result, onClose } = props
+  const { result, maxHeight, onClose } = props
   const res = result?.result
   const panelRef = useRef<HTMLDivElement>(null)
 
@@ -34,7 +35,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         </div>
       ) : (
         <>
-          <DragBar resizeRef={panelRef} minHeight={40} />
+          <DragBar resizeRef={panelRef} minHeight={40} maxHeight={maxHeight} />
           <div css={successResultWrapperStyle}>
             <div>
               <RightIcon css={successIconStyle} size="16px" />
