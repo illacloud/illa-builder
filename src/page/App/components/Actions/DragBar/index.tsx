@@ -1,11 +1,13 @@
 import React, { useState, useEffect, RefObject, FC } from "react"
 import { actionEditorDragBarStyle } from "./style"
 import { DragBarProps } from "./interface"
+import { isNumber } from "@illa-design/system"
 
 const handleResize = (
+  resizeRef: RefObject<HTMLDivElement>,
   movementY: number,
   minHeight: number,
-  resizeRef: RefObject<HTMLDivElement>,
+  maxHeight?: number,
 ) => {
   const resize = resizeRef?.current
   if (!resize) return
@@ -13,19 +15,21 @@ const handleResize = (
   const { height } = resize.getBoundingClientRect()
   const updatedHeight = height - movementY
 
+  if (isNumber(maxHeight) && updatedHeight > maxHeight) return
+
   if (updatedHeight < window.innerHeight && updatedHeight > minHeight) {
     resize.style.height = `${height - movementY}px`
   }
 }
 
 export const DragBar: FC<DragBarProps> = (props) => {
-  const { resizeRef, minHeight = 300 } = props
+  const { resizeRef, minHeight = 300, maxHeight } = props
   const [mouseDown, setMouseDown] = useState(false)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       e.preventDefault()
-      handleResize(e.movementY, minHeight, resizeRef)
+      handleResize(resizeRef, e.movementY, minHeight, maxHeight)
     }
     if (mouseDown) {
       window.addEventListener("mousemove", handleMouseMove)
@@ -37,7 +41,7 @@ export const DragBar: FC<DragBarProps> = (props) => {
   }, [mouseDown])
 
   useEffect(() => {
-    handleResize(0, minHeight, resizeRef)
+    handleResize(resizeRef, 0, minHeight, maxHeight)
     const handleMouseUp = () => setMouseDown(false)
     window.addEventListener("mouseup", handleMouseUp)
 

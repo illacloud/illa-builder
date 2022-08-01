@@ -9,12 +9,11 @@ import {
   successIconStyle,
   successResultWrapperStyle,
 } from "./style"
-import { AxiosError } from "axios"
 import i18n from "i18next"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ApiError } from "@/api/base"
-import { css } from "@emotion/react"
+import { DragBar } from "@/page/App/components/Actions/DragBar"
 
 interface ActionResultProps {
   result?: ActionResultType
@@ -35,6 +34,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
         </div>
       ) : (
         <>
+          <DragBar resizeRef={panelRef} minHeight={40} />
           <div css={successResultWrapperStyle}>
             <div>
               <RightIcon css={successIconStyle} size="16px" />

@@ -6,6 +6,7 @@ export const resultContainerStyle = css`
   min-width: 700px;
   display: flex;
   flex-direction: column;
+  position: relative;
 `
 
 export const resultWrapperStyle = css`
