@@ -588,6 +588,11 @@
           "info": "Info",
           "warning": "Warning",
           "error": "Error"
+        },
+        "validation_pattern": {
+          "email": "Email",
+          "url": "URL",
+          "regex": "Regex"
         }
       },
       "setter_content": {
