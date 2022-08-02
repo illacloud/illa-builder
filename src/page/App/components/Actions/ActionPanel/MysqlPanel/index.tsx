@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import {
   mysqlContainerStyle,
   sqlInputStyle,
@@ -11,13 +11,65 @@ import { configActions } from "@/redux/config/configSlice"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { MysqlPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
-import { EditorModes } from "@/components/CodeEditor/interface"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+import { Api } from "@/api/base"
+import { isObject } from "@illa-design/system"
+
+interface ResourcesData {
+  schema: Record<string, unknown>
+  resourceName: string
+}
+
+const convertResourcesToTables = (data: Record<string, unknown>) => {
+  let res: Record<string, string[]> = {}
+  if (isObject(data)) {
+    for (const dataKey in data) {
+      if (isObject(data[dataKey])) {
+        const resKeys = []
+        const key = data[dataKey]
+        if (isObject(key)) {
+          for (const keys in key) {
+            resKeys.push(keys)
+          }
+          res[dataKey] = resKeys
+        }
+      }
+    }
+  }
+  return res
+}
 
 export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
   const dispatch = useDispatch()
 
   const currentAction = props.action
   const currentContent = props.action.content
+  const [sqlTable, setSqlTable] = useState<Record<string, string[]>>()
+
+  function getItemResources(action: ActionItem<ActionContent>) {
+    const { resourceId } = action
+    Api.request(
+      {
+        url: `resources/${resourceId}/meta`,
+        method: "GET",
+      },
+      ({ data }: { data: ResourcesData }) => {
+        const tables = convertResourcesToTables(data?.schema)
+        setSqlTable(tables)
+      },
+      () => {},
+      () => {},
+      () => {},
+    )
+  }
+
+  useEffect(() => {
+    // When changing the selected action, get the corresponding resources
+    getItemResources(currentAction)
+  }, [currentAction.actionId])
 
   return (
     <div css={mysqlContainerStyle}>
@@ -30,6 +82,7 @@ export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
         value={currentContent.query}
         mode="SQL_JS"
         expectedType={VALIDATION_TYPES.STRING}
+        tables={sqlTable}
         onChange={(value) => {
           dispatch(
             configActions.updateSelectedAction({
