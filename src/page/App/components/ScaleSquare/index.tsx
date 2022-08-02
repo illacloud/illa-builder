@@ -245,6 +245,11 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       }
     >
       <div
+        onContextMenu={() => {
+          if (scaleSquareState !== "production") {
+            dispatch(configActions.updateSelectedComponent([componentNode]))
+          }
+        }}
         css={applyOuterStyle(componentNode.isDragging, h, w)}
         className={className}
         onClick={(e) => {
