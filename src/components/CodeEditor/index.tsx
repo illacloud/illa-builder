@@ -188,7 +188,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-        tables,
+        tables: latestProps.current?.tables,
         completeSingle: false,
       })
     } else if (modeHelperType == "xml") {

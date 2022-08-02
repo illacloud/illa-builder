@@ -50,8 +50,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   }
 
   useEffect(() => {
-    // on change selected action, clear previous result
-    console.log("isChangItem")
+    // Clear the previous result when changing the selected action
     onActionRun(undefined)
   }, [action?.actionId])
 
