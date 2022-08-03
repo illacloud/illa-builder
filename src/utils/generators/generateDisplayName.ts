@@ -24,11 +24,9 @@ export class DisplayNameGenerator {
     if (isAlreadyGenerate(displayName)) {
       return false
     }
-
     if (oldDisplayName !== undefined) {
       this.removeDisplayName(oldDisplayName)
     }
-
     store.dispatch(displayNameActions.addDisplayNameReducer(displayName))
   }
 
