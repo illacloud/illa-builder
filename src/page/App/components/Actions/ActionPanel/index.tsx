@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useRef, useState } from "react"
 import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -14,9 +14,13 @@ import {
 } from "@/redux/currentApp/action/restapiAction"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { onCopyActionItem, onDeleteActionItem } from "../api"
+import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
+import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 
 export const ActionPanel: FC = () => {
+  const panelRef = useRef<HTMLDivElement>(null)
   const selectedAction = useSelector(getSelectedAction)
+  const [actionResult, setActionResult] = useState<ActionResultType>()
   // null selected
   if (selectedAction === null || selectedAction === undefined) {
     return null
@@ -53,13 +57,22 @@ export const ActionPanel: FC = () => {
   }
 
   return (
-    <div css={actionPanelStyle}>
+    <div css={actionPanelStyle} ref={panelRef}>
       <ActionTitleBar
         action={selectedAction}
         onCopy={onCopyActionItem}
         onDelete={onDeleteActionItem}
+        onActionRun={(result, error) => {
+          setActionResult({ result, error })
+        }}
       />
       {actionPanel}
+      <ActionResult
+        result={actionResult}
+        onClose={() => {
+          setActionResult(undefined)
+        }}
+      />
     </div>
   )
 }

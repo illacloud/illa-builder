@@ -1,24 +1,56 @@
 import { Params } from "@/redux/resource/resourceState"
 import { Events } from "@/redux/currentApp/action/actionState"
 
-export type BodyType = "JSON" | "none" | "form-data" | "x-www-form-urlencoded"
+export type BodyType =
+  | "none"
+  | "form-data"
+  | "x-www-form-urlencoded"
+  | "raw"
+  | "binary"
 
-export type JSONBody = Record<string, string>
+export type RawBodyType = "text" | "json" | "xml" | "javascript" | "html"
 
 export type NoneBody = null
 
-export type XWWWFormURLEncodedBody = Record<string, string>
+export type XWWWFormURLEncodedBody = Params[]
 
-export type FormDataBody = Record<string, string>
+export type BinaryBody = string
+
+export type FormDataBody = Params[]
+
+export type TextRawBody = string
+
+export type JavaScriptRawBody = string
+
+export type JSONRawBody = string
+
+export type HTMLRawBody = string
+
+export type XMLRawBody = string
+
+export interface RawBody<T extends RawBodyContent> {
+  type: RawBodyType
+  content: T
+}
+
+export type RawBodyContent =
+  | TextRawBody
+  | JavaScriptRawBody
+  | JSONRawBody
+  | HTMLRawBody
+  | XMLRawBody
 
 export type BodyContent =
-  | JSONBody
   | NoneBody
   | FormDataBody
   | XWWWFormURLEncodedBody
+  | BinaryBody
+  | RawBody<RawBodyContent>
+
+export type ApiMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
 
 export interface RestApiAction<T extends BodyContent> extends Events {
-  method: string
+  method: ApiMethod
   url: string
   urlParams: Params[]
   headers: Params[]
@@ -30,9 +62,9 @@ export interface RestApiAction<T extends BodyContent> extends Events {
 export const RestApiActionInitial: RestApiAction<BodyContent> = {
   url: "",
   method: "GET",
-  urlParams: [],
-  headers: [],
-  cookies: [],
+  urlParams: [{} as Params],
+  headers: [{} as Params],
+  cookies: [{} as Params],
   bodyType: "none",
   body: null,
 }

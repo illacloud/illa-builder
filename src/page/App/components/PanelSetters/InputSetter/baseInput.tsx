@@ -39,9 +39,10 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
-        mode={"TEXT_JS"}
+        mode="TEXT_JS"
         expectedType={expectedType}
         path={getPath(attrName, widgetDisplayName)}
+        maxHeight="208px"
       />
     </div>
   )

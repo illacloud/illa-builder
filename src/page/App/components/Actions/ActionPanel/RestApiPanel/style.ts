@@ -20,7 +20,7 @@ export const restapiItemStyle = css`
 `
 
 export const restapiItemLabelStyle = css`
-  min-width: 100px;
+  min-width: 160px;
   font-size: 14px;
   font-weight: 500;
   text-align: right;
@@ -33,10 +33,10 @@ export const restApiItemSelectStyle = css`
 `
 
 export const restapiItemInputStyle = css`
-  min-width: 420px;
+  flex-grow: 1;
+  width: 0;
 `
 
 export const restApiItemBaseUrlStyle = css`
   margin-left: 8px;
-  min-width: 230px;
 `

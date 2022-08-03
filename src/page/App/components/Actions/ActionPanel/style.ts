@@ -7,4 +7,5 @@ export const actionPanelStyle = css`
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
 `

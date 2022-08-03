@@ -7,4 +7,5 @@ export interface ActionTitleBarProps {
   action: ActionItem<ActionContent>
   onCopy: (action: ActionItem<ActionContent>) => void
   onDelete: (action: ActionItem<ActionContent>) => void
+  onActionRun: (result: unknown, error?: boolean) => void
 }

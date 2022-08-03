@@ -1,17 +1,22 @@
-import { FC, HTMLAttributes } from "react"
+import { FC, HTMLAttributes, useRef } from "react"
 import { ActionList } from "./ActionList"
 import { ActionPanel } from "./ActionPanel"
-import {
-  actionEditorDragBarStyle,
-  applyActionEditorStyle,
-  contentContainerStyle,
-} from "./styles"
+import { applyActionEditorStyle, contentContainerStyle } from "./styles"
 import { Divider } from "@illa-design/divider"
+import { DragBar } from "@/page/App/components/Actions/DragBar"
+
+const ActionEditorDefaultHeight = 300
 
 export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
+  const panelRef = useRef<HTMLDivElement>(null)
+
   return (
-    <div className={props.className} css={applyActionEditorStyle(300)}>
-      <div css={actionEditorDragBarStyle} />
+    <div
+      className={props.className}
+      css={applyActionEditorStyle(ActionEditorDefaultHeight)}
+      ref={panelRef}
+    >
+      <DragBar resizeRef={panelRef} minHeight={ActionEditorDefaultHeight} />
       <Divider direction="horizontal" />
       <div css={contentContainerStyle}>
         <ActionList />

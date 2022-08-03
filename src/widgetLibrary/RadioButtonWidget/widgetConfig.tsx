@@ -7,7 +7,7 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
   type: "RADIO_BUTTON_WIDGET",
   widgetName: i18n.t("widget.radio_button.name"),
   displayName: "radioButton",
-  w: 16,
+  w: 18,
   h: 5,
   icon: <RadioButtonWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",

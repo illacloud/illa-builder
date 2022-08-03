@@ -9,7 +9,6 @@ import "codemirror/addon/edit/matchbrackets"
 import "codemirror/addon/edit/closebrackets"
 import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
-// defineMode
 import "./modes"
 import "./hinter"
 import "./lintHelper"
@@ -17,7 +16,7 @@ import { BaseTern, TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
-import { ResultPreview, CodeEditorProps, EditorModes } from "./interface"
+import { CodeEditorProps, EditorModes, ResultPreview } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
@@ -35,6 +34,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     className,
     mode = "TEXT_JS",
     placeholder,
+    border,
     expectedType = VALIDATION_TYPES.STRING,
     borderRadius = "8px",
     path,
@@ -45,6 +45,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     height = "auto",
     readOnly,
     onBlur,
+    maxHeight = "auto",
     onChange,
     ...otherProps
   } = props
@@ -157,7 +158,12 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const cursor = editor.getCursor()
     const line = editor.getLine(cursor.line)
     let showAutocomplete = false
-    if (event.code === "Backspace") {
+    if (mode === "XML_JS" || mode === "HTML_JS") {
+      showAutocomplete = true
+    }
+    if (key === "/") {
+      showAutocomplete = true
+    } else if (event.code === "Backspace") {
       const prevChar = line[cursor.ch - 1]
       showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
     } else if (key === "{") {
@@ -182,7 +188,15 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-        tables,
+        tables: latestProps.current?.tables,
+        completeSingle: false,
+      })
+    } else if (modeHelperType == "xml") {
+      CodeMirror.showHint(cm, CodeMirror.hint.xml, {
+        completeSingle: false,
+      })
+    } else if (modeHelperType == "html") {
+      CodeMirror.showHint(cm, CodeMirror.hint.html, {
         completeSingle: false,
       })
     } else if (modeHelperType == "json") {
@@ -195,6 +209,10 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   useEffect(() => {
     sever.current = TernServer(languageValue, { ...executionResult })
   }, [executionResult, languageValue])
+
+  useEffect(() => {
+    editor?.setOption("mode", EditorModes[mode])
+  }, [mode])
 
   useEffect(() => {
     if (!editor) {
@@ -240,7 +258,9 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     focus,
     error,
     height,
+    border,
     borderRadius,
+    maxHeight,
   }
 
   return (

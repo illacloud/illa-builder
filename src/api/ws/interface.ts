@@ -14,6 +14,7 @@ export enum Signal {
   SIGNAL_CREATE_OR_UPDATE_STATE = 7,
   SIGNAL_ONLY_BROADCAST = 8,
   SIGNAL_PUT_STATE = 9,
+  SIGNAL_GLOBAL_BROADCAST_ONLY = 10,
 }
 
 export enum Target {
@@ -25,6 +26,7 @@ export enum Target {
   TARGET_DISPLAY_NAME = 5,
   TARGET_APPS = 6,
   TARGET_RESOURCE = 7,
+  TARGET_ACTION = 8,
 }
 
 export interface Broadcast {
