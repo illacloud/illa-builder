@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import {
   actionTitleBarRunStyle,
@@ -25,7 +25,7 @@ const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { action, onCopy, onDelete } = props
+  const { action, onCopy, onDelete, onActionRun } = props
 
   const originAction = useSelector((state: RootState) => {
     return state.currentApp.action.find((a) => a.actionId === action.actionId)
@@ -48,6 +48,11 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       runMode = "save"
     }
   }
+
+  useEffect(() => {
+    // Clear the previous result when changing the selected action
+    onActionRun(undefined)
+  }, [action?.actionId])
 
   return (
     <div css={actionTitleBarStyle}>
@@ -94,7 +99,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         onClick={() => {
           switch (runMode) {
             case "run":
-              runAction(action)
+              runAction(action, onActionRun)
               break
             case "save":
               Api.request(
@@ -128,7 +133,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 () => {
                   dispatch(actionActions.updateActionItemReducer(action))
                   dispatch(configActions.changeSelectedAction(action))
-                  runAction(action)
+                  runAction(action, onActionRun)
                 },
                 () => {
                   Message.error(t("editor.action.panel.btn.save_fail"))

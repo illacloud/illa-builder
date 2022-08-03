@@ -23,6 +23,7 @@ export interface CodeEditorProps
   lineNumbers?: boolean
   readOnly?: boolean
   height?: string
+  border?: string
   placeholder?: string
   borderRadius?: string
   noTab?: boolean
@@ -61,6 +62,7 @@ export interface ResultPreview {
 export interface EditorInputState {
   focus?: boolean
   error?: boolean
+  border?: string
   height: string
   borderRadius: string
   maxHeight: string

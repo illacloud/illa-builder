@@ -34,6 +34,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     className,
     mode = "TEXT_JS",
     placeholder,
+    border,
     expectedType = VALIDATION_TYPES.STRING,
     borderRadius = "8px",
     path,
@@ -187,7 +188,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
     if (modeName == "sql") {
       CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-        tables,
+        tables: latestProps.current?.tables,
         completeSingle: false,
       })
     } else if (modeHelperType == "xml") {
@@ -257,6 +258,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     focus,
     error,
     height,
+    border,
     borderRadius,
     maxHeight,
   }

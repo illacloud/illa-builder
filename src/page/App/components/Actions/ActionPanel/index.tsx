@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from "react"
+import { FC, ReactNode, useRef, useState } from "react"
 import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -18,6 +18,7 @@ import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionRe
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 
 export const ActionPanel: FC = () => {
+  const panelRef = useRef<HTMLDivElement>(null)
   const selectedAction = useSelector(getSelectedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
   // null selected
@@ -56,7 +57,7 @@ export const ActionPanel: FC = () => {
   }
 
   return (
-    <div css={actionPanelStyle}>
+    <div css={actionPanelStyle} ref={panelRef}>
       <ActionTitleBar
         action={selectedAction}
         onCopy={onCopyActionItem}
@@ -66,7 +67,12 @@ export const ActionPanel: FC = () => {
         }}
       />
       {actionPanel}
-      <ActionResult result={actionResult} />
+      <ActionResult
+        result={actionResult}
+        onClose={() => {
+          setActionResult(undefined)
+        }}
+      />
     </div>
   )
 }
