@@ -5,8 +5,8 @@ import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { EventsInProps } from "@/widgetLibrary/interface"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
-import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+// import { executionActions } from "@/redux/currentApp/executionTree/execution/executionSlice"
 import { BasicWrapper } from "@/widgetLibrary/PublicSector/BasicWrapper"
 import Label from "@/widgetLibrary/PublicSector/Label"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -46,12 +46,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   if (!COMP) return null
 
   const handleUpdateDsl = (value: Record<string, any>) => {
-    dispatch(
-      executionActions.updateExecutionByDisplayNameReducer({
-        displayName,
-        value,
-      }),
-    )
+    // dispatch(
+    //   executionActions.updateExecutionByDisplayNameReducer({
+    //     displayName,
+    //     value,
+    //   }),
+    // )
   }
 
   const getOnChangeEventScripts = () => {

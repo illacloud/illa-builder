@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { Select } from "@illa-design/select"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
-import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {

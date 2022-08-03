@@ -40,6 +40,12 @@ export function isWidget(entity: Record<string, any>) {
   )
 }
 
+export function isAction(entity: Record<string, any>) {
+  return (
+    typeof entity === "object" && "TYPE" in entity && entity.TYPE === "ACTION"
+  )
+}
+
 export function isURL(str: string) {
   const pattern = new RegExp(
     "^((blob:)?https?:\\/\\/)?" + // protocol

@@ -25,7 +25,7 @@ import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 import {
   getExecutionError,
   getExecutionResult,
-} from "@/redux/currentApp/executionTree/execution/executionSelector"
+} from "@/redux/currentApp/executionTree/executionSelector"
 import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 

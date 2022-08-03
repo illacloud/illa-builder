@@ -1,8 +1,29 @@
-import { RootState } from "@/store"
 import { createSelector } from "@reduxjs/toolkit"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { getAllComponentDisplayNameMapProps } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
+import { RawTreeFactory } from "@/utils/executionTreeHelper/rawTreeFactory"
+import { RootState } from "@/store"
 
-export const getExecution = (state: RootState) =>
-  state.currentApp.executionTree.execution
+export const getRawTree = createSelector(
+  [
+    getActionList,
+    getAllComponentDisplayNameMapProps,
+    getCurrentUser,
+    getBuilderInfo,
+  ],
+  (actions, widgets, currentUserInfo, builderInfo) => {
+    return RawTreeFactory.create({
+      actions: actions ?? [],
+      widgets: widgets ?? {},
+      currentUserInfo,
+      builderInfo,
+    })
+  },
+)
+
+export const getExecution = (state: RootState) => state.currentApp.execution
 
 export const getExecutionResult = createSelector(
   [getExecution],
@@ -67,18 +88,5 @@ export const getActionExecutionResultArray = createSelector(
       })
     })
     return actionExecutionResultArray
-  },
-)
-
-export const getGlobalInfoExecutionResult = createSelector(
-  [getExecutionResult],
-  (executionResult) => {
-    const globalInfo: Record<string, any>[] = []
-    Object.keys(executionResult).forEach((key) => {
-      if (key === "builderInfo" || key === "currentUser") {
-        globalInfo.push({ ...executionResult[key], displayName: key })
-      }
-    })
-    return globalInfo
   },
 )

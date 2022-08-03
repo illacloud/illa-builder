@@ -52,8 +52,7 @@ export function applyDragObjectStyle(
 ): SerializedStyles {
   return css`
     position: absolute;
-    top: ${t}px;
-    left: ${l}px;
+    transform: translate(${l}px, ${t}px);
     z-index: ${z};
   `
 }

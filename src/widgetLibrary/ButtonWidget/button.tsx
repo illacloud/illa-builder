@@ -28,8 +28,6 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
         fullWidth
         fullHeight
         onClick={handleOnClick}
-        backgroundColor={colorScheme}
-        borderColor={colorScheme}
         textColor={variant === "outline" ? colorScheme : "#FFF"}
       >
         {text}

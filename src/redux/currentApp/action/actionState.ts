@@ -33,7 +33,6 @@ export interface ActionItem<T extends ActionContent> {
   transformer: Transformer
   triggerMode: ActionTriggerMode
   resourceId?: string
-  data?: Record<string, any>
   content: T
 }
 

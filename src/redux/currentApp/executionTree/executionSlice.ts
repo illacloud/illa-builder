@@ -1,23 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit"
-
-import { executionInitialState } from "@/redux/currentApp/executionTree/execution/executionState"
+import { executionInitialState } from "@/redux/currentApp/executionTree/executionState"
 import {
+  setDependenciesReducer,
   setExecutionErrorReducer,
-  setExecutionReducer,
   setExecutionResultReducer,
-  updateExecutionByDisplayNameReducer,
-  updateExecutionErrorByAttrPathReducer,
-} from "@/redux/currentApp/executionTree/execution/executionReducer"
+  startExecutionReducer,
+} from "@/redux/currentApp/executionTree/executionReducer"
 
 const executionSlice = createSlice({
   name: "execution",
   initialState: executionInitialState,
   reducers: {
-    setExecutionReducer,
+    setDependenciesReducer,
     setExecutionResultReducer,
     setExecutionErrorReducer,
-    updateExecutionByDisplayNameReducer,
-    updateExecutionErrorByAttrPathReducer,
+    startExecutionReducer,
   },
 })
 

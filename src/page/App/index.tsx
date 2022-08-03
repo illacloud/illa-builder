@@ -23,8 +23,6 @@ import { CanvasPanel } from "@/page/App/components/CanvasPanel"
 import { setupComponentsListeners } from "@/redux/currentApp/editor/components/componentsListener"
 import { startAppListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
-import { setupDependenciesListeners } from "@/redux/currentApp/executionTree/dependencies/dependenciesListener"
-import { setupExecutionListeners } from "@/redux/currentApp/executionTree/execution/executionListener"
 import { Api } from "@/api/base"
 import { useParams } from "react-router-dom"
 import { Shortcut } from "@/utils/shortcut"
@@ -35,6 +33,7 @@ import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { setupConfigListener } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
+import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -59,10 +58,9 @@ export const Editor: FC = () => {
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
-      setupDependenciesListeners(startAppListening),
-      setupExecutionListeners(startAppListening),
       setupComponentsListeners(startAppListening),
       setupConfigListener(startAppListening),
+      setupExecutionListeners(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])

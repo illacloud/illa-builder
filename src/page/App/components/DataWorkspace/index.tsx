@@ -9,15 +9,15 @@ import {
 import { configActions } from "@/redux/config/configSlice"
 import {
   getActionExecutionResultArray,
-  getGlobalInfoExecutionResult,
   getWidgetExecutionResultArray,
-} from "@/redux/currentApp/executionTree/execution/executionSelector"
+} from "@/redux/currentApp/executionTree/executionSelector"
 import {
   getSelectedAction,
   getSelectedComponentsDisplayName,
 } from "@/redux/config/configSelector"
 import { WorkSpaceTree } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { getGlobalInfoExecutionResult } from "@/redux/currentUser/currentUserSelector"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
