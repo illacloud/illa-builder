@@ -463,10 +463,12 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
     componentNode.childrenNode.forEach((item) => {
       maxY = Math.max(maxY, item.y + item.h)
     })
-    if (maxY < blockRows) {
-      setBlockRows(Math.max(maxY, minBlockRows))
+    if (illaMode === "edit") {
+      setBlockRows(Math.max(maxY + 20, minBlockRows))
+    } else {
+      setBlockRows(maxY)
     }
-  }, [componentNode])
+  }, [componentNode, illaMode])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
