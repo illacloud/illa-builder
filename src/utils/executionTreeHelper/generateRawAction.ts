@@ -41,9 +41,7 @@ export const generateRawAction = (
   let $dynamicAttrPaths: string[] = []
   const { content, transformer } = action
   generateDynamicAttrPaths(action, $dynamicAttrPaths)
-  const data = actionDisplayNameMapFetchResult[action.displayName]
   return {
-    data,
     transformer,
     content,
     run: "",

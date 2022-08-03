@@ -3,6 +3,7 @@ import {
   RawTreeShape,
 } from "@/utils/executionTreeHelper/interface"
 import { generateRawAction } from "@/utils/executionTreeHelper/generateRawAction"
+import { generateRawWidget } from "@/utils/executionTreeHelper/generateRawWidget"
 
 export class RawTreeFactory {
   static create(seeds: RawTreeSeedShape): RawTreeShape {
@@ -14,7 +15,7 @@ export class RawTreeFactory {
     })
 
     Object.keys(widgets).forEach((key) => {
-      rawTree[key] = widgets[key]
+      rawTree[key] = generateRawWidget(widgets[key])
     })
 
     rawTree.builderInfo = builderInfo

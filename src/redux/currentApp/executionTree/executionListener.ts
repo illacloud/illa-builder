@@ -10,8 +10,16 @@ import { EXECUTION_WORKER_MESSAGES } from "@/utils/worker/interface"
 import dependenciesTreeWorker from "@/utils/worker/index?worker"
 import { diff } from "deep-diff"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
+import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 export const worker = new dependenciesTreeWorker()
+
+const mergeActionResult = (rawTree: RawTreeShape) => {
+  Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
+    rawTree[key].data = actionDisplayNameMapFetchResult[key] || {}
+  })
+}
 
 async function handleStartExecution(
   action: AnyAction,
@@ -20,6 +28,7 @@ async function handleStartExecution(
   const rootState = listenerApi.getState()
   const rawTree = getRawTree(rootState)
   if (!rawTree) return
+  mergeActionResult(rawTree)
   worker.postMessage({
     action: EXECUTION_WORKER_MESSAGES.EXECUTION_TREE,
     globalData: rawTree,

@@ -13,7 +13,7 @@ export interface RawTreeShape {
 
 type ActionSeedShape = ActionItem<ActionContent>[]
 
-interface WidgetShape {
+export interface WidgetShape {
   [key: string]: string
   $type: "WIDGET"
   $widgetType: string

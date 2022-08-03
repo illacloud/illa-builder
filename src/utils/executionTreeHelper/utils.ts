@@ -161,3 +161,15 @@ export const translateDiffEventToRawTreeEvent = (
 
   return result
 }
+
+export function isWidget(entity: Record<string, any>) {
+  return (
+    typeof entity === "object" && "$type" in entity && entity.$type === "WIDGET"
+  )
+}
+
+export function isAction(entity: Record<string, any>) {
+  return (
+    typeof entity === "object" && "$type" in entity && entity.$type === "ACTION"
+  )
+}

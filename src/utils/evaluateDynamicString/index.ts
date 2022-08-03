@@ -1,5 +1,4 @@
 import { EVALUATION_TYPE } from "./interface"
-import { isWidget } from "@/utils/typeHelper"
 import { isDynamicString } from "./utils"
 import { getDynamicValue } from "./dynamicConverter"
 
@@ -11,7 +10,7 @@ export const evaluateDynamicString = (
 ) => {
   const data = dataTree[keyInDataTree]
   // if (!data) return
-  const requiresEval = isWidget(data) || isDynamicString(dynamicString)
+  const requiresEval = isDynamicString(dynamicString)
   let evalResult
   if (requiresEval) {
     try {

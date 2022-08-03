@@ -14,7 +14,11 @@ import {
   ExecutionState,
 } from "@/redux/currentApp/executionTree/executionState"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { extractReferencesFromScript } from "@/utils/executionTreeHelper/utils"
+import {
+  extractReferencesFromScript,
+  isWidget,
+} from "@/utils/executionTreeHelper/utils"
+import { validationFactory } from "@/utils/validationFactory"
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -40,63 +44,49 @@ export class ExecutionTreeFactory {
       currentRawTree,
       this.evalOrder,
     )
-    // TODO: @aruseito need validate
-    // const { evaluatedTree: newEvaluatedTree, errorTree: newErrorTree } =
-    //   validateTree(evaluatedTree, errorTree, {})
-
-    this.executedTree = evaluatedTree
     this.errorTree = errorTree
+    this.executedTree = this.validateTree(evaluatedTree)
+
     return {
       dependencyTree: this.dependenciesState,
-      evaluatedTree: evaluatedTree,
-      errorTree: errorTree,
+      evaluatedTree: this.executedTree,
+      errorTree: this.errorTree,
     }
   }
 
-  // export function validateTree(
-  //   evaluatedTree: Record<string, any>,
-  //   errorTree: ExecutionState["error"],
-  //   WidgetConfig: WidgetConfigs,
-  // ) {
-  //   const newErrorTree: ExecutionState["error"] = cloneDeep(errorTree)
-  //   const newEvaluatedTree = Object.keys(evaluatedTree).reduce(
-  //     (current: Record<string, any>, displayName) => {
-  //       const widgetOrAction = current[displayName]
-  //       if (widgetOrAction.$type === "WIDGET") {
-  //         const panelConfig = WidgetConfig[widgetOrAction.$widgetType].panelConfig
-  //         const { validationPaths } = generateAllTypePathsFromWidgetConfig(
-  //           panelConfig,
-  //           widgetOrAction,
-  //         )
-  //         Object.keys(validationPaths).forEach((validationPath) => {
-  //           const validationType = validationPaths[validationPath]
-  //           const fullPath = `${displayName}.${validationPath}`
-  //           const validationFunc = validationFactory[validationType]
-  //           const value = get(widgetOrAction, validationPath)
-  //           const { isValid, safeValue, errorMessage } = validationFunc(value)
-  //           set(current, fullPath, safeValue)
-  //           if (!isValid) {
-  //             let error = get(errorTree, fullPath)
-  //             if (!Array.isArray(error)) {
-  //               error = []
-  //             }
-  //             error.push({
-  //               errorType: ExecutionErrorType.VALIDATION,
-  //               errorMessage: errorMessage as string,
-  //             })
-  //             set(newErrorTree, fullPath, error)
-  //           }
-  //         })
-  //       }
-  //       return current
-  //     },
-  //     evaluatedTree,
-  //   )
-  //   return {
-  //     evaluatedTree: newEvaluatedTree,
-  //     errorTree: newErrorTree,
-  //   }
-  // }
+  validateTree(tree: Record<string, any>) {
+    return Object.keys(tree).reduce(
+      (current: Record<string, any>, displayName) => {
+        const widgetOrAction = current[displayName]
+        if (!isWidget(widgetOrAction)) {
+          return current
+        }
+        const validationPaths = widgetOrAction.$validationPaths
+        Object.keys(validationPaths).forEach((validationPath) => {
+          const validationType = validationPaths[validationPath]
+          const fullPath = `${displayName}.${validationPath}`
+          const validationFunc = validationFactory[validationType]
+          const value = get(widgetOrAction, validationPath)
+          const { isValid, safeValue, errorMessage } = validationFunc(value)
+          set(current, fullPath, safeValue)
+          if (!isValid) {
+            let error = get(this.errorTree, fullPath)
+            if (!Array.isArray(error)) {
+              error = []
+            }
+            error.push({
+              errorType: ExecutionErrorType.VALIDATION,
+              errorMessage: errorMessage as string,
+            })
+            set(this.errorTree, fullPath, error)
+          }
+        })
+
+        return current
+      },
+      tree,
+    )
+  }
 
   generateDependenciesMap(rawTree: RawTreeShape) {
     let dependenciesMap: DependenciesState = {}
