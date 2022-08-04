@@ -2324,6 +2324,11 @@
   dependencies:
     "@types/ms" "*"
 
+"@types/deep-diff@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/deep-diff/-/deep-diff-1.0.1.tgz#eae15119c68b72b541731872a2883da89dc39396"
+  integrity sha512-cZIq2GFcPmW0/M7dtLuphyoU8f3zpTcBgV+wkFFJ0CK0lwRVGGLaBSJZ98qs4LjtLimPq1Bb2VJnhGn6SEE4IA==
+
 "@types/estree@*":
   version "0.0.51"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.51.tgz#cfd70924a25a3fd32b218e5e420e6897e1ac4f40"

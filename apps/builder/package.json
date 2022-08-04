@@ -60,6 +60,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/deep-diff": "^1.0.1",
     "@changesets/changelog-github": "^0.4.2",
     "@changesets/cli": "^2.18.1",
     "@commitlint/cli": "^15.0.0",
