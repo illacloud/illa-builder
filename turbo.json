@@ -6,6 +6,27 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "preview": {
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "build-cloud": {
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "build-self": {
+      "dependsOn": [
+        "build"
+      ]
     }
   }
 }
