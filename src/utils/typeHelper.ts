@@ -34,12 +34,6 @@ export const getType = (value: unknown) => {
   return Types.UNKNOWN
 }
 
-export function isWidget(entity: Record<string, any>) {
-  return (
-    typeof entity === "object" && "TYPE" in entity && entity.TYPE === "WIDGET"
-  )
-}
-
 export function isURL(str: string) {
   const pattern = new RegExp(
     "^((blob:)?https?:\\/\\/)?" + // protocol

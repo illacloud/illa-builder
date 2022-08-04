@@ -17,7 +17,7 @@ import { DatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/D
 import { CHART_DATASET_CONFIG } from "@/widgetLibrary/Chart/panelConfig"
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { useSelector } from "react-redux"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { get } from "lodash"
 import { Setter } from "@/page/App/components/InspectPanel/setter"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"

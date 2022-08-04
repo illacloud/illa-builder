@@ -8,11 +8,11 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
-import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { IllaMode } from "@/redux/config/configState"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 
 export const useInitBuilderApp = (model: IllaMode) => {
   let { appId, versionId } = useParams()
@@ -51,11 +51,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
             response.data.displayNameState,
           ),
         )
-        dispatch(
-          dependenciesActions.setDependenciesReducer(
-            response.data.dependenciesState,
-          ),
-        )
+        dispatch(executionActions.startExecutionReducer())
         const autoRunAction = response.data.actions.filter((item) => {
           return item.triggerMode === "automate"
         })

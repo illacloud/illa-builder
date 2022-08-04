@@ -32,19 +32,6 @@ export const updateActionItemReducer: CaseReducer<
   }
 }
 
-export const updateActionItemResultReducer: CaseReducer<
-  ActionItem<ActionContent>[],
-  PayloadAction<UpdateActionItemPayload>
-> = (state, action) => {
-  const index = state.findIndex(
-    (item: ActionItem<ActionContent>) =>
-      item.displayName === action.payload.displayName,
-  )
-  if (index != -1) {
-    state[index].data = action.payload.data
-  }
-}
-
 export const removeActionItemReducer: CaseReducer<
   ActionItem<ActionContent>[],
   PayloadAction<string>
