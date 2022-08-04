@@ -16,7 +16,7 @@ test("Image render", () => {
   )
 })
 
-test("Image render with radius", () => {
+test("Image renders with radius", () => {
   render(
     <WrappedImage
       height="200px"
