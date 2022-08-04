@@ -7,6 +7,7 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "image",
   widgetName: i18n.t("widget.image.name"),
   icon: <ImageWidgetIcon size="100%" />,
+  keywords: ["Image", "图片"],
   sessionType: "PRESENTATION",
   h: 16,
   w: 6,

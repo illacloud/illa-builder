@@ -10,6 +10,7 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
   w: 18,
   h: 5,
   icon: <RadioButtonWidgetIcon size="100%" />,
+  keywords: ["Radio Button", "按钮单选"],
   sessionType: "PRESENTATION",
   defaults: {
     optionConfigureMode: "static",
