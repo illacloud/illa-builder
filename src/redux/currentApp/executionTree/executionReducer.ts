@@ -4,6 +4,7 @@ import {
   ErrorShape,
   ExecutionState,
   setExecutionResultPayload,
+  UpdateExecutionByDisplayNamePayload,
 } from "@/redux/currentApp/executionTree/executionState"
 import { applyChange } from "deep-diff"
 
@@ -46,4 +47,15 @@ export const startExecutionReducer: CaseReducer<
   PayloadAction<void>
 > = (state) => {
   return state
+}
+
+export const updateExecutionByDisplayNameReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<UpdateExecutionByDisplayNamePayload>
+> = (state, action) => {
+  const { displayName, value } = action.payload
+  state.result[displayName] = {
+    ...state.result[displayName],
+    ...value,
+  }
 }

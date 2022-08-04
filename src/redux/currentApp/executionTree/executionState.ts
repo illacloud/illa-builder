@@ -29,3 +29,8 @@ export const executionInitialState: ExecutionState = {
 export interface setExecutionResultPayload {
   updates: Diff<Record<string, any>, Record<string, any>>[]
 }
+
+export interface UpdateExecutionByDisplayNamePayload {
+  displayName: string
+  value: Record<string, any>
+}
