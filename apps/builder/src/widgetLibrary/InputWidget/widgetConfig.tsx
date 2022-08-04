@@ -7,6 +7,7 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "input",
   widgetName: i18n.t("widget.input.name"),
   icon: <TextInputWidgetIcon size="100%" />,
+  keywords: ["Input", "文本输入框"],
   sessionType: "INPUTS",
   w: 12,
   h: 5,

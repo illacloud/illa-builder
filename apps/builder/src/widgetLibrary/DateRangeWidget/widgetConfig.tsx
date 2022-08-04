@@ -7,6 +7,7 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "dateRange",
   widgetName: i18n.t("widget.date_range.name"),
   icon: <DateRangeWidgetIcon size="100%" />,
+  keywords: ["Date Range", "日期范围选择器"],
   sessionType: "CALENDAR",
   w: 16,
   h: 5,

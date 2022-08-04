@@ -20,7 +20,7 @@ import {
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { isObject } from "@/utils/typeHelper"
-import { dependenciesActions } from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
@@ -101,7 +101,7 @@ const fetchActionResult = (
       let calcResult = runTransformer(transformer, rawData)
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
-      store.dispatch(dependenciesActions.startCalcReducer())
+      store.dispatch(executionActions.startExecutionReducer())
       successEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })

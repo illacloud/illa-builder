@@ -18,16 +18,10 @@ import componentsReducer from "@/redux/currentApp/editor/components/componentsSl
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import displayNameReducer from "@/redux/currentApp/displayName/displayNameSlice"
-import executionReducer from "@/redux/currentApp/executionTree/execution/executionSlice"
-import dependenciesReducer from "@/redux/currentApp/executionTree/dependencies/dependenciesSlice"
 import { reduxAsync } from "@/middleware/redux/redux-async"
+import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 
 const listenerMiddleware = createListenerMiddleware()
-
-const executionTreeReducer = combineReducers({
-  execution: executionReducer,
-  dependencies: dependenciesReducer,
-})
 
 const editorReducer = combineReducers({
   components: componentsReducer,
@@ -40,7 +34,7 @@ const appReducer = combineReducers({
   action: actionReducer,
   appInfo: appInfoReducer,
   displayName: displayNameReducer,
-  executionTree: executionTreeReducer,
+  execution: executionReducer,
 })
 
 const dashboardReducer = combineReducers({
@@ -58,7 +52,11 @@ const store = configureStore({
     resource: resourceReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["execution/setExecutionResultReducer"],
+      },
+    })
       // .concat(logger)
       .concat(reduxAsync)
       .prepend(listenerMiddleware.middleware),

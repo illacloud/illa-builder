@@ -7,6 +7,7 @@ export const RATE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "rate",
   widgetName: i18n.t("widget.rate.name"),
   icon: <RateWidgetIcon size="100%" />,
+  keywords: ["Rate", "评分"],
   sessionType: "PRESENTATION",
   w: 12,
   h: 5,

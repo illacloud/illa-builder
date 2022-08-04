@@ -7,13 +7,12 @@ import {
   actionItemLeftStyle,
   applyActionItemContainerStyle,
   applyActionItemTitleStyle,
-  timeStyle,
   warningCircleStyle,
 } from "./style"
 import { WarningCircleIcon } from "@illa-design/icon"
 import { useTranslation } from "react-i18next"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
@@ -28,7 +27,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     const selectedAction = useSelector(getSelectedAction)
 
     const error = useSelector((state: RootState) => {
-      return state.currentApp.executionTree.execution.error[action.displayName]
+      return state.currentApp.execution.error[action.displayName]
     })
 
     const isChanged = useSelector((state: RootState) => {

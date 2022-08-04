@@ -8,6 +8,7 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "select",
   widgetName: i18n.t("widget.select.name"),
   icon: <SelectWidgetIcon size="100%" />,
+  keywords: ["Select", "选择器"],
   sessionType: "SELECT",
   w: 12,
   h: 5,

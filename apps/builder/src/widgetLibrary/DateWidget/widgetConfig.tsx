@@ -8,6 +8,7 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "date",
   widgetName: i18n.t("widget.date.name"),
   icon: <DateWidgetIcon size="100%" />,
+  keywords: ["Date", "日期选择器"],
   sessionType: "CALENDAR",
   w: 12,
   h: 5,

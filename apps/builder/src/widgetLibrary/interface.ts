@@ -28,6 +28,7 @@ export interface BaseWidgetInfo {
   icon: ReactNode
   type: WidgetType
   sessionType?: SessionType
+  keywords?: string[]
 }
 
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {

@@ -17,9 +17,12 @@ export function getMatchComponent(
     return option.title !== sessionTypeMapSessionNameKey.COMMON
   })
   removeCommonlyOptions?.forEach((session) => {
-    const res = session.widgetCardInfos.filter((widgetCardInfo) =>
-      widgetCardInfo.widgetName.toLocaleLowerCase().match(reg),
-    )
+    const res = session.widgetCardInfos.filter((widgetCardInfo) => {
+      const keyword = widgetCardInfo?.keywords
+      return keyword
+        ? keyword.some((key) => key.toLocaleLowerCase().match(reg))
+        : widgetCardInfo.widgetName.toLocaleLowerCase().match(reg)
+    })
     if (res.length > 0) {
       newSessionList.push({ ...session, widgetCardInfos: res })
     }

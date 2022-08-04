@@ -7,6 +7,7 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.number_input.name"),
   displayName: "numberInput",
   icon: <NumberInputWidgetIcon size="100%" />,
+  keywords: ["Number Input", "数字输入框"],
   sessionType: "INPUTS",
   w: 12,
   h: 5,

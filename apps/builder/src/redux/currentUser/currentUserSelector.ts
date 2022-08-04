@@ -1,5 +1,7 @@
 import { RootState } from "@/store"
 import { enUS, Locale, zhCN } from "@illa-design/config-provider"
+import { createSelector } from "@reduxjs/toolkit"
+import { getBuilderInfo } from "@/redux/builderInfo/builderInfoSelector"
 
 export const getCurrentUser = (state: RootState) => {
   return state.currentUser
@@ -25,3 +27,20 @@ export const getCurrentTranslateLanguage = (state: RootState) => {
   const currentUser = state.currentUser
   return currentUser?.language ?? "en-US"
 }
+
+export const getGlobalInfoExecutionResult = createSelector(
+  [getCurrentUser, getBuilderInfo],
+  (currentUserInfo, builderInfo) => {
+    const globalInfo: Record<string, any>[] = [
+      {
+        ...currentUserInfo,
+        displayName: "currentUser",
+      },
+      {
+        ...builderInfo,
+        displayName: "builderInfo",
+      },
+    ]
+    return globalInfo
+  },
+)

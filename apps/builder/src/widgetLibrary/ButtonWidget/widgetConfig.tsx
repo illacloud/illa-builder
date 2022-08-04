@@ -6,6 +6,7 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   type: "BUTTON_WIDGET",
   displayName: "button",
   widgetName: i18n.t("widget.button.name"),
+  keywords: ["Button", "按钮"],
   icon: <ButtonWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   w: 12,

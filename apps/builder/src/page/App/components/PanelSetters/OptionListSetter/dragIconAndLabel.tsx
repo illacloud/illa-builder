@@ -11,7 +11,7 @@ import {
 } from "@/page/App/components/PanelSetters/OptionListSetter/style"
 import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {

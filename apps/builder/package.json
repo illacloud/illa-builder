@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
+    "deep-diff": "^1.0.2",
     "@fontsource/fira-code": "^4.5.10",
     "@illa-design/react": "*",
     "@lezer/common": "^1.0.0",

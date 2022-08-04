@@ -4,7 +4,7 @@ import { get } from "lodash"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { useSelector } from "react-redux"
-import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execution/executionSelector"
+import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { getSelectedAction } from "@/redux/config/configSelector"
 

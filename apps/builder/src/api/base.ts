@@ -49,18 +49,18 @@ axios.interceptors.response.use(
   (error: AxiosError) => {
     const { response } = error
     if (response) {
-      const { data } = response
+      const { status } = response
+
       // TODO: @aruseito maybe need custom error status,because of we'll have plugin to request other's api
-      if (data.errorCode === 401) {
+      if (status === 401) {
         clearLocalStorage()
         const { pathname } = location
         location.href = "/user/login?from=" + pathname || "/"
+      } else if (status === 403) {
+        location.href = "/403"
+      } else if (status >= 500) {
+        location.href = "/500"
       }
-      // else if (data.errorCode === 403) {
-      //   location.href = "/403"
-      // } else if (data.errorCode >= 500) {
-      //   location.href = "/500"
-      // }
     }
     return Promise.reject(error)
   },
