@@ -9,6 +9,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   w: 12,
   type: "TEXT_WIDGET",
   icon: <TextWidgetIcon size="100%" />,
+  keywords: ["Text", "文本"],
   sessionType: "PRESENTATION",
   defaults: {
     value: i18n.t("widget.text.default_value"),

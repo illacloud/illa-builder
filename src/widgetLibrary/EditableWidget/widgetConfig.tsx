@@ -7,6 +7,7 @@ export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
   displayName: "editable_text",
   widgetName: i18n.t("widget.editable_text.name"),
   icon: <EditableTextWidgetIcon size="100%" />,
+  keywords: ["Editable Text", "可编辑文本"],
   sessionType: "INPUTS",
   w: 10,
   h: 5,

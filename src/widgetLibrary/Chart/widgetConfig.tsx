@@ -7,6 +7,7 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
   type: "CHART",
   displayName: "chart",
   widgetName: i18n.t("widget.chart.name"),
+  keywords: ["Chart", "图表"],
   icon: <ChartWidgetIcon size="100%" />,
   sessionType: "DATE",
   w: 20,

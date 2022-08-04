@@ -8,6 +8,7 @@ export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.check_box_group.name"),
   displayName: "checkboxGroup",
   icon: <CheckboxWidgetIcon size="100%" />,
+  keywords: ["Checkbox Group", "复选框组"],
   sessionType: "SELECT",
   w: 20,
   h: 5,

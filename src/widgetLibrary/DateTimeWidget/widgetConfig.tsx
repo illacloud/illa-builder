@@ -6,6 +6,7 @@ export const DATE_TIME_WIDGET_CONFIG: WidgetConfig = {
   type: "DATE_TIME_WIDGET",
   displayName: "dateTime",
   widgetName: i18n.t("widget.date_time.name"),
+  keywords: ["Date Time", "日期时间选择器"],
   icon: <DateTimeWidgetIcon size="100%" />,
   sessionType: "CALENDAR",
   w: 20,

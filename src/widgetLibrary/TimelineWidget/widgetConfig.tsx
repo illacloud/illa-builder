@@ -7,6 +7,7 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.timeline.name"),
   displayName: "timeline",
   icon: <TimelineWidgetIcon size="100%" />,
+  keywords: ["Timeline", "时间线"],
   sessionType: "PRESENTATION",
   w: 12,
   h: 28,

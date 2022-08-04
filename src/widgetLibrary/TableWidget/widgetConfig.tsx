@@ -9,6 +9,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   w: 12,
   type: "TABLE_WIDGET",
   icon: <TextWidgetIcon size="100%" />,
+  keywords: ["Table", "表格"],
   sessionType: "PRESENTATION",
   defaults: {
     originData:

@@ -6,6 +6,7 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   type: "BAR_PROGRESS_WIDGET",
   displayName: "barProgress",
   widgetName: i18n.t("widget.bar_progress.name"),
+  keywords: ["Bar Progress", "进度条"],
   icon: <LineProgressWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   w: 16,

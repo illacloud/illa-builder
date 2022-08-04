@@ -7,6 +7,7 @@ export const DIVIDER_WIDGET_CONFIG: WidgetConfig = {
   displayName: "divider",
   widgetName: i18n.t("widget.divider_progress.name"),
   icon: <DividerWidgetIcon size="100%" />,
+  keywords: ["Divider", "分割线"],
   sessionType: "PRESENTATION",
   w: 16,
   h: 5,

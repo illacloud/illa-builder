@@ -6,6 +6,7 @@ export const CIRCLE_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   type: "CIRCLE_PROGRESS_WIDGET",
   displayName: "circleProgress",
   widgetName: i18n.t("widget.circle_progress.name"),
+  keywords: ["Circle Progress", "圆形进度条"],
   icon: <CircleProgressWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   w: 6,

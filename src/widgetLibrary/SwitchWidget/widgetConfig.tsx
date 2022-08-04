@@ -9,6 +9,7 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
   w: 10,
   type: "SWITCH_WIDGET",
   icon: <SwitchWidgetIcon size="100%" />,
+  keywords: ["Switch", "开关"],
   sessionType: "SELECT",
   defaults: {
     label: "Label",
