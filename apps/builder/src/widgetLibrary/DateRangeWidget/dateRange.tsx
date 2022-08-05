@@ -2,9 +2,8 @@ import { FC, useCallback, useEffect, useMemo } from "react"
 import dayjs from "dayjs"
 import { DateRangePicker } from "@illa-design/date-picker"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
-export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
+export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
   const {
     startValue,
     endValue,
@@ -27,7 +26,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   }, [startValue, endValue])
 
   const checkRange = useCallback(
-    (current) => {
+    current => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
@@ -38,31 +37,28 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   )
 
   return (
-    <div css={containerStyle}>
-      <DateRangePicker
-        colorScheme={colorScheme}
-        format={dateFormat}
-        value={dateRangeValue}
-        readOnly={readOnly}
-        disabled={disabled}
-        placeholder={_placeholder}
-        allowClear={showClear}
-        disabledDate={checkRange}
-        // todo @aoao handleUpdateDsl?
-        onClear={() => {
-          handleUpdateDsl({ value: [] })
-        }}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
+    <DateRangePicker
+      colorScheme={colorScheme}
+      format={dateFormat}
+      value={dateRangeValue}
+      readOnly={readOnly}
+      disabled={disabled}
+      placeholder={_placeholder}
+      allowClear={showClear}
+      disabledDate={checkRange}
+      onClear={() => {
+        handleUpdateDsl({ value: [] })
+      }}
+      onChange={value => {
+        handleUpdateDsl({ value })
+      }}
+    />
   )
 }
 
 WrappedDateRange.displayName = "WrappedDateRange"
 
-export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
+export const DateRangeWidget: FC<DateWidgetProps> = props => {
   const {
     startValue,
     endValue,

@@ -1,8 +1,7 @@
-import { FC, forwardRef, useCallback, useEffect, useState } from "react"
+import { FC, forwardRef, useCallback, useEffect } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { DateTimeWidgetProps, WrappedDateTimeProps } from "./interface"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
   (props, ref) => {
@@ -22,7 +21,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
     } = props
 
     const checkRange = useCallback(
-      (current) => {
+      current => {
         const beforeMinDate = minDate
           ? !!current?.isBefore(dayjs(minDate))
           : false
@@ -35,32 +34,30 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
     )
 
     return (
-      <div css={containerStyle}>
-        <DatePicker
-          showTime={{ step: { minute: minuteStep }, format: timeFormat }}
-          colorScheme={colorScheme}
-          format={dateFormat}
-          value={value}
-          readOnly={readOnly}
-          disabled={disabled}
-          placeholder={placeholder}
-          allowClear={showClear}
-          disabledDate={checkRange}
-          onClear={() => {
-            handleUpdateDsl({ value: "" })
-          }}
-          onChange={(value) => {
-            handleUpdateDsl({ value })
-          }}
-        />
-      </div>
+      <DatePicker
+        showTime={{ step: { minute: minuteStep }, format: timeFormat }}
+        colorScheme={colorScheme}
+        format={dateFormat}
+        value={value}
+        readOnly={readOnly}
+        disabled={disabled}
+        placeholder={placeholder}
+        allowClear={showClear}
+        disabledDate={checkRange}
+        onClear={() => {
+          handleUpdateDsl({ value: "" })
+        }}
+        onChange={value => {
+          handleUpdateDsl({ value })
+        }}
+      />
     )
   },
 )
 
 WrappedDateTime.displayName = "WrappedDateTime"
 
-export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
+export const DateTimeWidget: FC<DateTimeWidgetProps> = props => {
   const {
     value,
     dateFormat,
