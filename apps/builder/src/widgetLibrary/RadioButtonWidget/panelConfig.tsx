@@ -3,7 +3,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
-import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { RADIO_BUTTON_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioButtonWidget/eventHandlerConfig"
 
 const baseWidgetName = "radioButton"
@@ -146,7 +146,7 @@ export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
-          { label: i18n.t("widget.public.right"), value: "top" },
+          { label: i18n.t("widget.public.top"), value: "top" },
         ],
       },
       {
@@ -183,7 +183,7 @@ export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        ...generatorEventHanlderConfig(
+        ...generatorEventHandlerConfig(
           baseWidgetName,
           RADIO_BUTTON_EVENT_HANDLER_CONFIG.events,
         ),

@@ -3,7 +3,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { HeartIcon, StarIcon } from "@illa-design/icon"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
-import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { RATE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RateWidget/eventHandlerConfig"
 
 const baseWidgetName = "rate"
@@ -92,7 +92,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
-          { label: i18n.t("widget.public.right"), value: "top" },
+          { label: i18n.t("widget.public.top"), value: "top" },
         ],
       },
       {
@@ -113,15 +113,6 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
-      {
-        id: `${baseWidgetName}-label-label-width`,
-        labelName: i18n.t("editor.inspect.setter_label.label_width"),
-        attrName: "labelWidth",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: "labelHidden",
-        shown: (value) => !value,
-      },
     ],
   },
   {
@@ -129,7 +120,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        ...generatorEventHanlderConfig(
+        ...generatorEventHandlerConfig(
           baseWidgetName,
           RATE_EVENT_HANDLER_CONFIG.events,
         ),

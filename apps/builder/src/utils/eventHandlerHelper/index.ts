@@ -4,21 +4,36 @@ import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAc
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { Message } from "@illa-design/message"
+import {
+  goToURL,
+  showNotification,
+} from "@/page/App/context/globalDataProvider"
 
 export const transformEvents = (event: any) => {
   if (!event) return
   const { actionType } = event
   if (actionType === "openUrl") {
     const { newTab, url, enabled } = event
+    const params = { url, newTab }
     return {
-      script: `{{goToURL("${url}",${newTab})}}`,
+      script: () => {
+        goToURL(params)
+      },
       enabled,
     }
   }
   if (actionType === "showNotification") {
     const { title, description, notificationType, duration, enabled } = event
+    const params = {
+      type: notificationType,
+      title,
+      description,
+      duration,
+    }
     return {
-      script: `{{showNotification("${notificationType}","${title}","${description}","${duration}")}}`,
+      script: () => {
+        showNotification(params)
+      },
       enabled,
     }
   }

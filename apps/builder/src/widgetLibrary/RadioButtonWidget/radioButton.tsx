@@ -2,23 +2,26 @@ import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { RadioButtonWidgetProps, WrappedRadioButtonProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
   const { value, options, disabled, direction, colorScheme, handleUpdateDsl } =
     props
 
   return (
-    <RadioGroup
-      type="button"
-      value={value}
-      disabled={disabled}
-      options={options}
-      direction={direction}
-      colorScheme={colorScheme}
-      onChange={(value) => {
-        handleUpdateDsl({ value })
-      }}
-    />
+    <div css={containerStyle}>
+      <RadioGroup
+        type="button"
+        value={value}
+        disabled={disabled}
+        options={options}
+        direction={direction}
+        colorScheme={colorScheme}
+        onChange={(value) => {
+          handleUpdateDsl({ value })
+        }}
+      />
+    </div>
   )
 }
 

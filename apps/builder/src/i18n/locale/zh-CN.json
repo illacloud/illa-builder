@@ -452,6 +452,8 @@
         "data": "数据"
       },
       "setter_label": {
+        "success": "请求成功",
+        "failure": "请求失败",
         "font_size": "字号",
         "text": "文本",
         "type": "类型",
@@ -560,6 +562,7 @@
         "data": "数据"
       },
       "setter_tooltip": {
+        "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
         "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
         "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态",
@@ -617,6 +620,14 @@
         "color_picker": {
           "title": "Edit color",
           "prefabricated": "Prefabricated color"
+        },
+        "widget_action_type_name": {
+          "click": "单击",
+          "change": "内容改变",
+          "focus": "聚焦",
+          "blur": "失焦",
+          "success": "成功后",
+          "fail": "失败后"
         }
       }
     },
