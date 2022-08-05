@@ -4,7 +4,6 @@ import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOpti
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
 import { EDITABLE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/EditableWidget/eventHandlerConfig"
 
 const baseWidgetName = "editable-text"

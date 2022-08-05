@@ -562,6 +562,7 @@
         "data": "数据"
       },
       "setter_tooltip": {
+        "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
         "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。",
         "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态",
