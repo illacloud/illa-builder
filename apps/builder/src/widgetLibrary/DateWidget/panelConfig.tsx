@@ -88,7 +88,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
-          { label: i18n.t("widget.public.right"), value: "top" },
+          { label: i18n.t("widget.public.top"), value: "top" },
         ],
       },
       {
