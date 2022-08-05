@@ -32,19 +32,8 @@ export const itemExtraContainerStyle: SerializedStyles = css`
   flex-direction: row;
 `
 
-export const menuButtonStyle: SerializedStyles = css`
-  margin-left: 4px;
-`
-
 export const itemMenuButtonStyle: SerializedStyles = css`
   margin-left: 4px;
-`
-
-export const loadingBoxStyle = css`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding-top: 120px;
 `
 
 export const hoverableStyle = css`
@@ -57,9 +46,11 @@ export const editButtonStyle = css`
 export const listItemStyle = css`
   padding: 12px 16px;
   border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-    [title="editButton"] {
+
+    .editButton {
       opacity: 1;
     }
   }
@@ -67,12 +58,4 @@ export const listItemStyle = css`
 
 export const modalInputStyle = css`
   margin-top: 8px;
-`
-
-export const modalTitleStyle = css`
-  margin: 24px 0;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 500;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `

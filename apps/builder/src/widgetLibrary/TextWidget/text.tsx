@@ -1,27 +1,44 @@
 import { FC, useEffect } from "react"
 import { TextProps, TextWidgetProps } from "./interface"
-import { Text as ILLAText } from "@illa-design/typography"
+import { Paragraph, Text as ILLAText } from "@illa-design/typography"
 import { applyAlignStyle } from "./style"
 import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import { Link } from "@illa-design/link"
 
-export const Text: FC<TextProps> = (props) => {
+export const Text: FC<TextProps> = props => {
   const {
     value,
     horizontalAlign,
     verticalAlign,
     colorScheme,
-    fontSize,
+    fs,
     disableMarkdown,
   } = props
 
   return (
     <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
       {disableMarkdown ? (
-        <ILLAText colorScheme={colorScheme} fontSize={fontSize}>
+        <ILLAText colorScheme={colorScheme} fs={fs}>
           {value}
         </ILLAText>
       ) : (
-        <ReactMarkdown children={value ?? ""} />
+        <ReactMarkdown
+          children={value ?? ""}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            a: ({ node, ...props }) => (
+              <Link href={props.href} colorScheme={colorScheme} target="_blank">
+                {props.children}
+              </Link>
+            ),
+            p: ({ children, ...props }) => (
+              <Paragraph colorScheme={colorScheme} fs={fs}>
+                {children}
+              </Paragraph>
+            ),
+          }}
+        />
       )}
     </div>
   )
@@ -29,7 +46,7 @@ export const Text: FC<TextProps> = (props) => {
 
 Text.displayName = "Text"
 
-export const TextWidget: FC<TextWidgetProps> = (props) => {
+export const TextWidget: FC<TextWidgetProps> = props => {
   const {
     value,
     horizontalAlign,

@@ -16,7 +16,9 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-DefaultValue`,
         labelName: i18n.t("editor.inspect.setter_label.default_value"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.default_value"),
+        labelDesc: i18n.t(
+          "editor.inspect.setter_tooltip.component_default_value",
+        ),
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
@@ -97,7 +99,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: "labelHidden",
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.right"), value: "top" },
@@ -109,7 +111,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: "labelHidden",
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -128,7 +130,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
         bindAttrName: "labelHidden",
-        shown: (value) => !value,
+        shown: value => !value,
       },
     ],
   },

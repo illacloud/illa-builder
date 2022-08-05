@@ -38,8 +38,6 @@ import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEdit
 import { Dropdown } from "@illa-design/dropdown"
 import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
 import { MoreIcon } from "@illa-design/icon"
-import { Modal } from "@illa-design/modal"
-import { Message } from "@illa-design/message"
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -67,14 +65,13 @@ const ExtraColComponent: FC<{
   showFormVisible: () => void
   setCurId: (curResourceId: string) => void
   editActionType: () => void
-}> = (props) => {
+}> = props => {
   const { t } = useTranslation()
   const { resourceId, showFormVisible, setCurId, editActionType } = props
   return (
     <>
       <Button
         className="edit-button"
-        _css={editButtonStyle}
         colorScheme="techPurple"
         onClick={() => {
           setCurId(resourceId)
@@ -99,7 +96,7 @@ const ExtraColComponent: FC<{
         }
       >
         <Button
-          _css={itemMenuButtonStyle}
+          ml="4px"
           colorScheme="grayBlue"
           leftIcon={<MoreIcon size="14px" />}
         />
@@ -134,7 +131,9 @@ function CtimeColComponent(text: string) {
   const timezone = dayjs.tz.guess()
   return (
     <span css={tableInfoTextStyle}>
-      {dayjs(text).tz(timezone).format("YYYY-MM-DD HH:mm:ss")}
+      {dayjs(text)
+        .tz(timezone)
+        .format("YYYY-MM-DD HH:mm:ss")}
     </span>
   )
 }

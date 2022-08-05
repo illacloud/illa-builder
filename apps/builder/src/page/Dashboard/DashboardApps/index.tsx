@@ -54,11 +54,13 @@ export const DashboardApps: FC = () => {
   const [renameValue, setRenameValue] = useState<string>("")
   const [renameModalLoading, setRenameModalLoading] = useState<boolean>(false)
   // duplicate modal state
-  const [duplicateModalVisible, setDuplicateModalVisible] =
-    useState<boolean>(false)
+  const [duplicateModalVisible, setDuplicateModalVisible] = useState<boolean>(
+    false,
+  )
   const [duplicateValue, setDuplicateValue] = useState<string>("")
-  const [duplicateModalLoading, setDuplicateModalLoading] =
-    useState<boolean>(false)
+  const [duplicateModalLoading, setDuplicateModalLoading] = useState<boolean>(
+    false,
+  )
 
   const sortedAppsList = useMemo(() => {
     if (Array.isArray(appsList) && appsList.length > 0) {
@@ -91,7 +93,7 @@ export const DashboardApps: FC = () => {
           appName: renameValue,
         },
       },
-      (response) => {
+      response => {
         dispatch(
           dashboardAppActions.renameDashboardAppReducer({
             appId: sortedAppsList[currentAppIdx].appId,
@@ -99,13 +101,13 @@ export const DashboardApps: FC = () => {
           }),
         )
       },
-      (failure) => {
+      failure => {
         Message.error(t("dashboard.app.rename_fail"))
       },
-      (crash) => {
+      crash => {
         Message.error(t("network_error"))
       },
-      (loading) => {
+      loading => {
         setRenameModalLoading(loading)
         if (!loading) {
           setRenameModalVisible(loading)
@@ -127,20 +129,20 @@ export const DashboardApps: FC = () => {
           appName: duplicateValue,
         },
       },
-      (response) => {
+      response => {
         dispatch(
           dashboardAppActions.addDashboardAppReducer({
             app: response.data,
           }),
         )
       },
-      (failure) => {
+      failure => {
         Message.error(t("dashboard.app.duplicate_fail"))
       },
-      (crash) => {
+      crash => {
         Message.error(t("network_error"))
       },
-      (loading) => {
+      loading => {
         setDuplicateModalLoading(loading)
         if (!loading) {
           setDuplicateModalVisible(loading)
@@ -159,7 +161,7 @@ export const DashboardApps: FC = () => {
           appName: createNewValue,
         },
       },
-      (response) => {
+      response => {
         dispatch(
           dashboardAppActions.addDashboardAppReducer({
             app: response.data,
@@ -167,12 +169,12 @@ export const DashboardApps: FC = () => {
         )
         navigate(`/app/${response.data.appId}/version/0`)
       },
-      (failure) => {},
-      (error) => {},
-      (loading) => {
+      failure => {},
+      error => {},
+      loading => {
         setCreateNewLoading(loading)
       },
-      (errorState) => {
+      errorState => {
         if (errorState) {
           Message.error({ content: t("create_fail") })
         }
@@ -215,15 +217,17 @@ export const DashboardApps: FC = () => {
             render={(item, index) => {
               return (
                 <ListItem
-                  _css={listItemStyle}
+                  css={listItemStyle}
                   extra={
                     <div css={itemExtraContainerStyle}>
                       <Button
+                        className="editButton"
                         colorScheme="techPurple"
                         onClick={() => {
                           navigate(`/app/${item.appId}/version/0`)
                         }}
                         title="editButton"
+                        opacity={0}
                       >
                         {t("edit")}
                       </Button>
@@ -265,7 +269,7 @@ export const DashboardApps: FC = () => {
                 </ListItem>
               )
             }}
-            renderKey={(item) => {
+            renderKey={item => {
               return item.appId
             }}
           />
@@ -278,7 +282,7 @@ export const DashboardApps: FC = () => {
         hideCancel
         autoFocus={false}
         footerAlign="right"
-        _css={modalStyle}
+        css={modalStyle}
         okButtonProps={{
           colorScheme: "techPurple",
         }}
@@ -300,7 +304,7 @@ export const DashboardApps: FC = () => {
         <Input
           css={modalInputStyle}
           borderColor="techPurple"
-          onChange={(res) => {
+          onChange={res => {
             setCreateNewValue(res)
           }}
         />
@@ -314,7 +318,7 @@ export const DashboardApps: FC = () => {
           footerAlign="right"
           visible={renameModalVisible}
           title={t("dashboard.app.rename_app")}
-          _css={modalStyle}
+          css={modalStyle}
           okButtonProps={{
             colorScheme: "techPurple",
           }}
@@ -328,7 +332,7 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
-            if (sortedAppsList.some((item) => item.appName === renameValue)) {
+            if (sortedAppsList.some(item => item.appName === renameValue)) {
               Message.error(t("dashboard.app.name_existed"))
               return
             }
@@ -339,7 +343,7 @@ export const DashboardApps: FC = () => {
             css={modalInputStyle}
             borderColor="techPurple"
             placeholder={sortedAppsList[currentAppIdx].appName}
-            onChange={(res) => {
+            onChange={res => {
               setRenameValue(res)
             }}
           />
@@ -354,7 +358,7 @@ export const DashboardApps: FC = () => {
           autoFocus={false}
           footerAlign="right"
           visible={duplicateModalVisible}
-          _css={modalStyle}
+          css={modalStyle}
           okButtonProps={{
             colorScheme: "techPurple",
           }}
@@ -367,9 +371,7 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
-            if (
-              sortedAppsList.some((item) => item.appName === duplicateValue)
-            ) {
+            if (sortedAppsList.some(item => item.appName === duplicateValue)) {
               Message.error(t("dashboard.app.name_existed"))
               return
             }
@@ -381,7 +383,7 @@ export const DashboardApps: FC = () => {
           <Input
             css={modalInputStyle}
             borderColor="techPurple"
-            onChange={(res) => {
+            onChange={res => {
               setDuplicateValue(res)
             }}
             placeholder={`${t("dashboard.app.duplicate_placeholder")}`}
