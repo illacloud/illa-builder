@@ -6,6 +6,7 @@ import { generateNewEventItem } from "@/page/App/components/PanelSetters/EventHa
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { NewBaseEventHandlerSetterProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
+import { isObject } from "@/utils/typeHelper"
 
 export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   props,
@@ -33,7 +34,11 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   const handleAddItemAsync = useCallback(async () => {
     const { events: defaultEvents } = eventHandlerConfig
     let oldEventItem = Array.isArray(value) ? value : []
-    const newEventItem = generateNewEventItem(defaultEvents[0], "query1")
+    const eventType =
+      typeof defaultEvents[0] === "string"
+        ? defaultEvents[0]
+        : defaultEvents[0].value
+    const newEventItem = generateNewEventItem(eventType, "query1")
     handleUpdateDsl(attrName, [...oldEventItem, newEventItem])
   }, [handleUpdateDsl, eventHandlerConfig, value])
 

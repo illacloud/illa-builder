@@ -3,7 +3,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
-import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget/eventHandlerConfig"
 
 const baseWidgetName = "radio-group"
@@ -183,7 +183,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        ...generatorEventHanlderConfig(
+        ...generatorEventHandlerConfig(
           baseWidgetName,
           RADIO_GROUP_EVENT_HANDLER_CONFIG.events,
         ),

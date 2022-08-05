@@ -57,7 +57,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   const getOnChangeEventScripts = () => {
     const events = get(realProps, "events")
     if (events) {
-      return getEventScripts(events, "onChange")
+      return getEventScripts(events, "change")
     }
     return []
   }
@@ -65,7 +65,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   const getOnClickEventScripts = () => {
     const events = get(realProps, "events")
     if (events) {
-      return getEventScripts(events, "onClick")
+      return getEventScripts(events, "click")
     }
     return []
   }
