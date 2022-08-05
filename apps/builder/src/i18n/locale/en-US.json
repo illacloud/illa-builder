@@ -563,6 +563,7 @@
         "data": "Data"
       },
       "setter_tooltip": {
+        "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
         "text_value": "You can choose to enter value either in Markdown mode or Plain text mode. Only links in markdown mode can be recognized",
         "tooltip": "User can enter component tooltip here. The tooltip will be shown when it is focused. Markdown format is supported.",
         "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
