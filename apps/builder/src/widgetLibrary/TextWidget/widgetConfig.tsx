@@ -18,6 +18,6 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     textColor: "#787e85ff",
     disableMarkdown: false,
     hidden: false,
-    fontSize: "14px",
+    fs: "14px",
   },
 }

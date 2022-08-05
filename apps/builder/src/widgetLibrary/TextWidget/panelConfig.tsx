@@ -140,7 +140,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-color`,
             labelName: i18n.t("editor.inspect.setter_label.font_size"),
             setterType: "INPUT_SETTER",
-            attrName: "fontSize",
+            attrName: "fs",
             defaultValue: "14px",
           },
         ],
