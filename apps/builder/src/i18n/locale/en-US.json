@@ -453,6 +453,8 @@
         "data": "DATA"
       },
       "setter_label": {
+        "success": "Success",
+        "failure": "Failure",
         "font_size": "Font size",
         "text": "Text",
         "type": "Type",
@@ -618,6 +620,14 @@
         "color_picker": {
           "title": "Edit color",
           "prefabricated": "Prefabricated color"
+        },
+        "widget_action_type_name": {
+          "click": "Click",
+          "change": "Change",
+          "focus": "Focus",
+          "blur": "Blur",
+          "success": "Success",
+          "fail": "Fail"
         }
       }
     },

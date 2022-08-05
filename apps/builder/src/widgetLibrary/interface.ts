@@ -4,7 +4,10 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
 
 export interface EventHandlerConfig {
-  events: string[]
+  events: {
+    label: string
+    value: string
+  }[]
   methods: string[]
 }
 

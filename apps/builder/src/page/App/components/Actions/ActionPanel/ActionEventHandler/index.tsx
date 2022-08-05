@@ -5,7 +5,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler/style"
 import { useTranslation } from "react-i18next"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
-import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { useDispatch, useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
@@ -13,6 +13,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { cloneDeep } from "lodash"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { ActionContent } from "@/redux/currentApp/action/actionState"
+import i18n from "@/i18n/config"
 
 export const ActionEventHandler: FC = () => {
   const { t } = useTranslation()
@@ -54,10 +55,17 @@ export const ActionEventHandler: FC = () => {
         widgetOrAction="ACTION"
       >
         {renderFieldAndLabel(
-          generatorEventHanlderConfig(
+          generatorEventHandlerConfig(
             "success-event",
-            ["success"],
-            "Success",
+            [
+              {
+                label: t(
+                  "editor.inspect.setter_content.widget_action_type_name.success",
+                ),
+                value: "success",
+              },
+            ],
+            t("editor.inspect.setter_label.success"),
             "successEvent",
             "success",
           ),
@@ -66,12 +74,19 @@ export const ActionEventHandler: FC = () => {
           "",
         )}
         {renderFieldAndLabel(
-          generatorEventHanlderConfig(
+          generatorEventHandlerConfig(
             "failed-event",
-            ["failed"],
-            "Failed",
+            [
+              {
+                label: t(
+                  "editor.inspect.setter_content.widget_action_type_name.fail",
+                ),
+                value: "fail",
+              },
+            ],
+            t("editor.inspect.setter_label.failure"),
             "failedEvent",
-            "failed",
+            "fail",
           ),
           action?.displayName || "",
           false,

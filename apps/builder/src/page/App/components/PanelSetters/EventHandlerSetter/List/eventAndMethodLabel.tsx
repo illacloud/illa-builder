@@ -10,6 +10,7 @@ import { EventAndMethodLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
 import { useTranslation } from "react-i18next"
+import i18n from "@/i18n/config"
 
 const getMethodName = (
   actionType: string,
@@ -66,7 +67,13 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       }}
     >
       <div css={eventAndMethodWrapperStyle}>
-        <div css={eventNameStyle}>{eventType ?? "No event"}</div>
+        <div css={eventNameStyle}>
+          {eventType
+            ? i18n.t(
+                `editor.inspect.setter_content.widget_action_type_name.${eventType}`,
+              )
+            : "No event"}
+        </div>
         <div css={methodNameStyle}>
           {getMethodName(actionType, widgetID, widgetMethod, queryID)}
         </div>

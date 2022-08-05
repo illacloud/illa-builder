@@ -2,9 +2,9 @@ import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
-export const generatorEventHanlderConfig = (
+export const generatorEventHandlerConfig = (
   baseWidgetName: string,
-  event: any[] = [],
+  events: { label: string; value: string }[] = [],
   labelName: string = i18n.t("editor.inspect.setter_label.event_handler"),
   attrName: string = "events",
   defaultValue?: string,
@@ -22,7 +22,7 @@ export const generatorEventHanlderConfig = (
         labelName: i18n.t("editor.inspect.setter_label.event"),
         setterType: "BASE_SELECT_SETTER",
         attrName: "eventType",
-        options: event,
+        options: events,
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-action`,

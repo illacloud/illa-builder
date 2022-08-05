@@ -3,7 +3,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
-import { generatorEventHanlderConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHanlderConfig"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { SELECT_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SelectWidget/eventHandlerConfig"
 
 const baseWidgetName = "select"
@@ -192,7 +192,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
-        ...generatorEventHanlderConfig(
+        ...generatorEventHandlerConfig(
           baseWidgetName,
           SELECT_EVENT_HANDLER_CONFIG.events,
         ),

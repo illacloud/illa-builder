@@ -452,6 +452,8 @@
         "data": "数据"
       },
       "setter_label": {
+        "success": "请求成功",
+        "failure": "请求失败",
         "font_size": "字号",
         "text": "文本",
         "type": "类型",
@@ -617,6 +619,14 @@
         "color_picker": {
           "title": "Edit color",
           "prefabricated": "Prefabricated color"
+        },
+        "widget_action_type_name": {
+          "click": "单击",
+          "change": "内容改变",
+          "focus": "聚焦",
+          "blur": "失焦",
+          "success": "成功后",
+          "fail": "失败后"
         }
       }
     },
