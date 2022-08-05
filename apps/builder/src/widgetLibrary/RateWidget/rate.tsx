@@ -18,26 +18,24 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
   } = props
 
   return (
-    <div css={inputContainerCss}>
-      <Rate
-        count={maxCount}
-        allowHalf={allowHalf}
-        heart={icon === "heart"}
-        disabled={disabled}
-        readonly={readOnly}
-        allowClear={allowClear}
-        value={value}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
+    <Rate
+      count={maxCount}
+      allowHalf={allowHalf}
+      heart={icon === "heart"}
+      disabled={disabled}
+      readonly={readOnly}
+      allowClear={allowClear}
+      value={value}
+      onChange={value => {
+        handleUpdateDsl({ value })
+      }}
+    />
   )
 }
 
 WrappedRate.displayName = "WrappedRate"
 
-export const RateWidget: FC<RateWidgetProps> = (props) => {
+export const RateWidget: FC<RateWidgetProps> = props => {
   const {
     value,
     allowClear,

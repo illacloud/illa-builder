@@ -1,11 +1,11 @@
-import { useMemo, forwardRef } from "react"
+import { forwardRef, useMemo } from "react"
 import LabelProps from "./interface"
 import {
   applyLabelStyle,
-  labelCaptionCss,
-  labelRequiredCss,
   applyLabelTitleStyle,
+  labelCaptionCss,
   labelNameStyle,
+  labelRequiredCss,
 } from "./styles"
 
 const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
@@ -39,21 +39,8 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     return labelCaption ? <div css={labelCaptionCss}>{labelCaption}</div> : null
   }, [labelCaption])
 
-  const formatLabelWidth = useMemo(() => {
-    if (labelWidthUnit === "%" || labelWidthUnit === "px") {
-      return labelWidth + labelWidthUnit
-    } else {
-      // wait to calc the width of the "col"
-      return labelWidth + "px"
-    }
-  }, [labelWidthUnit, labelWidth])
-
   return !labelHidden && label ? (
-    <label
-      css={applyLabelStyle(labelPosition, labelAlign, formatLabelWidth)}
-      ref={ref}
-      {...rest}
-    >
+    <label css={applyLabelStyle(labelPosition, labelAlign)} ref={ref} {...rest}>
       {renderLabelTitle}
       {renderLabelCaption}
     </label>

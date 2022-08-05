@@ -11,7 +11,6 @@ const baseLabelCss = css`
 function applyLeftLabelStyle(
   position: "left" | "right",
   alignment: LabelAlignType,
-  width?: string,
 ): SerializedStyles {
   const isOnLeft = position === "left"
   const marginCss = isOnLeft
@@ -23,10 +22,8 @@ function applyLeftLabelStyle(
       `
   return css`
     ${baseLabelCss};
-    width: ${width};
     overflow: hidden;
-    max-width: 80%;
-    flex: none;
+    flex-grow: 1;
     align-self: center;
     text-align: ${alignment};
     ${marginCss}
@@ -36,7 +33,6 @@ function applyLeftLabelStyle(
 function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
   return css`
     ${baseLabelCss};
-    width: 100%;
     margin-bottom: 8px;
     text-align: ${alignment};
   `
@@ -45,12 +41,11 @@ function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
 export function applyLabelStyle(
   position: LabelPositionType,
   alignment: LabelAlignType,
-  width?: string,
 ): SerializedStyles {
   if (position === "top") {
     return applyTopLabelStyle(alignment)
   } else {
-    return applyLeftLabelStyle(position, alignment, width)
+    return applyLeftLabelStyle(position, alignment)
   }
 }
 

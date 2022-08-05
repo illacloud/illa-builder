@@ -4,7 +4,7 @@ import { LabelWrapperProps } from "./interface"
 import { applyLabelWrapperStyle } from "./style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-const LabelWrapper: FC<LabelWrapperProps> = (props) => {
+const LabelWrapper: FC<LabelWrapperProps> = props => {
   const {
     children,
     label,
@@ -40,7 +40,6 @@ const LabelWrapper: FC<LabelWrapperProps> = (props) => {
           required={required}
         />
       </TooltipWrapper>
-
       <TooltipWrapper
         tooltipText={tooltipText}
         disabled={!!label || !tooltipText}
