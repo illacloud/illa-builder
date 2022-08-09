@@ -1,5 +1,10 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  LEFT_PANEL_WIDTH,
+  MIDDLE_PANEL_WIDTH,
+  RIGHT_PANEL_WIDTH,
+} from "@/style"
 
 export const navBarStyle = css`
   display: flex;
@@ -13,6 +18,7 @@ export const navBarStyle = css`
 
 export const rowCenter = css`
   display: flex;
+  flex-direction: row;
   align-items: center;
 `
 
@@ -30,8 +36,10 @@ export const viewControlStyle = css`
 
 export const informationStyle = css`
   margin-left: 24px;
+  display: flex;
+  flex-direction: column;
   font-size: 12px;
-  line-height: 18px;
+  flex-shrink: 1;
 `
 
 export const nameStyle = css`
@@ -40,6 +48,9 @@ export const nameStyle = css`
 `
 
 export const descriptionStyle = css`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
@@ -56,14 +67,16 @@ export const logoCursorStyle = css`
 `
 
 export const windowIconBodyStyle = css`
-  display: inline-block;
   width: 24px;
   height: 24px;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 2px;
   border-radius: 4px;
   cursor: pointer;
-  &: hover {
+
+  &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `

@@ -75,7 +75,7 @@ export function applyRightPanelStyle(display: boolean): SerializedStyles {
 
 export const middlePanelStyle = css`
   flex-grow: 1;
-  min-width: 300px;
+  min-width: ${RIGHT_PANEL_WIDTH}px;
   height: 100%;
   display: flex;
   flex-direction: column;

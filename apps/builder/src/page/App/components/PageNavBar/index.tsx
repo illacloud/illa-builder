@@ -40,7 +40,7 @@ import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 
 dayjs.extend(utc)
 
-export const PageNavBar: FC<PageNavBarProps> = (props) => {
+export const PageNavBar: FC<PageNavBarProps> = props => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -70,7 +70,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
       },
-      (response) => {
+      response => {
         window.open(
           window.location.protocol +
             "//" +
@@ -79,13 +79,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           "_blank",
         )
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (loading) => {
+      loading => {
         setDeployLoading(loading)
       },
     )
@@ -104,13 +104,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           }}
           css={logoCursorStyle}
         />
-        <section css={informationStyle}>
+        <div css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
           <div css={descriptionStyle}>
             {t("edit_at")}{" "}
             {dayjs.utc(appInfo?.updatedAt).format("YYYY-MM-DD HH:mm:ss")}
           </div>
-        </section>
+        </div>
       </div>
       <div css={viewControlStyle}>
         {mode === "edit" && (
