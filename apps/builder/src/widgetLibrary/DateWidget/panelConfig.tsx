@@ -84,7 +84,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
@@ -96,7 +96,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           {
@@ -110,13 +110,13 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: `${baseWidgetName}-label-label-width`,
+        id: `${baseWidgetName}-label-labelWidth`,
         labelName: i18n.t("editor.inspect.setter_label.label_width"),
         attrName: "labelWidth",
-        setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: "labelHidden",
-        shown: (value) => !value,
+        setterType: "INPUT_SETTER",
+        bindAttrName: ["labelHidden", "labelPosition"],
+        shown: (hidden, position) => !hidden && position !== "top",
       },
     ],
   },

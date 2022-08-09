@@ -26,22 +26,19 @@ export const needFullHeightWrapper = (type: string): boolean => {
 }
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
-  return events.filter(event => {
+  return events.filter((event) => {
     return event.eventType === eventType
   })
 }
 
-export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
+export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   const { componentNode, ...otherProps } = props
 
   const { displayName, type } = componentNode
 
   const displayNameMapProps = useSelector(getExecutionResult)
-  const {
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    globalData,
-  } = useContext(GLOBAL_DATA_CONTEXT)
+  const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+    useContext(GLOBAL_DATA_CONTEXT)
   const dispatch = useDispatch()
 
   const realProps = displayNameMapProps[displayName] ?? {}
@@ -75,13 +72,13 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
   }
 
   const handleOnChange = () => {
-    getOnChangeEventScripts().forEach(scriptObj => {
+    getOnChangeEventScripts().forEach((scriptObj) => {
       runEventHandler(scriptObj, globalData)
     })
   }
 
   const handleOnClick = () => {
-    getOnClickEventScripts().forEach(scriptObj => {
+    getOnClickEventScripts().forEach((scriptObj) => {
       runEventHandler(scriptObj, globalData)
     })
   }
@@ -121,17 +118,15 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
           required={required}
           labelHidden={labelHidden}
         />
-        <div css={widgetWrapperStyle}>
-          <COMP
-            {...realProps}
-            handleUpdateGlobalData={handleUpdateGlobalData}
-            handleDeleteGlobalData={handleDeleteGlobalData}
-            handleOnChange={handleOnChange}
-            handleOnClick={handleOnClick}
-            handleUpdateDsl={handleUpdateDsl}
-            displayName={displayName}
-          />
-        </div>
+        <COMP
+          {...realProps}
+          handleUpdateGlobalData={handleUpdateGlobalData}
+          handleDeleteGlobalData={handleDeleteGlobalData}
+          handleOnChange={handleOnChange}
+          handleOnClick={handleOnClick}
+          handleUpdateDsl={handleUpdateDsl}
+          displayName={displayName}
+        />
       </div>
       <div css={applyValidateMessageWrapperStyle(labelWidth, labelPosition)}>
         <InvalidMessage

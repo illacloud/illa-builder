@@ -33,7 +33,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "manualOptions",
         setterType: "OPTION_LIST_SETTER",
-        bindAttrName: "optionConfigureMode",
+        bindAttrName: ["optionConfigureMode"],
         shown: (value) => !value || value === "static",
         childrenSetter: [
           {
@@ -63,7 +63,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.data_sources"),
         attrName: "dataSources",
         setterType: "INPUT_SETTER",
-        bindAttrName: "optionConfigureMode",
+        bindAttrName: ["optionConfigureMode"],
         expectedType: VALIDATION_TYPES.ARRAY,
         shown: (value) => value === "dynamic",
         isSetterSingleRow: true,
@@ -74,7 +74,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
-        bindAttrName: "optionConfigureMode",
+        bindAttrName: ["optionConfigureMode"],
         shown: (value) => value === "dynamic",
         childrenSetter: [
           {
@@ -144,7 +144,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
@@ -156,7 +156,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           {

@@ -59,7 +59,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
@@ -71,7 +71,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           {
@@ -90,8 +90,8 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelWidth",
         expectedType: VALIDATION_TYPES.NUMBER,
         setterType: "INPUT_SETTER",
-        bindAttrName: "labelHidden",
-        shown: (value) => !value,
+        bindAttrName: ["labelHidden", "labelPosition"],
+        shown: (hidden, position) => !hidden && position !== "top",
       },
     ],
   },
@@ -213,7 +213,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.regex"),
         setterType: "INPUT_SETTER",
         attrName: "regex",
-        bindAttrName: "pattern",
+        bindAttrName: ["pattern"],
         expectedType: VALIDATION_TYPES.STRING,
         shown: (value) => value === "Regex",
       },

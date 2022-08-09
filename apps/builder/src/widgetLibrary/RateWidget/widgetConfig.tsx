@@ -19,7 +19,7 @@ export const RATE_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    labelWidth: "{{33}}",
+    labelWidth: "{{100}}",
     hidden: false,
   },
 }

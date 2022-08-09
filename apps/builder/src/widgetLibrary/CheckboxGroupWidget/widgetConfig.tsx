@@ -17,7 +17,7 @@ export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    labelWidth: "{{10}}",
+    labelWidth: "{{100}}",
     manualOptions: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },
       { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },

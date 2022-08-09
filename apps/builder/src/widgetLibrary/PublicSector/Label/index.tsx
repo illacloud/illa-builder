@@ -28,12 +28,12 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
 
   const renderLabelTitle = useMemo(() => {
     return (
-      <div css={applyLabelTitleStyle(hasTooltip)}>
-        <span css={labelNameStyle}>{label}</span>
+      <span css={labelNameStyle}>
+        {label}
         {renderLabelTitleRequired}
-      </div>
+      </span>
     )
-  }, [label, renderLabelTitleRequired, hasTooltip])
+  }, [label, renderLabelTitleRequired, hasTooltip, labelAlign])
 
   const renderLabelCaption = useMemo(() => {
     return labelCaption ? <div css={labelCaptionCss}>{labelCaption}</div> : null

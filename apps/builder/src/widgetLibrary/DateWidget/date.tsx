@@ -2,8 +2,9 @@ import { FC, useCallback, useEffect } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { DateWidgetProps, WrappedDateProps } from "./interface"
+import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
-export const WrappedDate: FC<WrappedDateProps> = props => {
+export const WrappedDate: FC<WrappedDateProps> = (props) => {
   const {
     value,
     dateFormat,
@@ -18,7 +19,7 @@ export const WrappedDate: FC<WrappedDateProps> = props => {
   } = props
 
   const checkRange = useCallback(
-    current => {
+    (current) => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
@@ -41,7 +42,7 @@ export const WrappedDate: FC<WrappedDateProps> = props => {
       onClear={() => {
         handleUpdateDsl({ value: "" })
       }}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({ value })
       }}
     />
@@ -50,7 +51,7 @@ export const WrappedDate: FC<WrappedDateProps> = props => {
 
 WrappedDate.displayName = "WrappedDate"
 
-export const DateWidget: FC<DateWidgetProps> = props => {
+export const DateWidget: FC<DateWidgetProps> = (props) => {
   const {
     value,
     dateFormat,
@@ -102,6 +103,10 @@ export const DateWidget: FC<DateWidgetProps> = props => {
     colorScheme,
   ])
 
-  return <WrappedDate {...props} />
+  return (
+    <div css={autoWidthContainerStyle}>
+      <WrappedDate {...props} />
+    </div>
+  )
 }
 DateWidget.displayName = "DateWidget"

@@ -1,7 +1,10 @@
 import { FC, useEffect, useRef, useState } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import {
+  autoWidthContainerStyle,
+  containerStyle,
+} from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
 
@@ -132,6 +135,10 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     maxLength,
     allowClear,
   ])
-  return <WrappedEditableText {...props} />
+  return (
+    <div css={autoWidthContainerStyle}>
+      <WrappedEditableText {...props} />
+    </div>
+  )
 }
 EditableTextWidget.displayName = "EditableTextWidget"

@@ -25,7 +25,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   defaultValue?: any
   placeholder?: string
   iconName?: EditableInputIconType
-  shown?: (value: any | { [attrName: string]: any }) => boolean
+  shown?: (...params: any[]) => boolean
   bindAttrName?: string | string[]
 }
 
