@@ -23,36 +23,34 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
     } = props
 
     return (
-      <div css={containerStyle}>
-        <Input
-          inputRef={ref}
-          value={value}
-          placeholder={placeholder}
-          disabled={disabled}
-          readOnly={readOnly}
-          prefix={prefixIcon}
-          addonBefore={{ render: prefixText, custom: false }}
-          suffix={suffixIcon}
-          addonAfter={{ render: suffixText, custom: false }}
-          onChange={(value) => {
-            handleUpdateDsl({ value })
-          }}
-          showCount={showCharacterCount}
-          borderColor={colorScheme}
-          allowClear={allowClear}
-          onClear={() => {
-            handleUpdateDsl({ value: "" })
-          }}
-          maxLength={maxLength}
-          minLength={minLength}
-        />
-      </div>
+      <Input
+        inputRef={ref}
+        value={value}
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={readOnly}
+        prefix={prefixIcon}
+        addonBefore={{ render: prefixText, custom: false }}
+        suffix={suffixIcon}
+        addonAfter={{ render: suffixText, custom: false }}
+        onChange={value => {
+          handleUpdateDsl({ value })
+        }}
+        showCount={showCharacterCount}
+        borderColor={colorScheme}
+        allowClear={allowClear}
+        onClear={() => {
+          handleUpdateDsl({ value: "" })
+        }}
+        maxLength={maxLength}
+        minLength={minLength}
+      />
     )
   },
 )
 WrappedInput.displayName = "WrappedInput"
 
-export const InputWidget: FC<InputWidgetProps> = (props) => {
+export const InputWidget: FC<InputWidgetProps> = props => {
   const {
     value,
     placeholder,

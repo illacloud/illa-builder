@@ -10,6 +10,7 @@ export const applyLabelAndComponentWrapperStyle = (
     width: 100%;
     height: ${fullHeight ? "100%" : "auto"};
     display: flex;
+    flex-direction: row;
     ${getFlexDirection(labelPosition)}
   `
 }
@@ -24,3 +25,9 @@ export const applyValidateMessageWrapperStyle = (
       : `calc(min(${labelWidth}%, 80%) + 8px)`};
   `
 }
+
+export const widgetWrapperStyle = css`
+  width: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+`

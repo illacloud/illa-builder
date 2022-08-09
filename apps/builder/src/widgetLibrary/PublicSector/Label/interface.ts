@@ -10,6 +10,6 @@ export default interface LabelProps {
   labelHidden?: boolean
   labelPosition?: LabelPositionType
   labelWidth?: number
-  labelWidthUnit?: "px" | "%" | "col"
+  labelWidthUnit?: "px" | "%"
   hasTooltip?: boolean
 }

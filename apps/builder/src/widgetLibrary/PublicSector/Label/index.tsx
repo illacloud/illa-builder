@@ -40,7 +40,15 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
   }, [labelCaption])
 
   return !labelHidden && label ? (
-    <label css={applyLabelStyle(labelPosition, labelAlign)} ref={ref} {...rest}>
+    <label
+      css={applyLabelStyle(
+        labelPosition,
+        labelAlign,
+        labelWidth + labelWidthUnit,
+      )}
+      ref={ref}
+      {...rest}
+    >
       {renderLabelTitle}
       {renderLabelCaption}
     </label>

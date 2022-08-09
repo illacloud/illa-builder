@@ -11,6 +11,7 @@ const baseLabelCss = css`
 function applyLeftLabelStyle(
   position: "left" | "right",
   alignment: LabelAlignType,
+  w?: string,
 ): SerializedStyles {
   const isOnLeft = position === "left"
   const marginCss = isOnLeft
@@ -23,17 +24,21 @@ function applyLeftLabelStyle(
   return css`
     ${baseLabelCss};
     overflow: hidden;
-    flex-grow: 1;
     align-self: center;
     text-align: ${alignment};
+    width: ${w};
     ${marginCss}
   `
 }
 
-function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
+function applyTopLabelStyle(
+  alignment: "left" | "right",
+  w?: string,
+): SerializedStyles {
   return css`
     ${baseLabelCss};
     margin-bottom: 8px;
+    width: ${w};
     text-align: ${alignment};
   `
 }
@@ -41,11 +46,12 @@ function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
 export function applyLabelStyle(
   position: LabelPositionType,
   alignment: LabelAlignType,
+  width?: string,
 ): SerializedStyles {
   if (position === "top") {
-    return applyTopLabelStyle(alignment)
+    return applyTopLabelStyle(alignment, width)
   } else {
-    return applyLeftLabelStyle(position, alignment)
+    return applyLeftLabelStyle(position, alignment, width)
   }
 }
 
@@ -58,13 +64,16 @@ export const applyLabelTitleStyle = (hasTooltip: boolean) => {
   return css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
     font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     ${borderCss}
   `
 }
 
 export const labelNameStyle = css`
   overflow: hidden;
-  width: fit-content;
+  text-overflow: ellipsis;
   white-space: nowrap;
 `
 
