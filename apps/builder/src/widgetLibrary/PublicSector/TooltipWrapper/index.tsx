@@ -8,7 +8,7 @@ export const TooltipWrapper: FC<TooltipWrapperProps> = props => {
   return (
     <Tooltip
       content={<Text value={tooltipText} colorScheme="white" />}
-      colorScheme="white"
+      colorScheme="grayBlue"
       disabled={disabled}
       position={position}
       showArrow={false}
