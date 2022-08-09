@@ -59,16 +59,8 @@ export function applyItemContainerStyle(
   `
 }
 
-export function applyJsonContentStyle(
-  isSelected?: boolean,
-  showPadding?: boolean,
-): SerializedStyles {
+export function applyJsonContentStyle(isSelected?: boolean): SerializedStyles {
   return css`
-    ${showPadding
-      ? css`
-          padding: 4px 0;
-        `
-      : ""};
     ${isSelected
       ? css`
           background-color: ${chroma(

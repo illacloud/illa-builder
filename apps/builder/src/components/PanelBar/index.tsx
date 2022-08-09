@@ -10,7 +10,7 @@ import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import { UpIcon } from "@illa-design/icon"
 
-export const PanelBar: FC<PanelBarProps> = (props) => {
+export const PanelBar: FC<PanelBarProps> = props => {
   const { title, children, isOpened = true, saveToggleState } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
@@ -35,7 +35,6 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
           animate={isOpenedState ? "enter" : "exit"}
           exit="exit"
           initial={false}
-          transition={{ duration: 0.2 }}
         >
           {children}
         </motion.div>

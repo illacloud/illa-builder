@@ -3,11 +3,11 @@ import { CaretRightIcon } from "@illa-design/icon"
 import { motion } from "framer-motion"
 import { WorkSpaceTreeItemProps } from "./interface"
 import {
-  itemNameStyle,
-  itemNameDescStyle,
-  applyItemContainerStyle,
   applyExpandIconStyle,
+  applyItemContainerStyle,
   applyJsonContentStyle,
+  itemNameDescStyle,
+  itemNameStyle,
   jsonContentAnimation,
 } from "./style"
 import { useDispatch, useSelector } from "react-redux"
@@ -15,12 +15,12 @@ import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
 
-export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = (props) => {
+export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = props => {
   const { title, data, isSelected, handleSelect } = props
   const expandedKeys = useSelector(getExpandedKeys)
   const isExpanded = expandedKeys.includes(title)
   const dispatch = useDispatch()
-  const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
+  const keyArr = Object.keys(data).filter(item => !item.startsWith("$"))
   return (
     <div
       onClick={() => {
@@ -47,14 +47,14 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = (props) => {
         </label>
       </div>
       <motion.div
-        css={applyJsonContentStyle(isSelected, keyArr.length > 0 && isExpanded)}
+        css={applyJsonContentStyle(isSelected)}
         variants={jsonContentAnimation}
         role="region"
         animate={isExpanded ? "enter" : "exit"}
         initial={false}
         transition={{ duration: 0.2 }}
       >
-        {keyArr.map((name) => (
+        {keyArr.map(name => (
           <WorkSpaceTreeNode
             key={name}
             name={name}

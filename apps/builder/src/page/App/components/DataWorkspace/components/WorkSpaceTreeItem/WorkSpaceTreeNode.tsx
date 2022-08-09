@@ -30,13 +30,13 @@ export const renderJsonValue = (value: any) => {
   }
 }
 
-export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = (props) => {
+export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = props => {
   const { name, value, itemKey, level = 0 } = props
   const expandedKeys = useSelector(getExpandedKeys)
   const isExpanded = expandedKeys.includes(itemKey)
   const dispatch = useDispatch()
   if (isObject(value) || isArray(value)) {
-    const keyArr = Object.keys(value).filter((item) => !item.startsWith("$"))
+    const keyArr = Object.keys(value).filter(item => !item.startsWith("$"))
     return (
       <div>
         <div
@@ -61,14 +61,14 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = (props) => {
           </label>
         </div>
         <motion.div
-          css={applyJsonContentStyle(false, keyArr.length > 0 && isExpanded)}
+          css={applyJsonContentStyle(false)}
           variants={jsonContentAnimation}
           role="region"
           animate={isExpanded ? "enter" : "exit"}
           initial={false}
           transition={{ duration: 0.2 }}
         >
-          {keyArr.map((name) => (
+          {keyArr.map(name => (
             <WorkSpaceTreeNode
               key={name}
               name={name}
