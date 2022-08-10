@@ -45,6 +45,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
         labelPosition,
         labelAlign,
         labelWidth + labelWidthUnit,
+        labelWidth === -1,
       )}
       ref={ref}
       {...rest}

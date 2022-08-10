@@ -77,15 +77,6 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
-      {
-        id: `${baseWidgetName}-label-labelWidth`,
-        labelName: i18n.t("editor.inspect.setter_label.label_width"),
-        attrName: "labelWidth",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: ["labelHidden"],
-        shown: value => !value,
-      },
     ],
   },
   {
