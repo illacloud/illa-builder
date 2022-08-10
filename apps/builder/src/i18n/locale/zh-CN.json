@@ -615,7 +615,8 @@
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
           "new": "新建",
-          "title": "编辑事件处理器"
+          "title": "编辑事件处理器",
+          "incomplete_selection": "不完整的选择"
         },
         "color_picker": {
           "title": "Edit color",
