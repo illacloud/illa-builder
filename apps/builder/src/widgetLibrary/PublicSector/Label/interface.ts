@@ -10,6 +10,7 @@ export default interface LabelProps {
   labelHidden?: boolean
   labelPosition?: LabelPositionType
   labelWidth?: number
+  labelFull?: boolean
   labelWidthUnit?: "px" | "%"
   hasTooltip?: boolean
 }

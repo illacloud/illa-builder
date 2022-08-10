@@ -81,6 +81,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
     alignment,
     tooltipText,
     label,
+    labelFull,
     labelAlign,
     labelWidth,
     labelPosition,
@@ -102,6 +103,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
     <BasicWrapper tooltipText={tooltipText} hidden={hidden}>
       <div css={applyLabelAndComponentWrapperStyle(labelPosition, alignment)}>
         <Label
+          labelFull={labelFull}
           label={label}
           labelAlign={labelAlign}
           labelWidth={labelWidth}

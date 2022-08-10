@@ -17,6 +17,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     labelHidden,
     labelWidth = 33,
     labelWidthUnit = "%",
+    labelFull = false,
     required,
     hasTooltip = false,
     ...rest
@@ -45,7 +46,7 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
         labelPosition,
         labelAlign,
         labelWidth + labelWidthUnit,
-        labelWidth === -1,
+        labelFull,
       )}
       ref={ref}
       {...rest}
