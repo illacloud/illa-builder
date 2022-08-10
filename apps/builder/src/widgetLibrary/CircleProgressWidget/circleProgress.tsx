@@ -9,17 +9,31 @@ export const WrappedCircleProgress = forwardRef<
   any,
   WrappedCircleProgressProps
 >((props, ref) => {
-  const { value, showText, color, trailColor, strokeWidth } = props
+  const {
+    value,
+    showText,
+    color,
+    trailColor,
+    strokeWidth,
+    h,
+    w,
+    unitW,
+    unitH,
+  } = props
 
   const _strokeWidth = useMemo(() => {
     return !isNaN(Number(strokeWidth)) ? strokeWidth + "px" : strokeWidth
   }, [strokeWidth])
+
+  // delete scale square padding
+  const progressWidth = Math.min(w * unitW, h * unitH) - 8 + "px"
 
   return (
     <Progress
       type="circle"
       percent={value}
       showText={!showText}
+      w={progressWidth}
       color={color}
       trailColor={trailColor}
       strokeWidth={_strokeWidth}
@@ -29,7 +43,7 @@ export const WrappedCircleProgress = forwardRef<
 
 WrappedCircleProgress.displayName = "WrappedCircleProgress"
 
-export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
+export const CircleProgressWidget: FC<CircleProgressWidgetProps> = props => {
   const {
     value,
     showText,
@@ -40,6 +54,10 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
+    w,
+    h,
+    unitW,
+    unitH,
   } = props
 
   useEffect(() => {

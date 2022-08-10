@@ -20,7 +20,7 @@ export const generateComponentNode = (
   }
   let childrenNodeDSL: ComponentNode[] = []
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
-    widgetInfo.childrenNode.map((childNode) => {
+    widgetInfo.childrenNode.map(childNode => {
       if (!childrenNodeDSL) childrenNodeDSL = []
       const child = generateComponentNode(childNode)
       childrenNodeDSL.push(child)
@@ -36,6 +36,8 @@ export const generateComponentNode = (
     verticalResize: false,
     isDragging: true,
     isResizing: false,
+    unitH: 0,
+    unitW: 0,
     x: -1,
     y: -1,
     z: 0,

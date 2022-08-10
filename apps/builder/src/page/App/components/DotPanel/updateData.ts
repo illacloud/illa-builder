@@ -14,10 +14,9 @@ export function updateDottedLineSquareData(
   dispatchFn: (dottedLineSquare: DottedLineSquare) => void,
 ) {
   // reduce render
-  const currentDrag =
-    store.getState().currentApp.editor.dottedLineSquare[
-      componentNode.displayName
-    ]
+  const currentDrag = store.getState().currentApp.editor.dottedLineSquare[
+    componentNode.displayName
+  ]
   if (currentDrag !== null && currentDrag !== undefined) {
     if (squareX == currentDrag.squareX && squareY == currentDrag.squareY) {
       return
@@ -50,8 +49,9 @@ export function updateDragShadowData(
   dispatchFn: (renderDragShadow: DragShadow) => void,
 ) {
   // reduce render
-  const currentDrag =
-    store.getState().currentApp.editor.dragShadow[componentNode.displayName]
+  const currentDrag = store.getState().currentApp.editor.dragShadow[
+    componentNode.displayName
+  ]
   if (currentDrag !== null && currentDrag !== undefined) {
     if (renderX == currentDrag.renderX && renderY == currentDrag.renderY) {
       return
@@ -82,6 +82,8 @@ export function updateScaleSquare(
   squareX: number,
   squareY: number,
   parentDisplayName: string,
+  unitWidth: number,
+  unitHeight: number,
   dispatchFn: (componentNode: ComponentNode) => void,
 ) {
   // set scale square
@@ -92,6 +94,8 @@ export function updateScaleSquare(
   newItem.containerType = "EDITOR_SCALE_SQUARE"
   newItem.x = squareX
   newItem.y = squareY
+  newItem.unitW = unitWidth
+  newItem.unitH = unitHeight
   // add component
   dispatchFn?.(newItem)
 }

@@ -56,3 +56,10 @@ export interface BaseWidgetProps {
   handleDeleteGlobalData: (key: string) => void
   handleUpdateDsl: (value: any) => void
 }
+
+export interface BaseComponentNodeProps {
+  w: number
+  h: number
+  unitW: number
+  unitH: number
+}

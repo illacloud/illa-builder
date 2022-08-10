@@ -14,6 +14,10 @@ export interface ComponentNode {
   w: number
   minH: number
   minW: number
+  // default 0
+  unitW: number
+  // default 0
+  unitH: number
   // default -1
   x: number
   // default -1

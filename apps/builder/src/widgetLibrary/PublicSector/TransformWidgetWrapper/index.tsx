@@ -13,7 +13,6 @@ import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
-  widgetWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 
@@ -26,19 +25,22 @@ export const needFullHeightWrapper = (type: string): boolean => {
 }
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
-  return events.filter((event) => {
+  return events.filter(event => {
     return event.eventType === eventType
   })
 }
 
-export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
+export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
   const { componentNode, ...otherProps } = props
 
-  const { displayName, type } = componentNode
+  const { displayName, type, w, h, unitW, unitH } = componentNode
 
   const displayNameMapProps = useSelector(getExecutionResult)
-  const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
-    useContext(GLOBAL_DATA_CONTEXT)
+  const {
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+    globalData,
+  } = useContext(GLOBAL_DATA_CONTEXT)
   const dispatch = useDispatch()
 
   const realProps = displayNameMapProps[displayName] ?? {}
@@ -72,13 +74,13 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   }
 
   const handleOnChange = () => {
-    getOnChangeEventScripts().forEach((scriptObj) => {
+    getOnChangeEventScripts().forEach(scriptObj => {
       runEventHandler(scriptObj, globalData)
     })
   }
 
   const handleOnClick = () => {
-    getOnClickEventScripts().forEach((scriptObj) => {
+    getOnClickEventScripts().forEach(scriptObj => {
       runEventHandler(scriptObj, globalData)
     })
   }
@@ -128,6 +130,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
         />
         <COMP
           {...realProps}
+          w={w}
+          h={h}
+          unitW={unitW}
+          unitH={unitH}
           handleUpdateGlobalData={handleUpdateGlobalData}
           handleDeleteGlobalData={handleDeleteGlobalData}
           handleOnChange={handleOnChange}

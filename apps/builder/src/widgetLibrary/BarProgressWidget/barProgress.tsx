@@ -17,6 +17,7 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
         percent={value}
         showText={showText}
         color={color}
+        w="100%"
         trailColor={trailColor}
         strokeWidth={_strokeWidth}
       />
@@ -26,7 +27,7 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
 
 WrappedBarProgress.displayName = "WrappedBarProgress"
 
-export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
+export const BarProgressWidget: FC<BarProgressWidgetProps> = props => {
   const {
     value,
     showText,
@@ -59,11 +60,7 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
     }
   }, [value, showText, strokeWidth, color, trailColor, displayName])
 
-  return (
-    <div css={autoWidthContainerStyle}>
-      <WrappedBarProgress {...props} />
-    </div>
-  )
+  return <WrappedBarProgress {...props} />
 }
 
 BarProgressWidget.displayName = "BarProgressWidget"
