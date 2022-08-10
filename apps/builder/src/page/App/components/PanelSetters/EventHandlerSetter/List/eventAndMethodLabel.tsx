@@ -80,7 +80,9 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
             ? i18n.t(
                 `editor.inspect.setter_content.widget_action_type_name.${eventType}`,
               )
-            : "No event"}
+            : t(
+                "editor.inspect.setter_content.event_handler_list.incomplete_selection",
+              )}
         </div>
         <div css={methodNameStyle}>
           {getMethodName(actionType, widgetID, widgetMethod, queryID)}

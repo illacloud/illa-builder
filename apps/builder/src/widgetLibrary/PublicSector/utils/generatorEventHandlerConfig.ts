@@ -205,11 +205,12 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-duration`,
-        labelName: i18n.t("editor.inspect.setter_label.duration"),
+        labelName: `${i18n.t("editor.inspect.setter_label.duration")}(ms)`,
         setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "duration",
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.NUMBER,
+        placeholder: "{{4500}}",
         shown: (type) => type === "showNotification",
       },
       {
