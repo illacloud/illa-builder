@@ -4,7 +4,6 @@ import {
   CheckboxGroupWidgetProps,
   WrappedCheckboxGroupProps,
 } from "./interface"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
 export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
@@ -19,19 +18,17 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   } = props
 
   return (
-    <div css={containerStyle}>
-      <CheckboxGroup
-        value={value}
-        disabled={disabled}
-        options={options}
-        direction={direction}
-        colorScheme={colorScheme}
-        onChange={(value) => {
-          handleOnChange?.({ value })
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
+    <CheckboxGroup
+      value={value}
+      disabled={disabled}
+      options={options}
+      direction={direction}
+      colorScheme={colorScheme}
+      onChange={(value) => {
+        handleOnChange?.({ value })
+        handleUpdateDsl({ value })
+      }}
+    />
   )
 }
 

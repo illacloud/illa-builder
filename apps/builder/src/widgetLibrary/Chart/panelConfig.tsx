@@ -102,10 +102,8 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
         attrName: "chartJson",
         setterType: "TEXT_AREA",
-        bindAttrName: ["configType", "type"],
-        shown: (value) => {
-          return value["configType"] === "JSON"
-        },
+        bindAttrName: ["configType"],
+        shown: (value) => value === "JSON",
       },
       {
         id: `${baseWidgetName}-data`,
@@ -114,10 +112,8 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
         useCustomLayout: true,
         setterType: "CHART_DATA_SETTER",
-        bindAttrName: ["configType", "type"],
-        shown: (value) => {
-          return value["configType"] === "UIForm"
-        },
+        bindAttrName: "configType",
+        shown: (value) => value === "UIForm",
       },
     ],
   },
@@ -147,9 +143,9 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         isSetterSingleRow: true,
         attrName: "layoutJson",
         setterType: "TEXT_AREA",
-        bindAttrName: ["layoutConfigType", "type"],
+        bindAttrName: ["layoutConfigType"],
         shown: (value) => {
-          return value["layoutConfigType"] === "JSON"
+          return value === "JSON"
         },
       },
       {
@@ -158,9 +154,9 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "title",
         setterType: "INPUT_SETTER",
         defaultValue: "chart",
-        bindAttrName: ["layoutConfigType", "type"],
+        bindAttrName: ["layoutConfigType"],
         shown: (value) => {
-          return value["layoutConfigType"] === "UIForm"
+          return value === "UIForm"
         },
       },
       {
@@ -168,9 +164,9 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.x_axis_title"),
         attrName: "xTitle",
         setterType: "INPUT_SETTER",
-        bindAttrName: ["layoutConfigType", "type"],
+        bindAttrName: ["layoutConfigType"],
         shown: (value) => {
-          return value["layoutConfigType"] === "UIForm"
+          return value === "UIForm"
         },
       },
 
@@ -180,9 +176,9 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "xAxisType",
         setterType: "BASE_SELECT_SETTER",
         options: XAXISTYPE,
-        bindAttrName: ["layoutConfigType", "type"],
+        bindAttrName: ["layoutConfigType"],
         shown: (value) => {
-          return value["layoutConfigType"] === "UIForm"
+          return value === "UIForm"
         },
       },
       {
@@ -190,9 +186,9 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.y_axis_title"),
         attrName: "yTitle",
         setterType: "INPUT_SETTER",
-        bindAttrName: ["layoutConfigType", "type"],
+        bindAttrName: ["layoutConfigType"],
         shown: (value) => {
-          return value["layoutConfigType"] === "UIForm"
+          return value === "UIForm"
         },
       },
       {
@@ -200,7 +196,8 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.legend_position"),
         attrName: "legendPosition",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "type",
+        isSetterSingleRow: true,
+        bindAttrName: ["type"],
         shown: (value) => {
           return value !== "pie"
         },

@@ -48,7 +48,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         // labelDesc: i18n.t("xxxxx"),
         attrName: "formId",
         setterType: "INPUT_SETTER",
-        bindAttrName: "submit",
+        bindAttrName: ["submit"],
         shown: (value) => value === true,
       },
       {
@@ -59,7 +59,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         placeholder: "{{false}}",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
-        bindAttrName: "submit",
+        bindAttrName: ["submit"],
         shown: (value) => {
           return value === false
         },
@@ -72,7 +72,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         attrName: "disabled",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
-        bindAttrName: "submit",
+        bindAttrName: ["submit"],
         shown: (value) => value === false,
       },
     ],

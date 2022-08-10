@@ -203,9 +203,9 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.regex"),
         setterType: "INPUT_SETTER",
         attrName: "regex",
-        bindAttrName: "pattern",
+        bindAttrName: ["pattern"],
         expectedType: VALIDATION_TYPES.STRING,
-        shown: value => value === "Regex",
+        shown: (value) => value === "Regex",
       },
       {
         id: `${baseWidgetName}-validation-max`,

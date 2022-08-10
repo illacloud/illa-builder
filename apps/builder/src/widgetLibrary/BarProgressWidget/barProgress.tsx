@@ -1,6 +1,7 @@
 import { forwardRef, useMemo, FC, useEffect } from "react"
 import { Progress } from "@illa-design/progress"
 import { WrappedBarProgressProps, BarProgressWidgetProps } from "./interface"
+import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
   (props, ref) => {
@@ -58,7 +59,11 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
     }
   }, [value, showText, strokeWidth, color, trailColor, displayName])
 
-  return <WrappedBarProgress {...props} />
+  return (
+    <div css={autoWidthContainerStyle}>
+      <WrappedBarProgress {...props} />
+    </div>
+  )
 }
 
 BarProgressWidget.displayName = "BarProgressWidget"

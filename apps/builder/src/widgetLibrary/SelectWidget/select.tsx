@@ -1,8 +1,8 @@
 import { FC, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/select"
 import { SelectWidgetProps, WrappedSelectProps } from "./interface"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   const {
@@ -20,23 +20,21 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   } = props
 
   return (
-    <div css={containerStyle}>
-      <Select
-        allowClear={showClear}
-        options={options}
-        value={value}
-        placeholder={placeholder}
-        disabled={disabled}
-        loading={loading}
-        readOnly={readOnly}
-        showSearch={showSearch}
-        inputValue={inputValue}
-        colorScheme={colorScheme}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
+    <Select
+      allowClear={showClear}
+      options={options}
+      value={value}
+      placeholder={placeholder}
+      disabled={disabled}
+      loading={loading}
+      readOnly={readOnly}
+      showSearch={showSearch}
+      inputValue={inputValue}
+      colorScheme={colorScheme}
+      onChange={(value) => {
+        handleUpdateDsl({ value })
+      }}
+    />
   )
 }
 
@@ -109,6 +107,10 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     mappedOption,
     manualOptions,
   ])
-  return <WrappedSelect {...props} options={finalOptions} />
+  return (
+    <div css={autoWidthContainerStyle}>
+      <WrappedSelect {...props} options={finalOptions} />
+    </div>
+  )
 }
 SelectWidget.displayName = "SelectWidget"

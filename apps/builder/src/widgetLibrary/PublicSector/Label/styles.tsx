@@ -6,6 +6,8 @@ const baseLabelCss = css`
   display: block;
   font-size: 12px;
   font-weight: 500;
+  text-overflow: ellipsis;
+  line-height: 16px;
 `
 
 function applyLeftLabelStyle(
@@ -25,20 +27,18 @@ function applyLeftLabelStyle(
     ${baseLabelCss};
     overflow: hidden;
     align-self: center;
-    text-align: ${alignment};
     width: ${w};
+    text-align: ${alignment};
+    flex: 0 1 ${w};
     ${marginCss}
   `
 }
 
-function applyTopLabelStyle(
-  alignment: "left" | "right",
-  w?: string,
-): SerializedStyles {
+function applyTopLabelStyle(alignment: "left" | "right"): SerializedStyles {
   return css`
     ${baseLabelCss};
     margin-bottom: 8px;
-    width: ${w};
+    width: 100%;
     text-align: ${alignment};
   `
 }
@@ -49,36 +49,49 @@ export function applyLabelStyle(
   width?: string,
 ): SerializedStyles {
   if (position === "top") {
-    return applyTopLabelStyle(alignment, width)
+    return applyTopLabelStyle(alignment)
   } else {
     return applyLeftLabelStyle(position, alignment, width)
   }
 }
 
-export const applyLabelTitleStyle = (hasTooltip: boolean) => {
-  const borderCss = hasTooltip
-    ? css`
-        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
-      `
-    : css``
-  return css`
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    font-size: 14px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    ${borderCss}
-  `
-}
+export const labelTooltipStyle = css`
+  &:after {
+    background-image: repeating-linear-gradient(
+      90deg,
+      ${globalColor(`--${illaPrefix}-grayBlue-06`)} 0,
+      ${globalColor(`--${illaPrefix}-grayBlue-06`)} 1px,
+      transparent 0,
+      transparent 3px,
+      ${globalColor(`--${illaPrefix}-grayBlue-06`)} 0,
+      ${globalColor(`--${illaPrefix}-grayBlue-06`)} 4px
+    );
+    background-position: 50%;
+    background-size: 4px 1px;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+  }
+`
 
-export const labelNameStyle = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
+export const labelTitleStyle = css`
   white-space: nowrap;
 `
 
+export const applyLabelNameStyle = (hasTooltip: boolean) => {
+  return css`
+    position: relative;
+    ${hasTooltip && labelTooltipStyle}
+  `
+}
+
 export const labelCaptionCss = css`
+  overflow: hidden;
   color: ${globalColor(`--${illaPrefix}-gray-04`)};
+  text-overflow: ellipsis;
 `
 
 export const labelRequiredCss = css`

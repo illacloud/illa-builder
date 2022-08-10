@@ -50,7 +50,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
@@ -62,7 +62,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
         options: [
           {
@@ -81,7 +81,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
-        bindAttrName: "labelHidden",
+        bindAttrName: ["labelHidden"],
         shown: (value) => !value,
       },
     ],

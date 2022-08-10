@@ -1,7 +1,6 @@
 import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 
 export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
@@ -9,18 +8,16 @@ export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
     props
 
   return (
-    <div css={containerStyle}>
-      <RadioGroup
-        value={value}
-        disabled={disabled}
-        options={options}
-        direction={direction}
-        colorScheme={colorScheme}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
-      />
-    </div>
+    <RadioGroup
+      value={value}
+      disabled={disabled}
+      options={options}
+      direction={direction}
+      colorScheme={colorScheme}
+      onChange={(value) => {
+        handleUpdateDsl({ value })
+      }}
+    />
   )
 }
 

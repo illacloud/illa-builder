@@ -42,14 +42,6 @@ export function applyLabelTipsStyle(
   `
 }
 
-export const labelTipsTextStyle = css`
-  & > strong {
-    padding: 0 4px;
-    border-raidus: 4px;
-    background: ${globalColor(`--${illaPrefix}-gray-03`)};
-  }
-`
-
 export const panelHeaderWrapperStyle = css`
   display: flex;
   width: 100%;

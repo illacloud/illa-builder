@@ -5,7 +5,7 @@ import {
   NumberInputWidgetProps,
   WrappedNumberInputProps,
 } from "@/widgetLibrary/NumberInputWidget/interface"
-import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/([-+]?\d{3})(?=\d)/g, "$1,")
@@ -55,24 +55,22 @@ export const WrappedInputNumber = forwardRef<
   }, [loading, suffix])
 
   return (
-    <div css={containerStyle}>
-      <InputNumber
-        inputRef={ref}
-        max={max}
-        min={min}
-        formatter={formatDisplayValue}
-        placeholder={placeholder}
-        value={finalValue}
-        precision={Number(precision)}
-        disabled={disabled}
-        readOnly={readOnly}
-        prefix={prefix}
-        suffix={finalSuffix}
-        mode="button"
-        onChange={changeValue}
-        borderColor={colorScheme}
-      />
-    </div>
+    <InputNumber
+      inputRef={ref}
+      max={max}
+      min={min}
+      formatter={formatDisplayValue}
+      placeholder={placeholder}
+      value={finalValue}
+      precision={Number(precision)}
+      disabled={disabled}
+      readOnly={readOnly}
+      prefix={prefix}
+      suffix={finalSuffix}
+      mode="button"
+      onChange={changeValue}
+      borderColor={colorScheme}
+    />
   )
 })
 WrappedInputNumber.displayName = "WrappedInputNumber"
@@ -143,6 +141,10 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     displayName,
   ])
 
-  return <WrappedInputNumber {...props} ref={numberInputRef} />
+  return (
+    <div css={autoWidthContainerStyle}>
+      <WrappedInputNumber {...props} ref={numberInputRef} />
+    </div>
+  )
 }
 NumberInputWidget.displayName = "NumberInputWidget"
