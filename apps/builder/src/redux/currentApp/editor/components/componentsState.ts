@@ -49,3 +49,12 @@ export interface UpdateComponentDisplayNamePayload {
   displayName: string
   newDisplayName: string
 }
+
+export interface UpdateComponentPositionAndSizePayload {
+  parentDisplayName: string
+  displayName: string
+  x: number
+  y: number
+  w: number
+  h: number
+}

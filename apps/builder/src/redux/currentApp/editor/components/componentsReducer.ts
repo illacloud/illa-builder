@@ -6,6 +6,7 @@ import {
   DeleteComponentNodePayload,
   ResetComponentPropsPayload,
   UpdateComponentDisplayNamePayload,
+  UpdateComponentPositionAndSizePayload,
   UpdateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -177,4 +178,24 @@ export const updateComponentDisplayNameReducer: CaseReducer<
   const node = searchDsl(state, displayName)
   if (!node) return
   node.displayName = newDisplayName
+}
+
+export const updateComponentPositionAndSizeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentPositionAndSizePayload>
+> = (state, action) => {
+  const { parentDisplayName, displayName, x, y, w, h } = action.payload
+  const parentNode = searchDsl(state, parentDisplayName)
+  if (parentNode != null) {
+    const index = parentNode.childrenNode.findIndex((value) => {
+      return value.displayName === displayName
+    })
+    if (index > -1) {
+      const node = parentNode.childrenNode[index]
+      node.x = x
+      node.y = y
+      node.w = w
+      node.h = h
+    }
+  }
 }

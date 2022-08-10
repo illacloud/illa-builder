@@ -183,9 +183,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
               dispatch(componentsActions.addComponentReducer(newItem))
             } else {
               dispatch(
-                componentsActions.updateSingleComponentReducer({
-                  isMove: newItem.parentNode !== item.parentNode,
-                  componentNode: newItem,
+                componentsActions.updateComponentPositionAndSizeReducer({
+                  parentDisplayName: newItem.parentNode || "",
+                  displayName: newItem.displayName,
+                  x: newItem.x,
+                  y: newItem.y,
+                  w: newItem.w,
+                  h: newItem.h,
                 }),
               )
             }
@@ -307,9 +311,13 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             item.position,
             (i) => {
               dispatch(
-                componentsActions.updateSingleComponentReducer({
-                  isMove: false,
-                  componentNode: i,
+                componentsActions.updateComponentPositionAndSizeReducer({
+                  parentDisplayName: i.parentNode || "",
+                  displayName: i.displayName,
+                  x: i.x,
+                  y: i.y,
+                  w: i.w,
+                  h: i.h,
                 }),
               )
             },
