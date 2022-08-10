@@ -210,6 +210,7 @@ export const generatorEventHandlerConfig = (
         attrName: "duration",
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.NUMBER,
+        placeholder: "{{4500}}",
         shown: (type) => type === "showNotification",
       },
       {
