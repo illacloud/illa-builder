@@ -19,7 +19,7 @@ export const WrappedCircleProgress = forwardRef<
     <Progress
       type="circle"
       percent={value}
-      showText={showText}
+      showText={!showText}
       color={color}
       trailColor={trailColor}
       strokeWidth={_strokeWidth}

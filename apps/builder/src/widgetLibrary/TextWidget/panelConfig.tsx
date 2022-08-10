@@ -10,6 +10,7 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
+import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
 
 const baseWidgetName = "text"
 export const TEXT_PANEL_CONFIG: PanelConfig[] = [
@@ -137,11 +138,13 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         childrenSetter: [
           {
-            id: `${baseWidgetName}-style-color`,
-            labelName: i18n.t("editor.inspect.setter_label.font_size"),
-            setterType: "INPUT_SETTER",
+            id: `${baseWidgetName}-style-text-size`,
+            labelName: i18n.t("editor.inspect.setter_label.text_size"),
+            setterType: "EDITABLE_INPUT_SETTER",
             attrName: "fs",
+            iconName: EditableInputIconType.TEXT_SIZE,
             defaultValue: "14px",
+            expectedType: VALIDATION_TYPES.STRING,
           },
         ],
       },
