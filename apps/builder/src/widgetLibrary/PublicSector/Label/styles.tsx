@@ -26,7 +26,8 @@ function applyLeftLabelStyle(
   return css`
     ${baseLabelCss};
     overflow: hidden;
-    width: ${w};
+    align-self: center;
+    min-width: ${w};
     text-align: ${alignment};
     flex: 0 1 ${w};
     ${marginCss}

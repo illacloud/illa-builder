@@ -4,13 +4,13 @@ import { getFlexDirection } from "@/widgetLibrary/PublicSector/BasicWrapper/styl
 
 export const applyLabelAndComponentWrapperStyle = (
   labelPosition: "left" | "right" | "top" = "left",
-  fullHeight: boolean = false,
   alignment: "start" | "center" | "end" = "start",
 ): SerializedStyles => {
   return css`
     width: 100%;
-    height: ${fullHeight ? "100%" : "auto"};
+    height: 100%;
     display: flex;
+    overflow: auto;
     flex-direction: row;
     justify-content: ${alignment};
     ${getFlexDirection(labelPosition)}
@@ -27,9 +27,3 @@ export const applyValidateMessageWrapperStyle = (
       : `calc(min(${labelWidth}%, 80%) + 8px)`};
   `
 }
-
-export const widgetWrapperStyle = css`
-  width: 0;
-  flex-grow: 1;
-  flex-shrink: 1;
-`
