@@ -5,12 +5,14 @@ import { getFlexDirection } from "@/widgetLibrary/PublicSector/BasicWrapper/styl
 export const applyLabelAndComponentWrapperStyle = (
   labelPosition: "left" | "right" | "top" = "left",
   fullHeight: boolean = false,
+  alignment: "start" | "center" | "end" = "start",
 ): SerializedStyles => {
   return css`
     width: 100%;
     height: ${fullHeight ? "100%" : "auto"};
     display: flex;
     flex-direction: row;
+    justify-content: ${alignment};
     ${getFlexDirection(labelPosition)}
   `
 }

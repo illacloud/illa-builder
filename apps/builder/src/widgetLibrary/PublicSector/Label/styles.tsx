@@ -7,6 +7,7 @@ const baseLabelCss = css`
   font-size: 12px;
   font-weight: 500;
   text-overflow: ellipsis;
+  line-height: 16px;
 `
 
 function applyLeftLabelStyle(
@@ -54,28 +55,8 @@ export function applyLabelStyle(
   }
 }
 
-export const applyLabelTitleStyle = (hasTooltip: boolean) => {
-  const borderCss = hasTooltip
-    ? css`
-        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-07`)};
-      `
-    : css``
-  return css`
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-    font-size: 14px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    ${borderCss}
-  `
-}
-
-export const labelNameStyle = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  position: relative;
-  :after {
+export const labelTooltipStyle = css`
+  &:after {
     background-image: repeating-linear-gradient(
       90deg,
       ${globalColor(`--${illaPrefix}-grayBlue-06`)} 0,
@@ -92,9 +73,20 @@ export const labelNameStyle = css`
     left: 0;
     position: absolute;
     top: 100%;
-    width: calc(100% - 6px);
+    width: 100%;
   }
 `
+
+export const labelTitleStyle = css`
+  white-space: nowrap;
+`
+
+export const applyLabelNameStyle = (hasTooltip: boolean) => {
+  return css`
+    position: relative;
+    ${hasTooltip && labelTooltipStyle}
+  `
+}
 
 export const labelCaptionCss = css`
   overflow: hidden;

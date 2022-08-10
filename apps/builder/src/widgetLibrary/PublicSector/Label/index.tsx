@@ -1,11 +1,11 @@
 import { forwardRef, useMemo } from "react"
 import LabelProps from "./interface"
 import {
+  applyLabelNameStyle,
   applyLabelStyle,
-  applyLabelTitleStyle,
   labelCaptionCss,
-  labelNameStyle,
   labelRequiredCss,
+  labelTitleStyle,
 } from "./styles"
 
 const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
@@ -28,8 +28,8 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
 
   const renderLabelTitle = useMemo(() => {
     return (
-      <span css={labelNameStyle}>
-        {label}
+      <span css={labelTitleStyle}>
+        <span css={applyLabelNameStyle(hasTooltip)}>{label}</span>
         {renderLabelTitleRequired}
       </span>
     )
