@@ -87,10 +87,14 @@ export const eventNameStyle = css`
   white-space: nowrap;
   flex: 0 0 64px;
   margin-right: 8px;
+  display: flex;
+  align-items: center;
 `
 
 export const methodNameStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  display: flex;
+  align-items: center;
 `
 
 export const emptyBodyStyle = css`
