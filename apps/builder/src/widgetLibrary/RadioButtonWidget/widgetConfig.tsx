@@ -17,7 +17,7 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
     label: "Label",
     labelAlign: "left",
     labelPosition: "left",
-    labelWidth: "{{100}}",
+    labelWidth: "{{33}}",
     manualOptions: [
       { id: `option-${v4()}`, label: "Option 1", value: "Option 1" },
       { id: `option-${v4()}`, label: "Option 2", value: "Option 2" },
