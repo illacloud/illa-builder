@@ -378,8 +378,8 @@
             "authorization_url": "https://accounts.google.com/o/oauth2/v2/auth",
             "access_token_url": "https://www.googleapis.com/oauth2/v4/token",
             "access_token_lifespan": "Token Lifespan in seconds",
-            "param_key": "键",
-            "param_value": "值"
+            "param_key": "key",
+            "param_value": "value"
           },
           "option": {
             "authentication": {
