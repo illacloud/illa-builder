@@ -616,7 +616,8 @@
         "event_handler_list": {
           "empty": "Trigger queries, control components, or call other APIs in response to component events.",
           "new": "New",
-          "title": "Edit event handler"
+          "title": "Edit event handler",
+          "incomplete_selection": "Incomplete selection"
         },
         "color_picker": {
           "title": "Edit color",

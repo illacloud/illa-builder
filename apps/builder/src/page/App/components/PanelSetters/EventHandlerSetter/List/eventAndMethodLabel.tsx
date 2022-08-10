@@ -21,15 +21,23 @@ const getMethodName = (
   if (actionType === "widget") {
     return widgetId && widgetMethod
       ? `${widgetId}.${widgetMethod}()`
-      : `No Method`
+      : i18n.t(
+          "editor.inspect.setter_content.event_handler_list.incomplete_selection",
+        )
   }
   if (actionType === "datasource") {
-    return queryID ? `${queryID}.run()` : "No Method"
+    return queryID
+      ? `${queryID}.run()`
+      : i18n.t(
+          "editor.inspect.setter_content.event_handler_list.incomplete_selection",
+        )
   }
   if (actionType) {
     return `${actionType}()`
   }
-  return "No Method"
+  return i18n.t(
+    "editor.inspect.setter_content.event_handler_list.incomplete_selection",
+  )
 }
 
 export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
