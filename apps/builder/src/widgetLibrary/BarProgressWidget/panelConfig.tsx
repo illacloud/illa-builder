@@ -1,5 +1,4 @@
 import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
@@ -51,7 +50,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.top"), value: "top" },
@@ -63,7 +62,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -82,7 +81,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
       },
     ],
   },
@@ -138,7 +137,6 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             attrName: "color",
             defaultValue: "blue",
-            options: colorSchemeOptions,
           },
           {
             id: `${baseWidgetName}-trailColor`,
@@ -146,7 +144,6 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             attrName: "trailColor",
             defaultValue: "gray",
-            options: colorSchemeOptions,
           },
         ],
       },

@@ -473,7 +473,7 @@
         "max_date": "最大日期",
         "min_date": "最小日期",
         "label": "标签",
-        "caption": "纵标题",
+        "caption": "副标题",
         "hidden_label": "隐藏标签",
         "label_position": "位置",
         "label_alignment": "对齐",

@@ -1,10 +1,8 @@
-import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
 import { INPUT_NUMBER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/NumberInputWidget/eventHandlerConfig"
 
 const widgetBaseName = "number-input"
@@ -90,7 +88,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.top"), value: "top" },
@@ -102,7 +100,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -121,7 +119,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
       },
     ],
   },
@@ -260,7 +258,6 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
-            options: colorSchemeOptions,
           },
         ],
       },

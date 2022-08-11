@@ -1,10 +1,8 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
+import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { RADIO_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/RadioGroupWidget"
 import { CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CheckboxGroupWidget/eventHandlerConfig"
 
 const baseWidgetName = "checkboxGroup"
@@ -264,7 +262,6 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
-            options: colorSchemeOptions,
           },
         ],
       },

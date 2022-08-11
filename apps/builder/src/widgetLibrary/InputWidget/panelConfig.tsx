@@ -1,6 +1,5 @@
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
@@ -60,7 +59,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.top"), value: "top" },
@@ -72,7 +71,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -215,7 +214,7 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "regex",
         bindAttrName: ["pattern"],
         expectedType: VALIDATION_TYPES.STRING,
-        shown: (value) => value === "Regex",
+        shown: value => value === "Regex",
       },
       {
         id: `${baseWidgetName}-validation-max`,
@@ -287,7 +286,6 @@ export const INPUT_PANEL_CONFIG: PanelConfig[] = [
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
-            options: colorSchemeOptions,
           },
         ],
       },

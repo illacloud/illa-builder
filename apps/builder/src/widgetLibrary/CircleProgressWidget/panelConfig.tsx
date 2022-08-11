@@ -3,7 +3,6 @@ import {
   HorizontalEndIcon,
   HorizontalStartIcon,
 } from "@illa-design/icon"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
@@ -97,7 +96,6 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             attrName: "color",
             defaultValue: "blue",
-            options: colorSchemeOptions,
           },
           {
             id: `${baseWidgetName}-trailColor`,
@@ -105,7 +103,6 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             attrName: "trailColor",
             defaultValue: "gray",
-            options: colorSchemeOptions,
           },
         ],
       },

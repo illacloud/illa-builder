@@ -1,7 +1,10 @@
-import { css } from "@emotion/react"
+import { css, SerializedStyles } from "@emotion/react"
 
-export function applyColorSetterStyle(isSingleRow: boolean = false) {
+export function applyCircleStyle(color: string): SerializedStyles {
   return css`
-    width: ${isSingleRow ? "100%" : "154px"};
+    background-color: ${color};
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
   `
 }

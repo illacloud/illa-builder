@@ -1,6 +1,5 @@
 import { HorizontalStartIcon, HorizontalEndIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
@@ -33,7 +32,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "manualOptions",
         setterType: "OPTION_LIST_SETTER",
         bindAttrName: ["optionConfigureMode"],
-        shown: (value) => !value || value === "static",
+        shown: value => !value || value === "static",
         childrenSetter: [
           {
             id: `${baseWidgetName}-options-label`,
@@ -64,7 +63,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         bindAttrName: ["optionConfigureMode"],
         expectedType: VALIDATION_TYPES.ARRAY,
-        shown: (value) => value === "dynamic",
+        shown: value => value === "dynamic",
         isSetterSingleRow: true,
       },
       {
@@ -75,7 +74,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "mappedOption",
         setterType: "OPTION_MAPPED_SETTER",
         bindAttrName: ["optionConfigureMode"],
-        shown: (value) => value === "dynamic",
+        shown: value => value === "dynamic",
         childrenSetter: [
           {
             id: `${baseWidgetName}-mappedOption-labels`,
@@ -152,7 +151,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.right"), value: "right" },
@@ -164,7 +163,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -182,7 +181,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelWidth",
         setterType: "INPUT_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         expectedType: VALIDATION_TYPES.NUMBER,
       },
     ],
@@ -287,7 +286,6 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
             attrName: "colorScheme",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "blue",
-            options: colorSchemeOptions,
           },
         ],
       },

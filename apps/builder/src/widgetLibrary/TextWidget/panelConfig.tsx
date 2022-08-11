@@ -7,7 +7,6 @@ import {
   VerticalStartIcon,
 } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
@@ -125,8 +124,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.text"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
-            defaultValue: "#787e85ff",
-            options: colorSchemeOptions,
+            defaultValue: "grayBlue",
           },
         ],
       },

@@ -1,15 +1,14 @@
-import { globalColor, illaPrefix } from "@illa-design/theme"
-
 export const colorSchemes = [
-  "blue",
   "white",
-  "gray",
+  "blackAlpha",
+  "grayBlue",
   "red",
-  "green",
-  "yellow",
   "orange",
+  "yellow",
+  "green",
+  "blue",
   "cyan",
   "purple",
+  "techPurple",
+  "techPink",
 ]
-
-export const colorSchemeOptions = []

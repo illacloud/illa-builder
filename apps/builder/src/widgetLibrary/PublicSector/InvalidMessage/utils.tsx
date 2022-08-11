@@ -4,7 +4,6 @@ export const handleValidateCheck = (
   props?: ValidateCheckProps,
 ): string | undefined => {
   if (!props || props.value === undefined) return
-  // todo @aoao 最大值和最小值校验
   if (props.required && props.value.length === 0) {
     return invalidMessage.get("required")
   }
@@ -34,8 +33,7 @@ export const handleValidateCheck = (
 }
 
 const validateEmail = (email: string) => {
-  const str =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const str = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   const emailMatchPattern = new RegExp(str)
   return emailMatchPattern.test(email) ? undefined : invalidMessage.get("email")
 }

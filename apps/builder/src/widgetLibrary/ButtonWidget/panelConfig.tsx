@@ -1,5 +1,4 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { colorSchemeOptions } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
@@ -30,18 +29,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
           BUTTON_EVENT_HANDLER_CONFIG.events,
         ),
       },
-      // TODO: wait form container
-      // {
-      //   id: `${baseWidgetName}-interaction-type`,
-      //   labelName: i18n.t("editor.inspect.setter_label.type"),
-      //   labelDesc: i18n.t("xxxxx"),
-      //   attrName: "submit",
-      //   setterType: "RADIO_GROUP_SETTER",
-      //   options: [
-      //     { label: "Default", value: false },
-      //     { label: "Submit", value: true },
-      //   ],
-      // },
       {
         id: `${baseWidgetName}-interaction-formId`,
         labelName: i18n.t("editor.inspect.setter_label.submit_form"),
@@ -49,7 +36,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         attrName: "formId",
         setterType: "INPUT_SETTER",
         bindAttrName: ["submit"],
-        shown: (value) => value === true,
+        shown: value => value === true,
       },
       {
         id: `${baseWidgetName}-interaction-loading`,
@@ -60,7 +47,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
-        shown: (value) => {
+        shown: value => {
           return value === false
         },
       },
@@ -73,7 +60,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
-        shown: (value) => value === false,
+        shown: value => value === false,
       },
     ],
   },
@@ -139,7 +126,6 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
             defaultValue: "#134ae0",
-            options: colorSchemeOptions,
           },
         ],
       },
