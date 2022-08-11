@@ -453,6 +453,7 @@
         "data": "DATA"
       },
       "setter_label": {
+        "layout": "Layout",
         "success": "Success",
         "failure": "Failure",
         "font_size": "Font size",

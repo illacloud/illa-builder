@@ -452,6 +452,7 @@
         "data": "数据"
       },
       "setter_label": {
+        "layout": "布局",
         "success": "请求成功",
         "failure": "请求失败",
         "font_size": "字号",
@@ -542,7 +543,7 @@
         "data_source": "数据源",
         "chart_type": "图表类型",
         "x_values": "X轴值",
-        "group_by": "分组",
+        "group_by": "分组标签",
         "datasets": "数据集",
         "dataset_config": "数据集配置",
         "title": " 标题",

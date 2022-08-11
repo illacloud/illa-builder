@@ -74,7 +74,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-chartJson`,
-        labelName: i18n.t("editor.inspect.setter_label.layout"),
+        labelName: i18n.t("editor.inspect.setter_label.data_source"),
         isSetterSingleRow: true,
         attrName: "layoutJson",
         setterType: "TEXT_AREA",
