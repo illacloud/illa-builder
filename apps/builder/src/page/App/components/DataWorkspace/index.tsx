@@ -1,7 +1,6 @@
 import { FC, HTMLAttributes, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { Scrollbars } from "react-custom-scrollbars"
 import {
   getCanvas,
   searchDsl,
@@ -49,30 +48,28 @@ export const DataWorkspace: FC<DataWorkspaceProps> = props => {
 
   return (
     <div className={className}>
-      <Scrollbars autoHide>
-        <WorkSpaceTree
-          title={`${t("editor.data_work_space.actions_title")}(${
-            actionExecutionArray.length
-          })`}
-          dataList={actionExecutionArray}
-          selectedKeys={[selectedAction?.displayName ?? ""]}
-          handleSelect={handleActionSelect}
-        />
-        <WorkSpaceTree
-          title={`${t("editor.data_work_space.components_title")}(${
-            widgetExecutionArray.length
-          })`}
-          dataList={widgetExecutionArray}
-          selectedKeys={selectedComponents}
-          handleSelect={handleComponentSelect}
-        />
-        <WorkSpaceTree
-          title={`${t("editor.data_work_space.globals_title")}(${
-            globalInfoList.length
-          })`}
-          dataList={globalInfoList}
-        />
-      </Scrollbars>
+      <WorkSpaceTree
+        title={`${t("editor.data_work_space.actions_title")}(${
+          actionExecutionArray.length
+        })`}
+        dataList={actionExecutionArray}
+        selectedKeys={[selectedAction?.displayName ?? ""]}
+        handleSelect={handleActionSelect}
+      />
+      <WorkSpaceTree
+        title={`${t("editor.data_work_space.components_title")}(${
+          widgetExecutionArray.length
+        })`}
+        dataList={widgetExecutionArray}
+        selectedKeys={selectedComponents}
+        handleSelect={handleComponentSelect}
+      />
+      <WorkSpaceTree
+        title={`${t("editor.data_work_space.globals_title")}(${
+          globalInfoList.length
+        })`}
+        dataList={globalInfoList}
+      />
     </div>
   )
 }
