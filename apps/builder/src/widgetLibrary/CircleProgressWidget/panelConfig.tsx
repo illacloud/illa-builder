@@ -18,7 +18,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-Value`,
         labelName: i18n.t("editor.inspect.setter_label.value"),
-        labelDesc: i18n.t("editor.inspect.setter_label.progress_percentage"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.progress_percentage"),
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,

@@ -17,12 +17,10 @@ import { EventActionTypeSelect } from "@/page/App/components/PanelSetters/Select
 import { ColorPickerSetter } from "@/page/App/components/PanelSetters/ColorPickerSetter"
 import { TextAreaInput } from "@/page/App/components/PanelSetters/InputSetter/textArea"
 import { DynamicSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/dynamicSelect"
-import { ChartDataSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSetter"
-import { RemoveDatasetButton } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/removeDatasetButton"
-import { DataSetColorListSetter } from "@/page/App/components/PanelSetters/ChartSetter/DatasetsSetter/colorSetter"
 import { AllowClearSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/AllowClearSelectSetter"
 import { EditableInputSetter } from "@/page/App/components/PanelSetters/InputSetter/editableInputSetter"
 import { CalcSelfInput } from "@/page/App/components/PanelSetters/InputSetter/calcSelfInput"
+import { ChartSetter } from "@/page/App/components/PanelSetters/ChartSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -44,9 +42,7 @@ const SetterTypeMapSetter = {
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
   DYNAMIC_SELECT_SETTER: DynamicSelectSetter,
   TEXT_AREA: TextAreaInput,
-  CHART_DATA_SETTER: ChartDataSetter,
-  CHART_LINE_COLOR_LIST_SETTER: DataSetColorListSetter,
-  CHART_REMOVE_BUTTON: RemoveDatasetButton,
+  CHART_DATA_SETTER: ChartSetter,
   ALLOW_CLEAR_SELECT_SETTER: AllowClearSelectSetter,
   EDITABLE_INPUT_SETTER: EditableInputSetter,
   CALC_SELF_INPUT_SETTER: CalcSelfInput,

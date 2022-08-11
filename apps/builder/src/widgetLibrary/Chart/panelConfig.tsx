@@ -1,9 +1,5 @@
 import { XAXISTYPE } from "./interface"
-import {
-  PanelConfig,
-  PanelFieldConfig,
-} from "@/page/App/components/InspectPanel/interface"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   HorizontalEndIcon,
   HorizontalStartIcon,
@@ -14,71 +10,11 @@ import {
 import i18n from "@/i18n/config"
 
 const baseWidgetName = "chart"
-export const CHART_DATASET_CONFIG: PanelFieldConfig[] = [
-  {
-    id: "dataset-name",
-    labelName: i18n.t("editor.inspect.setter_label.dataset.name"),
-    attrName: "name",
-    setterType: "INPUT_SETTER",
-    isSetterSingleRow: true,
-  },
-  {
-    id: "dataset-values",
-    labelName: i18n.t("editor.inspect.setter_label.dataset.value"),
-    attrName: "values",
-    setterType: "INPUT_SETTER",
-    isSetterSingleRow: true,
-    expectedType: VALIDATION_TYPES.ARRAY,
-  },
-  {
-    id: "dataset-type",
-    labelName: i18n.t("editor.inspect.setter_label.type"),
-    attrName: "type",
-    setterType: "BASE_SELECT_SETTER",
-    options: [
-      {
-        label: "Bar Chart",
-        value: "bar",
-      },
-      {
-        label: "Line Chart",
-        value: "line",
-      },
-      {
-        label: "Scatterplot",
-        value: "scatter",
-      },
-    ],
-    isSetterSingleRow: true,
-  },
-  {
-    id: "dataset-toolTip",
-    labelName: i18n.t("editor.inspect.setter_label.tooltip"),
-    attrName: "toolTip",
-    setterType: "INPUT_SETTER",
-    isSetterSingleRow: true,
-  },
-  {
-    id: "dataset-lineColor",
-    labelName: i18n.t("editor.inspect.setter_label.color"),
-    attrName: "lineColor",
-    setterType: "CHART_LINE_COLOR_LIST_SETTER",
-    isSetterSingleRow: true,
-    options: ["#fff", "#000", "#454545"],
-  },
-  {
-    id: "dataset-remove",
-    useCustomLayout: true,
-    attrName: "remove",
-    setterType: "CHART_REMOVE_BUTTON",
-    isSetterSingleRow: true,
-  },
-]
 
 export const CHART_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,
-    groupName: i18n.t("DATA"),
+    groupName: i18n.t("editor.inspect.setter_group.data"),
     children: [
       {
         id: `${baseWidgetName}-data-config-type`,
@@ -95,31 +31,30 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
           },
         ],
       },
-
       {
         id: `${baseWidgetName}-chartJson`,
-        labelName: i18n.t("data"),
+        labelName: i18n.t("editor.inspect.setter_label.data"),
         isSetterSingleRow: true,
         attrName: "chartJson",
         setterType: "TEXT_AREA",
         bindAttrName: ["configType"],
-        shown: (value) => value === "JSON",
+        shown: value => value === "JSON",
       },
       {
         id: `${baseWidgetName}-data`,
-        labelName: i18n.t("X-axis values"),
+        labelName: i18n.t("editor.inspect.setter_label.x_values"),
         attrName: "xAxis",
         isSetterSingleRow: true,
         useCustomLayout: true,
         setterType: "CHART_DATA_SETTER",
         bindAttrName: "configType",
-        shown: (value) => value === "UIForm",
+        shown: value => value === "UIForm",
       },
     ],
   },
   {
     id: `${baseWidgetName}-layout`,
-    groupName: i18n.t("LAYOUT"),
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: `${baseWidgetName}-layout-config-type`,
@@ -139,12 +74,12 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-chartJson`,
-        labelName: i18n.t("Layout"),
+        labelName: i18n.t("editor.inspect.setter_label.layout"),
         isSetterSingleRow: true,
         attrName: "layoutJson",
         setterType: "TEXT_AREA",
         bindAttrName: ["layoutConfigType"],
-        shown: (value) => {
+        shown: value => {
           return value === "JSON"
         },
       },
@@ -155,7 +90,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         defaultValue: "chart",
         bindAttrName: ["layoutConfigType"],
-        shown: (value) => {
+        shown: value => {
           return value === "UIForm"
         },
       },
@@ -165,7 +100,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "xTitle",
         setterType: "INPUT_SETTER",
         bindAttrName: ["layoutConfigType"],
-        shown: (value) => {
+        shown: value => {
           return value === "UIForm"
         },
       },
@@ -177,7 +112,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "BASE_SELECT_SETTER",
         options: XAXISTYPE,
         bindAttrName: ["layoutConfigType"],
-        shown: (value) => {
+        shown: value => {
           return value === "UIForm"
         },
       },
@@ -187,7 +122,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "yTitle",
         setterType: "INPUT_SETTER",
         bindAttrName: ["layoutConfigType"],
-        shown: (value) => {
+        shown: value => {
           return value === "UIForm"
         },
       },
@@ -198,7 +133,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         isSetterSingleRow: true,
         bindAttrName: ["type"],
-        shown: (value) => {
+        shown: value => {
           return value !== "pie"
         },
         options: [
