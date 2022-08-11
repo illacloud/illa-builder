@@ -25,7 +25,7 @@ export const logoStyle: SerializedStyles = css`
 export const introductionStyle: SerializedStyles = css`
   font-size: 34px;
   margin-top: 37.5vh;
-  font-weight: bold;
+  font-weight: 500;
   height: 40px;
   color: ${globalColor(`--${illaPrefix}-white-01`)};
 `
@@ -61,7 +61,7 @@ export const gridValidStyle: SerializedStyles = css`
 export const formTitleStyle: SerializedStyles = css`
   font-size: 24px;
   line-height: 32px;
-  font-weight: bold;
+  font-weight: 500;
   color: ${globalColor(`--${illaPrefix}-gray-02`)};
 `
 

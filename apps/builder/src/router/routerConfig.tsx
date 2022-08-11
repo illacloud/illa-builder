@@ -68,7 +68,7 @@ export const routerConfig: RoutesObjectPro[] = [
     ],
   },
   {
-    path: "/app/:appId/version/:versionId",
+    path: "/app/:appId",
     element: <Editor />,
     needLogin: true,
   },

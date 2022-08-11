@@ -15,7 +15,8 @@ import { IllaMode } from "@/redux/config/configState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 
 export const useInitBuilderApp = (model: IllaMode) => {
-  let { appId, versionId } = useParams()
+  // editor default version id == 0
+  let { appId, versionId = 0 } = useParams()
   const dispatch = useDispatch()
 
   const [loadingState, setLoadingState] = useState(true)
@@ -28,7 +29,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
         method: "GET",
         signal: controller.signal,
       },
-      (response) => {
+      response => {
         dispatch(configActions.updateIllaMode(model))
         dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
         dispatch(
@@ -52,10 +53,10 @@ export const useInitBuilderApp = (model: IllaMode) => {
           ),
         )
         dispatch(executionActions.startExecutionReducer())
-        const autoRunAction = response.data.actions.filter((item) => {
+        const autoRunAction = response.data.actions.filter(item => {
           return item.triggerMode === "automate"
         })
-        autoRunAction.forEach((item) => {
+        autoRunAction.forEach(item => {
           runAction(item)
         })
 
@@ -63,9 +64,9 @@ export const useInitBuilderApp = (model: IllaMode) => {
           dispatch(configActions.changeSelectedAction(response.data.actions[0]))
         }
       },
-      (e) => {},
-      (e) => {},
-      (loading) => {
+      e => {},
+      e => {},
+      loading => {
         setLoadingState(loading)
       },
     )

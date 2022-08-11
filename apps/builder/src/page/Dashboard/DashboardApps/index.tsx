@@ -116,7 +116,7 @@ export const DashboardApps: FC = () => {
     )
   }
 
-  // duplicate funciton
+  // duplicate function
   const showDuplicateModal = () => {
     setDuplicateModalVisible(true)
   }
@@ -167,7 +167,7 @@ export const DashboardApps: FC = () => {
             app: response.data,
           }),
         )
-        navigate(`/app/${response.data.appId}/version/0`)
+        navigate(`/app/${response.data.appId}`)
       },
       failure => {},
       error => {},
@@ -224,7 +224,7 @@ export const DashboardApps: FC = () => {
                         className="editButton"
                         colorScheme="techPurple"
                         onClick={() => {
-                          navigate(`/app/${item.appId}/version/0`)
+                          navigate(`/app/${item.appId}`)
                         }}
                         title="editButton"
                         opacity={0}
@@ -263,7 +263,7 @@ export const DashboardApps: FC = () => {
                       .tz(dayjs.tz.guess())
                       .format("YYYY-MM-DD HH:mm:ss")}`}
                     onClick={() => {
-                      navigate(`/app/${item.appId}/version/0`)
+                      navigate(`/app/${item.appId}`)
                     }}
                   />
                 </ListItem>
@@ -349,7 +349,6 @@ export const DashboardApps: FC = () => {
           />
         </Modal>
       )}
-      {/* Duplicate Modal */}
       {sortedAppsList.length !== 0 && (
         <Modal
           simple

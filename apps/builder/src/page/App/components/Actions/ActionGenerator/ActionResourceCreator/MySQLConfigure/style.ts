@@ -154,8 +154,7 @@ export const requiredLabelTextStyle = css`
   &:before {
     content: "*";
     margin-right: 5px;
-    //margin-top: 3px;
-    font-weight: bold;
+    font-weight: 500;
     color: ${globalColor(`--${illaPrefix}-red-03`)};
   }
 `

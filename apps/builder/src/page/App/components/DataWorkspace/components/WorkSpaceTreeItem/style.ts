@@ -5,7 +5,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
 
 export const itemNameStyle: SerializedStyles = css`
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   overflow: hidden;
