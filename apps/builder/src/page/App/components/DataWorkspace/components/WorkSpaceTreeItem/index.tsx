@@ -1,4 +1,4 @@
-import { FC, memo } from "react"
+import { FC, memo, useMemo } from "react";
 import { CaretRightIcon } from "@illa-design/icon"
 import { motion } from "framer-motion"
 import { WorkSpaceTreeItemProps } from "./interface"
@@ -21,6 +21,19 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo((props) => {
   const isExpanded = expandedKeys.includes(title)
   const dispatch = useDispatch()
   const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
+
+  const tree = useMemo(() => {
+    return keyArr.map((name) => (
+        <WorkSpaceTreeNode
+          key={name}
+          name={name}
+          value={data[name]}
+          itemKey={title + name}
+          level={0}
+        />
+      ))
+  },[keyArr])
+
   return (
     <div
       onClick={() => {
@@ -54,15 +67,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo((props) => {
         initial={false}
         transition={{ duration: 0.2 }}
       >
-        {keyArr.map((name) => (
-          <WorkSpaceTreeNode
-            key={name}
-            name={name}
-            value={data[name]}
-            itemKey={title + name}
-            level={0}
-          />
-        ))}
+        {tree}
       </motion.div>
     </div>
   )

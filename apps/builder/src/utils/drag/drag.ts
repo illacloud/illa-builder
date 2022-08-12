@@ -15,9 +15,6 @@ export function startDrag(dragNode: ComponentNode, exist: boolean) {
       isDragging: true,
     }),
   )
-  if (exist) {
-    store.dispatch(configActions.updateSelectedComponent([dragNode]))
-  }
 }
 
 export function endDrag(dragNode: ComponentNode) {
@@ -28,6 +25,7 @@ export function endDrag(dragNode: ComponentNode) {
       isDragging: false,
     }),
   )
+  store.dispatch(configActions.updateSelectedComponent([dragNode]))
   // remove dotted line square
   store.dispatch(
     dottedLineSquareActions.removeDottedLineSquareReducer(dragNode.displayName),
