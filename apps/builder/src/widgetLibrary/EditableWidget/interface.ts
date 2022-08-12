@@ -1,5 +1,7 @@
 import { InputProps } from "@illa-design/input"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export interface WrappedEditableTextProps
   extends Pick<
@@ -21,4 +23,6 @@ export interface WrappedEditableTextProps
 
 export interface EditableTextWidgetProps
   extends WrappedEditableTextProps,
-    BaseWidgetProps {}
+    BaseWidgetProps,
+    LabelProps,
+    ValidateMessageProps {}

@@ -1,10 +1,10 @@
-import Label from "@/widgetLibrary/PublicSector/Label"
-import { FC, useMemo } from "react"
+import { FC, memo, useMemo } from "react"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { LabelWrapperProps } from "./interface"
 import { applyLabelWrapperStyle } from "./style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-const LabelWrapper: FC<LabelWrapperProps> = props => {
+const LabelWrapper: FC<LabelWrapperProps> = (props) => {
   const {
     children,
     label,
@@ -13,33 +13,39 @@ const LabelWrapper: FC<LabelWrapperProps> = props => {
     labelPosition,
     labelCaption,
     labelWidthUnit,
+    labelHidden,
+    labelFull,
     tooltipText,
     required,
   } = props
 
-  const labelToolTipsPosition = useMemo(
-    () => (labelAlign === "left" ? "tl" : "tr"),
-    [labelAlign],
-  )
-
-  return (
-    <div css={applyLabelWrapperStyle(labelPosition, !!label)}>
-      <TooltipWrapper
-        tooltipText={tooltipText}
-        disabled={!label || !tooltipText}
-        position={labelToolTipsPosition}
-      >
-        <Label
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
-          hasTooltip={!!tooltipText}
-          required={required}
-        />
-      </TooltipWrapper>
+  const renderContent = useMemo(() => {
+    if (label) {
+      return (
+        <>
+          <TooltipWrapper
+            tooltipText={tooltipText}
+            disabled={!label || !tooltipText}
+            position="tl"
+          >
+            <Label
+              labelFull={labelFull}
+              label={label}
+              labelAlign={labelAlign}
+              labelWidth={labelWidth}
+              labelCaption={labelCaption}
+              labelWidthUnit={labelWidthUnit}
+              labelPosition={labelPosition}
+              required={required}
+              labelHidden={labelHidden}
+              hasTooltip={!!tooltipText}
+            />
+          </TooltipWrapper>
+          {children}
+        </>
+      )
+    }
+    return (
       <TooltipWrapper
         tooltipText={tooltipText}
         disabled={!!label || !tooltipText}
@@ -47,7 +53,22 @@ const LabelWrapper: FC<LabelWrapperProps> = props => {
       >
         {children}
       </TooltipWrapper>
-    </div>
-  )
+    )
+  }, [
+    children,
+    label,
+    labelAlign,
+    labelWidth,
+    labelPosition,
+    labelCaption,
+    labelWidthUnit,
+    labelHidden,
+    labelFull,
+    tooltipText,
+    required,
+  ])
+
+  return renderContent
 }
-export default LabelWrapper
+
+export const MemoLabelWrapper = memo(LabelWrapper)

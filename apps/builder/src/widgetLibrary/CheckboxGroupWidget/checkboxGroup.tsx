@@ -5,6 +5,9 @@ import {
   WrappedCheckboxGroupProps,
 } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   const {
@@ -47,6 +50,16 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -86,7 +99,26 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     displayName,
     finalOptions,
   ])
-  return <WrappedCheckbox {...props} options={finalOptions} />
+
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
+        <Label
+          labelFull={labelFull}
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          required={required}
+          labelHidden={labelHidden}
+          hasTooltip={!!tooltipText}
+        />
+        <WrappedCheckbox {...props} options={finalOptions} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 
 CheckboxWidget.displayName = "CheckboxWidget"

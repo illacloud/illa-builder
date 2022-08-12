@@ -1,5 +1,7 @@
 import { CheckboxGroupProps } from "@illa-design/checkbox"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedCheckboxGroupProps
   extends Pick<
@@ -12,7 +14,9 @@ export interface WrappedCheckboxGroupProps
 
 export interface CheckboxGroupWidgetProps
   extends WrappedCheckboxGroupProps,
-    BaseWidgetProps {
+    BaseWidgetProps,
+    LabelProps,
+    TooltipWrapperProps {
   optionConfigureMode?: "dynamic" | "static"
   manualOptions?: {
     label: string

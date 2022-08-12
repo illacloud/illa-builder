@@ -1,5 +1,8 @@
 import { InputNumberProps } from "@illa-design/input-number"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export interface WrappedNumberInputProps
   extends Pick<
@@ -22,4 +25,7 @@ export interface WrappedNumberInputProps
 
 export interface NumberInputWidgetProps
   extends WrappedNumberInputProps,
-    BaseWidgetProps {}
+    BaseWidgetProps,
+    LabelProps,
+    TooltipWrapperProps,
+    ValidateMessageProps {}

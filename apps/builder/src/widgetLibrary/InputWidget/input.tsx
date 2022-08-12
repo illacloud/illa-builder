@@ -1,7 +1,13 @@
 import { FC, forwardRef, useEffect, useRef } from "react"
 import { Input } from "@illa-design/input"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
-import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
   (props, ref) => {
@@ -69,6 +75,20 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     allowClear,
     minLength,
     maxLength,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
+    pattern,
+    regex,
+    customRule,
+    hideValidationMessage,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -120,9 +140,44 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     maxLength,
   ])
   return (
-    <div css={autoWidthContainerStyle}>
-      <WrappedInput {...props} ref={inputRef} />
-    </div>
+    <>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedInput {...props} ref={inputRef} />
+        </div>
+      </TooltipWrapper>
+
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
+        <InvalidMessage
+          value={value}
+          pattern={pattern}
+          regex={regex}
+          minLength={minLength}
+          maxLength={maxLength}
+          required={required}
+          customRule={customRule}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
+    </>
   )
 }
 

@@ -1,7 +1,8 @@
 import { FC, useEffect } from "react"
 import { Button } from "@illa-design/button"
 import { ButtonWidgetProps, WrappedButtonProps } from "./interface"
-import { buttonLayoutStyle } from "./style"
+import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedButton: FC<WrappedButtonProps> = (props) => {
   const {
@@ -17,22 +18,20 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
   } = props
 
   return (
-    <div css={buttonLayoutStyle}>
-      <Button
-        disabled={disabled}
-        variant={variant}
-        buttonRadius={borderRadius}
-        leftIcon={leftIcon}
-        rightIcon={rightIcon}
-        loading={loading}
-        fullWidth
-        fullHeight
-        onClick={handleOnClick}
-        textColor={variant === "outline" ? colorScheme : "#FFF"}
-      >
-        {text}
-      </Button>
-    </div>
+    <Button
+      disabled={disabled}
+      variant={variant}
+      buttonRadius={borderRadius}
+      leftIcon={leftIcon}
+      rightIcon={rightIcon}
+      loading={loading}
+      fullWidth
+      fullHeight
+      onClick={handleOnClick}
+      textColor={variant === "outline" ? colorScheme : "#FFF"}
+    >
+      {text}
+    </Button>
   )
 }
 
@@ -51,6 +50,7 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
+    tooltipText,
   } = props
 
   useEffect(() => {
@@ -77,7 +77,13 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     loading,
     colorScheme,
   ])
-  return <WrappedButton {...props} />
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={buttonLayoutStyle}>
+        <WrappedButton {...props} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 
 ButtonWidget.displayName = "ButtonWidget"

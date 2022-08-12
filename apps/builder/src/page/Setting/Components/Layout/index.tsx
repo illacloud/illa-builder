@@ -2,7 +2,7 @@ import { FC } from "react"
 import {
   layoutStyle,
   layoutWrapperStyle,
-} from "@/page/Setting/components/Layout/style"
+} from "@/page/Setting/Components/Layout/style"
 
 export const SettingLayout: FC = (props) => {
   const { children } = props

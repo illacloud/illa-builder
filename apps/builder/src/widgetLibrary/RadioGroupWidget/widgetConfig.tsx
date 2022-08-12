@@ -11,7 +11,7 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Radio Group", "单选框组"],
   sessionType: "SELECT",
   w: 20,
-  h: 5,
+  h: 4,
   defaults: {
     optionConfigureMode: "static",
     label: "Label",

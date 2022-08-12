@@ -1,20 +1,22 @@
 import { Tooltip } from "@illa-design/tooltip"
-import { FC } from "react"
+import { FC, memo } from "react"
 import { TooltipWrapperProps } from "./interface"
 import { Text } from "@/widgetLibrary/TextWidget"
 
-export const TooltipWrapper: FC<TooltipWrapperProps> = props => {
-  const { children, tooltipText, disabled, position = "tl" } = props
+export const TooltipWrapper: FC<TooltipWrapperProps> = memo((props) => {
+  const { children, tooltipText, tooltipDisabled } = props
+
   return (
     <Tooltip
       content={<Text value={tooltipText} colorScheme="white" />}
       colorScheme="grayBlue"
-      disabled={disabled}
-      position={position}
+      disabled={tooltipDisabled}
+      position="tl"
       showArrow={false}
       autoFitPosition={false}
+      trigger="hover"
     >
       {children}
     </Tooltip>
   )
-}
+})

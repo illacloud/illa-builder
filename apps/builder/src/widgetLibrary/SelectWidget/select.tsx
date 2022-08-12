@@ -2,7 +2,9 @@ import { FC, useEffect, useMemo } from "react"
 import { Select } from "@illa-design/select"
 import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
-import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   const {
@@ -58,6 +60,16 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -108,9 +120,23 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     manualOptions,
   ])
   return (
-    <div css={autoWidthContainerStyle}>
-      <WrappedSelect {...props} options={finalOptions} />
-    </div>
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+        <Label
+          labelFull={labelFull}
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          required={required}
+          labelHidden={labelHidden}
+          hasTooltip={!!tooltipText}
+        />
+        <WrappedSelect {...props} options={finalOptions} />
+      </div>
+    </TooltipWrapper>
   )
 }
 SelectWidget.displayName = "SelectWidget"

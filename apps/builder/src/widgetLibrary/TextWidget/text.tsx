@@ -1,12 +1,13 @@
 import { FC, useEffect } from "react"
 import { TextProps, TextWidgetProps } from "./interface"
 import { Paragraph, Text as ILLAText } from "@illa-design/typography"
-import { applyAlignStyle } from "./style"
+import { applyAlignStyle, fullWidthAndFullHeightStyle } from "./style"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { Link } from "@illa-design/link"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const Text: FC<TextProps> = props => {
+export const Text: FC<TextProps> = (props) => {
   const {
     value,
     horizontalAlign,
@@ -46,7 +47,7 @@ export const Text: FC<TextProps> = props => {
 
 Text.displayName = "Text"
 
-export const TextWidget: FC<TextWidgetProps> = props => {
+export const TextWidget: FC<TextWidgetProps> = (props) => {
   const {
     value,
     horizontalAlign,
@@ -55,6 +56,7 @@ export const TextWidget: FC<TextWidgetProps> = props => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    tooltipText,
   } = props
 
   useEffect(() => {
@@ -74,7 +76,13 @@ export const TextWidget: FC<TextWidgetProps> = props => {
       handleDeleteGlobalData(displayName)
     }
   }, [displayName, value, horizontalAlign, verticalAlign])
-  return <Text {...props} />
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={fullWidthAndFullHeightStyle}>
+        <Text {...props} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 
 TextWidget.displayName = "TextWidget"

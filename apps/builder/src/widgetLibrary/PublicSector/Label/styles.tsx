@@ -17,6 +17,7 @@ function applyLeftLabelStyle(
   full?: boolean,
 ): SerializedStyles {
   const isOnLeft = position === "left"
+  const hasWidth = !!w
   const marginCss = isOnLeft
     ? css`
         margin-right: 8px;
@@ -28,10 +29,11 @@ function applyLeftLabelStyle(
     ${baseLabelCss};
     overflow: hidden;
     align-self: center;
-    min-width: ${w};
+    width: ${hasWidth ? w : 0};
+    min-width: ${hasWidth ? w : 0};
     flex-grow: ${full ? 1 : 0};
     text-align: ${alignment};
-    ${marginCss}
+    ${hasWidth && marginCss}
   `
 }
 

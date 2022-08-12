@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import { WorkSpaceTreeNodeProps } from "@/page/App/components/DataWorkspace/components/WorkSpaceTreeItem/interface"
 import { useDispatch, useSelector } from "react-redux"
 import { getExpandedKeys } from "@/redux/config/configSelector"
@@ -30,13 +30,13 @@ export const renderJsonValue = (value: any) => {
   }
 }
 
-export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = props => {
+export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo((props) => {
   const { name, value, itemKey, level = 0 } = props
   const expandedKeys = useSelector(getExpandedKeys)
   const isExpanded = expandedKeys.includes(itemKey)
   const dispatch = useDispatch()
   if (isObject(value) || isArray(value)) {
-    const keyArr = Object.keys(value).filter(item => !item.startsWith("$"))
+    const keyArr = Object.keys(value).filter((item) => !item.startsWith("$"))
     return (
       <div>
         <div
@@ -68,7 +68,7 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = props => {
           initial={false}
           transition={{ duration: 0.2 }}
         >
-          {keyArr.map(name => (
+          {keyArr.map((name) => (
             <WorkSpaceTreeNode
               key={name}
               name={name}
@@ -88,6 +88,6 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = props => {
       </div>
     )
   }
-}
+})
 
 WorkSpaceTreeNode.displayName = "WorkSpaceTreeNode"

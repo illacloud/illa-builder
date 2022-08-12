@@ -65,7 +65,7 @@ const ExtraColComponent: FC<{
   showFormVisible: () => void
   setCurId: (curResourceId: string) => void
   editActionType: () => void
-}> = props => {
+}> = (props) => {
   const { t } = useTranslation()
   const { resourceId, showFormVisible, setCurId, editActionType } = props
   return (
@@ -131,9 +131,7 @@ function CtimeColComponent(text: string) {
   const timezone = dayjs.tz.guess()
   return (
     <span css={tableInfoTextStyle}>
-      {dayjs(text)
-        .tz(timezone)
-        .format("YYYY-MM-DD HH:mm:ss")}
+      {dayjs(text).tz(timezone).format("YYYY-MM-DD HH:mm:ss")}
     </span>
   )
 }

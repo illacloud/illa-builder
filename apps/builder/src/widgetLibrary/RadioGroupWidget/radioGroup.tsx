@@ -2,6 +2,9 @@ import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
+import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
   const { value, disabled, options, direction, colorScheme, handleUpdateDsl } =
@@ -36,6 +39,16 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -75,6 +88,24 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     manualOptions,
     mappedOption,
   ])
-  return <WrappedRadioGroup {...props} options={finalOptions} />
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
+        <Label
+          labelFull={labelFull}
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          required={required}
+          labelHidden={labelHidden}
+          hasTooltip={!!tooltipText}
+        />
+        <WrappedRadioGroup {...props} options={finalOptions} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 RadioGroupWidget.displayName = "RadioGroupWidget"

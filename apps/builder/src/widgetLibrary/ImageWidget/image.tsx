@@ -1,23 +1,27 @@
-import { useMemo, FC, useEffect } from "react"
+import { useMemo, FC, useEffect, forwardRef, useRef } from "react"
 import { Image } from "@illa-design/image"
 import { isValidUrlScheme } from "@/utils/typeHelper"
 import { ImageWidgetProps, WrappedImageProps } from "./interface"
 import { ImageWrapperStyle } from "@/widgetLibrary/ImageWidget/style"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedImage: FC<WrappedImageProps> = (props) => {
-  const { imageSrc, altText, radius } = props
+export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
+  (props, ref) => {
+    const { imageSrc, altText, radius } = props
 
-  return (
-    <Image
-      fallbackSrc={imageSrc}
-      alt={altText}
-      radius={radius}
-      height="100%"
-      width="100%"
-      css={ImageWrapperStyle}
-    />
-  )
-}
+    return (
+      <Image
+        ref={ref}
+        fallbackSrc={imageSrc}
+        alt={altText}
+        radius={radius}
+        height="100%"
+        width="100%"
+        css={ImageWrapperStyle}
+      />
+    )
+  },
+)
 
 WrappedImage.displayName = "WrappedImage"
 
@@ -30,6 +34,7 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     handleDeleteGlobalData,
     handleUpdateGlobalData,
     displayName,
+    tooltipText,
   } = props
 
   useEffect(() => {
@@ -63,6 +68,12 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     return radius
   }, [radius])
 
-  return <WrappedImage {...props} imageSrc={finalSrc} radius={finalRadius} />
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={ImageWrapperStyle}>
+        <WrappedImage {...props} imageSrc={finalSrc} radius={finalRadius} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 ImageWidget.displayName = "ImageWidget"

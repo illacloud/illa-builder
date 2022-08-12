@@ -2,6 +2,8 @@ import { ReactNode } from "react"
 import { CommonRangeProps } from "@illa-design/date-picker"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedDateRangeProps
   extends Pick<CommonRangeProps, "disabled" | "readOnly" | "colorScheme"> {
@@ -23,4 +25,6 @@ export interface WrappedDateRangeProps
 
 export interface DateWidgetProps
   extends WrappedDateRangeProps,
-    BaseWidgetProps {}
+    BaseWidgetProps,
+    LabelProps,
+    TooltipWrapperProps {}
