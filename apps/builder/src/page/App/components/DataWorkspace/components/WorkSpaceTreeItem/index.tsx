@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import { CaretRightIcon } from "@illa-design/icon"
 import { motion } from "framer-motion"
 import { WorkSpaceTreeItemProps } from "./interface"
@@ -15,12 +15,12 @@ import { getExpandedKeys } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { WorkSpaceTreeNode } from "./WorkSpaceTreeNode"
 
-export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = props => {
+export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo((props) => {
   const { title, data, isSelected, handleSelect } = props
   const expandedKeys = useSelector(getExpandedKeys)
   const isExpanded = expandedKeys.includes(title)
   const dispatch = useDispatch()
-  const keyArr = Object.keys(data).filter(item => !item.startsWith("$"))
+  const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
   return (
     <div
       onClick={() => {
@@ -54,7 +54,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = props => {
         initial={false}
         transition={{ duration: 0.2 }}
       >
-        {keyArr.map(name => (
+        {keyArr.map((name) => (
           <WorkSpaceTreeNode
             key={name}
             name={name}
@@ -66,6 +66,6 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = props => {
       </motion.div>
     </div>
   )
-}
+})
 
 WorkSpaceTreeItem.displayName = "WorkSpaceTreeItem"

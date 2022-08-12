@@ -7,6 +7,13 @@ import {
 } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
   const {
@@ -92,6 +99,20 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateDsl,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
+    pattern,
+    regex,
+    customRule,
+    hideValidationMessage,
   } = props
 
   useEffect(() => {
@@ -136,9 +157,43 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     allowClear,
   ])
   return (
-    <div css={autoWidthContainerStyle}>
-      <WrappedEditableText {...props} />
-    </div>
+    <>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedEditableText {...props} />
+        </div>
+      </TooltipWrapper>
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
+        <InvalidMessage
+          value={value}
+          pattern={pattern}
+          regex={regex}
+          minLength={minLength}
+          maxLength={maxLength}
+          required={required}
+          customRule={customRule}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
+    </>
   )
 }
 EditableTextWidget.displayName = "EditableTextWidget"

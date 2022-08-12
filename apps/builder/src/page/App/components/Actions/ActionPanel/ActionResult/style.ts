@@ -14,7 +14,7 @@ export const resultWrapperStyle = css`
   align-items: center;
   flex: 1;
   line-height: 22px;
-  padding: 9px 16px ;
+  padding: 9px 16px;
 `
 
 export const errorResultWrapperStyle = css`

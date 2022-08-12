@@ -1,5 +1,6 @@
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import { TextProps as ILLATextProps } from "@illa-design/typography"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export type HorizontalAlign = "start" | "center" | "end"
 export type VerticalAlign = "start" | "center" | "end"
@@ -11,4 +12,7 @@ export interface TextProps extends ILLATextProps {
   verticalAlign?: VerticalAlign
 }
 
-export interface TextWidgetProps extends TextProps, BaseWidgetProps {}
+export interface TextWidgetProps
+  extends TextProps,
+    BaseWidgetProps,
+    TooltipWrapperProps {}

@@ -1,9 +1,9 @@
 import { FC, useEffect, useMemo } from "react"
 import { Rate } from "@illa-design/rate"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import { invalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 import { RateWidgetProps, WrappedRateProps } from "./interface"
-import { inputContainerCss } from "./style"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
   const {
@@ -26,7 +26,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
       readonly={readOnly}
       allowClear={allowClear}
       value={value}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({ value })
       }}
     />
@@ -35,7 +35,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
 
 WrappedRate.displayName = "WrappedRate"
 
-export const RateWidget: FC<RateWidgetProps> = props => {
+export const RateWidget: FC<RateWidgetProps> = (props) => {
   const {
     value,
     allowClear,
@@ -48,6 +48,16 @@ export const RateWidget: FC<RateWidgetProps> = props => {
     displayName,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
   } = props
 
   useEffect(() => {
@@ -81,6 +91,24 @@ export const RateWidget: FC<RateWidgetProps> = props => {
     allowHalf,
     maxCount,
   ])
-  return <WrappedRate {...props} />
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+        <Label
+          labelFull={labelFull}
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          required={required}
+          labelHidden={labelHidden}
+          hasTooltip={!!tooltipText}
+        />
+        <WrappedRate {...props} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 RateWidget.displayName = "RateWidget"

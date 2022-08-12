@@ -1,7 +1,9 @@
 import { forwardRef, useMemo, FC, useEffect } from "react"
 import { Progress } from "@illa-design/progress"
 import { WrappedBarProgressProps, BarProgressWidgetProps } from "./interface"
-import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
   (props, ref) => {
@@ -27,7 +29,7 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
 
 WrappedBarProgress.displayName = "WrappedBarProgress"
 
-export const BarProgressWidget: FC<BarProgressWidgetProps> = props => {
+export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
   const {
     value,
     showText,
@@ -38,6 +40,16 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = props => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
   } = props
 
   useEffect(() => {
@@ -60,7 +72,25 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = props => {
     }
   }, [value, showText, strokeWidth, color, trailColor, displayName])
 
-  return <WrappedBarProgress {...props} />
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
+        <Label
+          labelFull={labelFull}
+          label={label}
+          labelAlign={labelAlign}
+          labelWidth={labelWidth}
+          labelCaption={labelCaption}
+          labelWidthUnit={labelWidthUnit}
+          labelPosition={labelPosition}
+          required={required}
+          labelHidden={labelHidden}
+          hasTooltip={!!tooltipText}
+        />
+        <WrappedBarProgress {...props} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 
 BarProgressWidget.displayName = "BarProgressWidget"

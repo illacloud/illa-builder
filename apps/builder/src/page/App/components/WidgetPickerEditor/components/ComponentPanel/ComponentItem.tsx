@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import {
   dragPreviewStyle,
   iconStyle,
@@ -18,7 +18,7 @@ import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { useTranslation } from "react-i18next"
 
-export const ComponentItem: FC<ComponentItemProps> = (props) => {
+export const ComponentItem: FC<ComponentItemProps> = memo((props) => {
   const { widgetName, icon, id, ...partialDragInfo } = props
   const { t } = useTranslation()
 
@@ -56,6 +56,6 @@ export const ComponentItem: FC<ComponentItemProps> = (props) => {
       <span css={nameStyle}>{t(widgetName)}</span>
     </div>
   )
-}
+})
 
 ComponentItem.displayName = "ComponentItem"

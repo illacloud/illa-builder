@@ -1,5 +1,5 @@
 export interface ValidateMessageProps {
-  value?: string
+  value?: string | number
   pattern?: "Email" | "URL" | "Regex"
   regex?: string
   minLength?: number

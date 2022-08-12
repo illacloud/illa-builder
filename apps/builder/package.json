@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --mode cloud",
+    "dev": "vite --mode dev",
     "build-cloud": "vite build --mode cloud",
     "build-self": "vite build --mode self",
     "preview": "vite preview",
@@ -16,8 +16,7 @@
     "posttest": "yarn report:combined",
     "e2e": "npx cypress open-ct",
     "unit": "npx jest",
-    "lint": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "prepare": "husky install"
+    "lint": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -89,6 +88,7 @@
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-react": "^1.3.2",
+    "@welldone-software/why-did-you-render": "^7.0.1",
     "cypress": "^9.5.1",
     "husky": "^7.0.4",
     "jest": "^27.4.1",
@@ -102,16 +102,5 @@
     "vite-plugin-chunk-split": "^0.2.2",
     "vite-plugin-istanbul": "^2.7.3",
     "vite-plugin-svgr": "^2.1.0"
-  },
-  "workspaces": [
-    ".",
-    "illa-design/packages/*"
-  ],
-  "packageManager": "yarn@1.22.19",
-  "nyc": {
-    "report-dir": "cypress-coverage",
-    "reporter": [
-      "lcov"
-    ]
   }
 }

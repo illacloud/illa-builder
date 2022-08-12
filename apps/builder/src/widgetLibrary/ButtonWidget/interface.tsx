@@ -1,5 +1,6 @@
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import { ButtonProps } from "@illa-design/button"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedButtonProps
   extends Pick<
@@ -21,6 +22,9 @@ export interface WrappedButtonProps
   colorScheme?: string
 }
 
-export interface ButtonWidgetProps extends WrappedButtonProps, BaseWidgetProps {
+export interface ButtonWidgetProps
+  extends WrappedButtonProps,
+    BaseWidgetProps,
+    TooltipWrapperProps {
   handleOnclick: () => void
 }

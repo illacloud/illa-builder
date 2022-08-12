@@ -4,6 +4,8 @@ import {
   WrappedCircleProgressProps,
   CircleProgressWidgetProps,
 } from "./interface"
+import { applyContainerCss } from "@/widgetLibrary/CircleProgressWidget/style"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedCircleProgress = forwardRef<
   any,
@@ -43,7 +45,7 @@ export const WrappedCircleProgress = forwardRef<
 
 WrappedCircleProgress.displayName = "WrappedCircleProgress"
 
-export const CircleProgressWidget: FC<CircleProgressWidgetProps> = props => {
+export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
   const {
     value,
     showText,
@@ -54,10 +56,8 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = props => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
-    w,
-    h,
-    unitW,
-    unitH,
+    alignment,
+    tooltipText,
   } = props
 
   useEffect(() => {
@@ -80,7 +80,13 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = props => {
     }
   }, [value, showText, color, trailColor, strokeWidth, displayName])
 
-  return <WrappedCircleProgress {...props} />
+  return (
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div css={applyContainerCss(alignment)}>
+        <WrappedCircleProgress {...props} />
+      </div>
+    </TooltipWrapper>
+  )
 }
 
 CircleProgressWidget.displayName = "CircleProgressWidget"

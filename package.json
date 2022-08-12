@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "turbo run dev",
     "build-cloud": "turbo run build-cloud",
-    "build-self": "turbo run build-self"
+    "build-self": "turbo run build-self",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "turbo": "^1.1.1"

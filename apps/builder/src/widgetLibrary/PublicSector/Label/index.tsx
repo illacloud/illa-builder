@@ -1,4 +1,4 @@
-import { forwardRef, useMemo } from "react"
+import { forwardRef, useMemo, memo } from "react"
 import LabelProps from "./interface"
 import {
   applyLabelNameStyle,
@@ -8,19 +8,18 @@ import {
   labelTitleStyle,
 } from "./styles"
 
-const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
+export const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
   const {
     label,
     labelAlign = "left",
     labelCaption,
     labelPosition = "left",
     labelHidden,
-    labelWidth = 33,
+    labelWidth = 0,
     labelWidthUnit = "%",
     labelFull = false,
     required,
     hasTooltip = false,
-    ...rest
   } = props
 
   const renderLabelTitleRequired = useMemo(() => {
@@ -40,16 +39,17 @@ const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     return labelCaption ? <div css={labelCaptionCss}>{labelCaption}</div> : null
   }, [labelCaption])
 
+  const realLabelWidth = !labelWidth ? undefined : labelWidth + labelWidthUnit
+
   return !labelHidden && label ? (
     <label
       css={applyLabelStyle(
         labelPosition,
         labelAlign,
-        labelWidth + labelWidthUnit,
+        realLabelWidth,
         labelFull,
       )}
       ref={ref}
-      {...rest}
     >
       {renderLabelTitle}
       {renderLabelCaption}

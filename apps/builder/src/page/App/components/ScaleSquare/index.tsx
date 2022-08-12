@@ -1,4 +1,4 @@
-import { FC, useContext } from "react"
+import { FC, useContext, memo } from "react"
 import {
   DragResize,
   DragResizeCollected,
@@ -77,7 +77,7 @@ function getDragConfig(
   })
 }
 
-export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
+export const ScaleSquare = memo<ScaleSquareProps>((props) => {
   const { w, h, componentNode, className, ...otherProps } = props
 
   const { t } = useTranslation()
@@ -391,6 +391,6 @@ export const ScaleSquare: FC<ScaleSquareProps> = (props) => {
       </div>
     </Dropdown>
   )
-}
+})
 
 ScaleSquare.displayName = "ScaleSquare"

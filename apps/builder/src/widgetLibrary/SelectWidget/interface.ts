@@ -1,6 +1,8 @@
 import { SelectProps } from "@illa-design/select"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedSelectProps
   extends Omit<ValidateMessageProps, "value">,
@@ -25,7 +27,11 @@ export interface WrappedSelectProps
   handleUpdateDsl: (value: any) => void
 }
 
-export interface SelectWidgetProps extends WrappedSelectProps, BaseWidgetProps {
+export interface SelectWidgetProps
+  extends WrappedSelectProps,
+    BaseWidgetProps,
+    LabelProps,
+    TooltipWrapperProps {
   optionConfigureMode?: "dynamic" | "static"
   manualOptions?: {
     label: string

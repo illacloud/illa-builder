@@ -3,7 +3,8 @@ import {
   BaseComponentNodeProps,
   BaseWidgetProps,
 } from "@/widgetLibrary/interface"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 export type Alignment = "start" | "center" | "end"
 export interface WrappedCircleProgressProps
   extends Pick<
@@ -12,9 +13,12 @@ export interface WrappedCircleProgressProps
     >,
     BaseComponentNodeProps {
   value?: number
+  alignment?: "start" | "center" | "end"
 }
 
 export interface CircleProgressWidgetProps
   extends WrappedCircleProgressProps,
     BaseWidgetProps,
-    BaseComponentNodeProps {}
+    BaseComponentNodeProps,
+    LabelProps,
+    TooltipWrapperProps {}
