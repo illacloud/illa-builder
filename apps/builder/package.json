@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --mode cloud",
+    "dev": "vite --mode dev",
     "build-cloud": "vite build --mode cloud",
     "build-self": "vite build --mode self",
     "preview": "vite preview",
@@ -102,16 +102,5 @@
     "vite-plugin-chunk-split": "^0.2.2",
     "vite-plugin-istanbul": "^2.7.3",
     "vite-plugin-svgr": "^2.1.0"
-  },
-  "workspaces": [
-    ".",
-    "illa-design/packages/*"
-  ],
-  "packageManager": "yarn@1.22.19",
-  "nyc": {
-    "report-dir": "cypress-coverage",
-    "reporter": [
-      "lcov"
-    ]
   }
 }
