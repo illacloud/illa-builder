@@ -44,15 +44,8 @@
 //   them in the workerScript, simply leave this undefined.
 import CodeMirror from "codemirror"
 
-;(function (mod) {
-  if (typeof exports == "object" && typeof module == "object")
-    // CommonJS
-    mod(require("codemirror"))
-  else if (typeof define == "function" && define.amd)
-    // AMD
-    define(["codemirror"], mod)
-  // Plain browser env
-  else mod(CodeMirror)
+(function (mod) {
+  mod(CodeMirror)
 })(function (CodeMirror) {
   "use strict"
   // declare global: tern

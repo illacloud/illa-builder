@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react"
+import { FC, useCallback, useMemo, memo } from "react"
 import { isEqual, set, get } from "lodash"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
@@ -13,7 +13,7 @@ import {
 import { ResetIcon } from "@illa-design/icon"
 import { useTranslation } from "react-i18next"
 
-export const ListSetter: FC<ListSetterProps> = (props) => {
+export const ListSetter: FC<ListSetterProps> = memo((props) => {
   const {
     labelName,
     labelDesc,
@@ -74,6 +74,6 @@ export const ListSetter: FC<ListSetterProps> = (props) => {
       </div>
     </div>
   )
-}
+})
 
 ListSetter.displayName = "ListSetter"

@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useState, memo } from "react"
 import {
   panelBarHeaderStyle,
   applyPanelBarOpenedIconStyle,
@@ -10,7 +10,7 @@ import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import { UpIcon } from "@illa-design/icon"
 
-export const PanelBar: FC<PanelBarProps> = (props) => {
+export const PanelBar: FC<PanelBarProps> = memo((props) => {
   const { title, children, isOpened = true, saveToggleState } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
@@ -41,6 +41,6 @@ export const PanelBar: FC<PanelBarProps> = (props) => {
       </AnimatePresence>
     </>
   )
-}
+})
 
 PanelBar.displayName = "PanelBar"

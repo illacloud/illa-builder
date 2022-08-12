@@ -16,8 +16,7 @@
     "posttest": "yarn report:combined",
     "e2e": "npx cypress open-ct",
     "unit": "npx jest",
-    "lint": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "prepare": "husky install"
+    "lint": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -89,6 +88,7 @@
     "@types/uuid": "^8.3.4",
     "@types/ws": "^8.5.3",
     "@vitejs/plugin-react": "^1.3.2",
+    "@welldone-software/why-did-you-render": "^7.0.1",
     "cypress": "^9.5.1",
     "husky": "^7.0.4",
     "jest": "^27.4.1",

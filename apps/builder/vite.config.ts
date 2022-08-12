@@ -28,9 +28,9 @@ export default defineConfig({
       customSplitting: {
         "react-vendor": ["react", "react-dom"],
         "design-libs": ["@illa-design/react"],
-        "app-page": [/src\/page\/App/],
-        "dashboard-page": [/src\/page\/Dashboard/],
-        "setting-page": [/src\/page\/Setting/],
+        "app-page": [resolve(__dirname, "src/page/App")],
+        "dashboard-page": [resolve(__dirname, "src/page/Dashboard")],
+        "setting-page": [resolve(__dirname, "src/page/Setting")],
       },
     }),
   ],

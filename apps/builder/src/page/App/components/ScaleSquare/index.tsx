@@ -77,7 +77,7 @@ function getDragConfig(
   })
 }
 
-export const ScaleSquare: FC<ScaleSquareProps> = memo((props) => {
+export const ScaleSquare = memo<ScaleSquareProps>((props) => {
   const { w, h, componentNode, className, ...otherProps } = props
 
   const { t } = useTranslation()

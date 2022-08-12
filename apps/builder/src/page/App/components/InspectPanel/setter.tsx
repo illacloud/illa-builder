@@ -1,4 +1,4 @@
-import { FC, useContext, useMemo } from "react"
+import { useContext, useMemo, memo } from "react"
 import { get } from "lodash"
 import { applySetterWrapperStyle, applySetterPublicWrapperStyle } from "./style"
 import { PanelSetterProps } from "./interface"
@@ -7,7 +7,7 @@ import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const Setter: FC<PanelSetterProps> = (props) => {
+export const Setter = memo<PanelSetterProps>((props) => {
   const {
     setterType,
     isSetterSingleRow,
@@ -122,6 +122,6 @@ export const Setter: FC<PanelSetterProps> = (props) => {
       {renderSetter}
     </div>
   ) : null
-}
+})
 
 Setter.displayName = "Setter"
