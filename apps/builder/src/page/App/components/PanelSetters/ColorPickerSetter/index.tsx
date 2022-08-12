@@ -6,6 +6,7 @@ import { Button } from "@illa-design/button"
 import { applyCircleStyle } from "@/page/App/components/PanelSetters/ColorPickerSetter/style"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Text } from "@illa-design/typography"
 
 export const ColorPickerSetter: FC<any> = props => {
   const { attrName, handleUpdateDsl, value, isSetterSingleRow } = props
@@ -37,7 +38,7 @@ export const ColorPickerSetter: FC<any> = props => {
         colorScheme="grayBlue"
         leftIcon={<div css={applyCircleStyle(c)} />}
       >
-        {value}
+        <Text w="56px">{value}</Text>
       </Button>
     </Trigger>
   )

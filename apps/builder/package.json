@@ -72,7 +72,7 @@
     "@cypress/react": "^5.12.4",
     "@cypress/vite-dev-server": "^2.2.2",
     "@emotion/jest": "^11.7.1",
-    "@testing-library/cypress": "^8.0.2",
+    "@testing-library/cypress": "^8.0.3",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
