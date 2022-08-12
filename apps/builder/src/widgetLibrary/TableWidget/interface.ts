@@ -4,5 +4,6 @@ export interface WrappedTableProps {
 }
 
 export interface TableWidgetProps {
-  originData: Record<string, any>[] | Record<string, any[]>
+  originData: any[]
+  columns: any[]
 }

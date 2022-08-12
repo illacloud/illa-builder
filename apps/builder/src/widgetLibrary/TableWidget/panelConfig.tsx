@@ -8,9 +8,17 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.data"),
     children: [
       {
+        id: `${baseWidgetName}-basic-columns`,
+        labelName: i18n.t("editor.inspect.setter_label.columns"),
+        attrName: "columns",
+        isSetterSingleRow: true,
+        setterType: "INPUT_SETTER",
+      },
+      {
         id: `${baseWidgetName}-basic-data`,
         labelName: i18n.t("editor.inspect.setter_label.data"),
         attrName: "originData",
+        isSetterSingleRow: true,
         setterType: "INPUT_SETTER",
       },
     ],

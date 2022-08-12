@@ -452,6 +452,7 @@
         "data": "数据"
       },
       "setter_label": {
+        "columns": "列数据",
         "layout": "布局",
         "success": "请求成功",
         "failure": "请求失败",

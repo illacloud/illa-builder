@@ -453,6 +453,7 @@
         "data": "DATA"
       },
       "setter_label": {
+        "columns": "Columns",
         "layout": "Layout",
         "success": "Success",
         "failure": "Failure",
