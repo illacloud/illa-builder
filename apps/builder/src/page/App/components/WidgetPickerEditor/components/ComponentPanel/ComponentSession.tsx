@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import { ComponentSessionProps } from "./interface"
 import {
   componentListContainerStyle,
@@ -8,7 +8,7 @@ import {
 import { ComponentItem } from "./ComponentItem"
 import { useTranslation } from "react-i18next"
 
-export const ComponentSession: FC<ComponentSessionProps> = (props) => {
+export const ComponentSession: FC<ComponentSessionProps> = memo((props) => {
   const { title, widgetCardInfos } = props
   const { t } = useTranslation()
 
@@ -22,6 +22,6 @@ export const ComponentSession: FC<ComponentSessionProps> = (props) => {
       </div>
     </div>
   ) : null
-}
+})
 
 ComponentSession.displayName = "ComponentSession"

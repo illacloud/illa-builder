@@ -7,32 +7,23 @@ import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
-import { BasicWrapper } from "@/widgetLibrary/PublicSector/BasicWrapper"
-import Label from "@/widgetLibrary/PublicSector/Label"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
-import {
-  applyLabelAndComponentWrapperStyle,
-  applyValidateMessageWrapperStyle,
-} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
+import { applyHiddenWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
-  return events.filter(event => {
+  return events.filter((event) => {
     return event.eventType === eventType
   })
 }
 
-export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
+export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
   const { componentNode, ...otherProps } = props
 
   const { displayName, type, w, h, unitW, unitH } = componentNode
 
   const displayNameMapProps = useSelector(getExecutionResult)
-  const {
-    handleUpdateGlobalData,
-    handleDeleteGlobalData,
-    globalData,
-  } = useContext(GLOBAL_DATA_CONTEXT)
+  const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+    useContext(GLOBAL_DATA_CONTEXT)
   const dispatch = useDispatch()
 
   const realProps = displayNameMapProps[displayName] ?? {}
@@ -66,80 +57,34 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = props => {
   }
 
   const handleOnChange = () => {
-    getOnChangeEventScripts().forEach(scriptObj => {
+    getOnChangeEventScripts().forEach((scriptObj) => {
       runEventHandler(scriptObj, globalData)
     })
   }
 
   const handleOnClick = () => {
-    getOnClickEventScripts().forEach(scriptObj => {
+    getOnClickEventScripts().forEach((scriptObj) => {
       runEventHandler(scriptObj, globalData)
     })
   }
 
-  const {
-    alignment,
-    tooltipText,
-    label,
-    labelFull,
-    labelAlign,
-    labelWidth,
-    labelPosition,
-    labelCaption,
-    labelWidthUnit,
-    labelHidden,
-    required,
-    hidden,
-    value,
-    regex,
-    pattern,
-    minLength,
-    maxLength,
-    customRule,
-    hideValidationMessage,
-  } = realProps
+  const { hidden } = realProps
 
   return (
-    <BasicWrapper tooltipText={tooltipText} hidden={hidden}>
-      <div css={applyLabelAndComponentWrapperStyle(labelPosition, alignment)}>
-        <Label
-          labelFull={labelFull}
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
-          required={required}
-          labelHidden={labelHidden}
-          hasTooltip={!!tooltipText}
-        />
-        <COMP
-          {...realProps}
-          w={w}
-          h={h}
-          unitW={unitW}
-          unitH={unitH}
-          handleUpdateGlobalData={handleUpdateGlobalData}
-          handleDeleteGlobalData={handleDeleteGlobalData}
-          handleOnChange={handleOnChange}
-          handleOnClick={handleOnClick}
-          handleUpdateDsl={handleUpdateDsl}
-          displayName={displayName}
-        />
-      </div>
-      <div css={applyValidateMessageWrapperStyle(labelWidth, labelPosition)}>
-        <InvalidMessage
-          value={value}
-          pattern={pattern}
-          regex={regex}
-          minLength={minLength}
-          maxLength={maxLength}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
-      </div>
-    </BasicWrapper>
+    <div css={applyHiddenWrapperStyle(hidden)}>
+      <COMP
+        {...realProps}
+        w={w}
+        h={h}
+        unitW={unitW}
+        unitH={unitH}
+        handleUpdateGlobalData={handleUpdateGlobalData}
+        handleDeleteGlobalData={handleDeleteGlobalData}
+        handleOnChange={handleOnChange}
+        handleOnClick={handleOnClick}
+        handleUpdateDsl={handleUpdateDsl}
+        displayName={displayName}
+      />
+    </div>
   )
 }

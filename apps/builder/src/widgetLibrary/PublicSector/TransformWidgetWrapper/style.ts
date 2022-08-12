@@ -1,29 +1,54 @@
 import { css } from "@emotion/react"
 import { SerializedStyles } from "@emotion/serialize"
-import { getFlexDirection } from "@/widgetLibrary/PublicSector/BasicWrapper/style"
 
-export const applyLabelAndComponentWrapperStyle = (
-  labelPosition: "left" | "right" | "top" = "left",
-  alignment: "start" | "center" | "end" = "start",
-): SerializedStyles => {
-  return css`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    overflow: auto;
-    flex-direction: row;
-    justify-content: ${alignment};
-    ${getFlexDirection(labelPosition)}
-  `
-}
 export const applyValidateMessageWrapperStyle = (
   labelWidth: number,
   labelPosition: "left" | "right" | "top" = "left",
+  labelHidden: boolean = false,
 ): SerializedStyles => {
   return css`
     width: 100%;
-    padding-left: ${labelPosition === "top"
+    padding-left: ${labelPosition === "top" || labelHidden
       ? 0
-      : `calc(min(${labelWidth}%, 80%) + 8px)`};
+      : `calc(${labelWidth}% + 8px)`};
+  `
+}
+
+export const applyLabelAndComponentWrapperStyle = (
+  labelPosition: "left" | "right" | "top" = "left",
+) => {
+  if (labelPosition === "top") {
+    return css``
+  }
+  if (labelPosition === "left") {
+    return css`
+      display: flex;
+    `
+  }
+  if (labelPosition === "right") {
+    return css`
+      display: flex;
+      flex-direction: row-reverse;
+    `
+  }
+}
+
+export const applyCenterLabelAndComponentWrapperStyle = (
+  labelPosition: "left" | "right" | "top" = "left",
+) => {
+  const layoutCss = applyLabelAndComponentWrapperStyle(labelPosition)
+  return css`
+    ${layoutCss};
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  `
+}
+
+export const applyHiddenWrapperStyle = (hidden: boolean) => {
+  return css`
+    width: 100%;
+    height: 100%;
+    visibility: ${hidden ? "hidden" : "visible"};
   `
 }

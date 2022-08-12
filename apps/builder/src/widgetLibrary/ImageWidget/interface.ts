@@ -1,5 +1,7 @@
 import { ImageProps } from "@illa-design/image"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedImageProps
   extends Pick<ImageProps, "width" | "height" | "radius"> {
@@ -7,4 +9,7 @@ export interface WrappedImageProps
   altText?: ImageProps["alt"]
 }
 
-export interface ImageWidgetProps extends WrappedImageProps, BaseWidgetProps {}
+export interface ImageWidgetProps
+  extends WrappedImageProps,
+    BaseWidgetProps,
+    TooltipWrapperProps {}

@@ -20,7 +20,7 @@ import { getGlobalInfoExecutionResult } from "@/redux/currentUser/currentUserSel
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const DataWorkspace: FC<DataWorkspaceProps> = props => {
+export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -42,7 +42,9 @@ export const DataWorkspace: FC<DataWorkspaceProps> = props => {
   )
 
   const handleActionSelect = (selectedKeys: string[]) => {
-    const action = actionList.find(item => item.displayName === selectedKeys[0])
+    const action = actionList.find(
+      (item) => item.displayName === selectedKeys[0],
+    )
     action && dispatch(configActions.updateSelectedAction(action))
   }
 

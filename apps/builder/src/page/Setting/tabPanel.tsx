@@ -11,7 +11,7 @@ import { PreIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import { SettingLayout } from "@/page/Setting/components/Layout"
+import { SettingLayout } from "@/page/Setting/Components/Layout"
 
 export const SettingTabNavBar: FC = () => {
   const navigate = useNavigate()

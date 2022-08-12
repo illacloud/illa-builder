@@ -1,6 +1,7 @@
 import { RateProps } from "@illa-design/rate"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedRateProps
   extends Pick<RateProps, "allowHalf" | "allowClear" | "disabled"> {
@@ -12,4 +13,8 @@ export interface WrappedRateProps
   handleUpdateDsl: (value: any) => void
 }
 
-export interface RateWidgetProps extends WrappedRateProps, BaseWidgetProps {}
+export interface RateWidgetProps
+  extends WrappedRateProps,
+    BaseWidgetProps,
+    LabelProps,
+    TooltipWrapperProps {}

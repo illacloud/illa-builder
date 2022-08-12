@@ -1,5 +1,8 @@
 import { InputProps } from "@illa-design/input"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedInputProps
   extends Pick<
@@ -13,9 +16,13 @@ export interface WrappedInputProps
   prefixText?: string
   suffixIcon?: InputProps["suffix"]
   suffixText?: string
-  tooltipText?: string
   colorScheme?: InputProps["borderColor"]
   allowClear?: InputProps["allowClear"]
 }
 
-export interface InputWidgetProps extends WrappedInputProps, BaseWidgetProps {}
+export interface InputWidgetProps
+  extends WrappedInputProps,
+    BaseWidgetProps,
+    LabelProps,
+    TooltipWrapperProps,
+    Omit<ValidateMessageProps, "value"> {}

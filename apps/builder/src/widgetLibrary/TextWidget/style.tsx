@@ -16,3 +16,8 @@ export function applyAlignStyle(
     align-items: ${verticalAlign};
   `
 }
+
+export const fullWidthAndFullHeightStyle = css`
+  width: 100%;
+  height: 100%;
+`

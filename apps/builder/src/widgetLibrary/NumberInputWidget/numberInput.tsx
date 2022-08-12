@@ -5,7 +5,10 @@ import {
   NumberInputWidgetProps,
   WrappedNumberInputProps,
 } from "@/widgetLibrary/NumberInputWidget/interface"
-import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
+import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import Label from "@/widgetLibrary/PublicSector/Label"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 
 const parserThousand = (value: number | string) =>
   `${value}`.replace(/([-+]?\d{3})(?=\d)/g, "$1,")
@@ -92,6 +95,20 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     displayName,
+    labelPosition,
+    labelFull,
+    label,
+    labelAlign,
+    labelWidth = 33,
+    labelCaption,
+    labelWidthUnit,
+    required,
+    labelHidden,
+    tooltipText,
+    pattern,
+    regex,
+    customRule,
+    hideValidationMessage,
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
 
@@ -142,9 +159,33 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   ])
 
   return (
-    <div css={autoWidthContainerStyle}>
-      <WrappedInputNumber {...props} ref={numberInputRef} />
-    </div>
+    <>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedInputNumber {...props} ref={numberInputRef} />
+        </div>
+      </TooltipWrapper>
+      <InvalidMessage
+        value={value}
+        pattern={pattern}
+        regex={regex}
+        required={required}
+        customRule={customRule}
+        hideValidationMessage={hideValidationMessage}
+      />
+    </>
   )
 }
 NumberInputWidget.displayName = "NumberInputWidget"

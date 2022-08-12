@@ -1,6 +1,8 @@
 import { DatePickerProps } from "@illa-design/date-picker"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
+import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
+import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedDateTimeProps
   extends Pick<
@@ -21,4 +23,7 @@ export interface WrappedDateTimeProps
 
 export interface DateTimeWidgetProps
   extends WrappedDateTimeProps,
-    BaseWidgetProps {}
+    BaseWidgetProps,
+    LabelProps,
+    TooltipWrapperProps,
+    Omit<ValidateMessageProps, "value"> {}
