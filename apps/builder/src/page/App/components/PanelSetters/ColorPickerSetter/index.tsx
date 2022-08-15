@@ -38,7 +38,7 @@ export const ColorPickerSetter: FC<any> = props => {
         colorScheme="grayBlue"
         leftIcon={<div css={applyCircleStyle(c)} />}
       >
-        <Text w="56px">{value}</Text>
+        <Text w="56px">{value?.toLocaleUpperCase()}</Text>
       </Button>
     </Trigger>
   )
