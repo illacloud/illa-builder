@@ -9,10 +9,9 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Text } from "@illa-design/typography"
 
 export const ColorPickerSetter: FC<any> = props => {
-  const { attrName, handleUpdateDsl, value, isSetterSingleRow } = props
+  const { attrName, handleUpdateDsl, value } = props
   const debounceOnChange = debounce(handleUpdateDsl, 300)
 
-  console.log("value", value)
   let c = value
   if (colorSchemes.includes(value)) {
     c = globalColor(`--${illaPrefix}-${value}-03`)
