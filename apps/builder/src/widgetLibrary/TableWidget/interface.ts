@@ -1,9 +1,7 @@
 export interface WrappedTableProps {
-  data: any[]
-  columns: any[]
+  originData: object[]
 }
 
 export interface TableWidgetProps {
-  originData: any[]
-  columns: any[]
+  originData: object[]
 }
