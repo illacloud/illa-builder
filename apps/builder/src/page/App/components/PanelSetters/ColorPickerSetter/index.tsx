@@ -9,7 +9,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Text } from "@illa-design/typography"
 
 export const ColorPickerSetter: FC<any> = props => {
-  const { attrName, handleUpdateDsl, value, isSetterSingleRow } = props
+  const { attrName, handleUpdateDsl, value } = props
   const debounceOnChange = debounce(handleUpdateDsl, 300)
 
   let c = value
@@ -38,7 +38,9 @@ export const ColorPickerSetter: FC<any> = props => {
         colorScheme="grayBlue"
         leftIcon={<div css={applyCircleStyle(c)} />}
       >
-        <Text w="56px">{value}</Text>
+        <Text w="56px">
+          {value?.includes("#") ? value?.toLocaleUpperCase() : value}
+        </Text>
       </Button>
     </Trigger>
   )
