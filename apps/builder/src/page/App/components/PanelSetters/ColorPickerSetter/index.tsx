@@ -12,6 +12,7 @@ export const ColorPickerSetter: FC<any> = props => {
   const { attrName, handleUpdateDsl, value, isSetterSingleRow } = props
   const debounceOnChange = debounce(handleUpdateDsl, 300)
 
+  console.log("value", value)
   let c = value
   if (colorSchemes.includes(value)) {
     c = globalColor(`--${illaPrefix}-${value}-03`)
@@ -38,7 +39,9 @@ export const ColorPickerSetter: FC<any> = props => {
         colorScheme="grayBlue"
         leftIcon={<div css={applyCircleStyle(c)} />}
       >
-        <Text w="56px">{value?.toLocaleUpperCase()}</Text>
+        <Text w="56px">
+          {value?.includes("#") ? value?.toLocaleUpperCase() : value}
+        </Text>
       </Button>
     </Trigger>
   )
