@@ -30,6 +30,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
 
     return (
       <Input
+        w="100%"
         inputRef={ref}
         value={value}
         placeholder={placeholder}

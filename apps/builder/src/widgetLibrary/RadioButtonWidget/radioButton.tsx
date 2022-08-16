@@ -13,6 +13,7 @@ export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
 
   return (
     <RadioGroup
+      w="100%"
       type="button"
       value={value}
       disabled={disabled}
