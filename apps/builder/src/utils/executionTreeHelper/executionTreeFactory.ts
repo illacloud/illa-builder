@@ -15,10 +15,13 @@ import {
 } from "@/redux/currentApp/executionTree/executionState"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import {
+  convertPathToString,
   extractReferencesFromScript,
+  getImmediateParentsOfPropertyPaths,
   isWidget,
 } from "@/utils/executionTreeHelper/utils"
 import { validationFactory } from "@/utils/validationFactory"
+import { applyChange, Diff, diff } from "deep-diff"
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -26,7 +29,7 @@ export class ExecutionTreeFactory {
   evalOrder: string[] = []
   oldRawTree: RawTreeShape = {} as RawTreeShape
   hasCyclical: boolean = false
-  executedTree: Record<string, any> = {}
+  executedTree: RawTreeShape = {} as RawTreeShape
   errorTree: Record<string, any> = {}
   allKeys: Record<string, true> = {}
 
@@ -54,63 +57,184 @@ export class ExecutionTreeFactory {
     }
   }
 
-  validateTree(tree: Record<string, any>) {
-    return Object.keys(tree).reduce(
-      (current: Record<string, any>, displayName) => {
-        const widgetOrAction = current[displayName]
-        if (!isWidget(widgetOrAction)) {
-          return current
+  validateTree(tree: RawTreeShape) {
+    return Object.keys(tree).reduce((current: RawTreeShape, displayName) => {
+      const widgetOrAction = current[displayName]
+      if (!isWidget(widgetOrAction)) {
+        return current
+      }
+      const validationPaths = widgetOrAction.$validationPaths
+      Object.keys(validationPaths).forEach(validationPath => {
+        const validationType = validationPaths[validationPath]
+        const fullPath = `${displayName}.${validationPath}`
+        const validationFunc = validationFactory[validationType]
+        const value = get(widgetOrAction, validationPath)
+        const { isValid, safeValue, errorMessage } = validationFunc(value)
+        set(current, fullPath, safeValue)
+        if (!isValid) {
+          let error = get(this.errorTree, fullPath)
+          if (!Array.isArray(error)) {
+            error = []
+          }
+          error.push({
+            errorType: ExecutionErrorType.VALIDATION,
+            errorMessage: errorMessage as string,
+          })
+          set(this.errorTree, fullPath, error)
         }
-        const validationPaths = widgetOrAction.$validationPaths
-        Object.keys(validationPaths).forEach((validationPath) => {
-          const validationType = validationPaths[validationPath]
-          const fullPath = `${displayName}.${validationPath}`
-          const validationFunc = validationFactory[validationType]
-          const value = get(widgetOrAction, validationPath)
-          const { isValid, safeValue, errorMessage } = validationFunc(value)
-          set(current, fullPath, safeValue)
-          if (!isValid) {
-            let error = get(this.errorTree, fullPath)
-            if (!Array.isArray(error)) {
-              error = []
-            }
-            error.push({
-              errorType: ExecutionErrorType.VALIDATION,
-              errorMessage: errorMessage as string,
-            })
-            set(this.errorTree, fullPath, error)
+      })
+
+      return current
+    }, tree)
+  }
+
+  applyDifferencesToEvalTree(differences: Diff<any, any>[]) {
+    for (const d of differences) {
+      if (!Array.isArray(d.path) || d.path.length === 0) continue
+      applyChange(this.executedTree, undefined, d)
+    }
+  }
+
+  calcSubTreeSortOrder(differences: Diff<any, any>[]) {
+    const changePaths: Set<string> = new Set()
+    for (const diff of differences) {
+      if (!Array.isArray(diff.path) || diff.path.length === 0) continue
+      changePaths.add(convertPathToString(diff.path))
+    }
+    return this.getCompleteSortOrder(
+      Array.from(changePaths),
+      this.inDependencyTree,
+    )
+  }
+
+  getEvaluationSortOrder(
+    changes: Array<string>,
+    inverseMap: DependenciesState,
+  ): Array<string> {
+    const sortOrder: Array<string> = [...changes]
+    let iterator = 0
+    while (iterator < sortOrder.length) {
+      const newNodes = inverseMap[sortOrder[iterator]]
+      if (newNodes) {
+        newNodes.forEach(toBeEvaluatedNode => {
+          if (!sortOrder.includes(toBeEvaluatedNode)) {
+            sortOrder.push(toBeEvaluatedNode)
           }
         })
+      }
+      iterator++
+    }
+    return sortOrder
+  }
 
-        return current
-      },
-      tree,
+  getCompleteSortOrder(changes: string[], inDependencyTree: DependenciesState) {
+    let sortOrders: string[] = []
+    let parents = cloneDeep(changes)
+    let subSortOrderArray: string[]
+    while (true) {
+      subSortOrderArray = this.getEvaluationSortOrder(parents, inDependencyTree)
+      sortOrders = [...sortOrders, ...subSortOrderArray]
+      parents = getImmediateParentsOfPropertyPaths(subSortOrderArray)
+      if (parents.length <= 0) {
+        break
+      }
+    }
+    const sortOrderSet = new Set(sortOrders)
+    const sortOrderPropertyPaths: string[] = []
+    this.evalOrder.forEach(path => {
+      if (sortOrderSet.has(path)) {
+        sortOrderPropertyPaths.push(path)
+        sortOrderSet.delete(path)
+      }
+    })
+
+    const completeSortOrder = [
+      ...Array.from(sortOrderSet),
+      ...sortOrderPropertyPaths,
+    ]
+
+    const finalSortOrderArray: Array<string> = []
+    completeSortOrder.forEach(propertyPath => {
+      const lastIndexOfDot = propertyPath.lastIndexOf(".")
+      if (lastIndexOfDot !== -1) {
+        finalSortOrderArray.push(propertyPath)
+      }
+    })
+    return finalSortOrderArray
+  }
+
+  updateTree(rawTree: RawTreeShape) {
+    const currentRawTree = cloneDeep(rawTree)
+    const differences: Diff<RawTreeShape, RawTreeShape>[] =
+      diff(this.oldRawTree, currentRawTree) || []
+    if (differences.length === 0) {
+      return {
+        dependencyTree: this.dependenciesState,
+        evaluatedTree: this.executedTree,
+        errorTree: this.errorTree,
+      }
+    }
+    this.applyDifferencesToEvalTree(differences)
+    const path = this.calcSubTreeSortOrder(differences)
+
+    path.forEach(propertyPath => {
+      const unEvalPropValue = get(currentRawTree, propertyPath)
+      const evalPropValue = get(this.executedTree, propertyPath)
+      if (typeof evalPropValue !== "function") {
+        set(this.executedTree, propertyPath, unEvalPropValue)
+      }
+      return propertyPath
+    })
+    const { evaluatedTree, errorTree } = this.executeTree(
+      this.executedTree,
+      path,
     )
+    this.oldRawTree = currentRawTree
+    this.errorTree = errorTree
+    this.executedTree = this.validateTree(evaluatedTree)
+    return {
+      dependencyTree: this.dependenciesState,
+      evaluatedTree: this.executedTree,
+      errorTree: this.errorTree,
+    }
+  }
+
+  listEntityDependencies(
+    widgetOrAction: Record<string, any>,
+    displayName: string,
+  ) {
+    let dependenciesMap: DependenciesState = {}
+    const dynamicAttrPaths: string[] = getWidgetOrActionDynamicAttrPaths(
+      widgetOrAction,
+    )
+    if (dynamicAttrPaths.length) {
+      dynamicAttrPaths.forEach(attrPath => {
+        const originValue = get(widgetOrAction, attrPath)
+        const { jsSnippets } = getSnippets(originValue)
+        const existingDeps = dependenciesMap[`${displayName}.${attrPath}`] || []
+        dependenciesMap[`${displayName}.${attrPath}`] = existingDeps.concat(
+          jsSnippets.filter(jsSnippet => !!jsSnippet),
+        )
+      })
+    }
+    return dependenciesMap
   }
 
   generateDependenciesMap(rawTree: RawTreeShape) {
     let dependenciesMap: DependenciesState = {}
     const allKeys = getAllPaths(rawTree)
-    Object.keys(rawTree).forEach((displayName) => {
+    Object.keys(rawTree).forEach(displayName => {
       const widgetProps = rawTree[displayName]
-      const dynamicAttrPaths: string[] =
-        getWidgetOrActionDynamicAttrPaths(widgetProps)
-      if (dynamicAttrPaths.length) {
-        dynamicAttrPaths.forEach((attrPath) => {
-          const originValue = get(widgetProps, attrPath)
-          const { jsSnippets } = getSnippets(originValue)
-          const existingDeps =
-            dependenciesMap[`${displayName}.${attrPath}`] || []
-          dependenciesMap[`${displayName}.${attrPath}`] = existingDeps.concat(
-            jsSnippets.filter((jsSnippet) => !!jsSnippet),
-          )
-        })
-      }
+      const widgetOrActionDependencies = this.listEntityDependencies(
+        widgetProps,
+        displayName,
+      )
+      dependenciesMap = { ...dependenciesMap, ...widgetOrActionDependencies }
     })
 
-    Object.keys(dependenciesMap).forEach((key) => {
+    Object.keys(dependenciesMap).forEach(key => {
       dependenciesMap[key] = flatten(
-        dependenciesMap[key].map((script) => {
+        dependenciesMap[key].map(script => {
           try {
             return extractReferencesFromScript(script, allKeys)
           } catch (e) {
@@ -127,7 +251,7 @@ export class ExecutionTreeFactory {
     const dependencyTree: Array<[string, string]> = []
     Object.keys(dependenciesMap).forEach((key: string) => {
       if (dependenciesMap[key].length) {
-        dependenciesMap[key].forEach((dep) => dependencyTree.push([key, dep]))
+        dependenciesMap[key].forEach(dep => dependencyTree.push([key, dep]))
       } else {
         dependencyTree.push([key, ""])
       }
@@ -136,7 +260,7 @@ export class ExecutionTreeFactory {
     try {
       return toposort(dependencyTree)
         .reverse()
-        .filter((d) => !!d)
+        .filter(d => !!d)
     } catch (e) {
       this.hasCyclical = true
       if (e instanceof Error) {
@@ -156,10 +280,10 @@ export class ExecutionTreeFactory {
 
   generateInDependenciesMap(): DependenciesState {
     const inverseDag: DependenciesState = {}
-    this.evalOrder.forEach((propertyPath) => {
+    this.evalOrder.forEach(propertyPath => {
       const incomingEdges: Array<string> = this.dependenciesState[propertyPath]
       if (incomingEdges) {
-        incomingEdges.forEach((edge) => {
+        incomingEdges.forEach(edge => {
           const node = inverseDag[edge]
           if (node) {
             node.push(propertyPath)
@@ -181,11 +305,7 @@ export class ExecutionTreeFactory {
     const errorTree: ExecutionState["error"] = {}
     try {
       const evaluatedTree = sortedEvalOrder.reduce(
-        (
-          current: Record<string, any>,
-          fullPath: string,
-          currentIndex: number,
-        ) => {
+        (current: RawTreeShape, fullPath: string, currentIndex: number) => {
           const { displayName, attrPath } = getDisplayNameAndAttrPath(fullPath)
           const widgetOrAction = current[displayName]
           let widgetOrActionAttribute = get(current, fullPath)
@@ -201,6 +321,7 @@ export class ExecutionTreeFactory {
                 widgetOrActionAttribute,
                 current,
               )
+              set(current, fullPath, evaluateValue)
             } catch (e) {
               let oldError = get(errorTree, fullPath)
               if (Array.isArray(oldError)) {
@@ -216,12 +337,15 @@ export class ExecutionTreeFactory {
                   errorMessage: (e as Error).message,
                 },
               ])
-              evaluateValue = undefined
+              set(current, fullPath, undefined)
             }
           } else {
-            evaluateValue = widgetOrActionAttribute
+            set(current, fullPath, widgetOrActionAttribute)
           }
-          return set(current, fullPath, evaluateValue)
+
+          if (widgetOrAction.$type === "ACTION") {
+          }
+          return current
         },
         oldLocalRawTree,
       )

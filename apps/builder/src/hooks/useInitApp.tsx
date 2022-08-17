@@ -53,12 +53,6 @@ export const useInitBuilderApp = (model: IllaMode) => {
           ),
         )
         dispatch(executionActions.startExecutionReducer())
-        const autoRunAction = response.data.actions.filter(item => {
-          return item.triggerMode === "automate"
-        })
-        autoRunAction.forEach(item => {
-          runAction(item)
-        })
 
         if (model === "edit" && response.data.actions.length > 0) {
           dispatch(configActions.changeSelectedAction(response.data.actions[0]))
