@@ -13,6 +13,9 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.0",
     "turbo": "^1.1.1"
   },
   "workspaces": [
