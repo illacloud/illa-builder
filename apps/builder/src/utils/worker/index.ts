@@ -38,13 +38,13 @@ context.addEventListener(
         return true
       }
       case EXECUTION_WORKER_MESSAGES.EXECUTION_TREE: {
+        console.log("??????")
         let errorTree: Record<string, any> = {}
         let evaluatedTree: Record<string, any> = {}
         let dependencyMap: Record<string, any> = {}
         try {
           if (!executionTree) {
-            // TODO: @aruseito when has diff method,remove const
-            const executionTree = new ExecutionTreeFactory()
+            executionTree = new ExecutionTreeFactory()
             const executionResult = executionTree.initTree(
               globalData as RawTreeShape,
             )
@@ -60,7 +60,14 @@ context.addEventListener(
             evaluatedTree = dataTreeResult.evaluatedTree
             dependencyMap = dataTreeResult.dependencyTree
           } else {
-            //  TODO: @aruseito need diff to update tree
+            const start = performance.now()
+            const executionResult = executionTree.updateTree(
+              globalData as RawTreeShape,
+            )
+            console.log(`update tree time: ${performance.now() - start}`)
+            errorTree = executionResult.errorTree
+            evaluatedTree = executionResult.evaluatedTree
+            dependencyMap = executionResult.dependencyTree
           }
         } catch (e) {
           console.log(e)

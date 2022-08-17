@@ -9,7 +9,7 @@ import { isValidDisplayName } from "@/utils/typeHelper"
 import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameReducer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
-export const EditableText: FC<EditableTextProps> = (props) => {
+export const EditableText: FC<EditableTextProps> = props => {
   const { displayName, updateDisplayNameByBlur } = props
   const [inputValue, setInputValue] = useState(displayName)
   const [isFocusInput, setIsFocusInput] = useState(false)
@@ -51,6 +51,7 @@ export const EditableText: FC<EditableTextProps> = (props) => {
           value={inputValue}
           onChange={handleChangeInputValue}
           onBlur={handleBlurInput}
+          onPressEnter={handleBlurInput}
         />
       ) : (
         <span
