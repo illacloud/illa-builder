@@ -33,6 +33,7 @@
     "chartjs-adapter-moment": "^1.0.0",
     "chartjs-plugin-datalabels": "^2.0.0",
     "codemirror": "^5.65.5",
+    "dayjs": "^1.11.5",
     "deep-diff": "^1.0.2",
     "framer-motion": "^6.3.0",
     "i18next": "^21.6.16",

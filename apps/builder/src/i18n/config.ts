@@ -24,6 +24,5 @@ i18n
     },
     resources,
   })
-  .then()
 
 export default i18n

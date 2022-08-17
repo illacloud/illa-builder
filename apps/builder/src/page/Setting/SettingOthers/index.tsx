@@ -8,7 +8,6 @@ import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { Api } from "@/api/base"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
-import i18n from "@/i18n/config"
 
 const options = [
   {
@@ -49,14 +48,13 @@ export const SettingOthers: FC = () => {
           language: languageValue,
         },
       },
-      (response) => {
-        i18n.changeLanguage(languageValue).then(() => {
-          window.location.reload()
-        })
+      response => {
+        localStorage.setItem("i18nextLng", languageValue)
+        window.location.reload()
       },
-      (failure) => {},
-      (crash) => {},
-      (loading) => {
+      failure => {},
+      crash => {},
+      loading => {
         setIsLoading(loading)
       },
     )
