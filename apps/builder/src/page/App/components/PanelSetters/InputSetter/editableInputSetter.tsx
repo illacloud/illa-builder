@@ -12,19 +12,21 @@ const iconNameMapComp = {
   textSize: <TextSizeIcon />,
 }
 
-export const EditableInputSetter: FC<EditableInputSetterProps> = (props) => {
+export const EditableInputSetter: FC<EditableInputSetterProps> = props => {
   const { value, handleUpdateDsl, attrName, iconName } = props
   return (
     <div css={editableInputSetterStyle}>
-      <Input
-        withoutNormalBorder
-        borderColor="techPurple"
-        value={value}
-        prefix={{ render: iconName ? iconNameMapComp[iconName] : null }}
-        onChange={(value) => {
-          handleUpdateDsl(attrName, value)
-        }}
-      />
+      {iconName ? iconNameMapComp[iconName] : null}
+      <div style={{ width: "130px" }}>
+        <Input
+          withoutNormalBorder
+          borderColor="techPurple"
+          value={value}
+          onChange={value => {
+            handleUpdateDsl(attrName, value)
+          }}
+        />
+      </div>
     </div>
   )
 }
