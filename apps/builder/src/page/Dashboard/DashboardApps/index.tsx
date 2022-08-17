@@ -62,7 +62,10 @@ export const DashboardApps: FC = () => {
                   css={hoverStyle}
                   extra={<DashboardItemMenu appId={item.appId} />}
                 >
-                  <ListItemMeta title={item.appName} description={fromNow(item.updatedAt)}/>
+                  <ListItemMeta title={item.appName} description={t("dashboard.app.edited_time", {
+                    time: fromNow(item.updatedAt),
+                    user: item.appActivity.modifier,
+                  })}/>
                 </ListItem>
               )
             }}

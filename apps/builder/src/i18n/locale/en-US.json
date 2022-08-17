@@ -752,6 +752,7 @@
       "error_button": "Retry"
     },
     "app": {
+      "edited_time": "Edited at {{ time }} by {{ user }}",
       "all_apps": "All Apps",
       "create_app": "Create App",
       "rename_app": "Rename App",

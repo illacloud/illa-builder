@@ -752,6 +752,7 @@
       "error_button": "重试"
     },
     "app": {
+      "edited_time": "由 {{ user }} 在 {{ time }} 编辑",
       "all_apps": "所有项目",
       "rename_app": "重命名项目",
       "create_app": "创建App",
