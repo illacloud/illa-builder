@@ -25,37 +25,10 @@ export const listTitleStyle: SerializedStyles = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const itemExtraContainerStyle: SerializedStyles = css`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  flex-direction: row;
-`
-
-export const itemMenuButtonStyle: SerializedStyles = css`
-  margin-left: 4px;
-`
-
-export const hoverableStyle = css`
-  cursor: pointer;
-`
-
-export const editButtonStyle = css`
-  opacity: 0;
-`
-export const listItemStyle = css`
-  padding: 12px 16px;
-  border-bottom: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-
+export const hoverStyle = css`
   &:hover {
-    background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
-
-    .editButton {
-      opacity: 1;
+    .dashboardAppEditButton {
+      visibility: visible;
     }
   }
-`
-
-export const modalInputStyle = css`
-  margin-top: 8px;
 `

@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { Modal } from "@illa-design/modal"
 import { ActionType } from "@/redux/currentApp/action/actionState"
-import { css } from "@emotion/react"
 import { ActionGeneratorProps } from "@/page/App/components/Actions/ActionGenerator/interface"
 import { ActionTypeCategory } from "@/page/App/components/Actions/ActionGenerator/ActionTypeSelector/interface"
 import { ActionTypeSelector } from "@/page/App/components/Actions/ActionGenerator/ActionTypeSelector"
@@ -12,7 +11,7 @@ export type ActionEditorSteps =
   | "resource-create"
   | "resource-edit"
 
-export const ResourceEditor: FC<ActionGeneratorProps> = function (props) {
+export const ResourceEditor: FC<ActionGeneratorProps> = function(props) {
   const { edit, resourceId, visible, onClose } = props
   const [step, setStep] = useState<ActionEditorSteps>("select-type")
   const [actionType, setResourceType] = useState<ActionType>()
@@ -28,9 +27,7 @@ export const ResourceEditor: FC<ActionGeneratorProps> = function (props) {
 
   return (
     <Modal
-      _css={css`
-        width: 696px;
-      `}
+      w="696px"
       visible={visible}
       footer={false}
       closable
@@ -39,9 +36,8 @@ export const ResourceEditor: FC<ActionGeneratorProps> = function (props) {
     >
       {step === "select-type" ? (
         <ActionTypeSelector
-          onSelect={(info) => {
+          onSelect={info => {
             const { category, actionType } = info
-
             setCategory(category)
             switch (category) {
               case "apis":
