@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { cloneDeep } from "lodash"
-// TODO: @aruseito Abstract into tool function
-import dayjs from "dayjs"
-import utc from "dayjs/plugin/utc"
-import timezone from "dayjs/plugin/timezone"
 import copy from "copy-to-clipboard"
 import { Button } from "@illa-design/button"
 import { List, ListItem, ListItemMeta } from "@illa-design/list"
@@ -32,9 +28,7 @@ import {
   listTitleStyle,
   modalInputStyle,
 } from "./style"
-
-dayjs.extend(utc)
-dayjs.extend(timezone)
+import { fromNow } from "@/utils/dayjs"
 
 export const DashboardApps: FC = () => {
   const { t } = useTranslation()
@@ -54,11 +48,13 @@ export const DashboardApps: FC = () => {
   const [renameValue, setRenameValue] = useState<string>("")
   const [renameModalLoading, setRenameModalLoading] = useState<boolean>(false)
   // duplicate modal state
-  const [duplicateModalVisible, setDuplicateModalVisible] =
-    useState<boolean>(false)
+  const [duplicateModalVisible, setDuplicateModalVisible] = useState<boolean>(
+    false,
+  )
   const [duplicateValue, setDuplicateValue] = useState<string>("")
-  const [duplicateModalLoading, setDuplicateModalLoading] =
-    useState<boolean>(false)
+  const [duplicateModalLoading, setDuplicateModalLoading] = useState<boolean>(
+    false,
+  )
 
   const sortedAppsList = useMemo(() => {
     if (Array.isArray(appsList) && appsList.length > 0) {
@@ -91,7 +87,7 @@ export const DashboardApps: FC = () => {
           appName: renameValue,
         },
       },
-      (response) => {
+      response => {
         dispatch(
           dashboardAppActions.renameDashboardAppReducer({
             appId: sortedAppsList[currentAppIdx].appId,
@@ -99,13 +95,13 @@ export const DashboardApps: FC = () => {
           }),
         )
       },
-      (failure) => {
+      failure => {
         Message.error(t("dashboard.app.rename_fail"))
       },
-      (crash) => {
+      crash => {
         Message.error(t("network_error"))
       },
-      (loading) => {
+      loading => {
         setRenameModalLoading(loading)
         if (!loading) {
           setRenameModalVisible(loading)
@@ -127,20 +123,20 @@ export const DashboardApps: FC = () => {
           appName: duplicateValue,
         },
       },
-      (response) => {
+      response => {
         dispatch(
           dashboardAppActions.addDashboardAppReducer({
             app: response.data,
           }),
         )
       },
-      (failure) => {
+      failure => {
         Message.error(t("dashboard.app.duplicate_fail"))
       },
-      (crash) => {
+      crash => {
         Message.error(t("network_error"))
       },
-      (loading) => {
+      loading => {
         setDuplicateModalLoading(loading)
         if (!loading) {
           setDuplicateModalVisible(loading)
@@ -159,7 +155,7 @@ export const DashboardApps: FC = () => {
           appName: createNewValue,
         },
       },
-      (response) => {
+      response => {
         dispatch(
           dashboardAppActions.addDashboardAppReducer({
             app: response.data,
@@ -167,12 +163,12 @@ export const DashboardApps: FC = () => {
         )
         navigate(`/app/${response.data.appId}`)
       },
-      (failure) => {},
-      (error) => {},
-      (loading) => {
+      failure => {},
+      error => {},
+      loading => {
         setCreateNewLoading(loading)
       },
-      (errorState) => {
+      errorState => {
         if (errorState) {
           Message.error({ content: t("create_fail") })
         }
@@ -257,9 +253,7 @@ export const DashboardApps: FC = () => {
                     title={item.appName}
                     description={`${item?.appActivity.modifier} ${t(
                       "edit_at",
-                    )} ${dayjs(item.updatedAt)
-                      .tz(dayjs.tz.guess())
-                      .format("YYYY-MM-DD HH:mm:ss")}`}
+                    )} ${fromNow(item.updatedAt)}`}
                     onClick={() => {
                       navigate(`/app/${item.appId}`)
                     }}
@@ -267,7 +261,7 @@ export const DashboardApps: FC = () => {
                 </ListItem>
               )
             }}
-            renderKey={(item) => {
+            renderKey={item => {
               return item.appId
             }}
           />
@@ -302,7 +296,7 @@ export const DashboardApps: FC = () => {
         <Input
           css={modalInputStyle}
           borderColor="techPurple"
-          onChange={(res) => {
+          onChange={res => {
             setCreateNewValue(res)
           }}
         />
@@ -330,7 +324,7 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
-            if (sortedAppsList.some((item) => item.appName === renameValue)) {
+            if (sortedAppsList.some(item => item.appName === renameValue)) {
               Message.error(t("dashboard.app.name_existed"))
               return
             }
@@ -341,7 +335,7 @@ export const DashboardApps: FC = () => {
             css={modalInputStyle}
             borderColor="techPurple"
             placeholder={sortedAppsList[currentAppIdx].appName}
-            onChange={(res) => {
+            onChange={res => {
               setRenameValue(res)
             }}
           />
@@ -368,9 +362,7 @@ export const DashboardApps: FC = () => {
               Message.error(t("dashboard.app.name_empty"))
               return
             }
-            if (
-              sortedAppsList.some((item) => item.appName === duplicateValue)
-            ) {
+            if (sortedAppsList.some(item => item.appName === duplicateValue)) {
               Message.error(t("dashboard.app.name_existed"))
               return
             }
@@ -382,7 +374,7 @@ export const DashboardApps: FC = () => {
           <Input
             css={modalInputStyle}
             borderColor="techPurple"
-            onChange={(res) => {
+            onChange={res => {
               setDuplicateValue(res)
             }}
             placeholder={`${t("dashboard.app.duplicate_placeholder")}`}

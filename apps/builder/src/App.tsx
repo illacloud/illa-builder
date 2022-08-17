@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     if (!!currentUserLanguage) {
-      i18n.changeLanguage(currentUserLanguage).then()
+      i18n.changeLanguage(currentUserLanguage)
     }
   }, [currentUserLanguage])
 

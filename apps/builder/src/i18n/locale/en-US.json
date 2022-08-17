@@ -812,5 +812,8 @@
     "500": {
       "des": "Oops, something went wrong. Please try again later."
     }
+  },
+  "dayjs": {
+    "just_now": "Just now"
   }
 }
