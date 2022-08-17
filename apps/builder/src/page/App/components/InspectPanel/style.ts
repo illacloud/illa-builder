@@ -77,7 +77,7 @@ export function applySetterWrapperStyle(
     justify-content: space-between;
   `
   return css`
-    ${publicPaddingStyle};
+    ${isInList ? "padding: 0 12px;" : "padding: 0 16px;"};
     ${basicStyle};
   `
 }
