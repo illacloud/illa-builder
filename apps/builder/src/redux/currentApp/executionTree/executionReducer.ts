@@ -23,6 +23,7 @@ export const setExecutionResultReducer: CaseReducer<
   if (updates.length === 0) {
     return state
   }
+
   for (const update of updates) {
     if (!Array.isArray(update.path) || update.path.length === 0) {
       continue
@@ -45,7 +46,7 @@ export const setExecutionErrorReducer: CaseReducer<
 export const startExecutionReducer: CaseReducer<
   ExecutionState,
   PayloadAction<void>
-> = (state) => {
+> = state => {
   return state
 }
 

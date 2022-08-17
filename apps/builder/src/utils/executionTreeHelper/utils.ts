@@ -20,7 +20,8 @@ export type RawTreeDiff = {
   event: RawTreeDiffEvent
 }
 
-const ignorePathsForEvalRegex = ".($dynamicAttrPaths)"
+const ignorePathsForEvalRegex = /.(\$dynamicAttrPaths)/
+const IMMEDIATE_PARENT_REGEX = /^(.*)(\..*|\[.*\])$/
 
 const isUninterestingChangeForDependencyUpdate = (path: string) => {
   return path.match(ignorePathsForEvalRegex)
@@ -28,7 +29,7 @@ const isUninterestingChangeForDependencyUpdate = (path: string) => {
 
 export const convertPathToString = (attrPath: string[] | number[]) => {
   let string = ""
-  attrPath.forEach((segment) => {
+  attrPath.forEach(segment => {
     if (isInt(segment)) {
       string = string + "[" + segment + "]"
     } else {
@@ -66,7 +67,9 @@ export const extractReferencesFromScript = (
   return Array.from(references)
 }
 
-export function getDisplayNameAndPropertyPath(fullPath: string): {
+export function getDisplayNameAndPropertyPath(
+  fullPath: string,
+): {
   displayName: string
   attrPath: string
 } {
@@ -80,6 +83,24 @@ export function getDisplayNameAndPropertyPath(fullPath: string): {
   const displayName = fullPath.substring(0, indexOfFirstDot)
   const attrPath = fullPath.substring(indexOfFirstDot + 1)
   return { displayName, attrPath }
+}
+
+export const translateDiffArrayIndexAccessors = (
+  propertyPath: string,
+  array: unknown[],
+  event: RawTreeDiffEvent,
+) => {
+  const result: RawTreeDiff[] = []
+  array.forEach((data, index) => {
+    const path = `${propertyPath}[${index}]`
+    result.push({
+      event,
+      payload: {
+        propertyPath: path,
+      },
+    })
+  })
+  return result
 }
 
 export const translateDiffEventToRawTreeEvent = (
@@ -97,13 +118,12 @@ export const translateDiffEventToRawTreeEvent = (
     return result
   }
   const propertyPath = convertPathToString(diff.path)
-  const isUninterestingPathForUpdateTree =
-    isUninterestingChangeForDependencyUpdate(propertyPath)
+  const isUninterestingPathForUpdateTree = isUninterestingChangeForDependencyUpdate(
+    propertyPath,
+  )
   if (!!isUninterestingPathForUpdateTree) {
     return result
   }
-  const { displayName } = getDisplayNameAndPropertyPath(propertyPath)
-  const entity = rawTree[displayName]
 
   switch (diff.kind) {
     case "N": {
@@ -142,17 +162,38 @@ export const translateDiffEventToRawTreeEvent = (
           result.event = RawTreeDiffEvent.DELETE
           result.payload = { propertyPath }
         }
+      } else if (isObject(diff.lhs) && !isObject(diff.rhs)) {
+        result = Object.keys(diff.lhs).map(diffKey => {
+          const path = `${propertyPath}.${diffKey}`
+          return {
+            event: RawTreeDiffEvent.DELETE,
+            payload: {
+              propertyPath: path,
+            },
+          }
+        })
+        if (Array.isArray(diff.rhs)) {
+          result = result.concat(
+            translateDiffArrayIndexAccessors(
+              propertyPath,
+              diff.rhs,
+              RawTreeDiffEvent.NEW,
+            ),
+          )
+        }
       }
       break
     }
     case "A": {
-      return translateDiffEventToRawTreeEvent(
+      const result = translateDiffEventToRawTreeEvent(
         {
           ...diff.item,
           path: [...diff.path, diff.index],
         },
         rawTree,
       )
+      console.log("result", result)
+      return result
     }
     default: {
       break
@@ -172,4 +213,20 @@ export function isAction(entity: Record<string, any>) {
   return (
     typeof entity === "object" && "$type" in entity && entity.$type === "ACTION"
   )
+}
+
+export const getImmediateParentsOfPropertyPaths = (
+  propertyPaths: string[],
+): string[] => {
+  const parents: Set<string> = new Set()
+
+  propertyPaths.forEach(path => {
+    const matches = path.match(IMMEDIATE_PARENT_REGEX)
+
+    if (matches !== null) {
+      parents.add(matches[1])
+    }
+  })
+
+  return Array.from(parents)
 }
