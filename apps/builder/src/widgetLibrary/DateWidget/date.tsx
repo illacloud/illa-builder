@@ -34,6 +34,7 @@ export const WrappedDate: FC<WrappedDateProps> = (props) => {
 
   return (
     <DatePicker
+        w="100%"
       colorScheme={colorScheme}
       format={dateFormat}
       value={value}

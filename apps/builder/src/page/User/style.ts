@@ -13,7 +13,7 @@ export const asideStyle: SerializedStyles = css`
   position: relative;
   padding: 0 40px;
   background: url(${SignInBgUrl})
-    ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    ${globalColor(`--${illaPrefix}-techPurple-01`)} no-repeat;
 `
 
 export const logoStyle: SerializedStyles = css`
@@ -35,6 +35,7 @@ export const contentStyle: SerializedStyles = css`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 40px;
 `
 
 export const gridFormStyle: SerializedStyles = css`

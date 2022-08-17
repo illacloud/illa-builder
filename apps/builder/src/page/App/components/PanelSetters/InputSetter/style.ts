@@ -19,10 +19,12 @@ export const applyInputSetterWrapperStyle = (
 }
 
 export const editableInputSetterStyle = css`
-  max-width: 104px;
+  width: 154px;
+  height: 40px;
   display: flex;
   align-items: center;
   border-radius: 8px;
+  padding: 0 8px;
   :hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }

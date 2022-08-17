@@ -9,6 +9,4 @@ export const colorSchemes = [
   "blue",
   "cyan",
   "purple",
-  "techPurple",
-  "techPink",
 ]

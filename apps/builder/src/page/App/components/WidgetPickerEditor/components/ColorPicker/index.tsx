@@ -35,7 +35,7 @@ export const ColorPicker: FC<ColorPickerProps> = props => {
       color={c}
       presetColors={preColors}
       onChange={color => {
-        if (colorMap.has(color.hex) || colorMap.has(color.hexa)) {
+        if (colorMap.has(color.hexa)) {
           onChange(colorMap.get(color.hex) || colorMap.get(color.hexa)!!)
         } else {
           onChange(color.hexa)
