@@ -1,11 +1,6 @@
-import { FC, useMemo, useState } from "react"
+import { FC } from "react"
 import { useSelector } from "react-redux"
-import { css } from "@emotion/react"
 import { useTranslation } from "react-i18next"
-// TODO: @aruseito Abstract into tool function
-import dayjs from "dayjs"
-import utc from "dayjs/plugin/utc"
-import timezone from "dayjs/plugin/timezone"
 import { Button } from "@illa-design/button"
 import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
@@ -14,245 +9,146 @@ import {
   Resource,
   ResourceContent,
   ResourceListState,
-  ResourceType,
 } from "@/redux/resource/resourceState"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import {
   appsContainerStyle,
-  editButtonStyle,
-  itemMenuButtonStyle,
   listTitleContainerStyle,
   listTitleStyle,
 } from "@/page/Dashboard/DashboardApps/style"
+import { ColumnDef } from "@tanstack/react-table"
+import { ResourceTableData } from "@/page/Dashboard/DashboardResources/interface"
 import {
-  tableColStyle,
-  tableInfoTextStyle,
-  tableMainTextStyle,
-  tableNormalTextStyle,
-  tableStyle,
-} from "./style"
+  applyTableTextStyle,
+  hoverStyle,
+} from "@/page/Dashboard/DashboardResources/style"
+import { Space } from "@illa-design/space"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
-import { cloneDeep } from "lodash"
-import { Divider } from "@illa-design/divider"
-import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEditor"
-import { Dropdown } from "@illa-design/dropdown"
-import { DashboardResourcesItemMenu } from "@/page/Dashboard/components/DashboardItemMenu/resourcesItemMenu"
-import { MoreIcon } from "@illa-design/icon"
+import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 
-dayjs.extend(utc)
-dayjs.extend(timezone)
-
-function getDbName(resource: Resource<ResourceContent>): string {
+function getDbName(resourceType: string): string {
   let name = ""
-  switch (resource.resourceType) {
-    case "mongodb":
-      break
+  switch (resourceType) {
     case "mysql":
-      name = (resource.content as MysqlResource).databaseName
-      break
-    case "postgresql":
-      break
-    case "redis":
-      break
+      return "Mysql"
     case "restapi":
-      break
+      return "RestApi"
+    case "mongodb":
+      return "MongoDb"
+    case "redis":
+      return "Redis"
+    case "postgresql":
+      return "PostgreSql"
   }
   return name
-}
-
-const ExtraColComponent: FC<{
-  resourceId: string
-  showFormVisible: () => void
-  setCurId: (curResourceId: string) => void
-  editActionType: () => void
-}> = (props) => {
-  const { t } = useTranslation()
-  const { resourceId, showFormVisible, setCurId, editActionType } = props
-  return (
-    <>
-      <Button
-        className="edit-button"
-        colorScheme="techPurple"
-        onClick={() => {
-          setCurId(resourceId)
-          editActionType()
-          showFormVisible()
-        }}
-        title="editButton"
-      >
-        {t("edit")}
-      </Button>
-      <Dropdown
-        position="br"
-        trigger="click"
-        triggerProps={{ closeDelay: 0, openDelay: 0 }}
-        dropList={
-          <DashboardResourcesItemMenu
-            resourceId={resourceId}
-            setCurId={setCurId}
-            showFormVisible={showFormVisible}
-            editActionType={editActionType}
-          />
-        }
-      >
-        <Button
-          ml="4px"
-          colorScheme="grayBlue"
-          leftIcon={<MoreIcon size="14px" />}
-        />
-      </Dropdown>
-    </>
-  )
-}
-
-function NameColComponent(type: ResourceType, text: string) {
-  const icon = getIconFromResourceType(type, "24px")
-  return (
-    <div css={tableColStyle}>
-      {icon}
-      <span css={css(tableNormalTextStyle, tableMainTextStyle)}>{text}</span>
-    </div>
-  )
-}
-
-function TypeColComponent(text: string) {
-  return <span css={tableInfoTextStyle}>{text}</span>
-}
-
-function DbNameColComponent(text: string) {
-  if (text) {
-    return <span css={tableNormalTextStyle}>{text}</span>
-  } else {
-    return <span css={tableInfoTextStyle}>-</span>
-  }
-}
-
-function CtimeColComponent(text: string) {
-  const timezone = dayjs.tz.guess()
-  return (
-    <span css={tableInfoTextStyle}>
-      {dayjs(text).tz(timezone).format("YYYY-MM-DD HH:mm:ss")}
-    </span>
-  )
 }
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
 
   const resourcesList: ResourceListState = useSelector(getAllResources)
-  const [generatorVisible, setGeneratorVisible] = useState<boolean>()
-  const [curResourceId, setCurResourceId] = useState<string>("")
-  const [edit, setEdit] = useState<boolean>()
 
-  const countColumnsWidth = (itemWidth: number, minWidth: number) => {
-    const windowSizeRate = +(
-      (document.documentElement.clientWidth * 0.67) /
-      1920
-    ).toFixed(2)
-    return itemWidth * windowSizeRate < minWidth
-      ? minWidth
-      : itemWidth * windowSizeRate
-  }
-  const columns = useMemo(
-    () => [
-      {
-        Header: t("dashboard.resources.table_name"),
-        accessor: "nameCol",
-        width: `${countColumnsWidth(360, 160)}px`,
-      },
-      {
-        Header: t("dashboard.resources.table_type"),
-        accessor: "typeCol",
-        width: "150px",
-      },
-      {
-        Header: t("dashboard.resources.table_dbname"),
-        accessor: "dbNameCol",
-        width: `${countColumnsWidth(520, 200)}px`,
-      },
-      {
-        Header: t("dashboard.resources.table_ctime"),
-        accessor: "ctimeCol",
-        width: "150px",
-      },
-      {
-        Header: "",
-        accessor: "extraCol",
-        disableSortBy: true,
-        width: "90px",
-      },
-    ],
-    [],
+  const resourceData: ResourceTableData[] = resourcesList.map(
+    (resource: Resource<ResourceContent>) => {
+      let dbName = "Null"
+      switch (resource.resourceType) {
+        case "restapi":
+          break
+        case "mongodb":
+          break
+        case "redis":
+          break
+        case "postgresql":
+          break
+        case "mysql":
+          dbName = (resource as Resource<MysqlResource>).content.databaseName
+          break
+      }
+      return {
+        id: resource.resourceId,
+        name: resource.resourceName,
+        type: getDbName(resource.resourceType),
+        databaseName: dbName,
+        created: resource.createdAt,
+      } as ResourceTableData
+    },
   )
 
-  const showFromFunction = () => {
-    setGeneratorVisible(true)
-  }
-  const changeCurResourceId = (curResourceId: string) => {
-    setCurResourceId(curResourceId)
-  }
-  const editActionType = () => {
-    setEdit(true)
-  }
-
-  const data = useMemo(() => {
-    const result: any[] = []
-    const tmpResourcesList = cloneDeep(resourcesList)
-    tmpResourcesList
-      .sort((a, b) => {
-        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-      })
-      .forEach((item: Resource<ResourceContent>) => {
-        result.push({
-          nameCol: NameColComponent(item.resourceType, item.resourceName),
-          typeCol: TypeColComponent(item.resourceType),
-          dbNameCol: DbNameColComponent(getDbName(item)),
-          ctimeCol: CtimeColComponent(item.updatedAt),
-          extraCol: (
-            <ExtraColComponent
-              resourceId={item.resourceId}
-              showFormVisible={() => showFromFunction()}
-              setCurId={changeCurResourceId}
-              editActionType={editActionType}
-            />
-          ),
-        })
-      })
-    return result
-  }, [resourcesList])
+  const columns: ColumnDef<ResourceTableData>[] = [
+    {
+      header: t("dashboard.resource.resource_name"),
+      accessorKey: "name",
+      cell: props => {
+        const type = resourcesList[props.row.index].resourceType
+        return (
+          <Space size="8px">
+            {getIconFromResourceType(type, "24px")}
+            <span css={applyTableTextStyle(true)}>
+              {props.getValue() as string}
+            </span>
+          </Space>
+        )
+      },
+    },
+    {
+      header: t("dashboard.resource.resource_type"),
+      accessorKey: "type",
+      cell: props => (
+        <span css={applyTableTextStyle(false)}>
+          {props.getValue() as string}
+        </span>
+      ),
+    },
+    {
+      header: t("dashboard.resource.dbname"),
+      accessorKey: "databaseName",
+      cell: props => (
+        <span
+          css={applyTableTextStyle((props.getValue() as string) !== "Null")}
+        >
+          {props.getValue() as string}
+        </span>
+      ),
+    },
+    {
+      header: t("dashboard.resource.created"),
+      accessorKey: "created",
+      cell: props => (
+        <span css={applyTableTextStyle(true)}>
+          {props.getValue() as string}
+        </span>
+      ),
+    },
+    {
+      header: "",
+      enableSorting: false,
+      accessorKey: "id",
+      cell: props => (
+        <DashboardResourceItemMenu resourceId={props.getValue() as string} />
+      ),
+    },
+  ]
 
   return (
     <div css={appsContainerStyle}>
       <div css={listTitleContainerStyle}>
         <span css={listTitleStyle}>{t("resources")}</span>
-        <Button
-          colorScheme="techPurple"
-          onClick={() => {
-            setEdit(false)
-            setGeneratorVisible(true)
-          }}
-        >
-          {t("dashboard.resources.create_resources")}
+        <Button colorScheme="techPurple">
+          {t("dashboard.resource.create_resource")}
         </Button>
       </div>
-      <Divider direction="horizontal" />
       {resourcesList?.length ? (
         <Table
-          _css={tableStyle}
-          data={data}
+          _css={hoverStyle}
+          striped
+          hoverable
+          size="large"
+          data={resourceData}
           columns={columns}
-          disableRowSelect
+          disableFilters
         />
       ) : null}
       {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
-      <ResourceEditor
-        visible={generatorVisible}
-        edit={edit}
-        resourceId={curResourceId}
-        onClose={() => {
-          setGeneratorVisible(false)
-        }}
-      />
     </div>
   )
 }

@@ -7,12 +7,13 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
   (props, ref) => {
-    const { imageSrc, altText, radius } = props
+    const { imageSrc, altText, radius, objectFit } = props
 
     return (
       <Image
         ref={ref}
-        fallbackSrc={imageSrc}
+        src={imageSrc}
+        objectFit={objectFit}
         alt={altText}
         radius={radius}
         height="100%"
@@ -25,11 +26,12 @@ export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
 
 WrappedImage.displayName = "WrappedImage"
 
-export const ImageWidget: FC<ImageWidgetProps> = (props) => {
+export const ImageWidget: FC<ImageWidgetProps> = props => {
   const {
     imageSrc,
     altText,
     radius,
+    objectFit,
     handleUpdateDsl,
     handleDeleteGlobalData,
     handleUpdateGlobalData,
@@ -71,7 +73,12 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={ImageWrapperStyle}>
-        <WrappedImage {...props} imageSrc={finalSrc} radius={finalRadius} />
+        <WrappedImage
+          {...props}
+          imageSrc={finalSrc}
+          radius={finalRadius}
+          objectFit={objectFit}
+        />
       </div>
     </TooltipWrapper>
   )

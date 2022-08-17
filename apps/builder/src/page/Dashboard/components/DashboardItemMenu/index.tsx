@@ -14,14 +14,8 @@ import {
   modalStyle,
 } from "./style"
 
-export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
-  const {
-    appId,
-    appIndex,
-    showRenameModal,
-    showDuplicateModal,
-    setCurrentAppIdx,
-  } = props
+export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
+  const { appId, appIndex } = props
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -33,10 +27,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           globalColor(`--${illaPrefix}-grayBlue-02`),
           globalColor(`--${illaPrefix}-techPurple-01`),
         )}
-        onClick={() => {
-          setCurrentAppIdx(appIndex)
-          showRenameModal()
-        }}
       >
         {t("rename")}
       </div>
@@ -45,10 +35,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
           globalColor(`--${illaPrefix}-grayBlue-02`),
           globalColor(`--${illaPrefix}-techPurple-01`),
         )}
-        onClick={() => {
-          setCurrentAppIdx(appIndex)
-          showDuplicateModal()
-        }}
       >
         {t("duplicate")}
       </div>
@@ -73,7 +59,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                   url: `/apps/${appId}`,
                   method: "DELETE",
                 },
-                (response) => {
+                response => {
                   dispatch(
                     dashboardAppActions.removeDashboardAppReducer(
                       response.data.appId,
@@ -81,10 +67,10 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
                   )
                   Message.success(t("dashboard.app.trash_success"))
                 },
-                (failure) => {
+                failure => {
                   Message.success(t("dashboard.app.trash_failure"))
                 },
-                (crash) => {
+                crash => {
                   Message.error(t("network_error"))
                 },
               )

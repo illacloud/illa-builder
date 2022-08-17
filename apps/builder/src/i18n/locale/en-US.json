@@ -453,6 +453,7 @@
         "data": "DATA"
       },
       "setter_label": {
+        "scale_type": "Scale type",
         "columns": "Columns",
         "layout": "Layout",
         "success": "Success",
@@ -761,17 +762,16 @@
       "name_empty": "Please enter a name",
       "name_existed": "Name already taken"
     },
-    "resources": {
-      "table_name": "Resource Name",
-      "table_type": "Database Type",
-      "table_dbname": "Database Name",
-      "table_ctime": "Created",
-      "trash_success": "Deleted successfully",
-      "trash_failure": "Failed to delete",
-      "create_resources": "Create New",
+    "resource": {
+      "resource_name": "Name",
+      "resource_type": "Type",
+      "dbname": "Database Name",
+      "created": "Created",
+      "delete_success": "Deleted successfully",
+      "delete_fail": "Failed to delete",
+      "create_resource": "Create New",
       "create_success": "Create Success!",
-      "edit_success": "Edit Success",
-      "create_new_title": "Select resource type"
+      "edit_success": "Edit Success"
     }
   },
   "setting": {

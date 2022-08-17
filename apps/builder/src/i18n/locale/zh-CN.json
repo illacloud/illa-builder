@@ -452,6 +452,7 @@
         "data": "数据"
       },
       "setter_label": {
+        "scale_type": "缩放类型",
         "columns": "列数据",
         "layout": "布局",
         "success": "请求成功",
@@ -761,17 +762,16 @@
       "name_empty": "请输入项目名称",
       "name_existed": "名称已被占用"
     },
-    "resources": {
-      "table_name": "资源名",
-      "table_type": "数据库类型",
-      "table_dbname": "数据库名",
-      "table_ctime": "创建时间",
-      "trash_success": "删除成功",
-      "trash_failure": "删除失败",
-      "create_resources": "创建资源",
+    "resource": {
+      "resource_name": "名称",
+      "resource_type": "类型",
+      "dbname": "数据库名",
+      "created": "创建时间",
+      "delete_success": "删除成功",
+      "delete_fail": "删除失败",
+      "create_resource": "创建资源",
       "create_success": "创建成功！",
-      "edit_success": "修改成功",
-      "create_new_title": "选择资源类型"
+      "edit_success": "修改成功"
     }
   },
   "setting": {

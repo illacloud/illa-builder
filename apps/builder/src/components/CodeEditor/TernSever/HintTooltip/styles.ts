@@ -5,7 +5,7 @@ export const mainTitleStyle = css`
   display: flex;
   font-size: 12px;
   line-height: 20px;
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica Neue", sans-serif;
 `
 
 export const contentAreaStyle = css`
@@ -30,7 +30,7 @@ export const evaluationStyle = css`
 `
 
 export const evaluationContentStyle = css`
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica Neue", sans-serif;
 `
 
 export const evaluationTriggerStyle = css`

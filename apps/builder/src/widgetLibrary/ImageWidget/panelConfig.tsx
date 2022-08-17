@@ -25,6 +25,14 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "altText",
         setterType: "INPUT_SETTER",
       },
+      {
+        id: `${baseWidgetName}-basic-scale-type`,
+        labelName: i18n.t("editor.inspect.setter_label.scale_type"),
+        labelDesc: i18n.t("editor.inspect.setter_label.scale_type"),
+        attrName: "objectFit",
+        setterType: "BASE_SELECT_SETTER",
+        options: ["container", "cover", "fill", "none", "scale-down"],
+      },
     ],
   },
   {

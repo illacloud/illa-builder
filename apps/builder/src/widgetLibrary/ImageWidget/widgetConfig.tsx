@@ -12,8 +12,9 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   h: 16,
   w: 6,
   defaults: {
-    imageSrc: "https://placekitten.com/400/300",
+    imageSrc: "",
     radius: "0px",
     hidden: false,
+    objectFit: "cover",
   },
 }

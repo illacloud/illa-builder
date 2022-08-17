@@ -49,6 +49,8 @@ export const applyHiddenWrapperStyle = (hidden: boolean) => {
   return css`
     width: 100%;
     height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     visibility: ${hidden ? "hidden" : "visible"};
   `
 }
