@@ -25,7 +25,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const app = useSelector((state: RootState) => {
     return state.dashboard.dashboardApps.list.find(
@@ -43,9 +42,6 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
           css={buttonVisibleStyle}
           className="dashboardAppEditButton"
           colorScheme="techPurple"
-          onClick={() => {
-            navigate(`/app/${app.appId}`)
-          }}
         >
           {t("edit")}
         </Button>
