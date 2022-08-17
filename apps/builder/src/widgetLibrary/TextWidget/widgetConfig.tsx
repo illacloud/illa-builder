@@ -15,7 +15,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
     value: i18n.t("widget.text.default_value"),
     horizontalAlign: "start",
     verticalAlign: "center",
-    textColor: "grayBlue",
+    colorScheme: "grayBlue",
     disableMarkdown: false,
     hidden: false,
     fs: "14px",
