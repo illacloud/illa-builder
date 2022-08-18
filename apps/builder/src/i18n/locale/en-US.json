@@ -741,6 +741,7 @@
   "link_copied": "Link Copied",
   "dashboard": {
     "common": {
+      "cancel": "Cancel",
       "delete_title": "Are you sure?",
       "delete_content": "This will break Apps and Query Library queries that use this resource",
       "delete_cancel_text": "Cancel",
@@ -751,9 +752,11 @@
       "error_button": "Retry"
     },
     "app": {
+      "edited_time": "Edited at {{ time }} by {{ user }}",
       "all_apps": "All Apps",
       "create_app": "Create App",
       "rename_app": "Rename App",
+      "rename_success": "Renamed successfully",
       "rename_fail": "Failed to rename",
       "duplicate_fail": "Failed to duplicate",
       "duplicate_placeholder": "Enter your app name here",

@@ -29,7 +29,6 @@ export const restapiItemLabelStyle = css`
 
 export const restApiItemSelectStyle = css`
   margin-left: 16px;
-  min-width: 160px;
 `
 
 export const restapiItemInputStyle = css`

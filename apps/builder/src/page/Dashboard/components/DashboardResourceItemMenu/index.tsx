@@ -12,8 +12,8 @@ import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 import { Space } from "@illa-design/space"
-import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEditor"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
+import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
 
 const Item = DropList.Item
 

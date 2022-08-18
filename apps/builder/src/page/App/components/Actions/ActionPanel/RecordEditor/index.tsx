@@ -5,7 +5,6 @@ import {
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
-  recordNewButton,
   recordStyle,
   recordValueStyle,
 } from "./style"
@@ -16,7 +15,7 @@ import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useTranslation } from "react-i18next"
 
-export const RecordEditor: FC<RecordEditorProps> = (props) => {
+export const RecordEditor: FC<RecordEditorProps> = props => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
 
   const { t } = useTranslation()
@@ -35,7 +34,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 placeholder="key"
                 borderRadius="8px 0 0 8px"
                 expectedType={VALIDATION_TYPES.STRING}
-                onChange={(value) => {
+                onChange={value => {
                   onChangeKey(index, value, record.value)
                 }}
               />
@@ -47,13 +46,13 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 value={record.value}
                 borderRadius="0 0 0 0"
                 expectedType={VALIDATION_TYPES.STRING}
-                onChange={(value) => {
+                onChange={value => {
                   onChangeValue(index, record.key, value)
                 }}
               />
               <Button
                 variant="outline"
-                buttonRadius="0 8px 8px 0"
+                bdRadius="0 8px 8px 0"
                 colorScheme="gray"
                 onClick={() => {
                   onDelete(index, record)
@@ -78,9 +77,10 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
         {recordList}
         <span>
           <Button
-            _css={recordNewButton}
+            mb="8px"
+            pd="1px 8px"
             colorScheme="techPurple"
-            size="small"
+            size="medium"
             variant="text"
             onClick={() => {
               onAdd()

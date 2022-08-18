@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
@@ -25,6 +25,8 @@ import {
 import { Space } from "@illa-design/space"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
+import { fromNow } from "@/utils/dayjs"
+import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
 
 function getDbName(resourceType: string): string {
   let name = ""
@@ -47,6 +49,8 @@ export const DashboardResources: FC = () => {
   const { t } = useTranslation()
 
   const resourcesList: ResourceListState = useSelector(getAllResources)
+
+  const [newResourceVisible, setNewResourceVisible] = useState(false)
 
   const resourceData: ResourceTableData[] = resourcesList.map(
     (resource: Resource<ResourceContent>) => {
@@ -115,7 +119,7 @@ export const DashboardResources: FC = () => {
       accessorKey: "created",
       cell: (props) => (
         <span css={applyTableTextStyle(true)}>
-          {props.getValue() as string}
+          {fromNow(props.getValue() as string)}
         </span>
       ),
     },
@@ -130,26 +134,39 @@ export const DashboardResources: FC = () => {
   ]
 
   return (
-    <div css={appsContainerStyle}>
-      <div css={listTitleContainerStyle}>
-        <span css={listTitleStyle}>{t("resources")}</span>
-        <Button colorScheme="techPurple">
-          {t("dashboard.resource.create_resource")}
-        </Button>
+    <>
+      <div css={appsContainerStyle}>
+        <div css={listTitleContainerStyle}>
+          <span css={listTitleStyle}>{t("resources")}</span>
+          <Button
+            colorScheme="techPurple"
+            onClick={() => {
+              setNewResourceVisible(true)
+            }}
+          >
+            {t("dashboard.resource.create_resource")}
+          </Button>
+        </div>
+        {resourcesList?.length ? (
+          <Table
+            _css={hoverStyle}
+            striped
+            hoverable
+            size="large"
+            data={resourceData}
+            columns={columns}
+          />
+        ) : null}
+        {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
       </div>
-      {resourcesList?.length ? (
-        <Table
-          _css={hoverStyle}
-          striped
-          hoverable
-          size="large"
-          data={resourceData}
-          columns={columns}
-          disableFilters
-        />
-      ) : null}
-      {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
-    </div>
+      <ResourceEditor
+        visible={newResourceVisible}
+        edit={false}
+        onClose={() => {
+          setNewResourceVisible(false)
+        }}
+      />
+    </>
   )
 }
 

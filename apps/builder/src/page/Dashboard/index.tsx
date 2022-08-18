@@ -9,7 +9,7 @@ import { Connection } from "@/api/ws"
 import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
@@ -30,23 +30,23 @@ export const IllaApp: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const controller = new AbortController()
-    const appList = new Promise((resolve) => {
+    const appList = new Promise(resolve => {
       Api.request<DashboardApp[]>(
         {
           url: "/apps",
           method: "GET",
           signal: controller.signal,
         },
-        (response) => {
+        response => {
           dispatch(
             dashboardAppActions.updateDashboardAppListReducer(response.data),
           )
           resolve("success")
         },
-        (failure) => {},
-        (crash) => {},
-        (loading) => {},
-        (errorState) => {
+        failure => {},
+        crash => {},
+        loading => {},
+        errorState => {
           if (errorState) {
             resolve("error")
           }
@@ -54,28 +54,28 @@ export const IllaApp: FC = () => {
       )
     })
 
-    const resourceList = new Promise((resolve) => {
+    const resourceList = new Promise(resolve => {
       Api.request<Resource<ResourceContent>[]>(
         {
           url: "/resources",
           method: "GET",
           signal: controller.signal,
         },
-        (response) => {
+        response => {
           dispatch(resourceActions.updateResourceListReducer(response.data))
           resolve("success")
         },
-        (failure) => {},
-        (crash) => {},
-        (loading) => {},
-        (errorState) => {
+        failure => {},
+        crash => {},
+        loading => {},
+        errorState => {
           if (errorState) {
             resolve("error")
           }
         },
       )
     })
-    Promise.all([appList, resourceList]).then((result) => {
+    Promise.all([appList, resourceList]).then(result => {
       if (result.includes("error")) {
         setPageState("error")
       } else {
@@ -91,8 +91,8 @@ export const IllaApp: FC = () => {
     Connection.enterRoom(
       "dashboard",
       "",
-      (loading) => {},
-      (errorState) => {},
+      loading => {},
+      errorState => {},
     )
     return () => {
       Connection.leaveRoom("dashboard", "")

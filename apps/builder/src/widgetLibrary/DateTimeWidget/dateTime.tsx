@@ -39,6 +39,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
 
     return (
       <DatePicker
+        w="100%"
         showTime={{ step: { minute: minuteStep }, format: timeFormat }}
         colorScheme={colorScheme}
         format={dateFormat}

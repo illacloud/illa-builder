@@ -2,13 +2,6 @@ import { SerializedStyles } from "@emotion/serialize"
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const triggerContentContainerCss: SerializedStyles = css`
-  padding-top: 8px;
-  padding-bottom: 8px;
-  display: flex;
-  flex-direction: column;
-`
-
 export function applyTriggerContentItemStyle(
   color: string,
   hoverColor?: string,
@@ -26,13 +19,3 @@ export function applyTriggerContentItemStyle(
     }
   `
 }
-
-export const modalStyle = css`
-  width: 520px;
-`
-
-export const closeIconStyle = css`
-  position: absolute;
-  top: 21px;
-  right: 18px;
-`

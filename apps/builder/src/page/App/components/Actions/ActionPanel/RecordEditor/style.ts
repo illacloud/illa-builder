@@ -30,10 +30,6 @@ export const recordValueStyle = css`
   flex-grow: 1;
 `
 
-export const recordNewButton = css`
-  margin-bottom: 8px;
-`
-
 export const recordEditorLabelStyle = css`
   min-width: 160px;
   margin-left: 16px;

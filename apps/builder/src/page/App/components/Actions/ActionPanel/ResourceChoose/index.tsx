@@ -16,10 +16,10 @@ import { ButtonProps } from "@illa-design/button"
 import { RootState } from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { ResourceChooseProps } from "@/page/App/components/Actions/ActionPanel/interface"
-import { ResourceEditor } from "@/page/Dashboard/DashboardResources/ResourceEditor"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
 
-export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
+export const ResourceChoose: FC<ResourceChooseProps> = props => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
@@ -35,7 +35,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const realResourceId = useMemo(() => {
     let currentResourceId = action.resourceId
     const currentResource = resourceList.find(
-      (r) => r.resourceId === currentResourceId,
+      r => r.resourceId === currentResourceId,
     )
     if (currentResource) {
       return currentResourceId
@@ -49,10 +49,10 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
       <Space direction="horizontal" size="8px">
         <Select
           colorScheme="techPurple"
-          width="200px"
+          w="200px"
           value={realResourceId}
-          onChange={(value) => {
-            const resource = resourceList.find((r) => r.resourceId === value)
+          onChange={value => {
+            const resource = resourceList.find(r => r.resourceId === value)
             if (resource != undefined) {
               dispatch(
                 configActions.updateSelectedAction({
@@ -99,7 +99,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
               {t("editor.action.panel.option.resource.new")}
             </Space>
           </Option>
-          {resourceList.map((item) => {
+          {resourceList.map(item => {
             return (
               <Option value={item.resourceId} key={item.resourceId}>
                 <Space size="8px" direction="horizontal" align="center">
@@ -112,9 +112,9 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
         </Select>
         <Select
           colorScheme="techPurple"
-          width="400px"
+          w="400px"
           value={action.triggerMode}
-          onChange={(value) => {
+          onChange={value => {
             dispatch(
               configActions.updateSelectedAction({
                 ...action,
