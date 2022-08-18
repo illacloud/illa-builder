@@ -5,10 +5,10 @@ import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import {
   BugIcon,
   CaretRightIcon,
+  ExitIcon,
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-  ExitIcon,
 } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
@@ -114,15 +114,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
             </span>
             <span
               css={windowIconBodyStyle}
-              onClick={handleClickRightWindowIcon}
-            >
-              <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
-            </span>
-            <span
-              css={windowIconBodyStyle}
               onClick={handleClickBottomWindowIcon}
             >
               <WindowBottomIcon _css={windowIconStyle(bottomPanelVisible)} />
+            </span>
+            <span
+              css={windowIconBodyStyle}
+              onClick={handleClickRightWindowIcon}
+            >
+              <WindowRightIcon _css={windowIconStyle(rightPanelVisible)} />
             </span>
           </>
         )}
