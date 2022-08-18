@@ -5,7 +5,6 @@ import {
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
-  recordNewButton,
   recordStyle,
   recordValueStyle,
 } from "./style"
