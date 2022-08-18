@@ -49,7 +49,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = props => {
       <Space direction="horizontal" size="8px">
         <Select
           colorScheme="techPurple"
-          width="200px"
+          w="200px"
           value={realResourceId}
           onChange={value => {
             const resource = resourceList.find(r => r.resourceId === value)
@@ -112,7 +112,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = props => {
         </Select>
         <Select
           colorScheme="techPurple"
-          width="400px"
+          w="400px"
           value={action.triggerMode}
           onChange={value => {
             dispatch(
