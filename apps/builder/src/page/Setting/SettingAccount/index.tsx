@@ -10,7 +10,7 @@ import { Api } from "@/api/base"
 import { CurrentUser } from "@/redux/currentUser/currentUserState"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { Message } from "@illa-design/message"
-import { LabelAndSetter } from "@/page/Setting/components/LabelAndSetter"
+import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
@@ -28,22 +28,28 @@ export const SettingAccount: FC = () => {
     setNickNameValue(userInfo.nickname ?? "")
   }, [userInfo])
 
-  const checkUserNameValidate = useCallback((nickName: string) => {
-    if (!nickName) {
-      setErrorMessage(t("setting.account.empty_username"))
-      return
-    }
-    if (nickName.length < 3 || nickName.length > 20) {
-      setErrorMessage(t("setting.account.error_username"))
-      return
-    }
-    setErrorMessage("")
-  }, [])
+  const checkUserNameValidate = useCallback(
+    (nickName: string) => {
+      if (!nickName) {
+        setErrorMessage(t("setting.account.empty_username"))
+        return
+      }
+      if (nickName.length < 3 || nickName.length > 20) {
+        setErrorMessage(t("setting.account.error_username"))
+        return
+      }
+      setErrorMessage("")
+    },
+    [t],
+  )
 
-  const handleChangeUserName = useCallback((value: string) => {
-    setNickNameValue(value)
-    checkUserNameValidate(value)
-  }, [])
+  const handleChangeUserName = useCallback(
+    (value: string) => {
+      setNickNameValue(value)
+      checkUserNameValidate(value)
+    },
+    [checkUserNameValidate],
+  )
 
   const handleSubmit = useCallback(
     debounce(() => {

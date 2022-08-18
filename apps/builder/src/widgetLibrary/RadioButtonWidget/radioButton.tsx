@@ -2,9 +2,8 @@ import { FC, useEffect, useMemo } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { RadioButtonWidgetProps, WrappedRadioButtonProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
-import { autoWidthContainerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {

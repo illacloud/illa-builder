@@ -7,7 +7,7 @@ import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const Setter = memo<PanelSetterProps>((props) => {
+export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const {
     setterType,
     isSetterSingleRow,
@@ -46,7 +46,7 @@ export const Setter = memo<PanelSetterProps>((props) => {
       return shown(...bindAttrNameValues)
     }
     return true
-  }, [shown, widgetProps, bindAttrName])
+  }, [bindAttrName, shown, parentAttrName, widgetProps])
 
   const renderLabel = useMemo(() => {
     return !useCustomLayout && labelName ? (
@@ -98,15 +98,20 @@ export const Setter = memo<PanelSetterProps>((props) => {
     ) : null
   }, [
     Comp,
-    props,
-    widgetProps,
-    attrName,
-    handleUpdateDsl,
+    isInList,
     isSetterSingleRowWrapper,
+    props,
     _finalAttrName,
+    finalValue,
+    widgetProps,
+    handleUpdateDsl,
     widgetDisplayName,
     expectedType,
-    isInList,
+    widgetType,
+    parentAttrName,
+    widgetOrAction,
+    defaultValue,
+    iconName,
   ])
 
   return canRenderSetter ? (

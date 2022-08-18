@@ -7,7 +7,7 @@ import { DownIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Divider } from "@illa-design/divider"
 import { Dropdown } from "@illa-design/dropdown"
-import { ReactComponent as Logo } from "@assets/illa-logo.svg"
+import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import {
   containerStyle,
   expandStyle,
@@ -23,9 +23,10 @@ import {
 import { clearLocalStorage } from "@/utils/storage"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 
-const SettingTrigger: FC<{ avatarBgColor: string; avatarText: string }> = (
-  props,
-) => {
+const SettingTrigger: FC<{
+  avatarBgColor: string
+  avatarText: string
+}> = (props) => {
   const { avatarBgColor, avatarText } = props
   const { t } = useTranslation()
   const navigate = useNavigate()

@@ -24,7 +24,7 @@ function App() {
     if (!!currentUserLanguage) {
       i18n.changeLanguage(currentUserLanguage)
     }
-  }, [currentUserLanguage])
+  }, [currentUserLanguage, i18n])
 
   return (
     <BrowserRouter>

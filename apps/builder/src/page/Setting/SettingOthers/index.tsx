@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 import { Button } from "@illa-design/button"
-import { LabelAndSetter } from "@/page/Setting/components/LabelAndSetter"
+import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { Select } from "@illa-design/select"
 import { useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
@@ -48,13 +48,13 @@ export const SettingOthers: FC = () => {
           language: languageValue,
         },
       },
-      response => {
+      (response) => {
         localStorage.setItem("i18nextLng", languageValue)
         window.location.reload()
       },
-      failure => {},
-      crash => {},
-      loading => {
+      (failure) => {},
+      (crash) => {},
+      (loading) => {
         setIsLoading(loading)
       },
     )

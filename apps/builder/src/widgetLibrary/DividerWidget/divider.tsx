@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, FC, useEffect } from "react"
 import { Divider } from "@illa-design/divider"
 import { WrappedDividerProps, DividerWidgetProps } from "./interface"
-import { dividerContainerStyle } from "./style";
+import { dividerContainerStyle } from "./style"
 
 export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
   (props, ref) => {
@@ -55,7 +55,11 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
     }
   }, [text, textAlign, colorScheme, textSize, displayName])
 
-  return <div css={dividerContainerStyle}><WrappedDivider {...props} /></div>
+  return (
+    <div css={dividerContainerStyle}>
+      <WrappedDivider {...props} />
+    </div>
+  )
 }
 
 DividerWidget.displayName = "DividerWidget"

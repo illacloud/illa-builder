@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, FC, useEffect } from "react"
 import { Progress } from "@illa-design/progress"
 import { WrappedBarProgressProps, BarProgressWidgetProps } from "./interface"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 

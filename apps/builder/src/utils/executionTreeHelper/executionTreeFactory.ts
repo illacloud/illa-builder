@@ -64,7 +64,7 @@ export class ExecutionTreeFactory {
         return current
       }
       const validationPaths = widgetOrAction.$validationPaths
-      Object.keys(validationPaths).forEach(validationPath => {
+      Object.keys(validationPaths).forEach((validationPath) => {
         const validationType = validationPaths[validationPath]
         const fullPath = `${displayName}.${validationPath}`
         const validationFunc = validationFactory[validationType]
@@ -116,7 +116,7 @@ export class ExecutionTreeFactory {
     while (iterator < sortOrder.length) {
       const newNodes = inverseMap[sortOrder[iterator]]
       if (newNodes) {
-        newNodes.forEach(toBeEvaluatedNode => {
+        newNodes.forEach((toBeEvaluatedNode) => {
           if (!sortOrder.includes(toBeEvaluatedNode)) {
             sortOrder.push(toBeEvaluatedNode)
           }
@@ -141,7 +141,7 @@ export class ExecutionTreeFactory {
     }
     const sortOrderSet = new Set(sortOrders)
     const sortOrderPropertyPaths: string[] = []
-    this.evalOrder.forEach(path => {
+    this.evalOrder.forEach((path) => {
       if (sortOrderSet.has(path)) {
         sortOrderPropertyPaths.push(path)
         sortOrderSet.delete(path)
@@ -154,7 +154,7 @@ export class ExecutionTreeFactory {
     ]
 
     const finalSortOrderArray: Array<string> = []
-    completeSortOrder.forEach(propertyPath => {
+    completeSortOrder.forEach((propertyPath) => {
       const lastIndexOfDot = propertyPath.lastIndexOf(".")
       if (lastIndexOfDot !== -1) {
         finalSortOrderArray.push(propertyPath)
@@ -177,7 +177,7 @@ export class ExecutionTreeFactory {
     this.applyDifferencesToEvalTree(differences)
     const path = this.calcSubTreeSortOrder(differences)
 
-    path.forEach(propertyPath => {
+    path.forEach((propertyPath) => {
       const unEvalPropValue = get(currentRawTree, propertyPath)
       const evalPropValue = get(this.executedTree, propertyPath)
       if (typeof evalPropValue !== "function") {
@@ -204,16 +204,15 @@ export class ExecutionTreeFactory {
     displayName: string,
   ) {
     let dependenciesMap: DependenciesState = {}
-    const dynamicAttrPaths: string[] = getWidgetOrActionDynamicAttrPaths(
-      widgetOrAction,
-    )
+    const dynamicAttrPaths: string[] =
+      getWidgetOrActionDynamicAttrPaths(widgetOrAction)
     if (dynamicAttrPaths.length) {
-      dynamicAttrPaths.forEach(attrPath => {
+      dynamicAttrPaths.forEach((attrPath) => {
         const originValue = get(widgetOrAction, attrPath)
         const { jsSnippets } = getSnippets(originValue)
         const existingDeps = dependenciesMap[`${displayName}.${attrPath}`] || []
         dependenciesMap[`${displayName}.${attrPath}`] = existingDeps.concat(
-          jsSnippets.filter(jsSnippet => !!jsSnippet),
+          jsSnippets.filter((jsSnippet) => !!jsSnippet),
         )
       })
     }
@@ -223,7 +222,7 @@ export class ExecutionTreeFactory {
   generateDependenciesMap(rawTree: RawTreeShape) {
     let dependenciesMap: DependenciesState = {}
     const allKeys = getAllPaths(rawTree)
-    Object.keys(rawTree).forEach(displayName => {
+    Object.keys(rawTree).forEach((displayName) => {
       const widgetProps = rawTree[displayName]
       const widgetOrActionDependencies = this.listEntityDependencies(
         widgetProps,
@@ -232,9 +231,9 @@ export class ExecutionTreeFactory {
       dependenciesMap = { ...dependenciesMap, ...widgetOrActionDependencies }
     })
 
-    Object.keys(dependenciesMap).forEach(key => {
+    Object.keys(dependenciesMap).forEach((key) => {
       dependenciesMap[key] = flatten(
-        dependenciesMap[key].map(script => {
+        dependenciesMap[key].map((script) => {
           try {
             return extractReferencesFromScript(script, allKeys)
           } catch (e) {
@@ -251,7 +250,7 @@ export class ExecutionTreeFactory {
     const dependencyTree: Array<[string, string]> = []
     Object.keys(dependenciesMap).forEach((key: string) => {
       if (dependenciesMap[key].length) {
-        dependenciesMap[key].forEach(dep => dependencyTree.push([key, dep]))
+        dependenciesMap[key].forEach((dep) => dependencyTree.push([key, dep]))
       } else {
         dependencyTree.push([key, ""])
       }
@@ -260,7 +259,7 @@ export class ExecutionTreeFactory {
     try {
       return toposort(dependencyTree)
         .reverse()
-        .filter(d => !!d)
+        .filter((d) => !!d)
     } catch (e) {
       this.hasCyclical = true
       if (e instanceof Error) {
@@ -280,10 +279,10 @@ export class ExecutionTreeFactory {
 
   generateInDependenciesMap(): DependenciesState {
     const inverseDag: DependenciesState = {}
-    this.evalOrder.forEach(propertyPath => {
+    this.evalOrder.forEach((propertyPath) => {
       const incomingEdges: Array<string> = this.dependenciesState[propertyPath]
       if (incomingEdges) {
-        incomingEdges.forEach(edge => {
+        incomingEdges.forEach((edge) => {
           const node = inverseDag[edge]
           if (node) {
             node.push(propertyPath)

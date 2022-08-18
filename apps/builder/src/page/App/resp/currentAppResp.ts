@@ -1,5 +1,3 @@
-import { DependenciesState } from "@/redux/currentApp/executionTree/dependencies/dependenciesState"
-import { ExecutionState } from "@/redux/currentApp/executionTree/execution/executionState"
 import { DragShadowState } from "@/redux/currentApp/editor/dragShadow/dragShadowState"
 import { DottedLineSquareState } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareState"
 import { DisplayNameState } from "@/redux/currentApp/displayName/displayNameState"
@@ -9,13 +7,14 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import { DependenciesState } from "@/redux/currentApp/executionTree/executionState"
 
 export interface CurrentAppResp {
   appInfo: DashboardApp
   components: ComponentsState
   actions: ActionItem<ActionContent>[]
   dependenciesState: DependenciesState
-  executionState: ExecutionState
+  executionState: Record<string, any>
   dragShadowState: DragShadowState
   dottedLineSquareState: DottedLineSquareState
   displayNameState: DisplayNameState

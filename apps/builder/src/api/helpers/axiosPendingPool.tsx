@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from "axios"
-import qs from "qs"
+import { stringify } from "qs"
 
 let pendingPollMap = new Map<string, (reason?: any) => void>()
 
@@ -7,8 +7,8 @@ export const generateUniqueKey = (config: AxiosRequestConfig) =>
   [
     config.method,
     config.url,
-    qs.stringify(config.params),
-    qs.stringify(config.data),
+    stringify(config.params),
+    stringify(config.data),
   ].join("/")
 
 export const clearRequestPendingPool = () => {

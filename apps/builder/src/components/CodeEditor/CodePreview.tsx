@@ -46,7 +46,7 @@ export const CodePreview: FC<CodePreviewProps> = (props) => {
       )}
       <div css={contentTextStyle}>
         {preview?.type === "String" ? (
-          <span>"{preview?.content}"</span>
+          <span>&quot;{preview?.content}&quot;</span>
         ) : (
           `${preview?.content}`
         )}

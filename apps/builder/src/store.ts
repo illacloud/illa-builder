@@ -57,7 +57,7 @@ const store = configureStore({
         ignoredActions: ["execution/setExecutionResultReducer"],
       },
     })
-      // .concat(logger)
+      .concat(logger)
       .concat(reduxAsync)
       .prepend(listenerMiddleware.middleware),
 })

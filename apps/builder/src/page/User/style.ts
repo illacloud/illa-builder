@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import SignInBgUrl from "@assets/sign-bg.svg"
+import SignInBgUrl from "@/assets/sign-bg.svg"
 
 export const containerStyle: SerializedStyles = css`
   display: flex;

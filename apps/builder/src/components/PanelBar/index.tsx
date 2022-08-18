@@ -10,7 +10,7 @@ import { PanelBarProps } from "./interface"
 import { motion, AnimatePresence } from "framer-motion"
 import { UpIcon } from "@illa-design/icon"
 
-export const PanelBar: FC<PanelBarProps> = memo((props) => {
+export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
   const { title, children, isOpened = true, saveToggleState } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 

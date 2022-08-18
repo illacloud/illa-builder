@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import "@testing-library/jest-dom"
-import Label from "../index"
+import { Label } from "../index"
 
 test("Render basic Label", () => {
   render(<Label label="testLabel" />)

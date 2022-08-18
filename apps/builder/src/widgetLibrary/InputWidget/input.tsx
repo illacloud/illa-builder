@@ -1,7 +1,7 @@
 import { FC, forwardRef, useEffect, useRef } from "react"
 import { Input } from "@illa-design/input"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,

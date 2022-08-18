@@ -3,9 +3,8 @@ import dayjs from "dayjs"
 import { DateRangePicker } from "@illa-design/date-picker"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 
 export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const {

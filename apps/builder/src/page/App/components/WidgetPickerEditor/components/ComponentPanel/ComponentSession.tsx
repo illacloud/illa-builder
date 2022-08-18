@@ -8,7 +8,7 @@ import {
 import { ComponentItem } from "./ComponentItem"
 import { useTranslation } from "react-i18next"
 
-export const ComponentSession: FC<ComponentSessionProps> = memo((props) => {
+export const ComponentSession = memo((props: ComponentSessionProps) => {
   const { title, widgetCardInfos } = props
   const { t } = useTranslation()
 
