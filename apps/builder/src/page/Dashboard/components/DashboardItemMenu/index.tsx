@@ -15,8 +15,8 @@ import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { Message } from "@illa-design/message"
 import { RootState } from "@/store"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
-import { useNavigate } from "react-router-dom"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"
+import { useNavigate } from "react-router-dom"
 
 const Item = DropList.Item
 
@@ -25,6 +25,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const app = useSelector((state: RootState) => {
     return state.dashboard.dashboardApps.list.find(
@@ -42,6 +43,9 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
           css={buttonVisibleStyle}
           className="dashboardAppEditButton"
           colorScheme="techPurple"
+          onClick={() => {
+            navigate(`/app/${app.appId}`)
+          }}
         >
           {t("edit")}
         </Button>
