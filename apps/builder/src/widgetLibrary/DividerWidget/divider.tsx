@@ -1,35 +1,26 @@
-import { forwardRef, useMemo, FC, useEffect } from "react"
+import { FC, forwardRef, useEffect, useMemo } from "react"
 import { Divider } from "@illa-design/divider"
-import { WrappedDividerProps, DividerWidgetProps } from "./interface"
-import { dividerContainerStyle } from "./style";
+import { DividerWidgetProps, WrappedDividerProps } from "./interface"
+import { dividerContainerStyle } from "./style"
 
 export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
   (props, ref) => {
-    const { text, textAlign, colorScheme, textSize } = props
+    const { text, fs } = props
 
     const _textSize = useMemo(() => {
-      return !isNaN(Number(textSize)) ? textSize + "px" : textSize?.toString()
-    }, [textSize])
+      return !isNaN(Number(fs)) ? fs + "px" : fs?.toString()
+    }, [fs])
 
-    return (
-      <Divider
-        text={text}
-        textAlign={textAlign}
-        textSize={_textSize}
-        colorScheme={colorScheme}
-      />
-    )
+    return <Divider w="100%" text={text} fs={_textSize} />
   },
 )
 
 WrappedDivider.displayName = "WrappedDivider"
 
-export const DividerWidget: FC<DividerWidgetProps> = (props) => {
+export const DividerWidget: FC<DividerWidgetProps> = props => {
   const {
     text,
-    textAlign,
-    colorScheme,
-    textSize,
+    fs,
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
@@ -39,9 +30,7 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       text,
-      textAlign,
-      colorScheme,
-      textSize,
+      fs,
       setValue: (value: string) => {
         handleUpdateDsl({ text: value })
       },
@@ -53,9 +42,13 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [text, textAlign, colorScheme, textSize, displayName])
+  }, [text, fs, text, displayName])
 
-  return <div css={dividerContainerStyle}><WrappedDivider {...props} /></div>
+  return (
+    <div css={dividerContainerStyle}>
+      <WrappedDivider {...props} />
+    </div>
+  )
 }
 
 DividerWidget.displayName = "DividerWidget"

@@ -27,10 +27,6 @@ export const restapiItemLabelStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
-export const restApiItemSelectStyle = css`
-  margin-left: 16px;
-`
-
 export const restapiItemInputStyle = css`
   flex-grow: 1;
   width: 0;

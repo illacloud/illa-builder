@@ -73,7 +73,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-text-size`,
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
             setterType: "EDITABLE_INPUT_SETTER",
-            attrName: "textSize",
+            attrName: "fs",
             iconName: EditableInputIconType.TEXT_SIZE,
             defaultValue: "14px",
             expectedType: VALIDATION_TYPES.STRING,

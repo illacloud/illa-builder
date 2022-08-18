@@ -7,7 +7,7 @@ import Label from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 
-export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
+export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
   const {
     startValue,
     endValue,
@@ -30,7 +30,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   }, [startValue, endValue])
 
   const checkRange = useCallback(
-    (current) => {
+    current => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
@@ -42,6 +42,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
 
   return (
     <DateRangePicker
+      w="100%"
       colorScheme={colorScheme}
       format={dateFormat}
       value={dateRangeValue}
@@ -53,7 +54,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
       onClear={() => {
         handleUpdateDsl({ value: [] })
       }}
-      onChange={(value) => {
+      onChange={value => {
         handleUpdateDsl({ value })
       }}
     />
@@ -62,7 +63,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
 
 WrappedDateRange.displayName = "WrappedDateRange"
 
-export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
+export const DateRangeWidget: FC<DateWidgetProps> = props => {
   const {
     startValue,
     endValue,

@@ -1,10 +1,8 @@
 import { FC } from "react"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
-  restApiItemBaseUrlStyle,
   restapiItemInputStyle,
   restapiItemLabelStyle,
-  restApiItemSelectStyle,
   restapiItemStyle,
   restapiPanelContainerStyle,
 } from "./style"
@@ -51,7 +49,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = props => {
         </span>
         <Select
           colorScheme="techPurple"
-          css={restApiItemSelectStyle}
+          ml="16px"
           value={currentContent.method}
           width="160px"
           maxW="160px"
@@ -66,7 +64,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = props => {
           borderColor="techPurple"
           bdRadius="8px 0 0 8px"
           value={currentResource.content.baseUrl}
-          css={restApiItemBaseUrlStyle}
+          ml="8px"
           readOnly
         />
         <CodeEditor
