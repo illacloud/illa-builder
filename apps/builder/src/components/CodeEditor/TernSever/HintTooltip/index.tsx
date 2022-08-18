@@ -97,7 +97,12 @@ export const HintTooltip: FC<HintTooltipProps> = (props) => {
           <div css={css(titleTextStyle)}>
             {data.name}
             {data.url ? (
-              <a css={docIconStyle} href={data.url} target="_blank">
+              <a
+                css={docIconStyle}
+                href={data.url}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <DocsIcon />
               </a>
             ) : null}

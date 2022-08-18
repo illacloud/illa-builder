@@ -46,7 +46,7 @@ export const setExecutionErrorReducer: CaseReducer<
 export const startExecutionReducer: CaseReducer<
   ExecutionState,
   PayloadAction<void>
-> = state => {
+> = (state) => {
   return state
 }
 

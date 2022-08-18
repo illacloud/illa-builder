@@ -1,17 +1,14 @@
 import { FC, useEffect, useRef, useState } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
-import {
-  autoWidthContainerStyle,
-  containerStyle,
-} from "@/widgetLibrary/PublicSector/containerStyle"
+import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"
 import {
   applyLabelAndComponentWrapperStyle,
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 

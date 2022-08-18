@@ -10,7 +10,7 @@ import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { useTranslation } from "react-i18next"
 
 export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = memo(
-  (props) => {
+  (props: EventHandlerSetterHeaderProps) => {
     const { labelName, labelDesc, handleAddItemAsync } = props
     const { t } = useTranslation()
 

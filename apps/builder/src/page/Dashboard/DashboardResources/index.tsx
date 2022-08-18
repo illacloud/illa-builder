@@ -78,7 +78,7 @@ export const DashboardResources: FC = () => {
     {
       header: t("dashboard.resource.resource_name"),
       accessorKey: "name",
-      cell: props => {
+      cell: (props) => {
         const type = resourcesList[props.row.index].resourceType
         return (
           <Space size="8px">
@@ -93,7 +93,7 @@ export const DashboardResources: FC = () => {
     {
       header: t("dashboard.resource.resource_type"),
       accessorKey: "type",
-      cell: props => (
+      cell: (props) => (
         <span css={applyTableTextStyle(false)}>
           {props.getValue() as string}
         </span>
@@ -102,7 +102,7 @@ export const DashboardResources: FC = () => {
     {
       header: t("dashboard.resource.dbname"),
       accessorKey: "databaseName",
-      cell: props => (
+      cell: (props) => (
         <span
           css={applyTableTextStyle((props.getValue() as string) !== "Null")}
         >
@@ -113,7 +113,7 @@ export const DashboardResources: FC = () => {
     {
       header: t("dashboard.resource.created"),
       accessorKey: "created",
-      cell: props => (
+      cell: (props) => (
         <span css={applyTableTextStyle(true)}>
           {props.getValue() as string}
         </span>
@@ -123,7 +123,7 @@ export const DashboardResources: FC = () => {
       header: "",
       enableSorting: false,
       accessorKey: "id",
-      cell: props => (
+      cell: (props) => (
         <DashboardResourceItemMenu resourceId={props.getValue() as string} />
       ),
     },

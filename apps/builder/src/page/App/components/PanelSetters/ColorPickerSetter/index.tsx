@@ -13,7 +13,7 @@ import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { hexToHsva } from "@uiw/color-convert/src"
 
-export const ColorPickerSetter: FC<any> = props => {
+export const ColorPickerSetter: FC<any> = (props) => {
   const { attrName, handleUpdateDsl, value } = props
   const debounceOnChange = debounce(handleUpdateDsl, 300)
 
@@ -31,7 +31,7 @@ export const ColorPickerSetter: FC<any> = props => {
       content={
         <ColorPicker
           selectedColor={value}
-          onChange={color => {
+          onChange={(color) => {
             debounceOnChange(attrName, color)
           }}
         />

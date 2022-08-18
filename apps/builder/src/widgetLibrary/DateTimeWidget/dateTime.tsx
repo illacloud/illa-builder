@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { DateTimeWidgetProps, WrappedDateTimeProps } from "./interface"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 

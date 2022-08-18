@@ -14,7 +14,7 @@ import {
   modalStyle,
 } from "./style"
 
-export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
+export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId, appIndex } = props
 
   const { t } = useTranslation()
@@ -59,7 +59,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
                   url: `/apps/${appId}`,
                   method: "DELETE",
                 },
-                response => {
+                (response) => {
                   dispatch(
                     dashboardAppActions.removeDashboardAppReducer(
                       response.data.appId,
@@ -67,10 +67,10 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
                   )
                   Message.success(t("dashboard.app.trash_success"))
                 },
-                failure => {
+                (failure) => {
                   Message.success(t("dashboard.app.trash_failure"))
                 },
-                crash => {
+                (crash) => {
                   Message.error(t("network_error"))
                 },
               )

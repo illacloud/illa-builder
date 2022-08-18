@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next"
 import { Password } from "@illa-design/input"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
 import { Button } from "@illa-design/button"
-import { LabelAndSetter } from "@/page/Setting/components/LabelAndSetter"
+import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
 
@@ -82,7 +82,7 @@ export const SettingPassword: FC = () => {
 
       setNewPasswordErrorMessage("")
     },
-    [],
+    [t],
   )
 
   const handleChangeConfirmPassword = useCallback(
@@ -117,7 +117,7 @@ export const SettingPassword: FC = () => {
 
       setConfirmPasswordErrorMessage("")
     },
-    [newPassword],
+    [newPassword, t],
   )
 
   const handleChangeCurrentPassword = useCallback(
@@ -130,7 +130,7 @@ export const SettingPassword: FC = () => {
       }
       setCurrentPasswordErrorMessage("")
     },
-    [],
+    [t],
   )
 
   const onClickSubmitButton = useCallback(() => {
@@ -170,7 +170,7 @@ export const SettingPassword: FC = () => {
         setIsLoading(loading)
       },
     )
-  }, [currentPassword, newPassword, confirmPassword])
+  }, [currentPassword, newPassword, confirmPassword, t])
 
   return (
     <>

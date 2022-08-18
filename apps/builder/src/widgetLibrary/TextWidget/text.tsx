@@ -25,7 +25,6 @@ export const Text: FC<TextProps> = (props) => {
         </ILLAText>
       ) : (
         <ReactMarkdown
-          children={value ?? ""}
           remarkPlugins={[remarkGfm]}
           components={{
             a: ({ node, ...props }) => (
@@ -39,7 +38,9 @@ export const Text: FC<TextProps> = (props) => {
               </Paragraph>
             ),
           }}
-        />
+        >
+          {value ?? ""}
+        </ReactMarkdown>
       )}
     </div>
   )

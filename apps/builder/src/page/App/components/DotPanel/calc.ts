@@ -196,6 +196,6 @@ export function calculateXY(
   y: number,
   unitWidth: number,
   unitHeight: number,
-): [l: number, t: number] {
+): [number, number] {
   return [x * unitWidth + 1, y * unitHeight + 1]
 }

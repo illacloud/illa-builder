@@ -1,13 +1,14 @@
 import { FC, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { ReactComponent as Logo } from "@assets/illa-logo.svg"
+import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import {
   BugIcon,
   CaretRightIcon,
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
+  ExitIcon,
 } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
@@ -32,11 +33,10 @@ import {
 } from "./style"
 import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
-import { ExitIcon } from "@illa-design/icon"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
 
-export const PageNavBar: FC<PageNavBarProps> = props => {
+export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -65,7 +65,7 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
       },
-      response => {
+      (response) => {
         window.open(
           window.location.protocol +
             "//" +
@@ -74,13 +74,13 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
           "_blank",
         )
       },
-      e => {
+      (e) => {
         Message.error(t("editor.deploy.fail"))
       },
-      e => {
+      (e) => {
         Message.error(t("editor.deploy.fail"))
       },
-      loading => {
+      (loading) => {
         setDeployLoading(loading)
       },
     )

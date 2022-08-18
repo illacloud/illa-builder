@@ -1,6 +1,10 @@
-import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
+import {
+  HorizontalEndIcon,
+  HorizontalStartIcon,
+  HeartIcon,
+  StarIcon,
+} from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
-import { HeartIcon, StarIcon } from "@illa-design/icon"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"

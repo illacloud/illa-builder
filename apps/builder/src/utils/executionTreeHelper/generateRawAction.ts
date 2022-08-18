@@ -19,7 +19,7 @@ export const generateDynamicAttrPaths = (
   for (let key in rawObj) {
     const value = rawObj[key]
     if (Array.isArray(value)) {
-      value.forEach(item => {
+      value.forEach((item) => {
         generateDynamicAttrPaths(item, dynamicAttrPaths, key)
       })
     }

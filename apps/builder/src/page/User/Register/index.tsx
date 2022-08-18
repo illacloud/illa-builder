@@ -123,6 +123,7 @@ export const Register: FC = () => {
             t={t}
             components={[
               <TextLink
+                key="go-to-login"
                 onClick={() => {
                   navigate("/user/login")
                 }}

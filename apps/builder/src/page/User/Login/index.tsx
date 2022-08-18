@@ -99,6 +99,7 @@ export const Login: FC = () => {
             t={t}
             components={[
               <TextLink
+                key="text-link"
                 onClick={() => {
                   navigate("/user/register")
                 }}
