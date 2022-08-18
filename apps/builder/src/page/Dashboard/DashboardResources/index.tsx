@@ -25,6 +25,7 @@ import {
 import { Space } from "@illa-design/space"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
+import { fromNow } from "@/utils/dayjs"
 
 function getDbName(resourceType: string): string {
   let name = ""
@@ -115,7 +116,7 @@ export const DashboardResources: FC = () => {
       accessorKey: "created",
       cell: props => (
         <span css={applyTableTextStyle(true)}>
-          {props.getValue() as string}
+          {fromNow(props.getValue() as string)}
         </span>
       ),
     },
@@ -145,7 +146,6 @@ export const DashboardResources: FC = () => {
           size="large"
           data={resourceData}
           columns={columns}
-          disableFilters
         />
       ) : null}
       {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
