@@ -1,13 +1,13 @@
+import { FC } from "react"
+import { SettingLabel } from "@/page/Setting/Components/label"
+import { WarningCircleIcon } from "@illa-design/icon"
+import { LabelAndSetterProps } from "@/page/Setting/Components/LabelAndSetter/interface"
 import {
   errorLineStyle,
   errorTextStyle,
   publicInputMarginWrapperStyle,
   publicLabelAndInputWrapperStyle,
-} from "./style"
-import { SettingLabel } from "@/page/Setting/components/label"
-import { WarningCircleIcon } from "@illa-design/icon"
-import { FC } from "react"
-import { LabelAndSetterProps } from "@/page/Setting/components/LabelAndSetter/interface"
+} from "@/page/Setting/Components/LabelAndSetter/style"
 
 export const LabelAndSetter: FC<LabelAndSetterProps> = (props) => {
   const { children, errorMessage, label } = props

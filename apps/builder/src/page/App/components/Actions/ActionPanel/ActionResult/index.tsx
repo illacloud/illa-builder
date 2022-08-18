@@ -9,11 +9,11 @@ import {
   successIconStyle,
   successResultWrapperStyle,
 } from "./style"
-import i18n from "i18next"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ApiError } from "@/api/base"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
+import { useTranslation } from "react-i18next"
 
 interface ActionResultProps {
   result?: ActionResultType
@@ -25,6 +25,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
   const { result, maxHeight, onClose } = props
   const res = result?.result
   const panelRef = useRef<HTMLDivElement>(null)
+  const { t } = useTranslation()
 
   return res ? (
     <div css={resultContainerStyle} ref={panelRef}>
@@ -39,7 +40,7 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
           <div css={successResultWrapperStyle}>
             <div>
               <RightIcon css={successIconStyle} size="16px" />
-              <span>{i18n.t("editor.action.result.title.success")}</span>
+              <span>{t("editor.action.result.title.success")}</span>
             </div>
             <CloseIcon css={resCloseIconStyle} onClick={onClose} />
           </div>

@@ -47,7 +47,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
         },
       )
     }
-  }, [token, currentUserId])
+  }, [token, currentUserId, dispatch, navigate])
 
   return <>{children}</>
 }

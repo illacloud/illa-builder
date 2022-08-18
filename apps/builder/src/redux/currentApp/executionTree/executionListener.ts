@@ -16,7 +16,7 @@ import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/A
 export const worker = new dependenciesTreeWorker()
 
 const mergeActionResult = (rawTree: RawTreeShape) => {
-  Object.keys(actionDisplayNameMapFetchResult).forEach(key => {
+  Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
     rawTree[key].data = actionDisplayNameMapFetchResult[key] || {}
   })
 }
@@ -34,7 +34,7 @@ async function handleStartExecution(
     globalData: rawTree,
   })
   const oldExecutionTree = getExecutionResult(rootState)
-  worker.onmessage = e => {
+  worker.onmessage = (e) => {
     const { evaluatedTree, errorTree = {}, dependencyMap = {} } = e.data
 
     const updates = diff(oldExecutionTree, evaluatedTree) || []
@@ -79,6 +79,6 @@ export function setupExecutionListeners(
   ]
 
   return () => {
-    subscriptions.forEach(unsubscribe => unsubscribe())
+    subscriptions.forEach((unsubscribe) => unsubscribe())
   }
 }

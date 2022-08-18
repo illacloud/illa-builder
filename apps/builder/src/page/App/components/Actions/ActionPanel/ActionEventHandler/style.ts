@@ -8,7 +8,7 @@ export const actionEventHandlerStyle = css`
   font-size: 14px;
   font-weight: 500;
   text-align: left;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)}; ;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
 export const actionEventHandlerWrapperStyle = css`

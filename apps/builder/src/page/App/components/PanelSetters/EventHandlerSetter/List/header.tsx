@@ -12,7 +12,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Button } from "@illa-design/button"
 
 export const EventHandlerSetterHeader: FC<EventHandlerSetterHeaderProps> = memo(
-  props => {
+  (props: EventHandlerSetterHeaderProps) => {
     const { labelName, labelDesc, handleAddItemAsync } = props
     const { t } = useTranslation()
 

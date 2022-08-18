@@ -38,7 +38,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "chartJson",
         setterType: "TEXT_AREA",
         bindAttrName: ["configType"],
-        shown: value => value === "JSON",
+        shown: (value) => value === "JSON",
       },
       {
         id: `${baseWidgetName}-data`,
@@ -48,7 +48,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         setterType: "CHART_DATA_SETTER",
         bindAttrName: "configType",
-        shown: value => value === "UIForm",
+        shown: (value) => value === "UIForm",
       },
     ],
   },
@@ -79,7 +79,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "layoutJson",
         setterType: "TEXT_AREA",
         bindAttrName: ["layoutConfigType"],
-        shown: value => {
+        shown: (value) => {
           return value === "JSON"
         },
       },
@@ -90,7 +90,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         defaultValue: "chart",
         bindAttrName: ["layoutConfigType"],
-        shown: value => {
+        shown: (value) => {
           return value === "UIForm"
         },
       },
@@ -100,7 +100,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "xTitle",
         setterType: "INPUT_SETTER",
         bindAttrName: ["layoutConfigType"],
-        shown: value => {
+        shown: (value) => {
           return value === "UIForm"
         },
       },
@@ -112,7 +112,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "BASE_SELECT_SETTER",
         options: XAXISTYPE,
         bindAttrName: ["layoutConfigType"],
-        shown: value => {
+        shown: (value) => {
           return value === "UIForm"
         },
       },
@@ -122,7 +122,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         attrName: "yTitle",
         setterType: "INPUT_SETTER",
         bindAttrName: ["layoutConfigType"],
-        shown: value => {
+        shown: (value) => {
           return value === "UIForm"
         },
       },
@@ -133,7 +133,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         setterType: "RADIO_GROUP_SETTER",
         isSetterSingleRow: true,
         bindAttrName: ["type"],
-        shown: value => {
+        shown: (value) => {
           return value !== "pie"
         },
         options: [

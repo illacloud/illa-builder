@@ -18,44 +18,46 @@ import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { useTranslation } from "react-i18next"
 
-export const ComponentItem: FC<ComponentItemProps> = memo((props) => {
-  const { widgetName, icon, id, ...partialDragInfo } = props
-  const { t } = useTranslation()
+export const ComponentItem: FC<ComponentItemProps> = memo(
+  (props: ComponentItemProps) => {
+    const { widgetName, icon, id, ...partialDragInfo } = props
+    const { t } = useTranslation()
 
-  const illaMode = useSelector(getIllaMode)
+    const illaMode = useSelector(getIllaMode)
 
-  const [, dragRef, dragPreviewRef] = useDrag<
-    ComponentNode,
-    DropResultInfo,
-    DragCollectedInfo
-  >(
-    () => ({
-      type: "components",
-      canDrag: () => {
-        return illaMode === "edit"
-      },
-      end: (draggedItem, monitor) => {
-        endDrag(draggedItem)
-      },
-      item: () => {
-        const item = generateComponentNode({
-          widgetName,
-          ...partialDragInfo,
-        })
-        startDrag(item, false)
-        return item
-      },
-    }),
-    [illaMode],
-  )
+    const [, dragRef, dragPreviewRef] = useDrag<
+      ComponentNode,
+      DropResultInfo,
+      DragCollectedInfo
+    >(
+      () => ({
+        type: "components",
+        canDrag: () => {
+          return illaMode === "edit"
+        },
+        end: (draggedItem, monitor) => {
+          endDrag(draggedItem)
+        },
+        item: () => {
+          const item = generateComponentNode({
+            widgetName,
+            ...partialDragInfo,
+          })
+          startDrag(item, false)
+          return item
+        },
+      }),
+      [illaMode],
+    )
 
-  return (
-    <div css={itemContainerStyle} ref={dragRef}>
-      <div css={dragPreviewStyle} ref={dragPreviewRef} />
-      <span css={iconStyle}>{icon}</span>
-      <span css={nameStyle}>{t(widgetName)}</span>
-    </div>
-  )
-})
+    return (
+      <div css={itemContainerStyle} ref={dragRef}>
+        <div css={dragPreviewStyle} ref={dragPreviewRef} />
+        <span css={iconStyle}>{icon}</span>
+        <span css={nameStyle}>{t(widgetName)}</span>
+      </div>
+    )
+  },
+)
 
 ComponentItem.displayName = "ComponentItem"

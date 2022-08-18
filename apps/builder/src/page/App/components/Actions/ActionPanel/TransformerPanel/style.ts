@@ -13,5 +13,5 @@ export const transformerEditorStyle = css`
 export const transformerTipStyle = css`
   margin: 0 16px;
   font-size: 12px;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)}; ;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `

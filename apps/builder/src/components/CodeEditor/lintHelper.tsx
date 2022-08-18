@@ -15,7 +15,7 @@ const GUTTER_ID = "CodeMirror-lint-markers"
 export const lineMarker = (cm: Editor, line: number) => {
   cm.clearGutter(GUTTER_ID)
   const div = document.createElement("div")
-  let mark = ReactDOM.render(
+  ReactDOM.render(
     <div className={"CodeMirror-lint-marker CodeMirror-lint-marker-error"} />,
     div,
   )

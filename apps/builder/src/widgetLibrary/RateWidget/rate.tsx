@@ -1,7 +1,7 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useEffect } from "react"
 import { Rate } from "@illa-design/rate"
 import { RateWidgetProps, WrappedRateProps } from "./interface"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 

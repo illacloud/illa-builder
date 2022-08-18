@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, memo } from "react"
+import { forwardRef, useMemo } from "react"
 import LabelProps from "./interface"
 import {
   applyLabelNameStyle,
@@ -33,7 +33,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
         {renderLabelTitleRequired}
       </span>
     )
-  }, [label, renderLabelTitleRequired, hasTooltip, labelAlign])
+  }, [label, renderLabelTitleRequired, hasTooltip])
 
   const renderLabelCaption = useMemo(() => {
     return labelCaption ? <div css={labelCaptionCss}>{labelCaption}</div> : null
@@ -56,5 +56,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>((props, ref) => {
     </label>
   ) : null
 })
+
+Label.displayName = "SetterLabel"
 
 export default Label

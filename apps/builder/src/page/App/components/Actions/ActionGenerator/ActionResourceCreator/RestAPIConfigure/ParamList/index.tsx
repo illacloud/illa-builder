@@ -107,3 +107,5 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
     )
   },
 )
+
+ParamList.displayName = "ParamList"

@@ -3,7 +3,7 @@ import { RadioGroup } from "@illa-design/radio"
 import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
-import Label from "@/widgetLibrary/PublicSector/Label"
+import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {

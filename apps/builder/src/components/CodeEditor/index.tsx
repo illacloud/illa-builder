@@ -93,7 +93,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         type: previewType,
         content: calcResult,
       })
-    } catch (e: any) {
+    } catch (e) {
       setError(true)
       setPreview({
         state: "error",

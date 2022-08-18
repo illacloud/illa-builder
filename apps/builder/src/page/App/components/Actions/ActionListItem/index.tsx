@@ -85,3 +85,5 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
     )
   },
 )
+
+ActionListItem.displayName = "ActionListItem"
