@@ -20,6 +20,10 @@ function App() {
   const currentUserLanguage = useSelector(getCurrentTranslateLanguage)
   const { i18n } = useTranslation()
 
+  console.log("xxxxxx")
+  if (false) {
+    useEffect(() => {}, [])
+  }
   useEffect(() => {
     if (!!currentUserLanguage) {
       i18n.changeLanguage(currentUserLanguage)
