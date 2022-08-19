@@ -32,6 +32,7 @@
     "chartjs-adapter-moment": "^1.0.0",
     "chartjs-plugin-datalabels": "^2.0.0",
     "codemirror": "^5.65.5",
+    "copy-to-clipboard": "^3.3.2",
     "dayjs": "^1.11.5",
     "deep-diff": "^1.0.2",
     "framer-motion": "^6.3.0",
@@ -59,8 +60,7 @@
     "remark-gfm": "^3.0.1",
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
-    "uuid": "^8.3.2",
-    "copy-to-clipboard": "^3.3.2"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -91,6 +91,7 @@
     "eslint": "^8.22.0",
     "jest": "^27.4.1",
     "jest-environment-jsdom": "^27.4.1",
+    "rollup-plugin-visualizer": "^5.7.1",
     "sinon": "^13.0.1",
     "ts-jest": "^27.1.5",
     "turbo": "^1.1.1",
