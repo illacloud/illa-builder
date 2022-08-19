@@ -1,9 +1,7 @@
 import { defineConfig } from "vite"
 import { resolve } from "path"
 import react from "@vitejs/plugin-react"
-import { chunkSplitPlugin } from "vite-plugin-chunk-split"
 import svgr from "vite-plugin-svgr"
-import { visualizer } from "rollup-plugin-visualizer"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,18 +23,6 @@ export default defineConfig({
       include: ["**/*.tsx", "**/*.ts"],
     }),
     svgr(),
-    chunkSplitPlugin({
-      customSplitting: {
-        "react-vendor": ["react", "react-dom"],
-        "illa-i18n": [/src\/i18n/],
-        "design-libs": [/illa-design\/packages/],
-        "app-page": [/src\/page\/App/],
-        "dashboard-page": [/src\/page\/Dashboard/],
-        "setting-page": [/src\/page\/Setting/],
-        "widget-library": [/src\/widgetLibrary/],
-      },
-    }),
-    visualizer(),
   ],
   esbuild: {
     logOverride: { "this-is-undefined-in-esm": "silent" },
