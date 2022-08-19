@@ -1,0 +1,27 @@
+import { FC, memo } from "react"
+import { Tooltip } from "@illa-design/tooltip"
+import { applyLabelTipsStyle } from "./style"
+import { PanelLabelProps } from "./interface"
+import { Text } from "@/widgetLibrary/TextWidget"
+
+export const PanelLabel: FC<PanelLabelProps> = memo(
+  (props: PanelLabelProps) => {
+    const { labelDesc, labelName, isInList } = props
+
+    return (
+      <Tooltip
+        content={<Text value={labelDesc} colorScheme="white" />}
+        trigger="hover"
+        position="left"
+        maxWidth="240px"
+        disabled={!labelDesc}
+      >
+        <span css={applyLabelTipsStyle(isInList, !!labelDesc)}>
+          {labelName}
+        </span>
+      </Tooltip>
+    )
+  },
+)
+
+PanelLabel.displayName = "PanelLabel"
