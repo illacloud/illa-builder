@@ -338,11 +338,6 @@ export class ExecutionTreeFactory {
               ])
               set(current, fullPath, undefined)
             }
-          } else {
-            set(current, fullPath, widgetOrActionAttribute)
-          }
-
-          if (widgetOrAction.$type === "ACTION") {
           }
           return current
         },

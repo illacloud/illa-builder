@@ -11,7 +11,6 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
     leftIcon,
     rightIcon,
     disabled,
-    borderRadius,
     loading,
     colorScheme,
     handleOnClick,
@@ -21,7 +20,6 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
     <Button
       disabled={disabled}
       variant={variant}
-      buttonRadius={borderRadius}
       leftIcon={leftIcon}
       rightIcon={rightIcon}
       loading={loading}
@@ -44,7 +42,6 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     leftIcon,
     rightIcon,
     disabled,
-    borderRadius,
     loading,
     colorScheme,
     handleUpdateGlobalData,
@@ -60,23 +57,13 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
       leftIcon,
       rightIcon,
       disabled,
-      borderRadius,
       loading,
       colorScheme,
     })
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [
-    text,
-    variant,
-    leftIcon,
-    rightIcon,
-    disabled,
-    borderRadius,
-    loading,
-    colorScheme,
-  ])
+  }, [text, variant, leftIcon, rightIcon, disabled, loading, colorScheme])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={buttonLayoutStyle}>
