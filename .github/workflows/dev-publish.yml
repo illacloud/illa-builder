@@ -83,7 +83,7 @@ jobs:
 
       - name: Build Static Page
         run: |
-          yarn build
+          yarn build-cloud
           echo "builder.illafamily.com" > "dist/CNAME"
 
       - name: Deploy storybook to Github Pages
