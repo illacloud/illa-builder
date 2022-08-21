@@ -60,7 +60,8 @@
     "remark-gfm": "^3.0.1",
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "react-use": "^17.4.0"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -78,9 +79,8 @@
     "@types/jest": "^27.4.1",
     "@types/jshint": "^2.12.1",
     "@types/qs": "^6.9.7",
-    "@types/react": "^17.0.2",
-    "@types/react-custom-scrollbars": "^4.0.10",
-    "@types/react-dom": "^17.0.2",
+    "@types/react": "^17.0.48",
+    "@types/react-dom": "^17.0.17",
     "@types/redux-logger": "^3.0.9",
     "@types/sinon": "^10.0.11",
     "@types/toposort": "^2.0.3",
