@@ -207,7 +207,6 @@ export const Login: FC = () => {
       <Button
         colorScheme="techPurple"
         size="large"
-        buttonRadius="8px"
         loading={submitLoading}
         fullWidth
       >
