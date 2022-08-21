@@ -27,14 +27,14 @@ async function handleStartExecution(
 ) {
   const rootState = listenerApi.getState()
   const rawTree = getRawTree(rootState)
+  if (!rawTree) return
+  mergeActionResult(rawTree)
   if (action.type === "execution/updateExecutionByDisplayNameReducer") {
     const { displayName, value } = action.payload
     Object.keys(value).forEach((key) => {
       rawTree[displayName][key] = value[key]
     })
   }
-  if (!rawTree) return
-  mergeActionResult(rawTree)
   worker.postMessage({
     action: EXECUTION_WORKER_MESSAGES.EXECUTION_TREE,
     globalData: rawTree,
