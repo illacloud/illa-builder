@@ -5,6 +5,8 @@
 
 <h1 align="center">ILLA Builder</h1>
 
+<p align="center">Accelerate your internal tools development.</p>
+
 <div align="center">
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-builder/graphs/contributors">contributors</a></p>
 </div>
