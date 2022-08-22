@@ -274,7 +274,6 @@ export const ResetPassword: FC = () => {
         <Button
           colorScheme="techPurple"
           size="large"
-          buttonRadius="8px"
           loading={submitLoading}
           fullWidth
         >

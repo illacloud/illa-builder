@@ -83,11 +83,11 @@ jobs:
 
       - name: Build Static Page
         run: |
-          yarn build
-          echo "builder.illafamily.com" > "dist/CNAME"
+          yarn build-cloud
+          echo "builder.illafamily.com" > "apps/builder/dist/CNAME"
 
       - name: Deploy storybook to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./apps/builder/dist

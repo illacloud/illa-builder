@@ -1,7 +1,6 @@
 import { defineConfig } from "vite"
 import { resolve } from "path"
 import react from "@vitejs/plugin-react"
-import { chunkSplitPlugin } from "vite-plugin-chunk-split"
 import svgr from "vite-plugin-svgr"
 
 // https://vitejs.dev/config/
@@ -24,15 +23,6 @@ export default defineConfig({
       include: ["**/*.tsx", "**/*.ts"],
     }),
     svgr(),
-    chunkSplitPlugin({
-      customSplitting: {
-        "react-vendor": ["react", "react-dom"],
-        "design-libs": ["@illa-design/react"],
-        "app-page": [resolve(__dirname, "src/page/App")],
-        "dashboard-page": [resolve(__dirname, "src/page/Dashboard")],
-        "setting-page": [resolve(__dirname, "src/page/Setting")],
-      },
-    }),
   ],
   esbuild: {
     logOverride: { "this-is-undefined-in-esm": "silent" },
@@ -44,6 +34,6 @@ export default defineConfig({
     },
   },
   build: {
-    sourcemap: true,
+    sourcemap: false,
   },
 })

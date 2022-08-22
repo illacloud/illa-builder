@@ -29,6 +29,12 @@ async function handleStartExecution(
   const rawTree = getRawTree(rootState)
   if (!rawTree) return
   mergeActionResult(rawTree)
+  if (action.type === "execution/updateExecutionByDisplayNameReducer") {
+    const { displayName, value } = action.payload
+    Object.keys(value).forEach((key) => {
+      rawTree[displayName][key] = value[key]
+    })
+  }
   worker.postMessage({
     action: EXECUTION_WORKER_MESSAGES.EXECUTION_TREE,
     globalData: rawTree,
@@ -73,6 +79,7 @@ export function setupExecutionListeners(
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
         executionActions.startExecutionReducer,
+        executionActions.updateExecutionByDisplayNameReducer,
       ),
       effect: handleStartExecution,
     }),

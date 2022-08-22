@@ -42,7 +42,6 @@ export class ExecutionTreeFactory {
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
-
     const { evaluatedTree, errorTree } = this.executeTree(
       currentRawTree,
       this.evalOrder,
@@ -95,11 +94,20 @@ export class ExecutionTreeFactory {
     }
   }
 
-  calcSubTreeSortOrder(differences: Diff<any, any>[]) {
+  calcSubTreeSortOrder(differences: Diff<any, any>[], rawTree: RawTreeShape) {
     const changePaths: Set<string> = new Set()
     for (const diff of differences) {
       if (!Array.isArray(diff.path) || diff.path.length === 0) continue
       changePaths.add(convertPathToString(diff.path))
+      const entityName = diff.path[0]
+      const entity = rawTree[entityName]
+      if (!entity) {
+        continue
+      }
+      const dynamic: string[] = entity.$dynamicAttrPaths
+      dynamic?.map((attr) => {
+        changePaths.add(`${entityName}.${attr}`)
+      })
     }
     return this.getCompleteSortOrder(
       Array.from(changePaths),
@@ -175,7 +183,7 @@ export class ExecutionTreeFactory {
       }
     }
     this.applyDifferencesToEvalTree(differences)
-    const path = this.calcSubTreeSortOrder(differences)
+    const path = this.calcSubTreeSortOrder(differences, currentRawTree)
 
     path.forEach((propertyPath) => {
       const unEvalPropValue = get(currentRawTree, propertyPath)
@@ -338,11 +346,6 @@ export class ExecutionTreeFactory {
               ])
               set(current, fullPath, undefined)
             }
-          } else {
-            set(current, fullPath, widgetOrActionAttribute)
-          }
-
-          if (widgetOrAction.$type === "ACTION") {
           }
           return current
         },

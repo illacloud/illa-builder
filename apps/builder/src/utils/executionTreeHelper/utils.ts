@@ -20,7 +20,7 @@ export type RawTreeDiff = {
   event: RawTreeDiffEvent
 }
 
-const ignorePathsForEvalRegex = /.(\$dynamicAttrPaths)/
+const ignorePathsForEvalRegex = /.(\$dynamicAttrPaths|\$validationPaths)/
 const IMMEDIATE_PARENT_REGEX = /^(.*)(\..*|\[.*\])$/
 
 const isUninterestingChangeForDependencyUpdate = (path: string) => {
@@ -189,7 +189,6 @@ export const translateDiffEventToRawTreeEvent = (
         },
         rawTree,
       )
-      console.log("result", result)
       return result
     }
     default: {
