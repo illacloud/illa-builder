@@ -125,7 +125,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
-            defaultValue: "#134ae0",
+            defaultValue: "blue",
           },
         ],
       },

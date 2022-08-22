@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom"
 
 const Item = DropList.Item
 
-export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
+export const DashboardItemMenu: FC<DashboardItemMenuProps> = (props) => {
   const { appId } = props
 
   const { t } = useTranslation()
@@ -29,7 +29,7 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
 
   const app = useSelector((state: RootState) => {
     return state.dashboard.dashboardApps.list.find(
-      item => item.appId === appId,
+      (item) => item.appId === appId,
     )!!
   })
 
@@ -83,14 +83,14 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
                     okButtonProps: {
                       colorScheme: "red",
                     },
-                    closable: true,
+                    closable: false,
                     onOk: () => {
                       Api.request<DashboardApp>(
                         {
                           url: `/apps/${appId}`,
                           method: "DELETE",
                         },
-                        response => {
+                        (response) => {
                           dispatch(
                             dashboardAppActions.removeDashboardAppReducer(
                               response.data.appId,
@@ -98,10 +98,10 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
                           )
                           Message.success(t("dashboard.app.trash_success"))
                         },
-                        failure => {
+                        (failure) => {
                           Message.success(t("dashboard.app.trash_failure"))
                         },
-                        crash => {
+                        (crash) => {
                           Message.error(t("network_error"))
                         },
                       )
@@ -122,14 +122,14 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
       <RenameModal
         appId={app.appId}
         visible={renameVisible}
-        onVisibleChange={visible => {
+        onVisibleChange={(visible) => {
           setRenameVisible(visible)
         }}
       />
       <DuplicateModal
         appId={app.appId}
         visible={duplicateVisible}
-        onVisibleChange={visible => {
+        onVisibleChange={(visible) => {
           setDuplicateVisible(visible)
         }}
       />

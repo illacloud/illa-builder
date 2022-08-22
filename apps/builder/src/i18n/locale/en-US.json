@@ -504,6 +504,7 @@
         "data_sources": "Data sources",
         "mapped_option": "Mapped Option",
         "value": "Value",
+        "content": "Content",
         "horizontal_alignment": "Horizontal alignment",
         "vertical_alignment": "Vertical alignment",
         "links_color": "Links",

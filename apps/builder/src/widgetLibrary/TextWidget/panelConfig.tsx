@@ -19,7 +19,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
     children: [
       {
         id: `${baseWidgetName}-basic-inputModal`,
-        labelName: i18n.t("editor.inspect.setter_label.value"),
+        labelName: i18n.t("editor.inspect.setter_label.content"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.text_value"),
         attrName: "disableMarkdown",
         setterType: "RADIO_GROUP_SETTER",

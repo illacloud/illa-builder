@@ -51,7 +51,8 @@ export const Shortcut: FC = ({ children }) => {
         okButtonProps: {
           colorScheme: "red",
         },
-        closable: true,
+
+        closable: false,
         onCancel: () => {
           setAlreadyShowDeleteDialog(false)
         },

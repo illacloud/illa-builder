@@ -503,6 +503,7 @@
         "data_sources": "数据源",
         "mapped_option": "映射选项",
         "value": "值",
+        "content": "内容",
         "horizontal_alignment": "水平对齐",
         "vertical_alignment": "垂直对齐",
         "links_color": "链接色",

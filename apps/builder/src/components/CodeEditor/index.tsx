@@ -95,10 +95,12 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       })
     } catch (e) {
       setError(true)
-      setPreview({
-        state: "error",
-        content: e.toString(),
-      })
+      if (e instanceof Error) {
+        setPreview({
+          state: "error",
+          content: e.toString(),
+        })
+      }
     } finally {
       latestProps.current.onChange?.(currentValue, calcResult)
     }

@@ -62,15 +62,13 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                   Modal.confirm({
                     confirmLoading: confirmLoading,
                     title: t("dashboard.common.delete_title"),
-                    content: (
-                      <span>{t("dashboard.common.delete_content")}</span>
-                    ),
+                    content: t("dashboard.common.delete_content"),
                     cancelText: t("dashboard.common.delete_cancel_text"),
                     okText: t("dashboard.common.delete_ok_text"),
                     okButtonProps: {
                       colorScheme: "red",
                     },
-                    closable: true,
+                    closable: false,
                     onOk: () => {
                       return new Promise((resolve) => {
                         Api.request<Resource<ResourceContent>>(

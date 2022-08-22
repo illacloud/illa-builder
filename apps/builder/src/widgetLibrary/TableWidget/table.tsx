@@ -23,7 +23,6 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       columns={columnsDef}
       bordered
       pinedHeader
-      disableFilters
       w="100%"
       h="100%"
     />
