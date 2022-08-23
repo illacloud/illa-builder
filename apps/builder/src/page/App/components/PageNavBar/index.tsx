@@ -33,8 +33,11 @@ import {
 } from "./style"
 import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
+import { Badge } from "@illa-design/badge"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
+import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
@@ -45,6 +48,8 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
+
+  const executionError = useSelector(getExecutionError)
 
   const mode = useSelector(getIllaMode)
 
@@ -68,9 +73,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       (response) => {
         window.open(
           window.location.protocol +
-            "//" +
-            window.location.host +
-            `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
+          "//" +
+          window.location.host +
+          `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
           "_blank",
         )
       },
@@ -130,11 +135,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div>
         {mode === "edit" && (
           <ButtonGroup spacing={"8px"}>
-            <Button
-              colorScheme="gray"
-              size="medium"
-              leftIcon={<BugIcon size="14px" />}
-            />
+            <Badge count={executionError && Object.keys(executionError).length}>
+              <Button
+                colorScheme="gray"
+                size="medium"
+                leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
+              />
+            </Badge>
             <Button
               loading={deployLoading}
               colorScheme="techPurple"
