@@ -30,6 +30,7 @@ export const restapiItemLabelStyle = css`
 export const restapiItemInputStyle = css`
   flex-grow: 1;
   width: 0;
+  margin-left: -1px;
 `
 
 export const restApiItemBaseUrlStyle = css`

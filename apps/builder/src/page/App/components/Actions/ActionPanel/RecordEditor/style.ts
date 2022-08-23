@@ -28,6 +28,7 @@ export const recordKeyStyle = css`
 export const recordValueStyle = css`
   width: 0;
   flex-grow: 1;
+  margin-left: -1px;
 `
 
 export const recordEditorLabelStyle = css`
