@@ -15,7 +15,7 @@ import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
   getIllaMode,
-  isOpenBottomPanel,
+  isOpenBottomPanel, isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -48,6 +48,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
+  const debuggerVisible = useSelector(isOpenDebugger)
 
   const executionError = useSelector(getExecutionError)
 
@@ -64,6 +65,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleClickBottomWindowIcon = useCallback(() => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
   }, [bottomPanelVisible])
+  const handleClickDebuggerIcon = useCallback(() => {
+    dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
+  }, [debuggerVisible])
+
   const handleClickDeploy = useCallback(() => {
     Api.request<DeployResp>(
       {
@@ -140,6 +145,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 colorScheme="gray"
                 size="medium"
                 leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
+                onClick={handleClickDebuggerIcon}
               />
             </Badge>
             <Button

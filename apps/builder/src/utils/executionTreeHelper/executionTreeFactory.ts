@@ -338,12 +338,7 @@ export class ExecutionTreeFactory {
                 })
               }
 
-              set(errorTree, fullPath, [
-                {
-                  errorType: ExecutionErrorType.EVALUATED,
-                  errorMessage: (e as Error).message,
-                },
-              ])
+              set(errorTree, fullPath, oldError)
               set(current, fullPath, undefined)
             }
           }

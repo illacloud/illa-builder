@@ -48,6 +48,13 @@ export const updateBottomPanel: CaseReducer<
   state.openBottomPanel = action.payload
 }
 
+export const updateDebuggerVisible: CaseReducer<
+  ConfigState,
+  PayloadAction<boolean>
+> = (state, action) => {
+  state.openDebugger = action.payload
+}
+
 export const updateSelectedComponent: CaseReducer<
   ConfigState,
   PayloadAction<ComponentNode[]>

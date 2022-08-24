@@ -15,7 +15,7 @@ import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  isOpenBottomPanel,
+  isOpenBottomPanel, isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -68,6 +68,7 @@ export const Editor: FC = () => {
   const showLeftPanel = useSelector(isOpenLeftPanel)
   const showRightPanel = useSelector(isOpenRightPanel)
   const showBottomPanel = useSelector(isOpenBottomPanel)
+  const showDebugger = useSelector(isOpenDebugger)
 
   // init app
   const loadingState = useInitBuilderApp("edit")
