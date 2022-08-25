@@ -122,6 +122,7 @@ export function applyCodeEditorStyle(
         ${chroma(globalColor(`--${illaPrefix}-${stateColor}-01`))
           .alpha(0.15)
           .hex()};
+      z-index: 1;
     `
   } else if (inputState.error) {
     stateStyle = inputErrorStyle
@@ -131,6 +132,7 @@ export function applyCodeEditorStyle(
 
       &:hover {
         border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
+        z-index: 1;
       }
     `
   }
