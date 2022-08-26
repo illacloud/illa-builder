@@ -222,7 +222,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   return (
     <Dropdown
       disabled={illaMode !== "edit"}
-      position="br"
+      position="bottom-end"
       trigger="contextmenu"
       dropList={
         <DropList width="184px">

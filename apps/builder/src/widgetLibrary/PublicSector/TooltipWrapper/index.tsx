@@ -12,7 +12,7 @@ export const TooltipWrapper: FC<TooltipWrapperProps> = memo(
         content={<Text value={tooltipText} colorScheme="white" />}
         colorScheme="grayBlue"
         disabled={tooltipDisabled}
-        position="tl"
+        position="top-start"
         showArrow={false}
         autoFitPosition={false}
         trigger="hover"

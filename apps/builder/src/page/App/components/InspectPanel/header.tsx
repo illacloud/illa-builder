@@ -29,7 +29,7 @@ export const PanelHeader: FC = () => {
       />
       <div css={panelHeaderIconWrapperStyle}>
         <Dropdown
-          position="br"
+          position="bottom-end"
           trigger="click"
           dropList={
             <ActionMenu
