@@ -35,6 +35,8 @@ import { getExecutionError } from "@/redux/currentApp/executionTree/executionSel
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { Rnd } from "react-rnd"
+import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 
 const { Item } = DropList
 
@@ -125,271 +127,51 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     [componentNode, scaleSquareState],
   )
 
-  const [, dragHandlerRef, dragPreviewHandlerRef] = useDrag<ComponentNode>(
-    () => ({
-      canDrag: () => {
-        return scaleSquareState !== "production"
-      },
-      type: "components",
-      end: (draggedItem, monitor) => {
-        endDrag(draggedItem)
-      },
-      item: () => {
-        const item = {
-          ...componentNode,
-          isDragging: true,
-        }
-        startDrag(item, true)
-        return item
-      },
-    }),
-    [componentNode, scaleSquareState],
-  )
-
-  // register resize
-  const [collectT, resizeT, resizeTPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "t"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
-  const [collectR, resizeR, resizeRPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "r"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
-  const [collectB, resizeB, resizeBPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "b"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
-  const [collectL, resizeL, resizeLPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "l"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
-  const [collectTl, resizeTl, resizeTlPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "tl"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
-  const [collectTr, resizeTr, resizeTrPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "tr"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
-  const [collectBl, resizeBl, resizeBlPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "bl"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
-  const [collectBr, resizeBr, resizeBrPreviewRef] = useDrag<
-    DragResize,
-    unknown,
-    DragResizeCollected
-  >(getDragConfig(scaleSquareState, componentNode, "br"), [
-    componentNode,
-    scaleSquareState,
-  ])
-
   return (
-    <Dropdown
-      disabled={illaMode !== "edit"}
-      position="br"
-      trigger="contextmenu"
-      dropList={
-        <DropList width="184px">
-          <Item
-            key="duplicate"
-            title={t("editor.context_menu.duplicate")}
-            onClick={() => {
-              shortcut.copyComponent(componentNode)
-            }}
-          />
-          <Item
-            fontColor={globalColor(`--${illaPrefix}-red-03`)}
-            key="delete"
-            title={t("editor.context_menu.delete")}
-            onClick={() => {
-              shortcut.showDeleteDialog([componentNode.displayName])
-            }}
-          />
-        </DropList>
-      }
+    <Rnd
+      dragGrid={[20, 7]}
+      resizeGrid={[20, 7]}
+      bounds="parent"
+      default={{
+        x: componentNode.x * componentNode.unitW,
+        y: componentNode.y * componentNode.unitH,
+        width: componentNode.w * componentNode.unitW,
+        height: componentNode.h * componentNode.unitH,
+      }}
+      resizeHandleComponent={{}}
     >
-      <div
-        onContextMenu={() => {
-          if (scaleSquareState !== "production") {
-            dispatch(configActions.updateSelectedComponent([componentNode]))
-          }
-        }}
-        css={applyOuterStyle(componentNode.isDragging, h, w)}
-        className={className}
-        onClick={(e) => {
-          if (scaleSquareState !== "production") {
-            dispatch(configActions.updateSelectedComponent([componentNode]))
-          }
-        }}
-        {...otherProps}
+      <MoveBar
+        isError={hasError}
+        displayName={displayName}
+        maxWidth={componentNode.w * componentNode.unitW}
+      />
+      <Dropdown
+        disabled={illaMode !== "edit"}
+        position="br"
+        trigger="contextmenu"
+        dropList={
+          <DropList width="184px">
+            <Item
+              key="duplicate"
+              title={t("editor.context_menu.duplicate")}
+              onClick={() => {
+                shortcut.copyComponent(componentNode)
+              }}
+            />
+            <Item
+              fontColor={globalColor(`--${illaPrefix}-red-03`)}
+              key="delete"
+              title={t("editor.context_menu.delete")}
+              onClick={() => {
+                shortcut.showDeleteDialog([componentNode.displayName])
+              }}
+            />
+          </DropList>
+        }
       >
-        <div css={applyBorderStyle(selected, scaleSquareState)}>
-          <div
-            css={applyTransformWidgetStyle(componentNode.verticalResize)}
-            ref={dragRef}
-          >
-            <TransformWidgetWrapper componentNode={componentNode} />
-          </div>
-          <div
-            className="handler"
-            ref={dragHandlerRef}
-            css={applyHandlerStyle(selected, w, scaleSquareState)}
-          >
-            <DragIcon css={dragIconStyle} />
-            <div css={dragHandlerTextStyle}>{componentNode.displayName}</div>
-            {scaleSquareState == "error" && (
-              <WarningCircleIcon
-                color={globalColor(`--${illaPrefix}-white-05`)}
-                css={warningStyle}
-              />
-            )}
-          </div>
-        </div>
-        <div
-          ref={resizeT}
-          css={applyBarHandlerStyle(selected, scaleSquareState, "t")}
-        >
-          <div
-            className="handler"
-            css={applyBarPointerStyle(
-              selected,
-              collectT.resizing,
-              scaleSquareState,
-              "t",
-            )}
-          />
-        </div>
-        <div
-          ref={resizeR}
-          css={applyBarHandlerStyle(selected, scaleSquareState, "r")}
-        >
-          <div
-            className="handler"
-            css={applyBarPointerStyle(
-              selected,
-              collectR.resizing,
-              scaleSquareState,
-              "r",
-            )}
-          />
-        </div>
-        <div
-          ref={resizeB}
-          css={applyBarHandlerStyle(selected, scaleSquareState, "b")}
-        >
-          <div
-            className="handler"
-            css={applyBarPointerStyle(
-              selected,
-              collectB.resizing,
-              scaleSquareState,
-              "b",
-            )}
-          />
-        </div>
-        <div
-          ref={resizeL}
-          css={applyBarHandlerStyle(selected, scaleSquareState, "l")}
-        >
-          <div
-            className="handler"
-            css={applyBarPointerStyle(
-              selected,
-              collectL.resizing,
-              scaleSquareState,
-              "l",
-            )}
-          />
-        </div>
-        <div
-          css={applySquarePointerStyle(
-            selected,
-            collectTl.resizing,
-            scaleSquareState,
-            "tl",
-          )}
-          ref={resizeTl}
-        />
-        <div
-          css={applySquarePointerStyle(
-            selected,
-            collectTr.resizing,
-            scaleSquareState,
-            "tr",
-          )}
-          ref={resizeTr}
-        />
-        <div
-          css={applySquarePointerStyle(
-            selected,
-            collectBl.resizing,
-            scaleSquareState,
-            "bl",
-          )}
-          ref={resizeBl}
-        />
-        <div
-          css={applySquarePointerStyle(
-            selected,
-            collectBr.resizing,
-            scaleSquareState,
-            "br",
-          )}
-          ref={resizeBr}
-        />
-        <div
-          ref={mergeRefs(
-            dragPreviewRef,
-            dragPreviewHandlerRef,
-            resizeTPreviewRef,
-            resizeRPreviewRef,
-            resizeBPreviewRef,
-            resizeLPreviewRef,
-            resizeTlPreviewRef,
-            resizeTrPreviewRef,
-            resizeBlPreviewRef,
-            resizeBrPreviewRef,
-          )}
-          css={onePixelStyle}
-        />
-      </div>
-    </Dropdown>
+        <TransformWidgetWrapper componentNode={componentNode} />
+      </Dropdown>
+    </Rnd>
   )
 })
 

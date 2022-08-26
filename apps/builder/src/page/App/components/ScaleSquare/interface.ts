@@ -18,3 +18,9 @@ export interface DragResize {
 export interface DragResizeCollected {
   resizing: boolean
 }
+
+export interface MoveBarProps {
+  displayName: string
+  isError: boolean
+  maxWidth: number
+}

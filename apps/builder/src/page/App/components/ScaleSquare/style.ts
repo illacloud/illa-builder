@@ -346,3 +346,38 @@ export function applyBarHandlerStyle(
     }
   `
 }
+
+export const applyMoveBarWrapperStyle = (
+  maxWidth: number,
+  isError: boolean,
+) => {
+  return css`
+    height: 20px;
+    padding: 2px 4px 2px 0;
+    background-color: ${isError
+      ? globalColor(`--${illaPrefix}-red-03`)
+      : globalColor(`--${illaPrefix}-techPurple-01`)};
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    position: absolute;
+    top: -25px;
+    left: 0;
+    align-items: center;
+    font-size: 12px;
+    color: #fff;
+    max-width: ${maxWidth}px;
+    min-width: 12px;
+    overflow: hidden;
+  `
+}
+
+export const dragPointIconWrapperStyle = css`
+  width: 12px;
+  height: 12px;
+  flex: none;
+`
+
+export const moveBarDisplayNameStyle = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
