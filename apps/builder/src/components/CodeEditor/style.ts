@@ -145,7 +145,7 @@ export function applyCodeEditorStyle(
       border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       transition: border 200ms ease-in-out;
       line-height: 16px;
-      font-size: 12px;
+      font-size: 14px;
 
       ${stateStyle}
       .CodeMirror-scroll {
