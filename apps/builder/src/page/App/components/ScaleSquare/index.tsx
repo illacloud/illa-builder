@@ -1,86 +1,33 @@
-import { FC, useContext, memo } from "react"
+import { useContext, memo } from "react"
 import {
-  DragResize,
-  DragResizeCollected,
   ScaleSquareProps,
   ScaleSquareType,
 } from "@/page/App/components/ScaleSquare/interface"
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
-  applyBorderStyle,
-  applyHandlerStyle,
-  applyOuterStyle,
+  applyRNDWrapperStyle,
   applySquarePointerStyle,
-  applyTransformWidgetStyle,
-  BarPosition,
-  dragHandlerTextStyle,
-  dragIconStyle,
-  onePixelStyle,
-  warningStyle,
+  applyWrapperPendingStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
-import store, { RootState } from "@/store"
-import { DragSourceHookSpec, FactoryOrInstance, useDrag } from "react-dnd"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { mergeRefs } from "@illa-design/system"
-import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
+import { RootState } from "@/store"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { getIllaMode } from "@/redux/config/configSelector"
-import { endDrag, startDrag } from "@/utils/drag/drag"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { Rnd } from "react-rnd"
 import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 const { Item } = DropList
 
-function getDragConfig(
-  type: ScaleSquareType,
-  componentNode: ComponentNode,
-  barPosition: BarPosition,
-): FactoryOrInstance<
-  DragSourceHookSpec<DragResize, unknown, DragResizeCollected>
-> {
-  return () => ({
-    type: "resize",
-    item: () => {
-      store.dispatch(configActions.updateShowDot(true))
-      return {
-        node: {
-          ...componentNode,
-          isResizing: true,
-        },
-        position: barPosition,
-      } as DragResize
-    },
-    end: (draggedItem, monitor) => {
-      store.dispatch(configActions.updateShowDot(false))
-      store.dispatch(
-        componentsActions.updateComponentResizeState({
-          displayName: draggedItem.node.displayName,
-          isResizing: false,
-        }),
-      )
-    },
-    collect: (monitor) => {
-      return {
-        resizing: monitor.isDragging(),
-      } as DragResizeCollected
-    },
-    canDrag: () => {
-      return type !== "production"
-    },
-  })
-}
-
 export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
-  const { w, h, componentNode, className, ...otherProps } = props
+  const { componentNode } = props
 
   const { t } = useTranslation()
 
@@ -106,71 +53,134 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     )
   })
 
-  const [, dragRef, dragPreviewRef] = useDrag<ComponentNode>(
-    () => ({
-      canDrag: () => {
-        return scaleSquareState !== "production"
-      },
-      end: (draggedItem, monitor) => {
-        endDrag(draggedItem)
-      },
-      type: "components",
-      item: () => {
-        const item = {
-          ...componentNode,
-          isDragging: true,
-        }
-        startDrag(item, true)
-        return item
-      },
-    }),
-    [componentNode, scaleSquareState],
-  )
-
   return (
     <Rnd
-      dragGrid={[20, 7]}
-      resizeGrid={[20, 7]}
-      bounds="parent"
+      dragGrid={[componentNode.unitW, componentNode.unitH]}
+      resizeGrid={[componentNode.unitW, componentNode.unitH]}
+      bounds="#realCanvas"
       default={{
         x: componentNode.x * componentNode.unitW,
         y: componentNode.y * componentNode.unitH,
         width: componentNode.w * componentNode.unitW,
         height: componentNode.h * componentNode.unitH,
       }}
-      resizeHandleComponent={{}}
-    >
-      <MoveBar
-        isError={hasError}
-        displayName={displayName}
-        maxWidth={componentNode.w * componentNode.unitW}
-      />
-      <Dropdown
-        disabled={illaMode !== "edit"}
-        position="br"
-        trigger="contextmenu"
-        dropList={
-          <DropList width="184px">
-            <Item
-              key="duplicate"
-              title={t("editor.context_menu.duplicate")}
-              onClick={() => {
-                shortcut.copyComponent(componentNode)
-              }}
-            />
-            <Item
-              fontColor={globalColor(`--${illaPrefix}-red-03`)}
-              key="delete"
-              title={t("editor.context_menu.delete")}
-              onClick={() => {
-                shortcut.showDeleteDialog([componentNode.displayName])
-              }}
-            />
-          </DropList>
+      css={applyRNDWrapperStyle(selected, hasError)}
+      onDragStop={(e, data) => {
+        const { lastX, lastY } = data
+        const x = Math.round(lastX / componentNode.unitW)
+        const y = Math.round(lastY / componentNode.unitH)
+
+        const newComponentNode = {
+          ...componentNode,
+          x,
+          y,
         }
+        dispatch(
+          componentsActions.updateSingleComponentReducer({
+            isMove: false,
+            componentNode: newComponentNode,
+          }),
+        )
+      }}
+      onResizeStop={(e, dir, ref, delta, position) => {
+        const realOldWidth = componentNode.w * componentNode.unitW
+        const realOldHeight = componentNode.h * componentNode.unitH
+        const { width, height } = delta
+        const finalWidth = Math.round(
+          (realOldWidth + width) / componentNode.unitW,
+        )
+        const finalHeight = Math.round(
+          (realOldHeight + height) / componentNode.unitH,
+        )
+        const x = Math.round(position.x / componentNode.unitW)
+        const y = Math.round(position.y / componentNode.unitH)
+
+        const newComponentNode = {
+          ...componentNode,
+          x,
+          y,
+          w: finalWidth,
+          h: finalHeight,
+        }
+
+        dispatch(
+          componentsActions.updateSingleComponentReducer({
+            isMove: false,
+            componentNode: newComponentNode,
+          }),
+        )
+      }}
+    >
+      <div
+        className="wrapperPending"
+        css={applyWrapperPendingStyle(selected, hasError)}
+        onClick={(e) => {
+          if (scaleSquareState !== "production") {
+            dispatch(configActions.updateSelectedComponent([componentNode]))
+          }
+        }}
       >
-        <TransformWidgetWrapper componentNode={componentNode} />
-      </Dropdown>
+        <MoveBar
+          isError={hasError}
+          displayName={displayName}
+          maxWidth={componentNode.w * componentNode.unitW}
+          selected={selected}
+        />
+        <Dropdown
+          disabled={illaMode !== "edit"}
+          position="br"
+          trigger="contextmenu"
+          dropList={
+            <DropList width="184px">
+              <Item
+                key="duplicate"
+                title={t("editor.context_menu.duplicate")}
+                onClick={() => {
+                  shortcut.copyComponent(componentNode)
+                }}
+              />
+              <Item
+                fontColor={globalColor(`--${illaPrefix}-red-03`)}
+                key="delete"
+                title={t("editor.context_menu.delete")}
+                onClick={() => {
+                  shortcut.showDeleteDialog([componentNode.displayName])
+                }}
+              />
+            </DropList>
+          }
+        >
+          <TransformWidgetWrapper componentNode={componentNode} />
+        </Dropdown>
+        <div css={applyBarHandlerStyle(selected, scaleSquareState, "t")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(selected, scaleSquareState, "t")}
+          />
+        </div>
+        <div css={applyBarHandlerStyle(selected, scaleSquareState, "r")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(selected, scaleSquareState, "r")}
+          />
+        </div>
+        <div css={applyBarHandlerStyle(selected, scaleSquareState, "b")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(selected, scaleSquareState, "b")}
+          />
+        </div>
+        <div css={applyBarHandlerStyle(selected, scaleSquareState, "l")}>
+          <div
+            className="handler"
+            css={applyBarPointerStyle(selected, scaleSquareState, "l")}
+          />
+        </div>
+        <div css={applySquarePointerStyle(selected, scaleSquareState, "tl")} />
+        <div css={applySquarePointerStyle(selected, scaleSquareState, "tr")} />
+        <div css={applySquarePointerStyle(selected, scaleSquareState, "bl")} />
+        <div css={applySquarePointerStyle(selected, scaleSquareState, "br")} />
+      </div>
     </Rnd>
   )
 })

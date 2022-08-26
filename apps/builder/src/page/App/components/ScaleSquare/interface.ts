@@ -23,4 +23,5 @@ export interface MoveBarProps {
   displayName: string
   isError: boolean
   maxWidth: number
+  selected: boolean
 }

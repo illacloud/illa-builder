@@ -42,7 +42,7 @@ import { DragResize } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import useWindowSize from "react-use/lib/useWindowSize"
 
-export const DotPanel: FC<DotPanelProps> = (props) => {
+export const DotPanel: FC<DotPanelProps> = props => {
   const { componentNode, ...otherProps } = props
 
   const canvasRef = useRef<HTMLDivElement>(null)
@@ -74,10 +74,9 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
   })
 
   // radio
-  const radio = useMemo(
-    () => window.devicePixelRatio,
-    [window.devicePixelRatio],
-  )
+  const radio = useMemo(() => window.devicePixelRatio, [
+    window.devicePixelRatio,
+  ])
 
   // config
   const leftPanelState = useSelector(isOpenLeftPanel)
@@ -180,7 +179,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           componentNode.displayName,
           unitWidth,
           unitHeight,
-          (newItem) => {
+          newItem => {
             if (item.x === -1 && item.y === -1) {
               dispatch(componentsActions.addComponentReducer(newItem))
             } else {
@@ -240,7 +239,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasHeight,
           edgeWidth,
           componentNode.verticalResize,
-          (renderDragShadow) => {
+          renderDragShadow => {
             dispatch(
               dragShadowActions.addOrUpdateDragShadowReducer(renderDragShadow),
             )
@@ -254,7 +253,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           calculateResult.squareY,
           unitWidth,
           unitHeight,
-          (newItem) => {
+          newItem => {
             dispatch(
               dottedLineSquareActions.addOrUpdateDottedLineSquareReducer(
                 newItem,
@@ -311,7 +310,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             nearX,
             nearY,
             item.position,
-            (i) => {
+            i => {
               dispatch(
                 componentsActions.updateComponentPositionAndSizeReducer({
                   parentDisplayName: i.parentNode || "",
@@ -344,7 +343,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           (canvasHeight + edgeWidth) * radio,
         )
         ctx.globalAlpha = 0.16
-        Object.keys(dragShadowMap).forEach((value) => {
+        Object.keys(dragShadowMap).forEach(value => {
           const item = dragShadowMap[value]
           if (item.parentNode === componentNode.displayName) {
             ctx.beginPath()
@@ -389,10 +388,10 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
             ctx.fill()
           }
         }
-        componentNode.childrenNode.forEach((item) => {
+        componentNode.childrenNode.forEach(item => {
           if (
             !item.isDragging &&
-            !selectedComponents.find((s) => {
+            !selectedComponents.find(s => {
               return s.displayName === item.displayName
             })
           ) {
@@ -444,7 +443,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
           canvasWidth * radio,
           (canvasHeight + edgeWidth) * radio,
         )
-        Object.keys(dottedLineSquareMap).forEach((value) => {
+        Object.keys(dottedLineSquareMap).forEach(value => {
           const item = dottedLineSquareMap[value]
           if (item.parentNode === componentNode.displayName) {
             const h = item.h * radio
@@ -470,7 +469,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   useEffect(() => {
     let maxY = 0
-    componentNode.childrenNode.forEach((item) => {
+    componentNode.childrenNode.forEach(item => {
       maxY = Math.max(maxY, item.y + item.h)
     })
     if (illaMode === "edit") {
@@ -482,7 +481,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    return childrenNode.map<ReactNode>((item) => {
+    return childrenNode.map<ReactNode>(item => {
       const h = item.h * unitHeight
       const w = item.w * unitWidth
 
@@ -508,36 +507,37 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
 
   return (
     <div
-      ref={mergeRefs(canvasRef, dropTarget, resizeDropTarget)}
+      ref={mergeRefs(canvasRef, dropTarget)}
       css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
       {...otherProps}
     >
-      <canvas
-        id={`${componentNode.displayName}-canvas`}
-        css={applyDotCanvasStyle(
-          showDot,
-          0,
-          canvasWidth,
-          canvasHeight + edgeWidth,
-        )}
-        width={canvasWidth * radio}
-        height={(canvasHeight + edgeWidth) * radio}
-      />
-      <canvas
-        id={`${componentNode.displayName}-dotted`}
-        css={applyDotCanvasStyle(
-          showDot,
-          1,
-          canvasWidth,
-          canvasHeight + edgeWidth,
-        )}
-        width={canvasWidth * radio}
-        height={(canvasHeight + edgeWidth) * radio}
-      />
+      {/*<canvas*/}
+      {/*  id={`${componentNode.displayName}-canvas`}*/}
+      {/*  css={applyDotCanvasStyle(*/}
+      {/*    showDot,*/}
+      {/*    0,*/}
+      {/*    canvasWidth,*/}
+      {/*    canvasHeight + edgeWidth,*/}
+      {/*  )}*/}
+      {/*  width={canvasWidth * radio}*/}
+      {/*  height={(canvasHeight + edgeWidth) * radio}*/}
+      {/*/>*/}
+      {/*<canvas*/}
+      {/*  id={`${componentNode.displayName}-dotted`}*/}
+      {/*  css={applyDotCanvasStyle(*/}
+      {/*    showDot,*/}
+      {/*    1,*/}
+      {/*    canvasWidth,*/}
+      {/*    canvasHeight + edgeWidth,*/}
+      {/*  )}*/}
+      {/*  width={canvasWidth * radio}*/}
+      {/*  height={(canvasHeight + edgeWidth) * radio}*/}
+      {/*/>*/}
       <div
         ref={componentsTreeRef}
+        id="realCanvas"
         css={applyChildrenContainerStyle(2, canvasWidth, canvasHeight)}
-        onClick={(e) => {
+        onClick={e => {
           if (e.target == componentsTreeRef.current && illaMode == "edit") {
             dispatch(configActions.updateSelectedComponent([]))
           }
@@ -545,17 +545,17 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       >
         {componentTree}
       </div>
-      <canvas
-        id={`${componentNode.displayName}-dragged`}
-        css={applyDotCanvasStyle(
-          showDot,
-          1,
-          canvasWidth,
-          canvasHeight + edgeWidth,
-        )}
-        width={canvasWidth * radio}
-        height={(canvasHeight + edgeWidth) * radio}
-      />
+      {/*<canvas*/}
+      {/*  id={`${componentNode.displayName}-dragged`}*/}
+      {/*  css={applyDotCanvasStyle(*/}
+      {/*    showDot,*/}
+      {/*    1,*/}
+      {/*    canvasWidth,*/}
+      {/*    canvasHeight + edgeWidth,*/}
+      {/*  )}*/}
+      {/*  width={canvasWidth * radio}*/}
+      {/*  height={(canvasHeight + edgeWidth) * radio}*/}
+      {/*/>*/}
     </div>
   )
 }

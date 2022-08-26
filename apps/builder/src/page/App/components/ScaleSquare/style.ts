@@ -24,22 +24,8 @@ export function getSelectedColor(selected: boolean): string {
   return selected ? globalColor(`--${illaPrefix}-techPurple-01`) : "transparent"
 }
 
-export function applyOuterStyle(
-  isDragging: boolean,
-  h: number,
-  w: number,
-): SerializedStyles {
-  return css`
-    z-index: 1;
-    opacity: ${isDragging ? 0 : 100};
-    height: ${h}px;
-    width: ${w}px;
-  `
-}
-
 export function applySquarePointerStyle(
   selected: boolean,
-  resizing: boolean,
   scaleSquareType: ScaleSquareType,
   pointerPosition: BarPosition,
 ): SerializedStyles {
@@ -106,61 +92,12 @@ export function applySquarePointerStyle(
   `
 }
 
-export const onePixelStyle = css`
-  width: 1px;
-  height: 1px;
-`
-
-export const dragIconStyle = css`
-  flex: none;
-`
-
-export const dragHandlerTextStyle = css`
-  flex-shrink: 1;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-`
-
-export function applyHandlerStyle(
-  selected: boolean,
-  maxWidth: number,
-  state: ScaleSquareType,
-): SerializedStyles {
-  if (state === "production") {
-    return css`
-      visibility: hidden;
-    `
-  }
-
-  return css`
-    visibility: ${state === "error" || selected ? "visible" : "hidden"};
-    display: flex;
-    left: 0;
-    cursor: grab;
-    top: -18px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    position: absolute;
-    color: ${globalColor(`--${illaPrefix}-white-01`)};
-    background: ${getStateColor(state)};
-    flex-direction: row;
-    font-size: 12px;
-    align-items: center;
-    padding-left: 1px;
-    padding-right: 4px;
-    height: 18px;
-    max-width: ${maxWidth}px;
-  `
-}
-
 export const warningStyle = css`
   margin-left: 4px;
 `
 
 export function applyBarPointerStyle(
   selected: boolean,
-  resizing: boolean,
   scaleSquareType: ScaleSquareType,
   barPosition: BarPosition,
 ): SerializedStyles {
@@ -222,18 +159,9 @@ export function applyBarPointerStyle(
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)
       : "transparent"};
-  `
-}
-
-export function applyTransformWidgetStyle(
-  verticalResize: boolean,
-): SerializedStyles {
-  return css`
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: ${verticalResize ? "auto" : "hidden"};
-    padding: 3px;
+    :hover {
+      background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    }
   `
 }
 
@@ -328,28 +256,16 @@ export function applyBarHandlerStyle(
       barPositionStyle = css``
   }
 
-  const baseColor = getSelectedColor(selected)
-
   return css`
     ${barPositionStyle};
     position: absolute;
-    &:active {
-      .handler {
-        background: ${baseColor};
-      }
-    }
-
-    &:hover {
-      .handler {
-        background: ${baseColor};
-      }
-    }
   `
 }
 
 export const applyMoveBarWrapperStyle = (
   maxWidth: number,
   isError: boolean,
+  selected: boolean,
 ) => {
   return css`
     height: 20px;
@@ -360,7 +276,7 @@ export const applyMoveBarWrapperStyle = (
     border-radius: 4px 4px 0 0;
     display: flex;
     position: absolute;
-    top: -25px;
+    top: -20px;
     left: 0;
     align-items: center;
     font-size: 12px;
@@ -368,6 +284,7 @@ export const applyMoveBarWrapperStyle = (
     max-width: ${maxWidth}px;
     min-width: 12px;
     overflow: hidden;
+    visibility: ${selected ? "visible" : "hidden"};
   `
 }
 
@@ -380,4 +297,33 @@ export const dragPointIconWrapperStyle = css`
 export const moveBarDisplayNameStyle = css`
   overflow: hidden;
   text-overflow: ellipsis;
+`
+
+export const applyRNDWrapperStyle = (
+  isSelected: boolean,
+  hasError: boolean,
+) => css`
+  :hover {
+    .wrapperPending {
+      border-color: ${hasError && !isSelected
+        ? globalColor(`--${illaPrefix}-red-03`)
+        : globalColor(`--${illaPrefix}-techPurple-01`)};
+    }
+    #moveBar {
+      visibility: visible;
+    }
+  }
+`
+
+export const applyWrapperPendingStyle = (
+  isSelected: boolean,
+  hasError: boolean,
+) => css`
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  border: 1px solid ${isSelected ? "blue" : "transparent"};
+  background-color: ${hasError && !isSelected
+    ? globalColor(`--${illaPrefix}-red-07`)
+    : "transparent"};
 `
