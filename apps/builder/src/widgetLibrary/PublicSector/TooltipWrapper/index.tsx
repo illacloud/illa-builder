@@ -1,4 +1,4 @@
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import { FC, memo } from "react"
 import { TooltipWrapperProps } from "./interface"
 import { Text } from "@/widgetLibrary/TextWidget"
@@ -8,7 +8,7 @@ export const TooltipWrapper: FC<TooltipWrapperProps> = memo(
     const { children, tooltipText, tooltipDisabled } = props
 
     return (
-      <Tooltip
+      <Trigger
         content={<Text value={tooltipText} colorScheme="white" />}
         colorScheme="grayBlue"
         disabled={tooltipDisabled}
@@ -18,7 +18,7 @@ export const TooltipWrapper: FC<TooltipWrapperProps> = memo(
         trigger="hover"
       >
         {children}
-      </Tooltip>
+      </Trigger>
     )
   },
 )

@@ -1,5 +1,5 @@
 import { FC, memo } from "react"
-import { Tooltip } from "@illa-design/tooltip"
+import { Trigger } from "@illa-design/trigger"
 import { applyLabelTipsStyle } from "./style"
 import { PanelLabelProps } from "./interface"
 import { Text } from "@/widgetLibrary/TextWidget"
@@ -9,17 +9,17 @@ export const PanelLabel: FC<PanelLabelProps> = memo(
     const { labelDesc, labelName, isInList } = props
 
     return (
-      <Tooltip
+      <Trigger
         content={<Text value={labelDesc} colorScheme="white" />}
         trigger="hover"
         position="left"
-        maxWidth="240px"
+        maxW="240px"
         disabled={!labelDesc}
       >
         <span css={applyLabelTipsStyle(isInList, !!labelDesc)}>
           {labelName}
         </span>
-      </Tooltip>
+      </Trigger>
     )
   },
 )
