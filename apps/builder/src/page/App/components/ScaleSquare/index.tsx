@@ -26,6 +26,12 @@ import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { Rnd } from "react-rnd"
 import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { useDrag } from "react-dnd"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { DragCollectedInfo } from "@/page/App/components/DotPanel/interface"
+import { endDrag, startDrag } from "@/utils/drag/drag"
+import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/style"
 
 const { Item } = DropList
 
@@ -43,7 +49,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const shortcut = useContext(ShortCutContext)
   const selectedComponents = useSelector(getSelectedComponents)
   const isSelected = useMemo(() => {
-    return selectedComponents.some(node => {
+    return selectedComponents.some((node) => {
       return node.displayName === componentNode.displayName
     })
   }, [componentNode.displayName, selectedComponents])
@@ -53,9 +59,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   }
 
   const dispatch = useDispatch()
-  const selected = useSelector<RootState, boolean>(state => {
+  const selected = useSelector<RootState, boolean>((state) => {
     return (
-      state.config.selectedComponents.findIndex(value => {
+      state.config.selectedComponents.findIndex((value) => {
         return value.displayName == componentNode.displayName
       }) != -1
     )
@@ -66,28 +72,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       dispatch(configActions.updateSelectedComponent([componentNode]))
     }
   }, [componentNode, dispatch, illaMode])
-
-  const handleOnDragStop = useCallback(
-    (e, data) => {
-      const { lastX, lastY } = data
-      const x = Math.round(lastX / unitW)
-      const y = Math.round(lastY / unitH)
-
-      const newComponentNode = {
-        ...componentNode,
-        x,
-        y,
-      }
-      dispatch(
-        componentsActions.updateSingleComponentReducer({
-          isMove: false,
-          componentNode: newComponentNode,
-        }),
-      )
-      dispatch(configActions.updateShowDot(false))
-    },
-    [componentNode, dispatch, unitH, unitW],
-  )
 
   const handleOnResizeStop = useCallback(
     (e, dir, ref, delta, position) => {
@@ -116,11 +100,36 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     [componentNode, dispatch, h, unitH, unitW, w],
   )
 
+  const [{ isDragging }, dragRef, dragPreviewRef] = useDrag<
+    ComponentNode,
+    { isDragging: boolean },
+    DragCollectedInfo
+  >(
+    () => ({
+      type: "components",
+      canDrag: () => {
+        return illaMode === "edit"
+      },
+      end: (draggedItem, monitor) => {
+        endDrag(draggedItem)
+      },
+      item: () => {
+        startDrag(componentNode, false)
+        return componentNode
+      },
+      collect: (monitor) => {
+        return {
+          isDragging: monitor.isDragging(),
+        }
+      },
+    }),
+    [illaMode],
+  )
+
   return (
     <Rnd
       dragGrid={[unitW, unitH]}
       resizeGrid={[unitW, unitH]}
-      onMouseDown={e => {}}
       bounds="#realCanvas"
       size={{
         width: w,
@@ -132,10 +141,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       }}
       enableResizing={isSelected}
       css={applyRNDWrapperStyle(selected, hasError)}
-      onDragStart={() => {
-        dispatch(configActions.updateShowDot(true))
-      }}
-      onDragStop={handleOnDragStop}
+      disableDragging
       onResize={() => {
         dispatch(configActions.updateShowDot(true))
       }}
@@ -145,7 +151,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     >
       <Dropdown
         disabled={illaMode !== "edit"}
-        position="br"
+        position="bottom-end"
         trigger="contextmenu"
         dropList={
           <DropList width="184px">
@@ -167,63 +173,67 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           </DropList>
         }
       >
-        <div
-          className="wrapperPending"
-          css={applyWrapperPendingStyle(selected, hasError)}
-          onClick={handleOnDragStart}
-          onMouseUp={handleOnDragStart}
-          onContextMenu={() => {
-            if (illaMode !== "production") {
-              dispatch(configActions.updateSelectedComponent([componentNode]))
-            }
-          }}
-        >
-          <MoveBar
-            isError={hasError}
-            displayName={displayName}
-            maxWidth={componentNode.w * unitW}
-            selected={selected}
-          />
+        <>
+          <div css={dragPreviewStyle} ref={dragPreviewRef} />
+          <div
+            className="wrapperPending"
+            css={applyWrapperPendingStyle(selected, hasError, isDragging)}
+            onClick={handleOnDragStart}
+            onMouseUp={handleOnDragStart}
+            ref={dragRef}
+            onContextMenu={() => {
+              if (illaMode !== "production") {
+                dispatch(configActions.updateSelectedComponent([componentNode]))
+              }
+            }}
+          >
+            <MoveBar
+              isError={hasError}
+              displayName={displayName}
+              maxWidth={componentNode.w * unitW}
+              selected={selected}
+            />
 
-          <TransformWidgetWrapper componentNode={componentNode} />
+            <TransformWidgetWrapper componentNode={componentNode} />
 
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "t")}>
+            <div css={applyBarHandlerStyle(selected, scaleSquareState, "t")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(selected, scaleSquareState, "t")}
+              />
+            </div>
+            <div css={applyBarHandlerStyle(selected, scaleSquareState, "r")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(selected, scaleSquareState, "r")}
+              />
+            </div>
+            <div css={applyBarHandlerStyle(selected, scaleSquareState, "b")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(selected, scaleSquareState, "b")}
+              />
+            </div>
+            <div css={applyBarHandlerStyle(selected, scaleSquareState, "l")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(selected, scaleSquareState, "l")}
+              />
+            </div>
             <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "t")}
+              css={applySquarePointerStyle(selected, scaleSquareState, "tl")}
+            />
+            <div
+              css={applySquarePointerStyle(selected, scaleSquareState, "tr")}
+            />
+            <div
+              css={applySquarePointerStyle(selected, scaleSquareState, "bl")}
+            />
+            <div
+              css={applySquarePointerStyle(selected, scaleSquareState, "br")}
             />
           </div>
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "r")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "r")}
-            />
-          </div>
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "b")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "b")}
-            />
-          </div>
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "l")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "l")}
-            />
-          </div>
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "tl")}
-          />
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "tr")}
-          />
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "bl")}
-          />
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "br")}
-          />
-        </div>
+        </>
       </Dropdown>
     </Rnd>
   )

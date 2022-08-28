@@ -88,3 +88,31 @@ export const applyDotBackgroundStyle = (
     background-size: ${unitWidth}px ${unitHeight}px, 100% ${unitHeight}px;
   `
 }
+
+export const applyDotLintRectangleStyle = (
+  w: number,
+  h: number,
+  x: number = 0,
+  y: number = 0,
+  canDrop: boolean = false,
+) => {
+  return css`
+    width: ${w}px;
+    height: ${h}px;
+    border: 1px dashed
+      ${canDrop ? globalColor(`--${illaPrefix}-techPurple-01`) : "red"};
+    position: absolute;
+    transform: translate(${x}px, ${y}px);
+  `
+}
+
+export const applyRectangleStyle = (canDrop: boolean = false) => {
+  return css`
+    width: 100%;
+    height: 100%;
+    background-color: ${canDrop
+      ? globalColor(`--${illaPrefix}-techPurple-01`)
+      : "red"};
+    opacity: 0.16;
+  `
+}

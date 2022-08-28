@@ -318,6 +318,7 @@ export const applyRNDWrapperStyle = (
 export const applyWrapperPendingStyle = (
   isSelected: boolean,
   hasError: boolean,
+  isDragging: boolean,
 ) => css`
   width: 100%;
   height: 100%;
@@ -326,4 +327,5 @@ export const applyWrapperPendingStyle = (
   background-color: ${hasError && !isSelected
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};
+  opacity: ${isDragging ? 0 : 100};
 `

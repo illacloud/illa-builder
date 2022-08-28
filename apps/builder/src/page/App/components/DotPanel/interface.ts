@@ -16,9 +16,21 @@ export interface DragPosition {
 export interface DropResultInfo {}
 
 // return when drop collect trigger
-export interface DropCollectedInfo {}
+export interface DropCollectedInfo {
+  isActive: boolean
+  nodeWidth: number
+  nodeHeight: number
+}
 
 // return when drag collect trigger
 export interface DragCollectedInfo {
   isDragging: boolean
+}
+
+export interface PreviewPlaceholderProps {
+  canDrop: boolean
+  x: number
+  y: number
+  w: number
+  h: number
 }
