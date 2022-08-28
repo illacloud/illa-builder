@@ -1,5 +1,4 @@
 import { FC } from "react"
-import "chartjs-adapter-moment"
 
 export const Chart: FC = (props) => {
   const {} = props
