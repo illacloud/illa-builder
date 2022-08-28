@@ -1,4 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export function applyScaleStyle(
   verticalResize: boolean,
@@ -45,14 +46,45 @@ export function applyDotCanvasStyle(
   `
 }
 
-export function applyDragObjectStyle(
-  t: number,
-  l: number,
-  z: number,
-): SerializedStyles {
+export const applyComponentCanvasStyle = (
+  width: number,
+  height: number,
+  unitWidth: number,
+  unitHeight: number = 8,
+  showDot: boolean = false,
+) => {
   return css`
-    position: absolute;
-    transform: translate(${l}px, ${t}px);
-    z-index: ${z};
+    width: 100%;
+    height: 100vh;
+    ${showDot
+      ? applyDotBackgroundStyle(width, height, unitWidth, unitHeight)
+      : normalCanvasBackgroundStyle}
+    position: relative;
+  `
+}
+
+const normalCanvasBackgroundStyle = css`
+  background: unset;
+`
+
+export const applyDotBackgroundStyle = (
+  width: number,
+  height: number,
+  unitWidth: number,
+  unitHeight: number = 8,
+) => {
+  return css`
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px,
+        transparent 0px
+      ),
+      radial-gradient(
+        circle at ${width - 1}px 1px,
+        ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px,
+        transparent 0px
+      );
+    background-repeat: repeat;
+    background-size: ${unitWidth}px ${unitHeight}px, 100% ${unitHeight}px;
   `
 }
