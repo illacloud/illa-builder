@@ -37,7 +37,6 @@
     "framer-motion": "^6.3.0",
     "i18next": "^21.6.16",
     "i18next-browser-languagedetector": "^6.1.4",
-    "immer": "^9.0.14",
     "jshint": "^2.13.4",
     "lodash": "^4.17.21",
     "qs": "^6.11.0",
