@@ -1,5 +1,5 @@
-import { FC, useCallback, useMemo, memo } from "react"
-import { isEqual, set, get } from "lodash"
+import { FC, memo, useCallback, useMemo } from "react"
+import { get, isEqual, set } from "lodash"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { ListSetterProps } from "./interface"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
