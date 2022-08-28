@@ -1,15 +1,20 @@
 import { FC } from "react"
 import {
-  Chart as ChartJS,
   CategoryScale,
+  Chart as ChartJS,
+  Legend,
   LinearScale,
-  PointElement,
   LineElement,
+  PointElement,
   Title,
   Tooltip,
-  Legend,
 } from "chart.js"
 import { Line } from "react-chartjs-2"
+import {
+  ChartWidgetProps,
+  WrappedChartProps,
+} from "@/widgetLibrary/Chart/interface"
+import { css } from "@emotion/react"
 
 ChartJS.register(
   CategoryScale,
@@ -21,45 +26,55 @@ ChartJS.register(
   Legend,
 )
 
-export const Chart: FC = (props) => {
-  const {} = props
+export const Chart: FC<ChartWidgetProps> = (props) => {
+  const { w, h, unitW, unitH } = props
 
   return (
-    <Line
-      height="100%"
-      datasetIdKey="id"
-      data={{
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
-        datasets: [
-          {
-            label: "Dataset 1",
-            data: [1, 2, 3, 4, 5, 6, 7],
-            borderColor: "rgb(255, 99, 132)",
-            backgroundColor: "rgba(255, 99, 132, 0.5)",
-          },
-          {
-            label: "Dataset 2",
-            data: [1, 2, 3, 4, 5, 6, 7],
-            borderColor: "rgb(53, 162, 235)",
-            backgroundColor: "rgba(53, 162, 235, 0.5)",
-          },
-        ],
-      }}
-    />
+    <div
+      css={css`
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      `}
+    >
+      <Line
+        height={h * unitH}
+        width={w * unitW}
+        datasetIdKey="id"
+        data={{
+          labels: [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+          ],
+          datasets: [
+            {
+              label: "Dataset 1",
+              data: [1, 2, 3, 4, 5, 6, 7],
+              borderColor: "rgb(255, 99, 132)",
+              backgroundColor: "rgba(255, 99, 132, 0.5)",
+            },
+            {
+              label: "Dataset 2",
+              data: [1, 2, 3, 4, 5, 6, 7],
+              borderColor: "rgb(53, 162, 235)",
+              backgroundColor: "rgba(53, 162, 235, 0.5)",
+            },
+          ],
+        }}
+      />
+    </div>
   )
 }
 
-export const ChartWidget: FC = (props) => {
-  const {} = props
-  return <Chart {...props} />
+export const ChartWidget: FC<WrappedChartProps> = (props) => {
+  const { w, h, unitW, unitH } = props
+  return <Chart w={w} h={h} unitH={unitH} unitW={unitW} />
 }
 
 ChartWidget.displayName = "ChartWidget"
