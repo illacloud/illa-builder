@@ -165,6 +165,8 @@ export const RenderComponentCanvas: FC<{
             parentNode: componentNode.displayName || "root",
             x: Math.round(lunchX / unitWidth),
             y: Math.round(lunchY / UNIT_HEIGHT),
+            unitW: unitWidth,
+            unitH: UNIT_HEIGHT,
           }
           if (item.x === -1 && item.y === -1) {
             dispatch(componentsActions.addComponentReducer(newItem))
