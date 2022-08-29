@@ -11,4 +11,5 @@ export const deployLogoStyle = css`
   position: absolute;
   bottom: 16px;
   right: 16px;
+  box-shadow: 0 0 8px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
 `
