@@ -286,6 +286,7 @@ export const applyMoveBarWrapperStyle = (
     min-width: 12px;
     overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
+    z-index: 200;
   `
 }
 
