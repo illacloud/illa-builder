@@ -191,11 +191,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           onClick={handleOnDragStart}
           onMouseUp={handleOnDragStart}
           ref={dragRef}
-          onContextMenu={() => {
-            if (illaMode !== "production") {
-              dispatch(configActions.updateSelectedComponent([componentNode]))
-            }
-          }}
         >
           <MoveBar
             isError={hasError}
