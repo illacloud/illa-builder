@@ -52,17 +52,17 @@ function generateWs(wsUrl: string): WebSocket {
           let type = broadcast.type
           let payload = broadcast.payload
           switch (type) {
-            case ADD_DISPLAY_NAME:
+            case `${ADD_DISPLAY_NAME}/remote`:
               ;(payload as string[]).forEach((name) => {
                 DisplayNameGenerator.displayNameList.add(name)
               })
               break
-            case REMOVE_DISPLAY_NAME:
+            case `${REMOVE_DISPLAY_NAME}/remote`:
               ;(payload as string[]).forEach((name) => {
                 DisplayNameGenerator.displayNameList.delete(name)
               })
               break
-            case UPDATE_DISPLAY_NAME:
+            case `${UPDATE_DISPLAY_NAME}/remote`:
               DisplayNameGenerator.displayNameList.delete(payload[0])
               DisplayNameGenerator.displayNameList.add(payload[1])
               break

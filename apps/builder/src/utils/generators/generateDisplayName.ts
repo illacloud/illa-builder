@@ -35,7 +35,7 @@ export class DisplayNameGenerator {
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,
         true,
-        { type: "addDisplayName", payload: [name] },
+        { type: ADD_DISPLAY_NAME, payload: [name] },
         [],
       ),
     )
@@ -76,7 +76,7 @@ export class DisplayNameGenerator {
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,
         true,
-        { type: "updateDisplayName", payload: [oldDisplayName, displayName] },
+        { type: UPDATE_DISPLAY_NAME, payload: [oldDisplayName, displayName] },
         [],
       ),
     )
@@ -89,7 +89,7 @@ export class DisplayNameGenerator {
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,
         true,
-        { type: "removeDisplayName", payload: [displayName] },
+        { type: REMOVE_DISPLAY_NAME, payload: [displayName] },
         [],
       ),
     )
@@ -104,7 +104,7 @@ export class DisplayNameGenerator {
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,
         true,
-        { type: "removeDisplayName", payload: displayNames },
+        { type: REMOVE_DISPLAY_NAME, payload: displayNames },
         [],
       ),
     )
