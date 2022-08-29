@@ -21,7 +21,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "command+s,ctrl+s",
-    (event, handler) => {
+    (event) => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
     },
@@ -36,7 +36,7 @@ export const Shortcut: FC = ({ children }) => {
     useState<boolean>(false)
 
   const showDeleteDialog = (displayName: string[]) => {
-    if (!alreadyShowDeleteDialog) {
+    if (!alreadyShowDeleteDialog && displayName.length > 0) {
       const textList = displayName.join(", ").toString()
       setAlreadyShowDeleteDialog(true)
       Modal.confirm({
@@ -84,7 +84,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "Backspace",
-    (event, handler) => {
+    (event) => {
       event.preventDefault()
       showDeleteDialog(
         store.getState().config.selectedComponents.map((item) => {
@@ -100,7 +100,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "*",
-    (keyboardEvent, handler) => {
+    (keyboardEvent) => {
       if (hotkeys.ctrl || hotkeys.command) {
         if (keyboardEvent.type === "keydown") {
           dispatch(configActions.updateShowDot(true))
@@ -115,16 +115,16 @@ export const Shortcut: FC = ({ children }) => {
 
   // cancel show dot
   useEffect(() => {
-    const listener = (e: Event) => {
-      if (document.hidden) {
-        dispatch(configActions.updateShowDot(false))
-      }
+    const listener = () => {
+      dispatch(configActions.updateShowDot(false))
     }
     document.addEventListener("visibilitychange", listener)
+    window.addEventListener("blur", listener)
     return () => {
       document.removeEventListener("visibilitychange", listener)
+      window.removeEventListener("blur", listener)
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <ShortCutContext.Provider value={{ showDeleteDialog, copyComponent }}>
