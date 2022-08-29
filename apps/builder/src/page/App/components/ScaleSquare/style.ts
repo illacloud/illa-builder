@@ -266,6 +266,7 @@ export const applyMoveBarWrapperStyle = (
   maxWidth: number,
   isError: boolean,
   selected: boolean,
+  isEditor: boolean,
 ) => {
   return css`
     height: 20px;
@@ -284,7 +285,7 @@ export const applyMoveBarWrapperStyle = (
     max-width: ${maxWidth}px;
     min-width: 12px;
     overflow: hidden;
-    visibility: ${selected ? "visible" : "hidden"};
+    visibility: ${isEditor && selected ? "visible" : "hidden"};
   `
 }
 
@@ -304,18 +305,21 @@ export const applyRNDWrapperStyle = (
   hasError: boolean,
   isShowCanvasDot: boolean,
   isDragging: boolean,
+  isEditor: boolean,
 ) => css`
   border: ${isShowCanvasDot && !isSelected && !isDragging
     ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
     : "none"};
   :hover {
     .wrapperPending {
-      border-color: ${hasError && !isSelected
-        ? globalColor(`--${illaPrefix}-red-03`)
-        : globalColor(`--${illaPrefix}-techPurple-01`)};
+      border-color: ${isEditor
+        ? hasError && !isSelected
+          ? globalColor(`--${illaPrefix}-red-03`)
+          : globalColor(`--${illaPrefix}-techPurple-01`)
+        : "transparent"};
     }
     #moveBar {
-      visibility: visible;
+      visibility: ${isEditor ? "visible" : "hidden"};
     }
   }
 `
@@ -324,12 +328,13 @@ export const applyWrapperPendingStyle = (
   isSelected: boolean,
   hasError: boolean,
   isDragging: boolean,
+  isEditor: boolean,
 ) => css`
   width: 100%;
   height: 100%;
   padding: 2px;
-  border: 1px solid ${isSelected ? "blue" : "transparent"};
-  background-color: ${hasError && !isSelected
+  border: 1px solid ${isEditor && isSelected ? "blue" : "transparent"};
+  background-color: ${isEditor && hasError && !isSelected
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};
   opacity: ${isDragging ? 0 : 100};

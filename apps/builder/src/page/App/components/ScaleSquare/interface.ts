@@ -28,4 +28,5 @@ export interface MoveBarProps {
   isError: boolean
   maxWidth: number
   selected: boolean
+  isEditor: boolean
 }

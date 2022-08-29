@@ -56,12 +56,7 @@ export const itemContainerStyle = css`
 `
 
 export const dragPreviewStyle = css`
-  position: absolute;
-  background: transparent;
-  top: 0;
-  left: 0;
-  height: 1px;
-  width: 1px;
+  display: none;
 `
 
 export const iconStyle = css`
