@@ -3,7 +3,6 @@ import {
   MutableRefObject,
   ReactNode,
   RefObject,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -25,7 +24,6 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { over } from "lodash"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -154,7 +152,7 @@ export const RenderComponentCanvas: FC<{
             rectCenterPosition,
             nodeWidthAndHeight,
           )
-          const { lunchX, lunchY, isOverstep } = calcLunchPosition(
+          const { lunchX, lunchY } = calcLunchPosition(
             rectPosition,
             unitWidth,
             UNIT_HEIGHT,
