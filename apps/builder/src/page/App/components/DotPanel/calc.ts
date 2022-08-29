@@ -64,3 +64,34 @@ export function calcRectShapeByCenterPoint(
     rectBottom,
   }
 }
+
+export function calcLunchPosition(
+  rectPosition: RectShape,
+  unitWidth: number,
+  unitHeight: number,
+  canvasWidth: number,
+) {
+  const { rectLeft, rectTop, rectRight } = rectPosition
+  let lunchX = Math.round(rectLeft / unitWidth) * unitWidth
+  let lunchY = Math.round(rectTop / unitHeight) * unitHeight
+  let isOverstep = true
+  if (rectTop < 0) {
+    lunchY = 0
+    isOverstep = false
+  }
+  if (rectLeft < 0) {
+    lunchX = 0
+    isOverstep = false
+  }
+  if (rectRight > canvasWidth) {
+    const overRight =
+      Math.round(rectRight / unitWidth) * unitWidth - canvasWidth
+    lunchX = lunchX - overRight
+    isOverstep = false
+  }
+  return {
+    isOverstep,
+    lunchX,
+    lunchY,
+  }
+}

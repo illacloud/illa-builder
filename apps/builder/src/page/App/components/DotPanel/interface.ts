@@ -31,6 +31,8 @@ export interface PreviewPlaceholderProps {
   canDrop: boolean
   x: number
   y: number
+  lunchX: number
+  lunchY: number
   w: number
   h: number
 }

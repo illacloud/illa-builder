@@ -21,6 +21,7 @@ import { getExecutionError } from "@/redux/currentApp/executionTree/executionSel
 import {
   getIllaMode,
   getSelectedComponents,
+  isShowDot,
 } from "@/redux/config/configSelector"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { Rnd } from "react-rnd"
@@ -30,7 +31,6 @@ import { useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { DragCollectedInfo } from "@/page/App/components/DotPanel/interface"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/style"
 
 const { Item } = DropList
@@ -39,6 +39,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const { componentNode, unitW, unitH, w, h, x, y } = props
 
   const { t } = useTranslation()
+  const isShowCanvasDot = useSelector(isShowDot)
 
   const illaMode = useSelector(getIllaMode)
   const displayName = componentNode.displayName
@@ -123,7 +124,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         }
       },
     }),
-    [illaMode],
+    [illaMode, componentNode],
   )
 
   return (
@@ -140,7 +141,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         y: y,
       }}
       enableResizing={isSelected}
-      css={applyRNDWrapperStyle(selected, hasError)}
+      css={applyRNDWrapperStyle(
+        selected,
+        hasError,
+        isShowCanvasDot,
+        isDragging,
+      )}
       disableDragging
       onResize={() => {
         dispatch(configActions.updateShowDot(true))

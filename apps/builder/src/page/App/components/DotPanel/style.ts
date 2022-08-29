@@ -6,43 +6,13 @@ export function applyScaleStyle(
   edgeWidth: number,
 ): SerializedStyles {
   return css`
-    position: relative;
     padding-left: ${edgeWidth}px;
     padding-right: ${edgeWidth}px;
     padding-top: ${edgeWidth}px;
-    box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: ${verticalResize ? "auto" : "hidden"};
     width: 100%;
     height: 100%;
-  `
-}
-
-export function applyChildrenContainerStyle(
-  z: number,
-  w: number | null,
-  h?: number | null,
-): SerializedStyles {
-  return css`
-    z-index: ${z};
-    position: absolute;
-    width: ${w}px;
-    height: ${h}px;
-  `
-}
-
-export function applyDotCanvasStyle(
-  showDot: boolean,
-  z: number,
-  w: number,
-  h: number,
-): SerializedStyles {
-  return css`
-    z-index: ${z};
-    visibility: ${showDot ? "visible" : "hidden"};
-    position: absolute;
-    width: ${w}px;
-    height: ${h}px;
   `
 }
 
@@ -94,25 +64,31 @@ export const applyDotLintRectangleStyle = (
   h: number,
   x: number = 0,
   y: number = 0,
-  canDrop: boolean = false,
 ) => {
   return css`
     width: ${w}px;
     height: ${h}px;
-    border: 1px dashed
-      ${canDrop ? globalColor(`--${illaPrefix}-techPurple-01`) : "red"};
+    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
     position: absolute;
     transform: translate(${x}px, ${y}px);
   `
 }
 
-export const applyRectangleStyle = (canDrop: boolean = false) => {
+export const applyRectangleStyle = (
+  w: number,
+  h: number,
+  x: number,
+  y: number,
+  canDrop: boolean = false,
+) => {
   return css`
-    width: 100%;
-    height: 100%;
+    width: ${w}px;
+    height: ${h}px;
     background-color: ${canDrop
       ? globalColor(`--${illaPrefix}-techPurple-01`)
       : "red"};
     opacity: 0.16;
+    position: absolute;
+    transform: translate(${x}px, ${y}px);
   `
 }

@@ -302,7 +302,12 @@ export const moveBarDisplayNameStyle = css`
 export const applyRNDWrapperStyle = (
   isSelected: boolean,
   hasError: boolean,
+  isShowCanvasDot: boolean,
+  isDragging: boolean,
 ) => css`
+  border: ${isShowCanvasDot && !isSelected && !isDragging
+    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+    : "none"};
   :hover {
     .wrapperPending {
       border-color: ${hasError && !isSelected

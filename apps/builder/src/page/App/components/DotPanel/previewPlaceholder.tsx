@@ -6,10 +6,11 @@ import {
 } from "@/page/App/components/DotPanel/style"
 
 export const PreviewPlaceholder: FC<PreviewPlaceholderProps> = (props) => {
-  const { w, h, x, y, canDrop } = props
+  const { w, h, x, y, lunchX, lunchY, canDrop } = props
   return (
-    <div css={applyDotLintRectangleStyle(w, h, x, y, canDrop)}>
-      <div css={applyRectangleStyle(canDrop)} />
-    </div>
+    <>
+      <div css={applyDotLintRectangleStyle(w, h, lunchX, lunchY)} />
+      <div css={applyRectangleStyle(w, h, x, y, canDrop)} />
+    </>
   )
 }
