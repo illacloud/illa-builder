@@ -39,8 +39,8 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
 
     return (
       <Dropdown
-        position="bottom-end"
         trigger="contextmenu"
+        position="right-start"
         dropList={
           <DropList width={"184px"}>
             <Item

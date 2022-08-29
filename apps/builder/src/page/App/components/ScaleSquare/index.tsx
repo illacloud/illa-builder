@@ -1,4 +1,4 @@
-import { useContext, memo, useMemo, useCallback } from "react"
+import { memo, useCallback, useContext, useMemo } from "react"
 import {
   ScaleSquareProps,
   ScaleSquareType,
@@ -158,7 +158,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     >
       <Dropdown
         disabled={illaMode !== "edit"}
-        position="bottom-end"
+        position="right-start"
         trigger="contextmenu"
         dropList={
           <DropList width="184px">
@@ -189,7 +189,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             illaMode === "edit",
           )}
           onClick={handleOnDragStart}
-          onMouseUp={handleOnDragStart}
           ref={dragRef}
         >
           <MoveBar
