@@ -286,6 +286,7 @@ export const applyMoveBarWrapperStyle = (
     min-width: 12px;
     overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
+    z-index: 200;
   `
 }
 
@@ -332,8 +333,11 @@ export const applyWrapperPendingStyle = (
 ) => css`
   width: 100%;
   height: 100%;
-  padding: 2px;
-  border: 1px solid ${isEditor && isSelected ? "blue" : "transparent"};
+  padding: 3px;
+  border: 1px solid
+    ${isEditor && isSelected
+      ? globalColor(`--${illaPrefix}-techPurple-01`)
+      : "transparent"};
   background-color: ${isEditor && hasError && !isSelected
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};

@@ -2,108 +2,79 @@ import { TextWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
+const fakeOriginData = [
+  {
+    name: "Gerard Gislason",
+    company: "Ameliorated explicit open system",
+    phone: "(701) 882-0009 x344",
+    address: "2741 Terry Glen Apt. 601",
+  },
+  {
+    name: "Anne Lockman",
+    company: "Customizable explicit solution",
+    phone: "689.992.6307",
+    address: "191 Schimmel Cliff Apt. 474",
+  },
+  {
+    name: "Sue Hamill",
+    company: "Proactive mission-critical open architecture",
+    phone: "(686) 565-4880",
+    address: "27002 Wilfredo Hill Suite 824",
+  },
+  {
+    name: "Rosalie Keebler",
+    company: "De-engineered bi-directional hardware",
+    phone: "1-379-349-3046 x439",
+    address: "29436 Keebler RestSuite 320",
+  },
+  {
+    name: "Mrs. Florence Rohan I",
+    company: "Customer-focused client-server budgetary management",
+    phone: "1-718-234-7813 x1812",
+    address: "2188 Brakus Islands Apt. 031",
+  },
+  {
+    name: "Stacey Little",
+    company: "Distributed interactive monitoring",
+    phone: "(700) 403-5346",
+    address: "47653 Reinger Row Apt. 480",
+  },
+  {
+    name: "Kristie Zemlak",
+    company: "Synchronised context-sensitive implementation",
+    phone: "698-202-3176 x8337",
+    address: "5700 Isac Spurs Suite 919",
+  },
+  {
+    name: "Rhonda Torphy PhD",
+    company: "User-friendly responsive hardware",
+    phone: "470-744-4824 x376",
+    address: "9826 Vincenzo Land Apt. 616",
+  },
+  {
+    name: "Elizabeth Franecki",
+    company: "Compatible upward-trending system engine",
+    phone: "506-644-1590",
+    address: "9316 Manuel Lodge Apt. 678",
+  },
+  {
+    name: "Tasha Rohan",
+    company: "Cloned scalable website",
+    phone: "983.587.1143",
+    address: "0434 Jermey Street Suite 577",
+  },
+]
+
 export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   displayName: "table",
   widgetName: i18n.t("widget.table.name"),
-  h: 5,
-  w: 12,
+  h: 40,
+  w: 32,
   type: "TABLE_WIDGET",
   icon: <TextWidgetIcon size="100%" />,
   keywords: ["Table", "表格"],
   sessionType: "PRESENTATION",
   defaults: {
-    originData:
-      "{{[\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-01T00:13:12.000Z",\n' +
-      '        "email": "ben@tryretool.com",\n' +
-      '        "id": "1",\n' +
-      '        "name": "Ben Bitdiddle",\n' +
-      '        "trial_expiry_date": "2022-03-04",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.421Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "true",\n' +
-      '        "created_at": "2018-12-02T01:13:12.000Z",\n' +
-      '        "email": "evaluator@tryretool.com",\n' +
-      '        "id": "2",\n' +
-      '        "name": "Eva Lu Ator",\n' +
-      '        "trial_expiry_date": "2019-03-15",\n' +
-      '        "updated_at": "2022-02-28T08:30:02.883Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-03T02:13:12.000Z",\n' +
-      '        "email": "droptable@xkcd.com",\n' +
-      '        "id": "3",\n' +
-      '        "name": "Robert\') DROP TABLE Users;",\n' +
-      '        "trial_expiry_date": "2019-03-15",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.436Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-04T03:13:12.000Z",\n' +
-      '        "email": "louis@competitor.com",\n' +
-      '        "id": "4",\n' +
-      '        "name": "Louis Reasoner",\n' +
-      '        "trial_expiry_date": "2019-03-10",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.452Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-05T04:13:12.000Z",\n' +
-      '        "email": "tenx@tryretool.com",\n' +
-      '        "id": "5",\n' +
-      '        "name": "Alyssa P. Hacker",\n' +
-      '        "trial_expiry_date": "2019-03-05",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.472Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-06T05:13:12.000Z",\n' +
-      '        "email": "cy@tryretool.com",\n' +
-      '        "id": "6",\n' +
-      '        "name": "Cy D. Fect",\n' +
-      '        "trial_expiry_date": "2019-02-05",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.492Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-07T06:13:12.000Z",\n' +
-      '        "email": "lem@tryretool.com",\n' +
-      '        "id": "7",\n' +
-      '        "name": "Lem E. Tweakit",\n' +
-      '        "trial_expiry_date": "2019-02-05",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.512Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-08T07:13:12.000Z",\n' +
-      '        "email": "roger@tryretool.com",\n' +
-      '        "id": "8",\n' +
-      '        "name": "Roger Moore",\n' +
-      '        "trial_expiry_date": "2019-03-20",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.532Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-09T08:13:12.000Z",\n' +
-      '        "email": "mary@tryretool.com",\n' +
-      '        "id": "9",\n' +
-      '        "name": "Mary Meets",\n' +
-      '        "trial_expiry_date": "2019-03-20",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.552Z"\n' +
-      "    },\n" +
-      "    {\n" +
-      '        "active": "false",\n' +
-      '        "created_at": "2018-12-10T09:13:12.000Z",\n' +
-      '        "email": "rosemary@tryretool.com",\n' +
-      '        "id": "10",\n' +
-      '        "name": "Rosemary Rogers",\n' +
-      '        "trial_expiry_date": "2019-03-20",\n' +
-      '        "updated_at": "2021-11-10T03:12:07.572Z"\n' +
-      "    }\n" +
-      "]}}",
+    originData: `{{${JSON.stringify(fakeOriginData)}}}`,
   },
 }
