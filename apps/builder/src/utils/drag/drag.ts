@@ -3,9 +3,9 @@ import { configActions } from "@/redux/config/configSlice"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import store from "@/store"
-import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export function startDrag(dragNode: ComponentNode, exist: boolean) {
   store.dispatch(configActions.updateShowDot(true))
@@ -40,8 +40,6 @@ export function endDrag(dragNode: ComponentNode) {
       dragNode.displayName,
     ) == null
   ) {
-    store.dispatch(
-      displayNameActions.removeDisplayNameReducer(dragNode.displayName),
-    )
+    DisplayNameGenerator.removeDisplayName(dragNode.displayName)
   }
 }

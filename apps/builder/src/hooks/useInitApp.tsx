@@ -7,12 +7,11 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
-import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
-import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { useParams } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { IllaMode } from "@/redux/config/configState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const useInitBuilderApp = (model: IllaMode) => {
   // editor default version id == 0
@@ -47,10 +46,9 @@ export const useInitBuilderApp = (model: IllaMode) => {
             response.data.dottedLineSquareState,
           ),
         )
-        dispatch(
-          displayNameActions.updateDisplayNameReducer(
-            response.data.displayNameState,
-          ),
+        DisplayNameGenerator.updateDisplayNameList(
+          response.data.components,
+          response.data.actions,
         )
         dispatch(executionActions.startExecutionReducer())
 

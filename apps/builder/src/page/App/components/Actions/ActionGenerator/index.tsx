@@ -38,7 +38,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   }, [visible])
 
   function onAddActionItem(actionType: ActionType, resourceId?: string) {
-    const displayName = DisplayNameGenerator.getDisplayName(actionType)
+    const displayName = DisplayNameGenerator.generateDisplayName(actionType)
     const initialContent = getInitialContent(actionType)
     const data: Partial<ActionItem<{}>> = {
       actionType,

@@ -70,7 +70,7 @@ export const Shortcut: FC = ({ children }) => {
   }
 
   const copyComponent = (componentNode: ComponentNode) => {
-    const newDisplayName = DisplayNameGenerator.getDisplayName(
+    const newDisplayName = DisplayNameGenerator.generateDisplayName(
       componentNode.type,
       componentNode.showName,
     )
