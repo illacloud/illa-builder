@@ -6,6 +6,7 @@ import {
 import {
   applyBarHandlerStyle,
   applyBarPointerStyle,
+  applyDashedLineStyle,
   applyRNDWrapperStyle,
   applySquarePointerStyle,
   applyWrapperPendingStyle,
@@ -200,7 +201,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           />
 
           <TransformWidgetWrapper componentNode={componentNode} />
-
+          <div
+            css={applyDashedLineStyle(isSelected, isShowCanvasDot, isDragging)}
+          />
           <div css={applyBarHandlerStyle(selected, scaleSquareState, "t")}>
             <div
               className="handler"

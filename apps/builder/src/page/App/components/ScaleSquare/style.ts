@@ -308,9 +308,6 @@ export const applyRNDWrapperStyle = (
   isDragging: boolean,
   isEditor: boolean,
 ) => css`
-  border: ${isShowCanvasDot && !isSelected && !isDragging
-    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
-    : "none"};
   :hover {
     .wrapperPending {
       border-color: ${isEditor
@@ -342,4 +339,20 @@ export const applyWrapperPendingStyle = (
     ? globalColor(`--${illaPrefix}-red-07`)
     : "transparent"};
   opacity: ${isDragging ? 0 : 100};
+`
+
+export const applyDashedLineStyle = (
+  isSelected: boolean,
+  isShowCanvasDot: boolean,
+  isDragging: boolean,
+) => css`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border: ${isShowCanvasDot && !isSelected && !isDragging
+    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+    : "none"};
 `
