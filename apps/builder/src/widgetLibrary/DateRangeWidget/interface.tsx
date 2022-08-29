@@ -12,7 +12,6 @@ export interface WrappedDateRangeProps
   startPlaceholder?: string
   endPlaceholder?: string
   dateFormat?: string
-  loading?: boolean
   showClear?: CommonRangeProps["allowClear"]
   beforeIcon?: ReactNode // TODO: not support yet
   afterIcon?: ReactNode // TODO: not support yet

@@ -17,7 +17,7 @@ export const getEventScripts = (events: EventsInProps[], eventType: string) => {
 }
 
 export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
-  const { componentNode, ...otherProps } = props
+  const { componentNode } = props
 
   const { displayName, type, w, h, unitW, unitH } = componentNode
 

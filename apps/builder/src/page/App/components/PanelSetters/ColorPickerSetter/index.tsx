@@ -26,7 +26,7 @@ export const ColorPickerSetter: FC<any> = (props) => {
       trigger="click"
       withoutPadding
       clickOutsideToClose
-      position="br"
+      position="bottom-end"
       colorScheme="white"
       content={
         <ColorPicker

@@ -27,6 +27,7 @@ import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { fromNow } from "@/utils/dayjs"
 import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
+import { CellContext } from "@tanstack/table-core"
 
 function getDbName(resourceType: string): string {
   let name = ""
@@ -78,18 +79,16 @@ export const DashboardResources: FC = () => {
     },
   )
 
-  const columns: ColumnDef<ResourceTableData>[] = [
+  const columns: ColumnDef<ResourceTableData, string>[] = [
     {
       header: t("dashboard.resource.resource_name"),
       accessorKey: "name",
-      cell: (props) => {
+      cell: (props: CellContext<ResourceTableData, string>) => {
         const type = resourcesList[props.row.index].resourceType
         return (
           <Space size="8px">
             {getIconFromResourceType(type, "24px")}
-            <span css={applyTableTextStyle(true)}>
-              {props.getValue() as string}
-            </span>
+            <span css={applyTableTextStyle(true)}>{props.getValue()}</span>
           </Space>
         )
       },
@@ -97,38 +96,32 @@ export const DashboardResources: FC = () => {
     {
       header: t("dashboard.resource.resource_type"),
       accessorKey: "type",
-      cell: (props) => (
-        <span css={applyTableTextStyle(false)}>
-          {props.getValue() as string}
-        </span>
+      cell: (props: CellContext<ResourceTableData, string>) => (
+        <span css={applyTableTextStyle(false)}>{props.getValue()}</span>
       ),
     },
     {
       header: t("dashboard.resource.dbname"),
       accessorKey: "databaseName",
-      cell: (props) => (
-        <span
-          css={applyTableTextStyle((props.getValue() as string) !== "Null")}
-        >
-          {props.getValue() as string}
+      cell: (props: CellContext<ResourceTableData, string>) => (
+        <span css={applyTableTextStyle(props.getValue() !== "Null")}>
+          {props.getValue()}
         </span>
       ),
     },
     {
       header: t("dashboard.resource.created"),
       accessorKey: "created",
-      cell: (props) => (
-        <span css={applyTableTextStyle(true)}>
-          {fromNow(props.getValue() as string)}
-        </span>
+      cell: (props: CellContext<ResourceTableData, string>) => (
+        <span css={applyTableTextStyle(true)}>{fromNow(props.getValue())}</span>
       ),
     },
     {
       header: "",
       enableSorting: false,
       accessorKey: "id",
-      cell: (props) => (
-        <DashboardResourceItemMenu resourceId={props.getValue() as string} />
+      cell: (props: CellContext<ResourceTableData, string>) => (
+        <DashboardResourceItemMenu resourceId={props.getValue()} />
       ),
     },
   ]

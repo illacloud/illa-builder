@@ -65,7 +65,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       </div>
       <div css={actionTitleBarSpaceStyle} />
       <Dropdown
-        position="br"
+        position="bottom-end"
         trigger="click"
         dropList={
           <DropList width={"184px"}>

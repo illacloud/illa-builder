@@ -18,7 +18,7 @@ export const More: FC<MoreProps> = (props) => {
         <ActionMenu index={index} handleCloseMode={handleCloseActionMenu} />
       }
       trigger="click"
-      position="br"
+      position="bottom-end"
       onVisibleChange={(visible) => {
         setActionMenuVisible(visible)
       }}

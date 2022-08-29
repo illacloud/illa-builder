@@ -269,11 +269,9 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     <>
       <Global styles={codemirrorStyle} />
       <Trigger
-        _css={css`
-          padding: 0;
-        `}
-        trigger={"focus"}
-        position="bl"
+        withoutOffset
+        trigger="focus"
+        position="bottom-start"
         autoAlignPopupWidth
         withoutPadding
         withoutShadow
