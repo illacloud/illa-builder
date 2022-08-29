@@ -21,7 +21,7 @@ export const addDashboardAppReducer: CaseReducer<
 > = (state, action) => {
   let payload = action.payload
   if (payload.index == undefined) {
-    state.list.push(payload.app)
+    state.list = [payload.app, ...state.list]
   } else {
     state.list.splice(payload.index, 0, payload.app)
   }
