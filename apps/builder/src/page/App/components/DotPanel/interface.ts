@@ -12,6 +12,11 @@ export interface DragPosition {
   renderY: number
 }
 
+export interface DragInfo {
+  item: ComponentNode
+  childrenNodes: ComponentNode[]
+}
+
 // return when drop trigger
 export interface DropResultInfo {
   isDropOnCanvas: boolean
