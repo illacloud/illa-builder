@@ -1,4 +1,4 @@
-import { FC, forwardRef, useEffect, useRef } from "react"
+import { FC, forwardRef, useEffect, useRef, useState } from "react"
 import { Input } from "@illa-design/input"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -23,16 +23,27 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       showCharacterCount,
       colorScheme,
       handleUpdateDsl,
+      handleOnChange,
       allowClear,
       maxLength,
       minLength,
     } = props
 
+    const [_value, setValue] = useState(value)
+    useEffect(() => {
+      new Promise((resolve) => {
+        handleUpdateDsl({ value: _value })
+        resolve(true)
+      }).then(() => {
+        handleOnChange?.()
+      })
+    }, [_value])
+
     return (
       <Input
         w="100%"
         inputRef={ref}
-        value={value}
+        value={_value}
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
@@ -41,7 +52,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
         suffix={suffixIcon}
         addonAfter={{ render: suffixText, custom: false }}
         onChange={(value) => {
-          handleUpdateDsl({ value })
+          setValue(value)
         }}
         showCount={showCharacterCount}
         borderColor={colorScheme}
