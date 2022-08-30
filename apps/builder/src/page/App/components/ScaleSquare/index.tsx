@@ -104,7 +104,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const [{ isDragging }, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
-    { isDragging: boolean },
+    boolean,
     DragCollectedInfo
   >(
     () => ({
@@ -113,7 +113,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         return illaMode === "edit"
       },
       end: (draggedItem, monitor) => {
-        endDrag(draggedItem)
+        const isDropOnCanvas = monitor.getDropResult() ?? false
+        endDrag(draggedItem, isDropOnCanvas)
       },
       item: () => {
         startDrag(componentNode, false)

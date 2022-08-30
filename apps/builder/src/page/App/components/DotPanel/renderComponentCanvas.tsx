@@ -83,7 +83,7 @@ export const RenderComponentCanvas: FC<{
 
   const [{ isActive, nodeWidth, nodeHeight }, dropTarget] = useDrop<
     ComponentNode,
-    void,
+    boolean,
     DropCollectedInfo
   >(
     () => ({
@@ -180,7 +180,9 @@ export const RenderComponentCanvas: FC<{
               }),
             )
           }
+          return true
         }
+        return false
       },
       collect: (monitor) => {
         const item = monitor.getItem()

@@ -17,15 +17,12 @@ export function startDrag(dragNode: ComponentNode, exist: boolean) {
   )
 }
 
-export function endDrag(dragNode: ComponentNode) {
+export function endDrag(dragNode: ComponentNode, isDropOnCanvas: boolean) {
   store.dispatch(configActions.updateShowDot(false))
-  store.dispatch(
-    componentsActions.updateComponentDraggingState({
-      displayName: dragNode.displayName,
-      isDragging: false,
-    }),
-  )
-  store.dispatch(configActions.updateSelectedComponent([dragNode]))
+  if (isDropOnCanvas) {
+    store.dispatch(configActions.updateSelectedComponent([dragNode]))
+  }
+
   // remove dotted line square
   store.dispatch(
     dottedLineSquareActions.removeDottedLineSquareReducer(dragNode.displayName),
