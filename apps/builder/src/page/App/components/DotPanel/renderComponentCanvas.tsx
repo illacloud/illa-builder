@@ -15,7 +15,10 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { applyComponentCanvasStyle } from "@/page/App/components/DotPanel/style"
 import useMeasure from "react-use-measure"
 import { configActions } from "@/redux/config/configSlice"
-import { DropCollectedInfo } from "@/page/App/components/DotPanel/interface"
+import {
+  DropCollectedInfo,
+  DropResultInfo,
+} from "@/page/App/components/DotPanel/interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   calcLunchPosition,
@@ -83,7 +86,7 @@ export const RenderComponentCanvas: FC<{
 
   const [{ isActive, nodeWidth, nodeHeight }, dropTarget] = useDrop<
     ComponentNode,
-    boolean,
+    DropResultInfo,
     DropCollectedInfo
   >(
     () => ({
@@ -180,9 +183,13 @@ export const RenderComponentCanvas: FC<{
               }),
             )
           }
-          return true
+          return {
+            isDropOnCanvas: true,
+          }
         }
-        return false
+        return {
+          isDropOnCanvas: false,
+        }
       },
       collect: (monitor) => {
         const item = monitor.getItem()
