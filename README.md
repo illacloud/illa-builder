@@ -5,11 +5,13 @@
 
 <h1 align="center">ILLA Builder</h1>
 
+<p align="center">Accelerate your internal tools development.</p>
+
 <div align="center">
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-builder/graphs/contributors">contributors</a></p>
 </div>
 
-![cover](https://cdn.illafamily.com/illa_builder_cover.png)
+![cover](https://cdn.illafamily.com/github-builder-cover.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
 [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illa-family/discussions)
