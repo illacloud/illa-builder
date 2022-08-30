@@ -31,20 +31,15 @@ export const Deploy: FC = () => {
         </div>
       )}
       {!loadingState && <CanvasPanel />}
-      <Button
+      <div
         css={deployLogoStyle}
-        colorScheme="white"
-        variant="fill"
-        size="large"
-        bd={`solid 1px ${globalColor(`--${illaPrefix}-grayBlue-09`)}`}
-        h="40px"
-        rightIcon={<Logo css={logoStyle} />}
         onClick={() => {
           window.open("https://illacloud.com", "_blank")
         }}
       >
-        <span style={{ fontWeight: "500", fontSize: "12px" }}>Powered by</span>
-      </Button>
+        <span>Powered by</span>
+        <Logo css={logoStyle} />
+      </div>
     </div>
   )
 }
