@@ -30,14 +30,6 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
     } = props
 
     const [_value, setValue] = useState(value)
-    useEffect(() => {
-      new Promise((resolve) => {
-        handleUpdateDsl({ value: _value })
-        resolve(true)
-      }).then(() => {
-        handleOnChange?.()
-      })
-    }, [_value])
 
     return (
       <Input
@@ -53,6 +45,12 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
         addonAfter={{ render: suffixText, custom: false }}
         onChange={(value) => {
           setValue(value)
+          new Promise((resolve) => {
+            handleUpdateDsl({ value })
+            resolve(true)
+          }).then(() => {
+            handleOnChange?.()
+          })
         }}
         showCount={showCharacterCount}
         borderColor={colorScheme}
