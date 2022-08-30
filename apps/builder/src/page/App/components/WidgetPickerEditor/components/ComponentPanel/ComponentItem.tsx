@@ -22,7 +22,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
 
     const [, dragRef, dragPreviewRef] = useDrag<
       ComponentNode,
-      void,
+      boolean,
       DragCollectedInfo
     >(
       () => ({
@@ -31,7 +31,8 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           return illaMode === "edit"
         },
         end: (draggedItem, monitor) => {
-          endDrag(draggedItem)
+          const isDropOnCanvas = monitor.getDropResult() ?? false
+          endDrag(draggedItem, isDropOnCanvas)
         },
         item: () => {
           const item = generateComponentNode({
