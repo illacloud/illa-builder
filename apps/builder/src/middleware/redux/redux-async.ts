@@ -259,52 +259,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             break
         }
         break
-      case "displayName":
-        switch (reduxAction) {
-          case "addDisplayNameReducer":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_CREATE_OR_UPDATE_STATE,
-                Target.TARGET_DISPLAY_NAME,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
-            break
-          case "removeDisplayNameReducer":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_DELETE_STATE,
-                Target.TARGET_DISPLAY_NAME,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
-            break
-          case "removeDisplayNameMultiReducer":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_DELETE_STATE,
-                Target.TARGET_DISPLAY_NAME,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                payload,
-              ),
-            )
-            break
-        }
-        break
       case "action":
         switch (reduxAction) {
           case "addActionItemReducer":

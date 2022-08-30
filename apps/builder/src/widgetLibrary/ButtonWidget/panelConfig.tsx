@@ -48,7 +48,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
         shown: (value) => {
-          return value === false
+          return !value
         },
       },
       {
@@ -60,7 +60,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
-        shown: (value) => value === false,
+        shown: (value) => !value,
       },
     ],
   },
@@ -125,7 +125,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.theme_color"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
-            defaultValue: "#134ae0",
+            defaultValue: "blue",
           },
         ],
       },

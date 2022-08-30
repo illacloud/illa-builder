@@ -15,9 +15,6 @@ export interface WrappedButtonProps
     | "textColor"
   > {
   text?: string
-  submit?: boolean
-  submitTargetId?: string
-  borderRadius?: string
   handleOnClick: () => void
   colorScheme?: string
 }

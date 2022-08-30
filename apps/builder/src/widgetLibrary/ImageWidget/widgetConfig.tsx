@@ -12,7 +12,8 @@ export const IMAGE_WIDGET_CONFIG: WidgetConfig = {
   h: 16,
   w: 6,
   defaults: {
-    imageSrc: "",
+    imageSrc:
+      "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80",
     radius: "0px",
     hidden: false,
     objectFit: "cover",

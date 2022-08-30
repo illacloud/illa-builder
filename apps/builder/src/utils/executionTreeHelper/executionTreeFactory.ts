@@ -42,7 +42,6 @@ export class ExecutionTreeFactory {
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
-
     const { evaluatedTree, errorTree } = this.executeTree(
       currentRawTree,
       this.evalOrder,

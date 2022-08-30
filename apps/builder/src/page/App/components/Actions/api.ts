@@ -21,7 +21,9 @@ function getBaseActionUrl() {
 export function onCopyActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
   const newAction = omit(action, ["displayName", "actionId"])
-  const displayName = DisplayNameGenerator.getDisplayName(action.actionType)
+  const displayName = DisplayNameGenerator.generateDisplayName(
+    action.actionType,
+  )
   const data: Partial<ActionItem<{}>> = {
     ...newAction,
     displayName,

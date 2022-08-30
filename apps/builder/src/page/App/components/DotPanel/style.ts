@@ -1,15 +1,14 @@
 import { css, SerializedStyles } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export function applyScaleStyle(
   verticalResize: boolean,
   edgeWidth: number,
 ): SerializedStyles {
   return css`
-    position: relative;
     padding-left: ${edgeWidth}px;
     padding-right: ${edgeWidth}px;
     padding-top: ${edgeWidth}px;
-    box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: ${verticalResize ? "auto" : "hidden"};
     width: 100%;
@@ -17,42 +16,79 @@ export function applyScaleStyle(
   `
 }
 
-export function applyChildrenContainerStyle(
-  z: number,
-  w: number | null,
-  h?: number | null,
-): SerializedStyles {
+export const applyComponentCanvasStyle = (
+  width: number,
+  height: number,
+  unitWidth: number,
+  unitHeight: number = 8,
+  showDot: boolean = false,
+) => {
   return css`
-    z-index: ${z};
-    position: absolute;
-    width: ${w}px;
-    height: ${h}px;
+    width: 100%;
+    height: 100vh;
+    ${showDot
+      ? applyDotBackgroundStyle(width, height, unitWidth, unitHeight)
+      : normalCanvasBackgroundStyle}
+    position: relative;
   `
 }
 
-export function applyDotCanvasStyle(
-  showDot: boolean,
-  z: number,
+const normalCanvasBackgroundStyle = css`
+  background: unset;
+`
+
+export const applyDotBackgroundStyle = (
+  width: number,
+  height: number,
+  unitWidth: number,
+  unitHeight: number = 8,
+) => {
+  return css`
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px,
+        transparent 0px
+      ),
+      radial-gradient(
+        circle at ${width - 1}px 1px,
+        ${globalColor(`--${illaPrefix}-grayBlue-08`)} 1px,
+        transparent 0px
+      );
+    background-repeat: repeat;
+    background-size: ${unitWidth}px ${unitHeight}px, 100% ${unitHeight}px;
+  `
+}
+
+export const applyDotLintRectangleStyle = (
   w: number,
   h: number,
-): SerializedStyles {
+  x: number = 0,
+  y: number = 0,
+) => {
   return css`
-    z-index: ${z};
-    visibility: ${showDot ? "visible" : "hidden"};
-    position: absolute;
     width: ${w}px;
     height: ${h}px;
+    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    position: absolute;
+    transform: translate(${x}px, ${y}px);
   `
 }
 
-export function applyDragObjectStyle(
-  t: number,
-  l: number,
-  z: number,
-): SerializedStyles {
+export const applyRectangleStyle = (
+  w: number,
+  h: number,
+  x: number,
+  y: number,
+  canDrop: boolean = false,
+) => {
   return css`
+    width: ${w}px;
+    height: ${h}px;
+    background-color: ${canDrop
+      ? globalColor(`--${illaPrefix}-techPurple-01`)
+      : "red"};
+    opacity: 0.16;
     position: absolute;
-    transform: translate(${l}px, ${t}px);
-    z-index: ${z};
+    transform: translate(${x}px, ${y}px);
   `
 }

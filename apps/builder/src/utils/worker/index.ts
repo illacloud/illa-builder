@@ -43,7 +43,7 @@ context.addEventListener(
         let dependencyMap: Record<string, any> = {}
         try {
           if (!executionTree) {
-            executionTree = new ExecutionTreeFactory()
+            const executionTree = new ExecutionTreeFactory()
             const executionResult = executionTree.initTree(
               globalData as RawTreeShape,
             )

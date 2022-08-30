@@ -22,8 +22,9 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
       data={originData}
       columns={columnsDef}
       bordered
+      striped
+      borderedCell
       pinedHeader
-      disableFilters
       w="100%"
       h="100%"
     />

@@ -16,12 +16,10 @@ import {
 import { useSelector } from "react-redux"
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { useTranslation } from "react-i18next"
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
     const { widgetName, icon, id, ...partialDragInfo } = props
-    const { t } = useTranslation()
 
     const illaMode = useSelector(getIllaMode)
 
@@ -36,7 +34,9 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           return illaMode === "edit"
         },
         end: (draggedItem, monitor) => {
-          endDrag(draggedItem)
+          const dropResultInfo = monitor.getDropResult()
+
+          endDrag(draggedItem, dropResultInfo?.isDropOnCanvas ?? false)
         },
         item: () => {
           const item = generateComponentNode({
@@ -54,7 +54,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
       <div css={itemContainerStyle} ref={dragRef}>
         <div css={dragPreviewStyle} ref={dragPreviewRef} />
         <span css={iconStyle}>{icon}</span>
-        <span css={nameStyle}>{t(widgetName)}</span>
+        <span css={nameStyle}>{widgetName}</span>
       </div>
     )
   },

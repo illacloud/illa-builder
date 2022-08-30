@@ -14,9 +14,7 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     text: i18n.t("widget.button.default_text"),
     variant: "fill",
-    submit: false,
-    width: "200px",
-    colorScheme: "#134ae0",
+    colorScheme: "blue",
     hidden: false,
   },
 }

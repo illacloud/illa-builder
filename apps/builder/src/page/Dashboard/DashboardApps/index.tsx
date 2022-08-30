@@ -54,11 +54,12 @@ export const DashboardApps: FC = () => {
         <Divider direction="horizontal" />
         {appsList.length !== 0 && (
           <List
-            size="medium"
+            h={"100%"}
+            ov={"auto"}
             data={appsList}
             bordered={false}
             hoverable={true}
-            render={item => {
+            render={(item) => {
               return (
                 <ListItem
                   css={hoverStyle}
@@ -77,7 +78,7 @@ export const DashboardApps: FC = () => {
                 </ListItem>
               )
             }}
-            renderKey={item => {
+            renderKey={(item) => {
               return item.appId
             }}
           />
@@ -86,7 +87,7 @@ export const DashboardApps: FC = () => {
       </div>
       <CreateNewModal
         visible={createNewModalVisible}
-        onVisibleChange={visible => {
+        onVisibleChange={(visible) => {
           setCreateNewModalVisible(visible)
         }}
       />

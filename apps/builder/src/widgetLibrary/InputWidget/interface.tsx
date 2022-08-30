@@ -18,6 +18,7 @@ export interface WrappedInputProps
   suffixText?: string
   colorScheme?: InputProps["borderColor"]
   allowClear?: InputProps["allowClear"]
+  handleOnChange?: () => void
 }
 
 export interface InputWidgetProps

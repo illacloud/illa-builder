@@ -23,10 +23,10 @@ export const WrappedButton: FC<WrappedButtonProps> = (props) => {
       leftIcon={leftIcon}
       rightIcon={rightIcon}
       loading={loading}
+      colorScheme={colorScheme}
       fullWidth
       fullHeight
       onClick={handleOnClick}
-      textColor={variant === "outline" ? colorScheme : "#FFF"}
     >
       {text}
     </Button>

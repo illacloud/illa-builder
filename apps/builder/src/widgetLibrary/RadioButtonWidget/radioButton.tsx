@@ -13,6 +13,7 @@ export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
   return (
     <RadioGroup
       w="100%"
+      minW="0"
       type="button"
       value={value}
       disabled={disabled}
@@ -73,8 +74,10 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: undefined })
       },
-      validate: () => {},
-      clearValidation: () => {},
+      validate: () => {
+      },
+      clearValidation: () => {
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)

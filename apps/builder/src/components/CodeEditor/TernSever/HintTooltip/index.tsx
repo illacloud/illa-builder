@@ -6,15 +6,15 @@ import { Trigger } from "@illa-design/trigger"
 import { isArray, isObject, isString } from "@illa-design/system"
 import { HintTooltipProps, TransQuery } from "./interface"
 import {
-  mainTitleStyle,
   contentAreaStyle,
-  titleTextStyle,
   docIconStyle,
-  infoTextHeightStyle,
   docTextStyle,
-  evaluationStyle,
   evaluationContentStyle,
+  evaluationStyle,
   evaluationTriggerStyle,
+  infoTextHeightStyle,
+  mainTitleStyle,
+  titleTextStyle,
 } from "./styles"
 import { TypeQueryResult } from "tern/lib/tern"
 import { transTypeFromTern } from "@/components/CodeEditor/TernSever"
@@ -59,10 +59,7 @@ const Evaluate: FC<{ type: string; data?: any }> = (props) => {
       openDelay={10}
       closeDelay={10}
       showArrow={false}
-      trigger={"hover"}
-      zIndex={11}
-      closeOnNoElementsInside
-      hideOnInnerInVisible={false}
+      trigger="hover"
     >
       <Tag size="small">{type === "Array" ? "[ ... ]" : "{ ... }"}</Tag>
     </Trigger>

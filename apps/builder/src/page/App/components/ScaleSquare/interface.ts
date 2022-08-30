@@ -8,6 +8,10 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   componentNode: ComponentNode
   h: number
   w: number
+  x: number
+  y: number
+  unitW: number
+  unitH: number
 }
 
 export interface DragResize {
@@ -17,4 +21,12 @@ export interface DragResize {
 
 export interface DragResizeCollected {
   resizing: boolean
+}
+
+export interface MoveBarProps {
+  displayName: string
+  isError: boolean
+  maxWidth: number
+  selected: boolean
+  isEditor: boolean
 }

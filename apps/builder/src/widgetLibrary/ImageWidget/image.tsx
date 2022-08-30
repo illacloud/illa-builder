@@ -19,6 +19,7 @@ export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
         height="100%"
         width="100%"
         css={ImageWrapperStyle}
+        draggable={false}
       />
     )
   },

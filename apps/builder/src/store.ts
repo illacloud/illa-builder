@@ -2,8 +2,8 @@ import {
   combineReducers,
   configureStore,
   createListenerMiddleware,
-  TypedStartListening,
   ListenerEffectAPI,
+  TypedStartListening,
 } from "@reduxjs/toolkit"
 import logger from "redux-logger"
 import resourceReducer from "@/redux/resource/resourceSlice"
@@ -17,7 +17,6 @@ import configReducer from "@/redux/config/configSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
-import displayNameReducer from "@/redux/currentApp/displayName/displayNameSlice"
 import { reduxAsync } from "@/middleware/redux/redux-async"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 
@@ -33,7 +32,6 @@ const appReducer = combineReducers({
   editor: editorReducer,
   action: actionReducer,
   appInfo: appInfoReducer,
-  displayName: displayNameReducer,
   execution: executionReducer,
 })
 

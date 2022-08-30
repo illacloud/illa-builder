@@ -23,15 +23,11 @@ export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
 
   const actionOptions = useMemo(() => {
     if (selectedContext.widgetOrAction === "ACTION") {
-      const i = actionList.findIndex((value) => {
-        return value.displayName === selectedAction?.displayName
-      })
-      if (i != -1) {
-        actionList.splice(i, 1)
-      }
-      return actionList.map((item) => {
-        return item.displayName
-      })
+      return actionList
+        .filter((value) => {
+          return value.displayName !== selectedAction?.displayName
+        })
+        .map((item) => item.displayName)
     }
     if (selectedContext.widgetOrAction === "WIDGET") {
       return actionList.map((item) => {
