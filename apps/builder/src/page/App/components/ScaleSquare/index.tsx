@@ -30,7 +30,10 @@ import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { DragCollectedInfo } from "@/page/App/components/DotPanel/interface"
+import {
+  DragCollectedInfo,
+  DropResultInfo,
+} from "@/page/App/components/DotPanel/interface"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/style"
 
@@ -104,7 +107,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const [{ isDragging }, dragRef, dragPreviewRef] = useDrag<
     ComponentNode,
-    boolean,
+    DropResultInfo,
     DragCollectedInfo
   >(
     () => ({
@@ -113,8 +116,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         return illaMode === "edit"
       },
       end: (draggedItem, monitor) => {
-        const isDropOnCanvas = monitor.getDropResult() ?? false
-        endDrag(draggedItem, isDropOnCanvas)
+        const dropResultInfo = monitor.getDropResult()
+
+        endDrag(draggedItem, dropResultInfo?.isDropOnCanvas ?? false)
       },
       item: () => {
         startDrag(componentNode, false)

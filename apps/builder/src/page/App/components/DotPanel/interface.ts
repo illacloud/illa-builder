@@ -13,7 +13,9 @@ export interface DragPosition {
 }
 
 // return when drop trigger
-export interface DropResultInfo {}
+export interface DropResultInfo {
+  isDropOnCanvas: boolean
+}
 
 // return when drop collect trigger
 export interface DropCollectedInfo {
