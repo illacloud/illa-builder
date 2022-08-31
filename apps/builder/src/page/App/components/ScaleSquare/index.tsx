@@ -111,13 +111,14 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
-      console.log("update")
-      dispatch(
-        componentsActions.updateComponentReflow({
-          parentDisplayName: parentDisplayName,
-          childNodes: childrenNodes,
-        }),
-      )
+      window.requestAnimationFrame(() => {
+        dispatch(
+          componentsActions.updateComponentReflow({
+            parentDisplayName: parentDisplayName,
+            childNodes: childrenNodes,
+          }),
+        )
+      })
     },
     [dispatch],
   )

@@ -4,6 +4,7 @@ import {
   ReactNode,
   RefObject,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -87,15 +88,27 @@ export const RenderComponentCanvas: FC<{
   const [xy, setXY] = useState([0, 0])
   const [lunchXY, setLunchXY] = useState([0, 0])
   const [canDrop, setCanDrop] = useState(true)
+  const [rowNumber, setRowNumber] = useState(0)
+
+  useEffect(() => {
+    const childrenNodes = componentNode.childrenNode
+    let maxY = 0
+    childrenNodes.forEach((node) => {
+      maxY = Math.max(maxY, node.y + node.h)
+    })
+    setRowNumber(maxY)
+  }, [componentNode.childrenNode])
 
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
-      dispatch(
-        componentsActions.updateComponentReflow({
-          parentDisplayName: parentDisplayName,
-          childNodes: childrenNodes,
-        }),
-      )
+      window.requestAnimationFrame(() => {
+        dispatch(
+          componentsActions.updateComponentReflow({
+            parentDisplayName: parentDisplayName,
+            childNodes: childrenNodes,
+          }),
+        )
+      })
     },
     [dispatch],
   )
@@ -125,8 +138,8 @@ export const RenderComponentCanvas: FC<{
               (containerRef.current?.scrollTop || 0),
           }
           const canvasPosition = {
-            x: bounds.x,
-            y: bounds.y,
+            x: containerRef.current?.getBoundingClientRect().x || 0,
+            y: containerRef.current?.getBoundingClientRect().y || 0,
           }
           const nodeWidthAndHeight = {
             w: item.w * unitWidth,
@@ -141,12 +154,17 @@ export const RenderComponentCanvas: FC<{
             rectCenterPosition,
             nodeWidthAndHeight,
           )
+
           const { lunchX, lunchY, isOverstep } = calcLunchPosition(
             rectPosition,
             unitWidth,
             UNIT_HEIGHT,
             bounds.width,
           )
+
+          if (lunchY / UNIT_HEIGHT + item.h > rowNumber) {
+            setRowNumber(lunchY / UNIT_HEIGHT + item.h + 8)
+          }
 
           const childrenNodes = dragInfo.childrenNodes
           const indexOfChildrenNodes = childrenNodes.findIndex(
@@ -186,6 +204,16 @@ export const RenderComponentCanvas: FC<{
               allChildrenNodes,
               workedDisplayName,
             )
+            allChildrenNodes.sort((node1, node2) => {
+              if (node1.y < node2.y) {
+                return -1
+              }
+              if (node1.y > node2.y) {
+                return 1
+              }
+              return 0
+            })
+
             finalChildrenNodes = allChildrenNodes.filter(
               (node) => node.displayName !== newItem.displayName,
             )
@@ -221,6 +249,7 @@ export const RenderComponentCanvas: FC<{
             )
             finalChildrenNodes = allChildrenNodes
           }
+
           debounceUpdateComponentPositionByReflow(
             componentNode.displayName || "root",
             finalChildrenNodes,
@@ -240,8 +269,8 @@ export const RenderComponentCanvas: FC<{
               (containerRef.current?.scrollTop || 0),
           }
           const canvasPosition = {
-            x: bounds.x,
-            y: bounds.y,
+            x: containerRef.current?.getBoundingClientRect().x || 0,
+            y: containerRef.current?.getBoundingClientRect().y || 0,
           }
           const nodeWidthAndHeight = {
             w: item.w * unitWidth,
@@ -318,6 +347,7 @@ export const RenderComponentCanvas: FC<{
         bounds.width / BLOCK_COLUMNS,
         UNIT_HEIGHT,
         isShowCanvasDot,
+        rowNumber * 8,
       )}
       onClick={(e) => {
         if (
