@@ -90,29 +90,14 @@ export const RenderComponentCanvas: FC<{
   const [canDrop, setCanDrop] = useState(true)
   const [rowNumber, setRowNumber] = useState(0)
 
-  useEffect(() => {
-    const childrenNodes = componentNode.childrenNode
-    let maxY = 0
-    childrenNodes.forEach((node) => {
-      maxY = Math.max(maxY, node.y + node.h)
-    })
-    if (illaMode === "edit") {
-      setRowNumber(maxY + 8)
-    } else {
-      setRowNumber(maxY)
-    }
-  }, [componentNode.childrenNode, illaMode])
-
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
-      window.requestAnimationFrame(() => {
-        dispatch(
-          componentsActions.updateComponentReflow({
-            parentDisplayName: parentDisplayName,
-            childNodes: childrenNodes,
-          }),
-        )
-      })
+      dispatch(
+        componentsActions.updateComponentReflow({
+          parentDisplayName: parentDisplayName,
+          childNodes: childrenNodes,
+        }),
+      )
     },
     [dispatch],
   )
@@ -340,6 +325,21 @@ export const RenderComponentCanvas: FC<{
     }),
     [bounds, unitWidth, UNIT_HEIGHT, canDrop],
   )
+
+  useEffect(() => {
+    if (!isActive) {
+      const childrenNodes = componentNode.childrenNode
+      let maxY = 0
+      childrenNodes.forEach((node) => {
+        maxY = Math.max(maxY, node.y + node.h)
+      })
+      if (illaMode === "edit") {
+        setRowNumber(maxY + 8)
+      } else {
+        setRowNumber(maxY)
+      }
+    }
+  }, [componentNode.childrenNode, illaMode, isActive])
 
   return (
     <div
