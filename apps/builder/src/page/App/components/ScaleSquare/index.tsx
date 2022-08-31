@@ -1,4 +1,4 @@
-import { memo, useCallback, useContext, useMemo } from "react"
+import { memo, useCallback, useContext, useMemo, useRef } from "react"
 import {
   ScaleSquareProps,
   ScaleSquareType,
@@ -14,7 +14,7 @@ import {
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
@@ -25,17 +25,21 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { Rnd } from "react-rnd"
+import { Rnd, RndResizeCallback } from "react-rnd"
 import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { useDrag } from "react-dnd"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   DragCollectedInfo,
+  DragInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/style"
+import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
+import { cloneDeep, throttle } from "lodash"
+import { changeCrossingNodePosition } from "@/page/App/components/DotPanel/calc"
 
 const { Item } = DropList
 
@@ -105,8 +109,25 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     [componentNode, dispatch, h, unitH, unitW, w],
   )
 
+  const updateComponentPositionByReflow = useCallback(
+    (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
+      dispatch(
+        componentsActions.updateComponentReflow({
+          parentDisplayName: parentDisplayName,
+          childNodes: childrenNodes,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
+  const debounceUpdateComponentPositionByReflow = throttle(
+    updateComponentPositionByReflow,
+    60,
+  )
+
   const [{ isDragging }, dragRef, dragPreviewRef] = useDrag<
-    ComponentNode,
+    DragInfo,
     DropResultInfo,
     DragCollectedInfo
   >(
@@ -117,12 +138,20 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       },
       end: (draggedItem, monitor) => {
         const dropResultInfo = monitor.getDropResult()
-
-        endDrag(draggedItem, dropResultInfo?.isDropOnCanvas ?? false)
+        endDrag(draggedItem.item, dropResultInfo?.isDropOnCanvas ?? false)
       },
       item: () => {
+        const rootState = store.getState()
+        const rootNode = getCanvas(rootState)
+
+        const childrenNodes = rootNode?.childrenNode
+          ? cloneDeep(rootNode.childrenNode)
+          : []
         startDrag(componentNode, false)
-        return componentNode
+        return {
+          item: componentNode,
+          childrenNodes,
+        }
       },
       collect: (monitor) => {
         return {
@@ -131,6 +160,78 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       },
     }),
     [illaMode, componentNode],
+  )
+
+  const childNodesRef = useRef<ComponentNode[]>([])
+
+  const handleResizeStart = () => {
+    const rootState = store.getState()
+    const rootNode = getCanvas(rootState)
+
+    childNodesRef.current = rootNode?.childrenNode
+      ? cloneDeep(rootNode.childrenNode)
+      : []
+    dispatch(configActions.updateShowDot(true))
+  }
+
+  const handleResize: RndResizeCallback = useCallback(
+    (e, dir, elementRef, delta, position) => {
+      const item = cloneDeep(componentNode)
+      const { width, height } = delta
+      const finalWidth = Math.round((w + width) / unitW)
+      const finalHeight = Math.round((h + height) / unitH)
+      const x = Math.round(position.x / unitW)
+      const y = Math.round(position.y / unitH)
+      const newItem = {
+        ...item,
+        x,
+        y,
+        w: finalWidth,
+        h: finalHeight,
+      }
+      const indexOfChildren = childNodesRef.current.findIndex(
+        (node) => node.displayName === newItem.displayName,
+      )
+      const allChildrenNodes = [...childNodesRef.current]
+
+      allChildrenNodes.splice(indexOfChildren, 1, newItem)
+      allChildrenNodes.sort((node1, node2) => {
+        if (node1.y < node2.y) {
+          return -1
+        }
+        if (node1.y > node2.y) {
+          return 1
+        }
+        if (node1.y === node2.y) {
+          if (node1.x > node2.x) {
+            return 1
+          }
+          if (node1.x < node2.x) {
+            return -1
+          }
+        }
+        return 0
+      })
+      const workedDisplayName = new Set<string>()
+      changeCrossingNodePosition(newItem, allChildrenNodes, workedDisplayName)
+      const indexOfNewItem = allChildrenNodes.findIndex(
+        (node) => node.displayName === componentNode.displayName,
+      )
+      allChildrenNodes.splice(indexOfNewItem, 1, componentNode)
+
+      debounceUpdateComponentPositionByReflow(
+        componentNode.parentNode || "root",
+        allChildrenNodes,
+      )
+    },
+    [
+      componentNode,
+      debounceUpdateComponentPositionByReflow,
+      h,
+      unitH,
+      unitW,
+      w,
+    ],
   )
 
   return (
@@ -155,9 +256,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         illaMode === "edit",
       )}
       disableDragging
-      onResize={() => {
-        dispatch(configActions.updateShowDot(true))
-      }}
+      onResizeStart={handleResizeStart}
+      onResize={handleResize}
       onResizeStop={handleOnResizeStop}
       minWidth={componentNode.minW * unitW}
       minHeight={componentNode.minH * unitH}

@@ -1,3 +1,5 @@
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+
 interface ItemPosition {
   x: number
   y: number
@@ -93,5 +95,61 @@ export function calcLunchPosition(
     isOverstep,
     lunchX,
     lunchY,
+  }
+}
+
+export type RectangleType = {
+  left: number
+  right: number
+  top: number
+  bottom: number
+}
+
+const getComponentRect = (component: ComponentNode): RectangleType => {
+  const { x, y, w, h } = component
+  return {
+    left: x,
+    right: x + w,
+    top: y,
+    bottom: y + h,
+  }
+}
+
+export const isCrossing = (
+  componentNode1: ComponentNode,
+  componentNode2: ComponentNode,
+) => {
+  const rectangle1 = getComponentRect(componentNode1)
+  const rectangle2 = getComponentRect(componentNode2)
+  return !(
+    rectangle2.left >= rectangle1.right ||
+    rectangle2.right <= rectangle1.left ||
+    rectangle2.top >= rectangle1.bottom ||
+    rectangle2.bottom <= rectangle1.top
+  )
+}
+
+export const changeCrossingNodePosition = (
+  currentComponent: ComponentNode,
+  otherComponent: ComponentNode[],
+  workedDisplayName: Set<string>,
+) => {
+  workedDisplayName.add(currentComponent.displayName)
+  for (let i = 0; i < otherComponent.length; i++) {
+    if (workedDisplayName.has(otherComponent[i].displayName)) {
+      continue
+    }
+    if (isCrossing(otherComponent[i], currentComponent)) {
+      workedDisplayName.add(otherComponent[i].displayName)
+      otherComponent[i] = {
+        ...otherComponent[i],
+        y: currentComponent.y + currentComponent.h,
+      }
+      changeCrossingNodePosition(
+        otherComponent[i],
+        otherComponent,
+        workedDisplayName,
+      )
+    }
   }
 }

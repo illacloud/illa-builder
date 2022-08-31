@@ -86,18 +86,3 @@ export const getAllComponentDisplayNameMapProps = createSelector(
     return res
   },
 )
-
-export const getAllActionDisplayNameMapProps = createSelector(
-  [getActionList],
-  (list) => {
-    const res: Record<string, any> = {}
-    list.forEach((key) => {
-      res[key.displayName] = {
-        displayName: key.displayName,
-        content: key.content || {},
-        $type: "ACTION",
-      }
-    })
-    return res
-  },
-)

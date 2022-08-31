@@ -199,3 +199,23 @@ export const updateComponentPositionAndSizeReducer: CaseReducer<
     }
   }
 }
+
+export const updateComponentReflow: CaseReducer<
+  ComponentsState,
+  PayloadAction<{ parentDisplayName: string; childNodes: ComponentNode[] }>
+> = (state, action) => {
+  const { parentDisplayName, childNodes } = action.payload
+  const targetNode = searchDsl(state, parentDisplayName)
+  if (targetNode) {
+    const childNodesDisplayNamesMap = new Map()
+    childNodes.forEach((node) => {
+      childNodesDisplayNamesMap.set(node.displayName, node)
+    })
+    targetNode.childrenNode = targetNode.childrenNode?.map((node) => {
+      if (childNodesDisplayNamesMap.has(node.displayName)) {
+        return childNodesDisplayNamesMap.get(node.displayName)
+      }
+      return node
+    })
+  }
+}

@@ -3,6 +3,8 @@ import {
   MutableRefObject,
   ReactNode,
   RefObject,
+  useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -16,6 +18,7 @@ import { applyComponentCanvasStyle } from "@/page/App/components/DotPanel/style"
 import useMeasure from "react-use-measure"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  DragInfo,
   DropCollectedInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
@@ -24,9 +27,11 @@ import {
   calcLunchPosition,
   calcRectCenterPointPosition,
   calcRectShapeByCenterPoint,
+  changeCrossingNodePosition,
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
+import { cloneDeep, debounce, throttle } from "lodash"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -83,9 +88,27 @@ export const RenderComponentCanvas: FC<{
   const [xy, setXY] = useState([0, 0])
   const [lunchXY, setLunchXY] = useState([0, 0])
   const [canDrop, setCanDrop] = useState(true)
+  const [rowNumber, setRowNumber] = useState(0)
+
+  const updateComponentPositionByReflow = useCallback(
+    (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
+      dispatch(
+        componentsActions.updateComponentReflow({
+          parentDisplayName: parentDisplayName,
+          childNodes: childrenNodes,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
+  const debounceUpdateComponentPositionByReflow = throttle(
+    updateComponentPositionByReflow,
+    60,
+  )
 
   const [{ isActive, nodeWidth, nodeHeight }, dropTarget] = useDrop<
-    ComponentNode,
+    DragInfo,
     DropResultInfo,
     DropCollectedInfo
   >(
@@ -94,8 +117,9 @@ export const RenderComponentCanvas: FC<{
       canDrop: () => {
         return illaMode === "edit"
       },
-      hover: (item, monitor) => {
+      hover: (dragInfo, monitor) => {
         if (monitor.getClientOffset()) {
+          const { item } = dragInfo
           const itemPosition = {
             x: monitor.getClientOffset()!.x,
             y:
@@ -103,8 +127,8 @@ export const RenderComponentCanvas: FC<{
               (containerRef.current?.scrollTop || 0),
           }
           const canvasPosition = {
-            x: bounds.x,
-            y: bounds.y,
+            x: containerRef.current?.getBoundingClientRect().x || 0,
+            y: containerRef.current?.getBoundingClientRect().y || 0,
           }
           const nodeWidthAndHeight = {
             w: item.w * unitWidth,
@@ -119,19 +143,118 @@ export const RenderComponentCanvas: FC<{
             rectCenterPosition,
             nodeWidthAndHeight,
           )
+
           const { lunchX, lunchY, isOverstep } = calcLunchPosition(
             rectPosition,
             unitWidth,
             UNIT_HEIGHT,
             bounds.width,
           )
+
+          if (lunchY / UNIT_HEIGHT + item.h > rowNumber - 8) {
+            const finalNumber = lunchY / UNIT_HEIGHT + item.h + 8
+            setRowNumber(finalNumber)
+            containerRef.current?.scrollTo({
+              top: bounds.height,
+            })
+          }
+
+          const childrenNodes = dragInfo.childrenNodes
+          const indexOfChildrenNodes = childrenNodes.findIndex(
+            (node) => node.displayName === item.displayName,
+          )
+          let finalChildrenNodes: ComponentNode[] = []
+          const newItem = {
+            ...item,
+            parentNode: componentNode.displayName || "root",
+            x: Math.round(lunchX / unitWidth),
+            y: Math.round(lunchY / UNIT_HEIGHT),
+            unitW: unitWidth,
+            unitH: UNIT_HEIGHT,
+          }
+          if (indexOfChildrenNodes === -1) {
+            const allChildrenNodes = [...childrenNodes, newItem]
+            allChildrenNodes.sort((node1, node2) => {
+              if (node1.y < node2.y) {
+                return -1
+              }
+              if (node1.y > node2.y) {
+                return 1
+              }
+              if (node1.y === node2.y) {
+                if (node1.x > node2.x) {
+                  return 1
+                }
+                if (node1.x < node2.x) {
+                  return -1
+                }
+              }
+              return 0
+            })
+            const workedDisplayName = new Set<string>()
+            changeCrossingNodePosition(
+              newItem,
+              allChildrenNodes,
+              workedDisplayName,
+            )
+            allChildrenNodes.sort((node1, node2) => {
+              if (node1.y < node2.y) {
+                return -1
+              }
+              if (node1.y > node2.y) {
+                return 1
+              }
+              return 0
+            })
+
+            finalChildrenNodes = allChildrenNodes.filter(
+              (node) => node.displayName !== newItem.displayName,
+            )
+          } else {
+            const indexOfChildren = childrenNodes.findIndex(
+              (node) => node.displayName === newItem.displayName,
+            )
+            const allChildrenNodes = [...childrenNodes]
+
+            allChildrenNodes.splice(indexOfChildren, 1, newItem)
+            allChildrenNodes.sort((node1, node2) => {
+              if (node1.y < node2.y) {
+                return -1
+              }
+              if (node1.y > node2.y) {
+                return 1
+              }
+              if (node1.y === node2.y) {
+                if (node1.x > node2.x) {
+                  return 1
+                }
+                if (node1.x < node2.x) {
+                  return -1
+                }
+              }
+              return 0
+            })
+            const workedDisplayName = new Set<string>()
+            changeCrossingNodePosition(
+              newItem,
+              allChildrenNodes,
+              workedDisplayName,
+            )
+            finalChildrenNodes = allChildrenNodes
+          }
+
+          debounceUpdateComponentPositionByReflow(
+            componentNode.displayName || "root",
+            finalChildrenNodes,
+          )
           setXY([rectCenterPosition.x, rectCenterPosition.y])
           setLunchXY([lunchX, lunchY])
           setCanDrop(isOverstep)
         }
       },
-      drop: (item, monitor) => {
+      drop: (dragInfo, monitor) => {
         if (monitor.getClientOffset()) {
+          const { item } = dragInfo
           const itemPosition = {
             x: monitor.getClientOffset()!.x,
             y:
@@ -139,8 +262,8 @@ export const RenderComponentCanvas: FC<{
               (containerRef.current?.scrollTop || 0),
           }
           const canvasPosition = {
-            x: bounds.x,
-            y: bounds.y,
+            x: containerRef.current?.getBoundingClientRect().x || 0,
+            y: containerRef.current?.getBoundingClientRect().y || 0,
           }
           const nodeWidthAndHeight = {
             w: item.w * unitWidth,
@@ -192,16 +315,31 @@ export const RenderComponentCanvas: FC<{
         }
       },
       collect: (monitor) => {
-        const item = monitor.getItem()
+        const dragInfo = monitor.getItem()
         return {
           isActive: monitor.canDrop() && monitor.isOver(),
-          nodeWidth: item?.w ?? 0,
-          nodeHeight: item?.h ?? 0,
+          nodeWidth: dragInfo?.item?.w ?? 0,
+          nodeHeight: dragInfo?.item?.h ?? 0,
         }
       },
     }),
     [bounds, unitWidth, UNIT_HEIGHT, canDrop],
   )
+
+  useEffect(() => {
+    if (!isActive) {
+      const childrenNodes = componentNode.childrenNode
+      let maxY = 0
+      childrenNodes.forEach((node) => {
+        maxY = Math.max(maxY, node.y + node.h)
+      })
+      if (illaMode === "edit") {
+        setRowNumber(maxY + 8)
+      } else {
+        setRowNumber(maxY)
+      }
+    }
+  }, [componentNode.childrenNode, illaMode, isActive])
 
   return (
     <div
@@ -217,6 +355,7 @@ export const RenderComponentCanvas: FC<{
         bounds.width / BLOCK_COLUMNS,
         UNIT_HEIGHT,
         isShowCanvasDot,
+        rowNumber * 8,
       )}
       onClick={(e) => {
         if (
