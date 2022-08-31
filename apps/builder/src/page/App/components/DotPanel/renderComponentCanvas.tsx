@@ -96,8 +96,12 @@ export const RenderComponentCanvas: FC<{
     childrenNodes.forEach((node) => {
       maxY = Math.max(maxY, node.y + node.h)
     })
-    setRowNumber(maxY)
-  }, [componentNode.childrenNode])
+    if (illaMode === "edit") {
+      setRowNumber(maxY + 8)
+    } else {
+      setRowNumber(maxY)
+    }
+  }, [componentNode.childrenNode, illaMode])
 
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
@@ -162,8 +166,12 @@ export const RenderComponentCanvas: FC<{
             bounds.width,
           )
 
-          if (lunchY / UNIT_HEIGHT + item.h > rowNumber) {
-            setRowNumber(lunchY / UNIT_HEIGHT + item.h + 8)
+          if (lunchY / UNIT_HEIGHT + item.h > rowNumber - 8) {
+            const finalNumber = lunchY / UNIT_HEIGHT + item.h + 8
+            setRowNumber(finalNumber)
+            containerRef.current?.scrollTo({
+              top: bounds.height,
+            })
           }
 
           const childrenNodes = dragInfo.childrenNodes
