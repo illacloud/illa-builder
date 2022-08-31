@@ -293,6 +293,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         withoutShadow
         openDelay={10}
         closeDelay={10}
+        maxW="none"
         popupVisible={previewVisible}
         content={<CodePreview preview={preview} />}
         showArrow={false}
