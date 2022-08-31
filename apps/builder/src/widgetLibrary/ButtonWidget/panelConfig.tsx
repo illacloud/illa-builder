@@ -85,6 +85,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        openDynamic: true,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         useCustomLayout: true,

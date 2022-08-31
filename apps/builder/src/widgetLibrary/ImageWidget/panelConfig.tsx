@@ -61,6 +61,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
+        openDynamic: true,
       },
     ],
   },

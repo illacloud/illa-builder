@@ -115,12 +115,19 @@ export const ghostEmptyStyle = css`
 export const applySetterPublicWrapperStyle = (
   isInList: boolean = false,
   isSetterSingleRowWrapper: boolean = false,
+  notNeedPadding: boolean,
 ) => {
   const widthStyle = isSetterSingleRowWrapper
     ? css`
         width: 100%;
       `
-    : css``
+    : null
+  if (notNeedPadding) {
+    return css`
+      min-height: 48px;
+      align-items: center;
+    `
+  }
   return isInList
     ? css`
         min-height: 40px;
