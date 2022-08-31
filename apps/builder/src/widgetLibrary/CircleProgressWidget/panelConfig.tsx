@@ -32,7 +32,8 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-adornments-showText`,
         labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
         attrName: "showText",
-        setterType: "SWITCH_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
       },
       {
         id: `${baseWidgetName}-adornments-tooltip`,
@@ -55,6 +56,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         attrName: "hidden",
         useCustomLayout: true,
+        openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
