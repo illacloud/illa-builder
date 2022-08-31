@@ -207,6 +207,15 @@ export const updateComponentReflow: CaseReducer<
   const { parentDisplayName, childNodes } = action.payload
   const targetNode = searchDsl(state, parentDisplayName)
   if (targetNode) {
-    targetNode.childrenNode = childNodes
+    const childNodesDisplayNamesMap = new Map()
+    childNodes.forEach((node) => {
+      childNodesDisplayNamesMap.set(node.displayName, node)
+    })
+    targetNode.childrenNode = targetNode.childrenNode?.map((node) => {
+      if (childNodesDisplayNamesMap.has(node.displayName)) {
+        return childNodesDisplayNamesMap.get(node.displayName)
+      }
+      return node
+    })
   }
 }
