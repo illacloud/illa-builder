@@ -6,12 +6,12 @@ import {
   getExecutionResult,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { EXECUTION_WORKER_MESSAGES } from "@/utils/worker/interface"
 import dependenciesTreeWorker from "@/utils/worker/index?worker"
 import { diff } from "deep-diff"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
 
 export const worker = new dependenciesTreeWorker()
 
@@ -35,33 +35,30 @@ async function handleStartExecution(
       rawTree[displayName][key] = value[key]
     })
   }
-  worker.postMessage({
-    action: EXECUTION_WORKER_MESSAGES.EXECUTION_TREE,
-    globalData: rawTree,
-  })
+
+  const executionTree = new ExecutionTreeFactory()
+  const executionResult = executionTree.initTree(rawTree)
+  const errorTree = executionResult.errorTree
+  const evaluatedTree = executionResult.evaluatedTree
+  const dependencyMap = executionResult.dependencyTree
+
   const oldExecutionTree = getExecutionResult(rootState)
-  worker.onmessage = (e) => {
-    const { evaluatedTree, errorTree = {}, dependencyMap = {} } = e.data
-
-    const updates = diff(oldExecutionTree, evaluatedTree) || []
-
-    listenerApi.dispatch(
-      executionActions.setExecutionResultReducer({
-        updates,
-      }),
-    )
-
-    listenerApi.dispatch(
-      executionActions.setDependenciesReducer({
-        ...dependencyMap,
-      }),
-    )
-    listenerApi.dispatch(
-      executionActions.setExecutionErrorReducer({
-        ...errorTree,
-      }),
-    )
-  }
+  const updates = diff(oldExecutionTree, evaluatedTree) || []
+  listenerApi.dispatch(
+    executionActions.setExecutionResultReducer({
+      updates,
+    }),
+  )
+  listenerApi.dispatch(
+    executionActions.setDependenciesReducer({
+      ...dependencyMap,
+    }),
+  )
+  listenerApi.dispatch(
+    executionActions.setExecutionErrorReducer({
+      ...errorTree,
+    }),
+  )
 }
 
 export function setupExecutionListeners(
