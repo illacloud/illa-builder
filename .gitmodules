@@ -1,4 +1,4 @@
 [submodule "illa-design"]
 	path = illa-design
-	url = git@github.com:illa-family/illa-design.git
+	url = https://github.com/illa-family/illa-design.git
 	branch = develop
