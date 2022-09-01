@@ -27,6 +27,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   iconName?: EditableInputIconType
   shown?: (...params: any[]) => boolean
   bindAttrName?: string | string[]
+  openDynamic?: boolean
 }
 
 export interface PanelFieldGroupConfig {

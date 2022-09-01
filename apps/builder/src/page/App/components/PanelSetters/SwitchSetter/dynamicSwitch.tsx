@@ -25,6 +25,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
     widgetDisplayName,
     expectedType,
     widgetOrAction,
+    openDynamic,
   } = props
 
   const dynamicAttrPath = get(panelConfig, "$dynamicAttrPaths", [])
@@ -36,18 +37,20 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
       <div css={dynamicSwitchWrapperStyle}>
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <div css={customAndSwitchWrapperStyle}>
-          <div
-            css={applyCustomIconStyle(customSelected)}
-            onClick={() => {
-              if (customSelected) {
-                handleUpdateDsl(attrName, false)
-              } else {
-                handleUpdateDsl(attrName, `{{false}}`)
-              }
-            }}
-          >
-            <FxIcon />
-          </div>
+          {openDynamic && (
+            <div
+              css={applyCustomIconStyle(customSelected)}
+              onClick={() => {
+                if (customSelected) {
+                  handleUpdateDsl(attrName, false)
+                } else {
+                  handleUpdateDsl(attrName, `{{false}}`)
+                }
+              }}
+            >
+              <FxIcon />
+            </div>
+          )}
           {!customSelected && (
             <Switch
               onChange={(value) => {

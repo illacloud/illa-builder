@@ -122,6 +122,7 @@ export const generatorEventHandlerConfig = (
         attrName: "disabled",
         bindAttrName: ["type"],
         useCustomLayout: true,
+        openDynamic: true,
         shown: (type) => type === "widget",
       },
       {
@@ -149,6 +150,7 @@ export const generatorEventHandlerConfig = (
         attrName: "newTab",
         bindAttrName: ["actionType"],
         useCustomLayout: true,
+        openDynamic: true,
         shown: (type) => type === "openUrl",
       },
       {

@@ -10,11 +10,13 @@ import { Api } from "@/api/base"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 
-export const RenameModal: FC<RenameModalProps> = props => {
+export const RenameModal: FC<RenameModalProps> = (props) => {
   const { appId, visible, onVisibleChange } = props
 
   const app = useSelector((state: RootState) => {
-    return state.dashboard.dashboardApps.list.find(item => item.appId === appId)
+    return state.dashboard.dashboardApps.list.find(
+      (item) => item.appId === appId,
+    )
   })!!
 
   const appList = useSelector(getDashboardApps)
@@ -29,7 +31,7 @@ export const RenameModal: FC<RenameModalProps> = props => {
     <Modal
       simple
       closable
-      autoFocus={false}
+      autoFocus
       footerAlign="right"
       visible={visible}
       title={t("dashboard.app.rename_app")}
@@ -47,7 +49,7 @@ export const RenameModal: FC<RenameModalProps> = props => {
           Message.error(t("dashboard.app.name_empty"))
           return
         }
-        if (appList.some(item => item.appName === name)) {
+        if (appList.some((item) => item.appName === name)) {
           Message.error(t("dashboard.app.name_existed"))
           return
         }
@@ -59,7 +61,7 @@ export const RenameModal: FC<RenameModalProps> = props => {
               appName: name,
             },
           },
-          response => {
+          (response) => {
             dispatch(
               dashboardAppActions.renameDashboardAppReducer({
                 appId: app.appId,
@@ -69,13 +71,13 @@ export const RenameModal: FC<RenameModalProps> = props => {
             Message.success(t("dashboard.app.rename_success"))
             onVisibleChange(false)
           },
-          failure => {
+          (failure) => {
             Message.error(t("dashboard.app.rename_fail"))
           },
-          crash => {
+          (crash) => {
             Message.error(t("network_error"))
           },
-          loading => {
+          (loading) => {
             setLoading(loading)
           },
         )
@@ -84,7 +86,9 @@ export const RenameModal: FC<RenameModalProps> = props => {
       <Input
         borderColor="techPurple"
         placeholder={app?.appName}
-        onChange={name => {
+        autoFocus
+        defaultValue={app?.appName}
+        onChange={(name) => {
           setName(name)
         }}
       />

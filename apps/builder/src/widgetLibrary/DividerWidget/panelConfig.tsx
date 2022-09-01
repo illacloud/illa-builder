@@ -54,6 +54,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         attrName: "hidden",
         useCustomLayout: true,
+        openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],

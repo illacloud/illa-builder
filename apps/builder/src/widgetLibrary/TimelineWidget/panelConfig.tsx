@@ -50,6 +50,7 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
         setterType: "DYNAMIC_SWITCH_SETTER",
         attrName: "hidden",
         useCustomLayout: true,
+        openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
     ],
