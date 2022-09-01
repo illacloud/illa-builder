@@ -81,6 +81,7 @@ const fetchActionResult = (
   successEvent: any[] = [],
   failedEvent: any[] = [],
   transformer: Transformer,
+  isTrigger: boolean,
   resultCallback?: (data: unknown, error: boolean) => void,
 ) => {
   Api.request(
@@ -101,7 +102,9 @@ const fetchActionResult = (
       let calcResult = runTransformer(transformer, rawData)
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
-      store.dispatch(executionActions.startExecutionReducer())
+      if (!isTrigger) {
+        store.dispatch(executionActions.startExecutionReducer())
+      }
       successEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
@@ -132,6 +135,7 @@ function getRealEventHandler(eventHandler?: any[]) {
 export const runAction = (
   action: ActionItem<ActionContent>,
   resultCallback?: (data: unknown, error: boolean) => void,
+  isTrigger: boolean = false,
 ) => {
   const { content, actionId, resourceId, displayName, actionType } = action
   if (!content) return
@@ -142,9 +146,15 @@ export const runAction = (
       MysqlAction | RestApiAction<BodyContent>
     >
     const { successEvent, failedEvent, ...restContent } = content
-    const realContent: Record<string, any> = calcRealContent(restContent)
-    const realSuccessEvent: any[] = getRealEventHandler(successEvent)
-    const realFailedEvent: any[] = getRealEventHandler(failedEvent)
+    const realContent: Record<string, any> = isTrigger
+      ? restContent
+      : calcRealContent(restContent)
+    const realSuccessEvent: any[] = isTrigger
+      ? successEvent || []
+      : getRealEventHandler(successEvent)
+    const realFailedEvent: any[] = isTrigger
+      ? failedEvent || []
+      : getRealEventHandler(failedEvent)
     fetchActionResult(
       resourceId || "",
       actionType,
@@ -155,6 +165,7 @@ export const runAction = (
       realSuccessEvent,
       realFailedEvent,
       transformer,
+      isTrigger,
       resultCallback,
     )
   }
