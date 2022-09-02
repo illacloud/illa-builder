@@ -326,10 +326,13 @@ export const RenderComponentCanvas: FC<{
       })
       if (illaMode === "edit") {
         setRowNumber(
-          Math.max(maxY + 8, Math.floor(bounds.height / UNIT_HEIGHT)),
+          Math.max(
+            maxY + 8,
+            Math.floor(document.body.clientHeight / UNIT_HEIGHT),
+          ),
         )
       } else {
-        setRowNumber(Math.max(maxY + 8, bounds.height / UNIT_HEIGHT))
+        setRowNumber(Math.max(maxY, bounds.height / UNIT_HEIGHT))
       }
     }
   }, [bounds.height, componentNode.childrenNode, illaMode, isActive])
