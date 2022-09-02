@@ -25,7 +25,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
   const _placeholder = [startPlaceholder ?? "", endPlaceholder ?? ""]
 
   const dateRangeValue = useMemo(() => {
-    return [startValue, endValue]
+    return !startValue && !endValue ? undefined : [startValue, endValue]
   }, [startValue, endValue])
 
   const checkRange = useCallback(
@@ -51,10 +51,16 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
       allowClear={showClear}
       disabledDate={checkRange}
       onClear={() => {
-        handleUpdateDsl({ value: [] })
+        handleUpdateDsl({
+          startValue: undefined,
+          endValue: undefined,
+        })
       }}
-      onChange={value => {
-        handleUpdateDsl({ value })
+      onChange={(value) => {
+        handleUpdateDsl({
+          startValue: value?.[0],
+          endValue: value?.[1],
+        })
       }}
     />
   )

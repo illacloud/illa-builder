@@ -19,12 +19,20 @@ export const generateDynamicAttrPaths = (
   for (let key in rawObj) {
     const value = rawObj[key]
     if (Array.isArray(value)) {
-      value.forEach((item) => {
-        generateDynamicAttrPaths(item, dynamicAttrPaths, key)
+      value.forEach((item, index) => {
+        generateDynamicAttrPaths(
+          item,
+          dynamicAttrPaths,
+          parentAttr ? `${parentAttr}.${key}.${index}` : `${key}.${index}`,
+        )
       })
     }
     if (isObject(value)) {
-      generateDynamicAttrPaths(value, dynamicAttrPaths, key)
+      generateDynamicAttrPaths(
+        value,
+        dynamicAttrPaths,
+        parentAttr ? `${parentAttr}.${key}` : `${key}`,
+      )
     }
     if (isDynamicString(value)) {
       const attrPath = parentAttr ? parentAttr + "." + key : key
@@ -46,6 +54,7 @@ export const generateRawAction = (
     actionType,
     triggerMode,
   } = action
+  console.log("action", JSON.parse(JSON.stringify(action)))
   generateDynamicAttrPaths(action, $dynamicAttrPaths)
   return {
     $actionId: actionId,

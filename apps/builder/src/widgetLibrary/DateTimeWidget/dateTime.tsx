@@ -134,29 +134,31 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
-        <Label
-          labelFull={labelFull}
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
+      <span>
+        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedDateTime {...props} />
+        </div>
+        <InvalidMessage
+          value={value}
+          pattern={pattern}
+          regex={regex}
           required={required}
-          labelHidden={labelHidden}
-          hasTooltip={!!tooltipText}
+          customRule={customRule}
+          hideValidationMessage={hideValidationMessage}
         />
-        <WrappedDateTime {...props} />
-      </div>
-      <InvalidMessage
-        value={value}
-        pattern={pattern}
-        regex={regex}
-        required={required}
-        customRule={customRule}
-        hideValidationMessage={hideValidationMessage}
-      />
+      </span>
     </TooltipWrapper>
   )
 }
