@@ -132,24 +132,27 @@ export const isCrossing = (
 export const changeCrossingNodePosition = (
   currentComponent: ComponentNode,
   otherComponent: ComponentNode[],
-  workedDisplayName: Set<string>,
+  walkedDisplayNameSet: Set<string>,
 ) => {
-  workedDisplayName.add(currentComponent.displayName)
+  walkedDisplayNameSet.add(currentComponent.displayName)
+  const changedNode: ComponentNode[] = []
   for (let i = 0; i < otherComponent.length; i++) {
-    if (workedDisplayName.has(otherComponent[i].displayName)) {
+    if (walkedDisplayNameSet.has(otherComponent[i].displayName)) {
       continue
     }
     if (isCrossing(otherComponent[i], currentComponent)) {
-      workedDisplayName.add(otherComponent[i].displayName)
       otherComponent[i] = {
         ...otherComponent[i],
         y: currentComponent.y + currentComponent.h,
       }
-      changeCrossingNodePosition(
-        otherComponent[i],
-        otherComponent,
-        workedDisplayName,
-      )
+      changedNode.push(otherComponent[i])
     }
+  }
+  for (let i = 0; i < changedNode.length; i++) {
+    changeCrossingNodePosition(
+      changedNode[i],
+      otherComponent,
+      walkedDisplayNameSet,
+    )
   }
 }

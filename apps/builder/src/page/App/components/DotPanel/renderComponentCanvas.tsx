@@ -191,22 +191,12 @@ export const RenderComponentCanvas: FC<{
               }
               return 0
             })
-            const workedDisplayName = new Set<string>()
+            const walkedDisplayNameSet = new Set<string>()
             changeCrossingNodePosition(
               newItem,
               allChildrenNodes,
-              workedDisplayName,
+              walkedDisplayNameSet,
             )
-            allChildrenNodes.sort((node1, node2) => {
-              if (node1.y < node2.y) {
-                return -1
-              }
-              if (node1.y > node2.y) {
-                return 1
-              }
-              return 0
-            })
-
             finalChildrenNodes = allChildrenNodes.filter(
               (node) => node.displayName !== newItem.displayName,
             )
@@ -215,7 +205,6 @@ export const RenderComponentCanvas: FC<{
               (node) => node.displayName === newItem.displayName,
             )
             const allChildrenNodes = [...childrenNodes]
-
             allChildrenNodes.splice(indexOfChildren, 1, newItem)
             allChildrenNodes.sort((node1, node2) => {
               if (node1.y < node2.y) {
@@ -234,13 +223,15 @@ export const RenderComponentCanvas: FC<{
               }
               return 0
             })
-            const workedDisplayName = new Set<string>()
+            const walkedDisplayNameSet = new Set<string>()
             changeCrossingNodePosition(
               newItem,
               allChildrenNodes,
-              workedDisplayName,
+              walkedDisplayNameSet,
             )
-            finalChildrenNodes = allChildrenNodes
+            finalChildrenNodes = allChildrenNodes.filter(
+              (node) => node.displayName !== newItem.displayName,
+            )
           }
 
           debounceUpdateComponentPositionByReflow(
@@ -334,12 +325,14 @@ export const RenderComponentCanvas: FC<{
         maxY = Math.max(maxY, node.y + node.h)
       })
       if (illaMode === "edit") {
-        setRowNumber(maxY + 8)
+        setRowNumber(
+          Math.max(maxY + 8, Math.floor(bounds.height / UNIT_HEIGHT)),
+        )
       } else {
-        setRowNumber(maxY)
+        setRowNumber(Math.max(maxY + 8, bounds.height / UNIT_HEIGHT))
       }
     }
-  }, [componentNode.childrenNode, illaMode, isActive])
+  }, [bounds.height, componentNode.childrenNode, illaMode, isActive])
 
   return (
     <div
