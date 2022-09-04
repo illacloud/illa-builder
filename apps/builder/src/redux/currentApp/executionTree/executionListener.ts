@@ -6,14 +6,13 @@ import {
   getExecutionResult,
   getRawTree,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import dependenciesTreeWorker from "@/utils/worker/index?worker"
 import { diff } from "deep-diff"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
 
-export const worker = new dependenciesTreeWorker()
+export let executionTree: ExecutionTreeFactory | undefined
 
 const mergeActionResult = (rawTree: RawTreeShape) => {
   Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
@@ -35,30 +34,52 @@ async function handleStartExecution(
       rawTree[displayName][key] = value[key]
     })
   }
-
-  const executionTree = new ExecutionTreeFactory()
-  const executionResult = executionTree.initTree(rawTree)
-  const errorTree = executionResult.errorTree
-  const evaluatedTree = executionResult.evaluatedTree
-  const dependencyMap = executionResult.dependencyTree
-
   const oldExecutionTree = getExecutionResult(rootState)
-  const updates = diff(oldExecutionTree, evaluatedTree) || []
-  listenerApi.dispatch(
-    executionActions.setExecutionResultReducer({
-      updates,
-    }),
-  )
-  listenerApi.dispatch(
-    executionActions.setDependenciesReducer({
-      ...dependencyMap,
-    }),
-  )
-  listenerApi.dispatch(
-    executionActions.setExecutionErrorReducer({
-      ...errorTree,
-    }),
-  )
+  if (!executionTree) {
+    executionTree = new ExecutionTreeFactory()
+    const executionResult = executionTree.initTree(rawTree)
+    const errorTree = executionResult.errorTree
+    const evaluatedTree = executionResult.evaluatedTree
+    const dependencyMap = executionResult.dependencyTree
+
+    const updates = diff(oldExecutionTree, evaluatedTree) || []
+    listenerApi.dispatch(
+      executionActions.setExecutionResultReducer({
+        updates,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setDependenciesReducer({
+        ...dependencyMap,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setExecutionErrorReducer({
+        ...errorTree,
+      }),
+    )
+  } else {
+    const executionResult = executionTree.updateTree(rawTree)
+    const errorTree = executionResult.errorTree
+    const evaluatedTree = executionResult.evaluatedTree
+    const dependencyMap = executionResult.dependencyTree
+    const updates = diff(oldExecutionTree, evaluatedTree) || []
+    listenerApi.dispatch(
+      executionActions.setExecutionResultReducer({
+        updates,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setDependenciesReducer({
+        ...dependencyMap,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setExecutionErrorReducer({
+        ...errorTree,
+      }),
+    )
+  }
 }
 
 export function setupExecutionListeners(
