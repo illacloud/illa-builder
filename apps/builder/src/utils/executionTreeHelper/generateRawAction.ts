@@ -54,7 +54,6 @@ export const generateRawAction = (
     actionType,
     triggerMode,
   } = action
-  console.log("action", JSON.parse(JSON.stringify(action)))
   generateDynamicAttrPaths(action, $dynamicAttrPaths)
   return {
     $actionId: actionId,

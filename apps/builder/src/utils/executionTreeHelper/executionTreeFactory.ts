@@ -89,10 +89,12 @@ export class ExecutionTreeFactory {
   }
 
   applyDifferencesToEvalTree(differences: Diff<any, any>[]) {
+    const resultExecutedTree = cloneDeep(this.executedTree)
     for (const d of differences) {
       if (!Array.isArray(d.path) || d.path.length === 0) continue
-      applyChange(this.executedTree, undefined, d)
+      applyChange(resultExecutedTree, undefined, d)
     }
+    this.executedTree = resultExecutedTree
   }
 
   calcSubTreeSortOrder(differences: Diff<any, any>[], rawTree: RawTreeShape) {
@@ -106,7 +108,7 @@ export class ExecutionTreeFactory {
         continue
       }
       const dynamic: string[] = entity.$dynamicAttrPaths
-      dynamic?.map((attr) => {
+      dynamic?.forEach((attr) => {
         changePaths.add(`${entityName}.${attr}`)
       })
     }
@@ -174,6 +176,9 @@ export class ExecutionTreeFactory {
 
   updateTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
+    this.dependenciesState = this.generateDependenciesMap(currentRawTree)
+    this.evalOrder = this.sortEvalOrder(this.dependenciesState)
+    this.inDependencyTree = this.generateInDependenciesMap()
     const differences: Diff<RawTreeShape, RawTreeShape>[] =
       diff(this.oldRawTree, currentRawTree) || []
     if (differences.length === 0) {
@@ -198,7 +203,7 @@ export class ExecutionTreeFactory {
       this.executedTree,
       path,
     )
-    this.oldRawTree = currentRawTree
+    this.oldRawTree = cloneDeep(currentRawTree)
     this.errorTree = errorTree
     this.executedTree = this.validateTree(evaluatedTree)
     return {
