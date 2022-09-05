@@ -1,3 +1,4 @@
+import { cloneDeep } from "lodash"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 interface ItemPosition {
@@ -155,4 +156,56 @@ export const changeCrossingNodePosition = (
       walkedDisplayNameSet,
     )
   }
+}
+
+export const getCrossingNodeNewPosition = (
+  currentNode: ComponentNode,
+  allComponentNode: ComponentNode[],
+) => {
+  const otherComponents = cloneDeep(allComponentNode)
+  const indexOfAllComponentNode = otherComponents.findIndex(
+    (curr) => curr.displayName === currentNode.displayName,
+  )
+  if (indexOfAllComponentNode > -1) {
+    otherComponents.splice(indexOfAllComponentNode, 1)
+  }
+  let res: Map<string, ComponentNode> = new Map(),
+    queue: ComponentNode[] = []
+
+  queue.push(currentNode)
+  while (queue.length !== 0) {
+    let length = queue.length
+    const indexOfAllComponentNode = otherComponents.findIndex(
+      (curr) => curr.displayName === queue[0].displayName,
+    )
+    if (indexOfAllComponentNode > -1) {
+      otherComponents.splice(indexOfAllComponentNode, 1)
+    }
+    const walkedSet = new Set()
+    for (let i = 0; i < length; i++) {
+      let node = queue.shift() as ComponentNode
+      for (let i = 0; i < otherComponents.length; i++) {
+        if (otherComponents[i].displayName === node.displayName) {
+          continue
+        }
+        if (isCrossing(otherComponents[i], node)) {
+          otherComponents[i] = {
+            ...otherComponents[i],
+            y: node.y + node.h,
+          }
+          walkedSet.add(otherComponents[i].displayName)
+          res.set(otherComponents[i].displayName, otherComponents[i])
+          const index = queue.findIndex(
+            (node) => node.displayName === otherComponents[i].displayName,
+          )
+          if (index > -1) {
+            queue.splice(index, 1, otherComponents[i])
+          } else {
+            queue.push(otherComponents[i])
+          }
+        }
+      }
+    }
+  }
+  return res
 }

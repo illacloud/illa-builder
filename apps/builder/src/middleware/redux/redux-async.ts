@@ -66,7 +66,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               ),
             )
             break
-          case "updateComponentReflow":
+          case "updateComponentReflowReducer":
             const updateComponentReflow: UpdateComponentReflowPayload = payload
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(

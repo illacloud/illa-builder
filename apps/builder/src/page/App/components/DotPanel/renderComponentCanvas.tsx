@@ -27,7 +27,7 @@ import {
   calcLunchPosition,
   calcRectCenterPointPosition,
   calcRectShapeByCenterPoint,
-  changeCrossingNodePosition,
+  getCrossingNodeNewPosition,
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
@@ -191,15 +191,17 @@ export const RenderComponentCanvas: FC<{
               }
               return 0
             })
-            const walkedDisplayNameSet = new Set<string>()
-            changeCrossingNodePosition(
-              newItem,
-              allChildrenNodes,
-              walkedDisplayNameSet,
-            )
-            finalChildrenNodes = allChildrenNodes.filter(
-              (node) => node.displayName !== newItem.displayName,
-            )
+            const result = getCrossingNodeNewPosition(newItem, allChildrenNodes)
+            finalChildrenNodes = allChildrenNodes
+              .map((node) => {
+                if (result.has(node.displayName)) {
+                  return result.get(node.displayName) as ComponentNode
+                }
+                return node
+              })
+              .filter((node) => {
+                node.displayName !== newItem.displayName
+              })
           } else {
             const indexOfChildren = childrenNodes.findIndex(
               (node) => node.displayName === newItem.displayName,
@@ -223,15 +225,15 @@ export const RenderComponentCanvas: FC<{
               }
               return 0
             })
-            const walkedDisplayNameSet = new Set<string>()
-            changeCrossingNodePosition(
-              newItem,
-              allChildrenNodes,
-              walkedDisplayNameSet,
-            )
-            finalChildrenNodes = allChildrenNodes.filter(
-              (node) => node.displayName !== newItem.displayName,
-            )
+            const result = getCrossingNodeNewPosition(newItem, allChildrenNodes)
+            finalChildrenNodes = allChildrenNodes
+              .map((node) => {
+                if (result.has(node.displayName)) {
+                  return result.get(node.displayName) as ComponentNode
+                }
+                return node
+              })
+              .filter((node) => node.displayName !== newItem.displayName)
           }
 
           debounceUpdateComponentPositionByReflow(
