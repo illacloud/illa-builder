@@ -1,5 +1,4 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { cloneDeep } from "lodash"
 import {
   ComponentNode,
   ComponentsState,
@@ -9,15 +8,18 @@ import {
   UpdateComponentPositionAndSizePayload,
   UpdateComponentPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
 import {
+  ComponentCopyDisplayNamesPayload,
   ComponentCopyPayload,
   ComponentDraggingPayload,
   ComponentDropPayload,
   ComponentResizePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const updateComponentReducer: CaseReducer<
   ComponentsState,
@@ -50,12 +52,65 @@ export const copyComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentCopyPayload>
 > = (state, action) => {
-  const parentNode = searchDsl(state, action.payload.componentNode.parentNode)
-  if (parentNode != null) {
-    parentNode.childrenNode.push({
-      ...action.payload.componentNode,
-      displayName: action.payload.newDisplayName,
-      y: action.payload.componentNode.y + action.payload.componentNode.h,
+  action.payload.componentNodeList.forEach((node) => {
+    const parentNode = searchDsl(state, node.parentNode)
+    if (parentNode != null) {
+      const newNode = {
+        ...node,
+        displayName: DisplayNameGenerator.generateDisplayName(
+          node.type,
+          node.showName,
+        ),
+        x: action.payload.offsetX + node.x,
+        y: action.payload.offsetY + node.y,
+      } as ComponentNode
+      changeComponentNodeChildrenDisplayName(newNode)
+      parentNode.childrenNode.push(newNode)
+    }
+  })
+}
+
+export const copyComponentNodeFromDisplayNamesReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentCopyDisplayNamesPayload>
+> = (state, action) => {
+  action.payload.displayNameList.forEach((name) => {
+    const node = searchDsl(state, name)
+    if (node != null) {
+      const parentNode = searchDsl(state, node.parentNode)
+      if (parentNode != null) {
+        const newNode = {
+          ...node,
+          displayName: DisplayNameGenerator.generateDisplayName(
+            node.type,
+            node.showName,
+          ),
+          x: action.payload.offsetX + node.x,
+          y: action.payload.offsetY + node.y,
+        } as ComponentNode
+        changeComponentNodeChildrenDisplayName(newNode)
+        parentNode.childrenNode.push(newNode)
+      }
+    }
+  })
+}
+
+function changeComponentNodeChildrenDisplayName(componentNode: ComponentNode) {
+  if (
+    componentNode.childrenNode != null &&
+    componentNode.childrenNode.length > 0
+  ) {
+    componentNode.childrenNode.forEach((node) => {
+      node = {
+        ...node,
+        displayName: DisplayNameGenerator.generateDisplayName(
+          node.type,
+          node.showName,
+        ),
+      } as ComponentNode
+      if (node.childrenNode != null && node.childrenNode.length > 0) {
+        changeComponentNodeChildrenDisplayName(node)
+      }
     })
   }
 }
