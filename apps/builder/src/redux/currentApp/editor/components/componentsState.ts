@@ -54,11 +54,7 @@ export interface UpdateComponentDisplayNamePayload {
   newDisplayName: string
 }
 
-export interface UpdateComponentPositionAndSizePayload {
+export interface UpdateComponentReflowPayload {
   parentDisplayName: string
-  displayName: string
-  x: number
-  y: number
-  w: number
-  h: number
+  childNodes: ComponentNode[]
 }

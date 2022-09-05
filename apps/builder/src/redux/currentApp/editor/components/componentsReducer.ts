@@ -6,8 +6,8 @@ import {
   DeleteComponentNodePayload,
   ResetComponentPropsPayload,
   UpdateComponentDisplayNamePayload,
-  UpdateComponentPositionAndSizePayload,
   UpdateComponentPropsPayload,
+  UpdateComponentReflowPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
@@ -180,29 +180,9 @@ export const updateComponentDisplayNameReducer: CaseReducer<
   node.displayName = newDisplayName
 }
 
-export const updateComponentPositionAndSizeReducer: CaseReducer<
+export const updateComponentReflowReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<UpdateComponentPositionAndSizePayload>
-> = (state, action) => {
-  const { parentDisplayName, displayName, x, y, w, h } = action.payload
-  const parentNode = searchDsl(state, parentDisplayName)
-  if (parentNode != null) {
-    const index = parentNode.childrenNode.findIndex((value) => {
-      return value.displayName === displayName
-    })
-    if (index > -1) {
-      const node = parentNode.childrenNode[index]
-      node.x = x
-      node.y = y
-      node.w = w
-      node.h = h
-    }
-  }
-}
-
-export const updateComponentReflow: CaseReducer<
-  ComponentsState,
-  PayloadAction<{ parentDisplayName: string; childNodes: ComponentNode[] }>
+  PayloadAction<UpdateComponentReflowPayload>
 > = (state, action) => {
   const { parentDisplayName, childNodes } = action.payload
   const targetNode = searchDsl(state, parentDisplayName)

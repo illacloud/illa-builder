@@ -31,7 +31,7 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { cloneDeep, debounce, throttle } from "lodash"
+import { throttle } from "lodash"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -93,7 +93,7 @@ export const RenderComponentCanvas: FC<{
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
       dispatch(
-        componentsActions.updateComponentReflow({
+        componentsActions.updateComponentReflowReducer({
           parentDisplayName: parentDisplayName,
           childNodes: childrenNodes,
         }),
@@ -287,13 +287,9 @@ export const RenderComponentCanvas: FC<{
             dispatch(componentsActions.addComponentReducer(newItem))
           } else {
             dispatch(
-              componentsActions.updateComponentPositionAndSizeReducer({
-                parentDisplayName: newItem.parentNode || "",
-                displayName: newItem.displayName,
-                x: newItem.x,
-                y: newItem.y,
-                w: newItem.w,
-                h: newItem.h,
+              componentsActions.updateSingleComponentReducer({
+                isMove: false,
+                componentNode: newItem,
               }),
             )
           }
