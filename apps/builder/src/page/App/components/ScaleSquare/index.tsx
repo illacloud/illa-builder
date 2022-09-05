@@ -39,7 +39,7 @@ import { endDrag, startDrag } from "@/utils/drag/drag"
 import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/style"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep, throttle } from "lodash"
-import { changeCrossingNodePosition } from "@/page/App/components/DotPanel/calc"
+import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 
 const { Item } = DropList
 
@@ -195,33 +195,11 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       const allChildrenNodes = [...childNodesRef.current]
 
       allChildrenNodes.splice(indexOfChildren, 1, newItem)
-      allChildrenNodes.sort((node1, node2) => {
-        if (node1.y < node2.y) {
-          return -1
-        }
-        if (node1.y > node2.y) {
-          return 1
-        }
-        if (node1.y === node2.y) {
-          if (node1.x > node2.x) {
-            return 1
-          }
-          if (node1.x < node2.x) {
-            return -1
-          }
-        }
-        return 0
-      })
-      const workedDisplayName = new Set<string>()
-      changeCrossingNodePosition(newItem, allChildrenNodes, workedDisplayName)
-      const indexOfNewItem = allChildrenNodes.findIndex(
-        (node) => node.displayName === componentNode.displayName,
-      )
-      allChildrenNodes.splice(indexOfNewItem, 1, componentNode)
+      const { finalState } = getReflowResult(newItem, allChildrenNodes)
 
       debounceUpdateComponentPositionByReflow(
         componentNode.parentNode || "root",
-        allChildrenNodes,
+        finalState,
       )
     },
     [

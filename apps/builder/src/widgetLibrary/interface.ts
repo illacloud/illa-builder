@@ -55,6 +55,7 @@ export interface BaseWidgetProps {
   handleUpdateGlobalData: (key: string, value: any) => void
   handleDeleteGlobalData: (key: string) => void
   handleUpdateDsl: (value: any) => void
+  updateComponentHeight: (newHeight: number) => void
 }
 
 export interface BaseComponentNodeProps {

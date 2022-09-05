@@ -99,9 +99,27 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const inputWrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (inputWrapperRef.current) {
+      updateComponentHeight(inputWrapperRef.current?.clientHeight)
+    }
+  }, [
+    value,
+    pattern,
+    regex,
+    minLength,
+    maxLength,
+    required,
+    customRule,
+    hideValidationMessage,
+  ])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -153,7 +171,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
   return (
-    <>
+    <div ref={inputWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -190,7 +208,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
           hideValidationMessage={hideValidationMessage}
         />
       </div>
-    </>
+    </div>
   )
 }
 
