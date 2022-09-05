@@ -5,7 +5,7 @@ import {
   ListenerEffectAPI,
   TypedStartListening,
 } from "@reduxjs/toolkit"
-import logger from "redux-logger"
+import { logger } from "redux-logger"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import actionReducer from "@/redux/currentApp/action/actionSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -39,6 +39,11 @@ const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
 })
 
+const middlewares = [reduxAsync]
+
+if (import.meta.env.DEV) {
+  middlewares.push(logger)
+}
 const store = configureStore({
   reducer: {
     config: configReducer,
@@ -55,9 +60,8 @@ const store = configureStore({
         ignoredActions: ["execution/setExecutionResultReducer"],
       },
     })
-      .concat(logger)
-      .concat(reduxAsync)
-      .prepend(listenerMiddleware.middleware),
+      .prepend(listenerMiddleware.middleware)
+      .concat(middlewares),
 })
 
 export default store

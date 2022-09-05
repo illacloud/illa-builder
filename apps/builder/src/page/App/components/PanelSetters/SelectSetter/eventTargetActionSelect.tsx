@@ -19,7 +19,7 @@ export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
     if (value === undefined) {
       handleUpdateDsl(attrName, undefined)
     }
-  }, [value])
+  }, [attrName, handleUpdateDsl, value])
 
   const actionOptions = useMemo(() => {
     if (selectedContext.widgetOrAction === "ACTION") {
@@ -35,7 +35,7 @@ export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
       })
     }
     return []
-  }, [actionList])
+  }, [actionList, selectedAction?.displayName, selectedContext.widgetOrAction])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>

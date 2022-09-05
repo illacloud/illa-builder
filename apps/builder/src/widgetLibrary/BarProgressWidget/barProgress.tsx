@@ -70,7 +70,17 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [value, showText, strokeWidth, color, trailColor, displayName])
+  }, [
+    value,
+    showText,
+    strokeWidth,
+    color,
+    trailColor,
+    displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

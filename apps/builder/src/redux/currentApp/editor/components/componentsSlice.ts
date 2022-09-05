@@ -8,10 +8,9 @@ import {
   resetComponentPropsReducer,
   updateComponentDisplayNameReducer,
   updateComponentDraggingState,
-  updateComponentPositionAndSizeReducer,
   updateComponentPropsReducer,
   updateComponentReducer,
-  updateComponentReflow,
+  updateComponentReflowReducer,
   updateComponentResizeState,
   updateSingleComponentReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
@@ -31,8 +30,7 @@ const componentsSlice = createSlice({
     deleteComponentNodeReducer,
     resetComponentPropsReducer,
     updateComponentDisplayNameReducer,
-    updateComponentPositionAndSizeReducer,
-    updateComponentReflow,
+    updateComponentReflowReducer,
   },
 })
 

@@ -98,6 +98,9 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     mappedOption,
     displayName,
     finalOptions,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
 
   return (

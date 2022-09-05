@@ -148,6 +148,9 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     allowClear,
     minLength,
     maxLength,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <>
