@@ -63,7 +63,18 @@ export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [text, variant, leftIcon, rightIcon, disabled, loading, colorScheme])
+  }, [
+    text,
+    variant,
+    leftIcon,
+    rightIcon,
+    disabled,
+    loading,
+    colorScheme,
+    handleUpdateGlobalData,
+    displayName,
+    handleDeleteGlobalData,
+  ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={buttonLayoutStyle}>

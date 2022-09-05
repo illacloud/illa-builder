@@ -152,6 +152,9 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     minLength,
     maxLength,
     allowClear,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <>

@@ -1,4 +1,4 @@
-import { FC, useContext } from "react"
+import { FC, useCallback, useContext, useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { get } from "lodash"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
@@ -26,47 +26,54 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = (props) => {
     useContext(GLOBAL_DATA_CONTEXT)
   const dispatch = useDispatch()
 
-  const realProps = displayNameMapProps[displayName] ?? {}
-  if (!type) return null
-  const COMP = widgetBuilder(type).widget
-  if (!COMP) return null
+  const realProps = useMemo(
+    () => displayNameMapProps[displayName] ?? {},
+    [displayName, displayNameMapProps],
+  )
 
-  const handleUpdateDsl = (value: Record<string, any>) => {
-    dispatch(
-      executionActions.updateExecutionByDisplayNameReducer({
-        displayName,
-        value,
-      }),
-    )
-  }
+  const handleUpdateDsl = useCallback(
+    (value: Record<string, any>) => {
+      dispatch(
+        executionActions.updateExecutionByDisplayNameReducer({
+          displayName,
+          value,
+        }),
+      )
+    },
+    [dispatch, displayName],
+  )
 
-  const getOnChangeEventScripts = () => {
+  const getOnChangeEventScripts = useCallback(() => {
     const events = get(realProps, "events")
     if (events) {
       return getEventScripts(events, "change")
     }
     return []
-  }
+  }, [realProps])
 
-  const getOnClickEventScripts = () => {
+  const getOnClickEventScripts = useCallback(() => {
     const events = get(realProps, "events")
     if (events) {
       return getEventScripts(events, "click")
     }
     return []
-  }
+  }, [realProps])
 
-  const handleOnChange = () => {
+  const handleOnChange = useCallback(() => {
     getOnChangeEventScripts().forEach((scriptObj) => {
       runEventHandler(scriptObj, globalData)
     })
-  }
+  }, [getOnChangeEventScripts, globalData])
 
-  const handleOnClick = () => {
+  const handleOnClick = useCallback(() => {
     getOnClickEventScripts().forEach((scriptObj) => {
       runEventHandler(scriptObj, globalData)
     })
-  }
+  }, [getOnClickEventScripts, globalData])
+
+  if (!type) return null
+  const COMP = widgetBuilder(type).widget
+  if (!COMP) return null
 
   const { hidden } = realProps
 

@@ -90,6 +90,9 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     readOnly,
     allowHalf,
     maxCount,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

@@ -76,7 +76,15 @@ export const TextWidget: FC<TextWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [displayName, value, horizontalAlign, verticalAlign])
+  }, [
+    displayName,
+    value,
+    horizontalAlign,
+    verticalAlign,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullWidthAndFullHeightStyle}>

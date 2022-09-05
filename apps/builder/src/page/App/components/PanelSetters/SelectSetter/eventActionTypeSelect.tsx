@@ -33,10 +33,11 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
       return get(selectedAction, `content.${parentAttrName}`, {})
     }
   }, [
+    widgetOrAction,
     widgetDisplayNameMapProps,
+    widgetDisplayName,
     parentAttrName,
     selectedAction,
-    widgetOrAction,
   ])
 
   const _finalAttrPath = parentAttrName ? parentAttrName : attrName

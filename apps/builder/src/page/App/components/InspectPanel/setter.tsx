@@ -104,6 +104,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     Comp,
     isInList,
     isSetterSingleRowWrapper,
+    setterType,
     props,
     _finalAttrName,
     finalValue,

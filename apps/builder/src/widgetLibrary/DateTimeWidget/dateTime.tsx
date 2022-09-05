@@ -131,6 +131,9 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     minuteStep,
     timeFormat,
     colorScheme,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

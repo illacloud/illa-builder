@@ -65,7 +65,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [appId, dispatch, model, versionId])
 
   return loadingState
 }
