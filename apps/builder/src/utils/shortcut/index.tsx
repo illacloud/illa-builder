@@ -10,9 +10,11 @@ import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
 import {
   getIllaMode,
+  getSelectedAction,
   getSelectedComponents,
 } from "@/redux/config/configSelector"
 import { CopyManager } from "@/utils/copyManager"
+import { FocusManager } from "@/utils/focusManager"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -21,6 +23,8 @@ export const Shortcut: FC = ({ children }) => {
   const mode = useSelector(getIllaMode)
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
+
+  const currentSelectedAction = useSelector(getSelectedAction)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -94,7 +98,26 @@ export const Shortcut: FC = ({ children }) => {
       switch (hotkeysEvent.shortcut) {
         case "ctrl+c":
         case "command+c":
-          CopyManager.copy()
+          switch (FocusManager.getFocus()) {
+            case "none":
+              break
+            case "canvas":
+            case "dataWorkspace_component":
+              if (currentSelectedComponent != null) {
+                CopyManager.copyComponentNode(currentSelectedComponent)
+              }
+              break
+            case "dataWorkspace_action":
+            case "action":
+              if (currentSelectedAction != null) {
+                CopyManager.copyAction(currentSelectedAction)
+              }
+              break
+            case "widget_picker":
+              break
+            case "components":
+              break
+          }
           break
         case "command+v":
         case "ctrl+v":
@@ -102,7 +125,26 @@ export const Shortcut: FC = ({ children }) => {
           break
         case "command+d":
         case "ctrl+d":
-          CopyManager.copy()
+          switch (FocusManager.getFocus()) {
+            case "none":
+              break
+            case "canvas":
+            case "dataWorkspace_component":
+              if (currentSelectedComponent != null) {
+                CopyManager.copyComponentNode(currentSelectedComponent)
+              }
+              break
+            case "dataWorkspace_action":
+            case "action":
+              if (currentSelectedAction != null) {
+                CopyManager.copyAction(currentSelectedAction)
+              }
+              break
+            case "widget_picker":
+              break
+            case "components":
+              break
+          }
           CopyManager.paste()
           break
       }
