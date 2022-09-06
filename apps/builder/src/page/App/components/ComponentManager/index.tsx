@@ -1,13 +1,16 @@
-import { componentPanelCss } from "./style"
 import { TabPane, Tabs } from "@illa-design/tabs"
-import { ComponentPanel } from "./components/ComponentPanel"
-import { ConfigPanel } from "./components/ConfigPanel"
 import { useTranslation } from "react-i18next"
-import { useEffect, useState } from "react"
+import { FC, HTMLAttributes, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
+import { componentPanelCss } from "./style"
+import { FocusManager } from "@/utils/focusManager"
+import { ConfigPanel } from "@/page/App/components/ConfigPanel"
+import { ComponentPanel } from "@/page/App/components/ComponentPanel"
 
-function ComponentsManager() {
+export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
+  props,
+) => {
   const { t } = useTranslation()
 
   const [activeKey, setActiveKey] = useState("Insert")
@@ -23,7 +26,13 @@ function ComponentsManager() {
   }, [selectedDisplayNames])
 
   return (
-    <div css={componentPanelCss}>
+    <div
+      className={props.className}
+      css={componentPanelCss}
+      onClick={() => {
+        FocusManager.switchFocus("components")
+      }}
+    >
       <Tabs
         variant="text"
         activeKey={activeKey}
@@ -44,3 +53,5 @@ function ComponentsManager() {
 }
 
 export default ComponentsManager
+
+ComponentsManager.displayName = "ComponentsManager"

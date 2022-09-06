@@ -16,7 +16,7 @@ export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       className={props.className}
       css={applyActionEditorStyle(ActionEditorDefaultHeight)}
       ref={panelRef}
-      onFocus={() => {
+      onClick={() => {
         FocusManager.switchFocus("action")
       }}
     >

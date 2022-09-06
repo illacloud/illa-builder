@@ -4,7 +4,7 @@ export type ILLAPanelType =
   | "dataWorkspace_action"
   | "action"
   | "canvas"
-  | "inspect"
+  | "widget_picker"
   | "components"
 
 export class FocusManager {

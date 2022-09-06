@@ -58,7 +58,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
         dataList={actionExecutionArray}
         selectedKeys={[selectedAction?.displayName ?? ""]}
         handleSelect={handleActionSelect}
-        onFocus={() => {
+        onIllaFocus={() => {
           FocusManager.switchFocus("dataWorkspace_action")
         }}
       />
@@ -69,7 +69,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
         dataList={widgetExecutionArray}
         selectedKeys={selectedComponents}
         handleSelect={handleComponentSelect}
-        onFocus={() => {
+        onIllaFocus={() => {
           FocusManager.switchFocus("dataWorkspace_component")
         }}
       />

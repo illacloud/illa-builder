@@ -55,12 +55,7 @@ export const SingleSelectedPanel: FC = () => {
         handleUpdateDsl={handleUpdateDsl}
         widgetOrAction="WIDGET"
       >
-        <div
-          css={singleSelectedPanelWrapperStyle}
-          onFocus={() => {
-            FocusManager.switchFocus("inspect")
-          }}
-        >
+        <div css={singleSelectedPanelWrapperStyle}>
           <PanelHeader />
           <Divider />
           <div css={singleSelectedPanelSetterWrapperStyle}>

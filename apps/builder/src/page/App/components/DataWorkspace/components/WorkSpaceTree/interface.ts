@@ -3,5 +3,5 @@ export interface WorkSpaceTreeProps {
   dataList?: Record<string, any>[]
   selectedKeys?: string[]
   handleSelect?: (selectedKeys: string[]) => void
-  onFocus?: () => void
+  onIllaFocus?: () => void
 }

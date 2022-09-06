@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { debounce } from "lodash"
-import { ColorPicker } from "@/page/App/components/WidgetPickerEditor/components/ColorPicker"
 import { Trigger } from "@illa-design/trigger"
 import {
   alphaContentStyle,
@@ -12,6 +11,7 @@ import {
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { hexToHsva } from "@uiw/color-convert/src"
+import { ColorPicker } from "@/page/App/components/ColorPicker"
 
 export const ColorPickerSetter: FC<any> = (props) => {
   const { attrName, handleUpdateDsl, value } = props

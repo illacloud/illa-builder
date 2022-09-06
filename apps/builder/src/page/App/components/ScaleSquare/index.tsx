@@ -36,11 +36,11 @@ import {
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/style"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep, throttle } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { CopyManager } from "@/utils/copyManager"
+import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 
 const { Item } = DropList
 
