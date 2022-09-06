@@ -9,8 +9,6 @@ import store, { RootState } from "@/store"
 import { dottedLineSquareActions } from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import { dragShadowActions } from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { cloneDeep } from "lodash"
-import { updateComponentsShape } from "@/redux/currentApp/editor/components/componentsReducer"
 
 export function startDrag(dragNode: ComponentNode) {
   store.dispatch(configActions.updateShowDot(true))
@@ -29,17 +27,6 @@ export function startDrag(dragNode: ComponentNode) {
 
 export function endDrag(dragNode: ComponentNode, isDropOnCanvas: boolean) {
   store.dispatch(configActions.updateShowDot(false))
-  store.dispatch(
-    componentsActions.updateComponentsShape({
-      isMove: true,
-      components: [
-        {
-          ...dragNode,
-          isDragging: false,
-        },
-      ],
-    }),
-  )
   if (isDropOnCanvas) {
     store.dispatch(configActions.updateSelectedComponent([dragNode]))
   }
