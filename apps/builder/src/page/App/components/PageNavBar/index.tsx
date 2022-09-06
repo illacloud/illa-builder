@@ -140,14 +140,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div>
         {mode === "edit" && (
           <ButtonGroup spacing={"8px"}>
-            {/*TODO: @xiaoyu Error list*/}
-            {/*<Badge count={executionError && Object.keys(executionError).length}>*/}
-            {/*  <Button*/}
-            {/*    colorScheme="gray"*/}
-            {/*    size="medium"*/}
-            {/*    leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}*/}
-            {/*  />*/}
-            {/*</Badge>*/}
+            <Badge count={executionError && Object.keys(executionError).length}>
+              <Button
+                colorScheme="gray"
+                size="medium"
+                leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
+                onClick={handleClickDebuggerIcon}
+              />
+            </Badge>
             <Button
               loading={deployLoading}
               colorScheme="techPurple"
