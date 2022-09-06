@@ -1,5 +1,5 @@
 import { TimelineWidgetIcon } from "@illa-design/icon"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
@@ -11,6 +11,7 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 12,
   h: 28,
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     direction: "vertical",
     items: `{{["The first milestone","The second milestone","The third milestone"]}}`,

@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo, useRef } from "react"
 import { CheckboxGroup } from "@illa-design/checkbox"
 import {
   CheckboxGroupWidgetProps,
@@ -60,6 +60,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
+    updateComponentHeight,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -102,6 +103,14 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
   ])
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [value, required, finalOptions])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

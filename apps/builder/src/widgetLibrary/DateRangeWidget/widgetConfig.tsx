@@ -1,5 +1,5 @@
 import { DateRangeWidgetIcon } from "@illa-design/icon"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
@@ -11,6 +11,7 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "CALENDAR",
   w: 16,
   h: 5,
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     dateFormat: "YYYY-MM-DD",
     startPlaceholder: "Start date",

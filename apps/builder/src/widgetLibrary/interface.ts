@@ -24,6 +24,11 @@ export interface DraggableWrapperShape {
   w: number
   h: number
 }
+export enum RESIZE_DIRECTION {
+  "ALL" = "ALL",
+  "HORIZONTAL" = "HORIZONTAL",
+  "VERTICAL" = "VERTICAL",
+}
 
 export interface BaseWidgetInfo {
   displayName: string
@@ -32,6 +37,7 @@ export interface BaseWidgetInfo {
   type: WidgetType
   sessionType?: SessionType
   keywords?: string[]
+  resizeDirection?: RESIZE_DIRECTION
 }
 
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {

@@ -14,7 +14,7 @@ import {
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
-import store, { RootState } from "@/store"
+import store from "@/store"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
@@ -40,41 +40,80 @@ import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/compo
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep, throttle } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 
 const { Item } = DropList
 
 export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const { componentNode, unitW, unitH, w, h, x, y } = props
 
-  const { t } = useTranslation()
-  const isShowCanvasDot = useSelector(isShowDot)
-
-  const illaMode = useSelector(getIllaMode)
-  const displayName = componentNode.displayName
-  const errors = useSelector(getExecutionError)
-  const widgetErrors = errors[displayName] ?? {}
-  const hasError = Object.keys(widgetErrors).length > 0
-
   const shortcut = useContext(ShortCutContext)
+
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+
+  const isShowCanvasDot = useSelector(isShowDot)
+  const illaMode = useSelector(getIllaMode)
+  const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
+
+  const childNodesRef = useRef<ComponentNode[]>([])
+
+  const resizeDirection = useMemo(() => {
+    const widgetConfig = widgetBuilder(componentNode.type).config
+    return widgetConfig.resizeDirection || RESIZE_DIRECTION.ALL
+  }, [componentNode.type])
+
+  const enableResizing = useMemo(() => {
+    if (resizeDirection === RESIZE_DIRECTION.ALL) {
+      return true
+    }
+    if (resizeDirection === RESIZE_DIRECTION.HORIZONTAL) {
+      return {
+        bottom: false,
+        bottomLeft: false,
+        bottomRight: false,
+        left: true,
+        right: true,
+        top: false,
+        topLeft: false,
+        topRight: false,
+      }
+    }
+    if (resizeDirection === RESIZE_DIRECTION.VERTICAL) {
+      return {
+        bottom: true,
+        bottomLeft: false,
+        bottomRight: false,
+        left: false,
+        right: false,
+        top: true,
+        topLeft: false,
+        topRight: false,
+      }
+    }
+  }, [resizeDirection])
+
+  const hasError = useMemo(() => {
+    const displayName = componentNode.displayName
+    const widgetErrors = errors[displayName] ?? {}
+    return Object.keys(widgetErrors).length > 0
+  }, [componentNode.displayName, errors])
+
   const isSelected = useMemo(() => {
     return selectedComponents.some((node) => {
       return node.displayName === componentNode.displayName
     })
   }, [componentNode.displayName, selectedComponents])
-  let scaleSquareState: ScaleSquareType = hasError ? "error" : "normal"
+
+  let scaleSquareState: ScaleSquareType = useMemo(
+    () => (hasError ? "error" : "normal"),
+    [hasError],
+  )
   if (illaMode !== "edit") {
     scaleSquareState = "production"
   }
-
-  const dispatch = useDispatch()
-  const selected = useSelector<RootState, boolean>((state) => {
-    return (
-      state.config.selectedComponents.findIndex((value) => {
-        return value.displayName == componentNode.displayName
-      }) != -1
-    )
-  })
 
   const handleOnDragStart = useCallback(() => {
     if (illaMode === "edit") {
@@ -162,7 +201,85 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     [illaMode, componentNode],
   )
 
-  const childNodesRef = useRef<ComponentNode[]>([])
+  const resizeHandler = useMemo(() => {
+    if (resizeDirection === RESIZE_DIRECTION.ALL) {
+      return {
+        topLeft: (
+          <div
+            css={applySquarePointerStyle(isSelected, scaleSquareState, "tl")}
+          />
+        ),
+        top: (
+          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
+            <div
+              className="handler"
+              css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
+            />
+          </div>
+        ),
+        topRight: (
+          <div
+            css={applySquarePointerStyle(isSelected, scaleSquareState, "tr")}
+          />
+        ),
+        right: (
+          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
+            <div
+              className="handler"
+              css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
+            />
+          </div>
+        ),
+        bottomRight: (
+          <div
+            css={applySquarePointerStyle(isSelected, scaleSquareState, "br")}
+          />
+        ),
+        bottom: (
+          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
+            <div
+              className="handler"
+              css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
+            />
+          </div>
+        ),
+        bottomLeft: (
+          <div
+            css={applySquarePointerStyle(isSelected, scaleSquareState, "bl")}
+          />
+        ),
+        left: (
+          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
+            <div
+              className="handler"
+              css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
+            />
+          </div>
+        ),
+      }
+    }
+
+    if (resizeDirection === RESIZE_DIRECTION.HORIZONTAL) {
+      return {
+        right: (
+          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
+            <div
+              className="handler"
+              css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
+            />
+          </div>
+        ),
+        left: (
+          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
+            <div
+              className="handler"
+              css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
+            />
+          </div>
+        ),
+      }
+    }
+  }, [isSelected, resizeDirection, scaleSquareState])
 
   const handleResizeStart = () => {
     const rootState = store.getState()
@@ -225,14 +342,17 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         x: x,
         y: y,
       }}
-      enableResizing={illaMode === "edit" && isSelected}
+      enableResizing={
+        illaMode === "edit" && isSelected ? enableResizing : false
+      }
       css={applyRNDWrapperStyle(
-        selected,
+        isSelected,
         hasError,
         isShowCanvasDot,
         isDragging,
         illaMode === "edit",
       )}
+      resizeHandleComponent={resizeHandler}
       disableDragging
       onResizeStart={handleResizeStart}
       onResize={handleResize}
@@ -267,7 +387,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         <div
           className="wrapperPending"
           css={applyWrapperPendingStyle(
-            selected,
+            isSelected,
             hasError,
             isDragging,
             illaMode === "edit",
@@ -277,51 +397,15 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         >
           <MoveBar
             isError={hasError}
-            displayName={displayName}
+            displayName={componentNode.displayName}
             maxWidth={componentNode.w * unitW}
-            selected={selected}
+            selected={isSelected}
             isEditor={illaMode === "edit"}
           />
 
           <TransformWidgetWrapper componentNode={componentNode} />
           <div
             css={applyDashedLineStyle(isSelected, isShowCanvasDot, isDragging)}
-          />
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "t")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "t")}
-            />
-          </div>
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "r")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "r")}
-            />
-          </div>
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "b")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "b")}
-            />
-          </div>
-          <div css={applyBarHandlerStyle(selected, scaleSquareState, "l")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(selected, scaleSquareState, "l")}
-            />
-          </div>
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "tl")}
-          />
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "tr")}
-          />
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "bl")}
-          />
-          <div
-            css={applySquarePointerStyle(selected, scaleSquareState, "br")}
           />
         </div>
       </Dropdown>
