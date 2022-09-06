@@ -12,6 +12,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DeleteComponentNodePayload,
+  ResetComponentPropsPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
@@ -127,6 +128,19 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "resetComponentPropsReducer":
+            const resetPayload: ResetComponentPropsPayload = payload
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [resetPayload],
+              ),
+            )
             break
           case "updateComponentDisplayNameReducer":
             break

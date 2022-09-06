@@ -97,21 +97,14 @@ export const updateComponentPropsReducer: CaseReducer<
 
 export const resetComponentPropsReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<ResetComponentPropsPayload>
+  PayloadAction<ComponentNode>
 > = (state, action) => {
-  const { displayName, resetSlice } = action.payload
-  if (!isObject(resetSlice) || !displayName) {
-    return
-  }
+  const componentNode = action.payload
+  if (!componentNode) return
+  const displayName = componentNode.displayName
   const node = searchDsl(state, displayName)
   if (!node) return
-  const widgetProps = resetSlice || {}
-  const clonedWidgetProps = cloneDeep(widgetProps)
-  node.props = getNewWidgetPropsByUpdateSlice(
-    displayName,
-    resetSlice,
-    clonedWidgetProps,
-  )
+  node.props = componentNode.props
 }
 
 export const updateComponentDisplayNameReducer: CaseReducer<
