@@ -287,6 +287,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             illaMode === "edit",
           )}
           onClick={handleOnDragStart}
+          onContextMenu={() => {
+            dispatch(configActions.updateSelectedComponent([componentNode]))
+          }}
           ref={dragRef}
         >
           <MoveBar
