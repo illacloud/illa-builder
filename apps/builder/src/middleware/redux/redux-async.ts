@@ -55,7 +55,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                [payload],
+                payload,
               ),
             )
             break
