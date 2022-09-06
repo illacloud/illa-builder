@@ -383,7 +383,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
               key="duplicate"
               title={t("editor.context_menu.duplicate")}
               onClick={() => {
-                CopyManager.copy()
+                CopyManager.copyComponentNode([componentNode])
                 CopyManager.paste()
               }}
             />

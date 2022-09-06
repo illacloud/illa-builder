@@ -14,24 +14,12 @@ export class CopyManager {
 
   static currentCopyAction: ActionItem<ActionContent> | null = null
 
-  static copy() {
-    switch (FocusManager.getFocus()) {
-      case "dataWorkspace_action":
-      case "action":
-        this.currentCopyAction = store.getState().config.selectedAction
-        break
-      case "dataWorkspace_component":
-      case "canvas":
-        this.currentCopyComponentNodes =
-          store.getState().config.selectedComponents
-        break
-      case "none":
-        break
-      case "components":
-        break
-      default:
-        break
-    }
+  static copyAction(action: ActionItem<ActionContent>) {
+    this.currentCopyAction = action
+  }
+
+  static copyComponentNode(node: ComponentNode[]) {
+    this.currentCopyComponentNodes = node
   }
 
   static paste() {
