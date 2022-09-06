@@ -14,7 +14,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
   (props, ref) => {
     const {
       value,
-      dateFormat,
+      format,
       placeholder,
       showClear,
       minDate,
@@ -22,7 +22,6 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       maxDate,
       readOnly,
       minuteStep,
-      timeFormat,
       colorScheme,
       handleUpdateDsl,
     } = props
@@ -43,9 +42,9 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
     return (
       <DatePicker
         w="100%"
-        showTime={{ step: { minute: minuteStep }, format: timeFormat }}
+        showTime={{ step: { minute: minuteStep }, format }}
         colorScheme={colorScheme}
-        format={dateFormat}
+        format={format}
         value={value}
         readOnly={readOnly}
         disabled={disabled}
@@ -68,7 +67,7 @@ WrappedDateTime.displayName = "WrappedDateTime"
 export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   const {
     value,
-    dateFormat,
+    format,
     placeholder,
     showClear,
     minDate,
@@ -76,7 +75,6 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     maxDate,
     readOnly,
     minuteStep,
-    timeFormat,
     colorScheme,
     displayName,
     handleUpdateGlobalData,
@@ -102,7 +100,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       value,
-      dateFormat,
+      format,
       placeholder,
       showClear,
       minDate,
@@ -110,7 +108,6 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       maxDate,
       readOnly,
       minuteStep,
-      timeFormat,
       colorScheme,
       setValue: (value: string) => {
         handleUpdateDsl({ value })
@@ -125,7 +122,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   }, [
     displayName,
     value,
-    dateFormat,
+    format,
     placeholder,
     showClear,
     minDate,
@@ -133,7 +130,6 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     maxDate,
     readOnly,
     minuteStep,
-    timeFormat,
     colorScheme,
     handleUpdateGlobalData,
     handleUpdateDsl,

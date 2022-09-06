@@ -5,4 +5,5 @@ export interface PanelBarProps {
   children?: ReactNode
   isOpened?: boolean
   saveToggleState?: (value: boolean) => void
+  onIllaFocus?: () => void
 }

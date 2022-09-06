@@ -2,31 +2,23 @@ import { createSlice } from "@reduxjs/toolkit"
 import { ComponentsInitialState } from "@/redux/currentApp/editor/components/componentsState"
 import {
   addComponentReducer,
-  copyComponentNodeFromDisplayNamesReducer,
-  copyComponentNodeReducer,
   deleteComponentNodeReducer,
   resetComponentPropsReducer,
   updateComponentDisplayNameReducer,
-  updateComponentDraggingState,
   updateComponentPropsReducer,
   updateComponentReducer,
   updateComponentReflowReducer,
-  updateComponentResizeState,
-  updateSingleComponentReducer,
+  updateComponentsShape,
 } from "@/redux/currentApp/editor/components/componentsReducer"
 
 const componentsSlice = createSlice({
   name: "components",
   initialState: ComponentsInitialState,
   reducers: {
-    updateSingleComponentReducer,
+    updateComponentsShape,
     addComponentReducer,
     updateComponentReducer,
-    updateComponentDraggingState,
-    copyComponentNodeReducer,
-    copyComponentNodeFromDisplayNamesReducer,
     updateComponentPropsReducer,
-    updateComponentResizeState,
     deleteComponentNodeReducer,
     resetComponentPropsReducer,
     updateComponentDisplayNameReducer,

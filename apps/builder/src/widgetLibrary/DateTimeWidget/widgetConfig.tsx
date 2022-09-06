@@ -13,9 +13,8 @@ export const DATE_TIME_WIDGET_CONFIG: WidgetConfig = {
   h: 5,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
-    placeholder: "YYYY-MM-DD",
-    dateFormat: "YYYY-MM-DD",
-    timeFormat: "HH:mm",
+    placeholder: i18n.t("widget.date_time.placeholder"),
+    format: "YYYY-MM-DD HH:mm:ss",
     minuteStep: "{{1}}",
     colorScheme: "blue",
     label: "Label",
