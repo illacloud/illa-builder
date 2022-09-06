@@ -1,14 +1,6 @@
 import * as Redux from "redux"
-import { addOrUpdateDragShadowReducer } from "@/redux/currentApp/editor/dragShadow/dragShadowReducer"
 import { Connection, getPayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
-import {
-  copyComponentNodeReducer,
-  deleteComponentNodeReducer,
-  updateComponentDraggingState,
-  updateComponentPropsReducer,
-  updateComponentResizeState,
-} from "@/redux/currentApp/editor/components/componentsReducer"
 import {
   ComponentCopyPayload,
   ComponentDraggingPayload,
@@ -130,7 +122,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                [copyPayload.componentNode],
+                [...copyPayload.componentNodeList],
               ),
             )
             break
