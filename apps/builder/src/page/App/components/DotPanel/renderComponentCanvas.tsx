@@ -284,7 +284,7 @@ export const RenderComponentCanvas: FC<{
             unitH: UNIT_HEIGHT,
           }
           if (item.x === -1 && item.y === -1) {
-            dispatch(componentsActions.addComponentReducer(newItem))
+            dispatch(componentsActions.addComponentReducer([newItem]))
           } else {
             dispatch(
               componentsActions.updateComponentPositionAndSizeReducer({

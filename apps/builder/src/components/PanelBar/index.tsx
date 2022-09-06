@@ -1,17 +1,17 @@
-import { FC, useCallback, useState, memo } from "react"
+import { FC, memo, useCallback, useState } from "react"
 import {
-  panelBarHeaderStyle,
   applyPanelBarOpenedIconStyle,
-  panelBarTitleStyle,
-  panelBarItemContentStyle,
+  panelBarHeaderStyle,
   panelBarItemAnimation,
+  panelBarItemContentStyle,
+  panelBarTitleStyle,
 } from "./style"
 import { PanelBarProps } from "./interface"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { UpIcon } from "@illa-design/icon"
 
 export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
-  const { title, children, isOpened = true, saveToggleState } = props
+  const { title, children, isOpened = true, saveToggleState, onFocus } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
   const handleToggle = useCallback(() => {
@@ -38,6 +38,7 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
           animate={isOpenedState ? "enter" : "exit"}
           exit="exit"
           initial={false}
+          onFocus={onFocus}
         >
           {children}
         </motion.div>

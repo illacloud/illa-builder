@@ -17,6 +17,7 @@ import {
 import { WorkSpaceTree } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getGlobalInfoExecutionResult } from "@/redux/currentUser/currentUserSelector"
+import { FocusManager } from "@/utils/focusManager"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -38,7 +39,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       selectedComponent &&
         dispatch(configActions.updateSelectedComponent([selectedComponent]))
     },
-    [root],
+    [dispatch, root],
   )
 
   const handleActionSelect = (selectedKeys: string[]) => {
@@ -57,6 +58,9 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
         dataList={actionExecutionArray}
         selectedKeys={[selectedAction?.displayName ?? ""]}
         handleSelect={handleActionSelect}
+        onFocus={() => {
+          FocusManager.switchFocus("dataWorkspace_action")
+        }}
       />
       <WorkSpaceTree
         title={`${t("editor.data_work_space.components_title")}(${
@@ -65,6 +69,9 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
         dataList={widgetExecutionArray}
         selectedKeys={selectedComponents}
         handleSelect={handleComponentSelect}
+        onFocus={() => {
+          FocusManager.switchFocus("dataWorkspace_component")
+        }}
       />
       <WorkSpaceTree
         title={`${t("editor.data_work_space.globals_title")}(${

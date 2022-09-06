@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { FocusManager } from "@/utils/focusManager"
 
 export const SingleSelectedPanel: FC = () => {
   const dispatch = useDispatch()
@@ -54,7 +55,12 @@ export const SingleSelectedPanel: FC = () => {
         handleUpdateDsl={handleUpdateDsl}
         widgetOrAction="WIDGET"
       >
-        <div css={singleSelectedPanelWrapperStyle}>
+        <div
+          css={singleSelectedPanelWrapperStyle}
+          onFocus={() => {
+            FocusManager.switchFocus("inspect")
+          }}
+        >
           <PanelHeader />
           <Divider />
           <div css={singleSelectedPanelSetterWrapperStyle}>

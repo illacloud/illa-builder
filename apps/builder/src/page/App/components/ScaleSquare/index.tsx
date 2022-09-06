@@ -40,6 +40,7 @@ import { dragPreviewStyle } from "@/page/App/components/WidgetPickerEditor/compo
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep, throttle } from "lodash"
 import { changeCrossingNodePosition } from "@/page/App/components/DotPanel/calc"
+import { CopyManager } from "@/utils/copyManager"
 
 const { Item } = DropList
 
@@ -96,12 +97,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         y,
         w: finalWidth,
         h: finalHeight,
+        isResizing: false,
       }
 
       dispatch(
-        componentsActions.updateSingleComponentReducer({
+        componentsActions.updateComponentsShape({
           isMove: false,
-          componentNode: newComponentNode,
+          components: [newComponentNode],
         }),
       )
       dispatch(configActions.updateShowDot(false))
@@ -147,7 +149,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         const childrenNodes = rootNode?.childrenNode
           ? cloneDeep(rootNode.childrenNode)
           : []
-        startDrag(componentNode, false)
+        startDrag(componentNode)
         return {
           item: componentNode,
           childrenNodes,
@@ -168,6 +170,17 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     const rootState = store.getState()
     const rootNode = getCanvas(rootState)
 
+    dispatch(
+      componentsActions.updateComponentsShape({
+        isMove: false,
+        components: [
+          {
+            ...componentNode,
+            isResizing: true,
+          },
+        ],
+      }),
+    )
     childNodesRef.current = rootNode?.childrenNode
       ? cloneDeep(rootNode.childrenNode)
       : []
@@ -272,7 +285,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
               key="duplicate"
               title={t("editor.context_menu.duplicate")}
               onClick={() => {
-                shortcut.copyComponentFromObject([componentNode])
+                CopyManager.copy()
+                CopyManager.paste()
               }}
             />
             <Item
