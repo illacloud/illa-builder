@@ -6,7 +6,7 @@ import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
-import { getReflowResult } from "../../../../page/App/components/DotPanel/calc"
+import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { ComponentNode } from "./componentsState"
 
 async function handleDeleteExecution(
