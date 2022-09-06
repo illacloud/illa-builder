@@ -1,5 +1,5 @@
 import { RadioButtonWidgetIcon } from "@illa-design/icon"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 import i18n from "@/i18n/config"
 
@@ -12,6 +12,7 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
   icon: <RadioButtonWidgetIcon size="100%" />,
   keywords: ["Radio Button", "按钮单选"],
   sessionType: "PRESENTATION",
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     optionConfigureMode: "static",
     label: "Label",

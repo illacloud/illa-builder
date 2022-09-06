@@ -1,5 +1,5 @@
 import { LineProgressWidgetIcon } from "@illa-design/icon"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
@@ -11,6 +11,7 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 16,
   h: 5,
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     value: "50",
     color: "blue",

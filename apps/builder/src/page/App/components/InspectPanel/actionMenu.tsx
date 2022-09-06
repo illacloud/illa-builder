@@ -1,5 +1,5 @@
 import { FC, useContext } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
@@ -7,6 +7,9 @@ import { PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 const { Item } = DropList
 
@@ -17,6 +20,9 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const dispatch = useDispatch()
 
   const shortcut = useContext(ShortCutContext)
+  const singleSelectedComponentNode = useSelector(
+    getComponentNodeBySingleSelected,
+  )
 
   return (
     <DropList width="184px">
@@ -25,11 +31,20 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         title={t("editor.inspect.header.action_menu.reset_state")}
         onClick={() => {
           const defaultProps = widgetBuilder(componentType).config.defaults
+          if (!singleSelectedComponentNode) return
+          const newComponentNode: ComponentNode = {
+            ...singleSelectedComponentNode,
+            props: {
+              ...defaultProps,
+            },
+          }
+          newComponentNode.props = getNewWidgetPropsByUpdateSlice(
+            newComponentNode.displayName as string,
+            newComponentNode.props || {},
+            newComponentNode.props || {},
+          )
           dispatch(
-            componentsActions.resetComponentPropsReducer({
-              displayName: widgetDisplayName,
-              resetSlice: defaultProps ?? {},
-            }),
+            componentsActions.resetComponentPropsReducer(newComponentNode),
           )
         }}
       />
