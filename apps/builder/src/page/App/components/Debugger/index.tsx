@@ -1,7 +1,8 @@
 import { FC, HTMLAttributes, useRef } from "react"
 import { Divider } from "@illa-design/divider"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
-import { applyDebuggerStyle } from "./style"
+import { applyDebuggerStyle, errorIconStyle, errorItemStyle, nameStyle, sourceStyle, titleStyle } from "./style"
+import { CloseIcon, ErrorIcon } from "@illa-design/icon"
 
 const DebuggerDefaultHeight = 300
 
@@ -16,8 +17,17 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
     >
       <DragBar resizeRef={panelRef} minHeight={DebuggerDefaultHeight} />
       <Divider direction="horizontal" />
-      <div>
-        123123243252345234565
+      <div css={titleStyle}>
+        <span>Errors</span>
+        <CloseIcon />
+      </div>
+      <div css={errorItemStyle}>
+        <div>
+          <ErrorIcon size={"16px"} css={errorIconStyle} />
+          <span css={nameStyle}>[updateCustomerInfo]</span>
+          <span>The value at config.body is invalid</span>
+        </div>
+        <div css={sourceStyle}>updateCustomerInfo.action</div>
       </div>
     </div>
   )

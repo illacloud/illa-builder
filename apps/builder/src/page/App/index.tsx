@@ -34,6 +34,7 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { setupConfigListener } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import { Debugger } from "@/page/App/components/Debugger"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -47,8 +48,10 @@ export const Editor: FC = () => {
       Connection.enterRoom(
         "app",
         appId ?? "",
-        (loading) => {},
-        (errorState) => {},
+        (loading) => {
+        },
+        (errorState) => {
+        },
       )
     }
     return () => {
@@ -100,7 +103,8 @@ export const Editor: FC = () => {
             <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
             <div css={middlePanelStyle}>
               <CanvasPanel css={centerPanelStyle} />
-              <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
+              <ActionEditor css={applyBottomPanelStyle(showBottomPanel && !showDebugger)} />
+              <Debugger css={applyBottomPanelStyle(showDebugger)} />
             </div>
             <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
           </div>
