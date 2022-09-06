@@ -119,6 +119,9 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     maxDate,
     readOnly,
     colorScheme,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
 
   return (

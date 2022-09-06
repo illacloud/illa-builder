@@ -6,7 +6,6 @@ import { generateNewEventItem } from "@/page/App/components/PanelSetters/EventHa
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { NewBaseEventHandlerSetterProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
-import { isObject } from "@/utils/typeHelper"
 
 export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
   props,
@@ -40,7 +39,7 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
         : defaultEvents[0].value
     const newEventItem = generateNewEventItem(eventType, "query1")
     handleUpdateDsl(attrName, [...oldEventItem, newEventItem])
-  }, [handleUpdateDsl, eventHandlerConfig, value])
+  }, [eventHandlerConfig, value, handleUpdateDsl, attrName])
 
   if (
     !childrenSetter ||

@@ -64,7 +64,15 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [displayName, value, disabled, colorScheme])
+  }, [
+    displayName,
+    value,
+    disabled,
+    colorScheme,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>

@@ -6,6 +6,7 @@ import {
   ResetComponentPropsPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
+  UpdateComponentReflowPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -142,10 +143,9 @@ export const updateComponentsShape: CaseReducer<
     }
   })
 }
-
-export const updateComponentReflow: CaseReducer<
+export const updateComponentReflowReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<{ parentDisplayName: string; childNodes: ComponentNode[] }>
+  PayloadAction<UpdateComponentReflowPayload>
 > = (state, action) => {
   const { parentDisplayName, childNodes } = action.payload
   const targetNode = searchDsl(state, parentDisplayName)

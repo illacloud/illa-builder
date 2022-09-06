@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import i18n from "i18next"
 import zhCN from "./locale/zh-CN.json"
 import enUS from "./locale/en-US.json"

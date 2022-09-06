@@ -118,6 +118,9 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     optionConfigureMode,
     mappedOption,
     manualOptions,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

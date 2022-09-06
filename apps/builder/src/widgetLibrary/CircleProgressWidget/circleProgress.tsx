@@ -78,7 +78,17 @@ export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [value, showText, color, trailColor, strokeWidth, displayName])
+  }, [
+    value,
+    showText,
+    color,
+    trailColor,
+    strokeWidth,
+    displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

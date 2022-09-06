@@ -17,7 +17,7 @@ export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
 
 WrappedDivider.displayName = "WrappedDivider"
 
-export const DividerWidget: FC<DividerWidgetProps> = props => {
+export const DividerWidget: FC<DividerWidgetProps> = (props) => {
   const {
     text,
     fs,
@@ -42,7 +42,14 @@ export const DividerWidget: FC<DividerWidgetProps> = props => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [text, fs, text, displayName])
+  }, [
+    text,
+    fs,
+    displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
 
   return (
     <div css={dividerContainerStyle}>

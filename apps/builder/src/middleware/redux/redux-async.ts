@@ -13,6 +13,7 @@ import {
 import {
   DeleteComponentNodePayload,
   UpdateComponentPropsPayload,
+  UpdateComponentReflowPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
 
@@ -71,6 +72,21 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 singleComponentPayload.components,
+              ),
+            )
+            break
+          case "updateComponentReflowReducer":
+            const updateComponentReflow: UpdateComponentReflowPayload = payload
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                updateComponentReflow.childNodes,
               ),
             )
             break

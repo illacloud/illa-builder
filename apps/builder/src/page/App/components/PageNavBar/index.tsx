@@ -73,9 +73,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       (response) => {
         window.open(
           window.location.protocol +
-          "//" +
-          window.location.host +
-          `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
+            "//" +
+            window.location.host +
+            `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
           "_blank",
         )
       },
