@@ -1,8 +1,11 @@
-import { FC, useCallback, useEffect } from "react"
+import { FC, useCallback, useEffect, useRef } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { DateWidgetProps, WrappedDateProps } from "./interface"
-import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -84,6 +87,7 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
   } = props
 
   useEffect(() => {
@@ -124,9 +128,26 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [
+    required,
+    labelPosition,
+    value,
+    pattern,
+    regex,
+    required,
+    customRule,
+    hideValidationMessage,
+  ])
+
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <span>
+    <div ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
             labelFull={labelFull}
@@ -142,6 +163,14 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
           />
           <WrappedDate {...props} />
         </div>
+      </TooltipWrapper>
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
         <InvalidMessage
           value={value}
           pattern={pattern}
@@ -150,8 +179,8 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
           customRule={customRule}
           hideValidationMessage={hideValidationMessage}
         />
-      </span>
-    </TooltipWrapper>
+      </div>
+    </div>
   )
 }
 DateWidget.displayName = "DateWidget"

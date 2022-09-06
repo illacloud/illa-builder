@@ -110,26 +110,28 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, finalOptions])
+  }, [value, required, finalOptions, labelPosition])
 
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
-        <Label
-          labelFull={labelFull}
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
-          required={required}
-          labelHidden={labelHidden}
-          hasTooltip={!!tooltipText}
-        />
-        <WrappedCheckbox {...props} options={finalOptions} />
-      </div>
-    </TooltipWrapper>
+    <div ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedCheckbox {...props} options={finalOptions} />
+        </div>
+      </TooltipWrapper>
+    </div>
   )
 }
 

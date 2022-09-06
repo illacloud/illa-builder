@@ -102,7 +102,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, maxCount])
+  }, [value, required, maxCount, labelPosition])
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

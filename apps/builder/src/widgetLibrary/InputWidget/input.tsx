@@ -119,6 +119,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     required,
     customRule,
     hideValidationMessage,
+    labelPosition,
   ])
 
   useEffect(() => {
