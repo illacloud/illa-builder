@@ -11,7 +11,6 @@ export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 12,
   h: 28,
-  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     direction: "vertical",
     items: `{{["The first milestone","The second milestone","The third milestone"]}}`,
