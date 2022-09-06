@@ -77,7 +77,11 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const renderSetter = useMemo(() => {
     return Comp ? (
       <div
-        css={applySetterPublicWrapperStyle(isInList, isSetterSingleRowWrapper)}
+        css={applySetterPublicWrapperStyle(
+          isInList,
+          isSetterSingleRowWrapper,
+          setterType === "LIST_SETTER" || setterType === "EVENT_HANDLER_SETTER",
+        )}
       >
         <Comp
           {...props}
@@ -100,6 +104,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     Comp,
     isInList,
     isSetterSingleRowWrapper,
+    setterType,
     props,
     _finalAttrName,
     finalValue,

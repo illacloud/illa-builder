@@ -19,6 +19,7 @@ export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
         height="100%"
         width="100%"
         css={ImageWrapperStyle}
+        draggable={false}
       />
     )
   },
@@ -51,7 +52,15 @@ export const ImageWidget: FC<ImageWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [displayName, imageSrc, altText, radius])
+  }, [
+    displayName,
+    imageSrc,
+    altText,
+    radius,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
 
   const finalSrc = useMemo(() => {
     let finalURL = imageSrc

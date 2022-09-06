@@ -6,7 +6,6 @@ import { Message } from "@illa-design/message"
 import { EditableTextProps } from "./interface"
 import { EditableTextWrapperStyle, textStyle } from "./style"
 import { isValidDisplayName } from "@/utils/typeHelper"
-import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameReducer"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const EditableText: FC<EditableTextProps> = (props) => {
@@ -31,7 +30,7 @@ export const EditableText: FC<EditableTextProps> = (props) => {
       setInputValue(displayName)
       return
     }
-    if (isAlreadyGenerate(inputValue)) {
+    if (DisplayNameGenerator.isAlreadyGenerate(inputValue)) {
       Message.error(
         t("editor.display_name.duplicate_error", { displayName: inputValue }),
       )
@@ -40,7 +39,7 @@ export const EditableText: FC<EditableTextProps> = (props) => {
     }
     DisplayNameGenerator.updateDisplayName(inputValue, displayName)
     updateDisplayNameByBlur(inputValue)
-  }, [inputValue])
+  }, [displayName, inputValue, t, updateDisplayNameByBlur])
   return (
     <div css={EditableTextWrapperStyle}>
       {isFocusInput ? (

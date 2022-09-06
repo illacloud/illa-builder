@@ -1,4 +1,11 @@
-import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import React, {
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { css, Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
@@ -67,6 +74,11 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const latestProps = useRef(props)
   latestProps.current = props
 
+  const globalDataRef = useRef(globalData)
+  useEffect(() => {
+    globalDataRef.current = globalData
+  }, [globalData])
+
   const handleFocus = () => {
     setFocus(true)
   }
@@ -82,7 +94,11 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     let previewType = expectedType
     setError(false)
     try {
-      calcResult = evaluateDynamicString("", currentValue, globalData)
+      calcResult = evaluateDynamicString(
+        "",
+        currentValue,
+        globalDataRef.current,
+      )
       // [TODO]: v1 evaluate
       // if (!currentValue?.includes("{{")) {
       //   calcResult = getEvalValue(previewType, calcResult)
@@ -269,16 +285,15 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
     <>
       <Global styles={codemirrorStyle} />
       <Trigger
-        _css={css`
-          padding: 0;
-        `}
-        trigger={"focus"}
-        position="bl"
+        withoutOffset
+        trigger="focus"
+        position="bottom-start"
         autoAlignPopupWidth
         withoutPadding
         withoutShadow
         openDelay={10}
         closeDelay={10}
+        maxW="none"
         popupVisible={previewVisible}
         content={<CodePreview preview={preview} />}
         showArrow={false}

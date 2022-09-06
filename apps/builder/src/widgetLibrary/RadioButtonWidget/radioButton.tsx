@@ -74,10 +74,8 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: undefined })
       },
-      validate: () => {
-      },
-      clearValidation: () => {
-      },
+      validate: () => {},
+      clearValidation: () => {},
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -92,6 +90,9 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
     manualOptions,
     mappedOption,
     finalOptions,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

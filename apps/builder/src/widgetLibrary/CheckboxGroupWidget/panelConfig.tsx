@@ -135,7 +135,8 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-label-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
         attrName: "labelHidden",
-        setterType: "SWITCH_SETTER",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
       },
       {
         id: `${baseWidgetName}-label-position`,
@@ -225,6 +226,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         attrName: "hidden",
         placeholder: "false",
         useCustomLayout: true,
+        openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {

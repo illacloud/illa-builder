@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { Table } from "@illa-design/table"
 import { TableWidgetProps, WrappedTableProps } from "./interface"
 import { ColumnDef } from "@tanstack/react-table"
@@ -6,22 +6,26 @@ import { ColumnDef } from "@tanstack/react-table"
 export const WrappedTable: FC<WrappedTableProps> = (props) => {
   const { originData } = props
 
-  let columnsDef: ColumnDef<object>[] = []
-
-  if (originData && originData.length > 0) {
-    Object.keys(originData[0]).forEach((key) => {
-      columnsDef.push({
-        header: key,
-        accessorKey: key,
+  let columnsDef: ColumnDef<object>[] = useMemo(() => {
+    let l: ColumnDef<object>[] = []
+    if (originData && originData.length > 0) {
+      Object.keys(originData[0]).forEach((key) => {
+        l.push({
+          header: key,
+          accessorKey: key,
+        })
       })
-    })
-  }
+    }
+    return l
+  }, [originData])
 
   return (
     <Table
       data={originData}
       columns={columnsDef}
       bordered
+      striped
+      borderedCell
       pinedHeader
       w="100%"
       h="100%"

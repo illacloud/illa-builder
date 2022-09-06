@@ -4,6 +4,8 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const appsContainerStyle: SerializedStyles = css`
   display: flex;
+  height: 100%;
+  overflow: hidden;
   flex-grow: 1;
   flex-direction: column;
   margin: 0 auto;
@@ -13,7 +15,7 @@ export const appsContainerStyle: SerializedStyles = css`
 
 export const listTitleContainerStyle: SerializedStyles = css`
   display: flex;
-  height: 80px;
+  min-height: 80px;
   align-items: center;
   flex-direction: row;
 `

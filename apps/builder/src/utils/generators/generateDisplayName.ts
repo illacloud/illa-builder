@@ -1,42 +1,117 @@
 // string for component
-import store from "@/store"
-import { isAlreadyGenerate } from "@/redux/currentApp/displayName/displayNameReducer"
-import { displayNameActions } from "@/redux/currentApp/displayName/displayNameSlice"
+
+import { Connection, getPayload } from "@/api/ws"
+import { Signal, Target } from "@/api/ws/interface"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+
+export const ADD_DISPLAY_NAME = "addDisplayName"
+export const REMOVE_DISPLAY_NAME = "removeDisplayName"
+export const UPDATE_DISPLAY_NAME = "updateDisplayName"
 
 export class DisplayNameGenerator {
+  static displayNameList = new Set<string>()
+
+  static appId: string = ""
+
+  static isAlreadyGenerate(displayName: string): boolean {
+    return this.displayNameList.has(displayName)
+  }
+
+  static initApp(appId: string) {
+    this.appId = appId
+  }
+
   // use when create success
-  static getDisplayName(type: string, showName?: string): string {
+  static generateDisplayName(type: string, showName?: string): string {
     let index = 1
     let name = `${showName || type}${index}`
     // check cache map
-    while (isAlreadyGenerate(name)) {
+    while (this.isAlreadyGenerate(name)) {
       index = index + 1
       name = `${showName || type}${index}`
     }
-    store.dispatch(displayNameActions.addDisplayNameReducer(name))
+    this.displayNameList.add(name)
+    Connection.getRoom("app", this.appId)?.send(
+      getPayload(
+        Signal.SIGNAL_ONLY_BROADCAST,
+        Target.TARGET_DISPLAY_NAME,
+        true,
+        { type: ADD_DISPLAY_NAME, payload: [name] },
+        [],
+      ),
+    )
     return name
+  }
+
+  static updateDisplayNameList(
+    componentNode: ComponentNode,
+    actionList: ActionItem<ActionContent>[],
+  ) {
+    this.displayNameList.clear()
+    actionList.forEach((action) => {
+      this.displayNameList.add(action.displayName)
+    })
+    this.addComponentDisplayName(componentNode)
+  }
+
+  static addComponentDisplayName(componentNode: ComponentNode) {
+    this.displayNameList.add(componentNode.displayName)
+    componentNode.childrenNode?.forEach((child) => {
+      this.addComponentDisplayName(child)
+    })
   }
 
   static updateDisplayName(
     displayName: string,
     oldDisplayName?: string,
   ): boolean | void {
-    if (isAlreadyGenerate(displayName)) {
+    if (this.isAlreadyGenerate(displayName)) {
       return false
     }
     if (oldDisplayName !== undefined) {
       this.removeDisplayName(oldDisplayName)
     }
-    store.dispatch(displayNameActions.addDisplayNameReducer(displayName))
+    this.displayNameList.add(displayName)
+    Connection.getRoom("app", this.appId)?.send(
+      getPayload(
+        Signal.SIGNAL_ONLY_BROADCAST,
+        Target.TARGET_DISPLAY_NAME,
+        true,
+        { type: UPDATE_DISPLAY_NAME, payload: [oldDisplayName, displayName] },
+        [],
+      ),
+    )
   }
 
   static removeDisplayName(displayName: string) {
-    store.dispatch(displayNameActions.removeDisplayNameReducer(displayName))
+    this.displayNameList.delete(displayName)
+    Connection.getRoom("app", this.appId)?.send(
+      getPayload(
+        Signal.SIGNAL_ONLY_BROADCAST,
+        Target.TARGET_DISPLAY_NAME,
+        true,
+        { type: REMOVE_DISPLAY_NAME, payload: [displayName] },
+        [],
+      ),
+    )
   }
 
   static removeDisplayNameMulti(displayNames: string[]) {
-    store.dispatch(
-      displayNameActions.removeDisplayNameMultiReducer(displayNames),
+    displayNames.forEach((displayName) => {
+      this.displayNameList.delete(displayName)
+    })
+    Connection.getRoom("app", this.appId)?.send(
+      getPayload(
+        Signal.SIGNAL_ONLY_BROADCAST,
+        Target.TARGET_DISPLAY_NAME,
+        true,
+        { type: REMOVE_DISPLAY_NAME, payload: displayNames },
+        [],
+      ),
     )
   }
 }

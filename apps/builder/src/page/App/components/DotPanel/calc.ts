@@ -1,201 +1,389 @@
-import { XYCoord } from "react-dnd"
-import { DragPosition } from "@/page/App/components/DotPanel/interface"
+import { cloneDeep } from "lodash"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { DropTargetMonitor } from "react-dnd"
+import { DragInfo, DropResultInfo } from "./interface"
+import { RefObject } from "react"
 
-export function calculateNotExistDragPosition(
-  canvasXY: XYCoord,
-  monitorRect: XYCoord,
-  canvasWidth: number,
-  canvasHeight: number,
-  canvasScrollLeft: number,
-  canvasScrollTop: number,
-  unitWidth: number,
-  unitHeight: number,
-  componentW: number,
-  componentH: number,
-  edgeWidth: number,
-): DragPosition {
-  // mouse position
-  let relativeX = monitorRect.x - canvasXY.x + canvasScrollLeft - edgeWidth
-  let relativeY = monitorRect.y - canvasXY.y + canvasScrollTop - edgeWidth
-
-  // middle calc position
-  const centerX = relativeX / unitWidth
-  const centerY = relativeY / unitHeight
-
-  let squareX: number
-  let squareY: number
-
-  let renderX: number
-  let renderY: number
-
-  squareX = Math.round(centerX - componentW / 2)
-  squareY = Math.round(centerY - componentH / 2)
-  renderX = relativeX - (componentW * unitWidth) / 2
-  renderY = relativeY - (componentH * unitHeight) / 2
-
-  return {
-    squareX,
-    squareY,
-    renderX,
-    renderY,
-  } as DragPosition
+interface ItemPosition {
+  x: number
+  y: number
 }
 
-export function calculateExistDragPosition(
-  canvasXY: XYCoord,
-  monitorRect: XYCoord,
-  offsetRecord: XYCoord,
-  canvasWidth: number,
-  canvasHeight: number,
-  canvasScrollLeft: number,
-  canvasScrollTop: number,
-  unitWidth: number,
-  unitHeight: number,
-  componentW: number,
-  componentH: number,
-  edgeWidth: number,
-): DragPosition {
-  // mouse position
-  let relativeX = monitorRect.x - canvasXY.x + canvasScrollLeft - edgeWidth
-  let relativeY = monitorRect.y - canvasXY.y + canvasScrollTop - edgeWidth
-
-  let renderX = relativeX - offsetRecord.x
-  let renderY = relativeY - offsetRecord.y
-
-  let squareX = Math.round(renderX / unitWidth)
-  let squareY = Math.round(renderY / unitHeight)
-
-  return {
-    renderX,
-    renderY,
-    squareX,
-    squareY,
-  } as DragPosition
+interface CanvasPosition {
+  x: number
+  y: number
 }
 
-export function calculateDragPosition(
-  componentNode: ComponentNode,
-  canvasWidth: number,
-  canvasHeight: number,
-  canvasScrollLeft: number,
-  canvasScrollTop: number,
+interface NodeWidthAndHeight {
+  w: number
+  h: number
+}
+
+interface NodePosition {
+  x: number
+  y: number
+}
+
+type NodeShape = NodeWidthAndHeight & NodePosition
+
+interface CenterPointPosition {
+  x: number
+  y: number
+}
+
+export function calcRectCenterPointPosition(
+  itemPosition: ItemPosition,
+  canvasPosition: CanvasPosition,
+  nodeWidthAndHeight: NodeWidthAndHeight,
+): CenterPointPosition {
+  const { x: itemX, y: itemY } = itemPosition
+  const { x: canvasX, y: canvasY } = canvasPosition
+  const { w: nodeW, h: nodeH } = nodeWidthAndHeight
+  const pointX = itemX - canvasX
+  const pointY = itemY - canvasY
+  const centerX = pointX - nodeW / 2
+  const centerY = pointY - nodeH / 2
+  return {
+    x: centerX,
+    y: centerY,
+  }
+}
+
+interface RectShape {
+  rectTop: number
+  rectRight: number
+  rectBottom: number
+  rectLeft: number
+}
+export function calcRectShapeByCenterPoint(
+  centerPointPosition: CenterPointPosition,
+  nodeWidthAndHeight: NodeWidthAndHeight,
+): RectShape {
+  const rectTop = centerPointPosition.y
+  const rectLeft = centerPointPosition.x
+  const rectRight = rectLeft + nodeWidthAndHeight.w
+  const rectBottom = rectTop + nodeWidthAndHeight.h
+  return {
+    rectTop,
+    rectLeft,
+    rectRight,
+    rectBottom,
+  }
+}
+
+export function calcLadingPosition(
+  rectPosition: RectShape,
   unitWidth: number,
   unitHeight: number,
-  edgeWidth: number,
-  blockColumns: number,
-  blockRows: number,
-  parentVerticalResize: boolean,
-  parentDisplayName: string,
-  canvasRect: DOMRect,
-  monitorRect: XYCoord,
-  monitorInitialClientOffset: XYCoord,
-  monitorInitialSourceClientOffset: XYCoord,
-): DragPosition {
-  let calcResult: DragPosition
+  canvasWidth: number,
+) {
+  const { rectLeft, rectTop, rectRight } = rectPosition
+  let landingX = Math.round(rectLeft / unitWidth) * unitWidth
+  let landingY = Math.round(rectTop / unitHeight) * unitHeight
+  let isOverstep = true
+  if (rectTop < 0) {
+    landingY = 0
+    isOverstep = false
+  }
+  if (rectLeft < 0) {
+    landingX = 0
+    isOverstep = false
+  }
+  if (rectRight > canvasWidth) {
+    const overRight =
+      Math.round(rectRight / unitWidth) * unitWidth - canvasWidth
+    landingX = landingX - overRight
+    isOverstep = false
+  }
+  return {
+    isOverstep,
+    landingX,
+    landingY,
+  }
+}
 
-  if (
-    componentNode.x == -1 &&
-    componentNode.y == -1 &&
-    componentNode.parentNode != parentDisplayName
-  ) {
-    calcResult = calculateNotExistDragPosition(
-      {
-        x: canvasRect.x,
-        y: canvasRect.y,
-      } as XYCoord,
-      {
-        x: monitorRect.x,
-        y: monitorRect.y,
-      } as XYCoord,
-      canvasWidth,
-      canvasHeight,
-      canvasScrollLeft,
-      canvasScrollTop,
-      unitWidth,
-      unitHeight,
-      componentNode.w,
-      componentNode.h,
-      edgeWidth,
+export type RectangleType = {
+  left: number
+  right: number
+  top: number
+  bottom: number
+}
+
+const sortComponentNodesOnlyY = (componentNodes: ComponentNode[]) => {
+  return componentNodes.sort((node1, node2) => {
+    if (node1.y < node2.y) {
+      return -1
+    }
+    if (node1.y > node2.y) {
+      return 1
+    }
+    return 0
+  })
+}
+
+const sortComponentNodes = (componentNodes: ComponentNode[]) => {
+  return componentNodes.sort((node1, node2) => {
+    if (node1.y < node2.y) {
+      return -1
+    }
+    if (node1.y > node2.y) {
+      return 1
+    }
+    if (node1.y === node2.y) {
+      if (node1.x > node2.x) {
+        return 1
+      }
+      if (node1.x < node2.x) {
+        return -1
+      }
+    }
+    return 0
+  })
+}
+
+const getComponentRect = (component: ComponentNode): RectangleType => {
+  const { x, y, w, h } = component
+  return {
+    left: x,
+    right: x + w,
+    top: y,
+    bottom: y + h,
+  }
+}
+
+export const isCrossing = (
+  otherNode: ComponentNode,
+  mainNode: ComponentNode,
+) => {
+  const otherRect = getComponentRect(otherNode)
+  const mainRect = getComponentRect(mainNode)
+  return !(
+    mainRect.left >= otherRect.right ||
+    mainRect.right <= otherRect.left ||
+    mainRect.top >= otherRect.bottom ||
+    mainRect.bottom <= otherRect.top
+  )
+}
+
+export const isNearingAtY = (
+  otherNode: ComponentNode,
+  mainNode: ComponentNode,
+) => {
+  const otherRect = getComponentRect(otherNode)
+  const mainRect = getComponentRect(mainNode)
+  return (
+    (mainRect.left <= otherRect.right || mainRect.right >= otherRect.left) &&
+    mainRect.bottom === otherRect.top
+  )
+}
+
+export const getCrossingNodeNewPosition = (
+  currentNode: ComponentNode,
+  allComponentNode: ComponentNode[],
+) => {
+  const otherComponents = cloneDeep(allComponentNode)
+  const indexOfAllComponentNode = otherComponents.findIndex(
+    (curr) => curr.displayName === currentNode.displayName,
+  )
+  if (indexOfAllComponentNode > -1) {
+    otherComponents.splice(indexOfAllComponentNode, 1)
+  }
+  let res: Map<string, ComponentNode> = new Map(),
+    queue: ComponentNode[] = []
+
+  queue.push(currentNode)
+  while (queue.length !== 0) {
+    let length = queue.length
+    const indexOfAllComponentNode = otherComponents.findIndex(
+      (curr) => curr.displayName === queue[0].displayName,
     )
-  } else {
-    calcResult = calculateExistDragPosition(
-      {
-        x: canvasRect.x,
-        y: canvasRect.y,
-      } as XYCoord,
-      {
-        x: monitorRect.x,
-        y: monitorRect.y,
-      } as XYCoord,
-      {
-        x: monitorInitialClientOffset.x - monitorInitialSourceClientOffset.x,
-        y: monitorInitialClientOffset.y - monitorInitialSourceClientOffset.y,
-      } as XYCoord,
-      canvasWidth,
-      canvasHeight,
-      canvasScrollLeft,
-      canvasScrollTop,
-      unitWidth,
-      unitHeight,
-      componentNode.w,
-      componentNode.h,
-      edgeWidth,
-    )
-  }
-
-  if (calcResult.squareX < 0) {
-    calcResult.squareX = 0
-  }
-  if (calcResult.squareX + componentNode.w > blockColumns) {
-    calcResult.squareX = blockColumns - componentNode.w
-  }
-  if (calcResult.squareY < 0) {
-    calcResult.squareY = 0
-  }
-
-  if (!parentVerticalResize) {
-    if (calcResult.squareY + componentNode.h > blockRows) {
-      calcResult.squareY = blockRows - componentNode.h
+    if (indexOfAllComponentNode > -1) {
+      otherComponents.splice(indexOfAllComponentNode, 1)
+    }
+    const walkedSet = new Set()
+    for (let i = 0; i < length; i++) {
+      let node = queue.shift() as ComponentNode
+      for (let i = 0; i < otherComponents.length; i++) {
+        if (otherComponents[i].displayName === node.displayName) {
+          continue
+        }
+        if (isCrossing(otherComponents[i], node)) {
+          otherComponents[i] = {
+            ...otherComponents[i],
+            y: node.y + node.h,
+          }
+          walkedSet.add(otherComponents[i].displayName)
+          res.set(otherComponents[i].displayName, otherComponents[i])
+          const index = queue.findIndex(
+            (node) => node.displayName === otherComponents[i].displayName,
+          )
+          if (index > -1) {
+            queue.splice(index, 1, otherComponents[i])
+          } else {
+            queue.push(otherComponents[i])
+          }
+        }
+      }
     }
   }
+  return res
+}
 
-  if (!parentVerticalResize) {
-    if (
-      calcResult.renderY + (componentNode.h * unitHeight) / 2 >
-      canvasHeight
-    ) {
-      calcResult.renderY = canvasHeight - (componentNode.h * unitHeight) / 2
+export const getNearingNodes = (
+  currentNode: ComponentNode,
+  allComponentNode: ComponentNode[],
+) => {
+  const otherComponents = cloneDeep(allComponentNode)
+  const indexOfAllComponentNode = otherComponents.findIndex(
+    (curr) => curr.displayName === currentNode.displayName,
+  )
+  if (indexOfAllComponentNode > -1) {
+    otherComponents.splice(indexOfAllComponentNode, 1)
+  }
+  let res: Map<string, ComponentNode> = new Map(),
+    queue: ComponentNode[] = []
+
+  queue.push(currentNode)
+  while (queue.length !== 0) {
+    let length = queue.length
+    const indexOfAllComponentNode = otherComponents.findIndex(
+      (curr) => curr.displayName === queue[0].displayName,
+    )
+    if (indexOfAllComponentNode > -1) {
+      otherComponents.splice(indexOfAllComponentNode, 1)
+    }
+    const walkedSet = new Set()
+    for (let i = 0; i < length; i++) {
+      let node = queue.shift() as ComponentNode
+      for (let i = 0; i < otherComponents.length; i++) {
+        if (otherComponents[i].displayName === node.displayName) {
+          continue
+        }
+        if (isNearingAtY(otherComponents[i], node)) {
+          walkedSet.add(otherComponents[i].displayName)
+          res.set(otherComponents[i].displayName, otherComponents[i])
+          const index = queue.findIndex(
+            (node) => node.displayName === otherComponents[i].displayName,
+          )
+          if (index > -1) {
+            queue.splice(index, 1, otherComponents[i])
+          } else {
+            queue.push(otherComponents[i])
+          }
+        }
+      }
     }
   }
-
-  return calcResult
+  return res
 }
 
-export function calculateNearXY(
-  canvasRect: DOMRect,
-  monitorRect: XYCoord,
-  canvasScrollLeft: number,
-  canvasScrollTop: number,
-  unitWidth: number,
-  unitHeight: number,
-  edgeWidth: number,
-): [number, number] {
-  // mouse position
-  let relativeX = monitorRect.x - canvasRect.x + canvasScrollLeft - edgeWidth
-  let relativeY = monitorRect.y - canvasRect.y + canvasScrollTop - edgeWidth
-
-  // near position
-  const nearX = Math.floor(relativeX / unitWidth)
-  const nearY = Math.floor(relativeY / unitHeight)
-  return [nearX, nearY]
+export const applyEffectMapToComponentNodes = (
+  effectMap: Map<string, ComponentNode>,
+  componentNodes: ComponentNode[],
+) => {
+  return componentNodes.map((node) => {
+    if (effectMap.has(node.displayName)) {
+      return effectMap.get(node.displayName) as ComponentNode
+    }
+    return node
+  })
 }
 
-export function calculateXY(
-  x: number,
-  y: number,
+export const getReflowResult = (
+  currentNode: ComponentNode,
+  allComponentNodes: ComponentNode[],
+  exceptSelf: boolean = true,
+) => {
+  const sortedComponentNodes = sortComponentNodes(allComponentNodes)
+  const effectResultMap = getCrossingNodeNewPosition(
+    currentNode,
+    sortedComponentNodes,
+  )
+  let finalState = applyEffectMapToComponentNodes(
+    effectResultMap,
+    sortedComponentNodes,
+  )
+
+  console.log("effectResultMap", effectResultMap)
+  console.log("finalState", finalState)
+  if (exceptSelf) {
+    finalState = finalState.filter(
+      (node) => node.displayName !== currentNode.displayName,
+    )
+  }
+  return {
+    effectResultMap,
+    finalState,
+  }
+}
+
+export const getItemPosition = (
+  monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
+  containerScrollTop: number = 0,
+) => {
+  return {
+    x: monitor.getClientOffset()!.x,
+    y: monitor.getClientOffset()!.y + containerScrollTop,
+  }
+}
+
+export const getNodeWidthAndHeight = (
+  item: ComponentNode,
   unitWidth: number,
   unitHeight: number,
-): [number, number] {
-  return [x * unitWidth + 1, y * unitHeight + 1]
+) => {
+  return {
+    w: item.w * unitWidth,
+    h: item.h * unitHeight,
+  }
+}
+
+export const getDragResult = (
+  monitor: DropTargetMonitor<DragInfo, DropResultInfo>,
+  containerRef: RefObject<HTMLDivElement>,
+  item: ComponentNode,
+  unitWidth: number,
+  unitHeight: number,
+  canvasWidth: number,
+) => {
+  const itemPosition = getItemPosition(monitor, containerRef.current?.scrollTop)
+
+  const canvasPosition = {
+    x: containerRef.current?.getBoundingClientRect().x || 0,
+    y: containerRef.current?.getBoundingClientRect().y || 0,
+  }
+  const nodeWidthAndHeight = getNodeWidthAndHeight(item, unitWidth, unitHeight)
+  const rectCenterPosition = calcRectCenterPointPosition(
+    itemPosition,
+    canvasPosition,
+    nodeWidthAndHeight,
+  )
+  const rectPosition = calcRectShapeByCenterPoint(
+    rectCenterPosition,
+    nodeWidthAndHeight,
+  )
+  const ladingPosition = calcLadingPosition(
+    rectPosition,
+    unitWidth,
+    unitWidth,
+    canvasWidth,
+  )
+
+  return {
+    ladingPosition,
+    rectPosition,
+    rectCenterPosition,
+  }
+}
+
+export const getNearCompntNodes = (
+  currentNode: ComponentNode,
+  allComponentNodes: ComponentNode[],
+) => {
+  const sortedComponentNodes = sortComponentNodesOnlyY(allComponentNodes)
+  const nearingComponentsMap = getNearingNodes(
+    currentNode,
+    sortedComponentNodes,
+  )
+  return nearingComponentsMap
 }

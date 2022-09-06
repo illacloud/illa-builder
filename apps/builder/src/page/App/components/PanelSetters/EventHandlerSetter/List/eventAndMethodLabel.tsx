@@ -68,7 +68,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       }
       trigger="click"
       showArrow={false}
-      position="left"
+      position="left-start"
       clickOutsideToClose
       onVisibleChange={(visible) => {
         setModalVisible(visible)

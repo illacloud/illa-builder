@@ -122,6 +122,7 @@ export function applyCodeEditorStyle(
         ${chroma(globalColor(`--${illaPrefix}-${stateColor}-01`))
           .alpha(0.15)
           .hex()};
+      z-index: 1;
     `
   } else if (inputState.error) {
     stateStyle = inputErrorStyle
@@ -131,6 +132,7 @@ export function applyCodeEditorStyle(
 
       &:hover {
         border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
+        z-index: 1;
       }
     `
   }
@@ -143,7 +145,7 @@ export function applyCodeEditorStyle(
       border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
       transition: border 200ms ease-in-out;
       line-height: 16px;
-      font-size: 12px;
+      font-size: 14px;
 
       ${stateStyle}
       .CodeMirror-scroll {

@@ -9,4 +9,5 @@ type SwitchProProps = BaseSwitchProps & PanelLabelProps
 
 export interface DynamicSwitchProps extends SwitchProProps {
   panelConfig: Record<string, any>
+  openDynamic?: boolean
 }

@@ -22,6 +22,7 @@ import {
 import {
   DeleteComponentNodePayload,
   UpdateComponentPropsPayload,
+  UpdateComponentReflowPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
@@ -62,6 +63,21 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 [payload],
+              ),
+            )
+            break
+          case "updateComponentReflowReducer":
+            const updateComponentReflow: UpdateComponentReflowPayload = payload
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                updateComponentReflow.childNodes,
               ),
             )
             break
@@ -254,52 +270,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 [payload],
-              ),
-            )
-            break
-        }
-        break
-      case "displayName":
-        switch (reduxAction) {
-          case "addDisplayNameReducer":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_CREATE_OR_UPDATE_STATE,
-                Target.TARGET_DISPLAY_NAME,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
-            break
-          case "removeDisplayNameReducer":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_DELETE_STATE,
-                Target.TARGET_DISPLAY_NAME,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
-            break
-          case "removeDisplayNameMultiReducer":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_DELETE_STATE,
-                Target.TARGET_DISPLAY_NAME,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                payload,
               ),
             )
             break

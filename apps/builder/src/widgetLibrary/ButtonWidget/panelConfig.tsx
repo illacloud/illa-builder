@@ -48,7 +48,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
         shown: (value) => {
-          return value === false
+          return !value
         },
       },
       {
@@ -60,7 +60,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
-        shown: (value) => value === false,
+        shown: (value) => !value,
       },
     ],
   },
@@ -85,6 +85,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-layout-hidden`,
         setterType: "DYNAMIC_SWITCH_SETTER",
+        openDynamic: true,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.hidden"),
         useCustomLayout: true,

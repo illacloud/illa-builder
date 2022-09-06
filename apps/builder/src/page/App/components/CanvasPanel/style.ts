@@ -9,6 +9,8 @@ export function applyScaleContainerStyle(scale: number): SerializedStyles {
     box-sizing: border-box;
     min-width: 148px;
     overflow-y: hidden;
+    height: 100%;
+    position: relative;
   `
 }
 

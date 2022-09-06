@@ -19,19 +19,15 @@ export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
     if (value === undefined) {
       handleUpdateDsl(attrName, undefined)
     }
-  }, [value])
+  }, [attrName, handleUpdateDsl, value])
 
   const actionOptions = useMemo(() => {
     if (selectedContext.widgetOrAction === "ACTION") {
-      const i = actionList.findIndex((value) => {
-        return value.displayName === selectedAction?.displayName
-      })
-      if (i != -1) {
-        actionList.splice(i, 1)
-      }
-      return actionList.map((item) => {
-        return item.displayName
-      })
+      return actionList
+        .filter((value) => {
+          return value.displayName !== selectedAction?.displayName
+        })
+        .map((item) => item.displayName)
     }
     if (selectedContext.widgetOrAction === "WIDGET") {
       return actionList.map((item) => {
@@ -39,7 +35,7 @@ export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
       })
     }
     return []
-  }, [actionList])
+  }, [actionList, selectedAction?.displayName, selectedContext.widgetOrAction])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>

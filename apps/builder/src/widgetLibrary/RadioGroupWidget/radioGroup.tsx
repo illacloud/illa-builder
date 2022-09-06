@@ -87,6 +87,9 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     optionConfigureMode,
     manualOptions,
     mappedOption,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

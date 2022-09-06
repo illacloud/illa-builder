@@ -78,9 +78,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       (response) => {
         window.open(
           window.location.protocol +
-          "//" +
-          window.location.host +
-          `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
+            "//" +
+            window.location.host +
+            `/deploy/app/${appInfo?.appId}/version/${response.data.version}`,
           "_blank",
         )
       },
@@ -140,14 +140,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div>
         {mode === "edit" && (
           <ButtonGroup spacing={"8px"}>
-            <Badge count={executionError && Object.keys(executionError).length}>
-              <Button
-                colorScheme="gray"
-                size="medium"
-                leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
-                onClick={handleClickDebuggerIcon}
-              />
-            </Badge>
+            {/*TODO: @xiaoyu Error list*/}
+            {/*<Badge count={executionError && Object.keys(executionError).length}>*/}
+            {/*  <Button*/}
+            {/*    colorScheme="gray"*/}
+            {/*    size="medium"*/}
+            {/*    leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}*/}
+            {/*  />*/}
+            {/*</Badge>*/}
             <Button
               loading={deployLoading}
               colorScheme="techPurple"

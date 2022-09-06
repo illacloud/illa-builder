@@ -11,8 +11,15 @@ export interface ComponentResizePayload {
 }
 
 export interface ComponentCopyPayload {
-  newDisplayName: string
-  componentNode: ComponentNode
+  componentNodeList: ComponentNode[]
+  offsetX: number
+  offsetY: number
+}
+
+export interface ComponentCopyDisplayNamesPayload {
+  displayNameList: string[]
+  offsetX: number
+  offsetY: number
 }
 
 export interface ComponentDropPayload {

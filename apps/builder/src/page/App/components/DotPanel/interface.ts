@@ -12,13 +12,34 @@ export interface DragPosition {
   renderY: number
 }
 
+export interface DragInfo {
+  item: ComponentNode
+  childrenNodes: ComponentNode[]
+}
+
 // return when drop trigger
-export interface DropResultInfo {}
+export interface DropResultInfo {
+  isDropOnCanvas: boolean
+}
 
 // return when drop collect trigger
-export interface DropCollectedInfo {}
+export interface DropCollectedInfo {
+  isActive: boolean
+  nodeWidth: number
+  nodeHeight: number
+}
 
 // return when drag collect trigger
 export interface DragCollectedInfo {
   isDragging: boolean
+}
+
+export interface PreviewPlaceholderProps {
+  canDrop: boolean
+  x: number
+  y: number
+  lunchX: number
+  lunchY: number
+  w: number
+  h: number
 }

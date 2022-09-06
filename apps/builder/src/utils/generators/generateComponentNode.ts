@@ -43,7 +43,7 @@ export const generateComponentNode = (
     z: 0,
     showName: displayName,
     type,
-    displayName: DisplayNameGenerator.getDisplayName(type, displayName),
+    displayName: DisplayNameGenerator.generateDisplayName(type, displayName),
     containerType: "EDITOR_SCALE_SQUARE",
     parentNode: null,
     childrenNode: childrenNodeDSL,

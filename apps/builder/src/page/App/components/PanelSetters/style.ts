@@ -11,4 +11,5 @@ export const listSetterWidthStyle = css`
 
 export const dynamicWidthStyle = css`
   width: auto;
+  align-self: center;
 `

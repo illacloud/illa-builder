@@ -2,5 +2,9 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 
 export interface ShortcutContextProp {
   showDeleteDialog: (displayName: string[]) => void
-  copyComponent: (componentNode: ComponentNode) => void
+  copyComponentFromObject: (
+    componentNode: ComponentNode[],
+    offsetX?: number,
+    offsetY?: number,
+  ) => void
 }

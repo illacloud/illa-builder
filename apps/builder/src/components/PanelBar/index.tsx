@@ -32,6 +32,9 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
           css={panelBarItemContentStyle}
           role="region"
           variants={panelBarItemAnimation}
+          transition={{
+            default: { ease: "easeInOut" },
+          }}
           animate={isOpenedState ? "enter" : "exit"}
           exit="exit"
           initial={false}

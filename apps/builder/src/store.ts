@@ -2,10 +2,10 @@ import {
   combineReducers,
   configureStore,
   createListenerMiddleware,
-  TypedStartListening,
   ListenerEffectAPI,
+  TypedStartListening,
 } from "@reduxjs/toolkit"
-import logger from "redux-logger"
+import { logger } from "redux-logger"
 import resourceReducer from "@/redux/resource/resourceSlice"
 import actionReducer from "@/redux/currentApp/action/actionSlice"
 import dashboardAppReducer from "@/redux/dashboard/apps/dashboardAppSlice"
@@ -17,7 +17,6 @@ import configReducer from "@/redux/config/configSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
-import displayNameReducer from "@/redux/currentApp/displayName/displayNameSlice"
 import { reduxAsync } from "@/middleware/redux/redux-async"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
 
@@ -33,7 +32,6 @@ const appReducer = combineReducers({
   editor: editorReducer,
   action: actionReducer,
   appInfo: appInfoReducer,
-  displayName: displayNameReducer,
   execution: executionReducer,
 })
 
@@ -41,6 +39,11 @@ const dashboardReducer = combineReducers({
   dashboardApps: dashboardAppReducer,
 })
 
+const middlewares = [reduxAsync]
+
+if (import.meta.env.DEV) {
+  middlewares.push(logger)
+}
 const store = configureStore({
   reducer: {
     config: configReducer,
@@ -57,9 +60,8 @@ const store = configureStore({
         ignoredActions: ["execution/setExecutionResultReducer"],
       },
     })
-      .concat(logger)
-      .concat(reduxAsync)
-      .prepend(listenerMiddleware.middleware),
+      .prepend(listenerMiddleware.middleware)
+      .concat(middlewares),
 })
 
 export default store

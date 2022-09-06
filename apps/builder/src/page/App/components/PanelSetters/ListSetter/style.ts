@@ -6,8 +6,7 @@ export const labelStyle = css`
   display: flex;
   justify-content: space-between;
   min-height: 40px;
-  padding-bottom: 8px;
-  align-items: flex-start;
+  align-items: center;
 `
 
 export const listWrapperStyle = css`

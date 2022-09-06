@@ -6,7 +6,7 @@ import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
+export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const {
     startValue,
     endValue,
@@ -25,11 +25,11 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
   const _placeholder = [startPlaceholder ?? "", endPlaceholder ?? ""]
 
   const dateRangeValue = useMemo(() => {
-    return [startValue, endValue]
+    return !startValue && !endValue ? undefined : [startValue, endValue]
   }, [startValue, endValue])
 
   const checkRange = useCallback(
-    current => {
+    (current) => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
@@ -51,10 +51,16 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
       allowClear={showClear}
       disabledDate={checkRange}
       onClear={() => {
-        handleUpdateDsl({ value: [] })
+        handleUpdateDsl({
+          startValue: undefined,
+          endValue: undefined,
+        })
       }}
-      onChange={value => {
-        handleUpdateDsl({ value })
+      onChange={(value) => {
+        handleUpdateDsl({
+          startValue: value?.[0],
+          endValue: value?.[1],
+        })
       }}
     />
   )
@@ -62,7 +68,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
 
 WrappedDateRange.displayName = "WrappedDateRange"
 
-export const DateRangeWidget: FC<DateWidgetProps> = props => {
+export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   const {
     startValue,
     endValue,
@@ -130,6 +136,9 @@ export const DateRangeWidget: FC<DateWidgetProps> = props => {
     maxDate,
     readOnly,
     colorScheme,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

@@ -10,6 +10,12 @@ import store from "@/store"
 import { AxiosRequestConfig } from "axios"
 import { Api } from "@/api/base"
 import { getLocalStorage } from "@/utils/storage"
+import {
+  ADD_DISPLAY_NAME,
+  DisplayNameGenerator,
+  REMOVE_DISPLAY_NAME,
+  UPDATE_DISPLAY_NAME,
+} from "@/utils/generators/generateDisplayName"
 
 export function getPayload<T>(
   signal: Signal,
@@ -37,20 +43,37 @@ function generateWs(wsUrl: string): WebSocket {
     if (typeof message !== "string") {
       return
     }
-    const datas = message.split("\n")
-    datas.forEach((data: string) => {
+    const dataList = message.split("\n")
+    dataList.forEach((data: string) => {
       let callback: Callback<any> = JSON.parse(data)
       if (callback.errorCode === 0) {
         if (callback.broadcast != null) {
           let broadcast = callback.broadcast
           let type = broadcast.type
           let payload = broadcast.payload
-          try {
-            store.dispatch({
-              type,
-              payload,
-            })
-          } catch (ignore) {}
+          switch (type) {
+            case `${ADD_DISPLAY_NAME}/remote`:
+              ;(payload as string[]).forEach((name) => {
+                DisplayNameGenerator.displayNameList.add(name)
+              })
+              break
+            case `${REMOVE_DISPLAY_NAME}/remote`:
+              ;(payload as string[]).forEach((name) => {
+                DisplayNameGenerator.displayNameList.delete(name)
+              })
+              break
+            case `${UPDATE_DISPLAY_NAME}/remote`:
+              DisplayNameGenerator.displayNameList.delete(payload[0])
+              DisplayNameGenerator.displayNameList.add(payload[1])
+              break
+            default:
+              try {
+                store.dispatch({
+                  type,
+                  payload,
+                })
+              } catch (ignore) {}
+          }
         }
       }
     })

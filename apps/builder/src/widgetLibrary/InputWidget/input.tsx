@@ -1,4 +1,4 @@
-import { FC, forwardRef, useEffect, useRef } from "react"
+import { FC, forwardRef, useEffect, useRef, useState } from "react"
 import { Input } from "@illa-design/input"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -23,16 +23,19 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       showCharacterCount,
       colorScheme,
       handleUpdateDsl,
+      handleOnChange,
       allowClear,
       maxLength,
       minLength,
     } = props
 
+    const [_value, setValue] = useState(value)
+
     return (
       <Input
         w="100%"
         inputRef={ref}
-        value={value}
+        value={_value}
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
@@ -41,7 +44,13 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
         suffix={suffixIcon}
         addonAfter={{ render: suffixText, custom: false }}
         onChange={(value) => {
-          handleUpdateDsl({ value })
+          setValue(value)
+          new Promise((resolve) => {
+            handleUpdateDsl({ value })
+            resolve(true)
+          }).then(() => {
+            handleOnChange?.()
+          })
         }}
         showCount={showCharacterCount}
         borderColor={colorScheme}
@@ -90,9 +99,27 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
   } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const inputWrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (inputWrapperRef.current) {
+      updateComponentHeight(inputWrapperRef.current?.clientHeight)
+    }
+  }, [
+    value,
+    pattern,
+    regex,
+    minLength,
+    maxLength,
+    required,
+    customRule,
+    hideValidationMessage,
+  ])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -139,9 +166,12 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     allowClear,
     minLength,
     maxLength,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
   return (
-    <>
+    <div ref={inputWrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -178,7 +208,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
           hideValidationMessage={hideValidationMessage}
         />
       </div>
-    </>
+    </div>
   )
 }
 

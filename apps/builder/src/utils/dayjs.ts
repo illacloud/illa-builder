@@ -1,4 +1,4 @@
-// eslint-disable-file import/no-named-as-default-member
+/* eslint-disable import/no-named-as-default-member */
 import LocalizedFormat from "dayjs/plugin/localizedFormat"
 import updateLocale from "dayjs/plugin/updateLocale"
 import relativeTime from "dayjs/plugin/relativeTime"

@@ -18,10 +18,12 @@ import {
   convertPathToString,
   extractReferencesFromScript,
   getImmediateParentsOfPropertyPaths,
+  isAction,
   isWidget,
 } from "@/utils/executionTreeHelper/utils"
 import { validationFactory } from "@/utils/validationFactory"
 import { applyChange, Diff, diff } from "deep-diff"
+import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 
 export class ExecutionTreeFactory {
   dependenciesState: DependenciesState = {}
@@ -48,7 +50,6 @@ export class ExecutionTreeFactory {
     )
     this.errorTree = errorTree
     this.executedTree = this.validateTree(evaluatedTree)
-
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
@@ -88,10 +89,12 @@ export class ExecutionTreeFactory {
   }
 
   applyDifferencesToEvalTree(differences: Diff<any, any>[]) {
+    const resultExecutedTree = cloneDeep(this.executedTree)
     for (const d of differences) {
       if (!Array.isArray(d.path) || d.path.length === 0) continue
-      applyChange(this.executedTree, undefined, d)
+      applyChange(resultExecutedTree, undefined, d)
     }
+    this.executedTree = resultExecutedTree
   }
 
   calcSubTreeSortOrder(differences: Diff<any, any>[], rawTree: RawTreeShape) {
@@ -105,7 +108,7 @@ export class ExecutionTreeFactory {
         continue
       }
       const dynamic: string[] = entity.$dynamicAttrPaths
-      dynamic?.map((attr) => {
+      dynamic?.forEach((attr) => {
         changePaths.add(`${entityName}.${attr}`)
       })
     }
@@ -173,6 +176,9 @@ export class ExecutionTreeFactory {
 
   updateTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
+    this.dependenciesState = this.generateDependenciesMap(currentRawTree)
+    this.evalOrder = this.sortEvalOrder(this.dependenciesState)
+    this.inDependencyTree = this.generateInDependenciesMap()
     const differences: Diff<RawTreeShape, RawTreeShape>[] =
       diff(this.oldRawTree, currentRawTree) || []
     if (differences.length === 0) {
@@ -197,7 +203,7 @@ export class ExecutionTreeFactory {
       this.executedTree,
       path,
     )
-    this.oldRawTree = currentRawTree
+    this.oldRawTree = cloneDeep(currentRawTree)
     this.errorTree = errorTree
     this.executedTree = this.validateTree(evaluatedTree)
     return {
@@ -340,6 +346,35 @@ export class ExecutionTreeFactory {
 
               set(errorTree, fullPath, oldError)
               set(current, fullPath, undefined)
+            }
+          }
+          if (isAction(widgetOrAction)) {
+            for (let i = currentIndex + 1; i < sortedEvalOrder.length; i++) {
+              const currentDynamicString = sortedEvalOrder[i]
+              if (currentDynamicString.includes(widgetOrAction.displayName)) {
+                return current
+              }
+            }
+            if (widgetOrAction.triggerMode === "automate") {
+              const {
+                $actionId,
+                $resourceId,
+                actionType,
+                content,
+                displayName,
+                transformer,
+                triggerMode,
+              } = widgetOrAction
+              const action = {
+                actionId: $actionId,
+                resourceId: $resourceId,
+                actionType,
+                content,
+                displayName,
+                transformer,
+                triggerMode,
+              }
+              runAction(action, () => {}, true)
             }
           }
           return current

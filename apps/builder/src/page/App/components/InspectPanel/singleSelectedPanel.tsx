@@ -37,7 +37,7 @@ export const SingleSelectedPanel: FC = () => {
         }),
       )
     },
-    [widgetDisplayName],
+    [dispatch, widgetDisplayName],
   )
 
   const builderPanelConfig = useMemo(() => {

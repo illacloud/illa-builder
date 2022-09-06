@@ -1,4 +1,4 @@
-import { FC, useContext } from "react"
+import { FC, useCallback, useContext } from "react"
 import { MoreIcon } from "@illa-design/icon"
 import { Dropdown } from "@illa-design/dropdown"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
@@ -12,14 +12,17 @@ export const PanelHeader: FC = () => {
   const { widgetDisplayName, widgetType } = useContext(SelectedPanelContext)
   const dispatch = useDispatch()
 
-  const handleUpdateDisplayNameByBlur = (newDisplayName: string) => {
-    dispatch(
-      componentsActions.updateComponentDisplayNameReducer({
-        displayName: widgetDisplayName,
-        newDisplayName,
-      }),
-    )
-  }
+  const handleUpdateDisplayNameByBlur = useCallback(
+    (newDisplayName: string) => {
+      dispatch(
+        componentsActions.updateComponentDisplayNameReducer({
+          displayName: widgetDisplayName,
+          newDisplayName,
+        }),
+      )
+    },
+    [dispatch, widgetDisplayName],
+  )
   return (
     <div css={panelHeaderWrapperStyle}>
       <EditableText
@@ -29,7 +32,7 @@ export const PanelHeader: FC = () => {
       />
       <div css={panelHeaderIconWrapperStyle}>
         <Dropdown
-          position="br"
+          position="bottom-end"
           trigger="click"
           dropList={
             <ActionMenu

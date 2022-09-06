@@ -19,6 +19,5 @@ export interface WrappedCircleProgressProps
 export interface CircleProgressWidgetProps
   extends WrappedCircleProgressProps,
     BaseWidgetProps,
-    BaseComponentNodeProps,
     LabelProps,
     TooltipWrapperProps {}
