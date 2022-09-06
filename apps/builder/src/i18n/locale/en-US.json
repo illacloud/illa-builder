@@ -710,7 +710,8 @@
       "name": "Rate"
     },
     "date_time": {
-      "name": "Date Time"
+      "name": "Date Time",
+      "placeholder": "Select time"
     },
     "divider_progress": {
       "name": "Divider"

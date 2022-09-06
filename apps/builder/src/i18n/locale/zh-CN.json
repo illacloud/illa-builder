@@ -704,7 +704,8 @@
       "name": "评分"
     },
     "date_time": {
-      "name": "日期时间选择器"
+      "name": "日期时间选择器",
+      "placeholder": "请选择时间"
     },
     "circle_progress": {
       "name": "环形进度条"
