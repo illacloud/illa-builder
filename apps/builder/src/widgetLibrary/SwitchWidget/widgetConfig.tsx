@@ -1,5 +1,5 @@
 import { SwitchWidgetIcon } from "@illa-design/icon"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
@@ -11,6 +11,7 @@ export const SWITCH_WIDGET_CONFIG: WidgetConfig = {
   icon: <SwitchWidgetIcon size="100%" />,
   keywords: ["Switch", "开关"],
   sessionType: "SELECT",
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     label: "Label",
     labelAlign: "left",

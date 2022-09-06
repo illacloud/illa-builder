@@ -111,6 +111,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
 
@@ -163,8 +164,24 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [
+    value,
+    pattern,
+    regex,
+    required,
+    customRule,
+    hideValidationMessage,
+    labelPosition,
+  ])
+
   return (
-    <>
+    <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -190,7 +207,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
         customRule={customRule}
         hideValidationMessage={hideValidationMessage}
       />
-    </>
+    </div>
   )
 }
 NumberInputWidget.displayName = "NumberInputWidget"

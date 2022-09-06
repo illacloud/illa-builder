@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC, useEffect, useRef } from "react"
 import { Rate } from "@illa-design/rate"
 import { RateWidgetProps, WrappedRateProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -58,6 +58,7 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
+    updateComponentHeight,
   } = props
 
   useEffect(() => {
@@ -94,24 +95,34 @@ export const RateWidget: FC<RateWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
   ])
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [value, required, maxCount, labelPosition])
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
-        <Label
-          labelFull={labelFull}
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
-          required={required}
-          labelHidden={labelHidden}
-          hasTooltip={!!tooltipText}
-        />
-        <WrappedRate {...props} />
-      </div>
-    </TooltipWrapper>
+    <div ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedRate {...props} />
+        </div>
+      </TooltipWrapper>
+    </div>
   )
 }
 RateWidget.displayName = "RateWidget"

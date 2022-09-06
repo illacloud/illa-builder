@@ -38,30 +38,30 @@ export function applySquarePointerStyle(
   switch (pointerPosition) {
     case "tl":
       positionStyle = css`
-        top: -2px;
-        left: -2px;
+        top: 8px;
+        left: 8px;
         cursor: ${selected ? "nwse-resize" : "default"};
       `
       break
     case "tr":
       positionStyle = css`
         cursor: ${selected ? "nesw-resize" : "default"};
-        top: -2px;
-        right: -2px;
+        top: 8px;
+        right: 8px;
       `
       break
     case "bl":
       positionStyle = css`
         cursor: ${selected ? "nesw-resize" : "default"};
-        bottom: -2px;
-        left: -2px;
+        bottom: 8px;
+        left: 8px;
       `
       break
     case "br":
       positionStyle = css`
         cursor: ${selected ? "nwse-resize" : "default"};
-        bottom: -2px;
-        right: -2px;
+        bottom: 8px;
+        right: 8px;
       `
       break
     default:
@@ -81,7 +81,7 @@ export function applySquarePointerStyle(
     background: ${selected
       ? globalColor(`--${illaPrefix}-white-01`)
       : "transparent"};
-
+    z-index: 150;
     &:active {
       background: ${baseColor};
     }
@@ -162,6 +162,9 @@ export function applyBarPointerStyle(
     :hover {
       background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
     }
+    :active {
+      background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    }
   `
 }
 
@@ -218,7 +221,7 @@ export function applyBarHandlerStyle(
   switch (barPosition) {
     case "t":
       barPositionStyle = css`
-        top: -2px;
+        top: 3px;
         left: 0;
         right: 0;
         height: 5px;
@@ -227,7 +230,7 @@ export function applyBarHandlerStyle(
       break
     case "b":
       barPositionStyle = css`
-        bottom: -2px;
+        bottom: 3px;
         left: 0;
         right: 0;
         height: 5px;
@@ -237,7 +240,7 @@ export function applyBarHandlerStyle(
     case "l":
       barPositionStyle = css`
         bottom: 0;
-        left: -2px;
+        left: 3px;
         top: 0;
         width: 5px;
         cursor: ${selected ? "col-resize" : "default"};
@@ -246,7 +249,7 @@ export function applyBarHandlerStyle(
     case "r":
       barPositionStyle = css`
         bottom: 0;
-        right: -2px;
+        right: 3px;
         top: 0;
         cursor: ${selected ? "col-resize" : "default"};
         width: 5px;
@@ -286,7 +289,7 @@ export const applyMoveBarWrapperStyle = (
     min-width: 12px;
     overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
-    z-index: 200;
+    z-index: 100;
   `
 }
 
@@ -320,6 +323,7 @@ export const applyRNDWrapperStyle = (
       visibility: ${isEditor ? "visible" : "hidden"};
     }
   }
+  opacity: ${isDragging ? 0 : 100};
 `
 
 export const applyWrapperPendingStyle = (

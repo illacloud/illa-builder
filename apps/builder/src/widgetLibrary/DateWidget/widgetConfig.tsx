@@ -1,5 +1,5 @@
 import { DateWidgetIcon } from "@illa-design/icon"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import dayjs from "dayjs"
 import i18n from "@/i18n/config"
 
@@ -12,6 +12,7 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "CALENDAR",
   w: 12,
   h: 5,
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     value: dayjs().format("YYYY-MM-DD"),
     dateFormat: "YYYY-MM-DD",
