@@ -1,11 +1,6 @@
 import * as Redux from "redux"
-import { addOrUpdateDragShadowReducer } from "@/redux/currentApp/editor/dragShadow/dragShadowReducer"
 import { Connection, getPayload } from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
-import {
-  deleteComponentNodeReducer,
-  updateComponentPropsReducer,
-} from "@/redux/currentApp/editor/components/componentsReducer"
 import {
   getCanvas,
   searchDsl,
@@ -15,6 +10,7 @@ import {
   ResetComponentPropsPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateComponentDisplayNamePayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
 
@@ -59,7 +55,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               ),
             )
             break
-          case "updateComponents":
+          case "updateComponentsShape":
             const singleComponentPayload: UpdateComponentsShapePayload = payload
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
@@ -143,7 +139,25 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentDisplayNameReducer":
-            break
+            const updateDisplayNamePayload: UpdateComponentDisplayNamePayload =
+              payload
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [
+                  {
+                    before: updateDisplayNamePayload.displayName,
+                    after: updateDisplayNamePayload.newDisplayName,
+                  },
+                ],
+              ),
+            )
         }
         break
       case "dependencies":
