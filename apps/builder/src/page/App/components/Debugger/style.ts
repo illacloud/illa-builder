@@ -19,6 +19,10 @@ export const titleStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
 `
 
+export const errorContentStyle = css`
+  overflow-y: scroll;
+`
+
 export const errorItemStyle = css`
   display: flex;
   justify-content: space-between;

@@ -1,13 +1,22 @@
-import { FC, HTMLAttributes, useRef } from "react"
+import { FC, HTMLAttributes, useCallback, useRef } from "react"
 import { Divider } from "@illa-design/divider"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
-import { applyDebuggerStyle, errorIconStyle, errorItemStyle, nameStyle, sourceStyle, titleStyle } from "./style"
+import {
+  applyDebuggerStyle,
+  errorContentStyle,
+  errorIconStyle,
+  errorItemStyle,
+  nameStyle,
+  sourceStyle,
+  titleStyle,
+} from "./style"
 import { CloseIcon, ErrorIcon } from "@illa-design/icon"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { forIn } from "lodash"
 import { ErrorShape } from "@/redux/currentApp/executionTree/executionState"
 import { isArray } from "@illa-design/system"
+import { configActions } from "@/redux/config/configSlice"
+import { isOpenDebugger } from "@/redux/config/configSelector"
 
 const DebuggerDefaultHeight = 300
 
@@ -15,22 +24,30 @@ interface ErrorItemProps extends HTMLAttributes<HTMLDivElement> {
   displayName: string;
   item: ErrorShape
 }
+
 const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, displayName } = props
   return <div css={errorItemStyle}>
     <div>
       <ErrorIcon size={"16px"} css={errorIconStyle} />
-      <span css={nameStyle}>[{displayName}]</span>
-      <span>{item?.errorMessage}</span>
+      <span css={nameStyle}>[{displayName.split(".")[0]}]</span>
+      <span>{item?.errorName}: {item?.errorMessage}</span>
     </div>
     <div css={sourceStyle}>{displayName}</div>
   </div>
 }
 
 export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
+  const dispatch = useDispatch()
   const panelRef = useRef<HTMLDivElement>(null)
   const debuggerData = useSelector(getExecutionDebuggerData)
-  console.log(debuggerData, 'debuggerData')
+  const debuggerVisible = useSelector(isOpenDebugger)
+  console.log(debuggerData, "debuggerData")
+
+  const handleClickDebuggerIcon = useCallback(() => {
+    dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
+  }, [debuggerVisible])
+
   return (
     <div
       className={props.className}
@@ -41,32 +58,21 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       <Divider direction="horizontal" />
       <div css={titleStyle}>
         <span>Errors</span>
-        <CloseIcon />
+        <CloseIcon onClick={handleClickDebuggerIcon} />
       </div>
-
-      {
-        Object.keys(debuggerData)?.map((name, index) => {
-          const error = debuggerData[name]
-          console.log(name, error, 'debuggerData error')
-          if (isArray(error)) {
-            return error?.map((item) =>{
-              console.log('debuggerData item', item)
-             return  <ErrorItem displayName={name} item={item} />
-            })
-          }
-          return <ErrorItem displayName={name} item={error} />
-        })
-      }
-
-      <div css={errorItemStyle}>
-        <div>
-          <ErrorIcon size={"16px"} css={errorIconStyle} />
-          <span css={nameStyle}>[updateCustomerInfo]</span>
-          <span>The value at config.body is invalid</span>
-        </div>
-        <div css={sourceStyle}>updateCustomerInfo.action</div>
+      <div css={errorContentStyle}>
+        {
+          Object.keys(debuggerData)?.map((name, index) => {
+            const error = debuggerData[name]
+            if (isArray(error)) {
+              return error?.map((item) => {
+                return <ErrorItem displayName={name} item={item} />
+              })
+            }
+            return <ErrorItem displayName={name} item={error} />
+          })
+        }
       </div>
-
     </div>
   )
 }

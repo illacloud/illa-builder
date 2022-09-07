@@ -11,6 +11,7 @@ export interface ErrorShape {
   errorMessage: string
   errorLine?: number
   errorColumn?: number
+  errorName?: string
 }
 export type DependenciesState = Record<string, string[]>
 
