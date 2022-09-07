@@ -10,9 +10,7 @@
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-builder/graphs/contributors">contributors</a></p>
 </div>
 
-<video controls poster="https://cdn.illafamily.com/github-builder-cover.png">
-  <source src="https://cdn.illafamily.com/official-site%2Fvideo-intro.mp4" type="video/mp4">
-</video>
+![cover](https://cdn.illafamily.com/github-builder-cover.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
 [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illa-family/discussions)
