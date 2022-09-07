@@ -8,7 +8,13 @@ import { WorkSpaceTreeItem } from "@/page/App/components/DataWorkspace/component
 const hiddenFields = ["displayName", "userId"]
 
 export const WorkSpaceTree: FC<WorkSpaceTreeProps> = (props) => {
-  const { title, dataList = [], selectedKeys, handleSelect } = props
+  const {
+    title,
+    dataList = [],
+    selectedKeys,
+    handleSelect,
+    onIllaFocus,
+  } = props
 
   const tree = useMemo(() => {
     return dataList.map((data) => {
@@ -25,7 +31,7 @@ export const WorkSpaceTree: FC<WorkSpaceTreeProps> = (props) => {
   }, [dataList, selectedKeys])
 
   return (
-    <PanelBar title={title}>
+    <PanelBar title={title} onIllaFocus={onIllaFocus}>
       <div css={applyTreeContainerStyle()}>{tree}</div>
     </PanelBar>
   )

@@ -1,10 +1,10 @@
 import { widgetBuilder, WidgetType, WidgetTypeList } from "./widgetBuilder"
+import { WidgetCardInfo, WidgetConfig } from "./interface"
+import i18n from "@/i18n/config"
 import {
   ComponentSessionProps,
   NewTypeMapComponent,
-} from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
-import { WidgetCardInfo, WidgetConfig } from "./interface"
-import i18n from "@/i18n/config"
+} from "@/page/App/components/ComponentPanel/interface"
 
 export type SessionType = keyof typeof sessionTypeMapSessionNameKey
 

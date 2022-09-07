@@ -294,7 +294,8 @@ export const getReflowResult = (
   allComponentNodes: ComponentNode[],
   exceptSelf: boolean = true,
 ) => {
-  const sortedComponentNodes = sortComponentNodes(allComponentNodes)
+  const currentComponentNodes = cloneDeep(allComponentNodes)
+  const sortedComponentNodes = sortComponentNodes(currentComponentNodes)
   const effectResultMap = getCrossingNodeNewPosition(
     currentNode,
     sortedComponentNodes,
@@ -304,8 +305,6 @@ export const getReflowResult = (
     sortedComponentNodes,
   )
 
-  console.log("effectResultMap", effectResultMap)
-  console.log("finalState", finalState)
   if (exceptSelf) {
     finalState = finalState.filter(
       (node) => node.displayName !== currentNode.displayName,

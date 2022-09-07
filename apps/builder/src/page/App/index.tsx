@@ -11,7 +11,6 @@ import {
   middlePanelStyle,
   navbarStyle,
 } from "./style"
-import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -35,6 +34,7 @@ import { setupConfigListener } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { Debugger } from "@/page/App/components/Debugger"
+import ComponentsManager from "@/page/App/components/ComponentManager"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -106,7 +106,7 @@ export const Editor: FC = () => {
               <ActionEditor css={applyBottomPanelStyle(showBottomPanel && !showDebugger)} />
               <Debugger css={applyBottomPanelStyle(showDebugger)} />
             </div>
-            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
+            <ComponentsManager css={applyRightPanelStyle(showRightPanel)} />
           </div>
         </Shortcut>
       )}

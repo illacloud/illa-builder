@@ -17,8 +17,8 @@ import configReducer from "@/redux/config/configSlice"
 import componentsReducer from "@/redux/currentApp/editor/components/componentsSlice"
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
-import { reduxAsync } from "@/middleware/redux/redux-async"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
+import { reduxAsync } from "@/middleware/redux/redux-async"
 
 const listenerMiddleware = createListenerMiddleware()
 

@@ -5,7 +5,6 @@ import {
   itemContainerStyle,
   nameStyle,
 } from "./style"
-import { ComponentItemProps } from "@/page/App/components/WidgetPickerEditor/components/ComponentPanel/interface"
 import { useDrag } from "react-dnd"
 import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import {
@@ -19,6 +18,7 @@ import { endDrag, startDrag } from "@/utils/drag/drag"
 import store from "@/store"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep } from "lodash"
+import { ComponentItemProps } from "@/page/App/components/ComponentPanel/interface"
 
 export const ComponentItem: FC<ComponentItemProps> = memo(
   (props: ComponentItemProps) => {
@@ -51,7 +51,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           const childrenNodes = rootNode?.childrenNode
             ? cloneDeep(rootNode.childrenNode)
             : []
-          startDrag(item, false)
+          startDrag(item)
           return {
             item,
             childrenNodes,

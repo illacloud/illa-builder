@@ -208,14 +208,15 @@ export const RenderComponentCanvas: FC<{
             y: Math.round(landingY / UNIT_HEIGHT),
             unitW: unitWidth,
             unitH: UNIT_HEIGHT,
+            isDragging: false,
           }
           if (item.x === -1 && item.y === -1) {
-            dispatch(componentsActions.addComponentReducer(newItem))
+            dispatch(componentsActions.addComponentReducer([newItem]))
           } else {
             dispatch(
-              componentsActions.updateSingleComponentReducer({
-                isMove: false,
-                componentNode: newItem,
+              componentsActions.updateComponentsShape({
+                isMove: true,
+                components: [newItem],
               }),
             )
           }
