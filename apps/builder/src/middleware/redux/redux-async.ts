@@ -160,24 +160,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
         }
         break
-      case "dependencies":
-        switch (reduxAction) {
-          case "setDependenciesReducer":
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_PUT_STATE,
-                Target.TARGET_DEPENDENCIES,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [payload],
-              ),
-            )
-            break
-        }
-        break
       case "dragShadow":
         switch (reduxAction) {
           case "addOrUpdateDragShadowReducer":
