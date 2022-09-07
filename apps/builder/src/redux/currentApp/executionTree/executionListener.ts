@@ -41,6 +41,7 @@ async function handleStartExecution(
     const errorTree = executionResult.errorTree
     const evaluatedTree = executionResult.evaluatedTree
     const dependencyMap = executionResult.dependencyTree
+    const debuggerData = executionResult.debuggerData
 
     const updates = diff(oldExecutionTree, evaluatedTree) || []
     listenerApi.dispatch(
@@ -58,11 +59,17 @@ async function handleStartExecution(
         ...errorTree,
       }),
     )
+    listenerApi.dispatch(
+      executionActions.setExecutionDebuggerDataReducer({
+        ...debuggerData,
+      }),
+    )
   } else {
     const executionResult = executionTree.updateTree(rawTree)
     const errorTree = executionResult.errorTree
     const evaluatedTree = executionResult.evaluatedTree
     const dependencyMap = executionResult.dependencyTree
+    const debuggerData = executionResult.debuggerData
     const updates = diff(oldExecutionTree, evaluatedTree) || []
     listenerApi.dispatch(
       executionActions.setExecutionResultReducer({
@@ -77,6 +84,11 @@ async function handleStartExecution(
     listenerApi.dispatch(
       executionActions.setExecutionErrorReducer({
         ...errorTree,
+      }),
+    )
+    listenerApi.dispatch(
+      executionActions.setExecutionDebuggerDataReducer({
+        ...debuggerData,
       }),
     )
   }

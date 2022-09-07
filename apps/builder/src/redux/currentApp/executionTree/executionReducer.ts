@@ -43,6 +43,13 @@ export const setExecutionErrorReducer: CaseReducer<
   state.error = action.payload
 }
 
+export const setExecutionDebuggerDataReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<Record<string, ErrorShape[]>>
+> = (state, action) => {
+  state.debuggerData = action.payload
+}
+
 export const startExecutionReducer: CaseReducer<
   ExecutionState,
   PayloadAction<void>

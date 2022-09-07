@@ -18,12 +18,14 @@ export interface ExecutionState {
   dependencies: DependenciesState
   result: Record<string, any>
   error: Record<string, ErrorShape[]>
+  debuggerData: Record<string, ErrorShape[]>
 }
 
 export const executionInitialState: ExecutionState = {
   dependencies: {},
   result: {},
   error: {},
+  debuggerData: {},
 }
 
 export interface setExecutionResultPayload {
