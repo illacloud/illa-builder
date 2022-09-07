@@ -17,6 +17,7 @@ import { ErrorShape } from "@/redux/currentApp/executionTree/executionState"
 import { isArray } from "@illa-design/system"
 import { configActions } from "@/redux/config/configSlice"
 import { isOpenDebugger } from "@/redux/config/configSelector"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
 
 const DebuggerDefaultHeight = 300
 
@@ -27,13 +28,22 @@ interface ErrorItemProps extends HTMLAttributes<HTMLDivElement> {
 
 const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, displayName } = props
+  const dispatch = useDispatch()
+  const actionList = useSelector(getActionList)
+  const handleActionSelect = () => {
+    const action = actionList.find(
+      (item) => item.displayName === displayName.split(".")[0],
+    )
+    action && dispatch(configActions.updateSelectedAction(action))
+  }
+
   return <div css={errorItemStyle}>
     <div>
       <ErrorIcon size={"16px"} css={errorIconStyle} />
-      <span css={nameStyle}>[{displayName.split(".")[0]}]</span>
+      <span css={nameStyle} onClick={handleActionSelect}>[{displayName.split(".")[0]}]</span>
       <span>{item?.errorName}: {item?.errorMessage}</span>
     </div>
-    <div css={sourceStyle}>{displayName}</div>
+    <div css={sourceStyle} onClick={handleActionSelect}>{displayName}</div>
   </div>
 }
 
