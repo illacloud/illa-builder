@@ -35,6 +35,11 @@ export const getExecutionError = createSelector(
   (execution) => execution.error ?? {},
 )
 
+export const getExecutionDebuggerData = createSelector(
+  [getExecution],
+  (execution) => execution.debuggerData ?? {},
+)
+
 export const getWidgetExecutionResult = createSelector(
   [getExecutionResult],
   (executionResult) => {
