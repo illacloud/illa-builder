@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --mode dev",
+    "dev": "vite --mode cloud",
     "build-cloud": "vite build --mode cloud",
     "build-self": "vite build --mode self",
     "preview": "vite preview",
