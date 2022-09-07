@@ -37,14 +37,19 @@ const ErrorItem: FC<ErrorItemProps> = (props) => {
     action && dispatch(configActions.updateSelectedAction(action))
   }
 
-  return <div css={errorItemStyle}>
+  return (
     <div>
-      <ErrorIcon size={"16px"} css={errorIconStyle} />
-      <span css={nameStyle} onClick={handleActionSelect}>[{displayName.split(".")[0]}]</span>
-      <span>{item?.errorName}: {item?.errorMessage}</span>
+      <div css={errorItemStyle}>
+        <div>
+          <ErrorIcon size={"16px"} css={errorIconStyle} />
+          <span css={nameStyle} onClick={handleActionSelect}>[{displayName.split(".")[0]}]</span>
+          <span>The value at {displayName.split(".")[1]} is invalid</span>
+        </div>
+        <div css={sourceStyle} onClick={handleActionSelect}>{displayName}</div>
+      </div>
+      <div><span>{item?.errorName}: {item?.errorMessage}</span></div>
     </div>
-    <div css={sourceStyle} onClick={handleActionSelect}>{displayName}</div>
-  </div>
+    )
 }
 
 export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
