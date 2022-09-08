@@ -2,8 +2,8 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ComponentNode,
   ComponentsState,
+  CopyComponentPayload,
   DeleteComponentNodePayload,
-  ResetComponentPropsPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
@@ -26,9 +26,8 @@ export const addComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode[]>
 > = (state, action) => {
-  action.payload.forEach((dealNode) => {
+  action.payload.forEach(dealNode => {
     if (state == null || dealNode.parentNode == null) {
-      state = dealNode
       return state
     } else {
       const parentNode = searchDsl(state, dealNode.parentNode)
@@ -46,6 +45,30 @@ export const addComponentReducer: CaseReducer<
   })
 }
 
+export const copyComponentReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<CopyComponentPayload[]>
+> = (state, action) => {
+  action.payload.forEach(copyShape => {
+    const { newComponentNode, oldComponentNode } = copyShape
+    if (state == null || newComponentNode.parentNode == null) {
+      return state
+    } else {
+      const parentNode = searchDsl(state, newComponentNode.parentNode)
+      if (parentNode != null) {
+        if (newComponentNode.props) {
+          newComponentNode.props = getNewWidgetPropsByUpdateSlice(
+            newComponentNode.displayName,
+            newComponentNode.props ?? {},
+            newComponentNode.props ?? {},
+          )
+        }
+        parentNode.childrenNode.push(newComponentNode)
+      }
+    }
+  })
+}
+
 export const deleteComponentNodeReducer: CaseReducer<
   ComponentsState,
   PayloadAction<DeleteComponentNodePayload>
@@ -55,7 +78,7 @@ export const deleteComponentNodeReducer: CaseReducer<
     return
   }
   const rootNode = state
-  displayNames.forEach((value) => {
+  displayNames.forEach(value => {
     const searchNode = searchDsl(rootNode, value)
     if (searchNode != null) {
       const parentNode = searchDsl(rootNode, searchNode.parentNode)
@@ -67,7 +90,7 @@ export const deleteComponentNodeReducer: CaseReducer<
         return
       }
       childrenNodes.splice(
-        childrenNodes.findIndex((value) => {
+        childrenNodes.findIndex(value => {
           return value.displayName === searchNode.displayName
         }),
         1,
@@ -124,10 +147,10 @@ export const updateComponentsShape: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentsShapePayload>
 > = (state, action) => {
-  action.payload.components.forEach((dealNode) => {
+  action.payload.components.forEach(dealNode => {
     const parentNode = searchDsl(state, dealNode.parentNode)
     if (parentNode != null) {
-      const index = parentNode.childrenNode.findIndex((value) => {
+      const index = parentNode.childrenNode.findIndex(value => {
         return value.displayName === dealNode.displayName
       })
       if (index > -1) {
@@ -144,10 +167,10 @@ export const updateComponentReflowReducer: CaseReducer<
   const targetNode = searchDsl(state, parentDisplayName)
   if (targetNode) {
     const childNodesDisplayNamesMap = new Map()
-    childNodes.forEach((node) => {
+    childNodes.forEach(node => {
       childNodesDisplayNamesMap.set(node.displayName, node)
     })
-    targetNode.childrenNode = targetNode.childrenNode?.map((node) => {
+    targetNode.childrenNode = targetNode.childrenNode?.map(node => {
       if (childNodesDisplayNamesMap.has(node.displayName)) {
         return childNodesDisplayNamesMap.get(node.displayName)
       }

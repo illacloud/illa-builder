@@ -51,7 +51,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           const childrenNodes = rootNode?.childrenNode
             ? cloneDeep(rootNode.childrenNode)
             : []
-          startDrag(item)
+          startDrag(item, true)
           return {
             item,
             childrenNodes,

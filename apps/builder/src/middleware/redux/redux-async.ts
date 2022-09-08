@@ -1,24 +1,24 @@
 import * as Redux from "redux"
-import { addOrUpdateDragShadowReducer } from "@/redux/currentApp/editor/dragShadow/dragShadowReducer"
-import { Connection, getPayload } from "@/api/ws"
-import { Signal, Target } from "@/api/ws/interface"
 import {
-  deleteComponentNodeReducer,
-  updateComponentPropsReducer,
-} from "@/redux/currentApp/editor/components/componentsReducer"
+  Connection,
+  getPayload,
+  transformComponentReduxPayloadToWsPayload,
+} from "@/api/ws"
+import { Signal, Target } from "@/api/ws/interface"
 import {
   getCanvas,
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DeleteComponentNodePayload,
-  ResetComponentPropsPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateComponentDisplayNamePayload,
+  ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
 
-export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
+export const reduxAsync: Redux.Middleware = store => next => action => {
   const { type, payload } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]
@@ -59,8 +59,11 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               ),
             )
             break
-          case "updateComponents":
+          case "updateComponentsShape":
             const singleComponentPayload: UpdateComponentsShapePayload = payload
+            const singleComponentWSPayload = transformComponentReduxPayloadToWsPayload(
+              singleComponentPayload.components,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 singleComponentPayload.isMove
@@ -72,12 +75,15 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                singleComponentPayload.components,
+                singleComponentWSPayload,
               ),
             )
             break
           case "updateComponentReflowReducer":
-            const updateComponentReflow: UpdateComponentReflowPayload = payload
+            const updateComponentReflowPayload: UpdateComponentReflowPayload = payload
+            const updateComponentReflowWSPayload = transformComponentReduxPayloadToWsPayload(
+              updateComponentReflowPayload.childNodes,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -87,7 +93,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                updateComponentReflow.childNodes,
+                updateComponentReflowWSPayload,
               ),
             )
             break
@@ -107,11 +113,19 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
-                  [finalNode],
+                  [
+                    {
+                      before: {
+                        displayName: updatePayload.displayName,
+                      },
+                      after: finalNode,
+                    },
+                  ],
                 ),
               )
             }
             break
+
           case "deleteComponentNodeReducer":
             const deletePayload: DeleteComponentNodePayload = payload
             Connection.getRoom("app", currentAppID)?.send(
@@ -128,7 +142,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "resetComponentPropsReducer":
-            const resetPayload: ResetComponentPropsPayload = payload
+            const resetWsPayload = transformComponentReduxPayloadToWsPayload(
+              payload as ComponentNode,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -138,30 +154,42 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                [resetPayload],
+                resetWsPayload,
               ),
             )
             break
           case "updateComponentDisplayNameReducer":
-            break
-        }
-        break
-      case "dependencies":
-        switch (reduxAction) {
-          case "setDependenciesReducer":
+            const {
+              displayName,
+              newDisplayName,
+            } = action.payload as UpdateComponentDisplayNamePayload
+            const findOldNode = searchDsl(
+              getCanvas(store.getState()),
+              newDisplayName,
+            )
+            if (!findOldNode) break
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
-                Signal.SIGNAL_PUT_STATE,
-                Target.TARGET_DEPENDENCIES,
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
                 true,
                 {
                   type,
                   payload,
                 },
-                [payload],
+                [
+                  {
+                    before: {
+                      displayName: displayName,
+                    },
+                    after: {
+                      ...findOldNode,
+                      displayName: newDisplayName,
+                    },
+                  },
+                ],
               ),
             )
-            break
         }
         break
       case "dragShadow":

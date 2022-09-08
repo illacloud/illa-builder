@@ -364,7 +364,7 @@ export const getDragResult = (
   const ladingPosition = calcLadingPosition(
     rectPosition,
     unitWidth,
-    unitWidth,
+    unitHeight,
     canvasWidth,
   )
 
