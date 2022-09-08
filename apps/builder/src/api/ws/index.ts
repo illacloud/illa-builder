@@ -1,6 +1,8 @@
 import {
   Broadcast,
   Callback,
+  ILLAWebSocket,
+  ILLAWebSocketComponentPayload,
   Room,
   RoomType,
   Signal,
@@ -16,6 +18,27 @@ import {
   REMOVE_DISPLAY_NAME,
   UPDATE_DISPLAY_NAME,
 } from "@/utils/generators/generateDisplayName"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+
+export function transformComponentReduxPayloadToWsPayload(
+  componentNodes: ComponentNode[] | ComponentNode,
+): ILLAWebSocketComponentPayload[] {
+  if (Array.isArray(componentNodes)) {
+    return componentNodes.map(node => {
+      return {
+        before: node.displayName,
+        after: node,
+      }
+    })
+  }
+  if (!componentNodes) return []
+  return [
+    {
+      before: componentNodes.displayName,
+      after: componentNodes,
+    },
+  ]
+}
 
 export function getPayload<T>(
   signal: Signal,
@@ -91,24 +114,6 @@ export class Connection {
   }
 }
 
-interface ILLAWebSocketResultBroadcast {
-  type: string
-  payload: unknown
-}
-export interface ILLAWebSocketResult {
-  errorCode: number
-  errorMessage: string
-  broadcast: ILLAWebSocketResultBroadcast
-  data: unknown
-}
-
-export interface ILLAWebSocket extends WebSocket {
-  timeout?: any
-  serverTimeout?: any
-  debounceTimeout?: any
-  offline?: boolean
-}
-
 function onMessage(this: ILLAWebSocket, event: MessageEvent) {
   resetHeartbeat(this)
   const message = event.data
@@ -118,7 +123,7 @@ function onMessage(this: ILLAWebSocket, event: MessageEvent) {
 
   const dataList = message.split("\n")
   dataList.forEach((data: string) => {
-    let callback: Callback<any> = JSON.parse(data)
+    let callback: Callback<unknown> = JSON.parse(data)
     if (callback.errorCode === 0) {
       if (callback.broadcast != null) {
         let broadcast = callback.broadcast
@@ -157,7 +162,7 @@ function onMessage(this: ILLAWebSocket, event: MessageEvent) {
 }
 
 function onError(this: ILLAWebSocket, event: Event) {
-  console.error(`[WS ERROR](${this.url} is error)`)
+  console.error(`[WS ERROR](${this.url} is error)${event}`)
   this.close(4000, "close with error")
 }
 

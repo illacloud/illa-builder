@@ -1,5 +1,9 @@
 import * as Redux from "redux"
-import { Connection, getPayload } from "@/api/ws"
+import {
+  Connection,
+  getPayload,
+  transformComponentReduxPayloadToWsPayload,
+} from "@/api/ws"
 import { Signal, Target } from "@/api/ws/interface"
 import {
   getCanvas,
@@ -7,14 +11,14 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import {
   DeleteComponentNodePayload,
-  ResetComponentPropsPayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
   UpdateComponentDisplayNamePayload,
+  ComponentNode,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
 
-export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
+export const reduxAsync: Redux.Middleware = store => next => action => {
   const { type, payload } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]
@@ -42,6 +46,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
       case "components":
         switch (reduxAction) {
           case "addComponentReducer":
+            const addComponentWSPayload = transformComponentReduxPayloadToWsPayload(
+              payload as ComponentNode[],
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_CREATE_STATE,
@@ -51,12 +58,15 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                payload,
+                addComponentWSPayload,
               ),
             )
             break
           case "updateComponentsShape":
             const singleComponentPayload: UpdateComponentsShapePayload = payload
+            const singleComponentWSPayload = transformComponentReduxPayloadToWsPayload(
+              singleComponentPayload.components,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 singleComponentPayload.isMove
@@ -68,12 +78,15 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                singleComponentPayload.components,
+                singleComponentWSPayload,
               ),
             )
             break
           case "updateComponentReflowReducer":
-            const updateComponentReflow: UpdateComponentReflowPayload = payload
+            const updateComponentReflowPayload: UpdateComponentReflowPayload = payload
+            const updateComponentReflowWSPayload = transformComponentReduxPayloadToWsPayload(
+              updateComponentReflowPayload.childNodes,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -83,7 +96,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                updateComponentReflow.childNodes,
+                updateComponentReflowWSPayload,
               ),
             )
             break
@@ -103,11 +116,17 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                     type,
                     payload,
                   },
-                  [finalNode],
+                  [
+                    {
+                      before: updatePayload.displayName,
+                      after: finalNode,
+                    },
+                  ],
                 ),
               )
             }
             break
+
           case "deleteComponentNodeReducer":
             const deletePayload: DeleteComponentNodePayload = payload
             Connection.getRoom("app", currentAppID)?.send(
@@ -124,7 +143,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "resetComponentPropsReducer":
-            const resetPayload: ResetComponentPropsPayload = payload
+            const resetPayload: ComponentNode = payload
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -134,13 +153,17 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                [resetPayload],
+                [
+                  {
+                    before: resetPayload.displayName,
+                    after: resetPayload,
+                  },
+                ],
               ),
             )
             break
           case "updateComponentDisplayNameReducer":
-            const updateDisplayNamePayload: UpdateComponentDisplayNamePayload =
-              payload
+            const updateDisplayNamePayload: UpdateComponentDisplayNamePayload = payload
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,

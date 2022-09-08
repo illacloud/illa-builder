@@ -40,7 +40,7 @@ export const TransformerComponent: FC = () => {
               label: t("editor.action.panel.btn.enable"),
             },
           ]}
-          onChange={(value) => {
+          onChange={value => {
             dispatch(
               configActions.updateSelectedAction({
                 ...action,
@@ -57,7 +57,7 @@ export const TransformerComponent: FC = () => {
         <CodeEditor
           value={
             "// type your code here\n" +
-            "// example: return formatDataAsArray(data).filter(row => row.quantity > 20)\n" +
+            "// example: return data.filter(row => row.quantity > 20)\n" +
             "return data"
           }
           css={codeMirrorStyle}
@@ -65,7 +65,7 @@ export const TransformerComponent: FC = () => {
           height="88px"
           expectedType={VALIDATION_TYPES.STRING}
           mode="JAVASCRIPT"
-          onChange={(value) => {
+          onChange={value => {
             dispatch(
               configActions.updateSelectedAction({
                 ...action,
