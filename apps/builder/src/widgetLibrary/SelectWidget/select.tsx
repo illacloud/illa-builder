@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo, useRef } from "react"
 import { Select } from "@illa-design/select"
 import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
@@ -70,6 +70,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
+    updateComponentHeight,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -118,25 +119,38 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     optionConfigureMode,
     mappedOption,
     manualOptions,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [value, required, labelPosition])
+
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
-        <Label
-          labelFull={labelFull}
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
-          required={required}
-          labelHidden={labelHidden}
-          hasTooltip={!!tooltipText}
-        />
-        <WrappedSelect {...props} options={finalOptions} />
-      </div>
-    </TooltipWrapper>
+    <div ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedSelect {...props} options={finalOptions} />
+        </div>
+      </TooltipWrapper>
+    </div>
   )
 }
 SelectWidget.displayName = "SelectWidget"

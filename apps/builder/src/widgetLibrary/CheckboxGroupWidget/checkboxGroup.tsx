@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo, useRef } from "react"
 import { CheckboxGroup } from "@illa-design/checkbox"
 import {
   CheckboxGroupWidgetProps,
@@ -60,6 +60,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
+    updateComponentHeight,
   } = props
 
   const finalOptions = useMemo(() => {
@@ -98,26 +99,39 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     mappedOption,
     displayName,
     finalOptions,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
 
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [value, required, finalOptions, labelPosition])
+
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
-        <Label
-          labelFull={labelFull}
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
-          required={required}
-          labelHidden={labelHidden}
-          hasTooltip={!!tooltipText}
-        />
-        <WrappedCheckbox {...props} options={finalOptions} />
-      </div>
-    </TooltipWrapper>
+    <div ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyCenterLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedCheckbox {...props} options={finalOptions} />
+        </div>
+      </TooltipWrapper>
+    </div>
   )
 }
 

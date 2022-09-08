@@ -16,6 +16,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
+import { CopyManager } from "@/utils/copyManager"
 
 const Item = DropList.Item
 
@@ -47,7 +48,8 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
-                onCopyItem(action)
+                CopyManager.copyAction(action)
+                CopyManager.paste()
               }}
             />
             <Item

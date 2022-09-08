@@ -7,7 +7,6 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import store from "@/store"
 
 export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"
@@ -16,8 +15,14 @@ export const UPDATE_DISPLAY_NAME = "updateDisplayName"
 export class DisplayNameGenerator {
   static displayNameList = new Set<string>()
 
+  static appId: string = ""
+
   static isAlreadyGenerate(displayName: string): boolean {
     return this.displayNameList.has(displayName)
+  }
+
+  static initApp(appId: string) {
+    this.appId = appId
   }
 
   // use when create success
@@ -30,7 +35,7 @@ export class DisplayNameGenerator {
       name = `${showName || type}${index}`
     }
     this.displayNameList.add(name)
-    Connection.getRoom("app", store.getState().currentApp.appInfo.appId)?.send(
+    Connection.getRoom("app", this.appId)?.send(
       getPayload(
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,
@@ -71,7 +76,7 @@ export class DisplayNameGenerator {
       this.removeDisplayName(oldDisplayName)
     }
     this.displayNameList.add(displayName)
-    Connection.getRoom("app", store.getState().currentApp.appInfo.appId)?.send(
+    Connection.getRoom("app", this.appId)?.send(
       getPayload(
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,
@@ -84,7 +89,7 @@ export class DisplayNameGenerator {
 
   static removeDisplayName(displayName: string) {
     this.displayNameList.delete(displayName)
-    Connection.getRoom("app", store.getState().currentApp.appInfo.appId)?.send(
+    Connection.getRoom("app", this.appId)?.send(
       getPayload(
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,
@@ -99,7 +104,7 @@ export class DisplayNameGenerator {
     displayNames.forEach((displayName) => {
       this.displayNameList.delete(displayName)
     })
-    Connection.getRoom("app", store.getState().currentApp.appInfo.appId)?.send(
+    Connection.getRoom("app", this.appId)?.send(
       getPayload(
         Signal.SIGNAL_ONLY_BROADCAST,
         Target.TARGET_DISPLAY_NAME,

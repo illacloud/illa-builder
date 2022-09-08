@@ -10,8 +10,7 @@ export interface WrappedDateTimeProps
     "placeholder" | "disabled" | "readOnly" | "colorScheme"
   > {
   value?: string
-  dateFormat?: string
-  timeFormat?: string
+  format?: string
   minuteStep?: number
   tooltipText?: string
   loading?: boolean

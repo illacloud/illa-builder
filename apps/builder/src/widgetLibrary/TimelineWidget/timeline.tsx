@@ -63,7 +63,15 @@ export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
     return () => {
       handleDeleteGlobalData(displayName)
     }
-  }, [items, direction, pending, displayName])
+  }, [
+    items,
+    direction,
+    pending,
+    displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
 
   return <WrappedTimeline {...props} />
 }

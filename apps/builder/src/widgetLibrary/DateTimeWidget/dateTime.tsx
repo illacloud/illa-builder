@@ -1,8 +1,11 @@
-import { FC, forwardRef, useCallback, useEffect } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import dayjs from "dayjs"
 import { DatePicker } from "@illa-design/date-picker"
 import { DateTimeWidgetProps, WrappedDateTimeProps } from "./interface"
-import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
@@ -11,7 +14,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
   (props, ref) => {
     const {
       value,
-      dateFormat,
+      format,
       placeholder,
       showClear,
       minDate,
@@ -19,7 +22,6 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       maxDate,
       readOnly,
       minuteStep,
-      timeFormat,
       colorScheme,
       handleUpdateDsl,
     } = props
@@ -40,9 +42,9 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
     return (
       <DatePicker
         w="100%"
-        showTime={{ step: { minute: minuteStep }, format: timeFormat }}
+        showTime={{ step: { minute: minuteStep }, format }}
         colorScheme={colorScheme}
-        format={dateFormat}
+        format={format}
         value={value}
         readOnly={readOnly}
         disabled={disabled}
@@ -65,7 +67,7 @@ WrappedDateTime.displayName = "WrappedDateTime"
 export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   const {
     value,
-    dateFormat,
+    format,
     placeholder,
     showClear,
     minDate,
@@ -73,7 +75,6 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     maxDate,
     readOnly,
     minuteStep,
-    timeFormat,
     colorScheme,
     displayName,
     handleUpdateGlobalData,
@@ -93,12 +94,13 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
   } = props
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       value,
-      dateFormat,
+      format,
       placeholder,
       showClear,
       minDate,
@@ -106,7 +108,6 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       maxDate,
       readOnly,
       minuteStep,
-      timeFormat,
       colorScheme,
       setValue: (value: string) => {
         handleUpdateDsl({ value })
@@ -121,7 +122,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   }, [
     displayName,
     value,
-    dateFormat,
+    format,
     placeholder,
     showClear,
     minDate,
@@ -129,12 +130,31 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     maxDate,
     readOnly,
     minuteStep,
-    timeFormat,
     colorScheme,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [
+    required,
+    labelPosition,
+    value,
+    pattern,
+    regex,
+    required,
+    customRule,
+    hideValidationMessage,
   ])
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <span>
+    <div>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
             labelFull={labelFull}
@@ -150,6 +170,14 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
           />
           <WrappedDateTime {...props} />
         </div>
+      </TooltipWrapper>
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
         <InvalidMessage
           value={value}
           pattern={pattern}
@@ -158,8 +186,8 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
           customRule={customRule}
           hideValidationMessage={hideValidationMessage}
         />
-      </span>
-    </TooltipWrapper>
+      </div>
+    </div>
   )
 }
 

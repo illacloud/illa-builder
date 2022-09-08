@@ -46,6 +46,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
             response.data.dottedLineSquareState,
           ),
         )
+        DisplayNameGenerator.initApp(appId ?? "")
         DisplayNameGenerator.updateDisplayNameList(
           response.data.components,
           response.data.actions,
@@ -65,7 +66,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [appId, dispatch, model, versionId])
 
   return loadingState
 }

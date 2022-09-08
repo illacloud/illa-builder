@@ -7,6 +7,9 @@ import { PanelHeaderActionProps } from "./interface"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 const { Item } = DropList
 
@@ -25,11 +28,23 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         title={t("editor.inspect.header.action_menu.reset_state")}
         onClick={() => {
           const defaultProps = widgetBuilder(componentType).config.defaults
+          if (!widgetDisplayName) return
+          const targetNode = searchDSLByDisplayName(
+            widgetDisplayName,
+          ) as ComponentNode
+          const newComponentNode: ComponentNode = {
+            ...targetNode,
+            props: {
+              ...defaultProps,
+            },
+          }
+          newComponentNode.props = getNewWidgetPropsByUpdateSlice(
+            newComponentNode.displayName as string,
+            newComponentNode.props || {},
+            newComponentNode.props || {},
+          )
           dispatch(
-            componentsActions.resetComponentPropsReducer({
-              displayName: widgetDisplayName,
-              resetSlice: defaultProps ?? {},
-            }),
+            componentsActions.resetComponentPropsReducer(newComponentNode),
           )
         }}
       />

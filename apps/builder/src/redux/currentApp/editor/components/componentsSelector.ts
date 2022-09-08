@@ -1,8 +1,13 @@
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
 import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
+
+export function searchDSLByDisplayName(displayName: string) {
+  const rootState = store.getState()
+  const rootNode = getCanvas(rootState)
+  return searchDsl(rootNode, displayName)
+}
 
 export function searchDsl(
   rootNode: ComponentNode | null,

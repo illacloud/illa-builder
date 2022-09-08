@@ -1,5 +1,5 @@
 import { TextInputWidgetIcon } from "@illa-design/icon"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 export const INPUT_WIDGET_CONFIG: WidgetConfig = {
@@ -11,6 +11,7 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "INPUTS",
   w: 12,
   h: 5,
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     value: "",
     label: "Label",

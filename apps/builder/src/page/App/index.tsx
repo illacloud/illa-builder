@@ -11,7 +11,6 @@ import {
   middlePanelStyle,
   navbarStyle,
 } from "./style"
-import { WidgetPickerEditor } from "./components/WidgetPickerEditor"
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -34,6 +33,7 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { setupConfigListener } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
+import ComponentsManager from "@/page/App/components/ComponentManager"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -47,8 +47,8 @@ export const Editor: FC = () => {
       Connection.enterRoom(
         "app",
         appId ?? "",
-        (loading) => {},
-        (errorState) => {},
+        loading => {},
+        errorState => {},
       )
     }
     return () => {
@@ -62,7 +62,7 @@ export const Editor: FC = () => {
       setupConfigListener(startAppListening),
       setupExecutionListeners(startAppListening),
     ]
-    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
+    return () => subscriptions.forEach(unsubscribe => unsubscribe())
   }, [])
 
   const showLeftPanel = useSelector(isOpenLeftPanel)
@@ -80,13 +80,20 @@ export const Editor: FC = () => {
         method: "GET",
         signal: controller.signal,
       },
-      (response) => {
+      response => {
         dispatch(resourceActions.updateResourceListReducer(response.data))
       },
     )
     return () => {
       controller.abort()
     }
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", event => {
+      event.preventDefault()
+      event.returnValue = "CLOSE_TAB_MESSAGE"
+    })
   }, [])
 
   return (
@@ -101,7 +108,7 @@ export const Editor: FC = () => {
               <CanvasPanel css={centerPanelStyle} />
               <ActionEditor css={applyBottomPanelStyle(showBottomPanel)} />
             </div>
-            <WidgetPickerEditor css={applyRightPanelStyle(showRightPanel)} />
+            <ComponentsManager css={applyRightPanelStyle(showRightPanel)} />
           </div>
         </Shortcut>
       )}

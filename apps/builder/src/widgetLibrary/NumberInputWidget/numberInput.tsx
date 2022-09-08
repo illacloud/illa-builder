@@ -11,12 +11,14 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 
 const parserThousand = (value: number | string) =>
-  `${value}`.replace(/\d+/, function(s) {
+  `${value}`.replace(/\d+/, function (s) {
     return s.replace(/(\d)(?=(\d{3})+$)/g, "$1,")
   })
 
-export const WrappedInputNumber = forwardRef<HTMLInputElement,
-  WrappedNumberInputProps>((props, ref) => {
+export const WrappedInputNumber = forwardRef<
+  HTMLInputElement,
+  WrappedNumberInputProps
+>((props, ref) => {
   const {
     openThousandSeparator,
     max,
@@ -109,6 +111,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
 
@@ -135,10 +138,8 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: 0 })
       },
-      validate: () => {
-      },
-      clearValidation: () => {
-      },
+      validate: () => {},
+      clearValidation: () => {},
     })
 
     return () => {
@@ -158,10 +159,29 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     loading,
     colorScheme,
     displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [
+    value,
+    pattern,
+    regex,
+    required,
+    customRule,
+    hideValidationMessage,
+    labelPosition,
   ])
 
   return (
-    <>
+    <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label
@@ -187,7 +207,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
         customRule={customRule}
         hideValidationMessage={hideValidationMessage}
       />
-    </>
+    </div>
   )
 }
 NumberInputWidget.displayName = "NumberInputWidget"

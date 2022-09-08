@@ -1,3 +1,5 @@
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+
 export type RoomType = "dashboard" | "app"
 
 export interface Room {
@@ -42,4 +44,18 @@ export interface Callback<T> {
   errorMessage: string
   // 0 success, not zero error
   errorCode: number
+}
+
+export interface ILLAWebSocket extends WebSocket {
+  timeout?: any
+  serverTimeout?: any
+  debounceTimeout?: any
+  offline?: boolean
+}
+
+export interface ILLAWebSocketComponentPayload {
+  before: {
+    displayName: string
+  }
+  after: ComponentNode
 }

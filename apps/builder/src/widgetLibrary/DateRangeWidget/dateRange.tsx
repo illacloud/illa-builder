@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import dayjs from "dayjs"
 import { DateRangePicker } from "@illa-design/date-picker"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
@@ -6,7 +6,7 @@ import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
+export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const {
     startValue,
     endValue,
@@ -29,7 +29,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
   }, [startValue, endValue])
 
   const checkRange = useCallback(
-    current => {
+    (current) => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
@@ -68,7 +68,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
 
 WrappedDateRange.displayName = "WrappedDateRange"
 
-export const DateRangeWidget: FC<DateWidgetProps> = props => {
+export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   const {
     startValue,
     endValue,
@@ -95,6 +95,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = props => {
     required,
     labelHidden,
     tooltipText,
+    updateComponentHeight,
   } = props
 
   useEffect(() => {
@@ -136,25 +137,38 @@ export const DateRangeWidget: FC<DateWidgetProps> = props => {
     maxDate,
     readOnly,
     colorScheme,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
   ])
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [required, labelPosition])
   return (
-    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
-        <Label
-          labelFull={labelFull}
-          label={label}
-          labelAlign={labelAlign}
-          labelWidth={labelWidth}
-          labelCaption={labelCaption}
-          labelWidthUnit={labelWidthUnit}
-          labelPosition={labelPosition}
-          required={required}
-          labelHidden={labelHidden}
-          hasTooltip={!!tooltipText}
-        />
-        <WrappedDateRange {...props} />
-      </div>
-    </TooltipWrapper>
+    <div ref={wrapperRef}>
+      <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+        <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
+          <Label
+            labelFull={labelFull}
+            label={label}
+            labelAlign={labelAlign}
+            labelWidth={labelWidth}
+            labelCaption={labelCaption}
+            labelWidthUnit={labelWidthUnit}
+            labelPosition={labelPosition}
+            required={required}
+            labelHidden={labelHidden}
+            hasTooltip={!!tooltipText}
+          />
+          <WrappedDateRange {...props} />
+        </div>
+      </TooltipWrapper>
+    </div>
   )
 }
 DateRangeWidget.displayName = "DateRangeWidget"

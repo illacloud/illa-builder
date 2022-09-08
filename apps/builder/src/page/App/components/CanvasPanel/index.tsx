@@ -10,6 +10,7 @@ import { FullScreenIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { FocusManager } from "@/utils/focusManager"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
@@ -20,7 +21,13 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const dispatch = useDispatch()
 
   return (
-    <div {...otherProps} css={applyScaleContainerStyle(100)}>
+    <div
+      {...otherProps}
+      css={applyScaleContainerStyle(100)}
+      onClick={() => {
+        FocusManager.switchFocus("canvas")
+      }}
+    >
       {applyCanvasTree(canvasTree)}
       {mode === "edit" && (
         <Button

@@ -43,22 +43,17 @@ export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
 }
-
-export interface ResetComponentPropsPayload {
-  displayName: string
-  resetSlice: Record<string, any>
-}
-
 export interface UpdateComponentDisplayNamePayload {
   displayName: string
   newDisplayName: string
 }
 
-export interface UpdateComponentPositionAndSizePayload {
+export interface UpdateComponentReflowPayload {
   parentDisplayName: string
-  displayName: string
-  x: number
-  y: number
-  w: number
-  h: number
+  childNodes: ComponentNode[]
+}
+
+export interface CopyComponentPayload {
+  oldComponentNode: ComponentNode
+  newComponentNode: ComponentNode
 }
