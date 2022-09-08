@@ -9,6 +9,15 @@ export function applyDebuggerStyle(h: number) {
   `
 }
 
+export const containerStyle = css`
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`
+
 export const titleStyle = css`
   display: flex;
   justify-content: space-between;
@@ -20,35 +29,7 @@ export const titleStyle = css`
 `
 
 export const errorContentStyle = css`
+  min-width: 700px;
+  width: 100%;
   overflow-y: scroll;
-`
-
-export const errorItemStyle = css`
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 16px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  height: 38px;
-`
-
-export const nameStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
-  margin-right: 8px;
-`
-
-export const sourceStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
-  text-decoration-line: underline;
-  cursor: pointer;
-
-  &:hover {
-    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-  }
-`
-
-export const errorIconStyle = css`
-  color: ${globalColor(`--${illaPrefix}-red-03`)};
-  margin-right: 8px;
 `
