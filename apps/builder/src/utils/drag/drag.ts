@@ -9,7 +9,7 @@ export function startDrag(dragNode: ComponentNode, isAdd: boolean = false) {
   if (!isAdd) {
     store.dispatch(
       componentsActions.updateComponentsShape({
-        isMove: true,
+        isMove: false,
         components: [
           {
             ...dragNode,

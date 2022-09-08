@@ -215,7 +215,7 @@ export const RenderComponentCanvas: FC<{
           } else {
             dispatch(
               componentsActions.updateComponentsShape({
-                isMove: true,
+                isMove: false,
                 components: [newItem],
               }),
             )

@@ -26,7 +26,9 @@ export function transformComponentReduxPayloadToWsPayload(
   if (Array.isArray(componentNodes)) {
     return componentNodes.map(node => {
       return {
-        before: node.displayName,
+        before: {
+          displayName: node.displayName,
+        },
         after: node,
       }
     })
@@ -34,7 +36,9 @@ export function transformComponentReduxPayloadToWsPayload(
   if (!componentNodes) return []
   return [
     {
-      before: componentNodes.displayName,
+      before: {
+        displayName: componentNodes.displayName,
+      },
       after: componentNodes,
     },
   ]
@@ -51,8 +55,8 @@ export function getPayload<T>(
     signal,
     target,
     option: broadcast ? 1 : 0,
-    payload,
     broadcast: reduxBroadcast,
+    payload,
   })
 }
 
@@ -162,7 +166,7 @@ function onMessage(this: ILLAWebSocket, event: MessageEvent) {
 }
 
 function onError(this: ILLAWebSocket, event: Event) {
-  console.error(`[WS ERROR](${this.url} is error)${event}`)
+  console.error(`[WS ERROR](${this.url} is error)`, event)
   this.close(4000, "close with error")
 }
 

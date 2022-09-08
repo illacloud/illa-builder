@@ -2,6 +2,7 @@ import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
   ComponentNode,
   ComponentsState,
+  CopyComponentPayload,
   DeleteComponentNodePayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
@@ -39,6 +40,30 @@ export const addComponentReducer: CaseReducer<
           )
         }
         parentNode.childrenNode.push(dealNode)
+      }
+    }
+  })
+}
+
+export const copyComponentReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<CopyComponentPayload[]>
+> = (state, action) => {
+  action.payload.forEach(copyShape => {
+    const { newComponentNode, oldComponentNode } = copyShape
+    if (state == null || newComponentNode.parentNode == null) {
+      return state
+    } else {
+      const parentNode = searchDsl(state, newComponentNode.parentNode)
+      if (parentNode != null) {
+        if (newComponentNode.props) {
+          newComponentNode.props = getNewWidgetPropsByUpdateSlice(
+            newComponentNode.displayName,
+            newComponentNode.props ?? {},
+            newComponentNode.props ?? {},
+          )
+        }
+        parentNode.childrenNode.push(newComponentNode)
       }
     }
   })

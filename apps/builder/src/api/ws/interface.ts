@@ -54,6 +54,8 @@ export interface ILLAWebSocket extends WebSocket {
 }
 
 export interface ILLAWebSocketComponentPayload {
-  before: string
+  before: {
+    displayName: string
+  }
   after: ComponentNode
 }

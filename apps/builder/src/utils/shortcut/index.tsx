@@ -28,7 +28,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "command+s,ctrl+s",
-    (event) => {
+    event => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
     },
@@ -39,8 +39,9 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
-    useState<boolean>(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] = useState<
+    boolean
+  >(false)
 
   const showDeleteDialog = (displayName: string[]) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
@@ -78,10 +79,10 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "Backspace",
-    (event) => {
+    event => {
       event.preventDefault()
       showDeleteDialog(
-        currentSelectedComponent.map((item) => {
+        currentSelectedComponent.map(item => {
           return item.displayName
         }),
       )
@@ -95,6 +96,7 @@ export const Shortcut: FC = ({ children }) => {
   useHotkeys(
     "command+c,command+v,ctrl+c,ctrl+v,command+d,ctrl+d",
     (keyboardEvent, hotkeysEvent) => {
+      console.log("FocusManager.getFocus()", FocusManager.getFocus())
       switch (hotkeysEvent.shortcut) {
         case "ctrl+c":
         case "command+c":
@@ -103,6 +105,7 @@ export const Shortcut: FC = ({ children }) => {
               break
             case "canvas":
             case "dataWorkspace_component":
+              console.log("currentSelectedComponent", currentSelectedComponent)
               if (currentSelectedComponent != null) {
                 CopyManager.copyComponentNode(currentSelectedComponent)
               }
@@ -149,12 +152,12 @@ export const Shortcut: FC = ({ children }) => {
           break
       }
     },
-    [],
+    [currentSelectedComponent],
   )
 
   useHotkeys(
     "*",
-    (keyboardEvent) => {
+    keyboardEvent => {
       if (hotkeys.ctrl || hotkeys.command) {
         if (keyboardEvent.type === "keydown") {
           dispatch(configActions.updateShowDot(true))

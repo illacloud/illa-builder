@@ -52,3 +52,8 @@ export interface UpdateComponentReflowPayload {
   parentDisplayName: string
   childNodes: ComponentNode[]
 }
+
+export interface CopyComponentPayload {
+  oldComponentNode: ComponentNode
+  newComponentNode: ComponentNode
+}
