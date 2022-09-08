@@ -92,6 +92,7 @@ export const Editor: FC = () => {
   useEffect(() => {
     window.addEventListener("beforeunload", event => {
       event.preventDefault()
+      event.returnValue = "CLOSE_TAB_MESSAGE"
     })
   }, [])
 
