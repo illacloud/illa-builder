@@ -19,14 +19,11 @@
 
 ## ✨ Features
 
-1. ⚽ **Real-time Collaboration:** We can create everything in real-time
-   together.
+1. ⚽ **Real-time Collaboration:** We can create everything in real-time together.
 2. 🛠 **Custom Plugin:** Build any custom plugin to do what you want.
 3. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
-4. 📝 **Page Support:** The base of creating a content-rich and UI-friendly
-   tool.
-5. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):**
-   Components should not constrain your imagination.
+4. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
+5. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):** Components should not constrain your imagination.
 
 ## 🖥 Fast Try
 
@@ -34,13 +31,11 @@ Building
 
 ## 🚀 Deploy
 
-You can use [ILLA](https://github.com/illa-family/illa) to host it on ILLA Cloud
-or local.
+You can use [ILLA](https://github.com/illa-family/illa) to host it on ILLA Cloud or local.
 
 ## 💬 Community
 
-Join ILLA Community to share your ideas, suggestions, or questions and connect
-with other users and contributors.
+Join ILLA Community to share your ideas, suggestions, or questions and connect with other users and contributors.
 
 <b>Discussion</b>
 
@@ -52,14 +47,11 @@ with other users and contributors.
 
 ## 🌱 Contributing
 
-Thinking about contributing? All kinds of contributions to ILLA are greatly
-appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for
-details about how you can get involved.
+Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
 
 ## 🔥 We're Hiring
 
-Looking for a passionate and creative team? We are actively hiring engineers for
-the following positions:
+Looking for a passionate and creative team? We are actively hiring engineers for the following positions:
 
 - Frontend Engineer
 - Golang Engineer
