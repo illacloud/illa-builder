@@ -2,7 +2,8 @@ import { FC, HTMLAttributes, useCallback, useRef } from "react"
 import { Divider } from "@illa-design/divider"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
 import {
-  applyDebuggerStyle, containerStyle,
+  applyDebuggerStyle,
+  containerStyle,
   errorContentStyle,
   titleStyle,
 } from "./style"
@@ -41,17 +42,15 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
       </div>
       <div css={containerStyle}>
         <div css={errorContentStyle}>
-          {
-            Object.keys(debuggerData)?.map((name, index) => {
-              const error = debuggerData[name]
-              if (isArray(error)) {
-                return error?.map((item) => {
-                  return <ErrorItem key={index} pathName={name} item={item} />
-                })
-              }
-              return <ErrorItem pathName={name} item={error} />
-            })
-          }
+          {Object.keys(debuggerData)?.map((name, index) => {
+            const error = debuggerData[name]
+            if (isArray(error)) {
+              return error?.map((item) => {
+                return <ErrorItem key={index} pathName={name} item={item} />
+              })
+            }
+            return <ErrorItem pathName={name} item={error} />
+          })}
         </div>
       </div>
     </div>

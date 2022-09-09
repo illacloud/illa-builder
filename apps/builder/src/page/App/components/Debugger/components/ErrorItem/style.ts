@@ -15,9 +15,11 @@ export const errorItemStyle = css`
   font-size: 14px;
   line-height: 22px;
   height: 38px;
+  z-index: 1;
 `
 
 export const nameStyle = css`
+  cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   margin-right: 8px;
 `
@@ -36,9 +38,12 @@ export const errorIconStyle = css`
   color: ${globalColor(`--${illaPrefix}-red-03`)};
 `
 
-export function applyExpandIconStyle(
-  expanded?: boolean,
-): SerializedStyles {
+export const errorExpandStyle = css`
+  padding: 2px 4px;
+  margin: 0 4px;
+`
+
+export function applyExpandIconStyle(expanded?: boolean): SerializedStyles {
   const rotate = expanded ? 90 : 0
   return css`
     display: inline-flex;
@@ -48,8 +53,6 @@ export function applyExpandIconStyle(
     transform-origin: center;
     transform: rotate(${rotate}deg);
     transition: transform 200ms;
-    padding: 2px 4px;
-    margin: 0 4px;
   `
 }
 
@@ -67,6 +70,6 @@ export const errorMessageStyle = css`
 `
 
 export const jsonContentAnimation: Variants = {
-  enter: { height: "auto", opacity: 1 },
-  exit: { height: 0, opacity: 0 },
+  enter: { height: "unset", opacity: 1, visibility: "visible" },
+  exit: { height: 0, opacity: 0, visibility: "hidden" },
 }

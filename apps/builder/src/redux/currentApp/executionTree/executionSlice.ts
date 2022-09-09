@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { executionInitialState } from "@/redux/currentApp/executionTree/executionState"
 import {
-  setDependenciesReducer, setExecutionDebuggerDataReducer,
+  setDependenciesReducer,
+  setExecutionDebuggerDataReducer,
   setExecutionErrorReducer,
   setExecutionResultReducer,
   startExecutionReducer,

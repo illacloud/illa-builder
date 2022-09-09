@@ -82,12 +82,10 @@ export class ExecutionTreeFactory {
           error.push({
             errorType: ExecutionErrorType.VALIDATION,
             errorMessage: errorMessage as string,
-            errorName: 'Validation'
+            errorName: "Validation",
           })
           set(this.errorTree, fullPath, error)
-          console.log('loggg error', error)
           this.debuggerData[fullPath] = error
-          console.log('loggg debuggerData', this.debuggerData)
         }
       })
 
@@ -357,9 +355,7 @@ export class ExecutionTreeFactory {
 
               set(errorTree, fullPath, oldError)
               set(current, fullPath, undefined)
-              console.log('loggg executeTree', oldError, displayName)
               debuggerData[fullPath] = oldError
-              console.log('loggg executeTree debuggerData', debuggerData)
             }
           }
           if (isAction(widgetOrAction)) {
