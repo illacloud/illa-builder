@@ -30,12 +30,6 @@ export interface MysqlResource {
 
 export interface MysqlSSH {
   ssh: boolean
-  sshHost: string
-  sshPort: string
-  sshUsername: string
-  sshPassword: string
-  sshPrivateKey: string
-  sshPassphrase: string
 }
 
 export interface MysqlSSL {
