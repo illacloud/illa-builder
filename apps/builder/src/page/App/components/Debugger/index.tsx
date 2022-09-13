@@ -22,7 +22,6 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const panelRef = useRef<HTMLDivElement>(null)
   const debuggerData = useSelector(getExecutionDebuggerData)
   const debuggerVisible = useSelector(isOpenDebugger)
-  console.log(debuggerData, "debuggerData")
 
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
