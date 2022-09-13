@@ -40,13 +40,11 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const {
       handleSubmit,
       control,
-      register,
-      resetField,
       formState: { errors },
       getValues,
-      setValue,
+      trigger,
     } = useForm<MySQLConfigureValues>({
-      mode: "onSubmit",
+      mode: "onChange",
       defaultValues: {
         resourceName: resourceConfig?.resourceName,
         ...resourceConfig?.content,
@@ -59,13 +57,17 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       const data = getValues()
       const { resourceName, ...content } = data
 
-      onTestConnection?.({
-        resourceName: resourceName,
-        resourceType: "mysql",
-        content: {
-          ...content,
-          port: content.port?.toString(),
-        },
+      trigger().then((res)=>{
+        if (res) {
+          onTestConnection?.({
+            resourceName: resourceName,
+            resourceType: "mysql",
+            content: {
+              ...content,
+              port: content.port?.toString(),
+            },
+          })
+        }
       })
     }
 
