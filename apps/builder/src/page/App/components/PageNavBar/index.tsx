@@ -15,7 +15,7 @@ import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
   getIllaMode,
-  isOpenBottomPanel,
+  isOpenBottomPanel, isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -37,7 +37,7 @@ import { Badge } from "@illa-design/badge"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
+import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
@@ -48,8 +48,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const leftPanelVisible = useSelector(isOpenLeftPanel)
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
+  const debuggerVisible = useSelector(isOpenDebugger)
 
-  const executionError = useSelector(getExecutionError)
+  const debuggerData = useSelector(getExecutionDebuggerData)
 
   const mode = useSelector(getIllaMode)
 
@@ -64,6 +65,10 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleClickBottomWindowIcon = useCallback(() => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
   }, [bottomPanelVisible])
+  const handleClickDebuggerIcon = useCallback(() => {
+    dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
+  }, [debuggerVisible])
+
   const handleClickDeploy = useCallback(() => {
     Api.request<DeployResp>(
       {
@@ -135,14 +140,14 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
       <div>
         {mode === "edit" && (
           <ButtonGroup spacing={"8px"}>
-            {/*TODO: @xiaoyu Error list*/}
-            {/*<Badge count={executionError && Object.keys(executionError).length}>*/}
-            {/*  <Button*/}
-            {/*    colorScheme="gray"*/}
-            {/*    size="medium"*/}
-            {/*    leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}*/}
-            {/*  />*/}
-            {/*</Badge>*/}
+            <Badge count={debuggerData && Object.keys(debuggerData).length}>
+              <Button
+                colorScheme="gray"
+                size="medium"
+                leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
+                onClick={handleClickDebuggerIcon}
+              />
+            </Badge>
             <Button
               loading={deployLoading}
               colorScheme="techPurple"

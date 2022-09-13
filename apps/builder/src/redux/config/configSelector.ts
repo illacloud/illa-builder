@@ -13,6 +13,10 @@ export const isOpenRightPanel = (state: RootState) => {
   return state.config.openRightPanel && state.config.mode === "edit"
 }
 
+export const isOpenDebugger = (state: RootState) => {
+  return state.config.openDebugger && state.config.mode === "edit"
+}
+
 export const getPreviewEdgeWidth = (state: RootState) => {
   return state.config.mode === "edit" ? 18 : 0
 }

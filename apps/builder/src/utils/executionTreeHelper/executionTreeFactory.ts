@@ -33,6 +33,7 @@ export class ExecutionTreeFactory {
   hasCyclical: boolean = false
   executedTree: RawTreeShape = {} as RawTreeShape
   errorTree: Record<string, any> = {}
+  debuggerData: Record<string, any> = {}
   allKeys: Record<string, true> = {}
 
   constructor() {}
@@ -44,16 +45,18 @@ export class ExecutionTreeFactory {
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
-    const { evaluatedTree, errorTree } = this.executeTree(
+    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentRawTree,
       this.evalOrder,
     )
     this.errorTree = errorTree
+    this.debuggerData = debuggerData
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
+      debuggerData: this.debuggerData,
     }
   }
 
@@ -79,8 +82,10 @@ export class ExecutionTreeFactory {
           error.push({
             errorType: ExecutionErrorType.VALIDATION,
             errorMessage: errorMessage as string,
+            errorName: "Validation",
           })
           set(this.errorTree, fullPath, error)
+          this.debuggerData[fullPath] = error
         }
       })
 
@@ -199,17 +204,19 @@ export class ExecutionTreeFactory {
       }
       return propertyPath
     })
-    const { evaluatedTree, errorTree } = this.executeTree(
+    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       this.executedTree,
       path,
     )
     this.oldRawTree = cloneDeep(currentRawTree)
     this.errorTree = errorTree
+    this.debuggerData = debuggerData
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
+      debuggerData: this.debuggerData,
     }
   }
 
@@ -316,6 +323,7 @@ export class ExecutionTreeFactory {
   ) {
     const oldLocalRawTree = cloneDeep(oldRawTree)
     const errorTree: ExecutionState["error"] = {}
+    const debuggerData: ExecutionState["error"] = {}
     try {
       const evaluatedTree = sortedEvalOrder.reduce(
         (current: RawTreeShape, fullPath: string, currentIndex: number) => {
@@ -336,21 +344,18 @@ export class ExecutionTreeFactory {
               )
               set(current, fullPath, evaluateValue)
             } catch (e) {
-              let oldError = get(errorTree, fullPath)
+              let oldError = get(errorTree, fullPath) ?? []
               if (Array.isArray(oldError)) {
                 oldError.push({
                   errorType: ExecutionErrorType.EVALUATED,
                   errorMessage: (e as Error).message,
+                  errorName: (e as Error).name,
                 })
               }
 
-              set(errorTree, fullPath, [
-                {
-                  errorType: ExecutionErrorType.EVALUATED,
-                  errorMessage: (e as Error).message,
-                },
-              ])
+              set(errorTree, fullPath, oldError)
               set(current, fullPath, undefined)
+              debuggerData[fullPath] = oldError
             }
           }
           if (isAction(widgetOrAction)) {
@@ -386,9 +391,9 @@ export class ExecutionTreeFactory {
         },
         oldLocalRawTree,
       )
-      return { evaluatedTree, errorTree }
+      return { evaluatedTree, errorTree, debuggerData }
     } catch (e) {
-      return { evaluatedTree: oldLocalRawTree, errorTree }
+      return { evaluatedTree: oldLocalRawTree, errorTree, debuggerData }
     }
   }
 }
