@@ -8,6 +8,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { ComponentNode } from "./componentsState"
+import { configActions } from "@/redux/config/configSlice"
 
 async function handleDeleteExecution(
   action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
@@ -17,15 +18,16 @@ async function handleDeleteExecution(
 }
 
 function handleCopyComponentReflowEffect(
-  action: ReturnType<typeof componentsActions.addComponentReducer>,
+  action: ReturnType<typeof componentsActions.copyComponentReducer>,
   listenApi: AppListenerEffectAPI,
 ) {
   const rootState = listenApi.getState()
   const rootNode = getCanvas(rootState)
   const componentNodes = action.payload
   const effectResultMap = new Map<string, ComponentNode>()
-  componentNodes.forEach((node) => {
-    const parentNodeDisplayName = node.parentNode
+  componentNodes.forEach(copyShape => {
+    const { oldComponentNode } = copyShape
+    const parentNodeDisplayName = oldComponentNode.parentNode
     let parentNode = searchDsl(rootNode, parentNodeDisplayName)
     if (!parentNode) {
       return
@@ -34,7 +36,11 @@ function handleCopyComponentReflowEffect(
       parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
     }
     const childrenNodes = parentNode.childrenNode
-    const { finalState } = getReflowResult(node, childrenNodes, false)
+    const { finalState } = getReflowResult(
+      oldComponentNode,
+      childrenNodes,
+      false,
+    )
     effectResultMap.set(parentNode.displayName, {
       ...parentNode,
       childrenNode: finalState,
@@ -50,6 +56,21 @@ function handleCopyComponentReflowEffect(
   })
 }
 
+function handleUpdateComponentDisplayNameEffect(
+  action: ReturnType<
+    typeof componentsActions.updateComponentDisplayNameReducer
+  >,
+  listenApi: AppListenerEffectAPI,
+) {
+  const { newDisplayName } = action.payload
+  const rootState = listenApi.getState()
+  const rootNode = getCanvas(rootState)
+  const newComponent = searchDsl(rootNode, newDisplayName)
+  if (newComponent) {
+    listenApi.dispatch(configActions.updateSelectedComponent([newComponent]))
+  }
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -59,12 +80,16 @@ export function setupComponentsListeners(
       effect: handleDeleteExecution,
     }),
     startListening({
-      actionCreator: componentsActions.addComponentReducer,
+      actionCreator: componentsActions.copyComponentReducer,
       effect: handleCopyComponentReflowEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateComponentDisplayNameReducer,
+      effect: handleUpdateComponentDisplayNameEffect,
     }),
   ]
 
   return () => {
-    subscriptions.forEach((unsubscribe) => unsubscribe())
+    subscriptions.forEach(unsubscribe => unsubscribe())
   }
 }

@@ -1,4 +1,3 @@
-
 <div align="center">
     <img alt="ILLA Design Logo" width="120px" height="120px" src="https://cdn.illafamily.com/logo.svg"/>
 </div>
@@ -48,8 +47,7 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 
 ## 🌱 Contributing
 
-Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check
-out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
+Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
 
 ## 🔥 We're Hiring
 

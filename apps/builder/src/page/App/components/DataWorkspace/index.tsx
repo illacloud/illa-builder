@@ -21,7 +21,7 @@ import { FocusManager } from "@/utils/focusManager"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
+export const DataWorkspace: FC<DataWorkspaceProps> = props => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -43,25 +43,12 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   )
 
   const handleActionSelect = (selectedKeys: string[]) => {
-    const action = actionList.find(
-      (item) => item.displayName === selectedKeys[0],
-    )
+    const action = actionList.find(item => item.displayName === selectedKeys[0])
     action && dispatch(configActions.updateSelectedAction(action))
   }
 
   return (
     <div className={className}>
-      <WorkSpaceTree
-        title={`${t("editor.data_work_space.actions_title")}(${
-          actionExecutionArray.length
-        })`}
-        dataList={actionExecutionArray}
-        selectedKeys={[selectedAction?.displayName ?? ""]}
-        handleSelect={handleActionSelect}
-        onIllaFocus={() => {
-          FocusManager.switchFocus("dataWorkspace_action")
-        }}
-      />
       <WorkSpaceTree
         title={`${t("editor.data_work_space.components_title")}(${
           widgetExecutionArray.length
@@ -71,6 +58,17 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
         handleSelect={handleComponentSelect}
         onIllaFocus={() => {
           FocusManager.switchFocus("dataWorkspace_component")
+        }}
+      />
+      <WorkSpaceTree
+        title={`${t("editor.data_work_space.actions_title")}(${
+          actionExecutionArray.length
+        })`}
+        dataList={actionExecutionArray}
+        selectedKeys={[selectedAction?.displayName ?? ""]}
+        handleSelect={handleActionSelect}
+        onIllaFocus={() => {
+          FocusManager.switchFocus("dataWorkspace_action")
         }}
       />
       <WorkSpaceTree

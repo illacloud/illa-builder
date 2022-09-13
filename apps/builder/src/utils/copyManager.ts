@@ -34,9 +34,12 @@ export class CopyManager {
       case "canvas":
         if (this.currentCopyComponentNodes != null) {
           store.dispatch(
-            componentsActions.addComponentReducer(
-              this.currentCopyComponentNodes.map((node) => {
-                return this.copyComponent(node)
+            componentsActions.copyComponentReducer(
+              this.currentCopyComponentNodes.map(node => {
+                return {
+                  oldComponentNode: node,
+                  newComponentNode: this.copyComponent(node),
+                }
               }),
             ),
           )
@@ -74,7 +77,7 @@ export class CopyManager {
       componentNode.childrenNode != null &&
       componentNode.childrenNode.length > 0
     ) {
-      componentNode.childrenNode.forEach((node) => {
+      componentNode.childrenNode.forEach(node => {
         node = {
           ...node,
           displayName: DisplayNameGenerator.generateDisplayName(

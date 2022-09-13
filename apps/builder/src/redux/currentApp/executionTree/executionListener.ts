@@ -15,7 +15,7 @@ import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeF
 export let executionTree: ExecutionTreeFactory | undefined
 
 const mergeActionResult = (rawTree: RawTreeShape) => {
-  Object.keys(actionDisplayNameMapFetchResult).forEach((key) => {
+  Object.keys(actionDisplayNameMapFetchResult).forEach(key => {
     rawTree[key].data = actionDisplayNameMapFetchResult[key] || {}
   })
 }
@@ -30,7 +30,7 @@ async function handleStartExecution(
   mergeActionResult(rawTree)
   if (action.type === "execution/updateExecutionByDisplayNameReducer") {
     const { displayName, value } = action.payload
-    Object.keys(value).forEach((key) => {
+    Object.keys(value).forEach(key => {
       rawTree[displayName][key] = value[key]
     })
   }
@@ -101,6 +101,7 @@ export function setupExecutionListeners(
     startListening({
       matcher: isAnyOf(
         componentsActions.addComponentReducer,
+        componentsActions.copyComponentReducer,
         componentsActions.updateComponentPropsReducer,
         componentsActions.deleteComponentNodeReducer,
         componentsActions.updateComponentDisplayNameReducer,
@@ -116,6 +117,6 @@ export function setupExecutionListeners(
   ]
 
   return () => {
-    subscriptions.forEach((unsubscribe) => unsubscribe())
+    subscriptions.forEach(unsubscribe => unsubscribe())
   }
 }

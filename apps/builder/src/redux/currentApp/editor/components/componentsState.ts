@@ -43,12 +43,6 @@ export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
 }
-
-export interface ResetComponentPropsPayload {
-  displayName: string
-  resetSlice: Record<string, any>
-}
-
 export interface UpdateComponentDisplayNamePayload {
   displayName: string
   newDisplayName: string
@@ -57,4 +51,9 @@ export interface UpdateComponentDisplayNamePayload {
 export interface UpdateComponentReflowPayload {
   parentDisplayName: string
   childNodes: ComponentNode[]
+}
+
+export interface CopyComponentPayload {
+  oldComponentNode: ComponentNode
+  newComponentNode: ComponentNode
 }
