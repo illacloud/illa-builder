@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import { get } from "lodash"
 import { FxIcon } from "@illa-design/icon"
 import { Switch } from "@illa-design/switch"
@@ -13,8 +13,9 @@ import {
 } from "./style"
 import { BaseInput } from "../InputSetter/baseInput"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
 
-export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
+export const DynamicSwitchSetter: FC<DynamicSwitchProps> = props => {
   const {
     attrName,
     labelName,
@@ -32,28 +33,29 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
 
   const customSelected = dynamicAttrPath.includes(attrName)
 
+  const handleClickDynamicIcon = useCallback(() => {
+    if (customSelected) {
+      handleUpdateDsl(attrName, false)
+    } else {
+      handleUpdateDsl(attrName, `{{false}}`)
+    }
+  }, [attrName, customSelected, handleUpdateDsl])
+
   return (
     <div css={applyLabelWrapperStyle(customSelected)}>
       <div css={dynamicSwitchWrapperStyle}>
         <PanelLabel labelName={labelName} labelDesc={labelDesc} />
         <div css={customAndSwitchWrapperStyle}>
           {openDynamic && (
-            <div
-              css={applyCustomIconStyle(customSelected)}
-              onClick={() => {
-                if (customSelected) {
-                  handleUpdateDsl(attrName, false)
-                } else {
-                  handleUpdateDsl(attrName, `{{false}}`)
-                }
-              }}
-            >
-              <FxIcon />
-            </div>
+            <DynamicIcon
+              isDynamic={customSelected}
+              hasRightContent
+              onClick={handleClickDynamicIcon}
+            />
           )}
           {!customSelected && (
             <Switch
-              onChange={(value) => {
+              onChange={value => {
                 handleUpdateDsl(attrName, value)
               }}
               checked={value}
