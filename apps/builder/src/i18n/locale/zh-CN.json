@@ -633,6 +633,12 @@
           "blur": "失焦",
           "success": "成功后",
           "fail": "失败后"
+        },
+        "chart_type": {
+          "bar": "柱状图",
+          "line": "折线图",
+          "scatterplot": "散点图",
+          "pie": "饼图"
         }
       }
     },

@@ -16,6 +16,9 @@ import { ListSetter } from "@/page/App/components/PanelSetters/ListSetter"
 import { DynamicSwitchSetter } from "@/page/App/components/PanelSetters/SwitchSetter/dynamicSwitch"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 import { CalcSelfInput } from "@/page/App/components/PanelSetters/InputSetter/calcSelfInput"
+import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
+import { ChartDataSourceSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSource"
+import { ChartTypeSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartTypeSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -36,6 +39,9 @@ const SetterTypeMapSetter = {
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
   EDITABLE_INPUT_SETTER: EditableInputSetter,
+  BASE_DYNAMIC_SELECT_SETTER: BaseDynamicSelect,
+  CHART_DATASOURCE_SELECT_SETTER: ChartDataSourceSetter,
+  CHART_TYPE_SELECT_SETTER: ChartTypeSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

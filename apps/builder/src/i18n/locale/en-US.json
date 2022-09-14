@@ -634,6 +634,12 @@
           "blur": "Blur",
           "success": "Success",
           "fail": "Fail"
+        },
+        "chart_type": {
+          "bar": "Bar chart",
+          "line": "Line chart",
+          "scatterplot": "Scatterplot",
+          "pie": "Pie chart"
         }
       }
     },
