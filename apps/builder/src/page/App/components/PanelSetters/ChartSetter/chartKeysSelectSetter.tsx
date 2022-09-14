@@ -2,12 +2,11 @@ import { FC, useCallback, useMemo } from "react"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { useSelector } from "react-redux"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { RootState } from "@/store"
 import { debounce, get } from "lodash"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { formatDataAsArray } from "@/utils/formatData"
+import { formatDataAsObject } from "@/utils/formatData"
 
 export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
   const {
@@ -36,7 +35,7 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
       originDataSources = get(targetComponentProps, "dataSourceJS", [])
     }
 
-    return formatDataAsArray(originDataSources)
+    return formatDataAsObject(originDataSources)
   }, [isDataSourceDynamic, targetComponentProps])
 
   const isDynamic = useMemo(() => {
