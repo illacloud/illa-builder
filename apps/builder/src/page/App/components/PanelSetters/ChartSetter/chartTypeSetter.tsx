@@ -4,7 +4,7 @@ import { Select } from "@illa-design/select"
 import {
   BarChartIcon,
   LineChartIcon,
-  ScatterPotIcon,
+  ScatterPlotIcon,
   PieChartIcon,
 } from "@illa-design/icon"
 import {
@@ -38,7 +38,7 @@ const typeOptions = [
   {
     label: (
       <div>
-        <ScatterPotIcon css={chartTypeIconCss} />
+        <ScatterPlotIcon css={chartTypeIconCss} />
         <span css={chartTypeStringCss}>
           {i18n.t("editor.inspect.setter_content.chart_type.scatterplot")}
         </span>

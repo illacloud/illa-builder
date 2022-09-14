@@ -19,6 +19,9 @@ import { CalcSelfInput } from "@/page/App/components/PanelSetters/InputSetter/ca
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { ChartDataSourceSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSource"
 import { ChartTypeSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartTypeSetter"
+import { ChartXAxisSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartXAxisSetter"
+import { ChartGroupBySetter } from "@/page/App/components/PanelSetters/ChartSetter/chartGroupBySetter"
+import { ListBody } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listBody"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -42,6 +45,9 @@ const SetterTypeMapSetter = {
   BASE_DYNAMIC_SELECT_SETTER: BaseDynamicSelect,
   CHART_DATASOURCE_SELECT_SETTER: ChartDataSourceSetter,
   CHART_TYPE_SELECT_SETTER: ChartTypeSetter,
+  CHART_X_ASIS_SETTER: ChartXAxisSetter,
+  CHART_GROUP_BY_SETTER: ChartGroupBySetter,
+  TEST_TEST_TEST_ITEM: ListBody,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

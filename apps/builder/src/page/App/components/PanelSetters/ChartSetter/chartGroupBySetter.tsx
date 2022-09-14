@@ -2,69 +2,69 @@ import { FC, useCallback, useMemo } from "react"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { useSelector } from "react-redux"
-import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { RootState } from "@/store"
 import { debounce, get } from "lodash"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 
-export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
+export const ChartGroupBySetter: FC<ChartDataSourceSetterProps> = props => {
   const { handleUpdateDsl, widgetDisplayName, labelName, labelDesc } = props
-  const actions = useSelector(getActionList)
-  const isError = useSelector<RootState, boolean>(state => {
-    const errors = getExecutionError(state)
-    const thisError = get(errors, `${widgetDisplayName}.dataSource`)
-    return thisError?.length > 0
-  })
+
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     rootState => {
       return searchDSLByDisplayName(widgetDisplayName, rootState)?.props || {}
     },
   )
 
-  const isDynamic = useMemo(() => {
+  const isDataSourceDynamic = useMemo(() => {
     const dataSourceMode = get(targetComponentProps, "dataSourceMode", "select")
     return dataSourceMode === "dynamic"
   }, [targetComponentProps])
 
+  const dataSources = useMemo(() => {
+    if (isDataSourceDynamic) {
+      return get(targetComponentProps, "dataSourceJS", {})
+    }
+    return get(targetComponentProps, "dataSource", {})
+  }, [isDataSourceDynamic, targetComponentProps])
+
+  const isDynamic = useMemo(() => {
+    const xAsisMode = get(targetComponentProps, "groupByMode", "select")
+    return xAsisMode === "dynamic"
+  }, [targetComponentProps])
+
   const finalValue = useMemo(() => {
     if (isDynamic) {
-      return get(targetComponentProps, "dataSourceJS")
+      return get(targetComponentProps, "groupBy")
     } else {
-      return get(targetComponentProps, "dataSource")
+      return get(targetComponentProps, "groupByJS")
     }
   }, [isDynamic, targetComponentProps])
 
   const selectedOptions = useMemo(() => {
-    return actions.map(action => ({
-      label: action.displayName,
-      value: `{{${action.displayName}.data}}`,
-    }))
-  }, [actions])
+    return Object.keys(dataSources).map(key => key)
+  }, [dataSources])
 
   const handleClickFxButton = useCallback(() => {
-    const isInOption = selectedOptions.some(
-      option => option.value === finalValue,
-    )
+    const isInOption = selectedOptions.some(option => option === finalValue)
     if (isDynamic) {
-      handleUpdateDsl("dataSourceMode", "select")
+      handleUpdateDsl("groupByMode", "select")
       if (!isInOption) {
-        handleUpdateDsl("dataSource", "")
+        handleUpdateDsl("groupBy", "")
       } else {
-        handleUpdateDsl("dataSource", finalValue)
+        handleUpdateDsl("groupBy", finalValue)
       }
     } else {
-      handleUpdateDsl("dataSourceMode", "dynamic")
+      handleUpdateDsl("groupByMode", "dynamic")
       if (isInOption) {
-        handleUpdateDsl("dataSourceJS", finalValue)
+        handleUpdateDsl("groupByJS", finalValue)
       }
     }
-  }, [handleUpdateDsl, isDynamic, selectedOptions, finalValue])
+  }, [finalValue, handleUpdateDsl, isDynamic, selectedOptions])
 
   const handleChangeInput = useCallback(
     (value: string) => {
-      handleUpdateDsl("dataSourceJS", value)
+      handleUpdateDsl("groupByJS", value)
     },
     [handleUpdateDsl],
   )
@@ -73,7 +73,7 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
 
   const handleChangeSelect = useCallback(
     (value: any) => {
-      handleUpdateDsl("dataSource", value)
+      handleUpdateDsl("xAsis", value)
     },
     [handleUpdateDsl],
   )
@@ -85,16 +85,16 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
       selectPlaceholder="Select a query or transformer"
       inputPlaceholder="{{}}"
       onChangeInput={debounceHandleChangeInput}
-      path={`${widgetDisplayName}.dataSourceJS`}
+      path={`${widgetDisplayName}.groupByJS`}
       options={selectedOptions}
       expectedType={VALIDATION_TYPES.OBJECT}
       onChangeSelect={handleChangeSelect}
       value={finalValue}
       labelName={labelName}
       labelDesc={labelDesc}
-      isError={isError}
+      isError={false}
     />
   )
 }
 
-ChartDataSourceSetter.displayName = "ChartDataSourceSetter"
+ChartGroupBySetter.displayName = "ChartXAxisSetter"
