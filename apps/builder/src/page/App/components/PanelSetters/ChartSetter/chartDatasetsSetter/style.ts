@@ -104,3 +104,7 @@ export const applyColorToneStyle = (color: string) => {
     background-color: ${color};
   `
 }
+
+export const editModalStyle = css`
+  width: 272px;
+`

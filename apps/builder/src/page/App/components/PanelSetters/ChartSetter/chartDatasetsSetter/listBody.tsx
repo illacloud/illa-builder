@@ -1,21 +1,23 @@
 import { FC } from "react"
 import { ListItem } from "./listItem"
+import { ListBodyProps } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 
-export const ListBody: FC = () => {
+export const ListBody: FC<ListBodyProps> = props => {
+  const { datasets } = props
   return (
     <>
-      <ListItem
-        color="orange-tone"
-        isHidden={false}
-        datasetMethod="SUM"
-        datasetName="DatasetName1"
-      />
-      <ListItem
-        color="#FAC819"
-        isHidden
-        datasetMethod="SUM"
-        datasetName="DatasetName2"
-      />
+      {datasets?.map((dataset, index) => {
+        return (
+          <ListItem
+            index={index}
+            key={dataset.id}
+            color={dataset.color}
+            isHidden={dataset.isHidden}
+            datasetMethod={dataset.aggregationMethod}
+            datasetName={dataset.datasetName}
+          />
+        )
+      })}
     </>
   )
 }

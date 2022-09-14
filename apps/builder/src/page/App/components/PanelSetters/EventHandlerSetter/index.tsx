@@ -1,15 +1,13 @@
 import { FC, useCallback, useMemo } from "react"
-import { EventHandlerSetterHeader } from "./List/header"
 import { ListBody } from "./List/body"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { generateNewEventItem } from "@/page/App/components/PanelSetters/EventHandlerSetter/utils"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { NewBaseEventHandlerSetterProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/interface"
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
+import { AddActionLabel } from "@/page/App/components/PanelSetters/PublicComponent/Label/addActionLabel"
 
-export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
-  props,
-) => {
+export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = props => {
   const {
     value,
     childrenSetter,
@@ -57,10 +55,10 @@ export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
       childrenSetter={childrenSetter}
     >
       <div css={publicPaddingStyle}>
-        <EventHandlerSetterHeader
+        <AddActionLabel
           labelName={labelName}
           labelDesc={labelDesc}
-          handleAddItemAsync={handleAddItemAsync}
+          handleAddItem={handleAddItemAsync}
         />
         <ListBody events={value} />
       </div>

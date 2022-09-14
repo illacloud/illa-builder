@@ -1,5 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { FC } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import {
   applyListItemDataNameAreaStyle,
   applyListItemMethodAreaStyle,
@@ -15,6 +15,10 @@ import {
 import { EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { ReactComponent as DeleteIcon } from "@/assets/delete-dataset-icon.svg"
 import { ListItemProps } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
+import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { EditModal } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/editModal"
+import { Trigger } from "@illa-design/trigger"
+import { DatasetsContext } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
 
 export const CHART_COLOR_TYPE_CONFIG = {
   "illa-preset": [
@@ -111,26 +115,80 @@ export const ColorArea: FC<ColorAreaProps> = ({ color }) => {
 }
 
 export const ListItem: FC<ListItemProps> = props => {
-  const { color, isHidden, datasetName, datasetMethod } = props
+  const { color, isHidden, datasetName, datasetMethod, index } = props
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const handleCloseModal = useCallback(() => {
+    setModalVisible(false)
+  }, [])
+
+  const {
+    attrPath,
+    widgetDisplayName,
+    childrenSetter,
+    handleHiddenDataset,
+    handleDeleteDataSet,
+  } = useContext(DatasetsContext)
   return (
-    <div css={ListItemWrapperCss}>
-      <div css={listItemInfoAreaStyle}>
-        <ColorArea color={color} />
-        <span css={applyListItemDataNameAreaStyle(isHidden)}>
-          {datasetName}
-        </span>
-        <span css={applyListItemMethodAreaStyle(isHidden)}>
-          {datasetMethod}
-        </span>
+    <Trigger
+      withoutPadding
+      colorScheme="white"
+      popupVisible={modalVisible}
+      content={
+        <BaseModal
+          title={datasetName}
+          handleCloseModal={handleCloseModal}
+          attrPath={`${attrPath}.${index}`}
+          widgetDisplayName={widgetDisplayName}
+          childrenSetter={childrenSetter}
+        />
+      }
+      trigger="click"
+      showArrow={false}
+      position="left-start"
+      clickOutsideToClose
+      onVisibleChange={visible => {
+        setModalVisible(visible)
+      }}
+    >
+      <div css={ListItemWrapperCss}>
+        <div css={listItemInfoAreaStyle}>
+          <ColorArea color={color} />
+          <span css={applyListItemDataNameAreaStyle(isHidden)}>
+            {datasetName}
+          </span>
+          <span css={applyListItemMethodAreaStyle(isHidden)}>
+            {datasetMethod}
+          </span>
+        </div>
+        <div css={listItemActionAreaStyle}>
+          {isHidden ? (
+            <EyeOffIcon
+              css={baseIconStyle}
+              onClick={e => {
+                e.stopPropagation()
+                handleHiddenDataset(index)
+              }}
+            />
+          ) : (
+            <EyeOnIcon
+              css={eyeIconStyle}
+              id="eyeOnIcon"
+              onClick={e => {
+                e.stopPropagation()
+                handleHiddenDataset(index)
+              }}
+            />
+          )}
+          <DeleteIcon
+            css={baseIconStyle}
+            onClick={e => {
+              e.stopPropagation()
+              handleDeleteDataSet(index)
+            }}
+          />
+        </div>
       </div>
-      <div css={listItemActionAreaStyle}>
-        {isHidden ? (
-          <EyeOffIcon css={baseIconStyle} />
-        ) : (
-          <EyeOnIcon css={eyeIconStyle} id="eyeOnIcon" />
-        )}
-        <DeleteIcon css={baseIconStyle} />
-      </div>
-    </div>
+    </Trigger>
   )
 }
