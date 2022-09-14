@@ -6,6 +6,8 @@ import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/com
 import { RootState } from "@/store"
 import { debounce, get } from "lodash"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { formatDataAsArray } from "@/utils/formatData"
 
 export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
   const {
@@ -18,7 +20,8 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     rootState => {
-      return searchDSLByDisplayName(widgetDisplayName, rootState)?.props || {}
+      const executionTree = getExecutionResult(rootState)
+      return get(executionTree, widgetDisplayName, {})
     },
   )
 
@@ -28,10 +31,12 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
   }, [targetComponentProps])
 
   const dataSources = useMemo(() => {
+    let originDataSources = get(targetComponentProps, "dataSource", [])
     if (isDataSourceDynamic) {
-      return get(targetComponentProps, "dataSourceJS", {})
+      originDataSources = get(targetComponentProps, "dataSourceJS", [])
     }
-    return get(targetComponentProps, "dataSource", {})
+
+    return formatDataAsArray(originDataSources)
   }, [isDataSourceDynamic, targetComponentProps])
 
   const isDynamic = useMemo(() => {
