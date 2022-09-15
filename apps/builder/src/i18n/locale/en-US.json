@@ -560,7 +560,8 @@
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
-          "remove": "Remove dataset"
+          "remove": "Remove dataset",
+          "aggregation_method": "Aggregation method"
         },
         "new_tab": "New tab",
         "description": "Description",

@@ -18,7 +18,6 @@ import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSette
 import { CalcSelfInput } from "@/page/App/components/PanelSetters/InputSetter/calcSelfInput"
 import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSetter/baseDynamicSelect"
 import { ChartDataSourceSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSource"
-import { ChartTypeSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartTypeSetter"
 import { ChartKeysSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartKeysSelectSetter"
 import { ChartDatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter"
 
@@ -43,7 +42,6 @@ const SetterTypeMapSetter = {
   EDITABLE_INPUT_SETTER: EditableInputSetter,
   BASE_DYNAMIC_SELECT_SETTER: BaseDynamicSelect,
   CHART_DATASOURCE_SELECT_SETTER: ChartDataSourceSetter,
-  CHART_TYPE_SELECT_SETTER: ChartTypeSetter,
   CHART_KEYS_SELECT_SETTER: ChartKeysSelectSetter,
   CHART_DATASETS_SETTER: ChartDatasetsSetter,
 }

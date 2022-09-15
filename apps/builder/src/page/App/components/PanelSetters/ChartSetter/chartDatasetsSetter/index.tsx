@@ -1,10 +1,15 @@
-import { FC, useCallback } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { ChartDatasetsSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 import { AddActionLabel } from "@/page/App/components/PanelSetters/PublicComponent/Label/addActionLabel"
 import { ListBody } from "./listBody"
 import { DatasetsProvider } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
-import { v4 } from "uuid"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { get } from "lodash"
+import { CHART_TYPE } from "@/widgetLibrary/Chart"
+import { generateDatasetItem } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/utils"
 
 export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = props => {
   const {
@@ -17,18 +22,22 @@ export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = props => {
     labelDesc,
   } = props
 
+  const targetComponentProps = useSelector<RootState, Record<string, any>>(
+    rootState => {
+      const executionTree = getExecutionResult(rootState)
+      return get(executionTree, widgetDisplayName, {})
+    },
+  )
+
+  const chartType = useMemo(() => {
+    return get(targetComponentProps, "chartType", CHART_TYPE.BAR)
+  }, [targetComponentProps])
+
   const handleAddDataSet = useCallback(async () => {
     let oldDatasets = Array.isArray(value) ? value : []
-    const newDatasetItem = {
-      id: v4(),
-      datasetName: "1",
-      datasetValues: "",
-      aggregationMethod: "SUM",
-      type: "BAR",
-      color: "blue",
-    }
+    const newDatasetItem = generateDatasetItem(chartType)
     handleUpdateDsl(attrName, [...oldDatasets, newDatasetItem])
-  }, [attrName, handleUpdateDsl, value])
+  }, [attrName, chartType, handleUpdateDsl, value])
 
   if (
     !childrenSetter ||

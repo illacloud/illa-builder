@@ -558,8 +558,9 @@
         "only_run_when": "先决条件",
         "dataset": {
           "name": "数据集名称",
-          "value": "数据集数据",
-          "remove": "移除数据集"
+          "value": "数据列",
+          "remove": "移除数据集",
+          "aggregation_method": "聚合方式"
         },
         "new_tab": "在新标签中打开",
         "description": "描述",
