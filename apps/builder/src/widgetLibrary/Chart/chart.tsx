@@ -148,99 +148,106 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
 
   const realDatasets: ChartDataset[] = useMemo(() => {
     if (!Array.isArray(datasets)) return []
-    return datasets.map(dataset => {
-      const data: number[] = []
-      const {
-        datasetValues,
-        type,
-        datasetName,
-        color,
-        aggregationMethod,
-      } = dataset
-      let finalColor = color
-      if (groupBy) {
-        finalColor = get(
-          CHART_COLOR_TYPE_CONFIG,
+    return datasets
+      .filter(dataset => {
+        if (dataset.isHidden == undefined) return true
+        return !dataset.isHidden
+      })
+      .map(dataset => {
+        const data: number[] = []
+        const {
+          datasetValues,
+          type,
+          datasetName,
           color,
-          CHART_COLOR_TYPE_CONFIG["illa-preset"],
-        )
-      }
+          aggregationMethod,
+          isHidden,
+        } = dataset
+        let finalColor = color
+        if (groupBy) {
+          finalColor = get(
+            CHART_COLOR_TYPE_CONFIG,
+            color,
+            CHART_COLOR_TYPE_CONFIG["illa-preset"],
+          )
+        }
 
-      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.SUM) {
-        Object.keys(formatDataSources).forEach(x => {
-          let values: number[] = []
-          const v = formatDataSources[x]
-          v.forEach(vk => {
-            values.push(Number(get(vk, datasetValues, 0)))
+        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.SUM) {
+          Object.keys(formatDataSources).forEach(x => {
+            let values: number[] = []
+            const v = formatDataSources[x]
+            v.forEach(vk => {
+              values.push(Number(get(vk, datasetValues, 0)))
+            })
+            data.push(sum(values))
           })
-          data.push(sum(values))
-        })
-      }
-      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MAX) {
-        Object.keys(formatDataSources).forEach(x => {
-          let values: number[] = []
-          const v = formatDataSources[x]
-          v.forEach(vk => {
-            values.push(Number(get(vk, datasetValues, 0)))
+        }
+        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MAX) {
+          Object.keys(formatDataSources).forEach(x => {
+            let values: number[] = []
+            const v = formatDataSources[x]
+            v.forEach(vk => {
+              values.push(Number(get(vk, datasetValues, 0)))
+            })
+            data.push(max(values) || 0)
           })
-          data.push(max(values) || 0)
-        })
-      }
-      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MIN) {
-        Object.keys(formatDataSources).forEach(x => {
-          let values: number[] = []
-          const v = formatDataSources[x]
-          v.forEach(vk => {
-            values.push(Number(get(vk, datasetValues, 0)))
+        }
+        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MIN) {
+          Object.keys(formatDataSources).forEach(x => {
+            let values: number[] = []
+            const v = formatDataSources[x]
+            v.forEach(vk => {
+              values.push(Number(get(vk, datasetValues, 0)))
+            })
+            data.push(min(values) || 0)
           })
-          data.push(min(values) || 0)
-        })
-      }
+        }
 
-      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.AVERAGE) {
-        Object.keys(formatDataSources).forEach(x => {
-          let values: number[] = []
-          const v = formatDataSources[x]
-          v.forEach(vk => {
-            values.push(Number(get(vk, datasetValues, 0)))
+        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.AVERAGE) {
+          Object.keys(formatDataSources).forEach(x => {
+            let values: number[] = []
+            const v = formatDataSources[x]
+            v.forEach(vk => {
+              values.push(Number(get(vk, datasetValues, 0)))
+            })
+            data.push(mean(values) || 0)
           })
-          data.push(mean(values) || 0)
-        })
-      }
+        }
 
-      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MEDIAN) {
-        Object.keys(formatDataSources).forEach(x => {
-          let values: number[] = []
-          const v = formatDataSources[x]
-          v.forEach(vk => {
-            values.push(Number(get(vk, datasetValues, 0)))
+        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MEDIAN) {
+          Object.keys(formatDataSources).forEach(x => {
+            let values: number[] = []
+            const v = formatDataSources[x]
+            v.forEach(vk => {
+              values.push(Number(get(vk, datasetValues, 0)))
+            })
+            const len = values.length
+            let position
+            if (len % 2) {
+              position = (len + 1) / 2
+            } else {
+              position = (len || 0) / 2
+            }
+            data.push(values[position] || 0)
           })
-          const len = values.length
-          let position
-          if (len % 2) {
-            position = (len + 1) / 2
-          } else {
-            position = (len || 0) / 2
-          }
-          data.push(values[position] || 0)
-        })
-      }
+        }
 
-      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.COUNT) {
-        Object.keys(formatDataSources).forEach(x => {
-          const v = formatDataSources[x]
-          data.push(v?.length || 0)
-        })
-      }
+        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.COUNT) {
+          Object.keys(formatDataSources).forEach(x => {
+            const v = formatDataSources[x]
+            data.push(v?.length || 0)
+          })
+        }
 
-      return {
-        label: datasetName,
-        data: data,
-        type,
-        borderColor: finalColor,
-        backgroundColor: finalColor,
-      }
-    })
+        return {
+          label: datasetName,
+          data: data,
+          type,
+          borderColor: finalColor,
+          backgroundColor: finalColor,
+          hidden: isHidden,
+        }
+      })
   }, [datasets, formatDataSources, groupBy])
 
   return (
