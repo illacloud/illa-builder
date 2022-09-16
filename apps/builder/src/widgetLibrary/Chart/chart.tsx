@@ -26,6 +26,7 @@ import {
 import { formatDataAsObject } from "@/utils/formatData"
 import { get, groupBy as groupByFunc, max, mean, min, sum } from "lodash"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 
 ChartJS.register(
   /** Bar chart**/
@@ -156,6 +157,15 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
         color,
         aggregationMethod,
       } = dataset
+      let finalColor = color
+      if (groupBy) {
+        finalColor = get(
+          CHART_COLOR_TYPE_CONFIG,
+          color,
+          CHART_COLOR_TYPE_CONFIG["illa-preset"],
+        )
+      }
+
       if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.SUM) {
         Object.keys(formatDataSources).forEach(x => {
           let values: number[] = []
@@ -227,18 +237,11 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
         label: datasetName,
         data: data,
         type,
-        borderColor: color,
-        backgroundColor: color,
+        borderColor: finalColor,
+        backgroundColor: finalColor,
       }
     })
-  }, [datasets, formatDataSources])
-
-  const groupByDatasets = useMemo(() => {
-    if (groupBy && realDataSourceObject.hasOwnProperty(groupBy)) {
-      return realDatasets
-    }
-    return realDatasets
-  }, [realDatasets, groupBy, realDataSourceObject])
+  }, [datasets, formatDataSources, groupBy])
 
   return (
     <Chart

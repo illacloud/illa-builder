@@ -32,8 +32,6 @@ export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = props => {
     return !!get(targetComponentProps, "groupBy", "")
   }, [targetComponentProps])
 
-  console.log("isCanGroupBy", isCanGroupBy)
-
   const chartType = useMemo(() => {
     return get(targetComponentProps, "chartType", "bar")
   }, [targetComponentProps])

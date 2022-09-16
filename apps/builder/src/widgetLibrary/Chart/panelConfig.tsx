@@ -143,13 +143,13 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         bindAttrName: ["chartType"],
         shown: (chartType: string) => chartType === "pie",
       },
-      {
-        id: `${baseWidgetName}-data-group-by`,
-        labelName: i18n.t("editor.inspect.setter_label.group_by"),
-        isSetterSingleRow: true,
-        attrName: "groupBy",
-        setterType: "CHART_KEYS_SELECT_SETTER",
-      },
+      // {
+      //   id: `${baseWidgetName}-data-group-by`,
+      //   labelName: i18n.t("editor.inspect.setter_label.group_by"),
+      //   isSetterSingleRow: true,
+      //   attrName: "groupBy",
+      //   setterType: "CHART_KEYS_SELECT_SETTER",
+      // },
       {
         id: `${baseWidgetName}-data-datasets`,
         labelName: i18n.t("editor.inspect.setter_label.datasets"),

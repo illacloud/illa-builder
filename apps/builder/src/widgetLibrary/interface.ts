@@ -39,13 +39,11 @@ export interface BaseWidgetInfo {
   keywords?: string[]
   resizeDirection?: RESIZE_DIRECTION
 }
-
+type defaultsType = () => Record<string, any>
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
   id: string
   childrenNode?: WidgetCardInfo[]
-  defaults?: {
-    [key: string]: any
-  }
+  defaults?: defaultsType | Record<string, any>
 }
 
 export type WidgetConfig = Omit<WidgetCardInfo, "id">

@@ -26,7 +26,7 @@ export const generateDatasetItem = (
   let color: string | string[] =
     presetColor[hasColor.length % presetColor.length]
   if (isGroup) {
-    color = presetColor
+    color = "illa-preset"
   } else {
     if (hasColor.length <= presetColor.length) {
       const diff = difference(presetColor, hasColor)
