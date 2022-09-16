@@ -450,6 +450,7 @@
         "style": "STYLE",
         "validation": "VALIDATION",
         "options": "OPTIONS",
+        "column": "COLUMNS",
         "data": "DATA"
       },
       "setter_label": {
@@ -610,6 +611,11 @@
         }
       },
       "setter_content": {
+        "column_setter": {
+          "label": "Columns ({{number}})",
+          "title": "Title",
+          "new": "New"
+        },
         "option_list": {
           "action_menu": {
             "delete": "Delete",

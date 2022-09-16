@@ -38,6 +38,42 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
+    id: `${baseWidgetName}-column`,
+    groupName: i18n.t("editor.inspect.setter_group.column"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-options`,
+        useCustomLayout: true,
+        attrName: "manualOptions",
+        setterType: "COLUMN_SETTER",
+        bindAttrName: ["optionConfigureMode"],
+        shown: (value) => !value || value === "static",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-options-label`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
+            attrName: "label",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-options-value`,
+            labelName: i18n.t("editor.inspect.setter_label.value"),
+            attrName: "value",
+            setterType: "INPUT_SETTER",
+          },
+          {
+            id: `${baseWidgetName}-options-disabled`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
+            attrName: "disabled",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: `${baseWidgetName}-toolbar`,
     groupName: i18n.t("editor.inspect.setter_group.data"),
     children: [

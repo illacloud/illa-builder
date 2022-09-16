@@ -76,5 +76,6 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   defaults: {
     originData: `{{${JSON.stringify(fakeOriginData)}}}`,
+    emptyState: "No rows found"
   },
 }

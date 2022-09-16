@@ -449,6 +449,7 @@
         "style": "风格",
         "validation": "验证",
         "options": "选项",
+        "column": "COLUMNS",
         "data": "数据"
       },
       "setter_label": {
@@ -609,6 +610,11 @@
         }
       },
       "setter_content": {
+        "column_setter": {
+          "label": "列 ({{number}})",
+          "title": "标题",
+          "new": "新建"
+        },
         "option_list": {
           "action_menu": {
             "delete": "删除",
