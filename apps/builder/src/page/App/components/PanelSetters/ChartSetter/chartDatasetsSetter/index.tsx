@@ -8,7 +8,6 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { get } from "lodash"
-import { CHART_TYPE } from "@/widgetLibrary/Chart"
 import { generateDatasetItem } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/utils"
 
 export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = props => {
@@ -29,15 +28,44 @@ export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = props => {
     },
   )
 
-  const chartType = useMemo(() => {
-    return get(targetComponentProps, "chartType", CHART_TYPE.BAR)
+  const isCanGroupBy = useMemo(() => {
+    return !!get(targetComponentProps, "groupBy", "")
   }, [targetComponentProps])
+
+  console.log("isCanGroupBy", isCanGroupBy)
+
+  const chartType = useMemo(() => {
+    return get(targetComponentProps, "chartType", "bar")
+  }, [targetComponentProps])
+
+  const hasColor = useMemo(() => {
+    if (!Array.isArray(value)) return []
+    return value.map(v => v.color)
+  }, [value])
+
+  const hasDatasetNames = useMemo(() => {
+    if (!Array.isArray(value)) return []
+    return value.map(v => v.datasetName)
+  }, [value])
 
   const handleAddDataSet = useCallback(async () => {
     let oldDatasets = Array.isArray(value) ? value : []
-    const newDatasetItem = generateDatasetItem(chartType)
+    const newDatasetItem = generateDatasetItem(
+      chartType,
+      isCanGroupBy,
+      hasColor,
+      hasDatasetNames,
+    )
     handleUpdateDsl(attrName, [...oldDatasets, newDatasetItem])
-  }, [attrName, chartType, handleUpdateDsl, value])
+  }, [
+    attrName,
+    chartType,
+    handleUpdateDsl,
+    hasColor,
+    hasDatasetNames,
+    isCanGroupBy,
+    value,
+  ])
 
   if (
     !childrenSetter ||

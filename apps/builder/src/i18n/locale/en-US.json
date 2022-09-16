@@ -566,7 +566,10 @@
         "new_tab": "New tab",
         "description": "Description",
         "duration": "Duration",
-        "data": "Data"
+        "data": "Data",
+        "chart_title": "Title",
+        "x_axis_name": "X-axis name",
+        "Y_axis_name": "Y-axis name"
       },
       "setter_tooltip": {
         "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",

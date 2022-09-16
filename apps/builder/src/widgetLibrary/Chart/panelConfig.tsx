@@ -11,10 +11,7 @@ import {
   chartTypeIconCss,
   chartTypeStringCss,
 } from "@/page/App/components/PanelSetters/ChartSetter/style"
-import {
-  CHART_DATASET_AGGREGATION_METHOD,
-  CHART_TYPE,
-} from "@/widgetLibrary/Chart/interface"
+import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart/interface"
 
 const typeOptions = [
   {
@@ -26,7 +23,7 @@ const typeOptions = [
         </span>
       </span>
     ),
-    value: CHART_TYPE.BAR,
+    value: "bar",
   },
   {
     label: (
@@ -37,7 +34,7 @@ const typeOptions = [
         </span>
       </div>
     ),
-    value: CHART_TYPE.LINE,
+    value: "line",
   },
   {
     label: (
@@ -48,7 +45,7 @@ const typeOptions = [
         </span>
       </div>
     ),
-    value: CHART_TYPE.SCATTERPLOT,
+    value: "scatter",
   },
   {
     label: (
@@ -59,7 +56,7 @@ const typeOptions = [
         </span>
       </div>
     ),
-    value: CHART_TYPE.PIE,
+    value: "pie",
   },
 ]
 
@@ -73,7 +70,7 @@ const datasetsTypeOption = [
         </span>
       </span>
     ),
-    value: CHART_TYPE.BAR,
+    value: "bar",
   },
   {
     label: (
@@ -84,7 +81,7 @@ const datasetsTypeOption = [
         </span>
       </div>
     ),
-    value: CHART_TYPE.LINE,
+    value: "line",
   },
   {
     label: (
@@ -95,7 +92,7 @@ const datasetsTypeOption = [
         </span>
       </div>
     ),
-    value: CHART_TYPE.SCATTERPLOT,
+    value: "scatter",
   },
 ]
 
@@ -131,7 +128,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-data-x-asis`,
         labelName: i18n.t("editor.inspect.setter_label.x_axis_value"),
-        useCustomLayout: true,
+        isSetterSingleRow: true,
         attrName: "xAxis",
         setterType: "CHART_KEYS_SELECT_SETTER",
         bindAttrName: ["chartType"],
@@ -140,7 +137,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-data-value-labels`,
         labelName: i18n.t("editor.inspect.setter_label.value_labels"),
-        useCustomLayout: true,
+        isSetterSingleRow: true,
         attrName: "xAxis",
         setterType: "CHART_KEYS_SELECT_SETTER",
         bindAttrName: ["chartType"],
@@ -149,7 +146,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-data-group-by`,
         labelName: i18n.t("editor.inspect.setter_label.group_by"),
-        useCustomLayout: true,
+        isSetterSingleRow: true,
         attrName: "groupBy",
         setterType: "CHART_KEYS_SELECT_SETTER",
       },
@@ -170,7 +167,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-datasets-value`,
             labelName: i18n.t("editor.inspect.setter_label.dataset.value"),
-            useCustomLayout: true,
+            isSetterSingleRow: true,
             attrName: "datasetValues",
             setterType: "CHART_KEYS_SELECT_SETTER",
           },
@@ -197,10 +194,65 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.color"),
             isSetterSingleRow: true,
             attrName: "color",
-            setterType: "BASE_SELECT_SETTER",
+            setterType: "CHART_COLOR_SELECT_SETTER",
           },
         ],
       },
     ],
   },
+  {
+    id: `${baseWidgetName}-adornments`,
+    groupName: i18n.t("editor.inspect.setter_group.adornments"),
+    children: [
+      {
+        id: `${baseWidgetName}-adornments-tooltip`,
+        labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
+        attrName: "tooltipText",
+        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "INPUT_SETTER",
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-layout`,
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
+    children: [
+      {
+        id: `${baseWidgetName}-layout-title`,
+        labelName: i18n.t("editor.inspect.setter_label.chart_title"),
+        attrName: "chartTitle",
+        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: `${baseWidgetName}-layout-x-axis`,
+        labelName: i18n.t("editor.inspect.setter_label.x_axis_name"),
+        attrName: "xAxisName",
+        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "INPUT_SETTER",
+      },
+      {
+        id: `${baseWidgetName}-layout-y-axis`,
+        labelName: i18n.t("editor.inspect.setter_label.y_axis_name"),
+        attrName: "yAxisName",
+        expectedType: VALIDATION_TYPES.STRING,
+        setterType: "INPUT_SETTER",
+      },
+    ],
+  },
+  // {
+  //   id: `${baseWidgetName}-interaction`,
+  //   groupName: i18n.t("editor.inspect.setter_group.adornments"),
+  //   children: [
+  //     {
+  //       id: `${baseWidgetName}-adornments-tooltip`,
+  //       labelName: i18n.t("editor.inspect.setter_label.tooltip"),
+  //       labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
+  //       attrName: "tooltipText",
+  //       expectedType: VALIDATION_TYPES.STRING,
+  //       setterType: "INPUT_SETTER",
+  //     },
+  //   ],
+  // },
 ]

@@ -41,6 +41,7 @@ export const applyListItemDataNameAreaStyle = (
 ): SerializedStyles => {
   return css`
     width: 80px;
+    white-space: nowrap;
     line-height: 24px;
     overflow: hidden;
     text-overflow: ellipsis;

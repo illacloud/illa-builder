@@ -5,4 +5,4 @@ export interface ChartDataSourceSetterProps
   extends BaseSetter,
     PanelLabelProps {}
 
-export interface ChartTypeSetterProps extends BaseSetter {}
+export interface ChartColorSelectSetterProps extends BaseSetter {}

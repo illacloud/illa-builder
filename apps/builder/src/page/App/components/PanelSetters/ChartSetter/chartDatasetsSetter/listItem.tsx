@@ -16,7 +16,6 @@ import { EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { ReactComponent as DeleteIcon } from "@/assets/delete-dataset-icon.svg"
 import { ListItemProps } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { EditModal } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/editModal"
 import { Trigger } from "@illa-design/trigger"
 import { DatasetsContext } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/datasetsContext"
 
@@ -95,12 +94,14 @@ export const CHART_COLOR_TYPE_CONFIG = {
   ],
 }
 
+export const CHART_COLOR_TYPE_CONFIG_KEYS = Object.keys(CHART_COLOR_TYPE_CONFIG)
+
 interface ColorAreaProps {
   color: keyof typeof CHART_COLOR_TYPE_CONFIG | string
 }
 
 export const ColorArea: FC<ColorAreaProps> = ({ color }) => {
-  if (Object.hasOwn(CHART_COLOR_TYPE_CONFIG, color)) {
+  if (CHART_COLOR_TYPE_CONFIG_KEYS.includes(color)) {
     const colors =
       CHART_COLOR_TYPE_CONFIG[color as keyof typeof CHART_COLOR_TYPE_CONFIG]
     return (

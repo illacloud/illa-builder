@@ -20,6 +20,7 @@ import { BaseDynamicSelect } from "@/page/App/components/PanelSetters/SelectSett
 import { ChartDataSourceSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDataSource"
 import { ChartKeysSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartKeysSelectSetter"
 import { ChartDatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter"
+import { ChartColorSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartColorSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -44,6 +45,7 @@ const SetterTypeMapSetter = {
   CHART_DATASOURCE_SELECT_SETTER: ChartDataSourceSetter,
   CHART_KEYS_SELECT_SETTER: ChartKeysSelectSetter,
   CHART_DATASETS_SETTER: ChartDatasetsSetter,
+  CHART_COLOR_SELECT_SETTER: ChartColorSelectSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

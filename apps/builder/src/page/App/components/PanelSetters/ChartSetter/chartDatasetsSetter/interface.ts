@@ -17,7 +17,7 @@ export interface ChartDatasetShape {
   datasetName: string
   datasetValues: string
   aggregationMethod: string
-  type: "BAR" | "LINE" | "SCATTER"
+  type: "bar" | "line" | "scatter"
   color: string
   isHidden: boolean
 }

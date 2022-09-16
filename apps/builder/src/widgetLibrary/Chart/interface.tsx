@@ -1,14 +1,24 @@
 import { BaseComponentNodeProps } from "@/widgetLibrary/interface"
+import { ChartDataset, ChartType } from "chart.js"
+import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
 
-export interface WrappedChartProps extends ChartWidgetProps {}
+export interface WrappedChartProps
+  extends Omit<ChartWidgetProps, "xAxis" | "datasets"> {
+  dataSource: any[]
+  dataSourceJS: any[]
+  dataSourceMode: "select" | "dynamic"
+  xAxis: string
+  datasets: ChartDatasetShape[]
+}
 
-export interface ChartWidgetProps extends BaseComponentNodeProps {}
-
-export enum CHART_TYPE {
-  "BAR" = "BAR",
-  "LINE" = "LINE",
-  "SCATTERPLOT" = "SCATTERPLOT",
-  "PIE" = "PIE",
+export interface ChartWidgetProps extends BaseComponentNodeProps {
+  xAxis: string[]
+  groupBy?: string
+  chartTitle: string
+  xAxisName: string
+  yAxisName: string
+  chartType: ChartType
+  datasets: ChartDataset[]
 }
 
 export enum CHART_DATASET_AGGREGATION_METHOD {
@@ -19,10 +29,3 @@ export enum CHART_DATASET_AGGREGATION_METHOD {
   "MIN" = "MIN",
   "MAX" = "MAX",
 }
-
-// export interface ChartDatasetsShape {
-//   id: string
-//   datasetName: string
-//   datasetValues: string
-//   method
-// }
