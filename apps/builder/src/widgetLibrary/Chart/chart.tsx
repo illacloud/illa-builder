@@ -161,7 +161,6 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
           datasetName,
           color,
           aggregationMethod,
-          isHidden,
         } = dataset
         let finalColor = color
         if (groupBy) {
@@ -245,7 +244,6 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
           type,
           borderColor: finalColor,
           backgroundColor: finalColor,
-          hidden: isHidden,
         }
       })
   }, [datasets, formatDataSources, groupBy])
