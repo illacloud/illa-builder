@@ -121,6 +121,7 @@ import {
 import {
   TABLE_PANEL_CONFIG,
   TABLE_WIDGET_CONFIG,
+  TABLE_EVENT_HANDLER_CONFIG,
   TableWidget,
 } from "@/widgetLibrary/TableWidget"
 
@@ -249,6 +250,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: TableWidget,
     config: TABLE_WIDGET_CONFIG,
     panelConfig: TABLE_PANEL_CONFIG,
+    eventHandlerConfig: TABLE_EVENT_HANDLER_CONFIG,
   },
 }
 

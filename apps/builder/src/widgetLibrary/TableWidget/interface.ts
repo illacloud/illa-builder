@@ -1,7 +1,8 @@
 export interface WrappedTableProps {
   originData: object[]
+  emptyState?: string
 }
 
-export interface TableWidgetProps {
-  originData: object[]
+export interface TableWidgetProps extends WrappedTableProps{
+
 }

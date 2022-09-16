@@ -4,7 +4,7 @@ import { TableWidgetProps, WrappedTableProps } from "./interface"
 import { ColumnDef } from "@tanstack/react-table"
 
 export const WrappedTable: FC<WrappedTableProps> = (props) => {
-  const { originData } = props
+  const { originData, emptyState } = props
 
   let columnsDef: ColumnDef<object>[] = useMemo(() => {
     let l: ColumnDef<object>[] = []
@@ -16,6 +16,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
         })
       })
     }
+    console.log(l,'l')
     return l
   }, [originData])
 
@@ -34,6 +35,6 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
 }
 
 export const TableWidget: FC<TableWidgetProps> = (props) => {
-  const { originData } = props
-  return <WrappedTable originData={originData} />
+  const { originData, emptyState } = props
+  return <WrappedTable originData={originData} emptyState={emptyState} />
 }
