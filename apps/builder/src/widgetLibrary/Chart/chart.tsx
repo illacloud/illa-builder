@@ -19,11 +19,12 @@ import {
 } from "chart.js"
 import { Chart as ReactChart } from "react-chartjs-2"
 import {
+  CHART_DATASET_AGGREGATION_METHOD,
   ChartWidgetProps,
   WrappedChartProps,
 } from "@/widgetLibrary/Chart/interface"
 import { formatDataAsObject } from "@/utils/formatData"
-import { get, groupBy as groupByFunc } from "lodash"
+import { get, groupBy as groupByFunc, max, mean, min, sum } from "lodash"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 ChartJS.register(
@@ -148,19 +149,85 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
     if (!Array.isArray(datasets)) return []
     return datasets.map(dataset => {
       const data: number[] = []
-      const { datasetValues, type, datasetName, color } = dataset
-      Object.keys(formatDataSources).forEach(x => {
-        let sum = 0
-        const v = formatDataSources[x]
-        v.forEach(vk => {
-          sum += Number(get(vk, datasetValues, 0))
+      const {
+        datasetValues,
+        type,
+        datasetName,
+        color,
+        aggregationMethod,
+      } = dataset
+      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.SUM) {
+        Object.keys(formatDataSources).forEach(x => {
+          let values: number[] = []
+          const v = formatDataSources[x]
+          v.forEach(vk => {
+            values.push(Number(get(vk, datasetValues, 0)))
+          })
+          data.push(sum(values))
         })
-        data.push(sum)
-      })
+      }
+      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MAX) {
+        Object.keys(formatDataSources).forEach(x => {
+          let values: number[] = []
+          const v = formatDataSources[x]
+          v.forEach(vk => {
+            values.push(Number(get(vk, datasetValues, 0)))
+          })
+          data.push(max(values) || 0)
+        })
+      }
+      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MIN) {
+        Object.keys(formatDataSources).forEach(x => {
+          let values: number[] = []
+          const v = formatDataSources[x]
+          v.forEach(vk => {
+            values.push(Number(get(vk, datasetValues, 0)))
+          })
+          data.push(min(values) || 0)
+        })
+      }
+
+      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.AVERAGE) {
+        Object.keys(formatDataSources).forEach(x => {
+          let values: number[] = []
+          const v = formatDataSources[x]
+          v.forEach(vk => {
+            values.push(Number(get(vk, datasetValues, 0)))
+          })
+          data.push(mean(values) || 0)
+        })
+      }
+
+      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MEDIAN) {
+        Object.keys(formatDataSources).forEach(x => {
+          let values: number[] = []
+          const v = formatDataSources[x]
+          v.forEach(vk => {
+            values.push(Number(get(vk, datasetValues, 0)))
+          })
+          const len = values.length
+          let position
+          if (len % 2) {
+            position = (len + 1) / 2
+          } else {
+            position = (len || 0) / 2
+          }
+          data.push(values[position] || 0)
+        })
+      }
+
+      if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.COUNT) {
+        Object.keys(formatDataSources).forEach(x => {
+          const v = formatDataSources[x]
+          data.push(v?.length || 0)
+        })
+      }
+
       return {
         label: datasetName,
         data: data,
         type,
+        borderColor: color,
         backgroundColor: color,
       }
     })
