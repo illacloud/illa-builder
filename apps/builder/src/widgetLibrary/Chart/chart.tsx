@@ -92,9 +92,16 @@ export const Chart: FC<ChartWidgetProps> = props => {
     }
   }, [chartTitle, xAxisName, yAxisName])
 
+  const finalType = useMemo(() => {
+    if (chartType === "scatter") {
+      return "line"
+    }
+    return chartType
+  }, [chartType])
+
   return (
     <ReactChart
-      type={chartType || "bar"}
+      type={finalType}
       datasetIdKey="id"
       data={data}
       options={options}
