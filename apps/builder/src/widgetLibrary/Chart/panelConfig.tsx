@@ -156,6 +156,8 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "datasets",
         setterType: "CHART_DATASETS_SETTER",
+        bindAttrName: ["chartType"],
+        shown: (chartType: string) => chartType !== "pie",
         childrenSetter: [
           {
             id: `${baseWidgetName}-datasets-name`,
@@ -188,6 +190,48 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
             attrName: "type",
             setterType: "BASE_SELECT_SETTER",
             options: datasetsTypeOption,
+          },
+          {
+            id: `${baseWidgetName}-color`,
+            labelName: i18n.t("editor.inspect.setter_label.color"),
+            isSetterSingleRow: true,
+            attrName: "color",
+            setterType: "CHART_COLOR_SELECT_SETTER",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-data-datasets-bar`,
+        labelName: i18n.t("editor.inspect.setter_label.datasets"),
+        useCustomLayout: true,
+        attrName: "datasets",
+        setterType: "CHART_DATASETS_SETTER",
+        bindAttrName: ["chartType"],
+        shown: (chartType: string) => chartType === "pie",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-datasets-name`,
+            labelName: i18n.t("editor.inspect.setter_label.dataset.name"),
+            isSetterSingleRow: true,
+            attrName: "datasetName",
+            setterType: "INPUT_SETTER",
+          },
+          {
+            id: `${baseWidgetName}-datasets-value`,
+            labelName: i18n.t("editor.inspect.setter_label.dataset.value"),
+            isSetterSingleRow: true,
+            attrName: "datasetValues",
+            setterType: "CHART_KEYS_SELECT_SETTER",
+          },
+          {
+            id: `${baseWidgetName}-aggregation-method`,
+            labelName: i18n.t(
+              "editor.inspect.setter_label.dataset.aggregation_method",
+            ),
+            isSetterSingleRow: true,
+            attrName: "aggregationMethod",
+            setterType: "BASE_SELECT_SETTER",
+            options: aggregationMethodOptions,
           },
           {
             id: `${baseWidgetName}-color`,
