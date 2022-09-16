@@ -15,6 +15,7 @@ import {
   UpdateComponentReflowPayload,
   UpdateComponentDisplayNamePayload,
   ComponentNode,
+  CopyComponentPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
 
@@ -56,6 +57,23 @@ export const reduxAsync: Redux.Middleware = store => next => action => {
                   payload,
                 },
                 payload,
+              ),
+            )
+            break
+          case "copyComponentReducer":
+            const copyComponentPayload = (payload as CopyComponentPayload[]).map(
+              copyShape => copyShape.newComponentNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                copyComponentPayload,
               ),
             )
             break

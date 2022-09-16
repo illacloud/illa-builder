@@ -546,7 +546,8 @@
         "config_type": "Config type",
         "data_source": "Data source",
         "chart_type": "Chart type",
-        "x_values": "X-axis Values",
+        "x_axis_value": "X-axis value",
+        "value_labels": "Value labels",
         "group_by": "Group by",
         "datasets": "Datasets",
         "dataset_config": "Dataset config",
@@ -559,13 +560,17 @@
         "dataset": {
           "name": "Dataset name",
           "value": "Dataset values",
-          "remove": "Remove dataset"
+          "remove": "Remove dataset",
+          "aggregation_method": "Aggregation method"
         },
         "new_tab": "New tab",
         "description": "Description",
         "duration": "Duration",
         "data": "Data",
-        "empty_state": "Empty state"
+        "empty_state": "Empty state",
+        "chart_title": "Title",
+        "x_axis_name": "X-axis name",
+        "Y_axis_name": "Y-axis name"
       },
       "setter_tooltip": {
         "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
@@ -635,6 +640,12 @@
           "blur": "Blur",
           "success": "Success",
           "fail": "Fail"
+        },
+        "chart_type": {
+          "bar": "Bar chart",
+          "line": "Line chart",
+          "scatterplot": "Scatterplot",
+          "pie": "Pie chart"
         }
       }
     },

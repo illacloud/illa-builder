@@ -545,7 +545,8 @@
         "config_type": "配置类型",
         "data_source": "数据源",
         "chart_type": "图表类型",
-        "x_values": "X轴值",
+        "x_axis_value": "X 轴",
+        "value_labels": "纬度",
         "group_by": "分组标签",
         "datasets": "数据集",
         "dataset_config": "数据集配置",
@@ -557,14 +558,18 @@
         "only_run_when": "先决条件",
         "dataset": {
           "name": "数据集名称",
-          "value": "数据集数据",
-          "remove": "移除数据集"
+          "value": "数据列",
+          "remove": "移除数据集",
+          "aggregation_method": "聚合方式"
         },
         "new_tab": "在新标签中打开",
         "description": "描述",
         "duration": "持续时间",
         "data": "数据",
-        "empty_state": "空状态"
+        "empty_state": "空状态",
+        "chart_title": "标题",
+        "x_axis_name": "横坐标名称",
+        "y_axis_name": "纵坐标名称"
       },
       "setter_tooltip": {
         "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
@@ -634,6 +639,12 @@
           "blur": "失焦",
           "success": "成功后",
           "fail": "失败后"
+        },
+        "chart_type": {
+          "bar": "柱状图",
+          "line": "折线图",
+          "scatterplot": "散点图",
+          "pie": "饼图"
         }
       }
     },

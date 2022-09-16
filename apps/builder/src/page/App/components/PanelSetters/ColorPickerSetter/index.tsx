@@ -13,7 +13,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { hexToHsva } from "@uiw/color-convert/src"
 import { ColorPicker } from "@/page/App/components/ColorPicker"
 
-export const ColorPickerSetter: FC<any> = (props) => {
+export const ColorPickerSetter: FC<any> = props => {
   const { attrName, handleUpdateDsl, value } = props
   const debounceOnChange = debounce(handleUpdateDsl, 300)
 
@@ -31,7 +31,7 @@ export const ColorPickerSetter: FC<any> = (props) => {
       content={
         <ColorPicker
           selectedColor={value}
-          onChange={(color) => {
+          onChange={color => {
             debounceOnChange(attrName, color)
           }}
         />
@@ -46,7 +46,7 @@ export const ColorPickerSetter: FC<any> = (props) => {
               : value}
           </span>
           <span css={alphaContentStyle}>
-            {parseInt(`${hexToHsva(c).a * 100}`)}%
+            {parseInt(`${hexToHsva(c || "#fff").a * 100}`)}%
           </span>
         </div>
       </div>

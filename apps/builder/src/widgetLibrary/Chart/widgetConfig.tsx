@@ -11,5 +11,7 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "DATE",
   w: 20,
   h: 40,
-  defaults: {},
+  defaults: {
+    dataSource: `{{mysql1.data}}`,
+  },
 }

@@ -241,11 +241,11 @@ export const WidgetConfig: WidgetConfigs = {
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
   },
   // TODO: chart
-  // CHART: {
-  //   widget: ChartWidget,
-  //   config: CHART_WIDGET_CONFIG,
-  //   panelConfig: CHART_PANEL_CONFIG,
-  // },
+  CHART: {
+    widget: ChartWidget,
+    config: CHART_WIDGET_CONFIG,
+    panelConfig: CHART_PANEL_CONFIG,
+  },
   TABLE_WIDGET: {
     widget: TableWidget,
     config: TABLE_WIDGET_CONFIG,
