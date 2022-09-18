@@ -28,6 +28,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   shown?: (...params: any[]) => boolean
   bindAttrName?: string | string[]
   openDynamic?: boolean
+  allowClear?: boolean
 }
 
 export interface PanelFieldGroupConfig {

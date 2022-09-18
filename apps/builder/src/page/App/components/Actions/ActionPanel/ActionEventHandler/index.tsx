@@ -13,7 +13,6 @@ import { configActions } from "@/redux/config/configSlice"
 import { cloneDeep } from "lodash"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { ActionContent } from "@/redux/currentApp/action/actionState"
-import i18n from "@/i18n/config"
 
 export const ActionEventHandler: FC = () => {
   const { t } = useTranslation()
@@ -41,6 +40,13 @@ export const ActionEventHandler: FC = () => {
     [action.content],
   )
 
+  const handleUpdateMultiAttrDSL = useCallback(
+    (updateSlice: Record<string, any>) => {
+      return
+    },
+    [],
+  )
+
   return (
     <div css={actionEventHandlerWrapperStyle}>
       <div css={actionEventHandlerStyle}>
@@ -52,6 +58,7 @@ export const ActionEventHandler: FC = () => {
         widgetParentDisplayName=""
         widgetProps={action.content || {}}
         handleUpdateDsl={handleUpdateDsl}
+        handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
         widgetOrAction="ACTION"
       >
         {renderFieldAndLabel(

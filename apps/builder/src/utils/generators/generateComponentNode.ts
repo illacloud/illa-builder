@@ -20,7 +20,7 @@ export const generateComponentNode = (
   }
   let childrenNodeDSL: ComponentNode[] = []
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
-    widgetInfo.childrenNode.map((childNode) => {
+    widgetInfo.childrenNode.map(childNode => {
       if (!childrenNodeDSL) childrenNodeDSL = []
       const child = generateComponentNode(childNode)
       childrenNodeDSL.push(child)
@@ -28,6 +28,12 @@ export const generateComponentNode = (
   }
 
   const { defaults, w, h, type, displayName = "" } = widgetInfo
+  let props: Record<string, any> | undefined = {}
+  if (typeof defaults === "function") {
+    props = defaults()
+  } else {
+    props = defaults
+  }
   baseDSL = {
     w,
     h,
@@ -47,7 +53,7 @@ export const generateComponentNode = (
     containerType: "EDITOR_SCALE_SQUARE",
     parentNode: null,
     childrenNode: childrenNodeDSL,
-    props: defaults ?? {},
+    props: props ?? {},
   }
   return baseDSL
 }

@@ -3,8 +3,10 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { createSelector } from "@reduxjs/toolkit"
 import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
 
-export function searchDSLByDisplayName(displayName: string) {
-  const rootState = store.getState()
+export function searchDSLByDisplayName(
+  displayName: string,
+  rootState: RootState = store.getState(),
+) {
   const rootNode = getCanvas(rootState)
   return searchDsl(rootNode, displayName)
 }
@@ -25,7 +27,7 @@ export function searchDsl(
     }
     queue.pop()
     if (head.childrenNode) {
-      head.childrenNode.forEach((child) => {
+      head.childrenNode.forEach(child => {
         if (child) {
           queue.push(child)
         }
@@ -35,7 +37,9 @@ export function searchDsl(
   return null
 }
 
-export function flattenDsl(rootNode: ComponentNode): {
+export function flattenDsl(
+  rootNode: ComponentNode,
+): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]
@@ -48,7 +52,7 @@ export function flattenDsl(rootNode: ComponentNode): {
     }
     queue.pop()
     if (head.childrenNode) {
-      head.childrenNode.forEach((child) => {
+      head.childrenNode.forEach(child => {
         if (child) {
           queue.push(child)
         }
@@ -74,14 +78,14 @@ export const getComponentNodeBySingleSelected = createSelector(
 
 export const getAllComponentDisplayNameMapProps = createSelector(
   [getCanvas],
-  (rootDSL) => {
+  rootDSL => {
     if (rootDSL == null) {
       return null
     }
     const components = flattenDsl(rootDSL)
     if (!components) return
     const res: Record<string, any> = {}
-    Object.keys(components).forEach((key) => {
+    Object.keys(components).forEach(key => {
       res[key] = {
         ...components[key].props,
         $type: "WIDGET",

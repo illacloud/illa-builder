@@ -18,7 +18,7 @@ import componentsReducer from "@/redux/currentApp/editor/components/componentsSl
 import dragShadowReducer from "@/redux/currentApp/editor/dragShadow/dragShadowSlice"
 import dottedLineSquareReducer from "@/redux/currentApp/editor/dottedLineSquare/dottedLineSquareSlice"
 import executionReducer from "@/redux/currentApp/executionTree/executionSlice"
-import { reduxAsync } from "@/middleware/redux/redux-async"
+import { reduxAsync } from "@/middleware/redux/reduxAsync"
 
 const listenerMiddleware = createListenerMiddleware()
 
@@ -54,7 +54,7 @@ const store = configureStore({
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["execution/setExecutionResultReducer"],
@@ -73,5 +73,4 @@ export type AppStartListening = TypedStartListening<RootState, AppDispatch>
 
 export type AppListenerEffectAPI = ListenerEffectAPI<RootState, AppDispatch>
 
-export const startAppListening =
-  listenerMiddleware.startListening as AppStartListening
+export const startAppListening = listenerMiddleware.startListening as AppStartListening

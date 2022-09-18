@@ -7,6 +7,7 @@ interface Injected {
   widgetProps: Record<string, any>
   widgetOrAction: "WIDGET" | "ACTION"
   handleUpdateDsl: (attrPath: string, value: any) => void
+  handleUpdateMultiAttrDSL: (updateSlice: Record<string, any>) => void
 }
 
 export const SelectedPanelContext = createContext<Injected>({} as Injected)
@@ -17,11 +18,12 @@ interface Props {
   widgetParentDisplayName: string | null
   widgetProps: Record<string, any>
   handleUpdateDsl: (attrPath: string, value: any) => void
+  handleUpdateMultiAttrDSL: (updateSlice: Record<string, any>) => void
   widgetOrAction: "WIDGET" | "ACTION"
   children?: ReactNode
 }
 
-export const SelectedProvider: FC<Props> = (props) => {
+export const SelectedProvider: FC<Props> = props => {
   const {
     children,
     widgetType,
@@ -30,6 +32,7 @@ export const SelectedProvider: FC<Props> = (props) => {
     widgetProps,
     widgetOrAction,
     handleUpdateDsl,
+    handleUpdateMultiAttrDSL,
   } = props
 
   const value = {
@@ -39,6 +42,7 @@ export const SelectedProvider: FC<Props> = (props) => {
     widgetProps,
     widgetOrAction,
     handleUpdateDsl,
+    handleUpdateMultiAttrDSL,
   }
 
   return (
