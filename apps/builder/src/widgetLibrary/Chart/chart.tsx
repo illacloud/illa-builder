@@ -16,19 +16,18 @@ import {
   LinearScale,
   ChartOptions,
   ChartDataset,
+  ChartData,
 } from "chart.js"
-import { Chart as ReactChart } from "react-chartjs-2"
+import { Chart as ReactChart, Pie } from "react-chartjs-2"
 import {
-  CHART_DATASET_AGGREGATION_METHOD,
   ChartWidgetProps,
   WrappedChartProps,
 } from "@/widgetLibrary/Chart/interface"
 import { formatDataAsObject } from "@/utils/formatData"
-import { get, groupBy as groupByFunc, max, mean, min, sum } from "lodash"
+import { get, groupBy as groupByFunc } from "lodash"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { formatData, rotateGroupByData } from "@/widgetLibrary/Chart/utils"
-import { Obj } from "tern"
 
 ChartJS.register(
   /** Bar chart**/
@@ -100,6 +99,16 @@ export const Chart: FC<ChartWidgetProps> = props => {
     }
     return chartType
   }, [chartType])
+
+  if (finalType === "pie") {
+    return (
+      <Pie
+        datasetIdKey="id"
+        data={data as ChartData<"pie", number | null[], string>}
+        options={options as ChartOptions<"pie">}
+      />
+    )
+  }
 
   return (
     <ReactChart
@@ -179,7 +188,7 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
           )
         }
         let data: number[] = []
-        if (!groupBy) {
+        if (!groupBy || chartType === "pie") {
           data = formatData(formatDataSources, datasetValues, aggregationMethod)
         } else {
           let keys: string[] = []
@@ -196,7 +205,7 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
             color,
             CHART_COLOR_TYPE_CONFIG["illa-preset"],
           ) as string[]
-          const result = rotate.map((d, i) => {
+          return rotate.map((d, i) => {
             return {
               label: `${datasetName}(${keys[point++]})`,
               data: d,
@@ -205,7 +214,6 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
               backgroundColor: groupByColor[i % groupByColor.length],
             }
           })
-          return result
         }
 
         data = formatData(formatDataSources, datasetValues, aggregationMethod)

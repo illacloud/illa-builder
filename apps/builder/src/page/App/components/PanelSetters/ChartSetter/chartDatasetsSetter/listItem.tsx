@@ -94,6 +94,7 @@ export const CHART_COLOR_TYPE_CONFIG = {
   ],
 }
 
+export const CHART_PRESET_COLOR = CHART_COLOR_TYPE_CONFIG["illa-preset"]
 export const CHART_COLOR_TYPE_CONFIG_KEYS = Object.keys(CHART_COLOR_TYPE_CONFIG)
 
 interface ColorAreaProps {

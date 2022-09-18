@@ -1,64 +1,12 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import {
-  BarChartIcon,
-  LineChartIcon,
-  PieChartIcon,
-  ScatterPlotIcon,
-} from "@illa-design/icon"
+import { BarChartIcon, LineChartIcon, ScatterPlotIcon } from "@illa-design/icon"
 import {
   chartTypeIconCss,
   chartTypeStringCss,
 } from "@/page/App/components/PanelSetters/ChartSetter/style"
 import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart/interface"
-
-const typeOptions = [
-  {
-    label: (
-      <span>
-        <BarChartIcon css={chartTypeIconCss} />
-        <span css={chartTypeStringCss}>
-          {i18n.t("editor.inspect.setter_content.chart_type.bar")}
-        </span>
-      </span>
-    ),
-    value: "bar",
-  },
-  {
-    label: (
-      <div>
-        <LineChartIcon css={chartTypeIconCss} />
-        <span css={chartTypeStringCss}>
-          {i18n.t("editor.inspect.setter_content.chart_type.line")}
-        </span>
-      </div>
-    ),
-    value: "line",
-  },
-  {
-    label: (
-      <div>
-        <ScatterPlotIcon css={chartTypeIconCss} />
-        <span css={chartTypeStringCss}>
-          {i18n.t("editor.inspect.setter_content.chart_type.scatterplot")}
-        </span>
-      </div>
-    ),
-    value: "scatter",
-  },
-  {
-    label: (
-      <div>
-        <PieChartIcon css={chartTypeIconCss} />
-        <span css={chartTypeStringCss}>
-          {i18n.t("editor.inspect.setter_content.chart_type.pie")}
-        </span>
-      </div>
-    ),
-    value: "pie",
-  },
-]
 
 const datasetsTypeOption = [
   {
@@ -122,8 +70,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-data-chart-type`,
         labelName: i18n.t("editor.inspect.setter_label.chart_type"),
         attrName: "chartType",
-        setterType: "BASE_SELECT_SETTER",
-        options: typeOptions,
+        setterType: "CHART_TYPE_SELECT_SETTER",
       },
       {
         id: `${baseWidgetName}-data-x-asis`,

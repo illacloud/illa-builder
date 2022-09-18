@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
@@ -11,10 +11,12 @@ import {
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { isObject } from "@/utils/typeHelper"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
+import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/interface"
+import { ChartType } from "chart.js"
+import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 
 export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
   const {
-    handleUpdateDsl,
     widgetDisplayName,
     attrName,
     isSetterSingleRow,
@@ -22,6 +24,8 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
     widgetType,
     expectedType,
     allowClear,
+    value,
+    handleUpdateMultiAttrDSL,
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -56,14 +60,59 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
     return formatDataAsObject(originDataSources)
   }, [isDataSourceDynamic, targetComponentProps])
 
-  const finalValue = useMemo(() => {
-    return get(insertValues, attrName)
-  }, [attrName, insertValues])
-
   const selectedOptions = useMemo(() => {
     if (!isObject(dataSources)) return []
     return Object.keys(dataSources).map(key => key)
   }, [dataSources])
+
+  const datasets: ChartDatasetShape[] = useMemo(() => {
+    return get(insertValues, "datasets", [])
+  }, [insertValues])
+
+  const generateNewDatasets = useCallback(
+    (isGroupBy: boolean) => {
+      if (!datasets.length) return []
+      if (isGroupBy) {
+        return datasets.map(dataset => {
+          return {
+            ...dataset,
+            color: "illa-preset",
+          }
+        })
+      }
+      return datasets.map((dataset, index) => {
+        return {
+          ...dataset,
+          color: CHART_PRESET_COLOR[index % CHART_PRESET_COLOR.length],
+        }
+      })
+    },
+    [datasets],
+  )
+
+  const handleUpdateDsl = useCallback(
+    (attrName: string, newValue: any) => {
+      if (attrName === "groupBy") {
+        if ((!!value && !newValue) || (!value && !!newValue)) {
+          const newDatasets = generateNewDatasets(!!newValue)
+          console.log("newDatasets", newDatasets)
+          handleUpdateMultiAttrDSL?.({
+            datasets: newDatasets,
+            [attrName]: newValue,
+          })
+        } else {
+          handleUpdateMultiAttrDSL?.({
+            [attrName]: newValue,
+          })
+        }
+      } else {
+        handleUpdateMultiAttrDSL?.({
+          [attrName]: newValue,
+        })
+      }
+    },
+    [generateNewDatasets, handleUpdateMultiAttrDSL, value],
+  )
 
   return (
     <BaseSelectSetter
@@ -71,7 +120,7 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
       options={selectedOptions}
       attrName={attrName}
       handleUpdateDsl={handleUpdateDsl}
-      value={finalValue}
+      value={value}
       expectedType={expectedType}
       widgetDisplayName={widgetDisplayName}
       widgetOrAction={widgetOrAction}
