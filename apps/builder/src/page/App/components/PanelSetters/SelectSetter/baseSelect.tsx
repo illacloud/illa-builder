@@ -4,7 +4,14 @@ import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 
 export const BaseSelectSetter: FC<BaseSelectSetterProps> = props => {
-  const { isSetterSingleRow, options, attrName, handleUpdateDsl, value } = props
+  const {
+    isSetterSingleRow,
+    options,
+    attrName,
+    handleUpdateDsl,
+    value,
+    allowClear,
+  } = props
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
@@ -16,6 +23,7 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = props => {
         onChange={value => {
           handleUpdateDsl(attrName, value)
         }}
+        allowClear={allowClear}
       />
     </div>
   )

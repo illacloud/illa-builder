@@ -25,7 +25,7 @@ export const generateDatasetItem = (
   const presetColor = CHART_COLOR_TYPE_CONFIG["illa-preset"]
   let color: string | string[] =
     presetColor[hasColor.length % presetColor.length]
-  if (isGroup) {
+  if (isGroup || chartType === "pie") {
     color = "illa-preset"
   } else {
     if (hasColor.length <= presetColor.length) {

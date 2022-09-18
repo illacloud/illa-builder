@@ -3,6 +3,8 @@ import { PanelLabelProps } from "@/page/App/components/InspectPanel/interface"
 
 export interface ChartDataSourceSetterProps
   extends BaseSetter,
-    PanelLabelProps {}
+    PanelLabelProps {
+  allowClear?: boolean
+}
 
 export interface ChartColorSelectSetterProps extends BaseSetter {}

@@ -27,6 +27,8 @@ import { formatDataAsObject } from "@/utils/formatData"
 import { get, groupBy as groupByFunc, max, mean, min, sum } from "lodash"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
+import { formatData, rotateGroupByData } from "@/widgetLibrary/Chart/utils"
+import { Obj } from "tern"
 
 ChartJS.register(
   /** Bar chart**/
@@ -65,14 +67,14 @@ export const Chart: FC<ChartWidgetProps> = props => {
       maintainAspectRatio: false,
       scales: {
         x: {
-          display: true,
+          display: chartType !== "pie",
           title: {
             display: !!xAxisName,
             text: xAxisName,
           },
         },
         y: {
-          display: true,
+          display: chartType !== "pie",
           title: {
             display: !!yAxisName,
             text: yAxisName,
@@ -90,7 +92,7 @@ export const Chart: FC<ChartWidgetProps> = props => {
         },
       },
     }
-  }, [chartTitle, xAxisName, yAxisName])
+  }, [chartTitle, chartType, xAxisName, yAxisName])
 
   const finalType = useMemo(() => {
     if (chartType === "scatter") {
@@ -155,13 +157,12 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
 
   const realDatasets: ChartDataset[] = useMemo(() => {
     if (!Array.isArray(datasets)) return []
-    return datasets
+    const result = datasets
       .filter(dataset => {
         if (dataset.isHidden == undefined) return true
         return !dataset.isHidden
       })
       .map(dataset => {
-        const data: number[] = []
         const {
           datasetValues,
           type,
@@ -170,81 +171,44 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
           aggregationMethod,
         } = dataset
         let finalColor = color
-        if (groupBy) {
+        if (groupBy || chartType === "pie") {
           finalColor = get(
             CHART_COLOR_TYPE_CONFIG,
             color,
             CHART_COLOR_TYPE_CONFIG["illa-preset"],
           )
         }
-
-        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.SUM) {
-          Object.keys(formatDataSources).forEach(x => {
-            let values: number[] = []
-            const v = formatDataSources[x]
-            v.forEach(vk => {
-              values.push(Number(get(vk, datasetValues, 0)))
-            })
-            data.push(sum(values))
+        let data: number[] = []
+        if (!groupBy) {
+          data = formatData(formatDataSources, datasetValues, aggregationMethod)
+        } else {
+          let keys: string[] = []
+          const r1 = Object.keys(formatDataSources).map(key => {
+            const value = formatDataSources[key]
+            const groupData = groupByFunc(value, groupBy)
+            keys.push(...Object.keys(groupData))
+            return formatData(groupData, datasetValues, aggregationMethod)
           })
-        }
-        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MAX) {
-          Object.keys(formatDataSources).forEach(x => {
-            let values: number[] = []
-            const v = formatDataSources[x]
-            v.forEach(vk => {
-              values.push(Number(get(vk, datasetValues, 0)))
-            })
-            data.push(max(values) || 0)
-          })
-        }
-        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MIN) {
-          Object.keys(formatDataSources).forEach(x => {
-            let values: number[] = []
-            const v = formatDataSources[x]
-            v.forEach(vk => {
-              values.push(Number(get(vk, datasetValues, 0)))
-            })
-            data.push(min(values) || 0)
-          })
-        }
-
-        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.AVERAGE) {
-          Object.keys(formatDataSources).forEach(x => {
-            let values: number[] = []
-            const v = formatDataSources[x]
-            v.forEach(vk => {
-              values.push(Number(get(vk, datasetValues, 0)))
-            })
-            data.push(mean(values) || 0)
-          })
-        }
-
-        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.MEDIAN) {
-          Object.keys(formatDataSources).forEach(x => {
-            let values: number[] = []
-            const v = formatDataSources[x]
-            v.forEach(vk => {
-              values.push(Number(get(vk, datasetValues, 0)))
-            })
-            const len = values.length
-            let position
-            if (len % 2) {
-              position = (len + 1) / 2
-            } else {
-              position = (len || 0) / 2
+          const rotate = rotateGroupByData(r1)
+          let point = 0
+          const groupByColor = get(
+            CHART_COLOR_TYPE_CONFIG,
+            color,
+            CHART_COLOR_TYPE_CONFIG["illa-preset"],
+          ) as string[]
+          const result = rotate.map((d, i) => {
+            return {
+              label: `${datasetName}(${keys[point++]})`,
+              data: d,
+              type,
+              borderColor: groupByColor[i % groupByColor.length],
+              backgroundColor: groupByColor[i % groupByColor.length],
             }
-            data.push(values[position] || 0)
           })
+          return result
         }
 
-        if (aggregationMethod === CHART_DATASET_AGGREGATION_METHOD.COUNT) {
-          Object.keys(formatDataSources).forEach(x => {
-            const v = formatDataSources[x]
-            data.push(v?.length || 0)
-          })
-        }
-
+        data = formatData(formatDataSources, datasetValues, aggregationMethod)
         return {
           label: datasetName,
           data: data,
@@ -253,7 +217,13 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
           backgroundColor: finalColor,
         }
       })
-  }, [datasets, formatDataSources, groupBy])
+      .flat()
+    if (chartType === "pie") {
+      return result.length > 0 ? [result[result.length - 1]] : []
+    } else {
+      return result
+    }
+  }, [chartType, datasets, formatDataSources, groupBy])
 
   return (
     <Chart

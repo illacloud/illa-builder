@@ -21,6 +21,7 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
     widgetOrAction,
     widgetType,
     expectedType,
+    allowClear,
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -75,6 +76,7 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
       widgetDisplayName={widgetDisplayName}
       widgetOrAction={widgetOrAction}
       widgetType={widgetType}
+      allowClear={allowClear}
     />
   )
 }
