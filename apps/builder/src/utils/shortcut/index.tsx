@@ -15,6 +15,9 @@ import {
 } from "@/redux/config/configSelector"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
+import { RootState } from "@/store"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -23,6 +26,14 @@ export const Shortcut: FC = ({ children }) => {
   const mode = useSelector(getIllaMode)
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
+  const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
+    rootState => {
+      const result = currentSelectedComponent.map(displayName => {
+        return searchDSLByDisplayName(displayName)
+      })
+      return result.filter(node => node) as ComponentNode[]
+    },
+  )
 
   const currentSelectedAction = useSelector(getSelectedAction)
 
@@ -82,8 +93,8 @@ export const Shortcut: FC = ({ children }) => {
     event => {
       event.preventDefault()
       showDeleteDialog(
-        currentSelectedComponent.map(item => {
-          return item.displayName
+        currentSelectedComponent.map(displayName => {
+          return displayName
         }),
       )
     },
@@ -105,9 +116,11 @@ export const Shortcut: FC = ({ children }) => {
               break
             case "canvas":
             case "dataWorkspace_component":
-              console.log("currentSelectedComponent", currentSelectedComponent)
-              if (currentSelectedComponent != null) {
-                CopyManager.copyComponentNode(currentSelectedComponent)
+              if (
+                currentSelectedComponent != null &&
+                currentSelectedComponentNode.length > 0
+              ) {
+                CopyManager.copyComponentNode(currentSelectedComponentNode)
               }
               break
             case "dataWorkspace_action":
@@ -133,8 +146,11 @@ export const Shortcut: FC = ({ children }) => {
               break
             case "canvas":
             case "dataWorkspace_component":
-              if (currentSelectedComponent != null) {
-                CopyManager.copyComponentNode(currentSelectedComponent)
+              if (
+                currentSelectedComponent != null &&
+                currentSelectedComponentNode.length > 0
+              ) {
+                CopyManager.copyComponentNode(currentSelectedComponentNode)
               }
               break
             case "dataWorkspace_action":

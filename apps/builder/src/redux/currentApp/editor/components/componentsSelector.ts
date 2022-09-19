@@ -1,7 +1,7 @@
 import store, { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
-import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
+import { getSelectedComponents } from "@/redux/config/configSelector"
 
 export function searchDSLByDisplayName(
   displayName: string,
@@ -67,7 +67,7 @@ export const getCanvas = (state: RootState) => {
 }
 
 export const getComponentNodeBySingleSelected = createSelector(
-  [getCanvas, getSelectedComponentsDisplayName],
+  [getCanvas, getSelectedComponents],
   (rootDsl, selectedComponentDisplayNames) => {
     if (selectedComponentDisplayNames.length === 1) {
       return searchDsl(rootDsl, selectedComponentDisplayNames[0])

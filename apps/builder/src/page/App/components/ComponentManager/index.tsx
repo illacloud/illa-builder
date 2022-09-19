@@ -2,20 +2,18 @@ import { TabPane, Tabs } from "@illa-design/tabs"
 import { useTranslation } from "react-i18next"
 import { FC, HTMLAttributes, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
+import { getSelectedComponents } from "@/redux/config/configSelector"
 import { componentPanelCss } from "./style"
 import { FocusManager } from "@/utils/focusManager"
 import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
 
-export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
-  props,
-) => {
+export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = props => {
   const { t } = useTranslation()
 
   const [activeKey, setActiveKey] = useState("Insert")
 
-  const selectedDisplayNames = useSelector(getSelectedComponentsDisplayName)
+  const selectedDisplayNames = useSelector(getSelectedComponents)
 
   useEffect(() => {
     if (selectedDisplayNames.length > 0) {
@@ -37,7 +35,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
         variant="text"
         activeKey={activeKey}
         colorScheme="grayBlue"
-        onChange={(key) => {
+        onChange={key => {
           setActiveKey(key)
         }}
       >

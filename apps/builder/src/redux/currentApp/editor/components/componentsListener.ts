@@ -67,7 +67,9 @@ function handleUpdateComponentDisplayNameEffect(
   const rootNode = getCanvas(rootState)
   const newComponent = searchDsl(rootNode, newDisplayName)
   if (newComponent) {
-    listenApi.dispatch(configActions.updateSelectedComponent([newComponent]))
+    listenApi.dispatch(
+      configActions.updateSelectedComponent([newComponent.displayName]),
+    )
   }
 }
 

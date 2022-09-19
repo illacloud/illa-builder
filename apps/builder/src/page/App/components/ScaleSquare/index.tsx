@@ -1,4 +1,11 @@
-import { memo, useCallback, useContext, useMemo, useRef } from "react"
+import {
+  memo,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  MouseEvent,
+} from "react"
 import {
   ScaleSquareProps,
   ScaleSquareType,
@@ -103,8 +110,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   }, [componentNode.displayName, errors])
 
   const isSelected = useMemo(() => {
-    return selectedComponents.some((node) => {
-      return node.displayName === componentNode.displayName
+    return selectedComponents.some(displayName => {
+      return displayName === componentNode.displayName
     })
   }, [componentNode.displayName, selectedComponents])
 
@@ -118,9 +125,26 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const handleOnDragStart = useCallback(() => {
     if (illaMode === "edit") {
-      dispatch(configActions.updateSelectedComponent([componentNode]))
+      dispatch(
+        configActions.updateSelectedComponent([componentNode.displayName]),
+      )
     }
   }, [componentNode, dispatch, illaMode])
+
+  const handleOnSelection = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      if (illaMode !== "edit") return
+      if (e.metaKey || e.shiftKey) {
+        console.log("e.metaKey", e.metaKey)
+        console.log("e.shiftKey", e.shiftKey)
+        return
+      }
+      dispatch(
+        configActions.updateSelectedComponent([componentNode.displayName]),
+      )
+    },
+    [componentNode, dispatch, illaMode],
+  )
 
   const handleOnResizeStop = useCallback(
     (e, dir, ref, delta, position) => {
@@ -194,7 +218,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           childrenNodes,
         }
       },
-      collect: (monitor) => {
+      collect: monitor => {
         return {
           isDragging: monitor.isDragging(),
         }
@@ -320,7 +344,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         h: finalHeight,
       }
       const indexOfChildren = childNodesRef.current.findIndex(
-        (node) => node.displayName === newItem.displayName,
+        node => node.displayName === newItem.displayName,
       )
       const allChildrenNodes = [...childNodesRef.current]
 
@@ -406,9 +430,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             isDragging,
             illaMode === "edit",
           )}
-          onClick={handleOnDragStart}
+          onClick={handleOnSelection}
           onContextMenu={() => {
-            dispatch(configActions.updateSelectedComponent([componentNode]))
+            dispatch(
+              configActions.updateSelectedComponent([
+                componentNode.displayName,
+              ]),
+            )
           }}
           ref={dragRef}
         >

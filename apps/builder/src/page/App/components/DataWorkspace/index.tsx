@@ -12,7 +12,7 @@ import {
 } from "@/redux/currentApp/executionTree/executionSelector"
 import {
   getSelectedAction,
-  getSelectedComponentsDisplayName,
+  getSelectedComponents,
 } from "@/redux/config/configSelector"
 import { WorkSpaceTree } from "@/page/App/components/DataWorkspace/components/WorkSpaceTree"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
@@ -29,7 +29,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = props => {
   const widgetExecutionArray = useSelector(getWidgetExecutionResultArray)
   const actionExecutionArray = useSelector(getActionExecutionResultArray)
   const globalInfoList = useSelector(getGlobalInfoExecutionResult)
-  const selectedComponents = useSelector(getSelectedComponentsDisplayName)
+  const selectedComponents = useSelector(getSelectedComponents)
   const selectedAction = useSelector(getSelectedAction)
 
   const root = useSelector(getCanvas)
@@ -37,7 +37,11 @@ export const DataWorkspace: FC<DataWorkspaceProps> = props => {
     (selectedKeys: string[]) => {
       const selectedComponent = searchDsl(root, selectedKeys[0])
       selectedComponent &&
-        dispatch(configActions.updateSelectedComponent([selectedComponent]))
+        dispatch(
+          configActions.updateSelectedComponent([
+            selectedComponent.displayName,
+          ]),
+        )
     },
     [dispatch, root],
   )
