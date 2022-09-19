@@ -123,27 +123,33 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     scaleSquareState = "production"
   }
 
-  const handleOnDragStart = useCallback(() => {
-    if (illaMode === "edit") {
-      dispatch(
-        configActions.updateSelectedComponent([componentNode.displayName]),
-      )
-    }
-  }, [componentNode, dispatch, illaMode])
-
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       if (illaMode !== "edit") return
       if (e.metaKey || e.shiftKey) {
-        console.log("e.metaKey", e.metaKey)
-        console.log("e.shiftKey", e.shiftKey)
+        const currentSelectedDisplayName = cloneDeep(selectedComponents)
+
+        const index = currentSelectedDisplayName.findIndex(
+          displayName => displayName === componentNode.displayName,
+        )
+        if (index !== -1) {
+          currentSelectedDisplayName.splice(index, 1)
+          dispatch(
+            configActions.updateSelectedComponent(currentSelectedDisplayName),
+          )
+        } else {
+          currentSelectedDisplayName.push(componentNode.displayName)
+          dispatch(
+            configActions.updateSelectedComponent(currentSelectedDisplayName),
+          )
+        }
         return
       }
       dispatch(
         configActions.updateSelectedComponent([componentNode.displayName]),
       )
     },
-    [componentNode, dispatch, illaMode],
+    [componentNode.displayName, dispatch, illaMode, selectedComponents],
   )
 
   const handleOnResizeStop = useCallback(
