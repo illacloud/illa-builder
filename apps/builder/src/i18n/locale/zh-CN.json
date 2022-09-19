@@ -546,7 +546,7 @@
         "data_source": "数据源",
         "chart_type": "图表类型",
         "x_axis_value": "X 轴",
-        "value_labels": "纬度",
+        "value_labels": "维度",
         "group_by": "分组标签",
         "datasets": "数据集",
         "dataset_config": "数据集配置",
