@@ -13,7 +13,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-data`,
         labelName: i18n.t("editor.inspect.setter_label.data"),
-        attrName: "originData",
+        attrName: "data",
         isSetterSingleRow: true,
         setterType: "INPUT_SETTER",
       },
@@ -42,12 +42,10 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.column"),
     children: [
       {
-        id: `${baseWidgetName}-basic-options`,
+        id: `${baseWidgetName}-basic-columns`,
         useCustomLayout: true,
-        attrName: "manualOptions",
+        attrName: "columns",
         setterType: "COLUMN_SETTER",
-        bindAttrName: ["optionConfigureMode"],
-        shown: (value) => !value || value === "static",
         childrenSetter: [
           {
             id: `${baseWidgetName}-options-label`,

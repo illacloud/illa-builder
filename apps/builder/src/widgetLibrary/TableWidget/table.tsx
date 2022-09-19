@@ -1,29 +1,16 @@
-import { FC, useMemo } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { Table } from "@illa-design/table"
 import { TableWidgetProps, WrappedTableProps } from "./interface"
 import { ColumnDef } from "@tanstack/react-table"
 
 export const WrappedTable: FC<WrappedTableProps> = (props) => {
-  const { originData, loading, emptyState } = props
+  const { data, loading, emptyState, columns } = props
 
-  let columnsDef: ColumnDef<object>[] = useMemo(() => {
-    let l: ColumnDef<object>[] = []
-    if (originData && originData.length > 0) {
-      Object.keys(originData[0]).forEach((key) => {
-        l.push({
-          header: key,
-          accessorKey: key,
-        })
-      })
-    }
-
-    return l
-  }, [originData])
-
+  console.log({ columns })
   return (
     <Table
-      data={originData}
-      columns={columnsDef}
+      data={data}
+      columns={columns}
       loading={loading}
       emptyProps={{ description: emptyState }}
       bordered
@@ -37,7 +24,49 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
 }
 
 export const TableWidget: FC<TableWidgetProps> = (props) => {
-  const { originData, emptyState, loading } = props
+  const {
+    data,
+    emptyState,
+    loading,
+    columns,
+    displayName,
+    handleUpdateDsl,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+  } = props
 
-  return <WrappedTable originData={originData} emptyState={emptyState} loading={loading} />
+  let columnsDef = useMemo(() => {
+    console.log("data update")
+    if (columns?.length) {
+      return columns
+    }
+    let l: ColumnDef<object>[] = []
+    if (data && data.length > 0) {
+      Object.keys(data[0]).forEach((key) => {
+        l.push({
+          header: key,
+          accessorKey: key,
+        })
+      })
+    }
+
+    return l
+  }, [data])
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      columns: columnsDef,
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    columnsDef,
+    displayName,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
+
+  return <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columnsDef} />
 }

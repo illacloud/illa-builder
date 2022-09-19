@@ -2,7 +2,7 @@ import { TextWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
-const fakeOriginData = [
+const fakeData = [
   {
     name: "Gerard Gislason",
     company: "Ameliorated explicit open system",
@@ -75,7 +75,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Table", "表格"],
   sessionType: "PRESENTATION",
   defaults: {
-    originData: `{{${JSON.stringify(fakeOriginData)}}}`,
+    data: `{{${JSON.stringify(fakeData)}}}`,
     emptyState: "No rows found"
   },
 }
