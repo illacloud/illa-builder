@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, MouseEvent, useCallback, useMemo, useRef } from "react"
 import {
   Chart as ChartJS,
   LineElement,
@@ -18,7 +18,7 @@ import {
   ChartDataset,
   ChartData,
 } from "chart.js"
-import { Chart as ReactChart, Pie } from "react-chartjs-2"
+import { Chart as ReactChart, Pie, getElementAtEvent } from "react-chartjs-2"
 import {
   ChartWidgetProps,
   WrappedChartProps,
@@ -70,6 +70,22 @@ export const Chart: FC<ChartWidgetProps> = props => {
           title: {
             display: !!xAxisName,
             text: xAxisName,
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+            },
+          },
+          grid: {
+            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
+            tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
+          },
+          ticks: {
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+              weight: "bold",
+            },
           },
         },
         y: {
@@ -77,6 +93,22 @@ export const Chart: FC<ChartWidgetProps> = props => {
           title: {
             display: !!yAxisName,
             text: yAxisName,
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+            },
+          },
+          grid: {
+            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
+            tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
+          },
+          ticks: {
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+              weight: "bold",
+            },
           },
         },
       },
@@ -92,6 +124,33 @@ export const Chart: FC<ChartWidgetProps> = props => {
       },
     }
   }, [chartTitle, chartType, xAxisName, yAxisName])
+
+  const chartRef = useRef()
+
+  const onClick = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
+    console.log("onClick")
+    if (chartRef.current) {
+      const selectElement = getElementAtEvent(chartRef.current, event)[0]
+      console.log("selectElement", selectElement)
+    }
+  }, [])
+
+  //
+  // function clickHandler(evt) {
+  //   const points = myChart.getElementsAtEventForMode(
+  //     evt,
+  //     "nearest",
+  //     { intersect: true },
+  //     true,
+  //   )
+  //
+  //   if (points.length) {
+  //     const firstPoint = points[0]
+  //     const label = myChart.data.labels[firstPoint.index]
+  //     const value =
+  //       myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index]
+  //   }
+  // }
 
   const finalType = useMemo(() => {
     if (chartType === "scatter") {
@@ -112,10 +171,12 @@ export const Chart: FC<ChartWidgetProps> = props => {
 
   return (
     <ReactChart
+      ref={chartRef}
       type={finalType}
       datasetIdKey="id"
       data={data}
       options={options}
+      onClick={onClick}
     />
   )
 }
