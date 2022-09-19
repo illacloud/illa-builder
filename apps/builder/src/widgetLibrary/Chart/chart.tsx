@@ -240,6 +240,15 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
             color,
             CHART_COLOR_TYPE_CONFIG["illa-preset"],
           ) as string[]
+          if (rotate.length === 1) {
+            return {
+              label: `${datasetName}`,
+              data: rotate[0],
+              type,
+              borderColor: groupByColor[0],
+              backgroundColor: groupByColor[0],
+            }
+          }
           return rotate.map((d, i) => {
             return {
               label: `${datasetName}(${keys[point++]})`,
