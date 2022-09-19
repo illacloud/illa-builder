@@ -109,22 +109,29 @@ export const Shortcut: FC = ({ children }) => {
     [showDeleteDialog, currentSelectedComponent],
   )
 
-  useHotkeys("command+a,ctrl+a", (keyboardEvent, hotkeysEvent) => {
-    keyboardEvent.preventDefault()
-    switch (FocusManager.getFocus()) {
-      case "none":
-        break
-      case "canvas": {
-        if (canvasRootNode) {
-          const childNode = canvasRootNode.childrenNode
-          const childNodeDisplayNames = childNode.map(node => {
-            return node.displayName
-          })
-          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
+  useHotkeys(
+    "command+a,ctrl+a",
+    (keyboardEvent, hotkeysEvent) => {
+      keyboardEvent.preventDefault()
+      console.log("FocusManager.getFocus()", FocusManager.getFocus())
+      switch (FocusManager.getFocus()) {
+        case "none":
+          break
+        case "canvas": {
+          if (canvasRootNode) {
+            const childNode = canvasRootNode.childrenNode
+            const childNodeDisplayNames = childNode.map(node => {
+              return node.displayName
+            })
+            dispatch(
+              configActions.updateSelectedComponent(childNodeDisplayNames),
+            )
+          }
         }
       }
-    }
-  })
+    },
+    [canvasRootNode],
+  )
 
   useHotkeys(
     "command+c,command+v,ctrl+c,ctrl+v,command+d,ctrl+d",
