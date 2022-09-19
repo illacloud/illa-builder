@@ -127,31 +127,6 @@ export const Chart: FC<ChartWidgetProps> = props => {
 
   const chartRef = useRef()
 
-  const onClick = useCallback((event: MouseEvent<HTMLCanvasElement>) => {
-    console.log("onClick")
-    if (chartRef.current) {
-      const selectElement = getElementAtEvent(chartRef.current, event)[0]
-      console.log("selectElement", selectElement)
-    }
-  }, [])
-
-  //
-  // function clickHandler(evt) {
-  //   const points = myChart.getElementsAtEventForMode(
-  //     evt,
-  //     "nearest",
-  //     { intersect: true },
-  //     true,
-  //   )
-  //
-  //   if (points.length) {
-  //     const firstPoint = points[0]
-  //     const label = myChart.data.labels[firstPoint.index]
-  //     const value =
-  //       myChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index]
-  //   }
-  // }
-
   const finalType = useMemo(() => {
     if (chartType === "scatter") {
       return "line"
@@ -176,7 +151,6 @@ export const Chart: FC<ChartWidgetProps> = props => {
       datasetIdKey="id"
       data={data}
       options={options}
-      onClick={onClick}
     />
   )
 }
