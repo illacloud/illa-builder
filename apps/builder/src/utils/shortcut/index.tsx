@@ -16,7 +16,10 @@ import {
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { RootState } from "@/store"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  getCanvas,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
@@ -36,6 +39,8 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   const currentSelectedAction = useSelector(getSelectedAction)
+
+  const canvasRootNode = useSelector(getCanvas)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -104,10 +109,26 @@ export const Shortcut: FC = ({ children }) => {
     [showDeleteDialog, currentSelectedComponent],
   )
 
+  useHotkeys("command+a,ctrl+a", (keyboardEvent, hotkeysEvent) => {
+    keyboardEvent.preventDefault()
+    switch (FocusManager.getFocus()) {
+      case "none":
+        break
+      case "canvas": {
+        if (canvasRootNode) {
+          const childNode = canvasRootNode.childrenNode
+          const childNodeDisplayNames = childNode.map(node => {
+            return node.displayName
+          })
+          dispatch(configActions.updateSelectedComponent(childNodeDisplayNames))
+        }
+      }
+    }
+  })
+
   useHotkeys(
     "command+c,command+v,ctrl+c,ctrl+v,command+d,ctrl+d",
     (keyboardEvent, hotkeysEvent) => {
-      console.log("FocusManager.getFocus()", FocusManager.getFocus())
       switch (hotkeysEvent.shortcut) {
         case "ctrl+c":
         case "command+c":
