@@ -21,6 +21,7 @@ import { ChartDataSourceSetter } from "@/page/App/components/PanelSetters/ChartS
 import { ChartKeysSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartKeysSelectSetter"
 import { ChartDatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter"
 import { ChartColorSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartColorSelectSetter"
+import { ChartTypeSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartTypeSelectSetter"
 import { ColumnSetter } from "@/page/App/components/PanelSetters/ColumnSetter"
 
 const SetterTypeMapSetter = {
@@ -48,6 +49,7 @@ const SetterTypeMapSetter = {
   CHART_KEYS_SELECT_SETTER: ChartKeysSelectSetter,
   CHART_DATASETS_SETTER: ChartDatasetsSetter,
   CHART_COLOR_SELECT_SETTER: ChartColorSelectSetter,
+  CHART_TYPE_SELECT_SETTER: ChartTypeSelectSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

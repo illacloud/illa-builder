@@ -2,7 +2,7 @@ import { v4 } from "uuid"
 import { CHART_DATASET_AGGREGATION_METHOD } from "@/widgetLibrary/Chart"
 import { ChartType } from "chart.js"
 import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
-import { chunk, countBy, difference } from "lodash"
+import { difference } from "lodash"
 
 export let datasetNameSet = new Set<string>()
 
@@ -25,8 +25,8 @@ export const generateDatasetItem = (
   const presetColor = CHART_COLOR_TYPE_CONFIG["illa-preset"]
   let color: string | string[] =
     presetColor[hasColor.length % presetColor.length]
-  if (isGroup) {
-    color = presetColor
+  if (isGroup || chartType === "pie") {
+    color = "illa-preset"
   } else {
     if (hasColor.length <= presetColor.length) {
       const diff = difference(presetColor, hasColor)

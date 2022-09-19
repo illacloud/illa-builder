@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, MouseEvent, useCallback, useMemo, useRef } from "react"
 import {
   Chart as ChartJS,
   LineElement,
@@ -16,8 +16,9 @@ import {
   LinearScale,
   ChartOptions,
   ChartDataset,
+  ChartData,
 } from "chart.js"
-import { Chart as ReactChart } from "react-chartjs-2"
+import { Chart as ReactChart, Pie, getElementAtEvent } from "react-chartjs-2"
 import {
   ChartWidgetProps,
   WrappedChartProps,
@@ -25,6 +26,8 @@ import {
 import { formatDataAsObject } from "@/utils/formatData"
 import { get, groupBy as groupByFunc } from "lodash"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
+import { formatData, rotateGroupByData } from "@/widgetLibrary/Chart/utils"
 
 ChartJS.register(
   /** Bar chart**/
@@ -63,17 +66,49 @@ export const Chart: FC<ChartWidgetProps> = props => {
       maintainAspectRatio: false,
       scales: {
         x: {
-          display: true,
+          display: chartType !== "pie",
           title: {
             display: !!xAxisName,
             text: xAxisName,
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+            },
+          },
+          grid: {
+            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
+            tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
+          },
+          ticks: {
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+              weight: "bold",
+            },
           },
         },
         y: {
-          display: true,
+          display: chartType !== "pie",
           title: {
             display: !!yAxisName,
             text: yAxisName,
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+            },
+          },
+          grid: {
+            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
+            tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
+          },
+          ticks: {
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+              weight: "bold",
+            },
           },
         },
       },
@@ -88,11 +123,31 @@ export const Chart: FC<ChartWidgetProps> = props => {
         },
       },
     }
-  }, [chartTitle, xAxisName, yAxisName])
+  }, [chartTitle, chartType, xAxisName, yAxisName])
+
+  const chartRef = useRef()
+
+  const finalType = useMemo(() => {
+    if (chartType === "scatter") {
+      return "line"
+    }
+    return chartType
+  }, [chartType])
+
+  if (finalType === "pie") {
+    return (
+      <Pie
+        datasetIdKey="id"
+        data={data as ChartData<"pie", number | null[], string>}
+        options={options as ChartOptions<"pie">}
+      />
+    )
+  }
 
   return (
     <ReactChart
-      type={chartType || "bar"}
+      ref={chartRef}
+      type={finalType}
       datasetIdKey="id"
       data={data}
       options={options}
@@ -146,32 +201,72 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
 
   const realDatasets: ChartDataset[] = useMemo(() => {
     if (!Array.isArray(datasets)) return []
-    return datasets.map(dataset => {
-      const data: number[] = []
-      const { datasetValues, type, datasetName, color } = dataset
-      Object.keys(formatDataSources).forEach(x => {
-        let sum = 0
-        const v = formatDataSources[x]
-        v.forEach(vk => {
-          sum += Number(get(vk, datasetValues, 0))
-        })
-        data.push(sum)
+    const result = datasets
+      .filter(dataset => {
+        if (dataset.isHidden == undefined) return true
+        return !dataset.isHidden
       })
-      return {
-        label: datasetName,
-        data: data,
-        type,
-        backgroundColor: color,
-      }
-    })
-  }, [datasets, formatDataSources])
+      .map(dataset => {
+        const {
+          datasetValues,
+          type,
+          datasetName,
+          color,
+          aggregationMethod,
+        } = dataset
+        let finalColor = color
+        if (groupBy || chartType === "pie") {
+          finalColor = get(
+            CHART_COLOR_TYPE_CONFIG,
+            color,
+            CHART_COLOR_TYPE_CONFIG["illa-preset"],
+          )
+        }
+        let data: number[] = []
+        if (!groupBy || chartType === "pie") {
+          data = formatData(formatDataSources, datasetValues, aggregationMethod)
+        } else {
+          let keys: string[] = []
+          const r1 = Object.keys(formatDataSources).map(key => {
+            const value = formatDataSources[key]
+            const groupData = groupByFunc(value, groupBy)
+            keys.push(...Object.keys(groupData))
+            return formatData(groupData, datasetValues, aggregationMethod)
+          })
+          const rotate = rotateGroupByData(r1)
+          let point = 0
+          const groupByColor = get(
+            CHART_COLOR_TYPE_CONFIG,
+            color,
+            CHART_COLOR_TYPE_CONFIG["illa-preset"],
+          ) as string[]
+          return rotate.map((d, i) => {
+            return {
+              label: `${datasetName}(${keys[point++]})`,
+              data: d,
+              type,
+              borderColor: groupByColor[i % groupByColor.length],
+              backgroundColor: groupByColor[i % groupByColor.length],
+            }
+          })
+        }
 
-  const groupByDatasets = useMemo(() => {
-    if (groupBy && realDataSourceObject.hasOwnProperty(groupBy)) {
-      return realDatasets
+        data = formatData(formatDataSources, datasetValues, aggregationMethod)
+        return {
+          label: datasetName,
+          data: data,
+          type,
+          borderColor: finalColor,
+          backgroundColor: finalColor,
+        }
+      })
+      .flat()
+    if (chartType === "pie") {
+      return result.length > 0 ? [result[result.length - 1]] : []
+    } else {
+      return result
     }
-    return realDatasets
-  }, [realDatasets, groupBy, realDataSourceObject])
+  }, [chartType, datasets, formatDataSources, groupBy])
 
   return (
     <Chart

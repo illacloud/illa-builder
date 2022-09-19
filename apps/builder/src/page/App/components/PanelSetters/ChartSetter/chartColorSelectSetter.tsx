@@ -43,12 +43,16 @@ export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = props => 
     },
   )
 
+  const chartType = useMemo(() => {
+    return get(targetComponentProps, "chartType", "bar")
+  }, [targetComponentProps])
+
   const isCanGroupBy = useMemo(() => {
     return !!get(targetComponentProps, "groupBy", "")
   }, [targetComponentProps])
 
   const options = useMemo(() => {
-    if (isCanGroupBy) {
+    if (isCanGroupBy || chartType === "pie") {
       return CHART_COLOR_TYPE_CONFIG_KEYS.map(key => {
         return {
           label: <ChartColorLabel color={key} />,
@@ -62,7 +66,7 @@ export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = props => 
         value: key,
       }
     })
-  }, [isCanGroupBy])
+  }, [chartType, isCanGroupBy])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
