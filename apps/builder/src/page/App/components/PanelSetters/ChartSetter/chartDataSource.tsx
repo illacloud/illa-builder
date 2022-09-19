@@ -8,6 +8,7 @@ import { RootState } from "@/store"
 import { debounce, get } from "lodash"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
+import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
 export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
   const { handleUpdateDsl, widgetDisplayName, labelName, labelDesc } = props
@@ -79,21 +80,23 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
   )
 
   return (
-    <BaseDynamicSelect
-      isDynamic={isDynamic}
-      onClickFxButton={handleClickFxButton}
-      selectPlaceholder="Select a query or transformer"
-      inputPlaceholder="{{}}"
-      onChangeInput={debounceHandleChangeInput}
-      path={`${widgetDisplayName}.dataSourceJS`}
-      options={selectedOptions}
-      expectedType={VALIDATION_TYPES.OBJECT}
-      onChangeSelect={handleChangeSelect}
-      value={finalValue}
-      labelName={labelName}
-      labelDesc={labelDesc}
-      isError={isError}
-    />
+    <div css={publicPaddingStyle}>
+      <BaseDynamicSelect
+        isDynamic={isDynamic}
+        onClickFxButton={handleClickFxButton}
+        selectPlaceholder="Select a query or transformer"
+        inputPlaceholder="{{}}"
+        onChangeInput={debounceHandleChangeInput}
+        path={`${widgetDisplayName}.dataSourceJS`}
+        options={selectedOptions}
+        expectedType={VALIDATION_TYPES.OBJECT}
+        onChangeSelect={handleChangeSelect}
+        value={finalValue}
+        labelName={labelName}
+        labelDesc={labelDesc}
+        isError={isError}
+      />
+    </div>
   )
 }
 

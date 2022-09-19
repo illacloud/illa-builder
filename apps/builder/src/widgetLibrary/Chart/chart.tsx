@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, MouseEvent, useCallback, useMemo, useRef } from "react"
 import {
   Chart as ChartJS,
   LineElement,
@@ -18,7 +18,7 @@ import {
   ChartDataset,
   ChartData,
 } from "chart.js"
-import { Chart as ReactChart, Pie } from "react-chartjs-2"
+import { Chart as ReactChart, Pie, getElementAtEvent } from "react-chartjs-2"
 import {
   ChartWidgetProps,
   WrappedChartProps,
@@ -70,6 +70,22 @@ export const Chart: FC<ChartWidgetProps> = props => {
           title: {
             display: !!xAxisName,
             text: xAxisName,
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+            },
+          },
+          grid: {
+            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
+            tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
+          },
+          ticks: {
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+              weight: "bold",
+            },
           },
         },
         y: {
@@ -77,6 +93,22 @@ export const Chart: FC<ChartWidgetProps> = props => {
           title: {
             display: !!yAxisName,
             text: yAxisName,
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+            },
+          },
+          grid: {
+            color: globalColor(`--${illaPrefix}-grayBlue-09`),
+            borderColor: globalColor(`--${illaPrefix}-grayBlue-09`),
+            tickColor: globalColor(`--${illaPrefix}-grayBlue-04`),
+          },
+          ticks: {
+            color: globalColor(`--${illaPrefix}-grayBlue-02`),
+            font: {
+              size: 12,
+              weight: "bold",
+            },
           },
         },
       },
@@ -92,6 +124,8 @@ export const Chart: FC<ChartWidgetProps> = props => {
       },
     }
   }, [chartTitle, chartType, xAxisName, yAxisName])
+
+  const chartRef = useRef()
 
   const finalType = useMemo(() => {
     if (chartType === "scatter") {
@@ -112,6 +146,7 @@ export const Chart: FC<ChartWidgetProps> = props => {
 
   return (
     <ReactChart
+      ref={chartRef}
       type={finalType}
       datasetIdKey="id"
       data={data}
