@@ -33,23 +33,7 @@ export const resourceListStyle = css`
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 `
 
-export function applyResourceItemStyle(isDraft?: boolean): SerializedStyles {
-  const draftStyle = css`
-    cursor: not-allowed;
-
-    &:after {
-      top: 0;
-      position: absolute;
-      content: attr(data-draft-tip);
-      padding: 0 8px;
-      line-height: 16px;
-      font-size: 12px;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
-      color: ${globalColor(`--${illaPrefix}-techPurple-02`)};
-    }
-  `
+export function applyResourceItemStyle(): SerializedStyles {
   const hoverStyle = css`
     &:hover {
       box-shadow: 0 4px 10px 0 ${globalColor(`--${illaPrefix}-blackAlpha-07`)};
@@ -70,9 +54,7 @@ export function applyResourceItemStyle(isDraft?: boolean): SerializedStyles {
     background-color: ${globalColor(`--${illaPrefix}-white-01`)};
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-
-    ${!isDraft && hoverStyle}
-    ${isDraft && draftStyle}
+    ${hoverStyle};
   `
 }
 

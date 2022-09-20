@@ -1,5 +1,5 @@
 import { FC, useRef, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Button } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { Notification } from "@illa-design/notification"
@@ -11,13 +11,12 @@ import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { ActionResourceCreatorProps, ConnectionRef } from "./interface"
 import {
-  formContainerStyle,
-  formFooterStyle,
   backIconStyle,
-  formFooterFillingStyle,
   createResourceBtnStyle,
-  formTitleStyle,
   formBodyStyle,
+  formContainerStyle,
+  formFooterFillingStyle,
+  formFooterStyle,
 } from "./style"
 import { Message } from "@illa-design/message"
 import { getAllResources } from "@/redux/resource/resourceSelector"
@@ -27,7 +26,6 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
 ) => {
   const {
     resourceId,
-    category,
     onBack,
     onCreated,
     resourceType: resourceTypeProps,
@@ -43,10 +41,6 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
 
   const [createBtnLoading, setCreateBtnLoading] = useState(false)
   const [testConnectLoading, setTestConnectLoading] = useState(false)
-
-  const resourceTitle = resourceType
-    ? i18n.t(`editor.action.resource.${resourceType}.name`)
-    : ""
 
   function submitForm() {
     formRef.current?.requestSubmit()
@@ -130,9 +124,6 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
 
   return (
     <div css={formContainerStyle}>
-      <div css={formTitleStyle}>
-        {i18n.t("editor.action.form.title.configure", { name: resourceTitle })}
-      </div>
       <div css={formBodyStyle}>
         {resourceType === "mysql" ? (
           <MySQLConfigure
@@ -166,7 +157,7 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
 
         <div css={formFooterFillingStyle} />
 
-        {category === "databases" ? (
+        {resourceType !== "restapi" && (
           <Button
             size="medium"
             colorScheme="gray"
@@ -178,7 +169,7 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
           >
             {i18n.t("editor.action.form.btn.test_connection")}
           </Button>
-        ) : null}
+        )}
 
         <Button
           size="medium"

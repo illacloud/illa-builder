@@ -4,6 +4,7 @@
   "exit_preview": "Exit Preview",
   "edit": "Edit",
   "edit_at": "Edited at",
+  "created_at": "Created at",
   "title": "Welcome to illa",
   "description": {
     "part1": "This is an example without namespaces."
@@ -186,8 +187,10 @@
           "valid_name": "Can only contain letters, numbers, '_' or '$', start with '_' or a letter",
           "load_action_list_fail": "Failed to get Action list: {{message}}",
           "load_resource_fail": "Failed to get resource list: {{message}}",
-          "success_created": "Successfully created!",
-          "success_saved": "Successfully saved!",
+          "success_created": "Successfully created",
+          "success_deleted": "Successfully deleted",
+          "failed_to_delete": "Failed to delete",
+          "success_saved": "Successfully saved",
           "failed": "Failed to connect to server"
         },
         "action_generator": {
@@ -786,7 +789,7 @@
       "delete_success": "Deleted successfully",
       "delete_fail": "Failed to delete",
       "create_resource": "Create New",
-      "create_success": "Create Success!",
+      "create_success": "Create Success",
       "edit_success": "Edit Success"
     }
   },

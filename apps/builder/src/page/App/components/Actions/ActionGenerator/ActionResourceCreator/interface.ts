@@ -1,5 +1,4 @@
-import { ActionType } from "@/redux/currentApp/action/actionState"
-import { ActionTypeCategory } from "@/page/App/components/Actions/ActionGenerator/ActionTypeSelector/interface"
+import { ResourceType } from "@/redux/resource/resourceState"
 
 export type ConnectionRef = {
   testConnection: () => void
@@ -7,9 +6,7 @@ export type ConnectionRef = {
 
 export interface ActionResourceCreatorProps {
   resourceId?: string
-  category?: ActionTypeCategory
-  resourceType?: ActionType
-  ResourceFormEditor?: boolean
+  resourceType?: ResourceType
   onBack?: () => void
   onCreated?: (resourceId: string) => void
 }

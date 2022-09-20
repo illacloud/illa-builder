@@ -1,3 +1,5 @@
+import { ActionType } from "@/redux/currentApp/action/actionState"
+
 export type ResourceType =
   | "mysql"
   | "restapi"
@@ -6,6 +8,23 @@ export type ResourceType =
   | "postgresql"
 
 export type ResourceContent = MysqlResource | RestApiResource<RestApiAuth>
+
+export function getActionTypeFromResourceType(
+  resourceType: ResourceType,
+): ActionType {
+  switch (resourceType) {
+    case "mysql":
+      return "mysql"
+    case "restapi":
+      return "restapi"
+    case "mongodb":
+      return "mongodb"
+    case "redis":
+      return "redis"
+    case "postgresql":
+      return "postgresql"
+  }
+}
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string
