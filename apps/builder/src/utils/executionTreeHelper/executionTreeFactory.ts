@@ -1,5 +1,5 @@
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
-import { cloneDeep, flatten, get, set } from "lodash"
+import { cloneDeep, flatten, get, set, unset } from "lodash"
 import {
   getAllPaths,
   getDisplayNameAndAttrPath,
@@ -179,6 +179,30 @@ export class ExecutionTreeFactory {
     return finalSortOrderArray
   }
 
+  mergeErrorTree(newErrorTree: Record<string, any>, paths: string[]) {
+    const oldErrorTree = cloneDeep(this.errorTree)
+    paths.forEach((path) => {
+      const newErrorTreeValue = get(newErrorTree, path)
+      if (newErrorTreeValue) {
+        set(this.errorTree, path, newErrorTreeValue)
+      } else {
+        unset(oldErrorTree, path)
+      }
+    })
+    this.errorTree = oldErrorTree
+  }
+
+  mergeDebugDataTree(newDebugDataTree: Record<string, any>, paths: string[]) {
+    paths.forEach((path) => {
+      const newDebugData = newDebugDataTree[path]
+      if (newDebugData) {
+        this.debuggerData[path] = newDebugData
+      } else {
+        delete this.debuggerData[path]
+      }
+    })
+  }
+
   updateTree(rawTree: RawTreeShape) {
     const currentRawTree = cloneDeep(rawTree)
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
@@ -208,9 +232,11 @@ export class ExecutionTreeFactory {
       this.executedTree,
       path,
     )
+
     this.oldRawTree = cloneDeep(currentRawTree)
-    this.errorTree = errorTree
-    this.debuggerData = debuggerData
+    this.mergeErrorTree(errorTree, path)
+    this.mergeDebugDataTree(debuggerData, path)
+
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       dependencyTree: this.dependenciesState,
