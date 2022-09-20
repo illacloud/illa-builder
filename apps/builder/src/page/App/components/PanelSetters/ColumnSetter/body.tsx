@@ -1,20 +1,20 @@
 import { FC, useContext } from "react"
-import { ListItem } from "./listItem"
-import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
-import { EmptyBody } from "@/page/App/components/PanelSetters/OptionListSetter/empty"
+import { ColumnItem } from "./columnItem"
+import { ColumnListSetterContext } from "./context/columnListContext"
+import { EmptyBody } from "./empty"
 
 export const ListBody: FC = () => {
-  const { optionItems } = useContext(OptionListSetterContext)
+  const { columnItems } = useContext(ColumnListSetterContext)
 
-  if (!optionItems || !Array.isArray(optionItems) || optionItems.length === 0)
+  if (!columnItems || !Array.isArray(columnItems) || columnItems.length === 0)
     return <EmptyBody />
 
   return (
     <>
-      {optionItems.map((item, index) => {
-        const { label, value, id } = item
+      {columnItems.map((item, index) => {
+        const { label, value, id,  } = item
         return (
-          <ListItem
+          <ColumnItem
             key={id}
             id={id}
             label={label}

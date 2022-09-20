@@ -1,10 +1,10 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
 import { OptionListHeader } from "./header"
 import { ListBody } from "./body"
-import { OptionListSetterProps } from "./interface"
+import { ColumnListSetterProps } from "./interface"
 import { ListStyle } from "./style"
 import { generateNewOptionItem } from "./utils/generateNewOptions"
-import { OptionListSetterProvider } from "./context/optionListContext"
+import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
@@ -12,7 +12,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { get } from "lodash"
 import { ColumnDef } from "@tanstack/react-table"
 
-export const ColumnSetter: FC<OptionListSetterProps> = (props) => {
+export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {
     attrName,
     handleUpdateDsl,
@@ -62,10 +62,10 @@ export const ColumnSetter: FC<OptionListSetterProps> = (props) => {
   }, [data])
 
   return (
-    <OptionListSetterProvider
+    <ColumnsSetterProvider
       childrenSetter={childrenSetter}
       widgetDisplayName={widgetDisplayName}
-      optionItems={value}
+      columnItems={value}
       attrPath={attrName}
       handleUpdateDsl={handleUpdateDsl}
     >
@@ -76,7 +76,7 @@ export const ColumnSetter: FC<OptionListSetterProps> = (props) => {
         />
         <ListBody />
       </div>
-    </OptionListSetterProvider>
+    </ColumnsSetterProvider>
   )
 }
 

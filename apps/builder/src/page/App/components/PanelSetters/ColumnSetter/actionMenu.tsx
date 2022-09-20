@@ -2,15 +2,15 @@ import { FC, useContext } from "react"
 import { useTranslation } from "react-i18next"
 import { DropList } from "@illa-design/dropdown"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ActionMenuProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
-import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
+import { ActionMenuProps } from "./interface"
+import { ColumnListSetterContext } from "./context/columnListContext"
 
 const { Item } = DropList
 
 export const ActionMenu: FC<ActionMenuProps> = (props) => {
   const { index, handleCloseMode } = props
-  const { handleCopyOptionItem, handleDeleteOptionItem } = useContext(
-    OptionListSetterContext,
+  const { handleCopyColumnItem, handleDeleteColumnItem } = useContext(
+    ColumnListSetterContext
   )
   const { t } = useTranslation()
 
@@ -22,7 +22,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
           "editor.inspect.setter_content.option_list.action_menu.duplicate",
         )}
         onClick={() => {
-          handleCopyOptionItem(index)
+          handleCopyColumnItem(index)
           handleCloseMode()
         }}
       />
@@ -33,7 +33,7 @@ export const ActionMenu: FC<ActionMenuProps> = (props) => {
         )}
         fontColor={globalColor(`--${illaPrefix}-red-03`)}
         onClick={() => {
-          handleDeleteOptionItem(index)
+          handleDeleteColumnItem(index)
           handleCloseMode()
         }}
       />

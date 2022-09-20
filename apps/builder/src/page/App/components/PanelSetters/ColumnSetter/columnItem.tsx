@@ -1,15 +1,15 @@
 import { FC, useContext, useRef } from "react"
-import { DragItem, ListItemProps } from "./interface"
+import { DragItem, ColumnItemProps } from "./interface"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { Identifier } from "dnd-core"
 import { optionListItemStyle } from "./style"
 import { DragIconAndLabel } from "./dragIconAndLabel"
-import { OptionListSetterContext } from "./context/optionListContext"
+import { ColumnListSetterContext } from "./context/columnListContext"
 
-export const ListItem: FC<ListItemProps> = (props) => {
+export const ColumnItem: FC<ColumnItemProps> = (props) => {
   const { id, label, value, index } = props
 
-  const { handleMoveOptionItem } = useContext(OptionListSetterContext)
+  const { handleMoveColumnItem } = useContext(ColumnListSetterContext)
   const ref = useRef<HTMLDivElement>(null)
 
   const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
@@ -39,7 +39,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
       }
-      handleMoveOptionItem(dragIndex, hoverIndex)
+      handleMoveColumnItem(dragIndex, hoverIndex)
       item.index = hoverIndex
     },
   })

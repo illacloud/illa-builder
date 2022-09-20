@@ -1,7 +1,7 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
-export interface OptionItemShape {
+export interface ColumnItemShape {
   id: string
   value?: string
   label?: string
@@ -13,7 +13,7 @@ export interface HeaderProps {
   handleAddOption: () => void
 }
 
-export interface ListItemProps extends Omit<OptionItemShape, "disabled"> {
+export interface ColumnItemProps extends Omit<ColumnItemShape, "disabled"> {
   index: number
 }
 
@@ -25,8 +25,8 @@ export interface MoreProps {
   index: number
 }
 
-export interface OptionListSetterProps extends BaseSetter {
-  value: OptionItemShape[]
+export interface ColumnListSetterProps extends BaseSetter {
+  value: ColumnItemShape[]
   childrenSetter?: PanelFieldConfig[]
 }
 

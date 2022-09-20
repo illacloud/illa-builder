@@ -3,6 +3,8 @@ import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 
 export interface OptionItemShape {
   id: string
+  header: string
+  accessorKey: string
   value?: string
   label?: string
   disabled?: string
