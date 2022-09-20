@@ -26,7 +26,6 @@ import { Space } from "@illa-design/space"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { fromNow } from "@/utils/dayjs"
-import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
 import { CellContext } from "@tanstack/table-core"
 
 function getDbName(resourceType: string): string {
@@ -152,13 +151,6 @@ export const DashboardResources: FC = () => {
         ) : null}
         {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
       </div>
-      <ResourceEditor
-        visible={newResourceVisible}
-        edit={false}
-        onClose={() => {
-          setNewResourceVisible(false)
-        }}
-      />
     </>
   )
 }

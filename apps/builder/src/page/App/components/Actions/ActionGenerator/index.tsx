@@ -3,9 +3,13 @@ import { Modal } from "@illa-design/modal"
 import { ActionGeneratorProps } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
+import {
+  ActionType,
+  getResourceTypeFromActionType,
+} from "@/redux/currentApp/action/actionState"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
-import i18n from "@/i18n/config"
-import { ActionType } from "@/redux/currentApp/action/actionState"
+import { useTranslation } from "react-i18next"
+import { getResourceNameFromResourceType } from "@/redux/resource/resourceState"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
@@ -17,22 +21,31 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
     null,
   )
 
+  const { t } = useTranslation()
+
   let title
   switch (currentStep) {
     case "select":
-      title = i18n.t(
-        "editor.action.action_list.action_generator.selector.title",
-      )
+      title = t("editor.action.action_list.action_generator.selector.title")
       break
     case "createAction":
-      title = i18n.t(
+      title = t(
         "editor.action.action_list.action_generator.title.choose_resource",
       )
       break
     case "createResource":
-      title = i18n.t(`editor.action.resource.${currentActionType}.name`)
+      if (currentActionType != null) {
+        const resourceType = getResourceTypeFromActionType(currentActionType)
+        if (resourceType != null) {
+          title = getResourceNameFromResourceType(resourceType)
+        }
+      }
       break
   }
+
+  const transformResource = currentActionType
+    ? getResourceTypeFromActionType(currentActionType)
+    : null
 
   return (
     <Modal
@@ -58,6 +71,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
                 setCurrentActionType(actionType)
                 break
               case "transformer":
+                onClose()
                 break
             }
           }}
@@ -79,8 +93,9 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
           }}
         />
       )}
-      {currentStep === "createResource" && (
+      {currentStep === "createResource" && transformResource && (
         <ActionResourceCreator
+          resourceType={transformResource}
           onBack={() => {
             setCurrentStep("createAction")
           }}

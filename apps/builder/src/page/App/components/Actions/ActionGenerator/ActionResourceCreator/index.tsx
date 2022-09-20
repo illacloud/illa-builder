@@ -1,187 +1,48 @@
-import { FC, useRef, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Button } from "@illa-design/button"
+import { FC, useState } from "react"
+import { ResourceEditorProps } from "./interface"
+import { footerStyle } from "./style"
+import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { Notification } from "@illa-design/notification"
-import i18n from "@/i18n/config"
-import { Api } from "@/api/base"
-import { MySQLConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/MySQLConfigure"
-import { RESTAPIConfigure } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/RestAPIConfigure"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { ActionResourceCreatorProps, ConnectionRef } from "./interface"
-import {
-  backIconStyle,
-  createResourceBtnStyle,
-  formBodyStyle,
-  formContainerStyle,
-  formFooterFillingStyle,
-  formFooterStyle,
-} from "./style"
-import { Message } from "@illa-design/message"
-import { getAllResources } from "@/redux/resource/resourceSelector"
+import { useTranslation } from "react-i18next"
 
-export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
-  props,
-) => {
-  const {
-    resourceId,
-    onBack,
-    onCreated,
-    resourceType: resourceTypeProps,
-  } = props
-  const dispatch = useDispatch()
-  const resource = useSelector(getAllResources).find(
-    (i) => i.resourceId === resourceId,
-  )
-  // if receive `resourceTypeProps` means add new
-  const resourceType = resourceTypeProps || resource?.resourceType
-  const connectionRef = useRef<ConnectionRef>(null)
-  const formRef = useRef<HTMLFormElement>(null)
+export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
+  const { resourceId, onBack, onCreated, resourceType } = props
 
-  const [createBtnLoading, setCreateBtnLoading] = useState(false)
-  const [testConnectLoading, setTestConnectLoading] = useState(false)
+  const { t } = useTranslation()
 
-  function submitForm() {
-    formRef.current?.requestSubmit()
-  }
-
-  function onTestConnection(data: any) {
-    Api.request<{ message: string }>(
-      {
-        url: "/resources/testConnection",
-        method: "POST",
-        data,
-      },
-      ({ data }) => {
-        Notification.success({ title: <span>{data.message}</span> })
-      },
-      ({ data }) => {
-        Notification.error({ title: <span>{data.errorMessage}</span> })
-      },
-      () => {},
-      (loading) => setTestConnectLoading(loading),
-    )
-  }
-
-  function addResourceItem(data: Partial<Resource<ResourceContent>>) {
-    Api.request<Resource<ResourceContent>>(
-      {
-        url: "/resources",
-        method: "POST",
-        data,
-      },
-      ({ data }) => {
-        Message.success(
-          i18n.t("editor.action.action_list.message.success_created"),
-        )
-        dispatch(resourceActions.addResourceItemReducer(data))
-        onCreated?.(data.resourceId)
-      },
-      () => {
-        Message.error(i18n.t("editor.action.action_list.message.failed"))
-      },
-      () => {},
-      (loading) => setCreateBtnLoading(loading),
-    )
-  }
-
-  function updateResourceItem(
-    data: Partial<Resource<ResourceContent>>,
-    resourceId: string,
-  ) {
-    Api.request<Resource<ResourceContent>>(
-      {
-        url: `/resources/${resourceId}`,
-        method: "PUT",
-        data,
-      },
-      ({ data }) => {
-        Message.success(
-          i18n.t("editor.action.action_list.message.success_saved"),
-        )
-        dispatch(resourceActions.updateResourceItemReducer(data))
-        onCreated?.(resourceId)
-      },
-      () => {
-        Message.error(i18n.t("editor.action.action_list.message.failed"))
-      },
-      () => {},
-      (loading) => setCreateBtnLoading(loading),
-    )
-  }
-
-  function onSubmitForm(
-    data: Partial<Resource<ResourceContent>>,
-    resourceId?: string,
-  ) {
-    if (resourceId) {
-      updateResourceItem(data, resourceId)
-    } else {
-      addResourceItem(data)
-    }
-  }
+  const [testLoading, setTestLoading] = useState(false)
+  const [createLoading, setCreateLoading] = useState(false)
+  const [fillFinished, setFillFinished] = useState(false)
 
   return (
-    <div css={formContainerStyle}>
-      <div css={formBodyStyle}>
-        {resourceType === "mysql" ? (
-          <MySQLConfigure
-            ref={formRef}
-            connectionRef={connectionRef}
-            resourceId={resourceId}
-            onTestConnection={onTestConnection}
-            onSubmit={(data) => onSubmitForm(data, resourceId)}
-          />
-        ) : resourceType === "restapi" ? (
-          <RESTAPIConfigure
-            ref={formRef}
-            resourceId={resourceId}
-            onSubmit={(data) => onSubmitForm(data, resourceId)}
-          />
-        ) : null}
-      </div>
-      <div css={formFooterStyle}>
-        {onBack && (
-          <Button
-            variant="text"
-            size="medium"
-            colorScheme="grayBlue"
-            type="button"
-            onClick={onBack}
-          >
-            <PaginationPreIcon css={backIconStyle} />
-            {i18n.t("back")}
-          </Button>
-        )}
-
-        <div css={formFooterFillingStyle} />
-
-        {resourceType !== "restapi" && (
-          <Button
-            size="medium"
-            colorScheme="gray"
-            type="button"
-            onClick={() => {
-              connectionRef.current?.testConnection()
-            }}
-            loading={testConnectLoading}
-          >
-            {i18n.t("editor.action.form.btn.test_connection")}
-          </Button>
-        )}
-
+    <div>
+      <div css={footerStyle}>
         <Button
-          size="medium"
-          colorScheme="techPurple"
-          css={createResourceBtnStyle}
-          onClick={submitForm}
-          loading={createBtnLoading}
+          leftIcon={<PaginationPreIcon />}
+          variant="text"
+          colorScheme="gray"
+          onClick={onBack}
         >
-          {resourceId
-            ? i18n.t("editor.action.form.btn.save_changes")
-            : i18n.t("editor.action.form.btn.create_resource")}
+          {t("back")}
         </Button>
+        <ButtonGroup spacing="8px">
+          <Button
+            colorScheme="gray"
+            loading={testLoading}
+            disabled={!fillFinished}
+            onClick={() => {}}
+          >
+            {t("editor.action.form.btn.test_connection")}
+          </Button>
+          <Button
+            colorScheme="techPurple"
+            disabled={!fillFinished}
+            loading={createLoading}
+            onClick={() => {}}
+          >
+            {t("editor.action.form.btn.create_resource")}
+          </Button>
+        </ButtonGroup>
       </div>
     </div>
   )

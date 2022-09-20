@@ -13,7 +13,6 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 import { Space } from "@illa-design/space"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
-import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
 
 const Item = DropList.Item
 
@@ -114,14 +113,6 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           />
         </Dropdown>
       </Space>
-      <ResourceEditor
-        visible={resourceEditorVisible}
-        edit={true}
-        resourceId={resourceId}
-        onClose={() => {
-          setResourceEditorVisible(false)
-        }}
-      />
     </>
   )
 }

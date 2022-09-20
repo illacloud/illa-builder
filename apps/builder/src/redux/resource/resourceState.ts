@@ -1,4 +1,5 @@
 import { ActionType } from "@/redux/currentApp/action/actionState"
+import i18n from "@/i18n/config"
 
 export type ResourceType =
   | "mysql"
@@ -10,8 +11,8 @@ export type ResourceType =
 export type ResourceContent = MysqlResource | RestApiResource<RestApiAuth>
 
 export function getActionTypeFromResourceType(
-  resourceType: ResourceType,
-): ActionType {
+  resourceType: ResourceType | null | undefined,
+): ActionType | null {
   switch (resourceType) {
     case "mysql":
       return "mysql"
@@ -23,6 +24,26 @@ export function getActionTypeFromResourceType(
       return "redis"
     case "postgresql":
       return "postgresql"
+    default:
+      return null
+  }
+}
+
+export function getActionNameFromActionType(actionType: ActionType) {
+  if (actionType) {
+    return i18n.t(`editor.action.resource.${actionType}.name`)
+  } else {
+    return ""
+  }
+}
+
+export function getResourceNameFromResourceType(
+  resourceType: ResourceType | null | undefined,
+) {
+  if (resourceType) {
+    return i18n.t(`editor.action.resource.${resourceType}.name`)
+  } else {
+    return ""
   }
 }
 

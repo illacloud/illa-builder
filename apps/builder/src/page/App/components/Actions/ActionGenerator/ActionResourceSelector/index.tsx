@@ -10,7 +10,6 @@ import {
   resourceItemTimeStyle,
   resourceItemTitleStyle,
 } from "./style"
-import i18n from "@/i18n/config"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { List } from "@illa-design/list"
@@ -88,7 +87,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
           colorScheme="gray"
           onClick={onBack}
         >
-          {i18n.t("back")}
+          {t("back")}
         </Button>
         <ButtonGroup spacing="8px">
           <Button
@@ -98,9 +97,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
               onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
             }}
           >
-            {i18n.t(
-              "editor.action.action_list.action_generator.btns.new_resource",
-            )}
+            {t("editor.action.action_list.action_generator.btns.new_resource")}
           </Button>
           <Button
             colorScheme="techPurple"
@@ -123,16 +120,14 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                 },
                 ({ data }: { data: ActionItem<ActionContent> }) => {
                   Message.success(
-                    i18n.t("editor.action.action_list.message.success_created"),
+                    t("editor.action.action_list.message.success_created"),
                   )
                   dispatch(actionActions.addActionItemReducer(data))
                   dispatch(configActions.updateSelectedAction(data))
                   onCreateAction?.(actionType, selectedResourceId)
                 },
                 () => {
-                  Message.error(
-                    i18n.t("editor.action.action_list.message.failed"),
-                  )
+                  Message.error(t("editor.action.action_list.message.failed"))
                   DisplayNameGenerator.removeDisplayName(displayName)
                 },
                 () => {
@@ -146,9 +141,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
             loading={loading}
             disabled={resourceList.length <= 0}
           >
-            {i18n.t(
-              "editor.action.action_list.action_generator.btns.create_action",
-            )}
+            {t("editor.action.action_list.action_generator.btns.create_action")}
           </Button>
         </ButtonGroup>
       </div>

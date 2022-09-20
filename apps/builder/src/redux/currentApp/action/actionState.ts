@@ -28,7 +28,7 @@ export type ActionType =
 export type ActionTriggerMode = "manually" | "automate"
 
 export function getResourceTypeFromActionType(
-  actionType: ActionType,
+  actionType: ActionType | null | undefined,
 ): ResourceType | null {
   switch (actionType) {
     case "mysql":
