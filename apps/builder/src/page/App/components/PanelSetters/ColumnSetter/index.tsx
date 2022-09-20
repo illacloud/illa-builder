@@ -1,8 +1,7 @@
 import { FC, useCallback, useEffect, useMemo } from "react"
-import { OptionListHeader } from "./header"
 import { ListBody } from "./body"
 import { ColumnListSetterProps } from "./interface"
-import { ListStyle } from "./style"
+import { addIconStyle, headerActionButtonStyle, ListStyle, optionListHeaderStyle } from "./style"
 import { generateNewOptionItem } from "./utils/generateNewOptions"
 import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
@@ -11,6 +10,7 @@ import { RootState } from "@/store"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { get } from "lodash"
 import { ColumnDef } from "@tanstack/react-table"
+import { AddIcon } from "@illa-design/icon"
 
 export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {
@@ -69,11 +69,16 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       attrPath={attrName}
       handleUpdateDsl={handleUpdateDsl}
     >
+      <div>
+        <div css={headerActionButtonStyle} onClick={handleAddOption}>
+          <AddIcon _css={addIconStyle} />
+          <span>{t("editor.inspect.setter_content.column_setter.new")}</span>
+        </div>
+      </div>
       <div css={ListStyle}>
-        <OptionListHeader
-          labelName={t("editor.inspect.setter_content.column_setter.title")}
-          handleAddOption={handleAddOption}
-        />
+        <div css={optionListHeaderStyle}>
+          <div>{t("editor.inspect.setter_content.column_setter.title")}</div>
+        </div>
         <ListBody />
       </div>
     </ColumnsSetterProvider>

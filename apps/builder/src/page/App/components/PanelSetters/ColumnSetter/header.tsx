@@ -15,10 +15,10 @@ export const OptionListHeader: FC<HeaderProps> = props => {
   return (
     <div css={optionListHeaderStyle}>
       <div>{labelName}</div>
-      <div css={headerActionButtonStyle} onClick={handleAddOption}>
-        <AddIcon _css={addIconStyle} />
-        <span>{t("editor.inspect.setter_content.column_setter.new")}</span>
-      </div>
+      {/*<div css={headerActionButtonStyle} onClick={handleAddOption}>*/}
+      {/*  <AddIcon _css={addIconStyle} />*/}
+      {/*  <span>{t("editor.inspect.setter_content.column_setter.new")}</span>*/}
+      {/*</div>*/}
     </div>
   )
 }

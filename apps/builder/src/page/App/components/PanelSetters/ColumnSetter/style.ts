@@ -33,6 +33,7 @@ export const ListStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   margin: 0 16px;
   border-radius: 8px;
+  overflow: hidden;
 `
 
 export const optionListItemStyle = css`

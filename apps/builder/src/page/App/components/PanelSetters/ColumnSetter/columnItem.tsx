@@ -7,7 +7,7 @@ import { DragIconAndLabel } from "./dragIconAndLabel"
 import { ColumnListSetterContext } from "./context/columnListContext"
 
 export const ColumnItem: FC<ColumnItemProps> = (props) => {
-  const { id, label, value, index } = props
+  const { accessorKey, header, value, index } = props
 
   const { handleMoveColumnItem } = useContext(ColumnListSetterContext)
   const ref = useRef<HTMLDivElement>(null)
@@ -47,7 +47,7 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
   const [{ isDragging }, drag] = useDrag({
     type: "OPTION_ITEM",
     item: () => {
-      return { id, index }
+      return { accessorKey, index }
     },
     collect: (monitor: any) => ({
       isDragging: monitor.isDragging(),
@@ -60,7 +60,7 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
   return (
     <div ref={ref} style={{ opacity }}>
       <div css={optionListItemStyle}>
-        <DragIconAndLabel index={index} />
+        <DragIconAndLabel index={index} label={header} />
       </div>
     </div>
   )

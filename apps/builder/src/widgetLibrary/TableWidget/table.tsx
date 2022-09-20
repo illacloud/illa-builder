@@ -1,27 +1,28 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
 import { Table } from "@illa-design/table"
 import { TableWidgetProps, WrappedTableProps } from "./interface"
 import { ColumnDef } from "@tanstack/react-table"
 
-export const WrappedTable: FC<WrappedTableProps> = (props) => {
-  const { data, loading, emptyState, columns } = props
+export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>((props, ref) => {
+    const { data, loading, emptyState, columns } = props
 
-  console.log({ columns })
-  return (
-    <Table
-      data={data}
-      columns={columns}
-      loading={loading}
-      emptyProps={{ description: emptyState }}
-      bordered
-      striped
-      borderedCell
-      pinedHeader
-      w="100%"
-      h="100%"
-    />
-  )
-}
+    console.log({ columns })
+    return (
+      <Table
+        data={data}
+        columns={columns}
+        loading={loading}
+        emptyProps={{ description: emptyState }}
+        bordered
+        striped
+        borderedCell
+        pinedHeader
+        w="100%"
+        h="100%"
+      />
+    )
+  },
+)
 
 export const TableWidget: FC<TableWidgetProps> = (props) => {
   const {
@@ -33,7 +34,10 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    updateComponentHeight,
   } = props
+
+  const tableWrapperRef = useRef<HTMLDivElement>(null)
 
   let columnsDef = useMemo(() => {
     console.log("data update")
@@ -68,5 +72,15 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  return <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columnsDef} />
+  useEffect(() => {
+    if (tableWrapperRef.current) {
+      updateComponentHeight(tableWrapperRef.current?.clientHeight)
+    }
+  }, [
+    data,
+  ])
+
+  return <div ref={tableWrapperRef}>
+    <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columns} />
+  </div>
 }
