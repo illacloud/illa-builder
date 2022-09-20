@@ -232,13 +232,10 @@ export class ExecutionTreeFactory {
       this.executedTree,
       path,
     )
-    console.log("debuggerData", cloneDeep(debuggerData))
-    console.log("this.debuggerData", cloneDeep(this.debuggerData))
+
     this.oldRawTree = cloneDeep(currentRawTree)
     this.mergeErrorTree(errorTree, path)
     this.mergeDebugDataTree(debuggerData, path)
-    console.log("debuggerData", cloneDeep(debuggerData))
-    console.log("this.debuggerData", cloneDeep(this.debuggerData))
 
     this.executedTree = this.validateTree(evaluatedTree)
     return {
