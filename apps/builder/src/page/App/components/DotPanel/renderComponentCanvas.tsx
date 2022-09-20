@@ -14,7 +14,10 @@ import { getIllaMode, isShowDot } from "@/redux/config/configSelector"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { DotPanel } from "@/page/App/components/DotPanel/index"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { applyComponentCanvasStyle } from "@/page/App/components/DotPanel/style"
+import {
+  applyComponentCanvasStyle,
+  borderLineStyle,
+} from "@/page/App/components/DotPanel/style"
 import useMeasure from "react-use-measure"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -297,6 +300,7 @@ export const RenderComponentCanvas: FC<{
           canDrop={canDrop}
         />
       )}
+      {isShowCanvasDot && <div css={borderLineStyle} />}
     </div>
   )
 }
