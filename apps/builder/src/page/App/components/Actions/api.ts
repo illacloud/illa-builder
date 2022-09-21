@@ -1,6 +1,7 @@
 import {
   ActionContent,
   ActionItem,
+  ActionType,
 } from "@/redux/currentApp/action/actionState"
 import { omit } from "@illa-design/system"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"

@@ -4,11 +4,20 @@ import { footerStyle } from "./style"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
+import { getAllResources } from "@/redux/resource/resourceSelector"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { resourceId, onBack, onCreated, resourceType } = props
 
   const { t } = useTranslation()
+
+  const resourceList = useSelector(getAllResources)
+    .filter((r) => r.resourceType == resourceType)
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
 
   const [testLoading, setTestLoading] = useState(false)
   const [createLoading, setCreateLoading] = useState(false)
@@ -21,7 +30,13 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
           leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
-          onClick={onBack}
+          onClick={() => {
+            if (resourceList.length == 0) {
+              onBack("select")
+            } else {
+              onBack("createAction")
+            }
+          }}
         >
           {t("back")}
         </Button>

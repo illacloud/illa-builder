@@ -49,6 +49,10 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
     resourceList[0]?.resourceId,
   )
 
+  if (resourceList.length == 0) {
+    onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
+  }
+
   const [loading, setLoading] = useState(false)
 
   const dispatch = useDispatch()
@@ -85,7 +89,9 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
           leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
-          onClick={onBack}
+          onClick={() => {
+            onBack("select")
+          }}
         >
           {t("back")}
         </Button>

@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { Modal } from "@illa-design/modal"
-import { ActionGeneratorProps } from "./interface"
+import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
 import {
@@ -13,9 +13,7 @@ import { getResourceNameFromResourceType } from "@/redux/resource/resourceState"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
-  const [currentStep, setCurrentStep] = useState<
-    "select" | "createAction" | "createResource"
-  >("select")
+  const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
 
   const [currentActionType, setCurrentActionType] = useState<ActionType | null>(
     null,
@@ -80,8 +78,8 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       {currentStep === "createAction" && currentActionType && (
         <ActionResourceSelector
           actionType={currentActionType}
-          onBack={() => {
-            setCurrentStep("select")
+          onBack={(page) => {
+            setCurrentStep(page)
           }}
           onCreateResource={(actionType) => {
             setCurrentActionType(actionType)
@@ -96,8 +94,8 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       {currentStep === "createResource" && transformResource && (
         <ActionResourceCreator
           resourceType={transformResource}
-          onBack={() => {
-            setCurrentStep("createAction")
+          onBack={(page) => {
+            setCurrentStep(page)
           }}
           onCreated={(resourceId) => {
             setCurrentStep("createAction")
