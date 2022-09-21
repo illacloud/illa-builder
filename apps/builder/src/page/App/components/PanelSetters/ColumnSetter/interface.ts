@@ -22,9 +22,10 @@ export interface DragIconAndLabelProps {
   index: number
 }
 
-export interface MoreProps {
-  index: number
-}
+export type SelectOptions = (string | number | {
+  label: string;
+  value: string | number;
+})[];
 
 export interface ColumnListSetterProps extends BaseSetter {
   value: ColumnItemShape[]

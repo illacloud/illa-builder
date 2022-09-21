@@ -563,6 +563,9 @@
           "remove": "移除数据集",
           "aggregation_method": "聚合方式"
         },
+        "sort": "排序",
+        "default_sort_key": "排序列",
+        "default_sort_order": "顺序",
         "new_tab": "在新标签中打开",
         "description": "描述",
         "duration": "持续时间",
@@ -753,7 +756,9 @@
       "name": "图表"
     },
     "table": {
-      "name": "表格"
+      "name": "表格",
+      "ascend": "升序",
+      "descend": "降序"
     }
   },
   "Setting": "设置",

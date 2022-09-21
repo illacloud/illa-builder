@@ -72,6 +72,30 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
+    id: `${baseWidgetName}-sort`,
+    groupName: i18n.t("editor.inspect.setter_group.sort"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-defaultSortKey`,
+        labelName: i18n.t("editor.inspect.setter_label.default_sort_key"),
+        attrName: "defaultSortKey",
+        setterType: "COLUMNS_SELECT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        openDynamic: true,
+      },
+      {
+        id: `${baseWidgetName}-basic-defaultSortOrder`,
+        labelName: i18n.t("editor.inspect.setter_label.default_sort_order"),
+        attrName: "defaultSortOrder",
+        setterType: "RADIO_GROUP_SETTER",
+        options: [
+          { label: i18n.t("widget.table.ascend"), value: "ascend" },
+          { label: i18n.t("widget.table.descend"), value: "descend" },
+        ],
+      },
+    ],
+  },
+  {
     id: `${baseWidgetName}-toolbar`,
     groupName: i18n.t("editor.inspect.setter_group.data"),
     children: [

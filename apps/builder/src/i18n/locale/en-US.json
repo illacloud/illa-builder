@@ -451,6 +451,7 @@
         "validation": "VALIDATION",
         "options": "OPTIONS",
         "column": "COLUMNS",
+        "sort": "SORT",
         "data": "DATA"
       },
       "setter_label": {
@@ -564,6 +565,9 @@
           "remove": "Remove dataset",
           "aggregation_method": "Aggregation method"
         },
+        "sort": "Sort",
+        "default_sort_key": "Column",
+        "default_sort_order": "Direction",
         "new_tab": "New tab",
         "description": "Description",
         "duration": "Duration",
@@ -753,7 +757,9 @@
       "name": "Chart"
     },
     "table": {
-      "name": "Table"
+      "name": "Table",
+      "ascend": "Asc",
+      "descend": "Desc"
     }
   },
   "Setting": "Setting",

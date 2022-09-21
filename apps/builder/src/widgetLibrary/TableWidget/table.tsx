@@ -4,7 +4,7 @@ import { TableWidgetProps, WrappedTableProps } from "./interface"
 import { ColumnDef } from "@tanstack/react-table"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>((props, ref) => {
-    const { data, loading, emptyState, columns } = props
+    const { data, loading, emptyState, columns, defaultSort } = props
 
     console.log({ columns })
     return (
@@ -13,6 +13,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>((pro
         columns={columns}
         loading={loading}
         emptyProps={{ description: emptyState }}
+        defaultSort={defaultSort}
         bordered
         striped
         borderedCell
@@ -31,6 +32,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     loading,
     columns,
     displayName,
+    defaultSortKey,
+    defaultSortOrder,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -38,6 +41,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   } = props
 
   const tableWrapperRef = useRef<HTMLDivElement>(null)
+
 
   let columnsDef = useMemo(() => {
     console.log("data update")
@@ -57,9 +61,19 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     return l
   }, [data])
 
+  const defaultSort = useMemo(() => {
+    if (!defaultSortKey) return undefined
+    return [{
+      id: defaultSortKey,
+      desc: defaultSortOrder === "descend",
+    }]
+
+  }, [defaultSortOrder, defaultSortKey])
+
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       columns: columnsDef,
+      defaultSort,
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -81,6 +95,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   ])
 
   return <div ref={tableWrapperRef}>
-    <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columns} />
+    <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columns} defaultSort={defaultSort} />
   </div>
 }
