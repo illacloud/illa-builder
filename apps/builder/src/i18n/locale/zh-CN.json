@@ -433,6 +433,7 @@
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
       "unselected_tip2": "请点击组件以选中。",
+      "multi_selected_header": "已选中 {{ number }} 个组件",
       "header": {
         "action_menu": {
           "view_documentation": "View documentation",

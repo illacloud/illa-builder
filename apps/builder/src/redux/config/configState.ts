@@ -1,4 +1,3 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   ActionContent,
   ActionItem,
@@ -13,7 +12,7 @@ export interface ConfigState {
   openDebugger: boolean
   showDot: boolean
   scale: number
-  selectedComponents: ComponentNode[]
+  selectedComponents: string[]
   selectedAction: ActionItem<ActionContent> | null
   cacheActionContent: {
     [key: string]: ActionContent
