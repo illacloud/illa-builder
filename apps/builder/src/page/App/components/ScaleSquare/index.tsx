@@ -372,14 +372,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     ],
   )
 
+  //  1px is left border width
   return (
     <Rnd
-      dragGrid={[unitW, unitH]}
-      resizeGrid={[unitW, unitH]}
       bounds="#realCanvas"
       size={{
-        width: w,
-        height: h,
+        width: w + 1,
+        height: h + 1,
       }}
       position={{
         x: x,
