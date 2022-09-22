@@ -1,8 +1,11 @@
 import { TextWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
+import store from "@/store"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
+import { ColumnDef } from "@tanstack/react-table"
 
-const fakeData = [
+const originData = [
   {
     name: "Gerard Gislason",
     company: "Ameliorated explicit open system",
@@ -74,8 +77,23 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   icon: <TextWidgetIcon size="100%" />,
   keywords: ["Table", "表格"],
   sessionType: "PRESENTATION",
-  defaults: {
-    data: `{{${JSON.stringify(fakeData)}}}`,
-    emptyState: "No rows found"
-  },
+  defaults: initTableWidgetDefaultProps(),
+}
+
+export function initTableWidgetDefaultProps() {
+  const columns: ColumnDef<object>[] = []
+  if (originData && originData.length > 0) {
+    Object.keys(originData[0]).forEach((key) => {
+      columns.push({
+        header: key,
+        accessorKey: key,
+      })
+    })
+  }
+
+  return {
+    data: `{{${JSON.stringify(originData)}}}`,
+    columns,
+    emptyState: "No rows found",
+  }
 }

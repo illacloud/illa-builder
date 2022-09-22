@@ -3,7 +3,7 @@ import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import {
   actionTitleBarRunStyle,
   actionTitleBarSpaceStyle,
-  actionTitleBarStyle,
+  actionTitleBarStyle, dropMenuStyle,
   editableTitleBarWrapperStyle,
 } from "./style"
 import { Button } from "@illa-design/button"
@@ -67,6 +67,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       <Dropdown
         position="bottom-end"
         trigger="click"
+        triggerProps={{_css: dropMenuStyle}}
         dropList={
           <DropList width={"184px"}>
             <Item

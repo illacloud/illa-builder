@@ -3,8 +3,7 @@ import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import { HTMLAttributes } from "react"
 
 export interface WrappedTableProps extends HTMLAttributes<HTMLDivElement>, Pick<TableProps<any, any>,
-  | "loading" | "columns" | "defaultSort"> {
-  data: object[]
+  | "loading" | "columns" | "defaultSort" | "data"> {
   emptyState?: string
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"

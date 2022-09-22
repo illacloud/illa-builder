@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { ListBody } from "./body"
 import { ColumnListSetterProps } from "./interface"
 import { addIconStyle, headerActionButtonStyle, ListStyle, optionListHeaderStyle } from "./style"
@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { get } from "lodash"
+import { get, isEqual } from "lodash"
 import { ColumnDef } from "@tanstack/react-table"
 import { AddIcon } from "@illa-design/icon"
 
@@ -20,6 +20,7 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
     childrenSetter,
     widgetDisplayName,
   } = props
+  const isMount = useRef(false);
   const { t } = useTranslation()
 
   const handleAddOption = useCallback(() => {
@@ -44,9 +45,12 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   if (!Array.isArray(childrenSetter) || childrenSetter.length === 0) {
     return null
   }
-  console.log(props, data,'ColumnSetter props')
 
-  useEffect(()=> {
+  useEffect(() => {
+    if (!isMount.current) {
+      isMount.current = true;
+      return;
+    }
     if (data.length) {
       let l: ColumnDef<object>[] = []
       if (data && data.length > 0) {
@@ -57,10 +61,13 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
           })
         })
       }
-      handleUpdateDsl(attrName, l)
+      if (!isEqual(value, l)) {
+        handleUpdateDsl(attrName, l)
+      }
     }
   }, [data])
 
+  console.log(value, data, 'ColumnDef')
   return (
     <ColumnsSetterProvider
       childrenSetter={childrenSetter}

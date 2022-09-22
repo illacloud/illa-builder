@@ -42,25 +42,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const tableWrapperRef = useRef<HTMLDivElement>(null)
 
-
-  let columnsDef = useMemo(() => {
-    console.log("data update")
-    if (columns?.length) {
-      return columns
-    }
-    let l: ColumnDef<object>[] = []
-    if (data && data.length > 0) {
-      Object.keys(data[0]).forEach((key) => {
-        l.push({
-          header: key,
-          accessorKey: key,
-        })
-      })
-    }
-
-    return l
-  }, [data])
-
   const defaultSort = useMemo(() => {
     if (!defaultSortKey) return undefined
     return [{
@@ -72,14 +53,12 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
-      columns: columnsDef,
       defaultSort,
     })
     return () => {
       handleDeleteGlobalData(displayName)
     }
   }, [
-    columnsDef,
     displayName,
     handleUpdateGlobalData,
     handleUpdateDsl,
@@ -95,6 +74,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   ])
 
   return <div ref={tableWrapperRef}>
-    <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columns} defaultSort={defaultSort} />
+    <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columns}
+                  defaultSort={defaultSort} />
   </div>
 }
