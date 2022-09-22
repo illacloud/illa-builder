@@ -4,6 +4,7 @@ import i18n from "@/i18n/config"
 import store from "@/store"
 import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { ColumnDef } from "@tanstack/react-table"
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 const originData = [
   {
@@ -81,13 +82,14 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
 }
 
 export function initTableWidgetDefaultProps() {
-  const columns: ColumnDef<object>[] = []
+  const columns: ColumnItemShape[] = []
   if (originData && originData.length > 0) {
     Object.keys(originData[0]).forEach((key) => {
       columns.push({
         header: key,
         accessorKey: key,
         enableSorting: true,
+        type: "text",
       })
     })
   }

@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { ListBody } from "./body"
 import { ColumnListSetterProps } from "./interface"
-import { addIconStyle, headerActionButtonStyle, ListStyle, optionListHeaderStyle } from "./style"
+import { addIconStyle, columnLabelStyle, headerActionButtonStyle, ListStyle, optionListHeaderStyle } from "./style"
 import { generateNewOptionItem } from "./utils/generateNewOptions"
 import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
@@ -11,6 +11,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { get, isEqual } from "lodash"
 import { ColumnDef } from "@tanstack/react-table"
 import { AddIcon } from "@illa-design/icon"
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {
@@ -52,13 +53,14 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       return;
     }
     if (data.length) {
-      let l: ColumnDef<object>[] = []
+      let l: ColumnItemShape[] = []
       if (data && data.length > 0) {
         Object.keys(data[0]).forEach((key) => {
           l.push({
             header: key,
             accessorKey: key,
             enableSorting: true,
+            type: "text",
           })
         })
       }
@@ -77,7 +79,8 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       attrPath={attrName}
       handleUpdateDsl={handleUpdateDsl}
     >
-      <div>
+      <div css={columnLabelStyle}>
+        <div>{t("editor.inspect.setter_content.column_setter.label", {number: value.length})}</div>
         <div css={headerActionButtonStyle} onClick={handleAddOption}>
           <AddIcon _css={addIconStyle} />
           <span>{t("editor.inspect.setter_content.column_setter.new")}</span>

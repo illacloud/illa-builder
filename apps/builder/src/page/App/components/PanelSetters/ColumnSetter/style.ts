@@ -22,6 +22,16 @@ export const headerActionButtonStyle = css`
   color: ${globalColor(`--${illaPrefix}-purple-01`)};
   cursor: pointer;
   font-weight: 400;
+  margin: 0 8px;
+`
+
+export const columnLabelStyle = css`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 16px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
 `
 
 export const addIconStyle = css`

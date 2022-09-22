@@ -1,13 +1,6 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-
-export interface ColumnItemShape {
-  value?: string
-  label?: string
-  disabled?: string
-  header: string
-  accessorKey: string
-}
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
 export interface HeaderProps {
   labelName: string
