@@ -58,6 +58,7 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
           l.push({
             header: key,
             accessorKey: key,
+            enableSorting: true,
           })
         })
       }

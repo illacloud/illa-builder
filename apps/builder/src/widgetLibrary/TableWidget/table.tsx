@@ -6,7 +6,6 @@ import { ColumnDef } from "@tanstack/react-table"
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>((props, ref) => {
     const { data, loading, emptyState, columns, defaultSort } = props
 
-    console.log({ columns })
     return (
       <Table
         data={data}
@@ -54,12 +53,17 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       defaultSort,
+      columns,
+      data,
     })
     return () => {
       handleDeleteGlobalData(displayName)
     }
   }, [
     displayName,
+    defaultSort,
+    columns,
+    data,
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,

@@ -566,6 +566,8 @@
         "sort": "排序",
         "default_sort_key": "排序列",
         "default_sort_order": "顺序",
+        "column_title": "列标题",
+        "enable_sorting": "排序",
         "new_tab": "在新标签中打开",
         "description": "描述",
         "duration": "持续时间",

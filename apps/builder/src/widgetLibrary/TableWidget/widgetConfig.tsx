@@ -87,6 +87,7 @@ export function initTableWidgetDefaultProps() {
       columns.push({
         header: key,
         accessorKey: key,
+        enableSorting: true,
       })
     })
   }

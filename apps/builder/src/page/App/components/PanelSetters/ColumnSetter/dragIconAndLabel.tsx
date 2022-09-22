@@ -10,15 +10,15 @@ import {
   movableIconWrapperStyle,
 } from "@/page/App/components/PanelSetters/OptionListSetter/style"
 import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
-import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
+import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/ColumnSetter/context/columnListContext"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, label } = props
   const [modalVisible, setModalVisible] = useState(false)
   const { widgetDisplayName, attrPath, childrenSetter } = useContext(
-    OptionListSetterContext,
+    ColumnListSetterContext,
   )
 
   const { t } = useTranslation()
@@ -27,6 +27,8 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
   }, [])
+
+  console.log('BaseModal', `${attrPath}.${index}`, childrenSetter)
   return (
     <Trigger
       withoutPadding
@@ -34,7 +36,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       popupVisible={modalVisible}
       content={
         <BaseModal
-          title={t("editor.inspect.setter_content.option_list.model_title")}
+          title={label??''}
           handleCloseModal={handleCloseModal}
           attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}
