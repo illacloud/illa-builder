@@ -1,10 +1,11 @@
 import { FC, useCallback, useContext, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { DragPointIcon } from "@illa-design/icon"
+import { DragPointIcon, EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import { get } from "lodash"
 import {
+  dragItemStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
@@ -15,7 +16,7 @@ import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Mo
 import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/ColumnSetter/context/columnListContext"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { index, label } = props
+  const { index, label, visible } = props
   const [modalVisible, setModalVisible] = useState(false)
   const { widgetDisplayName, attrPath, childrenSetter } = useContext(
     ColumnListSetterContext,
@@ -28,7 +29,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     setModalVisible(false)
   }, [])
 
-  console.log('BaseModal', `${attrPath}.${index}`, childrenSetter)
+  console.log("BaseModal", `${attrPath}.${index}`, childrenSetter)
   return (
     <Trigger
       withoutPadding
@@ -36,7 +37,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       popupVisible={modalVisible}
       content={
         <BaseModal
-          title={label??''}
+          title={label ?? ""}
           handleCloseModal={handleCloseModal}
           attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}
@@ -51,14 +52,17 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         setModalVisible(visible)
       }}
     >
-      <div css={labelNameAndIconStyle}>
+      <div css={dragItemStyle}>
+        <div css={labelNameAndIconStyle}>
         <span css={movableIconWrapperStyle} className="movableIconWrapper">
           <DragPointIcon />
         </span>
-        <span css={labelNameWrapperStyle}>
+          <span css={labelNameWrapperStyle}>
           {label ||
             t("editor.inspect.setter_content.option_list.list_no_label")}
         </span>
+        </div>
+        {visible ? <EyeOnIcon /> : <EyeOffIcon />}
       </div>
     </Trigger>
   )

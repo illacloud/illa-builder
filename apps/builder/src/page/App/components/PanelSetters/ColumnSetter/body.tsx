@@ -12,13 +12,14 @@ export const ListBody: FC = () => {
   return (
     <>
       {columnItems.map((item, index) => {
-        const { label, value, header, accessorKey } = item
+        const { label, value, header, accessorKey, visible } = item
         return (
           <ColumnItem
             key={accessorKey}
             accessorKey={accessorKey}
             header={header}
             value={value}
+            visible={visible}
             index={index}
           />
         )

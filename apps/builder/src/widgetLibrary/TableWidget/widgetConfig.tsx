@@ -90,6 +90,7 @@ export function initTableWidgetDefaultProps() {
         accessorKey: key,
         enableSorting: true,
         type: "text",
+        visible: true,
       })
     })
   }

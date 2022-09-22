@@ -12,6 +12,7 @@ export interface ColumnItemShape {
   disabled?: string
   type?: string
   enableSorting?: boolean
+  visible?: boolean
 }
 
 export interface WrappedTableProps extends HTMLAttributes<HTMLDivElement>, Pick<TableProps<any, any>,
