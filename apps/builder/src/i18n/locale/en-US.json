@@ -300,22 +300,16 @@
             "database": "Database",
             "username_password": "Username/Password",
             "connect_type": "Connect Type",
-            "connect_over_ssh": "Connect over SSH",
-            "ssh_hostname_port": "SSH Hostname/Port",
-            "ssh_credentials": "SSH Credentials",
             "private_key": "Private Key",
-            "ssh_passphrase": "SSH passphrase",
             "ssl_options": "SSL options",
-            "server_root_certificate": "Server Root Certificate",
+            "ca_certificate": "CA Cert",
             "client_key": "Client Key",
-            "client_certificate": "Client Certificate"
+            "client_certificate": "Client Cert"
           },
           "tip": {
             "username_password": "Credentials will be encrypted & stored securely on our servers.",
             "connect_type": "Cloud: ILLA servers will securely connect to your database.",
-            "connect_over_ssh": "Useful to connect to private network",
-            "ssl_options": "SSL is used when available",
-            "ssh_passphrase": "used if provided"
+            "ssl_options": "SSL is used when available"
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
@@ -323,12 +317,7 @@
             "database": "acme_production",
             "username": "Username",
             "password": "Password",
-            "ssh_hostname_port": "e.g.localhost",
-            "ssh_credentials": "e.g.ec2-user",
-            "private_key": "e.g.path/to/root.crt",
-            "server_root_certificate": "e.g.path/to/root.crt",
-            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
         },
         "restapi": {

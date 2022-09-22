@@ -5,5 +5,5 @@ export interface ResourceEditorProps {
   resourceId?: string
   resourceType: ResourceType
   onBack: (page: ActionCreatorPage) => void
-  onCreated: (resourceId: string) => void
+  onFinished: (resourceId: string) => void
 }

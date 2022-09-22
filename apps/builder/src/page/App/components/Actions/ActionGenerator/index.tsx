@@ -54,7 +54,11 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       withoutLine
       withoutPadding
       title={title}
-      onCancel={onClose}
+      onCancel={() => {
+        onClose()
+        setCurrentStep("select")
+        setCurrentActionType(null)
+      }}
     >
       {currentStep === "select" && (
         <ActionTypeSelector
@@ -97,7 +101,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
           onBack={(page) => {
             setCurrentStep(page)
           }}
-          onCreated={(resourceId) => {
+          onFinished={(resourceId) => {
             setCurrentStep("createAction")
           }}
         />

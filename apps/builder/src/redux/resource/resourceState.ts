@@ -64,12 +64,7 @@ export interface MysqlResource {
   databaseName: string
   databaseUsername: string
   databasePassword: string
-  ssh: MysqlSSH
   ssl: MysqlSSL
-}
-
-export interface MysqlSSH {
-  ssh: boolean
 }
 
 export interface MysqlSSL {

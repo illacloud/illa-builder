@@ -298,13 +298,9 @@
             "database": "数据库名称",
             "username_password": "用户名/密码",
             "connect_type": "连接类型",
-            "connect_over_ssh": "通过 SSH 连接",
-            "ssh_hostname_port": "SSH 主机名/端口",
-            "ssh_credentials": "SSH 凭证",
             "private_key": "私钥",
-            "ssh_passphrase": "SSH 密码",
             "ssl_options": "SSL 选项",
-            "server_root_certificate": "服务器根证书",
+            "ca_certificate": "服务端证书",
             "client_key": "客户端密钥",
             "client_certificate": "客户端证书"
           },
@@ -312,8 +308,7 @@
             "username_password": "凭证将被加密并安全存储在我们的服务器上",
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
             "connect_over_ssh": "用于连接到专用网络",
-            "ssl_options": "可用时使用 SSL",
-            "ssh_passphrase": "如果提供则使用"
+            "ssl_options": "可用时使用 SSL"
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
@@ -321,12 +316,7 @@
             "database": "acme_production",
             "username": "用户名",
             "password": "密码",
-            "ssh_hostname_port": "e.g.localhost",
-            "ssh_credentials": "e.g.ec2-user",
-            "private_key": "e.g.path/to/root.crt",
-            "server_root_certificate": "e.g.path/to/root.crt",
-            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
         },
         "restapi": {
