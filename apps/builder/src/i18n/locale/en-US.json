@@ -434,6 +434,7 @@
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it.",
+      "multi_selected_header": "{{ number }} components selected",
       "header": {
         "action_menu": {
           "view_documentation": "View documentation",

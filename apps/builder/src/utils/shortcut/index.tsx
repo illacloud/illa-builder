@@ -15,6 +15,12 @@ import {
 } from "@/redux/config/configSelector"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
+import { RootState } from "@/store"
+import {
+  getCanvas,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/editor/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -23,8 +29,18 @@ export const Shortcut: FC = ({ children }) => {
   const mode = useSelector(getIllaMode)
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
+  const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
+    rootState => {
+      const result = currentSelectedComponent.map(displayName => {
+        return searchDSLByDisplayName(displayName)
+      })
+      return result.filter(node => node) as ComponentNode[]
+    },
+  )
 
   const currentSelectedAction = useSelector(getSelectedAction)
+
+  const canvasRootNode = useSelector(getCanvas)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -82,8 +98,8 @@ export const Shortcut: FC = ({ children }) => {
     event => {
       event.preventDefault()
       showDeleteDialog(
-        currentSelectedComponent.map(item => {
-          return item.displayName
+        currentSelectedComponent.map(displayName => {
+          return displayName
         }),
       )
     },
@@ -94,9 +110,32 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   useHotkeys(
+    "command+a,ctrl+a",
+    (keyboardEvent, hotkeysEvent) => {
+      keyboardEvent.preventDefault()
+      console.log("FocusManager.getFocus()", FocusManager.getFocus())
+      switch (FocusManager.getFocus()) {
+        case "none":
+          break
+        case "canvas": {
+          if (canvasRootNode) {
+            const childNode = canvasRootNode.childrenNode
+            const childNodeDisplayNames = childNode.map(node => {
+              return node.displayName
+            })
+            dispatch(
+              configActions.updateSelectedComponent(childNodeDisplayNames),
+            )
+          }
+        }
+      }
+    },
+    [canvasRootNode],
+  )
+
+  useHotkeys(
     "command+c,command+v,ctrl+c,ctrl+v,command+d,ctrl+d",
     (keyboardEvent, hotkeysEvent) => {
-      console.log("FocusManager.getFocus()", FocusManager.getFocus())
       switch (hotkeysEvent.shortcut) {
         case "ctrl+c":
         case "command+c":
@@ -105,9 +144,11 @@ export const Shortcut: FC = ({ children }) => {
               break
             case "canvas":
             case "dataWorkspace_component":
-              console.log("currentSelectedComponent", currentSelectedComponent)
-              if (currentSelectedComponent != null) {
-                CopyManager.copyComponentNode(currentSelectedComponent)
+              if (
+                currentSelectedComponent != null &&
+                currentSelectedComponentNode.length > 0
+              ) {
+                CopyManager.copyComponentNode(currentSelectedComponentNode)
               }
               break
             case "dataWorkspace_action":
@@ -133,8 +174,11 @@ export const Shortcut: FC = ({ children }) => {
               break
             case "canvas":
             case "dataWorkspace_component":
-              if (currentSelectedComponent != null) {
-                CopyManager.copyComponentNode(currentSelectedComponent)
+              if (
+                currentSelectedComponent != null &&
+                currentSelectedComponentNode.length > 0
+              ) {
+                CopyManager.copyComponentNode(currentSelectedComponentNode)
               }
               break
             case "dataWorkspace_action":
