@@ -1,5 +1,6 @@
 import { getSnippets } from "./dynamicConverter"
 import { isObject } from "@/utils/typeHelper"
+import { formatDataAsArray, formatDataAsObject } from "@/utils/formatData"
 
 export const QUOTED_DYNAMIC_STRING_REGEX = /["']({{[\s\S]*?}})["']/g
 export const DYNAMIC_STRING_REG = /{{([\s\S]*?)}}/
@@ -38,9 +39,11 @@ export const createGlobalData = (
   if (context) {
     GLOBAL_DATA.THIS_CONTEXT = context
   }
-  Object.keys(dataTree).forEach((datum) => {
+  Object.keys(dataTree).forEach(datum => {
     GLOBAL_DATA[datum] = dataTree[datum]
   })
+  GLOBAL_DATA.formatDataAsObject = formatDataAsObject
+  GLOBAL_DATA.formatDataAsArray = formatDataAsArray
 
   return GLOBAL_DATA
 }
@@ -61,7 +64,7 @@ export const stringToJS = (string: string): string => {
 export const JSToString = (js: string): string => {
   const segments = js.split(" + ")
   return segments
-    .map((segment) => {
+    .map(segment => {
       if (segment.charAt(0) === "'") {
         return segment.substring(1, segment.length - 1)
       } else return "{{" + segment + "}}"
@@ -76,7 +79,9 @@ export const wrapCode = (code: string) => {
     })
   `
 }
-export function getDisplayNameAndAttrPath(fullPath: string): {
+export function getDisplayNameAndAttrPath(
+  fullPath: string,
+): {
   displayName: string
   attrPath: string
 } {
@@ -127,7 +132,7 @@ export const isPathInDynamicAttrPaths = (
   path: string,
 ): boolean => {
   if (Array.isArray(widgetOrAction.$dynamicAttrPaths)) {
-    return widgetOrAction.$dynamicAttrPaths.find((dynamicAttrPath) => {
+    return widgetOrAction.$dynamicAttrPaths.find(dynamicAttrPath => {
       return dynamicAttrPath === path
     })
   }

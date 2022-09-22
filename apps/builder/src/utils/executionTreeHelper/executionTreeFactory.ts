@@ -1,5 +1,5 @@
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
-import { cloneDeep, flatten, get, set } from "lodash"
+import { cloneDeep, flatten, get, set, unset } from "lodash"
 import {
   getAllPaths,
   getDisplayNameAndAttrPath,
@@ -33,6 +33,7 @@ export class ExecutionTreeFactory {
   hasCyclical: boolean = false
   executedTree: RawTreeShape = {} as RawTreeShape
   errorTree: Record<string, any> = {}
+  debuggerData: Record<string, any> = {}
   allKeys: Record<string, true> = {}
 
   constructor() {}
@@ -44,16 +45,18 @@ export class ExecutionTreeFactory {
     this.dependenciesState = this.generateDependenciesMap(currentRawTree)
     this.evalOrder = this.sortEvalOrder(this.dependenciesState)
     this.inDependencyTree = this.generateInDependenciesMap()
-    const { evaluatedTree, errorTree } = this.executeTree(
+    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentRawTree,
       this.evalOrder,
     )
     this.errorTree = errorTree
+    this.debuggerData = debuggerData
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
+      debuggerData: this.debuggerData,
     }
   }
 
@@ -64,7 +67,7 @@ export class ExecutionTreeFactory {
         return current
       }
       const validationPaths = widgetOrAction.$validationPaths
-      Object.keys(validationPaths).forEach((validationPath) => {
+      Object.keys(validationPaths).forEach(validationPath => {
         const validationType = validationPaths[validationPath]
         const fullPath = `${displayName}.${validationPath}`
         const validationFunc = validationFactory[validationType]
@@ -79,8 +82,10 @@ export class ExecutionTreeFactory {
           error.push({
             errorType: ExecutionErrorType.VALIDATION,
             errorMessage: errorMessage as string,
+            errorName: "Validation",
           })
           set(this.errorTree, fullPath, error)
+          this.debuggerData[fullPath] = error
         }
       })
 
@@ -108,7 +113,7 @@ export class ExecutionTreeFactory {
         continue
       }
       const dynamic: string[] = entity.$dynamicAttrPaths
-      dynamic?.forEach((attr) => {
+      dynamic?.forEach(attr => {
         changePaths.add(`${entityName}.${attr}`)
       })
     }
@@ -127,7 +132,7 @@ export class ExecutionTreeFactory {
     while (iterator < sortOrder.length) {
       const newNodes = inverseMap[sortOrder[iterator]]
       if (newNodes) {
-        newNodes.forEach((toBeEvaluatedNode) => {
+        newNodes.forEach(toBeEvaluatedNode => {
           if (!sortOrder.includes(toBeEvaluatedNode)) {
             sortOrder.push(toBeEvaluatedNode)
           }
@@ -152,7 +157,7 @@ export class ExecutionTreeFactory {
     }
     const sortOrderSet = new Set(sortOrders)
     const sortOrderPropertyPaths: string[] = []
-    this.evalOrder.forEach((path) => {
+    this.evalOrder.forEach(path => {
       if (sortOrderSet.has(path)) {
         sortOrderPropertyPaths.push(path)
         sortOrderSet.delete(path)
@@ -165,13 +170,37 @@ export class ExecutionTreeFactory {
     ]
 
     const finalSortOrderArray: Array<string> = []
-    completeSortOrder.forEach((propertyPath) => {
+    completeSortOrder.forEach(propertyPath => {
       const lastIndexOfDot = propertyPath.lastIndexOf(".")
       if (lastIndexOfDot !== -1) {
         finalSortOrderArray.push(propertyPath)
       }
     })
     return finalSortOrderArray
+  }
+
+  mergeErrorTree(newErrorTree: Record<string, any>, paths: string[]) {
+    const oldErrorTree = cloneDeep(this.errorTree)
+    paths.forEach(path => {
+      const newErrorTreeValue = get(newErrorTree, path)
+      if (newErrorTreeValue) {
+        set(this.errorTree, path, newErrorTreeValue)
+      } else {
+        unset(oldErrorTree, path)
+      }
+    })
+    this.errorTree = oldErrorTree
+  }
+
+  mergeDebugDataTree(newDebugDataTree: Record<string, any>, paths: string[]) {
+    paths.forEach(path => {
+      const newDebugData = newDebugDataTree[path]
+      if (newDebugData) {
+        this.debuggerData[path] = newDebugData
+      } else {
+        delete this.debuggerData[path]
+      }
+    })
   }
 
   updateTree(rawTree: RawTreeShape) {
@@ -191,7 +220,7 @@ export class ExecutionTreeFactory {
     this.applyDifferencesToEvalTree(differences)
     const path = this.calcSubTreeSortOrder(differences, currentRawTree)
 
-    path.forEach((propertyPath) => {
+    path.forEach(propertyPath => {
       const unEvalPropValue = get(currentRawTree, propertyPath)
       const evalPropValue = get(this.executedTree, propertyPath)
       if (typeof evalPropValue !== "function") {
@@ -199,17 +228,21 @@ export class ExecutionTreeFactory {
       }
       return propertyPath
     })
-    const { evaluatedTree, errorTree } = this.executeTree(
+    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       this.executedTree,
       path,
     )
+
     this.oldRawTree = cloneDeep(currentRawTree)
-    this.errorTree = errorTree
+    this.mergeErrorTree(errorTree, path)
+    this.mergeDebugDataTree(debuggerData, path)
+
     this.executedTree = this.validateTree(evaluatedTree)
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
+      debuggerData: this.debuggerData,
     }
   }
 
@@ -218,15 +251,16 @@ export class ExecutionTreeFactory {
     displayName: string,
   ) {
     let dependenciesMap: DependenciesState = {}
-    const dynamicAttrPaths: string[] =
-      getWidgetOrActionDynamicAttrPaths(widgetOrAction)
+    const dynamicAttrPaths: string[] = getWidgetOrActionDynamicAttrPaths(
+      widgetOrAction,
+    )
     if (dynamicAttrPaths.length) {
-      dynamicAttrPaths.forEach((attrPath) => {
+      dynamicAttrPaths.forEach(attrPath => {
         const originValue = get(widgetOrAction, attrPath)
         const { jsSnippets } = getSnippets(originValue)
         const existingDeps = dependenciesMap[`${displayName}.${attrPath}`] || []
         dependenciesMap[`${displayName}.${attrPath}`] = existingDeps.concat(
-          jsSnippets.filter((jsSnippet) => !!jsSnippet),
+          jsSnippets.filter(jsSnippet => !!jsSnippet),
         )
       })
     }
@@ -236,7 +270,7 @@ export class ExecutionTreeFactory {
   generateDependenciesMap(rawTree: RawTreeShape) {
     let dependenciesMap: DependenciesState = {}
     const allKeys = getAllPaths(rawTree)
-    Object.keys(rawTree).forEach((displayName) => {
+    Object.keys(rawTree).forEach(displayName => {
       const widgetProps = rawTree[displayName]
       const widgetOrActionDependencies = this.listEntityDependencies(
         widgetProps,
@@ -245,9 +279,9 @@ export class ExecutionTreeFactory {
       dependenciesMap = { ...dependenciesMap, ...widgetOrActionDependencies }
     })
 
-    Object.keys(dependenciesMap).forEach((key) => {
+    Object.keys(dependenciesMap).forEach(key => {
       dependenciesMap[key] = flatten(
-        dependenciesMap[key].map((script) => {
+        dependenciesMap[key].map(script => {
           try {
             return extractReferencesFromScript(script, allKeys)
           } catch (e) {
@@ -264,7 +298,7 @@ export class ExecutionTreeFactory {
     const dependencyTree: Array<[string, string]> = []
     Object.keys(dependenciesMap).forEach((key: string) => {
       if (dependenciesMap[key].length) {
-        dependenciesMap[key].forEach((dep) => dependencyTree.push([key, dep]))
+        dependenciesMap[key].forEach(dep => dependencyTree.push([key, dep]))
       } else {
         dependencyTree.push([key, ""])
       }
@@ -273,7 +307,7 @@ export class ExecutionTreeFactory {
     try {
       return toposort(dependencyTree)
         .reverse()
-        .filter((d) => !!d)
+        .filter(d => !!d)
     } catch (e) {
       this.hasCyclical = true
       if (e instanceof Error) {
@@ -293,10 +327,10 @@ export class ExecutionTreeFactory {
 
   generateInDependenciesMap(): DependenciesState {
     const inverseDag: DependenciesState = {}
-    this.evalOrder.forEach((propertyPath) => {
+    this.evalOrder.forEach(propertyPath => {
       const incomingEdges: Array<string> = this.dependenciesState[propertyPath]
       if (incomingEdges) {
-        incomingEdges.forEach((edge) => {
+        incomingEdges.forEach(edge => {
           const node = inverseDag[edge]
           if (node) {
             node.push(propertyPath)
@@ -316,6 +350,7 @@ export class ExecutionTreeFactory {
   ) {
     const oldLocalRawTree = cloneDeep(oldRawTree)
     const errorTree: ExecutionState["error"] = {}
+    const debuggerData: ExecutionState["error"] = {}
     try {
       const evaluatedTree = sortedEvalOrder.reduce(
         (current: RawTreeShape, fullPath: string, currentIndex: number) => {
@@ -336,21 +371,18 @@ export class ExecutionTreeFactory {
               )
               set(current, fullPath, evaluateValue)
             } catch (e) {
-              let oldError = get(errorTree, fullPath)
+              let oldError = get(errorTree, fullPath) ?? []
               if (Array.isArray(oldError)) {
                 oldError.push({
                   errorType: ExecutionErrorType.EVALUATED,
                   errorMessage: (e as Error).message,
+                  errorName: (e as Error).name,
                 })
               }
 
-              set(errorTree, fullPath, [
-                {
-                  errorType: ExecutionErrorType.EVALUATED,
-                  errorMessage: (e as Error).message,
-                },
-              ])
+              set(errorTree, fullPath, oldError)
               set(current, fullPath, undefined)
+              debuggerData[fullPath] = oldError
             }
           }
           if (isAction(widgetOrAction)) {
@@ -386,9 +418,9 @@ export class ExecutionTreeFactory {
         },
         oldLocalRawTree,
       )
-      return { evaluatedTree, errorTree }
+      return { evaluatedTree, errorTree, debuggerData }
     } catch (e) {
-      return { evaluatedTree: oldLocalRawTree, errorTree }
+      return { evaluatedTree: oldLocalRawTree, errorTree, debuggerData }
     }
   }
 }

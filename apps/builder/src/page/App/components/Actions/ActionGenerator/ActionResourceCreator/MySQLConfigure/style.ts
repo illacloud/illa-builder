@@ -26,41 +26,6 @@ export const gridRowContainerStyle = css`
   display: grid;
 `
 
-export const paramGridRowContainerStyle = css`
-  grid-gap: 8px 16px;
-  display: grid;
-  grid: auto/repeat(auto-fit, minmax(15%, min-content) minmax(280px, 1fr));
-`
-
-export function applyGridRowContainerInSmallWidthStyle(
-  leftPanelVisible: boolean,
-  rightPanelVisible: boolean,
-): SerializedStyles {
-  return applyMediaQueryStyle(
-    leftPanelVisible,
-    rightPanelVisible,
-    css`
-      display: grid;
-      gap: 8px;
-      grid: auto/auto;
-    `,
-  )
-}
-
-export function applyLabelTextInSmallWidthStyle(
-  leftPanelVisible: boolean,
-  rightPanelVisible: boolean,
-): SerializedStyles {
-  return applyMediaQueryStyle(
-    leftPanelVisible,
-    rightPanelVisible,
-    css`
-      text-align: left;
-      justify-content: start;
-    `,
-  )
-}
-
 function applyMediaQueryStyle(
   leftPanelVisible: boolean,
   rightPanelVisible: boolean,
@@ -186,27 +151,6 @@ export const actionTextStyle = css`
   }
 `
 
-export const checkboxStyle = css`
-  justify-content: flex-start !important;
-
-  & > input {
-    margin: 0;
-  }
-`
-
-export const labelTextVerticalStyle = css`
-  flex-direction: column;
-  align-items: normal;
-`
-
-export const labelTextSmallSizeStyle = css`
-  font-size: 12px;
-  line-height: 1;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
-`
-export const displayNoneStyle = css`
-  display: none;
-`
 export const descriptionStyle = css`
   display: grid;
   align-items: center;
@@ -220,14 +164,6 @@ export const errorMessageStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-red-03`)};
   line-height: 1.57;
-`
-
-export const configContainerStyle = css`
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  white-space: nowrap;
 `
 
 export const hostnamePortStyle = css`

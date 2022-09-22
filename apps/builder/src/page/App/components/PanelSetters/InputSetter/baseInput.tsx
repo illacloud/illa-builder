@@ -3,15 +3,15 @@ import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
 
-function getPath(attrName?: string, widgetDisplayName?: string) {
+export function getPath(attrName?: string, widgetDisplayName?: string) {
   if (attrName && widgetDisplayName) {
     return `${widgetDisplayName}.${attrName}`
   } else {
-    return widgetDisplayName
+    return widgetDisplayName as string
   }
 }
 
-export const BaseInput: FC<BaseInputSetterProps> = (props) => {
+export const BaseInput: FC<BaseInputSetterProps> = props => {
   const {
     isSetterSingleRow,
     placeholder,
@@ -36,7 +36,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
       <CodeEditor
         value={_value ?? ""}
         placeholder={placeholder}
-        onChange={(value) => {
+        onChange={value => {
           handleUpdateDsl(attrName, value)
         }}
         mode="TEXT_JS"

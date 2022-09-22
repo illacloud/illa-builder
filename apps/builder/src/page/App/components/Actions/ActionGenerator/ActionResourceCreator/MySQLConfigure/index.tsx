@@ -13,9 +13,7 @@ import {
   gridContainerStyle,
   gridRowContainerStyle,
   groupTitleStyle,
-  labelTextSmallSizeStyle,
   labelTextStyle,
-  labelTextVerticalStyle,
   requiredLabelTextStyle,
   splitLineStyle,
   formPaddingStyle,
@@ -36,22 +34,17 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
     const resourceConfig = useSelector(getAllResources).find(
       (i) => i.resourceId === resourceId,
     )
-    const [enableSSH, setEnableSSH] = useState(
-      (resourceConfig?.content as MysqlResource)?.ssh?.ssh,
-    )
     const [enableSSL, setEnableSSL] = useState(
       (resourceConfig?.content as MysqlResource)?.ssl?.ssl,
     )
     const {
       handleSubmit,
       control,
-      register,
-      resetField,
       formState: { errors },
       getValues,
-      setValue,
+      trigger,
     } = useForm<MySQLConfigureValues>({
-      mode: "onSubmit",
+      mode: "onChange",
       defaultValues: {
         resourceName: resourceConfig?.resourceName,
         ...resourceConfig?.content,
@@ -64,13 +57,17 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       const data = getValues()
       const { resourceName, ...content } = data
 
-      onTestConnection?.({
-        resourceName: resourceName,
-        resourceType: "mysql",
-        content: {
-          ...content,
-          port: content.port?.toString(),
-        },
+      trigger().then((res)=>{
+        if (res) {
+          onTestConnection?.({
+            resourceName: resourceName,
+            resourceType: "mysql",
+            content: {
+              ...content,
+              port: content.port?.toString(),
+            },
+          })
+        }
       })
     }
 
@@ -88,7 +85,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
         content: {
           ...content,
           port: content.port?.toString(),
-          ssh: { ...content.ssh, ssh: enableSSH },
+          ssh: { ssh: false },
           ssl: { ...content.ssl, ssl: enableSSL },
         },
       })
@@ -246,167 +243,6 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
           <h4 css={groupTitleStyle}>
             {i18n.t("editor.action.resource.mysql.title.advanced_option")}
           </h4>
-          <div css={gridRowContainerStyle}>
-            <label css={labelTextStyle}>
-              {i18n.t("editor.action.resource.mysql.label.connect_over_ssh")}
-            </label>
-            <div css={switchAreaStyle}>
-              <Switch
-                colorScheme="techPurple"
-                checked={enableSSH}
-                onChange={(val) => {
-                  setEnableSSH(val)
-                }}
-              />
-              <div css={switchDescriptionStyle}>
-                <div css={connectTextStyle}>
-                  {i18n.t("editor.action.resource.mysql.tip.connect_over_ssh")}
-                </div>
-              </div>
-            </div>
-          </div>
-          {enableSSH && (
-            <>
-              <div css={gridRowContainerStyle}>
-                <label css={requiredLabelTextStyle}>
-                  {i18n.t(
-                    "editor.action.resource.mysql.label.ssh_hostname_port",
-                  )}
-                </label>
-                <div css={hostnamePortStyle}>
-                  <Controller
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        placeholder={i18n.t(
-                          "editor.action.resource.mysql.placeholder.ssh_hostname_port",
-                        )}
-                        maxLength={200}
-                        error={!!errors.ssh?.sshHost}
-                        borderColor="techPurple"
-                      />
-                    )}
-                    rules={{
-                      required: i18n.t("editor.action.form.required") as string,
-                    }}
-                    control={control}
-                    name="ssh.sshHost"
-                  />
-                  <Controller
-                    render={({ field }) => (
-                      <InputNumber
-                        {...field}
-                        placeholder="22"
-                        error={!!errors.ssh?.sshPort}
-                        borderColor="techPurple"
-                      />
-                    )}
-                    rules={{
-                      required: i18n.t("editor.action.form.required") as string,
-                    }}
-                    control={control}
-                    name="ssh.sshPort"
-                  />
-                </div>
-                {(errors.ssh?.sshHost || errors.ssh?.sshPort) && (
-                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                    <div css={errorMessageStyle}>
-                      {errors.ssh?.sshHost?.message}
-                    </div>
-                    <div css={errorMessageStyle}>
-                      {errors.ssh?.sshPort?.message}
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div css={gridRowContainerStyle}>
-                <label css={requiredLabelTextStyle}>
-                  {i18n.t("editor.action.resource.mysql.label.ssh_credentials")}
-                </label>
-                <div css={usernamePasswordStyle}>
-                  <Controller
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        placeholder={i18n.t(
-                          "editor.action.resource.mysql.placeholder.ssh_credentials",
-                        )}
-                        error={!!errors.ssh?.sshUsername}
-                        borderColor="techPurple"
-                      />
-                    )}
-                    rules={{
-                      required: i18n.t("editor.action.form.required") as string,
-                    }}
-                    control={control}
-                    name="ssh.sshUsername"
-                  />
-                  <Controller
-                    render={({ field }) => (
-                      <Password
-                        {...field}
-                        placeholder="•••••••••"
-                        invisibleButton={false}
-                        error={!!errors.ssh?.sshPassword}
-                        borderColor="techPurple"
-                      />
-                    )}
-                    rules={{
-                      required: i18n.t("editor.action.form.required") as string,
-                    }}
-                    control={control}
-                    name="ssh.sshPassword"
-                  />
-                </div>
-                {(errors.ssh?.sshUsername || errors.ssh?.sshPassword) && (
-                  <div css={css(hostnamePortStyle, applyGridColIndex(2))}>
-                    <div css={errorMessageStyle}>
-                      {errors.ssh?.sshUsername?.message}
-                    </div>
-                    <div css={errorMessageStyle}>
-                      {errors.ssh?.sshPassword?.message}
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div css={gridRowContainerStyle}>
-                <label css={labelTextStyle}>
-                  {i18n.t("editor.action.resource.mysql.label.private_key")}
-                </label>
-                <Controller
-                  name="ssh.sshPrivateKey"
-                  render={({ field }) => (
-                    <Input {...field} borderColor="techPurple" />
-                  )}
-                  control={control}
-                />
-              </div>
-              <div css={gridRowContainerStyle}>
-                <label css={css(labelTextStyle, labelTextVerticalStyle)}>
-                  <div>
-                    {i18n.t(
-                      "editor.action.resource.mysql.label.ssh_passphrase",
-                    )}
-                  </div>
-                  <div css={labelTextSmallSizeStyle}>
-                    {i18n.t("editor.action.resource.mysql.tip.ssh_passphrase")}
-                  </div>
-                </label>
-                <Controller
-                  render={({ field }) => (
-                    <Password
-                      {...field}
-                      placeholder="•••••••••"
-                      invisibleButton={false}
-                      borderColor="techPurple"
-                    />
-                  )}
-                  control={control}
-                  name="ssh.sshPassphrase"
-                />
-              </div>
-            </>
-          )}
           <div css={gridRowContainerStyle}>
             <label css={labelTextStyle}>
               {i18n.t("editor.action.resource.mysql.label.ssl_options")}

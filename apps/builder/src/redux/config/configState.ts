@@ -1,4 +1,3 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   ActionContent,
   ActionItem,
@@ -10,9 +9,10 @@ export interface ConfigState {
   openLeftPanel: boolean
   openBottomPanel: boolean
   openRightPanel: boolean
+  openDebugger: boolean
   showDot: boolean
   scale: number
-  selectedComponents: ComponentNode[]
+  selectedComponents: string[]
   selectedAction: ActionItem<ActionContent> | null
   cacheActionContent: {
     [key: string]: ActionContent
@@ -27,6 +27,7 @@ export const ConfigInitialState: ConfigState = {
   mode: "edit",
   openBottomPanel: true,
   openRightPanel: true,
+  openDebugger: false,
   scale: 100,
   selectedComponents: [],
   selectedAction: null,

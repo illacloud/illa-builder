@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { isObject } from "@/utils/typeHelper"
 
 export const SingleSelectedPanel: FC = () => {
   const dispatch = useDispatch()
@@ -40,6 +41,19 @@ export const SingleSelectedPanel: FC = () => {
     [dispatch, widgetDisplayName],
   )
 
+  const handleUpdateMultiAttrDSL = useCallback(
+    (updateSlice: Record<string, any>) => {
+      if (!isObject(updateSlice)) return
+      dispatch(
+        componentsActions.updateComponentPropsReducer({
+          displayName: widgetDisplayName,
+          updateSlice,
+        }),
+      )
+    },
+    [dispatch, widgetDisplayName],
+  )
+
   const builderPanelConfig = useMemo(() => {
     return panelBuilder(widgetType)
   }, [widgetType])
@@ -52,6 +66,7 @@ export const SingleSelectedPanel: FC = () => {
         widgetParentDisplayName={widgetParentDisplayName}
         widgetProps={widgetProps}
         handleUpdateDsl={handleUpdateDsl}
+        handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
         widgetOrAction="WIDGET"
       >
         <div css={singleSelectedPanelWrapperStyle}>

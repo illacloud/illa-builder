@@ -26,6 +26,7 @@ export const headerActionButtonStyle = css`
 
 export const addIconStyle = css`
   margin-right: 4px;
+  font-size: 12px;
 `
 
 export const ListStyle = css`
