@@ -2,7 +2,6 @@ import { FC, useState } from "react"
 import { ActionTypeSelectorProps } from "./interface"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { categoryStyle, containerStyle, resourceListStyle } from "./style"
-import { ActionCard } from "@/page/App/components/Actions/ActionCard"
 import { Spin } from "@illa-design/spin"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
@@ -18,6 +17,7 @@ import { configActions } from "@/redux/config/configSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { useTranslation } from "react-i18next"
+import { ActionCard } from "../ActionCard"
 
 export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props
@@ -35,7 +35,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
           <div css={resourceListStyle}>
             {item.map((prop) => (
               <ActionCard
-                key={prop.nameKey}
+                key={prop.actionType}
                 onSelect={(item) => {
                   if (item === "transformer") {
                     const displayName =
@@ -80,7 +80,6 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                     onSelect(item)
                   }
                 }}
-                category={category}
                 {...prop}
               />
             ))}

@@ -29,7 +29,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
 
   return (
     <>
-      <Space direction="horizontal" w="100%" justifyContent="end" size="4px">
+      <Space direction="horizontal" w="100%" align="end" size="4px">
         <Button
           css={buttonVisibleStyle}
           className="dashboardResourceEditButton"

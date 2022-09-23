@@ -45,7 +45,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   return (
     <div css={resourceChooseContainerStyle}>
       <span css={resourceTitleStyle}>{t("resources")}</span>
-      <Space direction="horizontal" size="8px">
+      <Space direction="horizontal" size="8px" alignItems="center">
         <Select
           colorScheme="techPurple"
           w="200px"
@@ -91,7 +91,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
             <Space
               size="8px"
               direction="horizontal"
-              align="center"
+              alignItems="center"
               css={createNewStyle}
             >
               <AddIcon size="14px" />
@@ -101,7 +101,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
           {resourceList.map((item) => {
             return (
               <Option value={item.resourceId} key={item.resourceId}>
-                <Space size="8px" direction="horizontal" align="center">
+                <Space size="8px" direction="horizontal" alignItems="center">
                   {getIconFromResourceType(item.resourceType, "14px")}
                   {item.resourceName}
                 </Space>

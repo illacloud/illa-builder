@@ -1,52 +1,33 @@
 import { ActionType } from "@/redux/currentApp/action/actionState"
 import i18n from "@/i18n/config"
 
-type ActionTypeNameKey =
-  | "mysql"
-  | "postgres"
-  | "redis"
-  | "mongodb"
-  | "restapi"
-  | "js_transformer"
-
-export interface ResourceDataItem {
-  nameKey: ActionTypeNameKey
+export interface ActionDataItem {
   actionType: ActionType
-  isDraft?: boolean
 }
 
-export const Databases: ResourceDataItem[] = [
+export const Databases: ActionDataItem[] = [
   {
-    nameKey: "mysql",
     actionType: "mysql",
   },
   {
-    nameKey: "postgres",
-    isDraft: true,
     actionType: "postgresql",
   },
   {
-    nameKey: "redis",
-    isDraft: true,
     actionType: "redis",
   },
   {
-    nameKey: "mongodb",
-    isDraft: true,
     actionType: "mongodb",
   },
 ]
 
-export const Apis: ResourceDataItem[] = [
+export const Apis: ActionDataItem[] = [
   {
-    nameKey: "restapi",
     actionType: "restapi",
   },
 ]
 
-export const JsTransformer: ResourceDataItem[] = [
+export const JsTransformer: ActionDataItem[] = [
   {
-    nameKey: "js_transformer",
     actionType: "transformer",
   },
 ]
@@ -68,26 +49,3 @@ export const ActionTypeList = [
     category: "jsTransformer" as const,
   },
 ]
-
-export const GeneratorTypeList = [
-  {
-    title: i18n.t("editor.action.type.database"),
-    item: Databases,
-    category: "databases" as const,
-  },
-  {
-    title: i18n.t("editor.action.type.api"),
-    item: Apis,
-    category: "apis" as const,
-  },
-]
-
-export const SSLClientKey = `
------BEGIN CERTIFICATE-----
-MIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm
-DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4
-DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4
-DTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4
-...
------END CERTIFICATE-----
-`

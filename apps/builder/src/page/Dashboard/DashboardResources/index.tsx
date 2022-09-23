@@ -27,6 +27,7 @@ import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { DashboardResourceItemMenu } from "@/page/Dashboard/components/DashboardResourceItemMenu"
 import { fromNow } from "@/utils/dayjs"
 import { CellContext } from "@tanstack/table-core"
+import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 
 function getDbName(resourceType: string): string {
   let name = ""
@@ -85,7 +86,7 @@ export const DashboardResources: FC = () => {
       cell: (props: CellContext<ResourceTableData, string>) => {
         const type = resourcesList[props.row.index].resourceType
         return (
-          <Space size="8px">
+          <Space size="8px" alignItems="center" direction="horizontal">
             {getIconFromResourceType(type, "24px")}
             <span css={applyTableTextStyle(true)}>{props.getValue()}</span>
           </Space>
@@ -151,6 +152,12 @@ export const DashboardResources: FC = () => {
         ) : null}
         {!resourcesList?.length ? <Empty paddingVertical="120px" /> : null}
       </div>
+      <ResourceGenerator
+        visible={newResourceVisible}
+        onClose={() => {
+          setNewResourceVisible(false)
+        }}
+      />
     </>
   )
 }
