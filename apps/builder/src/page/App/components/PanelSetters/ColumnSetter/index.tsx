@@ -9,9 +9,9 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { get, isEqual } from "lodash"
-import { ColumnDef } from "@tanstack/react-table"
 import { AddIcon } from "@illa-design/icon"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import { isNumber } from "@illa-design/system"
 
 export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {
@@ -21,7 +21,7 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
     childrenSetter,
     widgetDisplayName,
   } = props
-  const isMount = useRef(false);
+  const isMount = useRef(false)
   const { t } = useTranslation()
 
   const handleAddOption = useCallback(() => {
@@ -49,8 +49,8 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
 
   useEffect(() => {
     if (!isMount.current) {
-      isMount.current = true;
-      return;
+      isMount.current = true
+      return
     }
     if (data.length) {
       let l: ColumnItemShape[] = []
@@ -62,6 +62,7 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
             visible: true,
             enableSorting: true,
             type: "text",
+            format: "YYYY-MM-DD",
           })
         })
       }
@@ -71,7 +72,7 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
     }
   }, [data])
 
-  console.log(value, data, 'ColumnDef')
+  console.log(value, data, "ColumnDef")
   return (
     <ColumnsSetterProvider
       childrenSetter={childrenSetter}
@@ -81,7 +82,7 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       handleUpdateDsl={handleUpdateDsl}
     >
       <div css={columnLabelStyle}>
-        <div>{t("editor.inspect.setter_content.column_setter.label", {number: value.length})}</div>
+        <div>{t("editor.inspect.setter_content.column_setter.label", { number: value.length })}</div>
         <div css={headerActionButtonStyle} onClick={handleAddOption}>
           <AddIcon _css={addIconStyle} />
           <span>{t("editor.inspect.setter_content.column_setter.new")}</span>

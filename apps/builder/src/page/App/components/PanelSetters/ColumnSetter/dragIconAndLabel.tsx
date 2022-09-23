@@ -3,7 +3,6 @@ import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DragPointIcon, EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
-import { get } from "lodash"
 import {
   dragItemStyle,
   labelNameAndIconStyle,
@@ -18,7 +17,7 @@ import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/Colu
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, label, visible } = props
   const [modalVisible, setModalVisible] = useState(false)
-  const { widgetDisplayName, attrPath, childrenSetter } = useContext(
+  const { widgetDisplayName, attrPath, childrenSetter, handleUpdateDsl, handleUpdateItemVisible } = useContext(
     ColumnListSetterContext,
   )
 
@@ -29,7 +28,6 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     setModalVisible(false)
   }, [])
 
-  console.log("BaseModal", `${attrPath}.${index}`, childrenSetter)
   return (
     <Trigger
       withoutPadding
@@ -62,7 +60,10 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
             t("editor.inspect.setter_content.option_list.list_no_label")}
         </span>
         </div>
-        {visible ? <EyeOnIcon /> : <EyeOffIcon />}
+        <span onClick={(event) => {
+          handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
+          event.stopPropagation()
+        }}>{visible ? <EyeOnIcon /> : <EyeOffIcon />}</span>
       </div>
     </Trigger>
   )

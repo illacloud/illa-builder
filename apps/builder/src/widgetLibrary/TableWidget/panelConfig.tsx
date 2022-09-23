@@ -3,8 +3,10 @@ import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { SWITCH_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SwitchWidget"
+import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
 
 const baseWidgetName = "table"
+
 export const TABLE_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-data`,
@@ -59,26 +61,26 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.column_type"),
             attrName: "type",
             setterType: "BASE_SELECT_SETTER",
-            options: [
-              { label: "Text", value: "text" },
-              { label: "Date", value: "date" },
-              { label: "Number", value: "number" },
-              { label: "Percent", value: "percent" },
-              { label: "Link", value: "Link" },
-            ],
+            options: ColumnTypeOption,
           },
           {
-            id: `${baseWidgetName}-column-value`,
-            labelName: i18n.t("editor.inspect.setter_label.value"),
-            attrName: "value",
+            id: `${baseWidgetName}-column-decimalPlaces`,
+            labelName: i18n.t("editor.inspect.setter_label.decimal_places"),
+            attrName: "decimalPlaces",
+            bindAttrName: ["type"],
+            shown: (value) => value === "number" || value === "percent",
+            placeholder: "{{ 0 }}",
             setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.NUMBER,
           },
           {
-            id: `${baseWidgetName}-column-disabled`,
-            labelName: i18n.t("editor.inspect.setter_label.disabled"),
-            attrName: "disabled",
+            id: `${baseWidgetName}-column-format`,
+            labelName: i18n.t("editor.inspect.setter_label.format"),
+            attrName: "format",
+            bindAttrName: ["type"],
+            shown: (value) => value === "date",
             setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
+            expectedType: VALIDATION_TYPES.STRING,
           },
           {
             id: `${baseWidgetName}-basic-enableSorting`,
@@ -114,22 +116,6 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           { label: i18n.t("widget.table.ascend"), value: "ascend" },
           { label: i18n.t("widget.table.descend"), value: "descend" },
         ],
-      },
-    ],
-  },
-  {
-    id: `${baseWidgetName}-toolbar`,
-    groupName: i18n.t("editor.inspect.setter_group.data"),
-    children: [
-      {
-        id: `${baseWidgetName}-basic-download`,
-        labelName: i18n.t("editor.inspect.setter_label.download"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.download"),
-        attrName: "download",
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-        openDynamic: true,
-        useCustomLayout: true,
       },
     ],
   },

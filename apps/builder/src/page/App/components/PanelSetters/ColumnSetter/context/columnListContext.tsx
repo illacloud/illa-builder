@@ -1,6 +1,6 @@
 import { createContext, ReactNode, FC, useCallback } from "react"
-import { ColumnItemShape } from "../interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { generateOptionItemId } from "../utils/generateNewOptions"
 
 interface ProviderProps {
@@ -16,6 +16,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
   handleDeleteColumnItem: (index: number) => void
   handleCopyColumnItem: (index: number) => void
   handleMoveColumnItem: (dragIndex: number, hoverIndex: number) => void
+  handleUpdateItemVisible: (attrName: string, visible?: boolean) => void
 }
 
 export const ColumnListSetterContext = createContext<Inject>({} as Inject)
@@ -45,7 +46,7 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
       if (!targetOptionItem) return
       targetOptionItem = {
         ...targetOptionItem,
-        id: generateOptionItemId(),
+        accessorKey: generateOptionItemId(),
       }
       const updatedArray = [...columnItems, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)
@@ -64,11 +65,19 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
     [attrPath, columnItems, handleUpdateDsl],
   )
 
+  const handleUpdateItemVisible = useCallback(
+    (attrName: string, visible?: boolean) => {
+      handleUpdateDsl(attrName, visible)
+    },
+    [attrPath, columnItems, handleUpdateDsl],
+  )
+
   const value = {
     ...props,
     handleDeleteColumnItem,
     handleCopyColumnItem,
     handleMoveColumnItem,
+    handleUpdateItemVisible,
   }
 
   return (

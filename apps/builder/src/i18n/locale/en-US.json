@@ -572,6 +572,7 @@
         "column_title": "Column title",
         "column_type": "Column type",
         "enable_sorting": "Enable Sorting",
+        "decimal_places": "Decimal places",
         "new_tab": "New tab",
         "description": "Description",
         "duration": "Duration",
