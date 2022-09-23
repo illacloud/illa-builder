@@ -49,7 +49,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
                 variant="outline"
                 minW="32px"
                 bdRadius="0 8px 8px 0"
-                colorScheme="gray"
+                colorScheme="grayBlue"
                 onClick={() => {
                   onDelete(index, record)
                 }}

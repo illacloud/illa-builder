@@ -79,12 +79,14 @@ export interface Params {
   value: string
 }
 
+export type RestApiAuthType = "none" | "basic" | "bearer"
+
 export interface RestApiResource<T extends RestApiAuth> {
   baseUrl: string
   urlParams: Params[]
   headers: Params[]
   cookies: Params[]
-  authentication: string
+  authentication: RestApiAuthType
   authContent: T
 }
 

@@ -62,7 +62,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
             addonAfter={{
               buttonProps: {
                 variant: "outline",
-                colorScheme: "gray",
+                colorScheme: "grayBlue",
                 leftIcon: (
                   <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-04`)} />
                 ),

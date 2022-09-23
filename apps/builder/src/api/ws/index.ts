@@ -229,14 +229,14 @@ function resetHeartbeat(ws: ILLAWebSocket) {
 
 function reconnect(ws: ILLAWebSocket) {
   clearWSTimeout(ws)
-  const callNow = !ws.debounceTimeout
-  ws.debounceTimeout = setTimeout(() => {
-    ws.debounceTimeout = null
-    reconnect(ws)
-  }, RECONNECT_TIMEOUT)
-  if (callNow) {
-    generateWs(ws.url)
-  }
+  // const callNow = !ws.debounceTimeout
+  // ws.debounceTimeout = setTimeout(() => {
+  //   ws.debounceTimeout = null
+  //   reconnect(ws)
+  // }, RECONNECT_TIMEOUT)
+  // if (callNow) {
+  //   generateWs(ws.url)
+  // }
 }
 
 function initWsConfig(ws: ILLAWebSocket) {

@@ -54,7 +54,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 ml="-1px"
                 variant="outline"
                 bdRadius="0 8px 8px 0"
-                colorScheme="gray"
+                colorScheme="grayBlue"
                 onClick={() => {
                   onDelete(index, record)
                 }}

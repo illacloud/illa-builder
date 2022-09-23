@@ -24,6 +24,7 @@ import { Input } from "@illa-design/input"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
+import { Select } from "@illa-design/select"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 
 export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
@@ -149,6 +150,80 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           )}
           name="baseUrl"
         />
+        <Controller
+          control={control}
+          defaultValue={resource?.content.headers ?? ""}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { value, onChange, onBlur } }) => (
+            <InputRecordEditor
+              label={t("editor.action.resource.restapi.label.headers")}
+              records={[
+                {
+                  key: "",
+                  value: "",
+                },
+              ]}
+              onAdd={() => {}}
+              onDelete={() => {}}
+              onChangeKey={() => {}}
+              onChangeValue={() => {}}
+            />
+          )}
+          name="headers"
+        />
+        <Controller
+          control={control}
+          defaultValue={resource?.content.cookies ?? ""}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { value, onChange, onBlur } }) => (
+            <InputRecordEditor
+              label={t("editor.action.resource.restapi.label.cookies")}
+              records={[
+                {
+                  key: "",
+                  value: "",
+                },
+              ]}
+              onAdd={() => {}}
+              onDelete={() => {}}
+              onChangeKey={() => {}}
+              onChangeValue={() => {}}
+            />
+          )}
+          name="cookies"
+        />
+        <div css={configItem}>
+          <div css={labelContainer}>
+            <span
+              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
+            >
+              {t("editor.action.resource.restapi.label.authentication")}
+            </span>
+          </div>
+          <Controller
+            control={control}
+            defaultValue={resource?.content.authentication ?? ""}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <Select
+                value={value}
+                onBlur={onBlur}
+                onChange={onChange}
+                ml="16px"
+                mr="24px"
+                colorScheme="techPurple"
+                options={["none", "basic", "bearer"]}
+              />
+            )}
+            name="authentication"
+          />
+        </div>
         <div css={footerStyle}>
           <Button
             leftIcon={<PaginationPreIcon />}
