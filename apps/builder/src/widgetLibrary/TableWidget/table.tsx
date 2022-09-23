@@ -68,7 +68,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       const transItem = JSON.parse(JSON.stringify(item))
       const { type = "text", decimalPlaces = 0, format = "YYYY-MM-DD" } = transItem as ColumnItemShape
       transItem["cell"] = (props: any) => {
-        const cellValue = props.getValue()
+        const cellValue = props?.getValue()
         switch (type) {
           default:
             return cellValue
@@ -93,7 +93,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       defaultSort,
-      columns,
       data,
     })
     return () => {
@@ -102,7 +101,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [
     displayName,
     defaultSort,
-    columns,
     data,
     handleUpdateGlobalData,
     handleUpdateDsl,

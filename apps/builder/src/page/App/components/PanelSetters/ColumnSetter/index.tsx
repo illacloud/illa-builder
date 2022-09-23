@@ -12,6 +12,7 @@ import { get, isEqual } from "lodash"
 import { AddIcon } from "@illa-design/icon"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { isNumber } from "@illa-design/system"
+import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
 
 export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   const {
@@ -53,26 +54,13 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       return
     }
     if (data.length) {
-      let l: ColumnItemShape[] = []
-      if (data && data.length > 0) {
-        Object.keys(data[0]).forEach((key) => {
-          l.push({
-            header: key,
-            accessorKey: key,
-            visible: true,
-            enableSorting: true,
-            type: "text",
-            format: "YYYY-MM-DD",
-          })
-        })
-      }
-      if (!isEqual(value, l)) {
-        handleUpdateDsl(attrName, l)
+      let columns = tansTableDataToColumns(data)
+      if (!isEqual(value, columns)) {
+        handleUpdateDsl(attrName, columns)
       }
     }
   }, [data])
 
-  console.log(value, data, "ColumnDef")
   return (
     <ColumnsSetterProvider
       childrenSetter={childrenSetter}
