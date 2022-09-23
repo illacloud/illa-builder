@@ -4,7 +4,17 @@ import { ColumnItemShape, TableWidgetProps, WrappedTableProps } from "./interfac
 import { dayjsPro, isNumber } from "@illa-design/system"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>((props, ref) => {
-    const { data, loading, emptyState, columns, defaultSort, columnVisibility } = props
+    const {
+      data,
+      loading,
+      emptyState,
+      columns,
+      defaultSort,
+      columnVisibility,
+      handleOnSortingChange,
+      handleOnPaginationChange,
+      handleOnColumnFiltersChange,
+    } = props
 
     return (
       <Table
@@ -20,6 +30,9 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>((pro
         pinedHeader
         w="100%"
         h="100%"
+        onSortingChange={handleOnSortingChange}
+        onPaginationChange={handleOnPaginationChange}
+        onColumnFiltersChange={handleOnColumnFiltersChange}
       />
     )
   },

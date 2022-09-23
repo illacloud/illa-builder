@@ -31,6 +31,9 @@ export interface WrappedTableProps extends HTMLAttributes<HTMLDivElement>, Pick<
   emptyState?: string
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
+  handleOnSortingChange?: () => void;
+  handleOnPaginationChange?: () => void
+  handleOnColumnFiltersChange?: () => void
 }
 
 export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
