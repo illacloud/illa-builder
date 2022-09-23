@@ -71,10 +71,11 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
     >
       <div css={columnLabelStyle}>
         <div>{t("editor.inspect.setter_content.column_setter.label", { number: value.length })}</div>
-        <div css={headerActionButtonStyle} onClick={handleAddOption}>
-          <AddIcon _css={addIconStyle} />
-          <span>{t("editor.inspect.setter_content.column_setter.new")}</span>
-        </div>
+        {/*TODO: new column*/}
+        {/*<div css={headerActionButtonStyle} onClick={handleAddOption}>*/}
+        {/*  <AddIcon _css={addIconStyle} />*/}
+        {/*  <span>{t("editor.inspect.setter_content.column_setter.new")}</span>*/}
+        {/*</div>*/}
       </div>
       <div css={ListStyle}>
         <div css={optionListHeaderStyle}>
