@@ -113,7 +113,7 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   useHotkeys(
-    "d",
+    "d,k",
     (keyboardEvent, hotkeysEvent) => {
       switch (FocusManager.getFocus()) {
         case "canvas": {

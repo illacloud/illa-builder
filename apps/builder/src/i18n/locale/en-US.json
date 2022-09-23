@@ -748,6 +748,10 @@
     },
     "table": {
       "name": "Table"
+    },
+    "container": {
+      "name": "Container",
+      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here"
     }
   },
   "Setting": "Setting",

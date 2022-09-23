@@ -748,6 +748,10 @@
     },
     "table": {
       "name": "表格"
+    },
+    "container": {
+      "name": "容器",
+      "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器"
     }
   },
   "Setting": "设置",
