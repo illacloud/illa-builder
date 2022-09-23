@@ -12,7 +12,10 @@ import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 import { isObject } from "@/utils/typeHelper"
-import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
+import {
+  UpdateComponentContainerPayload,
+  UpdateComponentsShapePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
 
 export const updateComponentReducer: CaseReducer<
   ComponentsState,
@@ -157,6 +160,30 @@ export const updateComponentsShape: CaseReducer<
         parentNode.childrenNode[index] = dealNode
       }
     }
+  })
+}
+
+export const updateComponentContainerReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentContainerPayload>
+> = (state, action) => {
+  action.payload.updateSlice.forEach(slice => {
+    const currentNode = slice.component
+    const oldParentDisplayName = slice.oldParentDisplayName
+    const oldParentNode = searchDsl(state, oldParentDisplayName)
+    let currentParentNode = searchDsl(state, currentNode.parentNode)
+    if (oldParentNode == null || currentParentNode == null) return
+    const oldChildrenNode = cloneDeep(oldParentNode.childrenNode)
+    const oldIndex = oldChildrenNode.findIndex(node => {
+      return node.displayName === currentNode.displayName
+    })
+    if (oldIndex !== -1) {
+      oldChildrenNode.splice(oldIndex, 1)
+      oldParentNode.childrenNode = oldChildrenNode
+    }
+
+    currentParentNode = searchDsl(state, currentNode.parentNode)
+    currentParentNode?.childrenNode.push(currentNode)
   })
 }
 export const updateComponentReflowReducer: CaseReducer<
