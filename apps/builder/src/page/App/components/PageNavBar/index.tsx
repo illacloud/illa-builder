@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useState, MouseEvent } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
@@ -6,6 +6,8 @@ import {
   BugIcon,
   CaretRightIcon,
   ExitIcon,
+  LockIcon,
+  UnlockIcon,
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
@@ -14,8 +16,10 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  getFreezyState,
   getIllaMode,
-  isOpenBottomPanel, isOpenDebugger,
+  isOpenBottomPanel,
+  isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -39,7 +43,7 @@ import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 
-export const PageNavBar: FC<PageNavBarProps> = (props) => {
+export const PageNavBar: FC<PageNavBarProps> = props => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -49,6 +53,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
   const debuggerVisible = useSelector(isOpenDebugger)
+  const isFreezyCanvas = useSelector(getFreezyState)
 
   const debuggerData = useSelector(getExecutionDebuggerData)
 
@@ -58,16 +63,19 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const handleClickLeftWindowIcon = useCallback(() => {
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-  }, [leftPanelVisible])
+  }, [dispatch, leftPanelVisible])
   const handleClickRightWindowIcon = useCallback(() => {
     dispatch(configActions.updateRightPanel(!rightPanelVisible))
-  }, [rightPanelVisible])
+  }, [dispatch, rightPanelVisible])
   const handleClickBottomWindowIcon = useCallback(() => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-  }, [bottomPanelVisible])
+  }, [bottomPanelVisible, dispatch])
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
-  }, [debuggerVisible])
+  }, [debuggerVisible, dispatch])
+  const handleClickFreezyIcon = useCallback(() => {
+    dispatch(configActions.updateFreezeStateReducer(!isFreezyCanvas))
+  }, [dispatch, isFreezyCanvas])
 
   const handleClickDeploy = useCallback(() => {
     Api.request<DeployResp>(
@@ -75,7 +83,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
       },
-      (response) => {
+      response => {
         window.open(
           window.location.protocol +
             "//" +
@@ -84,20 +92,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           "_blank",
         )
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (loading) => {
+      loading => {
         setDeployLoading(loading)
       },
     )
   }, [setDeployLoading, appInfo])
-  const handleClickPreview = useCallback(() => {
+  const handleClickExitPreview = useCallback(() => {
     dispatch(configActions.updateIllaMode("edit"))
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -144,10 +152,33 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               <Button
                 colorScheme="gray"
                 size="medium"
-                leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
+                leftIcon={
+                  <BugIcon
+                    color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                    size="14px"
+                  />
+                }
                 onClick={handleClickDebuggerIcon}
               />
             </Badge>
+            <Button
+              colorScheme="gray"
+              size="medium"
+              leftIcon={
+                isFreezyCanvas ? (
+                  <LockIcon
+                    size="14px"
+                    color={globalColor(`--${illaPrefix}-techPurple-01`)}
+                  />
+                ) : (
+                  <UnlockIcon
+                    size="14px"
+                    color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                  />
+                )
+              }
+              onClick={handleClickFreezyIcon}
+            />
             <Button
               loading={deployLoading}
               colorScheme="techPurple"
@@ -162,7 +193,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         {mode === "preview" && (
           <ButtonGroup spacing={"8px"}>
             <Button
-              onClick={handleClickPreview}
+              onClick={handleClickExitPreview}
               colorScheme="techPurple"
               leftIcon={<ExitIcon />}
             >

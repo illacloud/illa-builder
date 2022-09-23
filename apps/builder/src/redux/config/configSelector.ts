@@ -17,7 +17,7 @@ export const isOpenDebugger = (state: RootState) => {
 }
 
 export const getPreviewEdgeWidth = (state: RootState) => {
-  return state.config.mode === "edit" ? 18 : 0
+  return state.config.mode === "edit" ? 16 : 0
 }
 
 export const getIllaMode = (state: RootState) => {
@@ -50,4 +50,8 @@ export const isSelected = (state: RootState, displayName: string) => {
 
 export const getExpandedKeys = (state: RootState) => {
   return state.config.expandedKeys
+}
+
+export const getFreezyState = (state: RootState) => {
+  return state.config.freezeCanvas
 }

@@ -325,3 +325,10 @@ export const removeExpandedKey: CaseReducer<
   const index = state.expandedKeys.findIndex(key => key === action.payload)
   index > -1 && state.expandedKeys.splice(index, 1)
 }
+
+export const updateFreezeStateReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<boolean>
+> = (state, action) => {
+  state.freezeCanvas = action.payload
+}

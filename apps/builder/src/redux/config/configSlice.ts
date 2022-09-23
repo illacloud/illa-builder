@@ -18,7 +18,9 @@ import {
   removeSelectedApiUrlParams,
   setExpandedKey,
   updateBottomPanel,
-  updateCacheActionContent, updateDebuggerVisible,
+  updateCacheActionContent,
+  updateDebuggerVisible,
+  updateFreezeStateReducer,
   updateIllaMode,
   updateLeftPanel,
   updateRightPanel,
@@ -64,6 +66,7 @@ const configSlice = createSlice({
     updateSelectedApiBodyType,
     setExpandedKey,
     removeExpandedKey,
+    updateFreezeStateReducer,
   },
 })
 
