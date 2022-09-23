@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
 import {
+  getFreezyState,
   getIllaMode,
   getSelectedAction,
   getSelectedComponents,
@@ -41,6 +42,8 @@ export const Shortcut: FC = ({ children }) => {
   const currentSelectedAction = useSelector(getSelectedAction)
 
   const canvasRootNode = useSelector(getCanvas)
+
+  const freezyState = useSelector(getFreezyState)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -110,10 +113,30 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   useHotkeys(
+    "d",
+    (keyboardEvent, hotkeysEvent) => {
+      switch (FocusManager.getFocus()) {
+        case "canvas": {
+          if (keyboardEvent.type === "keydown" && freezyState === false) {
+            dispatch(configActions.updateFreezeStateReducer(true))
+          } else if (keyboardEvent.type === "keyup" && freezyState === true) {
+            dispatch(configActions.updateFreezeStateReducer(false))
+          }
+          break
+        }
+        default: {
+          break
+        }
+      }
+    },
+    { keydown: true, keyup: true, enabled: mode === "edit" },
+    [dispatch, freezyState],
+  )
+
+  useHotkeys(
     "command+a,ctrl+a",
     (keyboardEvent, hotkeysEvent) => {
       keyboardEvent.preventDefault()
-      console.log("FocusManager.getFocus()", FocusManager.getFocus())
       switch (FocusManager.getFocus()) {
         case "none":
           break
@@ -219,11 +242,19 @@ export const Shortcut: FC = ({ children }) => {
     const listener = () => {
       dispatch(configActions.updateShowDot(false))
     }
+
+    const freezeStateListener = () => {
+      dispatch(configActions.updateFreezeStateReducer(false))
+    }
     document.addEventListener("visibilitychange", listener)
     window.addEventListener("blur", listener)
+    document.addEventListener("visibilitychange", freezeStateListener)
+    window.addEventListener("blur", freezeStateListener)
     return () => {
       document.removeEventListener("visibilitychange", listener)
       window.removeEventListener("blur", listener)
+      document.removeEventListener("visibilitychange", freezeStateListener)
+      window.removeEventListener("blur", freezeStateListener)
     }
   }, [dispatch])
 
