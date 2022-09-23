@@ -1,13 +1,13 @@
 import { FC, useCallback, useMemo } from "react"
-import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { get } from "lodash"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
-import { ColumnItemShape, SelectOptions } from "@/page/App/components/PanelSetters/ColumnSetter/interface"
+import { ColumnsSelectSetterProps, SelectOptions } from "./interface"
+import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
-export const ColumnsSelectSetter: FC<ChartDataSourceSetterProps> = props => {
+export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = props => {
   const {
     widgetDisplayName,
     attrName,

@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo, useState } from "react"
+import { FC, useCallback, useContext, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DragPointIcon, EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
@@ -8,8 +8,8 @@ import {
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
-} from "@/page/App/components/PanelSetters/OptionListSetter/style"
-import { DragIconAndLabelProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+} from "./style"
+import { DragIconAndLabelProps } from "./interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/ColumnSetter/context/columnListContext"

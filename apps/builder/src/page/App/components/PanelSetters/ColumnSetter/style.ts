@@ -61,6 +61,14 @@ export const optionListItemStyle = css`
   }
 `
 
+export const dragItemStyle = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
 export const labelNameAndIconStyle = css`
   width: 100%;
   height: 100%;

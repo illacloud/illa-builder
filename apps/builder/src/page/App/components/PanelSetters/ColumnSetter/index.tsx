@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { ListBody } from "./body"
 import { ColumnListSetterProps } from "./interface"
 import { addIconStyle, columnLabelStyle, headerActionButtonStyle, ListStyle, optionListHeaderStyle } from "./style"
-import { generateNewOptionItem } from "./utils/generateNewOptions"
+import { generateNewColumnItem } from "./utils/generateNewColumns"
 import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
 import { useSelector } from "react-redux"
@@ -27,7 +27,7 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
 
   const handleAddOption = useCallback(() => {
     const num = value.length + 1
-    const newItem = generateNewOptionItem(num)
+    const newItem = generateNewColumnItem(num)
     handleUpdateDsl(attrName, [...value, newItem])
   }, [value, attrName, handleUpdateDsl])
 

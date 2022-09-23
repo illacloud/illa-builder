@@ -19,8 +19,6 @@ export interface ListItemProps extends Omit<OptionItemShape, "disabled"> {
 
 export interface DragIconAndLabelProps {
   index: number
-  label?: string
-  visible?: boolean
 }
 
 export interface MoreProps {
