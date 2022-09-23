@@ -7,7 +7,7 @@ import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSette
 import { ColumnsSelectSetterProps, SelectOptions } from "./interface"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
-export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = props => {
+export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
   const {
     widgetDisplayName,
     attrName,
@@ -21,7 +21,7 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = props => {
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    rootState => {
+    (rootState) => {
       const executionTree = getExecutionResult(rootState)
       return get(executionTree, widgetDisplayName, {})
     },
@@ -38,7 +38,6 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = props => {
     })
     return opt
   }, [targetComponentProps])
-
 
   const handleUpdateDsl = useCallback(
     (attrName: string, newValue: any) => {

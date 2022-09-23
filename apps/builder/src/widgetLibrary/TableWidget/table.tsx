@@ -1,9 +1,14 @@
 import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
 import { Table } from "@illa-design/table"
-import { ColumnItemShape, TableWidgetProps, WrappedTableProps } from "./interface"
+import {
+  ColumnItemShape,
+  TableWidgetProps,
+  WrappedTableProps,
+} from "./interface"
 import { dayjsPro, isNumber } from "@illa-design/system"
 
-export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>((props, ref) => {
+export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
+  (props, ref) => {
     const {
       data,
       loading,
@@ -57,11 +62,12 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const defaultSort = useMemo(() => {
     if (!defaultSortKey) return undefined
-    return [{
-      id: defaultSortKey,
-      desc: defaultSortOrder === "descend",
-    }]
-
+    return [
+      {
+        id: defaultSortKey,
+        desc: defaultSortOrder === "descend",
+      },
+    ]
   }, [defaultSortOrder, defaultSortKey])
 
   const columnVisibility = useMemo(() => {
@@ -79,7 +85,11 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     const res: ColumnItemShape[] = []
     columns?.map((item) => {
       const transItem = JSON.parse(JSON.stringify(item))
-      const { type = "text", decimalPlaces = 0, format = "YYYY-MM-DD" } = transItem as ColumnItemShape
+      const {
+        type = "text",
+        decimalPlaces = 0,
+        format = "YYYY-MM-DD",
+      } = transItem as ColumnItemShape
       transItem["cell"] = (props: any) => {
         const cellValue = props?.getValue()
         switch (type) {
@@ -92,7 +102,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
             return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
           case "percent":
             const percentVal = Number(cellValue)
-            return isNumber(percentVal) ? `${(percentVal * 100).toFixed(decimalPlaces)}%` : "-"
+            return isNumber(percentVal)
+              ? `${(percentVal * 100).toFixed(decimalPlaces)}%`
+              : "-"
           case "date":
             const dayVal = dayjsPro(cellValue).format(format)
             return dayVal ? dayVal : "-"
@@ -124,13 +136,18 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     if (tableWrapperRef.current) {
       updateComponentHeight(tableWrapperRef.current?.clientHeight)
     }
-  }, [
-    data,
-  ])
+  }, [data])
 
-  return <div ref={tableWrapperRef}>
-    <WrappedTable data={data} emptyState={emptyState} loading={loading} columns={columnsDef}
-                  columnVisibility={columnVisibility}
-                  defaultSort={defaultSort} />
-  </div>
+  return (
+    <div ref={tableWrapperRef}>
+      <WrappedTable
+        data={data}
+        emptyState={emptyState}
+        loading={loading}
+        columns={columnsDef}
+        columnVisibility={columnVisibility}
+        defaultSort={defaultSort}
+      />
+    </div>
+  )
 }

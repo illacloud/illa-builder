@@ -17,9 +17,13 @@ import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/Colu
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, label, visible } = props
   const [modalVisible, setModalVisible] = useState(false)
-  const { widgetDisplayName, attrPath, childrenSetter, handleUpdateDsl, handleUpdateItemVisible } = useContext(
-    ColumnListSetterContext,
-  )
+  const {
+    widgetDisplayName,
+    attrPath,
+    childrenSetter,
+    handleUpdateDsl,
+    handleUpdateItemVisible,
+  } = useContext(ColumnListSetterContext)
 
   const { t } = useTranslation()
   const executionResult = useSelector(getExecutionResult)
@@ -52,18 +56,22 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     >
       <div css={dragItemStyle}>
         <div css={labelNameAndIconStyle}>
-        <span css={movableIconWrapperStyle} className="movableIconWrapper">
-          <DragPointIcon />
-        </span>
+          <span css={movableIconWrapperStyle} className="movableIconWrapper">
+            <DragPointIcon />
+          </span>
           <span css={labelNameWrapperStyle}>
-          {label ||
-            t("editor.inspect.setter_content.option_list.list_no_label")}
-        </span>
+            {label ||
+              t("editor.inspect.setter_content.option_list.list_no_label")}
+          </span>
         </div>
-        <span onClick={(event) => {
-          handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
-          event.stopPropagation()
-        }}>{visible ? <EyeOnIcon /> : <EyeOffIcon />}</span>
+        <span
+          onClick={(event) => {
+            handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
+            event.stopPropagation()
+          }}
+        >
+          {visible ? <EyeOnIcon /> : <EyeOffIcon />}
+        </span>
       </div>
     </Trigger>
   )

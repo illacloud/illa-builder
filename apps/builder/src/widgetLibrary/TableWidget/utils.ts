@@ -1,6 +1,8 @@
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 
-export const tansTableDataToColumns = (data: Record<any, any>[]):ColumnItemShape[]  => {
+export const tansTableDataToColumns = (
+  data: Record<any, any>[],
+): ColumnItemShape[] => {
   const columns: ColumnItemShape[] = []
   if (data && data.length > 0) {
     Object.keys(data[0]).forEach((key) => {

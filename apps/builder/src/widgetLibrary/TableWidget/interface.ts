@@ -26,16 +26,18 @@ export interface ColumnItemShape extends Pick<ColumnDef<object>, "cell"> {
   format?: string
 }
 
-export interface WrappedTableProps extends HTMLAttributes<HTMLDivElement>, Pick<TableProps<any, any>,
-  | "loading" | "columns" | "defaultSort"| "columnVisibility" | "data"> {
+export interface WrappedTableProps
+  extends HTMLAttributes<HTMLDivElement>,
+    Pick<
+      TableProps<any, any>,
+      "loading" | "columns" | "defaultSort" | "columnVisibility" | "data"
+    > {
   emptyState?: string
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
-  handleOnSortingChange?: () => void;
+  handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
   handleOnColumnFiltersChange?: () => void
 }
 
-export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
-
-}
+export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {}
