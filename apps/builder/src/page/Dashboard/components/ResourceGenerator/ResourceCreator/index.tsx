@@ -3,6 +3,7 @@ import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenera
 import { MysqlConfigElement } from "@/page/App/components/Actions/MysqlConfigElement"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
+import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -17,7 +18,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
 
   switch (finalResourceType) {
     case "mysql":
-      resourceElement = (
+      return (
         <MysqlConfigElement
           resourceId={resourceId}
           onBack={() => {
@@ -26,9 +27,16 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
           onFinished={onFinished}
         />
       )
-      break
     case "restapi":
-      break
+      return (
+        <RestApiConfigElement
+          resourceId={resourceId}
+          onBack={() => {
+            onBack("select")
+          }}
+          onFinished={onFinished}
+        />
+      )
     case "mongodb":
       break
     case "redis":
@@ -36,6 +44,5 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
     case "postgresql":
       break
   }
-
-  return <>{resourceElement}</>
+  return null
 }

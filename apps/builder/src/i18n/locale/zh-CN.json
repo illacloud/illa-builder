@@ -321,6 +321,9 @@
         },
         "restapi": {
           "name": "REST API",
+          "title": {
+            "advanced_option": "通用"
+          },
           "label": {
             "name": "名称",
             "action_type": "Action type",
@@ -354,7 +357,7 @@
           },
           "tip": {
             "get_req_auto_run": "(GET 请求) 当参数改变时会自动执行",
-            "name": "在 ILLA 中创建 actions 时的资源名称",
+            "name": "在 ILLA 中创建 Action 时的资源名称",
             "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
             "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
           },

@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react"
+import { FC, forwardRef, useState } from "react"
 import { MysqlConfigElementProps } from "@/page/App/components/Actions/MysqlConfigElement/interface"
 import {
   applyConfigItemLabelText,
@@ -27,10 +27,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { MysqlResource, Resource } from "@/redux/resource/resourceState"
 
-export const MysqlConfigElement = forwardRef<
-  HTMLDivElement,
-  MysqlConfigElementProps
->((props, ref) => {
+export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
   const { onBack, resourceId } = props
 
   const { t } = useTranslation()
@@ -52,7 +49,7 @@ export const MysqlConfigElement = forwardRef<
 
   return (
     <form onSubmit={handleSubmit((data, event) => {})}>
-      <div ref={ref} css={container}>
+      <div css={container}>
         <div css={divider} />
         <div css={configItem}>
           <div css={labelContainer}>
@@ -419,6 +416,6 @@ export const MysqlConfigElement = forwardRef<
       </div>
     </form>
   )
-})
+}
 
 MysqlConfigElement.displayName = "MysqlConfigElement"

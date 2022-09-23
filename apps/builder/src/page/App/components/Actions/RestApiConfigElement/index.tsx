@@ -1,0 +1,187 @@
+import { FC, useState } from "react"
+import { RestApiConfigElementProps } from "./interface"
+import { useTranslation } from "react-i18next"
+import { Controller, useForm } from "react-hook-form"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store"
+import {
+  Resource,
+  RestApiAuth,
+  RestApiResource,
+} from "@/redux/resource/resourceState"
+import {
+  applyConfigItemLabelText,
+  configItem,
+  configItemTip,
+  container,
+  divider,
+  footerStyle,
+  labelContainer,
+  optionLabelStyle,
+} from "./style"
+import { getColor } from "@illa-design/theme"
+import { Input } from "@illa-design/input"
+import { Button, ButtonGroup } from "@illa-design/button"
+import { PaginationPreIcon } from "@illa-design/icon"
+import { Divider } from "@illa-design/divider"
+import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+
+export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
+  const { onBack, resourceId } = props
+
+  const { t } = useTranslation()
+
+  const { control, handleSubmit, formState } = useForm({
+    mode: "onChange",
+  })
+
+  const resource = useSelector((state: RootState) => {
+    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
+      RestApiResource<RestApiAuth>
+    >
+  })
+
+  const [testLoading, setTestLoading] = useState(false)
+  const [createLoading, setCreateLoading] = useState(false)
+
+  return (
+    <form>
+      <div css={container}>
+        <div css={divider} />
+        <div css={configItem}>
+          <div css={labelContainer}>
+            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
+            <span
+              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
+            >
+              {t("editor.action.resource.restapi.label.name")}
+            </span>
+          </div>
+          <Controller
+            control={control}
+            defaultValue={resource?.resourceName ?? ""}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <Input
+                w="100%"
+                ml="16px"
+                mr="24px"
+                onBlur={onBlur}
+                onChange={onChange}
+                value={value}
+                borderColor="techPurple"
+                placeholder={t(
+                  "editor.action.resource.restapi.placeholder.name",
+                )}
+              />
+            )}
+            name="resourceName"
+          />
+        </div>
+        <span css={configItemTip}>
+          {t("editor.action.resource.restapi.tip.name")}
+        </span>
+        <Divider
+          direction="horizontal"
+          ml="24px"
+          mr="24px"
+          mt="16px"
+          mb="8px"
+          w="unset"
+        />
+        <div css={optionLabelStyle}>
+          {t("editor.action.resource.restapi.title.advanced_option")}
+        </div>
+        <div css={configItem}>
+          <div css={labelContainer}>
+            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
+            <span
+              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
+            >
+              {t("editor.action.resource.restapi.label.base_url")}
+            </span>
+          </div>
+          <Controller
+            control={control}
+            defaultValue={resource?.content.baseUrl ?? ""}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <Input
+                w="100%"
+                ml="16px"
+                mr="24px"
+                onBlur={onBlur}
+                onChange={onChange}
+                value={value}
+                borderColor="techPurple"
+                placeholder={t(
+                  "editor.action.resource.restapi.placeholder.base_url",
+                )}
+              />
+            )}
+            name="baseUrl"
+          />
+        </div>
+        <Controller
+          control={control}
+          defaultValue={resource?.content.baseUrl ?? ""}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { value, onChange, onBlur } }) => (
+            <InputRecordEditor
+              label={t("editor.action.resource.restapi.label.url_parameters")}
+              records={[
+                {
+                  key: "",
+                  value: "",
+                },
+              ]}
+              onAdd={() => {}}
+              onDelete={() => {}}
+              onChangeKey={() => {}}
+              onChangeValue={() => {}}
+            />
+          )}
+          name="baseUrl"
+        />
+        <div css={footerStyle}>
+          <Button
+            leftIcon={<PaginationPreIcon />}
+            variant="text"
+            colorScheme="gray"
+            onClick={() => {
+              onBack()
+            }}
+          >
+            {t("back")}
+          </Button>
+          <ButtonGroup spacing="8px">
+            <Button
+              colorScheme="gray"
+              loading={testLoading}
+              disabled={!formState.isValid}
+              type="submit"
+            >
+              {t("editor.action.form.btn.test_connection")}
+            </Button>
+            <Button
+              colorScheme="techPurple"
+              disabled={!formState.isValid}
+              loading={createLoading}
+              type="submit"
+            >
+              {t("editor.action.form.btn.create_resource")}
+            </Button>
+          </ButtonGroup>
+        </div>
+      </div>
+    </form>
+  )
+}
+
+RestApiConfigElement.displayName = "RestApiConfigElement"

@@ -1,21 +1,18 @@
 import { FC, useMemo } from "react"
-import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/RecordEditor/interface"
+import { InputRecordEditorProps } from "./interface"
+import { useTranslation } from "react-i18next"
 import {
   applyRecordEditorContainerStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
-  recordKeyStyle,
   recordStyle,
-  recordValueStyle,
 } from "./style"
-import { CodeEditor } from "@/components/CodeEditor"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { Button } from "@illa-design/button"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { useTranslation } from "react-i18next"
+import { Input } from "@illa-design/input"
 
-export const RecordEditor: FC<RecordEditorProps> = (props) => {
+export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
 
   const { t } = useTranslation()
@@ -26,26 +23,23 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
         {records.map((record, index) => {
           return (
             <div css={recordStyle} key={index}>
-              <CodeEditor
-                css={recordKeyStyle}
-                height="32px"
+              <Input
+                w="100%"
+                borderColor="techPurple"
                 value={record.key}
-                mode="TEXT_JS"
                 placeholder="key"
-                borderRadius="8px 0 0 8px"
-                expectedType={VALIDATION_TYPES.STRING}
+                bdRadius="8px 0 0 8px"
                 onChange={(value) => {
                   onChangeKey(index, value, record.value)
                 }}
               />
-              <CodeEditor
-                css={recordValueStyle}
-                height="32px"
-                mode="TEXT_JS"
+              <Input
+                w="100%"
+                borderColor="techPurple"
                 placeholder="value"
                 value={record.value}
-                borderRadius="0 0 0 0"
-                expectedType={VALIDATION_TYPES.STRING}
+                ml="-1px"
+                bdRadius="0"
                 onChange={(value) => {
                   onChangeValue(index, record.key, value)
                 }}
@@ -53,6 +47,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
               <Button
                 ml="-1px"
                 variant="outline"
+                minW="32px"
                 bdRadius="0 8px 8px 0"
                 colorScheme="gray"
                 onClick={() => {
@@ -98,4 +93,4 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
   )
 }
 
-RecordEditor.displayName = "RecordEditor"
+InputRecordEditor.displayName = "InputRecordEditor"

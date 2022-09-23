@@ -4,11 +4,10 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 export function applyRecordEditorContainerStyle(label: string) {
   return css`
     display: flex;
-    padding-right: ${label !== "" ? "16px" : "0"};
+    padding-right: ${label !== "" ? "24px" : "0"};
     flex-direction: row;
   `
 }
-
 export const recordEditorStyle = css`
   display: flex;
   flex-grow: 1;
@@ -20,16 +19,6 @@ export const recordStyle = css`
   flex-direction: row;
   align-items: center;
   min-height: 48px;
-`
-
-export const recordKeyStyle = css`
-  min-width: 160px;
-`
-
-export const recordValueStyle = css`
-  width: 0;
-  flex-grow: 1;
-  margin-left: -1px;
 `
 
 export const recordEditorLabelStyle = css`

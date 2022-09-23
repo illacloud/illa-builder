@@ -1,6 +1,6 @@
 import { Params } from "@/redux/resource/resourceState"
 
-export interface RecordEditorProps {
+export interface InputRecordEditorProps {
   label: string
   records: Params[]
   onAdd: () => void

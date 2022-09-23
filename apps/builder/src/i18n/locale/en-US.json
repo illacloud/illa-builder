@@ -322,6 +322,9 @@
         },
         "restapi": {
           "name": "REST API",
+          "title": {
+            "advanced_option": "GENERAL"
+          },
           "label": {
             "name": "Name",
             "action_type": "Action Type",
