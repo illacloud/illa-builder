@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from "react"
+import { FC, useState } from "react"
 import {
   createNewStyle,
   resourceChooseContainerStyle,
@@ -17,13 +17,16 @@ import { RootState } from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { ResourceChooseProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { Modal } from "@illa-design/modal"
+import { getResourceNameFromResourceType } from "@/redux/resource/resourceState"
+import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
+import { getResourceTypeFromActionType } from "@/redux/currentApp/action/actionState"
 
 export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
   const [editorVisible, setEditorVisible] = useState(false)
-  const [editType, setEditType] = useState(false)
 
   const resourceList = useSelector(getAllResources)
   const action = props.action
@@ -31,105 +34,118 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
     (state: RootState) => state.config.cacheActionContent,
   )
 
-  const realResourceId = useMemo(() => {
-    let currentResourceId = action.resourceId
-    const currentResource = resourceList.find(
-      (r) => r.resourceId === currentResourceId,
-    )
-    if (currentResource) {
-      return currentResourceId
-    }
-    return ""
-  }, [resourceList, action.resourceId])
-
   return (
-    <div css={resourceChooseContainerStyle}>
-      <span css={resourceTitleStyle}>{t("resources")}</span>
-      <Space direction="horizontal" size="8px" alignItems="center">
-        <Select
-          colorScheme="techPurple"
-          w="200px"
-          value={realResourceId}
-          onChange={(value) => {
-            const resource = resourceList.find((r) => r.resourceId === value)
-            if (resource != undefined) {
+    <>
+      <div css={resourceChooseContainerStyle}>
+        <span css={resourceTitleStyle}>{t("resources")}</span>
+        <Space direction="horizontal" size="8px" alignItems="center">
+          <Select
+            colorScheme="techPurple"
+            w="200px"
+            value={action.resourceId}
+            onChange={(value) => {
+              const resource = resourceList.find((r) => r.resourceId === value)
+              if (resource != undefined) {
+                dispatch(
+                  configActions.updateSelectedAction({
+                    ...action,
+                    // selected resource is same as action type
+                    actionType: resource.resourceType,
+                    resourceId: value,
+                    content:
+                      contentMap[resource.resourceType] ??
+                      getInitialContent(resource.resourceType),
+                  }),
+                )
+              }
+            }}
+            addonAfter={{
+              buttonProps: {
+                variant: "outline",
+                colorScheme: "gray",
+                leftIcon: (
+                  <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-04`)} />
+                ),
+                onClick: () => {
+                  setEditorVisible(true)
+                },
+              } as ButtonProps,
+            }}
+          >
+            <Option
+              key="create"
+              isSelectOption={false}
+              onClick={() => {
+                setEditorVisible(true)
+              }}
+            >
+              <Space
+                size="8px"
+                direction="horizontal"
+                alignItems="center"
+                css={createNewStyle}
+              >
+                <AddIcon size="14px" />
+                {t("editor.action.panel.option.resource.new")}
+              </Space>
+            </Option>
+            {resourceList.map((item) => {
+              return (
+                <Option value={item.resourceId} key={item.resourceId}>
+                  <Space size="8px" direction="horizontal" alignItems="center">
+                    {getIconFromResourceType(item.resourceType, "14px")}
+                    {item.resourceName}
+                  </Space>
+                </Option>
+              )
+            })}
+          </Select>
+          <Select
+            colorScheme="techPurple"
+            w="400px"
+            value={action.triggerMode}
+            onChange={(value) => {
               dispatch(
                 configActions.updateSelectedAction({
                   ...action,
-                  // selected resource is same as action type
-                  actionType: resource.resourceType,
-                  resourceId: value,
-                  content:
-                    contentMap[resource.resourceType] ??
-                    getInitialContent(resource.resourceType),
+                  triggerMode: value,
                 }),
               )
-            }
-          }}
-          addonAfter={{
-            buttonProps: {
-              variant: "outline",
-              colorScheme: "gray",
-              leftIcon: (
-                <PenIcon color={globalColor(`--${illaPrefix}-grayBlue-04`)} />
-              ),
-              onClick: () => {
-                setEditType(true)
-                setEditorVisible(true)
-              },
-            } as ButtonProps,
-          }}
-        >
-          <Option
-            key="create"
-            isSelectOption={false}
-            onClick={() => {
-              setEditType(false)
-              setEditorVisible(true)
             }}
           >
-            <Space
-              size="8px"
-              direction="horizontal"
-              alignItems="center"
-              css={createNewStyle}
-            >
-              <AddIcon size="14px" />
-              {t("editor.action.panel.option.resource.new")}
-            </Space>
-          </Option>
-          {resourceList.map((item) => {
-            return (
-              <Option value={item.resourceId} key={item.resourceId}>
-                <Space size="8px" direction="horizontal" alignItems="center">
-                  {getIconFromResourceType(item.resourceType, "14px")}
-                  {item.resourceName}
-                </Space>
-              </Option>
-            )
-          })}
-        </Select>
-        <Select
-          colorScheme="techPurple"
-          w="400px"
-          value={action.triggerMode}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateSelectedAction({
-                ...action,
-                triggerMode: value,
-              }),
-            )
+            <Option value="manually" key="manually">
+              {t("editor.action.panel.option.trigger.manually")}
+            </Option>
+            <Option value="automate" key="automate">
+              {t("editor.action.panel.option.trigger.on_change")}
+            </Option>
+          </Select>
+        </Space>
+      </div>
+      <Modal
+        w="696px"
+        visible={editorVisible}
+        footer={false}
+        closable
+        withoutLine
+        withoutPadding
+        title={getResourceNameFromResourceType(
+          getResourceTypeFromActionType(action.actionType),
+        )}
+        onCancel={() => {
+          setEditorVisible(false)
+        }}
+      >
+        <ResourceCreator
+          resourceId={action.resourceId}
+          onBack={() => {
+            setEditorVisible(false)
           }}
-        >
-          <Option value="manually" key="manually">
-            {t("editor.action.panel.option.trigger.manually")}
-          </Option>
-          <Option value="automate" key="automate">
-            {t("editor.action.panel.option.trigger.on_change")}
-          </Option>
-        </Select>
-      </Space>
-    </div>
+          onFinished={() => {
+            setEditorVisible(false)
+          }}
+        />
+      </Modal>
+    </>
   )
 }

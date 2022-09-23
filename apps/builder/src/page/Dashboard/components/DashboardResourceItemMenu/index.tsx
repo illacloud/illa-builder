@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
 import { Dropdown, DropList } from "@illa-design/dropdown"
@@ -8,11 +8,17 @@ import { MoreIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Api } from "@/api/base"
-import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import {
+  getResourceNameFromResourceType,
+  Resource,
+  ResourceContent,
+} from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 import { Space } from "@illa-design/space"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
+import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
+import { RootState } from "@/store"
 
 const Item = DropList.Item
 
@@ -26,6 +32,10 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
 
   const [confirmLoading, setConfirmLoading] = useState(false)
   const [resourceEditorVisible, setResourceEditorVisible] = useState(false)
+
+  const resource = useSelector((state: RootState) => {
+    return state.resource.find((item) => item.resourceId === resourceId)!!
+  })
 
   return (
     <>
@@ -113,6 +123,28 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           />
         </Dropdown>
       </Space>
+      <Modal
+        w="696px"
+        visible={resourceEditorVisible}
+        footer={false}
+        closable
+        withoutLine
+        withoutPadding
+        title={getResourceNameFromResourceType(resource.resourceType)}
+        onCancel={() => {
+          setResourceEditorVisible(false)
+        }}
+      >
+        <ResourceCreator
+          resourceId={resourceId}
+          onBack={() => {
+            setResourceEditorVisible(false)
+          }}
+          onFinished={() => {
+            setResourceEditorVisible(false)
+          }}
+        />
+      </Modal>
     </>
   )
 }

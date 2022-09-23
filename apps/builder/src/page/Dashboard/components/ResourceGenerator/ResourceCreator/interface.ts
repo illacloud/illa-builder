@@ -3,7 +3,7 @@ import { ResourceCreatorPage } from "@/page/Dashboard/components/ResourceGenerat
 
 export interface ResourceCreatorProps {
   resourceId?: string
-  resourceType: ResourceType
+  resourceType?: ResourceType
   onBack: (page: ResourceCreatorPage) => void
   onFinished: (resourceId: string) => void
 }
