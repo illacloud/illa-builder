@@ -5,7 +5,7 @@ import { getAllResources } from "@/redux/resource/resourceSelector"
 import { MysqlConfigElement } from "@/page/App/components/Actions/MysqlConfigElement"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
-  const { resourceId, onBack, onFinished, resourceType } = props
+  const { onBack, onFinished, resourceType } = props
 
   const resourceList = useSelector(getAllResources)
     .filter((r) => r.resourceType == resourceType)
@@ -19,7 +19,6 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
     case "mysql":
       renderElement = (
         <MysqlConfigElement
-          resourceId={resourceId}
           onBack={() => {
             if (resourceList.length > 0) {
               onBack("createAction")

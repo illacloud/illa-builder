@@ -23,12 +23,15 @@ import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store"
+import { MysqlResource, Resource } from "@/redux/resource/resourceState"
 
 export const MysqlConfigElement = forwardRef<
   HTMLDivElement,
   MysqlConfigElementProps
 >((props, ref) => {
-  const { onBack } = props
+  const { onBack, resourceId } = props
 
   const { t } = useTranslation()
 
@@ -36,6 +39,12 @@ export const MysqlConfigElement = forwardRef<
 
   const { control, handleSubmit, formState } = useForm({
     mode: "onChange",
+  })
+
+  const resource = useSelector((state: RootState) => {
+    return state.resource.find(
+      (r) => r.resourceId === resourceId,
+    ) as Resource<MysqlResource>
   })
 
   const [testLoading, setTestLoading] = useState(false)
@@ -56,6 +65,7 @@ export const MysqlConfigElement = forwardRef<
           </div>
           <Controller
             control={control}
+            defaultValue={resource?.resourceName ?? ""}
             rules={{
               required: true,
             }}
@@ -85,6 +95,7 @@ export const MysqlConfigElement = forwardRef<
           </div>
           <div css={hostInputContainer}>
             <Controller
+              defaultValue={resource?.content.host}
               control={control}
               rules={{
                 required: true,
@@ -104,6 +115,7 @@ export const MysqlConfigElement = forwardRef<
               name="host"
             />
             <Controller
+              defaultValue={resource?.content.port}
               control={control}
               rules={{
                 required: true,
@@ -133,6 +145,7 @@ export const MysqlConfigElement = forwardRef<
             </span>
           </div>
           <Controller
+            defaultValue={resource?.content.databaseName}
             control={control}
             rules={{
               required: true,
@@ -165,6 +178,7 @@ export const MysqlConfigElement = forwardRef<
           </div>
           <div css={hostInputContainer}>
             <Controller
+              defaultValue={resource?.content.databaseUsername}
               control={control}
               rules={{
                 required: true,
@@ -185,6 +199,7 @@ export const MysqlConfigElement = forwardRef<
             />
             <Controller
               control={control}
+              defaultValue={resource?.content.databasePassword}
               rules={{
                 required: true,
               }}
@@ -235,12 +250,22 @@ export const MysqlConfigElement = forwardRef<
               {t("editor.action.resource.mysql.label.ssl_options")}
             </span>
           </div>
-          <Switch
-            ml="16px"
-            colorScheme="techPurple"
-            onChange={(open) => {
-              setSSLOpen(open)
-            }}
+          <Controller
+            control={control}
+            defaultValue={resource?.content.ssl.ssl}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <Switch
+                value={value}
+                ml="16px"
+                colorScheme="techPurple"
+                onChange={(open) => {
+                  onChange(open)
+                  setSSLOpen(open)
+                }}
+                onBlur={onBlur}
+              />
+            )}
+            name="ssl"
           />
           <span css={sslStyle}>
             {t("editor.action.resource.mysql.tip.ssl_options")}
@@ -264,10 +289,11 @@ export const MysqlConfigElement = forwardRef<
               </div>
               <Controller
                 control={control}
+                defaultValue={resource?.content.ssl.serverCert}
                 rules={{
                   required: true,
                 }}
-                shouldUnregister={!sslOpen}
+                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -300,10 +326,11 @@ export const MysqlConfigElement = forwardRef<
               </div>
               <Controller
                 control={control}
+                defaultValue={resource?.content.ssl.clientKey}
                 rules={{
                   required: true,
                 }}
-                shouldUnregister={!sslOpen}
+                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -336,7 +363,8 @@ export const MysqlConfigElement = forwardRef<
               </div>
               <Controller
                 control={control}
-                shouldUnregister={!sslOpen}
+                shouldUnregister={true}
+                defaultValue={resource?.content.ssl.clientCert}
                 rules={{
                   required: true,
                 }}

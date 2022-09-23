@@ -19,6 +19,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
     case "mysql":
       resourceElement = (
         <MysqlConfigElement
+          resourceId={resourceId}
           onBack={() => {
             onBack("select")
           }}
