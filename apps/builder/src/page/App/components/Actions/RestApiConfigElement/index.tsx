@@ -5,7 +5,6 @@ import { Controller, useForm } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import {
-  BasicAuth,
   Params,
   Resource,
   RestApiAuth,
@@ -22,7 +21,7 @@ import {
   optionLabelStyle,
 } from "./style"
 import { getColor } from "@illa-design/theme"
-import { Input, Password } from "@illa-design/input"
+import { Input } from "@illa-design/input"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
@@ -151,7 +150,11 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onChange([...value, { key: "", value: "" }])
               }}
               onDelete={(index, record) => {
-                onChange((value as Params[]).splice(index, 1))
+                let newRecords = (value as Params[]).splice(index, 1)
+                if (newRecords.length === 0) {
+                  newRecords = [{ key: "", value: "" }]
+                }
+                onChange(newRecords)
               }}
               onChangeKey={(index, key, v) => {
                 onChange(((value as Params[])[index].key = key))
@@ -181,7 +184,11 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onChange([...value, { key: "", value: "" }])
               }}
               onDelete={(index, record) => {
-                onChange((value as Params[]).splice(index, 1))
+                let newRecords = (value as Params[]).splice(index, 1)
+                if (newRecords.length === 0) {
+                  newRecords = [{ key: "", value: "" }]
+                }
+                onChange(newRecords)
               }}
               onChangeKey={(index, key, v) => {
                 onChange(((value as Params[])[index].key = key))
@@ -211,7 +218,11 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onChange([...value, { key: "", value: "" }])
               }}
               onDelete={(index, record) => {
-                onChange((value as Params[]).splice(index, 1))
+                let newRecords = (value as Params[]).splice(index, 1)
+                if (newRecords.length === 0) {
+                  newRecords = [{ key: "", value: "" }]
+                }
+                onChange(newRecords)
               }}
               onChangeKey={(index, key, v) => {
                 onChange(((value as Params[])[index].key = key))
