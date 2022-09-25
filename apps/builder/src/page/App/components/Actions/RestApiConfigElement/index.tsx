@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import {
   BasicAuth,
+  Params,
   Resource,
   RestApiAuth,
   RestApiResource,
@@ -27,6 +28,8 @@ import { PaginationPreIcon } from "@illa-design/icon"
 import { Divider } from "@illa-design/divider"
 import { Select } from "@illa-design/select"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
+import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
+import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
 
 export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   const { onBack, resourceId } = props
@@ -132,69 +135,90 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
         </div>
         <Controller
           control={control}
-          defaultValue={resource?.content.baseUrl ?? ""}
-          rules={{
-            required: true,
-          }}
+          defaultValue={
+            resource?.content.urlParams ?? [
+              {
+                key: "",
+                value: "",
+              },
+            ]
+          }
           render={({ field: { value, onChange, onBlur } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.restapi.label.url_parameters")}
-              records={[
-                {
-                  key: "",
-                  value: "",
-                },
-              ]}
-              onAdd={() => {}}
-              onDelete={() => {}}
-              onChangeKey={() => {}}
-              onChangeValue={() => {}}
+              records={value}
+              onAdd={() => {
+                onChange([...value, { key: "", value: "" }])
+              }}
+              onDelete={(index, record) => {
+                onChange((value as Params[]).splice(index, 1))
+              }}
+              onChangeKey={(index, key, v) => {
+                onChange(((value as Params[])[index].key = key))
+              }}
+              onChangeValue={(index, key, v) => {
+                onChange(((value as Params[])[index].value = v))
+              }}
             />
           )}
-          name="baseUrl"
+          name="urlParams"
         />
         <Controller
           control={control}
-          defaultValue={resource?.content.headers ?? ""}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { value, onChange, onBlur } }) => (
+          defaultValue={
+            resource?.content.headers ?? [
+              {
+                key: "",
+                value: "",
+              },
+            ]
+          }
+          render={({ field: { value, onChange } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.restapi.label.headers")}
-              records={[
-                {
-                  key: "",
-                  value: "",
-                },
-              ]}
-              onAdd={() => {}}
-              onDelete={() => {}}
-              onChangeKey={() => {}}
-              onChangeValue={() => {}}
+              records={value}
+              onAdd={() => {
+                onChange([...value, { key: "", value: "" }])
+              }}
+              onDelete={(index, record) => {
+                onChange((value as Params[]).splice(index, 1))
+              }}
+              onChangeKey={(index, key, v) => {
+                onChange(((value as Params[])[index].key = key))
+              }}
+              onChangeValue={(index, key, v) => {
+                onChange(((value as Params[])[index].value = v))
+              }}
             />
           )}
           name="headers"
         />
         <Controller
           control={control}
-          defaultValue={resource?.content.cookies ?? ""}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { value, onChange, onBlur } }) => (
+          defaultValue={
+            resource?.content.cookies ?? [
+              {
+                key: "",
+                value: "",
+              },
+            ]
+          }
+          render={({ field: { value, onChange } }) => (
             <InputRecordEditor
               label={t("editor.action.resource.restapi.label.cookies")}
-              records={[
-                {
-                  key: "",
-                  value: "",
-                },
-              ]}
-              onAdd={() => {}}
-              onDelete={() => {}}
-              onChangeKey={() => {}}
-              onChangeValue={() => {}}
+              records={value}
+              onAdd={() => {
+                onChange([...value, { key: "", value: "" }])
+              }}
+              onDelete={(index, record) => {
+                onChange((value as Params[]).splice(index, 1))
+              }}
+              onChangeKey={(index, key, v) => {
+                onChange(((value as Params[])[index].key = key))
+              }}
+              onChangeValue={(index, key, v) => {
+                onChange(((value as Params[])[index].value = v))
+              }}
             />
           )}
           name="cookies"
@@ -230,105 +254,8 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             name="authentication"
           />
         </div>
-        {authType === "basic" && (
-          <div css={configItem}>
-            <div css={labelContainer}>
-              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                *
-              </span>
-              <span
-                css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-              >
-                {t("editor.action.resource.restapi.label.basic_auth_username")}
-              </span>
-            </div>
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              shouldUnregister={true}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  ml="16px"
-                  mr="24px"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                />
-              )}
-              name="username"
-            />
-          </div>
-        )}
-        {authType === "basic" && (
-          <div css={configItem}>
-            <div css={labelContainer}>
-              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                *
-              </span>
-              <span
-                css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-              >
-                {t("editor.action.resource.restapi.label.basic_auth_password")}
-              </span>
-            </div>
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              shouldUnregister={true}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Password
-                  w="100%"
-                  ml="16px"
-                  mr="24px"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                />
-              )}
-              name="password"
-            />
-          </div>
-        )}
-        {authType === "bearer" && (
-          <div css={configItem}>
-            <div css={labelContainer}>
-              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                *
-              </span>
-              <span
-                css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-              >
-                {t("editor.action.resource.restapi.label.bearerToken")}
-              </span>
-            </div>
-            <Controller
-              control={control}
-              rules={{
-                required: true,
-              }}
-              shouldUnregister={true}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  ml="16px"
-                  mr="24px"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                />
-              )}
-              name="token"
-            />
-          </div>
-        )}
+        {authType === "basic" && <BasicAuthPanel control={control} />}
+        {authType === "bearer" && <BearerAuthPanel control={control} />}
       </div>
       <div css={footerStyle}>
         <Button
