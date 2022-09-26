@@ -10,8 +10,6 @@ import { RootState } from "@/store"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { get, isEqual } from "lodash"
 import { AddIcon } from "@illa-design/icon"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { isNumber } from "@illa-design/system"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
 
 export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
@@ -71,11 +69,10 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
     >
       <div css={columnLabelStyle}>
         <div>{t("editor.inspect.setter_content.column_setter.label", { number: value.length })}</div>
-        {/*TODO: new column*/}
-        {/*<div css={headerActionButtonStyle} onClick={handleAddOption}>*/}
-        {/*  <AddIcon _css={addIconStyle} />*/}
-        {/*  <span>{t("editor.inspect.setter_content.column_setter.new")}</span>*/}
-        {/*</div>*/}
+        <div css={headerActionButtonStyle} onClick={handleAddOption}>
+          <AddIcon _css={addIconStyle} />
+          <span>{t("editor.inspect.setter_content.column_setter.new")}</span>
+        </div>
       </div>
       <div css={ListStyle}>
         <div css={optionListHeaderStyle}>

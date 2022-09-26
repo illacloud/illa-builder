@@ -5,7 +5,7 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { dayjsPro, isNumber } from "@illa-design/system"
+import { transDataForType } from "@/widgetLibrary/TableWidget/utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -84,32 +84,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   const columnsDef = useMemo(() => {
     const res: ColumnItemShape[] = []
     columns?.map((item) => {
-      const transItem = JSON.parse(JSON.stringify(item))
-      const {
-        type = "text",
-        decimalPlaces = 0,
-        format = "YYYY-MM-DD",
-      } = transItem as ColumnItemShape
-      transItem["cell"] = (props: any) => {
-        const cellValue = props?.getValue()
-        switch (type) {
-          default:
-            return cellValue
-          case "text":
-            return cellValue
-          case "number":
-            const formatVal = Number(cellValue)
-            return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
-          case "percent":
-            const percentVal = Number(cellValue)
-            return isNumber(percentVal)
-              ? `${(percentVal * 100).toFixed(decimalPlaces)}%`
-              : "-"
-          case "date":
-            const dayVal = dayjsPro(cellValue).format(format)
-            return dayVal ? dayVal : "-"
-        }
-      }
+      const transItem = JSON.parse(JSON.stringify(item)) as ColumnItemShape
+      transItem["header"] = transDataForType(transItem)
       res.push(transItem)
     })
     return res
@@ -151,3 +127,5 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     </div>
   )
 }
+
+WrappedTable.displayName = "WrappedTable"
