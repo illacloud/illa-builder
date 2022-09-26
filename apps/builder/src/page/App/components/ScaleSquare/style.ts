@@ -347,7 +347,9 @@ export const applyRNDWrapperStyle = (
     #moveBar {
       visibility: ${isEditor ? "visible" : "hidden"};
     }
+    z-index: 6;
   }
+  z-index: ${isSelected ? 5 : 0};
   opacity: ${isDragging ? 0 : 100};
 `
 
