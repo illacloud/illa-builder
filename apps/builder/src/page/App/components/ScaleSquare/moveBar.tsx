@@ -22,19 +22,18 @@ export const MoveBar: FC<MoveBarProps> = props => {
     isEditor,
     widgetTop,
     widgetHeight,
-    containerTop,
-    containerBottom,
+    containerHeight,
     containerPadding,
   } = props
   const position: MoveBarPositionShape = useMemo(() => {
-    if (widgetTop - containerTop + containerPadding >= MOVE_BAR_HEIGHT) {
+    if (widgetTop + containerPadding >= MOVE_BAR_HEIGHT) {
       return {
         direction: "top",
         position: -MOVE_BAR_HEIGHT,
       }
     }
     if (
-      containerBottom - (widgetTop + widgetHeight) + containerPadding >=
+      containerHeight - (widgetTop + widgetHeight) + containerPadding >=
       MOVE_BAR_HEIGHT
     ) {
       return {
@@ -46,7 +45,7 @@ export const MoveBar: FC<MoveBarProps> = props => {
       direction: "top",
       position: 0,
     }
-  }, [containerBottom, containerPadding, containerTop, widgetHeight, widgetTop])
+  }, [containerHeight, containerPadding, widgetHeight, widgetTop])
   return (
     <div
       css={applyMoveBarWrapperStyle(

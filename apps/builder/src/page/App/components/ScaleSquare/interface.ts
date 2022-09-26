@@ -13,7 +13,7 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   y: number
   unitW: number
   unitH: number
-  containerRef: RefObject<HTMLDivElement>
+  containerHeight: number
   containerPadding: number
 }
 
@@ -34,8 +34,7 @@ export interface MoveBarProps {
   isEditor: boolean
   widgetTop: number
   widgetHeight: number
-  containerTop: number
-  containerBottom: number
+  containerHeight: number
   containerPadding: number
 }
 

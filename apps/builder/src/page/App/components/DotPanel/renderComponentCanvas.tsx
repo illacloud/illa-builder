@@ -76,6 +76,11 @@ export const RenderComponentCanvas: FC<{
       const x = item.x * unitWidth
       const y = item.y * UNIT_HEIGHT
 
+      const containerHeight =
+        componentNode.displayName === "root"
+          ? rowNumber * UNIT_HEIGHT
+          : (componentNode.h - 1) * UNIT_HEIGHT
+
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
           return <DotPanel componentNode={item} key={item.displayName} />
@@ -90,7 +95,7 @@ export const RenderComponentCanvas: FC<{
               y={y}
               unitW={unitWidth}
               unitH={UNIT_HEIGHT}
-              containerHeight={(componentNode.h - 1) * UNIT_HEIGHT}
+              containerHeight={containerHeight}
               containerPadding={containerPadding}
             />
           )

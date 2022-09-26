@@ -62,8 +62,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     h,
     x,
     y,
-    containerRef,
     containerPadding,
+    containerHeight,
   } = props
 
   const shortcut = useContext(ShortCutContext)
@@ -136,6 +136,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       if (illaMode !== "edit") return
+      e.stopPropagation()
       if (e.metaKey || e.shiftKey) {
         const currentSelectedDisplayName = cloneDeep(selectedComponents)
 
@@ -463,12 +464,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             isEditor={illaMode === "edit"}
             widgetTop={y}
             widgetHeight={h}
-            containerPadding={containerPadding}
-            containerTop={containerRef.current?.scrollTop || 0}
-            containerBottom={
-              (containerRef.current?.scrollTop || 0) +
-              (containerRef.current?.scrollHeight || 0)
-            }
+            containerPadding={containerPadding || 0}
+            containerHeight={containerHeight}
           />
 
           <TransformWidgetWrapper componentNode={componentNode} />

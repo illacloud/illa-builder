@@ -315,6 +315,7 @@ export const applyMoveBarWrapperStyle = (
     overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
     z-index: 100;
+    cursor: move;
   `
 }
 
@@ -337,14 +338,14 @@ export const applyRNDWrapperStyle = (
   isEditor: boolean,
 ) => css`
   :hover {
-    .wrapperPending {
+    > .wrapperPending {
       border-color: ${isEditor
         ? hasError && !isSelected
           ? globalColor(`--${illaPrefix}-red-03`)
           : globalColor(`--${illaPrefix}-techPurple-01`)
         : "transparent"};
     }
-    #moveBar {
+    > #moveBar {
       visibility: ${isEditor ? "visible" : "hidden"};
     }
     z-index: 6;
