@@ -34,6 +34,26 @@ import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 
+function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
+  let authContent: RestApiAuth | null = null
+  switch (data.authentication) {
+    case "basic":
+      authContent = {
+        username: data.username,
+        password: data.password,
+      }
+      break
+    case "bearer":
+      authContent = {
+        token: data.token,
+      }
+      break
+    default:
+      break
+  }
+  return authContent
+}
+
 export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   const { onBack, onFinished, resourceId } = props
 
@@ -59,22 +79,6 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   return (
     <form
       onSubmit={handleSubmit((data, event) => {
-        let authContent: RestApiAuth | null = null
-        switch (data.authentication) {
-          case "basic":
-            authContent = {
-              username: data.username,
-              password: data.password,
-            }
-            break
-          case "bearer":
-            authContent = {
-              token: data.token,
-            }
-            break
-          default:
-            break
-        }
         if (resourceId != undefined) {
           Api.request<Resource<RestApiResource<RestApiAuth>>>(
             {
@@ -90,7 +94,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                   headers: data.headers,
                   cookies: data.cookies,
                   authentication: data.authentication,
-                  authContent: authContent,
+                  authContent: generateAuthContent(data),
                 },
               },
             },
@@ -123,7 +127,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                   headers: data.headers,
                   cookies: data.cookies,
                   authentication: data.authentication,
-                  authContent: authContent,
+                  authContent: generateAuthContent(data),
                 },
               },
             },
