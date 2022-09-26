@@ -48,7 +48,9 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   const [testLoading, setTestLoading] = useState(false)
   const [createLoading, setCreateLoading] = useState(false)
 
-  const [authType, setAuthType] = useState(resource.content.authentication)
+  const [authType, setAuthType] = useState(
+    resource?.content.authentication ?? "none",
+  )
 
   return (
     <form onSubmit={handleSubmit((data, event) => {})}>
@@ -150,17 +152,22 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onChange([...value, { key: "", value: "" }])
               }}
               onDelete={(index, record) => {
-                let newRecords = (value as Params[]).splice(index, 1)
+                let newRecords = [...value]
+                newRecords.splice(index, 1)
                 if (newRecords.length === 0) {
                   newRecords = [{ key: "", value: "" }]
                 }
                 onChange(newRecords)
               }}
               onChangeKey={(index, key, v) => {
-                onChange(((value as Params[])[index].key = key))
+                let newRecords = [...value]
+                newRecords[index].key = key
+                onChange(newRecords)
               }}
               onChangeValue={(index, key, v) => {
-                onChange(((value as Params[])[index].value = v))
+                let newRecords = [...value]
+                newRecords[index].value = v
+                onChange(newRecords)
               }}
             />
           )}
@@ -184,17 +191,22 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onChange([...value, { key: "", value: "" }])
               }}
               onDelete={(index, record) => {
-                let newRecords = (value as Params[]).splice(index, 1)
+                let newRecords = [...value]
+                newRecords.splice(index, 1)
                 if (newRecords.length === 0) {
                   newRecords = [{ key: "", value: "" }]
                 }
                 onChange(newRecords)
               }}
               onChangeKey={(index, key, v) => {
-                onChange(((value as Params[])[index].key = key))
+                let newRecords = [...value]
+                newRecords[index].key = key
+                onChange(newRecords)
               }}
               onChangeValue={(index, key, v) => {
-                onChange(((value as Params[])[index].value = v))
+                let newRecords = [...value]
+                newRecords[index].value = v
+                onChange(newRecords)
               }}
             />
           )}
@@ -218,17 +230,22 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                 onChange([...value, { key: "", value: "" }])
               }}
               onDelete={(index, record) => {
-                let newRecords = (value as Params[]).splice(index, 1)
+                let newRecords = [...value]
+                newRecords.splice(index, 1)
                 if (newRecords.length === 0) {
                   newRecords = [{ key: "", value: "" }]
                 }
                 onChange(newRecords)
               }}
               onChangeKey={(index, key, v) => {
-                onChange(((value as Params[])[index].key = key))
+                let newRecords = [...value]
+                newRecords[index].key = key
+                onChange(newRecords)
               }}
               onChangeValue={(index, key, v) => {
-                onChange(((value as Params[])[index].value = v))
+                let newRecords = [...value]
+                newRecords[index].value = v
+                onChange(newRecords)
               }}
             />
           )}

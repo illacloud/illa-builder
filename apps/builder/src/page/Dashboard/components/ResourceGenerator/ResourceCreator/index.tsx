@@ -7,9 +7,6 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
-
-  let resourceElement: ReactNode
-
   const resource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === resourceId)
   })
