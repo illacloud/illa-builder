@@ -22,8 +22,8 @@ import { ChartKeysSelectSetter } from "@/page/App/components/PanelSetters/ChartS
 import { ChartDatasetsSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter"
 import { ChartColorSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartColorSelectSetter"
 import { ChartTypeSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartTypeSelectSetter"
-import { ColumnSetter } from "@/page/App/components/PanelSetters/ColumnSetter"
-import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/ColumnSetter/columsSelectSetter"
+import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
+import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,

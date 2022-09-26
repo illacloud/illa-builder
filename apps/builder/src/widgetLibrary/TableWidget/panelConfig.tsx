@@ -48,6 +48,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "columns",
         setterType: "COLUMN_SETTER",
+        openDynamic: true,
         childrenSetter: [
           {
             id: `${baseWidgetName}-column-header`,

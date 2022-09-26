@@ -12,7 +12,7 @@ import {
 import { DragIconAndLabelProps } from "./interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/ColumnSetter/context/columnListContext"
+import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/context/columnListContext"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, label, visible } = props

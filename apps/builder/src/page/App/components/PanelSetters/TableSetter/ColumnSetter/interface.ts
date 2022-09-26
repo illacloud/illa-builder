@@ -1,7 +1,7 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { PanelFieldConfig, PanelLabelProps } from "@/page/App/components/InspectPanel/interface"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/ColumnSetter/columsSelectSetter"
+import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
 
 export interface HeaderProps {
   labelName: string
@@ -18,11 +18,6 @@ export interface DragIconAndLabelProps {
   visible?: boolean
 }
 
-export type SelectOptions = (string | number | {
-  label: string;
-  value: string | number;
-})[];
-
 export interface ColumnListSetterProps extends BaseSetter {
   value: ColumnItemShape[]
   childrenSetter?: PanelFieldConfig[]
@@ -37,10 +32,4 @@ export interface DragItem {
 export interface ActionMenuProps {
   index: number
   handleCloseMode: () => void
-}
-
-export interface ColumnsSelectSetterProps
-  extends BaseSetter,
-    PanelLabelProps {
-  allowClear?: boolean
 }
