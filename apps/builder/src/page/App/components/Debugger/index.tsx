@@ -48,7 +48,7 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                 return <ErrorItem key={index} pathName={name} item={item} />
               })
             }
-            return <ErrorItem pathName={name} item={error} />
+            return <ErrorItem key={name} pathName={name} item={error} />
           })}
         </div>
       </div>

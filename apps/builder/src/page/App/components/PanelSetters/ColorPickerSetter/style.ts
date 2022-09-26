@@ -7,7 +7,7 @@ export function applyCircleStyle(color: string): SerializedStyles {
     &::after {
       top: 0;
       left: 0;
-      content: '';
+      content: "";
       position: absolute;
       background-color: ${color};
       width: 100%;

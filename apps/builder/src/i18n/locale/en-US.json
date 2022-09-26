@@ -451,6 +451,9 @@
         "style": "STYLE",
         "validation": "VALIDATION",
         "options": "OPTIONS",
+        "column": "COLUMNS",
+        "sort": "SORT",
+        "row_selection": "ROW SELECTION",
         "data": "DATA"
       },
       "setter_label": {
@@ -564,10 +567,18 @@
           "remove": "Remove dataset",
           "aggregation_method": "Aggregation method"
         },
+        "sort": "Sort",
+        "default_sort_key": "Column",
+        "default_sort_order": "Direction",
+        "column_title": "Column title",
+        "column_type": "Column type",
+        "enable_sorting": "Enable Sorting",
+        "decimal_places": "Decimal places",
         "new_tab": "New tab",
         "description": "Description",
         "duration": "Duration",
         "data": "Data",
+        "empty_state": "Empty state",
         "chart_title": "Title",
         "x_axis_name": "X-axis name",
         "Y_axis_name": "Y-axis name"
@@ -610,6 +621,11 @@
         }
       },
       "setter_content": {
+        "column_setter": {
+          "label": "Columns ({{number}})",
+          "title": "Title",
+          "new": "New"
+        },
         "option_list": {
           "action_menu": {
             "delete": "Delete",
@@ -634,6 +650,9 @@
           "prefabricated": "Prefabricated color"
         },
         "widget_action_type_name": {
+          "sorting_change": "Sort change",
+          "pagination_change": "Page change",
+          "column_filters_change": "Filter change",
           "click": "Click",
           "change": "Change",
           "focus": "Focus",
@@ -747,7 +766,9 @@
       "name": "Chart"
     },
     "table": {
-      "name": "Table"
+      "name": "Table",
+      "ascend": "Asc",
+      "descend": "Desc"
     }
   },
   "Setting": "Setting",
