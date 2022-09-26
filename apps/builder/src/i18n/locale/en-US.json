@@ -266,8 +266,7 @@
         "btn": {
           "back": "Back",
           "test_connection": "Test Connection",
-          "create_resource": "Create Resource",
-          "save_changes": "Save Changes"
+          "save_changes": "Save Resource"
         },
         "validate": {
           "required": "{name} is required"

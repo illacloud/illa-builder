@@ -391,6 +391,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
+          type="button"
           onClick={() => {
             onBack()
           }}
@@ -405,7 +406,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             loading={saving}
             type="submit"
           >
-            {t("editor.action.form.btn.create_resource")}
+            {t("editor.action.form.btn.save_changes")}
           </Button>
         </ButtonGroup>
       </div>

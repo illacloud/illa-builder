@@ -264,8 +264,7 @@
         "btn": {
           "back": "后退",
           "test_connection": "测试连接",
-          "create_resource": "创建资源",
-          "save_changes": "保存修改"
+          "save_changes": "保存资源"
         },
         "validate": {
           "required": "请输入{name}"
