@@ -782,8 +782,8 @@
       "delete_success": "删除成功",
       "delete_fail": "删除失败",
       "create_resource": "创建资源",
-      "create_success": "创建成功！",
-      "edit_success": "修改成功"
+      "save_success": "保存成功",
+      "save_fail": "Failed to save"
     }
   },
   "setting": {

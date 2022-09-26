@@ -782,8 +782,8 @@
       "delete_success": "Deleted successfully",
       "delete_fail": "Failed to delete",
       "create_resource": "Create New",
-      "create_success": "Create Success",
-      "edit_success": "Edit Success"
+      "save_success": "Save successfully",
+      "save_fail": "Failed to save"
     }
   },
   "setting": {

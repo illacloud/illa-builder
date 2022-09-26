@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { RestApiConfigElementProps } from "./interface"
 import { useTranslation } from "react-i18next"
 import { Controller, useForm } from "react-hook-form"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import {
   Resource,
@@ -28,13 +28,17 @@ import { Select } from "@illa-design/select"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
 import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
+import { Api } from "@/api/base"
+import { Message } from "@illa-design/message"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
-  const { onBack, resourceId } = props
+  const { onBack, onFinished, resourceId } = props
 
   const { t } = useTranslation()
+  const dispatch = useDispatch()
 
-  const { getValues, control, handleSubmit, formState } = useForm({
+  const { control, handleSubmit, formState } = useForm({
     mode: "onChange",
   })
 
@@ -44,15 +48,101 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
     >
   })
 
-  const [testLoading, setTestLoading] = useState(false)
-  const [createLoading, setCreateLoading] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   const [authType, setAuthType] = useState(
     resource?.content.authentication ?? "none",
   )
 
   return (
-    <form onSubmit={handleSubmit((data, event) => {})}>
+    <form
+      onSubmit={handleSubmit((data, event) => {
+        let authContent: RestApiAuth | null = null
+        switch (data.authType) {
+          case "basic":
+            authContent = {
+              username: data.username,
+              password: data.password,
+            }
+            break
+          case "bearer":
+            authContent = {
+              token: data.token,
+            }
+            break
+          default:
+            break
+        }
+        if (resourceId != undefined) {
+          Api.request<Resource<RestApiResource<RestApiAuth>>>(
+            {
+              method: "PUT",
+              url: `/resource/${resourceId}`,
+              data: {
+                resourceId: data.resourceId,
+                resourceName: data.resourceName,
+                resourceType: "restapi",
+                content: {
+                  baseUrl: data.baseUrl,
+                  urlParams: data.urlParams,
+                  headers: data.headers,
+                  cookies: data.cookies,
+                  authentication: data.authentication,
+                  authContent,
+                },
+              },
+            },
+            (response) => {
+              onFinished(response.data.resourceId)
+              dispatch(resourceActions.updateResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        } else {
+          Api.request<Resource<RestApiResource<RestApiAuth>>>(
+            {
+              method: "POST",
+              url: `/resource`,
+              data: {
+                resourceName: data.resourceName,
+                resourceType: "restapi",
+                content: {
+                  baseUrl: data.baseUrl,
+                  urlParams: data.urlParams,
+                  headers: data.headers,
+                  cookies: data.cookies,
+                  authentication: data.authentication,
+                  authContent,
+                },
+              },
+            },
+            (response) => {
+              onFinished(response.data.resourceId)
+              dispatch(resourceActions.addResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        }
+      })}
+    >
       <div css={container}>
         <div css={divider} />
         <div css={configItem}>
@@ -260,7 +350,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           </div>
           <Controller
             control={control}
-            defaultValue={resource?.content.authentication ?? ""}
+            defaultValue={resource?.content.authentication ?? "none"}
             rules={{
               required: true,
             }}
@@ -297,21 +387,10 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
         </Button>
         <ButtonGroup spacing="8px">
           <Button
-            colorScheme="gray"
-            value="testing"
-            loading={testLoading}
-            disabled={!formState.isValid}
-            onClick={() => {
-              console.log("longbo", getValues())
-            }}
-          >
-            {t("editor.action.form.btn.test_connection")}
-          </Button>
-          <Button
             colorScheme="techPurple"
             value="creating"
             disabled={!formState.isValid}
-            loading={createLoading}
+            loading={saving}
             type="submit"
           >
             {t("editor.action.form.btn.create_resource")}
