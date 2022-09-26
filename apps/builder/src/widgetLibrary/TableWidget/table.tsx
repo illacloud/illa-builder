@@ -5,8 +5,7 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { tansTableDataToColumns, transDataForType } from "@/widgetLibrary/TableWidget/utils"
-import { isEqual } from "lodash"
+import { transDataForType } from "@/widgetLibrary/TableWidget/utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -91,20 +90,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     })
     return res
   }, [columns])
-  const isMount = useRef(false)
-
-  useEffect(() => {
-    if (!isMount.current) {
-      isMount.current = true
-      return
-    }
-    if (data?.length) {
-      let newColumns = tansTableDataToColumns(data)
-      if (!isEqual(columns, newColumns)) {
-        handleUpdateDsl({columns: newColumns})
-      }
-    }
-  }, [data])
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {

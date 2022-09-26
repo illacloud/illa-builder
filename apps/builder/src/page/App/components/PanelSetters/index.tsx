@@ -24,6 +24,7 @@ import { ChartColorSelectSetter } from "@/page/App/components/PanelSetters/Chart
 import { ChartTypeSelectSetter } from "@/page/App/components/PanelSetters/ChartSetter/chartTypeSelectSetter"
 import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
+import { TableDataInputSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataInputSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -38,6 +39,7 @@ const SetterTypeMapSetter = {
   OPTION_LIST_SETTER: OptionListSetter,
   COLUMN_SETTER: ColumnSetter,
   COLUMNS_SELECT_SETTER: ColumnsSelectSetter,
+  TABLE_DATA_INPUT_SETTER: TableDataInputSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,
   EVENT_HANDLER_SETTER: EventHandlerSetter,
   EVENT_TARGET_SELECT_SETTER: EventTargetWidgetSelect,

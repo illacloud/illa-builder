@@ -17,7 +17,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.data"),
         attrName: "data",
         isSetterSingleRow: true,
-        setterType: "INPUT_SETTER",
+        setterType: "TABLE_DATA_INPUT_SETTER",
       },
       {
         id: `${baseWidgetName}-basic-emptyState`,
