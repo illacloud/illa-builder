@@ -183,7 +183,12 @@ export const updateComponentContainerReducer: CaseReducer<
     }
 
     currentParentNode = searchDsl(state, currentNode.parentNode)
-    currentParentNode?.childrenNode.push(currentNode)
+    if (currentParentNode) {
+      if (!Array.isArray(currentParentNode.childrenNode)) {
+        currentParentNode.childrenNode = []
+      }
+      currentParentNode.childrenNode.push(currentNode)
+    }
   })
 }
 export const updateComponentReflowReducer: CaseReducer<
@@ -199,7 +204,14 @@ export const updateComponentReflowReducer: CaseReducer<
     })
     targetNode.childrenNode = targetNode.childrenNode?.map(node => {
       if (childNodesDisplayNamesMap.has(node.displayName)) {
-        return childNodesDisplayNamesMap.get(node.displayName)
+        const newPositionNode = childNodesDisplayNamesMap.get(node.displayName)
+        return {
+          ...node,
+          w: newPositionNode.w,
+          h: newPositionNode.h,
+          x: newPositionNode.x,
+          y: newPositionNode.y,
+        }
       }
       return node
     })

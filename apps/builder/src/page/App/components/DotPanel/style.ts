@@ -23,15 +23,24 @@ export const applyComponentCanvasStyle = (
   unitHeight: number = 8,
   showDot: boolean = false,
   addHeight: number = 0,
+  minHeight?: number,
 ) => {
+  const heightCss = minHeight
+    ? css`
+        height: 100%;
+      `
+    : css`
+        min-height: 100vh;
+        height: ${addHeight}px;
+      `
   return css`
     width: 100%;
-    min-height: 100vh;
-    height: ${addHeight}px;
+    ${heightCss};
     ${showDot
       ? applyDotBackgroundStyle(width, height, unitWidth, unitHeight)
       : normalCanvasBackgroundStyle}
     position: relative;
+    background-color: white;
   `
 }
 

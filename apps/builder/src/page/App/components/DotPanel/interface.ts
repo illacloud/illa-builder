@@ -1,5 +1,5 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, RefObject } from "react"
 
 export interface DotPanelProps extends HTMLAttributes<HTMLDivElement> {
   componentNode: ComponentNode
@@ -42,4 +42,10 @@ export interface PreviewPlaceholderProps {
   lunchY: number
   w: number
   h: number
+}
+
+export interface RenderComponentCanvasProps {
+  componentNode: ComponentNode
+  containerRef: RefObject<HTMLDivElement>
+  minHeight?: number
 }

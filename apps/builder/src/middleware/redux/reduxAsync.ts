@@ -17,7 +17,11 @@ import {
   ComponentNode,
   CopyComponentPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
+import {
+  UpdateComponentContainerPayload,
+  UpdateComponentsShapePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
+import { updateComponentContainerReducer } from "@/redux/currentApp/editor/components/componentsReducer"
 
 export const reduxAsync: Redux.Middleware = store => next => action => {
   const { type, payload } = action
@@ -112,6 +116,27 @@ export const reduxAsync: Redux.Middleware = store => next => action => {
                   payload,
                 },
                 updateComponentReflowWSPayload,
+              ),
+            )
+            break
+          case "updateComponentContainerReducer":
+            const updateComponentContainerPayload: UpdateComponentContainerPayload = payload
+            const componentNodes = updateComponentContainerPayload.updateSlice.map(
+              slice => slice.component,
+            )
+            const updateComponentContainerWSPayload = transformComponentReduxPayloadToWsPayload(
+              componentNodes,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                updateComponentContainerWSPayload,
               ),
             )
             break

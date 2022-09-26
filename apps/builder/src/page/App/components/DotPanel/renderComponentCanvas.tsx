@@ -45,13 +45,19 @@ export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
   containerRef: RefObject<HTMLDivElement>
   containerPadding: number
+  minHeight: number
 }> = props => {
-  const { componentNode, containerRef, containerPadding } = props
+  const { componentNode, containerRef, containerPadding, minHeight } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
   const illaMode = useSelector(getIllaMode)
   const isFreezyCanvas = useSelector(getFreezyState)
   const dispatch = useDispatch()
+
+  const [xy, setXY] = useState([0, 0])
+  const [lunchXY, setLunchXY] = useState([0, 0])
+  const [canDrop, setCanDrop] = useState(true)
+  const [rowNumber, setRowNumber] = useState(0)
 
   const [canvasRef, bounds] = useMeasure()
   const currentCanvasRef = useRef<HTMLDivElement>(
@@ -64,7 +70,7 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    return childrenNode.map<ReactNode>(item => {
+    return childrenNode?.map<ReactNode>(item => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
       const x = item.x * unitWidth
@@ -84,7 +90,7 @@ export const RenderComponentCanvas: FC<{
               y={y}
               unitW={unitWidth}
               unitH={UNIT_HEIGHT}
-              containerRef={containerRef}
+              containerHeight={(componentNode.h - 1) * UNIT_HEIGHT}
               containerPadding={containerPadding}
             />
           )
@@ -92,12 +98,7 @@ export const RenderComponentCanvas: FC<{
           return null
       }
     })
-  }, [componentNode.childrenNode, containerPadding, containerRef, unitWidth])
-
-  const [xy, setXY] = useState([0, 0])
-  const [lunchXY, setLunchXY] = useState([0, 0])
-  const [canDrop, setCanDrop] = useState(true)
-  const [rowNumber, setRowNumber] = useState(0)
+  }, [componentNode.childrenNode, componentNode.h, containerPadding, unitWidth])
 
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
@@ -199,8 +200,11 @@ export const RenderComponentCanvas: FC<{
         }
       },
       drop: (dragInfo, monitor) => {
+        const isDrop = monitor.didDrop()
+        const { item } = dragInfo
+        console.log("isDrop", isDrop)
+        if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
-          const { item } = dragInfo
           const dragResult = getDragResult(
             monitor,
             containerRef,
@@ -215,6 +219,7 @@ export const RenderComponentCanvas: FC<{
           /**
            * generate component node with new position
            */
+          const oldParentNodeDisplayName = item.parentNode || "root"
           const newItem = {
             ...item,
             parentNode: componentNode.displayName || "root",
@@ -224,16 +229,38 @@ export const RenderComponentCanvas: FC<{
             unitH: UNIT_HEIGHT,
             isDragging: false,
           }
+
+          /**
+           * add new nodes
+           */
           if (item.x === -1 && item.y === -1) {
             dispatch(componentsActions.addComponentReducer([newItem]))
           } else {
-            dispatch(
-              componentsActions.updateComponentsShape({
-                isMove: false,
-                components: [newItem],
-              }),
-            )
+            /**
+             * update node when change container
+             */
+            if (oldParentNodeDisplayName !== componentNode.displayName) {
+              dispatch(
+                componentsActions.updateComponentContainerReducer({
+                  isMove: false,
+                  updateSlice: [
+                    {
+                      component: newItem,
+                      oldParentDisplayName: oldParentNodeDisplayName,
+                    },
+                  ],
+                }),
+              )
+            } else {
+              dispatch(
+                componentsActions.updateComponentsShape({
+                  isMove: false,
+                  components: [newItem],
+                }),
+              )
+            }
           }
+
           return {
             isDropOnCanvas: true,
           }
@@ -245,7 +272,7 @@ export const RenderComponentCanvas: FC<{
       collect: monitor => {
         const dragInfo = monitor.getItem()
         return {
-          isActive: monitor.canDrop() && monitor.isOver(),
+          isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
           nodeWidth: dragInfo?.item?.w ?? 0,
           nodeHeight: dragInfo?.item?.h ?? 0,
         }
@@ -258,21 +285,21 @@ export const RenderComponentCanvas: FC<{
     if (!isActive) {
       const childrenNodes = componentNode.childrenNode
       let maxY = 0
-      childrenNodes.forEach(node => {
+      childrenNodes?.forEach(node => {
         maxY = Math.max(maxY, node.y + node.h)
       })
       if (illaMode === "edit") {
         setRowNumber(
           Math.max(
             maxY + 8,
-            Math.floor(document.body.clientHeight / UNIT_HEIGHT),
+            Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
           ),
         )
       } else {
         setRowNumber(Math.max(maxY, bounds.height / UNIT_HEIGHT))
       }
     }
-  }, [bounds.height, componentNode.childrenNode, illaMode, isActive])
+  }, [bounds.height, componentNode.childrenNode, illaMode, isActive, minHeight])
 
   return (
     <div
@@ -289,6 +316,7 @@ export const RenderComponentCanvas: FC<{
         UNIT_HEIGHT,
         isShowCanvasDot,
         rowNumber * 8,
+        minHeight,
       )}
       onClick={e => {
         if (
