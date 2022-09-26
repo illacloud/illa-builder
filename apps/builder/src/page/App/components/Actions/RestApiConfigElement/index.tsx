@@ -5,6 +5,8 @@ import { Controller, useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import {
+  BasicAuth,
+  BearerAuth,
   Resource,
   RestApiAuth,
   RestApiResource,
@@ -58,7 +60,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
     <form
       onSubmit={handleSubmit((data, event) => {
         let authContent: RestApiAuth | null = null
-        switch (data.authType) {
+        switch (data.authentication) {
           case "basic":
             authContent = {
               username: data.username,
@@ -77,7 +79,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           Api.request<Resource<RestApiResource<RestApiAuth>>>(
             {
               method: "PUT",
-              url: `/resource/${resourceId}`,
+              url: `/resources/${resourceId}`,
               data: {
                 resourceId: data.resourceId,
                 resourceName: data.resourceName,
@@ -88,7 +90,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                   headers: data.headers,
                   cookies: data.cookies,
                   authentication: data.authentication,
-                  authContent,
+                  authContent: authContent,
                 },
               },
             },
@@ -111,7 +113,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
           Api.request<Resource<RestApiResource<RestApiAuth>>>(
             {
               method: "POST",
-              url: `/resource`,
+              url: `/resources`,
               data: {
                 resourceName: data.resourceName,
                 resourceType: "restapi",
@@ -121,7 +123,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
                   headers: data.headers,
                   cookies: data.cookies,
                   authentication: data.authentication,
-                  authContent,
+                  authContent: authContent,
                 },
               },
             },
@@ -371,8 +373,18 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             name="authentication"
           />
         </div>
-        {authType === "basic" && <BasicAuthPanel control={control} />}
-        {authType === "bearer" && <BearerAuthPanel control={control} />}
+        {authType === "basic" && (
+          <BasicAuthPanel
+            control={control}
+            auth={resource?.content.authContent as BasicAuth}
+          />
+        )}
+        {authType === "bearer" && (
+          <BearerAuthPanel
+            control={control}
+            auth={resource?.content.authContent as BearerAuth}
+          />
+        )}
       </div>
       <div css={footerStyle}>
         <Button
