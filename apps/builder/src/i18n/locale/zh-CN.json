@@ -450,7 +450,8 @@
         "style": "风格",
         "validation": "验证",
         "options": "选项",
-        "column": "COLUMNS",
+        "column": "列",
+        "row_selection": "行选择",
         "data": "数据"
       },
       "setter_label": {

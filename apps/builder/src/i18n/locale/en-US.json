@@ -453,6 +453,7 @@
         "options": "OPTIONS",
         "column": "COLUMNS",
         "sort": "SORT",
+        "row_selection": "ROW SELECTION",
         "data": "DATA"
       },
       "setter_label": {
