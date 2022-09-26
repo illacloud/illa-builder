@@ -5,7 +5,6 @@ import { Controller, useForm } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import {
-  Params,
   Resource,
   RestApiAuth,
   RestApiResource,
@@ -35,7 +34,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
 
   const { t } = useTranslation()
 
-  const { control, handleSubmit, formState } = useForm({
+  const { getValues, control, handleSubmit, formState } = useForm({
     mode: "onChange",
   })
 
@@ -161,7 +160,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               }}
               onChangeKey={(index, key, v) => {
                 let newRecords = [...value]
-                newRecords[index].key = key
+                newRecords[index] = { key, value: v }
                 onChange(newRecords)
               }}
               onChangeValue={(index, key, v) => {
@@ -200,7 +199,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               }}
               onChangeKey={(index, key, v) => {
                 let newRecords = [...value]
-                newRecords[index].key = key
+                newRecords[index] = { key, value: v }
                 onChange(newRecords)
               }}
               onChangeValue={(index, key, v) => {
@@ -239,7 +238,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               }}
               onChangeKey={(index, key, v) => {
                 let newRecords = [...value]
-                newRecords[index].key = key
+                newRecords[index] = { key, value: v }
                 onChange(newRecords)
               }}
               onChangeValue={(index, key, v) => {
@@ -299,14 +298,18 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
         <ButtonGroup spacing="8px">
           <Button
             colorScheme="gray"
+            value="testing"
             loading={testLoading}
             disabled={!formState.isValid}
-            type="submit"
+            onClick={() => {
+              console.log("longbo", getValues())
+            }}
           >
             {t("editor.action.form.btn.test_connection")}
           </Button>
           <Button
             colorScheme="techPurple"
+            value="creating"
             disabled={!formState.isValid}
             loading={createLoading}
             type="submit"
