@@ -17,7 +17,7 @@ interface CHartColorLabelProps {
   color: string
 }
 
-export const ChartColorLabel: FC<CHartColorLabelProps> = props => {
+export const ChartColorLabel: FC<CHartColorLabelProps> = (props) => {
   const { color } = props
   return (
     <div css={chartColorLabelStyle}>
@@ -27,7 +27,9 @@ export const ChartColorLabel: FC<CHartColorLabelProps> = props => {
   )
 }
 
-export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = props => {
+export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = (
+  props,
+) => {
   const {
     isSetterSingleRow,
     attrName,
@@ -37,7 +39,7 @@ export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = props => 
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    rootState => {
+    (rootState) => {
       const executionTree = getExecutionResult(rootState)
       return get(executionTree, widgetDisplayName, {})
     },
@@ -53,14 +55,14 @@ export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = props => 
 
   const options = useMemo(() => {
     if (isCanGroupBy || chartType === "pie") {
-      return CHART_COLOR_TYPE_CONFIG_KEYS.map(key => {
+      return CHART_COLOR_TYPE_CONFIG_KEYS.map((key) => {
         return {
           label: <ChartColorLabel color={key} />,
           value: key,
         }
       })
     }
-    return CHART_COLOR_TYPE_CONFIG["illa-preset"].map(key => {
+    return CHART_COLOR_TYPE_CONFIG["illa-preset"].map((key) => {
       return {
         label: <ChartColorLabel color={key} />,
         value: key,
@@ -75,7 +77,7 @@ export const ChartColorSelectSetter: FC<ChartColorSelectSetterProps> = props => 
         size="medium"
         value={value}
         colorScheme="techPurple"
-        onChange={value => {
+        onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
       />

@@ -23,7 +23,7 @@ import {
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
-  return events.filter(event => {
+  return events.filter((event) => {
     return event.eventType === eventType
   })
 }
@@ -35,22 +35,21 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const { displayName, type, w, h, unitW, unitH } = componentNode
 
     const displayNameMapProps = useSelector(getExecutionResult)
-    const {
-      handleUpdateGlobalData,
-      handleDeleteGlobalData,
-      globalData,
-    } = useContext(GLOBAL_DATA_CONTEXT)
+    const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+      useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
-    const allComponents = useSelector<RootState, ComponentNode[]>(rootState => {
-      const rootNode = getCanvas(rootState)
-      const parentNodeDisplayName = componentNode.parentNode
-      const target = searchDsl(rootNode, parentNodeDisplayName)
-      if (target) {
-        return target.childrenNode || []
-      }
-      return []
-    })
+    const allComponents = useSelector<RootState, ComponentNode[]>(
+      (rootState) => {
+        const rootNode = getCanvas(rootState)
+        const parentNodeDisplayName = componentNode.parentNode
+        const target = searchDsl(rootNode, parentNodeDisplayName)
+        if (target) {
+          return target.childrenNode || []
+        }
+        return []
+      },
+    )
 
     const updateComponentHeight = useCallback(
       (newHeight: number) => {
@@ -62,7 +61,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         }
         const cloneDeepAllComponents = cloneDeep(allComponents)
         const findIndex = cloneDeepAllComponents.findIndex(
-          node => node.displayName === newItem.displayName,
+          (node) => node.displayName === newItem.displayName,
         )
         cloneDeepAllComponents.splice(findIndex, 1, newItem)
         if (componentNode.h < newItem.h) {
@@ -81,7 +80,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
             cloneDeepAllComponents,
           )
           effectMap.set(newItem.displayName, newItem)
-          effectMap.forEach(node => {
+          effectMap.forEach((node) => {
             if (node.displayName !== componentNode.displayName) {
               node.y -= effectRows
             }
@@ -101,10 +100,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [allComponents, componentNode, dispatch],
     )
 
-    const realProps = useMemo(() => displayNameMapProps[displayName] ?? {}, [
-      displayName,
-      displayNameMapProps,
-    ])
+    const realProps = useMemo(
+      () => displayNameMapProps[displayName] ?? {},
+      [displayName, displayNameMapProps],
+    )
 
     const handleUpdateDsl = useCallback(
       (value: Record<string, any>) => {
@@ -159,35 +158,34 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     }, [realProps])
 
     const handleOnChange = useCallback(() => {
-      getOnChangeEventScripts().forEach(scriptObj => {
+      getOnChangeEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, globalData)
       })
     }, [getOnChangeEventScripts, globalData])
 
     const handleOnClick = useCallback(() => {
-      getOnClickEventScripts().forEach(scriptObj => {
+      getOnClickEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, globalData)
       })
     }, [getOnClickEventScripts, globalData])
 
     const handleOnSortingChange = useCallback(() => {
-      getOnSortingChangeEventScripts().forEach(scriptObj => {
+      getOnSortingChangeEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, globalData)
       })
     }, [getOnSortingChangeEventScripts, globalData])
 
     const handleOnPaginationChange = useCallback(() => {
-      getOnPaginationChangeEventScripts().forEach(scriptObj => {
+      getOnPaginationChangeEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, globalData)
       })
     }, [getOnPaginationChangeEventScripts, globalData])
 
     const handleOnColumnFiltersChange = useCallback(() => {
-      getOnColumnFiltersChangeEventScripts().forEach(scriptObj => {
+      getOnColumnFiltersChangeEventScripts().forEach((scriptObj) => {
         runEventHandler(scriptObj, globalData)
       })
     }, [getOnColumnFiltersChangeEventScripts, globalData])
-
 
     if (!type) return null
     const COMP = widgetBuilder(type).widget

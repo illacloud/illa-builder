@@ -21,10 +21,10 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
     const expandedKeys = useSelector(getExpandedKeys)
     const isExpanded = expandedKeys.includes(title)
     const dispatch = useDispatch()
-    const keyArr = Object.keys(data).filter(item => !item.startsWith("$"))
+    const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
 
     const tree = useMemo(() => {
-      return keyArr.map(name => (
+      return keyArr.map((name) => (
         <WorkSpaceTreeNode
           key={name}
           name={name}

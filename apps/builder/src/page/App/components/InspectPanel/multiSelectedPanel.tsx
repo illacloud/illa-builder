@@ -27,7 +27,7 @@ export const MultiSelectedPanel: FC = () => {
         })}
       </div>
       <div css={formContentStyle}>
-        {selectedComponents.map(displayName => {
+        {selectedComponents.map((displayName) => {
           return (
             <div key={displayName} css={formContentItemStyle}>
               {displayName}

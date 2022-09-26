@@ -37,11 +37,7 @@ export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
   const handleUpdateDsl = useCallback(
     (attrName: string, newValue: any) => {
       try {
-        const data = evaluateDynamicString(
-          "",
-          newValue,
-          BUILDER_CALC_CONTEXT,
-        )
+        const data = evaluateDynamicString("", newValue, BUILDER_CALC_CONTEXT)
         let newColumns = tansTableDataToColumns(data)
         if (!isEqual(newColumns, columns)) {
           handleUpdateMultiAttrDSL?.({

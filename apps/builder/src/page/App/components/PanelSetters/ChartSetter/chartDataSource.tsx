@@ -10,16 +10,18 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
-export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
+export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = (
+  props,
+) => {
   const { handleUpdateDsl, widgetDisplayName, labelName, labelDesc } = props
   const actions = useSelector(getActionList)
-  const isError = useSelector<RootState, boolean>(state => {
+  const isError = useSelector<RootState, boolean>((state) => {
     const errors = getExecutionError(state)
     const thisError = get(errors, `${widgetDisplayName}.dataSource`)
     return thisError?.length > 0
   })
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    rootState => {
+    (rootState) => {
       return searchDSLByDisplayName(widgetDisplayName, rootState)?.props || {}
     },
   )
@@ -38,7 +40,7 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
   }, [isDynamic, targetComponentProps])
 
   const selectedOptions = useMemo(() => {
-    return actions.map(action => ({
+    return actions.map((action) => ({
       label: action.displayName,
       value: `{{${action.displayName}.data}}`,
     }))
@@ -46,7 +48,7 @@ export const ChartDataSourceSetter: FC<ChartDataSourceSetterProps> = props => {
 
   const handleClickFxButton = useCallback(() => {
     const isInOption = selectedOptions.some(
-      option => option.value === finalValue,
+      (option) => option.value === finalValue,
     )
     if (isDynamic) {
       handleUpdateDsl("dataSourceMode", "select")

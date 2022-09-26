@@ -37,7 +37,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
     if (Array.isArray(bindAttrName)) {
-      const bindAttrNameValues = bindAttrName.map(bindAttrNameItem => {
+      const bindAttrNameValues = bindAttrName.map((bindAttrNameItem) => {
         if (parentAttrName) {
           return get(widgetProps, `${parentAttrName}.${bindAttrNameItem}`)
         }
@@ -70,10 +70,10 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     return isSetterSingleRow || !labelName
   }, [isSetterSingleRow, labelName])
 
-  const finalValue = useMemo(() => get(widgetProps, _finalAttrName), [
-    widgetProps,
-    _finalAttrName,
-  ])
+  const finalValue = useMemo(
+    () => get(widgetProps, _finalAttrName),
+    [widgetProps, _finalAttrName],
+  )
 
   const renderSetter = useMemo(() => {
     return Comp ? (

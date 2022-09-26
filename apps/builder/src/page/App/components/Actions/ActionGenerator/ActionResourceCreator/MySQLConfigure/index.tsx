@@ -57,7 +57,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       const data = getValues()
       const { resourceName, ...content } = data
 
-      trigger().then((res)=>{
+      trigger().then((res) => {
         if (res) {
           onTestConnection?.({
             resourceName: resourceName,

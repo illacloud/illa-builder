@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
 import { Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
@@ -35,7 +29,7 @@ import {
 import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const CodeEditor: FC<CodeEditorProps> = props => {
+export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
     mode = "TEXT_JS",
@@ -126,10 +120,10 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
       const error = get(executionError, path)
       const result = get(executionResult, path)
       if (error) {
-        const evalError = error?.find(item => {
+        const evalError = error?.find((item) => {
           return item.errorType !== "LINT"
         })
-        const lintError = error?.find(item => {
+        const lintError = error?.find((item) => {
           return item.errorType === "LINT"
         })
         if (evalError) {
@@ -297,7 +291,7 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
         content={<CodePreview preview={preview} />}
         showArrow={false}
         colorScheme="white"
-        onVisibleChange={visible => {
+        onVisibleChange={(visible) => {
           if (visible !== previewVisible && focus) {
             setPreviewVisible(true)
           }

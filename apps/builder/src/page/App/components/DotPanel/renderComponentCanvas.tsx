@@ -40,7 +40,7 @@ const BLOCK_COLUMNS = 64
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
   containerRef: RefObject<HTMLDivElement>
-}> = props => {
+}> = (props) => {
   const { componentNode, containerRef } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -58,7 +58,7 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    return childrenNode.map<ReactNode>(item => {
+    return childrenNode.map<ReactNode>((item) => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
       const x = item.x * unitWidth
@@ -145,7 +145,7 @@ export const RenderComponentCanvas: FC<{
 
           const childrenNodes = dragInfo.childrenNodes
           const indexOfChildrenNodes = childrenNodes.findIndex(
-            node => node.displayName === item.displayName,
+            (node) => node.displayName === item.displayName,
           )
           let finalChildrenNodes: ComponentNode[] = []
 
@@ -170,7 +170,7 @@ export const RenderComponentCanvas: FC<{
             finalChildrenNodes = finalState
           } else {
             const indexOfChildren = childrenNodes.findIndex(
-              node => node.displayName === newItem.displayName,
+              (node) => node.displayName === newItem.displayName,
             )
             const allChildrenNodes = [...childrenNodes]
             allChildrenNodes.splice(indexOfChildren, 1, newItem)
@@ -231,7 +231,7 @@ export const RenderComponentCanvas: FC<{
           isDropOnCanvas: false,
         }
       },
-      collect: monitor => {
+      collect: (monitor) => {
         const dragInfo = monitor.getItem()
         return {
           isActive: monitor.canDrop() && monitor.isOver(),
@@ -247,7 +247,7 @@ export const RenderComponentCanvas: FC<{
     if (!isActive) {
       const childrenNodes = componentNode.childrenNode
       let maxY = 0
-      childrenNodes.forEach(node => {
+      childrenNodes.forEach((node) => {
         maxY = Math.max(maxY, node.y + node.h)
       })
       if (illaMode === "edit") {
@@ -265,7 +265,7 @@ export const RenderComponentCanvas: FC<{
 
   return (
     <div
-      ref={node => {
+      ref={(node) => {
         currentCanvasRef.current = node
         dropTarget(node)
         canvasRef(node)
@@ -279,7 +279,7 @@ export const RenderComponentCanvas: FC<{
         isShowCanvasDot,
         rowNumber * 8,
       )}
-      onClick={e => {
+      onClick={(e) => {
         if (
           e.target === currentCanvasRef.current &&
           illaMode !== "production"

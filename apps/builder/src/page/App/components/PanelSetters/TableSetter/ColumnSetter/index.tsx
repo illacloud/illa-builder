@@ -1,7 +1,13 @@
 import { FC, useCallback } from "react"
 import { ListBody } from "./body"
 import { ColumnListSetterProps } from "./interface"
-import { addIconStyle, columnLabelStyle, headerActionButtonStyle, ListStyle, optionListHeaderStyle } from "./style"
+import {
+  addIconStyle,
+  columnLabelStyle,
+  headerActionButtonStyle,
+  ListStyle,
+  optionListHeaderStyle,
+} from "./style"
 import { generateNewColumnItem } from "./utils/generateNewColumns"
 import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
@@ -37,7 +43,11 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
       handleUpdateDsl={handleUpdateDsl}
     >
       <div css={columnLabelStyle}>
-        <div>{t("editor.inspect.setter_content.column_setter.label", { number: value.length })}</div>
+        <div>
+          {t("editor.inspect.setter_content.column_setter.label", {
+            number: value.length,
+          })}
+        </div>
         <div css={headerActionButtonStyle} onClick={handleAddOption}>
           <AddIcon _css={addIconStyle} />
           <span>{t("editor.inspect.setter_content.column_setter.new")}</span>

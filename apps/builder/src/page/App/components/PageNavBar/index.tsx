@@ -15,7 +15,8 @@ import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
   getIllaMode,
-  isOpenBottomPanel, isOpenDebugger,
+  isOpenBottomPanel,
+  isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -144,7 +145,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               <Button
                 colorScheme="gray"
                 size="medium"
-                leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
+                leftIcon={
+                  <BugIcon
+                    color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                    size="14px"
+                  />
+                }
                 onClick={handleClickDebuggerIcon}
               />
             </Badge>
