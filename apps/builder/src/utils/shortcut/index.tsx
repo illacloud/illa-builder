@@ -243,18 +243,11 @@ export const Shortcut: FC = ({ children }) => {
       dispatch(configActions.updateShowDot(false))
     }
 
-    const freezeStateListener = () => {
-      dispatch(configActions.updateFreezeStateReducer(false))
-    }
     document.addEventListener("visibilitychange", listener)
     window.addEventListener("blur", listener)
-    document.addEventListener("visibilitychange", freezeStateListener)
-    window.addEventListener("blur", freezeStateListener)
     return () => {
       document.removeEventListener("visibilitychange", listener)
       window.removeEventListener("blur", listener)
-      document.removeEventListener("visibilitychange", freezeStateListener)
-      window.removeEventListener("blur", freezeStateListener)
     }
   }, [dispatch])
 
