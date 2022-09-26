@@ -54,7 +54,17 @@ import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 const { Item } = DropList
 
 export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
-  const { componentNode, unitW, unitH, w, h, x, y } = props
+  const {
+    componentNode,
+    unitW,
+    unitH,
+    w,
+    h,
+    x,
+    y,
+    containerRef,
+    containerPadding,
+  } = props
 
   const shortcut = useContext(ShortCutContext)
 
@@ -451,6 +461,14 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             maxWidth={componentNode.w * unitW}
             selected={isSelected}
             isEditor={illaMode === "edit"}
+            widgetTop={y}
+            widgetHeight={h}
+            containerPadding={containerPadding}
+            containerTop={containerRef.current?.scrollTop || 0}
+            containerBottom={
+              (containerRef.current?.scrollTop || 0) +
+              (containerRef.current?.scrollHeight || 0)
+            }
           />
 
           <TransformWidgetWrapper componentNode={componentNode} />

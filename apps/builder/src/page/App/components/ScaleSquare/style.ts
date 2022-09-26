@@ -1,8 +1,13 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
+import {
+  MoveBarPositionShape,
+  ScaleSquareType,
+} from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
+
+export const MOVE_BAR_HEIGHT = 18
 
 export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
@@ -270,17 +275,37 @@ export const applyMoveBarWrapperStyle = (
   isError: boolean,
   selected: boolean,
   isEditor: boolean,
+  position: MoveBarPositionShape,
 ) => {
+  let positionStyle = css`
+    top: 0;
+  `
+  let borderRadiusStyle = css`
+    border-radius: 4px 4px 0 0;
+  `
+
+  if (position.direction === "top") {
+    positionStyle = css`
+      top: ${position.position}px;
+    `
+  } else {
+    positionStyle = css`
+      bottom: ${position.position}px;
+    `
+    borderRadiusStyle = css`
+      border-radius: 0 0 4px 4px;
+    `
+  }
   return css`
-    height: 20px;
+    height: ${MOVE_BAR_HEIGHT}px;
     padding: 2px 4px 2px 0;
     background-color: ${isError
       ? globalColor(`--${illaPrefix}-red-03`)
       : globalColor(`--${illaPrefix}-techPurple-01`)};
-    border-radius: 4px 4px 0 0;
+    ${borderRadiusStyle};
     display: flex;
     position: absolute;
-    top: -20px;
+    ${positionStyle};
     left: 0;
     align-items: center;
     font-size: 12px;

@@ -10,7 +10,11 @@ import {
   useState,
 } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getIllaMode, isShowDot } from "@/redux/config/configSelector"
+import {
+  getFreezyState,
+  getIllaMode,
+  isShowDot,
+} from "@/redux/config/configSelector"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { DotPanel } from "@/page/App/components/DotPanel/index"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -40,11 +44,13 @@ const BLOCK_COLUMNS = 64
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
   containerRef: RefObject<HTMLDivElement>
+  containerPadding: number
 }> = props => {
-  const { componentNode, containerRef } = props
+  const { componentNode, containerRef, containerPadding } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
   const illaMode = useSelector(getIllaMode)
+  const isFreezyCanvas = useSelector(getFreezyState)
   const dispatch = useDispatch()
 
   const [canvasRef, bounds] = useMeasure()
@@ -78,13 +84,15 @@ export const RenderComponentCanvas: FC<{
               y={y}
               unitW={unitWidth}
               unitH={UNIT_HEIGHT}
+              containerRef={containerRef}
+              containerPadding={containerPadding}
             />
           )
         default:
           return null
       }
     })
-  }, [componentNode.childrenNode, unitWidth])
+  }, [componentNode.childrenNode, containerPadding, containerRef, unitWidth])
 
   const [xy, setXY] = useState([0, 0])
   const [lunchXY, setLunchXY] = useState([0, 0])
@@ -177,11 +185,14 @@ export const RenderComponentCanvas: FC<{
             const { finalState } = getReflowResult(newItem, allChildrenNodes)
             finalChildrenNodes = finalState
           }
-
-          debounceUpdateComponentPositionByReflow(
-            componentNode.displayName || "root",
-            finalChildrenNodes,
-          )
+          if (!isFreezyCanvas) {
+            debounceUpdateComponentPositionByReflow(
+              componentNode.displayName || "root",
+              finalChildrenNodes,
+            )
+          } else {
+            console.log("finalChildrenNodes", finalChildrenNodes)
+          }
           setXY([rectCenterPosition.x, rectCenterPosition.y])
           setLunchXY([landingX, landingY])
           setCanDrop(isOverstep)
@@ -240,7 +251,7 @@ export const RenderComponentCanvas: FC<{
         }
       },
     }),
-    [bounds, unitWidth, UNIT_HEIGHT, canDrop],
+    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezyCanvas],
   )
 
   useEffect(() => {

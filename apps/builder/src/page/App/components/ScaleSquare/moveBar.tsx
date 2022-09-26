@@ -1,19 +1,61 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import {
   applyMoveBarWrapperStyle,
   dragPointIconWrapperStyle,
+  MOVE_BAR_HEIGHT,
   moveBarDisplayNameStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
 import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
-import { MoveBarProps } from "@/page/App/components/ScaleSquare/interface"
+import {
+  MoveBarPositionShape,
+  MoveBarProps,
+} from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const MoveBar: FC<MoveBarProps> = (props) => {
-  const { displayName, isError, maxWidth, selected, isEditor } = props
+export const MoveBar: FC<MoveBarProps> = props => {
+  const {
+    displayName,
+    isError,
+    maxWidth,
+    selected,
+    isEditor,
+    widgetTop,
+    widgetHeight,
+    containerTop,
+    containerBottom,
+    containerPadding,
+  } = props
+  const position: MoveBarPositionShape = useMemo(() => {
+    if (widgetTop - containerTop + containerPadding >= MOVE_BAR_HEIGHT) {
+      return {
+        direction: "top",
+        position: -MOVE_BAR_HEIGHT,
+      }
+    }
+    if (
+      containerBottom - (widgetTop + widgetHeight) + containerPadding >=
+      MOVE_BAR_HEIGHT
+    ) {
+      return {
+        direction: "bottom",
+        position: -MOVE_BAR_HEIGHT,
+      }
+    }
+    return {
+      direction: "top",
+      position: 0,
+    }
+  }, [containerBottom, containerPadding, containerTop, widgetHeight, widgetTop])
   return (
     <div
-      css={applyMoveBarWrapperStyle(maxWidth, isError, selected, isEditor)}
+      css={applyMoveBarWrapperStyle(
+        maxWidth,
+        isError,
+        selected,
+        isEditor,
+        position,
+      )}
       id="moveBar"
     >
       <DragIcon css={dragPointIconWrapperStyle} />

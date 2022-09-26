@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { getPreviewEdgeWidth } from "@/redux/config/configSelector"
 import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComponentCanvas"
 
-export const DotPanel: FC<DotPanelProps> = (props) => {
+export const DotPanel: FC<DotPanelProps> = props => {
   const { componentNode, ...otherProps } = props
 
   // canvas field
@@ -22,6 +22,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       <RenderComponentCanvas
         componentNode={componentNode}
         containerRef={containerRef}
+        containerPadding={edgeWidth}
       />
     </div>
   )

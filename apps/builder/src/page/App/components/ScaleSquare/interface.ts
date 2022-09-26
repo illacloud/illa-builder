@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, RefObject } from "react"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { BarPosition } from "@/page/App/components/ScaleSquare/style"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
@@ -13,6 +13,8 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   y: number
   unitW: number
   unitH: number
+  containerRef: RefObject<HTMLDivElement>
+  containerPadding: number
 }
 
 export interface DragResize {
@@ -30,6 +32,11 @@ export interface MoveBarProps {
   maxWidth: number
   selected: boolean
   isEditor: boolean
+  widgetTop: number
+  widgetHeight: number
+  containerTop: number
+  containerBottom: number
+  containerPadding: number
 }
 
 export interface DraggingScaleSquareProps {
@@ -38,4 +45,9 @@ export interface DraggingScaleSquareProps {
   isDragging: boolean
   scaleSquareState: ScaleSquareType
   resizeDirection: RESIZE_DIRECTION
+}
+
+export interface MoveBarPositionShape {
+  direction: "top" | "bottom"
+  position: number
 }
