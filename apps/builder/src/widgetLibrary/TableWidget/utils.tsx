@@ -1,6 +1,7 @@
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { dayjsPro, isNumber } from "@illa-design/system"
 import { CellContext } from "@tanstack/table-core"
+import { Link } from "@illa-design/link"
 
 export const tansTableDataToColumns = (
   data: Record<any, any>[],
@@ -21,31 +22,13 @@ export const tansTableDataToColumns = (
   return columns
 }
 
-export const transDataForType = (data: ColumnItemShape) => {
-  const {
-    type = "text",
-    decimalPlaces = 0,
-    format = "YYYY-MM-DD",
-    header,
-  } = data
-  const cellValue = header
-  switch (type) {
-    default:
-      return cellValue
-    case "text":
-      return cellValue
-    case "number":
-      const formatVal = Number(cellValue)
-      return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
-    case "percent":
-      const percentVal = Number(cellValue)
-      return isNumber(percentVal)
-        ? `${(percentVal * 100).toFixed(decimalPlaces)}%`
-        : "-"
-    case "date":
-      const dayVal = dayjsPro(cellValue).format(format)
-      return dayVal ? dayVal : "-"
-  }
+const renderTableLink = (props: CellContext<any, any>) => {
+  const cellValue = props.getValue()
+  return cellValue ? (
+    <Link href={cellValue} target="_blank">{`${cellValue}`}</Link>
+  ) : (
+    "-"
+  )
 }
 
 export const getCellForType = (data: ColumnItemShape) => {
@@ -58,9 +41,13 @@ export const getCellForType = (data: ColumnItemShape) => {
 
   switch (type) {
     default:
-      return (props: CellContext<any, any>) => props.getValue()
+      return (props: CellContext<any, any>) => `${props.getValue() ?? "-"}`
     case "text":
-      return (props: CellContext<any, any>) => props.getValue()
+      return (props: CellContext<any, any>) => {
+        return `${props.getValue() ?? "-"}`
+      }
+    case "link":
+      return renderTableLink
     case "number":
       return (props: CellContext<any, any>) => {
         const formatVal = Number(props?.getValue())

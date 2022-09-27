@@ -6,7 +6,7 @@ import {
   WrappedTableProps,
 } from "./interface"
 import { getCellForType } from "@/widgetLibrary/TableWidget/utils"
-import { CellContext } from "@tanstack/table-core"
+import { cloneDeep } from "lodash"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -74,7 +74,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnVisibility = useMemo(() => {
     const res: Record<string, boolean> = {}
-    columns?.map((item) => {
+    columns?.forEach((item) => {
       const { visible, accessorKey } = item as ColumnItemShape
       if (!visible) {
         res[accessorKey] = false
@@ -85,13 +85,11 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnsDef = useMemo(() => {
     const res: ColumnItemShape[] = []
-    columns?.map((item) => {
-      const transItem = JSON.parse(JSON.stringify(item)) as ColumnItemShape
-      // transItem["cell"] = (props: CellContext<any, any>) => props.getValue()
+    columns?.forEach((item) => {
+      const transItem = cloneDeep(item) as ColumnItemShape
       transItem["cell"] = getCellForType(transItem)
       res.push(transItem)
     })
-    console.log(res, "columnsDef")
     return res
   }, [columns])
 
