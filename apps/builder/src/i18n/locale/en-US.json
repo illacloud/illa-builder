@@ -782,7 +782,9 @@
       "delete_fail": "Failed to delete",
       "create_resource": "Create New",
       "save_success": "Save successfully",
-      "save_fail": "Failed to save"
+      "save_fail": "Failed to save",
+      "test_success": "Test successfully",
+      "test_fail": "Failed to test"
     }
   },
   "setting": {

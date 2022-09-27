@@ -1,5 +1,5 @@
-import { FC, forwardRef, useState } from "react"
-import { MysqlConfigElementProps } from "@/page/App/components/Actions/MysqlConfigElement/interface"
+import { FC, useState } from "react"
+import { MysqlConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -23,18 +23,39 @@ import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import { MysqlResource, Resource } from "@/redux/resource/resourceState"
+import {
+  MysqlResource,
+  MysqlSSL,
+  Resource,
+  RestApiAuth,
+  RestApiResource,
+} from "@/redux/resource/resourceState"
+import { Api } from "@/api/base"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Message } from "@illa-design/message"
 
-export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
-  const { onBack, resourceId } = props
+export function generateSSLConfig(
+  open: boolean,
+  data: { [p: string]: any },
+): MysqlSSL {
+  return {
+    ssl: open,
+    clientKey: data.clientKey,
+    clientCert: data.clientCert,
+    serverCert: data.serverCert,
+  } as MysqlSSL
+}
+
+export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
+  const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
 
-  const [sslOpen, setSSLOpen] = useState(false)
+  const dispatch = useDispatch()
 
-  const { control, handleSubmit, formState } = useForm({
+  const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
   })
 
@@ -44,11 +65,84 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
     ) as Resource<MysqlResource>
   })
 
+  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
+
   const [testLoading, setTestLoading] = useState(false)
-  const [createLoading, setCreateLoading] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   return (
-    <form onSubmit={handleSubmit((data, event) => {})}>
+    <form
+      onSubmit={handleSubmit((data, event) => {
+        if (resourceId != undefined) {
+          Api.request<Resource<MysqlResource>>(
+            {
+              method: "PUT",
+              url: `/resources/${resourceId}`,
+              data: {
+                resourceId: data.resourceId,
+                resourceName: data.resourceName,
+                resourceType: "mysql",
+                content: {
+                  host: data.host,
+                  port: data.port.toString(),
+                  databaseName: data.databaseName,
+                  databaseUsername: data.databaseUsername,
+                  databasePassword: data.databasePassword,
+                  ssl: generateSSLConfig(sslOpen, data),
+                },
+              },
+            },
+            (response) => {
+              onFinished(response.data.resourceId)
+              dispatch(resourceActions.updateResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+            },
+            (error) => {
+              Message.error(error.data.errorMessage)
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        } else {
+          Api.request<Resource<RestApiResource<RestApiAuth>>>(
+            {
+              method: "POST",
+              url: `/resources`,
+              data: {
+                resourceName: data.resourceName,
+                resourceType: "mysql",
+                content: {
+                  host: data.host,
+                  port: data.port.toString(),
+                  databaseName: data.databaseName,
+                  databaseUsername: data.databaseUsername,
+                  databasePassword: data.databasePassword,
+                  ssl: generateSSLConfig(sslOpen, data),
+                },
+              },
+            },
+            (response) => {
+              onFinished(response.data.resourceId)
+              dispatch(resourceActions.addResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+            },
+            (error) => {
+              Message.error(error.data.errorMessage)
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        }
+      })}
+    >
       <div css={container}>
         <div css={divider} />
         <div css={configItem}>
@@ -161,7 +255,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
                 )}
               />
             )}
-            name="database"
+            name="databaseName"
           />
         </div>
         <div css={configItem}>
@@ -192,7 +286,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
                   )}
                 />
               )}
-              name="username"
+              name="databaseUsername"
             />
             <Controller
               control={control}
@@ -213,7 +307,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
                   )}
                 />
               )}
-              name="password"
+              name="databasePassword"
             />
           </div>
         </div>
@@ -309,9 +403,6 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
             </div>
             <div css={sslItem}>
               <div css={labelContainer}>
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                  *
-                </span>
                 <span
                   css={applyConfigItemLabelText(
                     getColor("grayBlue", "02"),
@@ -324,9 +415,6 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
               <Controller
                 control={control}
                 defaultValue={resource?.content.ssl.clientKey}
-                rules={{
-                  required: true,
-                }}
                 shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
@@ -346,9 +434,6 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
             </div>
             <div css={sslItem}>
               <div css={labelContainer}>
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                  *
-                </span>
                 <span
                   css={applyConfigItemLabelText(
                     getColor("grayBlue", "02"),
@@ -362,9 +447,6 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
                 control={control}
                 shouldUnregister={true}
                 defaultValue={resource?.content.ssl.clientCert}
-                rules={{
-                  required: true,
-                }}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -400,17 +482,51 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props, ref) => {
             colorScheme="gray"
             loading={testLoading}
             disabled={!formState.isValid}
-            type="submit"
+            type="button"
+            onClick={() => {
+              const data = getValues()
+              Api.request<Resource<MysqlResource>>(
+                {
+                  method: "POST",
+                  url: `/resources/testConnection`,
+                  data: {
+                    resourceId: data.resourceId,
+                    resourceName: data.resourceName,
+                    resourceType: "mysql",
+                    content: {
+                      host: data.host,
+                      port: data.port.toString(),
+                      databaseName: data.databaseName,
+                      databaseUsername: data.databaseUsername,
+                      databasePassword: data.databasePassword,
+                      ssl: generateSSLConfig(sslOpen, data),
+                    },
+                  },
+                },
+                (response) => {
+                  Message.success(t("dashboard.resource.test_success"))
+                },
+                (error) => {
+                  Message.error(error.data.errorMessage)
+                },
+                () => {
+                  Message.error(t("dashboard.resource.test_fail"))
+                },
+                (loading) => {
+                  setTestLoading(loading)
+                },
+              )
+            }}
           >
             {t("editor.action.form.btn.test_connection")}
           </Button>
           <Button
             colorScheme="techPurple"
             disabled={!formState.isValid}
-            loading={createLoading}
+            loading={saving}
             type="submit"
           >
-            {t("editor.action.form.btn.create_resource")}
+            {t("editor.action.form.btn.save_changes")}
           </Button>
         </ButtonGroup>
       </div>

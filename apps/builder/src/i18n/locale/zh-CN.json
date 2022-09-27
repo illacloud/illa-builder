@@ -782,7 +782,9 @@
       "delete_fail": "删除失败",
       "create_resource": "创建资源",
       "save_success": "保存成功",
-      "save_fail": "Failed to save"
+      "save_fail": "保存失败",
+      "test_success": "测试成功",
+      "test_fail": "测试失败"
     }
   },
   "setting": {
