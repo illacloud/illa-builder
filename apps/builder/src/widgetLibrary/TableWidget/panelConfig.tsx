@@ -121,6 +121,20 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
+    id: `${baseWidgetName}-rowSelection`,
+    groupName: i18n.t("editor.inspect.setter_group.row_selection"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-defaultSortKey`,
+        labelName: i18n.t("editor.inspect.setter_label.default_sort_key"),
+        attrName: "defaultSortKey",
+        setterType: "COLUMNS_SELECT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        openDynamic: true,
+      },
+    ],
+  },
+  {
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [

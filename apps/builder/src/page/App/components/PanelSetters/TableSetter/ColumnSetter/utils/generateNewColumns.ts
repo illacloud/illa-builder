@@ -1,5 +1,6 @@
 import { v4 } from "uuid"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import { CellContext } from "@tanstack/table-core"
 
 export const generateColumnItemId = () => `column-${v4()}`
 

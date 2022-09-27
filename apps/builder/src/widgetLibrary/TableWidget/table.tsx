@@ -5,7 +5,8 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { transDataForType } from "@/widgetLibrary/TableWidget/utils"
+import { getCellForType } from "@/widgetLibrary/TableWidget/utils"
+import { CellContext } from "@tanstack/table-core"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -21,6 +22,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       handleOnColumnFiltersChange,
     } = props
 
+    console.log(props, "WrappedTable")
     return (
       <Table
         data={data}
@@ -85,9 +87,11 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     const res: ColumnItemShape[] = []
     columns?.map((item) => {
       const transItem = JSON.parse(JSON.stringify(item)) as ColumnItemShape
-      transItem["header"] = transDataForType(transItem)
+      // transItem["cell"] = (props: CellContext<any, any>) => props.getValue()
+      transItem["cell"] = getCellForType(transItem)
       res.push(transItem)
     })
+    console.log(res, "columnsDef")
     return res
   }, [columns])
 
