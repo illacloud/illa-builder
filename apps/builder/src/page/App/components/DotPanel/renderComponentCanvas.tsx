@@ -45,7 +45,7 @@ export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
   containerRef: RefObject<HTMLDivElement>
   containerPadding: number
-  minHeight: number
+  minHeight?: number
 }> = props => {
   const { componentNode, containerRef, containerPadding, minHeight } = props
 
@@ -103,7 +103,14 @@ export const RenderComponentCanvas: FC<{
           return null
       }
     })
-  }, [componentNode.childrenNode, componentNode.h, containerPadding, unitWidth])
+  }, [
+    componentNode.childrenNode,
+    componentNode.displayName,
+    componentNode.h,
+    containerPadding,
+    rowNumber,
+    unitWidth,
+  ])
 
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
@@ -133,7 +140,8 @@ export const RenderComponentCanvas: FC<{
         return illaMode === "edit"
       },
       hover: (dragInfo, monitor) => {
-        if (monitor.getClientOffset()) {
+        console.log("componentDisplayName", componentNode.displayName)
+        if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const { item } = dragInfo
           const dragResult = getDragResult(
             monitor,
@@ -162,7 +170,7 @@ export const RenderComponentCanvas: FC<{
             node => node.displayName === item.displayName,
           )
           let finalChildrenNodes: ComponentNode[] = []
-
+          let finalEffectResultMap: Map<string, ComponentNode> = new Map()
           /**
            * generate component node with new position
            */
@@ -188,8 +196,12 @@ export const RenderComponentCanvas: FC<{
             )
             const allChildrenNodes = [...childrenNodes]
             allChildrenNodes.splice(indexOfChildren, 1, newItem)
-            const { finalState } = getReflowResult(newItem, allChildrenNodes)
+            const { finalState, effectResultMap } = getReflowResult(
+              newItem,
+              allChildrenNodes,
+            )
             finalChildrenNodes = finalState
+            finalEffectResultMap = effectResultMap
           }
           if (!isFreezyCanvas) {
             debounceUpdateComponentPositionByReflow(
@@ -197,7 +209,7 @@ export const RenderComponentCanvas: FC<{
               finalChildrenNodes,
             )
           } else {
-            console.log("finalChildrenNodes", finalChildrenNodes)
+            console.log("finalChildrenNodes", finalEffectResultMap)
           }
           setXY([rectCenterPosition.x, rectCenterPosition.y])
           setLunchXY([landingX, landingY])

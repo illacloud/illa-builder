@@ -123,6 +123,10 @@ import {
   TABLE_WIDGET_CONFIG,
   TableWidget,
 } from "@/widgetLibrary/TableWidget"
+import {
+  CONTAINER_WIDGET_CONFIG,
+  ContainerWidget,
+} from "@/widgetLibrary/ContainerWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -249,6 +253,11 @@ export const WidgetConfig: WidgetConfigs = {
     widget: TableWidget,
     config: TABLE_WIDGET_CONFIG,
     panelConfig: TABLE_PANEL_CONFIG,
+  },
+  CONTAINER_WIDGET: {
+    widget: ContainerWidget,
+    config: CONTAINER_WIDGET_CONFIG,
+    panelConfig: [],
   },
 }
 

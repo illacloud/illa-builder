@@ -18,7 +18,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import {
   applyEffectMapToComponentNodes,
   getReflowResult,
-  getNearCompntNodes,
+  getNearComponentNodes,
 } from "@/page/App/components/DotPanel/calc"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
@@ -32,7 +32,15 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode } = props
 
-    const { displayName, type, w, h, unitW, unitH } = componentNode
+    const {
+      displayName,
+      type,
+      w,
+      h,
+      unitW,
+      unitH,
+      childrenNode,
+    } = componentNode
 
     const displayNameMapProps = useSelector(getExecutionResult)
     const {
@@ -76,7 +84,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         }
         if (componentNode.h > newItem.h) {
           const effectRows = componentNode.h - newItem.h
-          const effectMap = getNearCompntNodes(
+          const effectMap = getNearComponentNodes(
             componentNode,
             cloneDeepAllComponents,
           )
@@ -167,6 +175,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleUpdateDsl={handleUpdateDsl}
           updateComponentHeight={updateComponentHeight}
           displayName={displayName}
+          childrenNode={childrenNode}
+          componentNode={componentNode}
         />
       </div>
     )
