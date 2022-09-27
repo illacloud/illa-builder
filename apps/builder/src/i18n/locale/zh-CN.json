@@ -454,6 +454,8 @@
         "style": "风格",
         "validation": "验证",
         "options": "选项",
+        "column": "列",
+        "row_selection": "行选择",
         "data": "数据"
       },
       "setter_label": {
@@ -567,10 +569,17 @@
           "remove": "移除数据集",
           "aggregation_method": "聚合方式"
         },
+        "sort": "排序",
+        "default_sort_key": "排序列",
+        "default_sort_order": "顺序",
+        "column_title": "列标题",
+        "enable_sorting": "排序",
+        "decimal_places": "小数位数",
         "new_tab": "在新标签中打开",
         "description": "描述",
         "duration": "持续时间",
         "data": "数据",
+        "empty_state": "空状态",
         "chart_title": "标题",
         "x_axis_name": "横坐标名称",
         "y_axis_name": "纵坐标名称"
@@ -613,6 +622,11 @@
         }
       },
       "setter_content": {
+        "column_setter": {
+          "label": "列 ({{number}})",
+          "title": "标题",
+          "new": "新建"
+        },
         "option_list": {
           "action_menu": {
             "delete": "删除",
@@ -637,6 +651,9 @@
           "prefabricated": "Prefabricated color"
         },
         "widget_action_type_name": {
+          "sorting_change": "排序方式改变",
+          "pagination_change": "翻页配置改变",
+          "column_filters_change": "行筛选改变",
           "click": "单击",
           "change": "内容改变",
           "focus": "聚焦",
@@ -751,7 +768,9 @@
       "name": "图表"
     },
     "table": {
-      "name": "表格"
+      "name": "表格",
+      "ascend": "升序",
+      "descend": "降序"
     },
     "container": {
       "name": "容器",

@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom"
+import { render } from "react-dom"
 import CodeMirror, { Hint, Hints } from "codemirror"
 import "codemirror/addon/hint/sql-hint"
 import "codemirror/addon/hint/javascript-hint"
@@ -9,12 +9,13 @@ import { AutoCompleteItem } from "./AutoComplete"
 
 let origJsHint = CodeMirror.hint.javascript
 CodeMirror.hint.javascript = async function(cm, option) {
-  let inner = (await origJsHint(cm, option)) || {
-    from: cm.getCursor(),
-    to: cm.getCursor(),
-    list: [],
-  }
-  return inner
+  return (
+    (await origJsHint(cm, option)) || {
+      from: cm.getCursor(),
+      to: cm.getCursor(),
+      list: [],
+    }
+  )
 }
 
 const transHinters = (inner: Hints) => {
@@ -27,7 +28,7 @@ const transHinters = (inner: Hints) => {
       text: item,
       render: (elt: HTMLLIElement) => {
         let div = document.createElement("div")
-        ReactDOM.render(<AutoCompleteItem content={item as string} />, div)
+        render(<AutoCompleteItem content={item as string} />, div)
         elt?.appendChild(div)
       },
     })
@@ -63,7 +64,7 @@ CodeMirror.hint.xml = async function(cm, option) {
 
 let origHtmlHint = CodeMirror.hint.html
 CodeMirror.hint.html = async function(cm, option) {
-  let inner = (await origXmlHint(cm, option)) || {
+  let inner = (await origHtmlHint(cm, option)) || {
     from: cm.getCursor(),
     to: cm.getCursor(),
     list: [],

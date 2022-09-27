@@ -1,12 +1,5 @@
-import React, {
-  FC,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react"
-import { css, Global } from "@emotion/react"
+import React, { FC, useContext, useEffect, useRef, useState } from "react"
+import { Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
@@ -83,7 +76,7 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
     setFocus(true)
   }
 
-  const handleBlur = (instance: Editor, event: FocusEvent) => {
+  const handleBlur = () => {
     latestProps.current?.onBlur?.()
     setFocus(false)
     setPreviewVisible(false)
@@ -154,7 +147,7 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
     }
   }, [executionError, executionResult, path])
 
-  const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
+  const handleChange = (editor: Editor) => {
     const currentValue = editor?.getValue()
     clearMarks(editor)
     if (path) {

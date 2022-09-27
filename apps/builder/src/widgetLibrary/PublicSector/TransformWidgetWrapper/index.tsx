@@ -142,6 +142,30 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       return []
     }, [realProps])
 
+    const getOnSortingChangeEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "sortingChange")
+      }
+      return []
+    }, [realProps])
+
+    const getOnPaginationChangeEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "paginationChange")
+      }
+      return []
+    }, [realProps])
+
+    const getOnColumnFiltersChangeEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "columnFiltersChange")
+      }
+      return []
+    }, [realProps])
+
     const handleOnChange = useCallback(() => {
       getOnChangeEventScripts().forEach(scriptObj => {
         runEventHandler(scriptObj, globalData)
@@ -153,6 +177,24 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         runEventHandler(scriptObj, globalData)
       })
     }, [getOnClickEventScripts, globalData])
+
+    const handleOnSortingChange = useCallback(() => {
+      getOnSortingChangeEventScripts().forEach(scriptObj => {
+        runEventHandler(scriptObj, globalData)
+      })
+    }, [getOnSortingChangeEventScripts, globalData])
+
+    const handleOnPaginationChange = useCallback(() => {
+      getOnPaginationChangeEventScripts().forEach(scriptObj => {
+        runEventHandler(scriptObj, globalData)
+      })
+    }, [getOnPaginationChangeEventScripts, globalData])
+
+    const handleOnColumnFiltersChange = useCallback(() => {
+      getOnColumnFiltersChangeEventScripts().forEach(scriptObj => {
+        runEventHandler(scriptObj, globalData)
+      })
+    }, [getOnColumnFiltersChangeEventScripts, globalData])
 
     if (!type) return null
     const COMP = widgetBuilder(type).widget
@@ -172,6 +214,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleDeleteGlobalData={handleDeleteGlobalData}
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
+          handleOnSortingChange={handleOnSortingChange}
+          handleOnPaginationChange={handleOnPaginationChange}
+          handleOnColumnFiltersChange={handleOnColumnFiltersChange}
           handleUpdateDsl={handleUpdateDsl}
           updateComponentHeight={updateComponentHeight}
           displayName={displayName}
