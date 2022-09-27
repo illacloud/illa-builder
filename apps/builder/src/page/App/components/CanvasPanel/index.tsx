@@ -1,6 +1,11 @@
 import { FC, ReactNode } from "react"
 import { useTranslation } from "react-i18next"
-import { applyScaleContainerStyle, previewStyle } from "./style"
+import {
+  applyScaleContainerStyle,
+  previewStyle,
+  messageStyle,
+  messageWrapper,
+} from "./style"
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
 import { useDispatch, useSelector } from "react-redux"
@@ -11,10 +16,6 @@ import { Button } from "@illa-design/button"
 import { getFreezyState, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { FocusManager } from "@/utils/focusManager"
-import {
-  messageStyle,
-  messageWrapper,
-} from "@/page/App/components/DotPanel/style"
 
 export const CanvasPanel: FC<CanvasPanelProps> = props => {
   const { ...otherProps } = props
