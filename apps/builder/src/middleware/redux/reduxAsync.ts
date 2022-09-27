@@ -124,19 +124,16 @@ export const reduxAsync: Redux.Middleware = store => next => action => {
             const componentNodes = updateComponentContainerPayload.updateSlice.map(
               slice => slice.component,
             )
-            const updateComponentContainerWSPayload = transformComponentReduxPayloadToWsPayload(
-              componentNodes,
-            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
-                Signal.SIGNAL_UPDATE_STATE,
+                Signal.SIGNAL_MOVE_STATE,
                 Target.TARGET_COMPONENTS,
                 true,
                 {
                   type,
                   payload,
                 },
-                updateComponentContainerWSPayload,
+                componentNodes,
               ),
             )
             break
