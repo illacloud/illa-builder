@@ -29,7 +29,7 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
 
 WrappedBarProgress.displayName = "WrappedBarProgress"
 
-export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
+export const BarProgressWidget: FC<BarProgressWidgetProps> = props => {
   const {
     value,
     showText,

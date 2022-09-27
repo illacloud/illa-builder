@@ -6,7 +6,7 @@ export const tansTableDataToColumns = (
 ): ColumnItemShape[] => {
   const columns: ColumnItemShape[] = []
   if (data && data.length > 0) {
-    Object.keys(data[0]).forEach((key) => {
+    Object.keys(data[0]).forEach(key => {
       columns.push({
         header: key,
         accessorKey: key,

@@ -24,7 +24,7 @@ function copyToClipboard(content: any) {
   Message.success("copied to clipboard")
 }
 
-export const CodePreview: FC<CodePreviewProps> = (props) => {
+export const CodePreview: FC<CodePreviewProps> = props => {
   const { className, preview, ...otherProps } = props
 
   return (

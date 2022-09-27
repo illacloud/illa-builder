@@ -11,7 +11,7 @@ export type ActionEditorSteps =
   | "resource-create"
   | "resource-edit"
 
-export const ResourceEditor: FC<ActionGeneratorProps> = function (props) {
+export const ResourceEditor: FC<ActionGeneratorProps> = function(props) {
   const { edit, resourceId, visible, onClose } = props
   const [step, setStep] = useState<ActionEditorSteps>("select-type")
   const [actionType, setResourceType] = useState<ActionType>()
@@ -36,7 +36,7 @@ export const ResourceEditor: FC<ActionGeneratorProps> = function (props) {
     >
       {step === "select-type" ? (
         <ActionTypeSelector
-          onSelect={(info) => {
+          onSelect={info => {
             const { category, actionType } = info
             setCategory(category)
             switch (category) {

@@ -32,7 +32,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
   (props, ref) => {
     const { resourceId, connectionRef, onSubmit, onTestConnection } = props
     const resourceConfig = useSelector(getAllResources).find(
-      (i) => i.resourceId === resourceId,
+      i => i.resourceId === resourceId,
     )
     const [enableSSL, setEnableSSL] = useState(
       (resourceConfig?.content as MysqlResource)?.ssl?.ssl,
@@ -57,7 +57,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       const data = getValues()
       const { resourceName, ...content } = data
 
-      trigger().then((res) => {
+      trigger().then(res => {
         if (res) {
           onTestConnection?.({
             resourceName: resourceName,
@@ -77,7 +77,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
       }
     })
 
-    const submitForm: SubmitHandler<MySQLConfigureValues> = (data) => {
+    const submitForm: SubmitHandler<MySQLConfigureValues> = data => {
       const { resourceName, ...content } = data
       onSubmit?.({
         resourceName: resourceName,
@@ -251,7 +251,7 @@ export const MySQLConfigure = forwardRef<HTMLFormElement, MySQLConfigureProps>(
               <Switch
                 colorScheme="techPurple"
                 checked={enableSSL}
-                onChange={(val) => {
+                onChange={val => {
                   setEnableSSL(val)
                 }}
               />

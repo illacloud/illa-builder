@@ -207,7 +207,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "regex",
         bindAttrName: ["pattern"],
         expectedType: VALIDATION_TYPES.STRING,
-        shown: (value) => value === "Regex",
+        shown: value => value === "Regex",
       },
       {
         id: `${baseWidgetName}-validation-max`,

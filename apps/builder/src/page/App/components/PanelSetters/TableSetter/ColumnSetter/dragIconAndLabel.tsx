@@ -14,7 +14,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/context/columnListContext"
 
-export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
+export const DragIconAndLabel: FC<DragIconAndLabelProps> = props => {
   const { index, label, visible } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
@@ -50,7 +50,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       showArrow={false}
       position="left"
       clickOutsideToClose
-      onVisibleChange={(visible) => {
+      onVisibleChange={visible => {
         setModalVisible(visible)
       }}
     >
@@ -65,7 +65,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           </span>
         </div>
         <span
-          onClick={(event) => {
+          onClick={event => {
             handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
             event.stopPropagation()
           }}

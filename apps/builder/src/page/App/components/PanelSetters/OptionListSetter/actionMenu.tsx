@@ -7,7 +7,7 @@ import { OptionListSetterContext } from "@/page/App/components/PanelSetters/Opti
 
 const { Item } = DropList
 
-export const ActionMenu: FC<ActionMenuProps> = (props) => {
+export const ActionMenu: FC<ActionMenuProps> = props => {
   const { index, handleCloseMode } = props
   const { handleCopyOptionItem, handleDeleteOptionItem } = useContext(
     OptionListSetterContext,

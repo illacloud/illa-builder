@@ -11,7 +11,7 @@ export function getPath(attrName?: string, widgetDisplayName?: string) {
   }
 }
 
-export const BaseInput: FC<BaseInputSetterProps> = (props) => {
+export const BaseInput: FC<BaseInputSetterProps> = props => {
   const {
     isSetterSingleRow,
     placeholder,
@@ -36,7 +36,7 @@ export const BaseInput: FC<BaseInputSetterProps> = (props) => {
       <CodeEditor
         value={_value ?? ""}
         placeholder={placeholder}
-        onChange={(value) => {
+        onChange={value => {
           handleUpdateDsl(attrName, value)
         }}
         mode="TEXT_JS"

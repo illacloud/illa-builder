@@ -15,7 +15,7 @@ import { BaseInput } from "../InputSetter/baseInput"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { DynamicIcon } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon"
 
-export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
+export const DynamicSwitchSetter: FC<DynamicSwitchProps> = props => {
   const {
     attrName,
     labelName,
@@ -55,7 +55,7 @@ export const DynamicSwitchSetter: FC<DynamicSwitchProps> = (props) => {
           )}
           {!customSelected && (
             <Switch
-              onChange={(value) => {
+              onChange={value => {
                 handleUpdateDsl(attrName, value)
               }}
               checked={value}

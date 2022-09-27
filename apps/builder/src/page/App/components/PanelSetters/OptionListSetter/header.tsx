@@ -8,7 +8,7 @@ import {
 import { HeaderProps } from "./interface"
 import { useTranslation } from "react-i18next"
 
-export const OptionListHeader: FC<HeaderProps> = (props) => {
+export const OptionListHeader: FC<HeaderProps> = props => {
   const { labelName, handleAddOption } = props
   const { t } = useTranslation()
 

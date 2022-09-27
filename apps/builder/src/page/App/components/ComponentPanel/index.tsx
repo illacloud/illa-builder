@@ -12,7 +12,7 @@ import { EmptySearchResult } from "./Empty"
 import { buildComponentList } from "@/widgetLibrary/componentListBuilder"
 import { useTranslation } from "react-i18next"
 
-export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
+export const ComponentPanel: FC<ComponentPanelProps> = props => {
   const { t } = useTranslation()
 
   const defaultList: ComponentSessionProps[] = buildComponentList()
@@ -29,11 +29,11 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
           borderColor="purple"
           variant="fill"
           placeholder={t("editor.widget_picker.search_placeholder")}
-          onChange={(e) => {
+          onChange={e => {
             const res = getMatchComponent(e.target.value, componentList)
             setSearchRes(res)
           }}
-          onSearch={(value) => {
+          onSearch={value => {
             const res = getMatchComponent(value, componentList)
             setSearchRes(res)
           }}
@@ -41,7 +41,7 @@ export const ComponentPanel: FC<ComponentPanelProps> = (props) => {
       </div>
       <div css={sessionListContainerStyle}>
         {searchRes && searchRes.length ? (
-          searchRes.map((session) => (
+          searchRes.map(session => (
             <ComponentSession key={"session-" + session.title} {...session} />
           ))
         ) : (

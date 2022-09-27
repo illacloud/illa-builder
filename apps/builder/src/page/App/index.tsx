@@ -49,8 +49,8 @@ export const Editor: FC = () => {
       Connection.enterRoom(
         "app",
         appId ?? "",
-        (loading) => {},
-        (errorState) => {},
+        loading => {},
+        errorState => {},
       )
     }
     return () => {
@@ -64,7 +64,7 @@ export const Editor: FC = () => {
       setupConfigListener(startAppListening),
       setupExecutionListeners(startAppListening),
     ]
-    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
+    return () => subscriptions.forEach(unsubscribe => unsubscribe())
   }, [])
 
   const showLeftPanel = useSelector(isOpenLeftPanel)
@@ -83,7 +83,7 @@ export const Editor: FC = () => {
         method: "GET",
         signal: controller.signal,
       },
-      (response) => {
+      response => {
         dispatch(resourceActions.updateResourceListReducer(response.data))
       },
     )
@@ -93,7 +93,7 @@ export const Editor: FC = () => {
   }, [])
 
   useEffect(() => {
-    window.addEventListener("beforeunload", (event) => {
+    window.addEventListener("beforeunload", event => {
       event.preventDefault()
       event.returnValue = "CLOSE_TAB_MESSAGE"
     })

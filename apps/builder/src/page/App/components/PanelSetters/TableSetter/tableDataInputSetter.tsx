@@ -9,7 +9,7 @@ import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 
-export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
+export const TableDataInputSetter: FC<TableDataInputSetterProps> = props => {
   const {
     widgetDisplayName,
     attrName,
@@ -24,7 +24,7 @@ export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    (rootState) => {
+    rootState => {
       const executionTree = getExecutionResult(rootState)
       return get(executionTree, widgetDisplayName, {})
     },

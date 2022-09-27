@@ -19,7 +19,7 @@ import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import i18n from "@/i18n/config"
 import { Spin } from "@illa-design/spin"
 
-const Card: FC<ActionTypeSelectorCardProps> = (props) => {
+const Card: FC<ActionTypeSelectorCardProps> = props => {
   const { nameKey, isDraft, category, actionType, onSelect } = props
 
   return (
@@ -36,7 +36,7 @@ const Card: FC<ActionTypeSelectorCardProps> = (props) => {
   )
 }
 
-export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
+export const ActionTypeSelector: FC<ActionTypeSelectorProps> = props => {
   const { resourceOnly, loading = false, onSelect } = props
   const typeList = resourceOnly ? GeneratorTypeList : ActionTypeList
 
@@ -54,7 +54,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
           <div key={category}>
             <span css={categoryStyle}>{title}</span>
             <div css={resourceListStyle}>
-              {item.map((prop) => (
+              {item.map(prop => (
                 <Card
                   key={prop.nameKey}
                   onSelect={onSelect}

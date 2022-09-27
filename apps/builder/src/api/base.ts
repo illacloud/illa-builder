@@ -25,7 +25,7 @@ const axios = Axios.create({
 })
 
 axios.interceptors.request.use(
-  (config) => {
+  config => {
     addRequestPendingPool(config)
     const token = getLocalStorage("token")
     if (token) {
@@ -36,13 +36,13 @@ axios.interceptors.request.use(
     }
     return config
   },
-  (err) => {
+  err => {
     return Promise.reject(err)
   },
 )
 
 axios.interceptors.response.use(
-  (response) => {
+  response => {
     const { config } = response
     removeRequestPendingPool(config)
     return response
@@ -80,7 +80,7 @@ export class Api {
     errorState?.(false)
     axios
       .request<RespData, AxiosResponse<RespData>, RequestBody>(config)
-      .then((response) => {
+      .then(response => {
         loading?.(false)
         errorState?.(false)
         success?.(response)

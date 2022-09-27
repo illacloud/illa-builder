@@ -43,7 +43,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   },
 )
 
-export const TableWidget: FC<TableWidgetProps> = (props) => {
+export const TableWidget: FC<TableWidgetProps> = props => {
   const {
     data,
     emptyState,
@@ -72,7 +72,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnVisibility = useMemo(() => {
     const res: Record<string, boolean> = {}
-    columns?.map((item) => {
+    columns?.map(item => {
       const { visible, accessorKey } = item as ColumnItemShape
       if (!visible) {
         res[accessorKey] = false
@@ -83,7 +83,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnsDef = useMemo(() => {
     const res: ColumnItemShape[] = []
-    columns?.map((item) => {
+    columns?.map(item => {
       const transItem = JSON.parse(JSON.stringify(item)) as ColumnItemShape
       transItem["header"] = transDataForType(transItem)
       res.push(transItem)

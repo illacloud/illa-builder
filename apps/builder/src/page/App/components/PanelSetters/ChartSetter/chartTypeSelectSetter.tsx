@@ -70,9 +70,7 @@ const typeOptions = [
   },
 ]
 
-export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (
-  props,
-) => {
+export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = props => {
   const {
     attrName,
     expectedType,
@@ -84,7 +82,7 @@ export const ChartTypeSelectSetter: FC<ChartTypeSelectSetterProps> = (
   } = props
 
   const insertValues = useSelector<RootState, Record<string, any>>(
-    (rootState) => {
+    rootState => {
       const targetComponentNode = searchDsl(
         getCanvas(rootState),
         widgetDisplayName,
