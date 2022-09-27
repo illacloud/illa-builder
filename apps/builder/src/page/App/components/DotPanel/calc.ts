@@ -183,7 +183,7 @@ export const getCrossingNodeNewPosition = (
 ) => {
   const otherComponents = cloneDeep(allComponentNode)
   const indexOfAllComponentNode = otherComponents.findIndex(
-    (curr) => curr.displayName === currentNode.displayName,
+    curr => curr.displayName === currentNode.displayName,
   )
   if (indexOfAllComponentNode > -1) {
     otherComponents.splice(indexOfAllComponentNode, 1)
@@ -195,7 +195,7 @@ export const getCrossingNodeNewPosition = (
   while (queue.length !== 0) {
     let length = queue.length
     const indexOfAllComponentNode = otherComponents.findIndex(
-      (curr) => curr.displayName === queue[0].displayName,
+      curr => curr.displayName === queue[0].displayName,
     )
     if (indexOfAllComponentNode > -1) {
       otherComponents.splice(indexOfAllComponentNode, 1)
@@ -215,7 +215,7 @@ export const getCrossingNodeNewPosition = (
           walkedSet.add(otherComponents[i].displayName)
           res.set(otherComponents[i].displayName, otherComponents[i])
           const index = queue.findIndex(
-            (node) => node.displayName === otherComponents[i].displayName,
+            node => node.displayName === otherComponents[i].displayName,
           )
           if (index > -1) {
             queue.splice(index, 1, otherComponents[i])
@@ -235,7 +235,7 @@ export const getNearingNodes = (
 ) => {
   const otherComponents = cloneDeep(allComponentNode)
   const indexOfAllComponentNode = otherComponents.findIndex(
-    (curr) => curr.displayName === currentNode.displayName,
+    curr => curr.displayName === currentNode.displayName,
   )
   if (indexOfAllComponentNode > -1) {
     otherComponents.splice(indexOfAllComponentNode, 1)
@@ -247,7 +247,7 @@ export const getNearingNodes = (
   while (queue.length !== 0) {
     let length = queue.length
     const indexOfAllComponentNode = otherComponents.findIndex(
-      (curr) => curr.displayName === queue[0].displayName,
+      curr => curr.displayName === queue[0].displayName,
     )
     if (indexOfAllComponentNode > -1) {
       otherComponents.splice(indexOfAllComponentNode, 1)
@@ -263,7 +263,7 @@ export const getNearingNodes = (
           walkedSet.add(otherComponents[i].displayName)
           res.set(otherComponents[i].displayName, otherComponents[i])
           const index = queue.findIndex(
-            (node) => node.displayName === otherComponents[i].displayName,
+            node => node.displayName === otherComponents[i].displayName,
           )
           if (index > -1) {
             queue.splice(index, 1, otherComponents[i])
@@ -281,7 +281,7 @@ export const applyEffectMapToComponentNodes = (
   effectMap: Map<string, ComponentNode>,
   componentNodes: ComponentNode[],
 ) => {
-  return componentNodes.map((node) => {
+  return componentNodes.map(node => {
     if (effectMap.has(node.displayName)) {
       return effectMap.get(node.displayName) as ComponentNode
     }
@@ -307,7 +307,7 @@ export const getReflowResult = (
 
   if (exceptSelf) {
     finalState = finalState.filter(
-      (node) => node.displayName !== currentNode.displayName,
+      node => node.displayName !== currentNode.displayName,
     )
   }
   return {
@@ -375,14 +375,10 @@ export const getDragResult = (
   }
 }
 
-export const getNearCompntNodes = (
+export const getNearComponentNodes = (
   currentNode: ComponentNode,
   allComponentNodes: ComponentNode[],
 ) => {
   const sortedComponentNodes = sortComponentNodesOnlyY(allComponentNodes)
-  const nearingComponentsMap = getNearingNodes(
-    currentNode,
-    sortedComponentNodes,
-  )
-  return nearingComponentsMap
+  return getNearingNodes(currentNode, sortedComponentNodes)
 }
