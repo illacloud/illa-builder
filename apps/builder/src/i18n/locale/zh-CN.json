@@ -7,6 +7,8 @@
   "title": "欢迎来到艾拉云",
   "freeze_tips": "画布已冻结，点击解冻。",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
+  "collision_message": "按住D或K键，将组件拖进容器",
+  "freeze_messages": "画布处于冻结状态，可以将组件拖入或拖出容器。",
   "description": {
     "part1": "这是一个示例。"
   },

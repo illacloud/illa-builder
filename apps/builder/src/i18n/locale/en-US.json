@@ -7,6 +7,8 @@
   "title": "Welcome to illa",
   "freeze_tips": "The canvas is frozen. Click to unfreeze it.",
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
+  "collision_message": "Press D or K  and drag the component into container",
+  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
   "description": {
     "part1": "This is an example without namespaces."
   },
