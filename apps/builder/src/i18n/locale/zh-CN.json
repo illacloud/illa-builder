@@ -5,6 +5,8 @@
   "edit": "编辑",
   "edit_at": "上次编辑于",
   "title": "欢迎来到艾拉云",
+  "freeze_tips": "画布已冻结，点击解冻。",
+  "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
   "description": {
     "part1": "这是一个示例。"
   },

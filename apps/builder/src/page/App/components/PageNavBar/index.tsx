@@ -42,6 +42,7 @@ import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { Trigger } from "@illa-design/trigger"
 
 export const PageNavBar: FC<PageNavBarProps> = props => {
   const { className } = props
@@ -161,24 +162,33 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
                 onClick={handleClickDebuggerIcon}
               />
             </Badge>
-            <Button
-              colorScheme="gray"
-              size="medium"
-              leftIcon={
-                isFreezyCanvas ? (
-                  <LockIcon
-                    size="14px"
-                    color={globalColor(`--${illaPrefix}-techPurple-01`)}
-                  />
-                ) : (
-                  <UnlockIcon
-                    size="14px"
-                    color={globalColor(`--${illaPrefix}-grayBlue-03`)}
-                  />
-                )
-              }
-              onClick={handleClickFreezyIcon}
-            />
+            <Trigger
+              content={isFreezyCanvas ? t("freeze_tips") : t("unfreeze_tips")}
+              colorScheme="grayBlue"
+              position="bottom"
+              showArrow={false}
+              autoFitPosition={false}
+              trigger="hover"
+            >
+              <Button
+                colorScheme="gray"
+                size="medium"
+                leftIcon={
+                  isFreezyCanvas ? (
+                    <LockIcon
+                      size="14px"
+                      color={globalColor(`--${illaPrefix}-techPurple-01`)}
+                    />
+                  ) : (
+                    <UnlockIcon
+                      size="14px"
+                      color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                    />
+                  )
+                }
+                onClick={handleClickFreezyIcon}
+              />
+            </Trigger>
             <Button
               loading={deployLoading}
               colorScheme="techPurple"

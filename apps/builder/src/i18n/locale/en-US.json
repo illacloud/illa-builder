@@ -5,6 +5,8 @@
   "edit": "Edit",
   "edit_at": "Edited at",
   "title": "Welcome to illa",
+  "freeze_tips": "The canvas is frozen. Click to unfreeze it.",
+  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
   "description": {
     "part1": "This is an example without namespaces."
   },
