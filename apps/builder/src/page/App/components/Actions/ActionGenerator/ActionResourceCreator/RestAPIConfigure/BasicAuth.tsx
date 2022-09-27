@@ -5,7 +5,7 @@ import { Controller } from "react-hook-form"
 import { labelTextStyle } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator/MySQLConfigure/style"
 import i18n from "@/i18n/config"
 
-export const BasicAuth: FC<BasicAuthProps> = (props) => {
+export const BasicAuth: FC<BasicAuthProps> = props => {
   const { control } = props
 
   return (

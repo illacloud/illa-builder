@@ -11,7 +11,7 @@ import "codemirror/addon/hint/javascript-hint"
 
 import { EditorModes } from "./interface"
 
-CodeMirror.defineMode(EditorModes.TEXT_JS, function (config) {
+CodeMirror.defineMode(EditorModes.TEXT_JS, function(config) {
   return CodeMirror.multiplexingMode(
     CodeMirror.getMode(config, EditorModes.TEXT),
     {
@@ -27,7 +27,7 @@ CodeMirror.defineMode(EditorModes.TEXT_JS, function (config) {
   )
 })
 
-CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
+CodeMirror.defineMode(EditorModes.SQL_JS, function(config) {
   return CodeMirror.multiplexingMode(
     CodeMirror.getMode(config, { name: "text/x-mysql" }),
     {
@@ -43,7 +43,7 @@ CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
   )
 })
 
-CodeMirror.defineMode(EditorModes.XML_JS, function (config) {
+CodeMirror.defineMode(EditorModes.XML_JS, function(config) {
   return CodeMirror.multiplexingMode(
     CodeMirror.getMode(config, { name: "application/xml" }),
     {
@@ -59,7 +59,7 @@ CodeMirror.defineMode(EditorModes.XML_JS, function (config) {
   )
 })
 
-CodeMirror.defineMode(EditorModes.HTML_JS, function (config) {
+CodeMirror.defineMode(EditorModes.HTML_JS, function(config) {
   return CodeMirror.multiplexingMode(
     CodeMirror.getMode(config, { name: "text/html" }),
     {
@@ -74,7 +74,7 @@ CodeMirror.defineMode(EditorModes.HTML_JS, function (config) {
     },
   )
 })
-CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
+CodeMirror.defineMode(EditorModes.JAVASCRIPT, function(config) {
   return CodeMirror.multiplexingMode(
     CodeMirror.getMode(config, {
       name: "application/javascript",
@@ -92,7 +92,7 @@ CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
   )
 })
 
-CodeMirror.defineMode(EditorModes.JSON, function (config) {
+CodeMirror.defineMode(EditorModes.JSON, function(config) {
   return CodeMirror.multiplexingMode(
     CodeMirror.getMode(config, {
       name: "application/json",

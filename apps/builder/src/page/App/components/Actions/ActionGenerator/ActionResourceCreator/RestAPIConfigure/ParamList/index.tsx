@@ -34,7 +34,7 @@ export const ParamList = forwardRef<HTMLDivElement, ParamListProps>(
 
     const addParamItem = useCallback(() => append(EmptyField), [append])
     const removeParamItem = useCallback(
-      (index) => {
+      index => {
         if (fields.length === 1) {
           update(index, EmptyField)
           return

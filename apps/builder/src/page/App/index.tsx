@@ -14,7 +14,8 @@ import {
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  isOpenBottomPanel, isOpenDebugger,
+  isOpenBottomPanel,
+  isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -108,7 +109,9 @@ export const Editor: FC = () => {
             <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
             <div css={middlePanelStyle}>
               <CanvasPanel css={centerPanelStyle} />
-              <ActionEditor css={applyBottomPanelStyle(showBottomPanel && !showDebugger)} />
+              <ActionEditor
+                css={applyBottomPanelStyle(showBottomPanel && !showDebugger)}
+              />
               <Debugger css={applyBottomPanelStyle(showDebugger)} />
             </div>
             <ComponentsManager css={applyRightPanelStyle(showRightPanel)} />

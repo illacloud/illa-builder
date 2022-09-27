@@ -100,7 +100,7 @@ function getBodyEditorComponent(
           value={(body as RawBody<RawBodyContent>).content}
           expectedType={VALIDATION_TYPES.STRING}
           height="88px"
-          onChange={(value) => {
+          onChange={value => {
             onChangeBody({
               type: rawBody.type,
               content: value,
@@ -116,7 +116,7 @@ function getBodyEditorComponent(
           value={body as BinaryBody}
           expectedType={VALIDATION_TYPES.STRING}
           height="88px"
-          onChange={(value) => {
+          onChange={value => {
             onChangeBody(value)
           }}
         />
@@ -124,7 +124,7 @@ function getBodyEditorComponent(
   }
 }
 
-export const BodyEditor: FC<BodyEditorProps> = (props) => {
+export const BodyEditor: FC<BodyEditorProps> = props => {
   const {
     body,
     bodyType,
@@ -152,7 +152,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               "binary",
             ]}
             borderRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
-            onChange={(value) => {
+            onChange={value => {
               onChangeBodyType(value)
             }}
           />
@@ -163,7 +163,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               width="162px"
               value={(body as RawBody<RawBodyContent>).type}
               options={["text", "json", "xml", "javascript", "html"]}
-              onChange={(value) => {
+              onChange={value => {
                 onChangeRawBodyType(value)
               }}
             />

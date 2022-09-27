@@ -5,9 +5,14 @@ import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
-  const { value, disabled, colorScheme, handleUpdateDsl, handleOnChange } =
-    props
+export const WrappedSwitch: FC<WrappedSwitchProps> = props => {
+  const {
+    value,
+    disabled,
+    colorScheme,
+    handleUpdateDsl,
+    handleOnChange,
+  } = props
 
   return (
     <Switch
@@ -15,7 +20,7 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
       alignSelf="center"
       disabled={disabled}
       colorScheme={colorScheme}
-      onChange={(value) => {
+      onChange={value => {
         handleOnChange()
         handleUpdateDsl({ value })
       }}
@@ -25,7 +30,7 @@ export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
 
 WrappedSwitch.displayName = "WrappedSwitch"
 
-export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
+export const SwitchWidget: FC<SwitchWidgetProps> = props => {
   const {
     value,
     disabled,

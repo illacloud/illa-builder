@@ -4,7 +4,7 @@ import { WarningCircleIcon } from "@illa-design/icon"
 import { handleValidateCheck } from "./utils"
 import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
-export const InvalidMessage: FC<ValidateMessageProps> = (props) => {
+export const InvalidMessage: FC<ValidateMessageProps> = props => {
   const { value, hideValidationMessage, customRule, ...res } = props
 
   const message =

@@ -42,7 +42,7 @@ const convertResourcesToTables = (data: Record<string, unknown>) => {
   return res
 }
 
-export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
+export const MysqlPanel: FC<MysqlPanelProps> = props => {
   const dispatch = useDispatch()
 
   const currentAction = props.action
@@ -83,7 +83,7 @@ export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
         mode="SQL_JS"
         expectedType={VALIDATION_TYPES.STRING}
         tables={sqlTable}
-        onChange={(value) => {
+        onChange={value => {
           dispatch(
             configActions.updateSelectedAction({
               ...currentAction,

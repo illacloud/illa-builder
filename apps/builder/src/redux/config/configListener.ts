@@ -8,7 +8,7 @@ async function handleUpdateSelectedActionExecution(
 ) {
   const resource = store
     .getState()
-    .resource.find((r) => r.resourceId === action.payload.resourceId)
+    .resource.find(r => r.resourceId === action.payload.resourceId)
   if (resource != null) {
     store.dispatch(
       configActions.updateCacheActionContent({
@@ -41,6 +41,6 @@ export function setupConfigListener(
   ]
 
   return () => {
-    subscriptions.forEach((unsubscribe) => unsubscribe())
+    subscriptions.forEach(unsubscribe => unsubscribe())
   }
 }

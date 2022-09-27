@@ -8,7 +8,7 @@ import { isString } from "@illa-design/system"
 import { AutoCompleteItem } from "./AutoComplete"
 
 let origJsHint = CodeMirror.hint.javascript
-CodeMirror.hint.javascript = async function (cm, option) {
+CodeMirror.hint.javascript = async function(cm, option) {
   let inner = (await origJsHint(cm, option)) || {
     from: cm.getCursor(),
     to: cm.getCursor(),
@@ -37,7 +37,7 @@ const transHinters = (inner: Hints) => {
 }
 
 let origSqlHint = CodeMirror.hint.sql
-CodeMirror.hint.sql = async function (cm, option) {
+CodeMirror.hint.sql = async function(cm, option) {
   const editor = cm
   // [TODO] override sql-hint.js
   // @ts-ignore override doc.modeOption
@@ -52,7 +52,7 @@ CodeMirror.hint.sql = async function (cm, option) {
 }
 
 let origXmlHint = CodeMirror.hint.xml
-CodeMirror.hint.xml = async function (cm, option) {
+CodeMirror.hint.xml = async function(cm, option) {
   let inner = (await origXmlHint(cm, option)) || {
     from: cm.getCursor(),
     to: cm.getCursor(),
@@ -62,7 +62,7 @@ CodeMirror.hint.xml = async function (cm, option) {
 }
 
 let origHtmlHint = CodeMirror.hint.html
-CodeMirror.hint.html = async function (cm, option) {
+CodeMirror.hint.html = async function(cm, option) {
   let inner = (await origXmlHint(cm, option)) || {
     from: cm.getCursor(),
     to: cm.getCursor(),

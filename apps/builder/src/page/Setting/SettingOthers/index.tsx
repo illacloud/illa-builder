@@ -48,13 +48,13 @@ export const SettingOthers: FC = () => {
           language: languageValue,
         },
       },
-      (response) => {
+      response => {
         localStorage.setItem("i18nextLng", languageValue)
         window.location.reload()
       },
-      (failure) => {},
-      (crash) => {},
-      (loading) => {
+      failure => {},
+      crash => {},
+      loading => {
         setIsLoading(loading)
       },
     )

@@ -22,9 +22,7 @@ import {
 import { Message } from "@illa-design/message"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 
-export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
-  props,
-) => {
+export const ActionResourceCreator: FC<ActionResourceCreatorProps> = props => {
   const {
     resourceId,
     category,
@@ -34,7 +32,7 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
   } = props
   const dispatch = useDispatch()
   const resource = useSelector(getAllResources).find(
-    (i) => i.resourceId === resourceId,
+    i => i.resourceId === resourceId,
   )
   // if receive `resourceTypeProps` means add new
   const resourceType = resourceTypeProps || resource?.resourceType
@@ -66,7 +64,7 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         Notification.error({ title: <span>{data.errorMessage}</span> })
       },
       () => {},
-      (loading) => setTestConnectLoading(loading),
+      loading => setTestConnectLoading(loading),
     )
   }
 
@@ -88,7 +86,7 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         Message.error(i18n.t("editor.action.action_list.message.failed"))
       },
       () => {},
-      (loading) => setCreateBtnLoading(loading),
+      loading => setCreateBtnLoading(loading),
     )
   }
 
@@ -113,7 +111,7 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
         Message.error(i18n.t("editor.action.action_list.message.failed"))
       },
       () => {},
-      (loading) => setCreateBtnLoading(loading),
+      loading => setCreateBtnLoading(loading),
     )
   }
 
@@ -140,13 +138,13 @@ export const ActionResourceCreator: FC<ActionResourceCreatorProps> = (
             connectionRef={connectionRef}
             resourceId={resourceId}
             onTestConnection={onTestConnection}
-            onSubmit={(data) => onSubmitForm(data, resourceId)}
+            onSubmit={data => onSubmitForm(data, resourceId)}
           />
         ) : resourceType === "restapi" ? (
           <RESTAPIConfigure
             ref={formRef}
             resourceId={resourceId}
-            onSubmit={(data) => onSubmitForm(data, resourceId)}
+            onSubmit={data => onSubmitForm(data, resourceId)}
           />
         ) : null}
       </div>

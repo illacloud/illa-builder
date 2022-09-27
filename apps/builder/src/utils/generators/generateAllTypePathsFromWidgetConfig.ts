@@ -11,10 +11,10 @@ export const generateAllTypePathsFromWidgetConfig = (
   widgetOrAction: Record<string, any>,
 ) => {
   let validationPaths: Record<string, VALIDATION_TYPES> = {}
-  panelConfig.forEach((config) => {
+  panelConfig.forEach(config => {
     if ((config as PanelFieldGroupConfig).children) {
       const filedConfigs = (config as PanelFieldGroupConfig).children
-      filedConfigs.forEach((filedConfig) => {
+      filedConfigs.forEach(filedConfig => {
         const attrPath = filedConfig.attrName
 
         const configValidationPaths: Record<string, VALIDATION_TYPES> = {}
@@ -27,9 +27,9 @@ export const generateAllTypePathsFromWidgetConfig = (
           const basePropertyPath = filedConfig.attrName
           const widgetPropertyValue = get(widgetOrAction, basePropertyPath, [])
           if (Array.isArray(widgetPropertyValue)) {
-            Object.keys(widgetPropertyValue).forEach((key) => {
+            Object.keys(widgetPropertyValue).forEach(key => {
               const objectIndexPropertyPath = `${basePropertyPath}.${key}`
-              filedConfig.childrenSetter?.forEach((childConfig) => {
+              filedConfig.childrenSetter?.forEach(childConfig => {
                 const childAttrPath = childConfig.attrName
                 if (childConfig.expectedType) {
                   configValidationPaths[
@@ -40,9 +40,9 @@ export const generateAllTypePathsFromWidgetConfig = (
             })
           }
           if (isObject(widgetPropertyValue)) {
-            Object.keys(widgetPropertyValue).forEach((key) => {
+            Object.keys(widgetPropertyValue).forEach(key => {
               const objectIndexPropertyPath = `${basePropertyPath}.${key}`
-              filedConfig.childrenSetter?.forEach((childConfig) => {
+              filedConfig.childrenSetter?.forEach(childConfig => {
                 if (childConfig.expectedType) {
                   configValidationPaths[`${objectIndexPropertyPath}`] =
                     childConfig.expectedType
