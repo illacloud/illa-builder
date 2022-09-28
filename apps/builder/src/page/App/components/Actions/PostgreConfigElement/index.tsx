@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { MysqlConfigElementProps } from "./interface"
+import { PostgreConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -26,8 +26,8 @@ import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import {
-  MysqlResource,
-  MysqlSSL,
+  PostgreSqlResource,
+  PostgreSSL,
   Resource,
 } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
@@ -37,16 +37,16 @@ import { Message } from "@illa-design/message"
 export function generateSSLConfig(
   open: boolean,
   data: { [p: string]: any },
-): MysqlSSL {
+): PostgreSSL {
   return {
     ssl: open,
     clientKey: data.clientKey,
     clientCert: data.clientCert,
     serverCert: data.serverCert,
-  } as MysqlSSL
+  } as PostgreSSL
 }
 
-export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
+export const PostgreConfigElement: FC<PostgreConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
@@ -60,7 +60,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
       (r) => r.resourceId === resourceId,
-    ) as Resource<MysqlResource>
+    ) as Resource<PostgreSqlResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -72,14 +72,14 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
     <form
       onSubmit={handleSubmit((data, event) => {
         if (resourceId != undefined) {
-          Api.request<Resource<MysqlResource>>(
+          Api.request<Resource<PostgreSqlResource>>(
             {
               method: "PUT",
               url: `/resources/${resourceId}`,
               data: {
                 resourceId: data.resourceId,
                 resourceName: data.resourceName,
-                resourceType: "mysql",
+                resourceType: "postgresql",
                 content: {
                   host: data.host,
                   port: data.port.toString(),
@@ -106,13 +106,13 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
             },
           )
         } else {
-          Api.request<Resource<MysqlResource>>(
+          Api.request<Resource<PostgreSqlResource>>(
             {
               method: "POST",
               url: `/resources`,
               data: {
                 resourceName: data.resourceName,
-                resourceType: "mysql",
+                resourceType: "postgresql",
                 content: {
                   host: data.host,
                   port: data.port.toString(),
@@ -149,7 +149,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.name")}
+              {t("editor.action.resource.postgresql.label.name")}
             </span>
           </div>
           <Controller
@@ -167,7 +167,9 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                 onChange={onChange}
                 value={value}
                 borderColor="techPurple"
-                placeholder={t("editor.action.resource.mysql.placeholder.name")}
+                placeholder={t(
+                  "editor.action.resource.postgresql.placeholder.name",
+                )}
               />
             )}
             name="resourceName"
@@ -179,7 +181,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.hostname_port")}
+              {t("editor.action.resource.postgresql.label.hostname_port")}
             </span>
           </div>
           <div css={hostInputContainer}>
@@ -197,7 +199,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                   value={value}
                   borderColor="techPurple"
                   placeholder={t(
-                    "editor.action.resource.mysql.placeholder.hostname",
+                    "editor.action.resource.postgresql.placeholder.hostname",
                   )}
                 />
               )}
@@ -230,7 +232,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.database")}
+              {t("editor.action.resource.postgresql.label.database")}
             </span>
           </div>
           <Controller
@@ -249,7 +251,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                 value={value}
                 borderColor="techPurple"
                 placeholder={t(
-                  "editor.action.resource.mysql.placeholder.database",
+                  "editor.action.resource.postgresql.placeholder.database",
                 )}
               />
             )}
@@ -262,7 +264,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.username_password")}
+              {t("editor.action.resource.postgresql.label.username_password")}
             </span>
           </div>
           <div css={hostInputContainer}>
@@ -280,7 +282,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                   value={value}
                   borderColor="techPurple"
                   placeholder={t(
-                    "editor.action.resource.mysql.placeholder.username",
+                    "editor.action.resource.postgresql.placeholder.username",
                   )}
                 />
               )}
@@ -301,7 +303,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                   value={value}
                   ml="8px"
                   placeholder={t(
-                    "editor.action.resource.mysql.placeholder.password",
+                    "editor.action.resource.postgresql.placeholder.password",
                   )}
                 />
               )}
@@ -310,16 +312,16 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
           </div>
         </div>
         <span css={configItemTip}>
-          {t("editor.action.resource.mysql.tip.username_password")}
+          {t("editor.action.resource.postgresql.tip.username_password")}
         </span>
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.mysql.label.connect_type")}
+              {t("editor.action.resource.postgresql.label.connect_type")}
             </span>
           </div>
           <span css={connectTypeStyle}>
-            {t("editor.action.resource.mysql.tip.connect_type")}
+            {t("editor.action.resource.postgresql.tip.connect_type")}
           </span>
         </div>
         <Divider
@@ -331,12 +333,12 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
           w="unset"
         />
         <div css={optionLabelStyle}>
-          {t("editor.action.resource.mysql.title.advanced_option")}
+          {t("editor.action.resource.postgresql.title.advanced_option")}
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.mysql.label.ssl_options")}
+              {t("editor.action.resource.postgresql.label.ssl_options")}
             </span>
           </div>
           <Controller
@@ -357,7 +359,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
             name="ssl"
           />
           <span css={sslStyle}>
-            {t("editor.action.resource.mysql.tip.ssl_options")}
+            {t("editor.action.resource.postgresql.tip.ssl_options")}
           </span>
         </div>
         {sslOpen && (
@@ -373,7 +375,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.mysql.label.ca_certificate")}
+                  {t("editor.action.resource.postgresql.label.ca_certificate")}
                 </span>
               </div>
               <Controller
@@ -392,7 +394,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                     value={value}
                     autoSize
                     placeholder={t(
-                      "editor.action.resource.mysql.placeholder.certificate",
+                      "editor.action.resource.postgresql.placeholder.certificate",
                     )}
                   />
                 )}
@@ -407,7 +409,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.mysql.label.client_key")}
+                  {t("editor.action.resource.postgresql.label.client_key")}
                 </span>
               </div>
               <Controller
@@ -423,7 +425,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                     onChange={onChange}
                     onBlur={onBlur}
                     placeholder={t(
-                      "editor.action.resource.mysql.placeholder.certificate",
+                      "editor.action.resource.postgresql.placeholder.certificate",
                     )}
                   />
                 )}
@@ -438,7 +440,9 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.mysql.label.client_certificate")}
+                  {t(
+                    "editor.action.resource.postgresql.label.client_certificate",
+                  )}
                 </span>
               </div>
               <Controller
@@ -454,7 +458,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                     onChange={onChange}
                     onBlur={onBlur}
                     placeholder={t(
-                      "editor.action.resource.mysql.placeholder.certificate",
+                      "editor.action.resource.postgresql.placeholder.certificate",
                     )}
                   />
                 )}
@@ -483,14 +487,14 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<MysqlResource>>(
+              Api.request<Resource<PostgreSqlResource>>(
                 {
                   method: "POST",
                   url: `/resources/testConnection`,
                   data: {
                     resourceId: data.resourceId,
                     resourceName: data.resourceName,
-                    resourceType: "mysql",
+                    resourceType: "postgre",
                     content: {
                       host: data.host,
                       port: data.port.toString(),
@@ -532,4 +536,4 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
   )
 }
 
-MysqlConfigElement.displayName = "MysqlConfigElement"
+PostgreConfigElement.displayName = "PostgreConfigElement"

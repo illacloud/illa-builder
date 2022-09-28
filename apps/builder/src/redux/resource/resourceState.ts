@@ -8,7 +8,10 @@ export type ResourceType =
   | "redis"
   | "postgresql"
 
-export type ResourceContent = MysqlResource | RestApiResource<RestApiAuth>
+export type ResourceContent =
+  | MysqlResource
+  | RestApiResource<RestApiAuth>
+  | PostgreSqlResource
 
 export function getActionTypeFromResourceType(
   resourceType: ResourceType | null | undefined,
@@ -68,6 +71,22 @@ export interface MysqlResource {
 }
 
 export interface MysqlSSL {
+  ssl: boolean
+  serverCert: string
+  clientKey: string
+  clientCert: string
+}
+
+export interface PostgreSqlResource {
+  host: string
+  port: string
+  databaseName: string
+  databaseUsername: string
+  databasePassword: string
+  ssl: PostgreSSL
+}
+
+export interface PostgreSSL {
   ssl: boolean
   serverCert: string
   clientKey: string

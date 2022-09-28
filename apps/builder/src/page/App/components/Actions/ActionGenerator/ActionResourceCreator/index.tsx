@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 import { MysqlConfigElement } from "@/page/App/components/Actions/MysqlConfigElement"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
+import { PostgreConfigElement } from "@/page/App/components/Actions/PostgreConfigElement"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { onBack, onFinished, resourceType } = props
@@ -50,6 +51,18 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
     case "redis":
       break
     case "postgresql":
+      renderElement = (
+        <PostgreConfigElement
+          onBack={() => {
+            if (resourceList.length > 0) {
+              onBack("createAction")
+            } else {
+              onBack("select")
+            }
+          }}
+          onFinished={onFinished}
+        />
+      )
       break
     default:
       break

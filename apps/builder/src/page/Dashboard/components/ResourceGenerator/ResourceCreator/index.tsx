@@ -1,9 +1,10 @@
-import { FC, ReactNode } from "react"
+import { FC } from "react"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { MysqlConfigElement } from "@/page/App/components/Actions/MysqlConfigElement"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
+import { PostgreConfigElement } from "@/page/App/components/Actions/PostgreConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -39,7 +40,15 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
     case "redis":
       break
     case "postgresql":
-      break
+      return (
+        <PostgreConfigElement
+          resourceId={resourceId}
+          onBack={() => {
+            onBack("select")
+          }}
+          onFinished={onFinished}
+        />
+      )
   }
   return null
 }
