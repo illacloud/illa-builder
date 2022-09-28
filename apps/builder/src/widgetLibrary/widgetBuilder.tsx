@@ -128,6 +128,7 @@ import {
   CONTAINER_WIDGET_CONFIG,
   ContainerWidget,
   CONTAINER_PANEL_CONFIG,
+  CONTAINER_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/ContainerWidget"
 
 export const WidgetConfig: WidgetConfigs = {
@@ -261,6 +262,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: ContainerWidget,
     config: CONTAINER_WIDGET_CONFIG,
     panelConfig: CONTAINER_PANEL_CONFIG,
+    eventHandlerConfig: CONTAINER_EVENT_HANDLER_CONFIG,
   },
 }
 

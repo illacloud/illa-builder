@@ -60,6 +60,50 @@ export const transformEvents = (event: any) => {
         enabled,
       }
     }
+    if (widgetMethod === "setCurrentViewKey") {
+      const { key } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}("${key}")}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "setCurrentViewIndex") {
+      const { index } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}("${index}")}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "showNextView") {
+      const { showNextViewLoopBack } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${showNextViewLoopBack})}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "showPreviousView") {
+      const { showPreviousViewLoopBack } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${showPreviousViewLoopBack})}}`,
+        enabled,
+      }
+    }
+
+    if (widgetMethod === "showNextVisibleView") {
+      const { showNextVisibleViewLoopBack } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${showNextVisibleViewLoopBack})}}`,
+        enabled,
+      }
+    }
+
+    if (widgetMethod === "showPreviousVisibleView") {
+      const { showPreviousVisibleViewLoopBack } = event
+      return {
+        script: `{{${widgetID}.${widgetMethod}(${showPreviousVisibleViewLoopBack})}}`,
+        enabled,
+      }
+    }
   }
   if (actionType === "datasource") {
     const rootState = store.getState()

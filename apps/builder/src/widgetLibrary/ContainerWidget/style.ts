@@ -12,3 +12,10 @@ export const emptyStateStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
+
+export const emptyStateWrapperStyle = css`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+`

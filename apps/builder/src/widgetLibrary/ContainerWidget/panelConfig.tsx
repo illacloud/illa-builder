@@ -1,6 +1,8 @@
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { CONTAINER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ContainerWidget/eventHandlerConfig"
 
 const baseWidgetName = "container"
 export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
@@ -52,6 +54,18 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.default_views"),
         attrName: "defaultView",
         setterType: "CONTAINER_DEFAULT_VIEW_SETTER",
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          CONTAINER_EVENT_HANDLER_CONFIG.events,
+        ),
       },
     ],
   },

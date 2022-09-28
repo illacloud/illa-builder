@@ -38,6 +38,7 @@ import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
 import { cloneDeep, throttle } from "lodash"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -71,6 +72,14 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
+    if (
+      componentNode.type === "CONTAINER_WIDGET" &&
+      (!Array.isArray(componentNode.childrenNode) ||
+        componentNode.childrenNode.length === 0) &&
+      !isShowCanvasDot
+    ) {
+      return <ContainerEmptyState />
+    }
     return childrenNode?.map<ReactNode>(item => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
@@ -109,7 +118,9 @@ export const RenderComponentCanvas: FC<{
     componentNode.childrenNode,
     componentNode.displayName,
     componentNode.h,
+    componentNode.type,
     containerPadding,
+    isShowCanvasDot,
     rowNumber,
     unitWidth,
   ])
