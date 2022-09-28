@@ -67,14 +67,26 @@ export interface MysqlResource {
   databaseName: string
   databaseUsername: string
   databasePassword: string
-  ssl: MysqlSSL
+  ssl: DbSSL
 }
 
-export interface MysqlSSL {
+export interface DbSSL {
   ssl: boolean
   serverCert: string
   clientKey: string
   clientCert: string
+}
+
+export function generateSSLConfig(
+  open: boolean,
+  data: { [p: string]: any },
+): DbSSL {
+  return {
+    ssl: open,
+    clientKey: data.clientKey,
+    clientCert: data.clientCert,
+    serverCert: data.serverCert,
+  } as DbSSL
 }
 
 export interface PostgreSqlResource {
@@ -83,14 +95,7 @@ export interface PostgreSqlResource {
   databaseName: string
   databaseUsername: string
   databasePassword: string
-  ssl: PostgreSSL
-}
-
-export interface PostgreSSL {
-  ssl: boolean
-  serverCert: string
-  clientKey: string
-  clientCert: string
+  ssl: DbSSL
 }
 
 export interface Params {

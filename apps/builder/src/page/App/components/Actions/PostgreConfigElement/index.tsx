@@ -26,25 +26,13 @@ import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import {
+  generateSSLConfig,
   PostgreSqlResource,
-  PostgreSSL,
   Resource,
 } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
-
-export function generateSSLConfig(
-  open: boolean,
-  data: { [p: string]: any },
-): PostgreSSL {
-  return {
-    ssl: open,
-    clientKey: data.clientKey,
-    clientCert: data.clientCert,
-    serverCert: data.serverCert,
-  } as PostgreSSL
-}
 
 export const PostgreConfigElement: FC<PostgreConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
