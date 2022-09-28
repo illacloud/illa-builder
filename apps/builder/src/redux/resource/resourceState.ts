@@ -12,6 +12,7 @@ export type ResourceContent =
   | MysqlResource
   | RestApiResource<RestApiAuth>
   | PostgreSqlResource
+  | RedisResource
 
 export function getActionTypeFromResourceType(
   resourceType: ResourceType | null | undefined,
@@ -62,6 +63,15 @@ export interface Resource<T extends ResourceContent> {
 }
 
 export interface MysqlResource {
+  host: string
+  port: string
+  databaseName: string
+  databaseUsername: string
+  databasePassword: string
+  ssl: DbSSL
+}
+
+export interface RedisResource {
   host: string
   port: string
   databaseName: string

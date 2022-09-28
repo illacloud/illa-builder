@@ -418,7 +418,35 @@
           }
         },
         "redis": {
-          "name": "Redis"
+          "name": "Redis",
+          "title": {
+            "advanced_option": "高级配置"
+          },
+          "label": {
+            "name": "名称",
+            "hostname_port": "主机/端口",
+            "database": "数据库名称",
+            "username_password": "用户名/密码",
+            "connect_type": "连接类型",
+            "private_key": "私钥",
+            "ssl_options": "SSL 选项",
+            "ca_certificate": "服务端证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书"
+          },
+          "tip": {
+            "username_password": "凭证将被加密并安全存储在我们的服务器上",
+            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
+            "ssl_options": "可用时使用 SSL"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "主机名",
+            "database": "acme_production",
+            "username": "用户名",
+            "password": "密码",
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+          }
         },
         "mongodb": {
           "name": "MongoDB"

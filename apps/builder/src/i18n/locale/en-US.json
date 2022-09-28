@@ -417,7 +417,35 @@
           }
         },
         "redis": {
-          "name": "Redis"
+          "name": "Redis",
+          "title": {
+            "advanced_option": "Advanced Options"
+          },
+          "label": {
+            "name": "Name",
+            "hostname_port": "Hostname/Port",
+            "database": "Database",
+            "username_password": "Username/Password",
+            "connect_type": "Connect Type",
+            "private_key": "Private Key",
+            "ssl_options": "SSL options",
+            "ca_certificate": "CA Cert",
+            "client_key": "Client Key",
+            "client_certificate": "Client Cert"
+          },
+          "tip": {
+            "username_password": "Credentials will be encrypted & stored securely on our servers.",
+            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "ssl_options": "SSL is used when available"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "Hostname",
+            "database": "acme_production",
+            "username": "Username",
+            "password": "Password",
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+          }
         },
         "mongodb": {
           "name": "MongoDB"

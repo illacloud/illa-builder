@@ -11,10 +11,6 @@ import { configActions } from "@/redux/config/configSlice"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { MysqlPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
-import {
-  ActionContent,
-  ActionItem,
-} from "@/redux/currentApp/action/actionState"
 import { Api } from "@/api/base"
 import { isObject } from "@illa-design/system"
 
@@ -49,11 +45,10 @@ export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
   const currentContent = props.action.content
   const [sqlTable, setSqlTable] = useState<Record<string, string[]>>()
 
-  function getItemResources(action: ActionItem<ActionContent>) {
-    const { resourceId } = action
+  useEffect(() => {
     Api.request(
       {
-        url: `resources/${resourceId}/meta`,
+        url: `resources/${currentAction.resourceId}/meta`,
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {
@@ -64,12 +59,7 @@ export const MysqlPanel: FC<MysqlPanelProps> = (props) => {
       () => {},
       () => {},
     )
-  }
-
-  useEffect(() => {
-    // When changing the selected action, get the corresponding resources
-    getItemResources(currentAction)
-  }, [currentAction.actionId])
+  }, [currentAction.resourceId])
 
   return (
     <div css={mysqlContainerStyle}>

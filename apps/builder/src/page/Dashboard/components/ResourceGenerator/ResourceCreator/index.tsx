@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { PostgreConfigElement } from "@/page/App/components/Actions/PostgreConfigElement"
+import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -38,7 +39,15 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
     case "mongodb":
       break
     case "redis":
-      break
+      return (
+        <RedisConfigElement
+          resourceId={resourceId}
+          onBack={() => {
+            onBack("select")
+          }}
+          onFinished={onFinished}
+        />
+      )
     case "postgresql":
       return (
         <PostgreConfigElement
