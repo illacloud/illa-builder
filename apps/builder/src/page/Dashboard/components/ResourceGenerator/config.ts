@@ -3,26 +3,32 @@ import { ResourceType } from "@/redux/resource/resourceState"
 
 export interface ResourceDataItem {
   resourceType: ResourceType
+  isDraft: boolean
 }
 
 export const Databases: ResourceDataItem[] = [
   {
     resourceType: "mysql",
+    isDraft: false,
   },
   {
     resourceType: "postgresql",
+    isDraft: true,
   },
   {
     resourceType: "redis",
+    isDraft: true,
   },
   {
     resourceType: "mongodb",
+    isDraft: true,
   },
 ]
 
 export const Apis: ResourceDataItem[] = [
   {
     resourceType: "restapi",
+    isDraft: false,
   },
 ]
 

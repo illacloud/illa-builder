@@ -7,6 +7,12 @@ export type ResourceType =
   | "mongodb"
   | "redis"
   | "postgresql"
+  | "mariadb"
+  | "snowflake"
+  | "tidb"
+  | "datadog"
+  | "zapier"
+  | "s3"
 
 export type ResourceContent =
   | MysqlResource

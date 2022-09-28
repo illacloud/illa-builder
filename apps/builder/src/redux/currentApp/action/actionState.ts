@@ -23,6 +23,12 @@ export type ActionType =
   | "mongodb"
   | "redis"
   | "postgresql"
+  | "mariadb"
+  | "snowflake"
+  | "tidb"
+  | "datadog"
+  | "zapier"
+  | "s3"
   | "transformer"
 
 export type ActionTriggerMode = "manually" | "automate"
