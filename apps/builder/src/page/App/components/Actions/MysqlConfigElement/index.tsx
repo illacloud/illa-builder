@@ -457,6 +457,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
           leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
+          type="button"
           onClick={() => {
             onBack()
           }}

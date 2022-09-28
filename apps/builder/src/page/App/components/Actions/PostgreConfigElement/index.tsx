@@ -461,6 +461,7 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = (props) => {
           leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
+          type="button"
           onClick={() => {
             onBack()
           }}

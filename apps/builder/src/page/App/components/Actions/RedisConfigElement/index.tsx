@@ -451,6 +451,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
+          type="button"
           onClick={() => {
             onBack()
           }}
