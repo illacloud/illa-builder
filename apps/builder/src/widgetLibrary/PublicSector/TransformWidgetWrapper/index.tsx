@@ -8,7 +8,7 @@ import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
-import { applyHiddenWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { RootState } from "@/store"
 import {
   getCanvas,
@@ -200,10 +200,26 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const COMP = widgetBuilder(type).widget
     if (!COMP) return null
 
-    const { hidden } = realProps
+    const {
+      hidden,
+      borderColor,
+      backgroundColor,
+      radius,
+      borderWidth,
+      shadow,
+    } = realProps
 
     return (
-      <div css={applyHiddenWrapperStyle(hidden)}>
+      <div
+        css={applyWrapperStylesStyle(
+          hidden,
+          borderColor,
+          borderWidth,
+          radius,
+          backgroundColor,
+          shadow,
+        )}
+      >
         <COMP
           {...realProps}
           w={w}

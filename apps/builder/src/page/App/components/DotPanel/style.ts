@@ -40,7 +40,6 @@ export const applyComponentCanvasStyle = (
       ? applyDotBackgroundStyle(width, height, unitWidth, unitHeight)
       : normalCanvasBackgroundStyle}
     position: relative;
-    background-color: white;
   `
 }
 

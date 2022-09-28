@@ -3,6 +3,9 @@ import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { CONTAINER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ContainerWidget/eventHandlerConfig"
+import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
+import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
+import { ReactComponent as ShadowIcon } from "@/assets/shadow-icon.svg"
 
 const baseWidgetName = "container"
 export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
@@ -111,16 +114,16 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-style-border`,
             labelName: i18n.t("editor.inspect.setter_label.border"),
-            attrName: " borderColor",
+            attrName: "borderColor",
             setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "white",
+            defaultValue: "#ffffffff",
           },
           {
             id: `${baseWidgetName}-style-background`,
             labelName: i18n.t("editor.inspect.setter_label.background"),
-            attrName: " backgroundColor",
+            attrName: "backgroundColor",
             setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "blue",
+            defaultValue: "#ffffffff",
           },
         ],
       },
@@ -135,23 +138,26 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-style-radius`,
             labelName: i18n.t("editor.inspect.setter_label.radius"),
             attrName: "radius",
-            setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "blue",
+            setterType: "EDITABLE_INPUT_SETTER",
+            icon: <RadioIcon />,
+            defaultValue: "4px",
           },
           {
             id: `${baseWidgetName}-style-border-width`,
             labelName: i18n.t("editor.inspect.setter_label.border_width"),
             attrName: "borderWidth",
-            setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "blue",
+            icon: <StrokeWidthIcon />,
+            setterType: "EDITABLE_INPUT_SETTER",
+            defaultValue: "4px",
           },
-          {
-            id: `${baseWidgetName}-style-shadow`,
-            labelName: i18n.t("editor.inspect.setter_label.shadow"),
-            attrName: "shadow",
-            setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "blue",
-          },
+          // {
+          //   id: `${baseWidgetName}-style-shadow`,
+          //   labelName: i18n.t("editor.inspect.setter_label.shadow"),
+          //   attrName: "shadow",
+          //   icon: <ShadowIcon />,
+          //   setterType: "EDITABLE_INPUT_SETTER",
+          //   defaultValue: "small",
+          // },
         ],
       },
     ],

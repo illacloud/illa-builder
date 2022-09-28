@@ -23,5 +23,10 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
     currentViewIndex: 0,
     currentViewKey: "View 1",
     viewComponentsArray: [[], [], []],
+    borderColor: "#ffffffff",
+    backgroundColor: "#ffffffff",
+    radius: "4px",
+    borderWidth: "4px",
+    shadow: "small",
   },
 }

@@ -45,12 +45,45 @@ export const applyCenterLabelAndComponentWrapperStyle = (
   `
 }
 
-export const applyHiddenWrapperStyle = (hidden: boolean) => {
+const getShadowStyle = (shadow?: "none" | "small" | "medium" | "large") => {
+  switch (shadow) {
+    case "small": {
+      return "0px 2px 8px rgba(0, 0, 0, 0.08);"
+    }
+    case "medium": {
+      return "0px 4px 16px rgba(0, 0, 0, 0.08);"
+    }
+    case "large": {
+      return "0px 8px 20px rgba(0, 0, 0, 0.12);"
+    }
+    case "none":
+    default:
+      return "unset"
+  }
+}
+
+export const applyWrapperStylesStyle = (
+  hidden: boolean,
+  borderColor?: string,
+  borderWidth?: string,
+  radius?: string,
+  backgroundColor?: string,
+  shadow?: "none" | "small" | "medium" | "large",
+) => {
+  let borderStyle = "unset"
+  if (borderColor && borderWidth) {
+    borderStyle = `${borderWidth} solid ${borderColor}`
+  }
+  const shadowStyle = getShadowStyle(shadow)
   return css`
     width: 100%;
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     visibility: ${hidden ? "hidden" : "visible"};
+    border: ${borderStyle};
+    border-radius: ${radius};
+    background-color: ${backgroundColor || "white"};
+    box-shadow: ${shadowStyle};
   `
 }
