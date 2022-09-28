@@ -7,7 +7,7 @@ import {
 } from "../utils/generateNewOptions"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { get } from "lodash"
+import { cloneDeep, get } from "lodash"
 
 interface ProviderProps {
   viewsList: ViewItemShape[]
@@ -24,6 +24,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
   handleCopyOptionItem: (index: number) => void
   handleUpdateCurrentViewIndex: (index: number) => void
   currentViewIndex: number
+  handleMoveOptionItem: (dragIndex: number, hoverIndex: number) => void
 }
 
 export const ViewListSetterContext = createContext<Inject>({} as Inject)
@@ -119,12 +120,53 @@ export const ViewListSetterProvider: FC<ProviderProps> = props => {
     [allViews, handleUpdateMultiAttrDSL, viewsList.length],
   )
 
+  const handleMoveOptionItem = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      const dragOptionItem = viewsList[dragIndex]
+      const dragViewArray = viewComponentsArray[dragIndex]
+      const hoverViewArray = viewComponentsArray[hoverIndex]
+      const currentSelected = viewsList[currentViewIndex]
+      if (!dragViewArray || !hoverViewArray) return
+      const newViewComponentsArray = cloneDeep(
+        viewComponentsArray,
+      ) as string[][]
+      ;[
+        newViewComponentsArray[dragIndex],
+        newViewComponentsArray[hoverIndex],
+      ] = [
+        newViewComponentsArray[hoverIndex],
+        newViewComponentsArray[dragIndex],
+      ]
+      const newViews = [...viewsList]
+      newViews.splice(dragIndex, 1)
+      newViews.splice(hoverIndex, 0, dragOptionItem)
+      const newSelectedIndex = newViews.findIndex(
+        view => view.key === currentSelected.key,
+      )
+      const newSelectedKey = newViews[newSelectedIndex].key
+      handleUpdateMultiAttrDSL?.({
+        [attrPath]: newViews,
+        viewComponentsArray: newViewComponentsArray,
+        currentViewIndex: newSelectedIndex,
+        currentViewKey: newSelectedKey,
+      })
+      handleUpdateDsl(attrPath, newViews)
+    },
+    [
+      attrPath,
+      handleUpdateDsl,
+      handleUpdateMultiAttrDSL,
+      viewComponentsArray,
+      viewsList,
+    ],
+  )
   const value = {
     ...props,
     handleDeleteOptionItem,
     handleCopyOptionItem,
     currentViewIndex,
     handleUpdateCurrentViewIndex,
+    handleMoveOptionItem,
   }
 
   return (

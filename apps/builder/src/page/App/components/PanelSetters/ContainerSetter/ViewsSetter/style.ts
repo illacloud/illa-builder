@@ -1,36 +1,25 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const reorderListStyle = css`
-  ul,
-  li {
-    width: 100%;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  li {
-    height: 40px;
-    padding: 9px 16px 9px 0;
-    display: flex;
-    justify-content: space-between;
-    user-select: none;
-    :hover {
-      #dragIcon {
-        visibility: visible;
-      }
-      #copyIcon {
-        visibility: visible;
-      }
-    }
-  }
+export const viewSetterWrapperStyle = css`
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
 `
 
-export const listItemWrapperStyle = css`
+export const HeaderWrapperStyle = css`
   width: 100%;
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+  padding: 8px 8px 8px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+`
+
+export const HeaderLabelStyle = css`
+  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  font-weight: 500;
+  font-size: 14px;
 `
 
 export const applyOptionStyle = (isSelect: boolean) => {
@@ -85,8 +74,18 @@ export const moveIconStyle = css`
 `
 
 export const listItemTriggerWrapperStyle = css`
-  display: flex;
   width: 100%;
-  height: 100%;
+  height: 40px;
+  padding: 9px 16px 9px 0;
+  display: flex;
   justify-content: space-between;
+  user-select: none;
+  :hover {
+    #dragIcon {
+      visibility: visible;
+    }
+    #copyIcon {
+      visibility: visible;
+    }
+  }
 `

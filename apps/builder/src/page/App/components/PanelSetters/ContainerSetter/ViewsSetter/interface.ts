@@ -1,6 +1,5 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { DragControls } from "framer-motion"
 
 export interface ViewItemShape {
   id: string
@@ -17,5 +16,4 @@ export interface ViewSetterProps extends BaseSetter {
 
 export interface DragIconAndLabelProps {
   index: number
-  dragControls: DragControls
 }

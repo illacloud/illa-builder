@@ -3,6 +3,7 @@ import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComp
 import { cloneDeep } from "lodash"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const ContainerWidget: FC<ContainerProps> = props => {
   const {
@@ -16,6 +17,7 @@ export const ContainerWidget: FC<ContainerProps> = props => {
     handleUpdateDsl,
     displayName,
     viewList,
+    tooltipText,
   } = props
   const preCurrentViewIndex = useRef<number>(currentViewIndex)
 
@@ -69,10 +71,14 @@ export const ContainerWidget: FC<ContainerProps> = props => {
         if (index === -1) return
         handleUpdateDsl({ currentViewIndex: index, currentViewKey: key })
       },
-      setCurrentViewIndex: (index: number) => {
-        const view = viewList[index]
+      setCurrentViewIndex: (index: string) => {
+        const numberIndex = parseInt(index)
+        const view = viewList[numberIndex]
         if (!view) return
-        handleUpdateDsl({ currentViewIndex: index, currentViewKey: view.key })
+        handleUpdateDsl({
+          currentViewIndex: numberIndex,
+          currentViewKey: view.key,
+        })
       },
       showNextView: (loop: boolean) => {
         let currentIndex = currentViewIndex + 1
@@ -138,21 +144,23 @@ export const ContainerWidget: FC<ContainerProps> = props => {
   ])
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        padding: "4px",
-        width: "100%",
-        height: "100%",
-      }}
-      onClick={handleOnClick}
-    >
-      <RenderComponentCanvas
-        componentNode={finalComponentNode}
-        containerPadding={4}
-        containerRef={containerRef}
-        minHeight={props.componentNode.h * props.componentNode.unitH - 6}
-      />
-    </div>
+    <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
+      <div
+        ref={containerRef}
+        style={{
+          padding: "4px",
+          width: "100%",
+          height: "100%",
+        }}
+        onClick={handleOnClick}
+      >
+        <RenderComponentCanvas
+          componentNode={finalComponentNode}
+          containerPadding={4}
+          containerRef={containerRef}
+          minHeight={props.componentNode.h * props.componentNode.unitH - 6}
+        />
+      </div>
+    </TooltipWrapper>
   )
 }

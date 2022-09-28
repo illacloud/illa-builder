@@ -1,24 +1,16 @@
 import { FC, memo, useCallback, useMemo } from "react"
 import { Header } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/header"
-import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import {
   ViewItemShape,
   ViewSetterProps,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-import { generateNewOptionItem } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
 import { generateNewViewItem } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/utils/generateNewOptions"
 import { ListBody } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/listBody"
 import { ViewListSetterProvider } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
 import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-
-export const viewSetterWrapperStyle = css`
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-`
+import { viewSetterWrapperStyle } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -64,13 +56,6 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       viewComponentsArray,
     ])
 
-    const handleReorderViewItem = useCallback(
-      (viewsItem: ViewItemShape[]) => {
-        handleUpdateDsl(attrName, viewsItem)
-      },
-      [attrName, handleUpdateDsl],
-    )
-
     return (
       <ViewListSetterProvider
         viewsList={value}
@@ -82,7 +67,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       >
         <div css={viewSetterWrapperStyle}>
           <Header labelName="view" addAction={handleAddViewItem} hasAddAction />
-          <ListBody handleReorderViewItem={handleReorderViewItem} />
+          <ListBody />
         </div>
       </ViewListSetterProvider>
     )

@@ -28,7 +28,7 @@ const OptionIcon: FC<optionIconProps> = ({ isSelected, onClick }) => {
 }
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = props => {
-  const { index, dragControls } = props
+  const { index } = props
   const {
     widgetDisplayName,
     attrPath,
@@ -75,11 +75,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = props => {
 
   return (
     <span css={labelAndDragIconWrapperStyle}>
-      <DragPointIcon
-        css={moveIconStyle}
-        onPointerDown={e => dragControls.start(e)}
-        id="dragIcon"
-      />
+      <DragPointIcon css={moveIconStyle} id="dragIcon" />
       <div css={labelWrapperStyle}>
         <OptionIcon
           isSelected={currentViewIndex === index}

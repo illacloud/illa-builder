@@ -1,6 +1,5 @@
 import { v4 } from "uuid"
 import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
-import { datasetNameSet } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/utils"
 
 export let viewNameSet = new Set<string>()
 

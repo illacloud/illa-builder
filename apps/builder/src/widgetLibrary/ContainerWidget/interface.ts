@@ -16,4 +16,5 @@ export interface ContainerProps extends BaseWidgetProps {
   handleOnClick: () => void
   handleOnChange: () => void
   viewList: viewListItemShaper[]
+  tooltipText?: string
 }
