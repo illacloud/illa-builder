@@ -36,7 +36,8 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { throttle } from "lodash"
+import { cloneDeep, throttle } from "lodash"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -97,6 +98,7 @@ export const RenderComponentCanvas: FC<{
               unitH={UNIT_HEIGHT}
               containerHeight={containerHeight}
               containerPadding={containerPadding}
+              childrenNode={componentNode.childrenNode}
             />
           )
         default:
@@ -140,7 +142,6 @@ export const RenderComponentCanvas: FC<{
         return illaMode === "edit"
       },
       hover: (dragInfo, monitor) => {
-        console.log("componentDisplayName", componentNode.displayName)
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const { item } = dragInfo
           const dragResult = getDragResult(
@@ -209,7 +210,6 @@ export const RenderComponentCanvas: FC<{
               finalChildrenNodes,
             )
           } else {
-            console.log("finalChildrenNodes", finalEffectResultMap)
           }
           setXY([rectCenterPosition.x, rectCenterPosition.y])
           setLunchXY([landingX, landingY])
@@ -219,7 +219,6 @@ export const RenderComponentCanvas: FC<{
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
         const { item } = dragInfo
-        console.log("isDrop", isDrop)
         if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
           const dragResult = getDragResult(
@@ -252,6 +251,24 @@ export const RenderComponentCanvas: FC<{
            */
           if (item.x === -1 && item.y === -1) {
             dispatch(componentsActions.addComponentReducer([newItem]))
+            if (componentNode.type === "CONTAINER_WIDGET") {
+              const currentViewIndex =
+                componentNode.props?.currentViewIndex || 0
+              const currentViewComponentsArray = cloneDeep(
+                componentNode.props?.viewComponentsArray,
+              ) || [[]]
+              if (currentViewIndex < currentViewComponentsArray.length) {
+                const currentViewComponents =
+                  currentViewComponentsArray[currentViewIndex]
+                currentViewComponents.push(newItem.displayName)
+                dispatch(
+                  componentsActions.updateContainerViewsComponentsReducer({
+                    displayName: componentNode.displayName,
+                    viewComponentsArray: currentViewComponentsArray,
+                  }),
+                )
+              }
+            }
           } else {
             /**
              * update node when change container
@@ -268,6 +285,51 @@ export const RenderComponentCanvas: FC<{
                   ],
                 }),
               )
+              const oldParentNode = searchDSLByDisplayName(
+                oldParentNodeDisplayName,
+              )
+              if (componentNode.type === "CONTAINER_WIDGET") {
+                const currentViewIndex =
+                  componentNode.props?.currentViewIndex || 0
+                const currentViewComponentsArray = cloneDeep(
+                  componentNode.props?.viewComponentsArray,
+                ) || [[]]
+                if (currentViewIndex < currentViewComponentsArray.length) {
+                  const currentViewComponents =
+                    currentViewComponentsArray[currentViewIndex]
+                  currentViewComponents.push(newItem.displayName)
+                  dispatch(
+                    componentsActions.updateContainerViewsComponentsReducer({
+                      displayName: componentNode.displayName,
+                      viewComponentsArray: currentViewComponentsArray,
+                    }),
+                  )
+                }
+              }
+              if (oldParentNode && oldParentNode.type === "CONTAINER_WIDGET") {
+                const currentViewIndex =
+                  oldParentNode.props?.currentViewIndex || 0
+                const currentViewComponentsArray = cloneDeep(
+                  oldParentNode.props?.viewComponentsArray,
+                ) || [[]]
+                if (currentViewIndex < currentViewComponentsArray.length) {
+                  const currentViewComponents = currentViewComponentsArray[
+                    currentViewIndex
+                  ] as string[]
+                  const indexOfNewItem = currentViewComponents.findIndex(
+                    displayName => displayName === newItem.displayName,
+                  )
+                  if (indexOfNewItem !== -1) {
+                    currentViewComponents.splice(indexOfNewItem, 1)
+                    dispatch(
+                      componentsActions.updateContainerViewsComponentsReducer({
+                        displayName: oldParentNodeDisplayName,
+                        viewComponentsArray: currentViewComponentsArray,
+                      }),
+                    )
+                  }
+                }
+              }
             } else {
               dispatch(
                 componentsActions.updateComponentsShape({

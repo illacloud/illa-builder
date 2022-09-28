@@ -22,5 +22,6 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
     viewList: defaultListView,
     currentViewIndex: 0,
     currentViewKey: "View 1",
+    viewComponentsArray: [[], [], []],
   },
 }

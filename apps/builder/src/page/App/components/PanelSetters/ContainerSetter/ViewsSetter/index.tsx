@@ -44,10 +44,25 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       return allViews.map(view => view.key)
     }, [allViews])
 
+    const viewComponentsArray = useMemo(() => {
+      return get(executionResult, `${widgetDisplayName}.viewComponentsArray`, [
+        [],
+      ])
+    }, [executionResult, widgetDisplayName])
+
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
-      handleUpdateDsl(attrName, [...value, newItem])
-    }, [allViewsKeys, handleUpdateDsl, attrName, value])
+      handleUpdateMultiAttrDSL?.({
+        [attrName]: [...value, newItem],
+        viewComponentsArray: [...viewComponentsArray, []],
+      })
+    }, [
+      allViewsKeys,
+      handleUpdateMultiAttrDSL,
+      attrName,
+      value,
+      viewComponentsArray,
+    ])
 
     const handleReorderViewItem = useCallback(
       (viewsItem: ViewItemShape[]) => {

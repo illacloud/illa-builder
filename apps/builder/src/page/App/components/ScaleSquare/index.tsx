@@ -21,7 +21,6 @@ import {
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
-import store from "@/store"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
@@ -43,7 +42,6 @@ import {
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep, throttle } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { CopyManager } from "@/utils/copyManager"
@@ -64,6 +62,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     y,
     containerPadding,
     containerHeight,
+    childrenNode,
   } = props
 
   const shortcut = useContext(ShortCutContext)
@@ -76,7 +75,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
 
-  const childNodesRef = useRef<ComponentNode[]>([])
+  const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
   const resizeDirection = useMemo(() => {
     const widgetConfig = widgetBuilder(componentNode.type).config
@@ -223,16 +222,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         endDrag(draggedItem.item, dropResultInfo?.isDropOnCanvas ?? false)
       },
       item: () => {
-        const rootState = store.getState()
-        const rootNode = getCanvas(rootState)
-
-        const childrenNodes = rootNode?.childrenNode
-          ? cloneDeep(rootNode.childrenNode)
-          : []
         startDrag(componentNode)
         return {
           item: componentNode,
-          childrenNodes,
+          childrenNodes: childrenNode,
         }
       },
       collect: monitor => {
@@ -325,9 +318,6 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   }, [isSelected, resizeDirection, scaleSquareState])
 
   const handleResizeStart = () => {
-    const rootState = store.getState()
-    const rootNode = getCanvas(rootState)
-
     dispatch(
       componentsActions.updateComponentsShape({
         isMove: false,
@@ -339,9 +329,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         ],
       }),
     )
-    childNodesRef.current = rootNode?.childrenNode
-      ? cloneDeep(rootNode.childrenNode)
-      : []
+    childNodesRef.current = childrenNode ? cloneDeep(childrenNode) : []
     dispatch(configActions.updateShowDot(true))
   }
 

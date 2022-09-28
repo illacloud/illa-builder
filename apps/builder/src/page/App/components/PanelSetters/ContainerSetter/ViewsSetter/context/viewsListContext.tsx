@@ -46,6 +46,12 @@ export const ViewListSetterProvider: FC<ProviderProps> = props => {
     ) as ViewItemShape[]
   }, [attrPath, executionResult, widgetDisplayName])
 
+  const viewComponentsArray = useMemo(() => {
+    return get(executionResult, `${widgetDisplayName}.viewComponentsArray`, [
+      [],
+    ]) as string[][]
+  }, [executionResult, widgetDisplayName])
+
   const currentViewIndex = useMemo(() => {
     return get(executionResult, `${widgetDisplayName}.currentViewIndex`)
   }, [executionResult, widgetDisplayName])
@@ -62,13 +68,23 @@ export const ViewListSetterProvider: FC<ProviderProps> = props => {
           return i !== index
         },
       )
+      const newViewComponentsArray = viewComponentsArray.filter(
+        (displayNames, i) => i !== index,
+      )
       handleUpdateMultiAttrDSL?.({
         [attrPath]: updatedArray,
         currentViewIndex: 0,
         currentViewKey: allViewsKeys[0],
+        viewComponentsArray: newViewComponentsArray,
       })
     },
-    [viewsList, handleUpdateMultiAttrDSL, attrPath, allViewsKeys],
+    [
+      viewsList,
+      viewComponentsArray,
+      handleUpdateMultiAttrDSL,
+      attrPath,
+      allViewsKeys,
+    ],
   )
 
   const handleCopyOptionItem = useCallback(

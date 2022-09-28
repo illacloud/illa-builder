@@ -42,7 +42,11 @@ export const addComponentReducer: CaseReducer<
             dealNode.props ?? {},
           )
         }
-        parentNode.childrenNode.push(dealNode)
+        if (!Array.isArray(parentNode.childrenNode)) {
+          parentNode.childrenNode = [dealNode]
+        } else {
+          parentNode.childrenNode.push(dealNode)
+        }
       }
     }
   })
@@ -185,9 +189,10 @@ export const updateComponentContainerReducer: CaseReducer<
     currentParentNode = searchDsl(state, currentNode.parentNode)
     if (currentParentNode) {
       if (!Array.isArray(currentParentNode.childrenNode)) {
-        currentParentNode.childrenNode = []
+        currentParentNode.childrenNode = [currentNode]
+      } else {
+        currentParentNode.childrenNode.push(currentNode)
       }
-      currentParentNode.childrenNode.push(currentNode)
     }
   })
 }
@@ -216,4 +221,15 @@ export const updateComponentReflowReducer: CaseReducer<
       return node
     })
   }
+}
+
+export const updateContainerViewsComponentsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<{ displayName: string; viewComponentsArray: string[][] }>
+> = (state, action) => {
+  const { displayName, viewComponentsArray } = action.payload
+  const targetComponents = searchDsl(state, displayName)
+  if (!targetComponents) return
+  if (!targetComponents.props) return
+  targetComponents.props.viewComponentsArray = viewComponentsArray
 }

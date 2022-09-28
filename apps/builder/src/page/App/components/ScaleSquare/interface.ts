@@ -15,6 +15,7 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   unitH: number
   containerHeight: number
   containerPadding: number
+  childrenNode: ComponentNode[]
 }
 
 export interface DragResize {
