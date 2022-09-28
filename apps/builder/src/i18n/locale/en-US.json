@@ -458,7 +458,8 @@
         "column": "COLUMNS",
         "sort": "SORT",
         "row_selection": "ROW SELECTION",
-        "data": "DATA"
+        "data": "DATA",
+        "views": "VIEWS"
       },
       "setter_label": {
         "scale_type": "Scale type",
@@ -585,7 +586,14 @@
         "empty_state": "Empty state",
         "chart_title": "Title",
         "x_axis_name": "X-axis name",
-        "Y_axis_name": "Y-axis name"
+        "Y_axis_name": "Y-axis name",
+        "default_views": "Default view",
+        "style": "Style",
+        "border": "Border",
+        "background": "Background",
+        "border_width": "Border Width",
+        "shadow": "Shadow",
+        "key": "Key"
       },
       "setter_tooltip": {
         "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
@@ -776,7 +784,8 @@
     },
     "container": {
       "name": "Container",
-      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here"
+      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
+      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors."
     }
   },
   "Setting": "Setting",

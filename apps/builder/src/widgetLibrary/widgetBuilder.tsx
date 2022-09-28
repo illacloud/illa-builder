@@ -127,6 +127,7 @@ import {
 import {
   CONTAINER_WIDGET_CONFIG,
   ContainerWidget,
+  CONTAINER_PANEL_CONFIG,
 } from "@/widgetLibrary/ContainerWidget"
 
 export const WidgetConfig: WidgetConfigs = {
@@ -259,7 +260,7 @@ export const WidgetConfig: WidgetConfigs = {
   CONTAINER_WIDGET: {
     widget: ContainerWidget,
     config: CONTAINER_WIDGET_CONFIG,
-    panelConfig: [],
+    panelConfig: CONTAINER_PANEL_CONFIG,
   },
 }
 
