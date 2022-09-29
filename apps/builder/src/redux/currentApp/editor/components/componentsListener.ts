@@ -5,17 +5,9 @@ import {
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { ComponentNode } from "./componentsState"
 import { configActions } from "@/redux/config/configSlice"
-
-async function handleDeleteExecution(
-  action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
-  listenerApi: AppListenerEffectAPI,
-) {
-  DisplayNameGenerator.removeDisplayNameMulti(action.payload.displayNames)
-}
 
 function handleCopyComponentReflowEffect(
   action: ReturnType<typeof componentsActions.copyComponentReducer>,
@@ -77,10 +69,6 @@ export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
   const subscriptions = [
-    startListening({
-      actionCreator: componentsActions.deleteComponentNodeReducer,
-      effect: handleDeleteExecution,
-    }),
     startListening({
       actionCreator: componentsActions.copyComponentReducer,
       effect: handleCopyComponentReflowEffect,

@@ -16,6 +16,7 @@ import {
   UpdateComponentContainerPayload,
   UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const updateComponentReducer: CaseReducer<
   ComponentsState,
@@ -85,25 +86,29 @@ export const deleteComponentNodeReducer: CaseReducer<
     return
   }
   const rootNode = state
+  const allDisplayNames = [...displayNames]
   displayNames.forEach(value => {
     const searchNode = searchDsl(rootNode, value)
-    if (searchNode != null) {
-      const parentNode = searchDsl(rootNode, searchNode.parentNode)
-      if (parentNode == null) {
-        return
-      }
-      const childrenNodes = parentNode.childrenNode
-      if (childrenNodes == null) {
-        return
-      }
-      childrenNodes.splice(
-        childrenNodes.findIndex(value => {
-          return value.displayName === searchNode.displayName
-        }),
-        1,
-      )
+    if (!searchNode) return
+    const searchNodeChildNodes = searchNode.childrenNode
+    searchNodeChildNodes.forEach(node => {
+      allDisplayNames.push(node.displayName)
+    })
+    const parentNode = searchDsl(rootNode, searchNode.parentNode)
+    if (parentNode == null) {
+      return
     }
+    const childrenNodes = parentNode.childrenNode
+    if (childrenNodes == null) {
+      return
+    }
+
+    const currentIndex = childrenNodes.findIndex(value => {
+      return value.displayName === searchNode.displayName
+    })
+    childrenNodes.splice(currentIndex, 1)
   })
+  DisplayNameGenerator.removeDisplayNameMulti(allDisplayNames)
 }
 
 export const updateComponentPropsReducer: CaseReducer<
