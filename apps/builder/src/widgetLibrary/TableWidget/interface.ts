@@ -32,6 +32,8 @@ export interface WrappedTableProps
       TableProps<any, any>,
       | "loading"
       | "columns"
+      | "download"
+      | "overFlow"
       | "defaultSort"
       | "columnVisibility"
       | "multiRowSelection"

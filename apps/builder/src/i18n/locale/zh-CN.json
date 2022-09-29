@@ -452,6 +452,8 @@
         "options": "选项",
         "column": "列",
         "row_selection": "行选择",
+        "pagination": "翻页",
+        "toolbar": "工具栏",
         "data": "数据"
       },
       "setter_label": {
@@ -572,6 +574,8 @@
         "enable_sorting": "排序",
         "decimal_places": "小数位数",
         "multi_row_selection": "多行选择",
+        "overFlow": "翻页方式",
+        "download": "下载",
         "new_tab": "在新标签中打开",
         "description": "描述",
         "duration": "持续时间",
@@ -601,7 +605,9 @@
         "loading": "控制组件是否为加载状态。",
         "progress_percentage": "进度条的数值范围为 0-100",
         "timeline_direction": "切换时间轴的方向",
-        "only_run_when": "在此输入该事件执行前必须满足的条件"
+        "only_run_when": "在此输入该事件执行前必须满足的条件",
+        "download": "在工具栏显示下载按钮",
+        "Filter": "在工具栏显示筛选按钮"
       },
       "setter_default_value": {
         "fill": "填充",
@@ -766,6 +772,8 @@
     },
     "table": {
       "name": "表格",
+      "pagination": "翻页",
+      "scroll": "滚动",
       "ascend": "升序",
       "descend": "降序"
     }

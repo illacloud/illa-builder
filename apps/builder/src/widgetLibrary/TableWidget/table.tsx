@@ -15,6 +15,8 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       loading,
       emptyState,
       columns,
+      download,
+      overFlow,
       defaultSort,
       columnVisibility,
       multiRowSelection,
@@ -23,7 +25,6 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       handleOnColumnFiltersChange,
     } = props
 
-    console.log(props, "WrappedTable")
     return (
       <Table
         bordered
@@ -35,6 +36,8 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         data={data}
         columns={columns}
         loading={loading}
+        download={download}
+        overFlow={overFlow}
         emptyProps={{ description: emptyState }}
         defaultSort={defaultSort}
         columnVisibility={columnVisibility}
@@ -53,6 +56,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     emptyState,
     loading,
     columns,
+    download,
+    overFlow,
     displayName,
     defaultSortKey,
     defaultSortOrder,
@@ -119,7 +124,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     if (tableWrapperRef.current) {
       updateComponentHeight(tableWrapperRef.current?.clientHeight)
     }
-  }, [data])
+  }, [data, columns, multiRowSelection])
 
   return (
     <div ref={tableWrapperRef}>
@@ -128,6 +133,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
         emptyState={emptyState}
         loading={loading}
         columns={columnsDef}
+        download={download}
+        overFlow={overFlow}
         columnVisibility={columnVisibility}
         defaultSort={defaultSort}
         multiRowSelection={multiRowSelection}
