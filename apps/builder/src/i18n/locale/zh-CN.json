@@ -571,6 +571,7 @@
         "column_title": "列标题",
         "enable_sorting": "排序",
         "decimal_places": "小数位数",
+        "multi_row_selection": "多行选择",
         "new_tab": "在新标签中打开",
         "description": "描述",
         "duration": "持续时间",

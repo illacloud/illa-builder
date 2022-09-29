@@ -17,6 +17,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       columns,
       defaultSort,
       columnVisibility,
+      multiRowSelection,
       handleOnSortingChange,
       handleOnPaginationChange,
       handleOnColumnFiltersChange,
@@ -25,18 +26,19 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
     console.log(props, "WrappedTable")
     return (
       <Table
-        data={data}
-        columns={columns}
-        loading={loading}
-        emptyProps={{ description: emptyState }}
-        defaultSort={defaultSort}
-        columnVisibility={columnVisibility}
         bordered
         striped
         borderedCell
         pinedHeader
         w="100%"
         h="100%"
+        data={data}
+        columns={columns}
+        loading={loading}
+        emptyProps={{ description: emptyState }}
+        defaultSort={defaultSort}
+        columnVisibility={columnVisibility}
+        multiRowSelection={multiRowSelection}
         onSortingChange={handleOnSortingChange}
         onPaginationChange={handleOnPaginationChange}
         onColumnFiltersChange={handleOnColumnFiltersChange}
@@ -54,6 +56,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     displayName,
     defaultSortKey,
     defaultSortOrder,
+    multiRowSelection,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -127,6 +130,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
         columns={columnsDef}
         columnVisibility={columnVisibility}
         defaultSort={defaultSort}
+        multiRowSelection={multiRowSelection}
       />
     </div>
   )

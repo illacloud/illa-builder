@@ -574,6 +574,7 @@
         "column_type": "Column type",
         "enable_sorting": "Enable Sorting",
         "decimal_places": "Decimal places",
+        "multi_row_selection": "Multi-Row Selection",
         "new_tab": "New tab",
         "description": "Description",
         "duration": "Duration",

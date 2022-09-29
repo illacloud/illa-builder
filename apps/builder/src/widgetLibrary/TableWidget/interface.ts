@@ -30,7 +30,12 @@ export interface WrappedTableProps
   extends HTMLAttributes<HTMLDivElement>,
     Pick<
       TableProps<any, any>,
-      "loading" | "columns" | "defaultSort" | "columnVisibility" | "data"
+      | "loading"
+      | "columns"
+      | "defaultSort"
+      | "columnVisibility"
+      | "multiRowSelection"
+      | "data"
     > {
   emptyState?: string
   defaultSortKey?: string

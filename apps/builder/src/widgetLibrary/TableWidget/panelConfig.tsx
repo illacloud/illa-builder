@@ -125,12 +125,13 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.row_selection"),
     children: [
       {
-        id: `${baseWidgetName}-basic-defaultSortKey`,
-        labelName: i18n.t("editor.inspect.setter_label.default_sort_key"),
-        attrName: "defaultSortKey",
-        setterType: "COLUMNS_SELECT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        id: `${baseWidgetName}-basic-multiRowSelection`,
+        labelName: i18n.t("editor.inspect.setter_label.multi_row_selection"),
+        attrName: "multiRowSelection",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
         openDynamic: true,
+        useCustomLayout: true,
       },
     ],
   },
