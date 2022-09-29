@@ -3,13 +3,13 @@ import { Modal } from "@illa-design/modal"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
-import {
-  ActionType,
-  getResourceTypeFromActionType,
-} from "@/redux/currentApp/action/actionState"
+import { ActionType } from "@/redux/currentApp/action/actionState"
 import { ActionResourceCreator } from "@/page/App/components/Actions/ActionGenerator/ActionResourceCreator"
 import { useTranslation } from "react-i18next"
-import { getResourceNameFromResourceType } from "@/redux/resource/resourceState"
+import {
+  getResourceNameFromResourceType,
+  getResourceTypeFromActionType,
+} from "@/utils/actionResourceTransformer"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props

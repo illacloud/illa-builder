@@ -5,12 +5,10 @@ import {
 } from "@/page/Dashboard/components/ResourceGenerator/interface"
 import { Modal } from "@illa-design/modal"
 import { useTranslation } from "react-i18next"
-import {
-  getResourceNameFromResourceType,
-  ResourceType,
-} from "@/redux/resource/resourceState"
+import { ResourceType } from "@/redux/resource/resourceState"
 import { ResourceTypeSelector } from "@/page/Dashboard/components/ResourceGenerator/ResourceTypeSelector"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
+import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
 export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
   const { visible, onClose } = props

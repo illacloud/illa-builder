@@ -19,7 +19,6 @@ import {
   ActionContent,
   ActionItem,
   actionItemInitial,
-  getResourceTypeFromActionType,
 } from "@/redux/currentApp/action/actionState"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
@@ -28,6 +27,7 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 
 export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   props,

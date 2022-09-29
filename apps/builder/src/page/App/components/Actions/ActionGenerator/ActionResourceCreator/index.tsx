@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react"
 import { ResourceEditorProps } from "./interface"
 import { useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { MysqlConfigElement } from "@/page/App/components/Actions/MysqlConfigElement"
+import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { PostgreConfigElement } from "@/page/App/components/Actions/PostgreConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
@@ -19,9 +19,12 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
 
   let renderElement: ReactNode = null
   switch (resourceType) {
+    case "tidb":
+    case "mariadb":
     case "mysql":
       renderElement = (
-        <MysqlConfigElement
+        <MysqlLikeConfigElement
+          resourceType={resourceType}
           onBack={() => {
             if (resourceList.length > 0) {
               onBack("createAction")

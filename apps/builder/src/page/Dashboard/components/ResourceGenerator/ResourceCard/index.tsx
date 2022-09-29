@@ -5,7 +5,7 @@ import {
 } from "@/page/App/components/Actions/ActionGenerator/ActionCard/style"
 import { ResourceCardSelectorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCard/interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
-import { getResourceNameFromResourceType } from "@/redux/resource/resourceState"
+import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
 export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
   const { resourceType, onSelect } = props

@@ -18,9 +18,11 @@ import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { ResourceChooseProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
-import { getResourceNameFromResourceType } from "@/redux/resource/resourceState"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
-import { getResourceTypeFromActionType } from "@/redux/currentApp/action/actionState"
+import {
+  getResourceNameFromResourceType,
+  getResourceTypeFromActionType,
+} from "@/utils/actionResourceTransformer"
 
 export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { t } = useTranslation()

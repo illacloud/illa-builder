@@ -20,43 +20,6 @@ export type ResourceContent =
   | PostgreSqlResource
   | RedisResource
 
-export function getActionTypeFromResourceType(
-  resourceType: ResourceType | null | undefined,
-): ActionType | null {
-  switch (resourceType) {
-    case "mysql":
-      return "mysql"
-    case "restapi":
-      return "restapi"
-    case "mongodb":
-      return "mongodb"
-    case "redis":
-      return "redis"
-    case "postgresql":
-      return "postgresql"
-    default:
-      return null
-  }
-}
-
-export function getActionNameFromActionType(actionType: ActionType) {
-  if (actionType) {
-    return i18n.t(`editor.action.resource.${actionType}.name`)
-  } else {
-    return ""
-  }
-}
-
-export function getResourceNameFromResourceType(
-  resourceType: ResourceType | null | undefined,
-) {
-  if (resourceType) {
-    return i18n.t(`editor.action.resource.${resourceType}.name`)
-  } else {
-    return ""
-  }
-}
-
 export interface Resource<T extends ResourceContent> {
   resourceId: string
   resourceName: string

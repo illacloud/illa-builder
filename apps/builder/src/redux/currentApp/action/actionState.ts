@@ -33,27 +33,6 @@ export type ActionType =
 
 export type ActionTriggerMode = "manually" | "automate"
 
-export function getResourceTypeFromActionType(
-  actionType: ActionType | null | undefined,
-): ResourceType | null {
-  switch (actionType) {
-    case "mysql":
-      return "mysql"
-    case "restapi":
-      return "restapi"
-    case "mongodb":
-      return "mongodb"
-    case "redis":
-      return "redis"
-    case "postgresql":
-      return "postgresql"
-    case "transformer":
-      return null
-    default:
-      return null
-  }
-}
-
 export interface ActionItem<T extends ActionContent> {
   actionId: string
   displayName: string

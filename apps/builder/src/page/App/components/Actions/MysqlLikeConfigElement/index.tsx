@@ -34,8 +34,13 @@ import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 
-export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
-  const { onBack, resourceId, onFinished } = props
+/**
+ * include mariadb or tidb
+ * @param props
+ * @constructor
+ */
+export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = (props) => {
+  const { onBack, resourceType, resourceId, onFinished } = props
 
   const { t } = useTranslation()
 
@@ -67,7 +72,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
               data: {
                 resourceId: data.resourceId,
                 resourceName: data.resourceName,
-                resourceType: "mysql",
+                resourceType: resource.resourceType,
                 content: {
                   host: data.host,
                   port: data.port.toString(),
@@ -100,7 +105,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
               url: `/resources`,
               data: {
                 resourceName: data.resourceName,
-                resourceType: "mysql",
+                resourceType,
                 content: {
                   host: data.host,
                   port: data.port.toString(),
@@ -479,7 +484,7 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
                   data: {
                     resourceId: data.resourceId,
                     resourceName: data.resourceName,
-                    resourceType: "mysql",
+                    resourceType,
                     content: {
                       host: data.host,
                       port: data.port.toString(),
@@ -521,4 +526,4 @@ export const MysqlConfigElement: FC<MysqlConfigElementProps> = (props) => {
   )
 }
 
-MysqlConfigElement.displayName = "MysqlConfigElement"
+MysqlLikeConfigElement.displayName = "MysqlConfigElement"

@@ -8,17 +8,14 @@ import { MoreIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { Api } from "@/api/base"
-import {
-  getResourceNameFromResourceType,
-  Resource,
-  ResourceContent,
-} from "@/redux/resource/resourceState"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 import { Space } from "@illa-design/space"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import { RootState } from "@/store"
+import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
 const Item = DropList.Item
 

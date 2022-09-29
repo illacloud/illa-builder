@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
-import { MysqlConfigElement } from "@/page/App/components/Actions/MysqlConfigElement"
+import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
@@ -16,9 +16,12 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const finalResourceType = resource ? resource.resourceType : resourceType
 
   switch (finalResourceType) {
+    case "tidb":
+    case "mariadb":
     case "mysql":
       return (
-        <MysqlConfigElement
+        <MysqlLikeConfigElement
+          resourceType={finalResourceType}
           resourceId={resourceId}
           onBack={() => {
             onBack("select")
