@@ -344,10 +344,11 @@ export const applyRNDWrapperStyle = (
           ? globalColor(`--${illaPrefix}-red-03`)
           : globalColor(`--${illaPrefix}-techPurple-01`)
         : "transparent"};
+      > #moveBar {
+        visibility: ${isEditor ? "visible" : "hidden"};
+      }
     }
-    > #moveBar {
-      visibility: ${isEditor ? "visible" : "hidden"};
-    }
+
     z-index: 6;
   }
   z-index: ${isSelected ? 5 : 1};
