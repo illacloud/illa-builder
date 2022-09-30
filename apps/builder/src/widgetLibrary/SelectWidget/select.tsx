@@ -6,7 +6,7 @@ import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedSelect: FC<WrappedSelectProps> = props => {
+export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   const {
     showClear,
     value,
@@ -33,7 +33,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = props => {
       showSearch={showSearch}
       inputValue={inputValue}
       colorScheme={colorScheme}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({ value })
       }}
     />
@@ -42,7 +42,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = props => {
 
 WrappedSelect.displayName = "WrappedSelect"
 
-export const SelectWidget: FC<SelectWidgetProps> = props => {
+export const SelectWidget: FC<SelectWidgetProps> = (props) => {
   const {
     showClear,
     value,
@@ -129,7 +129,7 @@ export const SelectWidget: FC<SelectWidgetProps> = props => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, labelPosition, updateComponentHeight])
+  }, [value, required, labelPosition])
 
   return (
     <div ref={wrapperRef}>

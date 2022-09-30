@@ -26,7 +26,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
       readonly={readOnly}
       allowClear={allowClear}
       value={value}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({ value })
       }}
     />
@@ -35,7 +35,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
 
 WrappedRate.displayName = "WrappedRate"
 
-export const RateWidget: FC<RateWidgetProps> = props => {
+export const RateWidget: FC<RateWidgetProps> = (props) => {
   const {
     value,
     allowClear,
@@ -102,7 +102,7 @@ export const RateWidget: FC<RateWidgetProps> = props => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, maxCount, labelPosition, updateComponentHeight])
+  }, [value, required, maxCount, labelPosition])
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

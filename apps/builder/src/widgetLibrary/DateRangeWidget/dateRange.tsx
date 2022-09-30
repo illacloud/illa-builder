@@ -6,7 +6,7 @@ import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
+export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const {
     startValue,
     endValue,
@@ -29,7 +29,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
   }, [startValue, endValue])
 
   const checkRange = useCallback(
-    current => {
+    (current) => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
@@ -56,7 +56,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
           endValue: undefined,
         })
       }}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({
           startValue: value?.[0],
           endValue: value?.[1],
@@ -68,7 +68,7 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = props => {
 
 WrappedDateRange.displayName = "WrappedDateRange"
 
-export const DateRangeWidget: FC<DateWidgetProps> = props => {
+export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   const {
     startValue,
     endValue,
@@ -148,7 +148,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = props => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [required, labelPosition, updateComponentHeight])
+  }, [required, labelPosition])
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

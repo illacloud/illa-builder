@@ -29,7 +29,7 @@ export const WrappedBarProgress = forwardRef<any, WrappedBarProgressProps>(
 
 WrappedBarProgress.displayName = "WrappedBarProgress"
 
-export const BarProgressWidget: FC<BarProgressWidgetProps> = props => {
+export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
   const {
     value,
     showText,
@@ -89,7 +89,7 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = props => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, labelPosition, updateComponentHeight])
+  }, [value, required, labelPosition])
 
   return (
     <div ref={wrapperRef}>
