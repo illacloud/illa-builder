@@ -50,8 +50,6 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
         />
       )
       break
-    case "mongodb":
-      break
     case "redis":
       renderElement = (
         <RedisConfigElement

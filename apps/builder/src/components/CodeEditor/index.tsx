@@ -18,7 +18,6 @@ import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
 import "./modes"
 import "./hinter"
-import "./lintHelper"
 import { BaseTern, TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -36,7 +35,7 @@ import {
 import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
-export const CodeEditor: FC<CodeEditorProps> = props => {
+export const CodeEditor: FC<CodeEditorProps> = (props) => {
   const {
     className,
     mode = "TEXT_JS",
@@ -127,10 +126,10 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
       const error = get(executionError, path)
       const result = get(executionResult, path)
       if (error) {
-        const evalError = error?.find(item => {
+        const evalError = error?.find((item) => {
           return item.errorType !== "LINT"
         })
-        const lintError = error?.find(item => {
+        const lintError = error?.find((item) => {
           return item.errorType === "LINT"
         })
         if (evalError) {
@@ -152,7 +151,7 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
         })
       }
     }
-  }, [executionError, executionResult, path])
+  }, [editor, executionError, executionResult, expectedType, path])
 
   const handleChange = (editor: Editor, change: CodeMirror.EditorChange) => {
     const currentValue = editor?.getValue()
@@ -166,63 +165,69 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
 
   const debounceHandleChange = debounce(handleChange, 300)
 
-  const handleKeyUp = (editor: Editor, event: KeyboardEvent) => {
-    const key = event.key
-    const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
-    if (isCloseKey(code) || isCloseKey(key)) {
-      editor.closeHint()
-      return
-    }
-    const cursor = editor.getCursor()
-    const line = editor.getLine(cursor.line)
-    let showAutocomplete = false
-    if (mode === "XML_JS" || mode === "HTML_JS") {
-      showAutocomplete = true
-    }
-    if (key === "/") {
-      showAutocomplete = true
-    } else if (event.code === "Backspace") {
-      const prevChar = line[cursor.ch - 1]
-      showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
-    } else if (key === "{") {
-      const prevChar = line[cursor.ch - 2]
-      showAutocomplete = prevChar === "{"
-    } else if (key.length == 1) {
-      showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
-    }
-    showAutocomplete && handleAutocomplete(editor, line)
-  }
+  const handleAutocomplete = useCallback(
+    (cm: CodeMirror.Editor, line: string) => {
+      const modeName = cm.getModeAt(cm.getCursor()).name
+      // @ts-ignore: type define error
+      const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
+      if (modeName == "sql") {
+        CodeMirror.showHint(cm, CodeMirror.hint.sql, {
+          tables: latestProps.current?.tables,
+          completeSingle: false,
+        })
+      } else if (modeHelperType == "xml") {
+        CodeMirror.showHint(cm, CodeMirror.hint.xml, {
+          completeSingle: false,
+        })
+      } else if (modeHelperType == "html") {
+        CodeMirror.showHint(cm, CodeMirror.hint.html, {
+          completeSingle: false,
+        })
+      } else if (modeHelperType == "json") {
+        sever.current?.complete(cm)
+      } else if (modeName == "javascript") {
+        BaseTern?.complete(cm)
+      }
+    },
+    [],
+  )
+
+  const handleKeyUp = useCallback(
+    (editor: Editor, event: KeyboardEvent) => {
+      const key = event.key
+      const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
+      if (isCloseKey(code) || isCloseKey(key)) {
+        editor.closeHint()
+        return
+      }
+      const cursor = editor.getCursor()
+      const line = editor.getLine(cursor.line)
+      let showAutocomplete = false
+      if (mode === "XML_JS" || mode === "HTML_JS") {
+        showAutocomplete = true
+      }
+      if (key === "/") {
+        showAutocomplete = true
+      } else if (event.code === "Backspace") {
+        const prevChar = line[cursor.ch - 1]
+        showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
+      } else if (key === "{") {
+        const prevChar = line[cursor.ch - 2]
+        showAutocomplete = prevChar === "{"
+      } else if (key.length == 1) {
+        showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
+      }
+      showAutocomplete && handleAutocomplete(editor, line)
+    },
+    [handleAutocomplete, mode],
+  )
 
   useEffect(() => {
     const currentValue = editor?.getValue()
     if (value !== currentValue) {
       editor?.setValue(value ?? "")
     }
-  }, [value])
-
-  const handleAutocomplete = (cm: CodeMirror.Editor, line: string) => {
-    const modeName = cm.getModeAt(cm.getCursor()).name
-    // @ts-ignore: type define error
-    const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
-    if (modeName == "sql") {
-      CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-        tables: latestProps.current?.tables,
-        completeSingle: false,
-      })
-    } else if (modeHelperType == "xml") {
-      CodeMirror.showHint(cm, CodeMirror.hint.xml, {
-        completeSingle: false,
-      })
-    } else if (modeHelperType == "html") {
-      CodeMirror.showHint(cm, CodeMirror.hint.html, {
-        completeSingle: false,
-      })
-    } else if (modeHelperType == "json") {
-      sever.current?.complete(cm)
-    } else if (modeName == "javascript") {
-      BaseTern?.complete(cm)
-    }
-  }
+  }, [editor, value])
 
   useEffect(() => {
     sever.current = TernServer(languageValue, { ...executionResult })
@@ -230,7 +235,7 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
 
   useEffect(() => {
     editor?.setOption("mode", EditorModes[mode])
-  }, [mode])
+  }, [editor, mode])
 
   useEffect(() => {
     if (!editor) {
@@ -270,7 +275,17 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
       editor?.off("focus", handleFocus)
       editor?.off("blur", handleBlur)
     }
-  }, [])
+  }, [
+    debounceHandleChange,
+    editor,
+    handleKeyUp,
+    lineNumbers,
+    mode,
+    noTab,
+    placeholder,
+    readOnly,
+    value,
+  ])
 
   const inputState = {
     focus,
@@ -298,7 +313,7 @@ export const CodeEditor: FC<CodeEditorProps> = props => {
         content={<CodePreview preview={preview} />}
         showArrow={false}
         colorScheme="white"
-        onVisibleChange={visible => {
+        onVisibleChange={(visible) => {
           if (visible !== previewVisible && focus) {
             setPreviewVisible(true)
           }

@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom"
+import ReactDOM, { render } from "react-dom"
 import { JSHINT } from "jshint"
 import { Editor } from "codemirror"
 import "codemirror/addon/lint/lint"
@@ -15,7 +15,7 @@ const GUTTER_ID = "CodeMirror-lint-markers"
 export const lineMarker = (cm: Editor, line: number) => {
   cm.clearGutter(GUTTER_ID)
   const div = document.createElement("div")
-  ReactDOM.render(
+  render(
     <div className={"CodeMirror-lint-marker CodeMirror-lint-marker-error"} />,
     div,
   )

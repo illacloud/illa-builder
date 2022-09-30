@@ -89,7 +89,7 @@ export const BarProgressWidget: FC<BarProgressWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, labelPosition])
+  }, [value, required, labelPosition, updateComponentHeight])
 
   return (
     <div ref={wrapperRef}>

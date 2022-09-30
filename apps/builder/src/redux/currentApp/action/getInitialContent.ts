@@ -2,8 +2,7 @@ import { ActionContent, ActionType } from "./actionState"
 import { TransformerActionInitial } from "./transformerAction"
 import { MysqlLikeActionInitial } from "./mysqlLikeAction"
 import { RestApiActionInitial } from "./restapiAction"
-import { PostgresqlActionInitial } from "@/redux/currentApp/action/postgresqlAction"
-import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
+import { PostgreSqlActionInitial } from "@/redux/currentApp/action/postgresqlAction"
 
 // @ts-ignore
 export function getInitialContent(actionType: ActionType): ActionContent {
@@ -13,9 +12,7 @@ export function getInitialContent(actionType: ActionType): ActionContent {
     case "mysql":
       return MysqlLikeActionInitial
     case "postgresql":
-      return PostgresqlActionInitial
-    case "redis":
-      return RedisActionInitial
+      return PostgreSqlActionInitial
     case "restapi":
       return RestApiActionInitial
     case "transformer":

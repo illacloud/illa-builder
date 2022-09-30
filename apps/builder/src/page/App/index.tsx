@@ -14,7 +14,8 @@ import {
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  isOpenBottomPanel, isOpenDebugger,
+  isOpenBottomPanel,
+  isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -34,7 +35,7 @@ import { setupConfigListener } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { Debugger } from "@/page/App/components/Debugger"
-import ComponentsManager from "@/page/App/components/ComponentManager"
+import { ComponentsManager } from "@/page/App/components/ComponentManager"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -48,14 +49,14 @@ export const Editor: FC = () => {
       Connection.enterRoom(
         "app",
         appId ?? "",
-        loading => {},
-        errorState => {},
+        (loading) => {},
+        (errorState) => {},
       )
     }
     return () => {
       Connection.leaveRoom("app", appId ?? "")
     }
-  }, [currentUser])
+  }, [currentUser, appId])
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
@@ -63,7 +64,7 @@ export const Editor: FC = () => {
       setupConfigListener(startAppListening),
       setupExecutionListeners(startAppListening),
     ]
-    return () => subscriptions.forEach(unsubscribe => unsubscribe())
+    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
 
   const showLeftPanel = useSelector(isOpenLeftPanel)
@@ -82,17 +83,17 @@ export const Editor: FC = () => {
         method: "GET",
         signal: controller.signal,
       },
-      response => {
+      (response) => {
         dispatch(resourceActions.updateResourceListReducer(response.data))
       },
     )
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
-    window.addEventListener("beforeunload", event => {
+    window.addEventListener("beforeunload", (event) => {
       event.preventDefault()
       event.returnValue = "CLOSE_TAB_MESSAGE"
     })
@@ -108,7 +109,9 @@ export const Editor: FC = () => {
             <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
             <div css={middlePanelStyle}>
               <CanvasPanel css={centerPanelStyle} />
-              <ActionEditor css={applyBottomPanelStyle(showBottomPanel && !showDebugger)} />
+              <ActionEditor
+                css={applyBottomPanelStyle(showBottomPanel && !showDebugger)}
+              />
               <Debugger css={applyBottomPanelStyle(showDebugger)} />
             </div>
             <ComponentsManager css={applyRightPanelStyle(showRightPanel)} />

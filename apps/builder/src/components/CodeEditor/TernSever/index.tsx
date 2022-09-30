@@ -3,7 +3,7 @@ import "codemirror/addon/tern/tern"
 import "./tern/tern"
 import ecmascript from "tern/defs/ecmascript.json"
 import CodeMirror from "codemirror"
-import ReactDOM from "react-dom"
+import ReactDOM, { render } from "react-dom"
 import { TypeQueryResult } from "tern/lib/tern"
 import { isObject } from "@illa-design/system"
 import { getValueType } from "@/components/CodeEditor/utils"
@@ -159,7 +159,7 @@ export const TernServer = (
     // @ts-ignore: type define error
     completionTip: (completion: TypeQueryResult) => {
       let div = document.createElement("div")
-      ReactDOM.render(<HintTooltip data={completion} />, div)
+      render(<HintTooltip data={completion} />, div)
       return div
     },
   })
@@ -171,7 +171,7 @@ export const BaseTern = new CodeMirror.TernServer({
   // @ts-ignore: type define error
   completionTip: (completion: TypeQueryResult) => {
     let div = document.createElement("div")
-    ReactDOM.render(<HintTooltip data={completion} />, div)
+    render(<HintTooltip data={completion} />, div)
     return div
   },
 })

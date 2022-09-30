@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom"
+import ReactDOM, { render } from "react-dom"
 import CodeMirror, { Hint, Hints } from "codemirror"
 import "codemirror/addon/hint/sql-hint"
 import "codemirror/addon/hint/javascript-hint"
@@ -27,7 +27,7 @@ const transHinters = (inner: Hints) => {
       text: item,
       render: (elt: HTMLLIElement) => {
         let div = document.createElement("div")
-        ReactDOM.render(<AutoCompleteItem content={item as string} />, div)
+        render(<AutoCompleteItem content={item as string} />, div)
         elt?.appendChild(div)
       },
     })

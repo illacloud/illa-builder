@@ -140,9 +140,9 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     value,
     pattern,
     regex,
-    required,
     customRule,
     hideValidationMessage,
+    updateComponentHeight,
   ])
 
   return (

@@ -141,7 +141,7 @@ export const runAction = (
   if (!content) return
   const rootState = store.getState()
   const appId = getAppId(rootState)
-  if (actionType === "mysql" || actionType === "restapi") {
+  if (actionType !== "transformer") {
     const { content, transformer } = action as ActionItem<
       MysqlLikeAction | RestApiAction<BodyContent>
     >

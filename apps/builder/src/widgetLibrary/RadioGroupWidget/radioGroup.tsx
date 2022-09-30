@@ -99,7 +99,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, finalOptions, labelPosition])
+  }, [value, required, finalOptions, labelPosition, updateComponentHeight])
 
   return (
     <div ref={wrapperRef}>

@@ -70,7 +70,11 @@ export const MysqlLikePanel: FC<MysqlLikePanelProps> = (props) => {
         height="88px"
         css={sqlInputStyle}
         value={currentContent.query}
-        mode="SQL_JS"
+        mode={
+          currentAction.actionType === "postgresql"
+            ? "Postgre_SQL_JS"
+            : "SQL_JS"
+        }
         expectedType={VALIDATION_TYPES.STRING}
         tables={sqlTable}
         onChange={(value) => {

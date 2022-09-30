@@ -81,7 +81,7 @@ export const SwitchWidget: FC<SwitchWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, labelPosition])
+  }, [value, required, labelPosition, updateComponentHeight])
 
   return (
     <div ref={wrapperRef}>

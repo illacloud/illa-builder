@@ -52,7 +52,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   useEffect(() => {
     // Clear the previous result when changing the selected action
     onActionRun(undefined)
-  }, [action?.actionId])
+  }, [action.actionId, onActionRun])
 
   return (
     <div css={actionTitleBarStyle}>

@@ -148,7 +148,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [required, labelPosition])
+  }, [required, labelPosition, updateComponentHeight])
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

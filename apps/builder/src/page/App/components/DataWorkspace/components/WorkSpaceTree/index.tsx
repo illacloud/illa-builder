@@ -28,7 +28,7 @@ export const WorkSpaceTree: FC<WorkSpaceTreeProps> = (props) => {
         />
       )
     })
-  }, [dataList, selectedKeys])
+  }, [dataList, handleSelect, selectedKeys])
 
   return (
     <PanelBar title={title} onIllaFocus={onIllaFocus}>

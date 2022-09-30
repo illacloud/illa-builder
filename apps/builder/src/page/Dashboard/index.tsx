@@ -30,23 +30,23 @@ export const IllaApp: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const controller = new AbortController()
-    const appList = new Promise(resolve => {
+    const appList = new Promise((resolve) => {
       Api.request<DashboardApp[]>(
         {
           url: "/apps",
           method: "GET",
           signal: controller.signal,
         },
-        response => {
+        (response) => {
           dispatch(
             dashboardAppActions.updateDashboardAppListReducer(response.data),
           )
           resolve("success")
         },
-        failure => {},
-        crash => {},
-        loading => {},
-        errorState => {
+        (failure) => {},
+        (crash) => {},
+        (loading) => {},
+        (errorState) => {
           if (errorState) {
             resolve("error")
           }
@@ -54,28 +54,28 @@ export const IllaApp: FC = () => {
       )
     })
 
-    const resourceList = new Promise(resolve => {
+    const resourceList = new Promise((resolve) => {
       Api.request<Resource<ResourceContent>[]>(
         {
           url: "/resources",
           method: "GET",
           signal: controller.signal,
         },
-        response => {
+        (response) => {
           dispatch(resourceActions.updateResourceListReducer(response.data))
           resolve("success")
         },
-        failure => {},
-        crash => {},
-        loading => {},
-        errorState => {
+        (failure) => {},
+        (crash) => {},
+        (loading) => {},
+        (errorState) => {
           if (errorState) {
             resolve("error")
           }
         },
       )
     })
-    Promise.all([appList, resourceList]).then(result => {
+    Promise.all([appList, resourceList]).then((result) => {
       if (result.includes("error")) {
         setPageState("error")
       } else {
@@ -85,14 +85,14 @@ export const IllaApp: FC = () => {
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     Connection.enterRoom(
       "dashboard",
       "",
-      loading => {},
-      errorState => {},
+      (loading) => {},
+      (errorState) => {},
     )
     return () => {
       Connection.leaveRoom("dashboard", "")

@@ -1,8 +1,7 @@
 import { MysqlLikeAction } from "./mysqlLikeAction"
-import { PostgresqlAction } from "./postgresqlAction"
-import { RedisAction } from "./redisAction"
 import { BodyContent, RestApiAction } from "./restapiAction"
 import { TransformerAction } from "./transformerAction"
+import { PostgreSqlAction } from "@/redux/currentApp/action/postgresqlAction"
 
 export interface Transformer {
   rawData: string
@@ -57,8 +56,7 @@ export type ActionContent =
   | MysqlLikeAction
   | RestApiAction<BodyContent>
   | TransformerAction
-  | PostgresqlAction
-  | RedisAction
+  | PostgreSqlAction
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 

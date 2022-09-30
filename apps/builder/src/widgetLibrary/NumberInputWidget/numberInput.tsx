@@ -178,6 +178,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     labelPosition,
+    updateComponentHeight,
   ])
 
   return (

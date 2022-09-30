@@ -25,7 +25,7 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
 
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
-  }, [debuggerVisible])
+  }, [debuggerVisible, dispatch])
 
   return (
     <div
@@ -48,7 +48,7 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                 return <ErrorItem key={index} pathName={name} item={item} />
               })
             }
-            return <ErrorItem pathName={name} item={error} />
+            return <ErrorItem key={name} pathName={name} item={error} />
           })}
         </div>
       </div>

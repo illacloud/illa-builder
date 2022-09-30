@@ -1,4 +1,4 @@
-import { FC, ReactNode, useRef, useState } from "react"
+import { FC, ReactNode, useCallback, useRef, useState } from "react"
 import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
@@ -21,6 +21,11 @@ export const ActionPanel: FC = () => {
   const panelRef = useRef<HTMLDivElement>(null)
   const selectedAction = useSelector(getSelectedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
+
+  const run = useCallback((result, error) => {
+    setActionResult({ result, error })
+  }, [])
+
   // null selected
   if (selectedAction === null || selectedAction === undefined) {
     return null
@@ -30,6 +35,7 @@ export const ActionPanel: FC = () => {
     case "mysql":
     case "tidb":
     case "mariadb":
+    case "postgresql":
       actionPanel = (
         <MysqlLikePanel
           action={selectedAction as ActionItem<MysqlLikeAction>}
@@ -50,14 +56,6 @@ export const ActionPanel: FC = () => {
         />
       )
       break
-    case "mongodb":
-      break
-    case "redis":
-      break
-    case "postgresql":
-      break
-    default:
-      break
   }
 
   return (
@@ -66,9 +64,7 @@ export const ActionPanel: FC = () => {
         action={selectedAction}
         onCopy={onCopyActionItem}
         onDelete={onDeleteActionItem}
-        onActionRun={(result, error) => {
-          setActionResult({ result, error })
-        }}
+        onActionRun={run}
       />
       {actionPanel}
       <ActionResult

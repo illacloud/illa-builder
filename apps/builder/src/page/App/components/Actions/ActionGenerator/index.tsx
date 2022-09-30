@@ -63,18 +63,11 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
       {currentStep === "select" && (
         <ActionTypeSelector
           onSelect={(actionType) => {
-            switch (actionType) {
-              case "mysql":
-              case "restapi":
-              case "mongodb":
-              case "redis":
-              case "postgresql":
-                setCurrentStep("createAction")
-                setCurrentActionType(actionType)
-                break
-              case "transformer":
-                onClose()
-                break
+            if (actionType == "transformer") {
+              onClose()
+            } else {
+              setCurrentStep("createAction")
+              setCurrentActionType(actionType)
             }
           }}
         />
