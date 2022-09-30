@@ -184,7 +184,7 @@ export class ExecutionTreeFactory {
     paths.forEach((path) => {
       const newErrorTreeValue = get(newErrorTree, path)
       if (newErrorTreeValue) {
-        set(this.errorTree, path, newErrorTreeValue)
+        set(oldErrorTree, path, newErrorTreeValue)
       } else {
         unset(oldErrorTree, path)
       }
