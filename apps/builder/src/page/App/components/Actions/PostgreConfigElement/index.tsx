@@ -34,7 +34,7 @@ import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 
-export const PostgreConfigElement: FC<PostgreConfigElementProps> = props => {
+export const PostgreConfigElement: FC<PostgreConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
@@ -46,9 +46,9 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = props => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(r => r.resourceId === resourceId) as Resource<
-      PostgreSqlResource
-    >
+    return state.resource.find(
+      (r) => r.resourceId === resourceId,
+    ) as Resource<PostgreSqlResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -78,18 +78,18 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = props => {
                 },
               },
             },
-            response => {
+            (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            error => {
+            (error) => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            loading => {
+            (loading) => {
               setSaving(loading)
             },
           )
@@ -111,18 +111,18 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = props => {
                 },
               },
             },
-            response => {
+            (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            error => {
+            (error) => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            loading => {
+            (loading) => {
               setSaving(loading)
             },
           )
@@ -337,7 +337,7 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = props => {
                 value={value}
                 ml="16px"
                 colorScheme="techPurple"
-                onChange={open => {
+                onChange={(open) => {
                   onChange(open)
                   setSSLOpen(open)
                 }}
@@ -483,7 +483,7 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = props => {
                   data: {
                     resourceId: data.resourceId,
                     resourceName: data.resourceName,
-                    resourceType: "postgre",
+                    resourceType: "postgresql",
                     content: {
                       host: data.host,
                       port: data.port.toString(),
@@ -494,16 +494,16 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = props => {
                     },
                   },
                 },
-                response => {
+                (response) => {
                   Message.success(t("dashboard.resource.test_success"))
                 },
-                error => {
+                (error) => {
                   Message.error(error.data.errorMessage)
                 },
                 () => {
                   Message.error(t("dashboard.resource.test_fail"))
                 },
-                loading => {
+                (loading) => {
                   setTestLoading(loading)
                 },
               )

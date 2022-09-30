@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { Button } from "@illa-design/button"
@@ -6,6 +6,7 @@ import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
 import {
   MysqlResource,
+  PostgreSqlResource,
   Resource,
   ResourceContent,
   ResourceListState,
@@ -28,23 +29,7 @@ import { DashboardResourceItemMenu } from "@/page/Dashboard/components/Dashboard
 import { fromNow } from "@/utils/dayjs"
 import { CellContext } from "@tanstack/table-core"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
-
-function getDbName(resourceType: string): string {
-  let name = ""
-  switch (resourceType) {
-    case "mysql":
-      return "Mysql"
-    case "restapi":
-      return "RestApi"
-    case "mongodb":
-      return "MongoDb"
-    case "redis":
-      return "Redis"
-    case "postgresql":
-      return "PostgreSql"
-  }
-  return name
-}
+import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
@@ -53,17 +38,15 @@ export const DashboardResources: FC = () => {
 
   const [newResourceVisible, setNewResourceVisible] = useState(false)
 
-  const resourceData: ResourceTableData[] = resourcesList.map(
-    (resource: Resource<ResourceContent>) => {
+  const resourceData: ResourceTableData[] = useMemo(() => {
+    return resourcesList.map((resource: Resource<ResourceContent>) => {
       let dbName = "Null"
       switch (resource.resourceType) {
         case "restapi":
           break
-        case "mongodb":
-          break
-        case "redis":
-          break
         case "postgresql":
+          dbName = (resource as Resource<PostgreSqlResource>).content
+            .databaseName
           break
         case "mysql":
           dbName = (resource as Resource<MysqlResource>).content.databaseName
@@ -72,59 +55,64 @@ export const DashboardResources: FC = () => {
       return {
         id: resource.resourceId,
         name: resource.resourceName,
-        type: getDbName(resource.resourceType),
+        resourceType: resource.resourceType,
+        type: getResourceNameFromResourceType(resource.resourceType),
         databaseName: dbName,
         created: resource.createdAt,
       } as ResourceTableData
-    },
-  )
+    })
+  }, [resourcesList])
 
-  const columns: ColumnDef<ResourceTableData, string>[] = [
-    {
-      header: t("dashboard.resource.resource_name"),
-      accessorKey: "name",
-      cell: (props: CellContext<ResourceTableData, string>) => {
-        const type = resourcesList[props.row.index].resourceType
-        return (
-          <Space size="8px" alignItems="center" direction="horizontal">
-            {getIconFromResourceType(type, "24px")}
-            <span css={applyTableTextStyle(true)}>{props.getValue()}</span>
-          </Space>
-        )
+  const columns: ColumnDef<ResourceTableData, string>[] = useMemo(() => {
+    return [
+      {
+        header: t("dashboard.resource.resource_name"),
+        accessorKey: "name",
+        cell: (props: CellContext<ResourceTableData, string>) => {
+          const type = props.row.original.resourceType
+          return (
+            <Space size="8px" alignItems="center" direction="horizontal">
+              {getIconFromResourceType(type, "24px")}
+              <span css={applyTableTextStyle(true)}>{props.getValue()}</span>
+            </Space>
+          )
+        },
       },
-    },
-    {
-      header: t("dashboard.resource.resource_type"),
-      accessorKey: "type",
-      cell: (props: CellContext<ResourceTableData, string>) => (
-        <span css={applyTableTextStyle(false)}>{props.getValue()}</span>
-      ),
-    },
-    {
-      header: t("dashboard.resource.dbname"),
-      accessorKey: "databaseName",
-      cell: (props: CellContext<ResourceTableData, string>) => (
-        <span css={applyTableTextStyle(props.getValue() !== "Null")}>
-          {props.getValue()}
-        </span>
-      ),
-    },
-    {
-      header: t("dashboard.resource.created"),
-      accessorKey: "created",
-      cell: (props: CellContext<ResourceTableData, string>) => (
-        <span css={applyTableTextStyle(true)}>{fromNow(props.getValue())}</span>
-      ),
-    },
-    {
-      header: "",
-      enableSorting: false,
-      accessorKey: "id",
-      cell: (props: CellContext<ResourceTableData, string>) => (
-        <DashboardResourceItemMenu resourceId={props.getValue()} />
-      ),
-    },
-  ]
+      {
+        header: t("dashboard.resource.resource_type"),
+        accessorKey: "type",
+        cell: (props: CellContext<ResourceTableData, string>) => (
+          <span css={applyTableTextStyle(false)}>{props.getValue()}</span>
+        ),
+      },
+      {
+        header: t("dashboard.resource.dbname"),
+        accessorKey: "databaseName",
+        cell: (props: CellContext<ResourceTableData, string>) => (
+          <span css={applyTableTextStyle(props.getValue() !== "Null")}>
+            {props.getValue()}
+          </span>
+        ),
+      },
+      {
+        header: t("dashboard.resource.created"),
+        accessorKey: "created",
+        cell: (props: CellContext<ResourceTableData, string>) => (
+          <span css={applyTableTextStyle(true)}>
+            {fromNow(props.getValue())}
+          </span>
+        ),
+      },
+      {
+        header: "",
+        enableSorting: false,
+        accessorKey: "id",
+        cell: (props: CellContext<ResourceTableData, string>) => (
+          <DashboardResourceItemMenu resourceId={props.getValue()} />
+        ),
+      },
+    ]
+  }, [resourcesList, t])
 
   return (
     <>
