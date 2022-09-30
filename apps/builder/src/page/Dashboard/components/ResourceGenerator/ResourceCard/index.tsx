@@ -1,9 +1,6 @@
 import { FC } from "react"
-import {
-  applyItemStyle,
-  nameStyle,
-} from "@/page/App/components/Actions/ActionGenerator/ActionCard/style"
-import { ResourceCardSelectorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCard/interface"
+import { applyItemStyle, nameStyle } from "./style"
+import { ResourceCardSelectorProps } from "./interface"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
@@ -12,7 +9,7 @@ export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
 
   return (
     <div css={applyItemStyle} onClick={() => onSelect?.(resourceType)}>
-      {getIconFromResourceType(resourceType, "32px")}
+      {getIconFromResourceType(resourceType, "24px")}
       <span css={nameStyle}>
         {getResourceNameFromResourceType(resourceType)}
       </span>

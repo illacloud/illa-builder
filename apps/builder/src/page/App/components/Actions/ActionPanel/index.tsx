@@ -3,11 +3,11 @@ import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/styl
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
-import { MysqlPanel } from "./MysqlPanel"
+import { MysqlLikePanel } from "./MysqlLikePanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import {
   BodyContent,
   RestApiAction,
@@ -28,8 +28,12 @@ export const ActionPanel: FC = () => {
   let actionPanel: ReactNode
   switch (selectedAction.actionType) {
     case "mysql":
+    case "tidb":
+    case "mariadb":
       actionPanel = (
-        <MysqlPanel action={selectedAction as ActionItem<MysqlAction>} />
+        <MysqlLikePanel
+          action={selectedAction as ActionItem<MysqlLikeAction>}
+        />
       )
       break
     case "restapi":

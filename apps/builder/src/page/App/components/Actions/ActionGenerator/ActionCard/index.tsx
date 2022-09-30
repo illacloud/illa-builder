@@ -11,7 +11,7 @@ export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
 
   return (
     <div css={applyItemStyle} onClick={() => onSelect?.(actionType)}>
-      {getIconFromActionType(actionType, "32px")}
+      {getIconFromActionType(actionType, "24px")}
       <span css={nameStyle}>{getActionNameFromActionType(actionType)}</span>
     </div>
   )

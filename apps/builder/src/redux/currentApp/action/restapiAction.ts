@@ -62,9 +62,9 @@ export interface RestApiAction<T extends BodyContent> extends Events {
 export const RestApiActionInitial: RestApiAction<BodyContent> = {
   url: "",
   method: "GET",
-  urlParams: [{} as Params],
-  headers: [{} as Params],
-  cookies: [{} as Params],
+  urlParams: [{ key: "", value: "" } as Params],
+  headers: [{ key: "", value: "" } as Params],
+  cookies: [{ key: "", value: "" } as Params],
   bodyType: "none",
   body: null,
 }

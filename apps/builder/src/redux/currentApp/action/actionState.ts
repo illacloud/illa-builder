@@ -1,10 +1,8 @@
-import { MysqlAction } from "./mysqlAction"
+import { MysqlLikeAction } from "./mysqlLikeAction"
 import { PostgresqlAction } from "./postgresqlAction"
 import { RedisAction } from "./redisAction"
 import { BodyContent, RestApiAction } from "./restapiAction"
-import { MongodbAction } from "./mongodbAction"
 import { TransformerAction } from "./transformerAction"
-import { ResourceType } from "@/redux/resource/resourceState"
 
 export interface Transformer {
   rawData: string
@@ -53,10 +51,9 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
 }
 
 export type ActionContent =
-  | MysqlAction
+  | MysqlLikeAction
   | RestApiAction<BodyContent>
   | TransformerAction
-  | MongodbAction
   | PostgresqlAction
   | RedisAction
 

@@ -6,7 +6,7 @@ export const containerStyle = css`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  padding: 16px 24px 24px 24px;
+  padding: 0 24px 16px 24px;
 `
 
 export const categoryStyle = css`
@@ -22,6 +22,6 @@ export const categoryStyle = css`
 export const resourceListStyle = css`
   padding: 8px 0;
   display: grid;
-  grid-gap: 24px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 `
