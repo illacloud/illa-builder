@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import "@fontsource/fira-code"
+// import "@fontsource/fira-code"
 
 export const jsonStyle = css`
   font-family: "Fira Code", monospace;

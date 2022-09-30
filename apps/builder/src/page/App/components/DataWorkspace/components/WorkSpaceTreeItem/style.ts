@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import "@fontsource/fira-code"
+// import "@fontsource/fira-code"
 import chroma from "chroma-js"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Variants } from "framer-motion"
