@@ -19,7 +19,7 @@ import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { useTranslation } from "react-i18next"
 import { ActionCard } from "../ActionCard"
 
-export const ActionTypeSelector: FC<ActionTypeSelectorProps> = props => {
+export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
   const { onSelect } = props
 
   const [loading, setLoading] = useState(false)
@@ -33,14 +33,13 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = props => {
         <div key={category}>
           <span css={categoryStyle}>{title}</span>
           <div css={resourceListStyle}>
-            {item.map(prop => (
+            {item.map((prop) => (
               <ActionCard
                 key={prop.actionType}
-                onSelect={item => {
+                onSelect={(item) => {
                   if (item === "transformer") {
-                    const displayName = DisplayNameGenerator.generateDisplayName(
-                      item,
-                    )
+                    const displayName =
+                      DisplayNameGenerator.generateDisplayName(item)
                     const initialContent = getInitialContent(item)
                     const data: Partial<ActionItem<ActionContent>> = {
                       actionType: item,
@@ -73,7 +72,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = props => {
                       () => {
                         DisplayNameGenerator.removeDisplayName(displayName)
                       },
-                      loading => {
+                      (loading) => {
                         setLoading(loading)
                       },
                     )

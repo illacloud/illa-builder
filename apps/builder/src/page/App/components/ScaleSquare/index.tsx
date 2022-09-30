@@ -1,4 +1,11 @@
-import { memo, useCallback, useContext, useMemo, useRef } from "react"
+import {
+  memo,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  MouseEvent,
+} from "react"
 import {
   ScaleSquareProps,
   ScaleSquareType,
@@ -103,8 +110,8 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   }, [componentNode.displayName, errors])
 
   const isSelected = useMemo(() => {
-    return selectedComponents.some(node => {
-      return node.displayName === componentNode.displayName
+    return selectedComponents.some((displayName) => {
+      return displayName === componentNode.displayName
     })
   }, [componentNode.displayName, selectedComponents])
 
@@ -116,11 +123,34 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     scaleSquareState = "production"
   }
 
-  const handleOnDragStart = useCallback(() => {
-    if (illaMode === "edit") {
-      dispatch(configActions.updateSelectedComponent([componentNode]))
-    }
-  }, [componentNode, dispatch, illaMode])
+  const handleOnSelection = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      if (illaMode !== "edit") return
+      if (e.metaKey || e.shiftKey) {
+        const currentSelectedDisplayName = cloneDeep(selectedComponents)
+
+        const index = currentSelectedDisplayName.findIndex(
+          (displayName) => displayName === componentNode.displayName,
+        )
+        if (index !== -1) {
+          currentSelectedDisplayName.splice(index, 1)
+          dispatch(
+            configActions.updateSelectedComponent(currentSelectedDisplayName),
+          )
+        } else {
+          currentSelectedDisplayName.push(componentNode.displayName)
+          dispatch(
+            configActions.updateSelectedComponent(currentSelectedDisplayName),
+          )
+        }
+        return
+      }
+      dispatch(
+        configActions.updateSelectedComponent([componentNode.displayName]),
+      )
+    },
+    [componentNode.displayName, dispatch, illaMode, selectedComponents],
+  )
 
   const handleOnResizeStop = useCallback(
     (e, dir, ref, delta, position) => {
@@ -194,7 +224,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           childrenNodes,
         }
       },
-      collect: monitor => {
+      collect: (monitor) => {
         return {
           isDragging: monitor.isDragging(),
         }
@@ -320,7 +350,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         h: finalHeight,
       }
       const indexOfChildren = childNodesRef.current.findIndex(
-        node => node.displayName === newItem.displayName,
+        (node) => node.displayName === newItem.displayName,
       )
       const allChildrenNodes = [...childNodesRef.current]
 
@@ -342,14 +372,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     ],
   )
 
+  //  1px is left border width
   return (
     <Rnd
-      dragGrid={[unitW, unitH]}
-      resizeGrid={[unitW, unitH]}
       bounds="#realCanvas"
       size={{
-        width: w,
-        height: h,
+        width: w + 1,
+        height: h + 1,
       }}
       position={{
         x: x,
@@ -406,9 +435,13 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             isDragging,
             illaMode === "edit",
           )}
-          onClick={handleOnDragStart}
+          onClick={handleOnSelection}
           onContextMenu={() => {
-            dispatch(configActions.updateSelectedComponent([componentNode]))
+            dispatch(
+              configActions.updateSelectedComponent([
+                componentNode.displayName,
+              ]),
+            )
           }}
           ref={dragRef}
         >

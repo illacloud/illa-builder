@@ -15,6 +15,12 @@ import {
 } from "@/redux/config/configSelector"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
+import { RootState } from "@/store"
+import {
+  getCanvas,
+  searchDSLByDisplayName,
+} from "@/redux/currentApp/editor/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -23,12 +29,22 @@ export const Shortcut: FC = ({ children }) => {
   const mode = useSelector(getIllaMode)
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
+  const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
+    (rootState) => {
+      const result = currentSelectedComponent.map((displayName) => {
+        return searchDSLByDisplayName(displayName)
+      })
+      return result.filter((node) => node) as ComponentNode[]
+    },
+  )
 
   const currentSelectedAction = useSelector(getSelectedAction)
 
+  const canvasRootNode = useSelector(getCanvas)
+
   useHotkeys(
     "command+s,ctrl+s",
-    event => {
+    (event) => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
     },
@@ -39,9 +55,8 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] = useState<
-    boolean
-  >(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
+    useState<boolean>(false)
 
   const showDeleteDialog = (displayName: string[]) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
@@ -79,11 +94,11 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "Backspace",
-    event => {
+    (event) => {
       event.preventDefault()
       showDeleteDialog(
-        currentSelectedComponent.map(item => {
-          return item.displayName
+        currentSelectedComponent.map((displayName) => {
+          return displayName
         }),
       )
     },
@@ -91,6 +106,30 @@ export const Shortcut: FC = ({ children }) => {
       enabled: mode === "edit",
     },
     [showDeleteDialog, currentSelectedComponent],
+  )
+
+  useHotkeys(
+    "command+a,ctrl+a",
+    (keyboardEvent, hotkeysEvent) => {
+      keyboardEvent.preventDefault()
+      console.log("FocusManager.getFocus()", FocusManager.getFocus())
+      switch (FocusManager.getFocus()) {
+        case "none":
+          break
+        case "canvas": {
+          if (canvasRootNode) {
+            const childNode = canvasRootNode.childrenNode
+            const childNodeDisplayNames = childNode.map((node) => {
+              return node.displayName
+            })
+            dispatch(
+              configActions.updateSelectedComponent(childNodeDisplayNames),
+            )
+          }
+        }
+      }
+    },
+    [canvasRootNode],
   )
 
   useHotkeys(
@@ -104,8 +143,11 @@ export const Shortcut: FC = ({ children }) => {
               break
             case "canvas":
             case "dataWorkspace_component":
-              if (currentSelectedComponent != null) {
-                CopyManager.copyComponentNode(currentSelectedComponent)
+              if (
+                currentSelectedComponent != null &&
+                currentSelectedComponentNode.length > 0
+              ) {
+                CopyManager.copyComponentNode(currentSelectedComponentNode)
               }
               break
             case "dataWorkspace_action":
@@ -132,8 +174,11 @@ export const Shortcut: FC = ({ children }) => {
               break
             case "canvas":
             case "dataWorkspace_component":
-              if (currentSelectedComponent != null) {
-                CopyManager.copyComponentNode(currentSelectedComponent)
+              if (
+                currentSelectedComponent != null &&
+                currentSelectedComponentNode.length > 0
+              ) {
+                CopyManager.copyComponentNode(currentSelectedComponentNode)
               }
               break
             case "dataWorkspace_action":
@@ -156,7 +201,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "*",
-    keyboardEvent => {
+    (keyboardEvent) => {
       if (hotkeys.ctrl || hotkeys.command) {
         if (keyboardEvent.type === "keydown") {
           dispatch(configActions.updateShowDot(true))

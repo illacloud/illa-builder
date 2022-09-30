@@ -3,7 +3,7 @@ import "codemirror/addon/tern/tern"
 import "./tern/tern"
 import ecmascript from "tern/defs/ecmascript.json"
 import CodeMirror from "codemirror"
-import ReactDOM, { render } from "react-dom"
+import { render } from "react-dom"
 import { TypeQueryResult } from "tern/lib/tern"
 import { isObject } from "@illa-design/system"
 import { getValueType } from "@/components/CodeEditor/utils"
@@ -134,7 +134,7 @@ const filterDataWithCallBack = (
   callback?: (key: string) => boolean,
 ) => {
   return JSON.parse(
-    JSON.stringify(data, function(key, value) {
+    JSON.stringify(data, function (key, value) {
       if (callback && callback(key)) {
         return undefined
       } else {

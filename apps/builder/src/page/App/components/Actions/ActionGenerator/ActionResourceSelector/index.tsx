@@ -29,7 +29,9 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 
-export const ActionResourceSelector: FC<ActionResourceSelectorProps> = props => {
+export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
+  props,
+) => {
   const { actionType, onBack, onCreateAction, onCreateResource } = props
 
   const { t } = useTranslation()
@@ -37,7 +39,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = props => 
   const appInfo = useSelector(getAppInfo)
 
   const resourceList = useSelector(getAllResources)
-    .filter(r => r.resourceType == getResourceTypeFromActionType(actionType))
+    .filter((r) => r.resourceType == getResourceTypeFromActionType(actionType))
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -63,11 +65,11 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = props => 
         bordered={false}
         height={550}
         data={resourceList}
-        renderKey={data => {
+        renderKey={(data) => {
           return data.resourceId
         }}
         renderRaw
-        render={r => {
+        render={(r) => {
           return (
             <div
               css={applyResourceItemStyle(r.resourceId === selectedResourceId)}
@@ -108,9 +110,8 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = props => 
           <Button
             colorScheme="techPurple"
             onClick={() => {
-              const displayName = DisplayNameGenerator.generateDisplayName(
-                actionType,
-              )
+              const displayName =
+                DisplayNameGenerator.generateDisplayName(actionType)
               const initialContent = getInitialContent(actionType)
               const data: Partial<ActionItem<ActionContent>> = {
                 actionType,
@@ -140,7 +141,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = props => 
                 () => {
                   DisplayNameGenerator.removeDisplayName(displayName)
                 },
-                loading => {
+                (loading) => {
                   setLoading(loading)
                 },
               )

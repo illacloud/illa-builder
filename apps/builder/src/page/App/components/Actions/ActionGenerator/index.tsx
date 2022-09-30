@@ -11,7 +11,7 @@ import {
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 
-export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
+export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
   const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
 
@@ -62,7 +62,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
     >
       {currentStep === "select" && (
         <ActionTypeSelector
-          onSelect={actionType => {
+          onSelect={(actionType) => {
             if (actionType == "transformer") {
               onClose()
             } else {
@@ -75,10 +75,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
       {currentStep === "createAction" && currentActionType && (
         <ActionResourceSelector
           actionType={currentActionType}
-          onBack={page => {
+          onBack={(page) => {
             setCurrentStep(page)
           }}
-          onCreateResource={actionType => {
+          onCreateResource={(actionType) => {
             setCurrentActionType(actionType)
             setCurrentStep("createResource")
           }}
@@ -91,10 +91,10 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
       {currentStep === "createResource" && transformResource && (
         <ActionResourceCreator
           resourceType={transformResource}
-          onBack={page => {
+          onBack={(page) => {
             setCurrentStep(page)
           }}
-          onFinished={resourceId => {
+          onFinished={(resourceId) => {
             setCurrentStep("createAction")
           }}
         />

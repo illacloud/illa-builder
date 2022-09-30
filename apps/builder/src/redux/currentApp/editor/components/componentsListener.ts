@@ -25,7 +25,7 @@ function handleCopyComponentReflowEffect(
   const rootNode = getCanvas(rootState)
   const componentNodes = action.payload
   const effectResultMap = new Map<string, ComponentNode>()
-  componentNodes.forEach(copyShape => {
+  componentNodes.forEach((copyShape) => {
     const { oldComponentNode } = copyShape
     const parentNodeDisplayName = oldComponentNode.parentNode
     let parentNode = searchDsl(rootNode, parentNodeDisplayName)
@@ -67,7 +67,9 @@ function handleUpdateComponentDisplayNameEffect(
   const rootNode = getCanvas(rootState)
   const newComponent = searchDsl(rootNode, newDisplayName)
   if (newComponent) {
-    listenApi.dispatch(configActions.updateSelectedComponent([newComponent]))
+    listenApi.dispatch(
+      configActions.updateSelectedComponent([newComponent.displayName]),
+    )
   }
 }
 
@@ -90,6 +92,6 @@ export function setupComponentsListeners(
   ]
 
   return () => {
-    subscriptions.forEach(unsubscribe => unsubscribe())
+    subscriptions.forEach((unsubscribe) => unsubscribe())
   }
 }

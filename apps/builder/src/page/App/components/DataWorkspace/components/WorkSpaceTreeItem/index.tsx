@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from "react"
+import { FC, memo, useCallback, useMemo, MouseEvent } from "react"
 import { CaretRightIcon } from "@illa-design/icon"
 import { motion } from "framer-motion"
 import { WorkSpaceTreeItemProps } from "./interface"
@@ -21,10 +21,10 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
     const expandedKeys = useSelector(getExpandedKeys)
     const isExpanded = expandedKeys.includes(title)
     const dispatch = useDispatch()
-    const keyArr = Object.keys(data).filter(item => !item.startsWith("$"))
+    const keyArr = Object.keys(data).filter((item) => !item.startsWith("$"))
 
     const tree = useMemo(() => {
-      return keyArr.map(name => (
+      return keyArr.map((name) => (
         <WorkSpaceTreeNode
           key={name}
           name={name}
@@ -36,14 +36,15 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
     }, [data, keyArr, title])
 
     return (
-      <div
-        onClick={() => {
-          handleSelect?.([title])
-        }}
-      >
+      <>
         <div
           css={applyItemContainerStyle(isSelected, 0)}
-          onClick={() => {
+          onClick={(e: MouseEvent<HTMLDivElement>) => {
+            if (e.metaKey || e.shiftKey) {
+              handleSelect?.([title], e)
+              return
+            }
+            handleSelect?.([title], e)
             if (isExpanded) {
               dispatch(configActions.removeExpandedKey(title))
             } else {
@@ -70,7 +71,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
         >
           {tree}
         </motion.div>
-      </div>
+      </>
     )
   },
 )

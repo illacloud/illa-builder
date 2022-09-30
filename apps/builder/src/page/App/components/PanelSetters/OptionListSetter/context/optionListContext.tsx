@@ -1,7 +1,7 @@
 import { createContext, ReactNode, FC, useCallback } from "react"
-import { OptionItemShape } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
+import { OptionItemShape } from "../interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { generateOptionItemId } from "@/page/App/components/PanelSetters/OptionListSetter/utils/generateNewOptions"
+import { generateOptionItemId } from "../utils/generateNewOptions"
 
 interface ProviderProps {
   optionItems: OptionItemShape[]
@@ -20,7 +20,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 
 export const OptionListSetterContext = createContext<Inject>({} as Inject)
 
-export const OptionListSetterProvider: FC<ProviderProps> = props => {
+export const OptionListSetterProvider: FC<ProviderProps> = (props) => {
   const { optionItems, attrPath, handleUpdateDsl } = props
 
   const handleDeleteOptionItem = useCallback(

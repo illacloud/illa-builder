@@ -55,6 +55,7 @@ export function applyItemContainerStyle(
     position: relative;
     padding: 1px 16px;
     padding-left: ${28 + 12 * level}px;
+    user-select: none;
     ${colorStyle}
   `
 }

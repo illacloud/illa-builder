@@ -57,7 +57,7 @@ export const updateDebuggerVisible: CaseReducer<
 
 export const updateSelectedComponent: CaseReducer<
   ConfigState,
-  PayloadAction<ComponentNode[]>
+  PayloadAction<string[]>
 > = (state, action) => {
   state.selectedComponents = action.payload
 }
@@ -322,6 +322,6 @@ export const removeExpandedKey: CaseReducer<
   ConfigState,
   PayloadAction<string>
 > = (state, action) => {
-  const index = state.expandedKeys.findIndex(key => key === action.payload)
+  const index = state.expandedKeys.findIndex((key) => key === action.payload)
   index > -1 && state.expandedKeys.splice(index, 1)
 }

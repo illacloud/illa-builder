@@ -1,7 +1,7 @@
 import store, { RootState } from "@/store"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { createSelector } from "@reduxjs/toolkit"
-import { getSelectedComponentsDisplayName } from "@/redux/config/configSelector"
+import { getSelectedComponents } from "@/redux/config/configSelector"
 
 export function searchDSLByDisplayName(
   displayName: string,
@@ -27,7 +27,7 @@ export function searchDsl(
     }
     queue.pop()
     if (head.childrenNode) {
-      head.childrenNode.forEach(child => {
+      head.childrenNode.forEach((child) => {
         if (child) {
           queue.push(child)
         }
@@ -37,9 +37,7 @@ export function searchDsl(
   return null
 }
 
-export function flattenDsl(
-  rootNode: ComponentNode,
-): {
+export function flattenDsl(rootNode: ComponentNode): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]
@@ -52,7 +50,7 @@ export function flattenDsl(
     }
     queue.pop()
     if (head.childrenNode) {
-      head.childrenNode.forEach(child => {
+      head.childrenNode.forEach((child) => {
         if (child) {
           queue.push(child)
         }
@@ -67,7 +65,7 @@ export const getCanvas = (state: RootState) => {
 }
 
 export const getComponentNodeBySingleSelected = createSelector(
-  [getCanvas, getSelectedComponentsDisplayName],
+  [getCanvas, getSelectedComponents],
   (rootDsl, selectedComponentDisplayNames) => {
     if (selectedComponentDisplayNames.length === 1) {
       return searchDsl(rootDsl, selectedComponentDisplayNames[0])
@@ -78,14 +76,14 @@ export const getComponentNodeBySingleSelected = createSelector(
 
 export const getAllComponentDisplayNameMapProps = createSelector(
   [getCanvas],
-  rootDSL => {
+  (rootDSL) => {
     if (rootDSL == null) {
       return null
     }
     const components = flattenDsl(rootDSL)
     if (!components) return
     const res: Record<string, any> = {}
-    Object.keys(components).forEach(key => {
+    Object.keys(components).forEach((key) => {
       res[key] = {
         ...components[key].props,
         $type: "WIDGET",

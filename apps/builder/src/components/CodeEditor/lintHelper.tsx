@@ -1,4 +1,4 @@
-import ReactDOM, { render } from "react-dom"
+import { render } from "react-dom"
 import { JSHINT } from "jshint"
 import { Editor } from "codemirror"
 import "codemirror/addon/lint/lint"

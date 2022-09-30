@@ -24,7 +24,7 @@ import { getDisplayNameAndPropertyPath } from "@/utils/executionTreeHelper/utils
 import { get } from "lodash"
 import { JsonView } from "@/page/App/components/Debugger/components/JsonView"
 
-export const ErrorItem: FC<ErrorItemProps> = props => {
+export const ErrorItem: FC<ErrorItemProps> = (props) => {
   const { item, pathName } = props
   const dispatch = useDispatch()
   const root = useSelector(getCanvas)
@@ -45,7 +45,9 @@ export const ErrorItem: FC<ErrorItemProps> = props => {
   const handleComponentSelect = useCallback(() => {
     const selectedComponent = searchDsl(root, displayName)
     selectedComponent &&
-      dispatch(configActions.updateSelectedComponent([selectedComponent]))
+      dispatch(
+        configActions.updateSelectedComponent([selectedComponent.displayName]),
+      )
   }, [dispatch, root, displayName])
 
   return (

@@ -24,7 +24,9 @@ export function startDrag(dragNode: ComponentNode, isAdd: boolean = false) {
 export function endDrag(dragNode: ComponentNode, isDropOnCanvas: boolean) {
   store.dispatch(configActions.updateShowDot(false))
   if (isDropOnCanvas) {
-    store.dispatch(configActions.updateSelectedComponent([dragNode]))
+    store.dispatch(
+      configActions.updateSelectedComponent([dragNode.displayName]),
+    )
   } else {
     DisplayNameGenerator.removeDisplayName(dragNode.displayName)
   }

@@ -471,6 +471,7 @@
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it.",
+      "multi_selected_header": "{{ number }} components selected",
       "header": {
         "action_menu": {
           "view_documentation": "View documentation",
@@ -487,6 +488,11 @@
         "style": "STYLE",
         "validation": "VALIDATION",
         "options": "OPTIONS",
+        "column": "COLUMNS",
+        "sort": "SORT",
+        "row_selection": "ROW SELECTION",
+        "pagination": "PAGINATION",
+        "toolbar": "TOOLBAR",
         "data": "DATA"
       },
       "setter_label": {
@@ -600,10 +606,22 @@
           "remove": "Remove dataset",
           "aggregation_method": "Aggregation method"
         },
+        "sort": "Sort",
+        "default_sort_key": "Column",
+        "default_sort_order": "Direction",
+        "column_title": "Column title",
+        "column_type": "Column type",
+        "enable_sorting": "Enable Sorting",
+        "decimal_places": "Decimal places",
+        "multi_row_selection": "Multi-Row Selection",
+        "overFlow": "OverFlow",
+        "download": "Download",
+        "filter": "Filter",
         "new_tab": "New tab",
         "description": "Description",
         "duration": "Duration",
         "data": "Data",
+        "empty_state": "Empty state",
         "chart_title": "Title",
         "x_axis_name": "X-axis name",
         "y_axis_name": "Y-axis name"
@@ -628,7 +646,9 @@
         "loading": "Whether the component should show a loading indicator.",
         "progress_percentage": "The percentage value is between 0 and 100",
         "timeline_direction": "Change the direction of the timeline.",
-        "only_run_when": "Conditions that must be met before the event executes"
+        "only_run_when": "Conditions that must be met before the event executes",
+        "download": "Show download button in toolbar",
+        "filter": "Show filter button in toolbar"
       },
       "setter_default_value": {
         "fill": "Fill",
@@ -646,6 +666,11 @@
         }
       },
       "setter_content": {
+        "column_setter": {
+          "label": "Columns ({{number}})",
+          "title": "Title",
+          "new": "New"
+        },
         "option_list": {
           "action_menu": {
             "delete": "Delete",
@@ -670,6 +695,9 @@
           "prefabricated": "Prefabricated color"
         },
         "widget_action_type_name": {
+          "sorting_change": "Sort change",
+          "pagination_change": "Page change",
+          "column_filters_change": "Filter change",
           "click": "Click",
           "change": "Change",
           "focus": "Focus",
@@ -783,7 +811,11 @@
       "name": "Chart"
     },
     "table": {
-      "name": "Table"
+      "name": "Table",
+      "pagination": "Pagination",
+      "scroll": "Scroll",
+      "ascend": "Asc",
+      "descend": "Desc"
     }
   },
   "Setting": "Setting",

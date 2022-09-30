@@ -1,4 +1,4 @@
-import { FC, useContext } from "react"
+import { FC, useCallback, useContext } from "react"
 import { useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DropList } from "@illa-design/dropdown"
@@ -13,7 +13,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 
 const { Item } = DropList
 
-export const ActionMenu: FC<PanelHeaderActionProps> = props => {
+export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
   const { widgetDisplayName, componentType } = props
   const { t } = useTranslation()
 
@@ -21,32 +21,32 @@ export const ActionMenu: FC<PanelHeaderActionProps> = props => {
 
   const shortcut = useContext(ShortCutContext)
 
+  const handleClickDropListItem = useCallback(() => {
+    const defaultProps = widgetBuilder(componentType).config.defaults
+    if (!widgetDisplayName) return
+    const targetNode = searchDSLByDisplayName(
+      widgetDisplayName,
+    ) as ComponentNode
+    const newComponentNode: ComponentNode = {
+      ...targetNode,
+      props: {
+        ...defaultProps,
+      },
+    }
+    newComponentNode.props = getNewWidgetPropsByUpdateSlice(
+      newComponentNode.displayName as string,
+      newComponentNode.props || {},
+      newComponentNode.props || {},
+    )
+    dispatch(componentsActions.resetComponentPropsReducer(newComponentNode))
+  }, [componentType, dispatch, widgetDisplayName])
+
   return (
     <DropList width="184px">
       <Item
         key="reset"
         title={t("editor.inspect.header.action_menu.reset_state")}
-        onClick={() => {
-          const defaultProps = widgetBuilder(componentType).config.defaults
-          if (!widgetDisplayName) return
-          const targetNode = searchDSLByDisplayName(
-            widgetDisplayName,
-          ) as ComponentNode
-          const newComponentNode: ComponentNode = {
-            ...targetNode,
-            props: {
-              ...defaultProps,
-            },
-          }
-          newComponentNode.props = getNewWidgetPropsByUpdateSlice(
-            newComponentNode.displayName as string,
-            newComponentNode.props || {},
-            newComponentNode.props || {},
-          )
-          dispatch(
-            componentsActions.resetComponentPropsReducer(newComponentNode),
-          )
-        }}
+        onClick={handleClickDropListItem}
       />
       <Item
         key="delete"
