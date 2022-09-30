@@ -1,16 +1,16 @@
-import { ActionType } from "@/redux/currentApp/action/actionState"
-import i18n from "@/i18n/config"
-
 export type ResourceType =
   | "mysql"
   | "restapi"
+  | "graphql"
   | "mongodb"
   | "redis"
+  | "elastic"
   | "postgresql"
   | "mariadb"
   | "snowflake"
   | "tidb"
   | "datadog"
+  | "smtp"
   | "zapier"
   | "s3"
 

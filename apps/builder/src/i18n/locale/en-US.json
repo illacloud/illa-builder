@@ -273,7 +273,6 @@
       },
       "resource": {
         "transformer": {
-          "name": "Transformer",
           "placeholder": {
             "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
@@ -281,14 +280,10 @@
             "external_reference": "You can create external references to variables you've defined. For example, {{ transformer2.value }}. "
           }
         },
-        "js_transformer": {
-          "name": "Transformer"
-        },
         "label": {
           "coming_soon": "Coming Soon"
         },
         "mysql": {
-          "name": "MySQL",
           "title": {
             "advanced_option": "Advanced Options"
           },
@@ -349,7 +344,6 @@
           }
         },
         "restapi": {
-          "name": "REST API",
           "title": {
             "advanced_option": "GENERAL"
           },
@@ -417,7 +411,6 @@
           }
         },
         "redis": {
-          "name": "Redis",
           "title": {
             "advanced_option": "Advanced Options"
           },
@@ -446,9 +439,6 @@
             "password": "Password",
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
-        },
-        "mongodb": {
-          "name": "MongoDB"
         }
       },
       "result": {

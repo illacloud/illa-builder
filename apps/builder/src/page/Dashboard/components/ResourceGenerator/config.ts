@@ -8,11 +8,19 @@ export interface ResourceDataItem {
 
 export const Databases: ResourceDataItem[] = [
   {
+    resourceType: "postgresql",
+    isDraft: false,
+  },
+  {
     resourceType: "mysql",
     isDraft: false,
   },
   {
-    resourceType: "postgresql",
+    resourceType: "mariadb",
+    isDraft: false,
+  },
+  {
+    resourceType: "tidb",
     isDraft: true,
   },
   {
@@ -23,12 +31,40 @@ export const Databases: ResourceDataItem[] = [
     resourceType: "mongodb",
     isDraft: true,
   },
+  {
+    resourceType: "elastic",
+    isDraft: true,
+  },
+  {
+    resourceType: "snowflake",
+    isDraft: true,
+  },
 ]
 
 export const Apis: ResourceDataItem[] = [
   {
     resourceType: "restapi",
     isDraft: false,
+  },
+  {
+    resourceType: "graphql",
+    isDraft: true,
+  },
+  {
+    resourceType: "s3",
+    isDraft: true,
+  },
+  {
+    resourceType: "zapier",
+    isDraft: true,
+  },
+  {
+    resourceType: "datadog",
+    isDraft: true,
+  },
+  {
+    resourceType: "smtp",
+    isDraft: true,
   },
 ]
 

@@ -8,11 +8,19 @@ export interface ActionDataItem {
 
 export const Databases: ActionDataItem[] = [
   {
+    actionType: "postgresql",
+    isDraft: false,
+  },
+  {
     actionType: "mysql",
     isDraft: false,
   },
   {
-    actionType: "postgresql",
+    actionType: "mariadb",
+    isDraft: false,
+  },
+  {
+    actionType: "tidb",
     isDraft: true,
   },
   {
@@ -23,12 +31,40 @@ export const Databases: ActionDataItem[] = [
     actionType: "mongodb",
     isDraft: true,
   },
+  {
+    actionType: "elastic",
+    isDraft: true,
+  },
+  {
+    actionType: "snowflake",
+    isDraft: true,
+  },
 ]
 
 export const Apis: ActionDataItem[] = [
   {
     actionType: "restapi",
     isDraft: false,
+  },
+  {
+    actionType: "graphql",
+    isDraft: true,
+  },
+  {
+    actionType: "s3",
+    isDraft: true,
+  },
+  {
+    actionType: "zapier",
+    isDraft: true,
+  },
+  {
+    actionType: "datadog",
+    isDraft: true,
+  },
+  {
+    actionType: "smtp",
+    isDraft: true,
   },
 ]
 

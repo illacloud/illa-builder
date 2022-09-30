@@ -273,7 +273,6 @@
       },
       "resource": {
         "transformer": {
-          "name": "Transformer",
           "placeholder": {
             "tip": "// Tip: assign your external references to variables instead of chaining off the curly brackets."
           },
@@ -281,14 +280,10 @@
             "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
           }
         },
-        "js_transformer": {
-          "name": "Transformer"
-        },
         "label": {
           "coming_soon": "即将更新"
         },
         "mysql": {
-          "name": "MySQL",
           "title": {
             "advanced_option": "高级配置"
           },
@@ -319,7 +314,6 @@
           }
         },
         "postgresql": {
-          "name": "PostgreSQL",
           "title": {
             "advanced_option": "高级配置"
           },
@@ -350,7 +344,6 @@
           }
         },
         "restapi": {
-          "name": "REST API",
           "title": {
             "advanced_option": "通用"
           },
@@ -418,7 +411,6 @@
           }
         },
         "redis": {
-          "name": "Redis",
           "title": {
             "advanced_option": "高级配置"
           },
@@ -447,9 +439,6 @@
             "password": "密码",
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
-        },
-        "mongodb": {
-          "name": "MongoDB"
         }
       },
       "result": {
