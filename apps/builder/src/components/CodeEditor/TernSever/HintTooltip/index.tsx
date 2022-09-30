@@ -38,7 +38,7 @@ const formatEvaluate = (data: any) => {
   return format
 }
 
-const Evaluate: FC<{ type: string; data?: any }> = (props) => {
+const Evaluate: FC<{ type: string; data?: any }> = props => {
   const { type, data } = props
 
   return (
@@ -83,7 +83,7 @@ const handleTernCompletions = (data: TypeQueryResult): TransQuery => {
   return result
 }
 
-export const HintTooltip: FC<HintTooltipProps> = (props) => {
+export const HintTooltip: FC<HintTooltipProps> = props => {
   const { current: data } = useRef(handleTernCompletions(props.data))
   const { globalData: executionResult = {} } = props
 

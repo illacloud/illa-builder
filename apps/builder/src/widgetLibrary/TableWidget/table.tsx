@@ -3,13 +3,13 @@ import { Table } from "@illa-design/table"
 import { TableWidgetProps, WrappedTableProps } from "./interface"
 import { ColumnDef } from "@tanstack/react-table"
 
-export const WrappedTable: FC<WrappedTableProps> = (props) => {
+export const WrappedTable: FC<WrappedTableProps> = props => {
   const { originData } = props
 
   let columnsDef: ColumnDef<object>[] = useMemo(() => {
     let l: ColumnDef<object>[] = []
     if (originData && originData.length > 0) {
-      Object.keys(originData[0]).forEach((key) => {
+      Object.keys(originData[0]).forEach(key => {
         l.push({
           header: key,
           accessorKey: key,
@@ -33,7 +33,7 @@ export const WrappedTable: FC<WrappedTableProps> = (props) => {
   )
 }
 
-export const TableWidget: FC<TableWidgetProps> = (props) => {
+export const TableWidget: FC<TableWidgetProps> = props => {
   const { originData } = props
   return <WrappedTable originData={originData} />
 }

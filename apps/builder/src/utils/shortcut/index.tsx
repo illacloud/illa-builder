@@ -28,7 +28,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "command+s,ctrl+s",
-    (event) => {
+    event => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
     },
@@ -39,8 +39,9 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
-    useState<boolean>(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] = useState<
+    boolean
+  >(false)
 
   const showDeleteDialog = (displayName: string[]) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
@@ -78,10 +79,10 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "Backspace",
-    (event) => {
+    event => {
       event.preventDefault()
       showDeleteDialog(
-        currentSelectedComponent.map((item) => {
+        currentSelectedComponent.map(item => {
           return item.displayName
         }),
       )
@@ -155,7 +156,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "*",
-    (keyboardEvent) => {
+    keyboardEvent => {
       if (hotkeys.ctrl || hotkeys.command) {
         if (keyboardEvent.type === "keydown") {
           dispatch(configActions.updateShowDot(true))

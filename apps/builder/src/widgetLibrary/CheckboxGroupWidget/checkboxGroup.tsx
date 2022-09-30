@@ -9,7 +9,7 @@ import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
+export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = props => {
   const {
     value,
     disabled,
@@ -27,7 +27,7 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
       options={options}
       direction={direction}
       colorScheme={colorScheme}
-      onChange={(value) => {
+      onChange={value => {
         handleOnChange?.({ value })
         handleUpdateDsl({ value })
       }}
@@ -37,7 +37,7 @@ export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
 
 WrappedCheckbox.displayName = "WrappedCheckbox"
 
-export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
+export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = props => {
   const {
     value,
     disabled,

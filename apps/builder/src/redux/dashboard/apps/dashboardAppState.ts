@@ -25,8 +25,8 @@ export const DashboardAppInitialState: DashboardApp = {
   currentVersionId: "",
   appActivity: {
     modifier: "",
-    modifiedAt: ""
-  }
+    modifiedAt: "",
+  },
 }
 
 export const DashboardAppsInitialState: DashboardAppsState = {

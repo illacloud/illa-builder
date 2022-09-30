@@ -5,7 +5,7 @@ import { moreIconWrapperStyle } from "./style"
 import { ActionMenu } from "./actionMenu"
 import { MoreProps } from "./interface"
 
-export const More: FC<MoreProps> = (props) => {
+export const More: FC<MoreProps> = props => {
   const { index } = props
 
   const [actionMenuVisible, setActionMenuVisible] = useState(false)
@@ -20,7 +20,7 @@ export const More: FC<MoreProps> = (props) => {
       }
       trigger="click"
       position="bottom-end"
-      onVisibleChange={(visible) => {
+      onVisibleChange={visible => {
         setActionMenuVisible(visible)
       }}
     >

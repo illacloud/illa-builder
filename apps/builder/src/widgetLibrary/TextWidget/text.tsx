@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm"
 import { Link } from "@illa-design/link"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const Text: FC<TextProps> = (props) => {
+export const Text: FC<TextProps> = props => {
   const {
     value,
     horizontalAlign,
@@ -48,7 +48,7 @@ export const Text: FC<TextProps> = (props) => {
 
 Text.displayName = "Text"
 
-export const TextWidget: FC<TextWidgetProps> = (props) => {
+export const TextWidget: FC<TextWidgetProps> = props => {
   const {
     value,
     horizontalAlign,

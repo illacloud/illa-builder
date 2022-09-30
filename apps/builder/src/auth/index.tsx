@@ -12,7 +12,7 @@ interface CheckIsLoginWrapperProps {
   children: ReactNode
 }
 
-export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
+export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = props => {
   const { children } = props
   const navigate = useNavigate()
   const token = getLocalStorage("token")
@@ -31,7 +31,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
           url: "/users",
           method: "GET",
         },
-        (response) => {
+        response => {
           // TIPS: can check user role
           dispatch(
             currentUserActions.updateCurrentUserReducer({

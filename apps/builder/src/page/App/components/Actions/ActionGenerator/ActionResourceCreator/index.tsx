@@ -7,11 +7,11 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 import { PostgreConfigElement } from "@/page/App/components/Actions/PostgreConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 
-export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
+export const ActionResourceCreator: FC<ResourceEditorProps> = props => {
   const { onBack, onFinished, resourceType } = props
 
   const resourceList = useSelector(getAllResources)
-    .filter((r) => r.resourceType == resourceType)
+    .filter(r => r.resourceType == resourceType)
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),

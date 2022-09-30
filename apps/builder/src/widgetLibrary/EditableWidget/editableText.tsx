@@ -12,7 +12,7 @@ import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
+export const WrappedEditableText: FC<WrappedEditableTextProps> = props => {
   const {
     value,
     placeholder,
@@ -39,7 +39,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
       {focus ? (
         <Input
           autoFocus
-          onChange={(value) => {
+          onChange={value => {
             handleUpdateDsl({ value })
           }}
           showCount={showCharacterCount}
@@ -77,7 +77,7 @@ export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
 }
 WrappedEditableText.displayName = "WrappedEditableText"
 
-export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
+export const EditableTextWidget: FC<EditableTextWidgetProps> = props => {
   const {
     value,
     placeholder,

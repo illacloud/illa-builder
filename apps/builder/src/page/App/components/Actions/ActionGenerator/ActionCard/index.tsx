@@ -5,7 +5,7 @@ import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { useTranslation } from "react-i18next"
 import { getActionNameFromActionType } from "@/utils/actionResourceTransformer"
 
-export const ActionCard: FC<ActionTypeSelectorCardProps> = (props) => {
+export const ActionCard: FC<ActionTypeSelectorCardProps> = props => {
   const { actionType, onSelect, isDraft } = props
   const { t } = useTranslation()
 

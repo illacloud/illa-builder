@@ -52,7 +52,7 @@ export const getSelectedContent = (state: RootState) => {
 }
 
 export const isCurrentSelectedActionChanged = (state: RootState) => {
-  const originAction = state.currentApp.action.find((v) => {
+  const originAction = state.currentApp.action.find(v => {
     return v.displayName === state.config.selectedAction?.displayName
   })
   return (
@@ -62,7 +62,7 @@ export const isCurrentSelectedActionChanged = (state: RootState) => {
 
 export const isSelected = (state: RootState, displayName: string) => {
   return (
-    state.config.selectedComponents.findIndex((value) => {
+    state.config.selectedComponents.findIndex(value => {
       return value.displayName == displayName
     }) != -1
   )
@@ -74,7 +74,7 @@ export const getExpandedKeys = (state: RootState) => {
 
 export const getSelectedComponentsDisplayName = createSelector(
   [getSelectedComponents],
-  (selectedComponents) => {
-    return selectedComponents.map((component) => component.displayName)
+  selectedComponents => {
+    return selectedComponents.map(component => component.displayName)
   },
 )

@@ -10,7 +10,7 @@ import { Controller } from "react-hook-form"
 import { Input, Password } from "@illa-design/input"
 import { useTranslation } from "react-i18next"
 
-export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {
+export const BasicAuthPanel: FC<BasicAuthPanelProps> = props => {
   const { control, auth } = props
 
   const { t } = useTranslation()

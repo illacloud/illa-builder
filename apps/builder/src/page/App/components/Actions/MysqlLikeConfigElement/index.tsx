@@ -39,7 +39,7 @@ import { Message } from "@illa-design/message"
  * @param props
  * @constructor
  */
-export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = (props) => {
+export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
   const { onBack, resourceType, resourceId, onFinished } = props
 
   const { t } = useTranslation()
@@ -51,9 +51,9 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = (props) => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<MysqlResource>
+    return state.resource.find(r => r.resourceId === resourceId) as Resource<
+      MysqlResource
+    >
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -83,18 +83,18 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = (props) => {
                 },
               },
             },
-            (response) => {
+            response => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            (error) => {
+            error => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            (loading) => {
+            loading => {
               setSaving(loading)
             },
           )
@@ -116,18 +116,18 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = (props) => {
                 },
               },
             },
-            (response) => {
+            response => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            (error) => {
+            error => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            (loading) => {
+            loading => {
               setSaving(loading)
             },
           )
@@ -340,7 +340,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = (props) => {
                 value={value}
                 ml="16px"
                 colorScheme="techPurple"
-                onChange={(open) => {
+                onChange={open => {
                   onChange(open)
                   setSSLOpen(open)
                 }}
@@ -495,16 +495,16 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = (props) => {
                     },
                   },
                 },
-                (response) => {
+                response => {
                   Message.success(t("dashboard.resource.test_success"))
                 },
-                (error) => {
+                error => {
                   Message.error(error.data.errorMessage)
                 },
                 () => {
                   Message.error(t("dashboard.resource.test_fail"))
                 },
-                (loading) => {
+                loading => {
                   setTestLoading(loading)
                 },
               )

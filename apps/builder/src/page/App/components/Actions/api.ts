@@ -49,7 +49,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
     () => {
       DisplayNameGenerator.removeDisplayName(displayName)
     },
-    (loading) => {},
+    loading => {},
   )
 }
 
@@ -74,6 +74,6 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
       )
     },
     () => {},
-    (loading) => {},
+    loading => {},
   )
 }

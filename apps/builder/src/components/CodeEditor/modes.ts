@@ -11,7 +11,7 @@ import "codemirror/addon/hint/javascript-hint"
 
 import { EditorModes } from "./interface"
 
-defineMode(EditorModes.Postgre_SQL_JS, function (config) {
+defineMode(EditorModes.Postgre_SQL_JS, function(config) {
   return multiplexingMode(getMode(config, { name: "text/x-pgsql" }), {
     open: "{{",
     close: "}}",
@@ -24,7 +24,7 @@ defineMode(EditorModes.Postgre_SQL_JS, function (config) {
   })
 })
 
-defineMode(EditorModes.TEXT_JS, function (config) {
+defineMode(EditorModes.TEXT_JS, function(config) {
   return multiplexingMode(getMode(config, EditorModes.TEXT), {
     open: "{{",
     close: "}}",
@@ -37,7 +37,7 @@ defineMode(EditorModes.TEXT_JS, function (config) {
   })
 })
 
-defineMode(EditorModes.SQL_JS, function (config) {
+defineMode(EditorModes.SQL_JS, function(config) {
   return multiplexingMode(getMode(config, { name: "text/x-mysql" }), {
     open: "{{",
     close: "}}",
@@ -50,7 +50,7 @@ defineMode(EditorModes.SQL_JS, function (config) {
   })
 })
 
-defineMode(EditorModes.XML_JS, function (config) {
+defineMode(EditorModes.XML_JS, function(config) {
   return multiplexingMode(getMode(config, { name: "application/xml" }), {
     open: "{{",
     close: "}}",
@@ -63,7 +63,7 @@ defineMode(EditorModes.XML_JS, function (config) {
   })
 })
 
-defineMode(EditorModes.HTML_JS, function (config) {
+defineMode(EditorModes.HTML_JS, function(config) {
   return multiplexingMode(getMode(config, { name: "text/html" }), {
     open: "{{",
     close: "}}",
@@ -75,7 +75,7 @@ defineMode(EditorModes.HTML_JS, function (config) {
     parseDelimiters: false,
   })
 })
-defineMode(EditorModes.JAVASCRIPT, function (config) {
+defineMode(EditorModes.JAVASCRIPT, function(config) {
   return multiplexingMode(
     getMode(config, {
       name: "application/javascript",
@@ -93,7 +93,7 @@ defineMode(EditorModes.JAVASCRIPT, function (config) {
   )
 })
 
-defineMode(EditorModes.JSON, function (config) {
+defineMode(EditorModes.JSON, function(config) {
   return multiplexingMode(
     getMode(config, {
       name: "application/json",

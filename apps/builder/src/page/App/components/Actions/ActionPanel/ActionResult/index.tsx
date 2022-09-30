@@ -22,7 +22,7 @@ interface ActionResultProps {
   onClose: () => void
 }
 
-export const ActionResult: FC<ActionResultProps> = (props) => {
+export const ActionResult: FC<ActionResultProps> = props => {
   const { result, maxHeight, onClose } = props
   const res = result?.result
   const panelRef = useRef<HTMLDivElement>(null)

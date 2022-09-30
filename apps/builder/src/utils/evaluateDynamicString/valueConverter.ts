@@ -7,12 +7,15 @@ export const smartSubstituteDynamicValues = (
   originStringSnippets: string[],
   originValues: unknown[],
 ): string => {
-  const { dynamicString, stringSnippets, values } =
-    filterBindingSegmentsAndRemoveQuotes(
-      originDynamicString,
-      originStringSnippets,
-      originValues,
-    )
+  const {
+    dynamicString,
+    stringSnippets,
+    values,
+  } = filterBindingSegmentsAndRemoveQuotes(
+    originDynamicString,
+    originStringSnippets,
+    originValues,
+  )
   let finalBinding = dynamicString
   stringSnippets.forEach((b, i) => {
     const value = values[i]

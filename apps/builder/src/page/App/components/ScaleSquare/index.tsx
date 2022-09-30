@@ -103,7 +103,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   }, [componentNode.displayName, errors])
 
   const isSelected = useMemo(() => {
-    return selectedComponents.some((node) => {
+    return selectedComponents.some(node => {
       return node.displayName === componentNode.displayName
     })
   }, [componentNode.displayName, selectedComponents])
@@ -194,7 +194,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           childrenNodes,
         }
       },
-      collect: (monitor) => {
+      collect: monitor => {
         return {
           isDragging: monitor.isDragging(),
         }
@@ -320,7 +320,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         h: finalHeight,
       }
       const indexOfChildren = childNodesRef.current.findIndex(
-        (node) => node.displayName === newItem.displayName,
+        node => node.displayName === newItem.displayName,
       )
       const allChildrenNodes = [...childNodesRef.current]
 

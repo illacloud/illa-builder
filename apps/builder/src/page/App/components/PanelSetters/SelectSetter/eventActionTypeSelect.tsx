@@ -7,7 +7,7 @@ import { useSelector } from "react-redux"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { getSelectedAction } from "@/redux/config/configSelector"
 
-export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
+export const EventActionTypeSelect: FC<BaseSelectSetterProps> = props => {
   const {
     isSetterSingleRow,
     attrName,
@@ -48,7 +48,7 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
         options={options}
         size="medium"
         value={value}
-        onChange={(value) => {
+        onChange={value => {
           handleUpdateDsl(_finalAttrPath, {
             actionType: value,
             id: oldEvent?.id,

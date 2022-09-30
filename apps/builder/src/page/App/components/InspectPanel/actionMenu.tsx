@@ -13,7 +13,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 
 const { Item } = DropList
 
-export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
+export const ActionMenu: FC<PanelHeaderActionProps> = props => {
   const { widgetDisplayName, componentType } = props
   const { t } = useTranslation()
 

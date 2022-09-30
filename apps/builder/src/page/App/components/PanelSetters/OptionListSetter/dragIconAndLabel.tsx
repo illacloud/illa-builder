@@ -14,7 +14,7 @@ import { OptionListSetterContext } from "@/page/App/components/PanelSetters/Opti
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 
-export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
+export const DragIconAndLabel: FC<DragIconAndLabelProps> = props => {
   const { index } = props
   const [modalVisible, setModalVisible] = useState(false)
   const { widgetDisplayName, attrPath, childrenSetter } = useContext(
@@ -52,7 +52,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       showArrow={false}
       position="left"
       clickOutsideToClose
-      onVisibleChange={(visible) => {
+      onVisibleChange={visible => {
         setModalVisible(visible)
       }}
     >

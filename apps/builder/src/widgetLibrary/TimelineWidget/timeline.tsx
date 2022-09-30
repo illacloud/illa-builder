@@ -19,9 +19,7 @@ export const WrappedTimeline = forwardRef<any, WrappedTimelineProps>(
 
     const timelineItems = useMemo(() => {
       if (Array.isArray(items)) {
-        return items.map((item) => (
-          <TimelineItem key={item}>{item}</TimelineItem>
-        ))
+        return items.map(item => <TimelineItem key={item}>{item}</TimelineItem>)
       }
       return null
     }, [items])
@@ -36,7 +34,7 @@ export const WrappedTimeline = forwardRef<any, WrappedTimelineProps>(
 
 WrappedTimeline.displayName = "WrappedTimeline"
 
-export const TimelineWidget: FC<TimelineWidgetProps> = (props) => {
+export const TimelineWidget: FC<TimelineWidgetProps> = props => {
   const {
     items,
     direction,

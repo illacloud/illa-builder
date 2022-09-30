@@ -34,7 +34,7 @@ import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 
-export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
+export const RedisConfigElement: FC<RedisConfigElementProps> = props => {
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
@@ -46,9 +46,9 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<RedisResource>
+    return state.resource.find(r => r.resourceId === resourceId) as Resource<
+      RedisResource
+    >
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -78,18 +78,18 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 },
               },
             },
-            (response) => {
+            response => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            (error) => {
+            error => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            (loading) => {
+            loading => {
               setSaving(loading)
             },
           )
@@ -111,18 +111,18 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 },
               },
             },
-            (response) => {
+            response => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            (error) => {
+            error => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            (loading) => {
+            loading => {
               setSaving(loading)
             },
           )
@@ -329,7 +329,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 value={value}
                 ml="16px"
                 colorScheme="techPurple"
-                onChange={(open) => {
+                onChange={open => {
                   onChange(open)
                   setSSLOpen(open)
                 }}
@@ -484,16 +484,16 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     },
                   },
                 },
-                (response) => {
+                response => {
                   Message.success(t("dashboard.resource.test_success"))
                 },
-                (error) => {
+                error => {
                   Message.error(error.data.errorMessage)
                 },
                 () => {
                   Message.error(t("dashboard.resource.test_fail"))
                 },
-                (loading) => {
+                loading => {
                   setTestLoading(loading)
                 },
               )

@@ -7,7 +7,7 @@ import { DragIconAndLabel } from "@/page/App/components/PanelSetters/OptionListS
 import { More } from "@/page/App/components/PanelSetters/OptionListSetter/more"
 import { OptionListSetterContext } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 
-export const ListItem: FC<ListItemProps> = (props) => {
+export const ListItem: FC<ListItemProps> = props => {
   const { id, label, value, index } = props
 
   const { handleMoveOptionItem } = useContext(OptionListSetterContext)

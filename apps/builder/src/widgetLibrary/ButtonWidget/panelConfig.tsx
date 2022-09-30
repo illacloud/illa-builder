@@ -36,7 +36,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         attrName: "formId",
         setterType: "INPUT_SETTER",
         bindAttrName: ["submit"],
-        shown: (value) => value === true,
+        shown: value => value === true,
       },
       {
         id: `${baseWidgetName}-interaction-loading`,
@@ -47,7 +47,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
-        shown: (value) => {
+        shown: value => {
           return !value
         },
       },
@@ -60,7 +60,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         bindAttrName: ["submit"],
-        shown: (value) => !value,
+        shown: value => !value,
       },
     ],
   },

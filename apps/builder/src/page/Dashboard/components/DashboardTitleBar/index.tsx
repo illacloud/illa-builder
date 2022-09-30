@@ -26,7 +26,7 @@ import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 const SettingTrigger: FC<{
   avatarBgColor: string
   avatarText: string
-}> = (props) => {
+}> = props => {
   const { avatarBgColor, avatarText } = props
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -126,7 +126,7 @@ export const DashboardTitleBar: FC = () => {
       withoutContent
       colorScheme="grayBlue"
       size="large"
-      onChange={(key) => {
+      onChange={key => {
         switch (key) {
           case "apps":
             navigate("./apps")
@@ -137,7 +137,7 @@ export const DashboardTitleBar: FC = () => {
         }
       }}
     >
-      {tabs.map((item) => {
+      {tabs.map(item => {
         return <TabPane title={item.title} key={item.key} />
       })}
     </Tabs>

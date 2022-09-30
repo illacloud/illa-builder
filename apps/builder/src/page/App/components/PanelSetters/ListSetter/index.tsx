@@ -29,7 +29,7 @@ export const ListSetter: FC<ListSetterProps> = memo(
     const childrenSetterAttrPathMapDefaultValue = useMemo(() => {
       const childrenSetterAttrPathMap: Record<string, any> = {}
       if (childrenSetter) {
-        childrenSetter.forEach((childSetter) => {
+        childrenSetter.forEach(childSetter => {
           set(
             childrenSetterAttrPathMap,
             childSetter.attrName,
@@ -41,7 +41,7 @@ export const ListSetter: FC<ListSetterProps> = memo(
     }, [childrenSetter])
 
     const canReset = useMemo(() => {
-      return Object.keys(childrenSetterAttrPathMapDefaultValue).some((key) => {
+      return Object.keys(childrenSetterAttrPathMapDefaultValue).some(key => {
         const realValue = get(panelConfig, key)
         const defaultValue = get(childrenSetterAttrPathMapDefaultValue, key)
         return !isEqual(realValue, defaultValue)
@@ -49,7 +49,7 @@ export const ListSetter: FC<ListSetterProps> = memo(
     }, [childrenSetterAttrPathMapDefaultValue, panelConfig])
 
     const onClickReset = useCallback(() => {
-      Object.keys(childrenSetterAttrPathMapDefaultValue).forEach((key) => {
+      Object.keys(childrenSetterAttrPathMapDefaultValue).forEach(key => {
         const defaultValue = get(childrenSetterAttrPathMapDefaultValue, key)
         handleUpdateDsl(key, defaultValue)
       })
@@ -71,7 +71,7 @@ export const ListSetter: FC<ListSetterProps> = memo(
           )}
         </div>
         <div css={listWrapperStyle}>
-          {childrenSetter?.map((child) => {
+          {childrenSetter?.map(child => {
             return renderFieldAndLabel(child, widgetDisplayName ?? "", true, "")
           })}
         </div>

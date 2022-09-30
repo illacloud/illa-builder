@@ -24,7 +24,7 @@ export function transformComponentReduxPayloadToWsPayload(
   componentNodes: ComponentNode[] | ComponentNode,
 ): ILLAWebSocketComponentPayload[] {
   if (Array.isArray(componentNodes)) {
-    return componentNodes.map((node) => {
+    return componentNodes.map(node => {
       return {
         before: {
           displayName: node.displayName,
@@ -92,11 +92,11 @@ export class Connection {
     }
     Api.request<Room>(
       config,
-      (response) => {
+      response => {
         let ws = generateWs(response.data.wsURL)
         this.roomMap.set(type + roomId, ws)
       },
-      (error) => {},
+      error => {},
       () => {},
       loading,
       errorState,
@@ -135,13 +135,13 @@ function onMessage(this: ILLAWebSocket, event: MessageEvent) {
         let payload = broadcast.payload
         switch (type) {
           case `${ADD_DISPLAY_NAME}/remote`: {
-            ;(payload as string[]).forEach((name) => {
+            ;(payload as string[]).forEach(name => {
               DisplayNameGenerator.displayNameList.add(name)
             })
             break
           }
           case `${REMOVE_DISPLAY_NAME}/remote`: {
-            ;(payload as string[]).forEach((name) => {
+            ;(payload as string[]).forEach(name => {
               DisplayNameGenerator.displayNameList.delete(name)
             })
             break

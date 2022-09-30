@@ -20,7 +20,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 
 export const OptionListSetterContext = createContext<Inject>({} as Inject)
 
-export const OptionListSetterProvider: FC<ProviderProps> = (props) => {
+export const OptionListSetterProvider: FC<ProviderProps> = props => {
   const { optionItems, attrPath, handleUpdateDsl } = props
 
   const handleDeleteOptionItem = useCallback(

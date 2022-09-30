@@ -12,7 +12,7 @@ export const generateUniqueKey = (config: AxiosRequestConfig) =>
   ].join("/")
 
 export const clearRequestPendingPool = () => {
-  pendingPollMap.forEach((cancel) => {
+  pendingPollMap.forEach(cancel => {
     cancel?.()
   })
   pendingPollMap.clear()
