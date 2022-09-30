@@ -25,7 +25,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
   )
-  const data: Partial<ActionItem<{}>> = {
+  const data: Partial<ActionItem<ActionContent>> = {
     ...newAction,
     displayName,
   }
