@@ -1,10 +1,10 @@
 <div align="center">
-    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://cdn.illafamily.com/logo.svg"/>
+    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illa-family/.github/blob/main/assets/images/ILLALogo.svg"/>
 </div>
 
 <h1 align="center">ILLA Builder</h1>
 
-<p align="center">Accelerate your internal tools development.</p>
+<p align="center">To accelerate your internal tools development.</p>
 
 <div align="center">
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-builder/graphs/contributors">contributors</a></p>
