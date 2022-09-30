@@ -8,6 +8,7 @@ import {
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
+  visibleIconStyle,
 } from "./style"
 import { DragIconAndLabelProps } from "./interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -65,6 +66,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           </span>
         </div>
         <span
+          css={visibleIconStyle}
           onClick={(event) => {
             handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
             event.stopPropagation()
