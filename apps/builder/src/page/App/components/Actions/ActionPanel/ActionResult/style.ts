@@ -59,3 +59,6 @@ export const resCloseIconStyle = css`
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   }
 `
+export const codeStyle = css`
+  overflow: scroll;
+`
