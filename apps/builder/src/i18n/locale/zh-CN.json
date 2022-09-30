@@ -608,7 +608,7 @@
         "timeline_direction": "切换时间轴的方向",
         "only_run_when": "在此输入该事件执行前必须满足的条件",
         "download": "在工具栏显示下载按钮",
-        "Filter": "在工具栏显示筛选按钮"
+        "filter": "在工具栏显示筛选按钮"
       },
       "setter_default_value": {
         "fill": "填充",

@@ -611,7 +611,7 @@
         "timeline_direction": "Change the direction of the timeline.",
         "only_run_when": "Conditions that must be met before the event executes",
         "download": "Show download button in toolbar",
-        "Filter": "Show filter button in toolbar"
+        "filter": "Show filter button in toolbar"
       },
       "setter_default_value": {
         "fill": "Fill",
