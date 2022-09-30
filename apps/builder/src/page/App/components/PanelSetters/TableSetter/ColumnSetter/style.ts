@@ -97,3 +97,17 @@ export const emptyEmptyBodyStyle = css`
   height: 40px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
+
+export const baseIconStyle = css`
+  font-size: 16px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  cursor: pointer;
+  :hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  }
+`
+
+export const eyeIconStyle = css`
+  visibility: hidden;
+  ${baseIconStyle}
+`

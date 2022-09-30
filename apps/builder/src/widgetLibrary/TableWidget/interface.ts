@@ -13,7 +13,8 @@ export const ColumnTypeOption = [
 
 type ColumnType = "text" | "date" | "number" | "percent" | "link"
 
-export interface ColumnItemShape extends Pick<ColumnDef<object>, "cell"> {
+export interface ColumnItemShape
+  extends Pick<ColumnDef<object>, "cell" | "id"> {
   accessorKey: string
   header: string
   value?: string
@@ -30,7 +31,15 @@ export interface WrappedTableProps
   extends HTMLAttributes<HTMLDivElement>,
     Pick<
       TableProps<any, any>,
-      "loading" | "columns" | "defaultSort" | "columnVisibility" | "data"
+      | "loading"
+      | "columns"
+      | "filter"
+      | "download"
+      | "overFlow"
+      | "defaultSort"
+      | "columnVisibility"
+      | "multiRowSelection"
+      | "data"
     > {
   emptyState?: string
   defaultSortKey?: string
