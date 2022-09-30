@@ -13,7 +13,8 @@ export const ColumnTypeOption = [
 
 type ColumnType = "text" | "date" | "number" | "percent" | "link"
 
-export interface ColumnItemShape extends Pick<ColumnDef<object>, "cell"> {
+export interface ColumnItemShape
+  extends Pick<ColumnDef<object>, "cell" | "id"> {
   accessorKey: string
   header: string
   value?: string

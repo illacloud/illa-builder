@@ -10,6 +10,7 @@ export const tansTableDataToColumns = (
   if (data && data.length > 0) {
     Object.keys(data[0]).forEach((key) => {
       columns.push({
+        id: key,
         header: key,
         accessorKey: key,
         enableSorting: true,
