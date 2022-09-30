@@ -695,9 +695,9 @@
           "prefabricated": "Prefabricated color"
         },
         "widget_action_type_name": {
-          "sorting_change": "Sort change",
-          "pagination_change": "Page change",
-          "column_filters_change": "Filter change",
+          "sortingChange": "Sort change",
+          "paginationChange": "Page change",
+          "columnFiltersChange": "Filter change",
           "click": "Click",
           "change": "Change",
           "focus": "Focus",

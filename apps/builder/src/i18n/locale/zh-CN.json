@@ -693,9 +693,9 @@
           "prefabricated": "Prefabricated color"
         },
         "widget_action_type_name": {
-          "sorting_change": "排序方式改变",
-          "pagination_change": "翻页配置改变",
-          "column_filters_change": "行筛选改变",
+          "sortingChange": "排序方式改变",
+          "paginationChange": "翻页配置改变",
+          "columnFiltersChange": "行筛选改变",
           "click": "单击",
           "change": "内容改变",
           "focus": "聚焦",

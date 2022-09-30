@@ -5,22 +5,22 @@ export const TABLE_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
   events: [
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.sorting_change",
+        "editor.inspect.setter_content.widget_action_type_name.sortingChange",
       ),
       value: "sortingChange",
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.pagination_change",
+        "editor.inspect.setter_content.widget_action_type_name.paginationChange",
       ),
       value: "paginationChange",
     },
     {
       label: i18n.t(
-        "editor.inspect.setter_content.widget_action_type_name.column_filters_change",
+        "editor.inspect.setter_content.widget_action_type_name.columnFiltersChange",
       ),
       value: "columnFiltersChange",
     },
   ],
-  methods: ["setValue"],
+  methods: [],
 }
