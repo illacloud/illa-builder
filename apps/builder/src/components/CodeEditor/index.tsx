@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react"
-import { css, Global } from "@emotion/react"
+import { Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
