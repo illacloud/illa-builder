@@ -70,8 +70,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleDeleteGlobalData,
   } = props
 
-  const tableWrapperRef = useRef<HTMLDivElement>(null)
-
   const defaultSort = useMemo(() => {
     if (!defaultSortKey) return undefined
     return [
@@ -123,20 +121,18 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   ])
 
   return (
-    <div ref={tableWrapperRef}>
-      <WrappedTable
-        data={data}
-        emptyState={emptyState}
-        loading={loading}
-        filter={filter}
-        columns={columnsDef}
-        download={download}
-        overFlow={overFlow}
-        columnVisibility={columnVisibility}
-        defaultSort={defaultSort}
-        multiRowSelection={multiRowSelection}
-      />
-    </div>
+    <WrappedTable
+      data={data}
+      emptyState={emptyState}
+      loading={loading}
+      filter={filter}
+      columns={columnsDef}
+      download={download}
+      overFlow={overFlow}
+      columnVisibility={columnVisibility}
+      defaultSort={defaultSort}
+      multiRowSelection={multiRowSelection}
+    />
   )
 }
 
