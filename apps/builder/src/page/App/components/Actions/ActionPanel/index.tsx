@@ -1,12 +1,16 @@
-import { FC, ReactNode, useCallback, useRef, useState } from "react"
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from "react"
 import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
+import { useSize } from "react-use"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import { MysqlLikePanel } from "./MysqlLikePanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import {
   BodyContent,
@@ -17,7 +21,12 @@ import { onCopyActionItem, onDeleteActionItem } from "../api"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 
-export const ActionPanel: FC = () => {
+export interface ActionPanelProps {
+  maxHeight?: number
+}
+
+export const ActionPanel: FC<ActionPanelProps> = (props) => {
+  const { maxHeight } = props
   const panelRef = useRef<HTMLDivElement>(null)
   const selectedAction = useSelector(getSelectedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
@@ -72,9 +81,7 @@ export const ActionPanel: FC = () => {
         onClose={() => {
           setActionResult(undefined)
         }}
-        maxHeight={
-          panelRef.current ? panelRef.current?.clientHeight - 100 : undefined
-        }
+        maxHeight={maxHeight}
       />
     </div>
   )

@@ -23,12 +23,12 @@ interface ActionResultProps {
   onClose: () => void
 }
 
-export const ActionResult: FC<ActionResultProps> = props => {
+export const ActionResult: FC<ActionResultProps> = (props) => {
   const { result, maxHeight, onClose } = props
   const res = result?.result
   const panelRef = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
-  console.log(panelRef, "panelRef")
+
   return res ? (
     <div
       css={[resultContainerStyle, applyMaxHeightStyle(maxHeight)]}
@@ -41,7 +41,7 @@ export const ActionResult: FC<ActionResultProps> = props => {
         </div>
       ) : (
         <>
-          <DragBar resizeRef={panelRef} minHeight={40} maxHeight={maxHeight} />
+          <DragBar resizeRef={panelRef} minHeight={40} />
           <div css={successResultWrapperStyle}>
             <div>
               <RightIcon css={successIconStyle} size="16px" />
@@ -56,9 +56,6 @@ export const ActionResult: FC<ActionResultProps> = props => {
             value={JSON.stringify(res, null, 2)}
             border={"unset"}
             borderRadius={"0"}
-            maxHeight={
-              panelRef.current ? `${panelRef.current?.clientHeight - 40}px` : ""
-            }
             readOnly
             lineNumbers
           />
