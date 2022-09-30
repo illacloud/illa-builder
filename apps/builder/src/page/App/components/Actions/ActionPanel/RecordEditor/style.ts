@@ -1,13 +1,14 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export function applyRecordEditorContainerStyl(label: string) {
+export function applyRecordEditorContainerStyle(label: string) {
   return css`
     display: flex;
     padding-right: ${label !== "" ? "16px" : "0"};
     flex-direction: row;
   `
 }
+
 export const recordEditorStyle = css`
   display: flex;
   flex-grow: 1;

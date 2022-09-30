@@ -5,11 +5,11 @@ import { ColorPickerProps } from "./interface"
 import { colorSchemes } from "@/widgetLibrary/PublicSector/colorSchemeOptions"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const ColorPicker: FC<ColorPickerProps> = (props) => {
+export const ColorPicker: FC<ColorPickerProps> = props => {
   const { onChange, selectedColor } = props
 
   const preColors = useMemo(() => {
-    return colorSchemes.map((color) => {
+    return colorSchemes.map(color => {
       return {
         title: color,
         color: globalColor(`--${illaPrefix}-${color}-03`),
@@ -19,7 +19,7 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
 
   const colorMap = useMemo(() => {
     const m = new Map<string, string>()
-    colorSchemes.forEach((color) => {
+    colorSchemes.forEach(color => {
       m.set(globalColor(`--${illaPrefix}-${color}-03`), color)
     })
     return m
@@ -34,7 +34,7 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
     <Sketch
       color={c}
       presetColors={preColors}
-      onChange={(color) => {
+      onChange={color => {
         if (colorMap.has(color.hexa)) {
           onChange(colorMap.get(color.hex) || colorMap.get(color.hexa)!!)
         } else {

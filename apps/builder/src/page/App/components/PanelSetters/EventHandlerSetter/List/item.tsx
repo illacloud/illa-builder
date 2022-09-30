@@ -7,7 +7,7 @@ import { More } from "@/page/App/components/PanelSetters/EventHandlerSetter/List
 import { EventAndMethodLabel } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/eventAndMethodLabel"
 import { ListItemProps } from "@/page/App/components/PanelSetters/EventHandlerSetter/List/interface"
 
-export const ListItem: FC<ListItemProps> = (props) => {
+export const ListItem: FC<ListItemProps> = props => {
   const { index } = props
   return (
     <div css={listItemWrapperStyle}>

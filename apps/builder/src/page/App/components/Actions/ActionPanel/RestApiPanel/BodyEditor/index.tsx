@@ -100,7 +100,7 @@ function getBodyEditorComponent(
           value={(body as RawBody<RawBodyContent>).content}
           expectedType={VALIDATION_TYPES.STRING}
           height="88px"
-          onChange={(value) => {
+          onChange={value => {
             onChangeBody({
               type: rawBody.type,
               content: value,
@@ -116,7 +116,7 @@ function getBodyEditorComponent(
           value={body as BinaryBody}
           expectedType={VALIDATION_TYPES.STRING}
           height="88px"
-          onChange={(value) => {
+          onChange={value => {
             onChangeBody(value)
           }}
         />
@@ -124,7 +124,7 @@ function getBodyEditorComponent(
   }
 }
 
-export const BodyEditor: FC<BodyEditorProps> = (props) => {
+export const BodyEditor: FC<BodyEditorProps> = props => {
   const {
     body,
     bodyType,
@@ -151,19 +151,19 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               "raw",
               "binary",
             ]}
-            borderRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
-            onChange={(value) => {
+            bdRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
+            onChange={value => {
               onChangeBodyType(value)
             }}
           />
           {bodyType === "raw" && (
             <Select
-              borderRadius="0 8px 8px 0"
+              bdRadius="0 8px 8px 0"
               colorScheme="techPurple"
               width="162px"
               value={(body as RawBody<RawBodyContent>).type}
               options={["text", "json", "xml", "javascript", "html"]}
-              onChange={(value) => {
+              onChange={value => {
                 onChangeRawBodyType(value)
               }}
             />

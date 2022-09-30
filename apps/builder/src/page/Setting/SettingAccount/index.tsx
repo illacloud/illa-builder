@@ -1,5 +1,4 @@
 import { FC, useCallback, useEffect, useState } from "react"
-import { debounce } from "lodash"
 import { useDispatch, useSelector } from "react-redux"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
 import { useTranslation } from "react-i18next"
@@ -50,43 +49,6 @@ export const SettingAccount: FC = () => {
     },
     [checkUserNameValidate],
   )
-
-  const handleSubmit = useCallback(
-    debounce(() => {
-      if (!!errorMessage) {
-        return
-      }
-      Api.request<CurrentUser>(
-        {
-          url: "/users/nickname",
-          method: "PATCH",
-          data: {
-            nickname: nickNameValue,
-          },
-        },
-        (response) => {
-          dispatch(
-            currentUserActions.updateCurrentUserReducer({
-              ...response.data,
-              nickname: response.data.nickname,
-            }),
-          )
-          Message.success("success!")
-        },
-        (failure) => {
-          Message.error(t("setting.account.save_fail"))
-        },
-        (crash) => {
-          Message.error(t("network_error"))
-        },
-        (loading) => {
-          setIsLoading(loading)
-        },
-      )
-    }, 300),
-    [errorMessage, nickNameValue],
-  )
-
   return (
     <>
       <LabelAndSetter errorMessage="" label={t("setting.account.email")}>
@@ -118,7 +80,38 @@ export const SettingAccount: FC = () => {
           fullWidth
           disabled={!!errorMessage}
           loading={isLoading}
-          onClick={handleSubmit}
+          onClick={() => {
+            if (!!errorMessage) {
+              return
+            }
+            Api.request<CurrentUser>(
+              {
+                url: "/users/nickname",
+                method: "PATCH",
+                data: {
+                  nickname: nickNameValue,
+                },
+              },
+              (response) => {
+                dispatch(
+                  currentUserActions.updateCurrentUserReducer({
+                    ...response.data,
+                    nickname: response.data.nickname,
+                  }),
+                )
+                Message.success("success!")
+              },
+              (failure) => {
+                Message.error(t("setting.account.save_fail"))
+              },
+              (crash) => {
+                Message.error(t("network_error"))
+              },
+              (loading) => {
+                setIsLoading(loading)
+              },
+            )
+          }}
           colorScheme="techPurple"
         >
           {t("setting.account.save")}

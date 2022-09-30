@@ -43,9 +43,9 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
         addonBefore={{ render: prefixText, custom: false }}
         suffix={suffixIcon}
         addonAfter={{ render: suffixText, custom: false }}
-        onChange={(value) => {
+        onChange={value => {
           setValue(value)
-          new Promise((resolve) => {
+          new Promise(resolve => {
             handleUpdateDsl({ value })
             resolve(true)
           }).then(() => {
@@ -66,7 +66,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
 )
 WrappedInput.displayName = "WrappedInput"
 
-export const InputWidget: FC<InputWidgetProps> = (props) => {
+export const InputWidget: FC<InputWidgetProps> = props => {
   const {
     value,
     placeholder,
@@ -120,6 +120,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     labelPosition,
+    updateComponentHeight,
   ])
 
   useEffect(() => {

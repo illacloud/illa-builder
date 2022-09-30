@@ -12,7 +12,7 @@ import { getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { FocusManager } from "@/utils/focusManager"
 
-export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
+export const CanvasPanel: FC<CanvasPanelProps> = props => {
   const { ...otherProps } = props
 
   const { t } = useTranslation()

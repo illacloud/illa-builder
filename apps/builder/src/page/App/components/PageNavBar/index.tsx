@@ -15,7 +15,8 @@ import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
   getIllaMode,
-  isOpenBottomPanel, isOpenDebugger,
+  isOpenBottomPanel,
+  isOpenDebugger,
   isOpenLeftPanel,
   isOpenRightPanel,
 } from "@/redux/config/configSelector"
@@ -39,7 +40,7 @@ import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 
-export const PageNavBar: FC<PageNavBarProps> = (props) => {
+export const PageNavBar: FC<PageNavBarProps> = props => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -58,16 +59,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
 
   const handleClickLeftWindowIcon = useCallback(() => {
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-  }, [leftPanelVisible])
+  }, [dispatch, leftPanelVisible])
   const handleClickRightWindowIcon = useCallback(() => {
     dispatch(configActions.updateRightPanel(!rightPanelVisible))
-  }, [rightPanelVisible])
+  }, [dispatch, rightPanelVisible])
   const handleClickBottomWindowIcon = useCallback(() => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-  }, [bottomPanelVisible])
+  }, [bottomPanelVisible, dispatch])
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
-  }, [debuggerVisible])
+  }, [debuggerVisible, dispatch])
 
   const handleClickDeploy = useCallback(() => {
     Api.request<DeployResp>(
@@ -75,7 +76,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
       },
-      (response) => {
+      response => {
         window.open(
           window.location.protocol +
             "//" +
@@ -84,20 +85,20 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           "_blank",
         )
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (loading) => {
+      loading => {
         setDeployLoading(loading)
       },
     )
-  }, [setDeployLoading, appInfo])
+  }, [appInfo.appId, t])
   const handleClickPreview = useCallback(() => {
     dispatch(configActions.updateIllaMode("edit"))
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={className} css={navBarStyle}>
@@ -144,7 +145,12 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               <Button
                 colorScheme="gray"
                 size="medium"
-                leftIcon={<BugIcon color={globalColor(`--${illaPrefix}-grayBlue-03`)} size="14px" />}
+                leftIcon={
+                  <BugIcon
+                    color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                    size="14px"
+                  />
+                }
                 onClick={handleClickDebuggerIcon}
               />
             </Badge>

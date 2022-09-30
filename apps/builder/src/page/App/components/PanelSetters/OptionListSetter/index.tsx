@@ -7,7 +7,7 @@ import { generateNewOptionItem } from "@/page/App/components/PanelSetters/Option
 import { OptionListSetterProvider } from "@/page/App/components/PanelSetters/OptionListSetter/context/optionListContext"
 import { useTranslation } from "react-i18next"
 
-export const OptionListSetter: FC<OptionListSetterProps> = (props) => {
+export const OptionListSetter: FC<OptionListSetterProps> = props => {
   const {
     attrName,
     handleUpdateDsl,

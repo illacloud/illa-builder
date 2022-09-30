@@ -3,7 +3,7 @@ import { BaseInputSetterProps } from "./interface"
 import { applyInputSetterWrapperStyle } from "./style"
 import { CodeEditor } from "@/components/CodeEditor"
 
-export const CalcSelfInput: FC<BaseInputSetterProps> = (props) => {
+export const CalcSelfInput: FC<BaseInputSetterProps> = props => {
   const {
     isSetterSingleRow,
     placeholder,
@@ -19,7 +19,7 @@ export const CalcSelfInput: FC<BaseInputSetterProps> = (props) => {
       <CodeEditor
         value={value ?? ""}
         placeholder={placeholder}
-        onChange={(value) => {
+        onChange={value => {
           handleUpdateDsl(attrName, value)
         }}
         mode="TEXT_JS"

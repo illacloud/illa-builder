@@ -40,12 +40,16 @@ const getMethodName = (
   )
 }
 
-export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
+export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = props => {
   const { index } = props
   const { t } = useTranslation()
   const [modalVisible, setModalVisible] = useState(false)
-  const { widgetDisplayName, attrPath, childrenSetter, eventItems } =
-    useContext(BaseEventHandlerContext)
+  const {
+    widgetDisplayName,
+    attrPath,
+    childrenSetter,
+    eventItems,
+  } = useContext(BaseEventHandlerContext)
 
   const event = get(eventItems, index)
   const { eventType, widgetID, queryID, widgetMethod, actionType } = event
@@ -70,7 +74,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
       showArrow={false}
       position="left-start"
       clickOutsideToClose
-      onVisibleChange={(visible) => {
+      onVisibleChange={visible => {
         setModalVisible(visible)
       }}
     >

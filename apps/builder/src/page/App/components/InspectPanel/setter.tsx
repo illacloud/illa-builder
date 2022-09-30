@@ -112,6 +112,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     finalValue,
     widgetProps,
     handleUpdateDsl,
+    handleUpdateMultiAttrDSL,
     widgetDisplayName,
     expectedType,
     widgetType,

@@ -42,10 +42,10 @@ export const Login: FC = () => {
   } = useForm<LoginFields>({
     mode: "onSubmit",
   })
-  const onSubmit: SubmitHandler<LoginFields> = (data) => {
+  const onSubmit: SubmitHandler<LoginFields> = data => {
     Api.request<CurrentUser>(
       { method: "POST", url: "/auth/signin", data },
-      (res) => {
+      res => {
         const token = res.headers["illa-token"]
         if (!token) return
         setLocalStorage("token", token, -1)
@@ -62,7 +62,7 @@ export const Login: FC = () => {
         })
         Message.success(t("user.sign_in.tips.success"))
       },
-      (res) => {
+      res => {
         Message.error(t("user.sign_in.tips.fail"))
         switch (res.data.errorMessage) {
           case "no such user":
@@ -83,7 +83,7 @@ export const Login: FC = () => {
       () => {
         Message.warning(t("network_error"))
       },
-      (loading) => {
+      loading => {
         setSubmitLoading(loading)
       },
     )
@@ -170,7 +170,7 @@ export const Login: FC = () => {
               render={({ field }) => (
                 <Password
                   {...field}
-                  onChange={(event) => {
+                  onChange={event => {
                     field.onChange(event)
                     if (errorMsg.password !== "") {
                       setErrorMsg({ ...errorMsg, password: "" })

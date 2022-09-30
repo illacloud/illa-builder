@@ -8,7 +8,7 @@ import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execu
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { getSelectedAction } from "@/redux/config/configSelector"
 
-export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
+export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = props => {
   const {
     isSetterSingleRow,
     attrName,
@@ -42,16 +42,16 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [widgetDisplayNameMapProps, selectedWidgetID])
   const finalOptions = useMemo(() => {
     let tmpOptions: string[] = []
-    const eventHandlerConfig =
-      widgetBuilder(selectedWidgetType)?.eventHandlerConfig
+    const eventHandlerConfig = widgetBuilder(selectedWidgetType)
+      ?.eventHandlerConfig
     if (eventHandlerConfig) {
       tmpOptions = eventHandlerConfig.methods
     }
     return tmpOptions
-  }, [selectedWidgetID, selectedWidgetType])
+  }, [selectedWidgetType])
 
   const finalValue = useMemo(() => {
-    const index = finalOptions.findIndex((option) => {
+    const index = finalOptions.findIndex(option => {
       return option === value
     })
     if (index !== -1 && selectedWidgetType !== undefined) return value
@@ -62,7 +62,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
     if (finalValue === undefined) {
       handleUpdateDsl(attrName, undefined)
     }
-  }, [attrName, finalValue])
+  }, [attrName, finalValue, handleUpdateDsl])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
@@ -70,7 +70,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
         options={finalOptions}
         size="medium"
         value={finalValue}
-        onChange={(value) => {
+        onChange={value => {
           handleUpdateDsl(attrName, value)
         }}
       />

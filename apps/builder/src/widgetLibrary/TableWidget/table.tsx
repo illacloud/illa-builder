@@ -1,39 +1,139 @@
-import { FC, useMemo } from "react"
+import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
 import { Table } from "@illa-design/table"
-import { TableWidgetProps, WrappedTableProps } from "./interface"
-import { ColumnDef } from "@tanstack/react-table"
+import {
+  ColumnItemShape,
+  TableWidgetProps,
+  WrappedTableProps,
+} from "./interface"
+import { cloneDeep } from "lodash"
+import { getCellForType } from "./utils"
 
-export const WrappedTable: FC<WrappedTableProps> = (props) => {
-  const { originData } = props
+export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
+  (props, ref) => {
+    const {
+      data,
+      loading,
+      emptyState,
+      columns,
+      filter,
+      download,
+      overFlow,
+      defaultSort,
+      columnVisibility,
+      multiRowSelection,
+      handleOnSortingChange,
+      handleOnPaginationChange,
+      handleOnColumnFiltersChange,
+    } = props
 
-  let columnsDef: ColumnDef<object>[] = useMemo(() => {
-    let l: ColumnDef<object>[] = []
-    if (originData && originData.length > 0) {
-      Object.keys(originData[0]).forEach((key) => {
-        l.push({
-          header: key,
-          accessorKey: key,
-        })
-      })
+    return (
+      <Table
+        bordered
+        striped
+        borderedCell
+        pinedHeader
+        w="100%"
+        h="100%"
+        data={data}
+        columns={columns}
+        filter={filter}
+        loading={loading}
+        download={download}
+        overFlow={overFlow}
+        emptyProps={{ description: emptyState }}
+        defaultSort={defaultSort}
+        columnVisibility={columnVisibility}
+        multiRowSelection={multiRowSelection}
+        onSortingChange={handleOnSortingChange}
+        onPaginationChange={handleOnPaginationChange}
+        onColumnFiltersChange={handleOnColumnFiltersChange}
+      />
+    )
+  },
+)
+
+export const TableWidget: FC<TableWidgetProps> = (props) => {
+  const {
+    data,
+    emptyState,
+    loading,
+    columns,
+    filter,
+    download,
+    overFlow,
+    displayName,
+    defaultSortKey,
+    defaultSortOrder,
+    multiRowSelection,
+    handleUpdateDsl,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
+  } = props
+
+  const defaultSort = useMemo(() => {
+    if (!defaultSortKey) return undefined
+    return [
+      {
+        id: defaultSortKey,
+        desc: defaultSortOrder === "descend",
+      },
+    ]
+  }, [defaultSortOrder, defaultSortKey])
+
+  const columnVisibility = useMemo(() => {
+    const res: Record<string, boolean> = {}
+    columns?.forEach((item) => {
+      const { visible, accessorKey } = item as ColumnItemShape
+      if (!visible) {
+        res[accessorKey] = false
+      }
+    })
+    return res
+  }, [columns])
+
+  const columnsDef = useMemo(() => {
+    const res: ColumnItemShape[] = []
+    columns?.forEach((item) => {
+      const transItem = cloneDeep(item) as ColumnItemShape
+      transItem["cell"] = getCellForType(transItem)
+      res.push(transItem)
+    })
+    return res
+  }, [columns])
+
+  useEffect(() => {
+    handleUpdateGlobalData(displayName, {
+      defaultSort,
+      data,
+      columns,
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
     }
-    return l
-  }, [originData])
+  }, [
+    displayName,
+    defaultSort,
+    data,
+    columns,
+    handleUpdateGlobalData,
+    handleUpdateDsl,
+    handleDeleteGlobalData,
+  ])
 
   return (
-    <Table
-      data={originData}
+    <WrappedTable
+      data={data}
+      emptyState={emptyState}
+      loading={loading}
+      filter={filter}
       columns={columnsDef}
-      bordered
-      striped
-      borderedCell
-      pinedHeader
-      w="100%"
-      h="100%"
+      download={download}
+      overFlow={overFlow}
+      columnVisibility={columnVisibility}
+      defaultSort={defaultSort}
+      multiRowSelection={multiRowSelection}
     />
   )
 }
 
-export const TableWidget: FC<TableWidgetProps> = (props) => {
-  const { originData } = props
-  return <WrappedTable originData={originData} />
-}
+WrappedTable.displayName = "WrappedTable"

@@ -6,21 +6,6 @@ export const containerStyle = css`
   flex-direction: column;
 `
 
-export const titleStyle = css`
-  padding: 24px 0 16px 0;
-  font-size: 20px;
-  font-weight: 500;
-  text-align: center;
-  color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-`
-
-export const listStyle = css`
-  margin-top: 16px;
-  overflow: auto;
-  max-height: 550px;
-  height: 550px;
-`
-
 export const footerStyle = css`
   height: 80px;
   padding: 24px;

@@ -3,7 +3,7 @@ import ReactJson from "react-json-view"
 import { JSONViewerProps } from "./interface"
 import { jsonViewContainer } from "./style"
 
-export const JSONViewer: FC<JSONViewerProps> = (props) => {
+export const JSONViewer: FC<JSONViewerProps> = props => {
   const { data = {}, collapsed } = props
 
   const reactJsonConfig = {

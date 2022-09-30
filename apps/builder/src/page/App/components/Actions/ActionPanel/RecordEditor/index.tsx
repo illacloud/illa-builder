@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react"
 import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/RecordEditor/interface"
 import {
-  applyRecordEditorContainerStyl,
+  applyRecordEditorContainerStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
@@ -15,7 +15,7 @@ import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useTranslation } from "react-i18next"
 
-export const RecordEditor: FC<RecordEditorProps> = (props) => {
+export const RecordEditor: FC<RecordEditorProps> = props => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
 
   const { t } = useTranslation()
@@ -34,7 +34,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 placeholder="key"
                 borderRadius="8px 0 0 8px"
                 expectedType={VALIDATION_TYPES.STRING}
-                onChange={(value) => {
+                onChange={value => {
                   onChangeKey(index, value, record.value)
                 }}
               />
@@ -46,7 +46,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 value={record.value}
                 borderRadius="0 0 0 0"
                 expectedType={VALIDATION_TYPES.STRING}
-                onChange={(value) => {
+                onChange={value => {
                   onChangeValue(index, record.key, value)
                 }}
               />
@@ -54,7 +54,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
                 ml="-1px"
                 variant="outline"
                 bdRadius="0 8px 8px 0"
-                colorScheme="gray"
+                colorScheme="grayBlue"
                 onClick={() => {
                   onDelete(index, record)
                 }}
@@ -69,10 +69,10 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
         })}
       </>
     )
-  }, [records])
+  }, [onChangeKey, onChangeValue, onDelete, records])
 
   return (
-    <div css={applyRecordEditorContainerStyl(label)}>
+    <div css={applyRecordEditorContainerStyle(label)}>
       {label != "" && <span css={recordEditorLabelStyle}>{label}</span>}
       <div css={recordEditorStyle}>
         {recordList}

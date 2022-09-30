@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useRef } from "react"
+import { FC, HTMLAttributes, useRef, useState } from "react"
 import { ActionList } from "./ActionList"
 import { ActionPanel } from "./ActionPanel"
 import { applyActionEditorStyle, contentContainerStyle } from "./styles"
@@ -10,6 +10,7 @@ const ActionEditorDefaultHeight = 300
 
 export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const panelRef = useRef<HTMLDivElement>(null)
+  const [maxHeight, setMaxHeight] = useState<number>()
 
   return (
     <div
@@ -20,11 +21,19 @@ export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
         FocusManager.switchFocus("action")
       }}
     >
-      <DragBar resizeRef={panelRef} minHeight={ActionEditorDefaultHeight} />
+      <DragBar
+        resizeRef={panelRef}
+        minHeight={ActionEditorDefaultHeight}
+        onChange={() => {
+          if (panelRef.current?.offsetHeight) {
+            setMaxHeight(panelRef.current?.offsetHeight - 100)
+          }
+        }}
+      />
       <Divider direction="horizontal" />
       <div css={contentContainerStyle}>
         <ActionList />
-        <ActionPanel />
+        <ActionPanel maxHeight={maxHeight} />
       </div>
     </div>
   )

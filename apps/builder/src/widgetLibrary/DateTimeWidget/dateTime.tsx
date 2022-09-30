@@ -148,7 +148,6 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     value,
     pattern,
     regex,
-    required,
     customRule,
     hideValidationMessage,
   ])

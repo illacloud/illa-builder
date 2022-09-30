@@ -38,7 +38,7 @@ export const ResetPassword: FC = () => {
   } = useForm<ResetPwdFields>({
     mode: "onSubmit",
   })
-  const onSubmit: SubmitHandler<ResetPwdFields> = (data) => {
+  const onSubmit: SubmitHandler<ResetPwdFields> = data => {
     Api.request(
       {
         method: "POST",
@@ -52,7 +52,7 @@ export const ResetPassword: FC = () => {
         navigate("/user/login")
         Message.success(t("user.forgot_password.tips.success"))
       },
-      (res) => {
+      res => {
         Message.error(t("user.forgot_password.tips.fail"))
         switch (res.data.errorMessage) {
           case "no such user":
@@ -75,7 +75,7 @@ export const ResetPassword: FC = () => {
       () => {
         Message.warning(t("network_error"))
       },
-      (loading) => {
+      loading => {
         setSubmitLoading(loading)
       },
     )
@@ -177,7 +177,7 @@ export const ResetPassword: FC = () => {
                                   usage: "forgetpwd",
                                 },
                               },
-                              (res) => {
+                              res => {
                                 Message.success(
                                   t(
                                     "user.forgot_password.tips.verification_code",

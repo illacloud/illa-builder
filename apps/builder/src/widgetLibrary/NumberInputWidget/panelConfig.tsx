@@ -90,7 +90,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.top"), value: "top" },
@@ -102,7 +102,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -121,7 +121,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
         bindAttrName: ["labelHidden"],
-        shown: (value) => !value,
+        shown: value => !value,
       },
     ],
   },

@@ -1,4 +1,4 @@
-import CodeMirror from "codemirror"
+import { defineMode, getMode, multiplexingMode } from "codemirror"
 import "codemirror/addon/mode/multiplex"
 import "codemirror/mode/javascript/javascript"
 import "codemirror/mode/htmlmixed/htmlmixed"
@@ -11,78 +11,79 @@ import "codemirror/addon/hint/javascript-hint"
 
 import { EditorModes } from "./interface"
 
-CodeMirror.defineMode(EditorModes.TEXT_JS, function (config) {
-  return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, EditorModes.TEXT),
-    {
-      open: "{{",
-      close: "}}",
-      mode: CodeMirror.getMode(config, {
-        name: "application/json",
-      }),
-      delimStyle: "illa-expression",
-      innerStyle: "illa-expression",
-      parseDelimiters: false,
-    },
-  )
+defineMode(EditorModes.Postgre_SQL_JS, function (config) {
+  return multiplexingMode(getMode(config, { name: "text/x-pgsql" }), {
+    open: "{{",
+    close: "}}",
+    mode: getMode(config, {
+      name: "application/json",
+    }),
+    delimStyle: "illa-expression",
+    innerStyle: "illa-expression",
+    parseDelimiters: false,
+  })
 })
 
-CodeMirror.defineMode(EditorModes.SQL_JS, function (config) {
-  return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, { name: "text/x-mysql" }),
-    {
-      open: "{{",
-      close: "}}",
-      mode: CodeMirror.getMode(config, {
-        name: "application/json",
-      }),
-      delimStyle: "illa-expression",
-      innerStyle: "illa-expression",
-      parseDelimiters: false,
-    },
-  )
+defineMode(EditorModes.TEXT_JS, function (config) {
+  return multiplexingMode(getMode(config, EditorModes.TEXT), {
+    open: "{{",
+    close: "}}",
+    mode: getMode(config, {
+      name: "application/json",
+    }),
+    delimStyle: "illa-expression",
+    innerStyle: "illa-expression",
+    parseDelimiters: false,
+  })
 })
 
-CodeMirror.defineMode(EditorModes.XML_JS, function (config) {
-  return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, { name: "application/xml" }),
-    {
-      open: "{{",
-      close: "}}",
-      mode: CodeMirror.getMode(config, {
-        name: "application/json",
-      }),
-      delimStyle: "illa-expression",
-      innerStyle: "illa-expression",
-      parseDelimiters: false,
-    },
-  )
+defineMode(EditorModes.SQL_JS, function (config) {
+  return multiplexingMode(getMode(config, { name: "text/x-mysql" }), {
+    open: "{{",
+    close: "}}",
+    mode: getMode(config, {
+      name: "application/json",
+    }),
+    delimStyle: "illa-expression",
+    innerStyle: "illa-expression",
+    parseDelimiters: false,
+  })
 })
 
-CodeMirror.defineMode(EditorModes.HTML_JS, function (config) {
-  return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, { name: "text/html" }),
-    {
-      open: "{{",
-      close: "}}",
-      mode: CodeMirror.getMode(config, {
-        name: "application/json",
-      }),
-      delimStyle: "illa-expression",
-      innerStyle: "illa-expression",
-      parseDelimiters: false,
-    },
-  )
+defineMode(EditorModes.XML_JS, function (config) {
+  return multiplexingMode(getMode(config, { name: "application/xml" }), {
+    open: "{{",
+    close: "}}",
+    mode: getMode(config, {
+      name: "application/json",
+    }),
+    delimStyle: "illa-expression",
+    innerStyle: "illa-expression",
+    parseDelimiters: false,
+  })
 })
-CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
-  return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, {
+
+defineMode(EditorModes.HTML_JS, function (config) {
+  return multiplexingMode(getMode(config, { name: "text/html" }), {
+    open: "{{",
+    close: "}}",
+    mode: getMode(config, {
+      name: "application/json",
+    }),
+    delimStyle: "illa-expression",
+    innerStyle: "illa-expression",
+    parseDelimiters: false,
+  })
+})
+defineMode(EditorModes.JAVASCRIPT, function (config) {
+  return multiplexingMode(
+    getMode(config, {
       name: "application/javascript",
     }),
     {
       open: "{{",
       close: "}}",
-      mode: CodeMirror.getMode(config, {
+      mode: getMode(config, {
         name: "application/json",
       }),
       delimStyle: "illa-expression",
@@ -92,9 +93,9 @@ CodeMirror.defineMode(EditorModes.JAVASCRIPT, function (config) {
   )
 })
 
-CodeMirror.defineMode(EditorModes.JSON, function (config) {
-  return CodeMirror.multiplexingMode(
-    CodeMirror.getMode(config, {
+defineMode(EditorModes.JSON, function (config) {
+  return multiplexingMode(
+    getMode(config, {
       name: "application/json",
       json: true,
       jsonld: true,
@@ -102,7 +103,7 @@ CodeMirror.defineMode(EditorModes.JSON, function (config) {
     {
       open: "{{",
       close: "}}",
-      mode: CodeMirror.getMode(config, {
+      mode: getMode(config, {
         name: "application/json",
       }),
       delimStyle: "illa-expression",
