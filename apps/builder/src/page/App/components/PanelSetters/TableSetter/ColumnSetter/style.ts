@@ -67,6 +67,11 @@ export const dragItemStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  :hover {
+    #eyeOn {
+      visibility: visible;
+    }
+  }
 `
 
 export const labelNameAndIconStyle = css`
@@ -98,10 +103,16 @@ export const emptyEmptyBodyStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
-export const visibleIconStyle = css`
+export const baseIconStyle = css`
+  font-size: 16px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-  &:hover {
-    cursor: pointer;
-    color: ${globalColor(`--${illaPrefix}-purple-01`)};
+  cursor: pointer;
+  :hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
+`
+
+export const eyeIconStyle = css`
+  visibility: hidden;
+  ${baseIconStyle}
 `

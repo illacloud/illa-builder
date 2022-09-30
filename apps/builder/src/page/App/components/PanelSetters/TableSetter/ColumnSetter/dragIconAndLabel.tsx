@@ -4,11 +4,12 @@ import { useTranslation } from "react-i18next"
 import { DragPointIcon, EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
+  baseIconStyle,
   dragItemStyle,
+  eyeIconStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
-  visibleIconStyle,
 } from "./style"
 import { DragIconAndLabelProps } from "./interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -66,13 +67,16 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           </span>
         </div>
         <span
-          css={visibleIconStyle}
           onClick={(event) => {
             handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
             event.stopPropagation()
           }}
         >
-          {visible ? <EyeOnIcon /> : <EyeOffIcon />}
+          {visible ? (
+            <EyeOnIcon id="eyeOn" css={eyeIconStyle} />
+          ) : (
+            <EyeOffIcon css={baseIconStyle} />
+          )}
         </span>
       </div>
     </Trigger>
