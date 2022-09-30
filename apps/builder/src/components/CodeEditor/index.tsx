@@ -1,4 +1,5 @@
-import { FC, useCallback, useContext, useEffect, useRef, useState } from "react"
+/* eslint-disable */
+import { FC, useContext, useEffect, useRef, useState } from "react"
 import { Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
@@ -11,6 +12,7 @@ import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
 import "./modes"
 import "./hinter"
+import "./lintHelper"
 import { BaseTern, TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -144,7 +146,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
         })
       }
     }
-  }, [editor, executionError, executionResult, expectedType, path])
+  }, [executionError, executionResult, path])
 
   const handleChange = (editor: Editor) => {
     const currentValue = editor?.getValue()
@@ -158,69 +160,63 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   const debounceHandleChange = debounce(handleChange, 300)
 
-  const handleAutocomplete = useCallback(
-    (cm: CodeMirror.Editor, line: string) => {
-      const modeName = cm.getModeAt(cm.getCursor()).name
-      // @ts-ignore: type define error
-      const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
-      if (modeName == "sql") {
-        CodeMirror.showHint(cm, CodeMirror.hint.sql, {
-          tables: latestProps.current?.tables,
-          completeSingle: false,
-        })
-      } else if (modeHelperType == "xml") {
-        CodeMirror.showHint(cm, CodeMirror.hint.xml, {
-          completeSingle: false,
-        })
-      } else if (modeHelperType == "html") {
-        CodeMirror.showHint(cm, CodeMirror.hint.html, {
-          completeSingle: false,
-        })
-      } else if (modeHelperType == "json") {
-        sever.current?.complete(cm)
-      } else if (modeName == "javascript") {
-        BaseTern?.complete(cm)
-      }
-    },
-    [],
-  )
-
-  const handleKeyUp = useCallback(
-    (editor: Editor, event: KeyboardEvent) => {
-      const key = event.key
-      const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
-      if (isCloseKey(code) || isCloseKey(key)) {
-        editor.closeHint()
-        return
-      }
-      const cursor = editor.getCursor()
-      const line = editor.getLine(cursor.line)
-      let showAutocomplete = false
-      if (mode === "XML_JS" || mode === "HTML_JS") {
-        showAutocomplete = true
-      }
-      if (key === "/") {
-        showAutocomplete = true
-      } else if (event.code === "Backspace") {
-        const prevChar = line[cursor.ch - 1]
-        showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
-      } else if (key === "{") {
-        const prevChar = line[cursor.ch - 2]
-        showAutocomplete = prevChar === "{"
-      } else if (key.length == 1) {
-        showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
-      }
-      showAutocomplete && handleAutocomplete(editor, line)
-    },
-    [handleAutocomplete, mode],
-  )
+  const handleKeyUp = (editor: Editor, event: KeyboardEvent) => {
+    const key = event.key
+    const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
+    if (isCloseKey(code) || isCloseKey(key)) {
+      editor.closeHint()
+      return
+    }
+    const cursor = editor.getCursor()
+    const line = editor.getLine(cursor.line)
+    let showAutocomplete = false
+    if (mode === "XML_JS" || mode === "HTML_JS") {
+      showAutocomplete = true
+    }
+    if (key === "/") {
+      showAutocomplete = true
+    } else if (event.code === "Backspace") {
+      const prevChar = line[cursor.ch - 1]
+      showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
+    } else if (key === "{") {
+      const prevChar = line[cursor.ch - 2]
+      showAutocomplete = prevChar === "{"
+    } else if (key.length == 1) {
+      showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
+    }
+    showAutocomplete && handleAutocomplete(editor, line)
+  }
 
   useEffect(() => {
     const currentValue = editor?.getValue()
     if (value !== currentValue) {
       editor?.setValue(value ?? "")
     }
-  }, [editor, value])
+  }, [value])
+
+  const handleAutocomplete = (cm: CodeMirror.Editor, line: string) => {
+    const modeName = cm.getModeAt(cm.getCursor()).name
+    // @ts-ignore: type define error
+    const modeHelperType = cm.getModeAt(cm.getCursor())?.helperType
+    if (modeName == "sql") {
+      CodeMirror.showHint(cm, CodeMirror.hint.sql, {
+        tables: latestProps.current?.tables,
+        completeSingle: false,
+      })
+    } else if (modeHelperType == "xml") {
+      CodeMirror.showHint(cm, CodeMirror.hint.xml, {
+        completeSingle: false,
+      })
+    } else if (modeHelperType == "html") {
+      CodeMirror.showHint(cm, CodeMirror.hint.html, {
+        completeSingle: false,
+      })
+    } else if (modeHelperType == "json") {
+      sever.current?.complete(cm)
+    } else if (modeName == "javascript") {
+      BaseTern?.complete(cm)
+    }
+  }
 
   useEffect(() => {
     sever.current = TernServer(languageValue, { ...executionResult })
@@ -228,7 +224,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
 
   useEffect(() => {
     editor?.setOption("mode", EditorModes[mode])
-  }, [editor, mode])
+  }, [mode])
 
   useEffect(() => {
     if (!editor) {
@@ -268,17 +264,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
       editor?.off("focus", handleFocus)
       editor?.off("blur", handleBlur)
     }
-  }, [
-    debounceHandleChange,
-    editor,
-    handleKeyUp,
-    lineNumbers,
-    mode,
-    noTab,
-    placeholder,
-    readOnly,
-    value,
-  ])
+  }, [])
 
   const inputState = {
     focus,
