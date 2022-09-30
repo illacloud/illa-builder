@@ -27,7 +27,7 @@
 
 ## 🖥 Fast Try
 
-Building
+[Click Here!](http://fast-try.illacloud.com/)
 
 ## 🚀 Deploy
 
