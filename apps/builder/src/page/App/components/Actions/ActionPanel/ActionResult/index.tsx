@@ -2,6 +2,7 @@ import { FC, ReactNode, useRef } from "react"
 import { CloseIcon, RightIcon, WarningCircleIcon } from "@illa-design/icon"
 import { ActionResultType } from "./interface"
 import {
+  applyMaxHeightStyle,
   errorIconStyle,
   errorResultWrapperStyle,
   resCloseIconStyle,
@@ -26,9 +27,12 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
   const res = result?.result
   const panelRef = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
-
+  console.log(panelRef, "panelRef")
   return res ? (
-    <div css={resultContainerStyle} ref={panelRef}>
+    <div
+      css={[resultContainerStyle, applyMaxHeightStyle(maxHeight)]}
+      ref={panelRef}
+    >
       {result?.error ? (
         <div css={errorResultWrapperStyle}>
           <WarningCircleIcon css={errorIconStyle} size="16px" />
