@@ -1,7 +1,9 @@
-import { FC, ReactNode, useRef } from "react"
+import { FC, useRef } from "react"
 import { CloseIcon, RightIcon, WarningCircleIcon } from "@illa-design/icon"
 import { ActionResultType } from "./interface"
 import {
+  applyMaxHeightStyle,
+  codeStyle,
   errorIconStyle,
   errorResultWrapperStyle,
   resCloseIconStyle,
@@ -26,9 +28,12 @@ export const ActionResult: FC<ActionResultProps> = props => {
   const res = result?.result
   const panelRef = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
-
+  console.log(panelRef, "panelRef")
   return res ? (
-    <div css={resultContainerStyle} ref={panelRef}>
+    <div
+      css={[resultContainerStyle, applyMaxHeightStyle(maxHeight)]}
+      ref={panelRef}
+    >
       {result?.error ? (
         <div css={errorResultWrapperStyle}>
           <WarningCircleIcon css={errorIconStyle} size="16px" />
@@ -45,6 +50,7 @@ export const ActionResult: FC<ActionResultProps> = props => {
             <CloseIcon css={resCloseIconStyle} onClick={onClose} />
           </div>
           <CodeEditor
+            css={codeStyle}
             mode={"JSON"}
             expectedType={VALIDATION_TYPES.STRING}
             value={JSON.stringify(res, null, 2)}

@@ -18,7 +18,7 @@ import { cloneDeep } from "lodash"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const DataWorkspace: FC<DataWorkspaceProps> = props => {
+export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -34,7 +34,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = props => {
       if (e.metaKey) {
         const currentSelectedDisplayName = cloneDeep(selectedComponents)
         const index = currentSelectedDisplayName.findIndex(
-          displayName => displayName === selectedKeys[0],
+          (displayName) => displayName === selectedKeys[0],
         )
         if (index !== -1) {
           currentSelectedDisplayName.splice(index, 1)
@@ -56,10 +56,10 @@ export const DataWorkspace: FC<DataWorkspaceProps> = props => {
           currentSelectedDisplayName[currentSelectedDisplayName.length - 1]
         const selectedDisplayName = selectedKeys[0]
         const currentIndex = widgetExecutionArray.findIndex(
-          node => node.displayName === lastCurrentSelectDisplayName,
+          (node) => node.displayName === lastCurrentSelectDisplayName,
         )
         const selectedIndex = widgetExecutionArray.findIndex(
-          node => node.displayName === selectedDisplayName,
+          (node) => node.displayName === selectedDisplayName,
         )
         let left = currentIndex
         let right = selectedIndex
@@ -87,7 +87,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = props => {
   const handleActionSelect = useCallback(
     (selectedKeys: string[]) => {
       const action = actionList.find(
-        item => item.displayName === selectedKeys[0],
+        (item) => item.displayName === selectedKeys[0],
       )
       action && dispatch(configActions.updateSelectedAction(action))
     },

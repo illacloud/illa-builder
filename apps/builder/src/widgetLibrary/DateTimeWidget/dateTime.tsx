@@ -27,7 +27,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
     } = props
 
     const checkRange = useCallback(
-      current => {
+      (current) => {
         const beforeMinDate = minDate
           ? !!current?.isBefore(dayjs(minDate))
           : false
@@ -54,7 +54,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
         onClear={() => {
           handleUpdateDsl({ value: "" })
         }}
-        onChange={value => {
+        onChange={(value) => {
           handleUpdateDsl({ value })
         }}
       />
@@ -64,7 +64,7 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
 
 WrappedDateTime.displayName = "WrappedDateTime"
 
-export const DateTimeWidget: FC<DateTimeWidgetProps> = props => {
+export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   const {
     value,
     format,
@@ -148,7 +148,6 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = props => {
     value,
     pattern,
     regex,
-    required,
     customRule,
     hideValidationMessage,
   ])

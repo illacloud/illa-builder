@@ -35,7 +35,7 @@ import { setupConfigListener } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { Debugger } from "@/page/App/components/Debugger"
-import ComponentsManager from "@/page/App/components/ComponentManager"
+import { ComponentsManager } from "@/page/App/components/ComponentManager"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -56,7 +56,7 @@ export const Editor: FC = () => {
     return () => {
       Connection.leaveRoom("app", appId ?? "")
     }
-  }, [currentUser])
+  }, [currentUser, appId])
 
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
@@ -90,7 +90,7 @@ export const Editor: FC = () => {
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     window.addEventListener("beforeunload", event => {

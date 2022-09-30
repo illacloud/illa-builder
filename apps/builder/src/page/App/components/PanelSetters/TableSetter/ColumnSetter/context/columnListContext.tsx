@@ -21,7 +21,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 
 export const ColumnListSetterContext = createContext<Inject>({} as Inject)
 
-export const ColumnsSetterProvider: FC<ProviderProps> = props => {
+export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
   const { columnItems, attrPath, handleUpdateDsl } = props
 
   const handleDeleteColumnItem = useCallback(
@@ -69,7 +69,7 @@ export const ColumnsSetterProvider: FC<ProviderProps> = props => {
     (attrName: string, visible?: boolean) => {
       handleUpdateDsl(attrName, visible)
     },
-    [attrPath, columnItems, handleUpdateDsl],
+    [handleUpdateDsl],
   )
 
   const value = {

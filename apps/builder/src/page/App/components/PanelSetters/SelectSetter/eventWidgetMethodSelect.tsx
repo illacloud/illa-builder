@@ -48,7 +48,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = props => {
       tmpOptions = eventHandlerConfig.methods
     }
     return tmpOptions
-  }, [selectedWidgetID, selectedWidgetType])
+  }, [selectedWidgetType])
 
   const finalValue = useMemo(() => {
     const index = finalOptions.findIndex(option => {
@@ -62,7 +62,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = props => {
     if (finalValue === undefined) {
       handleUpdateDsl(attrName, undefined)
     }
-  }, [attrName, finalValue])
+  }, [attrName, finalValue, handleUpdateDsl])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>

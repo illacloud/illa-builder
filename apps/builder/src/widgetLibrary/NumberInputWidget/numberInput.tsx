@@ -11,7 +11,7 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 
 const parserThousand = (value: number | string) =>
-  `${value}`.replace(/\d+/, function(s) {
+  `${value}`.replace(/\d+/, function (s) {
     return s.replace(/(\d)(?=(\d{3})+$)/g, "$1,")
   })
 
@@ -79,7 +79,7 @@ export const WrappedInputNumber = forwardRef<
   )
 })
 WrappedInputNumber.displayName = "WrappedInputNumber"
-export const NumberInputWidget: FC<NumberInputWidgetProps> = props => {
+export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   const {
     openThousandSeparator,
     max,

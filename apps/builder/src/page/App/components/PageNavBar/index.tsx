@@ -59,16 +59,16 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
 
   const handleClickLeftWindowIcon = useCallback(() => {
     dispatch(configActions.updateLeftPanel(!leftPanelVisible))
-  }, [leftPanelVisible])
+  }, [dispatch, leftPanelVisible])
   const handleClickRightWindowIcon = useCallback(() => {
     dispatch(configActions.updateRightPanel(!rightPanelVisible))
-  }, [rightPanelVisible])
+  }, [dispatch, rightPanelVisible])
   const handleClickBottomWindowIcon = useCallback(() => {
     dispatch(configActions.updateBottomPanel(!bottomPanelVisible))
-  }, [bottomPanelVisible])
+  }, [bottomPanelVisible, dispatch])
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
-  }, [debuggerVisible])
+  }, [debuggerVisible, dispatch])
 
   const handleClickDeploy = useCallback(() => {
     Api.request<DeployResp>(
@@ -95,10 +95,10 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
         setDeployLoading(loading)
       },
     )
-  }, [setDeployLoading, appInfo])
+  }, [appInfo.appId, t])
   const handleClickPreview = useCallback(() => {
     dispatch(configActions.updateIllaMode("edit"))
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={className} css={navBarStyle}>

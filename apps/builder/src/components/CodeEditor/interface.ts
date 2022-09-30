@@ -10,6 +10,7 @@ export enum EditorModes {
   SQL_JS = "sql-js",
   XML_JS = "xml-js",
   HTML_JS = "html-js",
+  Postgre_SQL_JS = "postgre_sql_js",
 }
 
 export type EditorMode = keyof typeof EditorModes

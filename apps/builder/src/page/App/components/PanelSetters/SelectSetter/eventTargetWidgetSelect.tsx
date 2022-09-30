@@ -34,7 +34,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = props => {
       }
     })
     return tmpOptions
-  }, [widgetDisplayNameMapProps])
+  }, [widgetDisplayName, widgetDisplayNameMapProps])
 
   const actionFinalValue = useMemo(() => {
     const index = finalOptions.findIndex(option => {
@@ -42,7 +42,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = props => {
     })
     if (index !== -1) return value
     return undefined
-  }, [finalOptions, attrName, value])
+  }, [finalOptions, value])
 
   const widgetfinalValue = useMemo(() => {
     const index = finalOptions.findIndex(option => {
@@ -50,7 +50,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = props => {
     })
     if (index !== -1) return value
     return undefined
-  }, [finalOptions, attrName])
+  }, [finalOptions, value])
 
   const finalValue =
     widgetOrAction === "WIDGET" ? widgetfinalValue : actionFinalValue
@@ -59,7 +59,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = props => {
     if (finalValue === undefined) {
       handleUpdateDsl(attrName, undefined)
     }
-  }, [finalValue, attrName])
+  }, [finalValue, attrName, handleUpdateDsl])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>

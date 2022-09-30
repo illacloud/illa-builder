@@ -1,9 +1,7 @@
-import { MysqlAction } from "./mysqlAction"
-import { PostgresqlAction } from "./postgresqlAction"
-import { RedisAction } from "./redisAction"
+import { MysqlLikeAction } from "./mysqlLikeAction"
 import { BodyContent, RestApiAction } from "./restapiAction"
-import { MongodbAction } from "./mongodbAction"
 import { TransformerAction } from "./transformerAction"
+import { PostgreSqlAction } from "@/redux/currentApp/action/postgresqlAction"
 
 export interface Transformer {
   rawData: string
@@ -19,9 +17,18 @@ export interface Events {
 export type ActionType =
   | "mysql"
   | "restapi"
+  | "graphql"
   | "mongodb"
   | "redis"
+  | "elastic"
   | "postgresql"
+  | "mariadb"
+  | "snowflake"
+  | "tidb"
+  | "datadog"
+  | "smtp"
+  | "zapier"
+  | "s3"
   | "transformer"
 
 export type ActionTriggerMode = "manually" | "automate"
@@ -36,16 +43,6 @@ export interface ActionItem<T extends ActionContent> {
   content: T
 }
 
-export type ActionContent =
-  | MysqlAction
-  | RestApiAction<BodyContent>
-  | TransformerAction
-  | MongodbAction
-  | PostgresqlAction
-  | RedisAction
-
-export const actionInitialState: ActionItem<ActionContent>[] = []
-
 export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
   transformer: {
     enable: false,
@@ -54,6 +51,14 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
   },
   triggerMode: "manually",
 }
+
+export type ActionContent =
+  | MysqlLikeAction
+  | RestApiAction<BodyContent>
+  | TransformerAction
+  | PostgreSqlAction
+
+export const actionInitialState: ActionItem<ActionContent>[] = []
 
 export interface UpdateActionItemPayload {
   displayName: string

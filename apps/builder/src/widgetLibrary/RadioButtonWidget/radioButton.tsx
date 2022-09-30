@@ -6,15 +6,9 @@ import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedRadioButton: FC<WrappedRadioButtonProps> = props => {
-  const {
-    value,
-    options,
-    disabled,
-    direction,
-    colorScheme,
-    handleUpdateDsl,
-  } = props
+export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
+  const { value, options, disabled, direction, colorScheme, handleUpdateDsl } =
+    props
 
   return (
     <RadioGroup
@@ -26,7 +20,7 @@ export const WrappedRadioButton: FC<WrappedRadioButtonProps> = props => {
       options={options}
       direction={direction}
       colorScheme={colorScheme}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({ value })
       }}
     />
@@ -35,7 +29,7 @@ export const WrappedRadioButton: FC<WrappedRadioButtonProps> = props => {
 
 WrappedRadioButton.displayName = "WrappedRadioButton"
 
-export const RadioButtonWidget: FC<RadioButtonWidgetProps> = props => {
+export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
   const {
     value,
     disabled,

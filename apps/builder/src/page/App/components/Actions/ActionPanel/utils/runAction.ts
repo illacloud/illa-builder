@@ -13,7 +13,7 @@ import { Api } from "@/api/base"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
-import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import { Message } from "@illa-design/message"
 import {
   BodyContent,
@@ -77,7 +77,7 @@ const fetchActionResult = (
   displayName: string,
   appId: string,
   actionId: string,
-  actionContent: MysqlAction | RestApiAction<BodyContent>,
+  actionContent: MysqlLikeAction | RestApiAction<BodyContent>,
   successEvent: any[] = [],
   failedEvent: any[] = [],
   transformer: Transformer,
@@ -141,9 +141,9 @@ export const runAction = (
   if (!content) return
   const rootState = store.getState()
   const appId = getAppId(rootState)
-  if (actionType === "mysql" || actionType === "restapi") {
+  if (actionType !== "transformer") {
     const { content, transformer } = action as ActionItem<
-      MysqlAction | RestApiAction<BodyContent>
+      MysqlLikeAction | RestApiAction<BodyContent>
     >
     const { successEvent, failedEvent, ...restContent } = content
     const realContent: Record<string, any> = isTrigger
@@ -161,7 +161,7 @@ export const runAction = (
       displayName,
       appId,
       actionId,
-      realContent as MysqlAction | RestApiAction<BodyContent>,
+      realContent as MysqlLikeAction | RestApiAction<BodyContent>,
       realSuccessEvent,
       realFailedEvent,
       transformer,

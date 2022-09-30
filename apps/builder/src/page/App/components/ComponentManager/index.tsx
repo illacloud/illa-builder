@@ -8,7 +8,9 @@ import { FocusManager } from "@/utils/focusManager"
 import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
 
-export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = props => {
+export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
+  props,
+) => {
   const { t } = useTranslation()
 
   const [activeKey, setActiveKey] = useState("Insert")
@@ -35,7 +37,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = props => {
         variant="text"
         activeKey={activeKey}
         colorScheme="grayBlue"
-        onChange={key => {
+        onChange={(key) => {
           setActiveKey(key)
         }}
       >

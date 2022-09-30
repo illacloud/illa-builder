@@ -9,6 +9,13 @@ export const resultContainerStyle = css`
   position: relative;
 `
 
+export function applyMaxHeightStyle(h?: number) {
+  return css`
+    ${h ? `max-height: ${h}px;` : ""};
+  }
+  `
+}
+
 export const resultWrapperStyle = css`
   display: flex;
   align-items: center;
@@ -51,4 +58,7 @@ export const resCloseIconStyle = css`
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   }
+`
+export const codeStyle = css`
+  overflow: scroll;
 `

@@ -120,6 +120,7 @@ export const InputWidget: FC<InputWidgetProps> = props => {
     customRule,
     hideValidationMessage,
     labelPosition,
+    updateComponentHeight,
   ])
 
   useEffect(() => {

@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import {
-  actionTitleBarRunStyle,
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
   dropMenuStyle,
@@ -25,11 +24,11 @@ import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAc
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
 
-export const ActionTitleBar: FC<ActionTitleBarProps> = props => {
+export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { action, onCopy, onDelete, onActionRun } = props
 
   const originAction = useSelector((state: RootState) => {
-    return state.currentApp.action.find(a => a.actionId === action.actionId)
+    return state.currentApp.action.find((a) => a.actionId === action.actionId)
   })
 
   const isChanged = JSON.stringify(action) !== JSON.stringify(originAction)
@@ -53,7 +52,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = props => {
   useEffect(() => {
     // Clear the previous result when changing the selected action
     onActionRun(undefined)
-  }, [action?.actionId])
+  }, [action.actionId, onActionRun])
 
   return (
     <div css={actionTitleBarStyle}>
@@ -91,68 +90,78 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = props => {
       >
         <Button colorScheme="grayBlue" leftIcon={<MoreIcon size="14px" />} />
       </Dropdown>
-      <Button
-        ml="8px"
-        colorScheme="techPurple"
-        variant={isChanged ? "fill" : "light"}
-        size="medium"
-        loading={loading}
-        leftIcon={<CaretRightIcon />}
-        onClick={() => {
-          switch (runMode) {
-            case "run":
-              runAction(action, onActionRun)
-              break
-            case "save":
-              Api.request(
-                {
-                  method: "PUT",
-                  url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
-                  data: action,
-                },
-                () => {
-                  dispatch(actionActions.updateActionItemReducer(action))
-                  dispatch(configActions.changeSelectedAction(action))
-                },
-                () => {
-                  Message.error(t("create_fail"))
-                },
-                () => {
-                  Message.error(t("create_fail"))
-                },
-                l => {
-                  setLoading(l)
-                },
-              )
-              break
-            case "save_and_run":
-              Api.request(
-                {
-                  method: "PUT",
-                  url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
-                  data: action,
-                },
-                () => {
-                  dispatch(actionActions.updateActionItemReducer(action))
-                  dispatch(configActions.changeSelectedAction(action))
-                  runAction(action, onActionRun)
-                },
-                () => {
-                  Message.error(t("editor.action.panel.btn.save_fail"))
-                },
-                () => {
-                  Message.error(t("editor.action.panel.btn.save_fail"))
-                },
-                l => {
-                  setLoading(l)
-                },
-              )
-              break
-          }
-        }}
-      >
-        {t(`editor.action.panel.btn.${runMode}`)}
-      </Button>
+      {action.actionType !== "transformer" && (
+        <Button
+          ml="8px"
+          colorScheme="techPurple"
+          variant={isChanged ? "fill" : "light"}
+          size="medium"
+          loading={loading}
+          leftIcon={<CaretRightIcon />}
+          onClick={() => {
+            switch (runMode) {
+              case "run":
+                setLoading(true)
+                runAction(action, (result: unknown, error?: boolean) => {
+                  setLoading(false)
+                  onActionRun(result, error)
+                })
+                break
+              case "save":
+                Api.request(
+                  {
+                    method: "PUT",
+                    url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
+                    data: action,
+                  },
+                  () => {
+                    dispatch(actionActions.updateActionItemReducer(action))
+                    dispatch(configActions.changeSelectedAction(action))
+                  },
+                  () => {
+                    Message.error(t("create_fail"))
+                  },
+                  () => {
+                    Message.error(t("create_fail"))
+                  },
+                  (l) => {
+                    setLoading(l)
+                  },
+                )
+                break
+              case "save_and_run":
+                Api.request(
+                  {
+                    method: "PUT",
+                    url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
+                    data: action,
+                  },
+                  () => {
+                    dispatch(actionActions.updateActionItemReducer(action))
+                    dispatch(configActions.changeSelectedAction(action))
+                    setLoading(true)
+                    runAction(action, (result: unknown, error?: boolean) => {
+                      setLoading(false)
+                      onActionRun(result, error)
+                    })
+                  },
+                  () => {
+                    Message.error(t("editor.action.panel.btn.save_fail"))
+                  },
+                  () => {
+                    Message.error(t("editor.action.panel.btn.save_fail"))
+                  },
+                  (l) => {
+                    setLoading(l)
+                  },
+                )
+                break
+            }
+          }}
+        >
+          {t(`editor.action.panel.btn.${runMode}`)}
+        </Button>
+      )}
     </div>
   )
 }

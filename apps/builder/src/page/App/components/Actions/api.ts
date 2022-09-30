@@ -1,6 +1,7 @@
 import {
   ActionContent,
   ActionItem,
+  ActionType,
 } from "@/redux/currentApp/action/actionState"
 import { omit } from "@illa-design/system"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -24,7 +25,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
   )
-  const data: Partial<ActionItem<{}>> = {
+  const data: Partial<ActionItem<ActionContent>> = {
     ...newAction,
     displayName,
   }
@@ -45,7 +46,9 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
       Message.error(i18n.t("editor.action.action_list.message.failed"))
       DisplayNameGenerator.removeDisplayName(displayName)
     },
-    () => {},
+    () => {
+      DisplayNameGenerator.removeDisplayName(displayName)
+    },
     loading => {},
   )
 }
@@ -61,10 +64,14 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
     ({ data }: { data: ActionItem<ActionContent> }) => {
       DisplayNameGenerator.removeDisplayName(displayName)
       store.dispatch(actionActions.removeActionItemReducer(displayName))
-      Message.success(i18n.t("dashboard.resources.trash_success"))
+      Message.success(
+        i18n.t("editor.action.action_list.message.success_deleted"),
+      )
     },
     () => {
-      Message.error(i18n.t("editor.action.action_list.message.failed"))
+      Message.error(
+        i18n.t("editor.action.action_list.message.failed_to_delete"),
+      )
     },
     () => {},
     loading => {},

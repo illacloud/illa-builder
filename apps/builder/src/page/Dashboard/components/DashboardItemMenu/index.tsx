@@ -38,7 +38,13 @@ export const DashboardItemMenu: FC<DashboardItemMenuProps> = props => {
 
   return (
     <>
-      <Space direction="horizontal" w="100%" justifyContent="end" size="4px">
+      <Space
+        direction="horizontal"
+        w="100%"
+        justifyContent="end"
+        size="4px"
+        alignItems="center"
+      >
         <Button
           css={buttonVisibleStyle}
           className="dashboardAppEditButton"

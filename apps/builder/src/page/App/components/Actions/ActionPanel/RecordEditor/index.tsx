@@ -1,7 +1,7 @@
 import { FC, useMemo } from "react"
 import { RecordEditorProps } from "@/page/App/components/Actions/ActionPanel/RecordEditor/interface"
 import {
-  applyRecordEditorContainerStyl,
+  applyRecordEditorContainerStyle,
   recordEditorLabelStyle,
   recordEditorStyle,
   recordKeyStyle,
@@ -54,7 +54,7 @@ export const RecordEditor: FC<RecordEditorProps> = props => {
                 ml="-1px"
                 variant="outline"
                 bdRadius="0 8px 8px 0"
-                colorScheme="gray"
+                colorScheme="grayBlue"
                 onClick={() => {
                   onDelete(index, record)
                 }}
@@ -69,10 +69,10 @@ export const RecordEditor: FC<RecordEditorProps> = props => {
         })}
       </>
     )
-  }, [records])
+  }, [onChangeKey, onChangeValue, onDelete, records])
 
   return (
-    <div css={applyRecordEditorContainerStyl(label)}>
+    <div css={applyRecordEditorContainerStyle(label)}>
       {label != "" && <span css={recordEditorLabelStyle}>{label}</span>}
       <div css={recordEditorStyle}>
         {recordList}

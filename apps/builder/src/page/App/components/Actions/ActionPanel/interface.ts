@@ -2,7 +2,7 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
-import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import {
   BodyContent,
   RestApiAction,
@@ -13,8 +13,8 @@ export interface RestApiPanelProps {
   action: ActionItem<RestApiAction<BodyContent>>
 }
 
-export interface MysqlPanelProps {
-  action: ActionItem<MysqlAction>
+export interface MysqlLikePanelProps {
+  action: ActionItem<MysqlLikeAction>
 }
 
 export interface TransformerPanelProps {

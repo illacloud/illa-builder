@@ -4,7 +4,6 @@ import { Result500Icon } from "@illa-design/icon"
 import { buttonStyle, iconStyle } from "@/page/status/style"
 import { Button } from "@illa-design/button"
 import { useNavigate } from "react-router-dom"
-import i18n from "@/i18n/config"
 import { useTranslation } from "react-i18next"
 
 export const Page500: FC = () => {
