@@ -24,7 +24,7 @@ export const labelContainer = css`
 
 export const configItem = css`
   display: flex;
-  height: 48px;
+  min-height: 48px;
   align-items: center;
   flex-direction: row;
 `
