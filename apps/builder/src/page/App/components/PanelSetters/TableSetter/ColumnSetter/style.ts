@@ -67,11 +67,6 @@ export const dragItemStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  :hover {
-    #eyeOn {
-      visibility: visible;
-    }
-  }
 `
 
 export const labelNameAndIconStyle = css`

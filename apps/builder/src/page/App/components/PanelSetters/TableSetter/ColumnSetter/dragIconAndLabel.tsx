@@ -6,7 +6,6 @@ import { Trigger } from "@illa-design/trigger"
 import {
   baseIconStyle,
   dragItemStyle,
-  eyeIconStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
@@ -73,7 +72,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           }}
         >
           {visible ? (
-            <EyeOnIcon id="eyeOn" css={eyeIconStyle} />
+            <EyeOnIcon css={baseIconStyle} />
           ) : (
             <EyeOffIcon css={baseIconStyle} />
           )}
