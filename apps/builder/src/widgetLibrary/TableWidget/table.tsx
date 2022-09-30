@@ -68,7 +68,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    updateComponentHeight,
   } = props
 
   const tableWrapperRef = useRef<HTMLDivElement>(null)
@@ -122,12 +121,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
   ])
-
-  useEffect(() => {
-    if (tableWrapperRef.current) {
-      updateComponentHeight(tableWrapperRef.current?.clientHeight)
-    }
-  }, [data, columns, multiRowSelection, updateComponentHeight])
 
   return (
     <div ref={tableWrapperRef}>
