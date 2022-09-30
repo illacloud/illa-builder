@@ -72,6 +72,9 @@ export const ActionPanel: FC = () => {
         onClose={() => {
           setActionResult(undefined)
         }}
+        maxHeight={
+          panelRef.current ? panelRef.current?.clientHeight - 100 : undefined
+        }
       />
     </div>
   )
