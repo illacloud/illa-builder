@@ -5,8 +5,8 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { getCellForType } from "@/widgetLibrary/TableWidget/utils"
 import { cloneDeep } from "lodash"
+import { getCellForType } from "./utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
