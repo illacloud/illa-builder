@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
@@ -49,9 +49,11 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
     resourceList[0]?.resourceId,
   )
 
-  if (resourceList.length == 0) {
-    onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
-  }
+  useEffect(() => {
+    if (resourceList.length == 0) {
+      onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
+    }
+  }, [resourceList, onCreateResource, actionType])
 
   const [loading, setLoading] = useState(false)
 
@@ -111,7 +113,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
               const displayName =
                 DisplayNameGenerator.generateDisplayName(actionType)
               const initialContent = getInitialContent(actionType)
-              const data: Partial<ActionItem<{}>> = {
+              const data: Partial<ActionItem<ActionContent>> = {
                 actionType,
                 displayName,
                 resourceId: selectedResourceId,

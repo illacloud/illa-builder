@@ -41,7 +41,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                     const displayName =
                       DisplayNameGenerator.generateDisplayName(item)
                     const initialContent = getInitialContent(item)
-                    const data: Partial<ActionItem<{}>> = {
+                    const data: Partial<ActionItem<ActionContent>> = {
                       actionType: item,
                       displayName,
                       content: initialContent,
