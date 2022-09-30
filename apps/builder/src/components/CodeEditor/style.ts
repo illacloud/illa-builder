@@ -200,3 +200,7 @@ export const contentTextStyle = css`
   font-weight: 400;
   word-wrap: break-word;
 `
+
+export const containerStyle = css`
+  overflow: scroll;
+`

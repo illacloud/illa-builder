@@ -18,7 +18,7 @@ import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
 import { CodeEditorProps, EditorModes, ResultPreview } from "./interface"
-import { applyCodeEditorStyle, codemirrorStyle } from "./style"
+import { applyCodeEditorStyle, codemirrorStyle, containerStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
 import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
@@ -298,7 +298,7 @@ export const CodeEditor: FC<CodeEditorProps> = (props) => {
           }
         }}
       >
-        <div className={className}>
+        <div className={className} css={containerStyle}>
           <div
             ref={codeTargetRef}
             css={applyCodeEditorStyle(inputState)}
