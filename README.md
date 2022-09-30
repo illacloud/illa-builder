@@ -43,7 +43,7 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 
 <b>Hangout together!</b>
 
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/2tGBuJkgd6)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
 
 ## 🌱 Contributing
 
