@@ -53,7 +53,7 @@ const generateDynamicAttrPaths = (
   if (update.action === DynamicAttrPathActions.ADD) {
     current.push(update.attrPath)
   } else if (update.action === DynamicAttrPathActions.REMOVE) {
-    current = current.filter((path) => path !== update.attrPath)
+    current = current.filter(path => path !== update.attrPath)
   }
   return current
 }
@@ -66,7 +66,7 @@ const getNewAttrUpdatesAndDynamicAttrPaths = (
   dynamicAttrPaths: string[]
 } => {
   const newWidgetProps = cloneDeep(widgetProps)
-  Object.keys(updateSlice).forEach((attrPath) => {
+  Object.keys(updateSlice).forEach(attrPath => {
     const attrValue = updateSlice[attrPath]
     set(newWidgetProps, attrPath, attrValue)
   })
@@ -76,7 +76,7 @@ const getNewAttrUpdatesAndDynamicAttrPaths = (
   }
   const currentDynamicAttrPaths = getWidgetOrActionDynamicAttrPaths(widgetProps)
   const dynamicAttrPathUpdates: DynamicAttrPathUpdateShape[] = []
-  Object.keys(updatePaths).forEach((attrPath) => {
+  Object.keys(updatePaths).forEach(attrPath => {
     const attrValue = get(updateSlice, attrPath)
     dynamicAttrPathUpdates.push(
       getDynamicAttrPathUpdate(widgetProps, attrPath, attrValue),
@@ -99,9 +99,11 @@ export const getNewWidgetPropsByUpdateSlice = (
 ) => {
   let newWidgetProps = cloneDeep(widgetProps)
   if (Object.keys(updateSlice).length > 0) {
-    const { attrUpdates, dynamicAttrPaths } =
-      getNewAttrUpdatesAndDynamicAttrPaths(newWidgetProps, updateSlice)
-    Object.keys(attrUpdates).forEach((attrPath) => {
+    const {
+      attrUpdates,
+      dynamicAttrPaths,
+    } = getNewAttrUpdatesAndDynamicAttrPaths(newWidgetProps, updateSlice)
+    Object.keys(attrUpdates).forEach(attrPath => {
       const attrValue = attrUpdates[attrPath]
       newWidgetProps = set(newWidgetProps, attrPath, attrValue)
     })

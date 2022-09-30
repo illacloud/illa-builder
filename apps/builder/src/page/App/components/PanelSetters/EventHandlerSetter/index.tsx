@@ -7,9 +7,7 @@ import { NewBaseEventHandlerSetterProps } from "@/page/App/components/PanelSette
 import { BaseEventHandlerProvider } from "@/page/App/components/PanelSetters/EventHandlerSetter/context"
 import { AddActionLabel } from "@/page/App/components/PanelSetters/PublicComponent/Label/addActionLabel"
 
-export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = (
-  props,
-) => {
+export const EventHandlerSetter: FC<NewBaseEventHandlerSetterProps> = props => {
   const {
     value,
     childrenSetter,

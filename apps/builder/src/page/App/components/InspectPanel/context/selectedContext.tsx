@@ -23,7 +23,7 @@ interface Props {
   children?: ReactNode
 }
 
-export const SelectedProvider: FC<Props> = (props) => {
+export const SelectedProvider: FC<Props> = props => {
   const {
     children,
     widgetType,

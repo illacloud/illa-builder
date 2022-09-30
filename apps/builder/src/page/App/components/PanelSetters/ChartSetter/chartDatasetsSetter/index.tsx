@@ -10,7 +10,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { get } from "lodash"
 import { generateDatasetItem } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/utils"
 
-export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
+export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = props => {
   const {
     value,
     childrenSetter,
@@ -22,7 +22,7 @@ export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    (rootState) => {
+    rootState => {
       const executionTree = getExecutionResult(rootState)
       return get(executionTree, widgetDisplayName, {})
     },
@@ -38,12 +38,12 @@ export const ChartDatasetsSetter: FC<ChartDatasetsSetterProps> = (props) => {
 
   const hasColor = useMemo(() => {
     if (!Array.isArray(value)) return []
-    return value.map((v) => v.color)
+    return value.map(v => v.color)
   }, [value])
 
   const hasDatasetNames = useMemo(() => {
     if (!Array.isArray(value)) return []
-    return value.map((v) => v.datasetName)
+    return value.map(v => v.datasetName)
   }, [value])
 
   const handleAddDataSet = useCallback(async () => {

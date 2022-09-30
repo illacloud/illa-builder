@@ -5,7 +5,7 @@ import {
   applyRectangleStyle,
 } from "@/page/App/components/DotPanel/style"
 
-export const PreviewPlaceholder: FC<PreviewPlaceholderProps> = (props) => {
+export const PreviewPlaceholder: FC<PreviewPlaceholderProps> = props => {
   const { w, h, x, y, lunchX, lunchY, canDrop } = props
   return (
     <>

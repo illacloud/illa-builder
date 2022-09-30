@@ -18,7 +18,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 
 export const BaseEventHandlerContext = createContext<Inject>({} as Inject)
 
-export const BaseEventHandlerProvider: FC<ProviderProps> = (props) => {
+export const BaseEventHandlerProvider: FC<ProviderProps> = props => {
   const { eventItems, attrPath, handleUpdateDsl } = props
 
   const handleDeleteEventItem = useCallback(

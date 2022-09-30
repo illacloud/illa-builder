@@ -6,7 +6,7 @@ import { optionListItemStyle } from "./style"
 import { DragIconAndLabel } from "./dragIconAndLabel"
 import { ColumnListSetterContext } from "./context/columnListContext"
 
-export const ColumnItem: FC<ColumnItemProps> = (props) => {
+export const ColumnItem: FC<ColumnItemProps> = props => {
   const { accessorKey, header, value, visible, index } = props
 
   const { handleMoveColumnItem } = useContext(ColumnListSetterContext)

@@ -27,9 +27,9 @@ export function applyParamItemValueStyle(isFocus: boolean): SerializedStyles {
   return css`
     & > span {
       ${!isFocus &&
-      css`
-        border-left: 0px;
-      `}
+        css`
+          border-left: 0px;
+        `}
       transition: all .2s ease-in-out;
       border-top-left-radius: 0 !important;
       border-bottom-left-radius: 0 !important;

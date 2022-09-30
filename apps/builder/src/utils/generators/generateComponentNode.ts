@@ -20,7 +20,7 @@ export const generateComponentNode = (
   }
   let childrenNodeDSL: ComponentNode[] = []
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
-    widgetInfo.childrenNode.map((childNode) => {
+    widgetInfo.childrenNode.map(childNode => {
       if (!childrenNodeDSL) childrenNodeDSL = []
       const child = generateComponentNode(childNode)
       childrenNodeDSL.push(child)

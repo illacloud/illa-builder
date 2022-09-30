@@ -16,7 +16,7 @@ import {
 } from "./style"
 import { SearchHeaderProps } from "./interface"
 
-export const SearchHeader: FC<SearchHeaderProps> = (props) => {
+export const SearchHeader: FC<SearchHeaderProps> = props => {
   const { onSearch } = props
   const { t } = useTranslation()
   const [inSearchState, setInSearchState] = useState(false)

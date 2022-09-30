@@ -42,7 +42,7 @@ export const getSelectedAction = (state: RootState) => {
 
 export const isSelected = (state: RootState, displayName: string) => {
   return (
-    state.config.selectedComponents.findIndex((value) => {
+    state.config.selectedComponents.findIndex(value => {
       return value == displayName
     }) != -1
   )

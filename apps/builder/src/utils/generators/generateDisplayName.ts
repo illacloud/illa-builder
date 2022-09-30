@@ -52,7 +52,7 @@ export class DisplayNameGenerator {
     actionList: ActionItem<ActionContent>[],
   ) {
     this.displayNameList.clear()
-    actionList.forEach((action) => {
+    actionList.forEach(action => {
       this.displayNameList.add(action.displayName)
     })
     this.addComponentDisplayName(componentNode)
@@ -60,7 +60,7 @@ export class DisplayNameGenerator {
 
   static addComponentDisplayName(componentNode: ComponentNode) {
     this.displayNameList.add(componentNode.displayName)
-    componentNode.childrenNode?.forEach((child) => {
+    componentNode.childrenNode?.forEach(child => {
       this.addComponentDisplayName(child)
     })
   }
@@ -101,7 +101,7 @@ export class DisplayNameGenerator {
   }
 
   static removeDisplayNameMulti(displayNames: string[]) {
-    displayNames.forEach((displayName) => {
+    displayNames.forEach(displayName => {
       this.displayNameList.delete(displayName)
     })
     Connection.getRoom("app", this.appId)?.send(

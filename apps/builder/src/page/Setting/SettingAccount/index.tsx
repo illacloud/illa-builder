@@ -64,7 +64,7 @@ export const SettingAccount: FC = () => {
             nickname: nickNameValue,
           },
         },
-        (response) => {
+        response => {
           dispatch(
             currentUserActions.updateCurrentUserReducer({
               ...response.data,
@@ -73,13 +73,13 @@ export const SettingAccount: FC = () => {
           )
           Message.success("success!")
         },
-        (failure) => {
+        failure => {
           Message.error(t("setting.account.save_fail"))
         },
-        (crash) => {
+        crash => {
           Message.error(t("network_error"))
         },
-        (loading) => {
+        loading => {
           setIsLoading(loading)
         },
       )

@@ -54,7 +54,7 @@ const store = configureStore({
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["execution/setExecutionResultReducer"],
@@ -73,5 +73,4 @@ export type AppStartListening = TypedStartListening<RootState, AppDispatch>
 
 export type AppListenerEffectAPI = ListenerEffectAPI<RootState, AppDispatch>
 
-export const startAppListening =
-  listenerMiddleware.startListening as AppStartListening
+export const startAppListening = listenerMiddleware.startListening as AppStartListening

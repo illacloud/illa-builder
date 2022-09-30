@@ -57,7 +57,7 @@ export const Register: FC = () => {
       isSubscribed: true,
     },
   })
-  const onSubmit: SubmitHandler<RegisterFields> = (data) => {
+  const onSubmit: SubmitHandler<RegisterFields> = data => {
     Api.request<RegisterResult>(
       {
         method: "POST",
@@ -68,7 +68,7 @@ export const Register: FC = () => {
           ...data,
         },
       },
-      (res) => {
+      res => {
         Message.success(t("user.sign_up.tips.success"))
         const token = res.headers["illa-token"]
         if (!token) return
@@ -85,7 +85,7 @@ export const Register: FC = () => {
           replace: true,
         })
       },
-      (res) => {
+      res => {
         Message.error(t("user.sign_up.tips.fail"))
         switch (res.data.errorMessage) {
           case "duplicate email address":
@@ -108,7 +108,7 @@ export const Register: FC = () => {
       () => {
         Message.warning(t("network_error"))
       },
-      (loading) => {
+      loading => {
         setSubmitLoading(loading)
       },
     )
@@ -262,7 +262,7 @@ export const Register: FC = () => {
                                   usage: "signup",
                                 },
                               },
-                              (res) => {
+                              res => {
                                 Message.success(
                                   t("user.sign_up.tips.verification_code"),
                                 )
@@ -331,7 +331,7 @@ export const Register: FC = () => {
                   value: 6,
                   message: t("user.sign_up.error_message.password.length"),
                 },
-                validate: (value) => {
+                validate: value => {
                   return value.includes(" ")
                     ? t("setting.password.error_password_has_empty")
                     : true

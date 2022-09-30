@@ -17,9 +17,7 @@ import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
 
 const Item = DropList.Item
 
-export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
-  props,
-) => {
+export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = props => {
   const { resourceId } = props
 
   const { t } = useTranslation()
@@ -70,13 +68,13 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                     },
                     closable: false,
                     onOk: () => {
-                      return new Promise((resolve) => {
+                      return new Promise(resolve => {
                         Api.request<Resource<ResourceContent>>(
                           {
                             url: `/resources/${resourceId}`,
                             method: "DELETE",
                           },
-                          (response) => {
+                          response => {
                             dispatch(
                               resourceActions.removeResourceItemReducer(
                                 response.data.resourceId,
@@ -87,15 +85,15 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
                             )
                             resolve("finish")
                           },
-                          (failure) => {
+                          failure => {
                             Message.error(t("dashboard.resource.delete_fail"))
                             resolve("finish")
                           },
-                          (crash) => {
+                          crash => {
                             Message.error(t("network_error"))
                             resolve("finish")
                           },
-                          (loading) => {
+                          loading => {
                             setConfirmLoading(loading)
                           },
                         )

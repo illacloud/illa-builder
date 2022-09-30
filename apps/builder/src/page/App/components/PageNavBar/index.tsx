@@ -40,7 +40,7 @@ import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 
-export const PageNavBar: FC<PageNavBarProps> = (props) => {
+export const PageNavBar: FC<PageNavBarProps> = props => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -76,7 +76,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
       },
-      (response) => {
+      response => {
         window.open(
           window.location.protocol +
             "//" +
@@ -85,13 +85,13 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
           "_blank",
         )
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (e) => {
+      e => {
         Message.error(t("editor.deploy.fail"))
       },
-      (loading) => {
+      loading => {
         setDeployLoading(loading)
       },
     )

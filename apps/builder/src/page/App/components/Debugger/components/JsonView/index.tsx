@@ -15,13 +15,13 @@ import {
   jsonStyle,
 } from "./style"
 
-export const JsonView: FC<JsonViewProps> = (props) => {
+export const JsonView: FC<JsonViewProps> = props => {
   const { name, value, level = 0 } = props
   const [isExpanded, setIsExpanded] = useState(false)
 
   const type = typeof value
   if (isObject(value) || isArray(value)) {
-    const keyArr = Object.keys(value).filter((item) => !item.startsWith("$"))
+    const keyArr = Object.keys(value).filter(item => !item.startsWith("$"))
     return (
       <>
         <div css={jsonStyle}>
@@ -46,7 +46,7 @@ export const JsonView: FC<JsonViewProps> = (props) => {
           initial={false}
           transition={{ duration: 0.2 }}
         >
-          {keyArr.map((name) => (
+          {keyArr.map(name => (
             <JsonView
               key={name}
               name={name}

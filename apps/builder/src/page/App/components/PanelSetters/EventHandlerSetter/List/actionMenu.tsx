@@ -7,7 +7,7 @@ import { BaseEventHandlerContext } from "@/page/App/components/PanelSetters/Even
 
 const { Item } = DropList
 
-export const ActionMenu: FC<ActionMenuProps> = (props) => {
+export const ActionMenu: FC<ActionMenuProps> = props => {
   const { index, handleCloseMode } = props
   const { handleCopyEventItem, handleDeleteEventItem } = useContext(
     BaseEventHandlerContext,

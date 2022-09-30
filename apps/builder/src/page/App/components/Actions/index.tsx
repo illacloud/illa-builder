@@ -8,7 +8,7 @@ import { FocusManager } from "@/utils/focusManager"
 
 const ActionEditorDefaultHeight = 300
 
-export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
+export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = props => {
   const panelRef = useRef<HTMLDivElement>(null)
 
   return (

@@ -15,7 +15,7 @@ function getPath(attrName?: string, widgetDisplayName?: string) {
   }
 }
 
-export const OptionMappedInputSetter: FC<BaseInputSetterProps> = (props) => {
+export const OptionMappedInputSetter: FC<BaseInputSetterProps> = props => {
   const {
     isSetterSingleRow,
     placeholder,

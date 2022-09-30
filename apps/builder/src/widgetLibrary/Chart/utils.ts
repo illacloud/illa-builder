@@ -6,10 +6,10 @@ export const formatDataWithSum = (
   datasetValues: string,
 ) => {
   const data: number[] = []
-  Object.keys(originData).forEach((x) => {
+  Object.keys(originData).forEach(x => {
     let values: number[] = []
     const v = originData[x]
-    v.forEach((vk) => {
+    v.forEach(vk => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
     data.push(sum(values))
@@ -23,10 +23,10 @@ export const formatDataWithMax = (
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  Object.keys(originData).forEach(x => {
     let values: number[] = []
     const v = originData[x]
-    v.forEach((vk) => {
+    v.forEach(vk => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
     data.push(max(values) || 0)
@@ -40,10 +40,10 @@ export const formatDataWithMin = (
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  Object.keys(originData).forEach(x => {
     let values: number[] = []
     const v = originData[x]
-    v.forEach((vk) => {
+    v.forEach(vk => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
     data.push(min(values) || 0)
@@ -57,10 +57,10 @@ export const formatDataWithAverage = (
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  Object.keys(originData).forEach(x => {
     let values: number[] = []
     const v = originData[x]
-    v.forEach((vk) => {
+    v.forEach(vk => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
     data.push(mean(values) || 0)
@@ -74,10 +74,10 @@ export const formatDataWithMedian = (
 ) => {
   const data: number[] = []
 
-  Object.keys(originData).forEach((x) => {
+  Object.keys(originData).forEach(x => {
     let values: number[] = []
     const v = originData[x]
-    v.forEach((vk) => {
+    v.forEach(vk => {
       values.push(Number(get(vk, datasetValues, 0)))
     })
     const len = values.length
@@ -97,7 +97,7 @@ export const formatDataWithCount = (
   datasetValues: string,
 ) => {
   const data: number[] = []
-  Object.keys(originData).forEach((x) => {
+  Object.keys(originData).forEach(x => {
     const v = originData[x]
     data.push(v?.length || 0)
   })
@@ -134,7 +134,7 @@ export const formatData = (
   }
 }
 
-export const rotateGroupByData = function (matrix: number[][]) {
+export const rotateGroupByData = function(matrix: number[][]) {
   const result: number[][] = new Array(matrix[0].length).fill(0).map(() => {
     return new Array(matrix.length).fill(0)
   })

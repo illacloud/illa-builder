@@ -9,7 +9,7 @@ import { DragIcon, WarningCircleIcon } from "@illa-design/icon"
 import { MoveBarProps } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const MoveBar: FC<MoveBarProps> = (props) => {
+export const MoveBar: FC<MoveBarProps> = props => {
   const { displayName, isError, maxWidth, selected, isEditor } = props
   return (
     <div

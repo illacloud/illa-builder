@@ -11,13 +11,11 @@ import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 
-export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
+export const DuplicateModal: FC<DuplicateModalProps> = props => {
   const { appId, visible, onVisibleChange } = props
 
   const app = useSelector((state: RootState) => {
-    return state.dashboard.dashboardApps.list.find(
-      (item) => item.appId === appId,
-    )
+    return state.dashboard.dashboardApps.list.find(item => item.appId === appId)
   })!!
 
   const appList = useSelector(getDashboardApps)
@@ -48,7 +46,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
           Message.error(t("dashboard.app.name_empty"))
           return
         }
-        if (appList.some((item) => item.appName === name)) {
+        if (appList.some(item => item.appName === name)) {
           Message.error(t("dashboard.app.name_existed"))
           return
         }
@@ -60,7 +58,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
               appName: name,
             },
           },
-          (response) => {
+          response => {
             dispatch(
               dashboardAppActions.addDashboardAppReducer({
                 app: response.data,
@@ -68,13 +66,13 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
             )
             onVisibleChange(false)
           },
-          (failure) => {
+          failure => {
             Message.error(t("dashboard.app.duplicate_fail"))
           },
-          (crash) => {
+          crash => {
             Message.error(t("network_error"))
           },
-          (loading) => {
+          loading => {
             setLoading(loading)
           },
         )
@@ -85,7 +83,7 @@ export const DuplicateModal: FC<DuplicateModalProps> = (props) => {
     >
       <Input
         borderColor="techPurple"
-        onChange={(res) => {
+        onChange={res => {
           setName(res)
         }}
         placeholder={`${t("dashboard.app.duplicate_placeholder")}`}
