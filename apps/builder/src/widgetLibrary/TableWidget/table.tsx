@@ -127,7 +127,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     if (tableWrapperRef.current) {
       updateComponentHeight(tableWrapperRef.current?.clientHeight)
     }
-  }, [data, columns, multiRowSelection])
+  }, [data, columns, multiRowSelection, updateComponentHeight])
 
   return (
     <div ref={tableWrapperRef}>
