@@ -45,7 +45,7 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
         [attrName]: newValue,
       })
     },
-    [handleUpdateMultiAttrDSL, value],
+    [handleUpdateMultiAttrDSL],
   )
 
   return (
