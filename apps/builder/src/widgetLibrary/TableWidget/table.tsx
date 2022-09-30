@@ -15,6 +15,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       loading,
       emptyState,
       columns,
+      filter,
       download,
       overFlow,
       defaultSort,
@@ -35,6 +36,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         h="100%"
         data={data}
         columns={columns}
+        filter={filter}
         loading={loading}
         download={download}
         overFlow={overFlow}
@@ -56,6 +58,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     emptyState,
     loading,
     columns,
+    filter,
     download,
     overFlow,
     displayName,
@@ -132,6 +135,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
         data={data}
         emptyState={emptyState}
         loading={loading}
+        filter={filter}
         columns={columnsDef}
         download={download}
         overFlow={overFlow}

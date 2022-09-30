@@ -94,6 +94,7 @@ export function initTableWidgetDefaultProps() {
     columns: tansTableDataToColumns(originData),
     emptyState: "No rows found",
     overFlow: "pagination",
-    download: true,
+    download: false,
+    filter: false,
   }
 }

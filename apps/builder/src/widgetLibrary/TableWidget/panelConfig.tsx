@@ -165,6 +165,16 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         useCustomLayout: true,
       },
+      {
+        id: `${baseWidgetName}-basic-filter`,
+        labelName: i18n.t("editor.inspect.setter_label.filter"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.filter"),
+        attrName: "filter",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
     ],
   },
   {
