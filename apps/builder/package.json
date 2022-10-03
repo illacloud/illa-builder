@@ -5,7 +5,7 @@
   "private": true,
   "author": "illa Family",
   "license": "Apache-2.0",
-  "version": "0.0.0",
+  "version": "1.1.1",
   "scripts": {
     "dev": "vite --mode cloud",
     "build-cloud": "vite build --mode cloud",
