@@ -49,6 +49,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }
 
+  const renderButton =
+    runMode === "run" ? action.actionType !== "transformer" : true
+
   useEffect(() => {
     // Clear the previous result when changing the selected action
     onActionRun(undefined)
@@ -90,7 +93,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       >
         <Button colorScheme="grayBlue" leftIcon={<MoreIcon size="14px" />} />
       </Dropdown>
-      {action.actionType !== "transformer" && (
+      {renderButton && (
         <Button
           ml="8px"
           colorScheme="techPurple"
