@@ -1,6 +1,5 @@
-import { FC } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getSelectedAction } from "@/redux/config/configSelector"
+import { FC, useMemo } from "react"
+import { useDispatch } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
 import { CodeEditor } from "@/components/CodeEditor"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
@@ -17,13 +16,18 @@ export const TransformerPanel: FC<TransformerPanelProps> = props => {
   const action = props.action
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  const finalValue = useMemo(() => {
+    return (
+      action?.content?.transformerString ||
+      "// Tip: assign your external references to variables instead of chaining off the curly brackets.\n" +
+        "return 5"
+    )
+  }, [action?.content?.transformerString])
+
   return (
     <div css={transformerPanelContainerStyle}>
       <CodeEditor
-        value={
-          "// Tip: assign your external references to variables instead of chaining off the curly brackets.\n" +
-          "return 5"
-        }
+        value={finalValue}
         css={transformerEditorStyle}
         lineNumbers
         height="88px"
