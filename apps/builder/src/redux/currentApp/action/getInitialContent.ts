@@ -1,24 +1,23 @@
 import { ActionContent, ActionType } from "./actionState"
 import { TransformerActionInitial } from "./transformerAction"
-import { MysqlActionInitial } from "./mysqlAction"
+import { MysqlLikeActionInitial } from "./mysqlLikeAction"
 import { RestApiActionInitial } from "./restapiAction"
-import { MongodbActionInitial } from "./mongodbAction"
-import { PostgresqlActionInitial } from "@/redux/currentApp/action/postgresqlAction"
-import { RedisActionInitial } from "@/redux/currentApp/action/redisAction"
+import { PostgreSqlActionInitial } from "@/redux/currentApp/action/postgresqlAction"
 
+// @ts-ignore
 export function getInitialContent(actionType: ActionType): ActionContent {
   switch (actionType) {
-    case "mongodb":
-      return MongodbActionInitial
+    case "mariadb":
+    case "tidb":
     case "mysql":
-      return MysqlActionInitial
+      return MysqlLikeActionInitial
     case "postgresql":
-      return PostgresqlActionInitial
-    case "redis":
-      return RedisActionInitial
+      return PostgreSqlActionInitial
     case "restapi":
       return RestApiActionInitial
     case "transformer":
       return TransformerActionInitial
+    default:
+      return {} as ActionContent
   }
 }

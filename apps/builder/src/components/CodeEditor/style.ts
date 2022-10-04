@@ -1,5 +1,5 @@
 import chroma from "chroma-js"
-import "@fontsource/fira-code"
+// import "@fontsource/fira-code"
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { EditorInputState } from "./interface"
@@ -199,4 +199,8 @@ export const contentTextStyle = css`
   font-size: 12px;
   font-weight: 400;
   word-wrap: break-word;
+`
+
+export const containerStyle = css`
+  overflow: scroll;
 `

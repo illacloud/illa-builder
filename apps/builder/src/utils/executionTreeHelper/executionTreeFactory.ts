@@ -5,6 +5,7 @@ import {
   getDisplayNameAndAttrPath,
   getWidgetOrActionDynamicAttrPaths,
   isDynamicString,
+  wrapFunctionCode,
 } from "@/utils/evaluateDynamicString/utils"
 import { getSnippets } from "@/utils/evaluateDynamicString/dynamicConverter"
 import toposort from "toposort"
@@ -184,7 +185,7 @@ export class ExecutionTreeFactory {
     paths.forEach((path) => {
       const newErrorTreeValue = get(newErrorTree, path)
       if (newErrorTreeValue) {
-        set(this.errorTree, path, newErrorTreeValue)
+        set(oldErrorTree, path, newErrorTreeValue)
       } else {
         unset(oldErrorTree, path)
       }
@@ -392,7 +393,23 @@ export class ExecutionTreeFactory {
                 return current
               }
             }
-            if (widgetOrAction.triggerMode === "automate") {
+            if (widgetOrAction.actionType === "transformer") {
+              const evaluateTransform = wrapFunctionCode(
+                widgetOrAction.content.transformerString,
+              )
+              const canEvalString = `{{${evaluateTransform}()}}`
+              let calcResult = ""
+              try {
+                calcResult = evaluateDynamicString("", canEvalString, current)
+                set(current, `${widgetOrAction.displayName}.value`, calcResult)
+              } catch (e) {
+                console.log(e)
+              }
+            }
+            if (
+              widgetOrAction.actionType !== "transformer" &&
+              widgetOrAction.triggerMode === "automate"
+            ) {
               const {
                 $actionId,
                 $resourceId,

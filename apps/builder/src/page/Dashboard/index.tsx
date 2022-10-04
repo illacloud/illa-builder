@@ -85,7 +85,7 @@ export const IllaApp: FC = () => {
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     Connection.enterRoom(

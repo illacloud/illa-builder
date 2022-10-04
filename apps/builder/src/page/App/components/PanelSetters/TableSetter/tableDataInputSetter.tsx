@@ -51,7 +51,7 @@ export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
         [attrName]: newValue,
       })
     },
-    [handleUpdateMultiAttrDSL, value],
+    [columns, handleUpdateMultiAttrDSL],
   )
 
   return (

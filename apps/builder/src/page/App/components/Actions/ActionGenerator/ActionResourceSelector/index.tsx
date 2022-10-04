@@ -1,108 +1,156 @@
 import { FC, useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
-import { ActionResourceSeletorProps } from "./interface"
+import { ActionResourceSelectorProps } from "./interface"
 import {
-  containerStyle,
-  titleStyle,
-  footerStyle,
-  listStyle,
-  resourceItemTitleStyle,
-  resourceItemTimeStyle,
   applyResourceItemStyle,
+  containerStyle,
+  footerStyle,
+  resourceItemTimeStyle,
+  resourceItemTitleStyle,
 } from "./style"
-import i18n from "@/i18n/config"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
-import dayjs from "dayjs"
 import { getAllResources } from "@/redux/resource/resourceSelector"
+import { List } from "@illa-design/list"
+import { fromNow } from "@/utils/dayjs"
+import { useTranslation } from "react-i18next"
+import {
+  ActionContent,
+  ActionItem,
+  actionItemInitial,
+} from "@/redux/currentApp/action/actionState"
+import { Api } from "@/api/base"
+import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
+import { Message } from "@illa-design/message"
+import { actionActions } from "@/redux/currentApp/action/actionSlice"
+import { configActions } from "@/redux/config/configSlice"
+import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
+import { getResourceTypeFromActionType } from "@/utils/actionResourceTransformer"
 
-export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
+export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
   props,
 ) => {
-  const {
-    actionType,
-    loading,
-    onBack,
-    onCreateAction,
-    onCreateResource,
-    defaultSelected = "",
-  } = props
+  const { actionType, onBack, onCreateAction, onCreateResource } = props
+
+  const { t } = useTranslation()
+
+  const appInfo = useSelector(getAppInfo)
+
   const resourceList = useSelector(getAllResources)
-    .filter((r) => r.resourceType === actionType)
+    .filter((r) => r.resourceType == getResourceTypeFromActionType(actionType))
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
-  const [selectedResourceId, setSelectedResourceId] = useState<string>("")
+
+  const [selectedResourceId, setSelectedResourceId] = useState<string>(
+    resourceList[0]?.resourceId,
+  )
 
   useEffect(() => {
-    if (resourceList.length === 0) {
-      onCreateResource?.(actionType)
+    if (resourceList.length == 0) {
+      onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
     }
-  }, [])
+  }, [resourceList, onCreateResource, actionType])
 
-  useEffect(() => {
-    setSelectedResourceId(
-      defaultSelected || (resourceList[0]?.resourceId ?? ""),
-    )
-  }, [defaultSelected])
+  const [loading, setLoading] = useState(false)
+
+  const dispatch = useDispatch()
 
   return (
     <div css={containerStyle}>
-      <div css={titleStyle}>
-        {i18n.t(
-          "editor.action.action_list.action_generator.title.choose_resource",
-        )}
-      </div>
-
-      <div css={listStyle}>
-        {resourceList.map((r) => (
-          <div
-            key={r.resourceId}
-            css={applyResourceItemStyle(r.resourceId === selectedResourceId)}
-            onClick={() => setSelectedResourceId(r.resourceId ?? "")}
-          >
-            {getIconFromActionType(r.resourceType, "24px")}
-            <span css={resourceItemTitleStyle}>{r.resourceName}</span>
-            <span css={resourceItemTimeStyle}>
-              {dayjs.utc(r.createdAt).format("YYYY-MM-DD HH:mm:ss")}
-            </span>
-          </div>
-        ))}
-      </div>
-
+      <List
+        bordered={false}
+        height={550}
+        data={resourceList}
+        renderKey={(data) => {
+          return data.resourceId
+        }}
+        renderRaw
+        render={(r) => {
+          return (
+            <div
+              css={applyResourceItemStyle(r.resourceId === selectedResourceId)}
+              onClick={() => {
+                setSelectedResourceId(r.resourceId)
+              }}
+            >
+              {getIconFromActionType(r.resourceType, "24px")}
+              <span css={resourceItemTitleStyle}>{r.resourceName}</span>
+              <span css={resourceItemTimeStyle}>
+                {t("created_at") + " " + fromNow(r.createdAt)}
+              </span>
+            </div>
+          )
+        }}
+      />
       <div css={footerStyle}>
         <Button
           leftIcon={<PaginationPreIcon />}
           variant="text"
           colorScheme="gray"
-          onClick={onBack}
+          onClick={() => {
+            onBack("select")
+          }}
         >
-          {i18n.t("back")}
+          {t("back")}
         </Button>
         <ButtonGroup spacing="8px">
           <Button
             leftIcon={<AddIcon />}
             colorScheme="gray"
             onClick={() => {
-              onCreateResource?.(actionType)
+              onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
             }}
           >
-            {i18n.t(
-              "editor.action.action_list.action_generator.btns.new_resource",
-            )}
+            {t("editor.action.action_list.action_generator.btns.new_resource")}
           </Button>
           <Button
             colorScheme="techPurple"
-            onClick={() =>
-              actionType && onCreateAction?.(actionType, selectedResourceId)
-            }
+            onClick={() => {
+              const displayName = DisplayNameGenerator.generateDisplayName(
+                actionType,
+              )
+              const initialContent = getInitialContent(actionType)
+              const data: Partial<ActionItem<ActionContent>> = {
+                actionType,
+                displayName,
+                resourceId: selectedResourceId,
+                content: initialContent,
+                ...actionItemInitial,
+              }
+              Api.request(
+                {
+                  url: `/apps/${appInfo.appId}/actions`,
+                  method: "POST",
+                  data,
+                },
+                ({ data }: { data: ActionItem<ActionContent> }) => {
+                  Message.success(
+                    t("editor.action.action_list.message.success_created"),
+                  )
+                  dispatch(actionActions.addActionItemReducer(data))
+                  dispatch(configActions.updateSelectedAction(data))
+                  onCreateAction?.(actionType, selectedResourceId)
+                },
+                () => {
+                  Message.error(t("editor.action.action_list.message.failed"))
+                  DisplayNameGenerator.removeDisplayName(displayName)
+                },
+                () => {
+                  DisplayNameGenerator.removeDisplayName(displayName)
+                },
+                (loading) => {
+                  setLoading(loading)
+                },
+              )
+            }}
             loading={loading}
+            disabled={resourceList.length <= 0}
           >
-            {i18n.t(
-              "editor.action.action_list.action_generator.btns.create_action",
-            )}
+            {t("editor.action.action_list.action_generator.btns.create_action")}
           </Button>
         </ButtonGroup>
       </div>

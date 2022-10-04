@@ -223,6 +223,7 @@ export const Register: FC = () => {
                 <Input
                   {...field}
                   borderColor="techPurple"
+                  maxLength={6}
                   onChange={(value, event) => {
                     field.onChange(event)
                     if (errorMsg.verificationCode !== "") {

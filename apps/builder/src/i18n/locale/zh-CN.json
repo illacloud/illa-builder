@@ -4,6 +4,7 @@
   "exit_preview": "退出预览",
   "edit": "编辑",
   "edit_at": "上次编辑于",
+  "created_at": "创建于",
   "title": "欢迎来到艾拉云",
   "freeze_tips": "画布已冻结，点击解冻。",
   "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
@@ -190,8 +191,9 @@
           "valid_name": "仅能包含字母，数字，'_' 或 '$'， 请以 '_' 或字母开头",
           "load_action_list_fail": "获取 Action 列表失败: {{message}}",
           "load_resource_fail": "获取资源列表失败: {{message}}",
-          "success_created": "创建成功!",
-          "success_saved": "保存成功!",
+          "success_created": "创建成功",
+          "success_saved": "保存成功",
+          "success_deleted": "删除成功",
           "failed": "服务器连接失败"
         },
         "action_generator": {
@@ -234,8 +236,9 @@
           "run": "运行",
           "save": "保存",
           "save_and_run": "保存 & 运行",
-          "disable": "禁用",
-          "enable": "使用",
+          "save_fail": "保存失败",
+          "disable": "关闭",
+          "enable": "开启",
           "new": "新增"
         },
         "menu": {
@@ -266,8 +269,7 @@
         "btn": {
           "back": "后退",
           "test_connection": "测试连接",
-          "create_resource": "创建资源",
-          "save_changes": "保存修改"
+          "save_changes": "保存资源"
         },
         "validate": {
           "required": "请输入{name}"
@@ -282,14 +284,10 @@
             "external_reference": "您可以创建对已定义变量的外部引用。 例如 {{ transformer2.value }}"
           }
         },
-        "js_transformer": {
-          "name": "Transformer"
-        },
         "label": {
           "coming_soon": "即将更新"
         },
         "mysql": {
-          "name": "MySQL",
           "title": {
             "advanced_option": "高级配置"
           },
@@ -299,22 +297,16 @@
             "database": "数据库名称",
             "username_password": "用户名/密码",
             "connect_type": "连接类型",
-            "connect_over_ssh": "通过 SSH 连接",
-            "ssh_hostname_port": "SSH 主机名/端口",
-            "ssh_credentials": "SSH 凭证",
             "private_key": "私钥",
-            "ssh_passphrase": "SSH 密码",
             "ssl_options": "SSL 选项",
-            "server_root_certificate": "服务器根证书",
+            "ca_certificate": "服务端证书",
             "client_key": "客户端密钥",
             "client_certificate": "客户端证书"
           },
           "tip": {
             "username_password": "凭证将被加密并安全存储在我们的服务器上",
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
-            "connect_over_ssh": "用于连接到专用网络",
-            "ssl_options": "可用时使用 SSL",
-            "ssh_passphrase": "如果提供则使用"
+            "ssl_options": "可用时使用 SSL"
           },
           "placeholder": {
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
@@ -322,16 +314,43 @@
             "database": "acme_production",
             "username": "用户名",
             "password": "密码",
-            "ssh_hostname_port": "e.g.localhost",
-            "ssh_credentials": "e.g.ec2-user",
-            "private_key": "e.g.path/to/root.crt",
-            "server_root_certificate": "e.g.path/to/root.crt",
-            "client_key": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "client_certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+          }
+        },
+        "postgresql": {
+          "title": {
+            "advanced_option": "高级配置"
+          },
+          "label": {
+            "name": "名称",
+            "hostname_port": "主机/端口",
+            "database": "数据库名称",
+            "username_password": "用户名/密码",
+            "connect_type": "连接类型",
+            "private_key": "私钥",
+            "ssl_options": "SSL 选项",
+            "ca_certificate": "服务端证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书"
+          },
+          "tip": {
+            "username_password": "凭证将被加密并安全存储在我们的服务器上",
+            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
+            "ssl_options": "可用时使用 SSL"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "主机名",
+            "database": "acme_production",
+            "username": "用户名",
+            "password": "密码",
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
           }
         },
         "restapi": {
-          "name": "REST API",
+          "title": {
+            "advanced_option": "通用"
+          },
           "label": {
             "name": "名称",
             "action_type": "Action type",
@@ -365,7 +384,7 @@
           },
           "tip": {
             "get_req_auto_run": "(GET 请求) 当参数改变时会自动执行",
-            "name": "在 ILLA 中创建 actions 时的资源名称",
+            "name": "在 ILLA 中创建 Action 时的资源名称",
             "extra_body_values": "Extra body values are not passed for GET or HEAD requests",
             "configure_oauth2": "OAuth 2.0 is a complex spec. ILLA currently supports the server-side OAuth 2.0 authentication flow as well as the Client Credentials flow. In both cases, you must use the OAUTH2_TOKEN placeholder in order to inform ILLA where to place the OAuth access token in the API request. A common location for this is as a header such as Authorization: Bearer OAUTH2_TOKEN."
           },
@@ -373,8 +392,6 @@
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "api": "i.e.\"Internal Admin API\"",
             "database": "i.e.\"Users DB(readonly)\"",
-            "action_url_path_with_base_url": "api/v2/endpoint.json",
-            "action_url_path": "http://www.api.com/api/v2/endpoint.json",
             "base_url": "请使用绝对 URL (e.g https://example.com)",
             "username": "用户名",
             "password": "密码",
@@ -397,14 +414,35 @@
             "new": "新增"
           }
         },
-        "postgres": {
-          "name": "Postgres"
-        },
         "redis": {
-          "name": "Redis"
-        },
-        "mongodb": {
-          "name": "MongoDB"
+          "title": {
+            "advanced_option": "高级配置"
+          },
+          "label": {
+            "name": "名称",
+            "hostname_port": "主机/端口",
+            "database": "数据库名称",
+            "username_password": "用户名/密码",
+            "connect_type": "连接类型",
+            "private_key": "私钥",
+            "ssl_options": "SSL 选项",
+            "ca_certificate": "服务端证书",
+            "client_key": "客户端密钥",
+            "client_certificate": "客户端证书"
+          },
+          "tip": {
+            "username_password": "凭证将被加密并安全存储在我们的服务器上",
+            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
+            "ssl_options": "可用时使用 SSL"
+          },
+          "placeholder": {
+            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
+            "hostname": "主机名",
+            "database": "acme_production",
+            "username": "用户名",
+            "password": "密码",
+            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----"
+          }
         }
       },
       "result": {
@@ -456,6 +494,8 @@
         "options": "选项",
         "column": "列",
         "row_selection": "行选择",
+        "pagination": "翻页",
+        "toolbar": "工具栏",
         "data": "数据",
         "views": "视图"
       },
@@ -576,6 +616,10 @@
         "column_title": "列标题",
         "enable_sorting": "排序",
         "decimal_places": "小数位数",
+        "multi_row_selection": "多行选择",
+        "overFlow": "翻页方式",
+        "download": "下载",
+        "filter": "筛选",
         "new_tab": "在新标签中打开",
         "description": "描述",
         "duration": "持续时间",
@@ -612,7 +656,9 @@
         "loading": "控制组件是否为加载状态。",
         "progress_percentage": "进度条的数值范围为 0-100",
         "timeline_direction": "切换时间轴的方向",
-        "only_run_when": "在此输入该事件执行前必须满足的条件"
+        "only_run_when": "在此输入该事件执行前必须满足的条件",
+        "download": "在工具栏显示下载按钮",
+        "filter": "在工具栏显示筛选按钮"
       },
       "setter_default_value": {
         "fill": "填充",
@@ -659,9 +705,9 @@
           "prefabricated": "Prefabricated color"
         },
         "widget_action_type_name": {
-          "sorting_change": "排序方式改变",
-          "pagination_change": "翻页配置改变",
-          "column_filters_change": "行筛选改变",
+          "sortingChange": "排序方式改变",
+          "paginationChange": "翻页配置改变",
+          "columnFiltersChange": "行筛选改变",
           "click": "单击",
           "change": "内容改变",
           "focus": "聚焦",
@@ -723,8 +769,7 @@
       "name": "日期选择器"
     },
     "date_range": {
-      "name": "日期范围选择器",
-      "start_date": "Start date"
+      "name": "Date range"
     },
     "image": {
       "name": "图片"
@@ -741,18 +786,18 @@
     "switch": {
       "name": "开关"
     },
+    "circle_progress": {
+      "name": "圆形进度条"
+    },
+    "bar_progress": {
+      "name": "条形进度条"
+    },
     "rate": {
       "name": "评分"
     },
     "date_time": {
       "name": "日期时间选择器",
       "placeholder": "请选择时间"
-    },
-    "circle_progress": {
-      "name": "环形进度条"
-    },
-    "bar_progress": {
-      "name": "进度条"
     },
     "divider_progress": {
       "name": "分割线"
@@ -777,6 +822,8 @@
     },
     "table": {
       "name": "表格",
+      "pagination": "翻页",
+      "scroll": "滚动",
       "ascend": "升序",
       "descend": "降序"
     },
@@ -823,8 +870,10 @@
       "delete_success": "删除成功",
       "delete_fail": "删除失败",
       "create_resource": "创建资源",
-      "create_success": "创建成功！",
-      "edit_success": "修改成功"
+      "save_success": "保存成功",
+      "save_fail": "保存失败",
+      "test_success": "测试成功",
+      "test_fail": "测试失败"
     }
   },
   "setting": {

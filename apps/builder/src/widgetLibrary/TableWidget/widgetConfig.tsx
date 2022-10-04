@@ -93,5 +93,8 @@ export function initTableWidgetDefaultProps() {
     data: `{{${JSON.stringify(originData)}}}`,
     columns: tansTableDataToColumns(originData),
     emptyState: "No rows found",
+    overFlow: "pagination",
+    download: false,
+    filter: false,
   }
 }

@@ -5,7 +5,8 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { transDataForType } from "@/widgetLibrary/TableWidget/utils"
+import { cloneDeep } from "lodash"
+import { getCellForType } from "./utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
@@ -14,8 +15,12 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       loading,
       emptyState,
       columns,
+      filter,
+      download,
+      overFlow,
       defaultSort,
       columnVisibility,
+      multiRowSelection,
       handleOnSortingChange,
       handleOnPaginationChange,
       handleOnColumnFiltersChange,
@@ -23,18 +28,22 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
 
     return (
       <Table
-        data={data}
-        columns={columns}
-        loading={loading}
-        emptyProps={{ description: emptyState }}
-        defaultSort={defaultSort}
-        columnVisibility={columnVisibility}
         bordered
         striped
         borderedCell
         pinedHeader
         w="100%"
         h="100%"
+        data={data}
+        columns={columns}
+        filter={filter}
+        loading={loading}
+        download={download}
+        overFlow={overFlow}
+        emptyProps={{ description: emptyState }}
+        defaultSort={defaultSort}
+        columnVisibility={columnVisibility}
+        multiRowSelection={multiRowSelection}
         onSortingChange={handleOnSortingChange}
         onPaginationChange={handleOnPaginationChange}
         onColumnFiltersChange={handleOnColumnFiltersChange}
@@ -49,16 +58,17 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     emptyState,
     loading,
     columns,
+    filter,
+    download,
+    overFlow,
     displayName,
     defaultSortKey,
     defaultSortOrder,
+    multiRowSelection,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    updateComponentHeight,
   } = props
-
-  const tableWrapperRef = useRef<HTMLDivElement>(null)
 
   const defaultSort = useMemo(() => {
     if (!defaultSortKey) return undefined
@@ -72,7 +82,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnVisibility = useMemo(() => {
     const res: Record<string, boolean> = {}
-    columns?.map((item) => {
+    columns?.forEach((item) => {
       const { visible, accessorKey } = item as ColumnItemShape
       if (!visible) {
         res[accessorKey] = false
@@ -83,9 +93,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnsDef = useMemo(() => {
     const res: ColumnItemShape[] = []
-    columns?.map((item) => {
-      const transItem = JSON.parse(JSON.stringify(item)) as ColumnItemShape
-      transItem["header"] = transDataForType(transItem)
+    columns?.forEach((item) => {
+      const transItem = cloneDeep(item) as ColumnItemShape
+      transItem["cell"] = getCellForType(transItem)
       res.push(transItem)
     })
     return res
@@ -110,23 +120,19 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
-  useEffect(() => {
-    if (tableWrapperRef.current) {
-      updateComponentHeight(tableWrapperRef.current?.clientHeight)
-    }
-  }, [data])
-
   return (
-    <div ref={tableWrapperRef}>
-      <WrappedTable
-        data={data}
-        emptyState={emptyState}
-        loading={loading}
-        columns={columnsDef}
-        columnVisibility={columnVisibility}
-        defaultSort={defaultSort}
-      />
-    </div>
+    <WrappedTable
+      data={data}
+      emptyState={emptyState}
+      loading={loading}
+      filter={filter}
+      columns={columnsDef}
+      download={download}
+      overFlow={overFlow}
+      columnVisibility={columnVisibility}
+      defaultSort={defaultSort}
+      multiRowSelection={multiRowSelection}
+    />
   )
 }
 

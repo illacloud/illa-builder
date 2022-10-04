@@ -2,8 +2,8 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { SWITCH_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/SwitchWidget"
 import { ColumnTypeOption } from "@/widgetLibrary/TableWidget/interface"
+import { TABLE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TableWidget/eventHandlerConfig"
 
 const baseWidgetName = "table"
 
@@ -121,13 +121,70 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
+    id: `${baseWidgetName}-rowSelection`,
+    groupName: i18n.t("editor.inspect.setter_group.row_selection"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-multiRowSelection`,
+        labelName: i18n.t("editor.inspect.setter_label.multi_row_selection"),
+        attrName: "multiRowSelection",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-PAGINATION`,
+    groupName: i18n.t("editor.inspect.setter_group.pagination"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-overFlow`,
+        labelName: i18n.t("editor.inspect.setter_label.overFlow"),
+        attrName: "overFlow",
+        setterType: "RADIO_GROUP_SETTER",
+        options: [
+          { label: i18n.t("widget.table.pagination"), value: "pagination" },
+          { label: i18n.t("widget.table.scroll"), value: "scroll" },
+        ],
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-toolbar`,
+    groupName: i18n.t("editor.inspect.setter_group.toolbar"),
+    children: [
+      {
+        id: `${baseWidgetName}-basic-download`,
+        labelName: i18n.t("editor.inspect.setter_label.download"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.download"),
+        attrName: "download",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
+      {
+        id: `${baseWidgetName}-basic-filter`,
+        labelName: i18n.t("editor.inspect.setter_label.filter"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.filter"),
+        attrName: "filter",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        openDynamic: true,
+        useCustomLayout: true,
+      },
+    ],
+  },
+  {
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          SWITCH_EVENT_HANDLER_CONFIG.events,
+          TABLE_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {

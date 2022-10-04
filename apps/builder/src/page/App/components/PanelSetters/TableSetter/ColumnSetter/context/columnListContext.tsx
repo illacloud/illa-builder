@@ -69,7 +69,7 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
     (attrName: string, visible?: boolean) => {
       handleUpdateDsl(attrName, visible)
     },
-    [attrPath, columnItems, handleUpdateDsl],
+    [handleUpdateDsl],
   )
 
   const value = {

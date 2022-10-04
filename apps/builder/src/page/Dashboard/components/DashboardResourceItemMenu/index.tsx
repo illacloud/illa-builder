@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DashboardResourceItemMenuProps } from "@/page/Dashboard/components/DashboardResourceItemMenu/interface"
 import { Dropdown, DropList } from "@illa-design/dropdown"
@@ -13,7 +13,9 @@ import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 import { Space } from "@illa-design/space"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
-import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
+import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
+import { RootState } from "@/store"
+import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
 const Item = DropList.Item
 
@@ -28,9 +30,13 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
   const [confirmLoading, setConfirmLoading] = useState(false)
   const [resourceEditorVisible, setResourceEditorVisible] = useState(false)
 
+  const resource = useSelector((state: RootState) => {
+    return state.resource.find((item) => item.resourceId === resourceId)!!
+  })
+
   return (
     <>
-      <Space direction="horizontal" w="100%" justifyContent="end" size="4px">
+      <Space direction="horizontal" w="100%" align="end" size="4px">
         <Button
           css={buttonVisibleStyle}
           className="dashboardResourceEditButton"
@@ -114,14 +120,28 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           />
         </Dropdown>
       </Space>
-      <ResourceEditor
+      <Modal
+        w="696px"
         visible={resourceEditorVisible}
-        edit={true}
-        resourceId={resourceId}
-        onClose={() => {
+        footer={false}
+        closable
+        withoutLine
+        withoutPadding
+        title={getResourceNameFromResourceType(resource.resourceType)}
+        onCancel={() => {
           setResourceEditorVisible(false)
         }}
-      />
+      >
+        <ResourceCreator
+          resourceId={resourceId}
+          onBack={() => {
+            setResourceEditorVisible(false)
+          }}
+          onFinished={() => {
+            setResourceEditorVisible(false)
+          }}
+        />
+      </Modal>
     </>
   )
 }

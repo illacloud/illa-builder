@@ -1,13 +1,17 @@
-import { FC, ReactNode, useRef, useState } from "react"
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from "react"
 import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
+import { useSize } from "react-use"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
-import { MysqlPanel } from "./MysqlPanel"
+import { MysqlLikePanel } from "./MysqlLikePanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { MysqlAction } from "@/redux/currentApp/action/mysqlAction"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
 import {
   BodyContent,
   RestApiAction,
@@ -17,10 +21,20 @@ import { onCopyActionItem, onDeleteActionItem } from "../api"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 
-export const ActionPanel: FC = () => {
+export interface ActionPanelProps {
+  maxHeight?: number
+}
+
+export const ActionPanel: FC<ActionPanelProps> = (props) => {
+  const { maxHeight } = props
   const panelRef = useRef<HTMLDivElement>(null)
   const selectedAction = useSelector(getSelectedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
+
+  const run = useCallback((result, error) => {
+    setActionResult({ result, error })
+  }, [])
+
   // null selected
   if (selectedAction === null || selectedAction === undefined) {
     return null
@@ -28,8 +42,13 @@ export const ActionPanel: FC = () => {
   let actionPanel: ReactNode
   switch (selectedAction.actionType) {
     case "mysql":
+    case "tidb":
+    case "mariadb":
+    case "postgresql":
       actionPanel = (
-        <MysqlPanel action={selectedAction as ActionItem<MysqlAction>} />
+        <MysqlLikePanel
+          action={selectedAction as ActionItem<MysqlLikeAction>}
+        />
       )
       break
     case "restapi":
@@ -46,14 +65,6 @@ export const ActionPanel: FC = () => {
         />
       )
       break
-    case "mongodb":
-      break
-    case "redis":
-      break
-    case "postgresql":
-      break
-    default:
-      break
   }
 
   return (
@@ -62,9 +73,7 @@ export const ActionPanel: FC = () => {
         action={selectedAction}
         onCopy={onCopyActionItem}
         onDelete={onDeleteActionItem}
-        onActionRun={(result, error) => {
-          setActionResult({ result, error })
-        }}
+        onActionRun={run}
       />
       {actionPanel}
       <ActionResult
@@ -72,6 +81,7 @@ export const ActionPanel: FC = () => {
         onClose={() => {
           setActionResult(undefined)
         }}
+        maxHeight={maxHeight}
       />
     </div>
   )

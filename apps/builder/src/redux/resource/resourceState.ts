@@ -1,11 +1,24 @@
 export type ResourceType =
   | "mysql"
   | "restapi"
+  | "graphql"
   | "mongodb"
   | "redis"
+  | "elastic"
   | "postgresql"
+  | "mariadb"
+  | "snowflake"
+  | "tidb"
+  | "datadog"
+  | "smtp"
+  | "zapier"
+  | "s3"
 
-export type ResourceContent = MysqlResource | RestApiResource<RestApiAuth>
+export type ResourceContent =
+  | MysqlResource
+  | RestApiResource<RestApiAuth>
+  | PostgreSqlResource
+  | RedisResource
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string
@@ -24,19 +37,44 @@ export interface MysqlResource {
   databaseName: string
   databaseUsername: string
   databasePassword: string
-  ssh: MysqlSSH
-  ssl: MysqlSSL
+  ssl: DbSSL
 }
 
-export interface MysqlSSH {
-  ssh: boolean
+export interface RedisResource {
+  host: string
+  port: string
+  databaseName: string
+  databaseUsername: string
+  databasePassword: string
+  ssl: DbSSL
 }
 
-export interface MysqlSSL {
+export interface DbSSL {
   ssl: boolean
   serverCert: string
   clientKey: string
   clientCert: string
+}
+
+export function generateSSLConfig(
+  open: boolean,
+  data: { [p: string]: any },
+): DbSSL {
+  return {
+    ssl: open,
+    clientKey: data.clientKey,
+    clientCert: data.clientCert,
+    serverCert: data.serverCert,
+  } as DbSSL
+}
+
+export interface PostgreSqlResource {
+  host: string
+  port: string
+  databaseName: string
+  databaseUsername: string
+  databasePassword: string
+  ssl: DbSSL
 }
 
 export interface Params {
@@ -44,12 +82,14 @@ export interface Params {
   value: string
 }
 
+export type RestApiAuthType = "none" | "basic" | "bearer"
+
 export interface RestApiResource<T extends RestApiAuth> {
   baseUrl: string
   urlParams: Params[]
   headers: Params[]
   cookies: Params[]
-  authentication: string
+  authentication: RestApiAuthType
   authContent: T
 }
 

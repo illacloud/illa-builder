@@ -33,7 +33,7 @@ export const WorkSpaceTreeItem: FC<WorkSpaceTreeItemProps> = memo(
           level={0}
         />
       ))
-    }, [keyArr])
+    }, [data, keyArr, title])
 
     return (
       <>

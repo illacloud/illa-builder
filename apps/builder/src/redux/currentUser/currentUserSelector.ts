@@ -34,7 +34,7 @@ export const getGlobalInfoExecutionResult = createSelector(
     const globalInfo: Record<string, any>[] = [
       {
         ...currentUserInfo,
-        displayName: "currentUser",
+        displayName: "currentUserInfo",
       },
       {
         ...builderInfo,

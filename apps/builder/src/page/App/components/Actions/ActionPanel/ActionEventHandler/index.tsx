@@ -37,7 +37,7 @@ export const ActionEventHandler: FC = () => {
         }),
       )
     },
-    [action.content],
+    [action, dispatch],
   )
 
   const handleUpdateMultiAttrDSL = useCallback(

@@ -8,6 +8,7 @@ const handleResize = (
   movementY: number,
   minHeight: number,
   maxHeight?: number,
+  callback?: () => void,
 ) => {
   const resize = resizeRef?.current
   if (!resize) return
@@ -18,18 +19,21 @@ const handleResize = (
   if (isNumber(maxHeight) && updatedHeight > maxHeight) return
 
   if (updatedHeight < window.innerHeight && updatedHeight > minHeight) {
-    resize.style.height = `${height - movementY}px`
+    resize.style.height = `${updatedHeight}px`
+    callback?.()
   }
 }
 
 export const DragBar: FC<DragBarProps> = (props) => {
-  const { resizeRef, minHeight = 300, maxHeight } = props
+  const { resizeRef, minHeight = 300, maxHeight, onChange } = props
   const [mouseDown, setMouseDown] = useState(false)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       e.preventDefault()
-      handleResize(resizeRef, e.movementY, minHeight, maxHeight)
+      handleResize(resizeRef, e.movementY, minHeight, maxHeight, () => {
+        onChange?.()
+      })
     }
     if (mouseDown) {
       window.addEventListener("mousemove", handleMouseMove)
@@ -38,7 +42,7 @@ export const DragBar: FC<DragBarProps> = (props) => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
     }
-  }, [mouseDown])
+  }, [maxHeight, minHeight, mouseDown, resizeRef])
 
   useEffect(() => {
     handleResize(resizeRef, 0, minHeight, maxHeight)
@@ -48,7 +52,7 @@ export const DragBar: FC<DragBarProps> = (props) => {
     return () => {
       window.removeEventListener("mouseup", handleMouseUp)
     }
-  }, [])
+  }, [maxHeight, minHeight, resizeRef])
 
   return (
     <div

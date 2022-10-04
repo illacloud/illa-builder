@@ -192,6 +192,7 @@ export const Shortcut: FC = ({ children }) => {
           break
         case "command+d":
         case "ctrl+d":
+          keyboardEvent.preventDefault()
           switch (FocusManager.getFocus()) {
             case "none":
               break
@@ -219,7 +220,7 @@ export const Shortcut: FC = ({ children }) => {
           break
       }
     },
-    [currentSelectedComponent],
+    [currentSelectedComponent, currentSelectedAction],
   )
 
   useHotkeys(

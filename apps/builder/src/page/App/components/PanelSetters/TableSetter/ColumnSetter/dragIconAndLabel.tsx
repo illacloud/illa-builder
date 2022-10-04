@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { DragPointIcon, EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
+  baseIconStyle,
   dragItemStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
@@ -70,7 +71,11 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
             event.stopPropagation()
           }}
         >
-          {visible ? <EyeOnIcon /> : <EyeOffIcon />}
+          {visible ? (
+            <EyeOnIcon css={baseIconStyle} />
+          ) : (
+            <EyeOffIcon css={baseIconStyle} />
+          )}
         </span>
       </div>
     </Trigger>

@@ -25,7 +25,7 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
 
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
-  }, [debuggerVisible])
+  }, [debuggerVisible, dispatch])
 
   return (
     <div
