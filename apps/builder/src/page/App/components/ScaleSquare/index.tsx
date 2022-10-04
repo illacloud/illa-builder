@@ -48,6 +48,8 @@ import { CopyManager } from "@/utils/copyManager"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
+import store from "@/store"
+import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 
 const { Item } = DropList
 
@@ -222,10 +224,15 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         endDrag(draggedItem.item, dropResultInfo?.isDropOnCanvas ?? false)
       },
       item: () => {
+        const rootState = store.getState()
+        const allComponentNodes = getFlattenArrayComponentNodes(rootState)
+        const childrenNodes = allComponentNodes
+          ? cloneDeep(allComponentNodes)
+          : []
         startDrag(componentNode)
         return {
           item: componentNode,
-          childrenNodes: childrenNode,
+          childrenNodes,
         }
       },
       collect: (monitor) => {
@@ -372,7 +379,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   )
 
   //  1px is left border width
-  return (
+  return isDragging ? null : (
     <Rnd
       bounds="#realCanvas"
       size={{

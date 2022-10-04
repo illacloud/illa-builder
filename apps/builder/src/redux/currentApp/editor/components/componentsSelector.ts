@@ -37,7 +37,7 @@ export function searchDsl(
   return null
 }
 
-export function flattenDsl(
+export function flattenDslToMap(
   rootNode: ComponentNode,
 ): {
   [key: string]: ComponentNode
@@ -49,6 +49,27 @@ export function flattenDsl(
 
     if (head.containerType !== "EDITOR_DOT_PANEL") {
       res = { ...res, [head.displayName]: head || {} }
+    }
+    queue.pop()
+    if (head.childrenNode) {
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
+        }
+      })
+    }
+  }
+  return res
+}
+
+export function flattenDslToArray(rootNode: ComponentNode): ComponentNode[] {
+  const queue = [rootNode]
+  let res: ComponentNode[] = []
+  while (queue.length > 0) {
+    const head = queue[queue.length - 1]
+
+    if (head.containerType !== "EDITOR_DOT_PANEL") {
+      res.push(head)
     }
     queue.pop()
     if (head.childrenNode) {
@@ -82,7 +103,7 @@ export const getAllComponentDisplayNameMapProps = createSelector(
     if (rootDSL == null) {
       return null
     }
-    const components = flattenDsl(rootDSL)
+    const components = flattenDslToMap(rootDSL)
     if (!components) return
     const res: Record<string, any> = {}
     Object.keys(components).forEach((key) => {
@@ -93,5 +114,16 @@ export const getAllComponentDisplayNameMapProps = createSelector(
       }
     })
     return res
+  },
+)
+
+export const getFlattenArrayComponentNodes = createSelector(
+  [getCanvas],
+  (rootDSL) => {
+    if (rootDSL == null) {
+      return null
+    }
+    const components = flattenDslToArray(rootDSL)
+    return components || []
   },
 )

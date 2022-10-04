@@ -177,7 +177,9 @@ export const RenderComponentCanvas: FC<{
             })
           }
 
-          const childrenNodes = dragInfo.childrenNodes
+          const childrenNodes = dragInfo.childrenNodes.filter(
+            (node) => node.parentNode === componentNode.displayName,
+          )
           const indexOfChildrenNodes = childrenNodes.findIndex(
             (node) => node.displayName === item.displayName,
           )
