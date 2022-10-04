@@ -29,7 +29,7 @@ const isUninterestingChangeForDependencyUpdate = (path: string) => {
 
 export const convertPathToString = (attrPath: string[] | number[]) => {
   let string = ""
-  attrPath.forEach(segment => {
+  attrPath.forEach((segment) => {
     if (isInt(segment)) {
       string = string + "[" + segment + "]"
     } else {
@@ -163,7 +163,7 @@ export const translateDiffEventToRawTreeEvent = (
           result.payload = { propertyPath }
         }
       } else if (isObject(diff.lhs) && !isObject(diff.rhs)) {
-        result = Object.keys(diff.lhs).map(diffKey => {
+        result = Object.keys(diff.lhs).map((diffKey) => {
           const path = `${propertyPath}.${diffKey}`
           return {
             event: RawTreeDiffEvent.DELETE,
@@ -219,7 +219,7 @@ export const getImmediateParentsOfPropertyPaths = (
 ): string[] => {
   const parents: Set<string> = new Set()
 
-  propertyPaths.forEach(path => {
+  propertyPaths.forEach((path) => {
     const matches = path.match(IMMEDIATE_PARENT_REGEX)
 
     if (matches !== null) {

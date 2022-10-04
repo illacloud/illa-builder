@@ -54,7 +54,7 @@ const store = configureStore({
     builderInfo: builderInfoReducer,
     resource: resourceReducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ["execution/setExecutionResultReducer"],

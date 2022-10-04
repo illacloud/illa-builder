@@ -55,8 +55,9 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
-    useState<boolean>(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] = useState<
+    boolean
+  >(false)
 
   const showDeleteDialog = (displayName: string[]) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {

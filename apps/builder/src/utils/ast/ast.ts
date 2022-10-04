@@ -125,7 +125,7 @@ const getFunctionalParamsFromNode = (
   node: FunctionDeclarationNode | FunctionExpressionNode,
 ): Set<string> => {
   const functionalParams = new Set<string>()
-  node.params.forEach(paramNode => {
+  node.params.forEach((paramNode) => {
     if (isIdentifierNode(paramNode)) {
       functionalParams.add(paramNode.name)
     } else if (isAssignmentPatternNode(paramNode)) {
@@ -284,8 +284,8 @@ export const extractIdentifiersFromCode = (code: string): string[] => {
   })
 
   // Remove declared variables and function params
-  variableDeclarations.forEach(variable => identifiers.delete(variable))
-  functionalParams.forEach(param => identifiers.delete(param))
+  variableDeclarations.forEach((variable) => identifiers.delete(variable))
+  functionalParams.forEach((param) => identifiers.delete(param))
 
   return Array.from(identifiers)
 }

@@ -11,7 +11,7 @@ import {
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 
-export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
+export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
   const { visible, onClose } = props
   const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
 

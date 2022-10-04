@@ -27,24 +27,24 @@ export const getExecution = (state: RootState) => state.currentApp.execution
 
 export const getExecutionResult = createSelector(
   [getExecution],
-  execution => execution.result,
+  (execution) => execution.result,
 )
 
 export const getExecutionError = createSelector(
   [getExecution],
-  execution => execution.error ?? {},
+  (execution) => execution.error ?? {},
 )
 
 export const getExecutionDebuggerData = createSelector(
   [getExecution],
-  execution => execution.debuggerData ?? {},
+  (execution) => execution.debuggerData ?? {},
 )
 
 export const getWidgetExecutionResult = createSelector(
   [getExecutionResult],
-  executionResult => {
+  (executionResult) => {
     const widgetExecutionResult: Record<string, any> = {}
-    Object.keys(executionResult).forEach(key => {
+    Object.keys(executionResult).forEach((key) => {
       const widgetOrAction = executionResult[key]
       if (widgetOrAction.$type === "WIDGET") {
         widgetExecutionResult[key] = widgetOrAction
@@ -56,9 +56,9 @@ export const getWidgetExecutionResult = createSelector(
 
 export const getWidgetExecutionResultArray = createSelector(
   [getWidgetExecutionResult],
-  widgetExecutionResult => {
+  (widgetExecutionResult) => {
     const widgetExecutionResultArray: Record<string, any>[] = []
-    Object.keys(widgetExecutionResult).forEach(key => {
+    Object.keys(widgetExecutionResult).forEach((key) => {
       widgetExecutionResultArray.push({
         ...widgetExecutionResult[key],
         displayName: key,
@@ -70,9 +70,9 @@ export const getWidgetExecutionResultArray = createSelector(
 
 export const getActionExecutionResult = createSelector(
   [getExecutionResult],
-  executionResult => {
+  (executionResult) => {
     const actionExecutionResult: Record<string, any> = {}
-    Object.keys(executionResult).forEach(key => {
+    Object.keys(executionResult).forEach((key) => {
       const widgetOrAction = executionResult[key]
       if (widgetOrAction.$type === "ACTION") {
         actionExecutionResult[key] = widgetOrAction
@@ -84,9 +84,9 @@ export const getActionExecutionResult = createSelector(
 
 export const getActionExecutionResultArray = createSelector(
   [getActionExecutionResult],
-  actionExecutionResult => {
+  (actionExecutionResult) => {
     const actionExecutionResultArray: Record<string, any>[] = []
-    Object.keys(actionExecutionResult).forEach(key => {
+    Object.keys(actionExecutionResult).forEach((key) => {
       actionExecutionResultArray.push({
         ...actionExecutionResult[key],
         displayName: key,

@@ -46,9 +46,9 @@ export const PostgreConfigElement: FC<PostgreConfigElementProps> = (props) => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<PostgreSqlResource>
+    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
+      PostgreSqlResource
+    >
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)

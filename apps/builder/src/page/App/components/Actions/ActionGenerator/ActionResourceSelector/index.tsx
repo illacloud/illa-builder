@@ -110,8 +110,9 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
           <Button
             colorScheme="techPurple"
             onClick={() => {
-              const displayName =
-                DisplayNameGenerator.generateDisplayName(actionType)
+              const displayName = DisplayNameGenerator.generateDisplayName(
+                actionType,
+              )
               const initialContent = getInitialContent(actionType)
               const data: Partial<ActionItem<ActionContent>> = {
                 actionType,

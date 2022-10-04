@@ -19,7 +19,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsState"
 import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
 
-export const reduxAsync: Redux.Middleware = store => next => action => {
+export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const { type, payload } = action
   const typeList = type.split("/")
   const reduxType = typeList[0]
@@ -62,7 +62,7 @@ export const reduxAsync: Redux.Middleware = store => next => action => {
             break
           case "copyComponentReducer":
             const copyComponentPayload = (payload as CopyComponentPayload[]).map(
-              copyShape => copyShape.newComponentNode,
+              (copyShape) => copyShape.newComponentNode,
             )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(

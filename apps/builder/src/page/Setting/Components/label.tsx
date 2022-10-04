@@ -5,7 +5,7 @@ import {
   labelStyles,
 } from "@/page/Setting/Components/style"
 
-export const SettingLabel: FC<LabelProps> = props => {
+export const SettingLabel: FC<LabelProps> = (props) => {
   const { label, extInfo } = props
 
   return (

@@ -12,7 +12,7 @@ import {
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { TransformerPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 
-export const TransformerPanel: FC<TransformerPanelProps> = props => {
+export const TransformerPanel: FC<TransformerPanelProps> = (props) => {
   const action = props.action
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -33,7 +33,7 @@ export const TransformerPanel: FC<TransformerPanelProps> = props => {
         height="88px"
         expectedType={VALIDATION_TYPES.STRING}
         mode="JAVASCRIPT"
-        onChange={value => {
+        onChange={(value) => {
           dispatch(
             configActions.updateSelectedAction({
               ...action,

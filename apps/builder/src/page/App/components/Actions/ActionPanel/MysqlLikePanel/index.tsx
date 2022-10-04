@@ -38,7 +38,7 @@ const convertResourcesToTables = (data: Record<string, unknown>) => {
   return res
 }
 
-export const MysqlLikePanel: FC<MysqlLikePanelProps> = props => {
+export const MysqlLikePanel: FC<MysqlLikePanelProps> = (props) => {
   const dispatch = useDispatch()
 
   const currentAction = props.action
@@ -77,7 +77,7 @@ export const MysqlLikePanel: FC<MysqlLikePanelProps> = props => {
         }
         expectedType={VALIDATION_TYPES.STRING}
         tables={sqlTable}
-        onChange={value => {
+        onChange={(value) => {
           dispatch(
             configActions.updateSelectedAction({
               ...currentAction,

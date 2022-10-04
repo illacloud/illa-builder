@@ -4,7 +4,7 @@ import { MoreIcon } from "@illa-design/icon"
 import { ActionMenu } from "@/page/App/components/PanelSetters/OptionListSetter/actionMenu"
 import { MoreProps } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 
-export const More: FC<MoreProps> = props => {
+export const More: FC<MoreProps> = (props) => {
   const { index } = props
 
   const [actionMenuVisible, setActionMenuVisible] = useState(false)
@@ -19,7 +19,7 @@ export const More: FC<MoreProps> = props => {
       }
       trigger="click"
       position="bottom-end"
-      onVisibleChange={visible => {
+      onVisibleChange={(visible) => {
         setActionMenuVisible(visible)
       }}
     >

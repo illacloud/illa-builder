@@ -10,7 +10,7 @@ import { ResourceTypeSelector } from "@/page/Dashboard/components/ResourceGenera
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 
-export const ResourceGenerator: FC<ResourceGeneratorProps> = props => {
+export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
   const { visible, onClose } = props
   const [currentStep, setCurrentStep] = useState<ResourceCreatorPage>("select")
 
@@ -49,7 +49,7 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = props => {
     >
       {currentStep === "select" && (
         <ResourceTypeSelector
-          onSelect={resourceType => {
+          onSelect={(resourceType) => {
             setCurrentStep("createResource")
             setCurrentResource(resourceType)
           }}
