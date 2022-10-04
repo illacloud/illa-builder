@@ -15,7 +15,9 @@ import { ChartDatasetShape } from "@/page/App/components/PanelSetters/ChartSette
 import { ChartType } from "chart.js"
 import { CHART_PRESET_COLOR } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 
-export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
+export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
+  props,
+) => {
   const {
     widgetDisplayName,
     attrName,
@@ -29,14 +31,14 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    rootState => {
+    (rootState) => {
       const executionTree = getExecutionResult(rootState)
       return get(executionTree, widgetDisplayName, {})
     },
   )
 
   const insertValues = useSelector<RootState, Record<string, any>>(
-    rootState => {
+    (rootState) => {
       const targetComponentNode = searchDsl(
         getCanvas(rootState),
         widgetDisplayName,
@@ -62,7 +64,7 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
 
   const selectedOptions = useMemo(() => {
     if (!isObject(dataSources)) return []
-    return Object.keys(dataSources).map(key => key)
+    return Object.keys(dataSources).map((key) => key)
   }, [dataSources])
 
   const datasets: ChartDatasetShape[] = useMemo(() => {
@@ -73,7 +75,7 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = props => {
     (isGroupBy: boolean) => {
       if (!datasets.length) return []
       if (isGroupBy) {
-        return datasets.map(dataset => {
+        return datasets.map((dataset) => {
           return {
             ...dataset,
             color: "illa-preset",

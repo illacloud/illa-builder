@@ -36,7 +36,7 @@ export const ResourceEditor: FC<ActionGeneratorProps> = function(props) {
     >
       {step === "select-type" ? (
         <ActionTypeSelector
-          onSelect={info => {
+          onSelect={(info) => {
             const { category, actionType } = info
             setCategory(category)
             switch (category) {

@@ -10,7 +10,7 @@ import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedDate: FC<WrappedDateProps> = props => {
+export const WrappedDate: FC<WrappedDateProps> = (props) => {
   const {
     value,
     dateFormat,
@@ -25,7 +25,7 @@ export const WrappedDate: FC<WrappedDateProps> = props => {
   } = props
 
   const checkRange = useCallback(
-    current => {
+    (current) => {
       const beforeMinDate = minDate
         ? !!current?.isBefore(dayjs(minDate))
         : false
@@ -49,7 +49,7 @@ export const WrappedDate: FC<WrappedDateProps> = props => {
       onClear={() => {
         handleUpdateDsl({ value: "" })
       }}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({ value })
       }}
     />
@@ -58,7 +58,7 @@ export const WrappedDate: FC<WrappedDateProps> = props => {
 
 WrappedDate.displayName = "WrappedDate"
 
-export const DateWidget: FC<DateWidgetProps> = props => {
+export const DateWidget: FC<DateWidgetProps> = (props) => {
   const {
     value,
     dateFormat,

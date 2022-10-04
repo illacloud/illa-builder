@@ -12,7 +12,7 @@ export interface HeaderProps {
   hasAddAction: boolean
 }
 
-export const Header: FC<HeaderProps> = props => {
+export const Header: FC<HeaderProps> = (props) => {
   const { labelName, addAction, hasAddAction } = props
   return (
     <div css={HeaderWrapperStyle}>

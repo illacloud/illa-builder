@@ -41,7 +41,7 @@ export const RESTAPIConfigure = forwardRef<
 >((props, ref) => {
   const { resourceId, onSubmit } = props
   const resourceConfig = useSelector(getAllResources).find(
-    i => i.resourceId === resourceId,
+    (i) => i.resourceId === resourceId,
   )
   const {
     handleSubmit,
@@ -64,7 +64,7 @@ export const RESTAPIConfigure = forwardRef<
     },
   })
 
-  const submitForm: SubmitHandler<RESTAPIConfigureValues> = data => {
+  const submitForm: SubmitHandler<RESTAPIConfigureValues> = (data) => {
     onSubmit?.({
       resourceName: data.resourceName,
       resourceType: "restapi",

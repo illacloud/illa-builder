@@ -21,7 +21,7 @@ interface ListItemProps {
   index: number
 }
 
-export const ListItem: FC<ListItemProps> = props => {
+export const ListItem: FC<ListItemProps> = (props) => {
   const { value, index } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
@@ -103,7 +103,7 @@ export const ListItem: FC<ListItemProps> = props => {
       showArrow={false}
       position="left"
       clickOutsideToClose
-      onVisibleChange={visible => {
+      onVisibleChange={(visible) => {
         setModalVisible(visible)
       }}
     >
@@ -113,14 +113,14 @@ export const ListItem: FC<ListItemProps> = props => {
           <CopyIcon
             css={copyIconStyle}
             id="copyIcon"
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation()
               handleCopyOptionItem(index)
             }}
           />
           <ReduceIcon
             css={iconStyle}
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation()
               handleDeleteOptionItem(index)
             }}

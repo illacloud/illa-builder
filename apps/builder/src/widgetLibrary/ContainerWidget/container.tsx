@@ -5,7 +5,7 @@ import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const ContainerWidget: FC<ContainerProps> = props => {
+export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
     handleOnClick,
     currentViewIndex,
@@ -46,12 +46,12 @@ export const ContainerWidget: FC<ContainerProps> = props => {
 
   const finalCurrentComponentNode = useMemo(() => {
     return currentViewComponents
-      .map(displayName => {
-        return componentNode.childrenNode.find(node => {
+      .map((displayName) => {
+        return componentNode.childrenNode.find((node) => {
           return node.displayName === displayName
         })
       })
-      .filter(node => !!node)
+      .filter((node) => !!node)
   }, [currentViewComponents, componentNode])
 
   const finalComponentNode = useMemo(() => {
@@ -67,7 +67,7 @@ export const ContainerWidget: FC<ContainerProps> = props => {
       currentViewIndex,
       viewList,
       setCurrentViewKey: (key: string) => {
-        const index = viewList.findIndex(viewItem => viewItem.key === key)
+        const index = viewList.findIndex((viewItem) => viewItem.key === key)
         if (index === -1) return
         handleUpdateDsl({ currentViewIndex: index, currentViewKey: key })
       },

@@ -7,7 +7,9 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { get } from "lodash"
 import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 
-export const ContainerDefaultViewKeySetter: FC<ContainerDefaultViewKeySetterProps> = props => {
+export const ContainerDefaultViewKeySetter: FC<ContainerDefaultViewKeySetterProps> = (
+  props,
+) => {
   const {
     attrName,
     handleUpdateMultiAttrDSL,
@@ -18,7 +20,7 @@ export const ContainerDefaultViewKeySetter: FC<ContainerDefaultViewKeySetterProp
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    rootState => {
+    (rootState) => {
       const executionTree = getExecutionResult(rootState)
       return get(executionTree, widgetDisplayName, {})
     },
@@ -30,7 +32,7 @@ export const ContainerDefaultViewKeySetter: FC<ContainerDefaultViewKeySetterProp
 
   const handleUpdateDefaultView = useCallback(
     (attrPath: string, value: string) => {
-      const defaultViewIndex = realViews.findIndex(view => view.key === value)
+      const defaultViewIndex = realViews.findIndex((view) => view.key === value)
       let currentIndex = 0
       let currentKey = realViews[currentIndex].key
       if (defaultViewIndex > -1) {

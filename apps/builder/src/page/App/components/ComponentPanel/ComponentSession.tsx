@@ -16,7 +16,7 @@ export const ComponentSession = memo((props: ComponentSessionProps) => {
     <div css={sessionContainerStyle}>
       <span css={sessionTitleStyle}>{t(title)}</span>
       <div css={componentListContainerStyle}>
-        {widgetCardInfos.map(item => (
+        {widgetCardInfos.map((item) => (
           <ComponentItem key={item.id} {...item} />
         ))}
       </div>

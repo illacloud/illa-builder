@@ -5,7 +5,7 @@ import { BearerAuthProps } from "./interface"
 import i18n from "@/i18n/config"
 import { labelTextStyle } from "../MySQLConfigure/style"
 
-export const BearerAuth: FC<BearerAuthProps> = props => {
+export const BearerAuth: FC<BearerAuthProps> = (props) => {
   const { control } = props
 
   return (

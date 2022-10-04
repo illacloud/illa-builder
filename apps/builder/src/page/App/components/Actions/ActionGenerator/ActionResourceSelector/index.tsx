@@ -17,7 +17,9 @@ import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import dayjs from "dayjs"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 
-export const ActionResourceSelector: FC<ActionResourceSeletorProps> = props => {
+export const ActionResourceSelector: FC<ActionResourceSeletorProps> = (
+  props,
+) => {
   const {
     actionType,
     loading,
@@ -27,7 +29,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = props => {
     defaultSelected = "",
   } = props
   const resourceList = useSelector(getAllResources)
-    .filter(r => r.resourceType === actionType)
+    .filter((r) => r.resourceType === actionType)
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -55,7 +57,7 @@ export const ActionResourceSelector: FC<ActionResourceSeletorProps> = props => {
       </div>
 
       <div css={listStyle}>
-        {resourceList.map(r => (
+        {resourceList.map((r) => (
           <div
             key={r.resourceId}
             css={applyResourceItemStyle(r.resourceId === selectedResourceId)}

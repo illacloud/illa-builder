@@ -6,7 +6,7 @@ import {
   keyPressComponentStyle,
 } from "@/widgetLibrary/ContainerWidget/style"
 
-export const KeyPressComponent: FC = props => {
+export const KeyPressComponent: FC = (props) => {
   return <span css={keyPressComponentStyle}>{props.children}</span>
 }
 

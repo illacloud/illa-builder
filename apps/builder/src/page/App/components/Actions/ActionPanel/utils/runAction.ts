@@ -30,7 +30,7 @@ function calcRealContent(content: Record<string, any>) {
     // @ts-ignore
     const value = content[key]
     if (Array.isArray(value)) {
-      realContent[key] = value.map(item => {
+      realContent[key] = value.map((item) => {
         return calcRealContent(item)
       })
     }
@@ -95,7 +95,7 @@ const fetchActionResult = (
         content: actionContent,
       },
     },
-    data => {
+    (data) => {
       // @ts-ignore
       //TODO: @aruseito not use any
       const rawData = data.data.Rows
@@ -105,27 +105,27 @@ const fetchActionResult = (
       if (!isTrigger) {
         store.dispatch(executionActions.startExecutionReducer())
       }
-      successEvent.forEach(scriptObj => {
+      successEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     },
-    res => {
+    (res) => {
       resultCallback?.(res.data, true)
-      failedEvent.forEach(scriptObj => {
+      failedEvent.forEach((scriptObj) => {
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     },
-    res => {
+    (res) => {
       resultCallback?.(res, true)
       Message.error("not online")
     },
-    loading => {},
+    (loading) => {},
   )
 }
 
 function getRealEventHandler(eventHandler?: any[]) {
   const realEventHandler: any[] = []
-  eventHandler?.map(item => {
+  eventHandler?.map((item) => {
     const event: Record<string, any> = calcRealContent(item)
     realEventHandler.push(event)
   })

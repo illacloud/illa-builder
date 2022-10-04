@@ -19,7 +19,7 @@ import { ResourceChooseProps } from "@/page/App/components/Actions/ActionPanel/i
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { ResourceEditor } from "@/page/Dashboard/components/ResourceEditor"
 
-export const ResourceChoose: FC<ResourceChooseProps> = props => {
+export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
@@ -35,7 +35,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = props => {
   const realResourceId = useMemo(() => {
     let currentResourceId = action.resourceId
     const currentResource = resourceList.find(
-      r => r.resourceId === currentResourceId,
+      (r) => r.resourceId === currentResourceId,
     )
     if (currentResource) {
       return currentResourceId
@@ -51,8 +51,8 @@ export const ResourceChoose: FC<ResourceChooseProps> = props => {
           colorScheme="techPurple"
           w="200px"
           value={realResourceId}
-          onChange={value => {
-            const resource = resourceList.find(r => r.resourceId === value)
+          onChange={(value) => {
+            const resource = resourceList.find((r) => r.resourceId === value)
             if (resource != undefined) {
               dispatch(
                 configActions.updateSelectedAction({
@@ -99,7 +99,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = props => {
               {t("editor.action.panel.option.resource.new")}
             </Space>
           </Option>
-          {resourceList.map(item => {
+          {resourceList.map((item) => {
             return (
               <Option value={item.resourceId} key={item.resourceId}>
                 <Space size="8px" direction="horizontal" align="center">
@@ -114,7 +114,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = props => {
           colorScheme="techPurple"
           w="400px"
           value={action.triggerMode}
-          onChange={value => {
+          onChange={(value) => {
             dispatch(
               configActions.updateSelectedAction({
                 ...action,

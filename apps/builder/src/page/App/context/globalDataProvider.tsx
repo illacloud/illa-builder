@@ -74,14 +74,14 @@ export const GlobalDataProvider: FC<Props> = ({ children }) => {
   })
 
   const handleUpdateGlobalData = useCallback((key: string, value: any) => {
-    setGlobalData(prevState => ({
+    setGlobalData((prevState) => ({
       ...prevState,
       [key]: value,
     }))
   }, [])
 
   const handleDeleteGlobalData = useCallback((key: string) => {
-    setGlobalData(prevState => {
+    setGlobalData((prevState) => {
       const newGlobalData = cloneDeep(prevState)
       unset(newGlobalData, key)
       return newGlobalData

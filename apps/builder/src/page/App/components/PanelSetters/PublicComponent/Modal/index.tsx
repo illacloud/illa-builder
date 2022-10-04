@@ -5,7 +5,7 @@ import { ModalBody } from "./body"
 import { ModalProps } from "./interface"
 import { css } from "@emotion/react"
 
-export const BaseModal: FC<ModalProps> = props => {
+export const BaseModal: FC<ModalProps> = (props) => {
   const {
     title,
     handleCloseModal,

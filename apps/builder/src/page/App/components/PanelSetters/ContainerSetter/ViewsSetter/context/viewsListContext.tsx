@@ -29,7 +29,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 
 export const ViewListSetterContext = createContext<Inject>({} as Inject)
 
-export const ViewListSetterProvider: FC<ProviderProps> = props => {
+export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   const {
     viewsList,
     attrPath,
@@ -58,7 +58,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = props => {
   }, [executionResult, widgetDisplayName])
 
   const allViewsKeys = useMemo(() => {
-    return allViews.map(view => view.key)
+    return allViews.map((view) => view.key)
   }, [allViews])
 
   const handleDeleteOptionItem = useCallback(
@@ -141,7 +141,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = props => {
       newViews.splice(dragIndex, 1)
       newViews.splice(hoverIndex, 0, dragOptionItem)
       const newSelectedIndex = newViews.findIndex(
-        view => view.key === currentSelected.key,
+        (view) => view.key === currentSelected.key,
       )
       const newSelectedKey = newViews[newSelectedIndex].key
       handleUpdateMultiAttrDSL?.({

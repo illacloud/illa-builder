@@ -33,7 +33,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
     }, [attrName, executionResult, widgetDisplayName])
 
     const allViewsKeys = useMemo(() => {
-      return allViews.map(view => view.key)
+      return allViews.map((view) => view.key)
     }, [allViews])
 
     const viewComponentsArray = useMemo(() => {

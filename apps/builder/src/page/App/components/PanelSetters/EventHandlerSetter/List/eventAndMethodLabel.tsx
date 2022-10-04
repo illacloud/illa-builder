@@ -40,7 +40,7 @@ const getMethodName = (
   )
 }
 
-export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = props => {
+export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   const { index } = props
   const { t } = useTranslation()
   const [modalVisible, setModalVisible] = useState(false)
@@ -74,7 +74,7 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = props => {
       showArrow={false}
       position="left-start"
       clickOutsideToClose
-      onVisibleChange={visible => {
+      onVisibleChange={(visible) => {
         setModalVisible(visible)
       }}
     >

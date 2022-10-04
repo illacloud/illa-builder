@@ -25,11 +25,11 @@ import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAc
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
 
-export const ActionTitleBar: FC<ActionTitleBarProps> = props => {
+export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { action, onCopy, onDelete, onActionRun } = props
 
   const originAction = useSelector((state: RootState) => {
-    return state.currentApp.action.find(a => a.actionId === action.actionId)
+    return state.currentApp.action.find((a) => a.actionId === action.actionId)
   })
 
   const isChanged = JSON.stringify(action) !== JSON.stringify(originAction)
@@ -120,7 +120,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = props => {
                 () => {
                   Message.error(t("create_fail"))
                 },
-                l => {
+                (l) => {
                   setLoading(l)
                 },
               )
@@ -143,7 +143,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = props => {
                 () => {
                   Message.error(t("editor.action.panel.btn.save_fail"))
                 },
-                l => {
+                (l) => {
                   setLoading(l)
                 },
               )

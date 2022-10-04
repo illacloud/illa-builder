@@ -46,7 +46,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
       DisplayNameGenerator.removeDisplayName(displayName)
     },
     () => {},
-    loading => {},
+    (loading) => {},
   )
 }
 
@@ -67,6 +67,6 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
       Message.error(i18n.t("editor.action.action_list.message.failed"))
     },
     () => {},
-    loading => {},
+    (loading) => {},
   )
 }

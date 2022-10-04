@@ -17,7 +17,7 @@ export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
 
 WrappedDivider.displayName = "WrappedDivider"
 
-export const DividerWidget: FC<DividerWidgetProps> = props => {
+export const DividerWidget: FC<DividerWidgetProps> = (props) => {
   const {
     text,
     fs,

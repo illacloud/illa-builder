@@ -66,7 +66,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
         DisplayNameGenerator.removeDisplayName(displayName)
       },
       () => {},
-      loading => {
+      (loading) => {
         setLoading(loading)
       },
     )
@@ -91,7 +91,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
       {step === 0 ? (
         <ActionTypeSelector
           loading={loading}
-          onSelect={info => {
+          onSelect={(info) => {
             const { category, actionType } = info
 
             setCategory(category)
@@ -117,7 +117,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
             setStep(0)
             setResourceType(undefined)
           }}
-          onCreateResource={actionType => {
+          onCreateResource={(actionType) => {
             setResourceType(actionType)
             setStep(2)
           }}
@@ -134,7 +134,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
             setStep(0)
             setResourceType(undefined)
           }}
-          onCreated={resourceId => {
+          onCreated={(resourceId) => {
             setDefaultSelectedResourceId(resourceId)
             setStep(1)
           }}

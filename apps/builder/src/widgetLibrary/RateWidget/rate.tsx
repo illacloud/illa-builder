@@ -26,7 +26,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
       readonly={readOnly}
       allowClear={allowClear}
       value={value}
-      onChange={value => {
+      onChange={(value) => {
         handleUpdateDsl({ value })
       }}
     />
@@ -35,7 +35,7 @@ export const WrappedRate: FC<WrappedRateProps> = (props, ref) => {
 
 WrappedRate.displayName = "WrappedRate"
 
-export const RateWidget: FC<RateWidgetProps> = props => {
+export const RateWidget: FC<RateWidgetProps> = (props) => {
   const {
     value,
     allowClear,

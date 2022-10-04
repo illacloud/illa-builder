@@ -31,11 +31,11 @@ export const Shortcut: FC = ({ children }) => {
 
   const currentSelectedComponent = useSelector(getSelectedComponents)
   const currentSelectedComponentNode = useSelector<RootState, ComponentNode[]>(
-    rootState => {
-      const result = currentSelectedComponent.map(displayName => {
+    (rootState) => {
+      const result = currentSelectedComponent.map((displayName) => {
         return searchDSLByDisplayName(displayName)
       })
-      return result.filter(node => node) as ComponentNode[]
+      return result.filter((node) => node) as ComponentNode[]
     },
   )
 
@@ -47,7 +47,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "command+s,ctrl+s",
-    event => {
+    (event) => {
       event.preventDefault()
       Message.success(t("dont_need_save"))
     },
@@ -98,10 +98,10 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "Backspace",
-    event => {
+    (event) => {
       event.preventDefault()
       showDeleteDialog(
-        currentSelectedComponent.map(displayName => {
+        currentSelectedComponent.map((displayName) => {
           return displayName
         }),
       )
@@ -143,7 +143,7 @@ export const Shortcut: FC = ({ children }) => {
         case "canvas": {
           if (canvasRootNode) {
             const childNode = canvasRootNode.childrenNode
-            const childNodeDisplayNames = childNode.map(node => {
+            const childNodeDisplayNames = childNode.map((node) => {
               return node.displayName
             })
             dispatch(
@@ -224,7 +224,7 @@ export const Shortcut: FC = ({ children }) => {
 
   useHotkeys(
     "*",
-    keyboardEvent => {
+    (keyboardEvent) => {
       if (hotkeys.ctrl || hotkeys.command) {
         if (keyboardEvent.type === "keydown") {
           dispatch(configActions.updateShowDot(true))

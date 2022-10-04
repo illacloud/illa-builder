@@ -7,7 +7,7 @@ import { Button } from "@illa-design/button"
 import { DeleteIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
-export const RecordEditorItem: FC<RecordEditorItemProps> = props => {
+export const RecordEditorItem: FC<RecordEditorItemProps> = (props) => {
   const { record, onDelete } = props
 
   return (

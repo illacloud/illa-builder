@@ -22,7 +22,7 @@ const handleResize = (
   }
 }
 
-export const DragBar: FC<DragBarProps> = props => {
+export const DragBar: FC<DragBarProps> = (props) => {
   const { resizeRef, minHeight = 300, maxHeight } = props
   const [mouseDown, setMouseDown] = useState(false)
 

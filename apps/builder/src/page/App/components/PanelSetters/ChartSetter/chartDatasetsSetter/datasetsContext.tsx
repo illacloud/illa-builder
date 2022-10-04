@@ -20,7 +20,7 @@ interface ContextShape extends Omit<ProviderProps, "children"> {
 
 export const DatasetsContext = createContext<ContextShape>({} as ContextShape)
 
-export const DatasetsProvider: FC<ProviderProps> = props => {
+export const DatasetsProvider: FC<ProviderProps> = (props) => {
   const {
     children,
     datasets,

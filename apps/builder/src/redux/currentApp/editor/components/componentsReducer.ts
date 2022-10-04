@@ -30,7 +30,7 @@ export const addComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode[]>
 > = (state, action) => {
-  action.payload.forEach(dealNode => {
+  action.payload.forEach((dealNode) => {
     if (state == null || dealNode.parentNode == null) {
       return state
     } else {
@@ -57,7 +57,7 @@ export const copyComponentReducer: CaseReducer<
   ComponentsState,
   PayloadAction<CopyComponentPayload[]>
 > = (state, action) => {
-  action.payload.forEach(copyShape => {
+  action.payload.forEach((copyShape) => {
     const { newComponentNode, oldComponentNode } = copyShape
     if (state == null || newComponentNode.parentNode == null) {
       return state
@@ -87,11 +87,11 @@ export const deleteComponentNodeReducer: CaseReducer<
   }
   const rootNode = state
   const allDisplayNames = [...displayNames]
-  displayNames.forEach(value => {
+  displayNames.forEach((value) => {
     const searchNode = searchDsl(rootNode, value)
     if (!searchNode) return
     const searchNodeChildNodes = searchNode.childrenNode
-    searchNodeChildNodes.forEach(node => {
+    searchNodeChildNodes.forEach((node) => {
       allDisplayNames.push(node.displayName)
     })
     const parentNode = searchDsl(rootNode, searchNode.parentNode)
@@ -103,7 +103,7 @@ export const deleteComponentNodeReducer: CaseReducer<
       return
     }
 
-    const currentIndex = childrenNodes.findIndex(value => {
+    const currentIndex = childrenNodes.findIndex((value) => {
       return value.displayName === searchNode.displayName
     })
     childrenNodes.splice(currentIndex, 1)
@@ -159,10 +159,10 @@ export const updateComponentsShape: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentsShapePayload>
 > = (state, action) => {
-  action.payload.components.forEach(dealNode => {
+  action.payload.components.forEach((dealNode) => {
     const parentNode = searchDsl(state, dealNode.parentNode)
     if (parentNode != null) {
-      const index = parentNode.childrenNode.findIndex(value => {
+      const index = parentNode.childrenNode.findIndex((value) => {
         return value.displayName === dealNode.displayName
       })
       if (index > -1) {
@@ -176,14 +176,14 @@ export const updateComponentContainerReducer: CaseReducer<
   ComponentsState,
   PayloadAction<UpdateComponentContainerPayload>
 > = (state, action) => {
-  action.payload.updateSlice.forEach(slice => {
+  action.payload.updateSlice.forEach((slice) => {
     const currentNode = slice.component
     const oldParentDisplayName = slice.oldParentDisplayName
     const oldParentNode = searchDsl(state, oldParentDisplayName)
     let currentParentNode = searchDsl(state, currentNode.parentNode)
     if (oldParentNode == null || currentParentNode == null) return
     const oldChildrenNode = cloneDeep(oldParentNode.childrenNode)
-    const oldIndex = oldChildrenNode.findIndex(node => {
+    const oldIndex = oldChildrenNode.findIndex((node) => {
       return node.displayName === currentNode.displayName
     })
     if (oldIndex !== -1) {
@@ -209,10 +209,10 @@ export const updateComponentReflowReducer: CaseReducer<
   const targetNode = searchDsl(state, parentDisplayName)
   if (targetNode) {
     const childNodesDisplayNamesMap = new Map()
-    childNodes.forEach(node => {
+    childNodes.forEach((node) => {
       childNodesDisplayNamesMap.set(node.displayName, node)
     })
-    targetNode.childrenNode = targetNode.childrenNode?.map(node => {
+    targetNode.childrenNode = targetNode.childrenNode?.map((node) => {
       if (childNodesDisplayNamesMap.has(node.displayName)) {
         const newPositionNode = childNodesDisplayNamesMap.get(node.displayName)
         return {

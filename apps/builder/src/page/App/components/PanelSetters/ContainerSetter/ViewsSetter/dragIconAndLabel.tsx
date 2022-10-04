@@ -27,7 +27,7 @@ const OptionIcon: FC<optionIconProps> = ({ isSelected, onClick }) => {
   return <div css={applyOptionStyle(isSelected)} onClick={onClick} />
 }
 
-export const DragIconAndLabel: FC<DragIconAndLabelProps> = props => {
+export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index } = props
   const {
     widgetDisplayName,
@@ -55,7 +55,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = props => {
   }, [attrPath, executionResult, index, widgetDisplayName])
 
   const isDuplicationKey = useMemo(() => {
-    return otherViewKeys.some(viewKey => viewKey == currentViews.key)
+    return otherViewKeys.some((viewKey) => viewKey == currentViews.key)
   }, [otherViewKeys, currentViews])
 
   const labelName = useMemo(() => {
