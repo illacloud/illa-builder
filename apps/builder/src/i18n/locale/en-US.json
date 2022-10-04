@@ -10,6 +10,7 @@
   "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
   "collision_message": "Press D or K  and drag the component into container",
   "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
+  "freeze_collision": "Freeze collision",
   "description": {
     "part1": "This is an example without namespaces."
   },
