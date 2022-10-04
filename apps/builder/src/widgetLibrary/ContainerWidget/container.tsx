@@ -47,7 +47,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
   const finalCurrentComponentNode = useMemo(() => {
     return currentViewComponents
       .map((displayName) => {
-        return componentNode.childrenNode.find((node) => {
+        return componentNode.childrenNode?.find((node) => {
           return node.displayName === displayName
         })
       })

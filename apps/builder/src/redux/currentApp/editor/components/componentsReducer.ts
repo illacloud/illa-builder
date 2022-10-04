@@ -7,6 +7,7 @@ import {
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateContainerViewsComponentsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -230,7 +231,7 @@ export const updateComponentReflowReducer: CaseReducer<
 
 export const updateContainerViewsComponentsReducer: CaseReducer<
   ComponentsState,
-  PayloadAction<{ displayName: string; viewComponentsArray: string[][] }>
+  PayloadAction<UpdateContainerViewsComponentsPayload>
 > = (state, action) => {
   const { displayName, viewComponentsArray } = action.payload
   const targetComponents = searchDsl(state, displayName)

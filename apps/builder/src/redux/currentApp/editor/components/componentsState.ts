@@ -57,3 +57,8 @@ export interface CopyComponentPayload {
   oldComponentNode: ComponentNode
   newComponentNode: ComponentNode
 }
+
+export interface UpdateContainerViewsComponentsPayload {
+  displayName: string
+  viewComponentsArray: string[][]
+}

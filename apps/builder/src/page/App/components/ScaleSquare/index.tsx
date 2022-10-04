@@ -31,7 +31,7 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { Rnd, RndResizeCallback } from "react-rnd"
+import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
 import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { useDrag } from "react-dnd"
@@ -324,7 +324,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     }
   }, [isSelected, resizeDirection, scaleSquareState])
 
-  const handleResizeStart = () => {
+  const handleResizeStart: RndResizeStartCallback = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     dispatch(
       componentsActions.updateComponentsShape({
         isMove: false,
