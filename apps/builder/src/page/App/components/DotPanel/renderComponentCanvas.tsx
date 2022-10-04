@@ -39,6 +39,7 @@ import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceh
 import { cloneDeep, throttle } from "lodash"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
+import { FreezyPlaceholder } from "@/page/App/components/DotPanel/freezyPlaceholder"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -60,6 +61,9 @@ export const RenderComponentCanvas: FC<{
   const [lunchXY, setLunchXY] = useState([0, 0])
   const [canDrop, setCanDrop] = useState(true)
   const [rowNumber, setRowNumber] = useState(0)
+  const [collisionEffect, setCollisionEffect] = useState(
+    new Map<string, ComponentNode>(),
+  )
 
   const [canvasRef, bounds] = useMeasure()
   const currentCanvasRef = useRef<HTMLDivElement>(
@@ -222,7 +226,9 @@ export const RenderComponentCanvas: FC<{
               componentNode.displayName || "root",
               finalChildrenNodes,
             )
+            setCollisionEffect(new Map())
           } else {
+            setCollisionEffect(finalEffectResultMap)
           }
           setXY([rectCenterPosition.x, rectCenterPosition.y])
           setLunchXY([landingX, landingY])
@@ -432,6 +438,11 @@ export const RenderComponentCanvas: FC<{
         />
       )}
       {isShowCanvasDot && <div css={borderLineStyle} />}
+      <FreezyPlaceholder
+        effectMap={collisionEffect}
+        unitW={unitWidth}
+        unitH={UNIT_HEIGHT}
+      />
     </div>
   )
 }

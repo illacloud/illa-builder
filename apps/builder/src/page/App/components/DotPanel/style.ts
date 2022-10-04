@@ -108,3 +108,20 @@ export const borderLineStyle = css`
   height: 100%;
   border: 2px solid #f7f8fa;
 `
+
+export const applyFreezyPlaceholderShapeStyle = (
+  top: number,
+  left: number,
+  height: number,
+  width: number,
+) => {
+  return css`
+    position: absolute;
+    left: ${left}px;
+    top: ${top}px;
+    width: ${width}px;
+    height: ${height}px;
+    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    z-index: 6;
+  `
+}

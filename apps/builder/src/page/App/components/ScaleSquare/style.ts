@@ -276,6 +276,7 @@ export const applyMoveBarWrapperStyle = (
   selected: boolean,
   isEditor: boolean,
   position: MoveBarPositionShape,
+  isFreezy: boolean,
 ) => {
   let positionStyle = css`
     top: 0;
@@ -296,12 +297,15 @@ export const applyMoveBarWrapperStyle = (
       border-radius: 0 0 4px 4px;
     `
   }
+  const backgroundColorStyle = isFreezy
+    ? "transparent"
+    : isError
+    ? globalColor(`--${illaPrefix}-red-03`)
+    : globalColor(`--${illaPrefix}-techPurple-01`)
   return css`
     height: ${MOVE_BAR_HEIGHT}px;
     padding: 2px 4px 2px 0;
-    background-color: ${isError
-      ? globalColor(`--${illaPrefix}-red-03`)
-      : globalColor(`--${illaPrefix}-techPurple-01`)};
+    background-color: ${backgroundColorStyle};
     ${borderRadiusStyle};
     display: flex;
     position: absolute;
@@ -325,9 +329,22 @@ export const dragPointIconWrapperStyle = css`
   flex: none;
 `
 
+export const freezyIconStyle = css`
+  width: 12px;
+  height: 12px;
+  flex: none;
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+`
+
 export const moveBarDisplayNameStyle = css`
   overflow: hidden;
   text-overflow: ellipsis;
+`
+
+export const freezyTipsStyle = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
 `
 
 export const applyRNDWrapperStyle = (
