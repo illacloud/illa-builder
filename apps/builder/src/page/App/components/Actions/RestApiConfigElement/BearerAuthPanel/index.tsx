@@ -10,7 +10,7 @@ import { Input } from "@illa-design/input"
 import { BearerAuthPanelProps } from "./interface"
 import { useTranslation } from "react-i18next"
 
-export const BearerAuthPanel: FC<BearerAuthPanelProps> = props => {
+export const BearerAuthPanel: FC<BearerAuthPanelProps> = (props) => {
   const { control, auth } = props
 
   const { t } = useTranslation()

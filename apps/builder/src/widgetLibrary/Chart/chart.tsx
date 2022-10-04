@@ -50,7 +50,7 @@ ChartJS.register(
   LinearScale,
 )
 
-export const Chart: FC<ChartWidgetProps> = props => {
+export const Chart: FC<ChartWidgetProps> = (props) => {
   const { datasets, xAxis, chartType, chartTitle, xAxisName, yAxisName } = props
 
   const data = useMemo(() => {
@@ -155,7 +155,7 @@ export const Chart: FC<ChartWidgetProps> = props => {
   )
 }
 
-export const ChartWidget: FC<WrappedChartProps> = props => {
+export const ChartWidget: FC<WrappedChartProps> = (props) => {
   const {
     w,
     h,
@@ -202,11 +202,11 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
   const realDatasets: ChartDataset[] = useMemo(() => {
     if (!Array.isArray(datasets)) return []
     const result = datasets
-      .filter(dataset => {
+      .filter((dataset) => {
         if (dataset.isHidden == undefined) return true
         return !dataset.isHidden
       })
-      .map(dataset => {
+      .map((dataset) => {
         const {
           datasetValues,
           type,
@@ -227,7 +227,7 @@ export const ChartWidget: FC<WrappedChartProps> = props => {
           data = formatData(formatDataSources, datasetValues, aggregationMethod)
         } else {
           let keys: string[] = []
-          const r1 = Object.keys(formatDataSources).map(key => {
+          const r1 = Object.keys(formatDataSources).map((key) => {
             const value = formatDataSources[key]
             const groupData = groupByFunc(value, groupBy)
             keys.push(...Object.keys(groupData))

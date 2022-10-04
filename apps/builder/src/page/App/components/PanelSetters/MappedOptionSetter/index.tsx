@@ -4,7 +4,7 @@ import { listStyle, listWrapperStyle, optionListHeaderStyle } from "./style"
 import { renderFieldAndLabel } from "@/page/App/components/InspectPanel/utils/fieldFactory"
 import { useTranslation } from "react-i18next"
 
-export const MappedOptionSetter: FC<MappedOptionSetterProps> = props => {
+export const MappedOptionSetter: FC<MappedOptionSetterProps> = (props) => {
   const { attrName, labelName, childrenSetter, widgetDisplayName } = props
   const { t } = useTranslation()
 
@@ -14,7 +14,7 @@ export const MappedOptionSetter: FC<MappedOptionSetterProps> = props => {
         <div>{t(labelName)}</div>
       </div>
       <div css={listWrapperStyle}>
-        {childrenSetter?.map(child => {
+        {childrenSetter?.map((child) => {
           return renderFieldAndLabel(
             child,
             widgetDisplayName ?? "",

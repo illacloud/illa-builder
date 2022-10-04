@@ -28,7 +28,7 @@ export const useInitBuilderApp = (model: IllaMode) => {
         method: "GET",
         signal: controller.signal,
       },
-      response => {
+      (response) => {
         dispatch(configActions.updateIllaMode(model))
         dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
         dispatch(
@@ -57,9 +57,9 @@ export const useInitBuilderApp = (model: IllaMode) => {
           dispatch(configActions.changeSelectedAction(response.data.actions[0]))
         }
       },
-      e => {},
-      e => {},
-      loading => {
+      (e) => {},
+      (e) => {},
+      (loading) => {
         setLoadingState(loading)
       },
     )

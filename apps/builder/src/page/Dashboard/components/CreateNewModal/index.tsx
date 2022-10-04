@@ -10,7 +10,7 @@ import { Api } from "@/api/base"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useNavigate } from "react-router-dom"
 
-export const CreateNewModal: FC<CreateNewModalProps> = props => {
+export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   const { visible, onVisibleChange } = props
 
   const { t } = useTranslation()
@@ -49,7 +49,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = props => {
               appName: name,
             },
           },
-          response => {
+          (response) => {
             dispatch(
               dashboardAppActions.addDashboardAppReducer({
                 app: response.data,
@@ -57,12 +57,12 @@ export const CreateNewModal: FC<CreateNewModalProps> = props => {
             )
             navigate(`/app/${response.data.appId}`)
           },
-          failure => {},
-          error => {},
-          loading => {
+          (failure) => {},
+          (error) => {},
+          (loading) => {
             setLoading(loading)
           },
-          errorState => {
+          (errorState) => {
             if (errorState) {
               Message.error({ content: t("create_fail") })
             }
@@ -74,7 +74,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = props => {
     >
       <Input
         borderColor="techPurple"
-        onChange={res => {
+        onChange={(res) => {
           setName(res)
         }}
       />

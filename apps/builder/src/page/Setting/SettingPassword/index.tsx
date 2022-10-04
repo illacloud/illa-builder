@@ -155,23 +155,23 @@ export const SettingPassword: FC = () => {
           newPassword,
         },
       },
-      response => {
+      (response) => {
         setCurrentPassword("")
         setNewPassword("")
         setConfirmPassword("")
         Message.success(t("edit_success"))
       },
-      failure => {
+      (failure) => {
         //  TODO: need error code unique,to show error message
         const { data } = failure
         if (data?.errorCode === 400) {
           Message.error(failure.data.errorMessage)
         }
       },
-      crash => {
+      (crash) => {
         Message.error(t("network_error"))
       },
-      loading => {
+      (loading) => {
         setIsLoading(loading)
       },
     )

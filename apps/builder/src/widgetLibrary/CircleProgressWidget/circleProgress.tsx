@@ -45,7 +45,7 @@ export const WrappedCircleProgress = forwardRef<
 
 WrappedCircleProgress.displayName = "WrappedCircleProgress"
 
-export const CircleProgressWidget: FC<CircleProgressWidgetProps> = props => {
+export const CircleProgressWidget: FC<CircleProgressWidgetProps> = (props) => {
   const {
     value,
     showText,

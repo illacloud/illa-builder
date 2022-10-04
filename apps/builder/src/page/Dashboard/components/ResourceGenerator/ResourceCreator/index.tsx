@@ -7,10 +7,10 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 import { PostgreConfigElement } from "@/page/App/components/Actions/PostgreConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 
-export const ResourceCreator: FC<ResourceCreatorProps> = props => {
+export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(r => r.resourceId === resourceId)
+    return state.resource.find((r) => r.resourceId === resourceId)
   })
 
   const finalResourceType = resource ? resource.resourceType : resourceType

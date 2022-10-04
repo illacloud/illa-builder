@@ -6,13 +6,13 @@ import {
   radioGroupStyle,
 } from "@/page/App/components/PanelSetters/RadioGroupSetter/style"
 
-export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = props => {
+export const BaseRadioGroupSetter: FC<BaseRadioGroupProps> = (props) => {
   const { value, options, isSetterSingleRow, attrName, handleUpdateDsl } = props
 
   return (
     <div css={applyRadioGroupWrapperStyle(isSetterSingleRow)}>
       <RadioGroup
-        onChange={value => {
+        onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
         value={value}

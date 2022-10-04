@@ -8,7 +8,7 @@ import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/execu
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { getSelectedAction } from "@/redux/config/configSelector"
 
-export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = props => {
+export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
     isSetterSingleRow,
     attrName,
@@ -51,7 +51,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = props => {
   }, [selectedWidgetType])
 
   const finalValue = useMemo(() => {
-    const index = finalOptions.findIndex(option => {
+    const index = finalOptions.findIndex((option) => {
       return option === value
     })
     if (index !== -1 && selectedWidgetType !== undefined) return value
@@ -70,7 +70,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = props => {
         options={finalOptions}
         size="medium"
         value={finalValue}
-        onChange={value => {
+        onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
       />

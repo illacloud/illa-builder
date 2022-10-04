@@ -67,7 +67,7 @@ export const SettingTabNavBar: FC = () => {
         colorScheme="grayBlue"
         size="large"
         withoutContent
-        onChange={key => {
+        onChange={(key) => {
           switch (key) {
             case "account":
               navigate("./account")
@@ -81,7 +81,7 @@ export const SettingTabNavBar: FC = () => {
           }
         }}
       >
-        {TabItems.map(item => (
+        {TabItems.map((item) => (
           <TabPane title={item.title} key={item.key}></TabPane>
         ))}
       </Tabs>

@@ -21,7 +21,7 @@ export const Deploy: FC = () => {
     const subscriptions: Unsubscribe[] = [
       setupExecutionListeners(startAppListening),
     ]
-    return () => subscriptions.forEach(unsubscribe => unsubscribe())
+    return () => subscriptions.forEach((unsubscribe) => unsubscribe())
   }, [])
   return (
     <div css={deployContainerStyle}>

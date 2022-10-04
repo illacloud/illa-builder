@@ -5,7 +5,7 @@ import { configPanelStyle } from "./style"
 
 interface ConfigPanelProps extends HTMLAttributes<HTMLDivElement> {}
 
-export const ConfigPanel: FC<ConfigPanelProps> = props => {
+export const ConfigPanel: FC<ConfigPanelProps> = (props) => {
   const { className } = props
 
   return (

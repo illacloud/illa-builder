@@ -35,8 +35,11 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     const { displayName, type, w, h, unitW, unitH } = componentNode
 
     const displayNameMapProps = useSelector(getExecutionResult)
-    const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
-      useContext(GLOBAL_DATA_CONTEXT)
+    const {
+      handleUpdateGlobalData,
+      handleDeleteGlobalData,
+      globalData,
+    } = useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
     const allComponents = useSelector<RootState, ComponentNode[]>(
@@ -100,10 +103,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [allComponents, componentNode, dispatch],
     )
 
-    const realProps = useMemo(
-      () => displayNameMapProps[displayName] ?? {},
-      [displayName, displayNameMapProps],
-    )
+    const realProps = useMemo(() => displayNameMapProps[displayName] ?? {}, [
+      displayName,
+      displayNameMapProps,
+    ])
 
     const handleUpdateDsl = useCallback(
       (value: Record<string, any>) => {

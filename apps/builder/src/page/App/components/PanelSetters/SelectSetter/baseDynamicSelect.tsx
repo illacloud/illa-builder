@@ -10,7 +10,7 @@ import { Select } from "@illa-design/select"
 import { CodeEditor } from "@/components/CodeEditor"
 import { css } from "@emotion/react"
 
-export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = props => {
+export const BaseDynamicSelect: FC<BaseDynamicSelectSetterProps> = (props) => {
   const {
     labelName,
     labelDesc,

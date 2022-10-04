@@ -26,7 +26,7 @@ import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEd
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 
-export const RestApiPanel: FC<RestApiPanelProps> = props => {
+export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
@@ -36,9 +36,9 @@ export const RestApiPanel: FC<RestApiPanelProps> = props => {
 
   const currentResource = store
     .getState()
-    .resource.find(r => r.resourceId === currentAction.resourceId) as Resource<
-    RestApiResource<RestApiAuth>
-  >
+    .resource.find(
+      (r) => r.resourceId === currentAction.resourceId,
+    ) as Resource<RestApiResource<RestApiAuth>>
 
   return (
     <div css={restapiPanelContainerStyle}>
@@ -54,7 +54,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = props => {
           width="160px"
           maxW="160px"
           options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
-          onChange={value => {
+          onChange={(value) => {
             dispatch(configActions.updateSelectedApiMethod(value))
           }}
         />
@@ -73,7 +73,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = props => {
           expectedType={VALIDATION_TYPES.STRING}
           value={currentContent.url}
           mode="TEXT_JS"
-          onChange={value => {
+          onChange={(value) => {
             dispatch(
               configActions.updateSelectedAction({
                 ...currentAction,
@@ -162,15 +162,15 @@ export const RestApiPanel: FC<RestApiPanelProps> = props => {
       />
       {currentContent.method !== "GET" && (
         <BodyEditor
-          onChangeBody={body => {
+          onChangeBody={(body) => {
             dispatch(configActions.updateSelectedApiBody(body))
           }}
           body={currentContent.body}
           bodyType={currentContent.bodyType}
-          onChangeRawBodyType={rawBodyType => {
+          onChangeRawBodyType={(rawBodyType) => {
             dispatch(configActions.updateSelectedApiRawBodyType(rawBodyType))
           }}
-          onChangeBodyType={bodyType => {
+          onChangeBodyType={(bodyType) => {
             dispatch(configActions.updateSelectedApiBodyType(bodyType))
           }}
         />

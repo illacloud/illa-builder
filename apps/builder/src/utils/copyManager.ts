@@ -35,7 +35,7 @@ export class CopyManager {
         if (this.currentCopyComponentNodes != null) {
           store.dispatch(
             componentsActions.copyComponentReducer(
-              this.currentCopyComponentNodes.map(node => {
+              this.currentCopyComponentNodes.map((node) => {
                 return {
                   oldComponentNode: node,
                   newComponentNode: this.copyComponent(node),
@@ -77,7 +77,7 @@ export class CopyManager {
       componentNode.childrenNode != null &&
       componentNode.childrenNode.length > 0
     ) {
-      componentNode.childrenNode.forEach(node => {
+      componentNode.childrenNode.forEach((node) => {
         node = {
           ...node,
           displayName: DisplayNameGenerator.generateDisplayName(
