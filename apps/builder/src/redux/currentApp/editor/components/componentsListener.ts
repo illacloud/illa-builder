@@ -65,6 +65,40 @@ function handleUpdateComponentDisplayNameEffect(
   }
 }
 
+function handleUpdateComponentReflowEffect(
+  action: ReturnType<typeof componentsActions.updateComponentsShape>,
+  listenApi: AppListenerEffectAPI,
+) {
+  const rootState = listenApi.getState()
+  const rootNode = getCanvas(rootState)
+  const updateComponentsShapePayload = action.payload
+  const effectResultMap = new Map<string, ComponentNode>()
+  updateComponentsShapePayload.components.forEach((compopnentNode) => {
+    const parentNodeDisplayName = compopnentNode.parentNode
+    let parentNode = searchDsl(rootNode, parentNodeDisplayName)
+    if (!parentNode) {
+      return
+    }
+    if (effectResultMap.has(parentNode.displayName)) {
+      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
+    }
+    const childrenNodes = parentNode.childrenNode
+    const { finalState } = getReflowResult(compopnentNode, childrenNodes, false)
+    effectResultMap.set(parentNode.displayName, {
+      ...parentNode,
+      childrenNode: finalState,
+    })
+  })
+  effectResultMap.forEach((value, key) => {
+    listenApi.dispatch(
+      componentsActions.updateComponentReflowReducer({
+        parentDisplayName: key,
+        childNodes: value.childrenNode,
+      }),
+    )
+  })
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -76,6 +110,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateComponentDisplayNameReducer,
       effect: handleUpdateComponentDisplayNameEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateComponentsShape,
+      effect: handleUpdateComponentReflowEffect,
     }),
   ]
 

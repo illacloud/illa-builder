@@ -4,7 +4,7 @@ import {
   applyScaleContainerStyle,
   previewStyle,
   messageStyle,
-  messageWrapper,
+  messageWrapperStyle,
 } from "./style"
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
@@ -50,7 +50,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
           </Button>
           {/*TODO: replace this to illa-design/Message,when Message is ok*/}
           {isFreezy ? (
-            <div css={messageWrapper}>
+            <div css={messageWrapperStyle}>
               <span css={messageStyle}>
                 <LockIcon />
                 <span style={{ marginLeft: "8px" }}>

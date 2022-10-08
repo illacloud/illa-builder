@@ -16,15 +16,7 @@ export interface ScaleSquareProps extends HTMLAttributes<HTMLDivElement> {
   containerHeight: number
   containerPadding: number
   childrenNode: ComponentNode[]
-}
-
-export interface DragResize {
-  position: BarPosition
-  node: ComponentNode
-}
-
-export interface DragResizeCollected {
-  resizing: boolean
+  collisionEffect: Map<string, ComponentNode>
 }
 
 export interface MoveBarProps {
@@ -37,14 +29,6 @@ export interface MoveBarProps {
   widgetHeight: number
   containerHeight: number
   containerPadding: number
-}
-
-export interface DraggingScaleSquareProps {
-  isSelected: boolean
-  isShowCanvasDot: boolean
-  isDragging: boolean
-  scaleSquareState: ScaleSquareType
-  resizeDirection: RESIZE_DIRECTION
 }
 
 export interface MoveBarPositionShape {

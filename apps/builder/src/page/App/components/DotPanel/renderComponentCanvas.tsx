@@ -115,6 +115,7 @@ export const RenderComponentCanvas: FC<{
               containerHeight={containerHeight}
               containerPadding={containerPadding}
               childrenNode={componentNode.childrenNode}
+              collisionEffect={collisionEffect}
             />
           )
         default:
@@ -122,6 +123,7 @@ export const RenderComponentCanvas: FC<{
       }
     })
   }, [
+    collisionEffect,
     componentNode.childrenNode,
     componentNode.displayName,
     componentNode.h,
@@ -160,6 +162,9 @@ export const RenderComponentCanvas: FC<{
         return illaMode === "edit"
       },
       hover: (dragInfo, monitor) => {
+        if (!monitor.isOver({ shallow: true })) {
+          setCollisionEffect(new Map())
+        }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const { item } = dragInfo
           const dragResult = getDragResult(
@@ -209,8 +214,12 @@ export const RenderComponentCanvas: FC<{
            */
           if (indexOfChildrenNodes === -1) {
             const allChildrenNodes = [...childrenNodes, newItem]
-            const { finalState } = getReflowResult(newItem, allChildrenNodes)
+            const { finalState, effectResultMap } = getReflowResult(
+              newItem,
+              allChildrenNodes,
+            )
             finalChildrenNodes = finalState
+            finalEffectResultMap = effectResultMap
           } else {
             const indexOfChildren = childrenNodes.findIndex(
               (node) => node.displayName === newItem.displayName,
@@ -361,7 +370,7 @@ export const RenderComponentCanvas: FC<{
               )
             }
           }
-
+          setCollisionEffect(new Map())
           return {
             isDropOnCanvas: true,
           }

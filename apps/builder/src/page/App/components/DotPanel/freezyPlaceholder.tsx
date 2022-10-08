@@ -48,7 +48,7 @@ export const FreezyPlaceholder: FC<FreezyPlaceholderProps> = ({
   }, [componentNodesArray])
 
   const renderItem = useMemo(() => {
-    if (componentNodesArray.length <= 1) return null
+    if (componentNodesArray.length <= 0) return null
     return componentNodesArray.map((node) => {
       return (
         <div
@@ -64,17 +64,5 @@ export const FreezyPlaceholder: FC<FreezyPlaceholderProps> = ({
     })
   }, [componentNodesArray, unitH, unitW])
 
-  return effectMap.size ? (
-    <>
-      <div
-        css={applyFreezyPlaceholderShapeStyle(
-          largeWrapper[0] * unitH,
-          largeWrapper[1] * unitW,
-          largeWrapper[2] * unitH,
-          largeWrapper[3] * unitW,
-        )}
-      />
-      {renderItem}
-    </>
-  ) : null
+  return effectMap.size ? <>{renderItem}</> : null
 }

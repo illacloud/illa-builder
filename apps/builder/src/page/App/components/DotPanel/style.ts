@@ -81,6 +81,8 @@ export const applyDotLintRectangleStyle = (
     border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
     position: absolute;
     transform: translate(${x}px, ${y}px);
+    z-index: 6;
+    pointer-events: none;
   `
 }
 
@@ -100,6 +102,8 @@ export const applyRectangleStyle = (
     opacity: 0.16;
     position: absolute;
     transform: translate(${x}px, ${y}px);
+    z-index: 6;
+    pointer-events: none;
   `
 }
 

@@ -65,7 +65,10 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     containerPadding,
     containerHeight,
     childrenNode,
+    collisionEffect,
   } = props
+
+  const canRenderDashedLine = !collisionEffect.has(componentNode.displayName)
 
   const shortcut = useContext(ShortCutContext)
 
@@ -466,9 +469,15 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
           />
 
           <TransformWidgetWrapper componentNode={componentNode} />
-          <div
-            css={applyDashedLineStyle(isSelected, isShowCanvasDot, isDragging)}
-          />
+          {canRenderDashedLine && (
+            <div
+              css={applyDashedLineStyle(
+                isSelected,
+                isShowCanvasDot,
+                isDragging,
+              )}
+            />
+          )}
         </div>
       </Dropdown>
       <div css={dragPreviewStyle} ref={dragPreviewRef} />

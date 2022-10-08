@@ -22,7 +22,7 @@ export const previewStyle = css`
   right: 16px;
 `
 
-export const messageWrapper = css`
+export const messageWrapperStyle = css`
   top: 16px;
   position: absolute;
   width: 100%;
@@ -33,6 +33,7 @@ export const messageWrapper = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   z-index: 100;
+  pointer-events: none;
 `
 
 export const messageStyle = css`
