@@ -24,7 +24,10 @@ import { configActions } from "@/redux/config/configSlice"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
-import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
+import {
+  getExecutionError,
+  getExecutionResult,
+} from "@/redux/currentApp/executionTree/executionSelector"
 import {
   getIllaMode,
   getSelectedComponents,
@@ -69,6 +72,20 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   } = props
 
   const canRenderDashedLine = !collisionEffect.has(componentNode.displayName)
+  const displayNameMapProps = useSelector(getExecutionResult)
+
+  const displayNameInMoveBar = useMemo(() => {
+    if (componentNode.type === "CONTAINER_WIDGET") {
+      const { currentViewIndex, viewList } = displayNameMapProps
+      if (!Array.isArray(viewList) || currentViewIndex >= viewList.length)
+        return componentNode.displayName + " / " + "View 1"
+      const labelName = viewList[currentViewIndex]
+        ? viewList[currentViewIndex].label
+        : currentViewIndex
+      return componentNode.displayName + " / " + labelName
+    }
+    return componentNode.displayName
+  }, [componentNode.displayName, componentNode.type, displayNameMapProps])
 
   const shortcut = useContext(ShortCutContext)
 
@@ -458,7 +475,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         >
           <MoveBar
             isError={hasError}
-            displayName={componentNode.displayName}
+            displayName={displayNameInMoveBar}
             maxWidth={componentNode.w * unitW}
             selected={isSelected}
             isEditor={illaMode === "edit"}
