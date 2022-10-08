@@ -92,7 +92,7 @@ export const deleteComponentNodeReducer: CaseReducer<
     const searchNode = searchDsl(rootNode, value)
     if (!searchNode) return
     const searchNodeChildNodes = searchNode.childrenNode
-    searchNodeChildNodes.forEach((node) => {
+    searchNodeChildNodes?.forEach((node) => {
       allDisplayNames.push(node.displayName)
     })
     const parentNode = searchDsl(rootNode, searchNode.parentNode)
