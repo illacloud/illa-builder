@@ -770,7 +770,7 @@
       "name": "日期选择器"
     },
     "date_range": {
-      "name": "Date range"
+      "name": "日期范围选择器"
     },
     "image": {
       "name": "图片"
