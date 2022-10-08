@@ -56,11 +56,12 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     labelHidden,
     tooltipText,
     updateComponentHeight,
+    w,
   } = props
 
   const finalOptions = useMemo(() => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
-  }, [optionConfigureMode, manualOptions, mappedOption])
+  }, [optionConfigureMode, manualOptions, mappedOption, w])
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
