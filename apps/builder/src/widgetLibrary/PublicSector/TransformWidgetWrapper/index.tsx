@@ -199,8 +199,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     }, [getOnColumnFiltersChangeEventScripts, globalData])
 
     if (!type) return null
-    const COMP = widgetBuilder(type).widget
-    if (!COMP) return null
+    const widget = widgetBuilder(type)
+    if (!widget) return null
+    const Component = widget.widget
 
     const {
       hidden,
@@ -222,7 +223,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           shadow,
         )}
       >
-        <COMP
+        <Component
           {...realProps}
           w={w}
           h={h}

@@ -3,5 +3,6 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 
 export const panelBuilder = (type: WidgetType): PanelConfig[] | null => {
   if (!type) return null
+  if (!widgetBuilder(type)) return null
   return widgetBuilder(type).panelConfig
 }

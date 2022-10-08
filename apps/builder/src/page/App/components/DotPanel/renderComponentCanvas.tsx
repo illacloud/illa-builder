@@ -40,6 +40,7 @@ import { cloneDeep, throttle } from "lodash"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { FreezyPlaceholder } from "@/page/App/components/DotPanel/freezyPlaceholder"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -99,6 +100,8 @@ export const RenderComponentCanvas: FC<{
         case "EDITOR_DOT_PANEL":
           return <DotPanel componentNode={item} key={item.displayName} />
         case "EDITOR_SCALE_SQUARE":
+          const widget = widgetBuilder(item.type)
+          if (!widget) return null
           return (
             <ScaleSquare
               key={item.displayName}
