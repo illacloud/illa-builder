@@ -21,7 +21,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     parentAttrName,
     expectedType,
     defaultValue,
-    iconName,
+    icon,
   } = props
   const Comp = getSetterByType(setterType)
 
@@ -98,7 +98,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           parentAttrName={parentAttrName}
           widgetOrAction={widgetOrAction}
           defaultValue={defaultValue}
-          iconName={iconName}
+          icon={icon}
         />
       </div>
     ) : null
@@ -119,7 +119,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     parentAttrName,
     widgetOrAction,
     defaultValue,
-    iconName,
+    icon,
   ])
 
   return canRenderSetter ? (

@@ -16,8 +16,14 @@ import {
   UpdateComponentDisplayNamePayload,
   ComponentNode,
   CopyComponentPayload,
+  UpdateContainerViewsComponentsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { UpdateComponentsShapePayload } from "@/redux/currentApp/editor/components/componentsPayload"
+import {
+  UpdateComponentContainerPayload,
+  UpdateComponentsShapePayload,
+} from "@/redux/currentApp/editor/components/componentsPayload"
+import { updateComponentContainerReducer } from "@/redux/currentApp/editor/components/componentsReducer"
+import { cloneDeep } from "lodash"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const { type, payload } = action
@@ -112,6 +118,57 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 updateComponentReflowWSPayload,
+              ),
+            )
+            break
+          case "updateComponentContainerReducer":
+            const updateComponentContainerPayload: UpdateComponentContainerPayload = payload
+            const componentNodes = updateComponentContainerPayload.updateSlice.map(
+              (slice) => slice.component,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_MOVE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                componentNodes,
+              ),
+            )
+            break
+          case "updateContainerViewsComponentsReducer":
+            const updateContainerViewsComponentsPayload: UpdateContainerViewsComponentsPayload = payload
+            const targetComponents = searchDsl(
+              getCanvas(store.getState()),
+              updateContainerViewsComponentsPayload.displayName,
+            )
+            const finalNodeToUpdate = cloneDeep(targetComponents)
+
+            if (!finalNodeToUpdate) return
+            if (!finalNodeToUpdate.props) return
+            finalNodeToUpdate.props.viewComponentsArray =
+              updateContainerViewsComponentsPayload.viewComponentsArray
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [
+                  {
+                    before: {
+                      displayName:
+                        updateContainerViewsComponentsPayload.displayName,
+                    },
+                    after: finalNodeToUpdate,
+                  },
+                ],
               ),
             )
             break

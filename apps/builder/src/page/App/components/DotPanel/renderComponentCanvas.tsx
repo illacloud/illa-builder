@@ -10,7 +10,11 @@ import {
   useState,
 } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getIllaMode, isShowDot } from "@/redux/config/configSelector"
+import {
+  getFreezyState,
+  getIllaMode,
+  isShowDot,
+} from "@/redux/config/configSelector"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
 import { DotPanel } from "@/page/App/components/DotPanel/index"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
@@ -32,7 +36,11 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { throttle } from "lodash"
+import { cloneDeep, throttle } from "lodash"
+import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
+import { FreezyPlaceholder } from "@/page/App/components/DotPanel/freezyPlaceholder"
+import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -40,12 +48,23 @@ const BLOCK_COLUMNS = 64
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
   containerRef: RefObject<HTMLDivElement>
+  containerPadding: number
+  minHeight?: number
 }> = (props) => {
-  const { componentNode, containerRef } = props
+  const { componentNode, containerRef, containerPadding, minHeight } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
   const illaMode = useSelector(getIllaMode)
+  const isFreezyCanvas = useSelector(getFreezyState)
   const dispatch = useDispatch()
+
+  const [xy, setXY] = useState([0, 0])
+  const [lunchXY, setLunchXY] = useState([0, 0])
+  const [canDrop, setCanDrop] = useState(true)
+  const [rowNumber, setRowNumber] = useState(0)
+  const [collisionEffect, setCollisionEffect] = useState(
+    new Map<string, ComponentNode>(),
+  )
 
   const [canvasRef, bounds] = useMeasure()
   const currentCanvasRef = useRef<HTMLDivElement>(
@@ -58,16 +77,31 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    return childrenNode.map<ReactNode>((item) => {
+    if (
+      componentNode.type === "CONTAINER_WIDGET" &&
+      (!Array.isArray(componentNode.childrenNode) ||
+        componentNode.childrenNode.length === 0) &&
+      !isShowCanvasDot
+    ) {
+      return <ContainerEmptyState />
+    }
+    return childrenNode?.map<ReactNode>((item) => {
       const h = item.h * UNIT_HEIGHT
       const w = item.w * unitWidth
       const x = item.x * unitWidth
       const y = item.y * UNIT_HEIGHT
 
+      const containerHeight =
+        componentNode.displayName === "root"
+          ? rowNumber * UNIT_HEIGHT
+          : (componentNode.h - 1) * UNIT_HEIGHT
+
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
           return <DotPanel componentNode={item} key={item.displayName} />
         case "EDITOR_SCALE_SQUARE":
+          const widget = widgetBuilder(item.type)
+          if (!widget) return null
           return (
             <ScaleSquare
               key={item.displayName}
@@ -78,18 +112,27 @@ export const RenderComponentCanvas: FC<{
               y={y}
               unitW={unitWidth}
               unitH={UNIT_HEIGHT}
+              containerHeight={containerHeight}
+              containerPadding={containerPadding}
+              childrenNode={componentNode.childrenNode}
+              collisionEffect={collisionEffect}
             />
           )
         default:
           return null
       }
     })
-  }, [componentNode.childrenNode, unitWidth])
-
-  const [xy, setXY] = useState([0, 0])
-  const [lunchXY, setLunchXY] = useState([0, 0])
-  const [canDrop, setCanDrop] = useState(true)
-  const [rowNumber, setRowNumber] = useState(0)
+  }, [
+    collisionEffect,
+    componentNode.childrenNode,
+    componentNode.displayName,
+    componentNode.h,
+    componentNode.type,
+    containerPadding,
+    isShowCanvasDot,
+    rowNumber,
+    unitWidth,
+  ])
 
   const updateComponentPositionByReflow = useCallback(
     (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
@@ -119,7 +162,10 @@ export const RenderComponentCanvas: FC<{
         return illaMode === "edit"
       },
       hover: (dragInfo, monitor) => {
-        if (monitor.getClientOffset()) {
+        if (!monitor.isOver({ shallow: true })) {
+          setCollisionEffect(new Map())
+        }
+        if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const { item } = dragInfo
           const dragResult = getDragResult(
             monitor,
@@ -143,12 +189,14 @@ export const RenderComponentCanvas: FC<{
             })
           }
 
-          const childrenNodes = dragInfo.childrenNodes
+          const childrenNodes = dragInfo.childrenNodes.filter(
+            (node) => node.parentNode === componentNode.displayName,
+          )
           const indexOfChildrenNodes = childrenNodes.findIndex(
             (node) => node.displayName === item.displayName,
           )
           let finalChildrenNodes: ComponentNode[] = []
-
+          let finalEffectResultMap: Map<string, ComponentNode> = new Map()
           /**
            * generate component node with new position
            */
@@ -166,30 +214,44 @@ export const RenderComponentCanvas: FC<{
            */
           if (indexOfChildrenNodes === -1) {
             const allChildrenNodes = [...childrenNodes, newItem]
-            const { finalState } = getReflowResult(newItem, allChildrenNodes)
+            const { finalState, effectResultMap } = getReflowResult(
+              newItem,
+              allChildrenNodes,
+            )
             finalChildrenNodes = finalState
+            finalEffectResultMap = effectResultMap
           } else {
             const indexOfChildren = childrenNodes.findIndex(
               (node) => node.displayName === newItem.displayName,
             )
             const allChildrenNodes = [...childrenNodes]
             allChildrenNodes.splice(indexOfChildren, 1, newItem)
-            const { finalState } = getReflowResult(newItem, allChildrenNodes)
+            const { finalState, effectResultMap } = getReflowResult(
+              newItem,
+              allChildrenNodes,
+            )
             finalChildrenNodes = finalState
+            finalEffectResultMap = effectResultMap
           }
-
-          debounceUpdateComponentPositionByReflow(
-            componentNode.displayName || "root",
-            finalChildrenNodes,
-          )
+          if (!isFreezyCanvas) {
+            debounceUpdateComponentPositionByReflow(
+              componentNode.displayName || "root",
+              finalChildrenNodes,
+            )
+            setCollisionEffect(new Map())
+          } else {
+            setCollisionEffect(finalEffectResultMap)
+          }
           setXY([rectCenterPosition.x, rectCenterPosition.y])
           setLunchXY([landingX, landingY])
           setCanDrop(isOverstep)
         }
       },
       drop: (dragInfo, monitor) => {
+        const isDrop = monitor.didDrop()
+        const { item } = dragInfo
+        if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
-          const { item } = dragInfo
           const dragResult = getDragResult(
             monitor,
             containerRef,
@@ -204,6 +266,7 @@ export const RenderComponentCanvas: FC<{
           /**
            * generate component node with new position
            */
+          const oldParentNodeDisplayName = item.parentNode || "root"
           const newItem = {
             ...item,
             parentNode: componentNode.displayName || "root",
@@ -213,16 +276,101 @@ export const RenderComponentCanvas: FC<{
             unitH: UNIT_HEIGHT,
             isDragging: false,
           }
+
+          /**
+           * add new nodes
+           */
           if (item.x === -1 && item.y === -1) {
             dispatch(componentsActions.addComponentReducer([newItem]))
+            if (componentNode.type === "CONTAINER_WIDGET") {
+              const currentViewIndex =
+                componentNode.props?.currentViewIndex || 0
+              const currentViewComponentsArray = cloneDeep(
+                componentNode.props?.viewComponentsArray,
+              ) || [[]]
+              if (currentViewIndex < currentViewComponentsArray.length) {
+                const currentViewComponents =
+                  currentViewComponentsArray[currentViewIndex]
+                currentViewComponents.push(newItem.displayName)
+                dispatch(
+                  componentsActions.updateContainerViewsComponentsReducer({
+                    displayName: componentNode.displayName,
+                    viewComponentsArray: currentViewComponentsArray,
+                  }),
+                )
+              }
+            }
           } else {
-            dispatch(
-              componentsActions.updateComponentsShape({
-                isMove: false,
-                components: [newItem],
-              }),
-            )
+            /**
+             * update node when change container
+             */
+            if (oldParentNodeDisplayName !== componentNode.displayName) {
+              dispatch(
+                componentsActions.updateComponentContainerReducer({
+                  isMove: false,
+                  updateSlice: [
+                    {
+                      component: newItem,
+                      oldParentDisplayName: oldParentNodeDisplayName,
+                    },
+                  ],
+                }),
+              )
+              const oldParentNode = searchDSLByDisplayName(
+                oldParentNodeDisplayName,
+              )
+              if (componentNode.type === "CONTAINER_WIDGET") {
+                const currentViewIndex =
+                  componentNode.props?.currentViewIndex || 0
+                const currentViewComponentsArray = cloneDeep(
+                  componentNode.props?.viewComponentsArray,
+                ) || [[]]
+                if (currentViewIndex < currentViewComponentsArray.length) {
+                  const currentViewComponents =
+                    currentViewComponentsArray[currentViewIndex]
+                  currentViewComponents.push(newItem.displayName)
+                  dispatch(
+                    componentsActions.updateContainerViewsComponentsReducer({
+                      displayName: componentNode.displayName,
+                      viewComponentsArray: currentViewComponentsArray,
+                    }),
+                  )
+                }
+              }
+              if (oldParentNode && oldParentNode.type === "CONTAINER_WIDGET") {
+                const currentViewIndex =
+                  oldParentNode.props?.currentViewIndex || 0
+                const currentViewComponentsArray = cloneDeep(
+                  oldParentNode.props?.viewComponentsArray,
+                ) || [[]]
+                if (currentViewIndex < currentViewComponentsArray.length) {
+                  const currentViewComponents = currentViewComponentsArray[
+                    currentViewIndex
+                  ] as string[]
+                  const indexOfNewItem = currentViewComponents.findIndex(
+                    (displayName) => displayName === newItem.displayName,
+                  )
+                  if (indexOfNewItem !== -1) {
+                    currentViewComponents.splice(indexOfNewItem, 1)
+                    dispatch(
+                      componentsActions.updateContainerViewsComponentsReducer({
+                        displayName: oldParentNodeDisplayName,
+                        viewComponentsArray: currentViewComponentsArray,
+                      }),
+                    )
+                  }
+                }
+              }
+            } else {
+              dispatch(
+                componentsActions.updateComponentsShape({
+                  isMove: false,
+                  components: [newItem],
+                }),
+              )
+            }
           }
+          setCollisionEffect(new Map())
           return {
             isDropOnCanvas: true,
           }
@@ -234,34 +382,34 @@ export const RenderComponentCanvas: FC<{
       collect: (monitor) => {
         const dragInfo = monitor.getItem()
         return {
-          isActive: monitor.canDrop() && monitor.isOver(),
+          isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
           nodeWidth: dragInfo?.item?.w ?? 0,
           nodeHeight: dragInfo?.item?.h ?? 0,
         }
       },
     }),
-    [bounds, unitWidth, UNIT_HEIGHT, canDrop],
+    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezyCanvas],
   )
 
   useEffect(() => {
     if (!isActive) {
       const childrenNodes = componentNode.childrenNode
       let maxY = 0
-      childrenNodes.forEach((node) => {
+      childrenNodes?.forEach((node) => {
         maxY = Math.max(maxY, node.y + node.h)
       })
       if (illaMode === "edit") {
         setRowNumber(
           Math.max(
             maxY + 8,
-            Math.floor(document.body.clientHeight / UNIT_HEIGHT),
+            Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
           ),
         )
       } else {
         setRowNumber(Math.max(maxY, bounds.height / UNIT_HEIGHT))
       }
     }
-  }, [bounds.height, componentNode.childrenNode, illaMode, isActive])
+  }, [bounds.height, componentNode.childrenNode, illaMode, isActive, minHeight])
 
   return (
     <div
@@ -278,6 +426,7 @@ export const RenderComponentCanvas: FC<{
         UNIT_HEIGHT,
         isShowCanvasDot,
         rowNumber * 8,
+        minHeight,
       )}
       onClick={(e) => {
         if (
@@ -301,6 +450,11 @@ export const RenderComponentCanvas: FC<{
         />
       )}
       {isShowCanvasDot && <div css={borderLineStyle} />}
+      <FreezyPlaceholder
+        effectMap={collisionEffect}
+        unitW={unitWidth}
+        unitH={UNIT_HEIGHT}
+      />
     </div>
   )
 }

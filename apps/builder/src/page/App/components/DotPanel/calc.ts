@@ -121,7 +121,7 @@ const sortComponentNodesOnlyY = (componentNodes: ComponentNode[]) => {
   })
 }
 
-const sortComponentNodes = (componentNodes: ComponentNode[]) => {
+export const sortComponentNodes = (componentNodes: ComponentNode[]) => {
   return componentNodes.sort((node1, node2) => {
     if (node1.y < node2.y) {
       return -1
@@ -375,14 +375,10 @@ export const getDragResult = (
   }
 }
 
-export const getNearCompntNodes = (
+export const getNearComponentNodes = (
   currentNode: ComponentNode,
   allComponentNodes: ComponentNode[],
 ) => {
   const sortedComponentNodes = sortComponentNodesOnlyY(allComponentNodes)
-  const nearingComponentsMap = getNearingNodes(
-    currentNode,
-    sortedComponentNodes,
-  )
-  return nearingComponentsMap
+  return getNearingNodes(currentNode, sortedComponentNodes)
 }

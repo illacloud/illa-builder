@@ -5,17 +5,9 @@ import {
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { ComponentNode } from "./componentsState"
 import { configActions } from "@/redux/config/configSlice"
-
-async function handleDeleteExecution(
-  action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
-  listenerApi: AppListenerEffectAPI,
-) {
-  DisplayNameGenerator.removeDisplayNameMulti(action.payload.displayNames)
-}
 
 function handleCopyComponentReflowEffect(
   action: ReturnType<typeof componentsActions.copyComponentReducer>,
@@ -73,14 +65,44 @@ function handleUpdateComponentDisplayNameEffect(
   }
 }
 
+function handleUpdateComponentReflowEffect(
+  action: ReturnType<typeof componentsActions.updateComponentsShape>,
+  listenApi: AppListenerEffectAPI,
+) {
+  const rootState = listenApi.getState()
+  const rootNode = getCanvas(rootState)
+  const updateComponentsShapePayload = action.payload
+  const effectResultMap = new Map<string, ComponentNode>()
+  updateComponentsShapePayload.components.forEach((compopnentNode) => {
+    const parentNodeDisplayName = compopnentNode.parentNode
+    let parentNode = searchDsl(rootNode, parentNodeDisplayName)
+    if (!parentNode) {
+      return
+    }
+    if (effectResultMap.has(parentNode.displayName)) {
+      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
+    }
+    const childrenNodes = parentNode.childrenNode
+    const { finalState } = getReflowResult(compopnentNode, childrenNodes, false)
+    effectResultMap.set(parentNode.displayName, {
+      ...parentNode,
+      childrenNode: finalState,
+    })
+  })
+  effectResultMap.forEach((value, key) => {
+    listenApi.dispatch(
+      componentsActions.updateComponentReflowReducer({
+        parentDisplayName: key,
+        childNodes: value.childrenNode,
+      }),
+    )
+  })
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
   const subscriptions = [
-    startListening({
-      actionCreator: componentsActions.deleteComponentNodeReducer,
-      effect: handleDeleteExecution,
-    }),
     startListening({
       actionCreator: componentsActions.copyComponentReducer,
       effect: handleCopyComponentReflowEffect,
@@ -88,6 +110,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateComponentDisplayNameReducer,
       effect: handleUpdateComponentDisplayNameEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.updateComponentsShape,
+      effect: handleUpdateComponentReflowEffect,
     }),
   ]
 

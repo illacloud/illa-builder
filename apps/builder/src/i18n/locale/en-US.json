@@ -6,6 +6,11 @@
   "edit_at": "Edited at",
   "created_at": "Created at",
   "title": "Welcome to illa",
+  "freeze_tips": "The canvas is frozen. Click to unfreeze it.",
+  "unfreeze_tips": "Freeze the canvas and drag components into or out of containers. (D or K)",
+  "collision_message": "Press D or K  and drag the component into container",
+  "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
+  "freeze_collision": "Freeze collision",
   "description": {
     "part1": "This is an example without namespaces."
   },
@@ -493,7 +498,8 @@
         "row_selection": "ROW SELECTION",
         "pagination": "PAGINATION",
         "toolbar": "TOOLBAR",
-        "data": "DATA"
+        "data": "DATA",
+        "views": "VIEWS"
       },
       "setter_label": {
         "scale_type": "Scale type",
@@ -624,7 +630,14 @@
         "empty_state": "Empty state",
         "chart_title": "Title",
         "x_axis_name": "X-axis name",
-        "y_axis_name": "Y-axis name"
+        "y_axis_name": "Y-axis name",
+        "default_views": "Default view",
+        "style": "Style",
+        "border": "Border",
+        "background": "Background",
+        "border_width": "Border Width",
+        "shadow": "Shadow",
+        "key": "Key"
       },
       "setter_tooltip": {
         "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
@@ -816,6 +829,11 @@
       "scroll": "Scroll",
       "ascend": "Asc",
       "descend": "Desc"
+    },
+    "container": {
+      "name": "Container",
+      "empty": "Press <keyPress>D</keyPress> or <keyPress>K</keyPress> and drag components here",
+      "key_duplicated": "The key is duplicated. Please use unique keys to avoid errors."
     }
   },
   "Setting": "Setting",

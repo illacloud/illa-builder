@@ -19,6 +19,7 @@ export interface ConfigState {
   }
   expandedKeys: string[]
   mode: IllaMode
+  freezeCanvas: boolean
 }
 
 export const ConfigInitialState: ConfigState = {
@@ -33,4 +34,5 @@ export const ConfigInitialState: ConfigState = {
   selectedAction: null,
   showDot: false,
   expandedKeys: [],
+  freezeCanvas: false,
 }

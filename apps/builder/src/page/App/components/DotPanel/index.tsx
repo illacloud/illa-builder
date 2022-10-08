@@ -22,6 +22,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
       <RenderComponentCanvas
         componentNode={componentNode}
         containerRef={containerRef}
+        containerPadding={edgeWidth}
       />
     </div>
   )

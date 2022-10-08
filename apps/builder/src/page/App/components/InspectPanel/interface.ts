@@ -1,6 +1,6 @@
 import { SetterType } from "@/page/App/components/PanelSetters"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
+import { ReactNode } from "react"
 
 export interface PanelHeaderActionProps {
   widgetDisplayName: string
@@ -24,7 +24,7 @@ export interface PanelFieldConfig extends PanelLabelProps {
   isSetterSingleRow?: boolean
   defaultValue?: any
   placeholder?: string
-  iconName?: EditableInputIconType
+  icon?: ReactNode
   shown?: (...params: any[]) => boolean
   bindAttrName?: string | string[]
   openDynamic?: boolean

@@ -124,6 +124,12 @@ import {
   TABLE_EVENT_HANDLER_CONFIG,
   TableWidget,
 } from "@/widgetLibrary/TableWidget"
+import {
+  CONTAINER_WIDGET_CONFIG,
+  ContainerWidget,
+  CONTAINER_PANEL_CONFIG,
+  CONTAINER_EVENT_HANDLER_CONFIG,
+} from "@/widgetLibrary/ContainerWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -251,6 +257,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: TABLE_WIDGET_CONFIG,
     panelConfig: TABLE_PANEL_CONFIG,
     eventHandlerConfig: TABLE_EVENT_HANDLER_CONFIG,
+  },
+  CONTAINER_WIDGET: {
+    widget: ContainerWidget,
+    config: CONTAINER_WIDGET_CONFIG,
+    panelConfig: CONTAINER_PANEL_CONFIG,
+    eventHandlerConfig: CONTAINER_EVENT_HANDLER_CONFIG,
   },
 }
 

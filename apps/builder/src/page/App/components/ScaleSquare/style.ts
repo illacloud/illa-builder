@@ -1,8 +1,13 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { ScaleSquareType } from "@/page/App/components/ScaleSquare/interface"
+import {
+  MoveBarPositionShape,
+  ScaleSquareType,
+} from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export type BarPosition = "l" | "r" | "t" | "b" | "tl" | "tr" | "bl" | "br"
+
+export const MOVE_BAR_HEIGHT = 18
 
 export function getStateColor(scaleSquareType: ScaleSquareType): string {
   let stateColor: string
@@ -270,17 +275,41 @@ export const applyMoveBarWrapperStyle = (
   isError: boolean,
   selected: boolean,
   isEditor: boolean,
+  position: MoveBarPositionShape,
+  isFreezy: boolean,
 ) => {
-  return css`
-    height: 20px;
-    padding: 2px 4px 2px 0;
-    background-color: ${isError
-      ? globalColor(`--${illaPrefix}-red-03`)
-      : globalColor(`--${illaPrefix}-techPurple-01`)};
+  let positionStyle = css`
+    top: 0;
+  `
+  let borderRadiusStyle = css`
     border-radius: 4px 4px 0 0;
+  `
+
+  if (position.direction === "top") {
+    positionStyle = css`
+      top: ${position.position}px;
+    `
+  } else {
+    positionStyle = css`
+      bottom: ${position.position}px;
+    `
+    borderRadiusStyle = css`
+      border-radius: 0 0 4px 4px;
+    `
+  }
+  const backgroundColorStyle = isFreezy
+    ? "transparent"
+    : isError
+    ? globalColor(`--${illaPrefix}-red-03`)
+    : globalColor(`--${illaPrefix}-techPurple-01`)
+  return css`
+    height: ${MOVE_BAR_HEIGHT}px;
+    padding: 2px 4px 2px 0;
+    background-color: ${backgroundColorStyle};
+    ${borderRadiusStyle};
     display: flex;
     position: absolute;
-    top: -20px;
+    ${positionStyle};
     left: 0;
     align-items: center;
     font-size: 12px;
@@ -290,6 +319,7 @@ export const applyMoveBarWrapperStyle = (
     overflow: hidden;
     visibility: ${isEditor && selected ? "visible" : "hidden"};
     z-index: 100;
+    cursor: move;
   `
 }
 
@@ -299,9 +329,22 @@ export const dragPointIconWrapperStyle = css`
   flex: none;
 `
 
+export const freezyIconStyle = css`
+  width: 12px;
+  height: 12px;
+  flex: none;
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+`
+
 export const moveBarDisplayNameStyle = css`
   overflow: hidden;
   text-overflow: ellipsis;
+`
+
+export const freezyTipsStyle = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
 `
 
 export const applyRNDWrapperStyle = (
@@ -312,17 +355,20 @@ export const applyRNDWrapperStyle = (
   isEditor: boolean,
 ) => css`
   :hover {
-    .wrapperPending {
+    > .wrapperPending {
       border-color: ${isEditor
         ? hasError && !isSelected
           ? globalColor(`--${illaPrefix}-red-03`)
           : globalColor(`--${illaPrefix}-techPurple-01`)
         : "transparent"};
+      > #moveBar {
+        visibility: ${isEditor ? "visible" : "hidden"};
+      }
     }
-    #moveBar {
-      visibility: ${isEditor ? "visible" : "hidden"};
-    }
+
+    z-index: 6;
   }
+  z-index: ${isSelected ? 5 : 1};
   opacity: ${isDragging ? 0 : 100};
 `
 

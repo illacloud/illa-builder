@@ -4,3 +4,11 @@ export interface UpdateComponentsShapePayload {
   isMove: boolean
   components: ComponentNode[]
 }
+
+export interface UpdateComponentContainerPayload {
+  isMove: boolean
+  updateSlice: {
+    component: ComponentNode
+    oldParentDisplayName: string
+  }[]
+}

@@ -11,6 +11,7 @@ import { executionActions } from "@/redux/currentApp/executionTree/executionSlic
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import { actionDisplayNameMapFetchResult } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { ExecutionTreeFactory } from "@/utils/executionTreeHelper/executionTreeFactory"
+import { updateContainerViewsComponentsReducer } from "@/redux/currentApp/editor/components/componentsReducer"
 
 export let executionTree: ExecutionTreeFactory | undefined
 
@@ -106,6 +107,7 @@ export function setupExecutionListeners(
         componentsActions.deleteComponentNodeReducer,
         componentsActions.updateComponentDisplayNameReducer,
         componentsActions.resetComponentPropsReducer,
+        componentsActions.updateContainerViewsComponentsReducer,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,

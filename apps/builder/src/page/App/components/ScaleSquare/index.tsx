@@ -21,7 +21,6 @@ import {
 import { TransformWidgetWrapper } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper"
 import { useDispatch, useSelector } from "react-redux"
 import { configActions } from "@/redux/config/configSlice"
-import store from "@/store"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Dropdown, DropList } from "@illa-design/dropdown"
 import { useTranslation } from "react-i18next"
@@ -32,7 +31,7 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
-import { Rnd, RndResizeCallback } from "react-rnd"
+import { Rnd, RndResizeCallback, RndResizeStartCallback } from "react-rnd"
 import { MoveBar } from "@/page/App/components/ScaleSquare/moveBar"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { useDrag } from "react-dnd"
@@ -43,18 +42,33 @@ import {
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep, throttle } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { CopyManager } from "@/utils/copyManager"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
+import store from "@/store"
+import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 
 const { Item } = DropList
 
 export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
-  const { componentNode, unitW, unitH, w, h, x, y } = props
+  const {
+    componentNode,
+    unitW,
+    unitH,
+    w,
+    h,
+    x,
+    y,
+    containerPadding,
+    containerHeight,
+    childrenNode,
+    collisionEffect,
+  } = props
+
+  const canRenderDashedLine = !collisionEffect.has(componentNode.displayName)
 
   const shortcut = useContext(ShortCutContext)
 
@@ -66,7 +80,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const errors = useSelector(getExecutionError)
   const selectedComponents = useSelector(getSelectedComponents)
 
-  const childNodesRef = useRef<ComponentNode[]>([])
+  const childNodesRef = useRef<ComponentNode[]>(childrenNode || [])
 
   const resizeDirection = useMemo(() => {
     const widgetConfig = widgetBuilder(componentNode.type).config
@@ -126,6 +140,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   const handleOnSelection = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       if (illaMode !== "edit") return
+      e.stopPropagation()
       if (e.metaKey || e.shiftKey) {
         const currentSelectedDisplayName = cloneDeep(selectedComponents)
 
@@ -213,10 +228,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       },
       item: () => {
         const rootState = store.getState()
-        const rootNode = getCanvas(rootState)
-
-        const childrenNodes = rootNode?.childrenNode
-          ? cloneDeep(rootNode.childrenNode)
+        const allComponentNodes = getFlattenArrayComponentNodes(rootState)
+        const childrenNodes = allComponentNodes
+          ? cloneDeep(allComponentNodes)
           : []
         startDrag(componentNode)
         return {
@@ -313,10 +327,9 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     }
   }, [isSelected, resizeDirection, scaleSquareState])
 
-  const handleResizeStart = () => {
-    const rootState = store.getState()
-    const rootNode = getCanvas(rootState)
-
+  const handleResizeStart: RndResizeStartCallback = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     dispatch(
       componentsActions.updateComponentsShape({
         isMove: false,
@@ -328,9 +341,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         ],
       }),
     )
-    childNodesRef.current = rootNode?.childrenNode
-      ? cloneDeep(rootNode.childrenNode)
-      : []
+    childNodesRef.current = childrenNode ? cloneDeep(childrenNode) : []
     dispatch(configActions.updateShowDot(true))
   }
 
@@ -373,7 +384,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   )
 
   //  1px is left border width
-  return (
+  return isDragging ? null : (
     <Rnd
       bounds="#realCanvas"
       size={{
@@ -451,12 +462,22 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             maxWidth={componentNode.w * unitW}
             selected={isSelected}
             isEditor={illaMode === "edit"}
+            widgetTop={y}
+            widgetHeight={h}
+            containerPadding={containerPadding || 0}
+            containerHeight={containerHeight}
           />
 
           <TransformWidgetWrapper componentNode={componentNode} />
-          <div
-            css={applyDashedLineStyle(isSelected, isShowCanvasDot, isDragging)}
-          />
+          {canRenderDashedLine && (
+            <div
+              css={applyDashedLineStyle(
+                isSelected,
+                isShowCanvasDot,
+                isDragging,
+              )}
+            />
+          )}
         </div>
       </Dropdown>
       <div css={dragPreviewStyle} ref={dragPreviewRef} />

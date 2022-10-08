@@ -1,14 +1,19 @@
 import { FC, ReactNode } from "react"
 import { useTranslation } from "react-i18next"
-import { applyScaleContainerStyle, previewStyle } from "./style"
+import {
+  applyScaleContainerStyle,
+  previewStyle,
+  messageStyle,
+  messageWrapperStyle,
+} from "./style"
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
 import { useDispatch, useSelector } from "react-redux"
 import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { FullScreenIcon } from "@illa-design/icon"
+import { FullScreenIcon, LockIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
-import { getIllaMode } from "@/redux/config/configSelector"
+import { getFreezyState, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { FocusManager } from "@/utils/focusManager"
 
@@ -19,6 +24,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const canvasTree = useSelector(getCanvas)
   const mode = useSelector(getIllaMode)
   const dispatch = useDispatch()
+  const isFreezy = useSelector(getFreezyState)
 
   return (
     <div
@@ -30,17 +36,30 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
     >
       {applyCanvasTree(canvasTree)}
       {mode === "edit" && (
-        <Button
-          css={previewStyle}
-          colorScheme="white"
-          variant="fill"
-          leftIcon={<FullScreenIcon />}
-          onClick={() => {
-            dispatch(configActions.updateIllaMode("preview"))
-          }}
-        >
-          {t("preview")}
-        </Button>
+        <>
+          <Button
+            css={previewStyle}
+            colorScheme="white"
+            variant="fill"
+            leftIcon={<FullScreenIcon />}
+            onClick={() => {
+              dispatch(configActions.updateIllaMode("preview"))
+            }}
+          >
+            {t("preview")}
+          </Button>
+          {/*TODO: replace this to illa-design/Message,when Message is ok*/}
+          {isFreezy ? (
+            <div css={messageWrapperStyle}>
+              <span css={messageStyle}>
+                <LockIcon />
+                <span style={{ marginLeft: "8px" }}>
+                  {t("freeze_messages")}
+                </span>
+              </span>
+            </div>
+          ) : null}
+        </>
       )}
     </div>
   )

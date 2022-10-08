@@ -6,6 +6,11 @@
   "edit_at": "上次编辑于",
   "created_at": "创建于",
   "title": "欢迎来到艾拉云",
+  "freeze_tips": "画布已冻结，点击解冻。",
+  "unfreeze_tips": "冻结画布后，可以把组件拖进或拖出容器。（D或K）",
+  "collision_message": "按住D或K键，将组件拖进容器",
+  "freeze_messages": "画布处于冻结状态，可以将组件拖入或拖出容器。",
+  "freeze_collision": "冻结碰撞",
   "description": {
     "part1": "这是一个示例。"
   },
@@ -492,7 +497,8 @@
         "row_selection": "行选择",
         "pagination": "翻页",
         "toolbar": "工具栏",
-        "data": "数据"
+        "data": "数据",
+        "views": "视图"
       },
       "setter_label": {
         "scale_type": "缩放类型",
@@ -622,7 +628,14 @@
         "empty_state": "空状态",
         "chart_title": "标题",
         "x_axis_name": "横坐标名称",
-        "y_axis_name": "纵坐标名称"
+        "y_axis_name": "纵坐标名称",
+        "default_views": "默认视图",
+        "style": "样式",
+        "border": "边框",
+        "background": "背景",
+        "border_width": "边框宽度",
+        "shadow": "阴影",
+        "key": "键值"
       },
       "setter_tooltip": {
         "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
@@ -757,7 +770,7 @@
       "name": "日期选择器"
     },
     "date_range": {
-      "name": "Date range"
+      "name": "日期范围选择器"
     },
     "image": {
       "name": "图片"
@@ -814,6 +827,11 @@
       "scroll": "滚动",
       "ascend": "升序",
       "descend": "降序"
+    },
+    "container": {
+      "name": "容器",
+      "empty": "按住 <keyPress>D</keyPress> 或 <keyPress>K</keyPress> ，将组件拖入容器",
+      "key_duplicated": "键值重复，请使用唯一值以避免报错。"
     }
   },
   "Setting": "设置",
