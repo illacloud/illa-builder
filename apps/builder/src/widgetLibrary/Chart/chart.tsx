@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useCallback, useMemo, useRef } from "react"
+import { FC, useMemo, useRef } from "react"
 import {
   Chart as ChartJS,
   LineElement,
@@ -18,7 +18,7 @@ import {
   ChartDataset,
   ChartData,
 } from "chart.js"
-import { Chart as ReactChart, Pie, getElementAtEvent } from "react-chartjs-2"
+import { Chart as ReactChart, Pie } from "react-chartjs-2"
 import {
   ChartWidgetProps,
   WrappedChartProps,
@@ -119,6 +119,12 @@ export const Chart: FC<ChartWidgetProps> = (props) => {
           color: globalColor(`--${illaPrefix}-grayBlue-02`),
           font: {
             size: 16,
+          },
+        },
+        legend: {
+          labels: {
+            boxWidth: 20,
+            boxHeight: 4,
           },
         },
       },
