@@ -29,4 +29,5 @@ export interface RadioGroupWidgetProps
     values: any[]
     disables: boolean[]
   }
+  w: number
 }

@@ -10,7 +10,7 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   icon: <LineProgressWidgetIcon size="100%" />,
   sessionType: "PRESENTATION",
   w: 16,
-  h: 5,
+  h: 3,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     value: "50",
