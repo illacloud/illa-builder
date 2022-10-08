@@ -1,10 +1,10 @@
 import {
   memo,
+  MouseEvent,
   useCallback,
   useContext,
   useMemo,
   useRef,
-  MouseEvent,
 } from "react"
 import {
   ScaleSquareProps,
@@ -105,31 +105,34 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   }, [componentNode.type])
 
   const enableResizing = useMemo(() => {
-    if (resizeDirection === RESIZE_DIRECTION.ALL) {
-      return true
-    }
-    if (resizeDirection === RESIZE_DIRECTION.HORIZONTAL) {
-      return {
-        bottom: false,
-        bottomLeft: false,
-        bottomRight: false,
-        left: true,
-        right: true,
-        top: false,
-        topLeft: false,
-        topRight: false,
+    switch (resizeDirection) {
+      case RESIZE_DIRECTION.VERTICAL: {
+        return {
+          bottom: true,
+          bottomLeft: false,
+          bottomRight: false,
+          left: false,
+          right: false,
+          top: true,
+          topLeft: false,
+          topRight: false,
+        }
       }
-    }
-    if (resizeDirection === RESIZE_DIRECTION.VERTICAL) {
-      return {
-        bottom: true,
-        bottomLeft: false,
-        bottomRight: false,
-        left: false,
-        right: false,
-        top: true,
-        topLeft: false,
-        topRight: false,
+      case RESIZE_DIRECTION.HORIZONTAL: {
+        return {
+          bottom: false,
+          bottomLeft: false,
+          bottomRight: false,
+          left: true,
+          right: true,
+          top: false,
+          topLeft: false,
+          topRight: false,
+        }
+      }
+      case RESIZE_DIRECTION.ALL:
+      default: {
+        return true
       }
     }
   }, [resizeDirection])
@@ -265,81 +268,103 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   )
 
   const resizeHandler = useMemo(() => {
-    if (resizeDirection === RESIZE_DIRECTION.ALL) {
-      return {
-        topLeft: (
-          <div
-            css={applySquarePointerStyle(isSelected, scaleSquareState, "tl")}
-          />
-        ),
-        top: (
-          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
-            />
-          </div>
-        ),
-        topRight: (
-          <div
-            css={applySquarePointerStyle(isSelected, scaleSquareState, "tr")}
-          />
-        ),
-        right: (
-          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
-            />
-          </div>
-        ),
-        bottomRight: (
-          <div
-            css={applySquarePointerStyle(isSelected, scaleSquareState, "br")}
-          />
-        ),
-        bottom: (
-          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
-            />
-          </div>
-        ),
-        bottomLeft: (
-          <div
-            css={applySquarePointerStyle(isSelected, scaleSquareState, "bl")}
-          />
-        ),
-        left: (
-          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
-            <div
-              className="handler"
-              css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
-            />
-          </div>
-        ),
+    switch (resizeDirection) {
+      case RESIZE_DIRECTION.HORIZONTAL: {
+        return {
+          right: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
+              />
+            </div>
+          ),
+          left: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
+              />
+            </div>
+          ),
+        }
       }
-    }
-
-    if (resizeDirection === RESIZE_DIRECTION.HORIZONTAL) {
-      return {
-        right: (
-          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
+      case RESIZE_DIRECTION.VERTICAL: {
+        return {
+          top: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
+              />
+            </div>
+          ),
+          bottom: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
+              />
+            </div>
+          ),
+        }
+      }
+      case RESIZE_DIRECTION.ALL:
+      default: {
+        return {
+          topLeft: (
             <div
-              className="handler"
-              css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
+              css={applySquarePointerStyle(isSelected, scaleSquareState, "tl")}
             />
-          </div>
-        ),
-        left: (
-          <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
+          ),
+          top: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "t")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "t")}
+              />
+            </div>
+          ),
+          topRight: (
             <div
-              className="handler"
-              css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
+              css={applySquarePointerStyle(isSelected, scaleSquareState, "tr")}
             />
-          </div>
-        ),
+          ),
+          right: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "r")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "r")}
+              />
+            </div>
+          ),
+          bottomRight: (
+            <div
+              css={applySquarePointerStyle(isSelected, scaleSquareState, "br")}
+            />
+          ),
+          bottom: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "b")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "b")}
+              />
+            </div>
+          ),
+          bottomLeft: (
+            <div
+              css={applySquarePointerStyle(isSelected, scaleSquareState, "bl")}
+            />
+          ),
+          left: (
+            <div css={applyBarHandlerStyle(isSelected, scaleSquareState, "l")}>
+              <div
+                className="handler"
+                css={applyBarPointerStyle(isSelected, scaleSquareState, "l")}
+              />
+            </div>
+          ),
+        }
       }
     }
   }, [isSelected, resizeDirection, scaleSquareState])
