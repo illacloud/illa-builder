@@ -15,6 +15,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     handleUpdateDsl,
+    handleUpdateOriginalDSLMultiAttr,
     displayName,
     viewList,
     tooltipText,
@@ -69,13 +70,16 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       setCurrentViewKey: (key: string) => {
         const index = viewList.findIndex((viewItem) => viewItem.key === key)
         if (index === -1) return
-        handleUpdateDsl({ currentViewIndex: index, currentViewKey: key })
+        handleUpdateOriginalDSLMultiAttr({
+          currentViewIndex: index,
+          currentViewKey: key,
+        })
       },
       setCurrentViewIndex: (index: string) => {
         const numberIndex = parseInt(index)
         const view = viewList[numberIndex]
         if (!view) return
-        handleUpdateDsl({
+        handleUpdateOriginalDSLMultiAttr({
           currentViewIndex: numberIndex,
           currentViewKey: view.key,
         })
@@ -87,7 +91,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           currentIndex = 0
         }
         const currentView = viewList[currentIndex]
-        handleUpdateDsl({
+        handleUpdateOriginalDSLMultiAttr({
           currentViewIndex: currentIndex,
           currentViewKey: currentView.key,
         })
@@ -107,7 +111,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
             currentIndex = 0
           }
         }
-        handleUpdateDsl({
+        handleUpdateOriginalDSLMultiAttr({
           currentViewIndex: currentIndex,
           currentViewKey: currentView.key,
         })
@@ -120,7 +124,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           currentIndex = viewList.length - 1
         }
         const currentView = viewList[currentIndex]
-        handleUpdateDsl({
+        handleUpdateOriginalDSLMultiAttr({
           currentViewIndex: currentIndex,
           currentViewKey: currentView.key,
         })
@@ -142,7 +146,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           }
         }
 
-        handleUpdateDsl({
+        handleUpdateOriginalDSLMultiAttr({
           currentViewIndex: currentIndex,
           currentViewKey: currentView.key,
         })
@@ -155,8 +159,8 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     currentViewIndex,
     displayName,
     handleDeleteGlobalData,
-    handleUpdateDsl,
     handleUpdateGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
     viewList,
   ])
 
