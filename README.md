@@ -26,8 +26,19 @@
 5. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):** Components should not constrain your imagination.
 
 ## 🖥 Fast Try
+### Build an app within 10 minutes: **[Click Here!](http://fast-try.illacloud.com/)**
 
-[Click Here!](http://fast-try.illacloud.com/)
+#### 🆓 Step 1: Create an account for free and sign in
+
+#### 🎯 Step 2: Create a new app and enter the editor
+
+#### 🎨 Step 3: Build UI with components
+
+Build your UI by dragging components to the canvas. We provide dozens of components including chart, table, form, and many more in Illa Builder and Illa Design. Docs. When components overlap, we will automatically adjust their position, which makes the layout development easier and more flexible.
+
+#### 🔌 Step 4: Connect to your data
+
+Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs recently.
 
 ## 🚀 Deploy
 
