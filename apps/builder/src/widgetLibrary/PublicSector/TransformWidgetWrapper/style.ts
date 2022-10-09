@@ -68,12 +68,14 @@ export const applyWrapperStylesStyle = (
   radius?: string,
   backgroundColor?: string,
   shadow?: "none" | "small" | "medium" | "large",
+  widgetType?: string,
 ) => {
   let borderStyle = "unset"
   if (borderColor && borderWidth) {
     borderStyle = `${borderWidth} solid ${borderColor}`
   }
   const shadowStyle = getShadowStyle(shadow)
+
   return css`
     width: 100%;
     height: 100%;
@@ -81,7 +83,9 @@ export const applyWrapperStylesStyle = (
     overflow-x: hidden;
     border: ${borderStyle};
     border-radius: ${radius};
-    background-color: ${backgroundColor || "white"};
+    background-color: ${widgetType === "CONTAINER_WIDGET"
+      ? backgroundColor || "white"
+      : "transparent"};
     box-shadow: ${shadowStyle};
   `
 }

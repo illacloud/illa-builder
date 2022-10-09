@@ -1,7 +1,5 @@
-import { HTMLAttributes, RefObject } from "react"
+import { HTMLAttributes } from "react"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { BarPosition } from "@/page/App/components/ScaleSquare/style"
-import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
 
 export type ScaleSquareType = "error" | "normal" | "production"
 

@@ -189,9 +189,19 @@ export const RenderComponentCanvas: FC<{
             })
           }
 
-          const childrenNodes = dragInfo.childrenNodes.filter(
+          let childrenNodes = dragInfo.childrenNodes.filter(
             (node) => node.parentNode === componentNode.displayName,
           )
+          if (componentNode.type === "CONTAINER_WIDGET") {
+            const { currentViewIndex, viewComponentsArray } =
+              componentNode.props || {}
+            const currentViewComponentsArray =
+              viewComponentsArray[currentViewIndex] || []
+            const currentViewComponentsSet = new Set(currentViewComponentsArray)
+            childrenNodes = childrenNodes.filter((node) =>
+              currentViewComponentsSet.has(node.displayName),
+            )
+          }
           const indexOfChildrenNodes = childrenNodes.findIndex(
             (node) => node.displayName === item.displayName,
           )
