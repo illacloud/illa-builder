@@ -398,7 +398,7 @@ export const RenderComponentCanvas: FC<{
         }
       },
     }),
-    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezyCanvas],
+    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezyCanvas, componentNode],
   )
 
   useEffect(() => {

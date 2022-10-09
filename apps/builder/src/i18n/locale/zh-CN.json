@@ -602,6 +602,7 @@
         "value_labels": "维度",
         "variant": "样式",
         "vertical_alignment": "垂直对齐",
+        "width": "宽度",
         "x_axis_name": "横坐标名称",
         "x_axis_title": "X轴标题",
         "x_axis_type": "X轴类型",
