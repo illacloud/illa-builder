@@ -21,6 +21,7 @@ import {
   getNearComponentNodes,
 } from "@/page/App/components/DotPanel/calc"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { isObject } from "@/utils/typeHelper"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -122,6 +123,19 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           executionActions.updateExecutionByDisplayNameReducer({
             displayName,
             value,
+          }),
+        )
+      },
+      [dispatch, displayName],
+    )
+
+    const handleUpdateOriginalDSLMultiAttr = useCallback(
+      (updateSlice: Record<string, any>) => {
+        if (!isObject(updateSlice)) return
+        dispatch(
+          componentsActions.updateComponentPropsReducer({
+            displayName: displayName,
+            updateSlice,
           }),
         )
       },
@@ -231,6 +245,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           unitH={unitH}
           handleUpdateGlobalData={handleUpdateGlobalData}
           handleDeleteGlobalData={handleDeleteGlobalData}
+          handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
           handleOnSortingChange={handleOnSortingChange}
