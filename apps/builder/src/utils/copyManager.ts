@@ -67,6 +67,11 @@ export class CopyManager {
       y: (offsetY ?? 0) + node.y,
     } as ComponentNode
     this.changeComponentNodeChildrenDisplayName(newNode)
+    if (Array.isArray(node.childrenNode)) {
+      newNode.childrenNode = node.childrenNode.map((node) =>
+        this.copyComponent(node),
+      )
+    }
     return newNode
   }
 

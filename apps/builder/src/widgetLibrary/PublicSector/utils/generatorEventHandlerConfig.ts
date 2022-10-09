@@ -191,7 +191,7 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-showPreviousView`,
-        labelName: i18n.t("editor.inspect.setter_label.loop_back_to_start"),
+        labelName: i18n.t("editor.inspect.setter_label.loop_start_to_back"),
         setterType: "SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "showPreviousViewLoopBack",
@@ -200,7 +200,7 @@ export const generatorEventHandlerConfig = (
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-showPreviousVisibleView`,
-        labelName: i18n.t("editor.inspect.setter_label.loop_back_to_start"),
+        labelName: i18n.t("editor.inspect.setter_label.loop_start_to_back"),
         setterType: "SWITCH_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
         attrName: "showPreviousVisibleViewLoopBack",
