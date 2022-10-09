@@ -45,13 +45,13 @@ import {
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
 import { endDrag, startDrag } from "@/utils/drag/drag"
-import { cloneDeep, throttle } from "lodash"
+import { cloneDeep, get, throttle } from "lodash"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { CopyManager } from "@/utils/copyManager"
 import { dragPreviewStyle } from "@/page/App/components/ComponentPanel/style"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { RESIZE_DIRECTION } from "@/widgetLibrary/interface"
-import store from "@/store"
+import store, { RootState } from "@/store"
 import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 
 const { Item } = DropList
@@ -72,11 +72,14 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   } = props
 
   const canRenderDashedLine = !collisionEffect.has(componentNode.displayName)
-  const displayNameMapProps = useSelector(getExecutionResult)
+  const realProps = useSelector<RootState, Record<string, any>>((rootState) => {
+    const executionResult = getExecutionResult(rootState)
+    return get(executionResult, componentNode.displayName, null)
+  })
 
   const displayNameInMoveBar = useMemo(() => {
-    if (componentNode.type === "CONTAINER_WIDGET") {
-      const { currentViewIndex, viewList } = displayNameMapProps
+    if (componentNode.type === "CONTAINER_WIDGET" && realProps) {
+      const { currentViewIndex, viewList } = realProps
       if (!Array.isArray(viewList) || currentViewIndex >= viewList.length)
         return componentNode.displayName + " / " + "View 1"
       const labelName = viewList[currentViewIndex]
@@ -85,7 +88,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
       return componentNode.displayName + " / " + labelName
     }
     return componentNode.displayName
-  }, [componentNode.displayName, componentNode.type, displayNameMapProps])
+  }, [componentNode.displayName, componentNode.type, realProps])
 
   const shortcut = useContext(ShortCutContext)
 

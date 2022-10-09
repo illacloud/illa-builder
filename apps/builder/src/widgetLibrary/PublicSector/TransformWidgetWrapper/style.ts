@@ -63,7 +63,6 @@ const getShadowStyle = (shadow?: "none" | "small" | "medium" | "large") => {
 }
 
 export const applyWrapperStylesStyle = (
-  hidden: boolean,
   borderColor?: string,
   borderWidth?: string,
   radius?: string,
@@ -80,7 +79,6 @@ export const applyWrapperStylesStyle = (
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    visibility: ${hidden ? "hidden" : "visible"};
     border: ${borderStyle};
     border-radius: ${radius};
     background-color: ${backgroundColor || "white"};

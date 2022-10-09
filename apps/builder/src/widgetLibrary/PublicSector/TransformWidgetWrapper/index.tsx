@@ -212,10 +212,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       shadow,
     } = realProps
 
-    return (
+    return hidden ? null : (
       <div
         css={applyWrapperStylesStyle(
-          hidden,
           borderColor,
           borderWidth,
           radius,

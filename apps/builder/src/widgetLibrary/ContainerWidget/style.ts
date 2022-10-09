@@ -11,6 +11,7 @@ export const keyPressComponentStyle = css`
 export const emptyStateStyle = css`
   font-size: 14px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  text-align: center;
 `
 
 export const emptyStateWrapperStyle = css`

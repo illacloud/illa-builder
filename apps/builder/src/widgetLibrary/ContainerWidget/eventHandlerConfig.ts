@@ -22,6 +22,6 @@ export const CONTAINER_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
     "showNextView",
     "showNextVisibleView",
     "showPreviousView",
-    "showPreviewsVisibleView",
+    "showPreviousVisibleView",
   ],
 }
