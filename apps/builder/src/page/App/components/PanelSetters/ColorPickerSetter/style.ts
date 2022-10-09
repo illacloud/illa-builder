@@ -50,8 +50,8 @@ export const ButtonContentWrapperStyle = css`
 
 export const colorContentStyle = css`
   width: 60px;
-  margin-left: 8px;
-  margin-right: 12px;
+  margin-left: 17px;
+  margin-right: 3px;
   text-align: left;
   font-size: 12px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};

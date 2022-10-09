@@ -478,7 +478,7 @@
         "alt_text_desc": "屏幕阅读器可访问的图像描述。如果无法加载图像，这也会作为备用方案进行渲染。",
         "background": "背景",
         "background_color": "背景色",
-        "border": "边框",
+        "border": "描边",
         "border_width": "边框宽度",
         "caption": "副标题",
         "chart_title": "标题",
