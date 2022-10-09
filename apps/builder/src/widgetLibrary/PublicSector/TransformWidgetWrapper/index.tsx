@@ -220,6 +220,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           radius,
           backgroundColor,
           shadow,
+          type,
         )}
       >
         <Component
