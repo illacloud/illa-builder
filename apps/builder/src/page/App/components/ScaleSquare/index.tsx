@@ -428,6 +428,16 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     ],
   )
 
+  const handleContextMenu = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      dispatch(
+        configActions.updateSelectedComponent([componentNode.displayName]),
+      )
+    },
+    [componentNode.displayName, dispatch],
+  )
+
   //  1px is left border width
   return isDragging ? null : (
     <Rnd
@@ -492,13 +502,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
             illaMode === "edit",
           )}
           onClick={handleOnSelection}
-          onContextMenu={() => {
-            dispatch(
-              configActions.updateSelectedComponent([
-                componentNode.displayName,
-              ]),
-            )
-          }}
+          onContextMenu={handleContextMenu}
           ref={dragRef}
         >
           <MoveBar
