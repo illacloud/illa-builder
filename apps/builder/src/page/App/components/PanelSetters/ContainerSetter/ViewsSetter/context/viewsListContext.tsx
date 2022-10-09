@@ -72,19 +72,34 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       const newViewComponentsArray = viewComponentsArray.filter(
         (displayNames, i) => i !== index,
       )
-      handleUpdateMultiAttrDSL?.({
+
+      const updateSlice = {
         [attrPath]: updatedArray,
         currentViewIndex: 0,
         currentViewKey: allViewsKeys[0],
         viewComponentsArray: newViewComponentsArray,
-      })
+      }
+
+      if (currentViewIndex !== index) {
+        const oldCurrentViewKey = viewsList[currentViewIndex].key
+        const newCurrentViewIndex = updatedArray.findIndex(
+          (item) => item.key === oldCurrentViewKey,
+        )
+        if (newCurrentViewIndex !== -1) {
+          updateSlice.currentViewIndex = newCurrentViewIndex
+          updateSlice.currentViewKey = oldCurrentViewKey
+        }
+      }
+
+      handleUpdateMultiAttrDSL?.(updateSlice)
     },
     [
       viewsList,
       viewComponentsArray,
-      handleUpdateMultiAttrDSL,
       attrPath,
       allViewsKeys,
+      currentViewIndex,
+      handleUpdateMultiAttrDSL,
     ],
   )
 
@@ -154,6 +169,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     },
     [
       attrPath,
+      currentViewIndex,
       handleUpdateDsl,
       handleUpdateMultiAttrDSL,
       viewComponentsArray,
