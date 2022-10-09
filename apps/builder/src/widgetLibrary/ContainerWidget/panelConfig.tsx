@@ -107,8 +107,8 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-styles-color`,
         setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.colors"),
-        attrName: "colors",
+        labelName: i18n.t("editor.inspect.setter_label.border"),
+        attrName: "border",
         useCustomLayout: true,
         childrenSetter: [
           {
@@ -118,22 +118,6 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "#ffffffff",
           },
-          {
-            id: `${baseWidgetName}-style-background`,
-            labelName: i18n.t("editor.inspect.setter_label.background"),
-            attrName: "backgroundColor",
-            setterType: "COLOR_PICKER_SETTER",
-            defaultValue: "#ffffffff",
-          },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-styles-style`,
-        setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.style"),
-        attrName: "style",
-        useCustomLayout: true,
-        childrenSetter: [
           {
             id: `${baseWidgetName}-style-radius`,
             labelName: i18n.t("editor.inspect.setter_label.radius"),
@@ -149,6 +133,22 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
             icon: <StrokeWidthIcon />,
             setterType: "EDITABLE_INPUT_SETTER",
             defaultValue: "4px",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-styles-style`,
+        setterType: "LIST_SETTER",
+        labelName: i18n.t("editor.inspect.setter_label.style"),
+        attrName: "style",
+        useCustomLayout: true,
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-style-background`,
+            labelName: i18n.t("editor.inspect.setter_label.background"),
+            attrName: "backgroundColor",
+            setterType: "COLOR_PICKER_SETTER",
+            defaultValue: "#ffffffff",
           },
           // {
           //   id: `${baseWidgetName}-style-shadow`,
