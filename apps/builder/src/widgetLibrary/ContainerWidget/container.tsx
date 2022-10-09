@@ -98,7 +98,15 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           if (!loop) return
           currentIndex = 0
         }
-        const currentView = viewList[currentIndex]
+        let currentView = viewList[currentIndex]
+        while (currentView.hidden || currentView.disabled) {
+          currentIndex++
+          currentView = viewList[currentIndex]
+          if (currentIndex >= viewList.length) {
+            if (!loop) return
+            currentIndex = 0
+          }
+        }
         handleUpdateDsl({
           currentViewIndex: currentIndex,
           currentViewKey: currentView.key,
@@ -124,7 +132,16 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           if (!loop) return
           currentIndex = viewList.length - 1
         }
-        const currentView = viewList[currentIndex]
+        let currentView = viewList[currentIndex]
+        while (currentView.hidden || currentView.disabled) {
+          currentIndex--
+          currentView = viewList[currentIndex]
+          if (currentIndex < 0) {
+            if (!loop) return
+            currentIndex = viewList.length - 1
+          }
+        }
+
         handleUpdateDsl({
           currentViewIndex: currentIndex,
           currentViewKey: currentView.key,

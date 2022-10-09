@@ -10,7 +10,10 @@ import { ViewListSetterProvider } from "@/page/App/components/PanelSetters/Conta
 import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { viewSetterWrapperStyle } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
+import {
+  setterPublicWrapper,
+  viewSetterWrapperStyle,
+} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -65,9 +68,15 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
         attrPath={attrName}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
       >
-        <div css={viewSetterWrapperStyle}>
-          <Header labelName="view" addAction={handleAddViewItem} hasAddAction />
-          <ListBody />
+        <div css={setterPublicWrapper}>
+          <div css={viewSetterWrapperStyle}>
+            <Header
+              labelName="view"
+              addAction={handleAddViewItem}
+              hasAddAction
+            />
+            <ListBody />
+          </div>
         </div>
       </ViewListSetterProvider>
     )

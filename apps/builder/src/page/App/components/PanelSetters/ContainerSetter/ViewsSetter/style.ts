@@ -1,6 +1,11 @@
 import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
+export const setterPublicWrapper = css`
+  padding: 8px 16px;
+  width: 100%;
+`
+
 export const viewSetterWrapperStyle = css`
   width: 100%;
   border-radius: 8px;
