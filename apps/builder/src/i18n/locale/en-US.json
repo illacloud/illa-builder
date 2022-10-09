@@ -604,6 +604,7 @@
         "value_labels": "Value labels",
         "variant": "Variant",
         "vertical_alignment": "Vertical alignment",
+        "width": "Width",
         "x_axis_name": "X-axis name",
         "x_axis_title": "X-axis title",
         "x_axis_type": "X-axis type",

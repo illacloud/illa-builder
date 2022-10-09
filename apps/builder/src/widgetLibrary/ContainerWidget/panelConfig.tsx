@@ -113,7 +113,7 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: `${baseWidgetName}-style-border`,
-            labelName: i18n.t("editor.inspect.setter_label.border"),
+            labelName: i18n.t("editor.inspect.setter_label.color"),
             attrName: "borderColor",
             setterType: "COLOR_PICKER_SETTER",
             defaultValue: "#ffffffff",
@@ -128,7 +128,7 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             id: `${baseWidgetName}-style-border-width`,
-            labelName: i18n.t("editor.inspect.setter_label.border_width"),
+            labelName: i18n.t("editor.inspect.setter_label.width"),
             attrName: "borderWidth",
             icon: <StrokeWidthIcon />,
             setterType: "EDITABLE_INPUT_SETTER",
