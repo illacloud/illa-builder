@@ -658,7 +658,7 @@
   "exit_preview": "Exit Preview",
   "freeze_collision": "Freeze collision",
   "freeze_messages": "The canvas is frozen. You can drag components into or out of containers.",
-  "freeze_tips": "The canvas is frozen. Click to unfreeze it.",
+  "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
   "link_copied": "Link Copied",
   "network_error": "Network disconnected. Please check this device's network",
   "preview": "Preview",
