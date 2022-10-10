@@ -10,7 +10,7 @@
   <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-builder/graphs/contributors">contributors</a></p>
 </div>
 
-![cover](https://cdn.illafamily.com/github-builder-cover.png)
+![cover](https://github.com/illa-family/.github/blob/main/assets/images/github-builder-cover-2.png)
 
 [![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
 [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illa-family/discussions)
