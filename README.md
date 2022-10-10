@@ -30,15 +30,21 @@
 
 #### 🆓 Step 1: Create an account for free and sign in
 
+![login](https://github.com/illa-family/.github/blob/main/assets/images/login.png)
+
 #### 🎯 Step 2: Create a new app and enter the editor
 
-#### 🎨 Step 3: Build UI with components
+![newapp](https://github.com/illa-family/.github/blob/main/assets/images/create-a-new-app1.gif)
 
-Build your UI by dragging components to the canvas. We provide dozens of components including chart, table, form, and many more in Illa Builder and Illa Design. Docs. When components overlap, we will automatically adjust their position, which makes the layout development easier and more flexible.
+#### 🎨 Step 3: Build UI with built-in components
+Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
+
+![edit](https://github.com/illa-family/.github/blob/main/assets/images/edit-UI-with-components.gif)
 
 #### 🔌 Step 4: Connect to your data
+Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
 
-Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs recently.
+![connect](https://github.com/illa-family/.github/blob/main/assets/images/connect-your-data.gif)
 
 ## 🚀 Deploy
 
