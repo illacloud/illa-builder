@@ -3,5 +3,5 @@
   with:
     url: "http://ec2-18-181-186-207.ap-northeast-1.compute.amazonaws.com/"
     user: "illasoft"
-    token: ${{ secrets.TOKEN }}
+    token: ${{ secrets.JENKINS_API_TOKEN }}
     job: "illa-builder-test"
