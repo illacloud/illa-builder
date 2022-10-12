@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { RedisPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { useDispatch } from "react-redux"
 import { Api } from "@/api/base"
@@ -61,7 +61,7 @@ export const RedisPanel: FC<RedisPanelProps> = (props) => {
     <div css={mysqlContainerStyle}>
       <ResourceChoose action={currentAction} />
       <CodeEditor
-        placeholder="select * from users;"
+        placeholder="SET runoobkey redis"
         lineNumbers={true}
         css={sqlInputStyle}
         value={currentContent.command}
