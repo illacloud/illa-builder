@@ -19,6 +19,7 @@ export type ResourceContent =
   | RestApiResource<RestApiAuth>
   | PostgreSqlResource
   | RedisResource
+  | MongoDbResource
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string
@@ -42,6 +43,18 @@ export interface MysqlResource {
 
 export interface RedisResource {
   host: string
+  port: string
+  databaseName: string
+  databaseUsername: string
+  databasePassword: string
+  ssl: DbSSL
+}
+
+export type MongoDbConnectionFormat = "standard" | "mongodb+srv"
+
+export interface MongoDbResource {
+  host: string
+  connectionFormat: MongoDbConnectionFormat
   port: string
   databaseName: string
   databaseUsername: string

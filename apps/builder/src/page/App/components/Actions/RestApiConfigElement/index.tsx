@@ -183,9 +183,9 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
             name="resourceName"
           />
         </div>
-        <span css={configItemTip}>
+        <div css={configItemTip}>
           {t("editor.action.resource.restapi.tip.name")}
-        </span>
+        </div>
         <Divider
           direction="horizontal"
           ml="24px"

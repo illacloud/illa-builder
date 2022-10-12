@@ -46,9 +46,9 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
-      RedisResource
-    >
+    return state.resource.find(
+      (r) => r.resourceId === resourceId,
+    ) as Resource<RedisResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -137,7 +137,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.redis.label.name")}
+              {t("editor.action.resource.db.label.name")}
             </span>
           </div>
           <Controller
@@ -155,7 +155,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 onChange={onChange}
                 value={value}
                 borderColor="techPurple"
-                placeholder={t("editor.action.resource.redis.placeholder.name")}
+                placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
             name="resourceName"
@@ -167,7 +167,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.redis.label.hostname_port")}
+              {t("editor.action.resource.db.label.hostname_port")}
             </span>
           </div>
           <div css={hostInputContainer}>
@@ -185,7 +185,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   value={value}
                   borderColor="techPurple"
                   placeholder={t(
-                    "editor.action.resource.redis.placeholder.hostname",
+                    "editor.action.resource.db.placeholder.hostname",
                   )}
                 />
               )}
@@ -218,7 +218,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.redis.label.database")}
+              {t("editor.action.resource.db.label.database")}
             </span>
           </div>
           <Controller
@@ -237,7 +237,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 value={value}
                 borderColor="techPurple"
                 placeholder={t(
-                  "editor.action.resource.redis.placeholder.database",
+                  "editor.action.resource.db.placeholder.database",
                 )}
               />
             )}
@@ -250,7 +250,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.redis.label.username_password")}
+              {t("editor.action.resource.db.label.username_password")}
             </span>
           </div>
           <div css={hostInputContainer}>
@@ -265,7 +265,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   value={value}
                   borderColor="techPurple"
                   placeholder={t(
-                    "editor.action.resource.redis.placeholder.username",
+                    "editor.action.resource.db.placeholder.username",
                   )}
                 />
               )}
@@ -283,7 +283,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   value={value}
                   ml="8px"
                   placeholder={t(
-                    "editor.action.resource.redis.placeholder.password",
+                    "editor.action.resource.db.placeholder.password",
                   )}
                 />
               )}
@@ -291,17 +291,17 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             />
           </div>
         </div>
-        <span css={configItemTip}>
-          {t("editor.action.resource.redis.tip.username_password")}
-        </span>
+        <div css={configItemTip}>
+          {t("editor.action.resource.db.tip.username_password")}
+        </div>
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.redis.label.connect_type")}
+              {t("editor.action.resource.db.label.connect_type")}
             </span>
           </div>
           <span css={connectTypeStyle}>
-            {t("editor.action.resource.redis.tip.connect_type")}
+            {t("editor.action.resource.db.tip.connect_type")}
           </span>
         </div>
         <Divider
@@ -313,12 +313,12 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           w="unset"
         />
         <div css={optionLabelStyle}>
-          {t("editor.action.resource.redis.title.advanced_option")}
+          {t("editor.action.resource.db.title.advanced_option")}
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.redis.label.ssl_options")}
+              {t("editor.action.resource.db.label.ssl_options")}
             </span>
           </div>
           <Controller
@@ -339,7 +339,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             name="ssl"
           />
           <span css={sslStyle}>
-            {t("editor.action.resource.redis.tip.ssl_options")}
+            {t("editor.action.resource.db.tip.ssl_options")}
           </span>
         </div>
         {sslOpen && (
@@ -355,7 +355,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.redis.label.ca_certificate")}
+                  {t("editor.action.resource.db.label.ca_certificate")}
                 </span>
               </div>
               <Controller
@@ -374,7 +374,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     value={value}
                     autoSize
                     placeholder={t(
-                      "editor.action.resource.redis.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.certificate",
                     )}
                   />
                 )}
@@ -389,7 +389,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.redis.label.client_key")}
+                  {t("editor.action.resource.db.label.client_key")}
                 </span>
               </div>
               <Controller
@@ -405,7 +405,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     onChange={onChange}
                     onBlur={onBlur}
                     placeholder={t(
-                      "editor.action.resource.redis.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.certificate",
                     )}
                   />
                 )}
@@ -420,7 +420,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.redis.label.client_certificate")}
+                  {t("editor.action.resource.db.label.client_certificate")}
                 </span>
               </div>
               <Controller
@@ -436,7 +436,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     onChange={onChange}
                     onBlur={onBlur}
                     placeholder={t(
-                      "editor.action.resource.redis.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.certificate",
                     )}
                   />
                 )}

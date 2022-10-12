@@ -175,18 +175,23 @@
         }
       },
       "resource": {
-        "label": {
+        "card": {
           "coming_soon": "即将更新"
         },
-        "mysql": {
+        "db": {
           "label": {
-            "ca_certificate": "服务端证书",
-            "client_certificate": "客户端证书",
-            "client_key": "客户端密钥",
+            "ca_certificate": "CA Certificate",
+            "client_certificate": "Client Certificate",
+            "client_key": "Client Key",
             "connect_type": "连接类型",
+            "connection_format": "连接方式",
             "database": "数据库名称",
+            "hostname": "主机",
             "hostname_port": "主机/端口",
+            "mongodb_connection_dns_seed_list": "DNS seed list connection",
+            "mongodb_connection_standard": "Standard Connection",
             "name": "名称",
+            "port": "端口",
             "private_key": "私钥",
             "ssl_options": "SSL 选项",
             "username_password": "用户名/密码"
@@ -201,71 +206,13 @@
           },
           "tip": {
             "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
+            "name": "为这个在ILLA中的资源命名",
             "ssl_options": "可用时使用 SSL",
             "username_password": "凭证将被加密并安全存储在我们的服务器上"
           },
           "title": {
-            "advanced_option": "高级配置"
-          }
-        },
-        "postgresql": {
-          "label": {
-            "ca_certificate": "服务端证书",
-            "client_certificate": "客户端证书",
-            "client_key": "客户端密钥",
-            "connect_type": "连接类型",
-            "database": "数据库名称",
-            "hostname_port": "主机/端口",
-            "name": "名称",
-            "private_key": "私钥",
-            "ssl_options": "SSL 选项",
-            "username_password": "用户名/密码"
-          },
-          "placeholder": {
-            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "database": "acme_production",
-            "hostname": "主机名",
-            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "password": "密码",
-            "username": "用户名"
-          },
-          "tip": {
-            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
-            "ssl_options": "可用时使用 SSL",
-            "username_password": "凭证将被加密并安全存储在我们的服务器上"
-          },
-          "title": {
-            "advanced_option": "高级配置"
-          }
-        },
-        "redis": {
-          "label": {
-            "ca_certificate": "服务端证书",
-            "client_certificate": "客户端证书",
-            "client_key": "客户端密钥",
-            "connect_type": "连接类型",
-            "database": "数据库名称",
-            "hostname_port": "主机/端口",
-            "name": "名称",
-            "private_key": "私钥",
-            "ssl_options": "SSL 选项",
-            "username_password": "用户名/密码"
-          },
-          "placeholder": {
-            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "database": "acme_production",
-            "hostname": "主机名",
-            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "password": "密码",
-            "username": "用户名"
-          },
-          "tip": {
-            "connect_type": "云服务器: ILLA 服务器将安全地连接到您的数据库",
-            "ssl_options": "可用时使用 SSL",
-            "username_password": "凭证将被加密并安全存储在我们的服务器上"
-          },
-          "title": {
-            "advanced_option": "高级配置"
+            "advanced_option": "高级配置",
+            "general_option": "通常"
           }
         },
         "restapi": {
@@ -464,6 +411,7 @@
         "options": "选项",
         "pagination": "翻页",
         "row_selection": "行选择",
+        "sort": "排序",
         "style": "风格",
         "toolbar": "工具栏",
         "validation": "验证",
@@ -486,6 +434,7 @@
         "color": "颜色",
         "colors": "颜色",
         "column_title": "列标题",
+        "column_type": "列类型",
         "columns": "列数据",
         "component": "组件",
         "config_type": "配置类型",
