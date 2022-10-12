@@ -65,8 +65,6 @@ export const dragPreviewStyle = css`
 `
 
 export const iconStyle = css`
-  height: 70px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,6 +73,7 @@ export const iconStyle = css`
   border-radius: 4px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   transition: background-color 200ms ease-in-out;
+  padding: 8px;
   &:hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
