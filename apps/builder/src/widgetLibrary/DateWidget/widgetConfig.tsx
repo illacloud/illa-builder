@@ -1,4 +1,4 @@
-import { DateWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as DateWidgetIcon } from "@/assets/widgetCover/date.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import dayjs from "dayjs"
 import i18n from "@/i18n/config"
@@ -7,7 +7,7 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
   type: "DATE_WIDGET",
   displayName: "date",
   widgetName: i18n.t("widget.date.name"),
-  icon: <DateWidgetIcon size="100%" />,
+  icon: <DateWidgetIcon />,
   keywords: ["Date", "日期选择器"],
   sessionType: "CALENDAR",
   w: 12,
