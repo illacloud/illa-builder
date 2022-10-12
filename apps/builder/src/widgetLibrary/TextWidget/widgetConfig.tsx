@@ -1,4 +1,4 @@
-import { TextWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as TextWidgetIcon } from "@/assets/widgetCover/text.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -8,7 +8,7 @@ export const TEXT_WIDGET_CONFIG: WidgetConfig = {
   h: 5,
   w: 12,
   type: "TEXT_WIDGET",
-  icon: <TextWidgetIcon size="100%" />,
+  icon: <TextWidgetIcon />,
   keywords: ["Text", "文本"],
   sessionType: "PRESENTATION",
   defaults: {

@@ -1,4 +1,4 @@
-import { ChartWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as ChartWidgetIcon } from "@/assets/widgetCover/chart.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import store from "@/store"
@@ -9,7 +9,7 @@ export const CHART_WIDGET_CONFIG: WidgetConfig = {
   displayName: "chart",
   widgetName: i18n.t("widget.chart.name"),
   keywords: ["Chart", "图表"],
-  icon: <ChartWidgetIcon size="100%" />,
+  icon: <ChartWidgetIcon />,
   sessionType: "DATE",
   w: 20,
   h: 40,

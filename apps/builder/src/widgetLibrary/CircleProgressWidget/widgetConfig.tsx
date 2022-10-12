@@ -1,4 +1,4 @@
-import { CircleProgressWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as CircleProgressWidgetIcon } from "@/assets/widgetCover/circleProgress.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -7,7 +7,7 @@ export const CIRCLE_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   displayName: "circleProgress",
   widgetName: i18n.t("widget.circle_progress.name"),
   keywords: ["Circle Progress", "圆形进度条"],
-  icon: <CircleProgressWidgetIcon size="100%" />,
+  icon: <CircleProgressWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 6,
   h: 12,
