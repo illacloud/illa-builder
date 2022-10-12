@@ -1,4 +1,4 @@
-name: trigger jenkins job
+name: trigger jenkins job illa-builder-test
 on: [push]
 jobs:
 
