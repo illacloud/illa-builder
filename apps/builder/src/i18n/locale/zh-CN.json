@@ -180,12 +180,13 @@
         },
         "db": {
           "label": {
-            "ca_certificate": "CA Certificate",
-            "client_certificate": "Client Certificate",
-            "client_key": "Client Key",
+            "ca_certificate": "服务端证书",
+            "client_certificate": "客户端证书",
+            "client_key": "客户端密钥",
             "connect_type": "连接类型",
             "connection_format": "连接方式",
             "database": "数据库名称",
+            "database_index": "数据库索引",
             "hostname": "主机",
             "hostname_port": "主机/端口",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
@@ -199,6 +200,7 @@
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
+            "database_index": "默认 0",
             "hostname": "主机名",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "密码",

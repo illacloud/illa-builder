@@ -180,12 +180,13 @@
         },
         "db": {
           "label": {
-            "ca_certificate": "服务端证书",
-            "client_certificate": "客户端证书",
-            "client_key": "客户端密钥",
+            "ca_certificate": "CA Certificate",
+            "client_certificate": "Client Certificate",
+            "client_key": "Client Key",
             "connect_type": "Connect Type",
             "connection_format": "Connection format",
             "database": "Database",
+            "database_index": "Database Index",
             "hostname": "Hostname",
             "hostname_port": "Hostname/Port",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
@@ -199,6 +200,7 @@
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
+            "database_index": "default 0",
             "hostname": "Hostname",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "Password",

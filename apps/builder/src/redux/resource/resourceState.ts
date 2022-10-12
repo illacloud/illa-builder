@@ -44,7 +44,7 @@ export interface MysqlResource {
 export interface RedisResource {
   host: string
   port: string
-  databaseName: string
+  databaseIndex: number
   databaseUsername: string
   databasePassword: string
   ssl: DbSSL

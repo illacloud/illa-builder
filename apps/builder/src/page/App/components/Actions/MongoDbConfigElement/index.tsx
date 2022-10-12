@@ -106,7 +106,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               url: `/resources`,
               data: {
                 resourceName: data.resourceName,
-                resourceType: "postgresql",
+                resourceType: "mongodb",
                 content: {
                   host: data.host,
                   port: data.port.toString(),
@@ -562,7 +562,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                   data: {
                     resourceId: data.resourceId,
                     resourceName: data.resourceName,
-                    resourceType: "postgresql",
+                    resourceType: "mongodb",
                     content: {
                       host: data.host,
                       port: data.port.toString(),

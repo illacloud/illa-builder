@@ -11,10 +11,9 @@ import {
   hostInputContainer,
   labelContainer,
   optionLabelStyle,
-  sslItem,
   sslStyle,
 } from "./style"
-import { Input, Password, TextArea } from "@illa-design/input"
+import { Input, Password } from "@illa-design/input"
 import { getColor } from "@illa-design/theme"
 import { useTranslation } from "react-i18next"
 import { Divider } from "@illa-design/divider"
@@ -71,10 +70,12 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 content: {
                   host: data.host,
                   port: data.port.toString(),
-                  databaseName: data.databaseName,
+                  databaseIndex: data.databaseIndex,
                   databaseUsername: data.databaseUsername,
                   databasePassword: data.databasePassword,
-                  ssl: generateSSLConfig(sslOpen, data),
+                  ssl: {
+                    ssl: sslOpen,
+                  },
                 },
               },
             },
@@ -104,10 +105,12 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 content: {
                   host: data.host,
                   port: data.port.toString(),
-                  databaseName: data.databaseName,
+                  databaseIndex: data.databaseIndex,
                   databaseUsername: data.databaseUsername,
                   databasePassword: data.databasePassword,
-                  ssl: generateSSLConfig(sslOpen, data),
+                  ssl: {
+                    ssl: sslOpen,
+                  },
                 },
               },
             },
@@ -161,6 +164,17 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             name="resourceName"
           />
         </div>
+        <div css={configItemTip}>
+          {t("editor.action.resource.restapi.tip.name")}
+        </div>
+        <Divider
+          direction="horizontal"
+          ml="24px"
+          mr="24px"
+          mt="8px"
+          mb="8px"
+          w="unset"
+        />
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
@@ -205,7 +219,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   borderColor="techPurple"
                   w="142px"
                   ml="8px"
-                  placeholder="3306"
+                  placeholder="6379"
                 />
               )}
               name="port"
@@ -218,17 +232,17 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.db.label.database")}
+              {t("editor.action.resource.db.label.database_index")}
             </span>
           </div>
           <Controller
-            defaultValue={resource?.content.databaseName}
+            defaultValue={resource?.content.databaseIndex}
             control={control}
             rules={{
               required: true,
             }}
             render={({ field: { value, onChange, onBlur } }) => (
-              <Input
+              <InputNumber
                 w="100%"
                 ml="16px"
                 mr="24px"
@@ -237,11 +251,11 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 value={value}
                 borderColor="techPurple"
                 placeholder={t(
-                  "editor.action.resource.db.placeholder.database",
+                  "editor.action.resource.db.placeholder.database_index",
                 )}
               />
             )}
-            name="databaseName"
+            name="databaseIndex"
           />
         </div>
         <div css={configItem}>
@@ -342,109 +356,6 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             {t("editor.action.resource.db.tip.ssl_options")}
           </span>
         </div>
-        {sslOpen && (
-          <>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                  *
-                </span>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.ca_certificate")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.serverCert}
-                rules={{
-                  required: true,
-                }}
-                shouldUnregister={true}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    value={value}
-                    autoSize
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="serverCert"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.client_key")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                defaultValue={resource?.content.ssl.clientKey}
-                shouldUnregister={true}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="clientKey"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.client_certificate")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                shouldUnregister={true}
-                defaultValue={resource?.content.ssl.clientCert}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="clientCert"
-              />
-            </div>
-          </>
-        )}
       </div>
       <div css={footerStyle}>
         <Button
@@ -477,10 +388,12 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     content: {
                       host: data.host,
                       port: data.port.toString(),
-                      databaseName: data.databaseName,
+                      databaseIndex: data.databaseIndex,
                       databaseUsername: data.databaseUsername,
                       databasePassword: data.databasePassword,
-                      ssl: generateSSLConfig(sslOpen, data),
+                      ssl: {
+                        ssl: sslOpen,
+                      },
                     },
                   },
                 },
