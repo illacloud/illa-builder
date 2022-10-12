@@ -9,7 +9,7 @@ jobs:
     - name: trigger single Job
       uses: appleboy/jenkins-action@master
       with:
-        url: "http://ec2-18-181-186-207.ap-northeast-1.compute.amazonaws.com/"
+        url: "http://ec2-18-181-186-207.ap-northeast-1.compute.amazonaws.com:9000/"
         user: "illasoft"
         token: ${{ secrets.JENKINS_API_TOKEN }}
         job: "illa-builder-test"
