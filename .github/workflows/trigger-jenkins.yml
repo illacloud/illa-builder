@@ -1,5 +1,11 @@
-name: trigger jenkins job illa-builder-test
-on: [push]
+name: trigger jenkins job illa-builder-release
+on:
+  push:
+    branches:
+    - 'releases/**'
+  pull_request:
+    branches:
+    - 'releases/**'
 jobs:
 
   build:
@@ -12,4 +18,4 @@ jobs:
         url: "http://ec2-18-181-186-207.ap-northeast-1.compute.amazonaws.com:9000/"
         user: "illasoft"
         token: ${{ secrets.JENKINS_API_TOKEN }}
-        job: "illa-builder-test"
+        job: "illa-builder-release"
