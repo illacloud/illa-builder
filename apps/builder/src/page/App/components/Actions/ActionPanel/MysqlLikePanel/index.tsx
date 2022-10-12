@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo, useState } from "react"
 import {
   mysqlContainerStyle,
   sqlInputStyle,
-} from "@/page/App/components/Actions/ActionPanel/SqlPanel/style"
+} from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { useDispatch } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
@@ -13,11 +13,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { MysqlLikePanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { Api } from "@/api/base"
 import { isObject } from "@illa-design/system"
-
-interface ResourcesData {
-  schema: Record<string, unknown>
-  resourceName: string
-}
+import { ResourcesData } from "@/redux/resource/resourceState"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}
@@ -38,7 +34,7 @@ const convertResourcesToTables = (data: Record<string, unknown>) => {
   return res
 }
 
-export const SqlPanel: FC<MysqlLikePanelProps> = (props) => {
+export const MysqlLikePanel: FC<MysqlLikePanelProps> = (props) => {
   const dispatch = useDispatch()
 
   const currentAction = props.action
@@ -100,4 +96,4 @@ export const SqlPanel: FC<MysqlLikePanelProps> = (props) => {
   )
 }
 
-SqlPanel.displayName = "MysqlPanel"
+MysqlLikePanel.displayName = "MysqlPanel"

@@ -8,6 +8,7 @@ import {
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
+import { RedisAction } from "@/redux/currentApp/action/redisAction"
 
 export interface RestApiPanelProps {
   action: ActionItem<RestApiAction<BodyContent>>
@@ -23,4 +24,8 @@ export interface TransformerPanelProps {
 
 export interface ResourceChooseProps {
   action: ActionItem<ActionContent>
+}
+
+export interface RedisPanelProps {
+  action: ActionItem<RedisAction>
 }

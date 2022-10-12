@@ -24,14 +24,11 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import {
-  generateSSLConfig,
-  RedisResource,
-  Resource,
-} from "@/redux/resource/resourceState"
+import { Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
+import { RedisResource } from "@/redux/resource/redisResource"
 
 export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -70,7 +67,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 content: {
                   host: data.host,
                   port: data.port.toString(),
-                  databaseIndex: data.databaseIndex,
+                  databaseIndex: data.databaseIndex ?? 0,
                   databaseUsername: data.databaseUsername,
                   databasePassword: data.databasePassword,
                   ssl: {
@@ -105,7 +102,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                 content: {
                   host: data.host,
                   port: data.port.toString(),
-                  databaseIndex: data.databaseIndex,
+                  databaseIndex: data.databaseIndex ?? 0,
                   databaseUsername: data.databaseUsername,
                   databasePassword: data.databasePassword,
                   ssl: {
@@ -228,7 +225,6 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
@@ -238,9 +234,6 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           <Controller
             defaultValue={resource?.content.databaseIndex}
             control={control}
-            rules={{
-              required: true,
-            }}
             render={({ field: { value, onChange, onBlur } }) => (
               <InputNumber
                 w="100%"
@@ -388,7 +381,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                     content: {
                       host: data.host,
                       port: data.port.toString(),
-                      databaseIndex: data.databaseIndex,
+                      databaseIndex: data.databaseIndex ?? 0,
                       databaseUsername: data.databaseUsername,
                       databasePassword: data.databasePassword,
                       ssl: {

@@ -25,14 +25,11 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import {
-  generateSSLConfig,
-  MysqlResource,
-  Resource,
-} from "@/redux/resource/resourceState"
+import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
+import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 
 /**
  * include mariadb or tidb
@@ -55,7 +52,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const resource = useSelector((state: RootState) => {
     return state.resource.find(
       (r) => r.resourceId === resourceId,
-    ) as Resource<MysqlResource>
+    ) as Resource<MysqlLikeResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -67,7 +64,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
     <form
       onSubmit={handleSubmit((data, event) => {
         if (resourceId != undefined) {
-          Api.request<Resource<MysqlResource>>(
+          Api.request<Resource<MysqlLikeResource>>(
             {
               method: "PUT",
               url: `/resources/${resourceId}`,
@@ -101,7 +98,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             },
           )
         } else {
-          Api.request<Resource<MysqlResource>>(
+          Api.request<Resource<MysqlLikeResource>>(
             {
               method: "POST",
               url: `/resources`,
@@ -493,7 +490,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<MysqlResource>>(
+              Api.request<Resource<MysqlLikeResource>>(
                 {
                   method: "POST",
                   url: `/resources/testConnection`,

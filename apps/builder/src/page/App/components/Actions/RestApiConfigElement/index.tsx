@@ -4,13 +4,7 @@ import { useTranslation } from "react-i18next"
 import { Controller, useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import {
-  BasicAuth,
-  BearerAuth,
-  Resource,
-  RestApiAuth,
-  RestApiResource,
-} from "@/redux/resource/resourceState"
+import { Resource } from "@/redux/resource/resourceState"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -33,6 +27,12 @@ import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigEleme
 import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
 import { resourceActions } from "@/redux/resource/resourceSlice"
+import {
+  BasicAuth,
+  BearerAuth,
+  RestApiAuth,
+  RestApiResource,
+} from "@/redux/resource/restapiResource"
 
 function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
   let authContent: RestApiAuth | null = null

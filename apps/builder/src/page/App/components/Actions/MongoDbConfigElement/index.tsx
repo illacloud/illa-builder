@@ -25,16 +25,15 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import {
-  generateSSLConfig,
-  MongoDbConnectionFormat,
-  MongoDbResource,
-  Resource,
-} from "@/redux/resource/resourceState"
+import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 import { RadioGroup } from "@illa-design/radio"
+import {
+  MongoDbConnectionFormat,
+  MongoDbResource,
+} from "@/redux/resource/mongodbResource"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
