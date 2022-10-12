@@ -350,7 +350,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             defaultValue={resource?.content.ssl.ssl}
             render={({ field: { value, onChange, onBlur } }) => (
               <Switch
-                value={value}
+                checked={value}
                 ml="16px"
                 colorScheme="techPurple"
                 onChange={(open) => {

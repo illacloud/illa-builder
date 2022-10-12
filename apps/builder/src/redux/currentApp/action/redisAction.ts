@@ -1,9 +1,13 @@
 import { Events } from "@/redux/currentApp/action/actionState"
 
+export type RedisActionMode = "raw" | "select"
+
 export interface RedisAction extends Events {
-  command: string
+  mode: RedisActionMode
+  query: string
 }
 
 export const RedisActionInitial: RedisAction = {
-  command: "",
+  mode: "raw",
+  query: "",
 }

@@ -64,7 +64,7 @@ export const RedisPanel: FC<RedisPanelProps> = (props) => {
         placeholder="SET runoobkey redis"
         lineNumbers={true}
         css={sqlInputStyle}
-        value={currentContent.command}
+        value={currentContent.query}
         mode="TEXT_JS"
         expectedType={VALIDATION_TYPES.STRING}
         tables={sqlTable}

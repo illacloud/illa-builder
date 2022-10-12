@@ -47,7 +47,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
     ) as Resource<RedisResource>
   })
 
-  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
+  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl ?? false)
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -70,9 +70,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   databaseIndex: data.databaseIndex ?? 0,
                   databaseUsername: data.databaseUsername,
                   databasePassword: data.databasePassword,
-                  ssl: {
-                    ssl: sslOpen,
-                  },
+                  ssl: sslOpen,
                 },
               },
             },
@@ -105,9 +103,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                   databaseIndex: data.databaseIndex ?? 0,
                   databaseUsername: data.databaseUsername,
                   databasePassword: data.databasePassword,
-                  ssl: {
-                    ssl: sslOpen,
-                  },
+                  ssl: sslOpen,
                 },
               },
             },
@@ -330,10 +326,10 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           </div>
           <Controller
             control={control}
-            defaultValue={resource?.content.ssl.ssl}
+            defaultValue={resource?.content.ssl}
             render={({ field: { value, onChange, onBlur } }) => (
               <Switch
-                value={value}
+                checked={value}
                 ml="16px"
                 colorScheme="techPurple"
                 onChange={(open) => {
@@ -384,9 +380,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
                       databaseIndex: data.databaseIndex ?? 0,
                       databaseUsername: data.databaseUsername,
                       databasePassword: data.databasePassword,
-                      ssl: {
-                        ssl: sslOpen,
-                      },
+                      ssl: sslOpen,
                     },
                   },
                 },
