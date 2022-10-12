@@ -7,7 +7,7 @@
 <p align="center">To accelerate your internal tools development.</p>
 
 <div align="center">
-  <p>Create with ❤︎ by <a href="https://github.com/illa-family/illa-builder/graphs/contributors">contributors</a></p>
+  <p>Created with ❤︎ by <a href="https://github.com/illa-family/illa-builder/graphs/contributors">contributors</a></p>
 </div>
 
 ![cover](https://github.com/illa-family/.github/blob/main/assets/images/github-builder-cover-2.png)
