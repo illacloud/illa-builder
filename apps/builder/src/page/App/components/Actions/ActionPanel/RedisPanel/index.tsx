@@ -74,7 +74,7 @@ export const RedisPanel: FC<RedisPanelProps> = (props) => {
               ...currentAction,
               content: {
                 ...currentContent,
-                command: value,
+                query: value,
               },
             }),
           )
