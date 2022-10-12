@@ -624,6 +624,7 @@
         "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format)",
         "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
         "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
         "download": "Show download button in toolbar",
         "filter": "Show filter button in toolbar",
         "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",

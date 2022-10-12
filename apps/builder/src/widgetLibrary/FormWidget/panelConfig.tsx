@@ -28,6 +28,7 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-interaction-disabled-submit`,
         labelName: i18n.t("editor.inspect.setter_label.disable_submit"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled_submit"),
         attrName: "disabledSubmit",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
