@@ -8,6 +8,7 @@ import {
   errorResultWrapperStyle,
   resCloseIconStyle,
   resultContainerStyle,
+  resultSuccessLeftContainer,
   successIconStyle,
   successResultWrapperStyle,
 } from "./style"
@@ -16,6 +17,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ApiError } from "@/api/base"
 import { DragBar } from "@/page/App/components/Actions/DragBar"
 import { useTranslation } from "react-i18next"
+import { Space } from "@illa-design/space"
 
 interface ActionResultProps {
   result?: ActionResultType
@@ -36,15 +38,15 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
     >
       {result?.error ? (
         <div css={errorResultWrapperStyle}>
-          <WarningCircleIcon css={errorIconStyle} size="16px" />
+          <WarningCircleIcon css={errorIconStyle} fs="16px" />
           <span>{(res as ApiError)?.errorMessage?.toString()}</span>
         </div>
       ) : (
         <>
           <DragBar resizeRef={panelRef} minHeight={40} />
           <div css={successResultWrapperStyle}>
-            <div>
-              <RightIcon css={successIconStyle} size="16px" />
+            <div css={resultSuccessLeftContainer}>
+              <RightIcon css={successIconStyle} fs="16px" />
               <span>{t("editor.action.result.title.success")}</span>
             </div>
             <CloseIcon css={resCloseIconStyle} onClick={onClose} />
