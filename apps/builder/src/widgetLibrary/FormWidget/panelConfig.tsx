@@ -2,72 +2,56 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import i18n from "@/i18n/config"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
-import { CONTAINER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ContainerWidget/eventHandlerConfig"
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
 
-const baseWidgetName = "container"
-export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
-  {
-    id: `${baseWidgetName}-views`,
-    groupName: i18n.t("editor.inspect.setter_group.views"),
-    children: [
-      {
-        id: `${baseWidgetName}-views-list`,
-        labelName: i18n.t("editor.inspect.setter_label.data_source"),
-        useCustomLayout: true,
-        attrName: "viewList",
-        setterType: "CONTAINER_VIEW_SETTER",
-        childrenSetter: [
-          {
-            id: `${baseWidgetName}-viewList-key`,
-            labelName: i18n.t("editor.inspect.setter_label.key"),
-            attrName: "key",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-          },
-          {
-            id: `${baseWidgetName}-viewList-label`,
-            labelName: i18n.t("editor.inspect.setter_label.label"),
-            attrName: "label",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.STRING,
-          },
-          {
-            id: `${baseWidgetName}-viewList-disabled`,
-            labelName: i18n.t("editor.inspect.setter_label.disabled"),
-            attrName: "disabled",
-            setterType: "INPUT_SETTER",
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-          },
-          {
-            id: `${baseWidgetName}-viewList-hidden`,
-            labelName: i18n.t("editor.inspect.setter_label.hidden"),
-            attrName: "hidden",
-            setterType: "DYNAMIC_SWITCH_SETTER",
-            useCustomLayout: true,
-            openDynamic: true,
-            expectedType: VALIDATION_TYPES.BOOLEAN,
-          },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-views-default`,
-        labelName: i18n.t("editor.inspect.setter_label.default_views"),
-        attrName: "defaultView",
-        setterType: "CONTAINER_DEFAULT_VIEW_SETTER",
-      },
-    ],
-  },
+const baseWidgetName = "form"
+export const FORM_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
+      // {
+      //   ...generatorEventHandlerConfig(
+      //     baseWidgetName,
+      //     CONTAINER_EVENT_HANDLER_CONFIG.events,
+      //   ),
+      // },
       {
-        ...generatorEventHandlerConfig(
-          baseWidgetName,
-          CONTAINER_EVENT_HANDLER_CONFIG.events,
+        id: `${baseWidgetName}-interaction-disabled`,
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        attrName: "disabled",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
+      },
+      {
+        id: `${baseWidgetName}-interaction-disabled-submit`,
+        labelName: i18n.t("editor.inspect.setter_label.disable_submit"),
+        attrName: "disabledSubmit",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
+      },
+      {
+        id: `${baseWidgetName}-interaction-validate-input-on-submit`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.validate_inputs_on_submit",
         ),
+        attrName: "validateInputsOnSubmit",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
+      },
+      {
+        id: `${baseWidgetName}-interaction-reset-after-successful-submit`,
+        labelName: i18n.t(
+          "editor.inspect.setter_label.reset_after_successful_submit",
+        ),
+        attrName: "validateInputsOnSubmit",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
       },
     ],
   },
@@ -89,6 +73,22 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
+      {
+        id: `${baseWidgetName}-layout-show-header`,
+        labelName: i18n.t("editor.inspect.setter_label.show_header"),
+        attrName: "showHeader",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
+      },
+      {
+        id: `${baseWidgetName}-layout-show-footer`,
+        labelName: i18n.t("editor.inspect.setter_label.show_footer"),
+        attrName: "showFooter",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+        openDynamic: true,
+      },
       {
         id: `${baseWidgetName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
