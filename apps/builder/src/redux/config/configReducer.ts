@@ -283,7 +283,7 @@ export const removeSelectedApiCookies: CaseReducer<
  */
 export const changeSelectedAction: CaseReducer<
   ConfigState,
-  PayloadAction<ActionItem<ActionContent>>
+  PayloadAction<ActionItem<ActionContent> | null>
 > = (state, action) => {
   state.selectedAction = action.payload
 }
