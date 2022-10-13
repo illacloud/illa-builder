@@ -231,7 +231,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
             render={({ field: { value, onChange, onBlur } }) => (
               <RadioGroup
                 w="100%"
-                colorScheme="techPurple"
+                colorScheme="gray"
                 ml="16px"
                 mr="24px"
                 type="button"
