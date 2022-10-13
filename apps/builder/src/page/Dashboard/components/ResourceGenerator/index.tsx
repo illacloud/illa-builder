@@ -27,7 +27,9 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
       break
     case "createResource":
       if (currentResource != null) {
-        title = getResourceNameFromResourceType(currentResource)
+        title = t("editor.action.form.title.configure", {
+          name: getResourceNameFromResourceType(currentResource),
+        })
       }
       break
   }

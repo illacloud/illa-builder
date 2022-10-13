@@ -1,4 +1,4 @@
-import { TableWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as TextWidgetIcon } from "@/assets/widgetCover/table.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"

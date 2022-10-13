@@ -1,12 +1,12 @@
-import { TimelineWidgetIcon } from "@illa-design/icon"
-import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
+import { ReactComponent as TimelineWidgetIcon } from "@/assets/widgetCover/timeline.svg"
+import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 export const TIMELINE_WIDGET_CONFIG: WidgetConfig = {
   type: "TIMELINE_WIDGET",
   widgetName: i18n.t("widget.timeline.name"),
   displayName: "timeline",
-  icon: <TimelineWidgetIcon size="100%" />,
+  icon: <TimelineWidgetIcon />,
   keywords: ["Timeline", "时间线"],
   sessionType: "PRESENTATION",
   w: 12,
