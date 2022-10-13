@@ -56,6 +56,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
 export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
+
   Api.request(
     {
       url: `${baseActionUrl}/${actionId}`,

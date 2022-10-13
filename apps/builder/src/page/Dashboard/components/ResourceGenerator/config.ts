@@ -21,11 +21,11 @@ export const Databases: ResourceDataItem[] = [
   },
   {
     resourceType: "tidb",
-    isDraft: true,
+    isDraft: false,
   },
   {
     resourceType: "redis",
-    isDraft: true,
+    isDraft: false,
   },
   {
     resourceType: "mongodb",

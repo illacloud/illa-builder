@@ -31,11 +31,12 @@ import { AppLoading } from "@/page/App/components/AppLoading"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { setupConfigListener } from "@/redux/config/configListener"
+import { setupConfigListeners } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { Debugger } from "@/page/App/components/Debugger"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
+import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -61,7 +62,8 @@ export const Editor: FC = () => {
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
       setupComponentsListeners(startAppListening),
-      setupConfigListener(startAppListening),
+      setupConfigListeners(startAppListening),
+      setupActionListeners(startAppListening),
       setupExecutionListeners(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())

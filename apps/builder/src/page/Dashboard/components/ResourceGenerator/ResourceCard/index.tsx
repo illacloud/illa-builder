@@ -25,7 +25,7 @@ export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
       </span>
       {isDraft && (
         <span css={comingStyle}>
-          {t("editor.action.resource.label.coming_soon")}
+          {t("editor.action.resource.card.coming_soon")}
         </span>
       )}
     </div>

@@ -1,3 +1,8 @@
+import { MongoDbResource } from "./mongodbResource"
+import { RestApiAuth, RestApiResource } from "./restapiResource"
+import { RedisResource } from "./redisResource"
+import { MysqlLikeResource } from "./mysqlLikeResource"
+
 export type ResourceType =
   | "mysql"
   | "restapi"
@@ -15,10 +20,10 @@ export type ResourceType =
   | "s3"
 
 export type ResourceContent =
-  | MysqlResource
+  | MysqlLikeResource
   | RestApiResource<RestApiAuth>
-  | PostgreSqlResource
   | RedisResource
+  | MongoDbResource
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string
@@ -31,22 +36,9 @@ export interface Resource<T extends ResourceContent> {
   content: T
 }
 
-export interface MysqlResource {
-  host: string
-  port: string
-  databaseName: string
-  databaseUsername: string
-  databasePassword: string
-  ssl: DbSSL
-}
-
-export interface RedisResource {
-  host: string
-  port: string
-  databaseName: string
-  databaseUsername: string
-  databasePassword: string
-  ssl: DbSSL
+export interface ResourcesData {
+  schema: Record<string, unknown>
+  resourceName: string
 }
 
 export interface DbSSL {
@@ -66,42 +58,6 @@ export function generateSSLConfig(
     clientCert: data.clientCert,
     serverCert: data.serverCert,
   } as DbSSL
-}
-
-export interface PostgreSqlResource {
-  host: string
-  port: string
-  databaseName: string
-  databaseUsername: string
-  databasePassword: string
-  ssl: DbSSL
-}
-
-export interface Params {
-  key: string
-  value: string
-}
-
-export type RestApiAuthType = "none" | "basic" | "bearer"
-
-export interface RestApiResource<T extends RestApiAuth> {
-  baseUrl: string
-  urlParams: Params[]
-  headers: Params[]
-  cookies: Params[]
-  authentication: RestApiAuthType
-  authContent: T
-}
-
-export type RestApiAuth = BasicAuth | BearerAuth
-
-export interface BasicAuth {
-  username: string
-  password: string
-}
-
-export interface BearerAuth {
-  token: string
 }
 
 export type ResourceListState = Resource<ResourceContent>[]

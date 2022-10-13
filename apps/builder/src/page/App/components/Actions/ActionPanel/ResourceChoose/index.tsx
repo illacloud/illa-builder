@@ -23,12 +23,14 @@ import {
   getResourceNameFromResourceType,
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
+import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 
 export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
   const [editorVisible, setEditorVisible] = useState(false)
+  const [generatorVisible, setGeneratorVisible] = useState(false)
 
   const resourceList = useSelector(getAllResources)
   const action = props.action
@@ -78,7 +80,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
               key="create"
               isSelectOption={false}
               onClick={() => {
-                setEditorVisible(true)
+                setGeneratorVisible(true)
               }}
             >
               <Space
@@ -131,9 +133,11 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
         closable
         withoutLine
         withoutPadding
-        title={getResourceNameFromResourceType(
-          getResourceTypeFromActionType(action.actionType),
-        )}
+        title={t("editor.action.form.title.configure", {
+          name: getResourceNameFromResourceType(
+            getResourceTypeFromActionType(action.actionType),
+          ),
+        })}
         onCancel={() => {
           setEditorVisible(false)
         }}
@@ -148,6 +152,12 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
           }}
         />
       </Modal>
+      <ResourceGenerator
+        visible={generatorVisible}
+        onClose={() => {
+          setGeneratorVisible(false)
+        }}
+      />
     </>
   )
 }
