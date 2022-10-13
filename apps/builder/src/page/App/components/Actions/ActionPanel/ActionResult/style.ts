@@ -36,6 +36,12 @@ export const successResultWrapperStyle = css`
   background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
 `
 
+export const resultSuccessLeftContainer = css`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+`
+
 export const errorIconStyle = css`
   margin-right: 10px;
   color: ${globalColor(`--${illaPrefix}-red-03`)};

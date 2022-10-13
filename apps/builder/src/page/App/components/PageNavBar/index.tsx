@@ -103,7 +103,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         setDeployLoading(loading)
       },
     )
-  }, [setDeployLoading, appInfo])
+  }, [appInfo.appId, t])
   const handleClickExitPreview = useCallback(() => {
     dispatch(configActions.updateIllaMode("edit"))
   }, [dispatch])

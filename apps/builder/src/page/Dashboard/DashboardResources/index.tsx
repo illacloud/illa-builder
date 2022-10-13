@@ -5,8 +5,6 @@ import { Button } from "@illa-design/button"
 import { Empty } from "@illa-design/empty"
 import { Table } from "@illa-design/table"
 import {
-  MysqlResource,
-  PostgreSqlResource,
   Resource,
   ResourceContent,
   ResourceListState,
@@ -30,6 +28,7 @@ import { fromNow } from "@/utils/dayjs"
 import { CellContext } from "@tanstack/table-core"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
+import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
@@ -45,11 +44,9 @@ export const DashboardResources: FC = () => {
         case "restapi":
           break
         case "postgresql":
-          dbName = (resource as Resource<PostgreSqlResource>).content
-            .databaseName
-          break
         case "mysql":
-          dbName = (resource as Resource<MysqlResource>).content.databaseName
+          dbName = (resource as Resource<MysqlLikeResource>).content
+            .databaseName
           break
       }
       return {
@@ -112,7 +109,7 @@ export const DashboardResources: FC = () => {
         ),
       },
     ]
-  }, [resourcesList, t])
+  }, [t])
 
   return (
     <>

@@ -3,7 +3,7 @@ import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/styl
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
-import { SqlPanel } from "./SqlPanel"
+import { MysqlLikePanel } from "./MysqlLikePanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
@@ -16,6 +16,8 @@ import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { onCopyActionItem, onDeleteActionItem } from "../api"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
+import { RedisAction } from "@/redux/currentApp/action/redisAction"
+import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
 
 export interface ActionPanelProps {
   maxHeight?: number
@@ -37,10 +39,10 @@ export const ActionPanel: FC<ActionPanelProps> = (props) => {
       case "tidb":
       case "mariadb":
       case "postgresql":
-      case "redis":
-      case "mongodb":
         return (
-          <SqlPanel action={selectedAction as ActionItem<MysqlLikeAction>} />
+          <MysqlLikePanel
+            action={selectedAction as ActionItem<MysqlLikeAction>}
+          />
         )
       case "restapi":
         return (
@@ -54,6 +56,8 @@ export const ActionPanel: FC<ActionPanelProps> = (props) => {
             action={selectedAction as ActionItem<TransformerAction>}
           />
         )
+      case "redis":
+        return <RedisPanel action={selectedAction as ActionItem<RedisAction>} />
       default:
         return null
     }
