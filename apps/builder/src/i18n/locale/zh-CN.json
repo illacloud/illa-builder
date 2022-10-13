@@ -130,7 +130,7 @@
         "required": "这是必填项",
         "title": {
           "api": "API",
-          "configure": "配置 {{name}}",
+          "configure": "配置 {{ name }}",
           "database": "数据库",
           "select": "选择资源类型"
         },

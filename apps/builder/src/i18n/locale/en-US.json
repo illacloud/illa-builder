@@ -130,7 +130,7 @@
         "required": "This is required",
         "title": {
           "api": "APIs",
-          "configure": "Configure {{name}}",
+          "configure": "Configure {{ name }}",
           "database": "DATABASES",
           "select": "Select Resource Type"
         },

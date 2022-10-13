@@ -133,9 +133,11 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
         closable
         withoutLine
         withoutPadding
-        title={getResourceNameFromResourceType(
-          getResourceTypeFromActionType(action.actionType),
-        )}
+        title={t("editor.action.form.title.configure", {
+          name: getResourceNameFromResourceType(
+            getResourceTypeFromActionType(action.actionType),
+          ),
+        })}
         onCancel={() => {
           setEditorVisible(false)
         }}
