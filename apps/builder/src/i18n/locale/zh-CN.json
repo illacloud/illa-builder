@@ -546,6 +546,7 @@
         "layout": "布局",
         "legend_position": "图例位置",
         "links_color": "链接色",
+        "link_to_container": "是否关联到容器",
         "loading": "加载中",
         "loop_back_to_start": "列表循环",
         "loop_start_to_back": "列表循环",

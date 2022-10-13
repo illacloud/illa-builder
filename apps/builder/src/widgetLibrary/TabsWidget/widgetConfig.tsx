@@ -7,7 +7,7 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
   widgetName: i18n.t("widget.tabs.name"),
   h: 4,
   w: 12,
-  type: "TEXT_WIDGET",
+  type: "TABS_WIDGET",
   icon: <TabsWidgetIcon size="100%" />,
   keywords: ["Tabs", "选项卡"],
   sessionType: "PRESENTATION",

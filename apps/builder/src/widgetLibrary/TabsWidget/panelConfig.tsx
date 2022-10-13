@@ -2,38 +2,56 @@ import {
   HorizontalCenterIcon,
   HorizontalEndIcon,
   HorizontalStartIcon,
-  VerticalCenterIcon,
   VerticalEndIcon,
   VerticalStartIcon,
 } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
-import { ReactComponent as TextSizeIcon } from "@/assets/text-size-icon.svg"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { TABS_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TabsWidget/eventHandlerConfig"
 
-const baseWidgetName = "text"
+const baseWidgetName = "tabs"
 export const TABS_PANEL_CONFIG: PanelConfig[] = [
   {
     id: `${baseWidgetName}-basic`,
     groupName: i18n.t("editor.inspect.setter_group.basic"),
     children: [
       {
-        id: `${baseWidgetName}-basic-inputModal`,
-        labelName: i18n.t("editor.inspect.setter_label.content"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.text_value"),
-        attrName: "disableMarkdown",
-        setterType: "RADIO_GROUP_SETTER",
-        options: [
-          { label: "Markdown", value: false },
-          { label: i18n.t("widget.text.text_model"), value: true },
-        ],
+        id: `${baseWidgetName}-linkContainer`,
+        labelName: i18n.t("editor.inspect.setter_label.link_to_container"),
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        attrName: "linkContainer",
+        useCustomLayout: true,
+        openDynamic: true,
+        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: `${baseWidgetName}-basic-value`,
         attrName: "value",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
-        isSetterSingleRow: true,
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        id: `${baseWidgetName}-interaction-disabled`,
+        labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
+        attrName: "disabled",
+        setterType: "INPUT_SETTER",
+        placeholder: "{{false}}",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          TABS_EVENT_HANDLER_CONFIG.events,
+        ),
       },
     ],
   },
@@ -56,11 +74,34 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
-        id: `${baseWidgetName}-layout-col`,
-        labelName: i18n.t("editor.inspect.setter_label.horizontal_alignment"),
-        attrName: "horizontalAlign",
+        id: `${baseWidgetName}-layout-layout`,
+        labelName: i18n.t("editor.inspect.setter_label.layout"),
         setterType: "RADIO_GROUP_SETTER",
-        isSetterSingleRow: true,
+        attrName: "layout",
+        options: [
+          {
+            label: <HorizontalStartIcon />,
+            value: "left",
+          },
+          {
+            label: <VerticalStartIcon />,
+            value: "top",
+          },
+          {
+            label: <HorizontalEndIcon />,
+            value: "right",
+          },
+          {
+            label: <VerticalEndIcon />,
+            value: "bottom",
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-layout-align`,
+        labelName: i18n.t("editor.inspect.setter_label.align"),
+        attrName: "align",
+        setterType: "RADIO_GROUP_SETTER",
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -72,27 +113,6 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             label: <HorizontalEndIcon />,
-            value: "end",
-          },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-layout-row`,
-        labelName: i18n.t("editor.inspect.setter_label.vertical_alignment"),
-        setterType: "RADIO_GROUP_SETTER",
-        attrName: "verticalAlign",
-        isSetterSingleRow: true,
-        options: [
-          {
-            label: <VerticalStartIcon />,
-            value: "start",
-          },
-          {
-            label: <VerticalCenterIcon />,
-            value: "center",
-          },
-          {
-            label: <VerticalEndIcon />,
             value: "end",
           },
         ],
@@ -126,24 +146,6 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
             defaultValue: "grayBlue",
-          },
-        ],
-      },
-      {
-        id: `${baseWidgetName}-style-size`,
-        setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.styles"),
-        attrName: "styles",
-        useCustomLayout: true,
-        childrenSetter: [
-          {
-            id: `${baseWidgetName}-style-text-size`,
-            labelName: i18n.t("editor.inspect.setter_label.text_size"),
-            setterType: "EDITABLE_INPUT_SETTER",
-            attrName: "fs",
-            icon: <TextSizeIcon />,
-            defaultValue: "14px",
-            expectedType: VALIDATION_TYPES.STRING,
           },
         ],
       },

@@ -548,6 +548,7 @@
         "layout": "Layout",
         "legend_position": "Legend position",
         "links_color": "Links",
+        "link_to_container": "Link to a container",
         "loading": "Loading",
         "loop_back_to_start": "Loop back to start",
         "loop_start_to_back": "Loop start to back",
