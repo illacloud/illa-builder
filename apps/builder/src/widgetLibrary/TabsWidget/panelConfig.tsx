@@ -14,8 +14,8 @@ import { TABS_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/TabsWidget/eventHandl
 const baseWidgetName = "tabs"
 export const TABS_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: `${baseWidgetName}-basic`,
-    groupName: i18n.t("editor.inspect.setter_group.basic"),
+    id: `${baseWidgetName}-tabs`,
+    groupName: i18n.t("editor.inspect.setter_group.tabs"),
     children: [
       {
         id: `${baseWidgetName}-linkContainer`,
@@ -27,10 +27,49 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
-        id: `${baseWidgetName}-basic-value`,
-        attrName: "value",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        id: `${baseWidgetName}-views-list`,
+        labelName: i18n.t("editor.inspect.setter_label.data_source"),
+        useCustomLayout: true,
+        attrName: "viewList",
+        setterType: "CONTAINER_VIEW_SETTER",
+        childrenSetter: [
+          {
+            id: `${baseWidgetName}-viewList-key`,
+            labelName: i18n.t("editor.inspect.setter_label.key"),
+            attrName: "key",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-viewList-label`,
+            labelName: i18n.t("editor.inspect.setter_label.label"),
+            attrName: "label",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.STRING,
+          },
+          {
+            id: `${baseWidgetName}-viewList-disabled`,
+            labelName: i18n.t("editor.inspect.setter_label.disabled"),
+            attrName: "disabled",
+            setterType: "INPUT_SETTER",
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+          },
+          {
+            id: `${baseWidgetName}-viewList-hidden`,
+            labelName: i18n.t("editor.inspect.setter_label.hidden"),
+            attrName: "hidden",
+            setterType: "DYNAMIC_SWITCH_SETTER",
+            useCustomLayout: true,
+            openDynamic: true,
+            expectedType: VALIDATION_TYPES.BOOLEAN,
+          },
+        ],
+      },
+      {
+        id: `${baseWidgetName}-views-default`,
+        labelName: i18n.t("editor.inspect.setter_label.default_tab"),
+        attrName: "defaultTab",
+        setterType: "CONTAINER_DEFAULT_VIEW_SETTER",
       },
     ],
   },

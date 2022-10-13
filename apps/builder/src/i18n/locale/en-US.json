@@ -415,6 +415,7 @@
         "row_selection": "ROW SELECTION",
         "sort": "SORT",
         "style": "STYLE",
+        "tabs": "TABS",
         "toolbar": "TOOLBAR",
         "validation": "VALIDATION",
         "views": "VIEWS"
@@ -460,6 +461,7 @@
         "default_sort_order": "Direction",
         "default_value": "Default value",
         "default_views": "Default view",
+        "default_tab": "Default tab",
         "description": "Description",
         "direction": "Direction",
         "disabled": "Disabled",

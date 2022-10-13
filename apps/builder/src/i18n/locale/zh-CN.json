@@ -415,6 +415,7 @@
         "row_selection": "行选择",
         "sort": "排序",
         "style": "风格",
+        "tabs": "选项卡",
         "toolbar": "工具栏",
         "validation": "验证",
         "views": "视图"
@@ -460,6 +461,7 @@
         "default_sort_order": "顺序",
         "default_value": "默认值",
         "default_views": "默认视图",
+        "default_tab": "默认值",
         "description": "描述",
         "direction": "方向",
         "disabled": "禁用",

@@ -12,6 +12,7 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["Tabs", "选项卡"],
   sessionType: "PRESENTATION",
   defaults: {
+    viewList: [],
     // value: i18n.t("widget.text.default_value"),
     // horizontalAlign: "start",
     // verticalAlign: "center",
