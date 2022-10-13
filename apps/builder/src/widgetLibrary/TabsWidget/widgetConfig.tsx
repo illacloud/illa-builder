@@ -1,4 +1,4 @@
-import { TabsWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as TabsWidgetIcon } from "@/assets/widgetCover/tabs.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -8,7 +8,7 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
   h: 4,
   w: 12,
   type: "TABS_WIDGET",
-  icon: <TabsWidgetIcon size="100%" />,
+  icon: <TabsWidgetIcon />,
   keywords: ["Tabs", "选项卡"],
   sessionType: "PRESENTATION",
   defaults: {
