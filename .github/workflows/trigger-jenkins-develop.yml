@@ -1,0 +1,21 @@
+name: trigger jenkins job illa-builder-develop
+on:
+  push:
+    branches:
+    - develop
+  pull_request:
+    branches:
+    - develop
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: trigger single Job
+      uses: appleboy/jenkins-action@master
+      with:
+        url: "http://ec2-13-230-170-106.ap-northeast-1.compute.amazonaws.com:9000/"
+        user: "illasoft"
+        token: ${{ secrets.JENKINS_API_TOKEN }}
+        job: "illa-builder-develop"
