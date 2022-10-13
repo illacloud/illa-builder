@@ -18,13 +18,13 @@ import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/int
 import store from "@/store"
 import {
   Params,
-  Resource,
   RestApiAuth,
   RestApiResource,
-} from "@/redux/resource/resourceState"
+} from "@/redux/resource/restapiResource"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { Resource } from "@/redux/resource/resourceState"
 
 export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()

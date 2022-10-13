@@ -18,6 +18,8 @@ import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionRe
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 import { RedisAction } from "@/redux/currentApp/action/redisAction"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
+import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
+import { MongoDbAction } from "@/redux/currentApp/action/mongoDbAction"
 
 export interface ActionPanelProps {
   maxHeight?: number
@@ -58,6 +60,10 @@ export const ActionPanel: FC<ActionPanelProps> = (props) => {
         )
       case "redis":
         return <RedisPanel action={selectedAction as ActionItem<RedisAction>} />
+      case "mongodb":
+        return (
+          <MongoDbPanel action={selectedAction as ActionItem<MongoDbAction>} />
+        )
       default:
         return null
     }
