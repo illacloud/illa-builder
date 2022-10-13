@@ -1,4 +1,4 @@
-import { TextWidgetIcon } from "@illa-design/icon"
+import { TableWidgetIcon } from "@illa-design/icon"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
@@ -82,7 +82,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   h: 40,
   w: 32,
   type: "TABLE_WIDGET",
-  icon: <TextWidgetIcon size="100%" />,
+  icon: <TableWidgetIcon size="100%" />,
   keywords: ["Table", "表格"],
   sessionType: "PRESENTATION",
   defaults: initTableWidgetDefaultProps(),

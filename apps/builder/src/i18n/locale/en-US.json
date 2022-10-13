@@ -915,6 +915,9 @@
       "pagination": "Pagination",
       "scroll": "Scroll"
     },
+    "tabs": {
+      "name": "Tabs"
+    },
     "text": {
       "default_value": "👋 Hello!",
       "name": "Text",

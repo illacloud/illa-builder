@@ -913,6 +913,9 @@
       "pagination": "翻页",
       "scroll": "滚动"
     },
+    "tabs": {
+      "name": "选项卡"
+    },
     "text": {
       "default_value": "👋 嗨！",
       "name": "文本",
