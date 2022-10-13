@@ -1,4 +1,4 @@
-import { SelectWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as SelectWidgetIcon } from "@/assets/widgetCover/select.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 import i18n from "@/i18n/config"
@@ -7,7 +7,7 @@ export const SELECT_WIDGET_CONFIG: WidgetConfig = {
   type: "SELECT_WIDGET",
   displayName: "select",
   widgetName: i18n.t("widget.select.name"),
-  icon: <SelectWidgetIcon size="100%" />,
+  icon: <SelectWidgetIcon />,
   keywords: ["Select", "选择器"],
   sessionType: "SELECT",
   w: 12,

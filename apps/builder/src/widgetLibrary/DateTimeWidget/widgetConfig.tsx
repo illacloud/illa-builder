@@ -1,4 +1,4 @@
-import { DateTimeWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as DateTimeWidgetIcon } from "@/assets/widgetCover/dateTime.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -7,7 +7,7 @@ export const DATE_TIME_WIDGET_CONFIG: WidgetConfig = {
   displayName: "dateTime",
   widgetName: i18n.t("widget.date_time.name"),
   keywords: ["Date Time", "日期时间选择器"],
-  icon: <DateTimeWidgetIcon size="100%" />,
+  icon: <DateTimeWidgetIcon />,
   sessionType: "CALENDAR",
   w: 20,
   h: 5,
