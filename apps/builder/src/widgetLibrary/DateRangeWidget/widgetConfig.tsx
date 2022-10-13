@@ -1,4 +1,4 @@
-import { DateRangeWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as DateRangeWidgetIcon } from "@/assets/widgetCover/dateRange.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -6,7 +6,7 @@ export const DATE_RANGE_WIDGET_CONFIG: WidgetConfig = {
   type: "DATE_RANGE_WIDGET",
   displayName: "dateRange",
   widgetName: i18n.t("widget.date_range.name"),
-  icon: <DateRangeWidgetIcon size="100%" />,
+  icon: <DateRangeWidgetIcon />,
   keywords: ["Date Range", "日期范围选择器"],
   sessionType: "CALENDAR",
   w: 16,

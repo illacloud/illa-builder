@@ -1,4 +1,4 @@
-import { ButtonWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as ButtonWidgetIcon } from "@/assets/widgetCover/button.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -7,7 +7,7 @@ export const BUTTON_WIDGET_CONFIG: WidgetConfig = {
   displayName: "button",
   widgetName: i18n.t("widget.button.name"),
   keywords: ["Button", "按钮"],
-  icon: <ButtonWidgetIcon size="100%" />,
+  icon: <ButtonWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 12,
   h: 5,

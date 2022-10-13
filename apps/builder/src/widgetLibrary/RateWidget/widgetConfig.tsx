@@ -1,4 +1,4 @@
-import { RateWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as RateWidgetIcon } from "@/assets/widgetCover/rate.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -6,7 +6,7 @@ export const RATE_WIDGET_CONFIG: WidgetConfig = {
   type: "RATE_WIDGET",
   displayName: "rate",
   widgetName: i18n.t("widget.rate.name"),
-  icon: <RateWidgetIcon size="100%" />,
+  icon: <RateWidgetIcon />,
   keywords: ["Rate", "评分"],
   sessionType: "PRESENTATION",
   w: 12,
