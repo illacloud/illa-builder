@@ -1,4 +1,3 @@
-import { sortComponentNodeChildrenPayload } from "./../../redux/currentApp/editor/components/componentsState"
 import * as Redux from "redux"
 import {
   Connection,
@@ -17,13 +16,12 @@ import {
   UpdateComponentDisplayNamePayload,
   ComponentNode,
   CopyComponentPayload,
-  UpdateContainerViewsComponentsPayload,
+  sortComponentNodeChildrenPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
   UpdateComponentContainerPayload,
   UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
-import { cloneDeep } from "lodash"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const { type, payload } = action

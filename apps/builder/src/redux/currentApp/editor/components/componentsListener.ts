@@ -40,10 +40,12 @@ function handleCopyComponentReflowEffect(
   })
   effectResultMap.forEach((value, key) => {
     listenApi.dispatch(
-      componentsActions.updateComponentReflowReducer({
-        parentDisplayName: key,
-        childNodes: value.childrenNode,
-      }),
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: key,
+          childNodes: value.childrenNode,
+        },
+      ]),
     )
   })
 }
@@ -105,10 +107,12 @@ function handleUpdateComponentReflowEffect(
   })
   effectResultMap.forEach((value, key) => {
     listenApi.dispatch(
-      componentsActions.updateComponentReflowReducer({
-        parentDisplayName: key,
-        childNodes: value.childrenNode,
-      }),
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: key,
+          childNodes: value.childrenNode,
+        },
+      ]),
     )
   })
 }
