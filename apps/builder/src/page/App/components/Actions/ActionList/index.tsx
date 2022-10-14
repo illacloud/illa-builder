@@ -25,13 +25,13 @@ import {
   onDeleteActionItem,
 } from "@/page/App/components/Actions/api"
 
-export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = props => {
+export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className } = props
 
   const [generatorVisible, setGeneratorVisible] = useState<boolean>()
   const [searchActionValue, setSearchActionValue] = useState("")
   const actionList = useSelector((state: RootState) => {
-    return state.currentApp.action.filter(value => {
+    return state.currentApp.action.filter((value) => {
       return value.displayName
         .toLowerCase()
         .includes(searchActionValue.toLowerCase())
@@ -44,7 +44,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = props => {
   return (
     <div className={className} css={searchHeaderContainerStyle}>
       <SearchHeader
-        onSearch={value => {
+        onSearch={(value) => {
           setSearchActionValue(value)
         }}
       />
@@ -57,7 +57,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = props => {
         css={addNewActionButtonStyle}
         onClick={() => setGeneratorVisible(true)}
       >
-        <Space size="8px" direction="horizontal" alignItems="center">
+        <Space size="4px" direction="horizontal" alignItems="center">
           <AddIcon size="14px" />
           {t("editor.action.action_list.btn.new")}
         </Space>
@@ -68,15 +68,15 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = props => {
             _css={listStyle}
             bordered={false}
             data={actionList}
-            render={data => {
+            render={(data) => {
               return (
                 <ActionListItem
                   action={data}
                   onCopyItem={onCopyActionItem}
                   onDeleteItem={onDeleteActionItem}
-                  onItemClick={action => {
-                    const selectedAction = store.getState().config
-                      .selectedAction
+                  onItemClick={(action) => {
+                    const selectedAction =
+                      store.getState().config.selectedAction
                     if (selectedAction === null) {
                       dispatch(configActions.changeSelectedAction(action))
                       return
@@ -86,7 +86,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = props => {
                       // find last action
                       const lastAction = store
                         .getState()
-                        .currentApp.action.find(value => {
+                        .currentApp.action.find((value) => {
                           return (
                             value.displayName === selectedAction?.displayName
                           )
@@ -114,7 +114,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = props => {
               )
             }}
             renderRaw
-            renderKey={data => {
+            renderKey={(data) => {
               return data.displayName
             }}
           />

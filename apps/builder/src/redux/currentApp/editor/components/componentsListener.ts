@@ -3,19 +3,11 @@ import {
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import { Unsubscribe } from "@reduxjs/toolkit"
+import { Unsubscribe, isAnyOf, AnyAction } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { ComponentNode } from "./componentsState"
 import { configActions } from "@/redux/config/configSlice"
-
-async function handleDeleteExecution(
-  action: ReturnType<typeof componentsActions.deleteComponentNodeReducer>,
-  listenerApi: AppListenerEffectAPI,
-) {
-  DisplayNameGenerator.removeDisplayNameMulti(action.payload.displayNames)
-}
 
 function handleCopyComponentReflowEffect(
   action: ReturnType<typeof componentsActions.copyComponentReducer>,
@@ -48,10 +40,12 @@ function handleCopyComponentReflowEffect(
   })
   effectResultMap.forEach((value, key) => {
     listenApi.dispatch(
-      componentsActions.updateComponentReflowReducer({
-        parentDisplayName: key,
-        childNodes: value.childrenNode,
-      }),
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: key,
+          childNodes: value.childrenNode,
+        },
+      ]),
     )
   })
 }
@@ -73,14 +67,60 @@ function handleUpdateComponentDisplayNameEffect(
   }
 }
 
+function handleUpdateComponentReflowEffect(
+  action: AnyAction,
+  listenApi: AppListenerEffectAPI,
+) {
+  const rootState = listenApi.getState()
+  const rootNode = getCanvas(rootState)
+  let updateComponents: ComponentNode[] = []
+  if (action.type === "components/updateComponentsShape") {
+    updateComponents = (
+      action as ReturnType<typeof componentsActions.updateComponentsShape>
+    ).payload.components
+  }
+  if (action.type === "components/updateComponentContainerReducer") {
+    ;(
+      action as ReturnType<
+        typeof componentsActions.updateComponentContainerReducer
+      >
+    ).payload.updateSlice.forEach((slice) => {
+      updateComponents.push(slice.component)
+    })
+  }
+  const effectResultMap = new Map<string, ComponentNode>()
+  updateComponents.forEach((componentNode) => {
+    const parentNodeDisplayName = componentNode.parentNode
+    let parentNode = searchDsl(rootNode, parentNodeDisplayName)
+    if (!parentNode) {
+      return
+    }
+    if (effectResultMap.has(parentNode.displayName)) {
+      parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
+    }
+    const childrenNodes = parentNode.childrenNode
+    const { finalState } = getReflowResult(componentNode, childrenNodes, false)
+    effectResultMap.set(parentNode.displayName, {
+      ...parentNode,
+      childrenNode: finalState,
+    })
+  })
+  effectResultMap.forEach((value, key) => {
+    listenApi.dispatch(
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: key,
+          childNodes: value.childrenNode,
+        },
+      ]),
+    )
+  })
+}
+
 export function setupComponentsListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
   const subscriptions = [
-    startListening({
-      actionCreator: componentsActions.deleteComponentNodeReducer,
-      effect: handleDeleteExecution,
-    }),
     startListening({
       actionCreator: componentsActions.copyComponentReducer,
       effect: handleCopyComponentReflowEffect,
@@ -88,6 +128,13 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.updateComponentDisplayNameReducer,
       effect: handleUpdateComponentDisplayNameEffect,
+    }),
+    startListening({
+      matcher: isAnyOf(
+        componentsActions.updateComponentsShape,
+        componentsActions.updateComponentContainerReducer,
+      ),
+      effect: handleUpdateComponentReflowEffect,
     }),
   ]
 

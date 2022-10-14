@@ -1,4 +1,4 @@
-import { LineProgressWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as LineProgressWidgetIcon } from "@/assets/widgetCover/lineProgress.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
@@ -7,10 +7,10 @@ export const BAR_PROGRESS_WIDGET_CONFIG: WidgetConfig = {
   displayName: "barProgress",
   widgetName: i18n.t("widget.bar_progress.name"),
   keywords: ["Bar Progress", "进度条"],
-  icon: <LineProgressWidgetIcon size="100%" />,
+  icon: <LineProgressWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 16,
-  h: 5,
+  h: 3,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     value: "50",

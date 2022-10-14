@@ -17,7 +17,7 @@ import { ErrorItem } from "@/page/App/components/Debugger/components/ErrorItem"
 
 const DebuggerDefaultHeight = 300
 
-export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = props => {
+export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const dispatch = useDispatch()
   const panelRef = useRef<HTMLDivElement>(null)
   const debuggerData = useSelector(getExecutionDebuggerData)
@@ -44,7 +44,7 @@ export const Debugger: FC<HTMLAttributes<HTMLDivElement>> = props => {
           {Object.keys(debuggerData)?.map((name, index) => {
             const error = debuggerData[name]
             if (isArray(error)) {
-              return error?.map(item => {
+              return error?.map((item) => {
                 return <ErrorItem key={index} pathName={name} item={item} />
               })
             }

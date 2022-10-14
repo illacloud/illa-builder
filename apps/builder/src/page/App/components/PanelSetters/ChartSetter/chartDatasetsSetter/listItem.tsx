@@ -107,7 +107,7 @@ export const ColorArea: FC<ColorAreaProps> = ({ color }) => {
       CHART_COLOR_TYPE_CONFIG[color as keyof typeof CHART_COLOR_TYPE_CONFIG]
     return (
       <div css={colorToneWrapperStyle}>
-        {colors.map(c => {
+        {colors.map((c) => {
           return <div css={applyColorToneStyle(c)} key={c} />
         })}
       </div>
@@ -116,7 +116,7 @@ export const ColorArea: FC<ColorAreaProps> = ({ color }) => {
   return <div css={applySingleColorAreaStyle(color)} />
 }
 
-export const ListItem: FC<ListItemProps> = props => {
+export const ListItem: FC<ListItemProps> = (props) => {
   const { color, isHidden, datasetName, datasetMethod, index } = props
   const [modalVisible, setModalVisible] = useState(false)
 
@@ -149,7 +149,7 @@ export const ListItem: FC<ListItemProps> = props => {
       showArrow={false}
       position="left-start"
       clickOutsideToClose
-      onVisibleChange={visible => {
+      onVisibleChange={(visible) => {
         setModalVisible(visible)
       }}
     >
@@ -167,7 +167,7 @@ export const ListItem: FC<ListItemProps> = props => {
           {isHidden ? (
             <EyeOffIcon
               css={baseIconStyle}
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation()
                 handleHiddenDataset(index)
               }}
@@ -176,7 +176,7 @@ export const ListItem: FC<ListItemProps> = props => {
             <EyeOnIcon
               css={eyeIconStyle}
               id="eyeOnIcon"
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation()
                 handleHiddenDataset(index)
               }}
@@ -184,7 +184,7 @@ export const ListItem: FC<ListItemProps> = props => {
           )}
           <DeleteIcon
             css={baseIconStyle}
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation()
               handleDeleteDataSet(index)
             }}

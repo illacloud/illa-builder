@@ -18,7 +18,7 @@ export type ValidateFunctionType = (value: unknown) => ValidationResponse
 
 // TODO: @weichen errorMessage i18n
 export const validationFactory: Record<string, ValidateFunctionType> = {
-  [VALIDATION_TYPES.STRING]: value => {
+  [VALIDATION_TYPES.STRING]: (value) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,
@@ -38,7 +38,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
       safeValue: value,
     }
   },
-  [VALIDATION_TYPES.BOOLEAN]: value => {
+  [VALIDATION_TYPES.BOOLEAN]: (value) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,
@@ -58,7 +58,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
       safeValue: value,
     }
   },
-  [VALIDATION_TYPES.NUMBER]: value => {
+  [VALIDATION_TYPES.NUMBER]: (value) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,
@@ -78,7 +78,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
       safeValue: value,
     }
   },
-  [VALIDATION_TYPES.ARRAY]: value => {
+  [VALIDATION_TYPES.ARRAY]: (value) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,
@@ -98,7 +98,7 @@ export const validationFactory: Record<string, ValidateFunctionType> = {
       safeValue: value,
     }
   },
-  [VALIDATION_TYPES.OBJECT]: value => {
+  [VALIDATION_TYPES.OBJECT]: (value) => {
     if (value == undefined || value === "") {
       return {
         isValid: true,

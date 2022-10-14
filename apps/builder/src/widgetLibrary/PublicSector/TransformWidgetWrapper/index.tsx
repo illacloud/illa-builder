@@ -8,7 +8,7 @@ import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import { runEventHandler } from "@/utils/eventHandlerHelper"
-import { applyHiddenWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import { applyWrapperStylesStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { RootState } from "@/store"
 import {
   getCanvas,
@@ -18,9 +18,10 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import {
   applyEffectMapToComponentNodes,
   getReflowResult,
-  getNearCompntNodes,
+  getNearComponentNodes,
 } from "@/page/App/components/DotPanel/calc"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { isObject } from "@/utils/typeHelper"
 
 export const getEventScripts = (events: EventsInProps[], eventType: string) => {
   return events.filter((event) => {
@@ -32,7 +33,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode } = props
 
-    const { displayName, type, w, h, unitW, unitH } = componentNode
+    const { displayName, type, w, h, unitW, unitH, childrenNode } =
+      componentNode
 
     const displayNameMapProps = useSelector(getExecutionResult)
     const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
@@ -67,15 +69,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         if (componentNode.h < newItem.h) {
           const result = getReflowResult(newItem, cloneDeepAllComponents, false)
           dispatch(
-            componentsActions.updateComponentReflowReducer({
-              parentDisplayName: componentNode.parentNode || "root",
-              childNodes: result.finalState,
-            }),
+            componentsActions.updateComponentReflowReducer([
+              {
+                parentDisplayName: componentNode.parentNode || "root",
+                childNodes: result.finalState,
+              },
+            ]),
           )
         }
         if (componentNode.h > newItem.h) {
           const effectRows = componentNode.h - newItem.h
-          const effectMap = getNearCompntNodes(
+          const effectMap = getNearComponentNodes(
             componentNode,
             cloneDeepAllComponents,
           )
@@ -90,10 +94,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
             allComponents,
           )
           dispatch(
-            componentsActions.updateComponentReflowReducer({
-              parentDisplayName: componentNode.parentNode || "root",
-              childNodes: finalState,
-            }),
+            componentsActions.updateComponentReflowReducer([
+              {
+                parentDisplayName: componentNode.parentNode || "root",
+                childNodes: finalState,
+              },
+            ]),
           )
         }
       },
@@ -111,6 +117,19 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           executionActions.updateExecutionByDisplayNameReducer({
             displayName,
             value,
+          }),
+        )
+      },
+      [dispatch, displayName],
+    )
+
+    const handleUpdateOriginalDSLMultiAttr = useCallback(
+      (updateSlice: Record<string, any>) => {
+        if (!isObject(updateSlice)) return
+        dispatch(
+          componentsActions.updateComponentPropsReducer({
+            displayName: displayName,
+            updateSlice,
           }),
         )
       },
@@ -188,14 +207,31 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
     }, [getOnColumnFiltersChangeEventScripts, globalData])
 
     if (!type) return null
-    const COMP = widgetBuilder(type).widget
-    if (!COMP) return null
+    const widget = widgetBuilder(type)
+    if (!widget) return null
+    const Component = widget.widget
 
-    const { hidden } = realProps
+    const {
+      hidden,
+      borderColor,
+      backgroundColor,
+      radius,
+      borderWidth,
+      shadow,
+    } = realProps
 
-    return (
-      <div css={applyHiddenWrapperStyle(hidden)}>
-        <COMP
+    return hidden ? null : (
+      <div
+        css={applyWrapperStylesStyle(
+          borderColor,
+          borderWidth,
+          radius,
+          backgroundColor,
+          shadow,
+          type,
+        )}
+      >
+        <Component
           {...realProps}
           w={w}
           h={h}
@@ -203,6 +239,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           unitH={unitH}
           handleUpdateGlobalData={handleUpdateGlobalData}
           handleDeleteGlobalData={handleDeleteGlobalData}
+          handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
           handleOnSortingChange={handleOnSortingChange}
@@ -211,6 +248,8 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleUpdateDsl={handleUpdateDsl}
           updateComponentHeight={updateComponentHeight}
           displayName={displayName}
+          childrenNode={childrenNode}
+          componentNode={componentNode}
         />
       </div>
     )

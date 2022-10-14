@@ -49,7 +49,7 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
     CONTAINER: [],
     NAVIGATION: [],
   }
-  componentConfigs.forEach(item => {
+  componentConfigs.forEach((item) => {
     const { sessionType = "COMMON", type, displayName } = item
     if (!sessionConfigs[sessionType]) {
       sessionConfigs[sessionType] = []
@@ -67,7 +67,7 @@ const translateChildren = (componentConfigs: WidgetConfig[]) => {
 }
 
 const buildSessionTypeMapComponentConfig = (): NewTypeMapComponent => {
-  const componentConfigs = WidgetTypeList.map(item => {
+  const componentConfigs = WidgetTypeList.map((item) => {
     return getListItemConfig(item) as WidgetConfig
   }) as WidgetConfig[]
   return translateChildren(componentConfigs)
@@ -76,7 +76,7 @@ const buildSessionTypeMapComponentConfig = (): NewTypeMapComponent => {
 export const buildComponentList = (): ComponentSessionProps[] => {
   const configs = buildSessionTypeMapComponentConfig()
   const keys = Object.keys(configs) as SessionType[]
-  return keys.map(key => {
+  return keys.map((key) => {
     return {
       title: sessionTypeMapSessionNameKey[key],
       widgetCardInfos: configs[key],

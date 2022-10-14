@@ -49,13 +49,14 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
     () => {
       DisplayNameGenerator.removeDisplayName(displayName)
     },
-    loading => {},
+    (loading) => {},
   )
 }
 
 export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
+
   Api.request(
     {
       url: `${baseActionUrl}/${actionId}`,
@@ -74,6 +75,6 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
       )
     },
     () => {},
-    loading => {},
+    (loading) => {},
   )
 }

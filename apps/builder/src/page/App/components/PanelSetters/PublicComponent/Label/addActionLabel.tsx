@@ -7,7 +7,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { AddActionLabelProps } from "@/page/App/components/PanelSetters/PublicComponent/Label/interface"
 import { headerWrapperStyle } from "@/page/App/components/PanelSetters/PublicComponent/Label/style"
 
-export const AddActionLabel: FC<AddActionLabelProps> = props => {
+export const AddActionLabel: FC<AddActionLabelProps> = (props) => {
   const { labelName, labelDesc, handleAddItem } = props
   const { t } = useTranslation()
 

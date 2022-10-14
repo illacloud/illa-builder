@@ -12,7 +12,7 @@ import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Input } from "@illa-design/input"
 
-export const InputRecordEditor: FC<InputRecordEditorProps> = props => {
+export const InputRecordEditor: FC<InputRecordEditorProps> = (props) => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
 
   const { t } = useTranslation()
@@ -29,7 +29,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = props => {
                 value={record.key}
                 placeholder="key"
                 bdRadius="8px 0 0 8px"
-                onChange={value => {
+                onChange={(value) => {
                   onChangeKey(index, value, record.value)
                 }}
               />
@@ -40,7 +40,7 @@ export const InputRecordEditor: FC<InputRecordEditorProps> = props => {
                 value={record.value}
                 ml="-1px"
                 bdRadius="0"
-                onChange={value => {
+                onChange={(value) => {
                   onChangeValue(index, record.key, value)
                 }}
               />

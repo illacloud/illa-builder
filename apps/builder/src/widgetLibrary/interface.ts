@@ -2,6 +2,10 @@ import { FC, ReactNode } from "react"
 import { SessionType } from "./componentListBuilder"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { WidgetType } from "@/widgetLibrary/widgetBuilder"
+import {
+  ComponentNode,
+  CONTAINER_TYPE,
+} from "@/redux/currentApp/editor/components/componentsState"
 
 export interface EventHandlerConfig {
   events: {
@@ -23,6 +27,8 @@ export interface WidgetConfigs {
 export interface DraggableWrapperShape {
   w: number
   h: number
+  x?: number
+  y?: number
 }
 export enum RESIZE_DIRECTION {
   "ALL" = "ALL",
@@ -35,6 +41,7 @@ export interface BaseWidgetInfo {
   widgetName: any
   icon: ReactNode
   type: WidgetType
+  containerType?: CONTAINER_TYPE
   sessionType?: SessionType
   keywords?: string[]
   resizeDirection?: RESIZE_DIRECTION
@@ -42,7 +49,7 @@ export interface BaseWidgetInfo {
 type defaultsType = () => Record<string, any>
 export interface WidgetCardInfo extends DraggableWrapperShape, BaseWidgetInfo {
   id: string
-  childrenNode?: WidgetCardInfo[]
+  childrenNode?: Omit<WidgetConfig, "icon" | "keywords" | "sessionType">[]
   defaults?: defaultsType | Record<string, any>
 }
 
@@ -56,6 +63,7 @@ export interface EventsInProps {
 
 export interface BaseWidgetProps {
   displayName: string
+  childrenNode: ComponentNode[]
   handleUpdateGlobalData: (key: string, value: any) => void
   handleDeleteGlobalData: (key: string) => void
   handleUpdateDsl: (value: any) => void

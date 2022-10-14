@@ -6,6 +6,8 @@ import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { useSelector } from "react-redux"
+import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
 export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const {
@@ -21,10 +23,10 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     parentAttrName,
     expectedType,
     defaultValue,
-    iconName,
+    icon,
   } = props
   const Comp = getSetterByType(setterType)
-
+  const componentNode = useSelector(getComponentNodeBySingleSelected)
   const {
     widgetProps,
     widgetDisplayName,
@@ -37,7 +39,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const canRenderSetter = useMemo(() => {
     if (!bindAttrName || !shown) return true
     if (Array.isArray(bindAttrName)) {
-      const bindAttrNameValues = bindAttrName.map(bindAttrNameItem => {
+      const bindAttrNameValues = bindAttrName.map((bindAttrNameItem) => {
         if (parentAttrName) {
           return get(widgetProps, `${parentAttrName}.${bindAttrNameItem}`)
         }
@@ -70,10 +72,10 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     return isSetterSingleRow || !labelName
   }, [isSetterSingleRow, labelName])
 
-  const finalValue = useMemo(() => get(widgetProps, _finalAttrName), [
-    widgetProps,
-    _finalAttrName,
-  ])
+  const finalValue = useMemo(
+    () => get(widgetProps, _finalAttrName),
+    [widgetProps, _finalAttrName],
+  )
 
   const renderSetter = useMemo(() => {
     return Comp ? (
@@ -98,7 +100,8 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           parentAttrName={parentAttrName}
           widgetOrAction={widgetOrAction}
           defaultValue={defaultValue}
-          iconName={iconName}
+          icon={icon}
+          componentNode={componentNode}
         />
       </div>
     ) : null
@@ -119,7 +122,8 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     parentAttrName,
     widgetOrAction,
     defaultValue,
-    iconName,
+    icon,
+    componentNode,
   ])
 
   return canRenderSetter ? (

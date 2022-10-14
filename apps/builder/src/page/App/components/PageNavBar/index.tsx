@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { FC, useCallback, useState, MouseEvent } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
@@ -6,6 +6,8 @@ import {
   BugIcon,
   CaretRightIcon,
   ExitIcon,
+  LockIcon,
+  UnlockIcon,
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
@@ -14,6 +16,7 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  getFreezeState,
   getIllaMode,
   isOpenBottomPanel,
   isOpenDebugger,
@@ -39,8 +42,9 @@ import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
+import { Trigger } from "@illa-design/trigger"
 
-export const PageNavBar: FC<PageNavBarProps> = props => {
+export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -50,6 +54,7 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
   const debuggerVisible = useSelector(isOpenDebugger)
+  const isFreezeCanvas = useSelector(getFreezeState)
 
   const debuggerData = useSelector(getExecutionDebuggerData)
 
@@ -69,6 +74,9 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
   }, [debuggerVisible, dispatch])
+  const handleClickFreezeIcon = useCallback(() => {
+    dispatch(configActions.updateFreezeStateReducer(!isFreezeCanvas))
+  }, [dispatch, isFreezeCanvas])
 
   const handleClickDeploy = useCallback(() => {
     Api.request<DeployResp>(
@@ -76,7 +84,7 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
         url: `/apps/${appInfo.appId}/deploy`,
         method: "POST",
       },
-      response => {
+      (response) => {
         window.open(
           window.location.protocol +
             "//" +
@@ -85,18 +93,18 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
           "_blank",
         )
       },
-      e => {
+      (e) => {
         Message.error(t("editor.deploy.fail"))
       },
-      e => {
+      (e) => {
         Message.error(t("editor.deploy.fail"))
       },
-      loading => {
+      (loading) => {
         setDeployLoading(loading)
       },
     )
   }, [appInfo.appId, t])
-  const handleClickPreview = useCallback(() => {
+  const handleClickExitPreview = useCallback(() => {
     dispatch(configActions.updateIllaMode("edit"))
   }, [dispatch])
 
@@ -154,6 +162,33 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
                 onClick={handleClickDebuggerIcon}
               />
             </Badge>
+            <Trigger
+              content={isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")}
+              colorScheme="grayBlue"
+              position="bottom"
+              showArrow={false}
+              autoFitPosition={false}
+              trigger="hover"
+            >
+              <Button
+                colorScheme="gray"
+                size="medium"
+                leftIcon={
+                  isFreezeCanvas ? (
+                    <LockIcon
+                      size="14px"
+                      color={globalColor(`--${illaPrefix}-techPurple-01`)}
+                    />
+                  ) : (
+                    <UnlockIcon
+                      size="14px"
+                      color={globalColor(`--${illaPrefix}-grayBlue-03`)}
+                    />
+                  )
+                }
+                onClick={handleClickFreezeIcon}
+              />
+            </Trigger>
             <Button
               loading={deployLoading}
               colorScheme="techPurple"
@@ -168,7 +203,7 @@ export const PageNavBar: FC<PageNavBarProps> = props => {
         {mode === "preview" && (
           <ButtonGroup spacing={"8px"}>
             <Button
-              onClick={handleClickPreview}
+              onClick={handleClickExitPreview}
               colorScheme="techPurple"
               leftIcon={<ExitIcon />}
             >

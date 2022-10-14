@@ -2,16 +2,15 @@ import { css } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const restapiPanelContainerStyle = css`
-  padding-bottom: 48px;
-  width: 100%;
-  min-width: 700px;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
 `
 
+export const topDivider = css`
+  min-height: 8px;
+`
+
 export const restapiItemStyle = css`
-  margin-top: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,8 +30,4 @@ export const restapiItemInputStyle = css`
   flex-grow: 1;
   width: 0;
   margin-left: -1px;
-`
-
-export const restApiItemBaseUrlStyle = css`
-  margin-left: 8px;
 `

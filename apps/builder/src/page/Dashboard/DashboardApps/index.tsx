@@ -59,7 +59,7 @@ export const DashboardApps: FC = () => {
             data={appsList}
             bordered={false}
             hoverable={true}
-            render={item => {
+            render={(item) => {
               return (
                 <ListItem
                   css={hoverStyle}
@@ -78,7 +78,7 @@ export const DashboardApps: FC = () => {
                 </ListItem>
               )
             }}
-            renderKey={item => {
+            renderKey={(item) => {
               return item.appId
             }}
           />
@@ -87,7 +87,7 @@ export const DashboardApps: FC = () => {
       </div>
       <CreateNewModal
         visible={createNewModalVisible}
-        onVisibleChange={visible => {
+        onVisibleChange={(visible) => {
           setCreateNewModalVisible(visible)
         }}
       />

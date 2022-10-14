@@ -9,7 +9,7 @@ import {
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
-import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
+import { ReactComponent as TextSizeIcon } from "@/assets/text-size-icon.svg"
 
 const baseWidgetName = "text"
 export const TEXT_PANEL_CONFIG: PanelConfig[] = [
@@ -141,7 +141,7 @@ export const TEXT_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.text_size"),
             setterType: "EDITABLE_INPUT_SETTER",
             attrName: "fs",
-            iconName: EditableInputIconType.TEXT_SIZE,
+            icon: <TextSizeIcon />,
             defaultValue: "14px",
             expectedType: VALIDATION_TYPES.STRING,
           },

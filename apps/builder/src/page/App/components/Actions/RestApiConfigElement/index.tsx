@@ -4,13 +4,7 @@ import { useTranslation } from "react-i18next"
 import { Controller, useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import {
-  BasicAuth,
-  BearerAuth,
-  Resource,
-  RestApiAuth,
-  RestApiResource,
-} from "@/redux/resource/resourceState"
+import { Resource } from "@/redux/resource/resourceState"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -33,6 +27,12 @@ import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigEleme
 import { Api } from "@/api/base"
 import { Message } from "@illa-design/message"
 import { resourceActions } from "@/redux/resource/resourceSlice"
+import {
+  BasicAuth,
+  BearerAuth,
+  RestApiAuth,
+  RestApiResource,
+} from "@/redux/resource/restapiResource"
 
 function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
   let authContent: RestApiAuth | null = null
@@ -54,7 +54,7 @@ function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
   return authContent
 }
 
-export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
+export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   const { onBack, onFinished, resourceId } = props
 
   const { t } = useTranslation()
@@ -65,7 +65,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(r => r.resourceId === resourceId) as Resource<
+    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
       RestApiResource<RestApiAuth>
     >
   })
@@ -98,7 +98,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
                 },
               },
             },
-            response => {
+            (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
@@ -109,7 +109,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            loading => {
+            (loading) => {
               setSaving(loading)
             },
           )
@@ -131,7 +131,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
                 },
               },
             },
-            response => {
+            (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
@@ -142,7 +142,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            loading => {
+            (loading) => {
               setSaving(loading)
             },
           )
@@ -183,9 +183,9 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
             name="resourceName"
           />
         </div>
-        <span css={configItemTip}>
+        <div css={configItemTip}>
           {t("editor.action.resource.restapi.tip.name")}
-        </span>
+        </div>
         <Divider
           direction="horizontal"
           ml="24px"
@@ -364,7 +364,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = props => {
               <Select
                 value={value}
                 onBlur={onBlur}
-                onChange={value => {
+                onChange={(value) => {
                   setAuthType(value)
                   onChange(value)
                 }}

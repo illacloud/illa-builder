@@ -29,21 +29,16 @@ const validateConfirmationAndNewEqual = (
 export const SettingPassword: FC = () => {
   const { t } = useTranslation()
   const [currentPassword, setCurrentPassword] = useState<string>("")
-  const [
-    currentPasswordErrorMessage,
-    setCurrentPasswordErrorMessage,
-  ] = useState<string>("")
+  const [currentPasswordErrorMessage, setCurrentPasswordErrorMessage] =
+    useState<string>("")
 
   const [newPassword, setNewPassword] = useState<string>("")
-  const [newPasswordErrorMessage, setNewPasswordErrorMessage] = useState<
-    string
-  >("")
+  const [newPasswordErrorMessage, setNewPasswordErrorMessage] =
+    useState<string>("")
 
   const [confirmPassword, setConfirmPassword] = useState<string>("")
-  const [
-    confirmPasswordErrorMessage,
-    setConfirmPasswordErrorMessage,
-  ] = useState("")
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+    useState("")
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -155,23 +150,23 @@ export const SettingPassword: FC = () => {
           newPassword,
         },
       },
-      response => {
+      (response) => {
         setCurrentPassword("")
         setNewPassword("")
         setConfirmPassword("")
         Message.success(t("edit_success"))
       },
-      failure => {
+      (failure) => {
         //  TODO: need error code unique,to show error message
         const { data } = failure
         if (data?.errorCode === 400) {
           Message.error(failure.data.errorMessage)
         }
       },
-      crash => {
+      (crash) => {
         Message.error(t("network_error"))
       },
-      loading => {
+      (loading) => {
         setIsLoading(loading)
       },
     )

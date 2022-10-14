@@ -53,6 +53,7 @@ export function applyConfigItemLabelText(
 
 export const configItemTip = css`
   font-size: 14px;
+  padding-bottom: 6px;
   margin-left: 192px;
   color: ${getColor("grayBlue", "04")};
 `

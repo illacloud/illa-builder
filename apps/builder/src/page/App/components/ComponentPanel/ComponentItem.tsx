@@ -16,7 +16,7 @@ import { useSelector } from "react-redux"
 import { getIllaMode } from "@/redux/config/configSelector"
 import { endDrag, startDrag } from "@/utils/drag/drag"
 import store from "@/store"
-import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
+import { getFlattenArrayComponentNodes } from "@/redux/currentApp/editor/components/componentsSelector"
 import { cloneDeep } from "lodash"
 import { ComponentItemProps } from "@/page/App/components/ComponentPanel/interface"
 
@@ -46,10 +46,9 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
             ...partialDragInfo,
           })
           const rootState = store.getState()
-          const rootNode = getCanvas(rootState)
-
-          const childrenNodes = rootNode?.childrenNode
-            ? cloneDeep(rootNode.childrenNode)
+          const allComponentNodes = getFlattenArrayComponentNodes(rootState)
+          const childrenNodes = allComponentNodes
+            ? cloneDeep(allComponentNodes)
             : []
           startDrag(item, true)
           return {

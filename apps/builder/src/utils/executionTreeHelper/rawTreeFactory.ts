@@ -10,11 +10,11 @@ export class RawTreeFactory {
     const { widgets, actions, builderInfo, currentUserInfo } = seeds
     const rawTree: RawTreeShape = {} as RawTreeShape
 
-    actions.forEach(action => {
+    actions.forEach((action) => {
       rawTree[action.displayName] = generateRawAction(action)
     })
 
-    Object.keys(widgets).forEach(key => {
+    Object.keys(widgets).forEach((key) => {
       rawTree[key] = generateRawWidget(widgets[key])
     })
 

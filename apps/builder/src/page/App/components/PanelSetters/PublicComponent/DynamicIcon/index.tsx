@@ -3,7 +3,7 @@ import { FxIcon } from "@illa-design/icon"
 import { DynamicIconProps } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon/interface"
 import { applyCustomIconStyle } from "@/page/App/components/PanelSetters/PublicComponent/DynamicIcon/style"
 
-export const DynamicIcon: FC<DynamicIconProps> = props => {
+export const DynamicIcon: FC<DynamicIconProps> = (props) => {
   const { isDynamic, hasRightContent, onClick } = props
   return (
     <div

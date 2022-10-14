@@ -37,7 +37,7 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
     const isExpanded = expandedKeys.includes(itemKey)
     const dispatch = useDispatch()
     if (isObject(value) || isArray(value)) {
-      const keyArr = Object.keys(value).filter(item => !item.startsWith("$"))
+      const keyArr = Object.keys(value).filter((item) => !item.startsWith("$"))
       return (
         <div>
           <div
@@ -69,7 +69,7 @@ export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
             initial={false}
             transition={{ duration: 0.2 }}
           >
-            {keyArr.map(name => (
+            {keyArr.map((name) => (
               <WorkSpaceTreeNode
                 key={name}
                 name={name}

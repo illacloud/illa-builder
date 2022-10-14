@@ -96,6 +96,7 @@ export const colorToneWrapperStyle = css`
   height: 12px;
   border-radius: 2px;
   display: flex;
+  overflow: hidden;
 `
 
 export const applyColorToneStyle = (color: string) => {

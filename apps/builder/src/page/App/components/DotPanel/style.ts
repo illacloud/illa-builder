@@ -23,11 +23,20 @@ export const applyComponentCanvasStyle = (
   unitHeight: number = 8,
   showDot: boolean = false,
   addHeight: number = 0,
+  minHeight?: number,
 ) => {
+  const heightCss = minHeight
+    ? css`
+        height: ${addHeight}px;
+        min-height: ${minHeight}px;
+      `
+    : css`
+        min-height: 100vh;
+        height: ${addHeight}px;
+      `
   return css`
     width: 100%;
-    min-height: 100vh;
-    height: ${addHeight}px;
+    ${heightCss};
     ${showDot
       ? applyDotBackgroundStyle(width, height, unitWidth, unitHeight)
       : normalCanvasBackgroundStyle}
@@ -73,6 +82,8 @@ export const applyDotLintRectangleStyle = (
     border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
     position: absolute;
     transform: translate(${x}px, ${y}px);
+    z-index: 6;
+    pointer-events: none;
   `
 }
 
@@ -92,6 +103,8 @@ export const applyRectangleStyle = (
     opacity: 0.16;
     position: absolute;
     transform: translate(${x}px, ${y}px);
+    z-index: 6;
+    pointer-events: none;
   `
 }
 
@@ -100,3 +113,20 @@ export const borderLineStyle = css`
   height: 100%;
   border: 2px solid #f7f8fa;
 `
+
+export const applyFreezePlaceholderShapeStyle = (
+  top: number,
+  left: number,
+  height: number,
+  width: number,
+) => {
+  return css`
+    position: absolute;
+    left: ${left}px;
+    top: ${top}px;
+    width: ${width}px;
+    height: ${height}px;
+    border: 1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)};
+    z-index: 6;
+  `
+}

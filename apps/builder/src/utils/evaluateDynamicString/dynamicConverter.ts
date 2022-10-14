@@ -51,7 +51,7 @@ export const getSnippets = (
   // Get the {{binding}} bound values
   stringSnippets = getStringSnippets(sanitisedString)
   // Get the "binding" path values
-  jsSnippets = stringSnippets.map(segment => {
+  jsSnippets = stringSnippets.map((segment) => {
     const length = segment.length
     const matches = isDynamicString(segment)
     if (matches) {

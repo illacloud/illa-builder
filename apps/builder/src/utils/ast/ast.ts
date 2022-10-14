@@ -125,7 +125,7 @@ const getFunctionalParamsFromNode = (
   node: FunctionDeclarationNode | FunctionExpressionNode,
 ): Set<string> => {
   const functionalParams = new Set<string>()
-  node.params.forEach(paramNode => {
+  node.params.forEach((paramNode) => {
     if (isIdentifierNode(paramNode)) {
       functionalParams.add(paramNode.name)
     } else if (isAssignmentPatternNode(paramNode)) {
@@ -218,9 +218,8 @@ export const extractIdentifiersFromCode = (code: string): string[] => {
        * could be nesting of many MemberExpressions. To find the final reference, we will
        * try to find the top level MemberExpression that does not have a MemberExpression parent.
        * */
-      let candidateTopLevelNode:
-        | IdentifierNode
-        | MemberExpressionNode = node as IdentifierNode
+      let candidateTopLevelNode: IdentifierNode | MemberExpressionNode =
+        node as IdentifierNode
       let depth = ancestors.length - 2 // start "depth" with first parent
       while (depth > 0) {
         const parent = ancestors[depth]
@@ -284,8 +283,8 @@ export const extractIdentifiersFromCode = (code: string): string[] => {
   })
 
   // Remove declared variables and function params
-  variableDeclarations.forEach(variable => identifiers.delete(variable))
-  functionalParams.forEach(param => identifiers.delete(param))
+  variableDeclarations.forEach((variable) => identifiers.delete(variable))
+  functionalParams.forEach((param) => identifiers.delete(param))
 
   return Array.from(identifiers)
 }

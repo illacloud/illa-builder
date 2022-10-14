@@ -6,7 +6,8 @@ export const resultContainerStyle = css`
   min-width: 700px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
+  bottom: 0;
 `
 
 export function applyMaxHeightStyle(h?: number) {
@@ -34,6 +35,12 @@ export const successResultWrapperStyle = css`
   font-weight: 500;
   justify-content: space-between;
   background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
+`
+
+export const resultSuccessLeftContainer = css`
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
 `
 
 export const errorIconStyle = css`

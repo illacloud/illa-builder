@@ -29,3 +29,12 @@ export const editableInputSetterStyle = css`
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
 `
+
+export const editableInputIconStyle = css`
+  width: 24px;
+  height: 24px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

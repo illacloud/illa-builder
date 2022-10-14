@@ -1,4 +1,4 @@
-import { Params } from "@/redux/resource/resourceState"
+import { Params } from "@/redux/resource/restapiResource"
 
 export interface InputRecordEditorProps {
   label: string

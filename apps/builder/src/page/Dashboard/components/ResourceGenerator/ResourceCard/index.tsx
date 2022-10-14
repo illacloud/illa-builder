@@ -5,7 +5,7 @@ import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { useTranslation } from "react-i18next"
 
-export const ResourceCard: FC<ResourceCardSelectorProps> = props => {
+export const ResourceCard: FC<ResourceCardSelectorProps> = (props) => {
   const { resourceType, onSelect, isDraft } = props
 
   const { t } = useTranslation()
@@ -25,7 +25,7 @@ export const ResourceCard: FC<ResourceCardSelectorProps> = props => {
       </span>
       {isDraft && (
         <span css={comingStyle}>
-          {t("editor.action.resource.label.coming_soon")}
+          {t("editor.action.resource.card.coming_soon")}
         </span>
       )}
     </div>

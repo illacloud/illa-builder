@@ -4,7 +4,7 @@ import { categoryStyle, containerStyle, resourceListStyle } from "./style"
 import { ResourceTypeList } from "@/page/Dashboard/components/ResourceGenerator/config"
 import { ResourceCard } from "@/page/Dashboard/components/ResourceGenerator/ResourceCard"
 
-export const ResourceTypeSelector: FC<ResourceTypeSelectorProps> = props => {
+export const ResourceTypeSelector: FC<ResourceTypeSelectorProps> = (props) => {
   const { onSelect } = props
 
   return (
@@ -13,10 +13,10 @@ export const ResourceTypeSelector: FC<ResourceTypeSelectorProps> = props => {
         <div key={category}>
           <span css={categoryStyle}>{title}</span>
           <div css={resourceListStyle}>
-            {item.map(prop => (
+            {item.map((prop) => (
               <ResourceCard
                 key={prop.resourceType}
-                onSelect={item => {
+                onSelect={(item) => {
                   onSelect(item)
                 }}
                 {...prop}

@@ -55,7 +55,7 @@ export const generatorEventHandlerConfig = (
         setterType: "EVENT_TARGET_ACTION_SELECT_SETTER",
         attrName: "queryID",
         bindAttrName: ["actionType"],
-        shown: type => type === "datasource",
+        shown: (type) => type === "datasource",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-actionMethod`,
@@ -63,7 +63,7 @@ export const generatorEventHandlerConfig = (
         setterType: "BASE_SELECT_SETTER",
         attrName: "widgetMethod",
         bindAttrName: ["queryID"],
-        shown: type => type === "datasource",
+        shown: (type) => type === "datasource",
         options: [{ label: "run", value: "executeAction" }],
       },
       {
@@ -72,7 +72,7 @@ export const generatorEventHandlerConfig = (
         setterType: "EVENT_TARGET_SELECT_SETTER",
         attrName: "widgetID",
         bindAttrName: ["actionType"],
-        shown: type => type === "widget",
+        shown: (type) => type === "widget",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-Method`,
@@ -80,7 +80,7 @@ export const generatorEventHandlerConfig = (
         setterType: "EVENT_WIDGET_METHOD_SELECT_SETTER",
         attrName: "widgetMethod",
         bindAttrName: ["widgetID"],
-        shown: widgetID => !!widgetID,
+        shown: (widgetID) => !!widgetID,
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-Value`,
@@ -88,7 +88,7 @@ export const generatorEventHandlerConfig = (
         setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        shown: widgetMethod => widgetMethod === "setValue",
+        shown: (widgetMethod) => widgetMethod === "setValue",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-startValue`,
@@ -96,7 +96,7 @@ export const generatorEventHandlerConfig = (
         setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        shown: widgetMethod => widgetMethod === "setStartValue",
+        shown: (widgetMethod) => widgetMethod === "setStartValue",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-endValue`,
@@ -104,7 +104,7 @@ export const generatorEventHandlerConfig = (
         setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        shown: widgetMethod => widgetMethod === "setEndValue",
+        shown: (widgetMethod) => widgetMethod === "setEndValue",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-imageUrl`,
@@ -112,7 +112,7 @@ export const generatorEventHandlerConfig = (
         setterType: "CALC_SELF_INPUT_SETTER",
         attrName: "widgetTargetValue",
         bindAttrName: ["widgetMethod"],
-        shown: widgetMethod => widgetMethod === "setImageUrl",
+        shown: (widgetMethod) => widgetMethod === "setImageUrl",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-disabled`,
@@ -123,7 +123,7 @@ export const generatorEventHandlerConfig = (
         bindAttrName: ["type"],
         useCustomLayout: true,
         openDynamic: true,
-        shown: type => type === "widget",
+        shown: (type) => type === "widget",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-script`,
@@ -131,7 +131,7 @@ export const generatorEventHandlerConfig = (
         attrName: "script",
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.STRING,
-        shown: type => type === "script",
+        shown: (type) => type === "script",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-URL`,
@@ -140,7 +140,7 @@ export const generatorEventHandlerConfig = (
         attrName: "url",
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.STRING,
-        shown: type => type === "openUrl",
+        shown: (type) => type === "openUrl",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-newTab`,
@@ -151,7 +151,61 @@ export const generatorEventHandlerConfig = (
         bindAttrName: ["actionType"],
         useCustomLayout: true,
         openDynamic: true,
-        shown: type => type === "openUrl",
+        shown: (type) => type === "openUrl",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-setCurrentViewKey`,
+        labelName: i18n.t("editor.inspect.setter_label.key"),
+        setterType: "CALC_SELF_INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "key",
+        bindAttrName: ["widgetMethod"],
+        shown: (type) => type === "setCurrentViewKey",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-setCurrentViewIndex`,
+        labelName: i18n.t("editor.inspect.setter_label.index"),
+        setterType: "CALC_SELF_INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+        attrName: "index",
+        bindAttrName: ["widgetMethod"],
+        shown: (type) => type === "setCurrentViewIndex",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-showNextView`,
+        labelName: i18n.t("editor.inspect.setter_label.loop_back_to_start"),
+        setterType: "SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        attrName: "showNextViewLoopBack",
+        bindAttrName: ["widgetMethod"],
+        shown: (type) => type === "showNextView",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-showNextVisibleView`,
+        labelName: i18n.t("editor.inspect.setter_label.loop_back_to_start"),
+        setterType: "SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        attrName: "showNextVisibleViewLoopBack",
+        bindAttrName: ["widgetMethod"],
+        shown: (type) => type === "showNextVisibleView",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-showPreviousView`,
+        labelName: i18n.t("editor.inspect.setter_label.loop_start_to_back"),
+        setterType: "SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        attrName: "showPreviousViewLoopBack",
+        bindAttrName: ["widgetMethod"],
+        shown: (type) => type === "showPreviousView",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-showPreviousVisibleView`,
+        labelName: i18n.t("editor.inspect.setter_label.loop_start_to_back"),
+        setterType: "SWITCH_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        attrName: "showPreviousVisibleViewLoopBack",
+        bindAttrName: ["widgetMethod"],
+        shown: (type) => type === "showPreviousVisibleView",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-title`,
@@ -160,7 +214,7 @@ export const generatorEventHandlerConfig = (
         attrName: "title",
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.STRING,
-        shown: type => type === "showNotification",
+        shown: (type) => type === "showNotification",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-description`,
@@ -169,7 +223,7 @@ export const generatorEventHandlerConfig = (
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "description",
         bindAttrName: ["actionType"],
-        shown: type => type === "showNotification",
+        shown: (type) => type === "showNotification",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-notification-type`,
@@ -177,7 +231,7 @@ export const generatorEventHandlerConfig = (
         setterType: "BASE_SELECT_SETTER",
         attrName: "notificationType",
         bindAttrName: ["actionType"],
-        shown: type => type === "showNotification",
+        shown: (type) => type === "showNotification",
         options: [
           {
             label: i18n.t(
@@ -213,7 +267,7 @@ export const generatorEventHandlerConfig = (
         bindAttrName: ["actionType"],
         expectedType: VALIDATION_TYPES.NUMBER,
         placeholder: "{{4500}}",
-        shown: type => type === "showNotification",
+        shown: (type) => type === "showNotification",
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-enabled`,

@@ -1,4 +1,5 @@
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export interface BaseSetter {
   isSetterSingleRow?: boolean
@@ -14,4 +15,5 @@ export interface BaseSetter {
   widgetType: string
   widgetOrAction: "ACTION" | "WIDGET"
   defaultValue?: any
+  componentNode: ComponentNode
 }

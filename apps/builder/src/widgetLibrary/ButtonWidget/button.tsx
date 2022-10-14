@@ -4,7 +4,7 @@ import { ButtonWidgetProps, WrappedButtonProps } from "./interface"
 import { buttonLayoutStyle } from "@/widgetLibrary/ButtonWidget/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
-export const WrappedButton: FC<WrappedButtonProps> = props => {
+export const WrappedButton: FC<WrappedButtonProps> = (props) => {
   const {
     text,
     variant,
@@ -35,7 +35,7 @@ export const WrappedButton: FC<WrappedButtonProps> = props => {
 
 WrappedButton.displayName = "WrappedButton"
 
-export const ButtonWidget: FC<ButtonWidgetProps> = props => {
+export const ButtonWidget: FC<ButtonWidgetProps> = (props) => {
   const {
     text,
     variant,

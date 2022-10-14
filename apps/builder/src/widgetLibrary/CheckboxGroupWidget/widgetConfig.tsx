@@ -1,4 +1,4 @@
-import { CheckboxWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as CheckboxWidgetIcon } from "@/assets/widgetCover/checkBox.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 import i18n from "@/i18n/config"
@@ -7,7 +7,7 @@ export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
   type: "CHECKBOX_GROUP_WIDGET",
   widgetName: i18n.t("widget.check_box_group.name"),
   displayName: "checkboxGroup",
-  icon: <CheckboxWidgetIcon size="100%" />,
+  icon: <CheckboxWidgetIcon />,
   keywords: ["Checkbox Group", "复选框组"],
   sessionType: "SELECT",
   w: 20,

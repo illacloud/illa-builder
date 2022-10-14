@@ -2,7 +2,7 @@ import { HorizontalEndIcon, HorizontalStartIcon } from "@illa-design/icon"
 import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
-import { EditableInputIconType } from "@/page/App/components/PanelSetters/InputSetter/interface"
+import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
 
 const baseWidgetName = "bar-progress"
 export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
@@ -51,7 +51,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelPosition",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: value => !value,
+        shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
           { label: i18n.t("widget.public.top"), value: "top" },
@@ -63,7 +63,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         attrName: "labelAlign",
         setterType: "RADIO_GROUP_SETTER",
         bindAttrName: ["labelHidden"],
-        shown: value => !value,
+        shown: (value) => !value,
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -82,7 +82,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.NUMBER,
         bindAttrName: ["labelHidden"],
-        shown: value => !value,
+        shown: (value) => !value,
       },
     ],
   },
@@ -161,7 +161,7 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
             id: `${baseWidgetName}-strokeWidth`,
             labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
             setterType: "EDITABLE_INPUT_SETTER",
-            iconName: EditableInputIconType.STROKE_WIDTH,
+            icon: <StrokeWidthIcon />,
             attrName: "strokeWidth",
             defaultValue: "4px",
             expectedType: VALIDATION_TYPES.STRING,

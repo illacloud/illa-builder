@@ -5,6 +5,8 @@ import {
   copyComponentReducer,
   deleteComponentNodeReducer,
   resetComponentPropsReducer,
+  sortComponentNodeChildrenReducer,
+  updateComponentContainerReducer,
   updateComponentDisplayNameReducer,
   updateComponentPropsReducer,
   updateComponentReducer,
@@ -23,8 +25,10 @@ const componentsSlice = createSlice({
     updateComponentPropsReducer,
     deleteComponentNodeReducer,
     resetComponentPropsReducer,
+    sortComponentNodeChildrenReducer,
     updateComponentDisplayNameReducer,
     updateComponentReflowReducer,
+    updateComponentContainerReducer,
   },
 })
 

@@ -20,6 +20,7 @@ import {
   updateBottomPanel,
   updateCacheActionContent,
   updateDebuggerVisible,
+  updateFreezeStateReducer,
   updateIllaMode,
   updateLeftPanel,
   updateRightPanel,
@@ -65,6 +66,7 @@ const configSlice = createSlice({
     updateSelectedApiBodyType,
     setExpandedKey,
     removeExpandedKey,
+    updateFreezeStateReducer,
   },
 })
 

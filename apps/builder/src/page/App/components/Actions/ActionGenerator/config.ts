@@ -21,11 +21,11 @@ export const Databases: ActionDataItem[] = [
   },
   {
     actionType: "tidb",
-    isDraft: true,
+    isDraft: false,
   },
   {
     actionType: "redis",
-    isDraft: true,
+    isDraft: false,
   },
   {
     actionType: "mongodb",

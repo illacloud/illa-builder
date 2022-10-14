@@ -1,4 +1,4 @@
-import { RadioGroupWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as RadioGroupWidgetIcon } from "@/assets/widgetCover/radioGroup.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 import i18n from "@/i18n/config"
@@ -7,11 +7,11 @@ export const RADIO_GROUP_WIDGET_CONFIG: WidgetConfig = {
   displayName: "radioGroup",
   type: "RADIO_GROUP_WIDGET",
   widgetName: i18n.t("widget.radio_group.name"),
-  icon: <RadioGroupWidgetIcon size="100%" />,
+  icon: <RadioGroupWidgetIcon />,
   keywords: ["Radio Group", "单选框组"],
   sessionType: "SELECT",
-  w: 20,
-  h: 4,
+  w: 25,
+  h: 3,
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     optionConfigureMode: "static",

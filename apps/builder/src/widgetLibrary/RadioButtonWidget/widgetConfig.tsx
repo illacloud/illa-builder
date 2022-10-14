@@ -1,4 +1,4 @@
-import { RadioButtonWidgetIcon } from "@illa-design/icon"
+import { ReactComponent as RadioButtonWidgetIcon } from "@/assets/widgetCover/radioButton.svg"
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import { v4 } from "uuid"
 import i18n from "@/i18n/config"
@@ -9,7 +9,7 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
   displayName: "radioButton",
   w: 18,
   h: 5,
-  icon: <RadioButtonWidgetIcon size="100%" />,
+  icon: <RadioButtonWidgetIcon />,
   keywords: ["Radio Button", "按钮单选"],
   sessionType: "PRESENTATION",
   resizeDirection: RESIZE_DIRECTION.HORIZONTAL,

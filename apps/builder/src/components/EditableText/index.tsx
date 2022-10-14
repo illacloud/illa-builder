@@ -8,7 +8,7 @@ import { EditableTextWrapperStyle, textStyle } from "./style"
 import { isValidDisplayName } from "@/utils/typeHelper"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
-export const EditableText: FC<EditableTextProps> = props => {
+export const EditableText: FC<EditableTextProps> = (props) => {
   const { displayName, updateDisplayNameByBlur } = props
   const [inputValue, setInputValue] = useState(displayName)
   const [isFocusInput, setIsFocusInput] = useState(false)

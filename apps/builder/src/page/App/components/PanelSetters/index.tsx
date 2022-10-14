@@ -25,6 +25,8 @@ import { ChartTypeSelectSetter } from "@/page/App/components/PanelSetters/ChartS
 import { ColumnSetter } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
 import { TableDataInputSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataInputSetter"
+import { ViewsSetter } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter"
+import { ContainerDefaultViewKeySetter } from "@/page/App/components/PanelSetters/ContainerSetter/defaultViewKeySetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -54,6 +56,8 @@ const SetterTypeMapSetter = {
   CHART_DATASETS_SETTER: ChartDatasetsSetter,
   CHART_COLOR_SELECT_SETTER: ChartColorSelectSetter,
   CHART_TYPE_SELECT_SETTER: ChartTypeSelectSetter,
+  CONTAINER_VIEW_SETTER: ViewsSetter,
+  CONTAINER_DEFAULT_VIEW_SETTER: ContainerDefaultViewKeySetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

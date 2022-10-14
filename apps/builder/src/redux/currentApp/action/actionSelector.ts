@@ -7,7 +7,7 @@ export const getActionItemByDisplayName = (
   displayName: string,
 ) => {
   const actionList = getActionList(state)
-  return actionList.find(item => {
+  return actionList.find((item) => {
     return item.displayName === displayName
   })
 }

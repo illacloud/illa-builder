@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import { MysqlConfigElementProps } from "./interface"
+import { MysqlLikeConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
   configItem,
@@ -25,21 +25,20 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
-import {
-  generateSSLConfig,
-  MysqlResource,
-  Resource,
-} from "@/redux/resource/resourceState"
+import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
+import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
 
 /**
  * include mariadb or tidb
  * @param props
  * @constructor
  */
-export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
+export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
+  props,
+) => {
   const { onBack, resourceType, resourceId, onFinished } = props
 
   const { t } = useTranslation()
@@ -51,9 +50,9 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(r => r.resourceId === resourceId) as Resource<
-      MysqlResource
-    >
+    return state.resource.find(
+      (r) => r.resourceId === resourceId,
+    ) as Resource<MysqlLikeResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -65,7 +64,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
     <form
       onSubmit={handleSubmit((data, event) => {
         if (resourceId != undefined) {
-          Api.request<Resource<MysqlResource>>(
+          Api.request<Resource<MysqlLikeResource>>(
             {
               method: "PUT",
               url: `/resources/${resourceId}`,
@@ -83,23 +82,23 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                 },
               },
             },
-            response => {
+            (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            error => {
+            (error) => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            loading => {
+            (loading) => {
               setSaving(loading)
             },
           )
         } else {
-          Api.request<Resource<MysqlResource>>(
+          Api.request<Resource<MysqlLikeResource>>(
             {
               method: "POST",
               url: `/resources`,
@@ -116,18 +115,18 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                 },
               },
             },
-            response => {
+            (response) => {
               onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            error => {
+            (error) => {
               Message.error(error.data.errorMessage)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
             },
-            loading => {
+            (loading) => {
               setSaving(loading)
             },
           )
@@ -142,7 +141,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.name")}
+              {t("editor.action.resource.db.label.name")}
             </span>
           </div>
           <Controller
@@ -160,11 +159,25 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                 onChange={onChange}
                 value={value}
                 borderColor="techPurple"
-                placeholder={t("editor.action.resource.mysql.placeholder.name")}
+                placeholder={t("editor.action.resource.db.placeholder.name")}
               />
             )}
             name="resourceName"
           />
+        </div>
+        <div css={configItemTip}>
+          {t("editor.action.resource.restapi.tip.name")}
+        </div>
+        <Divider
+          direction="horizontal"
+          ml="24px"
+          mr="24px"
+          mt="8px"
+          mb="8px"
+          w="unset"
+        />
+        <div css={optionLabelStyle}>
+          {t("editor.action.resource.db.title.general_option")}
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
@@ -172,7 +185,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.hostname_port")}
+              {t("editor.action.resource.db.label.hostname_port")}
             </span>
           </div>
           <div css={hostInputContainer}>
@@ -190,7 +203,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                   value={value}
                   borderColor="techPurple"
                   placeholder={t(
-                    "editor.action.resource.mysql.placeholder.hostname",
+                    "editor.action.resource.db.placeholder.hostname",
                   )}
                 />
               )}
@@ -223,7 +236,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.database")}
+              {t("editor.action.resource.db.label.database")}
             </span>
           </div>
           <Controller
@@ -242,7 +255,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                 value={value}
                 borderColor="techPurple"
                 placeholder={t(
-                  "editor.action.resource.mysql.placeholder.database",
+                  "editor.action.resource.db.placeholder.database",
                 )}
               />
             )}
@@ -255,7 +268,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
-              {t("editor.action.resource.mysql.label.username_password")}
+              {t("editor.action.resource.db.label.username_password")}
             </span>
           </div>
           <div css={hostInputContainer}>
@@ -273,7 +286,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                   value={value}
                   borderColor="techPurple"
                   placeholder={t(
-                    "editor.action.resource.mysql.placeholder.username",
+                    "editor.action.resource.db.placeholder.username",
                   )}
                 />
               )}
@@ -294,7 +307,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                   value={value}
                   ml="8px"
                   placeholder={t(
-                    "editor.action.resource.mysql.placeholder.password",
+                    "editor.action.resource.db.placeholder.password",
                   )}
                 />
               )}
@@ -302,17 +315,17 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             />
           </div>
         </div>
-        <span css={configItemTip}>
-          {t("editor.action.resource.mysql.tip.username_password")}
-        </span>
+        <div css={configItemTip}>
+          {t("editor.action.resource.db.tip.username_password")}
+        </div>
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.mysql.label.connect_type")}
+              {t("editor.action.resource.db.label.connect_type")}
             </span>
           </div>
           <span css={connectTypeStyle}>
-            {t("editor.action.resource.mysql.tip.connect_type")}
+            {t("editor.action.resource.db.tip.connect_type")}
           </span>
         </div>
         <Divider
@@ -324,12 +337,12 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
           w="unset"
         />
         <div css={optionLabelStyle}>
-          {t("editor.action.resource.mysql.title.advanced_option")}
+          {t("editor.action.resource.db.title.advanced_option")}
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.mysql.label.ssl_options")}
+              {t("editor.action.resource.db.label.ssl_options")}
             </span>
           </div>
           <Controller
@@ -337,10 +350,10 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             defaultValue={resource?.content.ssl.ssl}
             render={({ field: { value, onChange, onBlur } }) => (
               <Switch
-                value={value}
+                checked={value}
                 ml="16px"
                 colorScheme="techPurple"
-                onChange={open => {
+                onChange={(open) => {
                   onChange(open)
                   setSSLOpen(open)
                 }}
@@ -350,7 +363,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             name="ssl"
           />
           <span css={sslStyle}>
-            {t("editor.action.resource.mysql.tip.ssl_options")}
+            {t("editor.action.resource.db.tip.ssl_options")}
           </span>
         </div>
         {sslOpen && (
@@ -366,7 +379,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.mysql.label.ca_certificate")}
+                  {t("editor.action.resource.db.label.ca_certificate")}
                 </span>
               </div>
               <Controller
@@ -385,7 +398,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                     value={value}
                     autoSize
                     placeholder={t(
-                      "editor.action.resource.mysql.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.certificate",
                     )}
                   />
                 )}
@@ -400,7 +413,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.mysql.label.client_key")}
+                  {t("editor.action.resource.db.label.client_key")}
                 </span>
               </div>
               <Controller
@@ -416,7 +429,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                     onChange={onChange}
                     onBlur={onBlur}
                     placeholder={t(
-                      "editor.action.resource.mysql.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.certificate",
                     )}
                   />
                 )}
@@ -431,7 +444,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.mysql.label.client_certificate")}
+                  {t("editor.action.resource.db.label.client_certificate")}
                 </span>
               </div>
               <Controller
@@ -447,7 +460,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                     onChange={onChange}
                     onBlur={onBlur}
                     placeholder={t(
-                      "editor.action.resource.mysql.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.certificate",
                     )}
                   />
                 )}
@@ -477,7 +490,7 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<MysqlResource>>(
+              Api.request<Resource<MysqlLikeResource>>(
                 {
                   method: "POST",
                   url: `/resources/testConnection`,
@@ -495,16 +508,16 @@ export const MysqlLikeConfigElement: FC<MysqlConfigElementProps> = props => {
                     },
                   },
                 },
-                response => {
+                (response) => {
                   Message.success(t("dashboard.resource.test_success"))
                 },
-                error => {
+                (error) => {
                   Message.error(error.data.errorMessage)
                 },
                 () => {
                   Message.error(t("dashboard.resource.test_fail"))
                 },
-                loading => {
+                (loading) => {
                   setTestLoading(loading)
                 },
               )

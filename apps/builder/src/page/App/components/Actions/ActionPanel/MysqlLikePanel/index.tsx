@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import {
   mysqlContainerStyle,
   sqlInputStyle,
@@ -13,11 +13,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { MysqlLikePanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { Api } from "@/api/base"
 import { isObject } from "@illa-design/system"
-
-interface ResourcesData {
-  schema: Record<string, unknown>
-  resourceName: string
-}
+import { ResourcesData } from "@/redux/resource/resourceState"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}
@@ -38,7 +34,7 @@ const convertResourcesToTables = (data: Record<string, unknown>) => {
   return res
 }
 
-export const MysqlLikePanel: FC<MysqlLikePanelProps> = props => {
+export const MysqlLikePanel: FC<MysqlLikePanelProps> = (props) => {
   const dispatch = useDispatch()
 
   const currentAction = props.action
@@ -61,6 +57,15 @@ export const MysqlLikePanel: FC<MysqlLikePanelProps> = props => {
     )
   }, [currentAction.resourceId])
 
+  const mode = useMemo(() => {
+    switch (currentAction.actionType) {
+      case "postgresql":
+        return "Postgre_SQL_JS"
+      default:
+        return "SQL_JS"
+    }
+  }, [currentAction.actionType])
+
   return (
     <div css={mysqlContainerStyle}>
       <ResourceChoose action={currentAction} />
@@ -70,14 +75,10 @@ export const MysqlLikePanel: FC<MysqlLikePanelProps> = props => {
         height="88px"
         css={sqlInputStyle}
         value={currentContent.query}
-        mode={
-          currentAction.actionType === "postgresql"
-            ? "Postgre_SQL_JS"
-            : "SQL_JS"
-        }
+        mode={mode}
         expectedType={VALIDATION_TYPES.STRING}
         tables={sqlTable}
-        onChange={value => {
+        onChange={(value) => {
           dispatch(
             configActions.updateSelectedAction({
               ...currentAction,

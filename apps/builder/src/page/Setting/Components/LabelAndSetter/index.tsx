@@ -9,7 +9,7 @@ import {
   publicLabelAndInputWrapperStyle,
 } from "@/page/Setting/Components/LabelAndSetter/style"
 
-export const LabelAndSetter: FC<LabelAndSetterProps> = props => {
+export const LabelAndSetter: FC<LabelAndSetterProps> = (props) => {
   const { children, errorMessage, label } = props
   return (
     <div css={publicLabelAndInputWrapperStyle}>
