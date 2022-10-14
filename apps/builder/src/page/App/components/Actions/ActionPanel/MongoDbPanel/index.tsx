@@ -10,6 +10,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
 import { Select } from "@illa-design/select"
 import { useTranslation } from "react-i18next"
+import { MongoDbActionList } from "@/redux/currentApp/action/mongoDbAction"
 
 export const MongoDbPanel: FC<MongoDbPanelProps> = (props) => {
   const currentAction = props.action
@@ -30,23 +31,7 @@ export const MongoDbPanel: FC<MongoDbPanelProps> = (props) => {
           showSearch={true}
           ml="16px"
           width="100%"
-          options={[
-            "aggregate",
-            "bulkWrite",
-            "count",
-            "deleteMany",
-            "deleteOne",
-            "distinct",
-            "find",
-            "findOne",
-            "findOneAndUpdate",
-            "insertOne",
-            "insertMany",
-            "listCollections",
-            "updateMany",
-            "updateOne",
-            "command",
-          ]}
+          options={MongoDbActionList}
         />
       </div>
       <TransformerComponent />
