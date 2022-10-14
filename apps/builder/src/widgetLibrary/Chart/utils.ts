@@ -134,10 +134,12 @@ export const formatData = (
   }
 }
 
-export const rotateGroupByData = function(matrix: number[][]) {
-  const result: number[][] = new Array(matrix[0].length).fill(0).map(() => {
-    return new Array(matrix.length).fill(0)
-  })
+export const rotateGroupByData = function (matrix: number[][]) {
+  const result: number[][] = new Array(matrix[0]?.length || 0)
+    .fill(0)
+    .map(() => {
+      return new Array(matrix.length).fill(0)
+    })
 
   for (let i = 0; i < matrix.length; ++i) {
     for (let j = 0; j < matrix[i].length; ++j) {
