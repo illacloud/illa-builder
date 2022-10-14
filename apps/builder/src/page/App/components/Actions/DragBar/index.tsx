@@ -8,9 +8,11 @@ const handleResize = (
   movementY: number,
   minHeight: number,
   maxHeight?: number,
+  placeholderRef?: RefObject<HTMLDivElement>,
   callback?: () => void,
 ) => {
   const resize = resizeRef?.current
+  const placeholder = placeholderRef?.current
   if (!resize) return
 
   const { height } = resize.getBoundingClientRect()
@@ -20,20 +22,36 @@ const handleResize = (
 
   if (updatedHeight < window.innerHeight && updatedHeight > minHeight) {
     resize.style.height = `${updatedHeight}px`
+    if (placeholder) {
+      placeholder.style.paddingBottom = `${updatedHeight + 48}px`
+    }
     callback?.()
   }
 }
 
 export const DragBar: FC<DragBarProps> = (props) => {
-  const { resizeRef, minHeight = 300, maxHeight, onChange } = props
+  const {
+    resizeRef,
+    placeholderRef,
+    minHeight = 300,
+    maxHeight,
+    onChange,
+  } = props
   const [mouseDown, setMouseDown] = useState(false)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       e.preventDefault()
-      handleResize(resizeRef, e.movementY, minHeight, maxHeight, () => {
-        onChange?.()
-      })
+      handleResize(
+        resizeRef,
+        e.movementY,
+        minHeight,
+        maxHeight,
+        placeholderRef,
+        () => {
+          onChange?.()
+        },
+      )
     }
     if (mouseDown) {
       window.addEventListener("mousemove", handleMouseMove)
@@ -42,7 +60,7 @@ export const DragBar: FC<DragBarProps> = (props) => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
     }
-  }, [maxHeight, minHeight, mouseDown, resizeRef])
+  }, [maxHeight, minHeight, mouseDown, resizeRef, placeholderRef])
 
   useEffect(() => {
     handleResize(resizeRef, 0, minHeight, maxHeight)
