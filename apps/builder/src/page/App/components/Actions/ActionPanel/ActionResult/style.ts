@@ -6,7 +6,8 @@ export const resultContainerStyle = css`
   min-width: 700px;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
+  bottom: 0;
 `
 
 export function applyMaxHeightStyle(h?: number) {
