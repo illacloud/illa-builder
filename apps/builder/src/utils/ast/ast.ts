@@ -218,9 +218,8 @@ export const extractIdentifiersFromCode = (code: string): string[] => {
        * could be nesting of many MemberExpressions. To find the final reference, we will
        * try to find the top level MemberExpression that does not have a MemberExpression parent.
        * */
-      let candidateTopLevelNode:
-        | IdentifierNode
-        | MemberExpressionNode = node as IdentifierNode
+      let candidateTopLevelNode: IdentifierNode | MemberExpressionNode =
+        node as IdentifierNode
       let depth = ancestors.length - 2 // start "depth" with first parent
       while (depth > 0) {
         const parent = ancestors[depth]

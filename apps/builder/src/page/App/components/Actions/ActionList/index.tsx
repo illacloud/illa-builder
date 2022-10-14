@@ -75,8 +75,8 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                   onCopyItem={onCopyActionItem}
                   onDeleteItem={onDeleteActionItem}
                   onItemClick={(action) => {
-                    const selectedAction = store.getState().config
-                      .selectedAction
+                    const selectedAction =
+                      store.getState().config.selectedAction
                     if (selectedAction === null) {
                       dispatch(configActions.changeSelectedAction(action))
                       return

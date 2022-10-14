@@ -29,21 +29,16 @@ const validateConfirmationAndNewEqual = (
 export const SettingPassword: FC = () => {
   const { t } = useTranslation()
   const [currentPassword, setCurrentPassword] = useState<string>("")
-  const [
-    currentPasswordErrorMessage,
-    setCurrentPasswordErrorMessage,
-  ] = useState<string>("")
+  const [currentPasswordErrorMessage, setCurrentPasswordErrorMessage] =
+    useState<string>("")
 
   const [newPassword, setNewPassword] = useState<string>("")
-  const [newPasswordErrorMessage, setNewPasswordErrorMessage] = useState<
-    string
-  >("")
+  const [newPasswordErrorMessage, setNewPasswordErrorMessage] =
+    useState<string>("")
 
   const [confirmPassword, setConfirmPassword] = useState<string>("")
-  const [
-    confirmPasswordErrorMessage,
-    setConfirmPasswordErrorMessage,
-  ] = useState("")
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+    useState("")
 
   const [isLoading, setIsLoading] = useState(false)
 
