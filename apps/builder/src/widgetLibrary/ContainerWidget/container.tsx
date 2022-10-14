@@ -146,7 +146,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      {renderComponent}
+      <span>{renderComponent}</span>
     </TooltipWrapper>
   )
 }
