@@ -166,14 +166,31 @@ export const RenderComponentCanvas: FC<{
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const { item } = dragInfo
-          const dragResult = getDragResult(
-            monitor,
-            containerRef,
-            item,
-            unitWidth,
-            UNIT_HEIGHT,
-            bounds.width,
-          )
+          let dragResult
+          if (
+            (item.x === -1 && item.y === -1) ||
+            item.parentNode !== componentNode.displayName
+          ) {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "ADD",
+            )
+          } else {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "UPDATE",
+            )
+          }
           const { ladingPosition, rectCenterPosition } = dragResult
           const { landingX, landingY, isOverstep } = ladingPosition
 
@@ -251,14 +268,31 @@ export const RenderComponentCanvas: FC<{
         const { item } = dragInfo
         if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
-          const dragResult = getDragResult(
-            monitor,
-            containerRef,
-            item,
-            unitWidth,
-            UNIT_HEIGHT,
-            bounds.width,
-          )
+          let dragResult
+          if (
+            (item.x === -1 && item.y === -1) ||
+            item.parentNode !== componentNode.displayName
+          ) {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "ADD",
+            )
+          } else {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "UPDATE",
+            )
+          }
           const { ladingPosition } = dragResult
           const { landingX, landingY } = ladingPosition
 

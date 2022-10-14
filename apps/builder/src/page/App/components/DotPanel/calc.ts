@@ -344,34 +344,102 @@ export const getDragResult = (
   unitWidth: number,
   unitHeight: number,
   canvasWidth: number,
+  action: "ADD" | "UPDATE",
 ) => {
-  const itemPosition = getItemPosition(monitor, containerRef.current?.scrollTop)
-
   const canvasPosition = {
     x: containerRef.current?.getBoundingClientRect().x || 0,
     y: containerRef.current?.getBoundingClientRect().y || 0,
   }
-  const nodeWidthAndHeight = getNodeWidthAndHeight(item, unitWidth, unitHeight)
-  const rectCenterPosition = calcRectCenterPointPosition(
-    itemPosition,
-    canvasPosition,
-    nodeWidthAndHeight,
-  )
-  const rectPosition = calcRectShapeByCenterPoint(
-    rectCenterPosition,
-    nodeWidthAndHeight,
-  )
-  const ladingPosition = calcLadingPosition(
-    rectPosition,
-    unitWidth,
-    unitHeight,
-    canvasWidth,
-  )
+  if (action === "ADD") {
+    const itemPosition = getItemPosition(
+      monitor,
+      containerRef.current?.scrollTop,
+    )
+    const nodeWidthAndHeight = getNodeWidthAndHeight(
+      item,
+      unitWidth,
+      unitHeight,
+    )
+    const rectCenterPosition = calcRectCenterPointPosition(
+      itemPosition,
+      canvasPosition,
+      nodeWidthAndHeight,
+    )
+    const rectPosition = calcRectShapeByCenterPoint(
+      rectCenterPosition,
+      nodeWidthAndHeight,
+    )
+    const ladingPosition = calcLadingPosition(
+      rectPosition,
+      unitWidth,
+      unitHeight,
+      canvasWidth,
+    )
 
-  return {
-    ladingPosition,
-    rectPosition,
-    rectCenterPosition,
+    return {
+      ladingPosition,
+      rectPosition,
+      rectCenterPosition,
+    }
+  } else {
+    const mousePointerPosition = monitor.getClientOffset()
+    // mouse position
+    let relativeX = mousePointerPosition!.x - canvasPosition.x
+    let relativeY =
+      mousePointerPosition!.y -
+      canvasPosition.y +
+      (containerRef.current?.scrollTop || 0)
+
+    let renderX =
+      relativeX -
+      monitor.getInitialClientOffset()!.x +
+      monitor.getInitialSourceClientOffset()!.x
+    let renderY =
+      relativeY -
+      monitor.getInitialClientOffset()!.y +
+      monitor.getInitialSourceClientOffset()!.y
+
+    let squareX = Math.round(renderX / unitWidth) * unitWidth
+    let squareY = Math.round(renderY / unitHeight) * unitHeight
+    let isOverstep = true
+    const rectTop = relativeY
+    const rectBottom = renderY + item.h * unitHeight
+    const rectLeft = relativeX
+    const rectRight = relativeX + item.w * unitWidth
+
+    if (renderY < 0) {
+      squareY = 0
+      isOverstep = false
+    }
+    if (renderX < 0) {
+      squareX = 0
+      isOverstep = false
+    }
+    if (renderX + item.w * unitWidth > canvasWidth) {
+      const overRight =
+        Math.round(renderX + (item.w * unitWidth) / unitWidth) * unitWidth -
+        canvasWidth
+      squareX = squareX - overRight
+      isOverstep = false
+    }
+
+    return {
+      ladingPosition: {
+        landingX: squareX,
+        landingY: squareY,
+        isOverstep,
+      },
+      rectPosition: {
+        rectTop,
+        rectLeft,
+        rectRight,
+        rectBottom,
+      },
+      rectCenterPosition: {
+        x: renderX,
+        y: renderY,
+      },
+    }
   }
 }
 
