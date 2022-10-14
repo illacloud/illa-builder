@@ -1,6 +1,9 @@
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ComponentNode,
+  CONTAINER_TYPE,
+} from "@/redux/currentApp/editor/components/componentsState"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const generateComponentNode = (
@@ -8,9 +11,10 @@ export const generateComponentNode = (
 ): ComponentNode => {
   let baseDSL: ComponentNode
   if (
-    !widgetInfo.type ||
-    typeof widgetInfo.type !== "string" ||
-    !WidgetTypeList.includes(widgetInfo.type)
+    (!widgetInfo.type ||
+      typeof widgetInfo.type !== "string" ||
+      !WidgetTypeList.includes(widgetInfo.type)) &&
+    widgetInfo.type !== "CANVAS"
   ) {
     throw new Error("Widget is not registered")
   }
@@ -27,7 +31,16 @@ export const generateComponentNode = (
     })
   }
 
-  const { defaults, w, h, type, displayName = "" } = widgetInfo
+  const {
+    defaults,
+    w,
+    h,
+    type,
+    displayName = "",
+    containerType,
+    x = -1,
+    y = -1,
+  } = widgetInfo
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
     props = defaults()
@@ -44,13 +57,13 @@ export const generateComponentNode = (
     isResizing: false,
     unitH: 0,
     unitW: 0,
-    x: -1,
-    y: -1,
+    x,
+    y,
     z: 0,
     showName: displayName,
     type,
     displayName: DisplayNameGenerator.generateDisplayName(type, displayName),
-    containerType: "EDITOR_SCALE_SQUARE",
+    containerType: containerType || CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
     parentNode: null,
     childrenNode: childrenNodeDSL,
     props: props ?? {},

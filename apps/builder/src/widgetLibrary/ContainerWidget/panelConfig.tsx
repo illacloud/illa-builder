@@ -92,6 +92,7 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-layout-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.tooltip"),
         attrName: "hidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,

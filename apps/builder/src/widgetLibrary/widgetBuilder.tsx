@@ -130,6 +130,11 @@ import {
   CONTAINER_PANEL_CONFIG,
   CONTAINER_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/ContainerWidget"
+import {
+  FormWidget,
+  FORM_PANEL_CONFIG,
+  FORM_WIDGET_CONFIG,
+} from "@/widgetLibrary/FormWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -246,7 +251,6 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
   },
-  // TODO: chart
   CHART: {
     widget: ChartWidget,
     config: CHART_WIDGET_CONFIG,
@@ -263,6 +267,11 @@ export const WidgetConfig: WidgetConfigs = {
     config: CONTAINER_WIDGET_CONFIG,
     panelConfig: CONTAINER_PANEL_CONFIG,
     eventHandlerConfig: CONTAINER_EVENT_HANDLER_CONFIG,
+  },
+  FORM_WIDGET: {
+    widget: FormWidget,
+    config: FORM_WIDGET_CONFIG,
+    panelConfig: FORM_PANEL_CONFIG,
   },
 }
 

@@ -881,6 +881,9 @@
     "editable_text": {
       "name": "Editable Text"
     },
+    "form": {
+      "name": "Form"
+    },
     "image": {
       "name": "Image"
     },

@@ -881,6 +881,9 @@
     "editable_text": {
       "name": "可编辑文本"
     },
+    "form": {
+      "name": "表单"
+    },
     "image": {
       "name": "图片"
     },
