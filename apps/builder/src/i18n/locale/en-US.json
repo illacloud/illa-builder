@@ -538,7 +538,7 @@
         "regex": "Regex",
         "required_field": "Required field",
         "run_script": "Run script",
-        "scale_type": "Scale type",
+        "scale_type": "Scale Type",
         "set_temporary_state": "Set temporary state",
         "shadow": "Shadow",
         "show_character_count": "Show character count",
