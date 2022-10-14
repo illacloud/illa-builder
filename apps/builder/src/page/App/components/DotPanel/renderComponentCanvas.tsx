@@ -11,7 +11,7 @@ import {
 } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getFreezyState,
+  getFreezeState,
   getIllaMode,
   isShowDot,
 } from "@/redux/config/configSelector"
@@ -24,6 +24,7 @@ import {
 import useMeasure from "react-use-measure"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  DebounceUpdateReflow,
   DragInfo,
   DropCollectedInfo,
   DropResultInfo,
@@ -37,7 +38,7 @@ import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
 import { throttle } from "lodash"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
-import { FreezyPlaceholder } from "@/page/App/components/DotPanel/freezyPlaceholder"
+import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
@@ -54,7 +55,7 @@ export const RenderComponentCanvas: FC<{
 
   const isShowCanvasDot = useSelector(isShowDot)
   const illaMode = useSelector(getIllaMode)
-  const isFreezyCanvas = useSelector(getFreezyState)
+  const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
   const [xy, setXY] = useState([0, 0])
@@ -134,13 +135,8 @@ export const RenderComponentCanvas: FC<{
   ])
 
   const updateComponentPositionByReflow = useCallback(
-    (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
-      dispatch(
-        componentsActions.updateComponentReflowReducer({
-          parentDisplayName: parentDisplayName,
-          childNodes: childrenNodes,
-        }),
-      )
+    (updateSlice: DebounceUpdateReflow[]) => {
+      dispatch(componentsActions.updateComponentReflowReducer(updateSlice))
     },
     [dispatch],
   )
@@ -216,6 +212,7 @@ export const RenderComponentCanvas: FC<{
           /**
            * generate component node with new position
            */
+          const oldParentDisplayName = item.parentNode
           const newItem = {
             ...item,
             parentNode: componentNode.displayName || "root",
@@ -249,11 +246,33 @@ export const RenderComponentCanvas: FC<{
             finalChildrenNodes = finalState
             finalEffectResultMap = effectResultMap
           }
-          if (!isFreezyCanvas) {
-            debounceUpdateComponentPositionByReflow(
-              componentNode.displayName || "root",
-              finalChildrenNodes,
-            )
+          if (!isFreezeCanvas) {
+            const updateSlice = [
+              {
+                parentDisplayName: componentNode.displayName || "root",
+                childNodes: finalChildrenNodes,
+              },
+            ]
+
+            if (newItem.parentNode !== oldParentDisplayName) {
+              let oldParentChildNodes = dragInfo.childrenNodes.filter(
+                (node) => node.parentNode === oldParentDisplayName,
+              )
+              if (oldParentChildNodes.length > 0) {
+                const indexOfOldChildren = oldParentChildNodes.findIndex(
+                  (node) => node.displayName === newItem.displayName,
+                )
+                const allChildrenNodes = [...oldParentChildNodes]
+                if (indexOfChildrenNodes !== -1) {
+                  allChildrenNodes.splice(indexOfOldChildren, 1, newItem)
+                }
+                updateSlice.push({
+                  parentDisplayName: oldParentDisplayName as string,
+                  childNodes: allChildrenNodes,
+                })
+              }
+            }
+            debounceUpdateComponentPositionByReflow(updateSlice)
             setCollisionEffect(new Map())
           } else {
             setCollisionEffect(finalEffectResultMap)
@@ -358,7 +377,7 @@ export const RenderComponentCanvas: FC<{
         }
       },
     }),
-    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezyCanvas, componentNode],
+    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezeCanvas, componentNode],
   )
 
   useEffect(() => {
@@ -420,7 +439,7 @@ export const RenderComponentCanvas: FC<{
         />
       )}
       {isShowCanvasDot && <div css={borderLineStyle} />}
-      <FreezyPlaceholder
+      <FreezePlaceholder
         effectMap={collisionEffect}
         unitW={unitWidth}
         unitH={UNIT_HEIGHT}

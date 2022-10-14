@@ -16,7 +16,7 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
-  getFreezyState,
+  getFreezeState,
   getIllaMode,
   isOpenBottomPanel,
   isOpenDebugger,
@@ -54,7 +54,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const rightPanelVisible = useSelector(isOpenRightPanel)
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
   const debuggerVisible = useSelector(isOpenDebugger)
-  const isFreezyCanvas = useSelector(getFreezyState)
+  const isFreezeCanvas = useSelector(getFreezeState)
 
   const debuggerData = useSelector(getExecutionDebuggerData)
 
@@ -74,9 +74,9 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const handleClickDebuggerIcon = useCallback(() => {
     dispatch(configActions.updateDebuggerVisible(!debuggerVisible))
   }, [debuggerVisible, dispatch])
-  const handleClickFreezyIcon = useCallback(() => {
-    dispatch(configActions.updateFreezeStateReducer(!isFreezyCanvas))
-  }, [dispatch, isFreezyCanvas])
+  const handleClickFreezeIcon = useCallback(() => {
+    dispatch(configActions.updateFreezeStateReducer(!isFreezeCanvas))
+  }, [dispatch, isFreezeCanvas])
 
   const handleClickDeploy = useCallback(() => {
     Api.request<DeployResp>(
@@ -163,7 +163,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
               />
             </Badge>
             <Trigger
-              content={isFreezyCanvas ? t("freeze_tips") : t("unfreeze_tips")}
+              content={isFreezeCanvas ? t("freeze_tips") : t("unfreeze_tips")}
               colorScheme="grayBlue"
               position="bottom"
               showArrow={false}
@@ -174,7 +174,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 colorScheme="gray"
                 size="medium"
                 leftIcon={
-                  isFreezyCanvas ? (
+                  isFreezeCanvas ? (
                     <LockIcon
                       size="14px"
                       color={globalColor(`--${illaPrefix}-techPurple-01`)}
@@ -186,7 +186,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                     />
                   )
                 }
-                onClick={handleClickFreezyIcon}
+                onClick={handleClickFreezeIcon}
               />
             </Trigger>
             <Button

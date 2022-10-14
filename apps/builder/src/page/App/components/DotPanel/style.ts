@@ -114,7 +114,7 @@ export const borderLineStyle = css`
   border: 2px solid #f7f8fa;
 `
 
-export const applyFreezyPlaceholderShapeStyle = (
+export const applyFreezePlaceholderShapeStyle = (
   top: number,
   left: number,
   height: number,

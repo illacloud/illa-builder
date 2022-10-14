@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useHotkeys } from "react-hotkeys-hook"
 import {
-  getFreezyState,
+  getFreezeState,
   getIllaMode,
   getSelectedAction,
   getSelectedComponents,
@@ -43,7 +43,7 @@ export const Shortcut: FC = ({ children }) => {
 
   const canvasRootNode = useSelector(getCanvas)
 
-  const freezyState = useSelector(getFreezyState)
+  const freezeState = useSelector(getFreezeState)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -58,9 +58,8 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] = useState<
-    boolean
-  >(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
+    useState<boolean>(false)
 
   const showDeleteDialog = (displayName: string[]) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
@@ -117,9 +116,9 @@ export const Shortcut: FC = ({ children }) => {
     (keyboardEvent, hotkeysEvent) => {
       switch (FocusManager.getFocus()) {
         case "canvas": {
-          if (keyboardEvent.type === "keydown" && freezyState === false) {
+          if (keyboardEvent.type === "keydown" && freezeState === false) {
             dispatch(configActions.updateFreezeStateReducer(true))
-          } else if (keyboardEvent.type === "keyup" && freezyState === true) {
+          } else if (keyboardEvent.type === "keyup" && freezeState === true) {
             dispatch(configActions.updateFreezeStateReducer(false))
           }
           break
@@ -130,7 +129,7 @@ export const Shortcut: FC = ({ children }) => {
       }
     },
     { keydown: true, keyup: true, enabled: mode === "edit" },
-    [dispatch, freezyState],
+    [dispatch, freezeState],
   )
 
   useHotkeys(
