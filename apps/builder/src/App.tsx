@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom"
 import { globalStyle } from "./style"
 import { ConfigProvider } from "@illa-design/config-provider"
 import "@/api/base"
-import { TouchBackend } from "react-dnd-touch-backend"
+import { HTML5Backend } from "react-dnd-html5-backend"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"
 import { DndProvider } from "react-dnd"
 import { useSelector } from "react-redux"
@@ -14,10 +14,6 @@ import {
 import { useEffect } from "react"
 import { ILLARoute } from "@/router"
 import { useTranslation } from "react-i18next"
-
-const DND_OPTIONS = {
-  enableMouseEvents: true,
-}
 
 function App() {
   const configLanguage = useSelector(getCurrentConfigLanguage)
@@ -32,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <DndProvider backend={TouchBackend} options={DND_OPTIONS}>
+      <DndProvider backend={HTML5Backend}>
         <GlobalDataProvider>
           <ConfigProvider locale={configLanguage}>
             <Global styles={css(globalStyle)} />
