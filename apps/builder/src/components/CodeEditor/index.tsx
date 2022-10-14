@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { FC, forwardRef, useContext, useEffect, useRef, useState } from "react"
+import { forwardRef, useContext, useEffect, useRef, useState } from "react"
 import { Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
