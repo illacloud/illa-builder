@@ -41,6 +41,7 @@ import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/com
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { FreezyPlaceholder } from "@/page/App/components/DotPanel/freezyPlaceholder"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
+import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -78,7 +79,7 @@ export const RenderComponentCanvas: FC<{
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
     if (
-      componentNode.type === "CONTAINER_WIDGET" &&
+      componentNode.type === "CANVAS" &&
       (!Array.isArray(componentNode.childrenNode) ||
         componentNode.childrenNode.length === 0) &&
       !isShowCanvasDot
@@ -98,7 +99,7 @@ export const RenderComponentCanvas: FC<{
 
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
-          return <DotPanel componentNode={item} key={item.displayName} />
+          return <BasicContainer componentNode={item} key={item.displayName} />
         case "EDITOR_SCALE_SQUARE":
           const widget = widgetBuilder(item.type)
           if (!widget) return null
@@ -192,16 +193,6 @@ export const RenderComponentCanvas: FC<{
           let childrenNodes = dragInfo.childrenNodes.filter(
             (node) => node.parentNode === componentNode.displayName,
           )
-          if (componentNode.type === "CONTAINER_WIDGET") {
-            const { currentViewIndex, viewComponentsArray } =
-              componentNode.props || {}
-            const currentViewComponentsArray =
-              viewComponentsArray[currentViewIndex] || []
-            const currentViewComponentsSet = new Set(currentViewComponentsArray)
-            childrenNodes = childrenNodes.filter((node) =>
-              currentViewComponentsSet.has(node.displayName),
-            )
-          }
           const indexOfChildrenNodes = childrenNodes.findIndex(
             (node) => node.displayName === item.displayName,
           )
@@ -292,24 +283,6 @@ export const RenderComponentCanvas: FC<{
            */
           if (item.x === -1 && item.y === -1) {
             dispatch(componentsActions.addComponentReducer([newItem]))
-            if (componentNode.type === "CONTAINER_WIDGET") {
-              const currentViewIndex =
-                componentNode.props?.currentViewIndex || 0
-              const currentViewComponentsArray = cloneDeep(
-                componentNode.props?.viewComponentsArray,
-              ) || [[]]
-              if (currentViewIndex < currentViewComponentsArray.length) {
-                const currentViewComponents =
-                  currentViewComponentsArray[currentViewIndex]
-                currentViewComponents.push(newItem.displayName)
-                dispatch(
-                  componentsActions.updateContainerViewsComponentsReducer({
-                    displayName: componentNode.displayName,
-                    viewComponentsArray: currentViewComponentsArray,
-                  }),
-                )
-              }
-            }
           } else {
             /**
              * update node when change container
@@ -326,51 +299,6 @@ export const RenderComponentCanvas: FC<{
                   ],
                 }),
               )
-              const oldParentNode = searchDSLByDisplayName(
-                oldParentNodeDisplayName,
-              )
-              if (componentNode.type === "CONTAINER_WIDGET") {
-                const currentViewIndex =
-                  componentNode.props?.currentViewIndex || 0
-                const currentViewComponentsArray = cloneDeep(
-                  componentNode.props?.viewComponentsArray,
-                ) || [[]]
-                if (currentViewIndex < currentViewComponentsArray.length) {
-                  const currentViewComponents =
-                    currentViewComponentsArray[currentViewIndex]
-                  currentViewComponents.push(newItem.displayName)
-                  dispatch(
-                    componentsActions.updateContainerViewsComponentsReducer({
-                      displayName: componentNode.displayName,
-                      viewComponentsArray: currentViewComponentsArray,
-                    }),
-                  )
-                }
-              }
-              if (oldParentNode && oldParentNode.type === "CONTAINER_WIDGET") {
-                const currentViewIndex =
-                  oldParentNode.props?.currentViewIndex || 0
-                const currentViewComponentsArray = cloneDeep(
-                  oldParentNode.props?.viewComponentsArray,
-                ) || [[]]
-                if (currentViewIndex < currentViewComponentsArray.length) {
-                  const currentViewComponents = currentViewComponentsArray[
-                    currentViewIndex
-                  ] as string[]
-                  const indexOfNewItem = currentViewComponents.findIndex(
-                    (displayName) => displayName === newItem.displayName,
-                  )
-                  if (indexOfNewItem !== -1) {
-                    currentViewComponents.splice(indexOfNewItem, 1)
-                    dispatch(
-                      componentsActions.updateContainerViewsComponentsReducer({
-                        displayName: oldParentNodeDisplayName,
-                        viewComponentsArray: currentViewComponentsArray,
-                      }),
-                    )
-                  }
-                }
-              }
             } else {
               dispatch(
                 componentsActions.updateComponentsShape({

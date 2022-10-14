@@ -4,6 +4,7 @@ import {
   ComponentsState,
   CopyComponentPayload,
   DeleteComponentNodePayload,
+  sortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
@@ -110,6 +111,16 @@ export const deleteComponentNodeReducer: CaseReducer<
     childrenNodes.splice(currentIndex, 1)
   })
   DisplayNameGenerator.removeDisplayNameMulti(allDisplayNames)
+}
+
+export const sortComponentNodeChildrenReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<sortComponentNodeChildrenPayload>
+> = (state, action) => {
+  const { parentDisplayName, newChildrenNode } = action.payload
+  const parentNode = searchDsl(state, parentDisplayName)
+  if (!parentNode) return
+  parentNode.childrenNode = newChildrenNode
 }
 
 export const updateComponentPropsReducer: CaseReducer<
@@ -227,15 +238,4 @@ export const updateComponentReflowReducer: CaseReducer<
       return node
     })
   }
-}
-
-export const updateContainerViewsComponentsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<UpdateContainerViewsComponentsPayload>
-> = (state, action) => {
-  const { displayName, viewComponentsArray } = action.payload
-  const targetComponents = searchDsl(state, displayName)
-  if (!targetComponents) return
-  if (!targetComponents.props) return
-  targetComponents.props.viewComponentsArray = viewComponentsArray
 }

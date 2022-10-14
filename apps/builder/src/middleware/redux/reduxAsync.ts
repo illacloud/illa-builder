@@ -1,3 +1,4 @@
+import { sortComponentNodeChildrenPayload } from "./../../redux/currentApp/editor/components/componentsState"
 import * as Redux from "redux"
 import {
   Connection,
@@ -22,7 +23,6 @@ import {
   UpdateComponentContainerPayload,
   UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
-import { updateComponentContainerReducer } from "@/redux/currentApp/editor/components/componentsReducer"
 import { cloneDeep } from "lodash"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
@@ -67,9 +67,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "copyComponentReducer":
-            const copyComponentPayload = (payload as CopyComponentPayload[]).map(
-              (copyShape) => copyShape.newComponentNode,
-            )
+            const copyComponentPayload = (
+              payload as CopyComponentPayload[]
+            ).map((copyShape) => copyShape.newComponentNode)
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_CREATE_STATE,
@@ -85,9 +85,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             break
           case "updateComponentsShape":
             const singleComponentPayload: UpdateComponentsShapePayload = payload
-            const singleComponentWSPayload = transformComponentReduxPayloadToWsPayload(
-              singleComponentPayload.components,
-            )
+            const singleComponentWSPayload =
+              transformComponentReduxPayloadToWsPayload(
+                singleComponentPayload.components,
+              )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 singleComponentPayload.isMove
@@ -104,10 +105,12 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentReflowReducer":
-            const updateComponentReflowPayload: UpdateComponentReflowPayload = payload
-            const updateComponentReflowWSPayload = transformComponentReduxPayloadToWsPayload(
-              updateComponentReflowPayload.childNodes,
-            )
+            const updateComponentReflowPayload: UpdateComponentReflowPayload =
+              payload
+            const updateComponentReflowWSPayload =
+              transformComponentReduxPayloadToWsPayload(
+                updateComponentReflowPayload.childNodes,
+              )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -121,11 +124,33 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               ),
             )
             break
-          case "updateComponentContainerReducer":
-            const updateComponentContainerPayload: UpdateComponentContainerPayload = payload
-            const componentNodes = updateComponentContainerPayload.updateSlice.map(
-              (slice) => slice.component,
+          case "sortComponentNodeChildrenReducer":
+            const sortComponentNodeChildrenPayload: sortComponentNodeChildrenPayload =
+              payload
+            const sortComponentNodeChildrenWSPayload =
+              transformComponentReduxPayloadToWsPayload(
+                sortComponentNodeChildrenPayload.newChildrenNode,
+              )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_MOVE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                sortComponentNodeChildrenWSPayload,
+              ),
             )
+            break
+          case "updateComponentContainerReducer":
+            const updateComponentContainerPayload: UpdateComponentContainerPayload =
+              payload
+            const componentNodes =
+              updateComponentContainerPayload.updateSlice.map(
+                (slice) => slice.component,
+              )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_MOVE_STATE,
@@ -136,39 +161,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 componentNodes,
-              ),
-            )
-            break
-          case "updateContainerViewsComponentsReducer":
-            const updateContainerViewsComponentsPayload: UpdateContainerViewsComponentsPayload = payload
-            const targetComponents = searchDsl(
-              getCanvas(store.getState()),
-              updateContainerViewsComponentsPayload.displayName,
-            )
-            const finalNodeToUpdate = cloneDeep(targetComponents)
-
-            if (!finalNodeToUpdate) return
-            if (!finalNodeToUpdate.props) return
-            finalNodeToUpdate.props.viewComponentsArray =
-              updateContainerViewsComponentsPayload.viewComponentsArray
-            Connection.getRoom("app", currentAppID)?.send(
-              getPayload(
-                Signal.SIGNAL_UPDATE_STATE,
-                Target.TARGET_COMPONENTS,
-                true,
-                {
-                  type,
-                  payload,
-                },
-                [
-                  {
-                    before: {
-                      displayName:
-                        updateContainerViewsComponentsPayload.displayName,
-                    },
-                    after: finalNodeToUpdate,
-                  },
-                ],
               ),
             )
             break
@@ -234,10 +226,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentDisplayNameReducer":
-            const {
-              displayName,
-              newDisplayName,
-            } = action.payload as UpdateComponentDisplayNamePayload
+            const { displayName, newDisplayName } =
+              action.payload as UpdateComponentDisplayNamePayload
             const findOldNode = searchDsl(
               getCanvas(store.getState()),
               newDisplayName,

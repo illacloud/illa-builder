@@ -1,24 +1,22 @@
 import { FC, useRef, useMemo, useEffect } from "react"
-import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComponentCanvas"
-import { cloneDeep } from "lodash"
 import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { ContainerEmptyState } from "./emptyState"
 
 export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
     handleOnClick,
     currentViewIndex,
     viewComponentsArray,
-    componentNode,
     handleOnChange,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
-    handleUpdateDsl,
     handleUpdateOriginalDSLMultiAttr,
     displayName,
     viewList,
     tooltipText,
+    childrenNode,
   } = props
   const preCurrentViewIndex = useRef<number>(currentViewIndex)
 
@@ -32,36 +30,18 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     }
   }, [currentViewIndex, handleOnChange, handleOnClick])
 
-  const containerRef = useRef<HTMLDivElement>(null)
-  const currentViewComponents = useMemo(() => {
+  const renderComponent = useMemo(() => {
     const currentIndex = currentViewIndex
     const currentViewComponentsArray = viewComponentsArray
     if (
       Array.isArray(currentViewComponentsArray) &&
       currentIndex < currentViewComponentsArray.length
     ) {
-      return currentViewComponentsArray[currentIndex]
+      const currentViewComponentNode = childrenNode[currentIndex]
+      return <BasicContainer componentNode={currentViewComponentNode} />
     }
-    return []
-  }, [currentViewIndex, viewComponentsArray])
-
-  const finalCurrentComponentNode = useMemo(() => {
-    return currentViewComponents
-      .map((displayName) => {
-        return componentNode.childrenNode?.find((node) => {
-          return node.displayName === displayName
-        })
-      })
-      .filter((node) => !!node)
-  }, [currentViewComponents, componentNode])
-
-  const finalComponentNode = useMemo(() => {
-    const currentComponentNode = cloneDeep(componentNode)
-    return {
-      ...currentComponentNode,
-      childrenNode: finalCurrentComponentNode,
-    } as ComponentNode
-  }, [componentNode, finalCurrentComponentNode])
+    return <ContainerEmptyState />
+  }, [childrenNode, currentViewIndex, viewComponentsArray])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -166,22 +146,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <div
-        ref={containerRef}
-        style={{
-          padding: "4px",
-          width: "100%",
-          height: "100%",
-        }}
-        onClick={handleOnClick}
-      >
-        <RenderComponentCanvas
-          componentNode={finalComponentNode}
-          containerPadding={4}
-          containerRef={containerRef}
-          minHeight={props.componentNode.h * props.componentNode.unitH - 6}
-        />
-      </div>
+      {renderComponent}
     </TooltipWrapper>
   )
 }
