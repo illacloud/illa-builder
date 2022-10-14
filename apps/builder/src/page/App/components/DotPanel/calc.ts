@@ -344,12 +344,13 @@ export const getDragResult = (
   unitWidth: number,
   unitHeight: number,
   canvasWidth: number,
+  action: "ADD" | "UPDATE",
 ) => {
   const canvasPosition = {
     x: containerRef.current?.getBoundingClientRect().x || 0,
     y: containerRef.current?.getBoundingClientRect().y || 0,
   }
-  if (item.x === -1 && item.y === -1) {
+  if (action === "ADD") {
     const itemPosition = getItemPosition(
       monitor,
       containerRef.current?.scrollTop,
