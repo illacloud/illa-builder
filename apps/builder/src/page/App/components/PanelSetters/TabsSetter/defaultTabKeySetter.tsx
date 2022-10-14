@@ -27,18 +27,18 @@ export const TabsDefaultTabKeySetter: FC<TabsDefaultTabKeySetterProps> = (
     },
   )
 
-  const realViews = useMemo(() => {
+  const tabList = useMemo(() => {
     return get(targetComponentProps, "tabList", []) as ViewItemShape[]
   }, [targetComponentProps])
 
-  const handleUpdateDefaultView = useCallback(
+  const handleUpdateDefaultTab = useCallback(
     (attrPath: string, value: string) => {
-      const defaultViewIndex = realViews.findIndex((view) => view.key === value)
+      const defaultTabIndex = tabList.findIndex((view) => view.key === value)
       let currentIndex = 0
-      let currentKey = realViews[currentIndex].key
-      if (defaultViewIndex > -1) {
-        currentIndex = defaultViewIndex
-        currentKey = realViews[currentIndex].key
+      let currentKey = tabList[currentIndex].key
+      if (defaultTabIndex > -1) {
+        currentIndex = defaultTabIndex
+        currentKey = tabList[currentIndex].key
       }
       handleUpdateMultiAttrDSL?.({
         [attrPath]: value,
@@ -46,13 +46,13 @@ export const TabsDefaultTabKeySetter: FC<TabsDefaultTabKeySetterProps> = (
         currentViewKey: currentKey,
       })
     },
-    [handleUpdateMultiAttrDSL, realViews],
+    [handleUpdateMultiAttrDSL, tabList],
   )
 
   return (
     <BaseInput
       attrName={attrName}
-      handleUpdateDsl={handleUpdateDefaultView}
+      handleUpdateDsl={handleUpdateDefaultTab}
       expectedType={expectedType}
       widgetDisplayName={widgetDisplayName}
       widgetType={widgetType}
