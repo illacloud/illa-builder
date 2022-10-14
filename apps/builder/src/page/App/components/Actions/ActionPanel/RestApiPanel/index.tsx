@@ -5,6 +5,7 @@ import {
   restapiItemLabelStyle,
   restapiItemStyle,
   restapiPanelContainerStyle,
+  topDivider,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
@@ -43,6 +44,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   return (
     <div css={restapiPanelContainerStyle}>
       <ResourceChoose action={currentAction} />
+      <div css={topDivider} />
       <div css={restapiItemStyle}>
         <span css={restapiItemLabelStyle}>
           {t("editor.action.resource.restapi.label.action_type")}

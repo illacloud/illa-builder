@@ -161,6 +161,22 @@
             "duplicate": "复制"
           }
         },
+        "mongodb": {
+          "action_type": "Action Type",
+          "aggregation": "Aggregation",
+          "collection": "Collection",
+          "document": "Document",
+          "field": "Field",
+          "filter": "Filter",
+          "limit": "Limit",
+          "operations": "Operations",
+          "options": "Options",
+          "projection": "Projection",
+          "query": "Query",
+          "skip": "Skip",
+          "sort_by": "Sort By",
+          "update": "Update"
+        },
         "option": {
           "resource": {
             "new": "添加资源"
