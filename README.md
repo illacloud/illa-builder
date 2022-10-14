@@ -46,6 +46,10 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
 
 ![connect](https://illa.s3.ap-northeast-1.amazonaws.com/connect-your-data.gif)
 
+**🔴 The current version is still in beta, each version update will clear the  data, please do not store important data.**
+
+**💞 Thank you for using ILLA Builder.** 
+
 ## 🚀 Deploy
 
 You can use [ILLA](https://github.com/illa-family/illa) to host it on ILLA Cloud or local.
