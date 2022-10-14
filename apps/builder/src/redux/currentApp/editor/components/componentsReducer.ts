@@ -239,14 +239,3 @@ export const updateComponentReflowReducer: CaseReducer<
     })
   }
 }
-
-export const updateContainerViewsComponentsReducer: CaseReducer<
-  ComponentsState,
-  PayloadAction<UpdateContainerViewsComponentsPayload>
-> = (state, action) => {
-  const { displayName, viewComponentsArray } = action.payload
-  const targetComponents = searchDsl(state, displayName)
-  if (!targetComponents) return
-  if (!targetComponents.props) return
-  targetComponents.props.viewComponentsArray = viewComponentsArray
-}

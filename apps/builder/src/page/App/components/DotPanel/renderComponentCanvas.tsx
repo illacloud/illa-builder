@@ -299,51 +299,6 @@ export const RenderComponentCanvas: FC<{
                   ],
                 }),
               )
-              const oldParentNode = searchDSLByDisplayName(
-                oldParentNodeDisplayName,
-              )
-              if (componentNode.type === "CONTAINER_WIDGET") {
-                const currentViewIndex =
-                  componentNode.props?.currentViewIndex || 0
-                const currentViewComponentsArray = cloneDeep(
-                  componentNode.props?.viewComponentsArray,
-                ) || [[]]
-                if (currentViewIndex < currentViewComponentsArray.length) {
-                  const currentViewComponents =
-                    currentViewComponentsArray[currentViewIndex]
-                  currentViewComponents.push(newItem.displayName)
-                  dispatch(
-                    componentsActions.updateContainerViewsComponentsReducer({
-                      displayName: componentNode.displayName,
-                      viewComponentsArray: currentViewComponentsArray,
-                    }),
-                  )
-                }
-              }
-              if (oldParentNode && oldParentNode.type === "CONTAINER_WIDGET") {
-                const currentViewIndex =
-                  oldParentNode.props?.currentViewIndex || 0
-                const currentViewComponentsArray = cloneDeep(
-                  oldParentNode.props?.viewComponentsArray,
-                ) || [[]]
-                if (currentViewIndex < currentViewComponentsArray.length) {
-                  const currentViewComponents = currentViewComponentsArray[
-                    currentViewIndex
-                  ] as string[]
-                  const indexOfNewItem = currentViewComponents.findIndex(
-                    (displayName) => displayName === newItem.displayName,
-                  )
-                  if (indexOfNewItem !== -1) {
-                    currentViewComponents.splice(indexOfNewItem, 1)
-                    dispatch(
-                      componentsActions.updateContainerViewsComponentsReducer({
-                        displayName: oldParentNodeDisplayName,
-                        viewComponentsArray: currentViewComponentsArray,
-                      }),
-                    )
-                  }
-                }
-              }
             } else {
               dispatch(
                 componentsActions.updateComponentsShape({
