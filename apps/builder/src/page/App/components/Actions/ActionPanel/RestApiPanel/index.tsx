@@ -5,6 +5,7 @@ import {
   restapiItemLabelStyle,
   restapiItemStyle,
   restapiPanelContainerStyle,
+  topDivider,
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
@@ -18,13 +19,13 @@ import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/int
 import store from "@/store"
 import {
   Params,
-  Resource,
   RestApiAuth,
   RestApiResource,
-} from "@/redux/resource/resourceState"
+} from "@/redux/resource/restapiResource"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import { Resource } from "@/redux/resource/resourceState"
 
 export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   const { t } = useTranslation()
@@ -43,6 +44,7 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
   return (
     <div css={restapiPanelContainerStyle}>
       <ResourceChoose action={currentAction} />
+      <div css={topDivider} />
       <div css={restapiItemStyle}>
         <span css={restapiItemLabelStyle}>
           {t("editor.action.resource.restapi.label.action_type")}

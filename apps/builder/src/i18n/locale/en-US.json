@@ -161,6 +161,22 @@
             "duplicate": "Duplicate"
           }
         },
+        "mongodb": {
+          "action_type": "Action Type",
+          "aggregation": "Aggregation",
+          "collection": "Collection",
+          "document": "Document",
+          "field": "Field",
+          "filter": "Filter",
+          "limit": "Limit",
+          "operations": "Operations",
+          "options": "Options",
+          "projection": "Projection",
+          "query": "Query",
+          "skip": "Skip",
+          "sort_by": "Sort By",
+          "update": "Update"
+        },
         "option": {
           "resource": {
             "new": "Create a new resource"
@@ -522,7 +538,7 @@
         "regex": "Regex",
         "required_field": "Required field",
         "run_script": "Run script",
-        "scale_type": "Scale type",
+        "scale_type": "Scale Type",
         "set_temporary_state": "Set temporary state",
         "shadow": "Shadow",
         "show_character_count": "Show character count",
