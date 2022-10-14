@@ -1,11 +1,7 @@
 import { css, keyframes } from "@emotion/react"
 import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH, NAVBAR_HEIGHT } from "@/style"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import {
-  applyLeftPanelStyle,
-  applyRightPanelStyle,
-  navbarStyle,
-} from "@/page/App/style"
+import { leftPanelStyle, rightPanelStyle, navbarStyle } from "@/page/App/style"
 
 const enlargeNavBar = keyframes`
   0% {
@@ -34,13 +30,13 @@ const enlargeRightPanel = keyframes`
   }
 `
 
-export const leftPanelStyle = css`
-  ${applyLeftPanelStyle(true)}
+export const leftAnimationStyle = css`
+  ${leftPanelStyle};
   transform: translate3d(-${LEFT_PANEL_WIDTH}px, 0, 0);
   animation: ${enlargeLeftPanel} 300ms ease-in-out 200ms forwards;
 `
-export const rightPanelStyle = css`
-  ${applyRightPanelStyle(true)}
+export const rightAnimationStyle = css`
+  ${rightPanelStyle};
   transform: translate3d(${RIGHT_PANEL_WIDTH}px, 0, 0);
   animation: ${enlargeRightPanel} 300ms ease-in-out 200ms forwards;
 `
