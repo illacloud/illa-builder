@@ -1,3 +1,4 @@
+import { sortComponentNodeChildrenPayload } from "./../../redux/currentApp/editor/components/componentsState"
 import * as Redux from "redux"
 import {
   Connection,
@@ -120,6 +121,26 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 updateComponentReflowWSPayload,
+              ),
+            )
+            break
+          case "sortComponentNodeChildrenReducer":
+            const sortComponentNodeChildrenPayload: sortComponentNodeChildrenPayload =
+              payload
+            const sortComponentNodeChildrenWSPayload =
+              transformComponentReduxPayloadToWsPayload(
+                sortComponentNodeChildrenPayload.newChildrenNode,
+              )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_MOVE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                sortComponentNodeChildrenWSPayload,
               ),
             )
             break
