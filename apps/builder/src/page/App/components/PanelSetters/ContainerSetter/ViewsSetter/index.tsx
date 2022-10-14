@@ -8,12 +8,15 @@ import { generateNewViewItem } from "@/page/App/components/PanelSetters/Containe
 import { ListBody } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/listBody"
 import { ViewListSetterProvider } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
 import { get } from "lodash"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import {
   setterPublicWrapper,
   viewSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
+import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -24,8 +27,10 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       widgetDisplayName,
       childrenSetter,
       handleUpdateMultiAttrDSL,
+      componentNode,
     } = props
     const executionResult = useSelector(getExecutionResult)
+    const dispatch = useDispatch()
 
     const allViews = useMemo(() => {
       return get(
@@ -47,16 +52,23 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
 
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
+      const newChildrenNodes = generateComponentNode(
+        BasicContainerConfig,
+        componentNode.displayName,
+      )
       handleUpdateMultiAttrDSL?.({
         [attrName]: [...value, newItem],
         viewComponentsArray: [...viewComponentsArray, []],
       })
+      dispatch(componentsActions.addComponentReducer([newChildrenNodes]))
     }, [
       allViewsKeys,
+      componentNode.displayName,
       handleUpdateMultiAttrDSL,
       attrName,
       value,
       viewComponentsArray,
+      dispatch,
     ])
 
     return (
@@ -67,6 +79,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
         widgetDisplayName={widgetDisplayName}
         attrPath={attrName}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+        componentNode={componentNode}
       >
         <div css={setterPublicWrapper}>
           <div css={viewSetterWrapperStyle}>
