@@ -16,7 +16,6 @@ import {
   isShowDot,
 } from "@/redux/config/configSelector"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
-import { DotPanel } from "@/page/App/components/DotPanel/index"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   applyComponentCanvasStyle,
@@ -36,8 +35,7 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { cloneDeep, throttle } from "lodash"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { throttle } from "lodash"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
 import { FreezyPlaceholder } from "@/page/App/components/DotPanel/freezyPlaceholder"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"

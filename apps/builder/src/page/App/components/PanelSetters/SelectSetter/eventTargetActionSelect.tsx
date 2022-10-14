@@ -42,6 +42,7 @@ export const EventTargetActionSelect: FC<BaseSelectSetterProps> = (props) => {
       <Select
         options={actionOptions}
         size="medium"
+        colorScheme="techPurple"
         value={value}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)

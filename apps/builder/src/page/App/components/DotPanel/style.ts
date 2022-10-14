@@ -27,7 +27,8 @@ export const applyComponentCanvasStyle = (
 ) => {
   const heightCss = minHeight
     ? css`
-        height: 100%;
+        height: ${addHeight}px;
+        min-height: ${minHeight}px;
       `
     : css`
         min-height: 100vh;

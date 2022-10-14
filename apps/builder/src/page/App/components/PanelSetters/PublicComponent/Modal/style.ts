@@ -35,5 +35,5 @@ export const listWrapperStyle = css`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 12px 0;
+  padding-bottom: 12px;
 `
