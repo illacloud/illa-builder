@@ -47,19 +47,18 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<MongoDbResource>
+    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
+      MongoDbResource
+    >
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [connectionFormat, setConnectionFormat] =
-    useState<MongoDbConnectionFormat>(
-      resource?.content.connectionFormat ?? "standard",
-    )
+  const [connectionFormat, setConnectionFormat] = useState<
+    MongoDbConnectionFormat
+  >(resource?.content.connectionFormat ?? "standard")
 
   return (
     <form
