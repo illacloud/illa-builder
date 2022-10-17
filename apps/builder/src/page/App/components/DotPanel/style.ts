@@ -27,7 +27,8 @@ export const applyComponentCanvasStyle = (
 ) => {
   const heightCss = minHeight
     ? css`
-        height: 100%;
+        height: ${addHeight}px;
+        min-height: ${minHeight}px;
       `
     : css`
         min-height: 100vh;
@@ -113,7 +114,7 @@ export const borderLineStyle = css`
   border: 2px solid #f7f8fa;
 `
 
-export const applyFreezyPlaceholderShapeStyle = (
+export const applyFreezePlaceholderShapeStyle = (
   top: number,
   left: number,
   height: number,

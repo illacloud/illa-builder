@@ -252,7 +252,6 @@ export const WidgetConfig: WidgetConfigs = {
     panelConfig: EDITABLE_TEXT_PANEL_CONFIG,
     eventHandlerConfig: EDITABLE_EVENT_HANDLER_CONFIG,
   },
-  // TODO: chart
   CHART: {
     widget: ChartWidget,
     config: CHART_WIDGET_CONFIG,

@@ -5,15 +5,18 @@ import {
   generateNewViewItem,
   generateViewItemId,
 } from "../utils/generateNewOptions"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { cloneDeep, get } from "lodash"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 
 interface ProviderProps {
   viewsList: ViewItemShape[]
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
   attrPath: string
+  componentNode: ComponentNode
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
   children: ReactNode
@@ -36,7 +39,9 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     handleUpdateDsl,
     widgetDisplayName,
     handleUpdateMultiAttrDSL,
+    componentNode,
   } = props
+  const dispatch = useDispatch()
   const executionResult = useSelector(getExecutionResult)
 
   const allViews = useMemo(() => {
@@ -69,15 +74,13 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
           return i !== index
         },
       )
-      const newViewComponentsArray = viewComponentsArray.filter(
-        (displayNames, i) => i !== index,
-      )
+
+      const currentChildrenNode = componentNode.childrenNode[index]
 
       const updateSlice = {
         [attrPath]: updatedArray,
         currentViewIndex: 0,
         currentViewKey: allViewsKeys[0],
-        viewComponentsArray: newViewComponentsArray,
       }
 
       if (currentViewIndex !== index) {
@@ -92,14 +95,20 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       }
 
       handleUpdateMultiAttrDSL?.(updateSlice)
+      dispatch(
+        componentsActions.deleteComponentNodeReducer({
+          displayNames: [currentChildrenNode.displayName],
+        }),
+      )
     },
     [
       viewsList,
-      viewComponentsArray,
+      componentNode.childrenNode,
       attrPath,
       allViewsKeys,
       currentViewIndex,
       handleUpdateMultiAttrDSL,
+      dispatch,
     ],
   )
 
@@ -142,15 +151,10 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       const hoverViewArray = viewComponentsArray[hoverIndex]
       const currentSelected = viewsList[currentViewIndex]
       if (!dragViewArray || !hoverViewArray) return
-      const newViewComponentsArray = cloneDeep(
-        viewComponentsArray,
-      ) as string[][]
-      ;[
-        newViewComponentsArray[dragIndex],
-        newViewComponentsArray[hoverIndex],
-      ] = [
-        newViewComponentsArray[hoverIndex],
-        newViewComponentsArray[dragIndex],
+      const newComponentNode = cloneDeep(componentNode.childrenNode)
+      ;[newComponentNode[dragIndex], newComponentNode[hoverIndex]] = [
+        newComponentNode[hoverIndex],
+        newComponentNode[dragIndex],
       ]
       const newViews = [...viewsList]
       newViews.splice(dragIndex, 1)
@@ -161,16 +165,22 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       const newSelectedKey = newViews[newSelectedIndex].key
       handleUpdateMultiAttrDSL?.({
         [attrPath]: newViews,
-        viewComponentsArray: newViewComponentsArray,
         currentViewIndex: newSelectedIndex,
         currentViewKey: newSelectedKey,
       })
-      handleUpdateDsl(attrPath, newViews)
+      dispatch(
+        componentsActions.sortComponentNodeChildrenReducer({
+          parentDisplayName: componentNode.displayName,
+          newChildrenNode: newComponentNode,
+        }),
+      )
     },
     [
       attrPath,
+      componentNode.childrenNode,
+      componentNode.displayName,
       currentViewIndex,
-      handleUpdateDsl,
+      dispatch,
       handleUpdateMultiAttrDSL,
       viewComponentsArray,
       viewsList,

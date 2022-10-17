@@ -1,5 +1,5 @@
-import { Params } from "@/redux/resource/resourceState"
 import { Events } from "@/redux/currentApp/action/actionState"
+import { Params } from "@/redux/resource/restapiResource"
 
 export type BodyType =
   | "none"

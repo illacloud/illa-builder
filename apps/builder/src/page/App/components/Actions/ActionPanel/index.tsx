@@ -1,5 +1,8 @@
 import { FC, ReactNode, useCallback, useMemo, useRef, useState } from "react"
-import { actionPanelStyle } from "@/page/App/components/Actions/ActionPanel/style"
+import {
+  actionContentStyle,
+  actionPanelStyle,
+} from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
 import { getSelectedAction } from "@/redux/config/configSelector"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
@@ -18,6 +21,8 @@ import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionRe
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
 import { RedisAction } from "@/redux/currentApp/action/redisAction"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
+import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
+import { MongoDbAction } from "@/redux/currentApp/action/mongoDbAction"
 
 export interface ActionPanelProps {
   maxHeight?: number
@@ -26,6 +31,7 @@ export interface ActionPanelProps {
 export const ActionPanel: FC<ActionPanelProps> = (props) => {
   const { maxHeight } = props
   const panelRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const selectedAction = useSelector(getSelectedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
 
@@ -58,6 +64,10 @@ export const ActionPanel: FC<ActionPanelProps> = (props) => {
         )
       case "redis":
         return <RedisPanel action={selectedAction as ActionItem<RedisAction>} />
+      case "mongodb":
+        return (
+          <MongoDbPanel action={selectedAction as ActionItem<MongoDbAction>} />
+        )
       default:
         return null
     }
@@ -76,13 +86,19 @@ export const ActionPanel: FC<ActionPanelProps> = (props) => {
         onDelete={onDeleteActionItem}
         onActionRun={run}
       />
-      {actionPanel}
+      <div ref={contentRef} css={actionContentStyle}>
+        {actionPanel}
+      </div>
       <ActionResult
         result={actionResult}
         onClose={() => {
           setActionResult(undefined)
+          if (contentRef.current) {
+            contentRef.current.style.paddingBottom = "48px"
+          }
         }}
         maxHeight={maxHeight}
+        placeholderRef={contentRef}
       />
     </div>
   )

@@ -57,7 +57,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
         css={addNewActionButtonStyle}
         onClick={() => setGeneratorVisible(true)}
       >
-        <Space size="8px" direction="horizontal" alignItems="center">
+        <Space size="4px" direction="horizontal" alignItems="center">
           <AddIcon size="14px" />
           {t("editor.action.action_list.btn.new")}
         </Space>
@@ -75,8 +75,8 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                   onCopyItem={onCopyActionItem}
                   onDeleteItem={onDeleteActionItem}
                   onItemClick={(action) => {
-                    const selectedAction = store.getState().config
-                      .selectedAction
+                    const selectedAction =
+                      store.getState().config.selectedAction
                     if (selectedAction === null) {
                       dispatch(configActions.changeSelectedAction(action))
                       return

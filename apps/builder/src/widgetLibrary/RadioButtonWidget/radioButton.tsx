@@ -7,14 +7,8 @@ import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
-  const {
-    value,
-    options,
-    disabled,
-    direction,
-    colorScheme,
-    handleUpdateDsl,
-  } = props
+  const { value, options, disabled, direction, colorScheme, handleUpdateDsl } =
+    props
 
   return (
     <RadioGroup

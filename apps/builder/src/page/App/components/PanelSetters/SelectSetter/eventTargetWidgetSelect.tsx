@@ -66,6 +66,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
       <Select
         options={finalOptions}
         size="medium"
+        colorScheme="techPurple"
         value={finalValue}
         onChange={(value) => {
           handleUpdateDsl(attrName, value)

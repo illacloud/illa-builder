@@ -44,12 +44,8 @@ export const EventAndMethodLabel: FC<EventAndMethodLabelProps> = (props) => {
   const { index } = props
   const { t } = useTranslation()
   const [modalVisible, setModalVisible] = useState(false)
-  const {
-    widgetDisplayName,
-    attrPath,
-    childrenSetter,
-    eventItems,
-  } = useContext(BaseEventHandlerContext)
+  const { widgetDisplayName, attrPath, childrenSetter, eventItems } =
+    useContext(BaseEventHandlerContext)
 
   const event = get(eventItems, index)
   const { eventType, widgetID, queryID, widgetMethod, actionType } = event

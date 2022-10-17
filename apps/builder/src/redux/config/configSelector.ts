@@ -52,6 +52,6 @@ export const getExpandedKeys = (state: RootState) => {
   return state.config.expandedKeys
 }
 
-export const getFreezyState = (state: RootState) => {
+export const getFreezeState = (state: RootState) => {
   return state.config.freezeCanvas
 }

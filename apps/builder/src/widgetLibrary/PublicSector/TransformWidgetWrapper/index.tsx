@@ -33,22 +33,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode } = props
 
-    const {
-      displayName,
-      type,
-      w,
-      h,
-      unitW,
-      unitH,
-      childrenNode,
-    } = componentNode
+    const { displayName, type, w, h, unitW, unitH, childrenNode } =
+      componentNode
 
     const displayNameMapProps = useSelector(getExecutionResult)
-    const {
-      handleUpdateGlobalData,
-      handleDeleteGlobalData,
-      globalData,
-    } = useContext(GLOBAL_DATA_CONTEXT)
+    const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+      useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
     const allComponents = useSelector<RootState, ComponentNode[]>(
@@ -79,10 +69,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         if (componentNode.h < newItem.h) {
           const result = getReflowResult(newItem, cloneDeepAllComponents, false)
           dispatch(
-            componentsActions.updateComponentReflowReducer({
-              parentDisplayName: componentNode.parentNode || "root",
-              childNodes: result.finalState,
-            }),
+            componentsActions.updateComponentReflowReducer([
+              {
+                parentDisplayName: componentNode.parentNode || "root",
+                childNodes: result.finalState,
+              },
+            ]),
           )
         }
         if (componentNode.h > newItem.h) {
@@ -102,20 +94,22 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
             allComponents,
           )
           dispatch(
-            componentsActions.updateComponentReflowReducer({
-              parentDisplayName: componentNode.parentNode || "root",
-              childNodes: finalState,
-            }),
+            componentsActions.updateComponentReflowReducer([
+              {
+                parentDisplayName: componentNode.parentNode || "root",
+                childNodes: finalState,
+              },
+            ]),
           )
         }
       },
       [allComponents, componentNode, dispatch],
     )
 
-    const realProps = useMemo(() => displayNameMapProps[displayName] ?? {}, [
-      displayName,
-      displayNameMapProps,
-    ])
+    const realProps = useMemo(
+      () => displayNameMapProps[displayName] ?? {},
+      [displayName, displayNameMapProps],
+    )
 
     const handleUpdateDsl = useCallback(
       (value: Record<string, any>) => {
