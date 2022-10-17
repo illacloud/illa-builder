@@ -24,7 +24,7 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
         componentNode={componentNode}
         containerPadding={4}
         containerRef={containerRef}
-        minHeight={bounds.height - 7}
+        minHeight={bounds.height - 3}
       />
     </div>
   )
@@ -39,4 +39,12 @@ export const BasicContainerConfig = {
   containerType: CONTAINER_TYPE.EDITOR_DOT_PANEL,
   w: 0,
   h: 0,
+}
+
+export const generateBasicContainerConfig = (displayName: string) => {
+  return {
+    ...BasicContainerConfig,
+    displayName,
+    widgetName: displayName,
+  }
 }

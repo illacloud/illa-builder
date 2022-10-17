@@ -24,14 +24,6 @@ export const generateComponentNode = (
     throw new Error("dsl must have default width and height")
   }
   let childrenNodeDSL: ComponentNode[] = []
-  if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
-    widgetInfo.childrenNode.map((childNode) => {
-      if (!childrenNodeDSL) childrenNodeDSL = []
-      const child = generateComponentNode(childNode)
-      childrenNodeDSL.push(child)
-    })
-  }
-
   const {
     defaults,
     w,
@@ -48,6 +40,18 @@ export const generateComponentNode = (
   } else {
     props = defaults
   }
+  const realDisplayName = DisplayNameGenerator.generateDisplayName(
+    type,
+    displayName,
+  )
+  if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
+    widgetInfo.childrenNode.map((childNode) => {
+      if (!childrenNodeDSL) childrenNodeDSL = []
+      const child = generateComponentNode(childNode, realDisplayName)
+      childrenNodeDSL.push(child)
+    })
+  }
+
   baseDSL = {
     w,
     h,
@@ -63,7 +67,7 @@ export const generateComponentNode = (
     z: 0,
     showName: displayName,
     type,
-    displayName: DisplayNameGenerator.generateDisplayName(type, displayName),
+    displayName: realDisplayName,
     containerType: containerType || CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
     parentNode: parentNodeDisplayName || null,
     childrenNode: childrenNodeDSL,

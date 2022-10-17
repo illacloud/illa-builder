@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import hotkeys from "hotkeys-js"
 import { Modal } from "@illa-design/modal"
@@ -13,6 +13,7 @@ import {
   getIllaMode,
   getSelectedAction,
   getSelectedComponents,
+  isShowDot,
 } from "@/redux/config/configSelector"
 import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
@@ -44,6 +45,8 @@ export const Shortcut: FC = ({ children }) => {
   const canvasRootNode = useSelector(getCanvas)
 
   const freezeState = useSelector(getFreezeState)
+
+  const showShadows = useSelector(isShowDot)
 
   useHotkeys(
     "command+s,ctrl+s",
@@ -115,18 +118,10 @@ export const Shortcut: FC = ({ children }) => {
   useHotkeys(
     "d,k",
     (keyboardEvent, hotkeysEvent) => {
-      switch (FocusManager.getFocus()) {
-        case "canvas": {
-          if (keyboardEvent.type === "keydown" && freezeState === false) {
-            dispatch(configActions.updateFreezeStateReducer(true))
-          } else if (keyboardEvent.type === "keyup" && freezeState === true) {
-            dispatch(configActions.updateFreezeStateReducer(false))
-          }
-          break
-        }
-        default: {
-          break
-        }
+      if (keyboardEvent.type === "keydown" && freezeState === false) {
+        dispatch(configActions.updateFreezeStateReducer(true))
+      } else if (keyboardEvent.type === "keyup" && freezeState === true) {
+        dispatch(configActions.updateFreezeStateReducer(false))
       }
     },
     { keydown: true, keyup: true, enabled: mode === "edit" },
@@ -238,19 +233,26 @@ export const Shortcut: FC = ({ children }) => {
     [dispatch],
   )
 
-  // cancel show dot
-  useEffect(() => {
-    const listener = () => {
+  const changeShadowHidden = useCallback(() => {
+    if (showShadows) {
       dispatch(configActions.updateShowDot(false))
     }
+  }, [dispatch, showShadows])
 
-    document.addEventListener("visibilitychange", listener)
-    window.addEventListener("blur", listener)
-    return () => {
-      document.removeEventListener("visibilitychange", listener)
-      window.removeEventListener("blur", listener)
+  // cancel show dot
+  useEffect(() => {
+    if (mode === "edit") {
+      document.addEventListener("visibilitychange", changeShadowHidden)
+      window.addEventListener("blur", changeShadowHidden)
     }
-  }, [dispatch])
+
+    return () => {
+      if (mode === "edit") {
+        document.removeEventListener("visibilitychange", changeShadowHidden)
+        window.removeEventListener("blur", changeShadowHidden)
+      }
+    }
+  }, [changeShadowHidden, dispatch, mode])
 
   return (
     <ShortCutContext.Provider value={{ showDeleteDialog }}>

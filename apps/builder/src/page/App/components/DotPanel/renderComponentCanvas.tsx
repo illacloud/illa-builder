@@ -77,7 +77,6 @@ export const RenderComponentCanvas: FC<{
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
-    console.log("childrenNode", childrenNode)
     if (
       componentNode.type === "CANVAS" &&
       (!Array.isArray(componentNode.childrenNode) ||
@@ -96,7 +95,6 @@ export const RenderComponentCanvas: FC<{
         componentNode.displayName === "root"
           ? rowNumber * UNIT_HEIGHT
           : (componentNode.h - 1) * UNIT_HEIGHT
-      console.log("item", item)
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
           return <BasicContainer componentNode={item} key={item.displayName} />
