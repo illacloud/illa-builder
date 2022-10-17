@@ -449,9 +449,6 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               <Controller
                 control={control}
                 defaultValue={resource?.content.ssl.serverCert}
-                rules={{
-                  required: true,
-                }}
                 shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea

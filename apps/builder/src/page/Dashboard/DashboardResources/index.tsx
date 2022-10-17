@@ -128,6 +128,7 @@ export const DashboardResources: FC = () => {
         {resourcesList?.length ? (
           <Table
             _css={hoverStyle}
+            pinedHeader
             striped
             hoverable
             size="large"

@@ -129,6 +129,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
       </div>
       <Modal
         w="696px"
+        maxH="70%"
         visible={editorVisible}
         footer={false}
         closable
