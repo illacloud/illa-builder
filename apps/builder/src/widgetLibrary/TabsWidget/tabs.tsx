@@ -14,6 +14,7 @@ WrappedTabs.displayName = "WrappedTabs"
 export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   const {
     value,
+    navigateContainer,
     horizontalAlign,
     verticalAlign,
     displayName,

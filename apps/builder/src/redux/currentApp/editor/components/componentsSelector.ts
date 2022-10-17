@@ -102,6 +102,7 @@ export const getAllComponentDisplayNameMapProps = createSelector(
       return null
     }
     const components = flattenDslToMap(rootDSL)
+    console.log(components, "getAllComponentDisplayNameMapProps components")
     if (!components) return
     const res: Record<string, any> = {}
     Object.keys(components).forEach((key) => {
@@ -114,6 +115,25 @@ export const getAllComponentDisplayNameMapProps = createSelector(
     return res
   },
 )
+
+export const getAllContainerWidget = createSelector([getCanvas], (rootDSL) => {
+  if (rootDSL == null) {
+    return null
+  }
+  const components = flattenDslToMap(rootDSL)
+  if (!components) return
+  const res: Record<string, any> = {}
+  Object.keys(components).forEach((key) => {
+    if (components[key].type === "CONTAINER_WIDGET") {
+      res[key] = {
+        ...components[key].props,
+        $type: "WIDGET",
+        $widgetType: components[key].type,
+      }
+    }
+  })
+  return res
+})
 
 export const getFlattenArrayComponentNodes = createSelector(
   [getCanvas],
