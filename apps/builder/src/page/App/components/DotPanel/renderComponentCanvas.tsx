@@ -11,12 +11,11 @@ import {
 } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getFreezyState,
+  getFreezeState,
   getIllaMode,
   isShowDot,
 } from "@/redux/config/configSelector"
 import { ScaleSquare } from "@/page/App/components/ScaleSquare"
-import { DotPanel } from "@/page/App/components/DotPanel/index"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   applyComponentCanvasStyle,
@@ -25,6 +24,7 @@ import {
 import useMeasure from "react-use-measure"
 import { configActions } from "@/redux/config/configSlice"
 import {
+  DebounceUpdateReflow,
   DragInfo,
   DropCollectedInfo,
   DropResultInfo,
@@ -36,12 +36,11 @@ import {
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
-import { cloneDeep, throttle } from "lodash"
-import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { throttle } from "lodash"
 import { ContainerEmptyState } from "@/widgetLibrary/ContainerWidget/emptyState"
-import { FreezyPlaceholder } from "@/page/App/components/DotPanel/freezyPlaceholder"
+import { FreezePlaceholder } from "@/page/App/components/DotPanel/freezePlaceholder"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import { BasicContainer } from "../../../../widgetLibrary/BasicContainer/BasicContainer"
+import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 const UNIT_HEIGHT = 8
 const BLOCK_COLUMNS = 64
@@ -56,7 +55,7 @@ export const RenderComponentCanvas: FC<{
 
   const isShowCanvasDot = useSelector(isShowDot)
   const illaMode = useSelector(getIllaMode)
-  const isFreezyCanvas = useSelector(getFreezyState)
+  const isFreezeCanvas = useSelector(getFreezeState)
   const dispatch = useDispatch()
 
   const [xy, setXY] = useState([0, 0])
@@ -80,7 +79,7 @@ export const RenderComponentCanvas: FC<{
     const childrenNode = componentNode.childrenNode
     console.log("childrenNode", childrenNode)
     if (
-      componentNode.type === "CONTAINER_WIDGET" &&
+      componentNode.type === "CANVAS" &&
       (!Array.isArray(componentNode.childrenNode) ||
         componentNode.childrenNode.length === 0) &&
       !isShowCanvasDot
@@ -137,13 +136,8 @@ export const RenderComponentCanvas: FC<{
   ])
 
   const updateComponentPositionByReflow = useCallback(
-    (parentDisplayName: string, childrenNodes: ComponentNode[]) => {
-      dispatch(
-        componentsActions.updateComponentReflowReducer({
-          parentDisplayName: parentDisplayName,
-          childNodes: childrenNodes,
-        }),
-      )
+    (updateSlice: DebounceUpdateReflow[]) => {
+      dispatch(componentsActions.updateComponentReflowReducer(updateSlice))
     },
     [dispatch],
   )
@@ -169,14 +163,31 @@ export const RenderComponentCanvas: FC<{
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const { item } = dragInfo
-          const dragResult = getDragResult(
-            monitor,
-            containerRef,
-            item,
-            unitWidth,
-            UNIT_HEIGHT,
-            bounds.width,
-          )
+          let dragResult
+          if (
+            (item.x === -1 && item.y === -1) ||
+            item.parentNode !== componentNode.displayName
+          ) {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "ADD",
+            )
+          } else {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "UPDATE",
+            )
+          }
           const { ladingPosition, rectCenterPosition } = dragResult
           const { landingX, landingY, isOverstep } = ladingPosition
 
@@ -194,16 +205,6 @@ export const RenderComponentCanvas: FC<{
           let childrenNodes = dragInfo.childrenNodes.filter(
             (node) => node.parentNode === componentNode.displayName,
           )
-          if (componentNode.type === "CONTAINER_WIDGET") {
-            const { currentViewIndex, viewComponentsArray } =
-              componentNode.props || {}
-            const currentViewComponentsArray =
-              viewComponentsArray[currentViewIndex] || []
-            const currentViewComponentsSet = new Set(currentViewComponentsArray)
-            childrenNodes = childrenNodes.filter((node) =>
-              currentViewComponentsSet.has(node.displayName),
-            )
-          }
           const indexOfChildrenNodes = childrenNodes.findIndex(
             (node) => node.displayName === item.displayName,
           )
@@ -212,6 +213,7 @@ export const RenderComponentCanvas: FC<{
           /**
            * generate component node with new position
            */
+          const oldParentDisplayName = item.parentNode
           const newItem = {
             ...item,
             parentNode: componentNode.displayName || "root",
@@ -245,11 +247,33 @@ export const RenderComponentCanvas: FC<{
             finalChildrenNodes = finalState
             finalEffectResultMap = effectResultMap
           }
-          if (!isFreezyCanvas) {
-            debounceUpdateComponentPositionByReflow(
-              componentNode.displayName || "root",
-              finalChildrenNodes,
-            )
+          if (!isFreezeCanvas) {
+            const updateSlice = [
+              {
+                parentDisplayName: componentNode.displayName || "root",
+                childNodes: finalChildrenNodes,
+              },
+            ]
+
+            if (newItem.parentNode !== oldParentDisplayName) {
+              let oldParentChildNodes = dragInfo.childrenNodes.filter(
+                (node) => node.parentNode === oldParentDisplayName,
+              )
+              if (oldParentChildNodes.length > 0) {
+                const indexOfOldChildren = oldParentChildNodes.findIndex(
+                  (node) => node.displayName === newItem.displayName,
+                )
+                const allChildrenNodes = [...oldParentChildNodes]
+                if (indexOfChildrenNodes !== -1) {
+                  allChildrenNodes.splice(indexOfOldChildren, 1, newItem)
+                }
+                updateSlice.push({
+                  parentDisplayName: oldParentDisplayName as string,
+                  childNodes: allChildrenNodes,
+                })
+              }
+            }
+            debounceUpdateComponentPositionByReflow(updateSlice)
             setCollisionEffect(new Map())
           } else {
             setCollisionEffect(finalEffectResultMap)
@@ -264,14 +288,31 @@ export const RenderComponentCanvas: FC<{
         const { item } = dragInfo
         if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
-          const dragResult = getDragResult(
-            monitor,
-            containerRef,
-            item,
-            unitWidth,
-            UNIT_HEIGHT,
-            bounds.width,
-          )
+          let dragResult
+          if (
+            (item.x === -1 && item.y === -1) ||
+            item.parentNode !== componentNode.displayName
+          ) {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "ADD",
+            )
+          } else {
+            dragResult = getDragResult(
+              monitor,
+              containerRef,
+              item,
+              unitWidth,
+              UNIT_HEIGHT,
+              bounds.width,
+              "UPDATE",
+            )
+          }
           const { ladingPosition } = dragResult
           const { landingX, landingY } = ladingPosition
 
@@ -294,24 +335,6 @@ export const RenderComponentCanvas: FC<{
            */
           if (item.x === -1 && item.y === -1) {
             dispatch(componentsActions.addComponentReducer([newItem]))
-            if (componentNode.type === "CONTAINER_WIDGET") {
-              const currentViewIndex =
-                componentNode.props?.currentViewIndex || 0
-              const currentViewComponentsArray = cloneDeep(
-                componentNode.props?.viewComponentsArray,
-              ) || [[]]
-              if (currentViewIndex < currentViewComponentsArray.length) {
-                const currentViewComponents =
-                  currentViewComponentsArray[currentViewIndex]
-                currentViewComponents.push(newItem.displayName)
-                dispatch(
-                  componentsActions.updateContainerViewsComponentsReducer({
-                    displayName: componentNode.displayName,
-                    viewComponentsArray: currentViewComponentsArray,
-                  }),
-                )
-              }
-            }
           } else {
             /**
              * update node when change container
@@ -328,51 +351,6 @@ export const RenderComponentCanvas: FC<{
                   ],
                 }),
               )
-              const oldParentNode = searchDSLByDisplayName(
-                oldParentNodeDisplayName,
-              )
-              if (componentNode.type === "CONTAINER_WIDGET") {
-                const currentViewIndex =
-                  componentNode.props?.currentViewIndex || 0
-                const currentViewComponentsArray = cloneDeep(
-                  componentNode.props?.viewComponentsArray,
-                ) || [[]]
-                if (currentViewIndex < currentViewComponentsArray.length) {
-                  const currentViewComponents =
-                    currentViewComponentsArray[currentViewIndex]
-                  currentViewComponents.push(newItem.displayName)
-                  dispatch(
-                    componentsActions.updateContainerViewsComponentsReducer({
-                      displayName: componentNode.displayName,
-                      viewComponentsArray: currentViewComponentsArray,
-                    }),
-                  )
-                }
-              }
-              if (oldParentNode && oldParentNode.type === "CONTAINER_WIDGET") {
-                const currentViewIndex =
-                  oldParentNode.props?.currentViewIndex || 0
-                const currentViewComponentsArray = cloneDeep(
-                  oldParentNode.props?.viewComponentsArray,
-                ) || [[]]
-                if (currentViewIndex < currentViewComponentsArray.length) {
-                  const currentViewComponents = currentViewComponentsArray[
-                    currentViewIndex
-                  ] as string[]
-                  const indexOfNewItem = currentViewComponents.findIndex(
-                    (displayName) => displayName === newItem.displayName,
-                  )
-                  if (indexOfNewItem !== -1) {
-                    currentViewComponents.splice(indexOfNewItem, 1)
-                    dispatch(
-                      componentsActions.updateContainerViewsComponentsReducer({
-                        displayName: oldParentNodeDisplayName,
-                        viewComponentsArray: currentViewComponentsArray,
-                      }),
-                    )
-                  }
-                }
-              }
             } else {
               dispatch(
                 componentsActions.updateComponentsShape({
@@ -400,7 +378,7 @@ export const RenderComponentCanvas: FC<{
         }
       },
     }),
-    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezyCanvas, componentNode],
+    [bounds, unitWidth, UNIT_HEIGHT, canDrop, isFreezeCanvas, componentNode],
   )
 
   useEffect(() => {
@@ -462,7 +440,7 @@ export const RenderComponentCanvas: FC<{
         />
       )}
       {isShowCanvasDot && <div css={borderLineStyle} />}
-      <FreezyPlaceholder
+      <FreezePlaceholder
         effectMap={collisionEffect}
         unitW={unitWidth}
         unitH={UNIT_HEIGHT}

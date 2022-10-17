@@ -8,6 +8,7 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,
+  parentNodeDisplayName?: string,
 ): ComponentNode => {
   let baseDSL: ComponentNode
   if (
@@ -64,7 +65,7 @@ export const generateComponentNode = (
     type,
     displayName: DisplayNameGenerator.generateDisplayName(type, displayName),
     containerType: containerType || CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
-    parentNode: null,
+    parentNode: parentNodeDisplayName || null,
     childrenNode: childrenNodeDSL,
     props: props ?? {},
   }

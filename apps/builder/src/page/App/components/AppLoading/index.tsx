@@ -2,8 +2,8 @@ import { FC, HTMLAttributes, useState } from "react"
 import { Loading } from "@illa-design/loading"
 import { loadingStyle, contentStyle } from "@/page/App/style"
 import {
-  leftPanelStyle,
-  rightPanelStyle,
+  leftAnimationStyle,
+  rightAnimationStyle,
   navStyle,
   containerStyle,
 } from "./style"
@@ -16,7 +16,7 @@ export const AppLoading: FC<HTMLAttributes<HTMLDivElement>> = () => {
       <div css={navStyle} />
       <div css={contentStyle}>
         <div
-          css={leftPanelStyle}
+          css={leftAnimationStyle}
           onAnimationEnd={() => {
             setShowLoading(true)
           }}
@@ -24,7 +24,7 @@ export const AppLoading: FC<HTMLAttributes<HTMLDivElement>> = () => {
         <div css={loadingStyle}>
           {showLoading ? <Loading colorScheme="techPurple" /> : null}
         </div>
-        <div css={rightPanelStyle} />
+        <div css={rightAnimationStyle} />
       </div>
     </div>
   )

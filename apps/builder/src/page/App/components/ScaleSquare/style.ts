@@ -276,7 +276,7 @@ export const applyMoveBarWrapperStyle = (
   selected: boolean,
   isEditor: boolean,
   position: MoveBarPositionShape,
-  isFreezy: boolean,
+  isFreeze: boolean,
 ) => {
   let positionStyle = css`
     top: 0;
@@ -297,7 +297,7 @@ export const applyMoveBarWrapperStyle = (
       border-radius: 0 0 4px 4px;
     `
   }
-  const backgroundColorStyle = isFreezy
+  const backgroundColorStyle = isFreeze
     ? "transparent"
     : isError
     ? globalColor(`--${illaPrefix}-red-03`)
@@ -329,7 +329,7 @@ export const dragPointIconWrapperStyle = css`
   flex: none;
 `
 
-export const freezyIconStyle = css`
+export const freezeIconStyle = css`
   width: 12px;
   height: 12px;
   flex: none;
@@ -341,7 +341,7 @@ export const moveBarDisplayNameStyle = css`
   text-overflow: ellipsis;
 `
 
-export const freezyTipsStyle = css`
+export const freezeTipsStyle = css`
   overflow: hidden;
   text-overflow: ellipsis;
   color: ${globalColor(`--${illaPrefix}-techPurple-01`)};

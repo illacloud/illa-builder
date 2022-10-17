@@ -1,6 +1,5 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import { ConfigState, IllaMode } from "@/redux/config/configState"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   ActionContent,
   ActionItem,
@@ -18,7 +17,7 @@ import {
   RestApiAction,
   TextRawBody,
 } from "@/redux/currentApp/action/restapiAction"
-import { Params } from "../resource/resourceState"
+import { Params } from "@/redux/resource/restapiResource"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -76,6 +75,9 @@ export const clearCacheActionContent: CaseReducer<
   state.cacheActionContent = {}
 }
 
+/**
+ * update current selected action for saving, don't use this to click or sth others
+ */
 export const updateSelectedAction: CaseReducer<
   ConfigState,
   PayloadAction<ActionItem<ActionContent>>
@@ -276,9 +278,12 @@ export const removeSelectedApiCookies: CaseReducer<
   }
 }
 
+/**
+ * change selected when click or sth others without change action info
+ */
 export const changeSelectedAction: CaseReducer<
   ConfigState,
-  PayloadAction<ActionItem<ActionContent>>
+  PayloadAction<ActionItem<ActionContent> | null>
 > = (state, action) => {
   state.selectedAction = action.payload
 }

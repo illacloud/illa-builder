@@ -41,6 +41,11 @@ export interface DeleteComponentNodePayload {
   displayNames: string[]
 }
 
+export interface sortComponentNodeChildrenPayload {
+  parentDisplayName: string
+  newChildrenNode: ComponentNode[]
+}
+
 export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
@@ -58,9 +63,4 @@ export interface UpdateComponentReflowPayload {
 export interface CopyComponentPayload {
   oldComponentNode: ComponentNode
   newComponentNode: ComponentNode
-}
-
-export interface UpdateContainerViewsComponentsPayload {
-  displayName: string
-  viewComponentsArray: string[][]
 }

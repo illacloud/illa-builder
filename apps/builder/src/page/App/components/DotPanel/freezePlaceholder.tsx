@@ -1,14 +1,14 @@
 import { FC, useMemo } from "react"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { applyFreezyPlaceholderShapeStyle } from "@/page/App/components/DotPanel/style"
+import { applyFreezePlaceholderShapeStyle } from "@/page/App/components/DotPanel/style"
 
-interface FreezyPlaceholderProps {
+interface FreezePlaceholderProps {
   effectMap: Map<string, ComponentNode>
   unitW: number
   unitH: number
 }
 
-export const FreezyPlaceholder: FC<FreezyPlaceholderProps> = ({
+export const FreezePlaceholder: FC<FreezePlaceholderProps> = ({
   effectMap,
   unitW,
   unitH,
@@ -52,7 +52,7 @@ export const FreezyPlaceholder: FC<FreezyPlaceholderProps> = ({
     return componentNodesArray.map((node) => {
       return (
         <div
-          css={applyFreezyPlaceholderShapeStyle(
+          css={applyFreezePlaceholderShapeStyle(
             node.y * unitH,
             node.x * unitW,
             node.h * unitH,

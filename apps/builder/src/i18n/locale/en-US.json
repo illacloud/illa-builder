@@ -130,7 +130,7 @@
         "required": "This is required",
         "title": {
           "api": "APIs",
-          "configure": "Configure {{name}}",
+          "configure": "Configure {{ name }}",
           "database": "DATABASES",
           "select": "Select Resource Type"
         },
@@ -161,6 +161,22 @@
             "duplicate": "Duplicate"
           }
         },
+        "mongodb": {
+          "action_type": "Action Type",
+          "aggregation": "Aggregation",
+          "collection": "Collection",
+          "document": "Document",
+          "field": "Field",
+          "filter": "Filter",
+          "limit": "Limit",
+          "operations": "Operations",
+          "options": "Options",
+          "projection": "Projection",
+          "query": "Query",
+          "skip": "Skip",
+          "sort_by": "Sort By",
+          "update": "Update"
+        },
         "option": {
           "resource": {
             "new": "Create a new resource"
@@ -175,18 +191,24 @@
         }
       },
       "resource": {
-        "label": {
+        "card": {
           "coming_soon": "Coming Soon"
         },
-        "mysql": {
+        "db": {
           "label": {
-            "ca_certificate": "CA Cert",
-            "client_certificate": "Client Cert",
+            "ca_certificate": "CA Certificate",
+            "client_certificate": "Client Certificate",
             "client_key": "Client Key",
             "connect_type": "Connect Type",
+            "connection_format": "Connection format",
             "database": "Database",
+            "database_index": "Database Index",
+            "hostname": "Hostname",
             "hostname_port": "Hostname/Port",
+            "mongodb_connection_dns_seed_list": "DNS seed list connection",
+            "mongodb_connection_standard": "Standard Connection",
             "name": "Name",
+            "port": "Port",
             "private_key": "Private Key",
             "ssl_options": "SSL options",
             "username_password": "Username/Password"
@@ -194,6 +216,7 @@
           "placeholder": {
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
+            "database_index": "default 0",
             "hostname": "Hostname",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "Password",
@@ -201,71 +224,13 @@
           },
           "tip": {
             "connect_type": "Cloud: ILLA servers will securely connect to your database.",
+            "name": "The name for resource when creating actions in the ILLA.",
             "ssl_options": "SSL is used when available",
             "username_password": "Credentials will be encrypted & stored securely on our servers."
           },
           "title": {
-            "advanced_option": "Advanced Options"
-          }
-        },
-        "postgresql": {
-          "label": {
-            "ca_certificate": "CA Cert",
-            "client_certificate": "Client Cert",
-            "client_key": "Client Key",
-            "connect_type": "Connect Type",
-            "database": "Database",
-            "hostname_port": "Hostname/Port",
-            "name": "Name",
-            "private_key": "Private Key",
-            "ssl_options": "SSL options",
-            "username_password": "Username/Password"
-          },
-          "placeholder": {
-            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "database": "acme_production",
-            "hostname": "Hostname",
-            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "password": "Password",
-            "username": "Username"
-          },
-          "tip": {
-            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
-            "ssl_options": "SSL is used when available",
-            "username_password": "Credentials will be encrypted & stored securely on our servers."
-          },
-          "title": {
-            "advanced_option": "Advanced Options"
-          }
-        },
-        "redis": {
-          "label": {
-            "ca_certificate": "CA Cert",
-            "client_certificate": "Client Cert",
-            "client_key": "Client Key",
-            "connect_type": "Connect Type",
-            "database": "Database",
-            "hostname_port": "Hostname/Port",
-            "name": "Name",
-            "private_key": "Private Key",
-            "ssl_options": "SSL options",
-            "username_password": "Username/Password"
-          },
-          "placeholder": {
-            "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
-            "database": "acme_production",
-            "hostname": "Hostname",
-            "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
-            "password": "Password",
-            "username": "Username"
-          },
-          "tip": {
-            "connect_type": "Cloud: ILLA servers will securely connect to your database.",
-            "ssl_options": "SSL is used when available",
-            "username_password": "Credentials will be encrypted & stored securely on our servers."
-          },
-          "title": {
-            "advanced_option": "Advanced Options"
+            "advanced_option": "Advanced Options",
+            "general_option": "GENERAL"
           }
         },
         "restapi": {
@@ -575,7 +540,7 @@
         "required_field": "Required field",
         "reset_after_successful_submit": "Reset after successful submit",
         "run_script": "Run script",
-        "scale_type": "Scale type",
+        "scale_type": "Scale Type",
         "set_temporary_state": "Set temporary state",
         "shadow": "Shadow",
         "show_character_count": "Show character count",

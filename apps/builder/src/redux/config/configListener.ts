@@ -20,13 +20,13 @@ async function handleUpdateSelectedActionExecution(
 }
 
 async function handleChangeSelectedActionExecution(
-  action: ReturnType<typeof configActions.updateSelectedAction>,
+  action: ReturnType<typeof configActions.changeSelectedAction>,
   listenerApi: AppListenerEffectAPI,
 ) {
   store.dispatch(configActions.clearCacheActionContent())
 }
 
-export function setupConfigListener(
+export function setupConfigListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
   const subscriptions = [

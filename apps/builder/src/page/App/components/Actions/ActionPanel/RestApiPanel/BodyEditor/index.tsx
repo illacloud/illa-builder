@@ -18,7 +18,7 @@ import {
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { Params } from "@/redux/resource/resourceState"
+import { Params } from "@/redux/resource/restapiResource"
 import { EditorMode } from "@/components/CodeEditor/interface"
 
 function getBodyEditorComponent(

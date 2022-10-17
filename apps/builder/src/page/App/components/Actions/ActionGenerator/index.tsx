@@ -35,7 +35,9 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
       if (currentActionType != null) {
         const resourceType = getResourceTypeFromActionType(currentActionType)
         if (resourceType != null) {
-          title = getResourceNameFromResourceType(resourceType)
+          title = t("editor.action.form.title.configure", {
+            name: getResourceNameFromResourceType(resourceType),
+          })
         }
       }
       break

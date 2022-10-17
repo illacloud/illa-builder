@@ -79,10 +79,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         if (componentNode.h < newItem.h) {
           const result = getReflowResult(newItem, cloneDeepAllComponents, false)
           dispatch(
-            componentsActions.updateComponentReflowReducer({
-              parentDisplayName: componentNode.parentNode || "root",
-              childNodes: result.finalState,
-            }),
+            componentsActions.updateComponentReflowReducer([
+              {
+                parentDisplayName: componentNode.parentNode || "root",
+                childNodes: result.finalState,
+              },
+            ]),
           )
         }
         if (componentNode.h > newItem.h) {
@@ -102,10 +104,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
             allComponents,
           )
           dispatch(
-            componentsActions.updateComponentReflowReducer({
-              parentDisplayName: componentNode.parentNode || "root",
-              childNodes: finalState,
-            }),
+            componentsActions.updateComponentReflowReducer([
+              {
+                parentDisplayName: componentNode.parentNode || "root",
+                childNodes: finalState,
+              },
+            ]),
           )
         }
       },

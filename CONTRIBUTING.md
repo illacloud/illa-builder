@@ -1,6 +1,6 @@
 # How to Contribute
 
-Illa-builder is one of Illa’s open source projects that is  under very active development.We’re still working out the kinks to make contributing to this project as easy and transparent as possible, but we’re not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
+Illa-builder is one of Illa’s open source projects that is  under very active development. We’re still working out the kinks to make contributing to this project as easy and transparent as possible, but we’re not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
 
 ## Open Development
 

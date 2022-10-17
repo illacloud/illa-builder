@@ -1,11 +1,11 @@
-import { FC } from "react"
+import { FC, useMemo } from "react"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
-import { PostgreConfigElement } from "@/page/App/components/Actions/PostgreConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
+import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -15,52 +15,56 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
 
   const finalResourceType = resource ? resource.resourceType : resourceType
 
-  switch (finalResourceType) {
-    case "tidb":
-    case "mariadb":
-    case "mysql":
-      return (
-        <MysqlLikeConfigElement
-          resourceType={finalResourceType}
-          resourceId={resourceId}
-          onBack={() => {
-            onBack("select")
-          }}
-          onFinished={onFinished}
-        />
-      )
-    case "restapi":
-      return (
-        <RestApiConfigElement
-          resourceId={resourceId}
-          onBack={() => {
-            onBack("select")
-          }}
-          onFinished={onFinished}
-        />
-      )
-    case "mongodb":
-      break
-    case "redis":
-      return (
-        <RedisConfigElement
-          resourceId={resourceId}
-          onBack={() => {
-            onBack("select")
-          }}
-          onFinished={onFinished}
-        />
-      )
-    case "postgresql":
-      return (
-        <PostgreConfigElement
-          resourceId={resourceId}
-          onBack={() => {
-            onBack("select")
-          }}
-          onFinished={onFinished}
-        />
-      )
-  }
-  return null
+  const element = useMemo(() => {
+    switch (finalResourceType) {
+      case "tidb":
+      case "mariadb":
+      case "mysql":
+      case "postgresql":
+        return (
+          <MysqlLikeConfigElement
+            resourceType={finalResourceType}
+            resourceId={resourceId}
+            onBack={() => {
+              onBack("select")
+            }}
+            onFinished={onFinished}
+          />
+        )
+      case "restapi":
+        return (
+          <RestApiConfigElement
+            resourceId={resourceId}
+            onBack={() => {
+              onBack("select")
+            }}
+            onFinished={onFinished}
+          />
+        )
+      case "mongodb":
+        return (
+          <MongoDbConfigElement
+            resourceId={resourceId}
+            onBack={() => {
+              onBack("select")
+            }}
+            onFinished={onFinished}
+          />
+        )
+      case "redis":
+        return (
+          <RedisConfigElement
+            resourceId={resourceId}
+            onBack={() => {
+              onBack("select")
+            }}
+            onFinished={onFinished}
+          />
+        )
+      default:
+        return null
+    }
+  }, [finalResourceType, onBack, onFinished, resourceId])
+
+  return <>{element}</>
 }

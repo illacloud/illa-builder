@@ -13,7 +13,7 @@ import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelect
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { FullScreenIcon, LockIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
-import { getFreezyState, getIllaMode } from "@/redux/config/configSelector"
+import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 import { FocusManager } from "@/utils/focusManager"
 
@@ -24,7 +24,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const canvasTree = useSelector(getCanvas)
   const mode = useSelector(getIllaMode)
   const dispatch = useDispatch()
-  const isFreezy = useSelector(getFreezyState)
+  const isFreeze = useSelector(getFreezeState)
 
   return (
     <div
@@ -49,7 +49,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
             {t("preview")}
           </Button>
           {/*TODO: replace this to illa-design/Message,when Message is ok*/}
-          {isFreezy ? (
+          {isFreeze ? (
             <div css={messageWrapperStyle}>
               <span css={messageStyle}>
                 <LockIcon />

@@ -2,9 +2,9 @@ import { FC, useEffect } from "react"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import {
-  applyBottomPanelStyle,
-  applyLeftPanelStyle,
-  applyRightPanelStyle,
+  bottomPanelStyle,
+  leftPanelStyle,
+  rightPanelStyle,
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
@@ -31,11 +31,12 @@ import { AppLoading } from "@/page/App/components/AppLoading"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { setupConfigListener } from "@/redux/config/configListener"
+import { setupConfigListeners } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { Debugger } from "@/page/App/components/Debugger"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
+import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -61,7 +62,8 @@ export const Editor: FC = () => {
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
       setupComponentsListeners(startAppListening),
-      setupConfigListener(startAppListening),
+      setupConfigListeners(startAppListening),
+      setupActionListeners(startAppListening),
       setupExecutionListeners(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
@@ -106,15 +108,15 @@ export const Editor: FC = () => {
         <Shortcut>
           <PageNavBar css={navbarStyle} />
           <div css={contentStyle}>
-            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+            {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>
               <CanvasPanel css={centerPanelStyle} />
-              <ActionEditor
-                css={applyBottomPanelStyle(showBottomPanel && !showDebugger)}
-              />
-              <Debugger css={applyBottomPanelStyle(showDebugger)} />
+              {showBottomPanel && !showDebugger ? (
+                <ActionEditor css={bottomPanelStyle} />
+              ) : null}
+              {showDebugger && <Debugger css={bottomPanelStyle} />}
             </div>
-            <ComponentsManager css={applyRightPanelStyle(showRightPanel)} />
+            {showRightPanel && <ComponentsManager css={rightPanelStyle} />}
           </div>
         </Shortcut>
       )}

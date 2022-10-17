@@ -6,6 +6,8 @@ import { getSetterByType } from "@/page/App/components/PanelSetters"
 import { PanelLabel } from "./label"
 import { SelectedPanelContext } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { useSelector } from "react-redux"
+import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
 export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
   const {
@@ -24,7 +26,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     icon,
   } = props
   const Comp = getSetterByType(setterType)
-
+  const componentNode = useSelector(getComponentNodeBySingleSelected)
   const {
     widgetProps,
     widgetDisplayName,
@@ -99,6 +101,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
           widgetOrAction={widgetOrAction}
           defaultValue={defaultValue}
           icon={icon}
+          componentNode={componentNode}
         />
       </div>
     ) : null
@@ -120,6 +123,7 @@ export const Setter = memo<PanelSetterProps>((props: PanelSetterProps) => {
     widgetOrAction,
     defaultValue,
     icon,
+    componentNode,
   ])
 
   return canRenderSetter ? (

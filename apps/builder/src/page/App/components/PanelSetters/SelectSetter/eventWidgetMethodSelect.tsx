@@ -70,6 +70,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
         options={finalOptions}
         size="medium"
         value={finalValue}
+        colorScheme="techPurple"
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}

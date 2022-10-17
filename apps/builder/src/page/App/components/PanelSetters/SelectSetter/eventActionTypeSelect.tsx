@@ -48,6 +48,7 @@ export const EventActionTypeSelect: FC<BaseSelectSetterProps> = (props) => {
         options={options}
         size="medium"
         value={value}
+        colorScheme="techPurple"
         onChange={(value) => {
           handleUpdateDsl(_finalAttrPath, {
             actionType: value,

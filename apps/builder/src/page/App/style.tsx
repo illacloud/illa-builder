@@ -34,18 +34,15 @@ export const navbarStyle = css`
   height: ${NAVBAR_HEIGHT}px;
 `
 
-export function applyLeftPanelStyle(display: boolean): SerializedStyles {
-  return css`
-    width: ${LEFT_PANEL_WIDTH}px;
-    height: 100%;
-    min-width: ${LEFT_PANEL_WIDTH}px;
-    overflow: auto;
-    box-sizing: border-box;
-    border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
-    ${display ? "" : "display: none"};
-  `
-}
+export const leftPanelStyle = css`
+  width: ${LEFT_PANEL_WIDTH}px;
+  height: 100%;
+  min-width: ${LEFT_PANEL_WIDTH}px;
+  overflow: auto;
+  box-sizing: border-box;
+  border-right: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  background: ${globalColor(`--${illaPrefix}-white-01`)};
+`
 
 export const centerPanelStyle = css`
   flex-grow: 1;
@@ -53,25 +50,19 @@ export const centerPanelStyle = css`
   width: 100%;
 `
 
-export function applyBottomPanelStyle(display: boolean): SerializedStyles {
-  return css`
-    box-sizing: border-box;
-    width: 100%;
-    ${display ? "" : "display: none"};
-  `
-}
+export const bottomPanelStyle = css`
+  box-sizing: border-box;
+  width: 100%;
+`
 
-export function applyRightPanelStyle(display: boolean): SerializedStyles {
-  return css`
-    box-sizing: border-box;
-    width: ${RIGHT_PANEL_WIDTH}px;
-    min-width: ${RIGHT_PANEL_WIDTH}px;
-    height: 100%;
-    border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-    background: ${globalColor(`--${illaPrefix}-white-01`)};
-    ${display ? "" : "display: none"};
-  `
-}
+export const rightPanelStyle = css`
+  box-sizing: border-box;
+  width: ${RIGHT_PANEL_WIDTH}px;
+  min-width: ${RIGHT_PANEL_WIDTH}px;
+  height: 100%;
+  border-left: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  background: ${globalColor(`--${illaPrefix}-white-01`)};
+`
 
 export const middlePanelStyle = css`
   flex-grow: 1;

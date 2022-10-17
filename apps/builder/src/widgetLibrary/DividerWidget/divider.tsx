@@ -5,13 +5,13 @@ import { dividerContainerStyle } from "./style"
 
 export const WrappedDivider = forwardRef<any, WrappedDividerProps>(
   (props, ref) => {
-    const { text, fs } = props
+    const { text, fs, textAlign } = props
 
     const _textSize = useMemo(() => {
       return !isNaN(Number(fs)) ? fs + "px" : fs?.toString()
     }, [fs])
 
-    return <Divider w="100%" text={text} fs={_textSize} />
+    return <Divider w="100%" textAlign={textAlign} text={text} fs={_textSize} />
   },
 )
 
@@ -21,6 +21,7 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
   const {
     text,
     fs,
+    textAlign,
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
@@ -31,6 +32,7 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
     handleUpdateGlobalData(displayName, {
       text,
       fs,
+      textAlign,
       setValue: (value: string) => {
         handleUpdateDsl({ text: value })
       },
@@ -45,6 +47,7 @@ export const DividerWidget: FC<DividerWidgetProps> = (props) => {
   }, [
     text,
     fs,
+    textAlign,
     displayName,
     handleUpdateGlobalData,
     handleUpdateDsl,

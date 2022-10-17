@@ -3,7 +3,7 @@ import {
   searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { AppListenerEffectAPI, AppStartListening } from "@/store"
-import { Unsubscribe } from "@reduxjs/toolkit"
+import { Unsubscribe, isAnyOf, AnyAction } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
 import { ComponentNode } from "./componentsState"
@@ -40,10 +40,12 @@ function handleCopyComponentReflowEffect(
   })
   effectResultMap.forEach((value, key) => {
     listenApi.dispatch(
-      componentsActions.updateComponentReflowReducer({
-        parentDisplayName: key,
-        childNodes: value.childrenNode,
-      }),
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: key,
+          childNodes: value.childrenNode,
+        },
+      ]),
     )
   })
 }
@@ -66,15 +68,27 @@ function handleUpdateComponentDisplayNameEffect(
 }
 
 function handleUpdateComponentReflowEffect(
-  action: ReturnType<typeof componentsActions.updateComponentsShape>,
+  action: AnyAction,
   listenApi: AppListenerEffectAPI,
 ) {
   const rootState = listenApi.getState()
   const rootNode = getCanvas(rootState)
-  const updateComponentsShapePayload = action.payload
+  let updateComponents: ComponentNode[] = []
+  if (action.type === "components/updateComponentsShape") {
+    updateComponents = (action as ReturnType<
+      typeof componentsActions.updateComponentsShape
+    >).payload.components
+  }
+  if (action.type === "components/updateComponentContainerReducer") {
+    ;(action as ReturnType<
+      typeof componentsActions.updateComponentContainerReducer
+    >).payload.updateSlice.forEach((slice) => {
+      updateComponents.push(slice.component)
+    })
+  }
   const effectResultMap = new Map<string, ComponentNode>()
-  updateComponentsShapePayload.components.forEach((compopnentNode) => {
-    const parentNodeDisplayName = compopnentNode.parentNode
+  updateComponents.forEach((componentNode) => {
+    const parentNodeDisplayName = componentNode.parentNode
     let parentNode = searchDsl(rootNode, parentNodeDisplayName)
     if (!parentNode) {
       return
@@ -83,7 +97,7 @@ function handleUpdateComponentReflowEffect(
       parentNode = effectResultMap.get(parentNode.displayName) as ComponentNode
     }
     const childrenNodes = parentNode.childrenNode
-    const { finalState } = getReflowResult(compopnentNode, childrenNodes, false)
+    const { finalState } = getReflowResult(componentNode, childrenNodes, false)
     effectResultMap.set(parentNode.displayName, {
       ...parentNode,
       childrenNode: finalState,
@@ -91,10 +105,12 @@ function handleUpdateComponentReflowEffect(
   })
   effectResultMap.forEach((value, key) => {
     listenApi.dispatch(
-      componentsActions.updateComponentReflowReducer({
-        parentDisplayName: key,
-        childNodes: value.childrenNode,
-      }),
+      componentsActions.updateComponentReflowReducer([
+        {
+          parentDisplayName: key,
+          childNodes: value.childrenNode,
+        },
+      ]),
     )
   })
 }
@@ -112,7 +128,10 @@ export function setupComponentsListeners(
       effect: handleUpdateComponentDisplayNameEffect,
     }),
     startListening({
-      actionCreator: componentsActions.updateComponentsShape,
+      matcher: isAnyOf(
+        componentsActions.updateComponentsShape,
+        componentsActions.updateComponentContainerReducer,
+      ),
       effect: handleUpdateComponentReflowEffect,
     }),
   ]
