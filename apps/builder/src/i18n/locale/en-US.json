@@ -457,6 +457,7 @@
         "columns": "Columns",
         "component": "Component",
         "config_type": "Config type",
+        "container": "Container",
         "content": "Content",
         "control_component": "Control component",
         "custom_rule": "Custom rule",

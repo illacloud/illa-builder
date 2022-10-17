@@ -1,15 +1,10 @@
 import { FC, useCallback, useMemo } from "react"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { useSelector } from "react-redux"
-import {
-  getAllContainerWidget,
-  searchDSLByDisplayName,
-} from "@/redux/currentApp/editor/components/componentsSelector"
+import { getAllContainerWidget } from "@/redux/currentApp/editor/components/componentsSelector"
 import { RootState } from "@/store"
-import { debounce, get } from "lodash"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { getExecutionError } from "@/redux/currentApp/executionTree/executionSelector"
-import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
+import { get, isEqual } from "lodash"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 
 export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
@@ -17,57 +12,66 @@ export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
 ) => {
   const {
     value,
-    handleUpdateDsl,
+    handleUpdateMultiAttrDSL,
     widgetDisplayName,
-    labelName,
-    labelDesc,
     attrName,
     allowClear,
     componentNode,
     isSetterSingleRow,
     widgetOrAction,
     widgetType,
+    expectedType,
   } = props
   const containers = useSelector(getAllContainerWidget)
-  console.log(containers, "getAllContainerWidget")
-  const isError = useSelector<RootState, boolean>((state) => {
-    const errors = getExecutionError(state)
-    const thisError = get(errors, `${widgetDisplayName}.dataSource`)
-    return thisError?.length > 0
-  })
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
     (rootState) => {
-      return searchDSLByDisplayName(widgetDisplayName, rootState)?.props || {}
+      const executionTree = getExecutionResult(rootState)
+      return get(executionTree, widgetDisplayName, {})
     },
   )
+  const viewList = useMemo(() => {
+    return get(targetComponentProps, "viewList", [])
+  }, [targetComponentProps])
 
   const selectedOptions = useMemo(() => {
     if (!containers) return
     return Object.keys(containers)
   }, [containers])
 
-  const handleChange = useCallback((value: any) => {
-    console.log(value, "handleChange")
-  }, [])
+  const handleUpdateDsl = useCallback(
+    (attrName: string, newValue: any) => {
+      try {
+        const newList = get(containers, `${newValue}.viewList`, {})
+        if (!isEqual(newList, viewList)) {
+          handleUpdateMultiAttrDSL?.({
+            viewList: newList,
+            [attrName]: newValue,
+          })
+          return
+        }
+      } catch {}
+      handleUpdateMultiAttrDSL?.({
+        [attrName]: newValue,
+      })
+    },
+    [viewList, handleUpdateMultiAttrDSL],
+  )
 
   return (
-    <div css={publicPaddingStyle}>
-      <BaseSelectSetter
-        options={selectedOptions}
-        expectedType={VALIDATION_TYPES.OBJECT}
-        onChange={handleChange}
-        value={value}
-        allowClear={allowClear}
-        attrName={attrName}
-        componentNode={componentNode}
-        handleUpdateDsl={handleUpdateDsl}
-        isSetterSingleRow={isSetterSingleRow}
-        widgetDisplayName={widgetDisplayName}
-        widgetOrAction={widgetOrAction}
-        widgetType={widgetType}
-      />
-    </div>
+    <BaseSelectSetter
+      options={selectedOptions}
+      expectedType={expectedType}
+      value={value}
+      allowClear={allowClear}
+      attrName={attrName}
+      componentNode={componentNode}
+      handleUpdateDsl={handleUpdateDsl}
+      isSetterSingleRow={isSetterSingleRow}
+      widgetDisplayName={widgetDisplayName}
+      widgetOrAction={widgetOrAction}
+      widgetType={widgetType}
+    />
   )
 }
 

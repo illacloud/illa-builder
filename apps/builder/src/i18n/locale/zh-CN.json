@@ -457,6 +457,7 @@
         "columns": "列数据",
         "component": "组件",
         "config_type": "配置类型",
+        "container": "容器",
         "content": "内容",
         "control_component": "控制组件",
         "custom_rule": "自定义规则",
