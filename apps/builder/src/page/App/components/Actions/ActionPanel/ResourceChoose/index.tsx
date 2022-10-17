@@ -24,6 +24,7 @@ import {
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
+import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 
 export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const { t } = useTranslation()
@@ -130,6 +131,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
       <Modal
         w="696px"
         maxH="70%"
+        h="100%"
         visible={editorVisible}
         footer={false}
         closable
@@ -144,15 +146,17 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
           setEditorVisible(false)
         }}
       >
-        <ResourceCreator
-          resourceId={action.resourceId}
-          onBack={() => {
-            setEditorVisible(false)
-          }}
-          onFinished={() => {
-            setEditorVisible(false)
-          }}
-        />
+        <div css={modalContentStyle}>
+          <ResourceCreator
+            resourceId={action.resourceId}
+            onBack={() => {
+              setEditorVisible(false)
+            }}
+            onFinished={() => {
+              setEditorVisible(false)
+            }}
+          />
+        </div>
       </Modal>
       <ResourceGenerator
         visible={generatorVisible}
