@@ -2,6 +2,7 @@ import { ReactComponent as ContainerWidgetIcon } from "@/assets/widgetCover/cont
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { v4 } from "uuid"
+import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 const defaultListView = [
   { id: v4(), key: "View 1", label: "View 1" },
@@ -18,6 +19,11 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   w: 20,
   h: 40,
+  childrenNode: [
+    BasicContainerConfig,
+    BasicContainerConfig,
+    BasicContainerConfig,
+  ],
   defaults: {
     viewList: defaultListView,
     currentViewIndex: 0,

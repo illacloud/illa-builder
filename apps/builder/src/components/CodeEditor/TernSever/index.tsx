@@ -134,7 +134,7 @@ const filterDataWithCallBack = (
   callback?: (key: string) => boolean,
 ) => {
   return JSON.parse(
-    JSON.stringify(data, function(key, value) {
+    JSON.stringify(data, function (key, value) {
       if (callback && callback(key)) {
         return undefined
       } else {

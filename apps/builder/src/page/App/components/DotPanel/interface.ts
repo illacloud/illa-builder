@@ -49,3 +49,8 @@ export interface RenderComponentCanvasProps {
   containerRef: RefObject<HTMLDivElement>
   minHeight?: number
 }
+
+export interface DebounceUpdateReflow {
+  parentDisplayName: string
+  childNodes: ComponentNode[]
+}

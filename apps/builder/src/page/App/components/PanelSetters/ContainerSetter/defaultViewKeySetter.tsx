@@ -7,9 +7,9 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { get } from "lodash"
 import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 
-export const ContainerDefaultViewKeySetter: FC<ContainerDefaultViewKeySetterProps> = (
-  props,
-) => {
+export const ContainerDefaultViewKeySetter: FC<
+  ContainerDefaultViewKeySetterProps
+> = (props) => {
   const {
     attrName,
     handleUpdateMultiAttrDSL,

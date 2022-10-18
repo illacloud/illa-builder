@@ -2,8 +2,8 @@ import { FC, useMemo } from "react"
 import {
   applyMoveBarWrapperStyle,
   dragPointIconWrapperStyle,
-  freezyIconStyle,
-  freezyTipsStyle,
+  freezeIconStyle,
+  freezeTipsStyle,
   MOVE_BAR_HEIGHT,
   moveBarDisplayNameStyle,
   warningStyle,
@@ -15,7 +15,7 @@ import {
 } from "@/page/App/components/ScaleSquare/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useSelector } from "react-redux"
-import { getFreezyState } from "@/redux/config/configSelector"
+import { getFreezeState } from "@/redux/config/configSelector"
 import { useTranslation } from "react-i18next"
 
 export const MoveBar: FC<MoveBarProps> = (props) => {
@@ -33,7 +33,7 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
 
   const { t } = useTranslation()
 
-  const isFreezyCanvas = useSelector(getFreezyState)
+  const isFreezeCanvas = useSelector(getFreezeState)
 
   const position: MoveBarPositionShape = useMemo(() => {
     if (widgetTop + containerPadding >= MOVE_BAR_HEIGHT) {
@@ -64,14 +64,14 @@ export const MoveBar: FC<MoveBarProps> = (props) => {
         selected,
         isEditor,
         position,
-        isFreezyCanvas,
+        isFreezeCanvas,
       )}
       id="moveBar"
     >
-      {isFreezyCanvas ? (
+      {isFreezeCanvas ? (
         <>
-          <LockIcon css={freezyIconStyle} />
-          <span css={freezyTipsStyle}>{t("freeze_collision")}</span>
+          <LockIcon css={freezeIconStyle} />
+          <span css={freezeTipsStyle}>{t("freeze_collision")}</span>
         </>
       ) : (
         <>

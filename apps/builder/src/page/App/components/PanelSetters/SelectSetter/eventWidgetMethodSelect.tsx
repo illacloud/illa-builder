@@ -42,8 +42,8 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [widgetDisplayNameMapProps, selectedWidgetID])
   const finalOptions = useMemo(() => {
     let tmpOptions: string[] = []
-    const eventHandlerConfig = widgetBuilder(selectedWidgetType)
-      ?.eventHandlerConfig
+    const eventHandlerConfig =
+      widgetBuilder(selectedWidgetType)?.eventHandlerConfig
     if (eventHandlerConfig) {
       tmpOptions = eventHandlerConfig.methods
     }
@@ -70,6 +70,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
         options={finalOptions}
         size="medium"
         value={finalValue}
+        colorScheme="techPurple"
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}

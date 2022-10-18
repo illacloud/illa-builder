@@ -2,9 +2,9 @@ import { FC, useEffect } from "react"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import {
-  applyBottomPanelStyle,
-  applyLeftPanelStyle,
-  applyRightPanelStyle,
+  bottomPanelStyle,
+  leftPanelStyle,
+  rightPanelStyle,
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
@@ -108,15 +108,15 @@ export const Editor: FC = () => {
         <Shortcut>
           <PageNavBar css={navbarStyle} />
           <div css={contentStyle}>
-            <DataWorkspace css={applyLeftPanelStyle(showLeftPanel)} />
+            {showLeftPanel && <DataWorkspace css={leftPanelStyle} />}
             <div css={middlePanelStyle}>
               <CanvasPanel css={centerPanelStyle} />
-              <ActionEditor
-                css={applyBottomPanelStyle(showBottomPanel && !showDebugger)}
-              />
-              <Debugger css={applyBottomPanelStyle(showDebugger)} />
+              {showBottomPanel && !showDebugger ? (
+                <ActionEditor css={bottomPanelStyle} />
+              ) : null}
+              {showDebugger && <Debugger css={bottomPanelStyle} />}
             </div>
-            <ComponentsManager css={applyRightPanelStyle(showRightPanel)} />
+            {showRightPanel && <ComponentsManager css={rightPanelStyle} />}
           </div>
         </Shortcut>
       )}

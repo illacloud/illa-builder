@@ -37,9 +37,7 @@ export function searchDsl(
   return null
 }
 
-export function flattenDslToMap(
-  rootNode: ComponentNode,
-): {
+export function flattenDslToMap(rootNode: ComponentNode): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]

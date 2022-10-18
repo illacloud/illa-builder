@@ -252,9 +252,8 @@ export class ExecutionTreeFactory {
     displayName: string,
   ) {
     let dependenciesMap: DependenciesState = {}
-    const dynamicAttrPaths: string[] = getWidgetOrActionDynamicAttrPaths(
-      widgetOrAction,
-    )
+    const dynamicAttrPaths: string[] =
+      getWidgetOrActionDynamicAttrPaths(widgetOrAction)
     if (dynamicAttrPaths.length) {
       dynamicAttrPaths.forEach((attrPath) => {
         const originValue = get(widgetOrAction, attrPath)

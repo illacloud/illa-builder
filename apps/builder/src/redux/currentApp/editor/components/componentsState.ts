@@ -1,5 +1,7 @@
-export type ContainerType = "EDITOR_DOT_PANEL" | "EDITOR_SCALE_SQUARE"
-
+export enum CONTAINER_TYPE {
+  "EDITOR_DOT_PANEL" = "EDITOR_DOT_PANEL",
+  "EDITOR_SCALE_SQUARE" = "EDITOR_SCALE_SQUARE",
+}
 export interface ComponentNode {
   displayName: string
   parentNode: string | null
@@ -8,7 +10,7 @@ export interface ComponentNode {
   isResizing: boolean
   childrenNode: ComponentNode[]
   type: string
-  containerType: ContainerType
+  containerType: CONTAINER_TYPE
   verticalResize: boolean
   h: number
   w: number
@@ -39,6 +41,11 @@ export interface DeleteComponentNodePayload {
   displayNames: string[]
 }
 
+export interface sortComponentNodeChildrenPayload {
+  parentDisplayName: string
+  newChildrenNode: ComponentNode[]
+}
+
 export interface UpdateComponentPropsPayload {
   displayName: string
   updateSlice: Record<string, any>
@@ -56,9 +63,4 @@ export interface UpdateComponentReflowPayload {
 export interface CopyComponentPayload {
   oldComponentNode: ComponentNode
   newComponentNode: ComponentNode
-}
-
-export interface UpdateContainerViewsComponentsPayload {
-  displayName: string
-  viewComponentsArray: string[][]
 }
