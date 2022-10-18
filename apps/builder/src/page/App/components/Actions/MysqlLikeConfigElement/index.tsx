@@ -388,7 +388,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                 rules={{
                   required: true,
                 }}
-                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -419,7 +418,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               <Controller
                 control={control}
                 defaultValue={resource?.content.ssl.clientKey}
-                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -449,7 +447,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               </div>
               <Controller
                 control={control}
-                shouldUnregister={true}
                 defaultValue={resource?.content.ssl.clientCert}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea

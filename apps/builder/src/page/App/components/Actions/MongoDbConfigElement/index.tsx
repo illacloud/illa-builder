@@ -32,6 +32,7 @@ import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigEleme
 import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
 import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { Switch } from "@illa-design/switch"
+import { RadioGroup } from "@illa-design/radio"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -56,7 +57,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
     content = findResource.content as MongoDbResource<MongoDbConfig>
   }
 
-  const [configMode, setConfigMode] = useState(content.configType)
+  const [configType, setConfigType] = useState(content.configType)
 
   const [sslOpen, setSSLOpen] = useState(content.ssl.open ?? false)
   const [testLoading, setTestLoading] = useState(false)
@@ -110,10 +111,47 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
         <div css={optionLabelStyle}>
           {t("editor.action.resource.db.title.general_option")}
         </div>
-        {configMode === "gui" && (
+        <div css={configItem}>
+          <div css={labelContainer}>
+            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+              {t("editor.action.resource.db.label.config_type")}
+            </span>
+          </div>
+          <Controller
+            control={control}
+            defaultValue={content.configType}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <RadioGroup
+                w="100%"
+                colorScheme="gray"
+                ml="16px"
+                mr="24px"
+                type="button"
+                onBlur={onBlur}
+                onChange={(v, event) => {
+                  onChange(v, event)
+                  setConfigType(v)
+                }}
+                value={value}
+                options={[
+                  {
+                    value: "gui",
+                    label: "General",
+                  },
+                  {
+                    value: "uri",
+                    label: "URI",
+                  },
+                ]}
+              />
+            )}
+            name="configType"
+          />
+        </div>
+        {configType === "gui" && (
           <MongoDbGuiMode control={control} resourceId={resourceId} />
         )}
-        {configMode === "uri" && (
+        {configType === "uri" && (
           <MongoDbUriMode control={control} resourceId={resourceId} />
         )}
         <div css={configItem}>
@@ -137,7 +175,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 onBlur={onBlur}
               />
             )}
-            name="ssl"
+            name="open"
           />
           <span css={sslStyle}>
             {t("editor.action.resource.db.tip.ssl_options")}
@@ -159,7 +197,6 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               <Controller
                 control={control}
                 defaultValue={content.ssl.client}
-                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -190,7 +227,6 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               <Controller
                 control={control}
                 defaultValue={content.ssl.ca}
-                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"

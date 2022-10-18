@@ -101,7 +101,6 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
           rules={{
             required: true,
           }}
-          shouldUnregister={true}
           render={({ field: { value, onChange, onBlur } }) => (
             <RadioGroup
               w="100%"

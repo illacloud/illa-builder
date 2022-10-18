@@ -211,6 +211,8 @@
             "mongodb_connection_standard": "Standard Connection",
             "name": "Name",
             "port": "Port",
+            "config_type": "Config Type",
+            "connection_string": "Connection String",
             "private_key": "Private Key",
             "ssl_options": "SSL options",
             "username_password": "Username/Password"

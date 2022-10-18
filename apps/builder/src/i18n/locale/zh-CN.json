@@ -211,6 +211,8 @@
             "mongodb_connection_standard": "Standard Connection",
             "name": "名称",
             "port": "端口",
+            "config_type": "配置类型",
+            "connection_string": "连接地址",
             "private_key": "私钥",
             "ssl_options": "SSL 选项",
             "username_password": "用户名/密码"

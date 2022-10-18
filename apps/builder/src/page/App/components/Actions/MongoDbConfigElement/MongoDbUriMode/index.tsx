@@ -1,8 +1,79 @@
 import { FC } from "react"
 import { MongoDbConfigModeProps } from "@/page/App/components/Actions/MongoDbConfigElement/interface"
+import {
+  applyConfigItemLabelText,
+  configItem,
+  labelContainer,
+} from "@/page/App/components/Actions/MongoDbConfigElement/style"
+import { getColor } from "@illa-design/theme"
+import { Controller } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { Input } from "@illa-design/input"
+import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store"
+import {
+  MongoDbResource,
+  MongoDbUriConfigContent,
+  MongoDbUriConfigContentInitial,
+} from "@/redux/resource/mongodbResource"
 
 export const MongoDbUriMode: FC<MongoDbConfigModeProps> = (props) => {
-  return <div></div>
+  const { resourceId, control } = props
+
+  const { t } = useTranslation()
+
+  let findResource: Resource<ResourceContent> | undefined = useSelector(
+    (state: RootState) => {
+      return state.resource.find((r) => r.resourceId === resourceId)
+    },
+  )
+
+  let content: MongoDbUriConfigContent
+
+  if (findResource === undefined) {
+    content = MongoDbUriConfigContentInitial
+  } else {
+    const mongoDbResource = (
+      findResource as Resource<MongoDbResource<MongoDbUriConfigContent>>
+    ).content
+    content =
+      mongoDbResource.configType === "uri"
+        ? mongoDbResource.configContent
+        : MongoDbUriConfigContentInitial
+  }
+
+  return (
+    <div css={configItem}>
+      <div css={labelContainer}>
+        <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
+        <span css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}>
+          {t("editor.action.resource.db.label.connection_format")}
+        </span>
+      </div>
+      <Controller
+        control={control}
+        defaultValue={content.uri}
+        rules={{
+          required: true,
+        }}
+        render={({ field: { value, onChange, onBlur } }) => (
+          <Input
+            w="100%"
+            onBlur={onBlur}
+            onChange={onChange}
+            ml="16px"
+            value={value}
+            borderColor="techPurple"
+            placeholder={
+              "mongodb+srv://admin:password@host/mydb?retryWrites=true&w=majority"
+            }
+          />
+        )}
+        name="uri"
+      />
+    </div>
+  )
 }
 
 MongoDbUriMode.displayName = "MongoDbUriMode"
