@@ -32,7 +32,6 @@ export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {
             required: true,
           }}
           defaultValue={auth?.username}
-          shouldUnregister={true}
           render={({ field: { value, onChange, onBlur } }) => (
             <Input
               w="100%"
@@ -62,7 +61,6 @@ export const BasicAuthPanel: FC<BasicAuthPanelProps> = (props) => {
             required: true,
           }}
           defaultValue={auth?.password}
-          shouldUnregister={true}
           render={({ field: { value, onChange, onBlur } }) => (
             <Password
               w="100%"
