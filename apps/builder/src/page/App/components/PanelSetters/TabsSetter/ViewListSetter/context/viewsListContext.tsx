@@ -13,9 +13,14 @@ interface ProviderProps {
   list: ViewItemShape[]
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
+  linkWidgetDisplayName: string
   attrPath: string
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
+  handleUpdateOtherMultiAttrDSL?: (
+    displayName: string,
+    updateSlice: Record<string, any>,
+  ) => void
   children: ReactNode
 }
 
@@ -35,7 +40,9 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     attrPath,
     handleUpdateDsl,
     widgetDisplayName,
+    linkWidgetDisplayName,
     handleUpdateMultiAttrDSL,
+    handleUpdateOtherMultiAttrDSL,
   } = props
   const executionResult = useSelector(getExecutionResult)
 
@@ -48,13 +55,15 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   }, [attrPath, executionResult, widgetDisplayName])
 
   const viewComponentsArray = useMemo(() => {
-    return get(executionResult, `${widgetDisplayName}.viewComponentsArray`, [
-      [],
-    ]) as string[][]
-  }, [executionResult, widgetDisplayName])
+    return get(
+      executionResult,
+      `${linkWidgetDisplayName}.viewComponentsArray`,
+      [[]],
+    ) as string[][]
+  }, [executionResult, linkWidgetDisplayName])
 
-  const currentViewIndex = useMemo(() => {
-    return get(executionResult, `${widgetDisplayName}.currentViewIndex`)
+  const currentIndex = useMemo(() => {
+    return get(executionResult, `${widgetDisplayName}.currentIndex`)
   }, [executionResult, widgetDisplayName])
 
   const allViewsKeys = useMemo(() => {
@@ -75,31 +84,45 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
 
       const updateSlice = {
         [attrPath]: updatedArray,
-        currentViewIndex: 0,
-        currentViewKey: allViewsKeys[0],
-        viewComponentsArray: newViewComponentsArray,
+        currentIndex: 0,
+        currentKey: allViewsKeys[0],
       }
 
-      if (currentViewIndex !== index) {
-        const oldCurrentViewKey = list[currentViewIndex].key
+      if (currentIndex !== index) {
+        const oldCurrentViewKey = list[currentIndex].key
         const newCurrentViewIndex = updatedArray.findIndex(
           (item) => item.key === oldCurrentViewKey,
         )
         if (newCurrentViewIndex !== -1) {
-          updateSlice.currentViewIndex = newCurrentViewIndex
-          updateSlice.currentViewKey = oldCurrentViewKey
+          updateSlice.currentIndex = newCurrentViewIndex
+          updateSlice.currentKey = oldCurrentViewKey
         }
       }
 
       handleUpdateMultiAttrDSL?.(updateSlice)
+      console.log(
+        linkWidgetDisplayName,
+        handleUpdateOtherMultiAttrDSL,
+        "linkWidget",
+      )
+      if (linkWidgetDisplayName) {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          [attrPath]: updatedArray,
+          currentViewIndex: updateSlice.currentIndex,
+          currentViewKey: updateSlice.currentKey,
+          viewComponentsArray: newViewComponentsArray,
+        })
+      }
     },
     [
       list,
       viewComponentsArray,
       attrPath,
       allViewsKeys,
-      currentViewIndex,
+      currentIndex,
       handleUpdateMultiAttrDSL,
+      linkWidgetDisplayName,
+      handleUpdateOtherMultiAttrDSL,
     ],
   )
 
@@ -119,8 +142,20 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       }
       const updatedArray = [...list, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)
+      if (linkWidgetDisplayName) {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          [attrPath]: updatedArray,
+        })
+      }
     },
-    [list, allViewsKeys, handleUpdateDsl, attrPath],
+    [
+      list,
+      allViewsKeys,
+      handleUpdateDsl,
+      attrPath,
+      linkWidgetDisplayName,
+      handleUpdateOtherMultiAttrDSL,
+    ],
   )
 
   const handleUpdateCurrentViewIndex = useCallback(
@@ -128,11 +163,23 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       if (index > list.length || index < 0) return
       const currentViewKey = allViews[index].key
       handleUpdateMultiAttrDSL?.({
-        currentViewIndex: index,
-        currentViewKey: currentViewKey || index,
+        currentIndex: index,
+        currentKey: currentViewKey || index,
       })
+      if (linkWidgetDisplayName) {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          currentViewIndex: index,
+          currentViewKey: currentViewKey || index,
+        })
+      }
     },
-    [allViews, handleUpdateMultiAttrDSL, list.length],
+    [
+      allViews,
+      handleUpdateMultiAttrDSL,
+      handleUpdateOtherMultiAttrDSL,
+      linkWidgetDisplayName,
+      list.length,
+    ],
   )
 
   const handleMoveOptionItem = useCallback(
@@ -140,7 +187,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       const dragOptionItem = list[dragIndex]
       const dragViewArray = viewComponentsArray[dragIndex]
       const hoverViewArray = viewComponentsArray[hoverIndex]
-      const currentSelected = list[currentViewIndex]
+      const currentSelected = list[currentIndex]
       if (!dragViewArray || !hoverViewArray) return
       const newViewComponentsArray = cloneDeep(
         viewComponentsArray,
@@ -161,21 +208,32 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         currentViewKey: newSelectedKey,
       })
       handleUpdateDsl(attrPath, newViews)
+      if (linkWidgetDisplayName) {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          [attrPath]: newViews,
+          viewComponentsArray: newViewComponentsArray,
+          currentViewIndex: newSelectedIndex,
+          currentViewKey: newSelectedKey,
+        })
+      }
     },
     [
-      attrPath,
-      currentViewIndex,
-      handleUpdateDsl,
-      handleUpdateMultiAttrDSL,
-      viewComponentsArray,
       list,
+      viewComponentsArray,
+      currentIndex,
+      handleUpdateMultiAttrDSL,
+      attrPath,
+      handleUpdateDsl,
+      linkWidgetDisplayName,
+      handleUpdateOtherMultiAttrDSL,
     ],
   )
   const value = {
     ...props,
     handleDeleteOptionItem,
     handleCopyOptionItem,
-    currentViewIndex,
+    // TODO: to currentIndex
+    currentViewIndex: currentIndex,
     handleUpdateCurrentViewIndex,
     handleMoveOptionItem,
   }

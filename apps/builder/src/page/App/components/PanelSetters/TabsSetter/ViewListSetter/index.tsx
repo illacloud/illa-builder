@@ -30,36 +30,39 @@ export const ViewListSetter: FC<ViewSetterProps> = memo(
       },
     )
 
-    const targetContainerDisplayName = useMemo(() => {
-      return get(targetComponentProps, "targetContainerId", "") as string
+    const linkWidgetDisplayName = useMemo(() => {
+      return get(targetComponentProps, "linkWidgetDisplayName", "") as string
     }, [targetComponentProps])
 
     const allViews = useMemo(() => {
       return get(
         executionResult,
-        `${targetContainerDisplayName}.${attrName}`,
+        `${widgetDisplayName}.${attrName}`,
         [],
       ) as ViewItemShape[]
-    }, [attrName, executionResult, targetContainerDisplayName])
+    }, [attrName, executionResult, widgetDisplayName])
 
     console.log(allViews, attrName, "ViewListSetter value")
 
     const allViewsKeys = useMemo(() => {
-      console.log(allViews, "ViewListSetter allViews")
       return allViews.map((view) => view.key)
     }, [allViews])
 
+    // get link value
     const viewComponentsArray = useMemo(() => {
       return get(
         executionResult,
-        `${targetContainerDisplayName}.viewComponentsArray`,
+        `${linkWidgetDisplayName}.viewComponentsArray`,
         [[]],
       )
-    }, [executionResult, targetContainerDisplayName])
+    }, [executionResult, linkWidgetDisplayName])
 
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
       handleUpdateMultiAttrDSL?.({
+        [attrName]: [...value, newItem],
+      })
+      handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
         [attrName]: [...value, newItem],
         viewComponentsArray: [...viewComponentsArray, []],
       })
@@ -73,10 +76,11 @@ export const ViewListSetter: FC<ViewSetterProps> = memo(
 
     return (
       <ViewListSetterProvider
-        list={allViews}
+        list={value}
         childrenSetter={childrenSetter || []}
         handleUpdateDsl={handleUpdateDsl}
-        widgetDisplayName={targetContainerDisplayName}
+        widgetDisplayName={widgetDisplayName}
+        linkWidgetDisplayName={linkWidgetDisplayName}
         attrPath={attrName}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
       >

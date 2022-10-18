@@ -2,9 +2,7 @@ import { FC, useCallback, useMemo } from "react"
 import { ChartDataSourceSetterProps } from "@/page/App/components/PanelSetters/ChartSetter/interface"
 import { useSelector } from "react-redux"
 import { getAllContainerWidget } from "@/redux/currentApp/editor/components/componentsSelector"
-import { RootState } from "@/store"
-import { get, isEqual } from "lodash"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { get } from "lodash"
 import { BaseSelectSetter } from "@/page/App/components/PanelSetters/SelectSetter/baseSelect"
 
 export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
@@ -13,6 +11,7 @@ export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
   const {
     value,
     handleUpdateMultiAttrDSL,
+    handleUpdateOtherMultiAttrDSL,
     widgetDisplayName,
     attrName,
     allowClear,
@@ -24,38 +23,47 @@ export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
   } = props
   const containers = useSelector(getAllContainerWidget)
 
-  const targetComponentProps = useSelector<RootState, Record<string, any>>(
-    (rootState) => {
-      const executionTree = getExecutionResult(rootState)
-      return get(executionTree, widgetDisplayName, {})
-    },
-  )
-  const viewList = useMemo(() => {
-    return get(targetComponentProps, "viewList", [])
-  }, [targetComponentProps])
-
   const selectedOptions = useMemo(() => {
     if (!containers) return
     return Object.keys(containers)
   }, [containers])
 
   const handleUpdateDsl = useCallback(
-    (attrName: string, newValue: any) => {
+    (attrName: string, targetDisplayName: string) => {
       try {
-        const newList = get(containers, `${newValue}.viewList`, {})
-        if (!isEqual(newList, viewList)) {
-          handleUpdateMultiAttrDSL?.({
-            viewList: newList,
-            [attrName]: newValue,
+        const newList = get(containers, `${targetDisplayName}.viewList`, {})
+        const currentIndex = get(
+          containers,
+          `${targetDisplayName}.currentViewIndex`,
+          0,
+        )
+        const currentViewKey = get(
+          containers,
+          `${targetDisplayName}.currentViewKey`,
+          "",
+        )
+        handleUpdateMultiAttrDSL?.({
+          viewList: newList,
+          currentIndex: currentIndex,
+          currentKey: currentViewKey,
+          [attrName]: targetDisplayName,
+        })
+        if (value) {
+          // remove old link
+          handleUpdateOtherMultiAttrDSL?.(value, {
+            linkWidgetDisplayName: undefined,
           })
-          return
         }
+        // add new link
+        handleUpdateOtherMultiAttrDSL?.(targetDisplayName, {
+          linkWidgetDisplayName: widgetDisplayName,
+        })
       } catch {}
       handleUpdateMultiAttrDSL?.({
-        [attrName]: newValue,
+        [attrName]: targetDisplayName,
       })
     },
-    [viewList, handleUpdateMultiAttrDSL],
+    [handleUpdateMultiAttrDSL, value],
   )
 
   return (

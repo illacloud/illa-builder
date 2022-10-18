@@ -15,6 +15,8 @@ import { useTranslation } from "react-i18next"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { DragItem } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { Identifier } from "dnd-core"
+import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { get } from "lodash"
 
 interface ListItemProps {
   value: ViewItemShape
@@ -31,6 +33,9 @@ export const ListItem: FC<ListItemProps> = (props) => {
     widgetDisplayName,
     childrenSetter,
     handleMoveOptionItem,
+    handleUpdateMultiAttrDSL,
+    handleUpdateOtherMultiAttrDSL,
+    linkWidgetDisplayName,
   } = useContext(ViewListSetterContext)
   const { t } = useTranslation()
 
@@ -85,19 +90,42 @@ export const ListItem: FC<ListItemProps> = (props) => {
   drag(drop(dragRef))
   const opacity = isDragging ? 0 : 1
 
+  const handleUpdateDsl = useCallback(
+    (attrName: string, value: any) => {
+      handleUpdateMultiAttrDSL?.({
+        [attrName]: value,
+      })
+      if (linkWidgetDisplayName) {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          [attrName]: value,
+        })
+      }
+    },
+    [
+      handleUpdateMultiAttrDSL,
+      handleUpdateOtherMultiAttrDSL,
+      linkWidgetDisplayName,
+    ],
+  )
+
   return (
     <Trigger
       withoutPadding
       colorScheme="white"
       popupVisible={modalVisible}
       content={
-        <BaseModal
-          title={t("editor.inspect.setter_content.option_list.model_title")}
-          handleCloseModal={handleCloseModal}
-          attrPath={`${attrPath}.${index}`}
-          widgetDisplayName={widgetDisplayName}
-          childrenSetter={childrenSetter}
-        />
+        <SelectedProvider
+          handleUpdateDsl={handleUpdateDsl}
+          handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
+        >
+          <BaseModal
+            title={t("editor.inspect.setter_content.option_list.model_title")}
+            handleCloseModal={handleCloseModal}
+            attrPath={`${attrPath}.${index}`}
+            widgetDisplayName={widgetDisplayName}
+            childrenSetter={childrenSetter}
+          />
+        </SelectedProvider>
       }
       trigger="click"
       showArrow={false}

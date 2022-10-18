@@ -70,7 +70,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
         <div css={setterPublicWrapper}>
           <div css={viewSetterWrapperStyle}>
             <Header
-              labelName="tab"
+              labelName="Tabs"
               addAction={handleAddViewItem}
               hasAddAction
             />

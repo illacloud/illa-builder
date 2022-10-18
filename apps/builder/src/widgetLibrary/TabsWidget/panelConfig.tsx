@@ -29,7 +29,7 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-column-decimalPlaces`,
         labelName: i18n.t("editor.inspect.setter_label.container"),
-        attrName: "targetContainerId",
+        attrName: "linkWidgetDisplayName",
         bindAttrName: ["navigateContainer"],
         shown: (value) => value,
         setterType: "TABS_CONTAINER_SELECT_SETTER",
@@ -82,8 +82,8 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         attrName: "viewList",
         setterType: "TABS_VIEW_LIST_SETTER",
-        bindAttrName: ["navigateContainer"],
-        shown: (value) => value,
+        bindAttrName: ["navigateContainer", "linkWidgetDisplayName"],
+        shown: (isLink, id) => isLink && id,
         childrenSetter: [
           {
             id: `${baseWidgetName}-viewList-key`,

@@ -17,6 +17,7 @@ import {
 import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { RootState } from "@/store"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -27,10 +28,22 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       widgetDisplayName,
       childrenSetter,
       handleUpdateMultiAttrDSL,
+      handleUpdateOtherMultiAttrDSL,
       componentNode,
     } = props
     const executionResult = useSelector(getExecutionResult)
     const dispatch = useDispatch()
+
+    const targetComponentProps = useSelector<RootState, Record<string, any>>(
+      (rootState) => {
+        const executionTree = getExecutionResult(rootState)
+        return get(executionTree, widgetDisplayName, {})
+      },
+    )
+
+    const linkWidgetDisplayName = useMemo(() => {
+      return get(targetComponentProps, "linkWidgetDisplayName", "") as string
+    }, [targetComponentProps])
 
     const allViews = useMemo(() => {
       return get(
@@ -60,6 +73,11 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
         [attrName]: [...value, newItem],
         viewComponentsArray: [...viewComponentsArray, []],
       })
+      if (linkWidgetDisplayName) {
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+          [attrName]: [...value, newItem],
+        })
+      }
       dispatch(componentsActions.addComponentReducer([newChildrenNodes]))
     }, [
       allViewsKeys,
@@ -77,8 +95,10 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
         childrenSetter={childrenSetter || []}
         handleUpdateDsl={handleUpdateDsl}
         widgetDisplayName={widgetDisplayName}
+        linkWidgetDisplayName={linkWidgetDisplayName}
         attrPath={attrName}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+        handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
         componentNode={componentNode}
       >
         <div css={setterPublicWrapper}>
