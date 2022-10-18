@@ -123,7 +123,6 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
       </Space>
       <Modal
         w="696px"
-        h="100%"
         visible={resourceEditorVisible}
         footer={false}
         closable

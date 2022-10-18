@@ -51,7 +51,6 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   return (
     <Modal
       w="696px"
-      h="100%"
       visible={visible}
       footer={false}
       closable
