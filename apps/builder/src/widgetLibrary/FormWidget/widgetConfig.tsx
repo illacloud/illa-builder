@@ -42,6 +42,8 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
     },
   ],
   defaults: {
+    showHeader: true,
+    showFooter: true,
     borderColor: "#ffffffff",
     backgroundColor: "#ffffffff",
     radius: "4px",
