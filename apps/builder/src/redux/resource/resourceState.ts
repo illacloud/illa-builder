@@ -1,7 +1,8 @@
-import { MongoDbResource } from "./mongodbResource"
+import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
 import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { RedisResource } from "./redisResource"
 import { MysqlLikeResource } from "./mysqlLikeResource"
+import { MongoDbActionTypeContent } from "@/redux/currentApp/action/mongoDbAction"
 
 export type ResourceType =
   | "mysql"
@@ -23,7 +24,7 @@ export type ResourceContent =
   | MysqlLikeResource
   | RestApiResource<RestApiAuth>
   | RedisResource
-  | MongoDbResource
+  | MongoDbResource<MongoDbConfig>
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string

@@ -28,7 +28,10 @@ import { Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
-import { RedisResource } from "@/redux/resource/redisResource"
+import {
+  RedisResource,
+  RedisResourceInitial,
+} from "@/redux/resource/redisResource"
 
 export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -41,13 +44,19 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
     mode: "onChange",
   })
 
-  const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<RedisResource>
+  const findResource = useSelector((state: RootState) => {
+    return state.resource.find((r) => r.resourceId === resourceId)
   })
 
-  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl ?? false)
+  let content: RedisResource
+
+  if (findResource === undefined) {
+    content = RedisResourceInitial
+  } else {
+    content = (findResource as Resource<RedisResource>).content
+  }
+
+  const [sslOpen, setSSLOpen] = useState(content.ssl ?? false)
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -138,7 +147,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           </div>
           <Controller
             control={control}
-            defaultValue={resource?.resourceName ?? ""}
+            defaultValue={findResource?.resourceName ?? ""}
             rules={{
               required: true,
             }}
@@ -179,7 +188,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           </div>
           <div css={hostInputContainer}>
             <Controller
-              defaultValue={resource?.content.host}
+              defaultValue={content.host}
               control={control}
               rules={{
                 required: true,
@@ -199,7 +208,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
               name="host"
             />
             <Controller
-              defaultValue={resource?.content.port}
+              defaultValue={content.port}
               control={control}
               rules={{
                 required: true,
@@ -228,7 +237,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             </span>
           </div>
           <Controller
-            defaultValue={resource?.content.databaseIndex}
+            defaultValue={content.databaseIndex}
             control={control}
             render={({ field: { value, onChange, onBlur } }) => (
               <InputNumber
@@ -258,7 +267,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           </div>
           <div css={hostInputContainer}>
             <Controller
-              defaultValue={resource?.content.databaseUsername}
+              defaultValue={content.databaseUsername}
               control={control}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -276,7 +285,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             />
             <Controller
               control={control}
-              defaultValue={resource?.content.databasePassword}
+              defaultValue={content.databasePassword}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
                   borderColor="techPurple"
@@ -326,7 +335,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
           </div>
           <Controller
             control={control}
-            defaultValue={resource?.content.ssl}
+            defaultValue={content.ssl}
             render={({ field: { value, onChange, onBlur } }) => (
               <Switch
                 checked={value}

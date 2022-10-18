@@ -205,6 +205,8 @@
             "database_index": "数据库索引",
             "hostname": "主机",
             "hostname_port": "主机/端口",
+            "mongodb_ssl_client": "Client Cert and Key",
+            "mongodb_ssl_ca": "CA Cert",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
             "name": "名称",

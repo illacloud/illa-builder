@@ -29,7 +29,7 @@ export const Databases: ResourceDataItem[] = [
   },
   {
     resourceType: "mongodb",
-    isDraft: true,
+    isDraft: false,
   },
   {
     resourceType: "elastic",
