@@ -12,7 +12,7 @@ import {
   viewSetterWrapperStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
 
-export const TabsSetter: FC<ViewSetterProps> = memo(
+export const TabListSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
     const {
       value,
@@ -80,4 +80,4 @@ export const TabsSetter: FC<ViewSetterProps> = memo(
   },
 )
 
-TabsSetter.displayName = "TabsSetter"
+TabListSetter.displayName = "TabListSetter"
