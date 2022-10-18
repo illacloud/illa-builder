@@ -1,8 +1,9 @@
 import { MysqlLikeAction } from "./mysqlLikeAction"
 import { BodyContent, RestApiAction } from "./restapiAction"
 import { TransformerAction } from "./transformerAction"
-import { MongoDbAction } from "./mongoDbAction"
+import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { RedisAction } from "./redisAction"
+import { MongoDbConfig } from "@/redux/resource/mongodbResource"
 
 export interface Transformer {
   rawData: string
@@ -58,7 +59,7 @@ export type ActionContent =
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
-  | MongoDbAction
+  | MongoDbAction<MongoDbActionTypeContent>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 
