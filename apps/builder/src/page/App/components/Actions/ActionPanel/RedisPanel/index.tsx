@@ -2,10 +2,7 @@ import { FC, useEffect, useState } from "react"
 import { RedisPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { useDispatch } from "react-redux"
 import { Api } from "@/api/base"
-import {
-  mysqlContainerStyle,
-  sqlInputStyle,
-} from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
+import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -14,6 +11,7 @@ import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { isObject } from "@illa-design/system"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}
@@ -58,7 +56,7 @@ export const RedisPanel: FC<RedisPanelProps> = (props) => {
   }, [currentAction.resourceId])
 
   return (
-    <div css={mysqlContainerStyle}>
+    <div css={redisContainerStyle}>
       <ResourceChoose action={currentAction} />
       <CodeEditor
         placeholder="SET runoobkey redis"

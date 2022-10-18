@@ -4,19 +4,14 @@ import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/Resour
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
-  codeEditorLabelStyle,
   mongoContainerStyle,
   mongoItemCodeEditorStyle,
   mongoItemLabelStyle,
   mongoItemStyle,
-  topDivider,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
 import { Select } from "@illa-design/select"
 import { useTranslation } from "react-i18next"
-import {
-  AggregateContent,
-  MongoDbActionList,
-} from "@/redux/currentApp/action/mongoDbAction"
+import { MongoDbActionList } from "@/redux/currentApp/action/mongoDbAction"
 import { Controller, useForm } from "react-hook-form"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
@@ -38,7 +33,6 @@ export const MongoDbPanel: FC<MongoDbPanelProps> = (props) => {
   return (
     <div css={mongoContainerStyle}>
       <ResourceChoose action={currentAction} />
-      <div css={topDivider} />
       <form>
         <div css={mongoItemStyle}>
           <span css={mongoItemLabelStyle}>
