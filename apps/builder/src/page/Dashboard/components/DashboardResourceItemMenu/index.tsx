@@ -16,6 +16,7 @@ import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourc
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import { RootState } from "@/store"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
+import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 
 const Item = DropList.Item
 
@@ -122,6 +123,7 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
       </Space>
       <Modal
         w="696px"
+        h="100%"
         visible={resourceEditorVisible}
         footer={false}
         closable
@@ -132,15 +134,17 @@ export const DashboardResourceItemMenu: FC<DashboardResourceItemMenuProps> = (
           setResourceEditorVisible(false)
         }}
       >
-        <ResourceCreator
-          resourceId={resourceId}
-          onBack={() => {
-            setResourceEditorVisible(false)
-          }}
-          onFinished={() => {
-            setResourceEditorVisible(false)
-          }}
-        />
+        <div css={modalContentStyle}>
+          <ResourceCreator
+            resourceId={resourceId}
+            onBack={() => {
+              setResourceEditorVisible(false)
+            }}
+            onFinished={() => {
+              setResourceEditorVisible(false)
+            }}
+          />
+        </div>
       </Modal>
     </>
   )

@@ -10,6 +10,7 @@ import {
   getResourceNameFromResourceType,
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
+import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
@@ -50,6 +51,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   return (
     <Modal
       w="696px"
+      h="100%"
       visible={visible}
       footer={false}
       closable
@@ -62,45 +64,47 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
         setCurrentActionType(null)
       }}
     >
-      {currentStep === "select" && (
-        <ActionTypeSelector
-          onSelect={(actionType) => {
-            if (actionType == "transformer") {
-              onClose()
-            } else {
-              setCurrentStep("createAction")
+      <div css={modalContentStyle}>
+        {currentStep === "select" && (
+          <ActionTypeSelector
+            onSelect={(actionType) => {
+              if (actionType == "transformer") {
+                onClose()
+              } else {
+                setCurrentStep("createAction")
+                setCurrentActionType(actionType)
+              }
+            }}
+          />
+        )}
+        {currentStep === "createAction" && currentActionType && (
+          <ActionResourceSelector
+            actionType={currentActionType}
+            onBack={(page) => {
+              setCurrentStep(page)
+            }}
+            onCreateResource={(actionType) => {
               setCurrentActionType(actionType)
-            }
-          }}
-        />
-      )}
-      {currentStep === "createAction" && currentActionType && (
-        <ActionResourceSelector
-          actionType={currentActionType}
-          onBack={(page) => {
-            setCurrentStep(page)
-          }}
-          onCreateResource={(actionType) => {
-            setCurrentActionType(actionType)
-            setCurrentStep("createResource")
-          }}
-          onCreateAction={(actionType, resourceId) => {
-            setCurrentStep("select")
-            onClose()
-          }}
-        />
-      )}
-      {currentStep === "createResource" && transformResource && (
-        <ActionResourceCreator
-          resourceType={transformResource}
-          onBack={(page) => {
-            setCurrentStep(page)
-          }}
-          onFinished={(resourceId) => {
-            setCurrentStep("createAction")
-          }}
-        />
-      )}
+              setCurrentStep("createResource")
+            }}
+            onCreateAction={(actionType, resourceId) => {
+              setCurrentStep("select")
+              onClose()
+            }}
+          />
+        )}
+        {currentStep === "createResource" && transformResource && (
+          <ActionResourceCreator
+            resourceType={transformResource}
+            onBack={(page) => {
+              setCurrentStep(page)
+            }}
+            onFinished={(resourceId) => {
+              setCurrentStep("createAction")
+            }}
+          />
+        )}
+      </div>
     </Modal>
   )
 }

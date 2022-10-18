@@ -9,6 +9,7 @@ import { ResourceType } from "@/redux/resource/resourceState"
 import { ResourceTypeSelector } from "@/page/Dashboard/components/ResourceGenerator/ResourceTypeSelector"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
+import { modalContentStyle } from "./style"
 
 export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
   const { visible, onClose } = props
@@ -37,6 +38,7 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
   return (
     <Modal
       w="696px"
+      h="100%"
       visible={visible}
       footer={false}
       closable
@@ -49,28 +51,30 @@ export const ResourceGenerator: FC<ResourceGeneratorProps> = (props) => {
         setCurrentResource(null)
       }}
     >
-      {currentStep === "select" && (
-        <ResourceTypeSelector
-          onSelect={(resourceType) => {
-            setCurrentStep("createResource")
-            setCurrentResource(resourceType)
-          }}
-        />
-      )}
-      {currentStep === "createResource" && currentResource != null && (
-        <ResourceCreator
-          onBack={() => {
-            setCurrentStep("select")
-            setCurrentResource(null)
-          }}
-          onFinished={() => {
-            setCurrentStep("select")
-            setCurrentResource(null)
-            onClose()
-          }}
-          resourceType={currentResource}
-        />
-      )}
+      <div css={modalContentStyle}>
+        {currentStep === "select" && (
+          <ResourceTypeSelector
+            onSelect={(resourceType) => {
+              setCurrentStep("createResource")
+              setCurrentResource(resourceType)
+            }}
+          />
+        )}
+        {currentStep === "createResource" && currentResource != null && (
+          <ResourceCreator
+            onBack={() => {
+              setCurrentStep("select")
+              setCurrentResource(null)
+            }}
+            onFinished={() => {
+              setCurrentStep("select")
+              setCurrentResource(null)
+              onClose()
+            }}
+            resourceType={currentResource}
+          />
+        )}
+      </div>
     </Modal>
   )
 }
