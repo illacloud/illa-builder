@@ -29,6 +29,7 @@ import { ViewsSetter } from "@/page/App/components/PanelSetters/ContainerSetter/
 import { ContainerDefaultViewKeySetter } from "@/page/App/components/PanelSetters/ContainerSetter/defaultViewKeySetter"
 import { TabListSetter } from "@/page/App/components/PanelSetters/TabsSetter/TabListSetter"
 import { TabsContainerSelectSetter } from "@/page/App/components/PanelSetters/TabsSetter/TabsContainerSelectSetter"
+import { ViewListSetter } from "@/page/App/components/PanelSetters/TabsSetter/ViewListSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -44,6 +45,7 @@ const SetterTypeMapSetter = {
   COLUMN_SETTER: ColumnSetter,
   COLUMNS_SELECT_SETTER: ColumnsSelectSetter,
   TABS_LIST_SETTER: TabListSetter,
+  TABS_VIEW_LIST_SETTER: ViewListSetter,
   TABS_CONTAINER_SELECT_SETTER: TabsContainerSelectSetter,
   TABLE_DATA_INPUT_SETTER: TableDataInputSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,

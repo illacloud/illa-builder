@@ -20,4 +20,5 @@ export interface TabsWidgetProps
     BaseWidgetProps,
     TooltipWrapperProps {
   navigateContainer?: boolean
+  targetContainerId?: string
 }

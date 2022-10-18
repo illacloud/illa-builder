@@ -7,12 +7,10 @@ import { ViewListSetterProvider } from "./context/viewsListContext"
 import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import {
-  setterPublicWrapper,
-  viewSetterWrapperStyle,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
+import { setterPublicWrapper, viewSetterWrapperStyle } from "./style"
+import { RootState } from "@/store"
 
-export const TabListSetter: FC<ViewSetterProps> = memo(
+export const ViewListSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
     const {
       value,
@@ -21,28 +19,43 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
       widgetDisplayName,
       childrenSetter,
       handleUpdateMultiAttrDSL,
+      handleUpdateOtherMultiAttrDSL,
     } = props
     const executionResult = useSelector(getExecutionResult)
 
-    console.log(value, attrName, "TabList value")
+    const targetComponentProps = useSelector<RootState, Record<string, any>>(
+      (rootState) => {
+        const executionTree = getExecutionResult(rootState)
+        return get(executionTree, widgetDisplayName, {})
+      },
+    )
+
+    const targetContainerDisplayName = useMemo(() => {
+      return get(targetComponentProps, "targetContainerId", "") as string
+    }, [targetComponentProps])
+
     const allViews = useMemo(() => {
       return get(
         executionResult,
-        `${widgetDisplayName}.${attrName}`,
+        `${targetContainerDisplayName}.${attrName}`,
         [],
       ) as ViewItemShape[]
-    }, [attrName, executionResult, widgetDisplayName])
+    }, [attrName, executionResult, targetContainerDisplayName])
+
+    console.log(allViews, attrName, "ViewListSetter value")
 
     const allViewsKeys = useMemo(() => {
-      console.log(allViews, "TabList allViews")
+      console.log(allViews, "ViewListSetter allViews")
       return allViews.map((view) => view.key)
     }, [allViews])
 
     const viewComponentsArray = useMemo(() => {
-      return get(executionResult, `${widgetDisplayName}.viewComponentsArray`, [
-        [],
-      ])
-    }, [executionResult, widgetDisplayName])
+      return get(
+        executionResult,
+        `${targetContainerDisplayName}.viewComponentsArray`,
+        [[]],
+      )
+    }, [executionResult, targetContainerDisplayName])
 
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
@@ -60,17 +73,17 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
 
     return (
       <ViewListSetterProvider
-        list={value}
+        list={allViews}
         childrenSetter={childrenSetter || []}
         handleUpdateDsl={handleUpdateDsl}
-        widgetDisplayName={widgetDisplayName}
+        widgetDisplayName={targetContainerDisplayName}
         attrPath={attrName}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
       >
         <div css={setterPublicWrapper}>
           <div css={viewSetterWrapperStyle}>
             <Header
-              labelName="tab"
+              labelName="view"
               addAction={handleAddViewItem}
               hasAddAction
             />
@@ -82,4 +95,4 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
   },
 )
 
-TabListSetter.displayName = "TabListSetter"
+ViewListSetter.displayName = "ViewListSetter"
