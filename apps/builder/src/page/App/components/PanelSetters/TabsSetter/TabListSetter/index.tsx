@@ -24,6 +24,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
     } = props
     const executionResult = useSelector(getExecutionResult)
 
+    console.log(value, attrName, "TabList value")
     const allViews = useMemo(() => {
       return get(
         executionResult,
@@ -33,6 +34,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
     }, [attrName, executionResult, widgetDisplayName])
 
     const allViewsKeys = useMemo(() => {
+      console.log(allViews, "TabList allViews")
       return allViews.map((view) => view.key)
     }, [allViews])
 
@@ -58,7 +60,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
 
     return (
       <ViewListSetterProvider
-        viewsList={value}
+        list={value}
         childrenSetter={childrenSetter || []}
         handleUpdateDsl={handleUpdateDsl}
         widgetDisplayName={widgetDisplayName}

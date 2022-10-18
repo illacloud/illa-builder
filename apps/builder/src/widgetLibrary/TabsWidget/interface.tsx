@@ -11,7 +11,8 @@ export interface WrappedTabsProps extends TabsProps {
   disable?: boolean
   horizontalAlign?: HorizontalAlign
   verticalAlign?: VerticalAlign
-  viewList: viewListItemShaper[]
+  viewList?: viewListItemShaper[]
+  tabList?: viewListItemShaper[]
 }
 
 export interface TabsWidgetProps

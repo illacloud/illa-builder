@@ -1,14 +1,15 @@
 import { FC, useContext } from "react"
-import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
+import { ViewListSetterContext } from "./context/viewsListContext"
 import { ListItem } from "./listItem"
 
 export const ListBody: FC = () => {
-  const { viewsList } = useContext(ViewListSetterContext)
+  const { list } = useContext(ViewListSetterContext)
+  console.log(list, "TabList useContext")
 
-  if (!Array.isArray(viewsList)) return null
+  if (!Array.isArray(list)) return null
   return (
     <>
-      {viewsList.map((item, index) => {
+      {list.map((item, index) => {
         const { id } = item
         return <ListItem value={item} key={id} index={index} />
       })}

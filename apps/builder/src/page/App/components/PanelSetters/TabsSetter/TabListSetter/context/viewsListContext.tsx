@@ -10,7 +10,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { cloneDeep, get } from "lodash"
 
 interface ProviderProps {
-  viewsList: ViewItemShape[]
+  list: ViewItemShape[]
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
   attrPath: string
@@ -31,7 +31,7 @@ export const ViewListSetterContext = createContext<Inject>({} as Inject)
 
 export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   const {
-    viewsList,
+    list,
     attrPath,
     handleUpdateDsl,
     widgetDisplayName,
@@ -63,8 +63,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
 
   const handleDeleteOptionItem = useCallback(
     (index: number) => {
-      if (viewsList.length <= 1) return
-      const updatedArray = viewsList.filter(
+      if (list.length <= 1) return
+      const updatedArray = list.filter(
         (optionItem: Record<string, any>, i: number) => {
           return i !== index
         },
@@ -81,7 +81,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       }
 
       if (currentViewIndex !== index) {
-        const oldCurrentViewKey = viewsList[currentViewIndex].key
+        const oldCurrentViewKey = list[currentViewIndex].key
         const newCurrentViewIndex = updatedArray.findIndex(
           (item) => item.key === oldCurrentViewKey,
         )
@@ -94,7 +94,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       handleUpdateMultiAttrDSL?.(updateSlice)
     },
     [
-      viewsList,
+      list,
       viewComponentsArray,
       attrPath,
       allViewsKeys,
@@ -105,7 +105,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
 
   const handleCopyOptionItem = useCallback(
     (index: number) => {
-      let targetOptionItem = viewsList.find(
+      let targetOptionItem = list.find(
         (optionItem: Record<string, any>, i: number) => {
           return i === index
         },
@@ -117,42 +117,37 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         key: newItem.key,
         id: generateViewItemId(),
       }
-      const updatedArray = [...viewsList, targetOptionItem]
+      const updatedArray = [...list, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)
     },
-    [viewsList, allViewsKeys, handleUpdateDsl, attrPath],
+    [list, allViewsKeys, handleUpdateDsl, attrPath],
   )
 
   const handleUpdateCurrentViewIndex = useCallback(
     (index: number) => {
-      if (index > viewsList.length || index < 0) return
+      if (index > list.length || index < 0) return
       const currentViewKey = allViews[index].key
       handleUpdateMultiAttrDSL?.({
         currentViewIndex: index,
         currentViewKey: currentViewKey || index,
       })
     },
-    [allViews, handleUpdateMultiAttrDSL, viewsList.length],
+    [allViews, handleUpdateMultiAttrDSL, list.length],
   )
 
   const handleMoveOptionItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
-      const dragOptionItem = viewsList[dragIndex]
+      const dragOptionItem = list[dragIndex]
       const dragViewArray = viewComponentsArray[dragIndex]
       const hoverViewArray = viewComponentsArray[hoverIndex]
-      const currentSelected = viewsList[currentViewIndex]
+      const currentSelected = list[currentViewIndex]
       if (!dragViewArray || !hoverViewArray) return
       const newViewComponentsArray = cloneDeep(
         viewComponentsArray,
       ) as string[][]
-      ;[
-        newViewComponentsArray[dragIndex],
-        newViewComponentsArray[hoverIndex],
-      ] = [
-        newViewComponentsArray[hoverIndex],
-        newViewComponentsArray[dragIndex],
-      ]
-      const newViews = [...viewsList]
+      ;[newViewComponentsArray[dragIndex], newViewComponentsArray[hoverIndex]] =
+        [newViewComponentsArray[hoverIndex], newViewComponentsArray[dragIndex]]
+      const newViews = [...list]
       newViews.splice(dragIndex, 1)
       newViews.splice(hoverIndex, 0, dragOptionItem)
       const newSelectedIndex = newViews.findIndex(
@@ -173,7 +168,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       handleUpdateDsl,
       handleUpdateMultiAttrDSL,
       viewComponentsArray,
-      viewsList,
+      list,
     ],
   )
   const value = {

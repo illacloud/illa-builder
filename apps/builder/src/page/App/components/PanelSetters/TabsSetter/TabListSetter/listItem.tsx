@@ -4,11 +4,11 @@ import {
   copyIconStyle,
   iconStyle,
   listItemTriggerWrapperStyle,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+} from "./style"
+import { ViewItemShape } from "./interface"
 import { CopyIcon, ReduceIcon } from "@illa-design/icon"
-import { DragIconAndLabel } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/dragIconAndLabel"
-import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
+import { DragIconAndLabel } from "./dragIconAndLabel"
+import { ViewListSetterContext } from "./context/viewsListContext"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { Trigger } from "@illa-design/trigger"
 import { useTranslation } from "react-i18next"

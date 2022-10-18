@@ -10,13 +10,10 @@ import {
   labelAndDragIconWrapperStyle,
   labelWrapperStyle,
   moveIconStyle,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
+} from "./style"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
-import {
-  DragIconAndLabelProps,
-  ViewItemShape,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+import { ViewListSetterContext } from "./context/viewsListContext"
+import { DragIconAndLabelProps, ViewItemShape } from "./interface"
 
 interface optionIconProps {
   isSelected: boolean
@@ -64,6 +61,8 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       `${widgetDisplayName}.${attrPath}.${index}.label`,
     )
   }, [executionResult, widgetDisplayName, attrPath, index])
+
+  console.log(attrPath, labelName, otherViewKeys, currentViews, "TabList")
 
   const handleChangeCurrentView = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
