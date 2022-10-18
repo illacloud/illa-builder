@@ -63,56 +63,52 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   return (
-    <div>
-      <form onSubmit={handleSubmit((data, event) => {})}>
-        <div css={container}>
-          <div css={divider} />
-          <div css={configItem}>
-            <div css={labelContainer}>
-              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                *
-              </span>
-              <span
-                css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-              >
-                {t("editor.action.resource.db.label.name")}
-              </span>
-            </div>
-            <Controller
-              control={control}
-              defaultValue={findResource?.resourceName ?? ""}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  ml="16px"
-                  mr="24px"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                  placeholder={t("editor.action.resource.db.placeholder.name")}
-                />
-              )}
-              name="resourceName"
-            />
+    <form onSubmit={handleSubmit((data, event) => {})}>
+      <div css={container}>
+        <div css={divider} />
+        <div css={configItem}>
+          <div css={labelContainer}>
+            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
+            <span
+              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
+            >
+              {t("editor.action.resource.db.label.name")}
+            </span>
           </div>
-          <div css={configItemTip}>
-            {t("editor.action.resource.restapi.tip.name")}
-          </div>
-          <Divider
-            direction="horizontal"
-            ml="24px"
-            mr="24px"
-            mt="8px"
-            mb="8px"
-            w="unset"
+          <Controller
+            control={control}
+            defaultValue={findResource?.resourceName ?? ""}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <Input
+                w="100%"
+                ml="16px"
+                mr="24px"
+                onBlur={onBlur}
+                onChange={onChange}
+                value={value}
+                borderColor="techPurple"
+                placeholder={t("editor.action.resource.db.placeholder.name")}
+              />
+            )}
+            name="resourceName"
           />
-          <div css={optionLabelStyle}>
-            {t("editor.action.resource.db.title.general_option")}
-          </div>
+        </div>
+        <div css={configItemTip}>
+          {t("editor.action.resource.restapi.tip.name")}
+        </div>
+        <Divider
+          direction="horizontal"
+          ml="24px"
+          mr="24px"
+          mt="8px"
+          mb="8px"
+          w="unset"
+        />
+        <div css={optionLabelStyle}>
+          {t("editor.action.resource.db.title.general_option")}
         </div>
         {configMode === "gui" && (
           <MongoDbGuiMode control={control} resourceId={resourceId} />
@@ -173,7 +169,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                     value={value}
                     autoSize
                     placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.mongo_certificate",
                     )}
                   />
                 )}
@@ -213,7 +209,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
             </div>
           </>
         )}
-      </form>
+      </div>
       <div css={footerStyle}>
         <Button
           leftIcon={<PaginationPreIcon />}
@@ -274,7 +270,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
           </Button>
         </ButtonGroup>
       </div>
-    </div>
+    </form>
   )
 }
 
