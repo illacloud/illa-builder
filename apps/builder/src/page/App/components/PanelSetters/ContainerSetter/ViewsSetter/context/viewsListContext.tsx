@@ -97,11 +97,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
 
       handleUpdateMultiAttrDSL?.(updateSlice)
       if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          [attrPath]: updatedArray,
-          currentIndex: updateSlice.currentViewIndex,
-          currentKey: updateSlice.currentViewKey,
-        })
+        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, updateSlice)
       }
       dispatch(
         componentsActions.deleteComponentNodeReducer({
@@ -140,11 +136,6 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       }
       const updatedArray = [...viewsList, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)
-      console.log(
-        linkWidgetDisplayName,
-        handleUpdateOtherMultiAttrDSL,
-        "linkWidget",
-      )
       if (linkWidgetDisplayName) {
         handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
           [attrPath]: updatedArray,

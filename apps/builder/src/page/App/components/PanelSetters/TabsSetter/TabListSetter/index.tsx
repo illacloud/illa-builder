@@ -43,13 +43,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
       handleUpdateMultiAttrDSL?.({
         [attrName]: [...value, newItem],
       })
-    }, [
-      allViewsKeys,
-      handleUpdateMultiAttrDSL,
-      attrName,
-      value,
-      viewComponentsArray,
-    ])
+    }, [allViewsKeys, handleUpdateMultiAttrDSL, attrName, value])
 
     return (
       <ViewListSetterProvider
