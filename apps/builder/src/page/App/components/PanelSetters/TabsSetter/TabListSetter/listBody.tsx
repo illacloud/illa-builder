@@ -4,7 +4,6 @@ import { ListItem } from "./listItem"
 
 export const ListBody: FC = () => {
   const { list } = useContext(ViewListSetterContext)
-  console.log(list, "TabList useContext")
 
   if (!Array.isArray(list)) return null
   return (

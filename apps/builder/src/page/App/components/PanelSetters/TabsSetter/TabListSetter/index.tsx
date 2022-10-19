@@ -7,10 +7,7 @@ import { ViewListSetterProvider } from "./context/viewsListContext"
 import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import {
-  setterPublicWrapper,
-  viewSetterWrapperStyle,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
+import { setterPublicWrapper, viewSetterWrapperStyle } from "./style"
 
 export const TabListSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -24,7 +21,6 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
     } = props
     const executionResult = useSelector(getExecutionResult)
 
-    console.log(value, attrName, "TabList value")
     const allViews = useMemo(() => {
       return get(
         executionResult,
@@ -34,7 +30,6 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
     }, [attrName, executionResult, widgetDisplayName])
 
     const allViewsKeys = useMemo(() => {
-      console.log(allViews, "TabList allViews")
       return allViews.map((view) => view.key)
     }, [allViews])
 

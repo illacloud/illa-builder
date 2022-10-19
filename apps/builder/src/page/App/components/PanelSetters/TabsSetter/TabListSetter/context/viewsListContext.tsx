@@ -3,7 +3,7 @@ import { ViewItemShape } from "../interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   generateNewViewItem,
-  generateViewItemId,
+  generateTabItemId,
 } from "../utils/generateNewOptions"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -30,13 +30,7 @@ interface Inject extends Omit<ProviderProps, "children"> {
 export const ViewListSetterContext = createContext<Inject>({} as Inject)
 
 export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
-  const {
-    list,
-    attrPath,
-    handleUpdateDsl,
-    widgetDisplayName,
-    handleUpdateMultiAttrDSL,
-  } = props
+  const { list, attrPath, widgetDisplayName, handleUpdateMultiAttrDSL } = props
   const executionResult = useSelector(getExecutionResult)
 
   const allViews = useMemo(() => {
@@ -47,14 +41,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     ) as ViewItemShape[]
   }, [attrPath, executionResult, widgetDisplayName])
 
-  const viewComponentsArray = useMemo(() => {
-    return get(executionResult, `${widgetDisplayName}.viewComponentsArray`, [
-      [],
-    ]) as string[][]
-  }, [executionResult, widgetDisplayName])
-
   const currentViewIndex = useMemo(() => {
-    return get(executionResult, `${widgetDisplayName}.currentViewIndex`)
+    return get(executionResult, `${widgetDisplayName}.currentIndex`)
   }, [executionResult, widgetDisplayName])
 
   const allViewsKeys = useMemo(() => {
@@ -69,15 +57,11 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
           return i !== index
         },
       )
-      const newViewComponentsArray = viewComponentsArray.filter(
-        (displayNames, i) => i !== index,
-      )
 
       const updateSlice = {
         [attrPath]: updatedArray,
-        currentViewIndex: 0,
-        currentViewKey: allViewsKeys[0],
-        viewComponentsArray: newViewComponentsArray,
+        currentIndex: 0,
+        currentKey: allViewsKeys[0],
       }
 
       if (currentViewIndex !== index) {
@@ -86,21 +70,14 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
           (item) => item.key === oldCurrentViewKey,
         )
         if (newCurrentViewIndex !== -1) {
-          updateSlice.currentViewIndex = newCurrentViewIndex
-          updateSlice.currentViewKey = oldCurrentViewKey
+          updateSlice.currentIndex = newCurrentViewIndex
+          updateSlice.currentKey = oldCurrentViewKey
         }
       }
 
       handleUpdateMultiAttrDSL?.(updateSlice)
     },
-    [
-      list,
-      viewComponentsArray,
-      attrPath,
-      allViewsKeys,
-      currentViewIndex,
-      handleUpdateMultiAttrDSL,
-    ],
+    [list, attrPath, allViewsKeys, currentViewIndex, handleUpdateMultiAttrDSL],
   )
 
   const handleCopyOptionItem = useCallback(
@@ -115,12 +92,14 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       targetOptionItem = {
         ...targetOptionItem,
         key: newItem.key,
-        id: generateViewItemId(),
+        id: generateTabItemId(),
       }
       const updatedArray = [...list, targetOptionItem]
-      handleUpdateDsl(attrPath, updatedArray)
+      handleUpdateMultiAttrDSL?.({
+        [attrPath]: updatedArray,
+      })
     },
-    [list, allViewsKeys, handleUpdateDsl, attrPath],
+    [list, allViewsKeys, handleUpdateMultiAttrDSL, attrPath],
   )
 
   const handleUpdateCurrentViewIndex = useCallback(
@@ -128,8 +107,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       if (index > list.length || index < 0) return
       const currentViewKey = allViews[index].key
       handleUpdateMultiAttrDSL?.({
-        currentViewIndex: index,
-        currentViewKey: currentViewKey || index,
+        currentIndex: index,
+        currentKey: currentViewKey || index,
       })
     },
     [allViews, handleUpdateMultiAttrDSL, list.length],
@@ -138,15 +117,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   const handleMoveOptionItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
       const dragOptionItem = list[dragIndex]
-      const dragViewArray = viewComponentsArray[dragIndex]
-      const hoverViewArray = viewComponentsArray[hoverIndex]
       const currentSelected = list[currentViewIndex]
-      if (!dragViewArray || !hoverViewArray) return
-      const newViewComponentsArray = cloneDeep(
-        viewComponentsArray,
-      ) as string[][]
-      ;[newViewComponentsArray[dragIndex], newViewComponentsArray[hoverIndex]] =
-        [newViewComponentsArray[hoverIndex], newViewComponentsArray[dragIndex]]
       const newViews = [...list]
       newViews.splice(dragIndex, 1)
       newViews.splice(hoverIndex, 0, dragOptionItem)
@@ -156,20 +127,11 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       const newSelectedKey = newViews[newSelectedIndex].key
       handleUpdateMultiAttrDSL?.({
         [attrPath]: newViews,
-        viewComponentsArray: newViewComponentsArray,
-        currentViewIndex: newSelectedIndex,
-        currentViewKey: newSelectedKey,
+        currentIndex: newSelectedIndex,
+        currentKey: newSelectedKey,
       })
-      handleUpdateDsl(attrPath, newViews)
     },
-    [
-      attrPath,
-      currentViewIndex,
-      handleUpdateDsl,
-      handleUpdateMultiAttrDSL,
-      viewComponentsArray,
-      list,
-    ],
+    [attrPath, currentViewIndex, handleUpdateMultiAttrDSL, list],
   )
   const value = {
     ...props,

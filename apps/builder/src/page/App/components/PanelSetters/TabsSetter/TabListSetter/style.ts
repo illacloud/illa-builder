@@ -27,18 +27,6 @@ export const HeaderLabelStyle = css`
   font-size: 14px;
 `
 
-export const applyOptionStyle = (isSelect: boolean) => {
-  return css`
-    width: 16px;
-    height: 16px;
-    border-radius: 8px;
-    border: ${isSelect
-      ? `4px solid ${globalColor(`--${illaPrefix}-techPurple-01`)}`
-      : `2px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)}`};
-    cursor: pointer;
-  `
-}
-
 export const labelAndDragIconWrapperStyle = css`
   display: flex;
   align-items: center;

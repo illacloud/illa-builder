@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo, MouseEvent } from "react"
+import { FC, useCallback, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DragPointIcon, WarningCircleIcon } from "@illa-design/icon"
@@ -6,7 +6,6 @@ import { Trigger } from "@illa-design/trigger"
 import { get } from "lodash"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import {
-  applyOptionStyle,
   labelAndDragIconWrapperStyle,
   labelWrapperStyle,
   moveIconStyle,
@@ -15,23 +14,9 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { ViewListSetterContext } from "./context/viewsListContext"
 import { DragIconAndLabelProps, ViewItemShape } from "./interface"
 
-interface optionIconProps {
-  isSelected: boolean
-  onClick: (e: MouseEvent<HTMLDivElement>) => void
-}
-
-const OptionIcon: FC<optionIconProps> = ({ isSelected, onClick }) => {
-  return <div css={applyOptionStyle(isSelected)} onClick={onClick} />
-}
-
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index } = props
-  const {
-    widgetDisplayName,
-    attrPath,
-    currentViewIndex,
-    handleUpdateCurrentViewIndex,
-  } = useContext(ViewListSetterContext)
+  const { widgetDisplayName, attrPath } = useContext(ViewListSetterContext)
 
   const { t } = useTranslation()
   const executionResult = useSelector(getExecutionResult)
@@ -62,24 +47,10 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     )
   }, [executionResult, widgetDisplayName, attrPath, index])
 
-  console.log(attrPath, labelName, otherViewKeys, currentViews, "TabList")
-
-  const handleChangeCurrentView = useCallback(
-    (e: MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation()
-      handleUpdateCurrentViewIndex(index)
-    },
-    [handleUpdateCurrentViewIndex, index],
-  )
-
   return (
     <span css={labelAndDragIconWrapperStyle}>
       <DragPointIcon css={moveIconStyle} id="dragIcon" />
       <div css={labelWrapperStyle}>
-        <OptionIcon
-          isSelected={currentViewIndex === index}
-          onClick={handleChangeCurrentView}
-        />
         <span style={{ maxWidth: "147px" }}>{labelName}</span>
         {isDuplicationKey && (
           <Trigger

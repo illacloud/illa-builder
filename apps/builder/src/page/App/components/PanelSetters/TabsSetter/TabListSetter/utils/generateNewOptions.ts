@@ -1,29 +1,29 @@
 import { v4 } from "uuid"
 import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 
-export let viewNameSet = new Set<string>()
+export let tabNameSet = new Set<string>()
 
 const generateDatasetName = () => {
   let i = 1
-  let ViewName = `View ${i}`
-  while (viewNameSet.has(ViewName)) {
+  let TabName = `Tab ${i}`
+  while (tabNameSet.has(TabName)) {
     i++
-    ViewName = `View ${i}`
+    TabName = `Tab ${i}`
   }
-  return ViewName
+  return TabName
 }
 
-export const generateViewItemId = () => `views-${v4()}`
+export const generateTabItemId = () => `views-${v4()}`
 
 export const generateNewViewItem = (
   hasViewNameSet: string[],
 ): ViewItemShape => {
-  viewNameSet = new Set<string>(hasViewNameSet)
-  const viewName = generateDatasetName()
+  tabNameSet = new Set<string>(hasViewNameSet)
+  const tabName = generateDatasetName()
 
   return {
-    id: generateViewItemId(),
-    key: viewName,
-    label: viewName,
+    id: generateTabItemId(),
+    key: tabName,
+    label: tabName,
   }
 }
