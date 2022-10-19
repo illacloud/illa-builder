@@ -4,15 +4,14 @@ import { TabsProps } from "@illa-design/tabs"
 import { viewListItemShaper } from "@/widgetLibrary/ContainerWidget/interface"
 
 export type HorizontalAlign = "start" | "center" | "end"
-export type VerticalAlign = "start" | "center" | "end"
 
-export interface WrappedTabsProps extends TabsProps {
+export interface WrappedTabsProps extends TabsProps, BaseWidgetProps {
   value?: string
   disable?: boolean
   horizontalAlign?: HorizontalAlign
-  verticalAlign?: VerticalAlign
   viewList?: viewListItemShaper[]
   tabList?: viewListItemShaper[]
+  handleOnChange?: () => void
 }
 
 export interface TabsWidgetProps
@@ -21,4 +20,5 @@ export interface TabsWidgetProps
     TooltipWrapperProps {
   navigateContainer?: boolean
   linkWidgetDisplayName?: string
+  currentKey?: string
 }

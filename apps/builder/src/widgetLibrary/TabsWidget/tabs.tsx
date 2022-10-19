@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
 import { applyAlignStyle, fullWidthAndFullHeightStyle } from "./style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
@@ -7,16 +7,32 @@ import { TabPane, Tabs } from "@illa-design/tabs"
 export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
   const {
     value,
+    activeKey,
     horizontalAlign,
-    verticalAlign,
     tabList,
     colorScheme,
     tabPosition,
+    handleUpdateDsl,
+    handleOnChange,
   } = props
+  const [currentKey, setCurrentKey] = useState(activeKey)
 
   return (
-    <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
-      <Tabs colorScheme={colorScheme} tabPosition={tabPosition}>
+    <div css={applyAlignStyle(horizontalAlign)}>
+      <Tabs
+        colorScheme={colorScheme}
+        tabPosition={tabPosition}
+        activeKey={currentKey}
+        onChange={(value) => {
+          setCurrentKey(value)
+          new Promise((resolve) => {
+            handleUpdateDsl({ currentKey: value })
+            resolve(true)
+          }).then(() => {
+            handleOnChange?.()
+          })
+        }}
+      >
         {tabList?.map((item) => {
           console.log(item, "TabList TabPane item")
           return (
@@ -38,10 +54,10 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   const {
     value,
     navigateContainer,
+    currentKey,
     tabList,
     viewList,
     horizontalAlign,
-    verticalAlign,
     displayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
@@ -55,7 +71,6 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     handleUpdateGlobalData(displayName, {
       value,
       horizontalAlign,
-      verticalAlign,
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -71,7 +86,6 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     displayName,
     value,
     horizontalAlign,
-    verticalAlign,
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
@@ -86,10 +100,11 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullWidthAndFullHeightStyle}>
         <WrappedTabs
+          {...props}
           tabList={list}
           value={value}
+          activeKey={currentKey}
           horizontalAlign={horizontalAlign}
-          verticalAlign={verticalAlign}
           colorScheme={colorScheme}
           tabPosition={tabPosition}
         />
