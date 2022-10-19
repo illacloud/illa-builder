@@ -42,8 +42,8 @@ export const ContainerDefaultViewKeySetter: FC<
       }
       handleUpdateMultiAttrDSL?.({
         [attrPath]: value,
-        currentViewIndex: currentIndex,
-        currentViewKey: currentKey,
+        currentIndex,
+        currentKey,
       })
     },
     [handleUpdateMultiAttrDSL, realViews],
