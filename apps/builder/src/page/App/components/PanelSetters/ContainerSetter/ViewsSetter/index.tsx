@@ -57,12 +57,6 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       return allViews.map((view) => view.key)
     }, [allViews])
 
-    const viewComponentsArray = useMemo(() => {
-      return get(executionResult, `${widgetDisplayName}.viewComponentsArray`, [
-        [],
-      ])
-    }, [executionResult, widgetDisplayName])
-
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
       const newChildrenNodes = generateComponentNode(
@@ -71,7 +65,6 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       )
       handleUpdateMultiAttrDSL?.({
         [attrName]: [...value, newItem],
-        viewComponentsArray: [...viewComponentsArray, []],
       })
       if (linkWidgetDisplayName) {
         handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
@@ -85,7 +78,6 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       handleUpdateMultiAttrDSL,
       attrName,
       value,
-      viewComponentsArray,
       dispatch,
     ])
 
