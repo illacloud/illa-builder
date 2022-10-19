@@ -3,7 +3,8 @@ import { BasicContainer } from "../BasicContainer/BasicContainer"
 import { FormWIdgetProps } from "./interface"
 import { testStyle, formHeaderStyle, formBodyStyle } from "./style"
 
-export const FormWidget: FC<FormWIdgetProps> = ({ childrenNode }) => {
+export const FormWidget: FC<FormWIdgetProps> = (props) => {
+  const { childrenNode, showFooter, showHeader } = props
   const renderHeader = useMemo(() => {
     const headerComponentNode = childrenNode[0]
     return <BasicContainer componentNode={headerComponentNode} />
@@ -19,9 +20,9 @@ export const FormWidget: FC<FormWIdgetProps> = ({ childrenNode }) => {
 
   return (
     <div css={testStyle}>
-      <div css={formHeaderStyle}>{renderHeader}</div>
+      {showHeader && <div css={formHeaderStyle}>{renderHeader}</div>}
       <div css={formBodyStyle}>{renderBody}</div>
-      <div css={formHeaderStyle}>{renderFooter}</div>
+      {showFooter && <div css={formHeaderStyle}>{renderFooter}</div>}
     </div>
   )
 }
