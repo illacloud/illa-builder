@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { get } from "lodash"
-import { ViewItemShape } from "./ViewsSetter/interface"
+import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 
 export const TabsDefaultTabKeySetter: FC<TabsDefaultTabKeySetterProps> = (
   props,
