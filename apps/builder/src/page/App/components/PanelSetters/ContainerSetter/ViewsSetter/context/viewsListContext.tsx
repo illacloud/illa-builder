@@ -28,10 +28,10 @@ interface ProviderProps {
 }
 
 interface Inject extends Omit<ProviderProps, "children"> {
+  currentViewIndex: number
   handleDeleteOptionItem: (index: number) => void
   handleCopyOptionItem: (index: number) => void
   handleUpdateCurrentViewIndex: (index: number) => void
-  currentViewIndex: number
   handleMoveOptionItem: (dragIndex: number, hoverIndex: number) => void
 }
 
@@ -60,7 +60,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   }, [attrPath, executionResult, widgetDisplayName])
 
   const currentViewIndex = useMemo(() => {
-    return get(executionResult, `${widgetDisplayName}.currentViewIndex`)
+    return get(executionResult, `${widgetDisplayName}.currentIndex`)
   }, [executionResult, widgetDisplayName])
 
   const allViewsKeys = useMemo(() => {
@@ -80,8 +80,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
 
       const updateSlice = {
         [attrPath]: updatedArray,
-        currentViewIndex: 0,
-        currentViewKey: allViewsKeys[0],
+        currentIndex: 0,
+        currentKey: allViewsKeys[0],
       }
 
       if (currentViewIndex !== index) {
@@ -90,8 +90,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
           (item) => item.key === oldCurrentViewKey,
         )
         if (newCurrentViewIndex !== -1) {
-          updateSlice.currentViewIndex = newCurrentViewIndex
-          updateSlice.currentViewKey = oldCurrentViewKey
+          updateSlice.currentIndex = newCurrentViewIndex
+          updateSlice.currentKey = oldCurrentViewKey
         }
       }
 
@@ -166,8 +166,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       if (index > viewsList.length || index < 0) return
       const currentViewKey = allViews[index].key
       handleUpdateMultiAttrDSL?.({
-        currentViewIndex: index,
-        currentViewKey: currentViewKey || index,
+        currentIndex: index,
+        currentKey: currentViewKey || index,
       })
       if (linkWidgetDisplayName) {
         handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
@@ -203,8 +203,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       const newSelectedKey = newViews[newSelectedIndex].key
       handleUpdateMultiAttrDSL?.({
         [attrPath]: newViews,
-        currentViewIndex: newSelectedIndex,
-        currentViewKey: newSelectedKey,
+        currentIndex: newSelectedIndex,
+        currentKey: newSelectedKey,
       })
       if (linkWidgetDisplayName) {
         handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {

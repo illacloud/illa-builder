@@ -19,5 +19,5 @@ export interface BaseSetter {
   widgetType: string
   widgetOrAction: "ACTION" | "WIDGET"
   defaultValue?: any
-  componentNode: ComponentNode
+  componentNode?: ComponentNode
 }
