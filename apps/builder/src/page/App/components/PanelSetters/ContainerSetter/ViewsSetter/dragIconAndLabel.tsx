@@ -17,6 +17,7 @@ import {
   DragIconAndLabelProps,
   ViewItemShape,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+import { RootState } from "@/store"
 
 interface optionIconProps {
   isSelected: boolean
@@ -38,6 +39,13 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
 
   const { t } = useTranslation()
   const executionResult = useSelector(getExecutionResult)
+
+  const targetComponentProps = useSelector<RootState, Record<string, any>>(
+    (rootState) => {
+      const executionTree = getExecutionResult(rootState)
+      return get(executionTree, widgetDisplayName, {})
+    },
+  )
 
   const currentViews = useMemo(() => {
     return get(executionResult, `${widgetDisplayName}.${attrPath}.${index}`)

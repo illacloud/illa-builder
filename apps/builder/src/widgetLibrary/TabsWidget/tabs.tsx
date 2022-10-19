@@ -5,11 +5,18 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TabPane, Tabs } from "@illa-design/tabs"
 
 export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
-  const { value, horizontalAlign, verticalAlign, tabList } = props
+  const {
+    value,
+    horizontalAlign,
+    verticalAlign,
+    tabList,
+    colorScheme,
+    tabPosition,
+  } = props
 
   return (
     <div css={applyAlignStyle(horizontalAlign, verticalAlign)}>
-      <Tabs>
+      <Tabs colorScheme={colorScheme} tabPosition={tabPosition}>
         {tabList?.map((item) => {
           console.log(item, "TabList TabPane item")
           return (
@@ -40,6 +47,8 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     tooltipText,
+    colorScheme,
+    tabPosition,
   } = props
 
   useEffect(() => {
@@ -81,6 +90,8 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
           value={value}
           horizontalAlign={horizontalAlign}
           verticalAlign={verticalAlign}
+          colorScheme={colorScheme}
+          tabPosition={tabPosition}
         />
       </div>
     </TooltipWrapper>

@@ -115,6 +115,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
       popupVisible={modalVisible}
       content={
         <SelectedProvider
+          widgetOrAction="WIDGET"
           handleUpdateDsl={handleUpdateDsl}
           handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
         >

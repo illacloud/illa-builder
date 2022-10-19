@@ -21,9 +21,9 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     tabList: defaultTabList,
     viewList: [],
-    // value: i18n.t("widget.text.default_value"),
     // horizontalAlign: "start",
     // verticalAlign: "center",
-    // colorScheme: "grayBlue",
+    colorScheme: "blue",
+    tabPosition: "top",
   },
 }

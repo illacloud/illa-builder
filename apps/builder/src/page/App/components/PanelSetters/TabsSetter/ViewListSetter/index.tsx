@@ -30,6 +30,8 @@ export const ViewListSetter: FC<ViewSetterProps> = memo(
       },
     )
 
+    console.log(targetComponentProps, "targetComponentProps")
+
     const linkWidgetDisplayName = useMemo(() => {
       return get(targetComponentProps, "linkWidgetDisplayName", "") as string
     }, [targetComponentProps])

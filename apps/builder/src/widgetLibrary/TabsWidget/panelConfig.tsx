@@ -168,7 +168,7 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         id: `${baseWidgetName}-layout-layout`,
         labelName: i18n.t("editor.inspect.setter_label.layout"),
         setterType: "RADIO_GROUP_SETTER",
-        attrName: "layout",
+        attrName: "tabPosition",
         options: [
           {
             label: <HorizontalStartIcon />,
@@ -236,7 +236,7 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
             labelName: i18n.t("editor.inspect.setter_label.text"),
             setterType: "COLOR_PICKER_SETTER",
             attrName: "colorScheme",
-            defaultValue: "grayBlue",
+            defaultValue: "blue",
           },
         ],
       },
