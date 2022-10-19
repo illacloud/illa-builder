@@ -79,12 +79,12 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
 
   const displayNameInMoveBar = useMemo(() => {
     if (componentNode.type === "CONTAINER_WIDGET" && realProps) {
-      const { currentViewIndex, viewList } = realProps
-      if (!Array.isArray(viewList) || currentViewIndex >= viewList.length)
+      const { currentIndex, viewList } = realProps
+      if (!Array.isArray(viewList) || currentIndex >= viewList.length)
         return componentNode.displayName + " / " + "View 1"
-      const labelName = viewList[currentViewIndex]
-        ? viewList[currentViewIndex].label
-        : currentViewIndex
+      const labelName = viewList[currentIndex]
+        ? viewList[currentIndex].label
+        : currentIndex
       return componentNode.displayName + " / " + labelName
     }
     return componentNode.displayName
