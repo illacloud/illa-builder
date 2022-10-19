@@ -8,7 +8,6 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
     handleOnClick,
     currentViewIndex,
-    viewComponentsArray,
     handleOnChange,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -32,16 +31,12 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   const renderComponent = useMemo(() => {
     const currentIndex = currentViewIndex
-    const currentViewComponentsArray = viewComponentsArray
-    if (
-      Array.isArray(currentViewComponentsArray) &&
-      currentIndex < currentViewComponentsArray.length
-    ) {
+    if (Array.isArray(childrenNode) && currentIndex < childrenNode.length) {
       const currentViewComponentNode = childrenNode[currentIndex]
       return <BasicContainer componentNode={currentViewComponentNode} />
     }
     return <ContainerEmptyState />
-  }, [childrenNode, currentViewIndex, viewComponentsArray])
+  }, [childrenNode, currentViewIndex])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {

@@ -52,12 +52,6 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     ) as ViewItemShape[]
   }, [attrPath, executionResult, widgetDisplayName])
 
-  const viewComponentsArray = useMemo(() => {
-    return get(executionResult, `${widgetDisplayName}.viewComponentsArray`, [
-      [],
-    ]) as string[][]
-  }, [executionResult, widgetDisplayName])
-
   const currentViewIndex = useMemo(() => {
     return get(executionResult, `${widgetDisplayName}.currentViewIndex`)
   }, [executionResult, widgetDisplayName])
@@ -147,10 +141,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   const handleMoveOptionItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
       const dragOptionItem = viewsList[dragIndex]
-      const dragViewArray = viewComponentsArray[dragIndex]
-      const hoverViewArray = viewComponentsArray[hoverIndex]
       const currentSelected = viewsList[currentViewIndex]
-      if (!dragViewArray || !hoverViewArray) return
       const newComponentNode = cloneDeep(componentNode.childrenNode)
       ;[newComponentNode[dragIndex], newComponentNode[hoverIndex]] = [
         newComponentNode[hoverIndex],
@@ -182,7 +173,6 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       currentViewIndex,
       dispatch,
       handleUpdateMultiAttrDSL,
-      viewComponentsArray,
       viewsList,
     ],
   )
