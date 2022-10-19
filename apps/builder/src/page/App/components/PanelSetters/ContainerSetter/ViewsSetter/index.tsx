@@ -23,7 +23,6 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
     const {
       value,
-      handleUpdateDsl,
       attrName,
       widgetDisplayName,
       childrenSetter,
@@ -57,6 +56,38 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       return allViews.map((view) => view.key)
     }, [allViews])
 
+    const updateMultiAttrDSL = useCallback(
+      (updateSlice) => {
+        handleUpdateMultiAttrDSL?.(updateSlice)
+        if (linkWidgetDisplayName) {
+          handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, updateSlice)
+        }
+      },
+      [
+        handleUpdateMultiAttrDSL,
+        handleUpdateOtherMultiAttrDSL,
+        linkWidgetDisplayName,
+      ],
+    )
+
+    const handleUpdateDsl = useCallback(
+      (attrName: string, value: any) => {
+        handleUpdateMultiAttrDSL?.({
+          [attrName]: value,
+        })
+        if (linkWidgetDisplayName) {
+          handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
+            [attrName]: value,
+          })
+        }
+      },
+      [
+        handleUpdateMultiAttrDSL,
+        handleUpdateOtherMultiAttrDSL,
+        linkWidgetDisplayName,
+      ],
+    )
+
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
       const newChildrenNodes = generateComponentNode(
@@ -78,18 +109,19 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       handleUpdateMultiAttrDSL,
       attrName,
       value,
+      linkWidgetDisplayName,
       dispatch,
+      handleUpdateOtherMultiAttrDSL,
     ])
 
     return (
       <ViewListSetterProvider
         viewsList={value}
         childrenSetter={childrenSetter || []}
-        handleUpdateDsl={handleUpdateDsl}
         widgetDisplayName={widgetDisplayName}
-        linkWidgetDisplayName={linkWidgetDisplayName}
         attrPath={attrName}
-        handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+        handleUpdateDsl={handleUpdateDsl}
+        handleUpdateMultiAttrDSL={updateMultiAttrDSL}
         handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
         componentNode={componentNode}
       >

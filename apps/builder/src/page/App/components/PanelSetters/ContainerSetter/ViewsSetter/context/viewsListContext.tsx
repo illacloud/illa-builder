@@ -15,7 +15,6 @@ interface ProviderProps {
   viewsList: ViewItemShape[]
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
-  linkWidgetDisplayName?: string
   attrPath: string
   componentNode: ComponentNode
   handleUpdateDsl: (attrPath: string, value: any) => void
@@ -43,9 +42,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
     attrPath,
     handleUpdateDsl,
     widgetDisplayName,
-    linkWidgetDisplayName,
     handleUpdateMultiAttrDSL,
-    handleUpdateOtherMultiAttrDSL,
     componentNode,
   } = props
   const dispatch = useDispatch()
@@ -96,9 +93,6 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       }
 
       handleUpdateMultiAttrDSL?.(updateSlice)
-      if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, updateSlice)
-      }
       dispatch(
         componentsActions.deleteComponentNodeReducer({
           displayNames: [currentChildrenNode.displayName],
@@ -112,13 +106,9 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       allViewsKeys,
       currentViewIndex,
       handleUpdateMultiAttrDSL,
-      linkWidgetDisplayName,
       dispatch,
-      handleUpdateOtherMultiAttrDSL,
     ],
   )
-
-  console.log(linkWidgetDisplayName, "linkWidget log")
 
   const handleCopyOptionItem = useCallback(
     (index: number) => {
@@ -135,21 +125,11 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         id: generateViewItemId(),
       }
       const updatedArray = [...viewsList, targetOptionItem]
-      handleUpdateDsl(attrPath, updatedArray)
-      if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          [attrPath]: updatedArray,
-        })
-      }
+      handleUpdateMultiAttrDSL?.({
+        [attrPath]: updatedArray,
+      })
     },
-    [
-      viewsList,
-      allViewsKeys,
-      handleUpdateDsl,
-      attrPath,
-      linkWidgetDisplayName,
-      handleUpdateOtherMultiAttrDSL,
-    ],
+    [viewsList, allViewsKeys, handleUpdateMultiAttrDSL, attrPath],
   )
 
   const handleUpdateCurrentViewIndex = useCallback(
@@ -160,20 +140,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         currentIndex: index,
         currentKey: currentViewKey || index,
       })
-      if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          currentIndex: index,
-          currentKey: currentViewKey || index,
-        })
-      }
     },
-    [
-      allViews,
-      handleUpdateMultiAttrDSL,
-      handleUpdateOtherMultiAttrDSL,
-      linkWidgetDisplayName,
-      viewsList.length,
-    ],
+    [allViews, handleUpdateMultiAttrDSL, viewsList.length],
   )
 
   const handleMoveOptionItem = useCallback(
@@ -197,13 +165,6 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         currentIndex: newSelectedIndex,
         currentKey: newSelectedKey,
       })
-      if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          [attrPath]: newViews,
-          currentIndex: newSelectedIndex,
-          currentKey: newSelectedKey,
-        })
-      }
       dispatch(
         componentsActions.sortComponentNodeChildrenReducer({
           parentDisplayName: componentNode.displayName,
@@ -218,8 +179,6 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       currentViewIndex,
       dispatch,
       handleUpdateMultiAttrDSL,
-      handleUpdateOtherMultiAttrDSL,
-      linkWidgetDisplayName,
       viewsList,
     ],
   )

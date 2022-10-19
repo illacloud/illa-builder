@@ -17,6 +17,10 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
   } = props
   const [currentKey, setCurrentKey] = useState(activeKey)
 
+  useEffect(() => {
+    setCurrentKey(activeKey)
+  }, [activeKey])
+
   return (
     <div css={applyAlignStyle(horizontalAlign)}>
       <Tabs

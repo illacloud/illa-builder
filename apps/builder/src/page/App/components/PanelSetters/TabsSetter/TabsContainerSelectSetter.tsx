@@ -34,18 +34,18 @@ export const TabsContainerSelectSetter: FC<ChartDataSourceSetterProps> = (
         const newList = get(containers, `${targetDisplayName}.viewList`, {})
         const currentIndex = get(
           containers,
-          `${targetDisplayName}.currentViewIndex`,
+          `${targetDisplayName}.currentIndex`,
           0,
         )
-        const currentViewKey = get(
+        const currentKey = get(
           containers,
-          `${targetDisplayName}.currentViewKey`,
+          `${targetDisplayName}.currentKey`,
           "",
         )
         handleUpdateMultiAttrDSL?.({
           viewList: newList,
-          currentIndex: currentIndex,
-          currentKey: currentViewKey,
+          currentIndex,
+          currentKey,
           [attrName]: targetDisplayName,
         })
         if (value) {

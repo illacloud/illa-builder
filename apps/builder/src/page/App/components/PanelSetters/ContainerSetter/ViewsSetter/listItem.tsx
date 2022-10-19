@@ -16,7 +16,6 @@ import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { DragItem } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { Identifier } from "dnd-core"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
@@ -35,9 +34,9 @@ export const ListItem: FC<ListItemProps> = (props) => {
     widgetDisplayName,
     childrenSetter,
     handleMoveOptionItem,
+    handleUpdateDsl,
     handleUpdateMultiAttrDSL,
     handleUpdateOtherMultiAttrDSL,
-    linkWidgetDisplayName,
   } = useContext(ViewListSetterContext)
   const { t } = useTranslation()
 
@@ -99,24 +98,6 @@ export const ListItem: FC<ListItemProps> = (props) => {
   const widgetType = singleSelectedComponentNode?.type || ""
   const widgetParentDisplayName = singleSelectedComponentNode?.parentNode || ""
   const widgetProps = singleSelectedComponentNode?.props || {}
-
-  const handleUpdateDsl = useCallback(
-    (attrName: string, value: any) => {
-      handleUpdateMultiAttrDSL?.({
-        [attrName]: value,
-      })
-      if (linkWidgetDisplayName) {
-        handleUpdateOtherMultiAttrDSL?.(linkWidgetDisplayName, {
-          [attrName]: value,
-        })
-      }
-    },
-    [
-      handleUpdateMultiAttrDSL,
-      handleUpdateOtherMultiAttrDSL,
-      linkWidgetDisplayName,
-    ],
-  )
 
   return (
     <Trigger

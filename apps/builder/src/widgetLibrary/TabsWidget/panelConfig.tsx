@@ -81,7 +81,7 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.data_source"),
         useCustomLayout: true,
         attrName: "viewList",
-        setterType: "TABS_VIEW_LIST_SETTER",
+        setterType: "CONTAINER_VIEW_SETTER",
         bindAttrName: ["navigateContainer", "linkWidgetDisplayName"],
         shown: (isLink, id) => isLink && id,
         childrenSetter: [
