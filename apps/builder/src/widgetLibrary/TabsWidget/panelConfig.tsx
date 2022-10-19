@@ -120,7 +120,9 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-views-default`,
         labelName: i18n.t("editor.inspect.setter_label.default_tab"),
-        attrName: "defaultTab",
+        attrName: "currentKey",
+        bindAttrName: ["navigateContainer"],
+        shown: (value) => !value,
         setterType: "CONTAINER_DEFAULT_VIEW_SETTER",
       },
     ],

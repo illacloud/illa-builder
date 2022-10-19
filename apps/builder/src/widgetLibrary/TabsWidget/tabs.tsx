@@ -35,6 +35,7 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
       >
         {tabList?.map((item) => {
           console.log(item, "TabList TabPane item")
+          if (item.hidden) return
           return (
             <TabPane
               key={item.key}
