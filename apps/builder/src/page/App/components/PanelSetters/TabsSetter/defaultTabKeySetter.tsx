@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo } from "react"
-import { TabsDefaultTabKeySetterProps } from "./interface"
+import { TabsDefaultKeySetterProps } from "./interface"
 import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
@@ -7,9 +7,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { get } from "lodash"
 import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 
-export const TabsDefaultTabKeySetter: FC<TabsDefaultTabKeySetterProps> = (
-  props,
-) => {
+export const TabsDefaultKeySetter: FC<TabsDefaultKeySetterProps> = (props) => {
   const {
     attrName,
     handleUpdateMultiAttrDSL,
@@ -34,16 +32,13 @@ export const TabsDefaultTabKeySetter: FC<TabsDefaultTabKeySetterProps> = (
   const handleUpdateDefaultTab = useCallback(
     (attrPath: string, value: string) => {
       const defaultTabIndex = tabList.findIndex((view) => view.key === value)
-      let currentIndex = 0
-      let currentKey = tabList[currentIndex].key
+      let currentIndex
       if (defaultTabIndex > -1) {
         currentIndex = defaultTabIndex
-        currentKey = tabList[currentIndex].key
       }
       handleUpdateMultiAttrDSL?.({
         [attrPath]: value,
-        currentViewIndex: currentIndex,
-        currentViewKey: currentKey,
+        currentIndex,
       })
     },
     [handleUpdateMultiAttrDSL, tabList],
@@ -62,4 +57,4 @@ export const TabsDefaultTabKeySetter: FC<TabsDefaultTabKeySetterProps> = (
   )
 }
 
-TabsDefaultTabKeySetter.displayName = "TabsDefaultTabKeySetter"
+TabsDefaultKeySetter.displayName = "TabsDefaultKeySetter"

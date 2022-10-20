@@ -123,7 +123,7 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         attrName: "currentKey",
         bindAttrName: ["navigateContainer"],
         shown: (value) => !value,
-        setterType: "CONTAINER_DEFAULT_VIEW_SETTER",
+        setterType: "TABS_DEFAULT_KEY_SETTER",
       },
     ],
   },
