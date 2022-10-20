@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useMemo } from "react"
+import { FC, useContext, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DragPointIcon, WarningCircleIcon } from "@illa-design/icon"

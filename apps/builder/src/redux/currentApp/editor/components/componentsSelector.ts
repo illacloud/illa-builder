@@ -102,7 +102,6 @@ export const getAllComponentDisplayNameMapProps = createSelector(
       return null
     }
     const components = flattenDslToMap(rootDSL)
-    console.log(components, "getAllComponentDisplayNameMapProps components")
     if (!components) return
     const res: Record<string, any> = {}
     Object.keys(components).forEach((key) => {
