@@ -3,20 +3,17 @@ import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComp
 import { BasicContainerProps } from "./interface"
 import { basicContainerWrapperStyle } from "./style"
 import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
-import useMeasure from "react-use-measure"
 
 export const BasicContainer: FC<BasicContainerProps> = (props) => {
-  const { componentNode } = props
+  const { componentNode, canResizeY = true, minHeight } = props
   const containerRef: MutableRefObject<HTMLDivElement | null> = useRef<
     HTMLDivElement
   >(null)
-  const [measureRef, bounds] = useMeasure()
 
   return (
     <div
-      css={basicContainerWrapperStyle}
+      css={basicContainerWrapperStyle(canResizeY)}
       ref={(node) => {
-        measureRef(node)
         containerRef.current = node
       }}
     >
@@ -24,7 +21,8 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
         componentNode={componentNode}
         containerPadding={4}
         containerRef={containerRef}
-        minHeight={bounds.height - 3}
+        canResizeY={canResizeY}
+        minHeight={minHeight}
       />
     </div>
   )

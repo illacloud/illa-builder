@@ -4,4 +4,5 @@ export interface BasicContainerProps {
   children?: ReactNode
   minHeight?: number
   componentNode: ComponentNode
+  canResizeY?: boolean
 }

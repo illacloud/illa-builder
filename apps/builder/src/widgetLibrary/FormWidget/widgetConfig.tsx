@@ -1,7 +1,6 @@
 import { ReactComponent as FormWidgetIcon } from "@/assets/widgetCover/form.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
-import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
@@ -49,5 +48,12 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
     radius: "4px",
     borderWidth: "4px",
     shadow: "small",
+    headerHeight: 7,
+    footerHeight: 7,
   },
 }
+
+export const FORM_BODY_MIN_HEIGHT = 100
+export const FORM_MIN_FOOTER_HEIGHT_ROW_NUMBER = 7
+export const FORM_MIN_HEADER_HEIGHT_ROW_NUMBER = 7
+export const FORM_BODY_MARGIN = 7

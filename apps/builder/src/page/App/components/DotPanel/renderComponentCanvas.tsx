@@ -50,8 +50,15 @@ export const RenderComponentCanvas: FC<{
   containerRef: RefObject<HTMLDivElement>
   containerPadding: number
   minHeight?: number
+  canResizeY?: boolean
 }> = (props) => {
-  const { componentNode, containerRef, containerPadding, minHeight } = props
+  const {
+    componentNode,
+    containerRef,
+    containerPadding,
+    minHeight,
+    canResizeY = true,
+  } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
   const illaMode = useSelector(getIllaMode)
@@ -174,6 +181,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "ADD",
+              bounds.height,
+              canResizeY,
             )
           } else {
             dragResult = getDragResult(
@@ -184,6 +193,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "UPDATE",
+              bounds.height,
+              canResizeY,
             )
           }
           const { ladingPosition, rectCenterPosition } = dragResult
@@ -192,7 +203,7 @@ export const RenderComponentCanvas: FC<{
           /**
            * add rows when node over canvas
            */
-          if (landingY / UNIT_HEIGHT + item.h > rowNumber - 8) {
+          if (canResizeY && landingY / UNIT_HEIGHT + item.h > rowNumber - 8) {
             const finalNumber = landingY / UNIT_HEIGHT + item.h + 8
             setRowNumber(finalNumber)
             containerRef.current?.scrollTo({
@@ -299,6 +310,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "ADD",
+              bounds.height,
+              canResizeY,
             )
           } else {
             dragResult = getDragResult(
@@ -309,6 +322,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "UPDATE",
+              bounds.height,
+              canResizeY,
             )
           }
           const { ladingPosition } = dragResult
@@ -380,7 +395,7 @@ export const RenderComponentCanvas: FC<{
   )
 
   useEffect(() => {
-    if (!isActive) {
+    if (!isActive && canResizeY) {
       const childrenNodes = componentNode.childrenNode
       let maxY = 0
       childrenNodes?.forEach((node) => {
@@ -397,7 +412,14 @@ export const RenderComponentCanvas: FC<{
         setRowNumber(Math.max(maxY, bounds.height / UNIT_HEIGHT))
       }
     }
-  }, [bounds.height, componentNode.childrenNode, illaMode, isActive, minHeight])
+  }, [
+    bounds.height,
+    canResizeY,
+    componentNode.childrenNode,
+    illaMode,
+    isActive,
+    minHeight,
+  ])
 
   return (
     <div

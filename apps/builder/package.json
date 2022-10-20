@@ -39,6 +39,7 @@
     "jshint": "^2.13.4",
     "lodash": "^4.17.21",
     "qs": "^6.11.0",
+    "re-resizable": "^6.9.9",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",
     "react-dnd": "^16.0.1",

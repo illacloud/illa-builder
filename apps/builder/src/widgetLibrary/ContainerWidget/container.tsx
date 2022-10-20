@@ -16,6 +16,8 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
     tooltipText,
     childrenNode,
+    h,
+    unitH,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
 
@@ -32,10 +34,15 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
   const renderComponent = useMemo(() => {
     if (Array.isArray(childrenNode) && currentIndex < childrenNode.length) {
       const currentViewComponentNode = childrenNode[currentIndex]
-      return <BasicContainer componentNode={currentViewComponentNode} />
+      return (
+        <BasicContainer
+          componentNode={currentViewComponentNode}
+          minHeight={h * unitH}
+        />
+      )
     }
     return <ContainerEmptyState />
-  }, [childrenNode, currentIndex])
+  }, [childrenNode, currentIndex, h, unitH])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {

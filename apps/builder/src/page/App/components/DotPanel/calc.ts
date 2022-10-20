@@ -76,8 +76,10 @@ export function calcLadingPosition(
   unitWidth: number,
   unitHeight: number,
   canvasWidth: number,
+  canvasHeight: number,
+  canResizeY: boolean,
 ) {
-  const { rectLeft, rectTop, rectRight } = rectPosition
+  const { rectLeft, rectTop, rectRight, rectBottom } = rectPosition
   let landingX = Math.round(rectLeft / unitWidth) * unitWidth
   let landingY = Math.round(rectTop / unitHeight) * unitHeight
   let isOverstep = true
@@ -93,6 +95,14 @@ export function calcLadingPosition(
     const overRight =
       Math.round(rectRight / unitWidth) * unitWidth - canvasWidth
     landingX = landingX - overRight
+    isOverstep = false
+  }
+  console.log("reactBottom", rectBottom)
+  console.log("canvasHeight", canvasHeight)
+  if (rectBottom > canvasHeight && !canResizeY) {
+    const overBottom =
+      Math.round(rectBottom / unitHeight) * unitHeight - canvasHeight
+    landingY = landingY - overBottom
     isOverstep = false
   }
   return {
@@ -345,6 +355,8 @@ export const getDragResult = (
   unitHeight: number,
   canvasWidth: number,
   action: "ADD" | "UPDATE",
+  canvasHeight: number,
+  canResizeY: boolean = true,
 ) => {
   const canvasPosition = {
     x: containerRef.current?.getBoundingClientRect().x || 0,
@@ -374,6 +386,8 @@ export const getDragResult = (
       unitWidth,
       unitHeight,
       canvasWidth,
+      canvasHeight,
+      canResizeY,
     )
 
     return {
@@ -417,9 +431,16 @@ export const getDragResult = (
     }
     if (renderX + item.w * unitWidth > canvasWidth) {
       const overRight =
-        Math.round(renderX + (item.w * unitWidth) / unitWidth) * unitWidth -
+        Math.round((renderX + item.w * unitWidth) / unitWidth) * unitWidth -
         canvasWidth
       squareX = squareX - overRight
+      isOverstep = false
+    }
+    if (renderY + item.h * unitHeight > canvasHeight && !canResizeY) {
+      const overBottom =
+        Math.round((renderY + item.h * unitHeight) / unitHeight) * unitHeight -
+        canvasHeight
+      squareY = squareY - overBottom
       isOverstep = false
     }
 

@@ -17,4 +17,6 @@ export interface ContainerProps extends BaseWidgetProps {
   viewList: viewListItemShaper[]
   tooltipText?: string
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
+  h: number
+  unitH: number
 }
