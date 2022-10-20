@@ -7,7 +7,7 @@ export type HorizontalAlign = "start" | "center" | "end"
 
 export interface WrappedTabsProps extends TabsProps, BaseWidgetProps {
   value?: string
-  disable?: boolean
+  disabled?: boolean
   horizontalAlign?: HorizontalAlign
   viewList?: viewListItemShaper[]
   tabList?: viewListItemShaper[]

@@ -195,10 +195,13 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.align"),
         attrName: "align",
         setterType: "RADIO_GROUP_SETTER",
+        bindAttrName: ["tabPosition"],
+        shown: (tabPosition) =>
+          tabPosition === "top" || tabPosition === "bottom",
         options: [
           {
             label: <HorizontalStartIcon />,
-            value: "start",
+            value: "flex-start",
           },
           {
             label: <HorizontalCenterIcon />,
@@ -206,7 +209,7 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
           },
           {
             label: <HorizontalEndIcon />,
-            value: "end",
+            value: "flex-end",
           },
         ],
       },

@@ -7,7 +7,9 @@ import { TabPane, Tabs } from "@illa-design/tabs"
 export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
   const {
     value,
+    align,
     activeKey,
+    disabled,
     horizontalAlign,
     tabList,
     colorScheme,
@@ -22,34 +24,33 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
   }, [activeKey])
 
   return (
-    <div css={applyAlignStyle(horizontalAlign)}>
-      <Tabs
-        colorScheme={colorScheme}
-        tabPosition={tabPosition}
-        activeKey={currentKey}
-        onChange={(value) => {
-          setCurrentKey(value)
-          new Promise((resolve) => {
-            handleUpdateDsl({ currentKey: value })
-            resolve(true)
-          }).then(() => {
-            handleOnChange?.()
-          })
-        }}
-      >
-        {tabList?.map((item) => {
-          console.log(item, "TabList TabPane item")
-          if (item.hidden) return
-          return (
-            <TabPane
-              key={item.key}
-              title={item.label}
-              disabled={item.disabled}
-            />
-          )
-        })}
-      </Tabs>
-    </div>
+    <Tabs
+      w={"100%"}
+      align={align}
+      colorScheme={colorScheme}
+      tabPosition={tabPosition}
+      activeKey={currentKey}
+      onChange={(value) => {
+        setCurrentKey(value)
+        new Promise((resolve) => {
+          handleUpdateDsl({ currentKey: value })
+          resolve(true)
+        }).then(() => {
+          handleOnChange?.()
+        })
+      }}
+    >
+      {tabList?.map((item) => {
+        if (item.hidden) return
+        return (
+          <TabPane
+            key={item.key}
+            title={item.label}
+            disabled={disabled || item.disabled}
+          />
+        )
+      })}
+    </Tabs>
   )
 }
 
@@ -58,6 +59,8 @@ WrappedTabs.displayName = "WrappedTabs"
 export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   const {
     value,
+    align,
+    disabled,
     navigateContainer,
     currentKey,
     tabList,
@@ -108,10 +111,12 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
           {...props}
           tabList={list}
           value={value}
+          align={align}
           activeKey={currentKey}
           horizontalAlign={horizontalAlign}
           colorScheme={colorScheme}
           tabPosition={tabPosition}
+          disabled={disabled}
         />
       </div>
     </TooltipWrapper>

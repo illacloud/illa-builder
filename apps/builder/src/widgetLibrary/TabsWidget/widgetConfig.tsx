@@ -12,7 +12,7 @@ const defaultTabList = [
 export const TABS_WIDGET_CONFIG: WidgetConfig = {
   displayName: "tabs",
   widgetName: i18n.t("widget.tabs.name"),
-  h: 4,
+  h: 6,
   w: 12,
   type: "TABS_WIDGET",
   icon: <TabsWidgetIcon />,
@@ -21,8 +21,7 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     tabList: defaultTabList,
     viewList: [],
-    // horizontalAlign: "start",
-    // verticalAlign: "center",
+    align: "flex-start",
     colorScheme: "blue",
     tabPosition: "top",
   },
