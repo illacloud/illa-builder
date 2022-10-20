@@ -11,6 +11,7 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
     handleUpdateDsl,
     value,
     allowClear,
+    onChange,
   } = props
 
   return (
@@ -22,6 +23,7 @@ export const BaseSelectSetter: FC<BaseSelectSetterProps> = (props) => {
         colorScheme="techPurple"
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
+          onChange?.(value)
         }}
         allowClear={allowClear}
       />

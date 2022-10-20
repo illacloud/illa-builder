@@ -3,49 +3,34 @@ import { ViewItemShape } from "../interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   generateNewViewItem,
-  generateViewItemId,
+  generateTabItemId,
 } from "../utils/generateNewOptions"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { cloneDeep, get } from "lodash"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { get } from "lodash"
 
 interface ProviderProps {
-  viewsList: ViewItemShape[]
+  list: ViewItemShape[]
   childrenSetter: PanelFieldConfig[]
   widgetDisplayName: string
   attrPath: string
-  componentNode: ComponentNode
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
-  handleUpdateOtherMultiAttrDSL?: (
-    displayName: string,
-    updateSlice: Record<string, any>,
-  ) => void
   children: ReactNode
 }
 
 interface Inject extends Omit<ProviderProps, "children"> {
-  currentViewIndex: number
   handleDeleteOptionItem: (index: number) => void
   handleCopyOptionItem: (index: number) => void
   handleUpdateCurrentViewIndex: (index: number) => void
+  currentViewIndex: number
   handleMoveOptionItem: (dragIndex: number, hoverIndex: number) => void
 }
 
-export const ViewListSetterContext = createContext<Inject>({} as Inject)
+export const TabListSetterContext = createContext<Inject>({} as Inject)
 
-export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
-  const {
-    viewsList,
-    attrPath,
-    handleUpdateDsl,
-    widgetDisplayName,
-    handleUpdateMultiAttrDSL,
-    componentNode,
-  } = props
-  const dispatch = useDispatch()
+export const TabListSetterProvider: FC<ProviderProps> = (props) => {
+  const { list, attrPath, widgetDisplayName, handleUpdateMultiAttrDSL } = props
   const executionResult = useSelector(getExecutionResult)
 
   const allViews = useMemo(() => {
@@ -66,14 +51,12 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
 
   const handleDeleteOptionItem = useCallback(
     (index: number) => {
-      if (viewsList.length <= 1) return
-      const updatedArray = viewsList.filter(
+      if (list.length <= 1) return
+      const updatedArray = list.filter(
         (optionItem: Record<string, any>, i: number) => {
           return i !== index
         },
       )
-
-      const currentChildrenNode = componentNode.childrenNode[index]
 
       const updateSlice = {
         [attrPath]: updatedArray,
@@ -82,7 +65,7 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       }
 
       if (currentViewIndex !== index) {
-        const oldCurrentViewKey = viewsList[currentViewIndex].key
+        const oldCurrentViewKey = list[currentViewIndex].key
         const newCurrentViewIndex = updatedArray.findIndex(
           (item) => item.key === oldCurrentViewKey,
         )
@@ -93,26 +76,13 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       }
 
       handleUpdateMultiAttrDSL?.(updateSlice)
-      dispatch(
-        componentsActions.deleteComponentNodeReducer({
-          displayNames: [currentChildrenNode.displayName],
-        }),
-      )
     },
-    [
-      viewsList,
-      componentNode.childrenNode,
-      attrPath,
-      allViewsKeys,
-      currentViewIndex,
-      handleUpdateMultiAttrDSL,
-      dispatch,
-    ],
+    [list, attrPath, allViewsKeys, currentViewIndex, handleUpdateMultiAttrDSL],
   )
 
   const handleCopyOptionItem = useCallback(
     (index: number) => {
-      let targetOptionItem = viewsList.find(
+      let targetOptionItem = list.find(
         (optionItem: Record<string, any>, i: number) => {
           return i === index
         },
@@ -122,38 +92,33 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       targetOptionItem = {
         ...targetOptionItem,
         key: newItem.key,
-        id: generateViewItemId(),
+        id: generateTabItemId(),
       }
-      const updatedArray = [...viewsList, targetOptionItem]
+      const updatedArray = [...list, targetOptionItem]
       handleUpdateMultiAttrDSL?.({
         [attrPath]: updatedArray,
       })
     },
-    [viewsList, allViewsKeys, handleUpdateMultiAttrDSL, attrPath],
+    [list, allViewsKeys, handleUpdateMultiAttrDSL, attrPath],
   )
 
   const handleUpdateCurrentViewIndex = useCallback(
     (index: number) => {
-      if (index > viewsList.length || index < 0) return
+      if (index > list.length || index < 0) return
       const currentViewKey = allViews[index].key
       handleUpdateMultiAttrDSL?.({
         currentIndex: index,
         currentKey: currentViewKey || index,
       })
     },
-    [allViews, handleUpdateMultiAttrDSL, viewsList.length],
+    [allViews, handleUpdateMultiAttrDSL, list.length],
   )
 
   const handleMoveOptionItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
-      const dragOptionItem = viewsList[dragIndex]
-      const currentSelected = viewsList[currentViewIndex]
-      const newComponentNode = cloneDeep(componentNode.childrenNode)
-      ;[newComponentNode[dragIndex], newComponentNode[hoverIndex]] = [
-        newComponentNode[hoverIndex],
-        newComponentNode[dragIndex],
-      ]
-      const newViews = [...viewsList]
+      const dragOptionItem = list[dragIndex]
+      const currentSelected = list[currentViewIndex]
+      const newViews = [...list]
       newViews.splice(dragIndex, 1)
       newViews.splice(hoverIndex, 0, dragOptionItem)
       const newSelectedIndex = newViews.findIndex(
@@ -165,22 +130,8 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         currentIndex: newSelectedIndex,
         currentKey: newSelectedKey,
       })
-      dispatch(
-        componentsActions.sortComponentNodeChildrenReducer({
-          parentDisplayName: componentNode.displayName,
-          newChildrenNode: newComponentNode,
-        }),
-      )
     },
-    [
-      attrPath,
-      componentNode.childrenNode,
-      componentNode.displayName,
-      currentViewIndex,
-      dispatch,
-      handleUpdateMultiAttrDSL,
-      viewsList,
-    ],
+    [attrPath, currentViewIndex, handleUpdateMultiAttrDSL, list],
   )
   const value = {
     ...props,
@@ -192,10 +143,10 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   }
 
   return (
-    <ViewListSetterContext.Provider value={value}>
+    <TabListSetterContext.Provider value={value}>
       {props.children}
-    </ViewListSetterContext.Provider>
+    </TabListSetterContext.Provider>
   )
 }
 
-ViewListSetterProvider.displayName = "OptionListSetterProvider"
+TabListSetterProvider.displayName = "OptionListSetterProvider"

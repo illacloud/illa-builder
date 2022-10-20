@@ -9,6 +9,10 @@ export interface BaseSetter {
   panelConfig?: Record<string, any>
   handleUpdateDsl: (attrPath: string, value: any) => void
   handleUpdateMultiAttrDSL?: (updateSlice: Record<string, any>) => void
+  handleUpdateOtherMultiAttrDSL?: (
+    displayName: string,
+    updateSlice: Record<string, any>,
+  ) => void
   expectedType: VALIDATION_TYPES
   isInList?: boolean
   widgetDisplayName: string
