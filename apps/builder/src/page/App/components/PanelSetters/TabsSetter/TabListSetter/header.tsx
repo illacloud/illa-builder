@@ -2,6 +2,7 @@ import { FC } from "react"
 import { Button } from "@illa-design/button"
 import { AddIcon } from "@illa-design/icon"
 import { HeaderLabelStyle, HeaderWrapperStyle } from "./style"
+import { useTranslation } from "react-i18next"
 
 export interface HeaderProps {
   labelName: string
@@ -10,6 +11,7 @@ export interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = (props) => {
+  const { t } = useTranslation()
   const { labelName, addAction, hasAddAction } = props
   return (
     <div css={HeaderWrapperStyle}>
@@ -21,7 +23,7 @@ export const Header: FC<HeaderProps> = (props) => {
           variant="text"
           onClick={addAction}
         >
-          New
+          {t("editor.inspect.setter_content.column_setter.new")}
         </Button>
       )}
     </div>

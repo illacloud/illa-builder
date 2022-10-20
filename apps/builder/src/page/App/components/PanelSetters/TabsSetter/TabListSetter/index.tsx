@@ -8,6 +8,7 @@ import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { setterPublicWrapper, viewSetterWrapperStyle } from "./style"
+import { useTranslation } from "react-i18next"
 
 export const TabListSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -19,6 +20,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
       childrenSetter,
       handleUpdateMultiAttrDSL,
     } = props
+    const { t } = useTranslation()
     const executionResult = useSelector(getExecutionResult)
 
     const allViews = useMemo(() => {
@@ -52,7 +54,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
         <div css={setterPublicWrapper}>
           <div css={viewSetterWrapperStyle}>
             <Header
-              labelName="Tabs"
+              labelName={t("editor.inspect.setter_content.tabs_setter.tabs")}
               addAction={handleAddViewItem}
               hasAddAction
             />

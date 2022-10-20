@@ -18,6 +18,7 @@ import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { RootState } from "@/store"
+import { useTranslation } from "react-i18next"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -30,6 +31,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       handleUpdateOtherMultiAttrDSL,
       componentNode,
     } = props
+    const { t } = useTranslation()
     const executionResult = useSelector(getExecutionResult)
     const dispatch = useDispatch()
 
@@ -128,7 +130,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
         <div css={setterPublicWrapper}>
           <div css={viewSetterWrapperStyle}>
             <Header
-              labelName="view"
+              labelName={t("editor.inspect.setter_content.view_setter.views")}
               addAction={handleAddViewItem}
               hasAddAction
             />

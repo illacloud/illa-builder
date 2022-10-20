@@ -367,6 +367,12 @@
           "prefabricated": "Prefabricated color",
           "title": "Edit color"
         },
+        "view_setter": {
+          "views": "Views"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
         "column_setter": {
           "label": "Columns ({{number}})",
           "new": "New",
