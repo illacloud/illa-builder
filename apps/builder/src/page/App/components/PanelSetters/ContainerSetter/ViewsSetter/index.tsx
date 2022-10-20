@@ -17,8 +17,13 @@ import {
 import { generateComponentNode } from "@/utils/generators/generateComponentNode"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { RootState } from "@/store"
+import store, { RootState } from "@/store"
 import { useTranslation } from "react-i18next"
+import {
+  getCanvas,
+  searchDsl,
+} from "@/redux/currentApp/editor/components/componentsSelector"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export const ViewsSetter: FC<ViewSetterProps> = memo(
   (props: ViewSetterProps) => {
@@ -33,6 +38,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
     } = props
     const { t } = useTranslation()
     const executionResult = useSelector(getExecutionResult)
+
     const dispatch = useDispatch()
 
     const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -90,11 +96,23 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       ],
     )
 
+    const _componentNode = useMemo(() => {
+      if (componentNode.type === "CONTAINER_WIDGET") {
+        return componentNode
+      }
+      const finalNode = searchDsl(
+        getCanvas(store.getState()),
+        linkWidgetDisplayName,
+      )
+      if (finalNode?.type === "CONTAINER_WIDGET") return finalNode
+      return {} as ComponentNode
+    }, [componentNode, linkWidgetDisplayName])
+
     const handleAddViewItem = useCallback(() => {
       const newItem = generateNewViewItem(allViewsKeys)
       const newChildrenNodes = generateComponentNode(
         BasicContainerConfig,
-        componentNode.displayName,
+        _componentNode?.displayName,
       )
       handleUpdateMultiAttrDSL?.({
         [attrName]: [...value, newItem],
@@ -107,7 +125,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
       dispatch(componentsActions.addComponentReducer([newChildrenNodes]))
     }, [
       allViewsKeys,
-      componentNode.displayName,
+      _componentNode?.displayName,
       handleUpdateMultiAttrDSL,
       attrName,
       value,
@@ -125,7 +143,7 @@ export const ViewsSetter: FC<ViewSetterProps> = memo(
         handleUpdateDsl={handleUpdateDsl}
         handleUpdateMultiAttrDSL={updateMultiAttrDSL}
         handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
-        componentNode={componentNode}
+        componentNode={_componentNode}
       >
         <div css={setterPublicWrapper}>
           <div css={viewSetterWrapperStyle}>

@@ -10,6 +10,8 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { cloneDeep, get } from "lodash"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { generateComponentNode } from "@/utils/generators/generateComponentNode"
+import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 interface ProviderProps {
   viewsList: ViewItemShape[]
@@ -40,7 +42,6 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   const {
     viewsList,
     attrPath,
-    handleUpdateDsl,
     widgetDisplayName,
     handleUpdateMultiAttrDSL,
     componentNode,
@@ -118,6 +119,10 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
         },
       )
       if (!targetOptionItem) return
+      const newChildrenNodes = generateComponentNode(
+        BasicContainerConfig,
+        componentNode.displayName,
+      )
       const newItem = generateNewViewItem(allViewsKeys)
       targetOptionItem = {
         ...targetOptionItem,
@@ -128,8 +133,16 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
       handleUpdateMultiAttrDSL?.({
         [attrPath]: updatedArray,
       })
+      dispatch(componentsActions.addComponentReducer([newChildrenNodes]))
     },
-    [viewsList, allViewsKeys, handleUpdateMultiAttrDSL, attrPath],
+    [
+      viewsList,
+      componentNode.displayName,
+      allViewsKeys,
+      handleUpdateMultiAttrDSL,
+      attrPath,
+      dispatch,
+    ],
   )
 
   const handleUpdateCurrentViewIndex = useCallback(
