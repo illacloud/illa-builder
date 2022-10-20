@@ -4,16 +4,17 @@ import {
   sqlInputStyle,
 } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
-import { useDispatch } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { configActions } from "@/redux/config/configSlice"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { MysqlLikePanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { Api } from "@/api/base"
 import { isObject } from "@illa-design/system"
 import { ResourcesData } from "@/redux/resource/resourceState"
+import { Controller, useForm } from "react-hook-form"
+import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
+import { useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}
@@ -34,11 +35,8 @@ const convertResourcesToTables = (data: Record<string, unknown>) => {
   return res
 }
 
-export const MysqlLikePanel: FC<MysqlLikePanelProps> = (props) => {
-  const dispatch = useDispatch()
-
-  const currentAction = props.action
-  const currentContent = props.action.content
+export const MysqlLikePanel: FC = (props) => {
+  const currentAction = useSelector(getCachedAction)!!
   const [sqlTable, setSqlTable] = useState<Record<string, string[]>>()
 
   useEffect(() => {
@@ -57,6 +55,8 @@ export const MysqlLikePanel: FC<MysqlLikePanelProps> = (props) => {
     )
   }, [currentAction.resourceId])
 
+  const { control } = useForm()
+
   const mode = useMemo(() => {
     switch (currentAction.actionType) {
       case "postgresql":
@@ -66,27 +66,30 @@ export const MysqlLikePanel: FC<MysqlLikePanelProps> = (props) => {
     }
   }, [currentAction.actionType])
 
+  const mysqlContent = currentAction.content as MysqlLikeAction
+
   return (
     <div css={mysqlContainerStyle}>
-      <ResourceChoose action={currentAction} />
-      <CodeEditor
-        placeholder="select * from users;"
-        lineNumbers={true}
-        height="88px"
-        css={sqlInputStyle}
-        value={currentContent.query}
-        mode={mode}
-        expectedType={VALIDATION_TYPES.STRING}
-        tables={sqlTable}
-        onChange={(value) => {
-          dispatch(
-            configActions.updateSelectedAction({
-              ...currentAction,
-              content: {
-                ...currentContent,
-                query: value,
-              },
-            }),
+      <ResourceChoose />
+      <Controller
+        name="mysqlLikeQuery"
+        control={control}
+        defaultValue={mysqlContent.query}
+        render={({ field: { value, onChange }, fieldState, formState }) => {
+          return (
+            <CodeEditor
+              placeholder="select * from users;"
+              lineNumbers={true}
+              height="88px"
+              css={sqlInputStyle}
+              value={value}
+              mode={mode}
+              expectedType={VALIDATION_TYPES.STRING}
+              tables={sqlTable}
+              onChange={(value) => {
+                onChange(value)
+              }}
+            />
           )
         }}
       />

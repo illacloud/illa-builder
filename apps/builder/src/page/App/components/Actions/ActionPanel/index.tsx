@@ -1,103 +1,60 @@
-import { FC, ReactNode, useCallback, useMemo, useRef, useState } from "react"
+import { FC, useCallback, useMemo, useRef, useState } from "react"
 import {
   actionContentStyle,
   actionPanelStyle,
 } from "@/page/App/components/Actions/ActionPanel/style"
 import { useSelector } from "react-redux"
-import { getSelectedAction } from "@/redux/config/configSelector"
+import { getCachedAction } from "@/redux/config/configSelector"
 import { ActionTitleBar } from "@/page/App/components/Actions/ActionPanel/ActionTitleBar"
 import { MysqlLikePanel } from "./MysqlLikePanel"
 import { RestApiPanel } from "@/page/App/components/Actions/ActionPanel/RestApiPanel"
 import { TransformerPanel } from "@/page/App/components/Actions/ActionPanel/TransformerPanel"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
-import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
-import {
-  BodyContent,
-  RestApiAction,
-} from "@/redux/currentApp/action/restapiAction"
-import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
-import { onCopyActionItem, onDeleteActionItem } from "../api"
 import { ActionResult } from "@/page/App/components/Actions/ActionPanel/ActionResult"
 import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/ActionResult/interface"
-import { RedisAction } from "@/redux/currentApp/action/redisAction"
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
-import {
-  MongoDbAction,
-  MongoDbActionTypeContent,
-} from "@/redux/currentApp/action/mongoDbAction"
-import { MongoDbConfig } from "@/redux/resource/mongodbResource"
+import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionPanel/interface"
 
-export interface ActionPanelProps {
-  maxHeight?: number
-}
-
-export const ActionPanel: FC<ActionPanelProps> = (props) => {
+export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const { maxHeight } = props
   const panelRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const selectedAction = useSelector(getSelectedAction)
+  const cachedAction = useSelector(getCachedAction)
   const [actionResult, setActionResult] = useState<ActionResultType>()
 
   const run = useCallback((result, error) => {
     setActionResult({ result, error })
   }, [])
 
-  const actionPanel: ReactNode | null = useMemo(() => {
-    switch (selectedAction?.actionType) {
+  const panel = useMemo(() => {
+    switch (cachedAction?.actionType) {
       case "mysql":
       case "tidb":
       case "mariadb":
       case "postgresql":
-        return (
-          <MysqlLikePanel
-            action={selectedAction as ActionItem<MysqlLikeAction>}
-          />
-        )
+        return <MysqlLikePanel />
       case "restapi":
-        return (
-          <RestApiPanel
-            action={selectedAction as ActionItem<RestApiAction<BodyContent>>}
-          />
-        )
-      case "transformer":
-        return (
-          <TransformerPanel
-            action={selectedAction as ActionItem<TransformerAction>}
-          />
-        )
+        return <RestApiPanel />
       case "redis":
-        return <RedisPanel action={selectedAction as ActionItem<RedisAction>} />
+        return <RedisPanel />
       case "mongodb":
-        return (
-          <MongoDbPanel
-            action={
-              selectedAction as ActionItem<
-                MongoDbAction<MongoDbActionTypeContent>
-              >
-            }
-          />
-        )
+        return <MongoDbPanel />
+      case "transformer":
+        return <TransformerPanel />
       default:
-        return null
+        return <></>
     }
-  }, [selectedAction])
+  }, [cachedAction])
 
-  // null selected
-  if (selectedAction === null || selectedAction === undefined) {
-    return null
+  if (cachedAction === null || cachedAction === undefined) {
+    return <></>
   }
 
   return (
     <div css={actionPanelStyle} ref={panelRef}>
-      <ActionTitleBar
-        action={selectedAction}
-        onCopy={onCopyActionItem}
-        onDelete={onDeleteActionItem}
-        onActionRun={run}
-      />
+      <ActionTitleBar onActionRun={run} />
       <div ref={contentRef} css={actionContentStyle}>
-        {actionPanel}
+        {panel}
       </div>
       <ActionResult
         result={actionResult}

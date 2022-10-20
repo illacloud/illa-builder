@@ -1,17 +1,21 @@
 import { FC, useEffect, useState } from "react"
-import { RedisPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
-import { useDispatch } from "react-redux"
 import { Api } from "@/api/base"
 import { sqlInputStyle } from "@/page/App/components/Actions/ActionPanel/MysqlLikePanel/style"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { configActions } from "@/redux/config/configSlice"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { isObject } from "@illa-design/system"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
+import {
+  RedisAction,
+  RedisActionInitial,
+} from "@/redux/currentApp/action/redisAction"
+import { Controller, useForm } from "react-hook-form"
+import { useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}
@@ -32,17 +36,17 @@ const convertResourcesToTables = (data: Record<string, unknown>) => {
   return res
 }
 
-export const RedisPanel: FC<RedisPanelProps> = (props) => {
-  const dispatch = useDispatch()
+export const RedisPanel: FC = () => {
+  const action = useSelector(getCachedAction)!!
 
-  const currentAction = props.action
-  const currentContent = props.action.content
   const [sqlTable, setSqlTable] = useState<Record<string, string[]>>()
+
+  const { control } = useForm()
 
   useEffect(() => {
     Api.request(
       {
-        url: `resources/${currentAction.resourceId}/meta`,
+        url: `resources/${action.resourceId}/meta`,
         method: "GET",
       },
       ({ data }: { data: ResourcesData }) => {
@@ -53,30 +57,31 @@ export const RedisPanel: FC<RedisPanelProps> = (props) => {
       () => {},
       () => {},
     )
-  }, [currentAction.resourceId])
+  }, [action.resourceId])
+
+  const currentContent = action.content as RedisAction
 
   return (
     <div css={redisContainerStyle}>
-      <ResourceChoose action={currentAction} />
-      <CodeEditor
-        placeholder="SET runoobkey redis"
-        lineNumbers={true}
-        css={sqlInputStyle}
-        value={currentContent.query}
-        mode="TEXT_JS"
-        expectedType={VALIDATION_TYPES.STRING}
-        tables={sqlTable}
-        onChange={(value) => {
-          dispatch(
-            configActions.updateSelectedAction({
-              ...currentAction,
-              content: {
-                ...currentContent,
-                query: value,
-              },
-            }),
-          )
-        }}
+      <ResourceChoose />
+      <Controller
+        name="redisQuery"
+        control={control}
+        defaultValue={currentContent.query}
+        render={({ field: { value, onChange }, fieldState, formState }) => (
+          <CodeEditor
+            placeholder="SET runoobkey redis"
+            lineNumbers={true}
+            css={sqlInputStyle}
+            value={value}
+            mode="TEXT_JS"
+            expectedType={VALIDATION_TYPES.STRING}
+            tables={sqlTable}
+            onChange={(value) => {
+              onChange(value)
+            }}
+          />
+        )}
       />
       <TransformerComponent />
       <ActionEventHandler />

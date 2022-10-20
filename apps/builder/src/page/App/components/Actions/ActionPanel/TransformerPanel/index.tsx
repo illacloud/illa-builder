@@ -1,6 +1,4 @@
-import { FC, useMemo } from "react"
-import { useDispatch } from "react-redux"
-import { configActions } from "@/redux/config/configSlice"
+import { FC } from "react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { useTranslation } from "react-i18next"
@@ -10,39 +8,37 @@ import {
   transformerTipStyle,
 } from "./style"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { TransformerPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
+import { Controller, useForm } from "react-hook-form"
+import { useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
 
-export const TransformerPanel: FC<TransformerPanelProps> = (props) => {
-  const action = props.action
-  const dispatch = useDispatch()
+export const TransformerPanel: FC = (props) => {
   const { t } = useTranslation()
-  const finalValue = useMemo(() => {
-    return (
-      action?.content?.transformerString ||
-      "// Tip: assign your external references to variables instead of chaining off the curly brackets.\n" +
-        "return 5"
-    )
-  }, [action?.content?.transformerString])
+
+  const action = useSelector(getCachedAction)!!
+  const content = action.content as TransformerAction
+
+  const { control } = useForm()
 
   return (
     <div css={transformerPanelContainerStyle}>
-      <CodeEditor
-        value={finalValue}
-        css={transformerEditorStyle}
-        lineNumbers
-        height="88px"
-        expectedType={VALIDATION_TYPES.STRING}
-        mode="JAVASCRIPT"
-        onChange={(value) => {
-          dispatch(
-            configActions.updateSelectedAction({
-              ...action,
-              content: {
-                transformerString: value,
-              } as TransformerAction,
-            }),
-          )
-        }}
+      <Controller
+        name="transformerString"
+        defaultValue={content.transformerString}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <CodeEditor
+            value={value}
+            css={transformerEditorStyle}
+            lineNumbers
+            height="88px"
+            expectedType={VALIDATION_TYPES.STRING}
+            mode="JAVASCRIPT"
+            onChange={(value) => {
+              onChange(value)
+            }}
+          />
+        )}
       />
       <div css={transformerTipStyle}>
         {t("editor.action.resource.transformer.tip.external_reference")}

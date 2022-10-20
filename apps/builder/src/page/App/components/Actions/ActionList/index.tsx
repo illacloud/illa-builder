@@ -12,7 +12,7 @@ import {
 } from "./style"
 import { Button } from "@illa-design/button"
 import { useTranslation } from "react-i18next"
-import store, { RootState } from "@/store"
+import { RootState } from "@/store"
 import { configActions } from "@/redux/config/configSlice"
 import { Modal } from "@illa-design/modal"
 import { Empty } from "@illa-design/empty"
@@ -24,9 +24,16 @@ import {
   onCopyActionItem,
   onDeleteActionItem,
 } from "@/page/App/components/Actions/api"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 
 export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className } = props
+
+  const selectedAction = useSelector(getSelectedAction)
+  const cachedAction = useSelector(getCachedAction)
 
   const [generatorVisible, setGeneratorVisible] = useState<boolean>()
   const [searchActionValue, setSearchActionValue] = useState("")
@@ -75,25 +82,14 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                   onCopyItem={onCopyActionItem}
                   onDeleteItem={onDeleteActionItem}
                   onItemClick={(action) => {
-                    const selectedAction =
-                      store.getState().config.selectedAction
                     if (selectedAction === null) {
                       dispatch(configActions.changeSelectedAction(action))
                       return
                     }
                     // is a change action
                     if (selectedAction?.displayName !== action.displayName) {
-                      // find last action
-                      const lastAction = store
-                        .getState()
-                        .currentApp.action.find((value) => {
-                          return (
-                            value.displayName === selectedAction?.displayName
-                          )
-                        })
-                      // if not changed
                       if (
-                        JSON.stringify(lastAction) ===
+                        JSON.stringify(cachedAction) ===
                         JSON.stringify(selectedAction)
                       ) {
                         dispatch(configActions.changeSelectedAction(action))

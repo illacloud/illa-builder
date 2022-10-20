@@ -3,11 +3,10 @@ import {
   BodyType,
   RawBodyType,
 } from "@/redux/currentApp/action/restapiAction"
+import { Control } from "react-hook-form"
 
 export interface BodyEditorProps {
   bodyType: BodyType
   body: BodyContent
-  onChangeBodyType: (bodyType: BodyType) => void
-  onChangeRawBodyType: (rawBodyType: RawBodyType) => void
-  onChangeBody: (body: BodyContent) => void
+  control: Control
 }

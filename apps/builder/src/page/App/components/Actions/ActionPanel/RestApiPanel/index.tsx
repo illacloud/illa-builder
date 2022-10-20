@@ -9,56 +9,69 @@ import {
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { Select } from "@illa-design/select"
-import { useDispatch } from "react-redux"
-import { configActions } from "@/redux/config/configSlice"
+import { useSelector } from "react-redux"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { Input } from "@illa-design/input"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
-import { RestApiPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
-import store from "@/store"
+import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
+import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
+import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
+import {
+  BodyContent,
+  RestApiAction,
+  RestApiActionInitial,
+} from "@/redux/currentApp/action/restapiAction"
+import { RootState } from "@/store"
+import { Resource } from "@/redux/resource/resourceState"
 import {
   Params,
   RestApiAuth,
   RestApiResource,
 } from "@/redux/resource/restapiResource"
-import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
-import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
-import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { Resource } from "@/redux/resource/resourceState"
+import { Controller, useForm } from "react-hook-form"
+import { getCachedAction } from "@/redux/config/configSelector"
 
-export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
+export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
-  const dispatch = useDispatch()
 
-  const currentAction = props.action
+  const cachedAction = useSelector(getCachedAction)!!
 
-  const currentContent = props.action.content
+  const content = cachedAction.content as RestApiAction<BodyContent>
 
-  const currentResource = store
-    .getState()
-    .resource.find(
-      (r) => r.resourceId === currentAction.resourceId,
+  const currentResource = useSelector((state: RootState) => {
+    return state.resource.find(
+      (r) => r.resourceId === cachedAction.resourceId,
     ) as Resource<RestApiResource<RestApiAuth>>
+  })
+
+  const { control } = useForm()
 
   return (
     <div css={restapiPanelContainerStyle}>
-      <ResourceChoose action={currentAction} />
+      <ResourceChoose />
       <div css={topDivider} />
       <div css={restapiItemStyle}>
         <span css={restapiItemLabelStyle}>
           {t("editor.action.resource.restapi.label.action_type")}
         </span>
-        <Select
-          colorScheme="techPurple"
-          ml="16px"
-          value={currentContent.method}
-          width="160px"
-          maxW="160px"
-          options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
-          onChange={(value) => {
-            dispatch(configActions.updateSelectedApiMethod(value))
-          }}
+        <Controller
+          name="restapiMethod"
+          control={control}
+          defaultValue={content.method}
+          render={({ field: { value, onChange }, fieldState, formState }) => (
+            <Select
+              colorScheme="techPurple"
+              ml="16px"
+              value={value}
+              width="160px"
+              maxW="160px"
+              options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
+              onChange={(value) => {
+                onChange(value)
+              }}
+            />
+          )}
         />
         <Input
           minW="230px"
@@ -69,150 +82,133 @@ export const RestApiPanel: FC<RestApiPanelProps> = (props) => {
           ml="8px"
           readOnly
         />
-        <CodeEditor
-          borderRadius="0 8px 8px 0"
-          css={restapiItemInputStyle}
-          expectedType={VALIDATION_TYPES.STRING}
-          value={currentContent.url}
-          mode="TEXT_JS"
-          onChange={(value) => {
-            dispatch(
-              configActions.updateSelectedAction({
-                ...currentAction,
-                content: {
-                  ...currentContent,
-                  url: value,
-                },
-              }),
-            )
-          }}
+        <Controller
+          name="restapiUrl"
+          control={control}
+          defaultValue={content.url}
+          render={({ field: { value, onChange }, fieldState, formState }) => (
+            <CodeEditor
+              borderRadius="0 8px 8px 0"
+              css={restapiItemInputStyle}
+              expectedType={VALIDATION_TYPES.STRING}
+              value={value}
+              mode="TEXT_JS"
+              onChange={(value) => {
+                onChange(value)
+              }}
+            />
+          )}
         />
       </div>
-      <RecordEditor
-        records={currentAction.content.urlParams}
-        label={t("editor.action.resource.restapi.label.url_parameters")}
-        onChangeKey={(index, key, value) => {
-          dispatch(
-            configActions.addOrUpdateSelectedApiUrlParams({
-              index: index,
-              params: {
-                key: key,
-                value: value,
-              } as Params,
-            }),
-          )
-        }}
-        onChangeValue={(index, key, value) => {
-          dispatch(
-            configActions.addOrUpdateSelectedApiUrlParams({
-              index: index,
-              params: {
-                key: key,
-                value: value,
-              } as Params,
-            }),
-          )
-        }}
-        onDelete={(index, record) => {
-          dispatch(
-            configActions.removeSelectedApiUrlParams({
-              index: index,
-              params: record,
-            }),
-          )
-        }}
-        onAdd={() => {
-          dispatch(configActions.addSelectedApiEmptyUrlParams())
-        }}
+
+      <Controller
+        name="restapiUrlParams"
+        control={control}
+        defaultValue={content.urlParams}
+        render={({ field: { onChange, value }, fieldState, formState }) => (
+          <RecordEditor
+            records={value}
+            label={t("editor.action.resource.restapi.label.url_parameters")}
+            onChangeKey={(index, key, v) => {
+              let newList: Params[] = [...value]
+              newList[index] = { key, value: v } as Params
+              onChange(newList)
+            }}
+            onChangeValue={(index, key, v) => {
+              let newList: Params[] = [...value]
+              newList[index] = { key, value: v } as Params
+              onChange(newList)
+            }}
+            onDelete={(index, record) => {
+              let newList: Params[] = [...value]
+              newList.splice(index, 1)
+              onChange(newList)
+            }}
+            onAdd={() => {
+              let newList: Params[] = [
+                ...value,
+                { key: "", value: "" } as Params,
+              ]
+              onChange(newList)
+            }}
+          />
+        )}
       />
-      <RecordEditor
-        records={currentAction.content.headers}
-        label={t("editor.action.resource.restapi.label.headers")}
-        onChangeKey={(index, key, value) => {
-          dispatch(
-            configActions.addOrUpdateSelectedApiHeaders({
-              index: index,
-              params: {
-                key: key,
-                value: value,
-              } as Params,
-            }),
-          )
-        }}
-        onChangeValue={(index, key, value) => {
-          dispatch(
-            configActions.addOrUpdateSelectedApiHeaders({
-              index: index,
-              params: {
-                key: key,
-                value: value,
-              } as Params,
-            }),
-          )
-        }}
-        onDelete={(index, record) => {
-          dispatch(
-            configActions.removeSelectedApiHeaders({
-              index: index,
-              params: record,
-            }),
-          )
-        }}
-        onAdd={() => {
-          dispatch(configActions.addSelectedApiEmptyHeaders())
-        }}
+
+      <Controller
+        name="restapiHeaders"
+        defaultValue={content.headers}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <RecordEditor
+            records={value}
+            label={t("editor.action.resource.restapi.label.headers")}
+            onChangeKey={(index, key, v) => {
+              let newList: Params[] = [...value]
+              newList[index] = { key, value: v } as Params
+              onChange(newList)
+            }}
+            onChangeValue={(index, key, v) => {
+              let newList: Params[] = [...value]
+              newList[index] = { key, value: v } as Params
+              onChange(newList)
+            }}
+            onDelete={(index, record) => {
+              let newList: Params[] = [...value]
+              newList.splice(index, 1)
+              onChange(newList)
+            }}
+            onAdd={() => {
+              let newList: Params[] = [
+                ...value,
+                { key: "", value: "" } as Params,
+              ]
+              onChange(newList)
+            }}
+          />
+        )}
       />
-      {currentContent.method !== "GET" && (
+
+      {content.method !== "GET" && (
         <BodyEditor
-          onChangeBody={(body) => {
-            dispatch(configActions.updateSelectedApiBody(body))
-          }}
-          body={currentContent.body}
-          bodyType={currentContent.bodyType}
-          onChangeRawBodyType={(rawBodyType) => {
-            dispatch(configActions.updateSelectedApiRawBodyType(rawBodyType))
-          }}
-          onChangeBodyType={(bodyType) => {
-            dispatch(configActions.updateSelectedApiBodyType(bodyType))
-          }}
+          control={control}
+          body={content.body}
+          bodyType={content.bodyType}
         />
       )}
-      <RecordEditor
-        records={currentAction.content.cookies}
-        label={t("editor.action.resource.restapi.label.cookies")}
-        onChangeKey={(index, key, value) => {
-          dispatch(
-            configActions.addOrUpdateSelectedApiCookies({
-              index: index,
-              params: {
-                key: key,
-                value: value,
-              } as Params,
-            }),
-          )
-        }}
-        onChangeValue={(index, key, value) => {
-          dispatch(
-            configActions.addOrUpdateSelectedApiCookies({
-              index: index,
-              params: {
-                key: key,
-                value: value,
-              } as Params,
-            }),
-          )
-        }}
-        onDelete={(index, record) => {
-          dispatch(
-            configActions.removeSelectedApiCookies({
-              index: index,
-              params: record,
-            }),
-          )
-        }}
-        onAdd={() => {
-          dispatch(configActions.addSelectedApiEmptyCookies())
-        }}
+
+      <Controller
+        name="restapiCookies"
+        defaultValue={content.cookies}
+        control={control}
+        render={({ field: { value, onChange } }) => (
+          <RecordEditor
+            records={value}
+            label={t("editor.action.resource.restapi.label.cookies")}
+            onChangeKey={(index, key, v) => {
+              let newList: Params[] = [...value]
+              newList[index] = { key, value: v } as Params
+              onChange(newList)
+            }}
+            onChangeValue={(index, key, v) => {
+              let newList: Params[] = [...value]
+              newList[index] = { key, value: v } as Params
+              onChange(newList)
+            }}
+            onDelete={(index, record) => {
+              let newList: Params[] = [...value]
+              newList.splice(index, 1)
+              onChange(newList)
+            }}
+            onAdd={() => {
+              let newList: Params[] = [
+                ...value,
+                { key: "", value: "" } as Params,
+              ]
+              onChange(newList)
+            }}
+          />
+        )}
       />
       <TransformerComponent />
       <ActionEventHandler />

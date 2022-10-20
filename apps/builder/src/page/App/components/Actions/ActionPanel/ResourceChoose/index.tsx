@@ -13,9 +13,7 @@ import { AddIcon, PenIcon } from "@illa-design/icon"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { configActions } from "@/redux/config/configSlice"
 import { ButtonProps } from "@illa-design/button"
-import { RootState } from "@/store"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { ResourceChooseProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { Modal } from "@illa-design/modal"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
@@ -24,9 +22,12 @@ import {
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
-import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 
-export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
+export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
@@ -34,10 +35,8 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
   const [generatorVisible, setGeneratorVisible] = useState(false)
 
   const resourceList = useSelector(getAllResources)
-  const action = props.action
-  const contentMap = useSelector(
-    (state: RootState) => state.config.cacheActionContent,
-  )
+  const action = useSelector(getCachedAction)!!
+  const selectedAction = useSelector(getSelectedAction)!!
 
   return (
     <>
@@ -52,14 +51,15 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
               const resource = resourceList.find((r) => r.resourceId === value)
               if (resource != undefined) {
                 dispatch(
-                  configActions.updateSelectedAction({
+                  configActions.updateCachedAction({
                     ...action,
                     // selected resource is same as action type
                     actionType: resource.resourceType,
                     resourceId: value,
                     content:
-                      contentMap[resource.resourceType] ??
-                      getInitialContent(resource.resourceType),
+                      selectedAction.actionType === value
+                        ? selectedAction.content
+                        : getInitialContent(resource.resourceType),
                   }),
                 )
               }
@@ -112,7 +112,7 @@ export const ResourceChoose: FC<ResourceChooseProps> = (props) => {
             value={action.triggerMode}
             onChange={(value) => {
               dispatch(
-                configActions.updateSelectedAction({
+                configActions.updateCachedAction({
                   ...action,
                   triggerMode: value,
                 }),

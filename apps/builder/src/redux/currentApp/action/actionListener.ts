@@ -7,7 +7,20 @@ async function handleRemoveActionItem(
   action: ReturnType<typeof actionActions.removeActionItemReducer>,
   listenerApi: AppListenerEffectAPI,
 ) {
-  store.dispatch(configActions.changeSelectedAction(null))
+  if (action.payload === store.getState().config.selectedAction?.displayName) {
+    store.dispatch(configActions.changeSelectedAction(null))
+  }
+}
+
+async function handleUpdateActionItem(
+  action: ReturnType<typeof actionActions.updateActionItemReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  if (
+    action.payload.actionId === store.getState().config.selectedAction?.actionId
+  ) {
+    store.dispatch(configActions.changeSelectedAction(action.payload))
+  }
 }
 
 export function setupActionListeners(
@@ -17,6 +30,10 @@ export function setupActionListeners(
     startListening({
       actionCreator: actionActions.removeActionItemReducer,
       effect: handleRemoveActionItem,
+    }),
+    startListening({
+      actionCreator: actionActions.updateActionItemReducer,
+      effect: handleUpdateActionItem,
     }),
   ]
 
