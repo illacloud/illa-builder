@@ -8,7 +8,7 @@ import {
 import { ViewItemShape } from "./interface"
 import { CopyIcon, ReduceIcon } from "@illa-design/icon"
 import { DragIconAndLabel } from "./dragIconAndLabel"
-import { ViewListSetterContext } from "./context/viewsListContext"
+import { TabListSetterContext } from "./context/tabListContext"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { Trigger } from "@illa-design/trigger"
 import { useTranslation } from "react-i18next"
@@ -31,7 +31,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
     widgetDisplayName,
     childrenSetter,
     handleMoveOptionItem,
-  } = useContext(ViewListSetterContext)
+  } = useContext(TabListSetterContext)
   const { t } = useTranslation()
 
   const dragRef = useRef<HTMLSpanElement>(null)

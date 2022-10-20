@@ -3,7 +3,7 @@ import { Header } from "./header"
 import { ViewItemShape, ViewSetterProps } from "./interface"
 import { generateNewViewItem } from "./utils/generateNewOptions"
 import { ListBody } from "./listBody"
-import { ViewListSetterProvider } from "./context/viewsListContext"
+import { TabListSetterProvider } from "./context/tabListContext"
 import { get } from "lodash"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
@@ -41,7 +41,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
     }, [allViewsKeys, handleUpdateMultiAttrDSL, attrName, value])
 
     return (
-      <ViewListSetterProvider
+      <TabListSetterProvider
         list={value}
         childrenSetter={childrenSetter || []}
         handleUpdateDsl={handleUpdateDsl}
@@ -59,7 +59,7 @@ export const TabListSetter: FC<ViewSetterProps> = memo(
             <ListBody />
           </div>
         </div>
-      </ViewListSetterProvider>
+      </TabListSetterProvider>
     )
   },
 )

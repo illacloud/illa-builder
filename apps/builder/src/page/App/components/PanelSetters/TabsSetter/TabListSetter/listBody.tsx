@@ -1,9 +1,9 @@
 import { FC, useContext } from "react"
-import { ViewListSetterContext } from "./context/viewsListContext"
+import { TabListSetterContext } from "./context/tabListContext"
 import { ListItem } from "./listItem"
 
 export const ListBody: FC = () => {
-  const { list } = useContext(ViewListSetterContext)
+  const { list } = useContext(TabListSetterContext)
 
   if (!Array.isArray(list)) return null
   return (

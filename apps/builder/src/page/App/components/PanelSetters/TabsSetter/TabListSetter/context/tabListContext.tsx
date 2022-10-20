@@ -7,7 +7,7 @@ import {
 } from "../utils/generateNewOptions"
 import { useSelector } from "react-redux"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { cloneDeep, get } from "lodash"
+import { get } from "lodash"
 
 interface ProviderProps {
   list: ViewItemShape[]
@@ -27,9 +27,9 @@ interface Inject extends Omit<ProviderProps, "children"> {
   handleMoveOptionItem: (dragIndex: number, hoverIndex: number) => void
 }
 
-export const ViewListSetterContext = createContext<Inject>({} as Inject)
+export const TabListSetterContext = createContext<Inject>({} as Inject)
 
-export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
+export const TabListSetterProvider: FC<ProviderProps> = (props) => {
   const { list, attrPath, widgetDisplayName, handleUpdateMultiAttrDSL } = props
   const executionResult = useSelector(getExecutionResult)
 
@@ -143,10 +143,10 @@ export const ViewListSetterProvider: FC<ProviderProps> = (props) => {
   }
 
   return (
-    <ViewListSetterContext.Provider value={value}>
+    <TabListSetterContext.Provider value={value}>
       {props.children}
-    </ViewListSetterContext.Provider>
+    </TabListSetterContext.Provider>
   )
 }
 
-ViewListSetterProvider.displayName = "OptionListSetterProvider"
+TabListSetterProvider.displayName = "OptionListSetterProvider"

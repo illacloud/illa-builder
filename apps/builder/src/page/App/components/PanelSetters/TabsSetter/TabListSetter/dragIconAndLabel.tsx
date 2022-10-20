@@ -11,12 +11,12 @@ import {
   moveIconStyle,
 } from "./style"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { ViewListSetterContext } from "./context/viewsListContext"
+import { TabListSetterContext } from "./context/tabListContext"
 import { DragIconAndLabelProps, ViewItemShape } from "./interface"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index } = props
-  const { widgetDisplayName, attrPath } = useContext(ViewListSetterContext)
+  const { widgetDisplayName, attrPath } = useContext(TabListSetterContext)
 
   const { t } = useTranslation()
   const executionResult = useSelector(getExecutionResult)
