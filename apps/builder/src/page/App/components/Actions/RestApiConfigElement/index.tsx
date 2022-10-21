@@ -62,6 +62,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
 
   const { control, handleSubmit, formState } = useForm({
     mode: "onChange",
+    shouldUnregister: true,
   })
 
   const resource = useSelector((state: RootState) => {

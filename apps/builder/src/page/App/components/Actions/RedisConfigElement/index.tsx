@@ -42,6 +42,7 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
+    shouldUnregister: true,
   })
 
   const findResource = useSelector((state: RootState) => {

@@ -57,8 +57,6 @@ export const MysqlLikePanel: FC = (props) => {
     )
   }, [currentAction.resourceId])
 
-  const { control } = useForm()
-
   const mode = useMemo(() => {
     switch (currentAction.actionType) {
       case "postgresql":

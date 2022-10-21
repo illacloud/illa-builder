@@ -42,8 +42,6 @@ export const RedisPanel: FC = () => {
 
   const [sqlTable, setSqlTable] = useState<Record<string, string[]>>()
 
-  const { control } = useForm()
-
   useEffect(() => {
     Api.request(
       {

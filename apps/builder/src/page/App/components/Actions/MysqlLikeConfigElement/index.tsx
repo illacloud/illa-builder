@@ -47,6 +47,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
+    shouldUnregister: true,
   })
 
   const resource = useSelector((state: RootState) => {

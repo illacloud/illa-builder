@@ -33,7 +33,10 @@ export const MongoDbPanel: FC = () => {
     content.actionType,
   )
 
-  const { control } = useForm()
+  const { control } = useForm({
+    mode: "onChange",
+    shouldUnregister: true,
+  })
 
   return (
     <div css={mongoContainerStyle}>

@@ -23,11 +23,10 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { EditorMode } from "@/components/CodeEditor/interface"
 
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
-  const { body, bodyType, control } = props
+  const { content, control } = props
 
-  const [currentBodyType, setCurrentBodyType] = useState<BodyType>(bodyType)
-  const [rawBodyType, setCurrentRawBodyType] = useState<RawBodyType>(
-    bodyType === "raw" ? (body as RawBody<RawBodyContent>).type : "text",
+  const [currentBodyType, setCurrentBodyType] = useState<BodyType>(
+    content.bodyType,
   )
 
   const currentBody = useMemo(() => {
@@ -35,23 +34,29 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
       case "none":
         return null
       case "form-data":
-        return bodyType === "form-data"
-          ? (body as Params[])
+        return content.bodyType === "form-data"
+          ? (content.body as Params[])
           : ([{ key: "", value: "" }] as Params[])
       case "x-www-form-urlencoded":
-        return bodyType === "x-www-form-urlencoded"
-          ? (body as Params[])
+        return content.bodyType === "x-www-form-urlencoded"
+          ? (content.body as Params[])
           : ([{ key: "", value: "" }] as Params[])
       case "raw":
-        return bodyType === "raw"
-          ? (body as RawBody<RawBodyContent>)
+        return content.bodyType === "raw"
+          ? (content.body as RawBody<RawBodyContent>)
           : RawBodyInitial
       case "binary":
-        return bodyType === "binary" ? (body as string) : ""
-      default:
-        return null
+        return content.bodyType === "x-www-form-urlencoded"
+          ? (content.body as string)
+          : ""
     }
-  }, [body, bodyType, currentBodyType])
+  }, [content.body, content.bodyType, currentBodyType])
+
+  const [currentRawBodyType, setCurrentRawBodyType] = useState<RawBodyType>(
+    currentBodyType === "raw"
+      ? (currentBody as RawBody<RawBodyContent>).type
+      : "text",
+  )
 
   const { t } = useTranslation()
   return (
@@ -64,7 +69,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           <Controller
             name="restapiBodyType"
             control={control}
-            defaultValue={bodyType}
+            defaultValue={currentBodyType}
             render={({ field: { onChange, value } }) => (
               <Select
                 colorScheme="techPurple"
@@ -76,7 +81,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                   "raw",
                   "binary",
                 ]}
-                bdRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
+                bdRadius={currentBodyType === "raw" ? " 8px 0 0 8px" : "8px"}
                 onChange={(value) => {
                   setCurrentBodyType(value)
                   onChange(value)
@@ -84,49 +89,56 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               />
             )}
           />
-          {(currentBodyType === "form-data" ||
-            currentBodyType === "x-www-form-urlencoded") && (
+          {currentBodyType === "raw" && (
             <Controller
-              defaultValue={currentBody}
-              name="restapiBodyContentRecord"
+              name="restapiBody"
               control={control}
-              render={({ field: { value, onChange } }) => (
-                <RecordEditor
-                  label=""
-                  records={value}
-                  onChangeKey={(index, key, v) => {
-                    let newList: Params[] = [...value]
-                    newList[index] = { key, value: v } as Params
-                    onChange(newList)
-                  }}
-                  onChangeValue={(index, key, v) => {
-                    let newList: Params[] = [...value]
-                    newList[index] = { key, value: v } as Params
-                    onChange(newList)
-                  }}
-                  onDelete={(index, record) => {
-                    let newList: Params[] = [...value]
-                    newList.splice(index, 1)
-                    onChange(newList)
-                  }}
-                  onAdd={() => {
-                    let newList: Params[] = [
-                      ...value,
-                      { key: "", value: "" } as Params,
-                    ]
-                    onChange(newList)
+              defaultValue={(currentBody as RawBody<RawBodyContent>).type}
+              render={({ field: { onChange, value } }) => (
+                <Select
+                  bdRadius="0 8px 8px 0"
+                  colorScheme="techPurple"
+                  width="162px"
+                  ml="-1px"
+                  value={value}
+                  options={["text", "json", "xml", "javascript", "html"]}
+                  onChange={(value) => {
+                    setCurrentRawBodyType(value)
+                    onChange(value)
                   }}
                 />
               )}
             />
           )}
-          {currentBodyType === "binary" && (
-            <Controller
-              defaultValue={currentBody}
-              render={({ field: { value, onChange } }) => (
+        </div>
+        {currentBodyType === "raw" && (
+          <Controller
+            control={control}
+            defaultValue={(currentBody as RawBody<RawBodyContent>).content}
+            name="restapiBodyContentRaw"
+            render={({ field: { value, onChange } }) => {
+              let mode: EditorMode = "TEXT_JS"
+              switch (currentRawBodyType) {
+                case "text":
+                  mode = "TEXT_JS"
+                  break
+                case "json":
+                  mode = "JSON"
+                  break
+                case "xml":
+                  mode = "XML_JS"
+                  break
+                case "javascript":
+                  mode = "JAVASCRIPT"
+                  break
+                case "html":
+                  mode = "HTML_JS"
+                  break
+              }
+              return (
                 <CodeEditor
-                  mode="TEXT_JS"
                   lineNumbers
+                  mode={mode}
                   value={value}
                   expectedType={VALIDATION_TYPES.STRING}
                   height="88px"
@@ -134,71 +146,65 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                     onChange(value)
                   }}
                 />
-              )}
-              name="restapiBodyContentBinary"
-              control={control}
-            />
-          )}
-          {currentBodyType === "raw" && (
-            <>
-              <Controller
-                name="restapiBody"
-                control={control}
-                defaultValue={rawBodyType}
-                render={({ field: { onChange, value } }) => (
-                  <Select
-                    bdRadius="0 8px 8px 0"
-                    colorScheme="techPurple"
-                    width="162px"
-                    value={value}
-                    options={["text", "json", "xml", "javascript", "html"]}
-                    onChange={(value) => {
-                      setCurrentRawBodyType(value)
-                      onChange(value)
-                    }}
-                  />
-                )}
-              />
-              <Controller
-                control={control}
-                defaultValue={(currentBody as RawBody<RawBodyContent>).content}
-                name="restapiBodyContentRaw"
-                render={({ field: { value, onChange } }) => {
-                  let mode: EditorMode = "TEXT_JS"
-                  switch (rawBodyType) {
-                    case "text":
-                      mode = "TEXT_JS"
-                      break
-                    case "json":
-                      mode = "JSON"
-                      break
-                    case "xml":
-                      mode = "XML_JS"
-                      break
-                    case "javascript":
-                      mode = "JAVASCRIPT"
-                      break
-                    case "html":
-                      mode = "HTML_JS"
-                      break
-                  }
-                  return (
-                    <CodeEditor
-                      lineNumbers
-                      mode={mode}
-                      value={value}
-                      expectedType={VALIDATION_TYPES.STRING}
-                      height="88px"
-                      onChange={(value) => {
-                        onChange(value)
-                      }}
-                    />
-                  )
+              )
+            }}
+          />
+        )}
+        {(currentBodyType === "form-data" ||
+          currentBodyType === "x-www-form-urlencoded") && (
+          <Controller
+            defaultValue={currentBody}
+            name="restapiBodyContentRecord"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <RecordEditor
+                label=""
+                records={value}
+                onChangeKey={(index, key, v) => {
+                  let newList: Params[] = [...value]
+                  newList[index] = { key, value: v } as Params
+                  onChange(newList)
+                }}
+                onChangeValue={(index, key, v) => {
+                  let newList: Params[] = [...value]
+                  newList[index] = { key, value: v } as Params
+                  onChange(newList)
+                }}
+                onDelete={(index, record) => {
+                  let newList: Params[] = [...value]
+                  newList.splice(index, 1)
+                  onChange(newList)
+                }}
+                onAdd={() => {
+                  let newList: Params[] = [
+                    ...value,
+                    { key: "", value: "" } as Params,
+                  ]
+                  onChange(newList)
                 }}
               />
-            </>
-          )}
-        </div>
+            )}
+          />
+        )}
+        {currentBodyType === "binary" && (
+          <Controller
+            defaultValue={currentBody}
+            render={({ field: { value, onChange } }) => (
+              <CodeEditor
+                mode="TEXT_JS"
+                lineNumbers
+                value={value}
+                expectedType={VALIDATION_TYPES.STRING}
+                height="88px"
+                onChange={(value) => {
+                  onChange(value)
+                }}
+              />
+            )}
+            name="restapiBodyContentBinary"
+            control={control}
+          />
+        )}
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
   restapiItemInputStyle,
@@ -18,6 +18,7 @@ import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEd
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
+  ApiMethod,
   BodyContent,
   RestApiAction,
   RestApiActionInitial,
@@ -35,17 +36,24 @@ import { getCachedAction } from "@/redux/config/configSelector"
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
 
-  const cachedAction = useSelector(getCachedAction)!!
+  const cachedAction = useSelector(getCachedAction)
 
-  const content = cachedAction.content as RestApiAction<BodyContent>
+  const content = cachedAction?.content
+    ? (cachedAction.content as RestApiAction<BodyContent>)
+    : RestApiActionInitial
 
   const currentResource = useSelector((state: RootState) => {
     return state.resource.find(
-      (r) => r.resourceId === cachedAction.resourceId,
+      (r) => r.resourceId === cachedAction?.resourceId,
     ) as Resource<RestApiResource<RestApiAuth>>
   })
 
-  const { control } = useForm()
+  const { control } = useForm({
+    mode: "onChange",
+    shouldUnregister: true,
+  })
+
+  const [currentMethod, setCurrentMethod] = useState<ApiMethod>(content.method)
 
   return (
     <div css={restapiPanelContainerStyle}>
@@ -58,7 +66,7 @@ export const RestApiPanel: FC = () => {
         <Controller
           name="restapiMethod"
           control={control}
-          defaultValue={content.method}
+          defaultValue={currentMethod}
           render={({ field: { value, onChange }, fieldState, formState }) => (
             <Select
               colorScheme="techPurple"
@@ -68,6 +76,7 @@ export const RestApiPanel: FC = () => {
               maxW="160px"
               options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
               onChange={(value) => {
+                setCurrentMethod(value)
                 onChange(value)
               }}
             />
@@ -168,15 +177,6 @@ export const RestApiPanel: FC = () => {
           />
         )}
       />
-
-      {content.method !== "GET" && (
-        <BodyEditor
-          control={control}
-          body={content.body}
-          bodyType={content.bodyType}
-        />
-      )}
-
       <Controller
         name="restapiCookies"
         defaultValue={content.cookies}
@@ -210,6 +210,9 @@ export const RestApiPanel: FC = () => {
           />
         )}
       />
+      {currentMethod !== "GET" && (
+        <BodyEditor control={control} content={content} />
+      )}
       <TransformerComponent />
       <ActionEventHandler />
     </div>
