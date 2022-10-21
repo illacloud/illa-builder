@@ -14,8 +14,9 @@ import {
   RedisActionInitial,
 } from "@/redux/currentApp/action/redisAction"
 import { Controller, useForm } from "react-hook-form"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}
@@ -60,28 +61,30 @@ export const RedisPanel: FC = () => {
   }, [action.resourceId])
 
   const currentContent = action.content as RedisAction
+  const dispatch = useDispatch()
 
   return (
     <div css={redisContainerStyle}>
       <ResourceChoose />
-      <Controller
-        name="redisQuery"
-        control={control}
-        defaultValue={currentContent.query}
-        render={({ field: { value, onChange }, fieldState, formState }) => (
-          <CodeEditor
-            placeholder="SET runoobkey redis"
-            lineNumbers={true}
-            css={sqlInputStyle}
-            value={value}
-            mode="TEXT_JS"
-            expectedType={VALIDATION_TYPES.STRING}
-            tables={sqlTable}
-            onChange={(value) => {
-              onChange(value)
-            }}
-          />
-        )}
+      <CodeEditor
+        placeholder="SET runoobkey redis"
+        lineNumbers={true}
+        css={sqlInputStyle}
+        value={currentContent.query}
+        mode="TEXT_JS"
+        expectedType={VALIDATION_TYPES.STRING}
+        tables={sqlTable}
+        onChange={(value) => {
+          dispatch(
+            configActions.updateCachedAction({
+              ...action,
+              content: {
+                ...currentContent,
+                query: value,
+              },
+            }),
+          )
+        }}
       />
       <TransformerComponent />
       <ActionEventHandler />

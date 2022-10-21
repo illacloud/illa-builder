@@ -8,7 +8,6 @@ import {
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
-  UpdateContainerViewsComponentsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"

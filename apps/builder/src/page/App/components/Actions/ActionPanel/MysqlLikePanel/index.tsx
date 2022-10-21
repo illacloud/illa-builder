@@ -13,8 +13,9 @@ import { isObject } from "@illa-design/system"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { Controller, useForm } from "react-hook-form"
 import { MysqlLikeAction } from "@/redux/currentApp/action/mysqlLikeAction"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 const convertResourcesToTables = (data: Record<string, unknown>) => {
   let res: Record<string, string[]> = {}
@@ -38,6 +39,7 @@ const convertResourcesToTables = (data: Record<string, unknown>) => {
 export const MysqlLikePanel: FC = (props) => {
   const currentAction = useSelector(getCachedAction)!!
   const [sqlTable, setSqlTable] = useState<Record<string, string[]>>()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     Api.request(
@@ -71,25 +73,24 @@ export const MysqlLikePanel: FC = (props) => {
   return (
     <div css={mysqlContainerStyle}>
       <ResourceChoose />
-      <Controller
-        name="mysqlLikeQuery"
-        control={control}
-        defaultValue={mysqlContent.query}
-        render={({ field: { value, onChange }, fieldState, formState }) => {
-          return (
-            <CodeEditor
-              placeholder="select * from users;"
-              lineNumbers={true}
-              height="88px"
-              css={sqlInputStyle}
-              value={value}
-              mode={mode}
-              expectedType={VALIDATION_TYPES.STRING}
-              tables={sqlTable}
-              onChange={(value) => {
-                onChange(value)
-              }}
-            />
+      <CodeEditor
+        placeholder="select * from users;"
+        lineNumbers={true}
+        height="88px"
+        css={sqlInputStyle}
+        value={mysqlContent.query}
+        mode={mode}
+        expectedType={VALIDATION_TYPES.STRING}
+        tables={sqlTable}
+        onChange={(value) => {
+          dispatch(
+            configActions.updateCachedAction({
+              ...currentAction,
+              content: {
+                ...mysqlContent,
+                query: value,
+              },
+            }),
           )
         }}
       />

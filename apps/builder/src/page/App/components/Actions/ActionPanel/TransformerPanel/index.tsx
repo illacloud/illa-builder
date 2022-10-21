@@ -9,8 +9,9 @@ import {
 } from "./style"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { Controller, useForm } from "react-hook-form"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 export const TransformerPanel: FC = (props) => {
   const { t } = useTranslation()
@@ -18,27 +19,27 @@ export const TransformerPanel: FC = (props) => {
   const action = useSelector(getCachedAction)!!
   const content = action.content as TransformerAction
 
-  const { control } = useForm()
+  const dispatch = useDispatch()
 
   return (
     <div css={transformerPanelContainerStyle}>
-      <Controller
-        name="transformerString"
-        defaultValue={content.transformerString}
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <CodeEditor
-            value={value}
-            css={transformerEditorStyle}
-            lineNumbers
-            height="88px"
-            expectedType={VALIDATION_TYPES.STRING}
-            mode="JAVASCRIPT"
-            onChange={(value) => {
-              onChange(value)
-            }}
-          />
-        )}
+      <CodeEditor
+        value={content.transformerString}
+        css={transformerEditorStyle}
+        lineNumbers
+        height="88px"
+        expectedType={VALIDATION_TYPES.STRING}
+        mode="JAVASCRIPT"
+        onChange={(value) => {
+          dispatch(
+            configActions.updateCachedAction({
+              ...action,
+              content: {
+                transformerString: value,
+              },
+            }),
+          )
+        }}
       />
       <div css={transformerTipStyle}>
         {t("editor.action.resource.transformer.tip.external_reference")}
