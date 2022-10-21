@@ -611,6 +611,16 @@
       "unselected_tip1": "没有组件被选中。",
       "unselected_tip2": "请点击组件以选中。"
     },
+    "validate_message": {
+      "email": "请输入有效的电子邮箱",
+      "max_length": "请输入最多{{ number }}个字符",
+      "max_value": "请输入不大于{{ number }}的值",
+      "min_length": "请输入至少{{ number }}个字符",
+      "min_value": "请输入不小于{{ number }} 的值",
+      "regex": "请按照要求的格式填写",
+      "required": "必填",
+      "url": "请输入有效的URL"
+    },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
       "search_placeholder": "搜索",

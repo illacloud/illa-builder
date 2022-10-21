@@ -2,6 +2,7 @@ import { RadioGroupProps } from "@illa-design/radio"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { ValidateMessageProps } from "../PublicSector/InvalidMessage/interface"
 
 export interface WrappedRadioButtonProps
   extends Pick<
@@ -15,7 +16,8 @@ export interface RadioButtonWidgetProps
   extends WrappedRadioButtonProps,
     BaseWidgetProps,
     LabelProps,
-    TooltipWrapperProps {
+    TooltipWrapperProps,
+    Omit<ValidateMessageProps, "value"> {
   optionConfigureMode?: "dynamic" | "static"
   manualOptions?: {
     label: string

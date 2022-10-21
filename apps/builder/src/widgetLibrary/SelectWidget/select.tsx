@@ -2,9 +2,13 @@ import { FC, useEffect, useMemo, useRef } from "react"
 import { Select } from "@illa-design/select"
 import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
-import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { InvalidMessage } from "../PublicSector/InvalidMessage"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   const {
@@ -70,6 +74,8 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
+    customRule,
+    hideValidationMessage,
     updateComponentHeight,
   } = props
 
@@ -150,6 +156,20 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
           <WrappedSelect {...props} options={finalOptions} />
         </div>
       </TooltipWrapper>
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
+        <InvalidMessage
+          value={value as string}
+          required={required}
+          customRule={customRule}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
     </div>
   )
 }

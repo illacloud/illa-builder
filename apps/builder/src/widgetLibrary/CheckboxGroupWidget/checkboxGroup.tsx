@@ -6,8 +6,12 @@ import {
 } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
-import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import {
+  applyCenterLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { InvalidMessage } from "../PublicSector/InvalidMessage"
 
 export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   const {
@@ -60,6 +64,8 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
+    customRule,
+    hideValidationMessage,
     updateComponentHeight,
   } = props
 
@@ -131,6 +137,20 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
           <WrappedCheckbox {...props} options={finalOptions} />
         </div>
       </TooltipWrapper>
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
+        <InvalidMessage
+          value={value}
+          required={required}
+          customRule={customRule}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
     </div>
   )
 }

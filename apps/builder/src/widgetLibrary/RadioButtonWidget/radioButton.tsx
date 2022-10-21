@@ -2,19 +2,17 @@ import { FC, useEffect, useMemo, useRef } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { RadioButtonWidgetProps, WrappedRadioButtonProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
-import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { InvalidMessage } from "../PublicSector/InvalidMessage"
 
 export const WrappedRadioButton: FC<WrappedRadioButtonProps> = (props) => {
-  const {
-    value,
-    options,
-    disabled,
-    direction,
-    colorScheme,
-    handleUpdateDsl,
-  } = props
+  const { value, options, disabled, direction, colorScheme, handleUpdateDsl } =
+    props
 
   return (
     <RadioGroup
@@ -58,6 +56,8 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
     required,
     labelHidden,
     tooltipText,
+    customRule,
+    hideValidationMessage,
     updateComponentHeight,
   } = props
 
@@ -129,6 +129,20 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
           <WrappedRadioButton {...props} options={finalOptions} />
         </div>
       </TooltipWrapper>
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
+        <InvalidMessage
+          value={value}
+          required={required}
+          customRule={customRule}
+          hideValidationMessage={hideValidationMessage}
+        />
+      </div>
     </div>
   )
 }

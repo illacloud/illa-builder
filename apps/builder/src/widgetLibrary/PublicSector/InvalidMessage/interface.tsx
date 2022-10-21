@@ -1,5 +1,5 @@
 export interface ValidateMessageProps {
-  value?: string | number
+  value?: unknown
   pattern?: "Email" | "URL" | "Regex"
   regex?: string
   minLength?: number
@@ -11,5 +11,11 @@ export interface ValidateMessageProps {
 
 export type ValidateCheckProps = Pick<
   ValidateMessageProps,
-  "value" | "maxLength" | "minLength" | "required" | "pattern" | "regex"
+  | "value"
+  | "maxLength"
+  | "minLength"
+  | "required"
+  | "pattern"
+  | "regex"
+  | "customRule"
 >

@@ -611,6 +611,16 @@
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it."
     },
+    "validate_message": {
+      "email": "Please enter a valid email address",
+      "max_length": "Must be no more than {{ number }} characters",
+      "max_value": "Must be less than {{ number }}",
+      "min_length": "Must be at least {{ number }} characters",
+      "min_value": "Must be greater than {{ number }}",
+      "regex": "Please match the requested format",
+      "required": "This field is required",
+      "url": "Please enter a valid URL"
+    },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
       "search_placeholder": "search",
