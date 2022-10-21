@@ -3,15 +3,13 @@ import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper
 import { TabsProps } from "@illa-design/tabs"
 import { viewListItemShaper } from "@/widgetLibrary/ContainerWidget/interface"
 
-export type HorizontalAlign = "start" | "center" | "end"
-
 export interface WrappedTabsProps extends TabsProps, BaseWidgetProps {
   value?: string
   disabled?: boolean
-  horizontalAlign?: HorizontalAlign
   viewList?: viewListItemShaper[]
   tabList?: viewListItemShaper[]
   handleOnChange?: () => void
+  handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
 }
 
 export interface TabsWidgetProps
@@ -21,4 +19,5 @@ export interface TabsWidgetProps
   navigateContainer?: boolean
   linkWidgetDisplayName?: string
   currentKey?: string
+  handleUpdateOriginalDSLOtherMultiAttr: (displayName: string, updateSlice: Record<string, any>) => void
 }

@@ -136,6 +136,19 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [dispatch, displayName],
     )
 
+    const handleUpdateOriginalDSLOtherMultiAttr = useCallback(
+      (displayName: string, updateSlice: Record<string, any>) => {
+        if (!displayName || !isObject(updateSlice)) return
+        dispatch(
+          componentsActions.updateComponentPropsReducer({
+            displayName,
+            updateSlice,
+          }),
+        )
+      },
+      [dispatch],
+    )
+
     const getOnChangeEventScripts = useCallback(() => {
       const events = get(realProps, "events")
       if (events) {
@@ -240,6 +253,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleUpdateGlobalData={handleUpdateGlobalData}
           handleDeleteGlobalData={handleDeleteGlobalData}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+          handleUpdateOriginalDSLOtherMultiAttr={handleUpdateOriginalDSLOtherMultiAttr}
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
           handleOnSortingChange={handleOnSortingChange}

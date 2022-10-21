@@ -1,6 +1,6 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
-import { applyAlignStyle, fullWidthAndFullHeightStyle } from "./style"
+import { fullWidthAndFullHeightStyle } from "./style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { TabPane, Tabs } from "@illa-design/tabs"
 
@@ -10,18 +10,12 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
     align,
     activeKey,
     disabled,
-    horizontalAlign,
     tabList,
     colorScheme,
     tabPosition,
-    handleUpdateDsl,
     handleOnChange,
+    handleUpdateOriginalDSLMultiAttr,
   } = props
-  const [currentKey, setCurrentKey] = useState(activeKey)
-
-  useEffect(() => {
-    setCurrentKey(activeKey)
-  }, [activeKey])
 
   return (
     <Tabs
@@ -29,11 +23,11 @@ export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
       align={align}
       colorScheme={colorScheme}
       tabPosition={tabPosition}
-      activeKey={currentKey}
+      activeKey={activeKey}
       onChange={(value) => {
-        setCurrentKey(value)
         new Promise((resolve) => {
-          handleUpdateDsl({ currentKey: value })
+          const currentIndex = tabList?.findIndex((view) => view.key === value)
+          handleUpdateOriginalDSLMultiAttr({ currentKey: value, currentIndex })
           resolve(true)
         }).then(() => {
           handleOnChange?.()
@@ -65,11 +59,13 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     currentKey,
     tabList,
     viewList,
-    horizontalAlign,
     displayName,
+    linkWidgetDisplayName,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleUpdateOriginalDSLMultiAttr,
+    handleUpdateOriginalDSLOtherMultiAttr,
     tooltipText,
     colorScheme,
     tabPosition,
@@ -78,7 +74,6 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       value,
-      horizontalAlign,
       setValue: (value: string) => {
         handleUpdateDsl({ value })
       },
@@ -93,7 +88,6 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
   }, [
     displayName,
     value,
-    horizontalAlign,
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
@@ -104,6 +98,24 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
     return tabList
   }, [navigateContainer, tabList, viewList])
 
+  const handleUpdateMultiAttrDSL = useCallback(
+    (updateSlice) => {
+      handleUpdateOriginalDSLMultiAttr?.(updateSlice)
+      if (navigateContainer && linkWidgetDisplayName) {
+        handleUpdateOriginalDSLOtherMultiAttr?.(
+          linkWidgetDisplayName,
+          updateSlice,
+        )
+      }
+    },
+    [
+      navigateContainer,
+      linkWidgetDisplayName,
+      handleUpdateOriginalDSLMultiAttr,
+      handleUpdateOriginalDSLOtherMultiAttr,
+    ],
+  )
+
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
       <div css={fullWidthAndFullHeightStyle}>
@@ -113,10 +125,10 @@ export const TabsWidget: FC<TabsWidgetProps> = (props) => {
           value={value}
           align={align}
           activeKey={currentKey}
-          horizontalAlign={horizontalAlign}
           colorScheme={colorScheme}
           tabPosition={tabPosition}
           disabled={disabled}
+          handleUpdateOriginalDSLMultiAttr={handleUpdateMultiAttrDSL}
         />
       </div>
     </TooltipWrapper>
