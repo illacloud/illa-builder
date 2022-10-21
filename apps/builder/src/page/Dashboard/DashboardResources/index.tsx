@@ -45,6 +45,8 @@ export const DashboardResources: FC = () => {
           break
         case "postgresql":
         case "mysql":
+        case "tidb":
+        case "mariadb":
           dbName = (resource as Resource<MysqlLikeResource>).content
             .databaseName
           break
