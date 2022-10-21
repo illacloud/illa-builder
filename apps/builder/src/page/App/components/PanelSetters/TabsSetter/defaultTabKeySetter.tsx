@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo } from "react"
-import { ContainerDefaultViewKeySetterProps } from "@/page/App/components/PanelSetters/ContainerSetter/interface"
+import { TabsDefaultKeySetterProps } from "./interface"
 import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseInput"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
@@ -7,9 +7,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { get } from "lodash"
 import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
 
-export const ContainerDefaultViewKeySetter: FC<
-  ContainerDefaultViewKeySetterProps
-> = (props) => {
+export const TabsDefaultKeySetter: FC<TabsDefaultKeySetterProps> = (props) => {
   const {
     attrName,
     handleUpdateMultiAttrDSL,
@@ -27,32 +25,29 @@ export const ContainerDefaultViewKeySetter: FC<
     },
   )
 
-  const realViews = useMemo(() => {
-    return get(targetComponentProps, "viewList", []) as ViewItemShape[]
+  const tabList = useMemo(() => {
+    return get(targetComponentProps, "tabList", []) as ViewItemShape[]
   }, [targetComponentProps])
 
-  const handleUpdateDefaultView = useCallback(
+  const handleUpdateDefaultTab = useCallback(
     (attrPath: string, value: string) => {
-      const defaultViewIndex = realViews.findIndex((view) => view.key === value)
-      let currentIndex = 0
-      let currentKey = realViews[currentIndex].key
-      if (defaultViewIndex > -1) {
-        currentIndex = defaultViewIndex
-        currentKey = realViews[currentIndex].key
+      const defaultTabIndex = tabList.findIndex((view) => view.key === value)
+      let currentIndex
+      if (defaultTabIndex > -1) {
+        currentIndex = defaultTabIndex
       }
       handleUpdateMultiAttrDSL?.({
         [attrPath]: value,
         currentIndex,
-        currentKey,
       })
     },
-    [handleUpdateMultiAttrDSL, realViews],
+    [handleUpdateMultiAttrDSL, tabList],
   )
 
   return (
     <BaseInput
       attrName={attrName}
-      handleUpdateDsl={handleUpdateDefaultView}
+      handleUpdateDsl={handleUpdateDefaultTab}
       expectedType={expectedType}
       widgetDisplayName={widgetDisplayName}
       widgetType={widgetType}
@@ -62,4 +57,4 @@ export const ContainerDefaultViewKeySetter: FC<
   )
 }
 
-ContainerDefaultViewKeySetter.displayName = "ContainerDefaultViewKeySetter"
+TabsDefaultKeySetter.displayName = "TabsDefaultKeySetter"

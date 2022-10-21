@@ -1,10 +1,7 @@
 import { FC } from "react"
 import { Button } from "@illa-design/button"
 import { AddIcon } from "@illa-design/icon"
-import {
-  HeaderLabelStyle,
-  HeaderWrapperStyle,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
+import { HeaderLabelStyle, HeaderWrapperStyle } from "./style"
 import { useTranslation } from "react-i18next"
 
 export interface HeaderProps {

@@ -372,6 +372,12 @@
           "prefabricated": "Prefabricated color",
           "title": "Edit color"
         },
+        "view_setter": {
+          "views": "Views"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
         "column_setter": {
           "label": "列 ({{number}})",
           "new": "新建",
@@ -436,6 +442,7 @@
         "row_selection": "行选择",
         "sort": "排序",
         "style": "风格",
+        "tabs": "选项卡",
         "toolbar": "工具栏",
         "validation": "验证",
         "views": "视图"
@@ -461,6 +468,7 @@
         "columns": "列数据",
         "component": "组件",
         "config_type": "配置类型",
+        "container": "容器",
         "content": "内容",
         "control_component": "控制组件",
         "custom_rule": "自定义规则",
@@ -481,6 +489,7 @@
         "default_sort_order": "顺序",
         "default_value": "默认值",
         "default_views": "默认视图",
+        "default_tab": "默认值",
         "description": "描述",
         "direction": "方向",
         "disabled": "禁用",
@@ -518,6 +527,7 @@
         "layout": "布局",
         "legend_position": "图例位置",
         "links_color": "链接色",
+        "link_to_container": "是否关联到容器",
         "loading": "加载中",
         "loop_back_to_start": "列表循环",
         "loop_start_to_back": "列表循环",
@@ -884,6 +894,9 @@
       "name": "表格",
       "pagination": "翻页",
       "scroll": "滚动"
+    },
+    "tabs": {
+      "name": "选项卡"
     },
     "text": {
       "default_value": "👋 嗨！",

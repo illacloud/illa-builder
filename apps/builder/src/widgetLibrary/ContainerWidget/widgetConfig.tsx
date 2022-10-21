@@ -26,9 +26,8 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
   ],
   defaults: {
     viewList: defaultListView,
-    currentViewIndex: 0,
-    currentViewKey: "View 1",
-    viewComponentsArray: [[], [], []],
+    currentIndex: 0,
+    currentKey: "View 1",
     borderColor: "#ffffffff",
     backgroundColor: "#ffffffff",
     radius: "4px",

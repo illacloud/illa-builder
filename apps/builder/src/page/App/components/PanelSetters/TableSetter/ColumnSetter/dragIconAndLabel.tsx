@@ -1,5 +1,4 @@
 import { FC, useCallback, useContext, useState } from "react"
-import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { DragPointIcon, EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
@@ -11,7 +10,6 @@ import {
   movableIconWrapperStyle,
 } from "./style"
 import { DragIconAndLabelProps } from "./interface"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/context/columnListContext"
 
@@ -22,12 +20,10 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     widgetDisplayName,
     attrPath,
     childrenSetter,
-    handleUpdateDsl,
     handleUpdateItemVisible,
   } = useContext(ColumnListSetterContext)
 
   const { t } = useTranslation()
-  const executionResult = useSelector(getExecutionResult)
 
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)

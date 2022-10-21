@@ -1,6 +1,5 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 
 export interface ViewItemShape {
   id: string
@@ -13,7 +12,6 @@ export interface ViewItemShape {
 export interface ViewSetterProps extends BaseSetter {
   value: ViewItemShape[]
   childrenSetter?: PanelFieldConfig[]
-  componentNode: ComponentNode
 }
 
 export interface DragIconAndLabelProps {

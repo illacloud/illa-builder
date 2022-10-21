@@ -10,8 +10,7 @@ export interface viewListItemShaper {
 }
 
 export interface ContainerProps extends BaseWidgetProps {
-  currentViewIndex: number
-  viewComponentsArray: string[][]
+  currentIndex: number
   componentNode: ComponentNode
   handleOnClick: () => void
   handleOnChange: () => void

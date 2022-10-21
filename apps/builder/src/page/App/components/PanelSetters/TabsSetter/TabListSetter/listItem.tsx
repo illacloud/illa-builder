@@ -4,20 +4,17 @@ import {
   copyIconStyle,
   iconStyle,
   listItemTriggerWrapperStyle,
-} from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { ViewItemShape } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/interface"
+} from "./style"
+import { ViewItemShape } from "./interface"
 import { CopyIcon, ReduceIcon } from "@illa-design/icon"
-import { DragIconAndLabel } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/dragIconAndLabel"
-import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
+import { DragIconAndLabel } from "./dragIconAndLabel"
+import { TabListSetterContext } from "./context/tabListContext"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { Trigger } from "@illa-design/trigger"
 import { useTranslation } from "react-i18next"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { DragItem } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { Identifier } from "dnd-core"
-import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
-import { useSelector } from "react-redux"
-import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
 interface ListItemProps {
   value: ViewItemShape
@@ -34,10 +31,7 @@ export const ListItem: FC<ListItemProps> = (props) => {
     widgetDisplayName,
     childrenSetter,
     handleMoveOptionItem,
-    handleUpdateDsl,
-    handleUpdateMultiAttrDSL,
-    handleUpdateOtherMultiAttrDSL,
-  } = useContext(ViewListSetterContext)
+  } = useContext(TabListSetterContext)
   const { t } = useTranslation()
 
   const dragRef = useRef<HTMLSpanElement>(null)
@@ -91,42 +85,19 @@ export const ListItem: FC<ListItemProps> = (props) => {
   drag(drop(dragRef))
   const opacity = isDragging ? 0 : 1
 
-  const singleSelectedComponentNode = useSelector(
-    getComponentNodeBySingleSelected,
-  )
-
-  const widgetType = singleSelectedComponentNode?.type || ""
-  const widgetParentDisplayName = singleSelectedComponentNode?.parentNode || ""
-  const widgetProps = singleSelectedComponentNode?.props || {}
-
   return (
     <Trigger
       withoutPadding
       colorScheme="white"
       popupVisible={modalVisible}
       content={
-        <SelectedProvider
-          widgetType={widgetType}
+        <BaseModal
+          title={t("editor.inspect.setter_content.option_list.model_title")}
+          handleCloseModal={handleCloseModal}
+          attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}
-          widgetParentDisplayName={widgetParentDisplayName}
-          widgetProps={widgetProps}
-          handleUpdateDsl={handleUpdateDsl}
-          handleUpdateMultiAttrDSL={(updateSlice) => {
-            handleUpdateMultiAttrDSL?.(updateSlice)
-          }}
-          handleUpdateOtherMultiAttrDSL={(displayName, updateSlice) => {
-            handleUpdateOtherMultiAttrDSL?.(displayName, updateSlice)
-          }}
-          widgetOrAction="WIDGET"
-        >
-          <BaseModal
-            title={t("editor.inspect.setter_content.option_list.model_title")}
-            handleCloseModal={handleCloseModal}
-            attrPath={`${attrPath}.${index}`}
-            widgetDisplayName={widgetDisplayName}
-            childrenSetter={childrenSetter}
-          />
-        </SelectedProvider>
+          childrenSetter={childrenSetter}
+        />
       }
       trigger="click"
       showArrow={false}
