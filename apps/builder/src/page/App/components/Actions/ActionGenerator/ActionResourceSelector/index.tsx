@@ -49,12 +49,6 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
     resourceList[0]?.resourceId,
   )
 
-  useEffect(() => {
-    if (resourceList.length == 0) {
-      onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
-    }
-  }, [resourceList, onCreateResource, actionType])
-
   const [loading, setLoading] = useState(false)
 
   const dispatch = useDispatch()

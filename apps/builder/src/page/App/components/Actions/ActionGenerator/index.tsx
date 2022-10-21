@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Modal } from "@illa-design/modal"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
@@ -11,6 +11,9 @@ import {
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
+import store from "@/store"
+import { useSelector } from "react-redux"
+import { getAllResources } from "@/redux/resource/resourceSelector"
 
 export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const { visible, onClose } = props
@@ -22,12 +25,15 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
 
   const { t } = useTranslation()
 
+  const allResource = useSelector(getAllResources)
+
   let title
   switch (currentStep) {
     case "select":
       title = t("editor.action.action_list.action_generator.selector.title")
       break
     case "createAction":
+    case "directCreateAction":
       title = t(
         "editor.action.action_list.action_generator.title.choose_resource",
       )
@@ -47,6 +53,17 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
   const transformResource = currentActionType
     ? getResourceTypeFromActionType(currentActionType)
     : null
+
+  useEffect(() => {
+    if (
+      currentStep === "createAction" &&
+      allResource.filter((value) => {
+        return value.resourceType === currentActionType
+      }).length === 0
+    ) {
+      setCurrentStep("createResource")
+    }
+  }, [currentStep, currentActionType, allResource])
 
   return (
     <Modal
@@ -76,22 +93,24 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
             }}
           />
         )}
-        {currentStep === "createAction" && currentActionType && (
-          <ActionResourceSelector
-            actionType={currentActionType}
-            onBack={(page) => {
-              setCurrentStep(page)
-            }}
-            onCreateResource={(actionType) => {
-              setCurrentActionType(actionType)
-              setCurrentStep("createResource")
-            }}
-            onCreateAction={(actionType, resourceId) => {
-              setCurrentStep("select")
-              onClose()
-            }}
-          />
-        )}
+        {(currentStep === "createAction" ||
+          currentStep === "directCreateAction") &&
+          currentActionType && (
+            <ActionResourceSelector
+              actionType={currentActionType}
+              onBack={(page) => {
+                setCurrentStep(page)
+              }}
+              onCreateResource={(actionType) => {
+                setCurrentActionType(actionType)
+                setCurrentStep("createResource")
+              }}
+              onCreateAction={(actionType, resourceId) => {
+                setCurrentStep("select")
+                onClose()
+              }}
+            />
+          )}
         {currentStep === "createResource" && transformResource && (
           <ActionResourceCreator
             resourceType={transformResource}
@@ -99,7 +118,7 @@ export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
               setCurrentStep(page)
             }}
             onFinished={(resourceId) => {
-              setCurrentStep("createAction")
+              setCurrentStep("directCreateAction")
             }}
           />
         )}

@@ -3,4 +3,8 @@ export interface ActionGeneratorProps {
   onClose: () => void
 }
 
-export type ActionCreatorPage = "select" | "createAction" | "createResource"
+export type ActionCreatorPage =
+  | "select"
+  | "createAction"
+  | "createResource"
+  | "directCreateAction"
