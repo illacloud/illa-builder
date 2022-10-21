@@ -118,9 +118,9 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
               },
             },
             (response) => {
-              onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
             },
             (error) => {
               Message.error(error.data.errorMessage)

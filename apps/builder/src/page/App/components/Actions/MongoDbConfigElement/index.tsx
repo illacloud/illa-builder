@@ -33,6 +33,7 @@ import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigEleme
 import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { Switch } from "@illa-design/switch"
 import { RadioGroup } from "@illa-design/radio"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
