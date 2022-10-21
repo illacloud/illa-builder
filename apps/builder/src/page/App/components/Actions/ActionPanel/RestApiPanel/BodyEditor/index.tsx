@@ -91,7 +91,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           />
           {currentBodyType === "raw" && (
             <Controller
-              name="restapiBody"
+              name="restapiRawBodyType"
               control={control}
               defaultValue={(currentBody as RawBody<RawBodyContent>).type}
               render={({ field: { onChange, value } }) => (
@@ -115,7 +115,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           <Controller
             control={control}
             defaultValue={(currentBody as RawBody<RawBodyContent>).content}
-            name="restapiBodyContentRaw"
+            name="restapiRawBodyContent"
             render={({ field: { value, onChange } }) => {
               let mode: EditorMode = "TEXT_JS"
               switch (currentRawBodyType) {
