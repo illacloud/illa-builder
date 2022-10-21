@@ -24,7 +24,6 @@ export const formBodyStyle = css`
   background-color: white;
   flex: 1;
   overflow-y: auto;
-  margin: ${FORM_BODY_MARGIN}px 0;
 `
 export const resizeLineStyle = css`
   width: 100%;

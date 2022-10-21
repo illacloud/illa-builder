@@ -1,4 +1,11 @@
-import { FC, useCallback, useMemo, useState } from "react"
+import {
+  FC,
+  MutableRefObject,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { BasicContainer } from "../BasicContainer/BasicContainer"
 import { FormWIdgetProps } from "./interface"
 import {
@@ -19,6 +26,14 @@ import {
 } from "./widgetConfig"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import { useDrop } from "react-dnd"
+import {
+  DragInfo,
+  DropResultInfo,
+} from "@/page/App/components/DotPanel/interface"
+
+interface DragCollection {
+  isDraggingActive: boolean
+}
 
 export const FormWidget: FC<FormWIdgetProps> = (props) => {
   const {
@@ -35,6 +50,9 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
   const [headerRef, headerBounds] = useMeasure()
   const [footerRef, footerBounds] = useMeasure()
   const [containerRef, containerBounds] = useMeasure()
+  const containerNodeRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
   const [isMouseHover, setIsMouseHover] = useState(false)
 
   const headerMinHeight = useMemo(
@@ -74,7 +92,8 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
       <BasicContainer
         componentNode={headerComponentNode}
         canResizeY={false}
-        minHeight={headerBounds.height}
+        minHeight={headerBounds.height - 16}
+        padding={8}
       />
     )
   }, [childrenNode, headerBounds.height])
@@ -84,7 +103,8 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     return (
       <BasicContainer
         componentNode={bodyComponentNode}
-        minHeight={bodyBounds.height}
+        minHeight={bodyBounds.height - 16}
+        padding={8}
       />
     )
   }, [bodyBounds.height, childrenNode])
@@ -96,6 +116,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         componentNode={footerComponentNode}
         canResizeY={false}
         minHeight={footerBounds.height}
+        padding={8}
       />
     )
   }, [childrenNode, footerBounds.height])
@@ -153,9 +174,16 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     [footerHeight, footerMaxHeight, handleUpdateOriginalDSLMultiAttr, unitH],
   )
 
-  const [{ isDraggingActive }, dropRef] = useDrop(() => ({
+  const [{ isDraggingActive }, dropRef] = useDrop<
+    DragInfo,
+    DropResultInfo,
+    DragCollection
+  >(() => ({
     accept: ["components"],
-    hover: (dragInfo, monitor) => {},
+    hover: (dragInfo, monitor) => {
+      if (monitor.isOver({ shallow: true })) {
+      }
+    },
     collect: (monitor) => {
       return {
         isDraggingActive: monitor.isOver(),
@@ -169,6 +197,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
       ref={(node) => {
         dropRef(node)
         containerRef(node)
+        containerNodeRef.current = node
       }}
       onMouseEnter={() => {
         setIsMouseHover(true)

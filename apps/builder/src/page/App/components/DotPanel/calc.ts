@@ -97,8 +97,6 @@ export function calcLadingPosition(
     landingX = landingX - overRight
     isOverstep = false
   }
-  console.log("reactBottom", rectBottom)
-  console.log("canvasHeight", canvasHeight)
   if (rectBottom > canvasHeight && !canResizeY) {
     const overBottom =
       Math.round(rectBottom / unitHeight) * unitHeight - canvasHeight

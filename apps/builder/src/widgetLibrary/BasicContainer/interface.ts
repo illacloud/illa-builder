@@ -5,4 +5,5 @@ export interface BasicContainerProps {
   minHeight?: number
   componentNode: ComponentNode
   canResizeY?: boolean
+  padding?: number
 }

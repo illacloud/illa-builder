@@ -31,7 +31,7 @@ export const CONTAINER_WIDGET_CONFIG: WidgetConfig = {
     borderColor: "#ffffffff",
     backgroundColor: "#ffffffff",
     radius: "4px",
-    borderWidth: "4px",
+    borderWidth: "1px",
     shadow: "small",
   },
 }

@@ -38,6 +38,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
         <BasicContainer
           componentNode={currentViewComponentNode}
           minHeight={h * unitH}
+          padding={4}
         />
       )
     }
