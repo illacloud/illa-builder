@@ -8,8 +8,12 @@ import {
   goToURL,
   showNotification,
 } from "@/page/App/context/globalDataProvider"
+import { get } from "lodash"
 
-export const transformEvents = (event: any) => {
+export const transformEvents = (
+  event: any,
+  globalData: Record<string, any>,
+) => {
   if (!event) return
   const { actionType } = event
   if (actionType === "openUrl") {
@@ -46,7 +50,12 @@ export const transformEvents = (event: any) => {
     ) {
       const { widgetTargetValue } = event
       return {
-        script: `{{${widgetID}.${widgetMethod}("${widgetTargetValue}")}}`,
+        script: () => {
+          const method = get(globalData, `${widgetID}.${widgetMethod}`, null)
+          if (method) {
+            method(widgetTargetValue)
+          }
+        },
         enabled,
       }
     }
@@ -143,7 +152,7 @@ export const runEventHandler = (
   scriptObj: any,
   globalData: Record<string, any>,
 ) => {
-  const eventObj = transformEvents(scriptObj)
+  const eventObj = transformEvents(scriptObj, globalData)
   if (!eventObj) return
   const { script, enabled } = eventObj
   if (enabled || enabled == undefined) {

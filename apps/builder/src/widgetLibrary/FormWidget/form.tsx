@@ -316,6 +316,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
       reset: handleOnReset,
       setValue: (value: Record<string, any>) => {
         if (isObject(value)) {
+          console.log("value", value)
           handleSetValue(value)
         }
       },
