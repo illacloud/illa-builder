@@ -20,10 +20,11 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
         attrName: "disabled",
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLayout: true,
-        openDynamic: true,
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+        placeholder: "{{false}}",
       },
       {
         id: `${baseWidgetName}-interaction-disabled-submit`,

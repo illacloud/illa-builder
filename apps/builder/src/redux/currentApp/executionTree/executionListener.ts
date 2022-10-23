@@ -106,6 +106,7 @@ export function setupExecutionListeners(
         componentsActions.deleteComponentNodeReducer,
         componentsActions.updateComponentDisplayNameReducer,
         componentsActions.resetComponentPropsReducer,
+        componentsActions.updateMultiComponentPropsReducer,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,

@@ -8,4 +8,5 @@ export interface FormWIdgetProps {
   handleUpdateDsl: (value: Record<string, any>) => void
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   unitH: number
+  disabled: boolean
 }

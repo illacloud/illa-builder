@@ -65,9 +65,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "copyComponentReducer":
-            const copyComponentPayload = (payload as CopyComponentPayload[]).map(
-              (copyShape) => copyShape.newComponentNode,
-            )
+            const copyComponentPayload = (
+              payload as CopyComponentPayload[]
+            ).map((copyShape) => copyShape.newComponentNode)
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_CREATE_STATE,
@@ -83,9 +83,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             break
           case "updateComponentsShape":
             const singleComponentPayload: UpdateComponentsShapePayload = payload
-            const singleComponentWSPayload = transformComponentReduxPayloadToWsPayload(
-              singleComponentPayload.components,
-            )
+            const singleComponentWSPayload =
+              transformComponentReduxPayloadToWsPayload(
+                singleComponentPayload.components,
+              )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 singleComponentPayload.isMove
@@ -102,10 +103,12 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentReflowReducer":
-            const updateComponentReflowPayload: UpdateComponentReflowPayload = payload
-            const updateComponentReflowWSPayload = transformComponentReduxPayloadToWsPayload(
-              updateComponentReflowPayload.childNodes,
-            )
+            const updateComponentReflowPayload: UpdateComponentReflowPayload =
+              payload
+            const updateComponentReflowWSPayload =
+              transformComponentReduxPayloadToWsPayload(
+                updateComponentReflowPayload.childNodes,
+              )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -120,10 +123,12 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "sortComponentNodeChildrenReducer":
-            const sortComponentNodeChildrenPayload: sortComponentNodeChildrenPayload = payload
-            const sortComponentNodeChildrenWSPayload = transformComponentReduxPayloadToWsPayload(
-              sortComponentNodeChildrenPayload.newChildrenNode,
-            )
+            const sortComponentNodeChildrenPayload: sortComponentNodeChildrenPayload =
+              payload
+            const sortComponentNodeChildrenWSPayload =
+              transformComponentReduxPayloadToWsPayload(
+                sortComponentNodeChildrenPayload.newChildrenNode,
+              )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_MOVE_STATE,
@@ -138,10 +143,12 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentContainerReducer":
-            const updateComponentContainerPayload: UpdateComponentContainerPayload = payload
-            const componentNodes = updateComponentContainerPayload.updateSlice.map(
-              (slice) => slice.component,
-            )
+            const updateComponentContainerPayload: UpdateComponentContainerPayload =
+              payload
+            const componentNodes =
+              updateComponentContainerPayload.updateSlice.map(
+                (slice) => slice.component,
+              )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_MOVE_STATE,
@@ -184,6 +191,31 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             }
             break
 
+          case "updateMultiComponentPropsReducer":
+            const updateMultiPayload: UpdateComponentPropsPayload[] = payload
+            const finalNodes = updateMultiPayload
+              .map(({ displayName }) => {
+                return searchDsl(getCanvas(store.getState()), displayName)
+              })
+              .filter((node) => node !== null) as ComponentNode[]
+            if (Array.isArray(finalNodes)) {
+              const wsPayload =
+                transformComponentReduxPayloadToWsPayload(finalNodes)
+              Connection.getRoom("app", currentAppID)?.send(
+                getPayload(
+                  Signal.SIGNAL_UPDATE_STATE,
+                  Target.TARGET_COMPONENTS,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  wsPayload,
+                ),
+              )
+            }
+            break
+
           case "deleteComponentNodeReducer":
             const deletePayload: DeleteComponentNodePayload = payload
             Connection.getRoom("app", currentAppID)?.send(
@@ -217,10 +249,8 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentDisplayNameReducer":
-            const {
-              displayName,
-              newDisplayName,
-            } = action.payload as UpdateComponentDisplayNamePayload
+            const { displayName, newDisplayName } =
+              action.payload as UpdateComponentDisplayNamePayload
             const findOldNode = searchDsl(
               getCanvas(store.getState()),
               newDisplayName,
