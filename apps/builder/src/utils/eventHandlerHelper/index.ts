@@ -37,6 +37,7 @@ export const transformEvents = (event: any) => {
       enabled,
     }
   }
+  console.log("event", event)
   if (actionType === "widget") {
     const { widgetID, widgetMethod, enabled } = event
     if (
@@ -101,6 +102,18 @@ export const transformEvents = (event: any) => {
       const { showPreviousVisibleViewLoopBack } = event
       return {
         script: `{{${widgetID}.${widgetMethod}(${showPreviousVisibleViewLoopBack})}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "submit") {
+      return {
+        script: `{{${widgetID}.${widgetMethod}()}}`,
+        enabled,
+      }
+    }
+    if (widgetMethod === "validate") {
+      return {
+        script: `{{${widgetID}.${widgetMethod}()}}`,
         enabled,
       }
     }

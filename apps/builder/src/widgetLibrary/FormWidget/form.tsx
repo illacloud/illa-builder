@@ -40,6 +40,7 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { Message } from "@illa-design/react"
+import { isObject } from "../../utils/typeHelper"
 
 function getLikeInputChildrenNode(
   componentNode: ComponentNode,
@@ -167,9 +168,58 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     dispatch,
   ])
 
-  const handleOnSubmitFailed = useCallback(() => {}, [])
+  const handleOnInvalid = useCallback(() => {}, [])
+
+  const handleOnValidate = useCallback(() => {
+    console.log("????validate")
+    allLikeInputChildrenNode.forEach((node) => {
+      try {
+        return evaluateDynamicString(
+          "events",
+          `{{${node.displayName}.validate()}}`,
+          BUILDER_CALC_CONTEXT,
+        )
+      } catch (e) {
+        Message.error("eventHandler run error")
+        return false
+      }
+    })
+  }, [allLikeInputChildrenNode])
+
+  const handleSetValue = useCallback(
+    (value: Record<string, any>) => {
+      const keys = Object.keys(value)
+      const updateSlice = keys.map((key) => {
+        return {
+          displayName: key,
+          value: {
+            value: value[key],
+          },
+        }
+      })
+      dispatch(
+        executionActions.updateExecutionByMultiDisplayNameReducer(updateSlice),
+      )
+    },
+    [dispatch],
+  )
+
+  const handleOnReset = useCallback(() => {
+    const allUpdate = allLikeInputChildrenNode.map((node) => {
+      return {
+        displayName: node.displayName,
+        value: {
+          value: "",
+        },
+      }
+    })
+    dispatch(
+      executionActions.updateExecutionByMultiDisplayNameReducer(allUpdate),
+    )
+  }, [allLikeInputChildrenNode, dispatch])
 
   const handleOnSubmit = useCallback(() => {
+    console.log("resetAfterSuccessful", resetAfterSuccessful)
     if (disabledSubmit || disabled) return
     if (validateInputsOnSubmit) {
       const validateResult = allLikeInputChildrenNode.every((node) => {
@@ -184,38 +234,37 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           return false
         }
       })
+      console.log("validateResult", validateResult)
       if (!validateResult) {
-        handleOnSubmitFailed()
+        handleOnInvalid()
         return
       }
     }
     if (resetAfterSuccessful) {
-      const allUpdate = allLikeInputChildrenNode.map((node) => {
-        return {
-          displayName: node.displayName,
-          value: {
-            value: "",
-          },
-        }
-      })
-      dispatch(
-        executionActions.updateExecutionByMultiDisplayNameReducer(allUpdate),
-      )
+      console.log("reset")
+      handleOnReset()
     }
   }, [
     allLikeInputChildrenNode,
     disabled,
     disabledSubmit,
-    dispatch,
-    handleOnSubmitFailed,
+    handleOnInvalid,
+    handleOnReset,
     resetAfterSuccessful,
     validateInputsOnSubmit,
   ])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      onSubmit: handleOnSubmit,
-      onSubmitFailed: handleOnSubmitFailed,
+      submit: handleOnSubmit,
+      invalid: handleOnInvalid,
+      reset: handleOnReset,
+      setValue: (value: Record<string, any>) => {
+        if (isObject(value)) {
+          handleSetValue(value)
+        }
+      },
+      validate: handleOnValidate,
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -224,8 +273,11 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     displayName,
     handleDeleteGlobalData,
     handleOnSubmit,
-    handleOnSubmitFailed,
+    handleOnInvalid,
     handleUpdateGlobalData,
+    handleOnReset,
+    handleOnValidate,
+    handleSetValue,
   ])
 
   const headerMinHeight = useMemo(

@@ -398,8 +398,10 @@
           "columnFiltersChange": "Filter change",
           "fail": "Fail",
           "focus": "Focus",
+          "invalid": "",
           "paginationChange": "Page change",
           "sortingChange": "Sort change",
+          "submit": "",
           "success": "Success"
         }
       },

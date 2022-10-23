@@ -37,18 +37,20 @@ export const handleCheckIsRequired = (value: unknown, required?: boolean) => {
 
 export const handleCheckMaxLength = (value: unknown, maxLength?: number) => {
   if (
-    typeof maxLength === "number" &&
-    typeof value === "string" &&
-    value.length > maxLength
+    (typeof maxLength === "number" &&
+      typeof value === "string" &&
+      value.length > maxLength) ||
+    typeof value === "undefined"
   )
     return true
 }
 
 export const handleCheckMinLength = (value: unknown, minLength?: number) => {
   if (
-    typeof minLength === "number" &&
-    typeof value === "string" &&
-    value.length < minLength
+    (typeof minLength === "number" &&
+      typeof value === "string" &&
+      value.length < minLength) ||
+    typeof value === "undefined"
   )
     return true
 }
@@ -60,13 +62,19 @@ export const handleCheckPattern = (
 ) => {
   switch (pattern) {
     case "Email": {
-      if (typeof value === "string" && !validateEmail(value)) {
+      if (
+        (typeof value === "string" && !validateEmail(value)) ||
+        typeof value === "undefined"
+      ) {
         return i18n.t(invalidMessage.get("email")!)
       }
       return i18n.t(invalidMessage.get("email")!)
     }
     case "URL": {
-      if (typeof value === "string" && !isValidURL(value)) {
+      if (
+        (typeof value === "string" && !isValidURL(value)) ||
+        typeof value === "undefined"
+      ) {
         return i18n.t(invalidMessage.get("url")!)
       }
       return i18n.t(invalidMessage.get("url")!)

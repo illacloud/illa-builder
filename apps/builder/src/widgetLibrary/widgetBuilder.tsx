@@ -135,6 +135,7 @@ import {
   FORM_PANEL_CONFIG,
   FORM_WIDGET_CONFIG,
 } from "@/widgetLibrary/FormWidget"
+import { FORM_EVENT_HANDLER_CONFIG } from "./FormWidget/eventHandlerConfig"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -272,6 +273,7 @@ export const WidgetConfig: WidgetConfigs = {
     widget: FormWidget,
     config: FORM_WIDGET_CONFIG,
     panelConfig: FORM_PANEL_CONFIG,
+    eventHandlerConfig: FORM_EVENT_HANDLER_CONFIG,
   },
 }
 
