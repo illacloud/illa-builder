@@ -40,7 +40,8 @@ import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSe
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { Message } from "@illa-design/react"
-import { isObject } from "../../utils/typeHelper"
+import { isObject } from "@/utils/typeHelper"
+import { get, set } from "lodash"
 
 function getLikeInputChildrenNode(
   componentNode: ComponentNode,
@@ -106,6 +107,8 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     handleUpdateOriginalDSLMultiAttr,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleOnFormInvalid,
+    handleOnFormSubmit,
   } = props
 
   const [bodyRef, bodyBounds] = useMeasure()
@@ -145,6 +148,43 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     return allLikeInputChildrenNode.map((node) => node.displayName)
   }, [allLikeInputChildrenNode])
 
+  const allLikeInputChildrenNodeRealProps = useMemo(() => {
+    return allLikeInputChildrenNodeDisplayName.map((name) => {
+      const widgetProps = get(executionResult, name, {})
+      return {
+        displayName: name,
+        ...widgetProps,
+      }
+    })
+  }, [allLikeInputChildrenNodeDisplayName, executionResult])
+
+  const formDataKeyMapProps = useMemo(() => {
+    const map: Record<string, any> = {}
+    allLikeInputChildrenNodeRealProps.forEach((prop) => {
+      set(map, prop.formDataKey || prop.displayName, prop)
+    })
+    return map
+  }, [allLikeInputChildrenNodeRealProps])
+
+  const formData = useMemo(() => {
+    const data: Record<string, any> = {}
+    allLikeInputChildrenNodeRealProps.forEach((prop) => {
+      set(data, prop.formDataKey || prop.displayName, prop.value)
+    })
+    return data
+  }, [allLikeInputChildrenNodeRealProps])
+
+  useEffect(() => {
+    dispatch(
+      componentsActions.updateComponentPropsReducer({
+        displayName,
+        updateSlice: {
+          data: formData,
+        },
+      }),
+    )
+  }, [dispatch, displayName, formData])
+
   useEffect(() => {
     if (prevDisabled.current !== disabled) {
       const updateArray = allLikeInputWithFormChildrenNodeDisplayName.map(
@@ -168,10 +208,11 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     dispatch,
   ])
 
-  const handleOnInvalid = useCallback(() => {}, [])
+  const handleOnInvalid = useCallback(() => {
+    handleOnFormInvalid()
+  }, [handleOnFormInvalid])
 
   const handleOnValidate = useCallback(() => {
-    console.log("????validate")
     allLikeInputChildrenNode.forEach((node) => {
       try {
         return evaluateDynamicString(
@@ -189,19 +230,33 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
   const handleSetValue = useCallback(
     (value: Record<string, any>) => {
       const keys = Object.keys(value)
-      const updateSlice = keys.map((key) => {
-        return {
-          displayName: key,
-          value: {
-            value: value[key],
-          },
+      const updateSlice: {
+        displayName: string
+        value: {
+          value: string
+        }
+      }[] = []
+
+      keys.forEach((key) => {
+        const realDisplayName = get(formDataKeyMapProps, key, null)
+        if (realDisplayName) {
+          updateSlice.push({
+            displayName: key,
+            value: {
+              value: value[key],
+            },
+          })
         }
       })
-      dispatch(
-        executionActions.updateExecutionByMultiDisplayNameReducer(updateSlice),
-      )
+      if (updateSlice.length > 0) {
+        dispatch(
+          executionActions.updateExecutionByMultiDisplayNameReducer(
+            updateSlice,
+          ),
+        )
+      }
     },
-    [dispatch],
+    [dispatch, formDataKeyMapProps],
   )
 
   const handleOnReset = useCallback(() => {
@@ -210,6 +265,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         displayName: node.displayName,
         value: {
           value: "",
+          validateMessage: "",
         },
       }
     })
@@ -219,7 +275,6 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
   }, [allLikeInputChildrenNode, dispatch])
 
   const handleOnSubmit = useCallback(() => {
-    console.log("resetAfterSuccessful", resetAfterSuccessful)
     if (disabledSubmit || disabled) return
     if (validateInputsOnSubmit) {
       const validateResult = allLikeInputChildrenNode.every((node) => {
@@ -234,20 +289,20 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           return false
         }
       })
-      console.log("validateResult", validateResult)
       if (!validateResult) {
         handleOnInvalid()
         return
       }
     }
+    handleOnFormSubmit()
     if (resetAfterSuccessful) {
-      console.log("reset")
       handleOnReset()
     }
   }, [
     allLikeInputChildrenNode,
     disabled,
     disabledSubmit,
+    handleOnFormSubmit,
     handleOnInvalid,
     handleOnReset,
     resetAfterSuccessful,
@@ -272,12 +327,12 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
   }, [
     displayName,
     handleDeleteGlobalData,
-    handleOnSubmit,
-    handleOnInvalid,
     handleUpdateGlobalData,
     handleOnReset,
     handleOnValidate,
     handleSetValue,
+    handleOnSubmit,
+    handleOnInvalid,
   ])
 
   const headerMinHeight = useMemo(

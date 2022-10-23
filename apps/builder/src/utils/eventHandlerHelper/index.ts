@@ -37,7 +37,6 @@ export const transformEvents = (event: any) => {
       enabled,
     }
   }
-  console.log("event", event)
   if (actionType === "widget") {
     const { widgetID, widgetMethod, enabled } = event
     if (

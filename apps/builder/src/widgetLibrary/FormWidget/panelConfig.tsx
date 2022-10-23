@@ -4,6 +4,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
+import { FORM_EVENT_HANDLER_CONFIG } from "./eventHandlerConfig"
 
 const baseWidgetName = "form"
 export const FORM_PANEL_CONFIG: PanelConfig[] = [
@@ -11,12 +12,12 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
-      // {
-      //   ...generatorEventHandlerConfig(
-      //     baseWidgetName,
-      //     CONTAINER_EVENT_HANDLER_CONFIG.events,
-      //   ),
-      // },
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          FORM_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
       {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
