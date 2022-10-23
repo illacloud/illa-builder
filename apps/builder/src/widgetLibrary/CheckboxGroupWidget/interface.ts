@@ -2,7 +2,7 @@ import { CheckboxGroupProps } from "@illa-design/checkbox"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
-import { ValidateMessageProps } from "../PublicSector/InvalidMessage/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export interface WrappedCheckboxGroupProps
   extends Pick<
@@ -18,7 +18,7 @@ export interface CheckboxGroupWidgetProps
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,
-    Omit<ValidateMessageProps, "value"> {
+    ValidateMessageOldProps {
   optionConfigureMode?: "dynamic" | "static"
   manualOptions?: {
     label: string
@@ -31,4 +31,5 @@ export interface CheckboxGroupWidgetProps
     values: any[]
     disables: boolean[]
   }
+  validateMessage: string
 }

@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { CheckboxGroup } from "@illa-design/checkbox"
 import {
   CheckboxGroupWidgetProps,
@@ -11,7 +11,8 @@ import {
   applyValidateMessageWrapperStyle,
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { InvalidMessage } from "../PublicSector/InvalidMessage"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedCheckbox: FC<WrappedCheckboxGroupProps> = (props) => {
   const {
@@ -66,12 +67,35 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     tooltipText,
     customRule,
     hideValidationMessage,
+    validateMessage,
     updateComponentHeight,
   } = props
 
   const finalOptions = useMemo(() => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
   }, [optionConfigureMode, manualOptions, mappedOption])
+
+  const handleValidate = useCallback(
+    (value?: any) => {
+      const message = handleValidateCheck({
+        value,
+        required,
+        customRule,
+      })
+      const showMessage =
+        !hideValidationMessage && message && message.length > 0
+      if (showMessage) {
+        handleUpdateDsl({
+          validateMessage: message,
+        })
+      } else {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      }
+    },
+    [customRule, handleUpdateDsl, hideValidationMessage, required],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -89,7 +113,9 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: undefined })
       },
-      validate: () => {},
+      validate: () => {
+        handleValidate(value)
+      },
       clearValidation: () => {},
     })
     return () => {
@@ -108,6 +134,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -144,12 +171,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
           labelHidden || !label,
         )}
       >
-        <InvalidMessage
-          value={value}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
+        <InvalidMessage validateMessage={validateMessage} />
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { FC, forwardRef, useEffect, useRef, useState } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import { Input } from "@illa-design/input"
 import { InputWidgetProps, WrappedInputProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
@@ -8,6 +8,8 @@ import {
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { useDispatch } from "react-redux"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
   (props, ref) => {
@@ -27,6 +29,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       allowClear,
       maxLength,
       minLength,
+      handleValidate,
     } = props
 
     const [_value, setValue] = useState(value)
@@ -49,6 +52,7 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
             handleUpdateDsl({ value })
             resolve(true)
           }).then(() => {
+            handleValidate(value)
             handleOnChange?.()
           })
         }}
@@ -100,7 +104,10 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     updateComponentHeight,
+    validateMessage,
   } = props
+
+  const dispatch = useDispatch()
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -123,6 +130,40 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     updateComponentHeight,
   ])
 
+  const handleValidate = useCallback(
+    (value?: string) => {
+      const message = handleValidateCheck({
+        value,
+        pattern,
+        regex,
+        minLength,
+        maxLength,
+        required,
+        customRule,
+      })
+      const showMessage =
+        !hideValidationMessage && message && message.length > 0
+      if (showMessage) {
+        handleUpdateDsl({
+          validateMessage: message,
+        })
+      } else {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      }
+    },
+    [
+      customRule,
+      handleUpdateDsl,
+      hideValidationMessage,
+      maxLength,
+      minLength,
+      pattern,
+      regex,
+      required,
+    ],
+  )
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
       value,
@@ -147,7 +188,9 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: undefined })
       },
-      validate: () => {},
+      validate: () => {
+        handleValidate(value)
+      },
       clearValidation: () => {},
     })
     return () => {
@@ -171,6 +214,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
   return (
     <div ref={inputWrapperRef}>
@@ -188,7 +232,11 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedInput {...props} ref={inputRef} />
+          <WrappedInput
+            {...props}
+            ref={inputRef}
+            handleValidate={handleValidate}
+          />
         </div>
       </TooltipWrapper>
 
@@ -199,16 +247,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
           labelHidden || !label,
         )}
       >
-        <InvalidMessage
-          value={value}
-          pattern={pattern}
-          regex={regex}
-          minLength={minLength}
-          maxLength={maxLength}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
+        <InvalidMessage validateMessage={validateMessage} />
       </div>
     </div>
   )

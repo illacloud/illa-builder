@@ -1,21 +1,17 @@
 import { FC } from "react"
 import { invalidateMessageCss } from "./style"
 import { WarningCircleIcon } from "@illa-design/icon"
-import { handleValidateCheck } from "./utils"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { ValidateMessageNewProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
-export const InvalidMessage: FC<ValidateMessageProps> = (props) => {
-  const { hideValidationMessage } = props
-
-  const message = handleValidateCheck(props)
-  const showMessage = !hideValidationMessage && message && message.length > 0
+export const InvalidMessage: FC<ValidateMessageNewProps> = (props) => {
+  const { validateMessage } = props
 
   return (
     <>
-      {showMessage && (
+      {typeof validateMessage === "string" && validateMessage.length > 0 && (
         <span css={invalidateMessageCss}>
           <WarningCircleIcon />
-          {message}
+          {validateMessage}
         </span>
       )}
     </>

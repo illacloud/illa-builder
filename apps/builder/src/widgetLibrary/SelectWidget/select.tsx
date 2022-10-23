@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { Select } from "@illa-design/select"
 import { SelectWidgetProps, WrappedSelectProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
@@ -8,7 +8,8 @@ import {
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { InvalidMessage } from "../PublicSector/InvalidMessage"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
   const {
@@ -76,12 +77,35 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     tooltipText,
     customRule,
     hideValidationMessage,
+    validateMessage,
     updateComponentHeight,
   } = props
 
   const finalOptions = useMemo(() => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
   }, [optionConfigureMode, manualOptions, mappedOption])
+
+  const handleValidate = useCallback(
+    (value?: unknown) => {
+      const message = handleValidateCheck({
+        value,
+        required,
+        customRule,
+      })
+      const showMessage =
+        !hideValidationMessage && message && message.length > 0
+      if (showMessage) {
+        handleUpdateDsl({
+          validateMessage: message,
+        })
+      } else {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      }
+    },
+    [customRule, handleUpdateDsl, hideValidationMessage, required],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -104,7 +128,9 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: undefined })
       },
-      validate: () => {},
+      validate: () => {
+        handleValidate(value)
+      },
       clearValidation: () => {},
     })
     return () => {
@@ -128,6 +154,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
   const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -163,12 +190,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
           labelHidden || !label,
         )}
       >
-        <InvalidMessage
-          value={value as string}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
+        <InvalidMessage validateMessage={validateMessage} />
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useRef } from "react"
+import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { RadioGroup } from "@illa-design/radio"
 import { RadioGroupWidgetProps, WrappedRadioGroupProps } from "./interface"
 import { formatSelectOptions } from "@/widgetLibrary/PublicSector/utils/formatSelectOptions"
@@ -8,7 +8,8 @@ import {
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { InvalidMessage } from "../PublicSector/InvalidMessage"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
   const { value, disabled, options, direction, colorScheme, handleUpdateDsl } =
@@ -57,11 +58,35 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     w,
     customRule,
     hideValidationMessage,
+    validateMessage,
   } = props
 
   const finalOptions = useMemo(() => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
-  }, [optionConfigureMode, manualOptions, mappedOption, w])
+  }, [optionConfigureMode, manualOptions, mappedOption])
+
+  const handleValidate = useCallback(
+    (value?: unknown) => {
+      const message = handleValidateCheck({
+        value,
+
+        required,
+        customRule,
+      })
+      const showMessage =
+        !hideValidationMessage && message && message.length > 0
+      if (showMessage) {
+        handleUpdateDsl({
+          validateMessage: message,
+        })
+      } else {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      }
+    },
+    [customRule, handleUpdateDsl, hideValidationMessage, required],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -79,7 +104,9 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: undefined })
       },
-      validate: () => {},
+      validate: () => {
+        handleValidate(value)
+      },
       clearValidation: () => {},
     })
     return () => {
@@ -98,6 +125,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -134,12 +162,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
           labelHidden || !label,
         )}
       >
-        <InvalidMessage
-          value={value}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
+        <InvalidMessage validateMessage={validateMessage} />
       </div>
     </div>
   )

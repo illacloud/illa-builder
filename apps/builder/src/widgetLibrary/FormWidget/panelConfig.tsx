@@ -50,7 +50,7 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t(
           "editor.inspect.setter_label.reset_after_successful_submit",
         ),
-        attrName: "validateInputsOnSubmit",
+        attrName: "resetAfterSuccessful",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
         openDynamic: true,

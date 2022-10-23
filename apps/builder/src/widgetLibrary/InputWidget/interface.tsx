@@ -1,7 +1,7 @@
 import { InputProps } from "@illa-design/input"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedInputProps
@@ -19,6 +19,7 @@ export interface WrappedInputProps
   colorScheme?: InputProps["borderColor"]
   allowClear?: InputProps["allowClear"]
   handleOnChange?: () => void
+  handleValidate: (value?: string) => void
 }
 
 export interface InputWidgetProps
@@ -26,4 +27,6 @@ export interface InputWidgetProps
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,
-    Omit<ValidateMessageProps, "value"> {}
+    Omit<ValidateMessageOldProps, "value"> {
+  validateMessage: string
+}

@@ -9,6 +9,7 @@ import {
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedDate: FC<WrappedDateProps> = (props) => {
   const {
@@ -88,7 +89,39 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     updateComponentHeight,
+    validateMessage,
   } = props
+
+  const handleValidate = useCallback(
+    (value?: any) => {
+      const message = handleValidateCheck({
+        value,
+        required,
+        customRule,
+        pattern,
+        regex,
+      })
+      const showMessage =
+        !hideValidationMessage && message && message.length > 0
+      if (showMessage) {
+        handleUpdateDsl({
+          validateMessage: message,
+        })
+      } else {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      }
+    },
+    [
+      customRule,
+      handleUpdateDsl,
+      hideValidationMessage,
+      pattern,
+      regex,
+      required,
+    ],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -108,6 +141,9 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: "" })
       },
+      validate: () => {
+        handleValidate(value)
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -126,6 +162,7 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -170,14 +207,7 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
           labelHidden || !label,
         )}
       >
-        <InvalidMessage
-          value={value}
-          pattern={pattern}
-          regex={regex}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
+        <InvalidMessage validateMessage={validateMessage} />
       </div>
     </div>
   )

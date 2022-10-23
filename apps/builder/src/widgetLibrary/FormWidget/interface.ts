@@ -1,5 +1,6 @@
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-export interface FormWIdgetProps {
+import { BaseWidgetProps } from "@/widgetLibrary/interface"
+export interface FormWIdgetProps extends BaseWidgetProps {
   childrenNode: ComponentNode[]
   showFooter: boolean
   showHeader: boolean
@@ -9,4 +10,7 @@ export interface FormWIdgetProps {
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
   unitH: number
   disabled: boolean
+  disabledSubmit: boolean
+  validateInputsOnSubmit: boolean
+  resetAfterSuccessful: boolean
 }

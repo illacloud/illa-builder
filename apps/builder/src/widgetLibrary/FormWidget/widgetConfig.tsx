@@ -57,3 +57,17 @@ export const FORM_BODY_MIN_HEIGHT = 100
 export const FORM_MIN_FOOTER_HEIGHT_ROW_NUMBER = 7
 export const FORM_MIN_HEADER_HEIGHT_ROW_NUMBER = 7
 export const FORM_BODY_MARGIN = 7
+
+export const FORM_CAN_BIND_WIDGET_TYPE = new Map([
+  ["INPUT_WIDGET", true],
+  ["NUMBER_INPUT_WIDGET", true],
+  ["SELECT_WIDGET", true],
+  ["RADIO_BUTTON_WIDGET", true],
+  ["RADIO_GROUP_WIDGET", true],
+  ["CHECKBOX_GROUP_WIDGET", true],
+  ["DATE_RANGE_WIDGET", true],
+  ["DATE_TIME_WIDGET", true],
+  ["DATE_WIDGET", true],
+  ["RATE_WIDGET", true],
+  ["FORM_WIDGET", true],
+])

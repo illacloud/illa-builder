@@ -112,6 +112,7 @@ export function setupExecutionListeners(
         actionActions.updateActionItemReducer,
         executionActions.startExecutionReducer,
         executionActions.updateExecutionByDisplayNameReducer,
+        executionActions.updateExecutionByMultiDisplayNameReducer,
       ),
       effect: handleStartExecution,
     }),

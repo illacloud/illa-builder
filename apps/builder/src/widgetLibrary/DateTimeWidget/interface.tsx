@@ -1,5 +1,5 @@
 import { DatePickerProps } from "@illa-design/date-picker"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
@@ -25,4 +25,6 @@ export interface DateTimeWidgetProps
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,
-    Omit<ValidateMessageProps, "value"> {}
+    Omit<ValidateMessageOldProps, "value"> {
+  validateMessage: string
+}

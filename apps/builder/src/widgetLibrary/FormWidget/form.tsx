@@ -24,6 +24,7 @@ import {
   FORM_MIN_FOOTER_HEIGHT_ROW_NUMBER,
   FORM_MIN_HEADER_HEIGHT_ROW_NUMBER,
   FORM_BODY_MARGIN,
+  FORM_CAN_BIND_WIDGET_TYPE,
 } from "./widgetConfig"
 import { ReactComponent as ResizeBar } from "@/assets/resizeBar.svg"
 import { useDrop } from "react-dnd"
@@ -31,12 +32,41 @@ import {
   DragInfo,
   DropResultInfo,
 } from "@/page/App/components/DotPanel/interface"
-import { useDispatch } from "react-redux"
-import store from "../../store"
-import { componentsActions } from "../../redux/currentApp/editor/components/componentsSlice"
-import { ComponentNode } from "../../redux/currentApp/editor/components/componentsState"
+import { useDispatch, useSelector } from "react-redux"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
+import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
+import { Message } from "@illa-design/react"
 
-function getRealChildrenNode(
+function getLikeInputChildrenNode(
+  componentNode: ComponentNode,
+  componentNodeResult: ComponentNode[],
+  hasForm: boolean,
+) {
+  if (
+    (componentNode.containerType !== "EDITOR_DOT_PANEL" &&
+      FORM_CAN_BIND_WIDGET_TYPE.has(componentNode.type)) ||
+    (hasForm && componentNode.type === "FORM_WIDGET")
+  ) {
+    componentNodeResult.push(componentNode)
+    if (Array.isArray(componentNode.childrenNode)) {
+      componentNode.childrenNode.forEach((node) => {
+        getLikeInputChildrenNode(node, componentNodeResult, hasForm)
+      })
+    }
+  } else {
+    if (Array.isArray(componentNode.childrenNode)) {
+      componentNode.childrenNode.forEach((node) => {
+        getLikeInputChildrenNode(node, componentNodeResult, hasForm)
+      })
+    }
+  }
+}
+
+function getAllChildrenNode(
   componentNode: ComponentNode,
   displayNames: string[],
 ) {
@@ -44,13 +74,13 @@ function getRealChildrenNode(
     displayNames.push(componentNode.displayName)
     if (Array.isArray(componentNode.childrenNode)) {
       componentNode.childrenNode.forEach((node) => {
-        getRealChildrenNode(node, displayNames)
+        getAllChildrenNode(node, displayNames)
       })
     }
   } else {
     if (Array.isArray(componentNode.childrenNode)) {
       componentNode.childrenNode.forEach((node) => {
-        getRealChildrenNode(node, displayNames)
+        getAllChildrenNode(node, displayNames)
       })
     }
   }
@@ -68,7 +98,13 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     footerHeight,
     unitH,
     disabled,
+    displayName,
+    disabledSubmit,
+    resetAfterSuccessful,
+    validateInputsOnSubmit,
     handleUpdateOriginalDSLMultiAttr,
+    handleUpdateGlobalData,
+    handleDeleteGlobalData,
   } = props
 
   const [bodyRef, bodyBounds] = useMeasure()
@@ -80,35 +116,117 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     null,
   ) as MutableRefObject<HTMLDivElement | null>
   const [isMouseHover, setIsMouseHover] = useState(false)
+  const executionResult = useSelector(getExecutionResult)
 
   const dispatch = useDispatch()
 
-  const allChildrenNodeDisplayName = useMemo(() => {
-    let displayNames: string[] = []
+  const allLikeInputWithFormChildrenNode = useMemo(() => {
+    let componentNodeResult: ComponentNode[] = []
     childrenNode.forEach((node) => {
-      getRealChildrenNode(node, displayNames)
+      getLikeInputChildrenNode(node, componentNodeResult, true)
     })
-    return displayNames
+    return componentNodeResult
   }, [childrenNode])
 
+  const allLikeInputWithFormChildrenNodeDisplayName = useMemo(() => {
+    return allLikeInputWithFormChildrenNode.map((node) => node.displayName)
+  }, [allLikeInputWithFormChildrenNode])
+
+  const allLikeInputChildrenNode = useMemo(() => {
+    let componentNodeResult: ComponentNode[] = []
+    childrenNode.forEach((node) => {
+      getLikeInputChildrenNode(node, componentNodeResult, false)
+    })
+    return componentNodeResult
+  }, [childrenNode])
+
+  const allLikeInputChildrenNodeDisplayName = useMemo(() => {
+    return allLikeInputChildrenNode.map((node) => node.displayName)
+  }, [allLikeInputChildrenNode])
+
   useEffect(() => {
-    console.log("?????")
-    if (
-      typeof prevDisabled.current !== "undefined" &&
-      prevDisabled.current !== disabled
-    ) {
-      const updateArray = allChildrenNodeDisplayName.map((displayName) => {
-        return {
-          displayName,
-          updateSlice: {
-            disabled: typeof disabled === "undefined" ? "" : `{{${disabled}}}`,
-          },
-        }
-      })
+    if (prevDisabled.current !== disabled) {
+      const updateArray = allLikeInputWithFormChildrenNodeDisplayName.map(
+        (displayName) => {
+          return {
+            displayName,
+            updateSlice: {
+              disabled:
+                typeof disabled === "undefined" ? "" : `{{${disabled}}}`,
+            },
+          }
+        },
+      )
       dispatch(componentsActions.updateMultiComponentPropsReducer(updateArray))
     }
     prevDisabled.current = disabled
-  }, [disabled, childrenNode, allChildrenNodeDisplayName, dispatch])
+  }, [
+    disabled,
+    childrenNode,
+    allLikeInputWithFormChildrenNodeDisplayName,
+    dispatch,
+  ])
+
+  const handleOnSubmitFailed = useCallback(() => {}, [])
+
+  const handleOnSubmit = useCallback(() => {
+    if (disabledSubmit || disabled) return
+    if (validateInputsOnSubmit) {
+      const validateResult = allLikeInputChildrenNode.every((node) => {
+        try {
+          return evaluateDynamicString(
+            "events",
+            `{{${node.displayName}.validate()}}`,
+            BUILDER_CALC_CONTEXT,
+          )
+        } catch (e) {
+          Message.error("eventHandler run error")
+          return false
+        }
+      })
+      if (!validateResult) {
+        handleOnSubmitFailed()
+        return
+      }
+    }
+    if (resetAfterSuccessful) {
+      const allUpdate = allLikeInputChildrenNode.map((node) => {
+        return {
+          displayName: node.displayName,
+          value: {
+            value: "",
+          },
+        }
+      })
+      dispatch(
+        executionActions.updateExecutionByMultiDisplayNameReducer(allUpdate),
+      )
+    }
+  }, [
+    allLikeInputChildrenNode,
+    disabled,
+    disabledSubmit,
+    dispatch,
+    handleOnSubmitFailed,
+    resetAfterSuccessful,
+    validateInputsOnSubmit,
+  ])
+
+  useEffect(() => {
+    handleUpdateGlobalData?.(displayName, {
+      onSubmit: handleOnSubmit,
+      onSubmitFailed: handleOnSubmitFailed,
+    })
+    return () => {
+      handleDeleteGlobalData(displayName)
+    }
+  }, [
+    displayName,
+    handleDeleteGlobalData,
+    handleOnSubmit,
+    handleOnSubmitFailed,
+    handleUpdateGlobalData,
+  ])
 
   const headerMinHeight = useMemo(
     () => FORM_MIN_HEADER_HEIGHT_ROW_NUMBER * unitH,
@@ -242,17 +360,17 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
       },
       drop: (dropInfo, monitor) => {
         const { item } = dropInfo
-        // if (disabled) {
-        //   const updateSlice = {
-        //     disabled: "{{true}}",
-        //   }
-        //   dispatch(
-        //     componentsActions.updateComponentPropsReducer({
-        //       displayName: item.displayName,
-        //       updateSlice,
-        //     }),
-        //   )
-        // }
+        if (disabled) {
+          const updateSlice = {
+            disabled: "{{true}}",
+          }
+          dispatch(
+            componentsActions.updateComponentPropsReducer({
+              displayName: item.displayName,
+              updateSlice,
+            }),
+          )
+        }
         return {
           isDropOnCanvas: false,
         }

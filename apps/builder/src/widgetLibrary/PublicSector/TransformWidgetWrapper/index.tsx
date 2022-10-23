@@ -33,22 +33,12 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
   (props: TransformWidgetProps) => {
     const { componentNode } = props
 
-    const {
-      displayName,
-      type,
-      w,
-      h,
-      unitW,
-      unitH,
-      childrenNode,
-    } = componentNode
+    const { displayName, type, w, h, unitW, unitH, childrenNode } =
+      componentNode
 
     const displayNameMapProps = useSelector(getExecutionResult)
-    const {
-      handleUpdateGlobalData,
-      handleDeleteGlobalData,
-      globalData,
-    } = useContext(GLOBAL_DATA_CONTEXT)
+    const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+      useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
     const allComponents = useSelector<RootState, ComponentNode[]>(
@@ -116,10 +106,10 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [allComponents, componentNode, dispatch],
     )
 
-    const realProps = useMemo(() => displayNameMapProps[displayName] ?? {}, [
-      displayName,
-      displayNameMapProps,
-    ])
+    const realProps = useMemo(
+      () => displayNameMapProps[displayName] ?? {},
+      [displayName, displayNameMapProps],
+    )
 
     const handleUpdateDsl = useCallback(
       (value: Record<string, any>) => {
@@ -131,6 +121,15 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         )
       },
       [dispatch, displayName],
+    )
+
+    const handleUpdateMultiExecutionResult = useCallback(
+      (allUpdate: { displayName: string; value: Record<string, any> }[]) => {
+        dispatch(
+          executionActions.updateExecutionByMultiDisplayNameReducer(allUpdate),
+        )
+      },
+      [dispatch],
     )
 
     const handleUpdateOriginalDSLMultiAttr = useCallback(
@@ -257,6 +256,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleOnColumnFiltersChange={handleOnColumnFiltersChange}
           handleUpdateDsl={handleUpdateDsl}
           updateComponentHeight={updateComponentHeight}
+          handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
           displayName={displayName}
           childrenNode={childrenNode}
           componentNode={componentNode}

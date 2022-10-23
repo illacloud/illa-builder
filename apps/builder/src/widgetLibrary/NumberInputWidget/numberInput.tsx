@@ -1,17 +1,29 @@
-import { FC, forwardRef, useEffect, useMemo, useRef, useState } from "react"
+import {
+  FC,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import { InputNumber } from "@illa-design/input-number"
 import { LoadingIcon } from "@illa-design/icon"
 import {
   NumberInputWidgetProps,
   WrappedNumberInputProps,
 } from "@/widgetLibrary/NumberInputWidget/interface"
-import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 const parserThousand = (value: number | string) =>
-  `${value}`.replace(/\d+/, function(s) {
+  `${value}`.replace(/\d+/, function (s) {
     return s.replace(/(\d)(?=(\d{3})+$)/g, "$1,")
   })
 
@@ -112,8 +124,40 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     updateComponentHeight,
+    validateMessage,
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
+
+  const handleValidate = useCallback(
+    (value?: unknown) => {
+      const message = handleValidateCheck({
+        value,
+        pattern,
+        regex,
+        required,
+        customRule,
+      })
+      const showMessage =
+        !hideValidationMessage && message && message.length > 0
+      if (showMessage) {
+        handleUpdateDsl({
+          validateMessage: message,
+        })
+      } else {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      }
+    },
+    [
+      customRule,
+      handleUpdateDsl,
+      hideValidationMessage,
+      pattern,
+      regex,
+      required,
+    ],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -138,7 +182,9 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ value: 0 })
       },
-      validate: () => {},
+      validate: () => {
+        handleValidate(value)
+      },
       clearValidation: () => {},
     })
 
@@ -162,6 +208,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -199,14 +246,15 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
           <WrappedInputNumber {...props} ref={numberInputRef} />
         </div>
       </TooltipWrapper>
-      <InvalidMessage
-        value={value}
-        pattern={pattern}
-        regex={regex}
-        required={required}
-        customRule={customRule}
-        hideValidationMessage={hideValidationMessage}
-      />
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
+        <InvalidMessage validateMessage={validateMessage} />
+      </div>
     </div>
   )
 }
