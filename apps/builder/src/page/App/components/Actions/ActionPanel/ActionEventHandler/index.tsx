@@ -46,6 +46,12 @@ export const ActionEventHandler: FC = () => {
     },
     [],
   )
+  const handleUpdateOtherMultiAttrDSL = useCallback(
+    (displayName: string, updateSlice: Record<string, any>) => {
+      return
+    },
+    [],
+  )
 
   return (
     <div css={actionEventHandlerWrapperStyle}>
@@ -59,6 +65,7 @@ export const ActionEventHandler: FC = () => {
         widgetProps={action.content || {}}
         handleUpdateDsl={handleUpdateDsl}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+        handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
         widgetOrAction="ACTION"
       >
         {renderFieldAndLabel(

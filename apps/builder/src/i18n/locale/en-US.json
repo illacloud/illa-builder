@@ -367,6 +367,12 @@
           "prefabricated": "Prefabricated color",
           "title": "Edit color"
         },
+        "view_setter": {
+          "views": "Views"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
         "column_setter": {
           "label": "Columns ({{number}})",
           "new": "New",
@@ -433,6 +439,7 @@
         "row_selection": "ROW SELECTION",
         "sort": "SORT",
         "style": "STYLE",
+        "tabs": "TABS",
         "toolbar": "TOOLBAR",
         "validation": "VALIDATION",
         "views": "VIEWS"
@@ -458,6 +465,7 @@
         "columns": "Columns",
         "component": "Component",
         "config_type": "Config type",
+        "container": "Container",
         "content": "Content",
         "control_component": "Control component",
         "custom_rule": "Custom rule",
@@ -478,6 +486,7 @@
         "default_sort_order": "Direction",
         "default_value": "Default value",
         "default_views": "Default view",
+        "default_tab": "Default tab",
         "description": "Description",
         "direction": "Direction",
         "disable_submit": "Disable submit",
@@ -517,6 +526,7 @@
         "layout": "Layout",
         "legend_position": "Legend position",
         "links_color": "Links",
+        "link_to_container": "Link to a container",
         "loading": "Loading",
         "loop_back_to_start": "Loop back to start",
         "loop_start_to_back": "Loop start to back",
@@ -902,6 +912,9 @@
       "name": "Table",
       "pagination": "Pagination",
       "scroll": "Scroll"
+    },
+    "tabs": {
+      "name": "Tabs"
     },
     "text": {
       "default_value": "👋 Hello!",

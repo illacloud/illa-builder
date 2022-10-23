@@ -134,8 +134,14 @@ import {
   FormWidget,
   FORM_PANEL_CONFIG,
   FORM_WIDGET_CONFIG,
+  FORM_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/FormWidget"
-import { FORM_EVENT_HANDLER_CONFIG } from "./FormWidget/eventHandlerConfig"
+import {
+  TABS_PANEL_CONFIG,
+  TABS_WIDGET_CONFIG,
+  TABS_EVENT_HANDLER_CONFIG,
+  TabsWidget,
+} from "@/widgetLibrary/TabsWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -262,6 +268,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: TABLE_WIDGET_CONFIG,
     panelConfig: TABLE_PANEL_CONFIG,
     eventHandlerConfig: TABLE_EVENT_HANDLER_CONFIG,
+  },
+  TABS_WIDGET: {
+    widget: TabsWidget,
+    config: TABS_WIDGET_CONFIG,
+    panelConfig: TABS_PANEL_CONFIG,
+    eventHandlerConfig: TABS_EVENT_HANDLER_CONFIG,
   },
   CONTAINER_WIDGET: {
     widget: ContainerWidget,
