@@ -21,5 +21,6 @@ export const NUMBER_INPUT_WIDGET_CONFIG: WidgetConfig = {
     max: "{{Infinity}}",
     min: "{{-Infinity}}",
     hidden: false,
+    formDataKey: "numberInput",
   },
 }

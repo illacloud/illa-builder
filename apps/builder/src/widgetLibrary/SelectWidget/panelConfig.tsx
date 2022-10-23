@@ -291,6 +291,14 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         attrName: "hideValidationMessage",
       },
+      {
+        id: `${baseWidgetName}-validation-form-data-key`,
+        labelName: i18n.t("editor.inspect.setter_label.form_data_key"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.form_data_key"),
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "formDataKey",
+      },
     ],
   },
   {

@@ -27,5 +27,6 @@ export const CHECKBOX_GROUP_WIDGET_CONFIG: WidgetConfig = {
     dataSources: "{{[]}}",
     direction: "horizontal",
     colorScheme: "blue",
+    formDataKey: "radioButton",
   },
 }

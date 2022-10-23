@@ -1,3 +1,4 @@
+import { isObject } from "@illa-design/system"
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import {
@@ -44,6 +45,10 @@ export const generateComponentNode = (
     type,
     displayName,
   )
+
+  if (isObject(props) && Object.hasOwn(props, "formDataKey")) {
+    props.formDataKey = realDisplayName
+  }
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
     widgetInfo.childrenNode.map((childNode) => {
       if (!childrenNodeDSL) childrenNodeDSL = []

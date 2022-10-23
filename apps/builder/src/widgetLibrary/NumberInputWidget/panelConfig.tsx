@@ -227,6 +227,14 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         openDynamic: true,
         attrName: "hideValidationMessage",
       },
+      {
+        id: `${widgetBaseName}-validation-form-data-key`,
+        labelName: i18n.t("editor.inspect.setter_label.form_data_key"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.form_data_key"),
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "formDataKey",
+      },
     ],
   },
   {
