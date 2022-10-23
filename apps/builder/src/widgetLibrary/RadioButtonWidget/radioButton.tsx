@@ -134,7 +134,7 @@ export const RadioButtonWidget: FC<RadioButtonWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, labelPosition])
+  }, [validateMessage, labelPosition, updateComponentHeight])
 
   return (
     <div ref={wrapperRef}>

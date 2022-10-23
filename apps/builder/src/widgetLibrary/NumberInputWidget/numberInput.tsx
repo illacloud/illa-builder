@@ -217,15 +217,7 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [
-    value,
-    pattern,
-    regex,
-    required,
-    customRule,
-    hideValidationMessage,
-    labelPosition,
-  ])
+  }, [validateMessage, labelPosition, updateComponentHeight])
 
   return (
     <div ref={wrapperRef}>

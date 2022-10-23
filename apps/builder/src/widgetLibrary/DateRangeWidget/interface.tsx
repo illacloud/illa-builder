@@ -25,4 +25,6 @@ export interface DateWidgetProps
   extends WrappedDateRangeProps,
     BaseWidgetProps,
     LabelProps,
-    TooltipWrapperProps {}
+    TooltipWrapperProps {
+  validateMessage: string
+}

@@ -143,7 +143,7 @@ export const CheckboxWidget: FC<CheckboxGroupWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [value, required, finalOptions, labelPosition])
+  }, [validateMessage, finalOptions, labelPosition, updateComponentHeight])
 
   return (
     <div ref={wrapperRef}>

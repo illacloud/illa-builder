@@ -2,9 +2,13 @@ import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import dayjs from "dayjs"
 import { DateRangePicker } from "@illa-design/date-picker"
 import { DateWidgetProps, WrappedDateRangeProps } from "./interface"
-import { applyLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
+import {
+  applyLabelAndComponentWrapperStyle,
+  applyValidateMessageWrapperStyle,
+} from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 
 export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const {
@@ -96,7 +100,14 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     labelHidden,
     tooltipText,
     updateComponentHeight,
+    validateMessage,
   } = props
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [labelPosition, validateMessage, updateComponentHeight])
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -148,7 +159,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [required, labelPosition])
+  }, [required, labelPosition, updateComponentHeight])
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -168,6 +179,15 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
           <WrappedDateRange {...props} />
         </div>
       </TooltipWrapper>
+      <div
+        css={applyValidateMessageWrapperStyle(
+          labelWidth,
+          labelPosition,
+          labelHidden || !label,
+        )}
+      >
+        <InvalidMessage validateMessage={validateMessage} />
+      </div>
     </div>
   )
 }

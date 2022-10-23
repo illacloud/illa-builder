@@ -171,15 +171,7 @@ export const DateWidget: FC<DateWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [
-    required,
-    labelPosition,
-    value,
-    pattern,
-    regex,
-    customRule,
-    hideValidationMessage,
-  ])
+  }, [validateMessage, labelPosition, updateComponentHeight])
 
   return (
     <div ref={wrapperRef}>

@@ -179,15 +179,8 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [
-    required,
-    labelPosition,
-    value,
-    pattern,
-    regex,
-    customRule,
-    hideValidationMessage,
-  ])
+  }, [labelPosition, validateMessage, updateComponentHeight])
+
   return (
     <div>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

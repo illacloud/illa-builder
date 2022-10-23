@@ -107,8 +107,6 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     validateMessage,
   } = props
 
-  const dispatch = useDispatch()
-
   const inputRef = useRef<HTMLInputElement>(null)
 
   const inputWrapperRef = useRef<HTMLDivElement>(null)
@@ -117,18 +115,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     if (inputWrapperRef.current) {
       updateComponentHeight(inputWrapperRef.current?.clientHeight)
     }
-  }, [
-    value,
-    pattern,
-    regex,
-    minLength,
-    maxLength,
-    required,
-    customRule,
-    hideValidationMessage,
-    labelPosition,
-    updateComponentHeight,
-  ])
+  }, [validateMessage, labelPosition, updateComponentHeight])
 
   const handleValidate = useCallback(
     (value?: string) => {
