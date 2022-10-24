@@ -11,7 +11,6 @@ import {
   getResourceTypeFromActionType,
 } from "@/utils/actionResourceTransformer"
 import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator/style"
-import store from "@/store"
 import { useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 

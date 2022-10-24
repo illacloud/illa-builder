@@ -1,6 +1,8 @@
 import { FC, useState } from "react"
 import {
   createNewStyle,
+  itemContainer,
+  itemText,
   resourceChooseContainerStyle,
   resourceTitleStyle,
 } from "./style"
@@ -46,6 +48,7 @@ export const ResourceChoose: FC = () => {
           <Select
             colorScheme="techPurple"
             minW="200px"
+            maxW="300px"
             value={action.resourceId}
             onChange={(value) => {
               const resource = resourceList.find((r) => r.resourceId === value)
@@ -97,10 +100,10 @@ export const ResourceChoose: FC = () => {
             {resourceList.map((item) => {
               return (
                 <Option value={item.resourceId} key={item.resourceId}>
-                  <Space size="8px" direction="horizontal" alignItems="center">
+                  <div css={itemContainer}>
                     {getIconFromResourceType(item.resourceType, "14px")}
-                    {item.resourceName}
-                  </Space>
+                    <span css={itemText}>{item.resourceName}</span>
+                  </div>
                 </Option>
               )
             })}
