@@ -110,8 +110,8 @@ export const ResourceChoose: FC = () => {
           </Select>
           <Select
             colorScheme="techPurple"
-            minW="400px"
-            maxW="600px"
+            minW="300px"
+            maxW="500px"
             value={action.triggerMode}
             onChange={(value) => {
               dispatch(
