@@ -157,6 +157,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       handleUpdateDsl({
         validateMessage: message,
       })
+      return message
     },
     [getValidateMessage, handleUpdateDsl],
   )
@@ -185,7 +186,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
         handleUpdateDsl({ value: undefined })
       },
       validate: () => {
-        handleValidate(value)
+        return handleValidate(value)
       },
       clearValidation: () => {},
     })

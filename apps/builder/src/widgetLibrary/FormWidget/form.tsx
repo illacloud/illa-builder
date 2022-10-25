@@ -279,11 +279,14 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     if (validateInputsOnSubmit) {
       const validateResult = allLikeInputChildrenNode.every((node) => {
         try {
-          return evaluateDynamicString(
-            "events",
-            `{{${node.displayName}.validate()}}`,
+          const validateFunc = get(
             BUILDER_CALC_CONTEXT,
+            `${node.displayName}.validate`,
           )
+          if (typeof validateFunc === "function") {
+            return !validateFunc()
+          }
+          return false
         } catch (e) {
           Message.error("eventHandler run error")
           return false
@@ -316,7 +319,6 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
       reset: handleOnReset,
       setValue: (value: Record<string, any>) => {
         if (isObject(value)) {
-          console.log("value", value)
           handleSetValue(value)
         }
       },
