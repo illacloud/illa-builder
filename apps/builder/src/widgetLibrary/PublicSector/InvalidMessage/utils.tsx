@@ -37,20 +37,18 @@ export const handleCheckIsRequired = (value: unknown, required?: boolean) => {
 
 export const handleCheckMaxLength = (value: unknown, maxLength?: number) => {
   if (
-    (typeof maxLength === "number" &&
-      typeof value === "string" &&
-      value.length > maxLength) ||
-    typeof value === "undefined"
+    typeof maxLength === "number" &&
+    ((typeof value === "string" && value.length > maxLength) ||
+      typeof value === "undefined")
   )
     return true
 }
 
 export const handleCheckMinLength = (value: unknown, minLength?: number) => {
   if (
-    (typeof minLength === "number" &&
-      typeof value === "string" &&
-      value.length < minLength) ||
-    typeof value === "undefined"
+    typeof minLength === "number" &&
+    ((typeof value === "string" && value.length < minLength) ||
+      typeof value === "undefined")
   )
     return true
 }

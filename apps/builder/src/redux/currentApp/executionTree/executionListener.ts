@@ -28,12 +28,6 @@ async function handleStartExecution(
   const rawTree = getRawTree(rootState)
   if (!rawTree) return
   mergeActionResult(rawTree)
-  if (action.type === "execution/updateExecutionByDisplayNameReducer") {
-    const { displayName, value } = action.payload
-    Object.keys(value).forEach((key) => {
-      rawTree[displayName][key] = value[key]
-    })
-  }
   const oldExecutionTree = getExecutionResult(rootState)
   if (!executionTree) {
     executionTree = new ExecutionTreeFactory()
@@ -94,6 +88,25 @@ async function handleStartExecution(
   }
 }
 
+async function handleStartExecutionOnCanvas(
+  action: AnyAction,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const rootState = listenerApi.getState()
+  const oldExecutionTree = getExecutionResult(rootState)
+  if (executionTree) {
+    const executionResult =
+      executionTree.updateTreeFromExecution(oldExecutionTree)
+    const evaluatedTree = executionResult.evaluatedTree
+    const updates = diff(oldExecutionTree, evaluatedTree) || []
+    listenerApi.dispatch(
+      executionActions.setExecutionResultReducer({
+        updates,
+      }),
+    )
+  }
+}
+
 export function setupExecutionListeners(
   startListening: AppStartListening,
 ): Unsubscribe {
@@ -111,10 +124,15 @@ export function setupExecutionListeners(
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,
         executionActions.startExecutionReducer,
+      ),
+      effect: handleStartExecution,
+    }),
+    startListening({
+      matcher: isAnyOf(
         executionActions.updateExecutionByDisplayNameReducer,
         executionActions.updateExecutionByMultiDisplayNameReducer,
       ),
-      effect: handleStartExecution,
+      effect: handleStartExecutionOnCanvas,
     }),
   ]
 

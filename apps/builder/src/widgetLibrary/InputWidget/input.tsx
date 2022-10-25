@@ -8,12 +8,12 @@ import {
 } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { useDispatch } from "react-redux"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
   (props, ref) => {
     const {
+      displayName,
       value,
       placeholder,
       disabled,
@@ -29,16 +29,15 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
       allowClear,
       maxLength,
       minLength,
-      handleValidate,
+      handleUpdateMultiExecutionResult,
+      getValidateMessage,
     } = props
-
-    const [_value, setValue] = useState(value)
 
     return (
       <Input
         w="100%"
         inputRef={ref}
-        value={_value}
+        value={value}
         placeholder={placeholder}
         disabled={disabled}
         readOnly={readOnly}
@@ -47,12 +46,19 @@ export const WrappedInput = forwardRef<HTMLInputElement, WrappedInputProps>(
         suffix={suffixIcon}
         addonAfter={{ render: suffixText, custom: false }}
         onChange={(value) => {
-          setValue(value)
           new Promise((resolve) => {
-            handleUpdateDsl({ value })
+            const message = getValidateMessage(value)
+            handleUpdateMultiExecutionResult([
+              {
+                displayName,
+                value: {
+                  value: value || "",
+                  validateMessage: message,
+                },
+              },
+            ])
             resolve(true)
           }).then(() => {
-            handleValidate(value)
             handleOnChange?.()
           })
         }}
@@ -117,32 +123,25 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
     }
   }, [validateMessage, labelPosition, updateComponentHeight])
 
-  const handleValidate = useCallback(
-    (value?: string) => {
-      const message = handleValidateCheck({
-        value,
-        pattern,
-        regex,
-        minLength,
-        maxLength,
-        required,
-        customRule,
-      })
-      const showMessage =
-        !hideValidationMessage && message && message.length > 0
-      if (showMessage) {
-        handleUpdateDsl({
-          validateMessage: message,
+  const getValidateMessage = useCallback(
+    (value) => {
+      if (!hideValidationMessage) {
+        const message = handleValidateCheck({
+          value,
+          pattern,
+          regex,
+          minLength,
+          maxLength,
+          required,
+          customRule,
         })
-      } else {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
+        const showMessage = message && message.length > 0
+        return showMessage ? message : ""
       }
+      return ""
     },
     [
       customRule,
-      handleUpdateDsl,
       hideValidationMessage,
       maxLength,
       minLength,
@@ -150,6 +149,16 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       regex,
       required,
     ],
+  )
+
+  const handleValidate = useCallback(
+    (value?: string) => {
+      const message = getValidateMessage(value)
+      handleUpdateDsl({
+        validateMessage: message,
+      })
+    },
+    [getValidateMessage, handleUpdateDsl],
   )
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -223,6 +232,7 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
             {...props}
             ref={inputRef}
             handleValidate={handleValidate}
+            getValidateMessage={getValidateMessage}
           />
         </div>
       </TooltipWrapper>

@@ -20,6 +20,13 @@ export interface WrappedInputProps
   allowClear?: InputProps["allowClear"]
   handleOnChange?: () => void
   handleValidate: (value?: string) => void
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  getValidateMessage: (value: string) => string
 }
 
 export interface InputWidgetProps
