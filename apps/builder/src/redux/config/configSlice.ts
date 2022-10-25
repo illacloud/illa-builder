@@ -6,6 +6,7 @@ import {
   minusScale,
   plusScale,
   removeExpandedKey,
+  resetConfig,
   setExpandedKey,
   updateBottomPanel,
   updateCachedAction,
@@ -22,6 +23,7 @@ const configSlice = createSlice({
   name: "builderInfo",
   initialState: ConfigInitialState,
   reducers: {
+    resetConfig,
     updateIllaMode,
     updateLeftPanel,
     updateRightPanel,

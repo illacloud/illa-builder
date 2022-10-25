@@ -1,5 +1,9 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
-import { ConfigState, IllaMode } from "@/redux/config/configState"
+import {
+  ConfigInitialState,
+  ConfigState,
+  IllaMode,
+} from "@/redux/config/configState"
 import {
   ActionContent,
   ActionItem,
@@ -17,6 +21,13 @@ export const updateIllaMode: CaseReducer<
   PayloadAction<IllaMode>
 > = (state, action) => {
   state.mode = action.payload
+}
+
+export const resetConfig: CaseReducer<ConfigState, PayloadAction> = (
+  state,
+  action,
+) => {
+  return ConfigInitialState
 }
 
 export const updateRightPanel: CaseReducer<
