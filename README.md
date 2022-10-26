@@ -25,9 +25,15 @@
 4. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
 5. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):** Components should not constrain your imagination.
 
-## 🖥 Fast Try
-### Build an app within 10 minutes: **[Click Here!](http://fast-try.illacloud.com/)**
+## 🖥 Live Demo
+<p align="center">We have just released a demo version that can be used to build internal tools quickly🎉</p>
+<p align="center">Click the button below to try out ILLA Builder</p>
+<p align="center">
+<a href="http://fast-try.illacloud.com/dashboard">
+<img alt="Live Demo" width="320px" height="51.98px" src="https://github.com/illa-family/.github/blob/main/assets/images/livedemo1.png" />
+</a></p>
 
+### Tutorial
 #### 🆓 Step 1: Create an account for free and sign in
 
 ![login](https://github.com/illa-family/.github/blob/main/assets/images/login.png)
