@@ -40,6 +40,10 @@ export const getSelectedAction = (state: RootState) => {
   return state.config.selectedAction
 }
 
+export const getCachedAction = (state: RootState) => {
+  return state.config.cachedAction
+}
+
 export const isSelected = (state: RootState, displayName: string) => {
   return (
     state.config.selectedComponents.findIndex((value) => {

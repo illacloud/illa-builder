@@ -19,5 +19,8 @@ export interface TabsWidgetProps
   navigateContainer?: boolean
   linkWidgetDisplayName?: string
   currentKey?: string
-  handleUpdateOriginalDSLOtherMultiAttr: (displayName: string, updateSlice: Record<string, any>) => void
+  handleUpdateOriginalDSLOtherMultiAttr: (
+    displayName: string,
+    updateSlice: Record<string, any>,
+  ) => void
 }

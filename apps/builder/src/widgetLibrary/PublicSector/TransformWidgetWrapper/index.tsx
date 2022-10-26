@@ -253,7 +253,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleUpdateGlobalData={handleUpdateGlobalData}
           handleDeleteGlobalData={handleDeleteGlobalData}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
-          handleUpdateOriginalDSLOtherMultiAttr={handleUpdateOriginalDSLOtherMultiAttr}
+          handleUpdateOriginalDSLOtherMultiAttr={
+            handleUpdateOriginalDSLOtherMultiAttr
+          }
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
           handleOnSortingChange={handleOnSortingChange}

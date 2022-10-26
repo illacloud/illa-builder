@@ -47,6 +47,7 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
+    shouldUnregister: true,
   })
 
   const resource = useSelector((state: RootState) => {
@@ -83,9 +84,9 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               },
             },
             (response) => {
-              onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
             },
             (error) => {
               Message.error(error.data.errorMessage)
@@ -116,9 +117,9 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               },
             },
             (response) => {
-              onFinished(response.data.resourceId)
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
             },
             (error) => {
               Message.error(error.data.errorMessage)
@@ -388,7 +389,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
                 rules={{
                   required: true,
                 }}
-                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -419,7 +419,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               <Controller
                 control={control}
                 defaultValue={resource?.content.ssl.clientKey}
-                shouldUnregister={true}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -449,7 +448,6 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
               </div>
               <Controller
                 control={control}
-                shouldUnregister={true}
                 defaultValue={resource?.content.ssl.clientCert}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
