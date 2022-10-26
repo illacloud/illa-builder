@@ -24,5 +24,7 @@ export const TABS_WIDGET_CONFIG: WidgetConfig = {
     align: "flex-start",
     colorScheme: "blue",
     tabPosition: "top",
+    currentIndex: 0,
+    currentKey: "Tab 1",
   },
 }

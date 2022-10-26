@@ -22,8 +22,8 @@ interface ProviderProps {
 interface Inject extends Omit<ProviderProps, "children"> {
   handleDeleteOptionItem: (index: number) => void
   handleCopyOptionItem: (index: number) => void
-  handleUpdateCurrentViewIndex: (index: number) => void
-  currentViewIndex: number
+  handleUpdateCurrentIndex: (index: number) => void
+  currentIndex: number
   handleMoveOptionItem: (dragIndex: number, hoverIndex: number) => void
 }
 
@@ -41,7 +41,7 @@ export const TabListSetterProvider: FC<ProviderProps> = (props) => {
     ) as ViewItemShape[]
   }, [attrPath, executionResult, widgetDisplayName])
 
-  const currentViewIndex = useMemo(() => {
+  const currentIndex = useMemo(() => {
     return get(executionResult, `${widgetDisplayName}.currentIndex`)
   }, [executionResult, widgetDisplayName])
 
@@ -64,8 +64,8 @@ export const TabListSetterProvider: FC<ProviderProps> = (props) => {
         currentKey: allViewsKeys[0],
       }
 
-      if (currentViewIndex !== index) {
-        const oldCurrentViewKey = list[currentViewIndex].key
+      if (currentIndex !== index) {
+        const oldCurrentViewKey = list[currentIndex].key
         const newCurrentViewIndex = updatedArray.findIndex(
           (item) => item.key === oldCurrentViewKey,
         )
@@ -77,7 +77,7 @@ export const TabListSetterProvider: FC<ProviderProps> = (props) => {
 
       handleUpdateMultiAttrDSL?.(updateSlice)
     },
-    [list, attrPath, allViewsKeys, currentViewIndex, handleUpdateMultiAttrDSL],
+    [list, attrPath, allViewsKeys, currentIndex, handleUpdateMultiAttrDSL],
   )
 
   const handleCopyOptionItem = useCallback(
@@ -102,7 +102,7 @@ export const TabListSetterProvider: FC<ProviderProps> = (props) => {
     [list, allViewsKeys, handleUpdateMultiAttrDSL, attrPath],
   )
 
-  const handleUpdateCurrentViewIndex = useCallback(
+  const handleUpdateCurrentIndex = useCallback(
     (index: number) => {
       if (index > list.length || index < 0) return
       const currentViewKey = allViews[index].key
@@ -117,7 +117,7 @@ export const TabListSetterProvider: FC<ProviderProps> = (props) => {
   const handleMoveOptionItem = useCallback(
     (dragIndex: number, hoverIndex: number) => {
       const dragOptionItem = list[dragIndex]
-      const currentSelected = list[currentViewIndex]
+      const currentSelected = list[currentIndex]
       const newViews = [...list]
       newViews.splice(dragIndex, 1)
       newViews.splice(hoverIndex, 0, dragOptionItem)
@@ -131,14 +131,14 @@ export const TabListSetterProvider: FC<ProviderProps> = (props) => {
         currentKey: newSelectedKey,
       })
     },
-    [attrPath, currentViewIndex, handleUpdateMultiAttrDSL, list],
+    [attrPath, currentIndex, handleUpdateMultiAttrDSL, list],
   )
   const value = {
     ...props,
     handleDeleteOptionItem,
     handleCopyOptionItem,
-    currentViewIndex,
-    handleUpdateCurrentViewIndex,
+    currentIndex,
+    handleUpdateCurrentIndex,
     handleMoveOptionItem,
   }
 

@@ -132,6 +132,12 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
       {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          TABS_EVENT_HANDLER_CONFIG.events,
+        ),
+      },
+      {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
@@ -139,12 +145,6 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         placeholder: "{{false}}",
         expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-      {
-        ...generatorEventHandlerConfig(
-          baseWidgetName,
-          TABS_EVENT_HANDLER_CONFIG.events,
-        ),
       },
     ],
   },
