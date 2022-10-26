@@ -1,3 +1,4 @@
+import { cloneDeep } from "lodash"
 import { isObject } from "@illa-design/system"
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
@@ -10,6 +11,7 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,
   parentNodeDisplayName?: string,
+  pathToChildren: string[] = [],
 ): ComponentNode => {
   let baseDSL: ComponentNode
   if (
@@ -31,15 +33,15 @@ export const generateComponentNode = (
     h,
     type,
     displayName = "",
-    containerType,
+    containerType = CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
     x = -1,
     y = -1,
   } = widgetInfo
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
-    props = defaults()
+    props = cloneDeep(defaults())
   } else {
-    props = defaults
+    props = cloneDeep(defaults)
   }
   const realDisplayName = DisplayNameGenerator.generateDisplayName(
     type,
@@ -47,12 +49,34 @@ export const generateComponentNode = (
   )
 
   if (isObject(props) && Object.hasOwn(props, "formDataKey")) {
-    props.formDataKey = realDisplayName
+    props.formDataKey = `{{${realDisplayName}.displayName}}`
+  }
+
+  if (
+    isObject(props) &&
+    Object.hasOwn(props, "events") &&
+    Array.isArray(props.events)
+  ) {
+    console.log("props.events", props.events)
+    props.events = props.events.map((event) => {
+      return {
+        ...event,
+        widgetID: pathToChildren[pathToChildren.length - 1] || "unknown",
+      }
+    })
   }
   if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
+    pathToChildren =
+      containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE
+        ? [...pathToChildren, realDisplayName]
+        : pathToChildren
     widgetInfo.childrenNode.map((childNode) => {
       if (!childrenNodeDSL) childrenNodeDSL = []
-      const child = generateComponentNode(childNode, realDisplayName)
+      const child = generateComponentNode(
+        childNode,
+        realDisplayName,
+        pathToChildren,
+      )
       childrenNodeDSL.push(child)
     })
   }
@@ -73,7 +97,7 @@ export const generateComponentNode = (
     showName: displayName,
     type,
     displayName: realDisplayName,
-    containerType: containerType || CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+    containerType,
     parentNode: parentNodeDisplayName || null,
     childrenNode: childrenNodeDSL,
     props: props ?? {},

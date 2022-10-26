@@ -3,6 +3,8 @@ import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { TEXT_WIDGET_CONFIG } from "@/widgetLibrary/TextWidget"
 import { BasicContainerConfig } from "@/widgetLibrary/BasicContainer/BasicContainer"
+import { BUTTON_WIDGET_CONFIG } from "../ButtonWidget"
+import { v4 } from "uuid"
 
 export const FORM_WIDGET_CONFIG: WidgetConfig = {
   type: "FORM_WIDGET",
@@ -23,6 +25,10 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
           h: 5,
           x: 0,
           y: 0,
+          defaults: {
+            ...TEXT_WIDGET_CONFIG.defaults,
+            value: "### Form",
+          },
         },
       ],
     },
@@ -31,11 +37,24 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
       ...BasicContainerConfig,
       childrenNode: [
         {
-          ...TEXT_WIDGET_CONFIG,
-          w: 10,
+          ...BUTTON_WIDGET_CONFIG,
+          w: 33,
           h: 5,
-          x: 0,
+          x: 31,
           y: 0,
+          defaults: {
+            ...BUTTON_WIDGET_CONFIG.defaults,
+            text: "Submit",
+            events: [
+              {
+                actionType: "widget",
+                id: v4(),
+                eventType: "click",
+                widgetID: "form",
+                widgetMethod: "submit",
+              },
+            ],
+          },
         },
       ],
     },
