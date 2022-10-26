@@ -29,7 +29,7 @@
 <p align="center">We have just released a demo version that can be used to build internal tools quickly🎉</p>
 <p align="center">Click the button below to try out ILLA Builder</p>
 <p align="center">
-<a href="http://fast-try.illacloud.com/dashboard">
+<a href="http://fast-try.illacloud.com">
 <img alt="Live Demo" width="320px" height="51.98px" src="https://github.com/illa-family/.github/blob/main/assets/images/livedemo1.png" />
 </a></p>
 
