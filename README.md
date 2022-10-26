@@ -26,14 +26,13 @@
 5. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):** Components should not constrain your imagination.
 
 ## 🖥 Live Demo
-<p align="center">We have just released a demo version that can be used to build internal tools quickly🎉</p>
-<p align="center">Click the button below to try out ILLA Builder</p>
-<p align="center">
+<p>We have just released a demo version that can be used to build internal tools quickly🎉</p>
+<p>Click the button below to try out ILLA Builder</p>
 <a href="http://fast-try.illacloud.com">
-<img alt="Live Demo" width="320px" height="51.98px" src="https://github.com/illa-family/.github/blob/main/assets/images/livedemo1.png" />
-</a></p>
+<img alt="Live Demo" width="350px" height="56.85px" src="https://github.com/illa-family/.github/blob/main/assets/images/newdemo2.png" />
+</a>
 
-### Tutorial
+## Tutorial
 #### 🆓 Step 1: Create an account for free and sign in
 
 ![login](https://github.com/illa-family/.github/blob/main/assets/images/login.png)
