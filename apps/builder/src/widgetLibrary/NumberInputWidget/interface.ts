@@ -20,7 +20,16 @@ export interface WrappedNumberInputProps
   openThousandSeparator?: boolean
   loading?: boolean
   colorScheme?: InputNumberProps["borderColor"]
+  displayName: string
   handleUpdateDsl: (value: any) => void
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface NumberInputWidgetProps

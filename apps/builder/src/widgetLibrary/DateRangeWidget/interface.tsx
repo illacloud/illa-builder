@@ -19,6 +19,15 @@ export interface WrappedDateRangeProps
   minDate?: string
   maxDate?: string
   handleUpdateDsl: (value: any) => void
+  displayName: string
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface DateWidgetProps
@@ -26,5 +35,7 @@ export interface DateWidgetProps
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps {
+  customRule?: string
+  hideValidationMessage?: boolean
   validateMessage: string
 }

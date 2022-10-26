@@ -9,6 +9,7 @@ import {
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "../PublicSector/InvalidMessage/utils"
 
 export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
   const {
@@ -23,8 +24,31 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
     maxDate,
     readOnly,
     colorScheme,
-    handleUpdateDsl,
+    handleOnChange,
+    getValidateMessage,
+    handleUpdateMultiExecutionResult,
+    displayName,
   } = props
+
+  const changeValue = (value?: string[]) => {
+    new Promise((resolve) => {
+      const startMessage = getValidateMessage(value?.[0])
+      const endMessage = getValidateMessage(value?.[1])
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            startValue: value?.[0] || "",
+            endValue: value?.[1] || "",
+            validateMessage: startMessage || endMessage,
+          },
+        },
+      ])
+      resolve(true)
+    }).then(() => {
+      handleOnChange?.()
+    })
+  }
 
   const _placeholder = [startPlaceholder ?? "", endPlaceholder ?? ""]
 
@@ -55,17 +79,9 @@ export const WrappedDateRange: FC<WrappedDateRangeProps> = (props) => {
       allowClear={showClear}
       disabledDate={checkRange}
       onClear={() => {
-        handleUpdateDsl({
-          startValue: undefined,
-          endValue: undefined,
-        })
+        changeValue(["", ""])
       }}
-      onChange={(value) => {
-        handleUpdateDsl({
-          startValue: value?.[0],
-          endValue: value?.[1],
-        })
-      }}
+      onChange={changeValue}
     />
   )
 }
@@ -101,7 +117,36 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     tooltipText,
     updateComponentHeight,
     validateMessage,
+    customRule,
+    hideValidationMessage,
   } = props
+
+  const getValidateMessage = useCallback(
+    (value?: unknown) => {
+      if (!hideValidationMessage) {
+        const message = handleValidateCheck({
+          value,
+          required,
+          customRule,
+        })
+        const showMessage = message && message.length > 0
+        return showMessage ? message : ""
+      }
+      return ""
+    },
+    [customRule, hideValidationMessage, required],
+  )
+
+  const handleValidate = useCallback(
+    (value?: unknown) => {
+      const message = getValidateMessage(value)
+      handleUpdateDsl({
+        validateMessage: message,
+      })
+      return message
+    },
+    [getValidateMessage, handleUpdateDsl],
+  )
 
   useEffect(() => {
     if (wrapperRef.current) {
@@ -131,6 +176,16 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
       clearValue: () => {
         handleUpdateDsl({ startValue: "", endValue: "" })
       },
+      validate: () => {
+        const startValueChecked = handleValidate(startValue)
+        if (startValueChecked) {
+          return startValueChecked
+        }
+        const endValueChecked = handleValidate(endValue)
+        if (endPlaceholder) {
+          return endValueChecked
+        }
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -151,6 +206,7 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -176,7 +232,10 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedDateRange {...props} />
+          <WrappedDateRange
+            {...props}
+            getValidateMessage={getValidateMessage}
+          />
         </div>
       </TooltipWrapper>
       <div

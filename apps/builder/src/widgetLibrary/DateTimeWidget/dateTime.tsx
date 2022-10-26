@@ -24,8 +24,29 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       readOnly,
       minuteStep,
       colorScheme,
-      handleUpdateDsl,
+      handleOnChange,
+      getValidateMessage,
+      handleUpdateMultiExecutionResult,
+      displayName,
     } = props
+
+    const changeValue = (value?: unknown) => {
+      new Promise((resolve) => {
+        const message = getValidateMessage(value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              value: value || "",
+              validateMessage: message,
+            },
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        handleOnChange?.()
+      })
+    }
 
     const checkRange = useCallback(
       (current) => {
@@ -53,11 +74,9 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
         allowClear={showClear}
         disabledDate={checkRange}
         onClear={() => {
-          handleUpdateDsl({ value: "" })
+          changeValue("")
         }}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
+        onChange={changeValue}
       />
     )
   },
@@ -99,35 +118,33 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     validateMessage,
   } = props
 
-  const handleValidate = useCallback(
-    (value?: any) => {
-      const message = handleValidateCheck({
-        value,
-        required,
-        customRule,
-        pattern,
-        regex,
-      })
-      const showMessage =
-        !hideValidationMessage && message && message.length > 0
-      if (showMessage) {
-        handleUpdateDsl({
-          validateMessage: message,
+  const getValidateMessage = useCallback(
+    (value?: unknown) => {
+      if (!hideValidationMessage) {
+        const message = handleValidateCheck({
+          value,
+          required,
+          customRule,
+          pattern,
+          regex,
         })
-      } else {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
+        const showMessage = message && message.length > 0
+        return showMessage ? message : ""
       }
+      return ""
     },
-    [
-      customRule,
-      handleUpdateDsl,
-      hideValidationMessage,
-      pattern,
-      regex,
-      required,
-    ],
+    [customRule, hideValidationMessage, pattern, regex, required],
+  )
+
+  const handleValidate = useCallback(
+    (value?: unknown) => {
+      const message = getValidateMessage(value)
+      handleUpdateDsl({
+        validateMessage: message,
+      })
+      return message
+    },
+    [getValidateMessage, handleUpdateDsl],
   )
 
   useEffect(() => {
@@ -149,7 +166,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
         handleUpdateDsl({ value: "" })
       },
       validate: () => {
-        handleValidate(value)
+        return handleValidate(value)
       },
     })
     return () => {
@@ -197,7 +214,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedDateTime {...props} />
+          <WrappedDateTime {...props} getValidateMessage={getValidateMessage} />
         </div>
       </TooltipWrapper>
       <div

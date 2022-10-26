@@ -188,7 +188,11 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
       validate: () => {
         return handleValidate(value)
       },
-      clearValidation: () => {},
+      clearValidation: () => {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      },
     })
     return () => {
       handleDeleteGlobalData(displayName)
@@ -232,7 +236,6 @@ export const InputWidget: FC<InputWidgetProps> = (props) => {
           <WrappedInput
             {...props}
             ref={inputRef}
-            handleValidate={handleValidate}
             getValidateMessage={getValidateMessage}
           />
         </div>

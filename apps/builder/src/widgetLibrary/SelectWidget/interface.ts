@@ -24,7 +24,16 @@ export interface WrappedSelectProps
   suffixIcon?: string // TODO: not support yet
   prefixText?: string // TODO: not support yet
   suffixText?: string // TODO: not support yet
+  displayName: string
   handleUpdateDsl: (value: any) => void
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface SelectWidgetProps

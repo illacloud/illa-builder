@@ -24,7 +24,37 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
     inputValue,
     colorScheme,
     handleUpdateDsl,
+    handleUpdateMultiExecutionResult,
+    handleOnChange,
+    getValidateMessage,
+    displayName,
   } = props
+
+  const onChangeSelectValue = useCallback(
+    (value: unknown) => {
+      new Promise((resolve) => {
+        const message = getValidateMessage(value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              value: value || "",
+              validateMessage: message,
+            },
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        handleOnChange?.()
+      })
+    },
+    [
+      displayName,
+      getValidateMessage,
+      handleOnChange,
+      handleUpdateMultiExecutionResult,
+    ],
+  )
 
   return (
     <Select
@@ -38,9 +68,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
       showSearch={showSearch}
       inputValue={inputValue}
       colorScheme={colorScheme}
-      onChange={(value) => {
-        handleUpdateDsl({ value })
-      }}
+      onChange={onChangeSelectValue}
     />
   )
 }
@@ -85,26 +113,31 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
   }, [optionConfigureMode, manualOptions, mappedOption])
 
-  const handleValidate = useCallback(
-    (value?: unknown) => {
-      const message = handleValidateCheck({
-        value,
-        required,
-        customRule,
-      })
-      const showMessage =
-        !hideValidationMessage && message && message.length > 0
-      if (showMessage) {
-        handleUpdateDsl({
-          validateMessage: message,
+  const getValidateMessage = useCallback(
+    (value: unknown) => {
+      if (!hideValidationMessage) {
+        const message = handleValidateCheck({
+          value,
+          required,
+          customRule,
         })
-      } else {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
+        const showMessage = message && message.length > 0
+        return showMessage ? message : ""
       }
+      return ""
     },
-    [customRule, handleUpdateDsl, hideValidationMessage, required],
+    [customRule, hideValidationMessage, required],
+  )
+
+  const handleValidate = useCallback(
+    (value: unknown) => {
+      const message = getValidateMessage(value)
+      handleUpdateDsl({
+        validateMessage: message,
+      })
+      return message
+    },
+    [getValidateMessage, handleUpdateDsl],
   )
 
   useEffect(() => {
@@ -129,7 +162,7 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
         handleUpdateDsl({ value: undefined })
       },
       validate: () => {
-        handleValidate(value)
+        return handleValidate(value)
       },
       clearValidation: () => {},
     })

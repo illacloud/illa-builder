@@ -12,8 +12,35 @@ import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage/"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
-  const { value, disabled, options, direction, colorScheme, handleUpdateDsl } =
-    props
+  const {
+    value,
+    disabled,
+    options,
+    direction,
+    colorScheme,
+    handleOnChange,
+    getValidateMessage,
+    handleUpdateMultiExecutionResult,
+    displayName,
+  } = props
+
+  const changeValue = (value?: unknown) => {
+    new Promise((resolve) => {
+      const message = getValidateMessage(value)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            value: value || "",
+            validateMessage: message,
+          },
+        },
+      ])
+      resolve(true)
+    }).then(() => {
+      handleOnChange?.()
+    })
+  }
 
   return (
     <RadioGroup
@@ -22,9 +49,7 @@ export const WrappedRadioGroup: FC<WrappedRadioGroupProps> = (props, ref) => {
       options={options}
       direction={direction}
       colorScheme={colorScheme}
-      onChange={(value) => {
-        handleUpdateDsl({ value })
-      }}
+      onChange={changeValue}
     />
   )
 }
@@ -65,27 +90,31 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
     return formatSelectOptions(optionConfigureMode, manualOptions, mappedOption)
   }, [optionConfigureMode, manualOptions, mappedOption])
 
+  const getValidateMessage = useCallback(
+    (value?: unknown) => {
+      if (!hideValidationMessage) {
+        const message = handleValidateCheck({
+          value,
+          required,
+          customRule,
+        })
+        const showMessage = message && message.length > 0
+        return showMessage ? message : ""
+      }
+      return ""
+    },
+    [customRule, hideValidationMessage, required],
+  )
+
   const handleValidate = useCallback(
     (value?: unknown) => {
-      const message = handleValidateCheck({
-        value,
-
-        required,
-        customRule,
+      const message = getValidateMessage(value)
+      handleUpdateDsl({
+        validateMessage: message,
       })
-      const showMessage =
-        !hideValidationMessage && message && message.length > 0
-      if (showMessage) {
-        handleUpdateDsl({
-          validateMessage: message,
-        })
-      } else {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
-      }
+      return message
     },
-    [customRule, handleUpdateDsl, hideValidationMessage, required],
+    [getValidateMessage, handleUpdateDsl],
   )
 
   useEffect(() => {
@@ -105,7 +134,7 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
         handleUpdateDsl({ value: undefined })
       },
       validate: () => {
-        handleValidate(value)
+        return handleValidate(value)
       },
       clearValidation: () => {},
     })
@@ -152,7 +181,11 @@ export const RadioGroupWidget: FC<RadioGroupWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedRadioGroup {...props} options={finalOptions} />
+          <WrappedRadioGroup
+            {...props}
+            options={finalOptions}
+            getValidateMessage={getValidateMessage}
+          />
         </div>
       </TooltipWrapper>
       <div

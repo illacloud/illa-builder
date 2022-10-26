@@ -10,6 +10,15 @@ export interface WrappedRadioButtonProps
     "value" | "disabled" | "options" | "direction" | "colorScheme"
   > {
   handleUpdateDsl: (value: any) => void
+  displayName: string
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface RadioButtonWidgetProps

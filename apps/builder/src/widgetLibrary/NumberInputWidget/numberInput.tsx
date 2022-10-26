@@ -44,25 +44,33 @@ export const WrappedInputNumber = forwardRef<
     suffix,
     loading,
     colorScheme,
-    handleUpdateDsl,
+    displayName,
+    handleOnChange,
+    handleUpdateMultiExecutionResult,
+    getValidateMessage,
   } = props
 
-  const [finalValue, setFinalValue] = useState(value)
-
-  const changeValue = (value: number | undefined) => {
-    setFinalValue(value)
-    handleUpdateDsl({ value })
+  const changeValue = (value?: number | undefined) => {
+    new Promise((resolve) => {
+      const message = getValidateMessage(value)
+      handleUpdateMultiExecutionResult([
+        {
+          displayName,
+          value: {
+            value: value || "",
+            validateMessage: message,
+          },
+        },
+      ])
+      resolve(true)
+    }).then(() => {
+      handleOnChange?.()
+    })
   }
 
   const formatDisplayValue = useMemo(() => {
     return openThousandSeparator ? parserThousand : undefined
   }, [openThousandSeparator])
-
-  useEffect(() => {
-    if (finalValue !== value) {
-      setFinalValue(value)
-    }
-  }, [finalValue, value])
 
   const finalSuffix = useMemo(() => {
     if (loading) {
@@ -78,7 +86,7 @@ export const WrappedInputNumber = forwardRef<
       min={min}
       formatter={formatDisplayValue}
       placeholder={placeholder}
-      value={finalValue}
+      value={value}
       precision={Number(precision)}
       disabled={disabled}
       readOnly={readOnly}
@@ -128,35 +136,33 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
   } = props
   const numberInputRef = useRef<HTMLInputElement>(null)
 
+  const getValidateMessage = useCallback(
+    (value?: unknown) => {
+      if (!hideValidationMessage) {
+        const message = handleValidateCheck({
+          value,
+          pattern,
+          regex,
+          required,
+          customRule,
+        })
+        const showMessage = message && message.length > 0
+        return showMessage ? message : ""
+      }
+      return ""
+    },
+    [customRule, hideValidationMessage, pattern, regex, required],
+  )
+
   const handleValidate = useCallback(
     (value?: unknown) => {
-      const message = handleValidateCheck({
-        value,
-        pattern,
-        regex,
-        required,
-        customRule,
+      const message = getValidateMessage(value)
+      handleUpdateDsl({
+        validateMessage: message,
       })
-      const showMessage =
-        !hideValidationMessage && message && message.length > 0
-      if (showMessage) {
-        handleUpdateDsl({
-          validateMessage: message,
-        })
-      } else {
-        handleUpdateDsl({
-          validateMessage: "",
-        })
-      }
+      return message
     },
-    [
-      customRule,
-      handleUpdateDsl,
-      hideValidationMessage,
-      pattern,
-      regex,
-      required,
-    ],
+    [getValidateMessage, handleUpdateDsl],
   )
 
   useEffect(() => {
@@ -183,9 +189,13 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
         handleUpdateDsl({ value: 0 })
       },
       validate: () => {
-        handleValidate(value)
+        return handleValidate(value)
       },
-      clearValidation: () => {},
+      clearValidation: () => {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      },
     })
 
     return () => {
@@ -235,7 +245,11 @@ export const NumberInputWidget: FC<NumberInputWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedInputNumber {...props} ref={numberInputRef} />
+          <WrappedInputNumber
+            {...props}
+            ref={numberInputRef}
+            getValidateMessage={getValidateMessage}
+          />
         </div>
       </TooltipWrapper>
       <div

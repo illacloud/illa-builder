@@ -10,7 +10,15 @@ export interface WrappedRadioGroupProps
     "value" | "disabled" | "options" | "direction" | "colorScheme"
   > {
   handleUpdateDsl: (value: any) => void
-  handleOnChange?: (value: Record<string, any>) => void
+  displayName: string
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface RadioGroupWidgetProps
