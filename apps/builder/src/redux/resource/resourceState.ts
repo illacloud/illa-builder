@@ -1,4 +1,4 @@
-import { MongoDbResource } from "./mongodbResource"
+import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
 import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { RedisResource } from "./redisResource"
 import { MysqlLikeResource } from "./mysqlLikeResource"
@@ -23,7 +23,7 @@ export type ResourceContent =
   | MysqlLikeResource
   | RestApiResource<RestApiAuth>
   | RedisResource
-  | MongoDbResource
+  | MongoDbResource<MongoDbConfig>
 
 export interface Resource<T extends ResourceContent> {
   resourceId: string
@@ -52,12 +52,21 @@ export function generateSSLConfig(
   open: boolean,
   data: { [p: string]: any },
 ): DbSSL {
-  return {
-    ssl: open,
-    clientKey: data.clientKey,
-    clientCert: data.clientCert,
-    serverCert: data.serverCert,
-  } as DbSSL
+  if (open) {
+    return {
+      ssl: true,
+      clientKey: data.clientKey,
+      clientCert: data.clientCert,
+      serverCert: data.serverCert,
+    } as DbSSL
+  } else {
+    return {
+      ssl: false,
+      clientKey: "",
+      clientCert: "",
+      serverCert: "",
+    } as DbSSL
+  }
 }
 
 export type ResourceListState = Resource<ResourceContent>[]

@@ -29,7 +29,6 @@ export const BearerAuthPanel: FC<BearerAuthPanelProps> = (props) => {
           required: true,
         }}
         defaultValue={auth?.token}
-        shouldUnregister={true}
         render={({ field: { value, onChange, onBlur } }) => (
           <Input
             w="100%"
