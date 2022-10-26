@@ -541,6 +541,7 @@
         "overFlow": "翻页方式",
         "pattern": "模式",
         "pending": "等待",
+        "pageSize": "每页行数",
         "placeholder": "占位符",
         "prefix_text": "前缀文本",
         "radius": "圆角",

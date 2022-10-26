@@ -541,6 +541,7 @@
         "overFlow": "OverFlow",
         "pattern": "Pattern",
         "pending": "Pending",
+        "pageSize": "Rows per page",
         "placeholder": "Placeholder",
         "prefix_text": "Prefix text",
         "radius": "Radius",

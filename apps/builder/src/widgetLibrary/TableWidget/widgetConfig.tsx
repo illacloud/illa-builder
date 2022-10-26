@@ -74,6 +74,13 @@ const originData = [
     phone: "983.587.1143",
     address: "0434 Jermey Street Suite 577",
   },
+  {
+    id: 10,
+    name: "Tasha",
+    company: "Cloned website",
+    phone: "983.587",
+    address: "0434 Suite 577",
+  },
 ]
 
 export const TABLE_WIDGET_CONFIG: WidgetConfig = {
@@ -96,5 +103,6 @@ export function initTableWidgetDefaultProps() {
     overFlow: "pagination",
     download: false,
     filter: false,
+    pageSize: `{{10}}`,
   }
 }
