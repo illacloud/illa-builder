@@ -29,7 +29,7 @@ export const Databases: ActionDataItem[] = [
   },
   {
     actionType: "mongodb",
-    isDraft: false,
+    isDraft: true,
   },
   {
     actionType: "elastic",
