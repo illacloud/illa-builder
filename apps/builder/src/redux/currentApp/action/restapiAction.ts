@@ -54,7 +54,7 @@ export type BodyContent =
 
 export type ApiMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
 
-export interface RestApiAction<T extends BodyContent> extends Events {
+export interface RestApiAction<T extends BodyContent> {
   method: ApiMethod
   url: string
   urlParams: Params[]

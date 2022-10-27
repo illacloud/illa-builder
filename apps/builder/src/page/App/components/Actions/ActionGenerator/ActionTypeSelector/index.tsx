@@ -41,7 +41,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                     const displayName =
                       DisplayNameGenerator.generateDisplayName(item)
                     const initialContent = getInitialContent(item)
-                    const data: Partial<ActionItem<ActionContent>> = {
+                    const data: Partial<ActionItem<ActionContent, "none">> = {
                       actionType: item,
                       displayName,
                       content: initialContent,
@@ -53,14 +53,18 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                         method: "POST",
                         data,
                       },
-                      ({ data }: { data: ActionItem<ActionContent> }) => {
+                      ({
+                        data,
+                      }: {
+                        data: ActionItem<ActionContent, "none">
+                      }) => {
                         Message.success(
                           t(
                             "editor.action.action_list.message.success_created",
                           ),
                         )
                         dispatch(actionActions.addActionItemReducer(data))
-                        dispatch(configActions.updateSelectedAction(data))
+                        dispatch(configActions.changeSelectedAction(data))
                         onSelect(item)
                       },
                       () => {

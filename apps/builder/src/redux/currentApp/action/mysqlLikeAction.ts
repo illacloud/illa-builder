@@ -1,8 +1,6 @@
-import { Events } from "@/redux/currentApp/action/actionState"
-
 export type MysqlLikeActionMode = "gui" | "sql"
 
-export interface MysqlLikeAction extends Events {
+export interface MysqlLikeAction {
   mode: MysqlLikeActionMode
   query: string
 }

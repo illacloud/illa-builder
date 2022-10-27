@@ -10,31 +10,25 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { configActions } from "@/redux/config/configSlice"
-import { cloneDeep } from "lodash"
-import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
-import { ActionContent } from "@/redux/currentApp/action/actionState"
+import { Events } from "@/redux/currentApp/action/actionState"
 
-export const ActionEventHandler: FC = (props) => {
+export const ActionEventHandler: FC = () => {
   const { t } = useTranslation()
   const action = useSelector(getCachedAction)
   const dispatch = useDispatch()
 
   const handleUpdateDsl = useCallback(
     (attrPath: string, value: any) => {
-      if (action != undefined) {
-        const newActionContent = cloneDeep(action.content || {})
-
-        const updateSlice = { [attrPath]: value }
-
-        const result = getNewWidgetPropsByUpdateSlice(
-          action?.displayName ?? "",
-          updateSlice,
-          newActionContent,
-        ) as ActionContent
+      if (action) {
+        const newEvents = {
+          ...(action.events as Events),
+          [attrPath]: value,
+        }
+        // TODO: weichen
         dispatch(
           configActions.updateCachedAction({
             ...action,
-            content: result,
+            events: newEvents,
           }),
         )
       }
@@ -42,12 +36,15 @@ export const ActionEventHandler: FC = (props) => {
     [action, dispatch],
   )
 
+  // keep empty
   const handleUpdateMultiAttrDSL = useCallback(
     (updateSlice: Record<string, any>) => {
       return
     },
     [],
   )
+
+  // keep empty
   const handleUpdateOtherMultiAttrDSL = useCallback(
     (displayName: string, updateSlice: Record<string, any>) => {
       return
