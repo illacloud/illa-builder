@@ -5,10 +5,15 @@ import { basicContainerWrapperStyle } from "./style"
 import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
 
 export const BasicContainer: FC<BasicContainerProps> = (props) => {
-  const { componentNode, canResizeY = true, minHeight, padding } = props
-  const containerRef: MutableRefObject<HTMLDivElement | null> = useRef<
-    HTMLDivElement
-  >(null)
+  const {
+    componentNode,
+    canResizeY = true,
+    minHeight,
+    padding,
+    safeRowNumber = 8,
+  } = props
+  const containerRef: MutableRefObject<HTMLDivElement | null> =
+    useRef<HTMLDivElement>(null)
 
   return (
     <div
@@ -23,6 +28,7 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
         containerRef={containerRef}
         canResizeY={canResizeY}
         minHeight={minHeight}
+        safeRowNumber={safeRowNumber}
       />
     </div>
   )

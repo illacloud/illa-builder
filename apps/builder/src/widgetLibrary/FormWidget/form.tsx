@@ -391,6 +391,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         componentNode={bodyComponentNode}
         minHeight={bodyBounds.height - 2 * 8}
         padding={8}
+        safeRowNumber={1}
       />
     )
   }, [bodyBounds.height, childrenNode])

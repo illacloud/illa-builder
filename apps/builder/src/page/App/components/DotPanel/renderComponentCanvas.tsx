@@ -51,6 +51,7 @@ export const RenderComponentCanvas: FC<{
   containerPadding: number
   minHeight?: number
   canResizeY?: boolean
+  safeRowNumber: number
 }> = (props) => {
   const {
     componentNode,
@@ -58,6 +59,7 @@ export const RenderComponentCanvas: FC<{
     containerPadding,
     minHeight,
     canResizeY = true,
+    safeRowNumber,
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -104,7 +106,15 @@ export const RenderComponentCanvas: FC<{
           : (componentNode.h - 1) * UNIT_HEIGHT
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
-          return <BasicContainer componentNode={item} key={item.displayName} />
+          return (
+            <BasicContainer
+              componentNode={item}
+              key={item.displayName}
+              canResizeY={canResizeY}
+              minHeight={minHeight}
+              safeRowNumber={safeRowNumber}
+            />
+          )
         case "EDITOR_SCALE_SQUARE":
           const widget = widgetBuilder(item.type)
           if (!widget) return null
@@ -129,6 +139,7 @@ export const RenderComponentCanvas: FC<{
       }
     })
   }, [
+    canResizeY,
     collisionEffect,
     componentNode.childrenNode,
     componentNode.displayName,
@@ -136,7 +147,9 @@ export const RenderComponentCanvas: FC<{
     componentNode.type,
     containerPadding,
     isShowCanvasDot,
+    minHeight,
     rowNumber,
+    safeRowNumber,
     unitWidth,
   ])
 
@@ -203,8 +216,11 @@ export const RenderComponentCanvas: FC<{
           /**
            * add rows when node over canvas
            */
-          if (canResizeY && landingY / UNIT_HEIGHT + item.h > rowNumber - 8) {
-            const finalNumber = landingY / UNIT_HEIGHT + item.h + 8
+          if (
+            canResizeY &&
+            landingY / UNIT_HEIGHT + item.h > rowNumber - safeRowNumber
+          ) {
+            const finalNumber = landingY / UNIT_HEIGHT + item.h + safeRowNumber
             setRowNumber(finalNumber)
             containerRef.current?.scrollTo({
               top: bounds.height,
@@ -404,7 +420,7 @@ export const RenderComponentCanvas: FC<{
       if (illaMode === "edit") {
         setRowNumber(
           Math.max(
-            maxY + 8,
+            maxY + safeRowNumber,
             Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
           ),
         )
@@ -419,6 +435,7 @@ export const RenderComponentCanvas: FC<{
     illaMode,
     isActive,
     minHeight,
+    safeRowNumber,
   ])
 
   return (

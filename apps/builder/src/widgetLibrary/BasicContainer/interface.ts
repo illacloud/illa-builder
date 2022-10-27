@@ -6,4 +6,5 @@ export interface BasicContainerProps {
   componentNode: ComponentNode
   canResizeY?: boolean
   padding?: number
+  safeRowNumber?: number
 }
