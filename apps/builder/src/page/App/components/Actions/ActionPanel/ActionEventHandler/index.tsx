@@ -10,7 +10,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { configActions } from "@/redux/config/configSlice"
-import { Events } from "@/redux/currentApp/action/actionState"
+import { ActionContent, Events } from "@/redux/currentApp/action/actionState"
+import { cloneDeep } from "lodash"
+import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 
 export const ActionEventHandler: FC = () => {
   const { t } = useTranslation()
@@ -19,16 +21,20 @@ export const ActionEventHandler: FC = () => {
 
   const handleUpdateDsl = useCallback(
     (attrPath: string, value: any) => {
-      if (action) {
-        const newEvents = {
-          ...(action.events as Events),
-          [attrPath]: value,
-        }
-        // TODO: weichen
+      if (action != undefined) {
+        const newActionContent = cloneDeep(action.content || {})
+
+        const updateSlice = { [attrPath]: value }
+
+        const result = getNewWidgetPropsByUpdateSlice(
+          action?.displayName ?? "",
+          updateSlice,
+          newActionContent,
+        ) as ActionContent
         dispatch(
           configActions.updateCachedAction({
             ...action,
-            events: newEvents,
+            content: result,
           }),
         )
       }
