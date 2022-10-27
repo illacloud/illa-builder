@@ -33,13 +33,6 @@ const originData = [
     address: "29436 Keebler RestSuite 320",
   },
   {
-    id: 4,
-    name: "Mrs. Florence Rohan I",
-    company: "Customer-focused client-server budgetary management",
-    phone: "1-718-234-7813 x1812",
-    address: "2188 Brakus Islands Apt. 031",
-  },
-  {
     id: 5,
     name: "Stacey Little",
     company: "Distributed interactive monitoring",
@@ -74,6 +67,13 @@ const originData = [
     phone: "983.587.1143",
     address: "0434 Jermey Street Suite 577",
   },
+  {
+    id: 10,
+    name: "Tasha",
+    company: "Cloned website",
+    phone: "983.587",
+    address: "0434 Suite 577",
+  },
 ]
 
 export const TABLE_WIDGET_CONFIG: WidgetConfig = {
@@ -96,5 +96,6 @@ export function initTableWidgetDefaultProps() {
     overFlow: "pagination",
     download: false,
     filter: false,
+    pageSize: `{{10}}`,
   }
 }

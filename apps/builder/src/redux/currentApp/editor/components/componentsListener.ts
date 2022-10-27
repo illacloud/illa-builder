@@ -75,16 +75,14 @@ function handleUpdateComponentReflowEffect(
   const rootNode = getCanvas(rootState)
   let updateComponents: ComponentNode[] = []
   if (action.type === "components/updateComponentsShape") {
-    updateComponents = (
-      action as ReturnType<typeof componentsActions.updateComponentsShape>
-    ).payload.components
+    updateComponents = (action as ReturnType<
+      typeof componentsActions.updateComponentsShape
+    >).payload.components
   }
   if (action.type === "components/updateComponentContainerReducer") {
-    ;(
-      action as ReturnType<
-        typeof componentsActions.updateComponentContainerReducer
-      >
-    ).payload.updateSlice.forEach((slice) => {
+    ;(action as ReturnType<
+      typeof componentsActions.updateComponentContainerReducer
+    >).payload.updateSlice.forEach((slice) => {
       updateComponents.push(slice.component)
     })
   }

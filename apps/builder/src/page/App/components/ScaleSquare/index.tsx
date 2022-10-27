@@ -443,7 +443,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
   //  1px is left border width
   return isDragging ? null : (
     <Rnd
-      bounds="#realCanvas"
+      bounds="parent"
       size={{
         width: w + 1,
         height: h + 1,

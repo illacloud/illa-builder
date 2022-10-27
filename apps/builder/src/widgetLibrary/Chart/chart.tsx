@@ -213,8 +213,13 @@ export const ChartWidget: FC<WrappedChartProps> = (props) => {
         return !dataset.isHidden
       })
       .map((dataset) => {
-        const { datasetValues, type, datasetName, color, aggregationMethod } =
-          dataset
+        const {
+          datasetValues,
+          type,
+          datasetName,
+          color,
+          aggregationMethod,
+        } = dataset
         let finalColor = color
         if (groupBy || chartType === "pie") {
           finalColor = get(

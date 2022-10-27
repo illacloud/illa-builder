@@ -141,6 +141,26 @@ export const updateComponentPropsReducer: CaseReducer<
   )
 }
 
+export const updateMultiComponentPropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateComponentPropsPayload[]>
+> = (state, action) => {
+  action.payload.forEach(({ displayName, updateSlice }) => {
+    if (!isObject(updateSlice) || !displayName) {
+      return
+    }
+    const node = searchDsl(state, displayName)
+    if (!node) return
+    const widgetProps = node.props || {}
+    const clonedWidgetProps = cloneDeep(widgetProps)
+    node.props = getNewWidgetPropsByUpdateSlice(
+      displayName,
+      updateSlice,
+      clonedWidgetProps,
+    )
+  })
+}
+
 export const resetComponentPropsReducer: CaseReducer<
   ComponentsState,
   PayloadAction<ComponentNode>

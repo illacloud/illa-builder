@@ -131,6 +131,12 @@ import {
   CONTAINER_EVENT_HANDLER_CONFIG,
 } from "@/widgetLibrary/ContainerWidget"
 import {
+  FormWidget,
+  FORM_PANEL_CONFIG,
+  FORM_WIDGET_CONFIG,
+  FORM_EVENT_HANDLER_CONFIG,
+} from "@/widgetLibrary/FormWidget"
+import {
   TABS_PANEL_CONFIG,
   TABS_WIDGET_CONFIG,
   TABS_EVENT_HANDLER_CONFIG,
@@ -274,6 +280,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: CONTAINER_WIDGET_CONFIG,
     panelConfig: CONTAINER_PANEL_CONFIG,
     eventHandlerConfig: CONTAINER_EVENT_HANDLER_CONFIG,
+  },
+  FORM_WIDGET: {
+    widget: FormWidget,
+    config: FORM_WIDGET_CONFIG,
+    panelConfig: FORM_PANEL_CONFIG,
+    eventHandlerConfig: FORM_EVENT_HANDLER_CONFIG,
   },
 }
 

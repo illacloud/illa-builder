@@ -1,6 +1,5 @@
 import { ReactNode } from "react"
 import { CommonRangeProps } from "@illa-design/date-picker"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
@@ -20,10 +19,23 @@ export interface WrappedDateRangeProps
   minDate?: string
   maxDate?: string
   handleUpdateDsl: (value: any) => void
+  displayName: string
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface DateWidgetProps
   extends WrappedDateRangeProps,
     BaseWidgetProps,
     LabelProps,
-    TooltipWrapperProps {}
+    TooltipWrapperProps {
+  customRule?: string
+  hideValidationMessage?: boolean
+  validateMessage: string
+}

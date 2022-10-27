@@ -6,10 +6,9 @@ import { SingleSelectedPanel } from "@/page/App/components/InspectPanel/singleSe
 export const SelectedPanel: FC<SelectedPanelProps> = (props) => {
   const { selectedDisplayNames } = props
 
-  const isMulti = useMemo(
-    () => selectedDisplayNames.length > 1,
-    [selectedDisplayNames],
-  )
+  const isMulti = useMemo(() => selectedDisplayNames.length > 1, [
+    selectedDisplayNames,
+  ])
   return isMulti ? <MultiSelectedPanel /> : <SingleSelectedPanel />
 }
 

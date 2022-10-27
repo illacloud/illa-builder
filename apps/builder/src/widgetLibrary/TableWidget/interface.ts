@@ -25,6 +25,7 @@ export interface ColumnItemShape
   visible?: boolean
   decimalPlaces?: number
   format?: string
+  custom?: boolean
 }
 
 export interface WrappedTableProps
@@ -36,12 +37,14 @@ export interface WrappedTableProps
       | "filter"
       | "download"
       | "overFlow"
+      | "pagination"
       | "defaultSort"
       | "columnVisibility"
       | "multiRowSelection"
       | "data"
     > {
   emptyState?: string
+  pageSize?: number
   defaultSortKey?: string
   defaultSortOrder?: "ascend" | "descend"
   handleOnSortingChange?: () => void

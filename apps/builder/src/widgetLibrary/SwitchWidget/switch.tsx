@@ -6,8 +6,13 @@ import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/Public
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedSwitch: FC<WrappedSwitchProps> = (props) => {
-  const { value, disabled, colorScheme, handleUpdateDsl, handleOnChange } =
-    props
+  const {
+    value,
+    disabled,
+    colorScheme,
+    handleUpdateDsl,
+    handleOnChange,
+  } = props
 
   return (
     <Switch

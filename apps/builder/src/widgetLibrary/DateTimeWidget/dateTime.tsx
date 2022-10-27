@@ -9,6 +9,7 @@ import {
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
   (props, ref) => {
@@ -23,8 +24,29 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
       readOnly,
       minuteStep,
       colorScheme,
-      handleUpdateDsl,
+      handleOnChange,
+      getValidateMessage,
+      handleUpdateMultiExecutionResult,
+      displayName,
     } = props
+
+    const changeValue = (value?: unknown) => {
+      new Promise((resolve) => {
+        const message = getValidateMessage(value)
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              value: value || "",
+              validateMessage: message,
+            },
+          },
+        ])
+        resolve(true)
+      }).then(() => {
+        handleOnChange?.()
+      })
+    }
 
     const checkRange = useCallback(
       (current) => {
@@ -52,11 +74,9 @@ export const WrappedDateTime = forwardRef<any, WrappedDateTimeProps>(
         allowClear={showClear}
         disabledDate={checkRange}
         onClear={() => {
-          handleUpdateDsl({ value: "" })
+          changeValue("")
         }}
-        onChange={(value) => {
-          handleUpdateDsl({ value })
-        }}
+        onChange={changeValue}
       />
     )
   },
@@ -95,7 +115,37 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     customRule,
     hideValidationMessage,
     updateComponentHeight,
+    validateMessage,
   } = props
+
+  const getValidateMessage = useCallback(
+    (value?: unknown) => {
+      if (!hideValidationMessage) {
+        const message = handleValidateCheck({
+          value,
+          required,
+          customRule,
+          pattern,
+          regex,
+        })
+        const showMessage = message && message.length > 0
+        return showMessage ? message : ""
+      }
+      return ""
+    },
+    [customRule, hideValidationMessage, pattern, regex, required],
+  )
+
+  const handleValidate = useCallback(
+    (value?: unknown) => {
+      const message = getValidateMessage(value)
+      handleUpdateDsl({
+        validateMessage: message,
+      })
+      return message
+    },
+    [getValidateMessage, handleUpdateDsl],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -114,6 +164,9 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
       },
       clearValue: () => {
         handleUpdateDsl({ value: "" })
+      },
+      validate: () => {
+        return handleValidate(value)
       },
     })
     return () => {
@@ -134,6 +187,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -142,15 +196,8 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [
-    required,
-    labelPosition,
-    value,
-    pattern,
-    regex,
-    customRule,
-    hideValidationMessage,
-  ])
+  }, [labelPosition, validateMessage, updateComponentHeight])
+
   return (
     <div>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
@@ -167,7 +214,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedDateTime {...props} />
+          <WrappedDateTime {...props} getValidateMessage={getValidateMessage} />
         </div>
       </TooltipWrapper>
       <div
@@ -177,14 +224,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
           labelHidden || !label,
         )}
       >
-        <InvalidMessage
-          value={value}
-          pattern={pattern}
-          regex={regex}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
+        <InvalidMessage validateMessage={validateMessage} />
       </div>
     </div>
   )

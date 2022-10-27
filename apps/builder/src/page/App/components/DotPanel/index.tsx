@@ -23,6 +23,7 @@ export const DotPanel: FC<DotPanelProps> = (props) => {
         componentNode={componentNode}
         containerRef={containerRef}
         containerPadding={edgeWidth}
+        safeRowNumber={8}
       />
     </div>
   )

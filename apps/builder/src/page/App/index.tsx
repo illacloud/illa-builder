@@ -94,13 +94,6 @@ export const Editor: FC = () => {
     }
   }, [dispatch])
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", (event) => {
-      event.preventDefault()
-      event.returnValue = "CLOSE_TAB_MESSAGE"
-    })
-  }, [])
-
   return (
     <div css={editorContainerStyle}>
       {loadingState && <AppLoading />}
