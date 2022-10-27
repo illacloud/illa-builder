@@ -118,6 +118,9 @@ const fetchActionResult = (
     },
     (res) => {
       resultCallback?.(res, true)
+      failedEvent.forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
       Message.error("not online")
     },
     (loading) => {},

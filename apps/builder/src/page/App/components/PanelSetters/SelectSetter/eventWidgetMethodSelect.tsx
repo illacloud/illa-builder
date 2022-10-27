@@ -6,7 +6,7 @@ import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/
 import { useSelector } from "react-redux"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
-import { getSelectedAction } from "@/redux/config/configSelector"
+import { getCachedAction } from "@/redux/config/configSelector"
 
 export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   const {
@@ -20,7 +20,7 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
   } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
-  const selectedAction = useSelector(getSelectedAction)
+  const selectedAction = useSelector(getCachedAction)
   const selectedWidgetID = useMemo(() => {
     if (widgetOrAction === "WIDGET") {
       return get(
@@ -57,12 +57,6 @@ export const EventWidgetMethodSelect: FC<BaseSelectSetterProps> = (props) => {
     if (index !== -1 && selectedWidgetType !== undefined) return value
     return undefined
   }, [finalOptions, value, selectedWidgetType])
-
-  useEffect(() => {
-    if (finalValue === undefined) {
-      handleUpdateDsl(attrName, undefined)
-    }
-  }, [attrName, finalValue, handleUpdateDsl])
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
