@@ -4,16 +4,22 @@ import {
   mongoItemCodeEditorStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { Controller } from "react-hook-form"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
+import { useDispatch, useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { CountContent } from "@/redux/currentApp/action/mongoDbAction"
+import { configActions } from "@/redux/config/configSlice"
 
 export const CountPart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control } = props
+  const dispatch = useDispatch()
+  const cachedAction = useSelector(getCachedAction)
+
+  const typeContent = props.typeContent as CountContent
 
   return (
     <>
@@ -26,8 +32,21 @@ export const CountPart: FC<MongoDbActionPartProps> = (props) => {
           height="88px"
           css={mongoItemCodeEditorStyle}
           mode="TEXT_JS"
-          value={"typeContent.query"}
-          onChange={() => {}}
+          value={typeContent.query}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  typeContent: {
+                    ...typeContent,
+                    query: value,
+                  } as CountContent,
+                },
+              }),
+            )
+          }}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>

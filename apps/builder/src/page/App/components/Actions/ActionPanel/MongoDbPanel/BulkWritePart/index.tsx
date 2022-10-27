@@ -9,15 +9,20 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
+import { useDispatch, useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
 import {
+  AggregateContent,
   BulkWriteContent,
-  BulkWriteContentInitial,
 } from "@/redux/currentApp/action/mongoDbAction"
+import { configActions } from "@/redux/config/configSlice"
 
 export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const cachedAction = useSelector(getCachedAction)
 
-  const { control } = props
+  const typeContent = props.typeContent as BulkWriteContent
 
   return (
     <>
@@ -25,21 +30,27 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
         <span css={codeEditorLabelStyle}>
           {t("editor.action.panel.mongodb.operations")}
         </span>
-        <Controller
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <CodeEditor
-              lineNumbers
-              height="88px"
-              css={mongoItemCodeEditorStyle}
-              mode="TEXT_JS"
-              onBlur={onBlur}
-              value={value}
-              onChange={onChange}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
-          )}
-          name="typeContent.operations"
+        <CodeEditor
+          lineNumbers
+          height="88px"
+          css={mongoItemCodeEditorStyle}
+          mode="TEXT_JS"
+          value={typeContent.operations}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  typeContent: {
+                    ...typeContent,
+                    operations: value,
+                  } as BulkWriteContent,
+                },
+              }),
+            )
+          }}
+          expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
       <div css={mongoItemStyle}>
@@ -50,8 +61,21 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
           lineNumbers
           css={mongoItemCodeEditorStyle}
           mode="TEXT_JS"
-          value={"typeContent.options"}
-          onChange={() => {}}
+          value={typeContent.options}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  typeContent: {
+                    ...typeContent,
+                    options: value,
+                  } as BulkWriteContent,
+                },
+              }),
+            )
+          }}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
