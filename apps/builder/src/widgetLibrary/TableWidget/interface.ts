@@ -25,6 +25,7 @@ export interface ColumnItemShape
   visible?: boolean
   decimalPlaces?: number
   format?: string
+  custom?: boolean
 }
 
 export interface WrappedTableProps

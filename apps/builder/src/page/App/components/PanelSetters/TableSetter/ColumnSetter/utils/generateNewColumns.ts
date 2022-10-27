@@ -12,6 +12,7 @@ export const generateNewColumnItem = (number: number): ColumnItemShape => {
     enableSorting: true,
     type: "text",
     visible: true,
+    custom: true,
     format: "YYYY-MM-DD",
   }
 }

@@ -98,6 +98,12 @@ export const emptyEmptyBodyStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
 `
 
+export const iconAreaStyle = css`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+`
+
 export const baseIconStyle = css`
   font-size: 16px;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};

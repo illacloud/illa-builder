@@ -19,6 +19,7 @@ export interface DragIconAndLabelProps {
   index: number
   label?: string
   visible?: boolean
+  custom?: boolean
 }
 
 export interface ColumnListSetterProps extends BaseSetter {
