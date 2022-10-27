@@ -32,6 +32,7 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
 
   const onChangeSelectValue = useCallback(
     (value: unknown) => {
+      console.log("value", value)
       new Promise((resolve) => {
         const message = getValidateMessage(value)
         handleUpdateMultiExecutionResult([
@@ -213,7 +214,11 @@ export const SelectWidget: FC<SelectWidgetProps> = (props) => {
             labelHidden={labelHidden}
             hasTooltip={!!tooltipText}
           />
-          <WrappedSelect {...props} options={finalOptions} />
+          <WrappedSelect
+            {...props}
+            options={finalOptions}
+            getValidateMessage={getValidateMessage}
+          />
         </div>
       </TooltipWrapper>
       <div

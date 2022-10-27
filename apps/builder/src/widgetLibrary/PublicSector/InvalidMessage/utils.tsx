@@ -66,7 +66,7 @@ export const handleCheckPattern = (
       ) {
         return i18n.t(invalidMessage.get("email")!)
       }
-      return i18n.t(invalidMessage.get("email")!)
+      break
     }
     case "URL": {
       if (
@@ -75,7 +75,7 @@ export const handleCheckPattern = (
       ) {
         return i18n.t(invalidMessage.get("url")!)
       }
-      return i18n.t(invalidMessage.get("url")!)
+      break
     }
     case "Regex":
       if (!reg || typeof value === undefined) return
