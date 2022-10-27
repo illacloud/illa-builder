@@ -63,6 +63,7 @@ export const MongoDbUriMode: FC<MongoDbConfigModeProps> = (props) => {
             onBlur={onBlur}
             onChange={onChange}
             ml="16px"
+            mr="24px"
             value={value}
             borderColor="techPurple"
             placeholder={
