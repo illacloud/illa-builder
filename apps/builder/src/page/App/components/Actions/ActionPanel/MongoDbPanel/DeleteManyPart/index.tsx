@@ -21,21 +21,13 @@ export const DeleteManyPart: FC<MongoDbActionPartProps> = (props) => {
         <span css={codeEditorLabelStyle}>
           {t("editor.action.panel.mongodb.filter")}
         </span>
-        <Controller
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <CodeEditor
-              lineNumbers
-              height="88px"
-              css={mongoItemCodeEditorStyle}
-              mode="TEXT_JS"
-              onBlur={onBlur}
-              value={value}
-              onChange={onChange}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
-          )}
-          name="typeContent.filter"
+        <CodeEditor
+          lineNumbers
+          height="88px"
+          css={mongoItemCodeEditorStyle}
+          mode="TEXT_JS"
+          value={"typeContent.filter"}
+          expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

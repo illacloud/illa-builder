@@ -46,20 +46,13 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
         <span css={codeEditorLabelStyle}>
           {t("editor.action.panel.mongodb.options")}
         </span>
-        <Controller
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <CodeEditor
-              lineNumbers
-              css={mongoItemCodeEditorStyle}
-              mode="TEXT_JS"
-              onBlur={onBlur}
-              value={value}
-              onChange={onChange}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
-          )}
-          name="typeContent.options"
+        <CodeEditor
+          lineNumbers
+          css={mongoItemCodeEditorStyle}
+          mode="TEXT_JS"
+          value={"typeContent.options"}
+          onChange={() => {}}
+          expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>

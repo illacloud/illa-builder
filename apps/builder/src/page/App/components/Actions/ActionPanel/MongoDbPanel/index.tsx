@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC, useEffect, useMemo } from "react"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -50,7 +50,7 @@ import { UpdateManyPart } from "@/page/App/components/Actions/ActionPanel/MongoD
 import { UpdateOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateOnePart"
 import { CommandPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/Command"
 import { DeleteOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DeleteOnePart"
-import { ActionEvents, ActionItem } from "@/redux/currentApp/action/actionState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { configActions } from "@/redux/config/configSlice"
 
 export const MongoDbPanel: FC = () => {
@@ -77,13 +77,9 @@ export const MongoDbPanel: FC = () => {
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (cachedAction) {
-        const newAction: ActionItem<
-          MongoDbAction<MongoDbActionTypeContent>,
-          ActionEvents
-        > = {
+        const newAction: ActionItem<MongoDbAction<MongoDbActionTypeContent>> = {
           ...(cachedAction as ActionItem<
-            MongoDbAction<MongoDbActionTypeContent>,
-            ActionEvents
+            MongoDbAction<MongoDbActionTypeContent>
           >),
         }
 
@@ -249,6 +245,43 @@ export const MongoDbPanel: FC = () => {
     return () => subscription.unsubscribe()
   }, [watch, getValues, cachedAction, dispatch])
 
+  const renderInputBody = useMemo(() => {
+    switch (content.actionType) {
+      case "aggregate":
+        return <AggregatePart control={control} />
+      case "bulkWrite":
+        return <BulkWritePart control={control} />
+      case "count":
+        return <CountPart control={control} />
+      case "deleteMany":
+        return <DeleteManyPart control={control} />
+      case "deleteOne":
+        return <DeleteOnePart control={control} />
+      case "distinct":
+        return <DistinctPart control={control} />
+      case "find":
+        return <FindPart control={control} />
+      case "findOne":
+        return <FindOnePart control={control} />
+      case "findOneAndUpdate":
+        return <FindOneAndUpdatePart control={control} />
+      case "insertOne":
+        return <InsertOnePart control={control} />
+      case "insertMany":
+        return <InsertManyPart control={control} />
+      case "listCollections":
+        return <ListCollectionsPart control={control} />
+      case "updateMany":
+        return <UpdateManyPart control={control} />
+      case "updateOne":
+        return <UpdateOnePart control={control} />
+      case "command":
+        return <CommandPart control={control} />
+      default:
+        return <></>
+    }
+  }, [content.actionType, control])
+
   return (
     <div css={mongoContainerStyle}>
       <ResourceChoose />
@@ -256,86 +289,32 @@ export const MongoDbPanel: FC = () => {
         <span css={mongoItemLabelStyle}>
           {t("editor.action.panel.mongodb.action_type")}
         </span>
-        <Controller
-          control={control}
+        <Select
+          colorScheme="techPurple"
+          showSearch={true}
           defaultValue={content.actionType}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <Select
-              colorScheme="techPurple"
-              showSearch={true}
-              onBlur={onBlur}
-              value={value}
-              ml="16px"
-              width="100%"
-              onChange={(value, event) => {
-                onChange(value, event)
-              }}
-              options={MongoDbActionList}
-            />
-          )}
-          name="actionType"
+          value={content.actionType}
+          ml="16px"
+          width="100%"
+          onChange={(value, event) => {
+            // onChange(value, event)
+          }}
+          options={MongoDbActionList}
         />
       </div>
       <div css={mongoItemStyle}>
         <span css={mongoItemLabelStyle}>
           {t("editor.action.panel.mongodb.collection")}
         </span>
-        <Controller
-          control={control}
-          defaultValue={content.collection}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <CodeEditor
-              css={mongoItemCodeEditorStyle}
-              mode="TEXT_JS"
-              onBlur={onBlur}
-              value={value}
-              onChange={onChange}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
-          )}
-          name="collection"
+        <CodeEditor
+          css={mongoItemCodeEditorStyle}
+          mode="TEXT_JS"
+          value={content.collection}
+          onChange={() => {}}
+          expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
-      <Controller
-        render={({ field: { value: actionType } }) => {
-          switch (actionType) {
-            case "aggregate":
-              return <AggregatePart control={control} />
-            case "bulkWrite":
-              return <BulkWritePart control={control} />
-            case "count":
-              return <CountPart control={control} />
-            case "deleteMany":
-              return <DeleteManyPart control={control} />
-            case "deleteOne":
-              return <DeleteOnePart control={control} />
-            case "distinct":
-              return <DistinctPart control={control} />
-            case "find":
-              return <FindPart control={control} />
-            case "findOne":
-              return <FindOnePart control={control} />
-            case "findOneAndUpdate":
-              return <FindOneAndUpdatePart control={control} />
-            case "insertOne":
-              return <InsertOnePart control={control} />
-            case "insertMany":
-              return <InsertManyPart control={control} />
-            case "listCollections":
-              return <ListCollectionsPart control={control} />
-            case "updateMany":
-              return <UpdateManyPart control={control} />
-            case "updateOne":
-              return <UpdateOnePart control={control} />
-            case "command":
-              return <CommandPart control={control} />
-            default:
-              return <></>
-          }
-        }}
-        name="actionType"
-        control={control}
-      />
+      {renderInputBody}
       <TransformerComponent />
       <ActionEventHandler />
     </div>
