@@ -44,7 +44,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     return undefined
   }, [finalOptions, value])
 
-  const widgetfinalValue = useMemo(() => {
+  const widgetFinalValue = useMemo(() => {
     const index = finalOptions.findIndex((option) => {
       return option.value === value
     })
@@ -53,13 +53,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
   }, [finalOptions, value])
 
   const finalValue =
-    widgetOrAction === "WIDGET" ? widgetfinalValue : actionFinalValue
-
-  useEffect(() => {
-    if (finalValue === undefined) {
-      handleUpdateDsl(attrName, undefined)
-    }
-  }, [finalValue, attrName, handleUpdateDsl])
+    widgetOrAction === "WIDGET" ? widgetFinalValue : actionFinalValue
 
   return (
     <div css={applyBaseSelectWrapperStyle(isSetterSingleRow)}>
