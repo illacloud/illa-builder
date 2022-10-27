@@ -1,3 +1,5 @@
+import { Events } from "@/redux/currentApp/action/actionState"
+
 export const MongoDbActionList = [
   "aggregate",
   "bulkWrite",
@@ -202,7 +204,8 @@ export type MongoDbActionTypeContent =
   | UpdateOneContent
   | CommandContent
 
-export interface MongoDbAction<T extends MongoDbActionTypeContent> {
+export interface MongoDbAction<T extends MongoDbActionTypeContent>
+  extends Events {
   actionType: MongoDbActionType
   collection: string
   typeContent: T

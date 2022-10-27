@@ -9,20 +9,11 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  UpdateOneContent,
-  UpdateOneContentInitial,
-} from "@/redux/currentApp/action/mongoDbAction"
 
 export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: UpdateOneContent =
-    originalActionType === "updateOne"
-      ? (content as UpdateOneContent)
-      : UpdateOneContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +23,6 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.filter}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +35,7 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="filter"
+          name="typeContent.filter"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,7 +44,6 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.update}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -67,7 +56,7 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="update"
+          name="typeContent.update"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -76,7 +65,6 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.options}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -88,7 +76,7 @@ export const UpdateOnePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="options"
+          name="typeContent.options"
         />
       </div>
     </>

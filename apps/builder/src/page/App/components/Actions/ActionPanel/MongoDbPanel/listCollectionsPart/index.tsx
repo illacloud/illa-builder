@@ -17,12 +17,7 @@ import {
 export const ListCollectionsPart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: ListCollectionsContent =
-    originalActionType === "listCollections"
-      ? (content as ListCollectionsContent)
-      : ListCollectionsContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +27,6 @@ export const ListCollectionsPart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.query}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +39,7 @@ export const ListCollectionsPart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="query"
+          name="typeContent.query"
         />
       </div>
     </>

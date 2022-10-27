@@ -33,9 +33,8 @@ export type ActionType =
   | "transformer"
 
 export type ActionTriggerMode = "manually" | "automate"
-export type ActionEvents = "none" | Events
 
-export interface ActionItem<T extends ActionContent, E extends ActionEvents> {
+export interface ActionItem<T extends ActionContent> {
   actionId: string
   displayName: string
   actionType: ActionType
@@ -43,16 +42,14 @@ export interface ActionItem<T extends ActionContent, E extends ActionEvents> {
   triggerMode: ActionTriggerMode
   resourceId?: string
   content: T
-  events: E
 }
 
-export const actionItemInitial: Partial<ActionItem<ActionContent, "none">> = {
+export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
   transformer: {
     enable: false,
     rawData: "",
   },
   triggerMode: "manually",
-  events: "none",
 }
 
 export type ActionContent =
@@ -62,4 +59,4 @@ export type ActionContent =
   | RedisAction
   | MongoDbAction<MongoDbActionTypeContent>
 
-export const actionInitialState: ActionItem<ActionContent, ActionEvents>[] = []
+export const actionInitialState: ActionItem<ActionContent>[] = []

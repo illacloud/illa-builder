@@ -9,20 +9,11 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  AggregateContent,
-  AggregateContentInitial,
-} from "@/redux/currentApp/action/mongoDbAction"
 
 export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: AggregateContent =
-    originalActionType === "aggregate"
-      ? (content as AggregateContent)
-      : AggregateContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +23,6 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.aggregation}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +35,7 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="aggregation"
+          name="typeContent.aggregation"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,7 +44,6 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.options}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -66,7 +55,7 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="options"
+          name="typeContent.options"
         />
       </div>
     </>

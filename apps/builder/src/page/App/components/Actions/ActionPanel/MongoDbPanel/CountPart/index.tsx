@@ -9,20 +9,11 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  CountContent,
-  CountContentInitial,
-} from "@/redux/currentApp/action/mongoDbAction"
 
 export const CountPart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: CountContent =
-    originalActionType === "count"
-      ? (content as CountContent)
-      : CountContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +23,6 @@ export const CountPart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.query}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +35,7 @@ export const CountPart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="query"
+          name="typeContent.query"
         />
       </div>
     </>

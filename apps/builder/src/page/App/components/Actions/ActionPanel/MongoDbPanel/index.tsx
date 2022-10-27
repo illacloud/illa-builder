@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect } from "react"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -62,10 +62,17 @@ export const MongoDbPanel: FC = () => {
 
   let content = cachedAction.content as MongoDbAction<MongoDbActionTypeContent>
 
-  const { control, watch, getValues } = useForm({
+  const { control, watch, getValues, reset } = useForm<
+    MongoDbAction<MongoDbActionTypeContent>
+  >({
     mode: "onChange",
     shouldUnregister: true,
+    defaultValues: content,
   })
+
+  useEffect(() => {
+    reset(cachedAction.content as MongoDbAction<MongoDbActionTypeContent>)
+  }, [cachedAction.content, reset])
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
@@ -88,8 +95,8 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                aggregation: data.aggregation,
-                options: data.options,
+                aggregation: (data.typeContent as AggregateContent).aggregation,
+                options: (data.typeContent as AggregateContent).options,
               } as AggregateContent,
             } as MongoDbAction<AggregateContent>
             break
@@ -98,8 +105,8 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                operations: data.operations,
-                options: data.options,
+                operations: (data.typeContent as BulkWriteContent).operations,
+                options: (data.typeContent as BulkWriteContent).options,
               } as BulkWriteContent,
             } as MongoDbAction<BulkWriteContent>
             break
@@ -108,7 +115,7 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                query: data.query,
+                query: (data.typeContent as CountContent).query,
               } as CountContent,
             } as MongoDbAction<CountContent>
             break
@@ -117,7 +124,7 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                filter: data.filter,
+                filter: (data.typeContent as DeleteManyContent).filter,
               } as DeleteManyContent,
             } as MongoDbAction<DeleteManyContent>
             break
@@ -126,7 +133,7 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                filter: data.filter,
+                filter: (data.typeContent as DeleteOneContent).filter,
               } as DeleteOneContent,
             } as MongoDbAction<DeleteOneContent>
             break
@@ -135,9 +142,9 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                field: data.field,
-                query: data.query,
-                options: data.options,
+                field: (data.typeContent as DistinctContent).field,
+                query: (data.typeContent as DistinctContent).query,
+                options: (data.typeContent as DistinctContent).options,
               } as DistinctContent,
             } as MongoDbAction<DistinctContent>
             break
@@ -146,11 +153,11 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                query: data.query,
-                projection: data.projection,
-                sortBy: data.sortBy,
-                limit: data.limit,
-                skip: data.skip,
+                query: (data.typeContent as FindContent).query,
+                projection: (data.typeContent as FindContent).projection,
+                sortBy: (data.typeContent as FindContent).sortBy,
+                limit: (data.typeContent as FindContent).limit,
+                skip: (data.typeContent as FindContent).skip,
               } as FindContent,
             } as MongoDbAction<FindContent>
             break
@@ -159,9 +166,9 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                query: data.query,
-                projection: data.projection,
-                skip: data.skip,
+                query: (data.typeContent as FindOneContent).query,
+                projection: (data.typeContent as FindOneContent).projection,
+                skip: (data.typeContent as FindOneContent).skip,
               } as FindOneContent,
             } as MongoDbAction<FindOneContent>
             break
@@ -170,9 +177,9 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                filter: data.filter,
-                update: data.update,
-                options: data.options,
+                filter: (data.typeContent as FindOneAndUpdateContent).filter,
+                update: (data.typeContent as FindOneAndUpdateContent).update,
+                options: (data.typeContent as FindOneAndUpdateContent).options,
               } as FindOneAndUpdateContent,
             } as MongoDbAction<FindOneAndUpdateContent>
             break
@@ -181,7 +188,7 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                document: data.document,
+                document: (data.typeContent as InsertOneContent).document,
               } as InsertOneContent,
             } as MongoDbAction<InsertOneContent>
             break
@@ -190,7 +197,7 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                document: data.document,
+                document: (data.typeContent as InsertManyContent).document,
               } as InsertManyContent,
             } as MongoDbAction<InsertManyContent>
             break
@@ -199,7 +206,7 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                query: data.query,
+                query: (data.typeContent as ListCollectionsContent).query,
               } as ListCollectionsContent,
             } as MongoDbAction<ListCollectionsContent>
             break
@@ -208,9 +215,9 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                filter: data.filter,
-                update: data.update,
-                options: data.options,
+                filter: (data.typeContent as UpdateManyContent).filter,
+                update: (data.typeContent as UpdateManyContent).update,
+                options: (data.typeContent as UpdateManyContent).options,
               } as UpdateManyContent,
             } as MongoDbAction<UpdateManyContent>
             break
@@ -219,9 +226,9 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                filter: data.filter,
-                update: data.update,
-                options: data.options,
+                filter: (data.typeContent as UpdateOneContent).filter,
+                update: (data.typeContent as UpdateOneContent).update,
+                options: (data.typeContent as UpdateOneContent).options,
               } as UpdateOneContent,
             } as MongoDbAction<UpdateOneContent>
             break
@@ -230,7 +237,7 @@ export const MongoDbPanel: FC = () => {
               actionType: data.actionType,
               collection: data.collection,
               typeContent: {
-                document: data.document,
+                document: (data.typeContent as CommandContent).document,
               } as CommandContent,
             } as MongoDbAction<CommandContent>
             break
@@ -289,111 +296,46 @@ export const MongoDbPanel: FC = () => {
           name="collection"
         />
       </div>
-      {content.actionType === "aggregate" && (
-        <AggregatePart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "bulkWrite" && (
-        <BulkWritePart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "count" && (
-        <CountPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "deleteMany" && (
-        <DeleteManyPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "deleteOne" && (
-        <DeleteOnePart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "distinct" && (
-        <DistinctPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "find" && (
-        <FindPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "findOne" && (
-        <FindOnePart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "findOneAndUpdate" && (
-        <FindOneAndUpdatePart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "insertMany" && (
-        <InsertManyPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "insertOne" && (
-        <InsertOnePart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "listCollections" && (
-        <ListCollectionsPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "updateMany" && (
-        <UpdateManyPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "updateOne" && (
-        <UpdateOnePart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
-      {content.actionType === "command" && (
-        <CommandPart
-          control={control}
-          content={content.typeContent}
-          originalActionType={content.actionType}
-        />
-      )}
+      <Controller
+        render={({ field: { value: actionType } }) => {
+          switch (actionType) {
+            case "aggregate":
+              return <AggregatePart control={control} />
+            case "bulkWrite":
+              return <BulkWritePart control={control} />
+            case "count":
+              return <CountPart control={control} />
+            case "deleteMany":
+              return <DeleteManyPart control={control} />
+            case "deleteOne":
+              return <DeleteOnePart control={control} />
+            case "distinct":
+              return <DistinctPart control={control} />
+            case "find":
+              return <FindPart control={control} />
+            case "findOne":
+              return <FindOnePart control={control} />
+            case "findOneAndUpdate":
+              return <FindOneAndUpdatePart control={control} />
+            case "insertOne":
+              return <InsertOnePart control={control} />
+            case "insertMany":
+              return <InsertManyPart control={control} />
+            case "listCollections":
+              return <ListCollectionsPart control={control} />
+            case "updateMany":
+              return <UpdateManyPart control={control} />
+            case "updateOne":
+              return <UpdateOnePart control={control} />
+            case "command":
+              return <CommandPart control={control} />
+            default:
+              return <></>
+          }
+        }}
+        name="actionType"
+        control={control}
+      />
       <TransformerComponent />
       <ActionEventHandler />
     </div>

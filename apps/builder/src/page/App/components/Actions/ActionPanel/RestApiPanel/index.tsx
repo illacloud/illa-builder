@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect } from "react"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
   restapiItemInputStyle,
@@ -18,7 +18,7 @@ import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEd
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
-  ApiMethod,
+  BinaryBody,
   BodyContent,
   RawBody,
   RawBodyContent,
@@ -34,7 +34,7 @@ import {
 import { Controller, useForm } from "react-hook-form"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionEvents, ActionItem } from "@/redux/currentApp/action/actionState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
@@ -47,61 +47,57 @@ export const RestApiPanel: FC = () => {
     return state.resource.find((r) => r.resourceId === cachedAction?.resourceId)
   })
 
-  const { control, watch, getValues } = useForm({
+  const { control, watch, getValues, reset } = useForm<
+    RestApiAction<BodyContent>
+  >({
     mode: "onChange",
     shouldUnregister: true,
+    defaultValues: content,
   })
 
   const dispatch = useDispatch()
 
   useEffect(() => {
+    reset(cachedAction.content as RestApiAction<BodyContent>)
+  }, [cachedAction.content, reset])
+
+  useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (cachedAction) {
-        const newAction: ActionItem<
-          RestApiAction<BodyContent>,
-          ActionEvents
-        > = {
-          ...(cachedAction as ActionItem<
-            RestApiAction<BodyContent>,
-            ActionEvents
-          >),
+        const newAction: ActionItem<RestApiAction<BodyContent>> = {
+          ...(cachedAction as ActionItem<RestApiAction<BodyContent>>),
         }
 
         const data = getValues()
 
         let body
-        switch (data.restapiBodyType) {
+        switch (data.bodyType) {
           case "none":
             body = null
             break
           case "form-data":
           case "x-www-form-urlencoded":
-            body =
-              data.restapiBodyContentRecord ??
-              ([{ key: "", value: "" }] as Params[])
+            body = data.body ?? ([{ key: "", value: "" }] as Params[])
             break
           case "raw":
             body = {
-              type: data.restapiRawBodyType ?? "text",
-              content: data.restapiRawBodyContent ?? "",
+              type: (data.body as RawBody<RawBodyContent>).type ?? "text",
+              content: (data.body as RawBody<RawBodyContent>).content ?? "",
             } as RawBody<RawBodyContent>
             break
           case "binary":
-            body = data.restapiBodyContentBinary ?? ""
+            body = (data.body as BinaryBody) ?? ""
             break
         }
 
         newAction.content = {
           ...newAction.content,
-          url: data.restapiUrl,
-          method: data.restapiMethod,
-          urlParams: data.restapiUrlParams,
-          headers: data.restapiHeaders,
-          cookies: data.restapiCookies,
-          bodyType:
-            data.restapiMethod === "GET"
-              ? "none"
-              : data.restapiBodyType ?? "none",
+          url: data.url,
+          method: data.method,
+          urlParams: data.urlParams,
+          headers: data.headers,
+          cookies: data.cookies,
+          bodyType: data.method === "GET" ? "none" : data.bodyType ?? "none",
           body: body,
         }
 
@@ -120,9 +116,8 @@ export const RestApiPanel: FC = () => {
           {t("editor.action.resource.restapi.label.action_type")}
         </span>
         <Controller
-          name="restapiMethod"
+          name="method"
           control={control}
-          defaultValue={content.method}
           render={({ field: { value, onChange }, fieldState, formState }) => (
             <Select
               colorScheme="techPurple"
@@ -152,9 +147,8 @@ export const RestApiPanel: FC = () => {
           readOnly
         />
         <Controller
-          name="restapiUrl"
+          name="url"
           control={control}
-          defaultValue={content.url}
           render={({ field: { value, onChange } }) => (
             <CodeEditor
               borderRadius="0 8px 8px 0"
@@ -171,9 +165,8 @@ export const RestApiPanel: FC = () => {
       </div>
 
       <Controller
-        name="restapiUrlParams"
+        name="urlParams"
         control={control}
-        defaultValue={content.urlParams}
         render={({ field: { onChange, value } }) => (
           <RecordEditor
             records={value}
@@ -205,8 +198,7 @@ export const RestApiPanel: FC = () => {
       />
 
       <Controller
-        name="restapiHeaders"
-        defaultValue={content.headers}
+        name="headers"
         control={control}
         render={({ field: { onChange, value } }) => (
           <RecordEditor
@@ -238,8 +230,7 @@ export const RestApiPanel: FC = () => {
         )}
       />
       <Controller
-        name="restapiCookies"
-        defaultValue={content.cookies}
+        name="cookies"
         control={control}
         render={({ field: { value, onChange } }) => (
           <RecordEditor
@@ -270,9 +261,17 @@ export const RestApiPanel: FC = () => {
           />
         )}
       />
-      {content.method !== "GET" && (
-        <BodyEditor control={control} content={content} />
-      )}
+      <Controller
+        control={control}
+        render={({ field: { value } }) => {
+          if (value !== "GET") {
+            return <BodyEditor control={control} />
+          } else {
+            return <></>
+          }
+        }}
+        name="method"
+      />
       <TransformerComponent />
       <ActionEventHandler />
     </div>

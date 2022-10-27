@@ -9,20 +9,11 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  FindOneContent,
-  FindOneContentInitial,
-} from "@/redux/currentApp/action/mongoDbAction"
 
 export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: FindOneContent =
-    originalActionType === "findOne"
-      ? (content as FindOneContent)
-      : FindOneContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +23,6 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.query}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +35,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="query"
+          name="typeContent.query"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,7 +44,6 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.projection}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -66,7 +55,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="projection"
+          name="typeContent.projection"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -75,7 +64,6 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.skip}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -87,7 +75,7 @@ export const FindOnePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="skip"
+          name="typeContent.skip"
         />
       </div>
     </>

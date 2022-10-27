@@ -17,12 +17,7 @@ import {
 export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: DistinctContent =
-    originalActionType === "distinct"
-      ? (content as DistinctContent)
-      : DistinctContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +27,6 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.query}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +39,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="query"
+          name="typeContent.query"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,7 +48,6 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.field}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -66,7 +59,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="field"
+          name="typeContent.field"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -75,7 +68,6 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.options}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -87,7 +79,7 @@ export const DistinctPart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="options"
+          name="typeContent.options"
         />
       </div>
     </>

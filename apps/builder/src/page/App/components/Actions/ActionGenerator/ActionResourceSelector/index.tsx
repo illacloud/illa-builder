@@ -107,7 +107,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
               const displayName =
                 DisplayNameGenerator.generateDisplayName(actionType)
               const initialContent = getInitialContent(actionType)
-              const data: Partial<ActionItem<ActionContent, "none">> = {
+              const data: Partial<ActionItem<ActionContent>> = {
                 actionType,
                 displayName,
                 resourceId: selectedResourceId,
@@ -120,7 +120,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                   method: "POST",
                   data,
                 },
-                ({ data }: { data: ActionItem<ActionContent, "none"> }) => {
+                ({ data }: { data: ActionItem<ActionContent> }) => {
                   Message.success(
                     t("editor.action.action_list.message.success_created"),
                   )

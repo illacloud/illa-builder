@@ -17,12 +17,7 @@ import {
 export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: BulkWriteContent =
-    originalActionType === "bulkWrite"
-      ? (content as BulkWriteContent)
-      : BulkWriteContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +27,6 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.operations}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +39,7 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="operations"
+          name="typeContent.operations"
         />
       </div>
       <div css={mongoItemStyle}>
@@ -54,7 +48,6 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.options}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -66,7 +59,7 @@ export const BulkWritePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="options"
+          name="typeContent.options"
         />
       </div>
     </>

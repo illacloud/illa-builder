@@ -5,6 +5,5 @@ import {
 import { Control } from "react-hook-form"
 
 export interface BodyEditorProps {
-  content: RestApiAction<BodyContent>
-  control: Control
+  control: Control<RestApiAction<BodyContent>>
 }

@@ -17,12 +17,7 @@ import {
 export const DeleteOnePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
-
-  const fillContent: DeleteOneContent =
-    originalActionType === "deleteOne"
-      ? (content as DeleteOneContent)
-      : DeleteOneContentInitial
+  const { control } = props
 
   return (
     <>
@@ -32,7 +27,6 @@ export const DeleteOnePart: FC<MongoDbActionPartProps> = (props) => {
         </span>
         <Controller
           control={control}
-          defaultValue={fillContent.filter}
           render={({ field: { value, onChange, onBlur } }) => (
             <CodeEditor
               lineNumbers
@@ -45,7 +39,7 @@ export const DeleteOnePart: FC<MongoDbActionPartProps> = (props) => {
               expectedType={VALIDATION_TYPES.STRING}
             />
           )}
-          name="filter"
+          name="typeContent.filter"
         />
       </div>
     </>
