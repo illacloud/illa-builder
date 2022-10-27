@@ -25,9 +25,14 @@
 4. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
 5. 🎨 **Powered by [ILLA Design](https://github.com/illa-family/illa-design):** Components should not constrain your imagination.
 
-## 🖥 Fast Try
-### Build an app within 10 minutes: **[Click Here!](http://fast-try.illacloud.com/)**
+## 🖥 Live Demo
+<p>We have just released a demo version that can be used to build internal tools quickly🎉</p>
+<p>Click the button below to try out ILLA Builder</p>
+<a href="http://fast-try.illacloud.com">
+<img alt="Live Demo" width="350px" height="56.85px" src="https://github.com/illa-family/.github/blob/main/assets/images/newdemo2.png" />
+</a>
 
+## Tutorial
 #### 🆓 Step 1: Create an account for free and sign in
 
 ![login](https://github.com/illa-family/.github/blob/main/assets/images/login.png)
@@ -45,6 +50,10 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
 Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
 
 ![connect](https://illa.s3.ap-northeast-1.amazonaws.com/connect-your-data.gif)
+
+**🔴 The current version is still in beta, each version update will clear the  data, please do not store important data.**
+
+**💞 Thank you for using ILLA Builder.** 
 
 ## 🚀 Deploy
 
