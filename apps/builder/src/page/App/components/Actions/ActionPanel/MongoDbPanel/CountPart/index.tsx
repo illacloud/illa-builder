@@ -21,21 +21,14 @@ export const CountPart: FC<MongoDbActionPartProps> = (props) => {
         <span css={codeEditorLabelStyle}>
           {t("editor.action.panel.mongodb.query")}
         </span>
-        <Controller
-          control={control}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <CodeEditor
-              lineNumbers
-              height="88px"
-              css={mongoItemCodeEditorStyle}
-              mode="TEXT_JS"
-              onBlur={onBlur}
-              value={value}
-              onChange={onChange}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
-          )}
-          name="typeContent.query"
+        <CodeEditor
+          lineNumbers
+          height="88px"
+          css={mongoItemCodeEditorStyle}
+          mode="TEXT_JS"
+          value={"typeContent.query"}
+          onChange={() => {}}
+          expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>
