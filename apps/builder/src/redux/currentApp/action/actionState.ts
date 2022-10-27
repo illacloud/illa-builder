@@ -9,6 +9,19 @@ export interface Transformer {
   enable: boolean
 }
 
+export const TransformerInitial: Transformer = {
+  rawData: "",
+  enable: false,
+}
+
+export const TransformerInitialTrue: Transformer = {
+  rawData:
+    "// type your code here\n" +
+    "// example: return formatDataAsArray(data).filter(row => row.quantity > 20)\n" +
+    "return data",
+  enable: true,
+}
+
 // TODO @aruseito not use any
 export interface Events {
   successEvent?: any[]
@@ -45,10 +58,7 @@ export interface ActionItem<T extends ActionContent> {
 }
 
 export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
-  transformer: {
-    enable: false,
-    rawData: "",
-  },
+  transformer: TransformerInitial,
   triggerMode: "manually",
 }
 

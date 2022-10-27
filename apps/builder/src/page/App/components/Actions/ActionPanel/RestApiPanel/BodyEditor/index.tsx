@@ -18,6 +18,7 @@ import { configActions } from "@/redux/config/configSlice"
 import {
   RawBody,
   RawBodyContent,
+  RawBodyInitial,
 } from "@/redux/currentApp/action/restapiAction"
 import { getSelectedAction } from "@/redux/config/configSelector"
 
@@ -75,8 +76,32 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             onChange={(value) => {
               let newBody = null
 
-              if (value === "raw") {
+              if (
+                selectedAction.resourceId === actionItem.resourceId &&
+                selectedAction.content.method !== "GET" &&
+                selectedAction.content.bodyType !== "none" &&
+                selectedAction.content.bodyType === value
+              ) {
+                newBody = selectedAction.content.body
+              } else {
+                switch (value) {
+                  case "none":
+                    newBody = null
+                    break
+                  case "x-www-form-urlencoded":
+                  case "form-data":
+                    newBody = [{ key: "", value: "" }] as Params[]
+                    break
+                  case "raw":
+                    newBody = RawBodyInitial
+                    break
+                  case "binary":
+                    newBody = ""
+                    break
+                }
               }
+
+              console.log("longbo", newBody)
 
               dispatch(
                 configActions.updateCachedAction({

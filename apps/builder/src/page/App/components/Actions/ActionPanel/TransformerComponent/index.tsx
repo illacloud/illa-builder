@@ -11,14 +11,24 @@ import { useTranslation } from "react-i18next"
 import { RadioGroup } from "@illa-design/radio"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useDispatch, useSelector } from "react-redux"
-import { getCachedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
+import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
+import {
+  Transformer,
+  TransformerInitial,
+  TransformerInitialTrue,
+} from "@/redux/currentApp/action/actionState"
 
 export const TransformerComponent: FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
   const cachedAction = useSelector(getCachedAction)
+  const selectedAction = useSelector(getSelectedAction)
 
   return (
     <>
@@ -43,13 +53,18 @@ export const TransformerComponent: FC = () => {
               },
             ]}
             onChange={(value) => {
+              let transformer: Transformer = TransformerInitial
+              if (selectedAction.transformer.enable === value) {
+                transformer = selectedAction.transformer
+              } else {
+                if (value) {
+                  transformer = TransformerInitialTrue
+                }
+              }
               dispatch(
                 configActions.updateCachedAction({
                   ...cachedAction,
-                  transformer: {
-                    rawData: cachedAction.transformer.rawData,
-                    enable: value,
-                  },
+                  transformer: transformer,
                 }),
               )
             }}
