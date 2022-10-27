@@ -4,16 +4,21 @@ import {
   mongoItemCodeEditorStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { Controller } from "react-hook-form"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
+import { AggregateContent } from "@/redux/currentApp/action/mongoDbAction"
+import { useDispatch, useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const cachedAction = useSelector(getCachedAction)
 
-  const { control } = props
+  const typeContent = props.typeContent as AggregateContent
 
   return (
     <>
@@ -26,8 +31,21 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
           height="88px"
           css={mongoItemCodeEditorStyle}
           mode="TEXT_JS"
-          value="typeContent.aggregation"
-          onChange={() => {}}
+          value={typeContent.aggregation}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  typeContent: {
+                    ...typeContent,
+                    aggregation: value,
+                  } as AggregateContent,
+                },
+              }),
+            )
+          }}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -39,8 +57,21 @@ export const AggregatePart: FC<MongoDbActionPartProps> = (props) => {
           lineNumbers
           css={mongoItemCodeEditorStyle}
           mode="TEXT_JS"
-          value={"typeContent.options"}
-          onChange={() => {}}
+          value={typeContent.options}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  typeContent: {
+                    ...typeContent,
+                    options: value,
+                  } as AggregateContent,
+                },
+              }),
+            )
+          }}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
