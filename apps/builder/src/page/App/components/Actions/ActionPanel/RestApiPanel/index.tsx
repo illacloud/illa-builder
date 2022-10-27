@@ -35,7 +35,7 @@ import {
 import { Controller, useForm } from "react-hook-form"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
+import { ActionEvents, ActionItem } from "@/redux/currentApp/action/actionState"
 
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
@@ -60,8 +60,14 @@ export const RestApiPanel: FC = () => {
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (cachedAction) {
-        const newAction: ActionItem<RestApiAction<BodyContent>> = {
-          ...(cachedAction as ActionItem<RestApiAction<BodyContent>>),
+        const newAction: ActionItem<
+          RestApiAction<BodyContent>,
+          ActionEvents
+        > = {
+          ...(cachedAction as ActionItem<
+            RestApiAction<BodyContent>,
+            ActionEvents
+          >),
         }
 
         const data = getValues()
