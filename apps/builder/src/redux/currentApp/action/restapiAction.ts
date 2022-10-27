@@ -1,5 +1,5 @@
-import { Events } from "@/redux/currentApp/action/actionState"
 import { Params } from "@/redux/resource/restapiResource"
+import { Events } from "@/redux/currentApp/action/actionState"
 
 export type BodyType =
   | "none"
@@ -54,7 +54,7 @@ export type BodyContent =
 
 export type ApiMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
 
-export interface RestApiAction<T extends BodyContent> {
+export interface RestApiAction<T extends BodyContent> extends Events {
   method: ApiMethod
   url: string
   urlParams: Params[]

@@ -2,9 +2,8 @@ import {
   BodyContent,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
-import { Control } from "react-hook-form"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export interface BodyEditorProps {
-  content: RestApiAction<BodyContent>
-  control: Control
+  actionItem: ActionItem<RestApiAction<BodyContent>>
 }

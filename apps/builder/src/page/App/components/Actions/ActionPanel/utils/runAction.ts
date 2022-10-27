@@ -1,6 +1,5 @@
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
   Events,
   Transformer,
@@ -119,6 +118,9 @@ const fetchActionResult = (
     },
     (res) => {
       resultCallback?.(res, true)
+      failedEvent.forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
       Message.error("not online")
     },
     (loading) => {},
@@ -135,7 +137,7 @@ function getRealEventHandler(eventHandler?: any[]) {
 }
 
 export const runAction = (
-  action: ActionItem<ActionContent, Events>,
+  action: ActionItem<ActionContent>,
   resultCallback?: (data: unknown, error: boolean) => void,
   isTrigger: boolean = false,
 ) => {
@@ -145,11 +147,9 @@ export const runAction = (
   const appId = getAppId(rootState)
   if (actionType !== "transformer") {
     const { content, transformer } = action as ActionItem<
-      MysqlLikeAction | RestApiAction<BodyContent>,
-      ActionEvents
+      MysqlLikeAction | RestApiAction<BodyContent>
     >
-    const { ...restContent } = content
-    const { successEvent, failedEvent } = action.events
+    const { successEvent, failedEvent, ...restContent } = content
     const realContent: Record<string, any> = isTrigger
       ? restContent
       : calcRealContent(restContent)

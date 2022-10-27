@@ -6,7 +6,6 @@ import {
 } from "@/redux/config/configState"
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 
@@ -61,14 +60,14 @@ export const updateSelectedComponent: CaseReducer<
 
 export const changeSelectedAction: CaseReducer<
   ConfigState,
-  PayloadAction<ActionItem<ActionContent, ActionEvents> | null>
+  PayloadAction<ActionItem<ActionContent> | null>
 > = (state, action) => {
   state.selectedAction = action.payload
 }
 
 export const updateCachedAction: CaseReducer<
   ConfigState,
-  PayloadAction<ActionItem<ActionContent, ActionEvents> | null>
+  PayloadAction<ActionItem<ActionContent> | null>
 > = (state, action) => {
   state.cachedAction = action.payload
 }

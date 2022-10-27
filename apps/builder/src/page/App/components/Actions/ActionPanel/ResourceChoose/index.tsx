@@ -40,6 +40,11 @@ export const ResourceChoose: FC = () => {
   const action = useSelector(getCachedAction)!!
   const selectedAction = useSelector(getSelectedAction)!!
 
+  //maybe empty
+  const currentSelectResource = resourceList.find(
+    (r) => r.resourceId === action.resourceId,
+  )
+
   return (
     <>
       <div css={resourceChooseContainerStyle}>
@@ -49,7 +54,11 @@ export const ResourceChoose: FC = () => {
             colorScheme="techPurple"
             minW="200px"
             maxW="300px"
-            value={action.resourceId}
+            value={
+              currentSelectResource
+                ? action.resourceId
+                : t("editor.action.resource_choose.deleted")
+            }
             onChange={(value) => {
               const resource = resourceList.find((r) => r.resourceId === value)
               if (resource != undefined) {

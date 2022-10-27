@@ -4,7 +4,6 @@ import { Signal, Target } from "@/api/ws/interface"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 
@@ -49,7 +48,7 @@ export class DisplayNameGenerator {
 
   static updateDisplayNameList(
     componentNode: ComponentNode,
-    actionList: ActionItem<ActionContent, ActionEvents>[],
+    actionList: ActionItem<ActionContent>[],
   ) {
     this.displayNameList.clear()
     actionList.forEach((action) => {

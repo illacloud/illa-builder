@@ -138,6 +138,9 @@
           "required": "{name} is required"
         }
       },
+      "resource_choose": {
+        "deleted": "Deleted"
+      },
       "panel": {
         "btn": {
           "disable": "Disable",

@@ -1,6 +1,8 @@
+import { Events } from "./actionState"
+
 export type MysqlLikeActionMode = "gui" | "sql"
 
-export interface MysqlLikeAction {
+export interface MysqlLikeAction extends Events {
   mode: MysqlLikeActionMode
   query: string
 }

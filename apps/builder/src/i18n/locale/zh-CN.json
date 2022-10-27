@@ -138,6 +138,9 @@
           "required": "请输入{name}"
         }
       },
+      "resource_choose": {
+        "deleted": "已删除"
+      },
       "panel": {
         "btn": {
           "disable": "关闭",

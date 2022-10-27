@@ -4,25 +4,22 @@ import {
   mongoItemCodeEditorStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { Controller } from "react-hook-form"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useTranslation } from "react-i18next"
 import { MongoDbActionPartProps } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/interface"
-import {
-  DeleteOneContent,
-  DeleteOneContentInitial,
-} from "@/redux/currentApp/action/mongoDbAction"
+import { DeleteOneContent } from "@/redux/currentApp/action/mongoDbAction"
+import { useDispatch, useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 export const DeleteOnePart: FC<MongoDbActionPartProps> = (props) => {
   const { t } = useTranslation()
 
-  const { control, content, originalActionType } = props
+  const dispatch = useDispatch()
+  const cachedAction = useSelector(getCachedAction)
 
-  const fillContent: DeleteOneContent =
-    originalActionType === "deleteOne"
-      ? (content as DeleteOneContent)
-      : DeleteOneContentInitial
+  const typeContent = props.typeContent as DeleteOneContent
 
   return (
     <>
@@ -30,22 +27,27 @@ export const DeleteOnePart: FC<MongoDbActionPartProps> = (props) => {
         <span css={codeEditorLabelStyle}>
           {t("editor.action.panel.mongodb.filter")}
         </span>
-        <Controller
-          control={control}
-          defaultValue={fillContent.filter}
-          render={({ field: { value, onChange, onBlur } }) => (
-            <CodeEditor
-              lineNumbers
-              height="88px"
-              css={mongoItemCodeEditorStyle}
-              mode="TEXT_JS"
-              onBlur={onBlur}
-              value={value}
-              onChange={onChange}
-              expectedType={VALIDATION_TYPES.STRING}
-            />
-          )}
-          name="filter"
+        <CodeEditor
+          lineNumbers
+          height="88px"
+          css={mongoItemCodeEditorStyle}
+          mode="TEXT_JS"
+          value={typeContent.filter}
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...cachedAction.content,
+                  typeContent: {
+                    ...typeContent,
+                    filter: value,
+                  } as DeleteOneContent,
+                },
+              }),
+            )
+          }}
+          expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
     </>
