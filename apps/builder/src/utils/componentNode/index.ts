@@ -99,8 +99,10 @@ export const getNewWidgetPropsByUpdateSlice = (
 ) => {
   let newWidgetProps = cloneDeep(widgetProps)
   if (Object.keys(updateSlice).length > 0) {
-    const { attrUpdates, dynamicAttrPaths } =
-      getNewAttrUpdatesAndDynamicAttrPaths(newWidgetProps, updateSlice)
+    const {
+      attrUpdates,
+      dynamicAttrPaths,
+    } = getNewAttrUpdatesAndDynamicAttrPaths(newWidgetProps, updateSlice)
     Object.keys(attrUpdates).forEach((attrPath) => {
       const attrValue = attrUpdates[attrPath]
       newWidgetProps = set(newWidgetProps, attrPath, attrValue)

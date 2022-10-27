@@ -1,6 +1,7 @@
 import {
   ActionContent,
   ActionItem,
+  Events,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
 import store from "@/store"
@@ -117,6 +118,9 @@ const fetchActionResult = (
     },
     (res) => {
       resultCallback?.(res, true)
+      failedEvent.forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
       Message.error("not online")
     },
     (loading) => {},

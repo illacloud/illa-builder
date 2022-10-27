@@ -1,4 +1,4 @@
-import { Events } from "@/redux/currentApp/action/actionState"
+import { Events } from "./actionState"
 
 export type MysqlLikeActionMode = "gui" | "sql"
 

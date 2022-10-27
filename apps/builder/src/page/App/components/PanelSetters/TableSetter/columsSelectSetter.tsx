@@ -18,6 +18,7 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
     allowClear,
     value,
     handleUpdateMultiAttrDSL,
+    ...otherProps
   } = props
 
   const targetComponentProps = useSelector<RootState, Record<string, any>>(
@@ -50,6 +51,7 @@ export const ColumnsSelectSetter: FC<ColumnsSelectSetterProps> = (props) => {
 
   return (
     <BaseSelectSetter
+      {...otherProps}
       isSetterSingleRow={isSetterSingleRow}
       options={options}
       attrName={attrName}

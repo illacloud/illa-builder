@@ -103,6 +103,15 @@ export class ExecutionTreeFactory {
     this.executedTree = resultExecutedTree
   }
 
+  applyDifferencesToRawTree(differences: Diff<any, any>[]) {
+    const resultRawTree = cloneDeep(this.oldRawTree)
+    for (const d of differences) {
+      if (!Array.isArray(d.path) || d.path.length === 0) continue
+      applyChange(resultRawTree, undefined, d)
+    }
+    return resultRawTree
+  }
+
   calcSubTreeSortOrder(differences: Diff<any, any>[], rawTree: RawTreeShape) {
     const changePaths: Set<string> = new Set()
     for (const diff of differences) {
@@ -244,6 +253,31 @@ export class ExecutionTreeFactory {
       evaluatedTree: this.executedTree,
       errorTree: this.errorTree,
       debuggerData: this.debuggerData,
+    }
+  }
+
+  updateTreeFromExecution(executionTree: Record<string, any>) {
+    const currentExecutionTree = cloneDeep(executionTree)
+    const differences: Diff<Record<string, any>, Record<string, any>>[] =
+      diff(this.executedTree, currentExecutionTree) || []
+    if (differences.length === 0) {
+      return {
+        evaluatedTree: this.executedTree,
+      }
+    }
+    const currentRawTree = this.applyDifferencesToRawTree(differences)
+    const orderPath = this.calcSubTreeSortOrder(differences, currentRawTree)
+    const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
+      currentRawTree,
+      orderPath,
+    )
+    const differencesRawTree: Diff<Record<string, any>, Record<string, any>>[] =
+      diff(this.oldRawTree, evaluatedTree) || []
+    this.applyDifferencesToEvalTree(differencesRawTree)
+    this.applyDifferencesToEvalTree(differences)
+    this.executedTree = this.validateTree(this.executedTree)
+    return {
+      evaluatedTree: this.executedTree,
     }
   }
 

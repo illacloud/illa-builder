@@ -1,12 +1,25 @@
 import { MysqlLikeAction } from "./mysqlLikeAction"
 import { BodyContent, RestApiAction } from "./restapiAction"
 import { TransformerAction } from "./transformerAction"
-import { MongoDbAction } from "./mongoDbAction"
+import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { RedisAction } from "./redisAction"
 
 export interface Transformer {
   rawData: string
   enable: boolean
+}
+
+export const TransformerInitial: Transformer = {
+  rawData: "",
+  enable: false,
+}
+
+export const TransformerInitialTrue: Transformer = {
+  rawData:
+    "// type your code here\n" +
+    "// example: return formatDataAsArray(data).filter(row => row.quantity > 20)\n" +
+    "return data",
+  enable: true,
 }
 
 // TODO @aruseito not use any
@@ -45,11 +58,7 @@ export interface ActionItem<T extends ActionContent> {
 }
 
 export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
-  transformer: {
-    enable: false,
-    rawData:
-      "// The variable 'data' allows you to reference the request's data in the transformer. \n// example: return data.find(element => element.isError)\nreturn data.error",
-  },
+  transformer: TransformerInitial,
   triggerMode: "manually",
 }
 
@@ -58,11 +67,6 @@ export type ActionContent =
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
-  | MongoDbAction
+  | MongoDbAction<MongoDbActionTypeContent>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
-
-export interface UpdateActionItemPayload {
-  displayName: string
-  data: Record<string, any>
-}

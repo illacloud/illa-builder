@@ -1,5 +1,6 @@
 import {
   ActionContent,
+  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 
@@ -13,10 +14,8 @@ export interface ConfigState {
   showDot: boolean
   scale: number
   selectedComponents: string[]
-  selectedAction: ActionItem<ActionContent> | null
-  cacheActionContent: {
-    [key: string]: ActionContent
-  }
+  selectedAction: ActionItem<ActionContent, ActionEvents> | null
+  cachedAction: ActionItem<ActionContent, ActionEvents> | null
   expandedKeys: string[]
   mode: IllaMode
   freezeCanvas: boolean
@@ -24,7 +23,6 @@ export interface ConfigState {
 
 export const ConfigInitialState: ConfigState = {
   openLeftPanel: true,
-  cacheActionContent: {},
   mode: "edit",
   openBottomPanel: true,
   openRightPanel: true,
@@ -32,6 +30,7 @@ export const ConfigInitialState: ConfigState = {
   scale: 100,
   selectedComponents: [],
   selectedAction: null,
+  cachedAction: null,
   showDot: false,
   expandedKeys: [],
   freezeCanvas: false,

@@ -3,7 +3,7 @@ import { DatePickerProps } from "@illa-design/date-picker"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export interface WrappedDateProps
   extends Pick<
@@ -21,6 +21,15 @@ export interface WrappedDateProps
   minDate?: string
   maxDate?: string
   handleUpdateDsl: (value: any) => void
+  displayName: string
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface DateWidgetProps
@@ -28,4 +37,6 @@ export interface DateWidgetProps
     BaseWidgetProps,
     LabelProps,
     TooltipWrapperProps,
-    Omit<ValidateMessageProps, "value"> {}
+    Omit<ValidateMessageOldProps, "value"> {
+  validateMessage: string
+}

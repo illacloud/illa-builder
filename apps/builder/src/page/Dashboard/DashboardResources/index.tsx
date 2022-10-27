@@ -29,6 +29,12 @@ import { CellContext } from "@tanstack/table-core"
 import { ResourceGenerator } from "@/page/Dashboard/components/ResourceGenerator"
 import { getResourceNameFromResourceType } from "@/utils/actionResourceTransformer"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import {
+  MongoDbConfig,
+  MongoDbGuiConfigContent,
+  MongoDbResource,
+} from "@/redux/resource/mongodbResource"
+import { RedisResource } from "@/redux/resource/redisResource"
 
 export const DashboardResources: FC = () => {
   const { t } = useTranslation()
@@ -45,8 +51,22 @@ export const DashboardResources: FC = () => {
           break
         case "postgresql":
         case "mysql":
+        case "tidb":
+        case "mariadb":
           dbName = (resource as Resource<MysqlLikeResource>).content
             .databaseName
+          break
+        case "redis":
+          dbName = (
+            resource as Resource<RedisResource>
+          ).content.databaseIndex.toString()
+          break
+        case "mongodb":
+          const mongoRes = resource as Resource<MongoDbResource<MongoDbConfig>>
+          if (mongoRes.content.configType == "gui") {
+            dbName = (mongoRes.content.configContent as MongoDbGuiConfigContent)
+              .databaseName
+          }
           break
       }
       return {
@@ -128,6 +148,7 @@ export const DashboardResources: FC = () => {
         {resourcesList?.length ? (
           <Table
             _css={hoverStyle}
+            pinedHeader
             striped
             hoverable
             size="large"

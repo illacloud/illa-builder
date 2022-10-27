@@ -14,6 +14,7 @@ import { Button } from "@illa-design/button"
 import { AddIcon, DeleteIcon } from "@illa-design/icon"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useTranslation } from "react-i18next"
+import { Params } from "@/redux/resource/restapiResource"
 
 export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const { records, label, onDelete, onAdd, onChangeKey, onChangeValue } = props
@@ -23,7 +24,7 @@ export const RecordEditor: FC<RecordEditorProps> = (props) => {
   const recordList = useMemo(() => {
     return (
       <>
-        {records.map((record, index) => {
+        {records?.map((record, index) => {
           return (
             <div css={recordStyle} key={index}>
               <CodeEditor

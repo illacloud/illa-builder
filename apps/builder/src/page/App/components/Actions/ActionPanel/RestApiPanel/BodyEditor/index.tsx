@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { FC } from "react"
 import {
   bodyChooserStyle,
   bodyEditorContainerStyle,
@@ -8,131 +8,52 @@ import {
 import { useTranslation } from "react-i18next"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
 import { Select } from "@illa-design/select"
-import {
-  BinaryBody,
-  BodyContent,
-  BodyType,
-  RawBody,
-  RawBodyContent,
-} from "@/redux/currentApp/action/restapiAction"
+import { Params } from "@/redux/resource/restapiResource"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { Params } from "@/redux/resource/restapiResource"
 import { EditorMode } from "@/components/CodeEditor/interface"
-
-function getBodyEditorComponent(
-  bodyType: BodyType,
-  body: BodyContent,
-  onChangeBody: (body: BodyContent) => void,
-): ReactNode {
-  switch (bodyType) {
-    case "none":
-      return null
-    case "form-data":
-    case "x-www-form-urlencoded":
-      let r = body as Params[]
-      return (
-        <RecordEditor
-          label=""
-          records={r}
-          onAdd={() => {
-            const params: Params[] = [...r]
-            params.push({
-              key: "",
-              value: "",
-            } as Params)
-            onChangeBody(params)
-          }}
-          onDelete={(index, record) => {
-            let params: Params[] = [...r]
-            params.splice(index, 1)
-            if (params.length === 0) {
-              params.push({
-                key: "",
-                value: "",
-              } as Params)
-            }
-            onChangeBody(params)
-          }}
-          onChangeKey={(index, key, value) => {
-            let params: Params[] = [...r]
-            params[index] = {
-              key,
-              value,
-            }
-            onChangeBody(params)
-          }}
-          onChangeValue={(index, key, value) => {
-            let params: Params[] = [...r]
-            params[index] = {
-              key,
-              value,
-            }
-            onChangeBody(params)
-          }}
-        />
-      )
-    case "raw":
-      const rawBody = body as RawBody<RawBodyContent>
-      let mode: EditorMode = "TEXT_JS"
-      switch (rawBody.type) {
-        case "text":
-          mode = "TEXT_JS"
-          break
-        case "json":
-          mode = "JSON"
-          break
-        case "xml":
-          mode = "XML_JS"
-          break
-        case "javascript":
-          mode = "JAVASCRIPT"
-          break
-        case "html":
-          mode = "HTML_JS"
-          break
-      }
-      return (
-        <CodeEditor
-          lineNumbers
-          mode={mode}
-          value={(body as RawBody<RawBodyContent>).content}
-          expectedType={VALIDATION_TYPES.STRING}
-          height="88px"
-          onChange={(value) => {
-            onChangeBody({
-              type: rawBody.type,
-              content: value,
-            })
-          }}
-        />
-      )
-    case "binary":
-      return (
-        <CodeEditor
-          mode="TEXT_JS"
-          lineNumbers
-          value={body as BinaryBody}
-          expectedType={VALIDATION_TYPES.STRING}
-          height="88px"
-          onChange={(value) => {
-            onChangeBody(value)
-          }}
-        />
-      )
-  }
-}
+import { useDispatch, useSelector } from "react-redux"
+import { configActions } from "@/redux/config/configSlice"
+import {
+  RawBody,
+  RawBodyContent,
+  RawBodyInitial,
+} from "@/redux/currentApp/action/restapiAction"
+import { getSelectedAction } from "@/redux/config/configSelector"
 
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
-  const {
-    body,
-    bodyType,
-    onChangeBodyType,
-    onChangeRawBodyType,
-    onChangeBody,
-  } = props
   const { t } = useTranslation()
+  const selectedAction = useSelector(getSelectedAction)
+
+  const actionItem = props.actionItem
+
+  const bodyType = actionItem.content.bodyType
+
+  const body = actionItem.content.body
+
+  const dispatch = useDispatch()
+
+  let mode: EditorMode = "TEXT_JS"
+  if (bodyType === "raw") {
+    switch ((body as RawBody<RawBodyContent>).type) {
+      case "text":
+        mode = "TEXT_JS"
+        break
+      case "json":
+        mode = "JSON"
+        break
+      case "xml":
+        mode = "XML_JS"
+        break
+      case "javascript":
+        mode = "JAVASCRIPT"
+        break
+      case "html":
+        mode = "HTML_JS"
+        break
+    }
+  }
 
   return (
     <div css={bodyEditorContainerStyle}>
@@ -153,7 +74,45 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             ]}
             bdRadius={bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
             onChange={(value) => {
-              onChangeBodyType(value)
+              let newBody = null
+
+              if (
+                selectedAction.resourceId === actionItem.resourceId &&
+                selectedAction.content.method !== "GET" &&
+                selectedAction.content.bodyType !== "none" &&
+                selectedAction.content.bodyType === value
+              ) {
+                newBody = selectedAction.content.body
+              } else {
+                switch (value) {
+                  case "none":
+                    newBody = null
+                    break
+                  case "x-www-form-urlencoded":
+                  case "form-data":
+                    newBody = [{ key: "", value: "" }] as Params[]
+                    break
+                  case "raw":
+                    newBody = RawBodyInitial
+                    break
+                  case "binary":
+                    newBody = ""
+                    break
+                }
+              }
+
+              console.log("longbo", newBody)
+
+              dispatch(
+                configActions.updateCachedAction({
+                  ...actionItem,
+                  content: {
+                    ...actionItem.content,
+                    bodyType: value,
+                    body: newBody,
+                  },
+                }),
+              )
             }}
           />
           {bodyType === "raw" && (
@@ -161,15 +120,129 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
               bdRadius="0 8px 8px 0"
               colorScheme="techPurple"
               width="162px"
+              ml="-1px"
               value={(body as RawBody<RawBodyContent>).type}
               options={["text", "json", "xml", "javascript", "html"]}
               onChange={(value) => {
-                onChangeRawBodyType(value)
+                dispatch(
+                  configActions.updateCachedAction({
+                    ...actionItem,
+                    content: {
+                      ...actionItem.content,
+                      body: {
+                        ...(body as RawBody<RawBodyContent>),
+                        type: value,
+                      },
+                    },
+                  }),
+                )
               }}
             />
           )}
         </div>
-        {getBodyEditorComponent(bodyType, body, onChangeBody)}
+        {bodyType === "raw" && (
+          <CodeEditor
+            lineNumbers
+            mode={mode}
+            value={(body as RawBody<RawBodyContent>).content}
+            expectedType={VALIDATION_TYPES.STRING}
+            height="88px"
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...actionItem,
+                  content: {
+                    ...actionItem.content,
+                    body: {
+                      ...(body as RawBody<RawBodyContent>),
+                      content: value,
+                    },
+                  },
+                }),
+              )
+            }}
+          />
+        )}
+        {(bodyType === "form-data" || bodyType === "x-www-form-urlencoded") && (
+          <RecordEditor
+            label=""
+            records={body as Params[]}
+            onChangeKey={(index, key, v) => {
+              let newList: Params[] = [...(body as Params[])]
+              newList[index] = { key, value: v } as Params
+              dispatch(
+                configActions.updateCachedAction({
+                  ...actionItem,
+                  content: {
+                    ...actionItem.content,
+                    body: newList,
+                  },
+                }),
+              )
+            }}
+            onChangeValue={(index, key, v) => {
+              let newList: Params[] = [...(body as Params[])]
+              newList[index] = { key, value: v } as Params
+              dispatch(
+                configActions.updateCachedAction({
+                  ...actionItem,
+                  content: {
+                    ...actionItem.content,
+                    body: newList,
+                  },
+                }),
+              )
+            }}
+            onDelete={(index, record) => {
+              let newList: Params[] = [...(body as Params[])]
+              newList.splice(index, 1)
+              dispatch(
+                configActions.updateCachedAction({
+                  ...actionItem,
+                  content: {
+                    ...actionItem.content,
+                    body: newList,
+                  },
+                }),
+              )
+            }}
+            onAdd={() => {
+              let newList: Params[] = [
+                ...(body as Params[]),
+                { key: "", value: "" } as Params,
+              ]
+              dispatch(
+                configActions.updateCachedAction({
+                  ...actionItem,
+                  content: {
+                    ...actionItem.content,
+                    body: newList,
+                  },
+                }),
+              )
+            }}
+          />
+        )}
+        {bodyType === "binary" && (
+          <CodeEditor
+            mode="TEXT_JS"
+            lineNumbers
+            value={(body as string) ?? ""}
+            expectedType={VALIDATION_TYPES.STRING}
+            height="88px"
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...actionItem,
+                  content: {
+                    ...actionItem.content,
+                    body: value,
+                  },
+                }),
+              )
+            }}
+          />
+        )}
       </div>
     </div>
   )

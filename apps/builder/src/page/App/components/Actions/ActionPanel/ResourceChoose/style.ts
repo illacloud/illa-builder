@@ -20,3 +20,18 @@ export const resourceTitleStyle = css`
 export const createNewStyle = css`
   color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
 `
+
+export const itemContainer = css`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`
+
+export const itemText = css`
+  margin-left: 8px;
+  flex-shrink: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  flex-grow: 1;
+`

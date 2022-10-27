@@ -1,13 +1,9 @@
 import {
   BodyContent,
-  BodyType,
-  RawBodyType,
+  RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export interface BodyEditorProps {
-  bodyType: BodyType
-  body: BodyContent
-  onChangeBodyType: (bodyType: BodyType) => void
-  onChangeRawBodyType: (rawBodyType: RawBodyType) => void
-  onChangeBody: (body: BodyContent) => void
+  actionItem: ActionItem<RestApiAction<BodyContent>>
 }

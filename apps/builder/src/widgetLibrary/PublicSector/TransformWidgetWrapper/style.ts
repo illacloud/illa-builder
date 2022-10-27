@@ -79,8 +79,6 @@ export const applyWrapperStylesStyle = (
   return css`
     width: 100%;
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
     border: ${borderStyle};
     border-radius: ${radius};
     background-color: ${widgetType === "CONTAINER_WIDGET"

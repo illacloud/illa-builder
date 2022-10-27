@@ -1,4 +1,4 @@
-import { ReactComponent as TextWidgetIcon } from "@/assets/widgetCover/table.svg"
+import { ReactComponent as TableWidgetIcon } from "@/assets/widgetCover/table.svg"
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
@@ -31,13 +31,6 @@ const originData = [
     company: "De-engineered bi-directional hardware",
     phone: "1-379-349-3046 x439",
     address: "29436 Keebler RestSuite 320",
-  },
-  {
-    id: 4,
-    name: "Mrs. Florence Rohan I",
-    company: "Customer-focused client-server budgetary management",
-    phone: "1-718-234-7813 x1812",
-    address: "2188 Brakus Islands Apt. 031",
   },
   {
     id: 5,
@@ -74,6 +67,13 @@ const originData = [
     phone: "983.587.1143",
     address: "0434 Jermey Street Suite 577",
   },
+  {
+    id: 10,
+    name: "Tasha",
+    company: "Cloned website",
+    phone: "983.587",
+    address: "0434 Suite 577",
+  },
 ]
 
 export const TABLE_WIDGET_CONFIG: WidgetConfig = {
@@ -82,7 +82,7 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
   h: 40,
   w: 32,
   type: "TABLE_WIDGET",
-  icon: <TextWidgetIcon size="100%" />,
+  icon: <TableWidgetIcon />,
   keywords: ["Table", "表格"],
   sessionType: "PRESENTATION",
   defaults: initTableWidgetDefaultProps(),
@@ -96,5 +96,6 @@ export function initTableWidgetDefaultProps() {
     overFlow: "pagination",
     download: false,
     filter: false,
+    pageSize: `{{10}}`,
   }
 }

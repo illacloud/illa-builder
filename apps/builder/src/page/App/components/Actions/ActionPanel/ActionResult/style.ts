@@ -13,7 +13,6 @@ export const resultContainerStyle = css`
 export function applyMaxHeightStyle(h?: number) {
   return css`
     ${h ? `max-height: ${h}px;` : ""};
-  }
   `
 }
 

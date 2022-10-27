@@ -67,6 +67,12 @@ export interface BaseWidgetProps {
   handleUpdateGlobalData: (key: string, value: any) => void
   handleDeleteGlobalData: (key: string) => void
   handleUpdateDsl: (value: any) => void
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
   updateComponentHeight: (newHeight: number) => void
 }
 

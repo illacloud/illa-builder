@@ -2,6 +2,7 @@ import { RadioGroupProps } from "@illa-design/radio"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 
 export interface WrappedRadioGroupProps
   extends Pick<
@@ -9,14 +10,23 @@ export interface WrappedRadioGroupProps
     "value" | "disabled" | "options" | "direction" | "colorScheme"
   > {
   handleUpdateDsl: (value: any) => void
-  handleOnChange?: (value: Record<string, any>) => void
+  displayName: string
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface RadioGroupWidgetProps
   extends WrappedRadioGroupProps,
     BaseWidgetProps,
     LabelProps,
-    TooltipWrapperProps {
+    TooltipWrapperProps,
+    Omit<ValidateMessageOldProps, "value"> {
   optionConfigureMode?: "static" | "dynamic"
   manualOptions?: {
     label: string
@@ -30,4 +40,5 @@ export interface RadioGroupWidgetProps
     disables: boolean[]
   }
   w: number
+  validateMessage: string
 }

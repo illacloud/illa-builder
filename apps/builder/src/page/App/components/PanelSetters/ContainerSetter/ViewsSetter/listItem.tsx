@@ -15,6 +15,9 @@ import { useTranslation } from "react-i18next"
 import { useDrag, useDrop, XYCoord } from "react-dnd"
 import { DragItem } from "@/page/App/components/PanelSetters/OptionListSetter/interface"
 import { Identifier } from "dnd-core"
+import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
+import { useSelector } from "react-redux"
+import { getComponentNodeBySingleSelected } from "@/redux/currentApp/editor/components/componentsSelector"
 
 interface ListItemProps {
   value: ViewItemShape
@@ -31,6 +34,9 @@ export const ListItem: FC<ListItemProps> = (props) => {
     widgetDisplayName,
     childrenSetter,
     handleMoveOptionItem,
+    handleUpdateDsl,
+    handleUpdateMultiAttrDSL,
+    handleUpdateOtherMultiAttrDSL,
   } = useContext(ViewListSetterContext)
   const { t } = useTranslation()
 
@@ -85,19 +91,42 @@ export const ListItem: FC<ListItemProps> = (props) => {
   drag(drop(dragRef))
   const opacity = isDragging ? 0 : 1
 
+  const singleSelectedComponentNode = useSelector(
+    getComponentNodeBySingleSelected,
+  )
+
+  const widgetType = singleSelectedComponentNode?.type || ""
+  const widgetParentDisplayName = singleSelectedComponentNode?.parentNode || ""
+  const widgetProps = singleSelectedComponentNode?.props || {}
+
   return (
     <Trigger
       withoutPadding
       colorScheme="white"
       popupVisible={modalVisible}
       content={
-        <BaseModal
-          title={t("editor.inspect.setter_content.option_list.model_title")}
-          handleCloseModal={handleCloseModal}
-          attrPath={`${attrPath}.${index}`}
+        <SelectedProvider
+          widgetType={widgetType}
           widgetDisplayName={widgetDisplayName}
-          childrenSetter={childrenSetter}
-        />
+          widgetParentDisplayName={widgetParentDisplayName}
+          widgetProps={widgetProps}
+          handleUpdateDsl={handleUpdateDsl}
+          handleUpdateMultiAttrDSL={(updateSlice) => {
+            handleUpdateMultiAttrDSL?.(updateSlice)
+          }}
+          handleUpdateOtherMultiAttrDSL={(displayName, updateSlice) => {
+            handleUpdateOtherMultiAttrDSL?.(displayName, updateSlice)
+          }}
+          widgetOrAction="WIDGET"
+        >
+          <BaseModal
+            title={t("editor.inspect.setter_content.option_list.model_title")}
+            handleCloseModal={handleCloseModal}
+            attrPath={`${attrPath}.${index}`}
+            widgetDisplayName={widgetDisplayName}
+            childrenSetter={childrenSetter}
+          />
+        </SelectedProvider>
       }
       trigger="click"
       showArrow={false}

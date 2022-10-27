@@ -1,33 +1,36 @@
 import { FC, useCallback, useContext, useState } from "react"
-import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { DragPointIcon, EyeOffIcon, EyeOnIcon } from "@illa-design/icon"
+import {
+  ReduceIcon,
+  DragPointIcon,
+  EyeOffIcon,
+  EyeOnIcon,
+} from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
   baseIconStyle,
   dragItemStyle,
+  iconAreaStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
 } from "./style"
 import { DragIconAndLabelProps } from "./interface"
-import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/context/columnListContext"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { index, label, visible } = props
+  const { index, label, visible, custom } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
     widgetDisplayName,
     attrPath,
     childrenSetter,
-    handleUpdateDsl,
     handleUpdateItemVisible,
+    handleDeleteColumnItem,
   } = useContext(ColumnListSetterContext)
 
   const { t } = useTranslation()
-  const executionResult = useSelector(getExecutionResult)
 
   const handleCloseModal = useCallback(() => {
     setModalVisible(false)
@@ -65,18 +68,28 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
               t("editor.inspect.setter_content.option_list.list_no_label")}
           </span>
         </div>
-        <span
-          onClick={(event) => {
-            handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
-            event.stopPropagation()
-          }}
-        >
-          {visible ? (
-            <EyeOnIcon css={baseIconStyle} />
-          ) : (
-            <EyeOffIcon css={baseIconStyle} />
-          )}
-        </span>
+        <div css={iconAreaStyle}>
+          <span
+            css={baseIconStyle}
+            onClick={(event) => {
+              handleUpdateItemVisible(`${attrPath}.${index}.visible`, !visible)
+              event.stopPropagation()
+            }}
+          >
+            {visible ? <EyeOnIcon /> : <EyeOffIcon />}
+          </span>
+          {custom ? (
+            <span
+              css={baseIconStyle}
+              onClick={(event) => {
+                handleDeleteColumnItem(index)
+                event.stopPropagation()
+              }}
+            >
+              <ReduceIcon />
+            </span>
+          ) : null}
+        </div>
       </div>
     </Trigger>
   )

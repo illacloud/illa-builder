@@ -6,3 +6,12 @@ export interface RedisResource {
   databasePassword: string
   ssl: boolean
 }
+
+export const RedisResourceInitial: RedisResource = {
+  databaseIndex: 0,
+  databasePassword: "",
+  databaseUsername: "",
+  host: "",
+  port: "",
+  ssl: false,
+}

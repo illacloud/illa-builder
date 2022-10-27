@@ -38,8 +38,9 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                 key={prop.actionType}
                 onSelect={(item) => {
                   if (item === "transformer") {
-                    const displayName =
-                      DisplayNameGenerator.generateDisplayName(item)
+                    const displayName = DisplayNameGenerator.generateDisplayName(
+                      item,
+                    )
                     const initialContent = getInitialContent(item)
                     const data: Partial<ActionItem<ActionContent>> = {
                       actionType: item,
@@ -60,7 +61,7 @@ export const ActionTypeSelector: FC<ActionTypeSelectorProps> = (props) => {
                           ),
                         )
                         dispatch(actionActions.addActionItemReducer(data))
-                        dispatch(configActions.updateSelectedAction(data))
+                        dispatch(configActions.changeSelectedAction(data))
                         onSelect(item)
                       },
                       () => {

@@ -5,7 +5,6 @@ import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/
 import { CONTAINER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ContainerWidget/eventHandlerConfig"
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
 import { ReactComponent as StrokeWidthIcon } from "@/assets/stroke-width-icon.svg"
-import { ReactComponent as ShadowIcon } from "@/assets/shadow-icon.svg"
 
 const baseWidgetName = "container"
 export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [

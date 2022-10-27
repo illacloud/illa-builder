@@ -204,13 +204,14 @@ export type MongoDbActionTypeContent =
   | UpdateOneContent
   | CommandContent
 
-export interface MongoDbAction extends Events {
+export interface MongoDbAction<T extends MongoDbActionTypeContent>
+  extends Events {
   actionType: MongoDbActionType
   collection: string
-  typeContent: MongoDbActionTypeContent
+  typeContent: T
 }
 
-export const MongoDbActionInitial: MongoDbAction = {
+export const MongoDbActionInitial: MongoDbAction<MongoDbActionTypeContent> = {
   actionType: "aggregate",
   collection: "",
   typeContent: AggregateContentInitial,

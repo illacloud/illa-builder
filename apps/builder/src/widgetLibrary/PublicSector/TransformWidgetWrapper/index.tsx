@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { cloneDeep, get } from "lodash"
 import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { TransformWidgetProps } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/interface"
-import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
+import {
+  GLOBAL_DATA_CONTEXT,
+  BUILDER_CALC_CONTEXT,
+} from "@/page/App/context/globalDataProvider"
 import { EventsInProps } from "@/widgetLibrary/interface"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
@@ -37,7 +40,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       componentNode
 
     const displayNameMapProps = useSelector(getExecutionResult)
-    const { handleUpdateGlobalData, handleDeleteGlobalData, globalData } =
+    const { handleUpdateGlobalData, handleDeleteGlobalData } =
       useContext(GLOBAL_DATA_CONTEXT)
     const dispatch = useDispatch()
 
@@ -123,6 +126,15 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       [dispatch, displayName],
     )
 
+    const handleUpdateMultiExecutionResult = useCallback(
+      (allUpdate: { displayName: string; value: Record<string, any> }[]) => {
+        dispatch(
+          executionActions.updateExecutionByMultiDisplayNameReducer(allUpdate),
+        )
+      },
+      [dispatch],
+    )
+
     const handleUpdateOriginalDSLMultiAttr = useCallback(
       (updateSlice: Record<string, any>) => {
         if (!isObject(updateSlice)) return
@@ -134,6 +146,19 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         )
       },
       [dispatch, displayName],
+    )
+
+    const handleUpdateOriginalDSLOtherMultiAttr = useCallback(
+      (displayName: string, updateSlice: Record<string, any>) => {
+        if (!displayName || !isObject(updateSlice)) return
+        dispatch(
+          componentsActions.updateComponentPropsReducer({
+            displayName,
+            updateSlice,
+          }),
+        )
+      },
+      [dispatch],
     )
 
     const getOnChangeEventScripts = useCallback(() => {
@@ -178,33 +203,61 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
 
     const handleOnChange = useCallback(() => {
       getOnChangeEventScripts().forEach((scriptObj) => {
-        runEventHandler(scriptObj, globalData)
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-    }, [getOnChangeEventScripts, globalData])
+    }, [getOnChangeEventScripts])
 
     const handleOnClick = useCallback(() => {
       getOnClickEventScripts().forEach((scriptObj) => {
-        runEventHandler(scriptObj, globalData)
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-    }, [getOnClickEventScripts, globalData])
+    }, [getOnClickEventScripts])
 
     const handleOnSortingChange = useCallback(() => {
       getOnSortingChangeEventScripts().forEach((scriptObj) => {
-        runEventHandler(scriptObj, globalData)
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-    }, [getOnSortingChangeEventScripts, globalData])
+    }, [getOnSortingChangeEventScripts])
 
     const handleOnPaginationChange = useCallback(() => {
       getOnPaginationChangeEventScripts().forEach((scriptObj) => {
-        runEventHandler(scriptObj, globalData)
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-    }, [getOnPaginationChangeEventScripts, globalData])
+    }, [getOnPaginationChangeEventScripts])
 
     const handleOnColumnFiltersChange = useCallback(() => {
       getOnColumnFiltersChangeEventScripts().forEach((scriptObj) => {
-        runEventHandler(scriptObj, globalData)
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
-    }, [getOnColumnFiltersChangeEventScripts, globalData])
+    }, [getOnColumnFiltersChangeEventScripts])
+
+    const getOnFormSubmitEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "submit")
+      }
+      return []
+    }, [realProps])
+
+    const handleOnFormSubmit = useCallback(() => {
+      getOnFormSubmitEventScripts().forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
+    }, [getOnFormSubmitEventScripts])
+
+    const getOnFormInvalidEventScripts = useCallback(() => {
+      const events = get(realProps, "events")
+      if (events) {
+        return getEventScripts(events, "invalid")
+      }
+      return []
+    }, [realProps])
+
+    const handleOnFormInvalid = useCallback(() => {
+      getOnFormInvalidEventScripts().forEach((scriptObj) => {
+        runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+      })
+    }, [getOnFormInvalidEventScripts])
 
     if (!type) return null
     const widget = widgetBuilder(type)
@@ -240,6 +293,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleUpdateGlobalData={handleUpdateGlobalData}
           handleDeleteGlobalData={handleDeleteGlobalData}
           handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
+          handleUpdateOriginalDSLOtherMultiAttr={
+            handleUpdateOriginalDSLOtherMultiAttr
+          }
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
           handleOnSortingChange={handleOnSortingChange}
@@ -247,6 +303,9 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           handleOnColumnFiltersChange={handleOnColumnFiltersChange}
           handleUpdateDsl={handleUpdateDsl}
           updateComponentHeight={updateComponentHeight}
+          handleUpdateMultiExecutionResult={handleUpdateMultiExecutionResult}
+          handleOnFormSubmit={handleOnFormSubmit}
+          handleOnFormInvalid={handleOnFormInvalid}
           displayName={displayName}
           childrenNode={childrenNode}
           componentNode={componentNode}

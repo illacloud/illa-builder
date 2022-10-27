@@ -3,5 +3,7 @@ export interface TransformerAction {
 }
 
 export const TransformerActionInitial: TransformerAction = {
-  transformerString: "",
+  transformerString:
+    "// Tip: assign your external references to variables instead of chaining off the curly brackets.\n" +
+    "return 5",
 }

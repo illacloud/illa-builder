@@ -1,6 +1,4 @@
-import { FC, useMemo } from "react"
-import { useDispatch } from "react-redux"
-import { configActions } from "@/redux/config/configSlice"
+import { FC } from "react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import { useTranslation } from "react-i18next"
@@ -10,24 +8,23 @@ import {
   transformerTipStyle,
 } from "./style"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { TransformerPanelProps } from "@/page/App/components/Actions/ActionPanel/interface"
+import { Controller, useForm } from "react-hook-form"
+import { useDispatch, useSelector } from "react-redux"
+import { getCachedAction } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
-export const TransformerPanel: FC<TransformerPanelProps> = (props) => {
-  const action = props.action
-  const dispatch = useDispatch()
+export const TransformerPanel: FC = (props) => {
   const { t } = useTranslation()
-  const finalValue = useMemo(() => {
-    return (
-      action?.content?.transformerString ||
-      "// Tip: assign your external references to variables instead of chaining off the curly brackets.\n" +
-        "return 5"
-    )
-  }, [action?.content?.transformerString])
+
+  const action = useSelector(getCachedAction)!!
+  const content = action.content as TransformerAction
+
+  const dispatch = useDispatch()
 
   return (
     <div css={transformerPanelContainerStyle}>
       <CodeEditor
-        value={finalValue}
+        value={content.transformerString}
         css={transformerEditorStyle}
         lineNumbers
         height="88px"
@@ -35,11 +32,11 @@ export const TransformerPanel: FC<TransformerPanelProps> = (props) => {
         mode="JAVASCRIPT"
         onChange={(value) => {
           dispatch(
-            configActions.updateSelectedAction({
+            configActions.updateCachedAction({
               ...action,
               content: {
                 transformerString: value,
-              } as TransformerAction,
+              },
             }),
           )
         }}

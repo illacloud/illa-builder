@@ -27,5 +27,6 @@ export const RADIO_BUTTON_WIDGET_CONFIG: WidgetConfig = {
     dataSources: "{{[]}}",
     colorScheme: "blue",
     hidden: false,
+    formDataKey: "radioButton",
   },
 }

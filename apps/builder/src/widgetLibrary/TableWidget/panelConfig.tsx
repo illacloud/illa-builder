@@ -149,6 +149,13 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
           { label: i18n.t("widget.table.scroll"), value: "scroll" },
         ],
       },
+      {
+        id: `${baseWidgetName}-basic-pageSize`,
+        labelName: i18n.t("editor.inspect.setter_label.pageSize"),
+        attrName: "pageSize",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.NUMBER,
+      },
     ],
   },
   {

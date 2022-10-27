@@ -62,6 +62,7 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
 
   const { control, handleSubmit, formState } = useForm({
     mode: "onChange",
+    shouldUnregister: true,
   })
 
   const resource = useSelector((state: RootState) => {
@@ -99,9 +100,9 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
               },
             },
             (response) => {
-              onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))

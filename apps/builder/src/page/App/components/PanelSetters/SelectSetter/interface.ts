@@ -5,6 +5,7 @@ import { VALIDATION_TYPES } from "@/utils/validationFactory"
 export interface BaseSelectSetterProps extends BaseSetter {
   options?: any
   allowClear?: boolean
+  onChange?: (value: any) => void
 }
 
 export interface BaseDynamicSelectSetterProps extends PanelLabelProps {

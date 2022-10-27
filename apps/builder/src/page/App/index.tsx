@@ -3,13 +3,13 @@ import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import {
   bottomPanelStyle,
-  leftPanelStyle,
-  rightPanelStyle,
   centerPanelStyle,
   contentStyle,
   editorContainerStyle,
+  leftPanelStyle,
   middlePanelStyle,
   navbarStyle,
+  rightPanelStyle,
 } from "./style"
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
@@ -31,12 +31,12 @@ import { AppLoading } from "@/page/App/components/AppLoading"
 import { ActionEditor } from "@/page/App/components/Actions"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
 import { resourceActions } from "@/redux/resource/resourceSlice"
-import { setupConfigListeners } from "@/redux/config/configListener"
 import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
 import { Debugger } from "@/page/App/components/Debugger"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
+import { setupConfigListeners } from "@/redux/config/configListener"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
@@ -62,8 +62,8 @@ export const Editor: FC = () => {
   useEffect(() => {
     const subscriptions: Unsubscribe[] = [
       setupComponentsListeners(startAppListening),
-      setupConfigListeners(startAppListening),
       setupActionListeners(startAppListening),
+      setupConfigListeners(startAppListening),
       setupExecutionListeners(startAppListening),
     ]
     return () => subscriptions.forEach((unsubscribe) => unsubscribe())
@@ -93,13 +93,6 @@ export const Editor: FC = () => {
       controller.abort()
     }
   }, [dispatch])
-
-  useEffect(() => {
-    window.addEventListener("beforeunload", (event) => {
-      event.preventDefault()
-      event.returnValue = "CLOSE_TAB_MESSAGE"
-    })
-  }, [])
 
   return (
     <div css={editorContainerStyle}>

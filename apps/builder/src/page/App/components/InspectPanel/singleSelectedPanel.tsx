@@ -54,6 +54,19 @@ export const SingleSelectedPanel: FC = () => {
     [dispatch, widgetDisplayName],
   )
 
+  const handleUpdateOtherMultiAttrDSL = useCallback(
+    (displayName: string, updateSlice: Record<string, any>) => {
+      if (!displayName || !isObject(updateSlice)) return
+      dispatch(
+        componentsActions.updateComponentPropsReducer({
+          displayName,
+          updateSlice,
+        }),
+      )
+    },
+    [dispatch],
+  )
+
   const builderPanelConfig = useMemo(() => {
     return panelBuilder(widgetType)
   }, [widgetType])
@@ -67,6 +80,7 @@ export const SingleSelectedPanel: FC = () => {
         widgetProps={widgetProps}
         handleUpdateDsl={handleUpdateDsl}
         handleUpdateMultiAttrDSL={handleUpdateMultiAttrDSL}
+        handleUpdateOtherMultiAttrDSL={handleUpdateOtherMultiAttrDSL}
         widgetOrAction="WIDGET"
       >
         <div css={singleSelectedPanelWrapperStyle}>

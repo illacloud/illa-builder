@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useCallback, MouseEvent } from "react"
+import { FC, HTMLAttributes, MouseEvent, useCallback } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { configActions } from "@/redux/config/configSlice"
@@ -89,7 +89,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
       const action = actionList.find(
         (item) => item.displayName === selectedKeys[0],
       )
-      action && dispatch(configActions.updateSelectedAction(action))
+      action && dispatch(configActions.changeSelectedAction(action))
     },
     [actionList, dispatch],
   )

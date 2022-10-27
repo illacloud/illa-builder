@@ -67,7 +67,9 @@ export const extractReferencesFromScript = (
   return Array.from(references)
 }
 
-export function getDisplayNameAndPropertyPath(fullPath: string): {
+export function getDisplayNameAndPropertyPath(
+  fullPath: string,
+): {
   displayName: string
   attrPath: string
 } {
@@ -116,8 +118,9 @@ export const translateDiffEventToRawTreeEvent = (
     return result
   }
   const propertyPath = convertPathToString(diff.path)
-  const isUninterestingPathForUpdateTree =
-    isUninterestingChangeForDependencyUpdate(propertyPath)
+  const isUninterestingPathForUpdateTree = isUninterestingChangeForDependencyUpdate(
+    propertyPath,
+  )
   if (!!isUninterestingPathForUpdateTree) {
     return result
   }

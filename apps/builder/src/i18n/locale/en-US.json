@@ -138,6 +138,9 @@
           "required": "{name} is required"
         }
       },
+      "resource_choose": {
+        "deleted": "Deleted"
+      },
       "panel": {
         "btn": {
           "disable": "Disable",
@@ -205,15 +208,20 @@
             "database_index": "Database Index",
             "hostname": "Hostname",
             "hostname_port": "Hostname/Port",
+            "mongodb_ssl_client": "Client Cert and Key",
+            "mongodb_ssl_ca": "CA Cert",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
             "name": "Name",
             "port": "Port",
+            "config_type": "Config Type",
+            "connection_string": "Connection String",
             "private_key": "Private Key",
             "ssl_options": "SSL options",
             "username_password": "Username/Password"
           },
           "placeholder": {
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
             "database_index": "default 0",
@@ -367,6 +375,12 @@
           "prefabricated": "Prefabricated color",
           "title": "Edit color"
         },
+        "view_setter": {
+          "views": "Views"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
         "column_setter": {
           "label": "Columns ({{number}})",
           "new": "New",
@@ -398,8 +412,10 @@
           "columnFiltersChange": "Filter change",
           "fail": "Fail",
           "focus": "Focus",
+          "invalid": "Invalid",
           "paginationChange": "Page change",
           "sortingChange": "Sort change",
+          "submit": "Submit",
           "success": "Success"
         }
       },
@@ -431,6 +447,7 @@
         "row_selection": "ROW SELECTION",
         "sort": "SORT",
         "style": "STYLE",
+        "tabs": "TABS",
         "toolbar": "TOOLBAR",
         "validation": "VALIDATION",
         "views": "VIEWS"
@@ -456,6 +473,7 @@
         "columns": "Columns",
         "component": "Component",
         "config_type": "Config type",
+        "container": "Container",
         "content": "Content",
         "control_component": "Control component",
         "custom_rule": "Custom rule",
@@ -476,8 +494,10 @@
         "default_sort_order": "Direction",
         "default_value": "Default value",
         "default_views": "Default view",
+        "default_tab": "Default tab",
         "description": "Description",
         "direction": "Direction",
+        "disable_submit": "Disable submit",
         "disabled": "Disabled",
         "download": "Download",
         "duration": "Duration",
@@ -490,6 +510,7 @@
         "failure": "Failure",
         "filter": "Filter",
         "font_size": "Font size",
+        "form_data_key": "Form Data Key",
         "format": "Format",
         "go_to_url": "Go to URL",
         "group_by": "Group by",
@@ -513,6 +534,7 @@
         "layout": "Layout",
         "legend_position": "Legend position",
         "links_color": "Links",
+        "link_to_container": "Link to a container",
         "loading": "Loading",
         "loop_back_to_start": "Loop back to start",
         "loop_start_to_back": "Loop start to back",
@@ -531,18 +553,22 @@
         "overFlow": "OverFlow",
         "pattern": "Pattern",
         "pending": "Pending",
+        "pageSize": "Rows per page",
         "placeholder": "Placeholder",
         "prefix_text": "Prefix text",
         "radius": "Radius",
         "read_only": "Read only",
         "regex": "Regex",
         "required_field": "Required field",
+        "reset_after_successful_submit": "Reset after successful submit",
         "run_script": "Run script",
         "scale_type": "Scale Type",
         "set_temporary_state": "Set temporary state",
         "shadow": "Shadow",
         "show_character_count": "Show character count",
         "show_clear_button": "Show clear button",
+        "show_footer": "Show footer",
+        "show_header": "Show header",
         "show_notification": "Show notification",
         "sort": "Sort",
         "start_date": "Start date",
@@ -565,6 +591,7 @@
         "trail_color": "Trail color",
         "trigger_query": "Trigger query",
         "type": "Type",
+        "validate_inputs_on_submit": "Validate inputs on submit",
         "value": "Value",
         "value_labels": "Value labels",
         "variant": "Variant",
@@ -584,8 +611,10 @@
         "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format)",
         "default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
         "disabled": "Control the status of whether the component is disabled. The component cannot be modified or focused when it is disabled.",
+        "disabled_submit": "When disabled, the components that call the form.submit() method will also be disabled.",
         "download": "Show download button in toolbar",
         "filter": "Show filter button in toolbar",
+        "form_data_key": "Specify a key of a wrapping form component when constructing the data attribute.",
         "hidden": "Dynamically control whether the component is hidden. You can change the hidden status through dynamical boolean value.",
         "hide_validation_message": "You can hide the error message by switching the hidden status when the input value is incorrect. You can dynamically change the hidden status by JavaScript.",
         "input_default_value": "The initial value of the input box. You can dynamically change the initial value of the input field by typing JavaScript in {{}}.",
@@ -604,6 +633,16 @@
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it."
+    },
+    "validate_message": {
+      "email": "Please enter a valid email address",
+      "max_length": "Must be no more than {{ number }} characters",
+      "max_value": "Must be less than {{ number }}",
+      "min_length": "Must be at least {{ number }} characters",
+      "min_value": "Must be greater than {{ number }}",
+      "regex": "Please match the requested format",
+      "required": "This field is required",
+      "url": "Please enter a valid URL"
     },
     "widget_picker": {
       "empty_tip": "Sorry, no search results",
@@ -840,6 +879,9 @@
     "editable_text": {
       "name": "Editable Text"
     },
+    "form": {
+      "name": "Form"
+    },
     "image": {
       "name": "Image"
     },
@@ -879,6 +921,9 @@
       "name": "Table",
       "pagination": "Pagination",
       "scroll": "Scroll"
+    },
+    "tabs": {
+      "name": "Tabs"
     },
     "text": {
       "default_value": "👋 Hello!",

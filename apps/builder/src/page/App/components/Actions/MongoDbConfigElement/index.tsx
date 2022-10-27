@@ -4,22 +4,17 @@ import {
   applyConfigItemLabelText,
   configItem,
   configItemTip,
-  connectTypeStyle,
   container,
   divider,
   footerStyle,
-  hostInputContainer,
   labelContainer,
   optionLabelStyle,
   sslItem,
-  sslStyle,
 } from "./style"
-import { Input, Password, TextArea } from "@illa-design/input"
+import { Input, TextArea } from "@illa-design/input"
 import { getColor } from "@illa-design/theme"
 import { useTranslation } from "react-i18next"
 import { Divider } from "@illa-design/divider"
-import { Switch } from "@illa-design/switch"
-import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
@@ -27,13 +22,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
 import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
-import { RadioGroup } from "@illa-design/radio"
 import {
-  MongoDbConnectionFormat,
+  MongoDbConfig,
   MongoDbResource,
+  MongoDbResourceInitial,
 } from "@/redux/resource/mongodbResource"
+import { MongoDbGuiMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbGuiMode"
+import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigElement/MongoDbUriMode"
+import { sslStyle } from "../MysqlLikeConfigElement/style"
+import { Switch } from "@illa-design/switch"
+import { RadioGroup } from "@illa-design/radio"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -44,28 +44,33 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
+    shouldUnregister: true,
   })
 
-  const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<MongoDbResource>
+  const findResource = useSelector((state: RootState) => {
+    return state.resource.find((r) => r.resourceId === resourceId)
   })
 
-  const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
+  let content: MongoDbResource<MongoDbConfig>
 
+  if (findResource === undefined) {
+    content = MongoDbResourceInitial
+  } else {
+    content = findResource.content as MongoDbResource<MongoDbConfig>
+  }
+
+  const [configType, setConfigType] = useState(content.configType)
+
+  const [sslOpen, setSSLOpen] = useState(content.ssl.open ?? false)
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [connectionFormat, setConnectionFormat] =
-    useState<MongoDbConnectionFormat>(
-      resource?.content.connectionFormat ?? "standard",
-    )
 
   return (
     <form
       onSubmit={handleSubmit((data, event) => {
+        console.log("data", data)
         if (resourceId != undefined) {
-          Api.request<Resource<MongoDbResource>>(
+          Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
             {
               method: "PUT",
               url: `/resources/${resourceId}`,
@@ -74,22 +79,26 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 resourceName: data.resourceName,
                 resourceType: "mongodb",
                 content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseName: data.databaseName,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
+                  configType: data.configType,
                   ssl: generateSSLConfig(sslOpen, data),
+                  configContent: {
+                    host: data.host,
+                    port: data.port.toString(),
+                    connectionFormat: data.connectionFormat,
+                    databaseName: data.databaseName,
+                    databaseUsername: data.databaseUsername,
+                    databasePassword: data.databasePassword,
+                  },
                 },
               },
             },
             (response) => {
-              onFinished(response.data.resourceId)
               dispatch(resourceActions.updateResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
             },
-            (error) => {
-              Message.error(error.data.errorMessage)
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
@@ -99,7 +108,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
             },
           )
         } else {
-          Api.request<Resource<MongoDbResource>>(
+          Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
             {
               method: "POST",
               url: `/resources`,
@@ -107,12 +116,16 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 resourceName: data.resourceName,
                 resourceType: "mongodb",
                 content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseName: data.databaseName,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
+                  configType: data.configType,
                   ssl: generateSSLConfig(sslOpen, data),
+                  configContent: {
+                    host: data.host,
+                    port: data.port.toString(),
+                    connectionFormat: data.connectionFormat,
+                    databaseName: data.databaseName,
+                    databaseUsername: data.databaseUsername,
+                    databasePassword: data.databasePassword,
+                  },
                 },
               },
             },
@@ -121,8 +134,8 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
               dispatch(resourceActions.addResourceItemReducer(response.data))
               Message.success(t("dashboard.resource.save_success"))
             },
-            (error) => {
-              Message.error(error.data.errorMessage)
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
             },
             () => {
               Message.error(t("dashboard.resource.save_fail"))
@@ -147,7 +160,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
           </div>
           <Controller
             control={control}
-            defaultValue={resource?.resourceName ?? ""}
+            defaultValue={findResource?.resourceName ?? ""}
             rules={{
               required: true,
             }}
@@ -182,52 +195,13 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.hostname")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={resource?.content.host}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.hostname",
-                  )}
-                />
-              )}
-              name="host"
-            />
-          </div>
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.connection_format")}
+            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+              {t("editor.action.resource.db.label.config_type")}
             </span>
           </div>
           <Controller
-            defaultValue={connectionFormat}
             control={control}
-            rules={{
-              required: true,
-            }}
-            shouldUnregister={true}
+            defaultValue={content.configType}
             render={({ field: { value, onChange, onBlur } }) => (
               <RadioGroup
                 w="100%"
@@ -237,172 +211,31 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 type="button"
                 onBlur={onBlur}
                 onChange={(v, event) => {
-                  setConnectionFormat(v)
                   onChange(v, event)
+                  setConfigType(v)
                 }}
                 value={value}
                 options={[
                   {
-                    value: "standard",
-                    label: t(
-                      "editor.action.resource.db.label.mongodb_connection_standard",
-                    ),
+                    value: "gui",
+                    label: "General",
                   },
                   {
-                    value: "mongodb+srv",
-                    label: t(
-                      "editor.action.resource.db.label.mongodb_connection_dns_seed_list",
-                    ),
+                    value: "uri",
+                    label: "URI",
                   },
                 ]}
               />
             )}
-            name="connectionFormat"
+            name="configType"
           />
         </div>
-        {connectionFormat === "standard" && (
-          <div css={configItem}>
-            <div css={labelContainer}>
-              <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                *
-              </span>
-              <span
-                css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-              >
-                {t("editor.action.resource.db.label.port")}
-              </span>
-            </div>
-            <div css={hostInputContainer}>
-              <Controller
-                defaultValue={resource?.content.port}
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <InputNumber
-                    w="100%"
-                    onBlur={onBlur}
-                    onChange={onChange}
-                    value={value}
-                    borderColor="techPurple"
-                    placeholder="3306"
-                  />
-                )}
-                name="port"
-              />
-            </div>
-          </div>
+        {configType === "gui" && (
+          <MongoDbGuiMode control={control} resourceId={resourceId} />
         )}
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.database")}
-            </span>
-          </div>
-          <Controller
-            defaultValue={resource?.content.databaseName}
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { value, onChange, onBlur } }) => (
-              <Input
-                w="100%"
-                ml="16px"
-                mr="24px"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                borderColor="techPurple"
-                placeholder={t(
-                  "editor.action.resource.db.placeholder.database",
-                )}
-              />
-            )}
-            name="databaseName"
-          />
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
-            <span
-              css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
-            >
-              {t("editor.action.resource.db.label.username_password")}
-            </span>
-          </div>
-          <div css={hostInputContainer}>
-            <Controller
-              defaultValue={resource?.content.databaseUsername}
-              control={control}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Input
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  borderColor="techPurple"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.username",
-                  )}
-                />
-              )}
-              name="databaseUsername"
-            />
-            <Controller
-              control={control}
-              defaultValue={resource?.content.databasePassword}
-              rules={{
-                required: true,
-              }}
-              render={({ field: { value, onChange, onBlur } }) => (
-                <Password
-                  borderColor="techPurple"
-                  w="100%"
-                  onBlur={onBlur}
-                  onChange={onChange}
-                  value={value}
-                  ml="8px"
-                  placeholder={t(
-                    "editor.action.resource.db.placeholder.password",
-                  )}
-                />
-              )}
-              name="databasePassword"
-            />
-          </div>
-        </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.db.tip.username_password")}
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.connect_type")}
-            </span>
-          </div>
-          <span css={connectTypeStyle}>
-            {t("editor.action.resource.db.tip.connect_type")}
-          </span>
-        </div>
-        <Divider
-          direction="horizontal"
-          ml="24px"
-          mr="24px"
-          mt="8px"
-          mb="8px"
-          w="unset"
-        />
-        <div css={optionLabelStyle}>
-          {t("editor.action.resource.db.title.advanced_option")}
-        </div>
+        {configType === "uri" && (
+          <MongoDbUriMode control={control} resourceId={resourceId} />
+        )}
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
@@ -411,7 +244,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
           </div>
           <Controller
             control={control}
-            defaultValue={resource?.content.ssl.ssl}
+            defaultValue={content.ssl.open}
             render={({ field: { value, onChange, onBlur } }) => (
               <Switch
                 checked={value}
@@ -424,7 +257,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                 onBlur={onBlur}
               />
             )}
-            name="ssl"
+            name="open"
           />
           <span css={sslStyle}>
             {t("editor.action.resource.db.tip.ssl_options")}
@@ -434,25 +267,18 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
           <>
             <div css={sslItem}>
               <div css={labelContainer}>
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                  *
-                </span>
                 <span
                   css={applyConfigItemLabelText(
                     getColor("grayBlue", "02"),
                     true,
                   )}
                 >
-                  {t("editor.action.resource.db.label.ca_certificate")}
+                  {t("editor.action.resource.db.label.mongodb_ssl_client")}
                 </span>
               </div>
               <Controller
                 control={control}
-                defaultValue={resource?.content.ssl.serverCert}
-                rules={{
-                  required: true,
-                }}
-                shouldUnregister={true}
+                defaultValue={content.ssl.client}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -462,11 +288,11 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                     value={value}
                     autoSize
                     placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
+                      "editor.action.resource.db.placeholder.mongo_certificate",
                     )}
                   />
                 )}
-                name="serverCert"
+                name="client"
               />
             </div>
             <div css={sslItem}>
@@ -477,13 +303,12 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                     true,
                   )}
                 >
-                  {t("editor.action.resource.db.label.client_key")}
+                  {t("editor.action.resource.db.label.mongodb_ssl_ca")}
                 </span>
               </div>
               <Controller
                 control={control}
-                defaultValue={resource?.content.ssl.clientKey}
-                shouldUnregister={true}
+                defaultValue={content.ssl.ca}
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextArea
                     ml="16px"
@@ -497,38 +322,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                     )}
                   />
                 )}
-                name="clientKey"
-              />
-            </div>
-            <div css={sslItem}>
-              <div css={labelContainer}>
-                <span
-                  css={applyConfigItemLabelText(
-                    getColor("grayBlue", "02"),
-                    true,
-                  )}
-                >
-                  {t("editor.action.resource.db.label.client_certificate")}
-                </span>
-              </div>
-              <Controller
-                control={control}
-                shouldUnregister={true}
-                defaultValue={resource?.content.ssl.clientCert}
-                render={({ field: { value, onChange, onBlur } }) => (
-                  <TextArea
-                    ml="16px"
-                    mr="24px"
-                    autoSize
-                    value={value}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    placeholder={t(
-                      "editor.action.resource.db.placeholder.certificate",
-                    )}
-                  />
-                )}
-                name="clientCert"
+                name="ca"
               />
             </div>
           </>
@@ -554,7 +348,7 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<MongoDbResource>>(
+              Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
                 {
                   method: "POST",
                   url: `/resources/testConnection`,
@@ -563,11 +357,6 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
                     resourceName: data.resourceName,
                     resourceType: "mongodb",
                     content: {
-                      host: data.host,
-                      port: data.port.toString(),
-                      databaseName: data.databaseName,
-                      databaseUsername: data.databaseUsername,
-                      databasePassword: data.databasePassword,
                       ssl: generateSSLConfig(sslOpen, data),
                     },
                   },

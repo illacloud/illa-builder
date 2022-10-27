@@ -1,5 +1,5 @@
-import { Events } from "@/redux/currentApp/action/actionState"
 import { Params } from "@/redux/resource/restapiResource"
+import { Events } from "@/redux/currentApp/action/actionState"
 
 export type BodyType =
   | "none"
@@ -31,6 +31,11 @@ export type XMLRawBody = string
 export interface RawBody<T extends RawBodyContent> {
   type: RawBodyType
   content: T
+}
+
+export const RawBodyInitial: RawBody<TextRawBody> = {
+  type: "text",
+  content: "",
 }
 
 export type RawBodyContent =

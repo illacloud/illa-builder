@@ -7,8 +7,7 @@ import { ContainerEmptyState } from "./emptyState"
 export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
     handleOnClick,
-    currentViewIndex,
-    viewComponentsArray,
+    currentIndex,
     handleOnChange,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -17,42 +16,45 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
     tooltipText,
     childrenNode,
+    h,
+    unitH,
   } = props
-  const preCurrentViewIndex = useRef<number>(currentViewIndex)
+  const preCurrentViewIndex = useRef<number>(currentIndex)
 
   useEffect(() => {
-    if (!preCurrentViewIndex.current) {
-      preCurrentViewIndex.current = currentViewIndex
+    if (typeof preCurrentViewIndex.current !== "number") {
+      preCurrentViewIndex.current = currentIndex
     }
-    if (preCurrentViewIndex.current !== currentViewIndex) {
+    if (preCurrentViewIndex.current !== currentIndex) {
       handleOnChange()
-      preCurrentViewIndex.current = currentViewIndex
+      preCurrentViewIndex.current = currentIndex
     }
-  }, [currentViewIndex, handleOnChange, handleOnClick])
+  }, [currentIndex, handleOnChange, handleOnClick])
 
   const renderComponent = useMemo(() => {
-    const currentIndex = currentViewIndex
-    const currentViewComponentsArray = viewComponentsArray
-    if (
-      Array.isArray(currentViewComponentsArray) &&
-      currentIndex < currentViewComponentsArray.length
-    ) {
+    if (Array.isArray(childrenNode) && currentIndex < childrenNode.length) {
       const currentViewComponentNode = childrenNode[currentIndex]
-      return <BasicContainer componentNode={currentViewComponentNode} />
+      return (
+        <BasicContainer
+          componentNode={currentViewComponentNode}
+          minHeight={h * unitH}
+          padding={4}
+        />
+      )
     }
     return <ContainerEmptyState />
-  }, [childrenNode, currentViewIndex, viewComponentsArray])
+  }, [childrenNode, currentIndex, h, unitH])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
-      currentViewIndex,
+      currentIndex,
       viewList,
       setCurrentViewKey: (key: string) => {
         const index = viewList.findIndex((viewItem) => viewItem.key === key)
         if (index === -1) return
         handleUpdateOriginalDSLMultiAttr({
-          currentViewIndex: index,
-          currentViewKey: key,
+          currentIndex: index,
+          currentKey: key,
         })
       },
       setCurrentViewIndex: (index: string) => {
@@ -60,75 +62,75 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
         const view = viewList[numberIndex]
         if (!view) return
         handleUpdateOriginalDSLMultiAttr({
-          currentViewIndex: numberIndex,
-          currentViewKey: view.key,
+          currentIndex: numberIndex,
+          currentKey: view.key,
         })
       },
       showNextView: (loop: boolean) => {
-        let currentIndex = currentViewIndex + 1
-        if (currentIndex >= viewList.length) {
+        let newCurrentIndex = currentIndex + 1
+        if (newCurrentIndex >= viewList.length) {
           if (!loop) return
-          currentIndex = 0
+          newCurrentIndex = 0
         }
-        const currentView = viewList[currentIndex]
+        const currentView = viewList[newCurrentIndex]
         handleUpdateOriginalDSLMultiAttr({
-          currentViewIndex: currentIndex,
-          currentViewKey: currentView.key,
+          currentIndex: newCurrentIndex,
+          currentKey: currentView.key,
         })
       },
       showNextVisibleView: (loop: boolean) => {
-        let currentIndex = currentViewIndex + 1
-        if (currentIndex >= viewList.length) {
+        let newCurrentIndex = currentIndex + 1
+        if (newCurrentIndex >= viewList.length) {
           if (!loop) return
-          currentIndex = 0
+          newCurrentIndex = 0
         }
-        let currentView = viewList[currentIndex]
+        let currentView = viewList[newCurrentIndex]
         while (currentView.hidden || currentView.disabled) {
-          currentIndex++
-          currentView = viewList[currentIndex]
-          if (currentIndex >= viewList.length) {
+          newCurrentIndex++
+          currentView = viewList[newCurrentIndex]
+          if (newCurrentIndex >= viewList.length) {
             if (!loop) return
-            currentIndex = 0
+            newCurrentIndex = 0
           }
         }
         handleUpdateOriginalDSLMultiAttr({
-          currentViewIndex: currentIndex,
-          currentViewKey: currentView.key,
+          currentIndex: newCurrentIndex,
+          currentKey: currentView.key,
         })
       },
       showPreviousView: (loop: boolean) => {
-        let currentIndex = currentViewIndex - 1
+        let newCurrentIndex = currentIndex - 1
 
-        if (currentIndex < 0) {
+        if (newCurrentIndex < 0) {
           if (!loop) return
-          currentIndex = viewList.length - 1
+          newCurrentIndex = viewList.length - 1
         }
-        const currentView = viewList[currentIndex]
+        const currentView = viewList[newCurrentIndex]
         handleUpdateOriginalDSLMultiAttr({
-          currentViewIndex: currentIndex,
-          currentViewKey: currentView.key,
+          currentIndex: newCurrentIndex,
+          currentKey: currentView.key,
         })
       },
       showPreviousVisibleView: (loop: boolean) => {
-        let currentIndex = currentViewIndex - 1
+        let newCurrentIndex = currentIndex - 1
 
-        if (currentIndex < 0) {
+        if (newCurrentIndex < 0) {
           if (!loop) return
-          currentIndex = viewList.length - 1
+          newCurrentIndex = viewList.length - 1
         }
-        let currentView = viewList[currentIndex]
+        let currentView = viewList[newCurrentIndex]
         while (currentView.hidden || currentView.disabled) {
-          currentIndex--
-          currentView = viewList[currentIndex]
-          if (currentIndex < 0) {
+          newCurrentIndex--
+          currentView = viewList[newCurrentIndex]
+          if (newCurrentIndex < 0) {
             if (!loop) return
-            currentIndex = viewList.length - 1
+            newCurrentIndex = viewList.length - 1
           }
         }
 
         handleUpdateOriginalDSLMultiAttr({
-          currentViewIndex: currentIndex,
-          currentViewKey: currentView.key,
+          currentIndex: newCurrentIndex,
+          currentKey: currentView.key,
         })
       },
     })
@@ -136,7 +138,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       handleDeleteGlobalData(displayName)
     }
   }, [
-    currentViewIndex,
+    currentIndex,
     displayName,
     handleDeleteGlobalData,
     handleUpdateGlobalData,

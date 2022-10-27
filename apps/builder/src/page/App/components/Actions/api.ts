@@ -1,7 +1,7 @@
 import {
   ActionContent,
+  ActionEvents,
   ActionItem,
-  ActionType,
 } from "@/redux/currentApp/action/actionState"
 import { omit } from "@illa-design/system"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -19,13 +19,15 @@ function getBaseActionUrl() {
   return `/apps/${appId}/actions`
 }
 
-export function onCopyActionItem(action: ActionItem<ActionContent>) {
+export function onCopyActionItem(
+  action: ActionItem<ActionContent, ActionEvents>,
+) {
   const baseActionUrl = getBaseActionUrl()
   const newAction = omit(action, ["displayName", "actionId"])
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
   )
-  const data: Partial<ActionItem<ActionContent>> = {
+  const data: Partial<ActionItem<ActionContent, ActionEvents>> = {
     ...newAction,
     displayName,
   }
@@ -35,12 +37,12 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
       method: "POST",
       data,
     },
-    ({ data }: { data: ActionItem<ActionContent> }) => {
+    ({ data }: { data: ActionItem<ActionContent, ActionEvents> }) => {
       Message.success(
         i18n.t("editor.action.action_list.message.success_created"),
       )
       store.dispatch(actionActions.addActionItemReducer(data))
-      store.dispatch(configActions.updateSelectedAction(data))
+      store.dispatch(configActions.changeSelectedAction(data))
     },
     () => {
       Message.error(i18n.t("editor.action.action_list.message.failed"))
@@ -53,7 +55,9 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
   )
 }
 
-export function onDeleteActionItem(action: ActionItem<ActionContent>) {
+export function onDeleteActionItem(
+  action: ActionItem<ActionContent, ActionEvents>,
+) {
   const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
 
@@ -62,7 +66,7 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
       url: `${baseActionUrl}/${actionId}`,
       method: "DELETE",
     },
-    ({ data }: { data: ActionItem<ActionContent> }) => {
+    ({ data }: { data: ActionItem<ActionContent, ActionEvents> }) => {
       DisplayNameGenerator.removeDisplayName(displayName)
       store.dispatch(actionActions.removeActionItemReducer(displayName))
       Message.success(
