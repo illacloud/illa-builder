@@ -57,7 +57,6 @@ export const generateComponentNode = (
     Object.hasOwn(props, "events") &&
     Array.isArray(props.events)
   ) {
-    console.log("props.events", props.events)
     props.events = props.events.map((event) => {
       return {
         ...event,

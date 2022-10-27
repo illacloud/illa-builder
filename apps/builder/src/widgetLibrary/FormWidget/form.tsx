@@ -482,7 +482,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
           )
         }
         return {
-          isDropOnCanvas: false,
+          isDropOnCanvas: true,
         }
       },
       collect: (monitor) => {
