@@ -12,7 +12,6 @@ import {
 } from "./style"
 import { Button } from "@illa-design/button"
 import { useTranslation } from "react-i18next"
-import store, { RootState } from "@/store"
 import { configActions } from "@/redux/config/configSlice"
 import { Modal } from "@illa-design/modal"
 import { Empty } from "@illa-design/empty"
@@ -24,18 +23,26 @@ import {
   onCopyActionItem,
   onDeleteActionItem,
 } from "@/page/App/components/Actions/api"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
 
 export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className } = props
 
+  const selectedAction = useSelector(getSelectedAction)
+  const cachedAction = useSelector(getCachedAction)
+
   const [generatorVisible, setGeneratorVisible] = useState<boolean>()
   const [searchActionValue, setSearchActionValue] = useState("")
-  const actionList = useSelector((state: RootState) => {
-    return state.currentApp.action.filter((value) => {
-      return value.displayName
-        .toLowerCase()
-        .includes(searchActionValue.toLowerCase())
-    })
+  const actionList = useSelector(getActionList)
+
+  const searchList = actionList.filter((value) => {
+    return value.displayName
+      .toLowerCase()
+      .includes(searchActionValue.toLowerCase())
   })
 
   const { t } = useTranslation()
@@ -63,11 +70,11 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
         </Space>
       </Button>
       <div css={listContainerStyle}>
-        {actionList.length != 0 && (
+        {searchList.length != 0 && (
           <List
             _css={listStyle}
             bordered={false}
-            data={actionList}
+            data={searchList}
             render={(data) => {
               return (
                 <ActionListItem
@@ -75,25 +82,14 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
                   onCopyItem={onCopyActionItem}
                   onDeleteItem={onDeleteActionItem}
                   onItemClick={(action) => {
-                    const selectedAction = store.getState().config
-                      .selectedAction
                     if (selectedAction === null) {
                       dispatch(configActions.changeSelectedAction(action))
                       return
                     }
                     // is a change action
                     if (selectedAction?.displayName !== action.displayName) {
-                      // find last action
-                      const lastAction = store
-                        .getState()
-                        .currentApp.action.find((value) => {
-                          return (
-                            value.displayName === selectedAction?.displayName
-                          )
-                        })
-                      // if not changed
                       if (
-                        JSON.stringify(lastAction) ===
+                        JSON.stringify(cachedAction) ===
                         JSON.stringify(selectedAction)
                       ) {
                         dispatch(configActions.changeSelectedAction(action))
@@ -119,7 +115,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
             }}
           />
         )}
-        {actionList.length == 0 && searchActionValue !== "" && (
+        {searchList.length == 0 && searchActionValue !== "" && (
           <Empty
             paddingVertical="23px"
             divideSize="4px"
@@ -127,7 +123,7 @@ export const ActionList: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
             description={t("editor.action.action_list.tips.not_found")}
           />
         )}
-        {actionList.length == 0 && searchActionValue == "" && (
+        {searchList.length == 0 && searchActionValue == "" && (
           <div css={actionListEmptyStyle}>
             {t("editor.action.action_list.tips.empty")}
           </div>

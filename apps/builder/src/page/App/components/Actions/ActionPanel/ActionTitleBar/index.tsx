@@ -1,9 +1,8 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useMemo, useState } from "react"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import {
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
-  dropMenuStyle,
   editableTitleBarWrapperStyle,
 } from "./style"
 import { Button } from "@illa-design/button"
@@ -15,69 +14,106 @@ import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { Message } from "@illa-design/message"
-import { configActions } from "@/redux/config/configSlice"
 import { ActionTitleBarProps } from "./interface"
-import { RootState } from "@/store"
 import { EditableText } from "@/components/EditableText"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
+import {
+  onCopyActionItem,
+  onDeleteActionItem,
+} from "@/page/App/components/Actions/api"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
-  const { action, onCopy, onDelete, onActionRun } = props
+  const { onActionRun } = props
 
-  const originAction = useSelector((state: RootState) => {
-    return state.currentApp.action.find((a) => a.actionId === action.actionId)
-  })
+  const selectedAction = useSelector(getSelectedAction)
+  const cachedAction = useSelector(getCachedAction)
 
-  const isChanged = JSON.stringify(action) !== JSON.stringify(originAction)
+  const isChanged =
+    JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
 
   const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
 
-  let runMode: RunMode = "run"
-  if (isChanged) {
-    if (action.triggerMode === "manually") {
-      runMode = "save"
-    } else if (action.triggerMode === "automate") {
-      runMode = "save_and_run"
+  let runMode: RunMode = useMemo(() => {
+    if (cachedAction != undefined && isChanged) {
+      if (cachedAction.triggerMode === "manually") {
+        return "save"
+      } else if (cachedAction.triggerMode === "automate") {
+        return "save_and_run"
+      } else {
+        return "save"
+      }
     } else {
-      runMode = "save"
+      return "run"
     }
-  }
+  }, [isChanged, cachedAction])
 
-  const renderButton =
-    runMode === "run" ? action.actionType !== "transformer" : true
+  const renderButton = useMemo(() => {
+    return runMode === "run" ? cachedAction?.actionType !== "transformer" : true
+  }, [cachedAction?.actionType, runMode])
 
   useEffect(() => {
     // Clear the previous result when changing the selected action
     onActionRun(undefined)
-  }, [action.actionId, onActionRun])
+  }, [cachedAction?.actionId, onActionRun])
+
+  if (selectedAction == undefined || cachedAction === undefined) {
+    return <></>
+  }
 
   return (
     <div css={actionTitleBarStyle}>
       <div css={editableTitleBarWrapperStyle}>
         <EditableText
-          key={action.displayName}
-          displayName={action.displayName}
-          updateDisplayNameByBlur={() => {}}
+          key={selectedAction.displayName}
+          displayName={selectedAction.displayName}
+          updateDisplayNameByBlur={(value) => {
+            const newAction = {
+              ...selectedAction,
+              displayName: value,
+            }
+            Api.request(
+              {
+                method: "PUT",
+                url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
+                data: newAction,
+              },
+              () => {
+                dispatch(actionActions.updateActionItemReducer(newAction))
+              },
+              () => {
+                Message.error(t("create_fail"))
+              },
+              () => {
+                Message.error(t("create_fail"))
+              },
+              (l) => {
+                setLoading(l)
+              },
+            )
+          }}
         />
       </div>
       <div css={actionTitleBarSpaceStyle} />
       <Dropdown
         position="bottom-end"
         trigger="click"
-        triggerProps={{ _css: dropMenuStyle }}
         dropList={
           <DropList width={"184px"}>
             <Item
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
-                onCopy(action)
+                onCopyActionItem(selectedAction)
               }}
             />
             <Item
@@ -85,7 +121,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
               title={t("editor.action.action_list.contextMenu.delete")}
               fontColor={globalColor(`--${illaPrefix}-red-03`)}
               onClick={() => {
-                onDelete(action)
+                onDeleteActionItem(selectedAction)
               }}
             />
           </DropList>
@@ -105,21 +141,29 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
             switch (runMode) {
               case "run":
                 setLoading(true)
-                runAction(action, (result: unknown, error?: boolean) => {
-                  setLoading(false)
-                  onActionRun(result, error)
-                })
+                if (cachedAction) {
+                  runAction(
+                    cachedAction,
+                    (result: unknown, error?: boolean) => {
+                      setLoading(false)
+                      onActionRun(result, error)
+                    },
+                  )
+                }
                 break
               case "save":
                 Api.request(
                   {
                     method: "PUT",
-                    url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
-                    data: action,
+                    url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
+                    data: cachedAction,
                   },
                   () => {
-                    dispatch(actionActions.updateActionItemReducer(action))
-                    dispatch(configActions.changeSelectedAction(action))
+                    if (cachedAction) {
+                      dispatch(
+                        actionActions.updateActionItemReducer(cachedAction),
+                      )
+                    }
                   },
                   () => {
                     Message.error(t("create_fail"))
@@ -136,17 +180,23 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 Api.request(
                   {
                     method: "PUT",
-                    url: `/apps/${currentApp.appId}/actions/${action.actionId}`,
-                    data: action,
+                    url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
+                    data: cachedAction,
                   },
                   () => {
-                    dispatch(actionActions.updateActionItemReducer(action))
-                    dispatch(configActions.changeSelectedAction(action))
-                    setLoading(true)
-                    runAction(action, (result: unknown, error?: boolean) => {
-                      setLoading(false)
-                      onActionRun(result, error)
-                    })
+                    if (cachedAction) {
+                      dispatch(
+                        actionActions.updateActionItemReducer(cachedAction),
+                      )
+                      setLoading(true)
+                      runAction(
+                        cachedAction,
+                        (result: unknown, error?: boolean) => {
+                          setLoading(false)
+                          onActionRun(result, error)
+                        },
+                      )
+                    }
                   },
                   () => {
                     Message.error(t("editor.action.panel.btn.save_fail"))

@@ -1,7 +1,7 @@
 import { MysqlLikeAction } from "./mysqlLikeAction"
 import { BodyContent, RestApiAction } from "./restapiAction"
 import { TransformerAction } from "./transformerAction"
-import { MongoDbAction } from "./mongoDbAction"
+import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { RedisAction } from "./redisAction"
 
 export interface Transformer {
@@ -58,7 +58,7 @@ export type ActionContent =
   | RestApiAction<BodyContent>
   | TransformerAction
   | RedisAction
-  | MongoDbAction
+  | MongoDbAction<MongoDbActionTypeContent>
 
 export const actionInitialState: ActionItem<ActionContent>[] = []
 

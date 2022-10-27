@@ -14,9 +14,7 @@ export interface ConfigState {
   scale: number
   selectedComponents: string[]
   selectedAction: ActionItem<ActionContent> | null
-  cacheActionContent: {
-    [key: string]: ActionContent
-  }
+  cachedAction: ActionItem<ActionContent> | null
   expandedKeys: string[]
   mode: IllaMode
   freezeCanvas: boolean
@@ -24,7 +22,6 @@ export interface ConfigState {
 
 export const ConfigInitialState: ConfigState = {
   openLeftPanel: true,
-  cacheActionContent: {},
   mode: "edit",
   openBottomPanel: true,
   openRightPanel: true,
@@ -32,6 +29,7 @@ export const ConfigInitialState: ConfigState = {
   scale: 100,
   selectedComponents: [],
   selectedAction: null,
+  cachedAction: null,
   showDot: false,
   expandedKeys: [],
   freezeCanvas: false,

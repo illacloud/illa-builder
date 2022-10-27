@@ -33,6 +33,11 @@ export interface RawBody<T extends RawBodyContent> {
   content: T
 }
 
+export const RawBodyInitial: RawBody<TextRawBody> = {
+  type: "text",
+  content: "",
+}
+
 export type RawBodyContent =
   | TextRawBody
   | JavaScriptRawBody

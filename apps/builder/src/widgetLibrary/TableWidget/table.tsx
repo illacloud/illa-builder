@@ -18,6 +18,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       filter,
       download,
       overFlow,
+      pageSize,
       defaultSort,
       columnVisibility,
       multiRowSelection,
@@ -40,6 +41,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         loading={loading}
         download={download}
         overFlow={overFlow}
+        pagination={{ pageSize }}
         emptyProps={{ description: emptyState }}
         defaultSort={defaultSort}
         columnVisibility={columnVisibility}
@@ -61,6 +63,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     filter,
     download,
     overFlow,
+    pageSize,
     displayName,
     defaultSortKey,
     defaultSortOrder,
@@ -129,6 +132,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       columns={columnsDef}
       download={download}
       overFlow={overFlow}
+      pageSize={pageSize}
       columnVisibility={columnVisibility}
       defaultSort={defaultSort}
       multiRowSelection={multiRowSelection}

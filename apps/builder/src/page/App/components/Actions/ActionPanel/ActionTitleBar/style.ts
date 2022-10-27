@@ -27,7 +27,3 @@ export const actionTitleBarRunStyle = css`
 export const editableTitleBarWrapperStyle = css`
   width: 280px;
 `
-
-export const dropMenuStyle = css`
-  z-index: 2;
-`

@@ -1,7 +1,6 @@
 import {
   ActionContent,
   ActionItem,
-  ActionType,
 } from "@/redux/currentApp/action/actionState"
 import { omit } from "@illa-design/system"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -40,7 +39,7 @@ export function onCopyActionItem(action: ActionItem<ActionContent>) {
         i18n.t("editor.action.action_list.message.success_created"),
       )
       store.dispatch(actionActions.addActionItemReducer(data))
-      store.dispatch(configActions.updateSelectedAction(data))
+      store.dispatch(configActions.changeSelectedAction(data))
     },
     () => {
       Message.error(i18n.t("editor.action.action_list.message.failed"))

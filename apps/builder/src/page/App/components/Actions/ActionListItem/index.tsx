@@ -14,7 +14,10 @@ import { useTranslation } from "react-i18next"
 import { ActionListItemProps } from "@/page/App/components/Actions/ActionListItem/interface"
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
-import { getSelectedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { CopyManager } from "@/utils/copyManager"
 
@@ -26,17 +29,15 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
 
     const { t } = useTranslation()
     const selectedAction = useSelector(getSelectedAction)
+    const cachedAction = useSelector(getCachedAction)
 
     const error = useSelector((state: RootState) => {
       return state.currentApp.execution.error[action.displayName]
     })
 
-    const isChanged = useSelector((state: RootState) => {
-      return (
-        state.config.selectedAction?.displayName === action.displayName &&
-        JSON.stringify(selectedAction) !== JSON.stringify(action)
-      )
-    })
+    const isChanged =
+      selectedAction?.actionId === action.actionId &&
+      JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
 
     return (
       <Dropdown
@@ -48,8 +49,7 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
-                CopyManager.copyAction(action)
-                CopyManager.paste()
+                onCopyItem(action)
               }}
             />
             <Item

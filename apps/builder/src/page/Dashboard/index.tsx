@@ -21,6 +21,70 @@ import {
   errorTitleStyle,
   loadingStyle,
 } from "./style"
+import { Dispatch } from "@reduxjs/toolkit"
+
+function requestData(
+  dispatch: Dispatch,
+  controller: AbortController,
+  onError: () => void,
+  onSuccess: () => void,
+  onLoading: (loading: boolean) => void,
+) {
+  onLoading(true)
+  const appList = new Promise((resolve) => {
+    Api.request<DashboardApp[]>(
+      {
+        url: "/apps",
+        method: "GET",
+        signal: controller.signal,
+      },
+      (response) => {
+        dispatch(
+          dashboardAppActions.updateDashboardAppListReducer(response.data),
+        )
+        resolve("success")
+      },
+      (failure) => {},
+      (crash) => {},
+      (loading) => {},
+      (errorState) => {
+        if (errorState) {
+          resolve("error")
+        }
+      },
+    )
+  })
+
+  const resourceList = new Promise((resolve) => {
+    Api.request<Resource<ResourceContent>[]>(
+      {
+        url: "/resources",
+        method: "GET",
+        signal: controller.signal,
+      },
+      (response) => {
+        dispatch(resourceActions.updateResourceListReducer(response.data))
+        resolve("success")
+      },
+      (failure) => {},
+      (crash) => {},
+      (loading) => {},
+      (errorState) => {
+        if (errorState) {
+          resolve("error")
+        }
+      },
+    )
+  })
+  Promise.all([appList, resourceList]).then((result) => {
+    onLoading(false)
+    if (result.includes("error")) {
+      onError()
+    } else {
+      onSuccess()
+    }
+  })
+}
 
 export const IllaApp: FC = () => {
   const { t } = useTranslation()
@@ -30,58 +94,19 @@ export const IllaApp: FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const controller = new AbortController()
-    const appList = new Promise((resolve) => {
-      Api.request<DashboardApp[]>(
-        {
-          url: "/apps",
-          method: "GET",
-          signal: controller.signal,
-        },
-        (response) => {
-          dispatch(
-            dashboardAppActions.updateDashboardAppListReducer(response.data),
-          )
-          resolve("success")
-        },
-        (failure) => {},
-        (crash) => {},
-        (loading) => {},
-        (errorState) => {
-          if (errorState) {
-            resolve("error")
-          }
-        },
-      )
-    })
-
-    const resourceList = new Promise((resolve) => {
-      Api.request<Resource<ResourceContent>[]>(
-        {
-          url: "/resources",
-          method: "GET",
-          signal: controller.signal,
-        },
-        (response) => {
-          dispatch(resourceActions.updateResourceListReducer(response.data))
-          resolve("success")
-        },
-        (failure) => {},
-        (crash) => {},
-        (loading) => {},
-        (errorState) => {
-          if (errorState) {
-            resolve("error")
-          }
-        },
-      )
-    })
-    Promise.all([appList, resourceList]).then((result) => {
-      if (result.includes("error")) {
+    requestData(
+      dispatch,
+      controller,
+      () => {
         setPageState("error")
-      } else {
+      },
+      () => {
         setPageState("success")
-      }
-    })
+      },
+      (loading) => {
+        setPageState("loading")
+      },
+    )
     return () => {
       controller.abort()
     }
@@ -115,7 +140,24 @@ export const IllaApp: FC = () => {
             {t("dashboard.common.error_description")}
           </div>
           {/*TODO: @aruseito retry function */}
-          <Button colorScheme="techPurple">
+          <Button
+            colorScheme="techPurple"
+            onClick={() => {
+              requestData(
+                dispatch,
+                new AbortController(),
+                () => {
+                  setPageState("error")
+                },
+                () => {
+                  setPageState("success")
+                },
+                (loading) => {
+                  setPageState("loading")
+                },
+              )
+            }}
+          >
             {t("dashboard.common.error_button")}
           </Button>
         </div>

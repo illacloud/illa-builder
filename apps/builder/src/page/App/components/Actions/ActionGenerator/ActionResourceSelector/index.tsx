@@ -49,12 +49,6 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
     resourceList[0]?.resourceId,
   )
 
-  useEffect(() => {
-    if (resourceList.length == 0) {
-      onCreateResource?.(getResourceTypeFromActionType(actionType)!!)
-    }
-  }, [resourceList, onCreateResource, actionType])
-
   const [loading, setLoading] = useState(false)
 
   const dispatch = useDispatch()
@@ -110,9 +104,8 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
           <Button
             colorScheme="techPurple"
             onClick={() => {
-              const displayName = DisplayNameGenerator.generateDisplayName(
-                actionType,
-              )
+              const displayName =
+                DisplayNameGenerator.generateDisplayName(actionType)
               const initialContent = getInitialContent(actionType)
               const data: Partial<ActionItem<ActionContent>> = {
                 actionType,
@@ -132,7 +125,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                     t("editor.action.action_list.message.success_created"),
                   )
                   dispatch(actionActions.addActionItemReducer(data))
-                  dispatch(configActions.updateSelectedAction(data))
+                  dispatch(configActions.changeSelectedAction(data))
                   onCreateAction?.(actionType, selectedResourceId)
                 },
                 () => {
