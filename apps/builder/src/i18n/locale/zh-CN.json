@@ -409,8 +409,10 @@
           "columnFiltersChange": "行筛选改变",
           "fail": "失败后",
           "focus": "聚焦",
+          "invalid": "校验失败",
           "paginationChange": "翻页配置改变",
           "sortingChange": "排序方式改变",
+          "submit": "提交",
           "success": "成功后"
         }
       },
@@ -492,6 +494,7 @@
         "default_tab": "默认值",
         "description": "描述",
         "direction": "方向",
+        "disable_submit": "禁用提交",
         "disabled": "禁用",
         "download": "下载",
         "duration": "持续时间",
@@ -504,6 +507,7 @@
         "failure": "请求失败",
         "filter": "筛选",
         "font_size": "字号",
+        "form_data_key": "表单数据键值",
         "format": "格式化",
         "go_to_url": "跳转链接",
         "group_by": "分组标签",
@@ -553,12 +557,15 @@
         "read_only": "只读",
         "regex": "正则表达式",
         "required_field": "必需字段",
+        "reset_after_successful_submit": "提交成功后重置输入内容",
         "run_script": "运行脚本",
         "scale_type": "缩放类型",
         "set_temporary_state": "设置临时状态",
         "shadow": "阴影",
         "show_character_count": "展示字符数量",
         "show_clear_button": "展示清除按钮",
+        "show_footer": "显示操作区",
+        "show_header": "显示标题区",
         "show_notification": "展示通知",
         "sort": "排序",
         "start_date": "开始日期",
@@ -581,6 +588,7 @@
         "trail_color": "描边颜色",
         "trigger_query": "触发请求",
         "type": "类型",
+        "validate_inputs_on_submit": "提交时校验输入",
         "value": "值",
         "value_labels": "维度",
         "variant": "样式",
@@ -600,8 +608,10 @@
         "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
         "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
         "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
+        "disabled_submit": "禁用提交时，调用form.submit()方法的组件也会被禁用。",
         "download": "在工具栏显示下载按钮",
         "filter": "在工具栏显示筛选按钮",
+        "form_data_key": "在构建数据属性时，指定一个包装表单组件的键。",
         "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态",
         "hide_validation_message": "当验证输入有误时隐藏错误信息。您可以通过编写 JavaScript 对是否隐藏进行动态修改。",
         "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
@@ -620,6 +630,16 @@
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
       "unselected_tip2": "请点击组件以选中。"
+    },
+    "validate_message": {
+      "email": "请输入有效的电子邮箱",
+      "max_length": "请输入最多{{ number }}个字符",
+      "max_value": "请输入不大于{{ number }}的值",
+      "min_length": "请输入至少{{ number }}个字符",
+      "min_value": "请输入不小于{{ number }} 的值",
+      "regex": "请按照要求的格式填写",
+      "required": "必填",
+      "url": "请输入有效的URL"
     },
     "widget_picker": {
       "empty_tip": "抱歉，没有搜索结果",
@@ -855,6 +875,9 @@
     },
     "editable_text": {
       "name": "可编辑文本"
+    },
+    "form": {
+      "name": "表单"
     },
     "image": {
       "name": "图片"

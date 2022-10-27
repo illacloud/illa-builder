@@ -22,5 +22,6 @@ export const DATE_WIDGET_CONFIG: WidgetConfig = {
     labelPosition: "left",
     labelWidth: "{{33}}",
     hidden: false,
+    formDataKey: "radioButton",
   },
 }

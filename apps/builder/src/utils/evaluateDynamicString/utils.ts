@@ -79,7 +79,9 @@ export const wrapCode = (code: string) => {
     })
   `
 }
-export function getDisplayNameAndAttrPath(fullPath: string): {
+export function getDisplayNameAndAttrPath(
+  fullPath: string,
+): {
   displayName: string
   attrPath: string
 } {

@@ -1,5 +1,8 @@
-export interface ValidateMessageProps {
-  value?: string | number
+export interface ValidateMessageNewProps {
+  validateMessage: string
+}
+
+export interface ValidateMessageOldProps {
   pattern?: "Email" | "URL" | "Regex"
   regex?: string
   minLength?: number
@@ -9,7 +12,12 @@ export interface ValidateMessageProps {
   hideValidationMessage?: boolean
 }
 
-export type ValidateCheckProps = Pick<
-  ValidateMessageProps,
-  "value" | "maxLength" | "minLength" | "required" | "pattern" | "regex"
->
+export interface ValidateCheckProps {
+  value?: unknown
+  pattern?: "Email" | "URL" | "Regex"
+  regex?: string
+  minLength?: number
+  maxLength?: number
+  required?: boolean
+  customRule?: string
+}

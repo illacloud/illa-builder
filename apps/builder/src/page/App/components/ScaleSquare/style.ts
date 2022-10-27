@@ -395,14 +395,37 @@ export const applyDashedLineStyle = (
   isSelected: boolean,
   isShowCanvasDot: boolean,
   isDragging: boolean,
+  maxHeight?: number,
 ) => css`
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
+  max-height: ${maxHeight ? `${maxHeight}px` : "unset"};
+  pointer-events: none;
   border: ${isShowCanvasDot && !isSelected && !isDragging
+    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+    : "none"};
+`
+
+export const applyXDirectionDashedLineStyle = (
+  isSelected: boolean,
+  isShowCanvasDot: boolean,
+  isDragging: boolean,
+  maxHeight?: number,
+) => css`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-height: ${maxHeight ? `${maxHeight}px` : "unset"};
+  pointer-events: none;
+  border-left: ${isShowCanvasDot && !isSelected && !isDragging
+    ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
+    : "none"};
+  border-right: ${isShowCanvasDot && !isSelected && !isDragging
     ? `1px dashed ${globalColor(`--${illaPrefix}-techPurple-01`)}`
     : "none"};
 `

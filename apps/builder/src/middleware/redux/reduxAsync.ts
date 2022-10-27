@@ -191,6 +191,31 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             }
             break
 
+          case "updateMultiComponentPropsReducer":
+            const updateMultiPayload: UpdateComponentPropsPayload[] = payload
+            const finalNodes = updateMultiPayload
+              .map(({ displayName }) => {
+                return searchDsl(getCanvas(store.getState()), displayName)
+              })
+              .filter((node) => node !== null) as ComponentNode[]
+            if (Array.isArray(finalNodes)) {
+              const wsPayload =
+                transformComponentReduxPayloadToWsPayload(finalNodes)
+              Connection.getRoom("app", currentAppID)?.send(
+                getPayload(
+                  Signal.SIGNAL_UPDATE_STATE,
+                  Target.TARGET_COMPONENTS,
+                  true,
+                  {
+                    type,
+                    payload,
+                  },
+                  wsPayload,
+                ),
+              )
+            }
+            break
+
           case "deleteComponentNodeReducer":
             const deletePayload: DeleteComponentNodePayload = payload
             Connection.getRoom("app", currentAppID)?.send(

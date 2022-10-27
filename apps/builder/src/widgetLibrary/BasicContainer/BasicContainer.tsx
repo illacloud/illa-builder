@@ -3,19 +3,22 @@ import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComp
 import { BasicContainerProps } from "./interface"
 import { basicContainerWrapperStyle } from "./style"
 import { CONTAINER_TYPE } from "@/redux/currentApp/editor/components/componentsState"
-import useMeasure from "react-use-measure"
 
 export const BasicContainer: FC<BasicContainerProps> = (props) => {
-  const { componentNode } = props
+  const {
+    componentNode,
+    canResizeY = true,
+    minHeight,
+    padding,
+    safeRowNumber = 8,
+  } = props
   const containerRef: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null)
-  const [measureRef, bounds] = useMeasure()
 
   return (
     <div
-      css={basicContainerWrapperStyle}
+      css={basicContainerWrapperStyle(canResizeY, padding)}
       ref={(node) => {
-        measureRef(node)
         containerRef.current = node
       }}
     >
@@ -23,7 +26,9 @@ export const BasicContainer: FC<BasicContainerProps> = (props) => {
         componentNode={componentNode}
         containerPadding={4}
         containerRef={containerRef}
-        minHeight={bounds.height - 7}
+        canResizeY={canResizeY}
+        minHeight={minHeight}
+        safeRowNumber={safeRowNumber}
       />
     </div>
   )
@@ -38,4 +43,12 @@ export const BasicContainerConfig = {
   containerType: CONTAINER_TYPE.EDITOR_DOT_PANEL,
   w: 0,
   h: 0,
+}
+
+export const generateBasicContainerConfig = (displayName: string) => {
+  return {
+    ...BasicContainerConfig,
+    displayName,
+    widgetName: displayName,
+  }
 }

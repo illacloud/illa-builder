@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useRef, useState } from "react"
 import { PenIcon } from "@illa-design/icon"
 import { Input } from "@illa-design/input"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
@@ -11,6 +11,7 @@ import {
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
+import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 export const WrappedEditableText: FC<WrappedEditableTextProps> = (props) => {
   const {
@@ -110,7 +111,43 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     regex,
     customRule,
     hideValidationMessage,
+    validateMessage,
   } = props
+
+  const handleValidate = useCallback(
+    (value?: any) => {
+      const message = handleValidateCheck({
+        value,
+        required,
+        customRule,
+        pattern,
+        regex,
+        minLength,
+        maxLength,
+      })
+      const showMessage =
+        !hideValidationMessage && message && message.length > 0
+      if (showMessage) {
+        handleUpdateDsl({
+          validateMessage: message,
+        })
+      } else {
+        handleUpdateDsl({
+          validateMessage: "",
+        })
+      }
+    },
+    [
+      customRule,
+      handleUpdateDsl,
+      hideValidationMessage,
+      maxLength,
+      minLength,
+      pattern,
+      regex,
+      required,
+    ],
+  )
 
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
@@ -132,6 +169,9 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
       },
       clearValue: () => {
         handleUpdateDsl({ value: undefined })
+      },
+      validate: () => {
+        handleValidate(value)
       },
     })
     return () => {
@@ -155,6 +195,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleUpdateDsl,
     handleDeleteGlobalData,
+    handleValidate,
   ])
   return (
     <>
@@ -182,16 +223,7 @@ export const EditableTextWidget: FC<EditableTextWidgetProps> = (props) => {
           labelHidden || !label,
         )}
       >
-        <InvalidMessage
-          value={value}
-          pattern={pattern}
-          regex={regex}
-          minLength={minLength}
-          maxLength={maxLength}
-          required={required}
-          customRule={customRule}
-          hideValidationMessage={hideValidationMessage}
-        />
+        <InvalidMessage validateMessage={validateMessage} />
       </div>
     </>
   )

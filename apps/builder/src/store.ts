@@ -73,5 +73,4 @@ export type AppStartListening = TypedStartListening<RootState, AppDispatch>
 
 export type AppListenerEffectAPI = ListenerEffectAPI<RootState, AppDispatch>
 
-export const startAppListening =
-  listenerMiddleware.startListening as AppStartListening
+export const startAppListening = listenerMiddleware.startListening as AppStartListening

@@ -193,6 +193,14 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "required",
       },
       {
+        id: `${baseWidgetName}-validation-custom`,
+        labelName: i18n.t("editor.inspect.setter_label.custom_rule"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.custom_rule"),
+        setterType: "INPUT_SETTER",
+        attrName: "customRule",
+        expectedType: VALIDATION_TYPES.STRING,
+      },
+      {
         id: `${baseWidgetName}-validation-hide-message`,
         labelName: i18n.t(
           "editor.inspect.setter_label.hide_validation_message",
@@ -205,6 +213,14 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         openDynamic: true,
         attrName: "hideValidationMessage",
+      },
+      {
+        id: `${baseWidgetName}-validation-form-data-key`,
+        labelName: i18n.t("editor.inspect.setter_label.form_data_key"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.form_data_key"),
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "formDataKey",
       },
     ],
   },

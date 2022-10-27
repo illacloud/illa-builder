@@ -1,3 +1,5 @@
+import { cloneDeep } from "lodash"
+import { isObject } from "@illa-design/system"
 import { WidgetCardInfo } from "@/widgetLibrary/interface"
 import { WidgetTypeList } from "@/widgetLibrary/widgetBuilder"
 import {
@@ -9,6 +11,7 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 export const generateComponentNode = (
   widgetInfo: Partial<WidgetCardInfo>,
   parentNodeDisplayName?: string,
+  pathToChildren: string[] = [],
 ): ComponentNode => {
   let baseDSL: ComponentNode
   if (
@@ -24,30 +27,59 @@ export const generateComponentNode = (
     throw new Error("dsl must have default width and height")
   }
   let childrenNodeDSL: ComponentNode[] = []
-  if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
-    widgetInfo.childrenNode.map((childNode) => {
-      if (!childrenNodeDSL) childrenNodeDSL = []
-      const child = generateComponentNode(childNode)
-      childrenNodeDSL.push(child)
-    })
-  }
-
   const {
     defaults,
     w,
     h,
     type,
     displayName = "",
-    containerType,
+    containerType = CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
     x = -1,
     y = -1,
   } = widgetInfo
   let props: Record<string, any> | undefined = {}
   if (typeof defaults === "function") {
-    props = defaults()
+    props = cloneDeep(defaults())
   } else {
-    props = defaults
+    props = cloneDeep(defaults)
   }
+  const realDisplayName = DisplayNameGenerator.generateDisplayName(
+    type,
+    displayName,
+  )
+
+  if (isObject(props) && Object.hasOwn(props, "formDataKey")) {
+    props.formDataKey = `{{${realDisplayName}.displayName}}`
+  }
+
+  if (
+    isObject(props) &&
+    Object.hasOwn(props, "events") &&
+    Array.isArray(props.events)
+  ) {
+    props.events = props.events.map((event) => {
+      return {
+        ...event,
+        widgetID: pathToChildren[pathToChildren.length - 1] || "unknown",
+      }
+    })
+  }
+  if (widgetInfo.childrenNode && Array.isArray(widgetInfo.childrenNode)) {
+    pathToChildren =
+      containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE
+        ? [...pathToChildren, realDisplayName]
+        : pathToChildren
+    widgetInfo.childrenNode.map((childNode) => {
+      if (!childrenNodeDSL) childrenNodeDSL = []
+      const child = generateComponentNode(
+        childNode,
+        realDisplayName,
+        pathToChildren,
+      )
+      childrenNodeDSL.push(child)
+    })
+  }
+
   baseDSL = {
     w,
     h,
@@ -63,8 +95,8 @@ export const generateComponentNode = (
     z: 0,
     showName: displayName,
     type,
-    displayName: DisplayNameGenerator.generateDisplayName(type, displayName),
-    containerType: containerType || CONTAINER_TYPE.EDITOR_SCALE_SQUARE,
+    displayName: realDisplayName,
+    containerType,
     parentNode: parentNodeDisplayName || null,
     childrenNode: childrenNodeDSL,
     props: props ?? {},

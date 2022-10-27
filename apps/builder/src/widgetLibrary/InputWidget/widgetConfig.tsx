@@ -20,5 +20,6 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
     labelWidth: "{{33}}",
     colorScheme: "blue",
     hidden: false,
+    formDataKey: "input",
   },
 }

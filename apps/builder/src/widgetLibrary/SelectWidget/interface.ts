@@ -1,11 +1,11 @@
 import { SelectProps } from "@illa-design/select"
-import { ValidateMessageProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
+import { ValidateMessageOldProps } from "@/widgetLibrary/PublicSector/InvalidMessage/interface"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedSelectProps
-  extends Omit<ValidateMessageProps, "value">,
+  extends Omit<ValidateMessageOldProps, "value">,
     Pick<
       SelectProps,
       | "options"
@@ -24,7 +24,16 @@ export interface WrappedSelectProps
   suffixIcon?: string // TODO: not support yet
   prefixText?: string // TODO: not support yet
   suffixText?: string // TODO: not support yet
+  displayName: string
   handleUpdateDsl: (value: any) => void
+  getValidateMessage: (value?: unknown) => string
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
+  handleOnChange?: () => void
 }
 
 export interface SelectWidgetProps
@@ -44,4 +53,5 @@ export interface SelectWidgetProps
     values: any[]
     disables: boolean[]
   }
+  validateMessage: string
 }

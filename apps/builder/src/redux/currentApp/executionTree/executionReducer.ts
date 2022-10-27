@@ -67,3 +67,15 @@ export const updateExecutionByDisplayNameReducer: CaseReducer<
     ...value,
   }
 }
+
+export const updateExecutionByMultiDisplayNameReducer: CaseReducer<
+  ExecutionState,
+  PayloadAction<UpdateExecutionByDisplayNamePayload[]>
+> = (state, action) => {
+  action.payload.forEach(({ displayName, value }) => {
+    state.result[displayName] = {
+      ...state.result[displayName],
+      ...value,
+    }
+  })
+}

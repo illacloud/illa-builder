@@ -50,8 +50,17 @@ export const RenderComponentCanvas: FC<{
   containerRef: RefObject<HTMLDivElement>
   containerPadding: number
   minHeight?: number
+  canResizeY?: boolean
+  safeRowNumber: number
 }> = (props) => {
-  const { componentNode, containerRef, containerPadding, minHeight } = props
+  const {
+    componentNode,
+    containerRef,
+    containerPadding,
+    minHeight,
+    canResizeY = true,
+    safeRowNumber,
+  } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
   const illaMode = useSelector(getIllaMode)
@@ -95,10 +104,17 @@ export const RenderComponentCanvas: FC<{
         componentNode.displayName === "root"
           ? rowNumber * UNIT_HEIGHT
           : (componentNode.h - 1) * UNIT_HEIGHT
-
       switch (item.containerType) {
         case "EDITOR_DOT_PANEL":
-          return <BasicContainer componentNode={item} key={item.displayName} />
+          return (
+            <BasicContainer
+              componentNode={item}
+              key={item.displayName}
+              canResizeY={canResizeY}
+              minHeight={minHeight}
+              safeRowNumber={safeRowNumber}
+            />
+          )
         case "EDITOR_SCALE_SQUARE":
           const widget = widgetBuilder(item.type)
           if (!widget) return null
@@ -123,6 +139,7 @@ export const RenderComponentCanvas: FC<{
       }
     })
   }, [
+    canResizeY,
     collisionEffect,
     componentNode.childrenNode,
     componentNode.displayName,
@@ -130,7 +147,9 @@ export const RenderComponentCanvas: FC<{
     componentNode.type,
     containerPadding,
     isShowCanvasDot,
+    minHeight,
     rowNumber,
+    safeRowNumber,
     unitWidth,
   ])
 
@@ -175,6 +194,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "ADD",
+              bounds.height,
+              canResizeY,
             )
           } else {
             dragResult = getDragResult(
@@ -185,6 +206,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "UPDATE",
+              bounds.height,
+              canResizeY,
             )
           }
           const { ladingPosition, rectCenterPosition } = dragResult
@@ -193,8 +216,11 @@ export const RenderComponentCanvas: FC<{
           /**
            * add rows when node over canvas
            */
-          if (landingY / UNIT_HEIGHT + item.h > rowNumber - 8) {
-            const finalNumber = landingY / UNIT_HEIGHT + item.h + 8
+          if (
+            canResizeY &&
+            landingY / UNIT_HEIGHT + item.h > rowNumber - safeRowNumber
+          ) {
+            const finalNumber = landingY / UNIT_HEIGHT + item.h + safeRowNumber
             setRowNumber(finalNumber)
             containerRef.current?.scrollTo({
               top: bounds.height,
@@ -300,6 +326,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "ADD",
+              bounds.height,
+              canResizeY,
             )
           } else {
             dragResult = getDragResult(
@@ -310,6 +338,8 @@ export const RenderComponentCanvas: FC<{
               UNIT_HEIGHT,
               bounds.width,
               "UPDATE",
+              bounds.height,
+              canResizeY,
             )
           }
           const { ladingPosition } = dragResult
@@ -381,7 +411,7 @@ export const RenderComponentCanvas: FC<{
   )
 
   useEffect(() => {
-    if (!isActive) {
+    if (!isActive && canResizeY) {
       const childrenNodes = componentNode.childrenNode
       let maxY = 0
       childrenNodes?.forEach((node) => {
@@ -390,7 +420,7 @@ export const RenderComponentCanvas: FC<{
       if (illaMode === "edit") {
         setRowNumber(
           Math.max(
-            maxY + 8,
+            maxY + safeRowNumber,
             Math.floor((minHeight || document.body.clientHeight) / UNIT_HEIGHT),
           ),
         )
@@ -398,7 +428,15 @@ export const RenderComponentCanvas: FC<{
         setRowNumber(Math.max(maxY, bounds.height / UNIT_HEIGHT))
       }
     }
-  }, [bounds.height, componentNode.childrenNode, illaMode, isActive, minHeight])
+  }, [
+    bounds.height,
+    canResizeY,
+    componentNode.childrenNode,
+    illaMode,
+    isActive,
+    minHeight,
+    safeRowNumber,
+  ])
 
   return (
     <div

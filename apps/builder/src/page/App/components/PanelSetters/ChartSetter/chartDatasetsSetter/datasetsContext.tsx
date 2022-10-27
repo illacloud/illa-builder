@@ -21,8 +21,13 @@ interface ContextShape extends Omit<ProviderProps, "children"> {
 export const DatasetsContext = createContext<ContextShape>({} as ContextShape)
 
 export const DatasetsProvider: FC<ProviderProps> = (props) => {
-  const { children, datasets, widgetDisplayName, attrPath, handleUpdateDsl } =
-    props
+  const {
+    children,
+    datasets,
+    widgetDisplayName,
+    attrPath,
+    handleUpdateDsl,
+  } = props
 
   const handleDeleteDataSet = useCallback(
     (index: number) => {
