@@ -66,7 +66,87 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
 
   return (
-    <form onSubmit={handleSubmit((data, event) => {})}>
+    <form
+      onSubmit={handleSubmit((data, event) => {
+        console.log("data", data)
+        if (resourceId != undefined) {
+          Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+            {
+              method: "PUT",
+              url: `/resources/${resourceId}`,
+              data: {
+                resourceId: data.resourceId,
+                resourceName: data.resourceName,
+                resourceType: "mongodb",
+                content: {
+                  configType: data.configType,
+                  ssl: generateSSLConfig(sslOpen, data),
+                  configContent: {
+                    host: data.host,
+                    port: data.port.toString(),
+                    connectionFormat: data.connectionFormat,
+                    databaseName: data.databaseName,
+                    databaseUsername: data.databaseUsername,
+                    databasePassword: data.databasePassword,
+                  },
+                },
+              },
+            },
+            (response) => {
+              dispatch(resourceActions.updateResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        } else {
+          Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+            {
+              method: "POST",
+              url: `/resources`,
+              data: {
+                resourceName: data.resourceName,
+                resourceType: "mongodb",
+                content: {
+                  configType: data.configType,
+                  ssl: generateSSLConfig(sslOpen, data),
+                  configContent: {
+                    host: data.host,
+                    port: data.port.toString(),
+                    connectionFormat: data.connectionFormat,
+                    databaseName: data.databaseName,
+                    databaseUsername: data.databaseUsername,
+                    databasePassword: data.databasePassword,
+                  },
+                },
+              },
+            },
+            (response) => {
+              onFinished(response.data.resourceId)
+              dispatch(resourceActions.addResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        }
+      })}
+    >
       <div css={container}>
         <div css={divider} />
         <div css={configItem}>

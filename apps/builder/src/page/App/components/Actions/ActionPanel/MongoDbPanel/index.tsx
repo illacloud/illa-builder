@@ -50,7 +50,7 @@ import { UpdateManyPart } from "@/page/App/components/Actions/ActionPanel/MongoD
 import { UpdateOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/UpdateOnePart"
 import { CommandPart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/Command"
 import { DeleteOnePart } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/DeleteOnePart"
-import { ActionEvents, ActionItem } from "@/redux/currentApp/action/actionState"
+import { ActionItem } from "@/redux/currentApp/action/actionState"
 import { configActions } from "@/redux/config/configSlice"
 
 export const MongoDbPanel: FC = () => {
@@ -77,13 +77,9 @@ export const MongoDbPanel: FC = () => {
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       if (cachedAction) {
-        const newAction: ActionItem<
-          MongoDbAction<MongoDbActionTypeContent>,
-          ActionEvents
-        > = {
+        const newAction: ActionItem<MongoDbAction<MongoDbActionTypeContent>> = {
           ...(cachedAction as ActionItem<
-            MongoDbAction<MongoDbActionTypeContent>,
-            ActionEvents
+            MongoDbAction<MongoDbActionTypeContent>
           >),
         }
 
