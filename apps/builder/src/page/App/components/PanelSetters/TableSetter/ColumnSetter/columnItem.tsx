@@ -7,7 +7,7 @@ import { DragIconAndLabel } from "./dragIconAndLabel"
 import { ColumnListSetterContext } from "./context/columnListContext"
 
 export const ColumnItem: FC<ColumnItemProps> = (props) => {
-  const { accessorKey, header, value, visible, index } = props
+  const { accessorKey, header, value, visible, custom, index } = props
 
   const { handleMoveColumnItem } = useContext(ColumnListSetterContext)
   const ref = useRef<HTMLDivElement>(null)
@@ -60,7 +60,12 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
   return (
     <div ref={ref} style={{ opacity }}>
       <div css={optionListItemStyle}>
-        <DragIconAndLabel index={index} label={header} visible={visible} />
+        <DragIconAndLabel
+          index={index}
+          label={header}
+          visible={visible}
+          custom={custom}
+        />
       </div>
     </div>
   )

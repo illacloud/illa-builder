@@ -33,13 +33,6 @@ const originData = [
     address: "29436 Keebler RestSuite 320",
   },
   {
-    id: 4,
-    name: "Mrs. Florence Rohan I",
-    company: "Customer-focused client-server budgetary management",
-    phone: "1-718-234-7813 x1812",
-    address: "2188 Brakus Islands Apt. 031",
-  },
-  {
     id: 5,
     name: "Stacey Little",
     company: "Distributed interactive monitoring",
