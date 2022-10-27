@@ -17,7 +17,10 @@ import {
   resizeBarStyle,
 } from "./style"
 import { Resizable, ResizeCallback, ResizeStartCallback } from "re-resizable"
-import { applyDashedLineStyle } from "@/page/App/components/ScaleSquare/style"
+import {
+  applyDashedLineStyle,
+  applyXDirectionDashedLineStyle,
+} from "@/page/App/components/ScaleSquare/style"
 import useMeasure from "react-use-measure"
 import {
   FORM_BODY_MIN_HEIGHT,
@@ -386,7 +389,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
     return (
       <BasicContainer
         componentNode={bodyComponentNode}
-        minHeight={bodyBounds.height - 16}
+        minHeight={bodyBounds.height - 2 * 8}
         padding={8}
       />
     )
@@ -398,7 +401,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
       <BasicContainer
         componentNode={footerComponentNode}
         canResizeY={false}
-        minHeight={footerBounds.height}
+        minHeight={footerBounds.height - 2 * 8}
         padding={8}
       />
     )
@@ -536,6 +539,9 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
       )}
       <div css={formBodyStyle} ref={bodyRef}>
         {renderBody}
+        {isMouseHover && !isDraggingActive && (
+          <div css={applyXDirectionDashedLineStyle(false, true, false)} />
+        )}
       </div>
       {showFooter && (
         <Resizable

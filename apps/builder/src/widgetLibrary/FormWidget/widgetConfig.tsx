@@ -13,7 +13,7 @@ export const FORM_WIDGET_CONFIG: WidgetConfig = {
   keywords: ["form", "表单"],
   icon: <FormWidgetIcon />,
   sessionType: "PRESENTATION",
-  w: 20,
+  w: 16,
   h: 40,
   childrenNode: [
     {

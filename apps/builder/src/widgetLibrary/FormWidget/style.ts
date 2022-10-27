@@ -1,6 +1,5 @@
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { css } from "@emotion/react"
-import { FORM_BODY_MARGIN } from "./widgetConfig"
 export const formContainerStyle = css`
   width: 100%;
   height: 100%;
@@ -21,9 +20,9 @@ export const formBodyStyle = css`
   width: 100%;
   height: 100%;
   min-height: 100px;
-  background-color: white;
   flex: 1;
   overflow-y: auto;
+  position: relative;
 `
 export const resizeLineStyle = css`
   width: 100%;
