@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
 import { Button, ButtonGroup } from "@illa-design/button"
@@ -107,7 +107,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
               const displayName =
                 DisplayNameGenerator.generateDisplayName(actionType)
               const initialContent = getInitialContent(actionType)
-              const data: Partial<ActionItem<ActionContent>> = {
+              const data: Partial<ActionItem<ActionContent, "none">> = {
                 actionType,
                 displayName,
                 resourceId: selectedResourceId,
@@ -120,7 +120,7 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
                   method: "POST",
                   data,
                 },
-                ({ data }: { data: ActionItem<ActionContent> }) => {
+                ({ data }: { data: ActionItem<ActionContent, "none"> }) => {
                   Message.success(
                     t("editor.action.action_list.message.success_created"),
                   )

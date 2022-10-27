@@ -33,8 +33,9 @@ export type ActionType =
   | "transformer"
 
 export type ActionTriggerMode = "manually" | "automate"
+export type ActionEvents = "none" | Events
 
-export interface ActionItem<T extends ActionContent> {
+export interface ActionItem<T extends ActionContent, E extends ActionEvents> {
   actionId: string
   displayName: string
   actionType: ActionType
@@ -42,15 +43,16 @@ export interface ActionItem<T extends ActionContent> {
   triggerMode: ActionTriggerMode
   resourceId?: string
   content: T
+  events: E
 }
 
-export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
+export const actionItemInitial: Partial<ActionItem<ActionContent, "none">> = {
   transformer: {
     enable: false,
-    rawData:
-      "// The variable 'data' allows you to reference the request's data in the transformer. \n// example: return data.find(element => element.isError)\nreturn data.error",
+    rawData: "",
   },
   triggerMode: "manually",
+  events: "none",
 }
 
 export type ActionContent =
@@ -60,9 +62,4 @@ export type ActionContent =
   | RedisAction
   | MongoDbAction<MongoDbActionTypeContent>
 
-export const actionInitialState: ActionItem<ActionContent>[] = []
-
-export interface UpdateActionItemPayload {
-  displayName: string
-  data: Record<string, any>
-}
+export const actionInitialState: ActionItem<ActionContent, ActionEvents>[] = []

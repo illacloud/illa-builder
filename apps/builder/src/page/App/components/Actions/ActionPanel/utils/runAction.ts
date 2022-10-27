@@ -1,6 +1,8 @@
 import {
   ActionContent,
+  ActionEvents,
   ActionItem,
+  Events,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
 import store from "@/store"
@@ -133,7 +135,7 @@ function getRealEventHandler(eventHandler?: any[]) {
 }
 
 export const runAction = (
-  action: ActionItem<ActionContent>,
+  action: ActionItem<ActionContent, Events>,
   resultCallback?: (data: unknown, error: boolean) => void,
   isTrigger: boolean = false,
 ) => {
@@ -143,9 +145,11 @@ export const runAction = (
   const appId = getAppId(rootState)
   if (actionType !== "transformer") {
     const { content, transformer } = action as ActionItem<
-      MysqlLikeAction | RestApiAction<BodyContent>
+      MysqlLikeAction | RestApiAction<BodyContent>,
+      ActionEvents
     >
-    const { successEvent, failedEvent, ...restContent } = content
+    const { ...restContent } = content
+    const { successEvent, failedEvent } = action.events
     const realContent: Record<string, any> = isTrigger
       ? restContent
       : calcRealContent(restContent)

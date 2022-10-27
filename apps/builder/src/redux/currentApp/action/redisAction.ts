@@ -1,8 +1,6 @@
-import { Events } from "@/redux/currentApp/action/actionState"
-
 export type RedisActionMode = "raw" | "select"
 
-export interface RedisAction extends Events {
+export interface RedisAction {
   mode: RedisActionMode
   query: string
 }

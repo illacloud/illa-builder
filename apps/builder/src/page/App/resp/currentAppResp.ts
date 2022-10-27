@@ -4,6 +4,7 @@ import { ComponentNode } from "@/redux/currentApp/editor/components/componentsSt
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import {
   ActionContent,
+  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { DependenciesState } from "@/redux/currentApp/executionTree/executionState"
@@ -11,7 +12,7 @@ import { DependenciesState } from "@/redux/currentApp/executionTree/executionSta
 export interface CurrentAppResp {
   appInfo: DashboardApp
   components: ComponentNode
-  actions: ActionItem<ActionContent>[]
+  actions: ActionItem<ActionContent, ActionEvents>[]
   dependenciesState: DependenciesState
   executionState: Record<string, any>
   dragShadowState: DragShadowState
