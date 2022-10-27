@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC } from "react"
 import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
   restapiItemInputStyle,
@@ -18,10 +18,7 @@ import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEd
 import { BodyEditor } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import {
-  BinaryBody,
   BodyContent,
-  RawBody,
-  RawBodyContent,
   RestApiAction,
 } from "@/redux/currentApp/action/restapiAction"
 import { RootState } from "@/store"
@@ -31,81 +28,24 @@ import {
   RestApiAuth,
   RestApiResource,
 } from "@/redux/resource/restapiResource"
-import { Controller, useForm } from "react-hook-form"
-import { getCachedAction } from "@/redux/config/configSelector"
+import {
+  getCachedAction,
+  getSelectedAction,
+} from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionItem } from "@/redux/currentApp/action/actionState"
 
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
 
   const cachedAction = useSelector(getCachedAction)!!
+  const selectedAction = useSelector(getSelectedAction)!!
 
   const content = cachedAction.content as RestApiAction<BodyContent>
+  const dispatch = useDispatch()
 
   const currentResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === cachedAction?.resourceId)
   })
-
-  const { control, watch, getValues, reset } = useForm<
-    RestApiAction<BodyContent>
-  >({
-    mode: "onChange",
-    shouldUnregister: true,
-    defaultValues: content,
-  })
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    reset(cachedAction.content as RestApiAction<BodyContent>)
-  }, [cachedAction.content, reset])
-
-  useEffect(() => {
-    const subscription = watch((value, { name, type }) => {
-      if (cachedAction) {
-        const newAction: ActionItem<RestApiAction<BodyContent>> = {
-          ...(cachedAction as ActionItem<RestApiAction<BodyContent>>),
-        }
-
-        const data = getValues()
-
-        let body
-        switch (data.bodyType) {
-          case "none":
-            body = null
-            break
-          case "form-data":
-          case "x-www-form-urlencoded":
-            body = data.body ?? ([{ key: "", value: "" }] as Params[])
-            break
-          case "raw":
-            body = {
-              type: (data.body as RawBody<RawBodyContent>).type ?? "text",
-              content: (data.body as RawBody<RawBodyContent>).content ?? "",
-            } as RawBody<RawBodyContent>
-            break
-          case "binary":
-            body = (data.body as BinaryBody) ?? ""
-            break
-        }
-
-        newAction.content = {
-          ...newAction.content,
-          url: data.url,
-          method: data.method,
-          urlParams: data.urlParams,
-          headers: data.headers,
-          cookies: data.cookies,
-          bodyType: data.method === "GET" ? "none" : data.bodyType ?? "none",
-          body: body,
-        }
-
-        dispatch(configActions.updateCachedAction(newAction))
-      }
-    })
-    return () => subscription.unsubscribe()
-  }, [watch, getValues, cachedAction, dispatch])
 
   return (
     <div css={restapiPanelContainerStyle}>
@@ -115,22 +55,36 @@ export const RestApiPanel: FC = () => {
         <span css={restapiItemLabelStyle}>
           {t("editor.action.resource.restapi.label.action_type")}
         </span>
-        <Controller
-          name="method"
-          control={control}
-          render={({ field: { value, onChange }, fieldState, formState }) => (
-            <Select
-              colorScheme="techPurple"
-              ml="16px"
-              value={value}
-              width="160px"
-              maxW="160px"
-              options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
-              onChange={(value) => {
-                onChange(value)
-              }}
-            />
-          )}
+        <Select
+          colorScheme="techPurple"
+          ml="16px"
+          value={content.method}
+          width="160px"
+          maxW="160px"
+          options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
+          onChange={(value) => {
+            let newBodyType = "none"
+            let newBody = null
+
+            if (value !== "GET") {
+              if (selectedAction.method === value) {
+                newBodyType = selectedAction.bodyType
+                newBody = selectedAction.body
+              }
+            }
+
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...content,
+                  method: value,
+                  bodyType: newBodyType,
+                  body: newBody,
+                },
+              }),
+            )
+          }}
         />
         <Input
           minW="230px"
@@ -146,132 +100,201 @@ export const RestApiPanel: FC = () => {
           ml="8px"
           readOnly
         />
-        <Controller
-          name="url"
-          control={control}
-          render={({ field: { value, onChange } }) => (
-            <CodeEditor
-              borderRadius="0 8px 8px 0"
-              css={restapiItemInputStyle}
-              expectedType={VALIDATION_TYPES.STRING}
-              value={value}
-              mode="TEXT_JS"
-              onChange={(value) => {
-                onChange(value)
-              }}
-            />
-          )}
+        <CodeEditor
+          borderRadius="0 8px 8px 0"
+          css={restapiItemInputStyle}
+          expectedType={VALIDATION_TYPES.STRING}
+          value={content.url}
+          mode="TEXT_JS"
+          onChange={(value) => {
+            dispatch(
+              configActions.updateCachedAction({
+                ...cachedAction,
+                content: {
+                  ...content,
+                  url: value,
+                },
+              }),
+            )
+          }}
         />
       </div>
 
-      <Controller
-        name="urlParams"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <RecordEditor
-            records={value}
-            label={t("editor.action.resource.restapi.label.url_parameters")}
-            onChangeKey={(index, key, v) => {
-              let newList: Params[] = [...value]
-              newList[index] = { key, value: v } as Params
-              onChange(newList)
-            }}
-            onChangeValue={(index, key, v) => {
-              let newList: Params[] = [...value]
-              newList[index] = { key, value: v } as Params
-              onChange(newList)
-            }}
-            onDelete={(index, record) => {
-              let newList: Params[] = [...value]
-              newList.splice(index, 1)
-              onChange(newList)
-            }}
-            onAdd={() => {
-              let newList: Params[] = [
-                ...value,
-                { key: "", value: "" } as Params,
-              ]
-              onChange(newList)
-            }}
-          />
-        )}
-      />
-
-      <Controller
-        name="headers"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <RecordEditor
-            records={value}
-            label={t("editor.action.resource.restapi.label.headers")}
-            onChangeKey={(index, key, v) => {
-              let newList: Params[] = [...value]
-              newList[index] = { key, value: v } as Params
-              onChange(newList)
-            }}
-            onChangeValue={(index, key, v) => {
-              let newList: Params[] = [...value]
-              newList[index] = { key, value: v } as Params
-              onChange(newList)
-            }}
-            onDelete={(index, record) => {
-              let newList: Params[] = [...value]
-              newList.splice(index, 1)
-              onChange(newList)
-            }}
-            onAdd={() => {
-              let newList: Params[] = [
-                ...value,
-                { key: "", value: "" } as Params,
-              ]
-              onChange(newList)
-            }}
-          />
-        )}
-      />
-      <Controller
-        name="cookies"
-        control={control}
-        render={({ field: { value, onChange } }) => (
-          <RecordEditor
-            records={value}
-            label={t("editor.action.resource.restapi.label.cookies")}
-            onChangeKey={(index, key, v) => {
-              let newList: Params[] = [...value]
-              newList[index] = { key, value: v } as Params
-              onChange(newList)
-            }}
-            onChangeValue={(index, key, v) => {
-              let newList: Params[] = [...value]
-              newList[index] = { key, value: v } as Params
-              onChange(newList)
-            }}
-            onDelete={(index, record) => {
-              let newList: Params[] = [...value]
-              newList.splice(index, 1)
-              onChange(newList)
-            }}
-            onAdd={() => {
-              let newList: Params[] = [
-                ...value,
-                { key: "", value: "" } as Params,
-              ]
-              onChange(newList)
-            }}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        render={({ field: { value } }) => {
-          if (value !== "GET") {
-            return <BodyEditor control={control} />
-          } else {
-            return <></>
-          }
+      <RecordEditor
+        records={content.urlParams}
+        label={t("editor.action.resource.restapi.label.url_parameters")}
+        onChangeKey={(index, key, v) => {
+          let newList: Params[] = [...content.urlParams]
+          newList[index] = { key, value: v } as Params
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                urlParams: newList,
+              },
+            }),
+          )
         }}
-        name="method"
+        onChangeValue={(index, key, v) => {
+          let newList: Params[] = [...content.urlParams]
+          newList[index] = { key, value: v } as Params
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                urlParams: newList,
+              },
+            }),
+          )
+        }}
+        onDelete={(index, record) => {
+          let newList: Params[] = [...content.urlParams]
+          newList.splice(index, 1)
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                urlParams: newList,
+              },
+            }),
+          )
+        }}
+        onAdd={() => {
+          let newList: Params[] = [
+            ...content.urlParams,
+            { key: "", value: "" } as Params,
+          ]
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                urlParams: newList,
+              },
+            }),
+          )
+        }}
       />
+      <RecordEditor
+        records={content.headers}
+        label={t("editor.action.resource.restapi.label.headers")}
+        onChangeKey={(index, key, v) => {
+          let newList: Params[] = [...content.headers]
+          newList[index] = { key, value: v } as Params
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                headers: newList,
+              },
+            }),
+          )
+        }}
+        onChangeValue={(index, key, v) => {
+          let newList: Params[] = [...content.headers]
+          newList[index] = { key, value: v } as Params
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                headers: newList,
+              },
+            }),
+          )
+        }}
+        onDelete={(index, record) => {
+          let newList: Params[] = [...content.headers]
+          newList.splice(index, 1)
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                headers: newList,
+              },
+            }),
+          )
+        }}
+        onAdd={() => {
+          let newList: Params[] = [
+            ...content.headers,
+            { key: "", value: "" } as Params,
+          ]
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                headers: newList,
+              },
+            }),
+          )
+        }}
+      />
+      <RecordEditor
+        records={content.cookies}
+        label={t("editor.action.resource.restapi.label.cookies")}
+        onChangeKey={(index, key, v) => {
+          let newList: Params[] = [...content.cookies]
+          newList[index] = { key, value: v } as Params
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                cookies: newList,
+              },
+            }),
+          )
+        }}
+        onChangeValue={(index, key, v) => {
+          let newList: Params[] = [...content.cookies]
+          newList[index] = { key, value: v } as Params
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                cookies: newList,
+              },
+            }),
+          )
+        }}
+        onDelete={(index, record) => {
+          let newList: Params[] = [...content.cookies]
+          newList.splice(index, 1)
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                cookies: newList,
+              },
+            }),
+          )
+        }}
+        onAdd={() => {
+          let newList: Params[] = [
+            ...content.cookies,
+            { key: "", value: "" } as Params,
+          ]
+          dispatch(
+            configActions.updateCachedAction({
+              ...cachedAction,
+              content: {
+                ...content,
+                cookies: newList,
+              },
+            }),
+          )
+        }}
+      />
+      {content.method !== "GET" && <BodyEditor actionItem={cachedAction} />}
       <TransformerComponent />
       <ActionEventHandler />
     </div>

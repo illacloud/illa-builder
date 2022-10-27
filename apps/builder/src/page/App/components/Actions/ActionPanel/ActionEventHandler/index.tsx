@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { SelectedProvider } from "@/page/App/components/InspectPanel/context/selectedContext"
 import { configActions } from "@/redux/config/configSlice"
-import { ActionContent, Events } from "@/redux/currentApp/action/actionState"
+import { ActionContent } from "@/redux/currentApp/action/actionState"
 import { cloneDeep } from "lodash"
 import { getNewWidgetPropsByUpdateSlice } from "@/utils/componentNode"
 
