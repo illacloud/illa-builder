@@ -67,7 +67,7 @@ export const RestApiPanel: FC = () => {
         const data = getValues()
 
         let body
-        switch (newAction.content.bodyType) {
+        switch (data.restapiBodyType) {
           case "none":
             body = null
             break
