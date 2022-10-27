@@ -23,7 +23,6 @@ import {
   RawBody,
   RawBodyContent,
   RestApiAction,
-  RestApiActionInitial,
 } from "@/redux/currentApp/action/restapiAction"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
@@ -40,11 +39,9 @@ import { ActionEvents, ActionItem } from "@/redux/currentApp/action/actionState"
 export const RestApiPanel: FC = () => {
   const { t } = useTranslation()
 
-  const cachedAction = useSelector(getCachedAction)
+  const cachedAction = useSelector(getCachedAction)!!
 
-  const content = cachedAction?.content
-    ? (cachedAction.content as RestApiAction<BodyContent>)
-    : RestApiActionInitial
+  const content = cachedAction.content as RestApiAction<BodyContent>
 
   const currentResource = useSelector((state: RootState) => {
     return state.resource.find((r) => r.resourceId === cachedAction?.resourceId)
@@ -79,16 +76,18 @@ export const RestApiPanel: FC = () => {
             break
           case "form-data":
           case "x-www-form-urlencoded":
-            body = data.restapiBodyContentRecord
+            body =
+              data.restapiBodyContentRecord ??
+              ([{ key: "", value: "" }] as Params[])
             break
           case "raw":
             body = {
-              type: data.restapiRawBodyType,
-              content: data.restapiRawBodyContent,
+              type: data.restapiRawBodyType ?? "text",
+              content: data.restapiRawBodyContent ?? "",
             } as RawBody<RawBodyContent>
             break
           case "binary":
-            body = data.restapiBodyContentBinary
+            body = data.restapiBodyContentBinary ?? ""
             break
         }
 
@@ -100,7 +99,9 @@ export const RestApiPanel: FC = () => {
           headers: data.restapiHeaders,
           cookies: data.restapiCookies,
           bodyType:
-            data.restapiMethod === "GET" ? "none" : data.restapiBodyType,
+            data.restapiMethod === "GET"
+              ? "none"
+              : data.restapiBodyType ?? "none",
           body: body,
         }
 
@@ -109,8 +110,6 @@ export const RestApiPanel: FC = () => {
     })
     return () => subscription.unsubscribe()
   }, [watch, getValues, cachedAction, dispatch])
-
-  const [currentMethod, setCurrentMethod] = useState<ApiMethod>(content.method)
 
   return (
     <div css={restapiPanelContainerStyle}>
@@ -123,7 +122,7 @@ export const RestApiPanel: FC = () => {
         <Controller
           name="restapiMethod"
           control={control}
-          defaultValue={currentMethod}
+          defaultValue={content.method}
           render={({ field: { value, onChange }, fieldState, formState }) => (
             <Select
               colorScheme="techPurple"
@@ -133,7 +132,6 @@ export const RestApiPanel: FC = () => {
               maxW="160px"
               options={["GET", "POST", "PUT", "PATCH", "DELETE"]}
               onChange={(value) => {
-                setCurrentMethod(value)
                 onChange(value)
               }}
             />
@@ -272,7 +270,7 @@ export const RestApiPanel: FC = () => {
           />
         )}
       />
-      {currentMethod !== "GET" && (
+      {content.method !== "GET" && (
         <BodyEditor control={control} content={content} />
       )}
       <TransformerComponent />

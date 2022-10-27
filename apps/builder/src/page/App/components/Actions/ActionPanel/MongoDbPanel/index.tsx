@@ -62,10 +62,6 @@ export const MongoDbPanel: FC = () => {
 
   let content = cachedAction.content as MongoDbAction<MongoDbActionTypeContent>
 
-  const [currentFunction, setCurrentFunction] = useState<string>(
-    content.actionType,
-  )
-
   const { control, watch, getValues } = useForm({
     mode: "onChange",
     shouldUnregister: true,
@@ -265,7 +261,6 @@ export const MongoDbPanel: FC = () => {
               ml="16px"
               width="100%"
               onChange={(value, event) => {
-                setCurrentFunction(value)
                 onChange(value, event)
               }}
               options={MongoDbActionList}
@@ -294,105 +289,105 @@ export const MongoDbPanel: FC = () => {
           name="collection"
         />
       </div>
-      {currentFunction === "aggregate" && (
+      {content.actionType === "aggregate" && (
         <AggregatePart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "bulkWrite" && (
+      {content.actionType === "bulkWrite" && (
         <BulkWritePart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "count" && (
+      {content.actionType === "count" && (
         <CountPart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "deleteMany" && (
+      {content.actionType === "deleteMany" && (
         <DeleteManyPart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "deleteOne" && (
+      {content.actionType === "deleteOne" && (
         <DeleteOnePart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "distinct" && (
+      {content.actionType === "distinct" && (
         <DistinctPart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "find" && (
+      {content.actionType === "find" && (
         <FindPart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "findOne" && (
+      {content.actionType === "findOne" && (
         <FindOnePart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "findOneAndUpdate" && (
+      {content.actionType === "findOneAndUpdate" && (
         <FindOneAndUpdatePart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "insertMany" && (
+      {content.actionType === "insertMany" && (
         <InsertManyPart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "insertOne" && (
+      {content.actionType === "insertOne" && (
         <InsertOnePart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "listCollections" && (
+      {content.actionType === "listCollections" && (
         <ListCollectionsPart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "updateMany" && (
+      {content.actionType === "updateMany" && (
         <UpdateManyPart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "updateOne" && (
+      {content.actionType === "updateOne" && (
         <UpdateOnePart
           control={control}
           content={content.typeContent}
           originalActionType={content.actionType}
         />
       )}
-      {currentFunction === "command" && (
+      {content.actionType === "command" && (
         <CommandPart
           control={control}
           content={content.typeContent}

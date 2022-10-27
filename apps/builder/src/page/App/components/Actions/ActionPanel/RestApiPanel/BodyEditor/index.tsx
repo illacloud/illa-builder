@@ -25,39 +25,6 @@ import { EditorMode } from "@/components/CodeEditor/interface"
 export const BodyEditor: FC<BodyEditorProps> = (props) => {
   const { content, control } = props
 
-  const [currentBodyType, setCurrentBodyType] = useState<BodyType>(
-    content.bodyType,
-  )
-
-  const currentBody = useMemo(() => {
-    switch (currentBodyType) {
-      case "none":
-        return null
-      case "form-data":
-        return content.bodyType === "form-data"
-          ? (content.body as Params[])
-          : ([{ key: "", value: "" }] as Params[])
-      case "x-www-form-urlencoded":
-        return content.bodyType === "x-www-form-urlencoded"
-          ? (content.body as Params[])
-          : ([{ key: "", value: "" }] as Params[])
-      case "raw":
-        return content.bodyType === "raw"
-          ? (content.body as RawBody<RawBodyContent>)
-          : RawBodyInitial
-      case "binary":
-        return content.bodyType === "x-www-form-urlencoded"
-          ? (content.body as string)
-          : ""
-    }
-  }, [content.body, content.bodyType, currentBodyType])
-
-  const [currentRawBodyType, setCurrentRawBodyType] = useState<RawBodyType>(
-    currentBodyType === "raw"
-      ? (currentBody as RawBody<RawBodyContent>).type
-      : "text",
-  )
-
   const { t } = useTranslation()
   return (
     <div css={bodyEditorContainerStyle}>
@@ -69,7 +36,7 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
           <Controller
             name="restapiBodyType"
             control={control}
-            defaultValue={currentBodyType}
+            defaultValue={content.bodyType}
             render={({ field: { onChange, value } }) => (
               <Select
                 colorScheme="techPurple"
@@ -81,19 +48,18 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                   "raw",
                   "binary",
                 ]}
-                bdRadius={currentBodyType === "raw" ? " 8px 0 0 8px" : "8px"}
+                bdRadius={content.bodyType === "raw" ? " 8px 0 0 8px" : "8px"}
                 onChange={(value) => {
-                  setCurrentBodyType(value)
                   onChange(value)
                 }}
               />
             )}
           />
-          {currentBodyType === "raw" && (
+          {content.bodyType === "raw" && (
             <Controller
               name="restapiRawBodyType"
               control={control}
-              defaultValue={(currentBody as RawBody<RawBodyContent>).type}
+              defaultValue={(content.body as RawBody<RawBodyContent>).type}
               render={({ field: { onChange, value } }) => (
                 <Select
                   bdRadius="0 8px 8px 0"
@@ -103,7 +69,6 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                   value={value}
                   options={["text", "json", "xml", "javascript", "html"]}
                   onChange={(value) => {
-                    setCurrentRawBodyType(value)
                     onChange(value)
                   }}
                 />
@@ -111,14 +76,14 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             />
           )}
         </div>
-        {currentBodyType === "raw" && (
+        {content.bodyType === "raw" && (
           <Controller
             control={control}
-            defaultValue={(currentBody as RawBody<RawBodyContent>).content}
+            defaultValue={(content.body as RawBody<RawBodyContent>).content}
             name="restapiRawBodyContent"
             render={({ field: { value, onChange } }) => {
               let mode: EditorMode = "TEXT_JS"
-              switch (currentRawBodyType) {
+              switch ((content.body as RawBody<RawBodyContent>).type) {
                 case "text":
                   mode = "TEXT_JS"
                   break
@@ -150,10 +115,10 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             }}
           />
         )}
-        {(currentBodyType === "form-data" ||
-          currentBodyType === "x-www-form-urlencoded") && (
+        {(content.bodyType === "form-data" ||
+          content.bodyType === "x-www-form-urlencoded") && (
           <Controller
-            defaultValue={currentBody}
+            defaultValue={content.body}
             name="restapiBodyContentRecord"
             control={control}
             render={({ field: { value, onChange } }) => (
@@ -186,9 +151,9 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
             )}
           />
         )}
-        {currentBodyType === "binary" && (
+        {content.bodyType === "binary" && (
           <Controller
-            defaultValue={currentBody}
+            defaultValue={content.body}
             render={({ field: { value, onChange } }) => (
               <CodeEditor
                 mode="TEXT_JS"
