@@ -193,11 +193,11 @@ export const MongoDbPanel: FC = () => {
           options={MongoDbActionList}
         />
       </div>
-      <div css={mongoItemStyle}>
-        <span css={mongoItemLabelStyle}>
-          {t("editor.action.panel.mongodb.collection")}
-        </span>
-        {cachedAction.content.actionType !== "command" && (
+      {cachedAction.content.actionType !== "command" && (
+        <div css={mongoItemStyle}>
+          <span css={mongoItemLabelStyle}>
+            {t("editor.action.panel.mongodb.collection")}
+          </span>
           <CodeEditor
             css={mongoItemCodeEditorStyle}
             mode="TEXT_JS"
@@ -215,8 +215,8 @@ export const MongoDbPanel: FC = () => {
             }}
             expectedType={VALIDATION_TYPES.STRING}
           />
-        )}
-      </div>
+        </div>
+      )}
       {renderInputBody}
       <TransformerComponent />
       <ActionEventHandler />
