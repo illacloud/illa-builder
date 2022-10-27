@@ -67,9 +67,12 @@ export const RestApiPanel: FC = () => {
             let newBody = null
 
             if (value !== "GET") {
-              if (selectedAction.method === value) {
-                newBodyType = selectedAction.bodyType
-                newBody = selectedAction.body
+              if (
+                selectedAction.resourceId === cachedAction.resourceId &&
+                selectedAction.content.method === value
+              ) {
+                newBodyType = selectedAction.content.bodyType
+                newBody = selectedAction.content.body
               }
             }
 
