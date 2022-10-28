@@ -7,6 +7,7 @@ export interface WrappedImageProps
   imageSrc?: ImageProps["src"]
   altText?: ImageProps["alt"]
   objectFit?: "fill" | "contain" | "cover" | "none" | "scale-down"
+  handleOnClick: () => void
 }
 
 export interface ImageWidgetProps

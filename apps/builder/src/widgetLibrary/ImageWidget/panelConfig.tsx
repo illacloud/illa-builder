@@ -2,6 +2,8 @@ import { PanelConfig } from "@/page/App/components/InspectPanel/interface"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import i18n from "@/i18n/config"
 import { ReactComponent as RadioIcon } from "@/assets/radius-icon.svg"
+import { generatorEventHandlerConfig } from "@/widgetLibrary/PublicSector/utils/generatorEventHandlerConfig"
+import { IMAGE_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/ImageWidget/eventHandlerConfig"
 
 const baseWidgetName = "input"
 export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
@@ -28,10 +30,21 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-scale-type`,
         labelName: i18n.t("editor.inspect.setter_label.scale_type"),
-        labelDesc: i18n.t("editor.inspect.setter_label.scale_type"),
         attrName: "objectFit",
         setterType: "BASE_SELECT_SETTER",
         options: ["container", "cover", "fill", "none", "scale-down"],
+      },
+    ],
+  },
+  {
+    id: `${baseWidgetName}-interaction`,
+    groupName: i18n.t("editor.inspect.setter_group.interaction"),
+    children: [
+      {
+        ...generatorEventHandlerConfig(
+          baseWidgetName,
+          IMAGE_EVENT_HANDLER_CONFIG.events,
+        ),
       },
     ],
   },

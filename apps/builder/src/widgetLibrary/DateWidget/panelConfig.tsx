@@ -42,6 +42,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.max_date"),
         attrName: "maxDate",
         setterType: "INPUT_SETTER",
+        placeholder: "2032-01-01",
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
@@ -49,6 +50,7 @@ export const DATE_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.min_date"),
         attrName: "minDate",
         setterType: "INPUT_SETTER",
+        placeholder: "2022-01-01",
         expectedType: VALIDATION_TYPES.STRING,
       },
     ],
