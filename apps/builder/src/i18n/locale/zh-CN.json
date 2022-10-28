@@ -552,7 +552,7 @@
         "only_run_when": "先决条件",
         "overFlow": "翻页方式",
         "pattern": "模式",
-        "pending": "等待",
+        "pending": "待处理节点",
         "pageSize": "每页行数",
         "placeholder": "占位符",
         "prefix_text": "前缀文本",
@@ -612,22 +612,23 @@
         "default_value": "输入框的默认值。您可以使用模版语法在框中输入JavaScript语句动态改变输入框的默认值。",
         "disabled": "控制组件是否为禁用状态。当组件为禁用状态时，组件不能被修改。",
         "disabled_submit": "禁用提交时，调用form.submit()方法的组件也会被禁用。",
-        "download": "在工具栏显示下载按钮",
-        "filter": "在工具栏显示筛选按钮",
+        "download": "在工具栏显示下载按钮。",
+        "filter": "在工具栏显示筛选按钮。",
         "form_data_key": "在构建数据属性时，指定一个包装表单组件的键。",
-        "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态",
+        "hidden": "动态控制组件是否为隐藏状态。您可以在此处输入动态改变的Boolean值改变组件的隐藏状态。",
         "hide_validation_message": "当验证输入有误时隐藏错误信息。您可以通过编写 JavaScript 对是否隐藏进行动态修改。",
         "input_default_value": "输入框的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变输入框的默认值。",
         "loading": "控制组件是否为加载状态。",
-        "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项",
-        "only_run_when": "在此输入该事件执行前必须满足的条件",
+        "map_data_option": "使用数值或由键值组成的对象映射成选项。数据源中的每个项都映射到每个选项。",
+        "only_run_when": "在此输入该事件执行前必须满足的条件。",
         "placeholder": "当输入中没有值时，展示的信息。",
-        "progress_percentage": "进度条的数值范围为 0-100",
+        "progress_percentage": "进度条的数值范围为 0-100。",
         "read_only": "控制组件是否为只读状态。只读组件的内容可以被选中和聚焦，但不能被修改。",
         "required_field": "在开关开启后对输入框执行验证。",
         "switch_default_value": "设置开关的初始状态。您可以通过 JavaScript 动态改变开关的初始状态。",
         "text_value": "您可以选择在 Markdown 模式或纯文本模式下输入值。只有在 Markdown 模式下可以输入链接。",
-        "timeline_direction": "切换时间轴的方向",
+        "timeline_direction": "切换时间轴的方向。",
+        "timeline_pending": "是否显示一个待处理状态的节点。",
         "tooltip": "用户可以在输入框输入提示内容，当鼠标放在组件上，展示提示信息，支持Markdown格式。"
       },
       "tab_title": "属性",
@@ -931,7 +932,9 @@
       "text_model": "纯文本"
     },
     "timeline": {
-      "name": "时间线"
+      "name": "时间线",
+      "vertical": "纵向",
+      "horizontal": "横向"
     }
   }
 }
