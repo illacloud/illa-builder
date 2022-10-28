@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import {
   createNewStyle,
   itemContainer,
@@ -29,6 +29,7 @@ import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
+import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
@@ -40,6 +41,8 @@ export const ResourceChoose: FC = () => {
   const resourceList = useSelector(getAllResources)
   const action = useSelector(getCachedAction)!!
   const selectedAction = useSelector(getSelectedAction)!!
+
+  const { onChangeSelectedResource } = useContext(ActionPanelContext)
 
   //maybe empty
   const currentSelectResource = resourceList.find(
@@ -75,6 +78,7 @@ export const ResourceChoose: FC = () => {
                         : getInitialContent(resource.resourceType),
                   }),
                 )
+                onChangeSelectedResource?.()
               }
             }}
             addonAfter={{
