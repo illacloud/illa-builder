@@ -2,6 +2,7 @@ import { FC, useContext, useState } from "react"
 import {
   createNewStyle,
   itemContainer,
+  itemLogo,
   itemText,
   resourceChooseContainerStyle,
   resourceTitleStyle,
@@ -114,7 +115,9 @@ export const ResourceChoose: FC = () => {
               return (
                 <Option value={item.resourceId} key={item.resourceId}>
                   <div css={itemContainer}>
-                    {getIconFromResourceType(item.resourceType, "14px")}
+                    <span css={itemLogo}>
+                      {getIconFromResourceType(item.resourceType, "14px")}
+                    </span>
                     <span css={itemText}>{item.resourceName}</span>
                   </div>
                 </Option>
