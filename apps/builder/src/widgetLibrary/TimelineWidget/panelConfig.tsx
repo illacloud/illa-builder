@@ -33,7 +33,7 @@ export const TIMELINE_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-pending`,
         labelName: i18n.t("editor.inspect.setter_label.pending"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.timeline_direction"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.timeline_pending"),
         attrName: "pending",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.BOOLEAN,
