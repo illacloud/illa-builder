@@ -1,4 +1,4 @@
-import { FC, useCallback, useState, MouseEvent } from "react"
+import { FC, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
@@ -12,6 +12,8 @@ import {
   WindowLeftIcon,
   WindowRightIcon,
 } from "@illa-design/icon"
+import { Trigger } from "@illa-design/trigger"
+import { Message } from "@illa-design/message"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
@@ -36,13 +38,11 @@ import {
   windowIconStyle,
 } from "./style"
 import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
 import { Badge } from "@illa-design/badge"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
 import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
-import { Trigger } from "@illa-design/trigger"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const { className } = props

@@ -658,6 +658,13 @@
         "selects": "Select inputs"
       },
       "tab_title": "Insert"
+    },
+    "page": {
+      "tab_title": "Page",
+      "panel_bar_title": {
+        "frame": "FRAME",
+        "basic": "BASIC"
+      }
     }
   },
   "exit_preview": "Exit Preview",

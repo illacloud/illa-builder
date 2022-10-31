@@ -138,9 +138,6 @@
           "required": "请输入{name}"
         }
       },
-      "resource_choose": {
-        "deleted": "已删除"
-      },
       "panel": {
         "btn": {
           "disable": "关闭",
@@ -202,30 +199,30 @@
             "ca_certificate": "服务端证书",
             "client_certificate": "客户端证书",
             "client_key": "客户端密钥",
+            "config_type": "配置类型",
             "connect_type": "连接类型",
             "connection_format": "连接方式",
+            "connection_string": "连接地址",
             "database": "数据库名称",
             "database_index": "数据库索引",
             "hostname": "主机",
             "hostname_port": "主机/端口",
-            "mongodb_ssl_client": "Client Cert and Key",
-            "mongodb_ssl_ca": "CA Cert",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Client Cert and Key",
             "name": "名称",
             "port": "端口",
-            "config_type": "配置类型",
-            "connection_string": "连接地址",
             "private_key": "私钥",
             "ssl_options": "SSL 选项",
             "username_password": "用户名/密码"
           },
           "placeholder": {
-            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
             "database_index": "默认 0",
             "hostname": "主机名",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "密码",
             "username": "用户名"
@@ -317,6 +314,9 @@
           }
         }
       },
+      "resource_choose": {
+        "deleted": "已删除"
+      },
       "result": {
         "title": {
           "api_request": "API 请求参数",
@@ -375,12 +375,6 @@
           "prefabricated": "Prefabricated color",
           "title": "Edit color"
         },
-        "view_setter": {
-          "views": "Views"
-        },
-        "tabs_setter": {
-          "tabs": "Tabs"
-        },
         "column_setter": {
           "label": "列 ({{number}})",
           "new": "新建",
@@ -404,6 +398,12 @@
           "model_title": "编辑选项",
           "new": "新建",
           "title": "选项"
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Views"
         },
         "widget_action_type_name": {
           "blur": "失焦",
@@ -492,9 +492,9 @@
         "decimal_places": "小数位数",
         "default_sort_key": "排序列",
         "default_sort_order": "顺序",
+        "default_tab": "默认值",
         "default_value": "默认值",
         "default_views": "默认视图",
-        "default_tab": "默认值",
         "description": "描述",
         "direction": "方向",
         "disable_submit": "禁用提交",
@@ -533,8 +533,8 @@
         "label_width": "宽度(%)",
         "layout": "布局",
         "legend_position": "图例位置",
-        "links_color": "链接色",
         "link_to_container": "是否关联到容器",
+        "links_color": "链接色",
         "loading": "加载中",
         "loop_back_to_start": "列表循环",
         "loop_start_to_back": "列表循环",
@@ -551,9 +551,9 @@
         "new_tab": "在新标签中打开",
         "only_run_when": "先决条件",
         "overFlow": "翻页方式",
+        "pageSize": "每页行数",
         "pattern": "模式",
         "pending": "等待",
-        "pageSize": "每页行数",
         "placeholder": "占位符",
         "prefix_text": "前缀文本",
         "radius": "圆角",
@@ -633,6 +633,13 @@
       "tab_title": "属性",
       "unselected_tip1": "没有组件被选中。",
       "unselected_tip2": "请点击组件以选中。"
+    },
+    "page": {
+      "panel_bar_title": {
+        "basic": "基础",
+        "frame": "画布"
+      },
+      "tab_title": "页面"
     },
     "validate_message": {
       "email": "请输入有效的电子邮箱",

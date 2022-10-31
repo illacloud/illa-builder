@@ -7,6 +7,7 @@ import { componentPanelCss } from "./style"
 import { FocusManager } from "@/utils/focusManager"
 import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
+import { PagePanel } from "@/page/App/components/PagePanel"
 
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,
@@ -41,6 +42,9 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
           setActiveKey(key)
         }}
       >
+        <TabPane title={t("editor.page.tab_title")} key="Page">
+          <PagePanel />
+        </TabPane>
         <TabPane title={t("editor.inspect.tab_title")} key="Inspect">
           <ConfigPanel />
         </TabPane>
