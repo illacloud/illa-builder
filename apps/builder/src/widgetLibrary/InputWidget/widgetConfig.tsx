@@ -21,5 +21,6 @@ export const INPUT_WIDGET_CONFIG: WidgetConfig = {
     colorScheme: "blue",
     hidden: false,
     formDataKey: "input",
+    placeholder: "input sth",
   },
 }
