@@ -9,14 +9,19 @@ import { FocusManager } from "@/utils/focusManager"
 const ActionEditorDefaultHeight = 300
 
 export const ActionEditor: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
-  const panelRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement | null>(null)
   const [maxHeight, setMaxHeight] = useState<number>()
 
   return (
     <div
       className={props.className}
       css={applyActionEditorStyle(ActionEditorDefaultHeight)}
-      ref={panelRef}
+      ref={(ele) => {
+        panelRef.current = ele
+        if (ele?.offsetHeight) {
+          setMaxHeight(ele?.offsetHeight - 100)
+        }
+      }}
       onClick={() => {
         FocusManager.switchFocus("action")
       }}
