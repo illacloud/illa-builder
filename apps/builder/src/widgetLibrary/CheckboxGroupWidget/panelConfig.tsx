@@ -109,7 +109,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         ),
         attrName: "value",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        expectedType: VALIDATION_TYPES.ARRAY,
       },
     ],
   },
