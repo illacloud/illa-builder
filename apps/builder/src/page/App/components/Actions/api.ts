@@ -1,6 +1,5 @@
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { omit } from "@illa-design/system"
@@ -19,15 +18,13 @@ function getBaseActionUrl() {
   return `/apps/${appId}/actions`
 }
 
-export function onCopyActionItem(
-  action: ActionItem<ActionContent, ActionEvents>,
-) {
+export function onCopyActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
   const newAction = omit(action, ["displayName", "actionId"])
   const displayName = DisplayNameGenerator.generateDisplayName(
     action.actionType,
   )
-  const data: Partial<ActionItem<ActionContent, ActionEvents>> = {
+  const data: Partial<ActionItem<ActionContent>> = {
     ...newAction,
     displayName,
   }
@@ -37,7 +34,7 @@ export function onCopyActionItem(
       method: "POST",
       data,
     },
-    ({ data }: { data: ActionItem<ActionContent, ActionEvents> }) => {
+    ({ data }: { data: ActionItem<ActionContent> }) => {
       Message.success(
         i18n.t("editor.action.action_list.message.success_created"),
       )
@@ -55,9 +52,7 @@ export function onCopyActionItem(
   )
 }
 
-export function onDeleteActionItem(
-  action: ActionItem<ActionContent, ActionEvents>,
-) {
+export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   const baseActionUrl = getBaseActionUrl()
   const { actionId, displayName } = action
 
@@ -66,7 +61,7 @@ export function onDeleteActionItem(
       url: `${baseActionUrl}/${actionId}`,
       method: "DELETE",
     },
-    ({ data }: { data: ActionItem<ActionContent, ActionEvents> }) => {
+    ({ data }: { data: ActionItem<ActionContent> }) => {
       DisplayNameGenerator.removeDisplayName(displayName)
       store.dispatch(actionActions.removeActionItemReducer(displayName))
       Message.success(
