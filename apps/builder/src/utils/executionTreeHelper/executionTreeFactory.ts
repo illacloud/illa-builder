@@ -33,7 +33,6 @@ export class ExecutionTreeFactory {
   oldRawTree: RawTreeShape = {} as RawTreeShape
   hasCyclical: boolean = false
   executedTree: RawTreeShape = {} as RawTreeShape
-  oldExecutedTree: RawTreeShape = {} as RawTreeShape
   errorTree: Record<string, any> = {}
   debuggerData: Record<string, any> = {}
   allKeys: Record<string, true> = {}
@@ -54,7 +53,6 @@ export class ExecutionTreeFactory {
     this.errorTree = errorTree
     this.debuggerData = debuggerData
     this.executedTree = this.validateTree(evaluatedTree)
-    this.oldExecutedTree = evaluatedTree
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
@@ -241,7 +239,6 @@ export class ExecutionTreeFactory {
     this.mergeDebugDataTree(debuggerData, path)
 
     this.executedTree = this.validateTree(evaluatedTree)
-    this.oldExecutedTree = evaluatedTree
     return {
       dependencyTree: this.dependenciesState,
       evaluatedTree: this.executedTree,
