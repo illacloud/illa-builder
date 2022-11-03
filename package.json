@@ -8,8 +8,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "turbo run dev",
-    "build-cloud": "turbo run build-cloud",
-    "build-self": "turbo run build-self",
+    "build-cloud": "NODE_OPTIONS=--max-old-space-size=14336 turbo run build-cloud",
+    "build-self": "NODE_OPTIONS=--max-old-space-size=14336 turbo run build-self",
     "prepare": "husky install",
     "format": "prettier --write \"apps/**/*.{ts,tsx}\"",
     "lint": "eslint apps/**/src/ --ext .ts,.tsx --config .eslintrc.js"
