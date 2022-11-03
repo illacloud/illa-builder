@@ -32,7 +32,6 @@ export const WrappedSelect: FC<WrappedSelectProps> = (props) => {
 
   const onChangeSelectValue = useCallback(
     (value: unknown) => {
-      console.log("value", value)
       new Promise((resolve) => {
         const message = getValidateMessage(value)
         handleUpdateMultiExecutionResult([
