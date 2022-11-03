@@ -7,7 +7,7 @@ import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 
 export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
   (props, ref) => {
-    const { imageSrc, altText, radius, objectFit } = props
+    const { imageSrc, altText, radius, objectFit, handleOnClick } = props
 
     return (
       <Image
@@ -20,6 +20,7 @@ export const WrappedImage = forwardRef<HTMLImageElement, WrappedImageProps>(
         width="100%"
         css={ImageWrapperStyle}
         draggable={false}
+        onClick={handleOnClick}
       />
     )
   },

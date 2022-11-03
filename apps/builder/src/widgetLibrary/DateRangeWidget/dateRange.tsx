@@ -149,12 +149,6 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
   )
 
   useEffect(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
-  }, [labelPosition, validateMessage, updateComponentHeight])
-
-  useEffect(() => {
     handleUpdateGlobalData(displayName, {
       startValue,
       endValue,
@@ -215,7 +209,8 @@ export const DateRangeWidget: FC<DateWidgetProps> = (props) => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [required, labelPosition, updateComponentHeight])
+  }, [required, labelPosition, validateMessage, updateComponentHeight])
+
   return (
     <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>

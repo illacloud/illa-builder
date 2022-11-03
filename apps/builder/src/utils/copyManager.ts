@@ -2,7 +2,6 @@ import { FocusManager } from "@/utils/focusManager"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import store from "@/store"
@@ -13,10 +12,9 @@ import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 export class CopyManager {
   static currentCopyComponentNodes: ComponentNode[] | null = null
 
-  static currentCopyAction: ActionItem<ActionContent, ActionEvents> | null =
-    null
+  static currentCopyAction: ActionItem<ActionContent> | null = null
 
-  static copyAction(action: ActionItem<ActionContent, ActionEvents>) {
+  static copyAction(action: ActionItem<ActionContent>) {
     this.currentCopyAction = action
   }
 

@@ -199,7 +199,7 @@ export const DateTimeWidget: FC<DateTimeWidgetProps> = (props) => {
   }, [labelPosition, validateMessage, updateComponentHeight])
 
   return (
-    <div>
+    <div ref={wrapperRef}>
       <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
         <div css={applyLabelAndComponentWrapperStyle(labelPosition)}>
           <Label

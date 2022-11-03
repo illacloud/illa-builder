@@ -1,6 +1,5 @@
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { isObject } from "@/utils/typeHelper"
@@ -44,7 +43,7 @@ export const generateDynamicAttrPaths = (
 }
 
 export const generateRawAction = (
-  action: ActionItem<ActionContent, ActionEvents>,
+  action: ActionItem<ActionContent>,
 ): RawAction => {
   let $dynamicAttrPaths: string[] = []
   const {

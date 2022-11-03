@@ -1,6 +1,5 @@
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 import { BuilderInfo } from "@/redux/builderInfo/builderInfoState"
@@ -12,7 +11,7 @@ export interface RawTreeShape {
   currentUserInfo: CurrenUserInfoSeedShape
 }
 
-type ActionSeedShape = ActionItem<ActionContent, ActionEvents>[]
+type ActionSeedShape = ActionItem<ActionContent>[]
 
 export interface WidgetShape {
   [key: string]: string

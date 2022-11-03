@@ -18,6 +18,13 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
+      {
+        id: `${baseWidgetName}-basic-showText`,
+        labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
+        attrName: "showText",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+      },
     ],
   },
   {
@@ -32,18 +39,18 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.STRING,
       },
       {
-        id: `${baseWidgetName}-label-caption`,
-        labelName: i18n.t("editor.inspect.setter_label.caption"),
-        attrName: "labelCaption",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
-      },
-      {
         id: `${baseWidgetName}-label-hidden`,
         labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
         attrName: "labelHidden",
         setterType: "DYNAMIC_SWITCH_SETTER",
         useCustomLayout: true,
+      },
+      {
+        id: `${baseWidgetName}-label-caption`,
+        labelName: i18n.t("editor.inspect.setter_label.caption"),
+        attrName: "labelCaption",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
       },
       {
         id: `${baseWidgetName}-label-position`,
@@ -90,13 +97,6 @@ export const BAR_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
-      {
-        id: `${baseWidgetName}-adornments-showText`,
-        labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
-        attrName: "showText",
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLayout: true,
-      },
       {
         id: `${baseWidgetName}-adornments-tooltip`,
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),

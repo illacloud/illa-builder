@@ -136,6 +136,14 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         ),
       },
       {
+        id: `${widgetBaseName}-interaction-loading`,
+        labelName: i18n.t("editor.inspect.setter_label.loading"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
+        attrName: "loading",
+        setterType: "INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
         id: `${widgetBaseName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
@@ -166,14 +174,6 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
         attrName: "tooltipText",
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
-      },
-      {
-        id: `${widgetBaseName}-adornments-loading`,
-        labelName: i18n.t("editor.inspect.setter_label.loading"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.loading"),
-        attrName: "loading",
-        setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
       },
       {
         id: `${widgetBaseName}-adornments-prefix`,

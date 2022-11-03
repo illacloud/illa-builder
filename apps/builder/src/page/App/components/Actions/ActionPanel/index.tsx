@@ -14,6 +14,7 @@ import { ActionResultType } from "@/page/App/components/Actions/ActionPanel/Acti
 import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel"
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
 import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionPanel/interface"
+import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 
 export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const { maxHeight } = props
@@ -46,27 +47,35 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
     }
   }, [cachedAction])
 
+  const clearActionResult = () => {
+    setActionResult(undefined)
+    if (contentRef.current) {
+      contentRef.current.style.paddingBottom = "48px"
+    }
+  }
+
   if (cachedAction === null || cachedAction === undefined) {
     return <></>
   }
 
   return (
     <div css={actionPanelStyle} ref={panelRef}>
-      <ActionTitleBar onActionRun={run} />
-      <div ref={contentRef} css={actionContentStyle}>
-        {panel}
-      </div>
-      <ActionResult
-        result={actionResult}
-        onClose={() => {
-          setActionResult(undefined)
-          if (contentRef.current) {
-            contentRef.current.style.paddingBottom = "48px"
-          }
+      <ActionPanelContext.Provider
+        value={{
+          onChangeSelectedResource: clearActionResult,
         }}
-        maxHeight={maxHeight}
-        placeholderRef={contentRef}
-      />
+      >
+        <ActionTitleBar onActionRun={run} />
+        <div ref={contentRef} css={actionContentStyle}>
+          {panel}
+        </div>
+        <ActionResult
+          result={actionResult}
+          onClose={clearActionResult}
+          maxHeight={maxHeight}
+          placeholderRef={contentRef}
+        />
+      </ActionPanelContext.Provider>
     </div>
   )
 }

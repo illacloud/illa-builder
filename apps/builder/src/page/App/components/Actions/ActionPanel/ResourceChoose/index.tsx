@@ -1,7 +1,8 @@
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import {
   createNewStyle,
   itemContainer,
+  itemLogo,
   itemText,
   resourceChooseContainerStyle,
   resourceTitleStyle,
@@ -28,6 +29,7 @@ import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
+import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
@@ -39,6 +41,8 @@ export const ResourceChoose: FC = () => {
   const resourceList = useSelector(getAllResources)
   const action = useSelector(getCachedAction)!!
   const selectedAction = useSelector(getSelectedAction)!!
+
+  const { onChangeSelectedResource } = useContext(ActionPanelContext)
 
   //maybe empty
   const currentSelectResource = resourceList.find(
@@ -74,6 +78,7 @@ export const ResourceChoose: FC = () => {
                         : getInitialContent(resource.resourceType),
                   }),
                 )
+                onChangeSelectedResource?.()
               }
             }}
             addonAfter={{
@@ -110,7 +115,9 @@ export const ResourceChoose: FC = () => {
               return (
                 <Option value={item.resourceId} key={item.resourceId}>
                   <div css={itemContainer}>
-                    {getIconFromResourceType(item.resourceType, "14px")}
+                    <span css={itemLogo}>
+                      {getIconFromResourceType(item.resourceType, "14px")}
+                    </span>
                     <span css={itemText}>{item.resourceName}</span>
                   </div>
                 </Option>

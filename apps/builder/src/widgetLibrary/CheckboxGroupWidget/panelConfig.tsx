@@ -109,7 +109,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
         ),
         attrName: "value",
         setterType: "INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.STRING,
+        expectedType: VALIDATION_TYPES.ARRAY,
       },
     ],
   },
@@ -277,7 +277,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       },
       {
         id: `${baseWidgetName}-layout-direction`,
-        labelName: i18n.t("editor.inspect.setter_label.label_alignment"),
+        labelName: i18n.t("editor.inspect.setter_label.group_layout"),
         setterType: "RADIO_GROUP_SETTER",
         attrName: "direction",
         options: [
