@@ -14,6 +14,7 @@ import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 export const SettingAccount: FC = () => {
   const { t } = useTranslation()
   const userInfo = useSelector(getCurrentUser)
+
   const dispatch = useDispatch()
   const [nickNameValue, setNickNameValue] = useState<string>(
     userInfo.nickname ?? "",
