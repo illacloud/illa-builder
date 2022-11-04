@@ -117,9 +117,3 @@ export const eyeIconStyle = css`
   visibility: hidden;
   ${baseIconStyle}
 `
-
-export const removeNativeStyle = css`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`

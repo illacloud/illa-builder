@@ -13,3 +13,9 @@ export const dynamicWidthStyle = css`
   width: auto;
   align-self: center;
 `
+
+export const removeNativeStyle = css`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`
