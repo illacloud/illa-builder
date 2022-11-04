@@ -108,6 +108,13 @@ export const ActionListItem = forwardRef<HTMLDivElement, ActionListItemProps>(
         dropList={
           <DropList width={"184px"}>
             <Item
+              key={"rename"}
+              title={t("editor.action.action_list.contextMenu.rename")}
+              onClick={() => {
+                setEditName(true)
+              }}
+            />
+            <Item
               key={"duplicate"}
               title={t("editor.action.action_list.contextMenu.duplicate")}
               onClick={() => {
