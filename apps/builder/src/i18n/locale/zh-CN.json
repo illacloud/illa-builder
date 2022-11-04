@@ -918,6 +918,9 @@
     "switch": {
       "name": "开关"
     },
+    "menu": {
+      "name": "菜单"
+    },
     "table": {
       "ascend": "升序",
       "descend": "降序",

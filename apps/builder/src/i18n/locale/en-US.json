@@ -918,6 +918,9 @@
     "switch": {
       "name": "Switch"
     },
+    "menu": {
+      "name": "Menu"
+    },
     "table": {
       "ascend": "Asc",
       "descend": "Desc",
