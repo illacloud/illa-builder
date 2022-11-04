@@ -4,6 +4,7 @@ import {
   ComponentsState,
   CopyComponentPayload,
   DeleteComponentNodePayload,
+  PageNodeProps,
   sortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
@@ -262,4 +263,35 @@ export const updateComponentReflowReducer: CaseReducer<
       })
     }
   })
+}
+
+export const updateHeaderSectionReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<string>
+> = (state, action) => {
+  const { payload } = action
+  const targetSection = searchDsl(state, "headerSection")
+  if (targetSection) {
+    targetSection.props = {
+      ...targetSection.props,
+      height: payload,
+    }
+  }
+}
+
+export const updateCurrentPagePropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<Partial<PageNodeProps>>
+> = (state, action) => {
+  if (!state?.props) return state
+  const { currentPageIndex, pageSortedKey } = state.props
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
+  const currentPage = state.childrenNode.find(
+    (node) => node.displayName === currentPageDisplayName,
+  )
+  if (!currentPage) return state
+  currentPage.props = {
+    ...currentPage.props,
+    ...action.payload,
+  }
 }

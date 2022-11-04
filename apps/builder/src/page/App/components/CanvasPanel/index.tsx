@@ -9,8 +9,6 @@ import {
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
 import { useDispatch, useSelector } from "react-redux"
-import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { FullScreenIcon, LockIcon } from "@illa-design/icon"
 import { Button } from "@illa-design/button"
 import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
@@ -21,7 +19,6 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
 
   const { t } = useTranslation()
-  const canvasTree = useSelector(getCanvas)
   const mode = useSelector(getIllaMode)
   const dispatch = useDispatch()
   const isFreeze = useSelector(getFreezeState)
@@ -34,7 +31,7 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
         FocusManager.switchFocus("canvas")
       }}
     >
-      {applyCanvasTree(canvasTree)}
+      <DotPanel />
       {mode === "edit" && (
         <>
           <Button
@@ -63,26 +60,6 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
       )}
     </div>
   )
-}
-
-// current root must be dot panel
-function applyCanvasTree(
-  componentNode: ComponentNode | null,
-): ReactNode | null {
-  if (componentNode == null) {
-    return null
-  }
-  switch (componentNode.containerType) {
-    case "EDITOR_DOT_PANEL":
-      return (
-        <DotPanel
-          key={componentNode.displayName}
-          componentNode={componentNode}
-        />
-      )
-    default:
-      return null
-  }
 }
 
 CanvasPanel.displayName = "CanvasPanel"

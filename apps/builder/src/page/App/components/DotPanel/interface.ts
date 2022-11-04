@@ -1,9 +1,10 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ComponentNode,
+  PageNode,
+  SectionNode,
+  SECTION_POSITION,
+} from "@/redux/currentApp/editor/components/componentsState"
 import { HTMLAttributes, RefObject } from "react"
-
-export interface DotPanelProps extends HTMLAttributes<HTMLDivElement> {
-  componentNode: ComponentNode
-}
 
 export interface DragPosition {
   squareX: number
@@ -53,4 +54,37 @@ export interface RenderComponentCanvasProps {
 export interface DebounceUpdateReflow {
   parentDisplayName: string
   childNodes: ComponentNode[]
+}
+
+export interface RenderPageProps {
+  pageNode: PageNode
+}
+
+export interface RenderSectionProps {
+  sectionNode?: SectionNode
+}
+
+export interface RenderHeaderSectionProps {
+  sectionNode: SectionNode
+  topHeight: number
+  offsetTop: number
+}
+
+export interface RenderFooterSectionProps {
+  sectionNode: SectionNode
+  bottomHeight: number
+  offsetTop: number
+  containerHeight: number
+}
+
+export interface RenderLeftSectionProps {
+  sectionNode: SectionNode
+  offsetLeft: number
+  containerWidth: number
+}
+
+export interface RenderRightSectionProps {
+  sectionNode: SectionNode
+  offsetLeft: number
+  containerWidth: number
 }

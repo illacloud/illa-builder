@@ -43,7 +43,6 @@ import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 const UNIT_HEIGHT = 8
-const BLOCK_COLUMNS = 64
 
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
@@ -52,6 +51,7 @@ export const RenderComponentCanvas: FC<{
   minHeight?: number
   canResizeY?: boolean
   safeRowNumber: number
+  blockColumns?: number
 }> = (props) => {
   const {
     componentNode,
@@ -60,6 +60,7 @@ export const RenderComponentCanvas: FC<{
     minHeight,
     canResizeY = true,
     safeRowNumber,
+    blockColumns = 64,
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -81,8 +82,8 @@ export const RenderComponentCanvas: FC<{
   ) as MutableRefObject<HTMLDivElement | null>
 
   const unitWidth = useMemo(() => {
-    return bounds.width / BLOCK_COLUMNS
-  }, [bounds.width])
+    return bounds.width / blockColumns
+  }, [blockColumns, bounds.width])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
@@ -449,7 +450,7 @@ export const RenderComponentCanvas: FC<{
       css={applyComponentCanvasStyle(
         bounds.width,
         bounds.height,
-        bounds.width / BLOCK_COLUMNS,
+        bounds.width / blockColumns,
         UNIT_HEIGHT,
         isShowCanvasDot,
         rowNumber * 8,

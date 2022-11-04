@@ -12,6 +12,7 @@ import {
   updateComponentReducer,
   updateComponentReflowReducer,
   updateComponentsShape,
+  updateCurrentPagePropsReducer,
   updateMultiComponentPropsReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
 
@@ -31,6 +32,7 @@ const componentsSlice = createSlice({
     updateComponentReflowReducer,
     updateComponentContainerReducer,
     updateMultiComponentPropsReducer,
+    updateCurrentPagePropsReducer,
   },
 })
 

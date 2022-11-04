@@ -6,9 +6,9 @@ export function applyScaleStyle(
   edgeWidth: number,
 ): SerializedStyles {
   return css`
-    padding-left: ${edgeWidth}px;
+    /* padding-left: ${edgeWidth}px;
     padding-right: ${edgeWidth}px;
-    padding-top: ${edgeWidth}px;
+    padding-top: ${edgeWidth}px; */
     overflow-x: hidden;
     overflow-y: ${verticalResize ? "auto" : "hidden"};
     width: 100%;
@@ -130,3 +130,124 @@ export const applyFreezePlaceholderShapeStyle = (
     z-index: 6;
   `
 }
+
+export const resizeVerticalBarWrapperStyle = css`
+  width: 100%;
+  height: 8px;
+  background-color: #f7f8fa;
+  transition: background-color 200ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  cursor: row-resize;
+  :hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+  :active {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+`
+
+export const resizeVerticalBarStyle = css`
+  height: 2px;
+  width: 32px;
+  border-radius: 1px;
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+`
+
+export const resizeHorizontalBarWrapperStyle = css`
+  height: 100%;
+  width: 8px;
+  background-color: #f7f8fa;
+  transition: background-color 200ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: col-resize;
+  :hover {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+  :active {
+    background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
+  }
+`
+
+export const resizeHorizontalBarStyle = css`
+  width: 2px;
+  height: 32px;
+  border-radius: 1px;
+  background-color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
+`
+
+export const applyHeaderSectionWrapperStyle = (
+  height: string,
+  left: string = "0px",
+  width: string = "0px",
+) => {
+  return css`
+    position: absolute;
+    top: 0;
+    left: ${left};
+    width: ${width};
+    height: ${height};
+    display: flex;
+    flex-direction: column;
+    min-height: 96px;
+  `
+}
+
+export const applyFooterSectionWrapperStyle = (
+  height: string,
+  left: string = "0px",
+  width: string = "0px",
+) => {
+  return css`
+    position: absolute;
+    bottom: 0;
+    left: ${left};
+    width: ${width};
+    height: ${height};
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 96px;
+  `
+}
+
+export const applyLeftSectionWrapperStyle = (
+  width: string,
+  top: string = "0px",
+) => {
+  return css`
+    position: absolute;
+    top: ${top};
+    left: 0;
+    height: 100%;
+    width: ${width};
+    display: flex;
+    flex-direction: row;
+    min-width: 240px;
+  `
+}
+
+export const applyRightSectionWrapperStyle = (
+  width: string,
+  top: string = "0px",
+) => {
+  return css`
+    position: absolute;
+    top: ${top};
+    right: 0;
+    height: 100%;
+    width: ${width};
+    display: flex;
+    flex-direction: row-reverse;
+    min-width: 240px;
+  `
+}
+
+export const containerWrapperStyle = css`
+  padding: 8px;
+  width: 100%;
+  height: 100%;
+`
