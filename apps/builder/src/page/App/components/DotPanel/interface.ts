@@ -88,3 +88,7 @@ export interface RenderRightSectionProps {
   offsetLeft: number
   containerWidth: number
 }
+
+export interface RenderContainerProps {
+  containerNode: SectionNode
+}

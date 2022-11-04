@@ -162,6 +162,7 @@ export const resizeHorizontalBarWrapperStyle = css`
   background-color: #f7f8fa;
   transition: background-color 200ms ease-in-out;
   display: flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   cursor: col-resize;
@@ -247,7 +248,8 @@ export const applyRightSectionWrapperStyle = (
 }
 
 export const containerWrapperStyle = css`
-  padding: 8px;
   width: 100%;
   height: 100%;
+  padding: 8px;
+  overflow-y: auto;
 `

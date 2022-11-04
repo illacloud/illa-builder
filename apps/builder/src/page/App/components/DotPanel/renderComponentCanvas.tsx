@@ -43,6 +43,7 @@ import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 const UNIT_HEIGHT = 8
+const BASIC_BLOCK_COLUMNS = 64
 
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
@@ -60,7 +61,7 @@ export const RenderComponentCanvas: FC<{
     minHeight,
     canResizeY = true,
     safeRowNumber,
-    blockColumns = 64,
+    blockColumns = BASIC_BLOCK_COLUMNS,
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -182,6 +183,13 @@ export const RenderComponentCanvas: FC<{
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
           const { item } = dragInfo
+          const scale = blockColumns / BASIC_BLOCK_COLUMNS
+
+          const scaleItem: ComponentNode = {
+            ...item,
+            w: item.w * scale,
+          }
+          console.log("scaleItem", scaleItem)
           let dragResult
           if (
             (item.x === -1 && item.y === -1) ||
@@ -190,7 +198,7 @@ export const RenderComponentCanvas: FC<{
             dragResult = getDragResult(
               monitor,
               containerRef,
-              item,
+              scaleItem,
               unitWidth,
               UNIT_HEIGHT,
               bounds.width,
@@ -241,7 +249,7 @@ export const RenderComponentCanvas: FC<{
            */
           const oldParentDisplayName = item.parentNode
           const newItem = {
-            ...item,
+            ...scaleItem,
             parentNode: componentNode.displayName || "root",
             x: Math.round(landingX / unitWidth),
             y: Math.round(landingY / UNIT_HEIGHT),
@@ -314,6 +322,12 @@ export const RenderComponentCanvas: FC<{
         const { item } = dragInfo
         if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
+          const scale = blockColumns / BASIC_BLOCK_COLUMNS
+
+          const scaleItem: ComponentNode = {
+            ...item,
+            w: item.w * scale,
+          }
           let dragResult
           if (
             (item.x === -1 && item.y === -1) ||
@@ -322,7 +336,7 @@ export const RenderComponentCanvas: FC<{
             dragResult = getDragResult(
               monitor,
               containerRef,
-              item,
+              scaleItem,
               unitWidth,
               UNIT_HEIGHT,
               bounds.width,
@@ -334,7 +348,7 @@ export const RenderComponentCanvas: FC<{
             dragResult = getDragResult(
               monitor,
               containerRef,
-              item,
+              scaleItem,
               unitWidth,
               UNIT_HEIGHT,
               bounds.width,
@@ -351,7 +365,7 @@ export const RenderComponentCanvas: FC<{
            */
           const oldParentNodeDisplayName = item.parentNode || "root"
           const newItem = {
-            ...item,
+            ...scaleItem,
             parentNode: componentNode.displayName || "root",
             x: Math.round(landingX / unitWidth),
             y: Math.round(landingY / UNIT_HEIGHT),
@@ -401,9 +415,10 @@ export const RenderComponentCanvas: FC<{
       },
       collect: (monitor) => {
         const dragInfo = monitor.getItem()
+        const scale = blockColumns / BASIC_BLOCK_COLUMNS
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
-          nodeWidth: dragInfo?.item?.w ?? 0,
+          nodeWidth: dragInfo?.item?.w * scale ?? 0,
           nodeHeight: dragInfo?.item?.h ?? 0,
         }
       },

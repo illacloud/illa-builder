@@ -1,4 +1,4 @@
-import { useEffect, useRef, forwardRef } from "react"
+import { useEffect, useRef, forwardRef, MutableRefObject } from "react"
 import { useDispatch } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
@@ -19,6 +19,13 @@ import {
   resizeVerticalBarStyle,
   resizeVerticalBarWrapperStyle,
 } from "./style"
+import { RenderComponentCanvas } from "./renderComponentCanvas"
+import useMeasure from "react-use-measure"
+
+export const HEADER_MIN_HEIGHT = 96
+export const FOOTER_MIN_HEIGHT = 96
+export const LEFT_MIN_WIDTH = 240
+export const RIGHT_MIN_WIDTH = 240
 
 export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
@@ -54,6 +61,16 @@ export const RenderHeaderSection = forwardRef<
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
   const isActive = useRef<boolean>(false)
+  const currentViewDisplayName = viewSortedKey[currentViewIndex]
+
+  const componentNode = sectionNode.childrenNode.find(
+    (node) => node.displayName === currentViewDisplayName,
+  )
+
+  const [containerBoundRef, containerBound] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
 
   const dispatch = useDispatch()
 
@@ -69,8 +86,8 @@ export const RenderHeaderSection = forwardRef<
         if (currentPointPositionY % 8 !== 0) {
           currentPointPositionY = Math.round(currentPointPositionY / 8) * 8
         }
-        if (currentPointPositionY < 98) {
-          currentPointPositionY = 98
+        if (currentPointPositionY < HEADER_MIN_HEIGHT) {
+          currentPointPositionY = HEADER_MIN_HEIGHT
         }
         dispatch(
           componentsActions.updateCurrentPagePropsReducer({
@@ -96,7 +113,24 @@ export const RenderHeaderSection = forwardRef<
       css={applyHeaderSectionWrapperStyle(`${topHeight}px`, "240px", "500px")}
       ref={ref}
     >
-      <div css={containerWrapperStyle} />
+      <div
+        css={containerWrapperStyle}
+        ref={(ele) => {
+          containerBoundRef(ele)
+          containerRef.current = ele
+        }}
+      >
+        {componentNode && (
+          <RenderComponentCanvas
+            componentNode={componentNode}
+            containerPadding={8}
+            containerRef={containerRef}
+            canResizeY
+            minHeight={containerBound.height - 16}
+            safeRowNumber={0}
+          />
+        )}
+      </div>
       <div
         css={resizeVerticalBarWrapperStyle}
         onMouseDown={handleClickMoveBar}
@@ -118,6 +152,16 @@ export const RenderFooterSection = forwardRef<
   let sectionNodeProps = sectionNode.props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
+  const currentViewDisplayName = viewSortedKey[currentViewIndex]
+
+  const componentNode = sectionNode.childrenNode.find(
+    (node) => node.displayName === currentViewDisplayName,
+  )
+
+  const [containerBoundRef, containerBound] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
 
   const isActive = useRef<boolean>(false)
 
@@ -135,8 +179,8 @@ export const RenderFooterSection = forwardRef<
         if (currentPointPositionY % 8 !== 0) {
           currentPointPositionY = Math.round(currentPointPositionY / 8) * 8
         }
-        if (currentPointPositionY < 98) {
-          currentPointPositionY = 98
+        if (currentPointPositionY < FOOTER_MIN_HEIGHT) {
+          currentPointPositionY = FOOTER_MIN_HEIGHT
         }
         dispatch(
           componentsActions.updateCurrentPagePropsReducer({
@@ -166,7 +210,24 @@ export const RenderFooterSection = forwardRef<
       )}
       ref={ref}
     >
-      <div css={containerWrapperStyle} />
+      <div
+        css={containerWrapperStyle}
+        ref={(ele) => {
+          containerBoundRef(ele)
+          containerRef.current = ele
+        }}
+      >
+        {componentNode && (
+          <RenderComponentCanvas
+            componentNode={componentNode}
+            containerPadding={8}
+            containerRef={containerRef}
+            canResizeY
+            minHeight={containerBound.height - 16}
+            safeRowNumber={0}
+          />
+        )}
+      </div>
       <div
         css={resizeVerticalBarWrapperStyle}
         onMouseDown={handleClickMoveBar}
@@ -190,6 +251,16 @@ export const RenderLeftSection = forwardRef<
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
   const isActive = useRef<boolean>(false)
+  const currentViewDisplayName = viewSortedKey[currentViewIndex]
+
+  const componentNode = sectionNode.childrenNode.find(
+    (node) => node.displayName === currentViewDisplayName,
+  )
+
+  const [containerBoundRef, containerBound] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
 
   const dispatch = useDispatch()
 
@@ -202,8 +273,8 @@ export const RenderLeftSection = forwardRef<
       if (isActive.current) {
         const { clientX } = e
         let currentPointPositionX = clientX - offsetLeft
-        if (currentPointPositionX < 240) {
-          currentPointPositionX = 240
+        if (currentPointPositionX < LEFT_MIN_WIDTH) {
+          currentPointPositionX = LEFT_MIN_WIDTH
         }
         const presetWidth = (currentPointPositionX / containerWidth) * 100
 
@@ -228,7 +299,25 @@ export const RenderLeftSection = forwardRef<
 
   return (
     <div css={applyLeftSectionWrapperStyle("240px", "0px")} ref={ref}>
-      <div css={containerWrapperStyle} />
+      <div
+        css={containerWrapperStyle}
+        ref={(ele) => {
+          containerBoundRef(ele)
+          containerRef.current = ele
+        }}
+      >
+        {componentNode && (
+          <RenderComponentCanvas
+            componentNode={componentNode}
+            containerPadding={8}
+            containerRef={containerRef}
+            canResizeY
+            minHeight={containerBound.height - 16}
+            safeRowNumber={0}
+            blockColumns={16}
+          />
+        )}
+      </div>
       <div
         css={resizeHorizontalBarWrapperStyle}
         onMouseDown={handleClickMoveBar}
@@ -250,6 +339,17 @@ export const RenderRightSection = forwardRef<
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
+  const currentViewDisplayName = viewSortedKey[currentViewIndex]
+
+  const componentNode = sectionNode.childrenNode.find(
+    (node) => node.displayName === currentViewDisplayName,
+  )
+
+  const [containerBoundRef, containerBound] = useMeasure()
+  const containerRef = useRef<HTMLDivElement>(
+    null,
+  ) as MutableRefObject<HTMLDivElement | null>
+
   const isActive = useRef<boolean>(false)
 
   const dispatch = useDispatch()
@@ -263,8 +363,8 @@ export const RenderRightSection = forwardRef<
       if (isActive.current) {
         const { clientX } = e
         let currentPointPositionX = containerWidth - (clientX - offsetLeft)
-        if (currentPointPositionX < 240) {
-          currentPointPositionX = 240
+        if (currentPointPositionX < RIGHT_MIN_WIDTH) {
+          currentPointPositionX = RIGHT_MIN_WIDTH
         }
         const presetWidth = (currentPointPositionX / containerWidth) * 100
 
@@ -289,7 +389,25 @@ export const RenderRightSection = forwardRef<
 
   return (
     <div css={applyRightSectionWrapperStyle("240px", "0px")} ref={ref}>
-      <div css={containerWrapperStyle} />
+      <div
+        css={containerWrapperStyle}
+        ref={(ele) => {
+          containerBoundRef(ele)
+          containerRef.current = ele
+        }}
+      >
+        {componentNode && (
+          <RenderComponentCanvas
+            componentNode={componentNode}
+            containerPadding={8}
+            containerRef={containerRef}
+            canResizeY
+            minHeight={containerBound.height - 16}
+            safeRowNumber={0}
+            blockColumns={16}
+          />
+        )}
+      </div>
       <div
         css={resizeHorizontalBarWrapperStyle}
         onMouseDown={handleClickMoveBar}
