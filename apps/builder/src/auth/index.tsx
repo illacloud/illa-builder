@@ -25,7 +25,7 @@ export const CheckIsLogin: FC<CheckIsLoginWrapperProps> = (props) => {
       navigate("/user/login", { state: { from: location } })
       return
     }
-    if (currentUserId === 0 || currentUserId == undefined) {
+    if (currentUserId === "" || currentUserId == undefined) {
       Api.request<CurrentUser>(
         {
           url: "/users",

@@ -8,6 +8,8 @@
   },
   "collision_message": "Press D or K  and drag the component into container",
   "create_fail": "Failed to create",
+  "change_fail": "Failed to change",
+  "change_success": "Change successfully",
   "create_new": "Create New",
   "create_new_app": "Create New",
   "created_at": "Created at",
