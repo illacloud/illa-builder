@@ -13,7 +13,7 @@ import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
 import { AddIcon } from "@illa-design/icon"
 
-export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
+export const MenuOptionSetter: FC<ColumnListSetterProps> = (props) => {
   const {
     attrName,
     handleUpdateDsl,
@@ -63,4 +63,4 @@ export const ColumnSetter: FC<ColumnListSetterProps> = (props) => {
   )
 }
 
-ColumnSetter.displayName = "ColumnSetter"
+MenuOptionSetter.displayName = "MenuOptionSetter"

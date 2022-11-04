@@ -20,8 +20,8 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
       {
         id: `${baseWidgetName}-basic-columns`,
         useCustomLayout: true,
-        attrName: "columns",
-        setterType: "COLUMN_SETTER",
+        attrName: "menuOption",
+        setterType: "MENU_OPTION_SETTER",
         openDynamic: true,
         childrenSetter: [
           {
@@ -73,12 +73,6 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
     id: `${baseWidgetName}-interaction`,
     groupName: i18n.t("editor.inspect.setter_group.interaction"),
     children: [
-      {
-        ...generatorEventHandlerConfig(
-          baseWidgetName,
-          MENU_EVENT_HANDLER_CONFIG.events,
-        ),
-      },
       {
         id: `${baseWidgetName}-interaction-disabled`,
         labelName: i18n.t("editor.inspect.setter_label.disabled"),

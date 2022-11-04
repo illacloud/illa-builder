@@ -14,11 +14,14 @@ export interface WrappedMenuProps
   handleOnColumnFiltersChange?: () => void
 }
 
-const i = [
+interface MenuOption {}
+
+const menuOption = [
   {
     title: "title",
     icon: "icon",
     hidden: true,
+    disabled: true,
   },
 ]
 
