@@ -103,15 +103,6 @@ export class ExecutionTreeFactory {
     this.executedTree = resultExecutedTree
   }
 
-  applyDifferencesToRawTree(differences: Diff<any, any>[]) {
-    const resultRawTree = cloneDeep(this.oldRawTree)
-    for (const d of differences) {
-      if (!Array.isArray(d.path) || d.path.length === 0) continue
-      applyChange(resultRawTree, undefined, d)
-    }
-    return resultRawTree
-  }
-
   calcSubTreeSortOrder(differences: Diff<any, any>[], rawTree: RawTreeShape) {
     const changePaths: Set<string> = new Set()
     for (const diff of differences) {
@@ -256,6 +247,29 @@ export class ExecutionTreeFactory {
     }
   }
 
+  getUpdatePathFromDifferences(
+    differences: Diff<Record<string, any>, Record<string, any>>[],
+  ) {
+    const updatePaths: string[] = []
+    for (const d of differences) {
+      if (!Array.isArray(d.path) || d.path.length === 0) continue
+      updatePaths.push(d.path.join("."))
+    }
+    return updatePaths
+  }
+
+  updateRawTreeByUpdatePaths(
+    paths: string[],
+    executionTree: Record<string, any>,
+  ) {
+    const currentRawTree = cloneDeep(this.oldRawTree)
+    paths.forEach((path) => {
+      const value = get(executionTree, path, undefined)
+      set(currentRawTree, path, value)
+    })
+    return currentRawTree
+  }
+
   updateTreeFromExecution(executionTree: Record<string, any>) {
     const currentExecutionTree = cloneDeep(executionTree)
     const differences: Diff<Record<string, any>, Record<string, any>>[] =
@@ -265,7 +279,11 @@ export class ExecutionTreeFactory {
         evaluatedTree: this.executedTree,
       }
     }
-    const currentRawTree = this.applyDifferencesToRawTree(differences)
+    const updatePaths = this.getUpdatePathFromDifferences(differences)
+    const currentRawTree = this.updateRawTreeByUpdatePaths(
+      updatePaths,
+      currentExecutionTree,
+    )
     const orderPath = this.calcSubTreeSortOrder(differences, currentRawTree)
     const { evaluatedTree, errorTree, debuggerData } = this.executeTree(
       currentRawTree,

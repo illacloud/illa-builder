@@ -91,10 +91,10 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 dispatch(actionActions.updateActionItemReducer(newAction))
               },
               () => {
-                Message.error(t("create_fail"))
+                Message.error(t("change_fail"))
               },
               () => {
-                Message.error(t("create_fail"))
+                Message.error(t("change_fail"))
               },
               (l) => {
                 setLoading(l)

@@ -9,7 +9,7 @@ export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
   icon: <EditableTextWidgetIcon />,
   keywords: ["Editable Text", "可编辑文本"],
   sessionType: "INPUTS",
-  w: 10,
+  w: 24,
   h: 5,
   defaults: {
     label: "Label",
@@ -18,6 +18,6 @@ export const EDITABLE_TEXT_WIDGET_CONFIG: WidgetConfig = {
     labelWidth: "{{33}}",
     colorScheme: "blue",
     hidden: false,
-    placeholder: "enter sth",
+    value: "editable text for display",
   },
 }

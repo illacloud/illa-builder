@@ -64,8 +64,9 @@ export const ActionResult: FC<ActionResultProps> = (props) => {
                 setDragMaxHeight(ele?.scrollHeight + 40)
               }
               if (placeholderRef?.current && ele?.clientHeight) {
-                placeholderRef.current.style.paddingBottom = `${ele?.clientHeight +
-                  48}px`
+                placeholderRef.current.style.paddingBottom = `${
+                  ele?.clientHeight + 48
+                }px`
               }
             }}
             mode={"JSON"}

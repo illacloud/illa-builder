@@ -1,9 +1,11 @@
-import { FC, useState } from "react"
+import { FC, useContext, useState } from "react"
 import {
   createNewStyle,
   itemContainer,
+  itemLogo,
   itemText,
   resourceChooseContainerStyle,
+  resourceEndStyle,
   resourceTitleStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
@@ -28,6 +30,7 @@ import {
   getCachedAction,
   getSelectedAction,
 } from "@/redux/config/configSelector"
+import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 
 export const ResourceChoose: FC = () => {
   const { t } = useTranslation()
@@ -40,6 +43,8 @@ export const ResourceChoose: FC = () => {
   const action = useSelector(getCachedAction)!!
   const selectedAction = useSelector(getSelectedAction)!!
 
+  const { onChangeSelectedResource } = useContext(ActionPanelContext)
+
   //maybe empty
   const currentSelectResource = resourceList.find(
     (r) => r.resourceId === action.resourceId,
@@ -49,11 +54,11 @@ export const ResourceChoose: FC = () => {
     <>
       <div css={resourceChooseContainerStyle}>
         <span css={resourceTitleStyle}>{t("resources")}</span>
-        <Space direction="horizontal" size="8px" alignItems="center">
+        <div css={resourceEndStyle}>
           <Select
+            flexShrink="1"
+            flexGrow="0"
             colorScheme="techPurple"
-            minW="200px"
-            maxW="300px"
             value={
               currentSelectResource
                 ? action.resourceId
@@ -74,6 +79,7 @@ export const ResourceChoose: FC = () => {
                         : getInitialContent(resource.resourceType),
                   }),
                 )
+                onChangeSelectedResource?.()
               }
             }}
             addonAfter={{
@@ -110,7 +116,9 @@ export const ResourceChoose: FC = () => {
               return (
                 <Option value={item.resourceId} key={item.resourceId}>
                   <div css={itemContainer}>
-                    {getIconFromResourceType(item.resourceType, "14px")}
+                    <span css={itemLogo}>
+                      {getIconFromResourceType(item.resourceType, "14px")}
+                    </span>
                     <span css={itemText}>{item.resourceName}</span>
                   </div>
                 </Option>
@@ -118,9 +126,8 @@ export const ResourceChoose: FC = () => {
             })}
           </Select>
           <Select
+            ml="8px"
             colorScheme="techPurple"
-            minW="300px"
-            maxW="500px"
             value={action.triggerMode}
             onChange={(value) => {
               dispatch(
@@ -138,7 +145,7 @@ export const ResourceChoose: FC = () => {
               {t("editor.action.panel.option.trigger.on_change")}
             </Option>
           </Select>
-        </Space>
+        </div>
       </div>
       <Modal
         w="696px"

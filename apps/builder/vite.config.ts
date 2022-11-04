@@ -36,7 +36,7 @@ export default defineConfig((props) => {
       },
     },
     build: {
-      sourcemap: false,
+      sourcemap: true,
     },
     server: {
       proxy: {

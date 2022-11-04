@@ -231,9 +231,6 @@ export const RenderComponentCanvas: FC<{
           ) {
             const finalNumber = landingY / UNIT_HEIGHT + item.h + safeRowNumber
             setRowNumber(finalNumber)
-            containerRef.current?.scrollTo({
-              top: bounds.height,
-            })
           }
 
           let childrenNodes = dragInfo.childrenNodes.filter(

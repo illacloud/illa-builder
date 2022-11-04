@@ -50,6 +50,13 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
       },
       {
+        id: `${baseWidgetName}-label-hidden`,
+        labelName: i18n.t("editor.inspect.setter_label.hidden_label"),
+        attrName: "labelHidden",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+      },
+      {
         id: `${baseWidgetName}-label-position`,
         labelName: i18n.t("editor.inspect.setter_label.label_position"),
         attrName: "labelPosition",
