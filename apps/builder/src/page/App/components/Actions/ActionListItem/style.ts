@@ -59,7 +59,9 @@ export function applyActionItemContainerStyle(
     align-items: center;
     display: flex;
     flex-direction: row;
-    padding: 9px 16px 9px 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 40px;
     font-size: 14px;
 
     &:hover {

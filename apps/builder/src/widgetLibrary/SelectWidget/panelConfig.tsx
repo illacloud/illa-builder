@@ -155,7 +155,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
         shown: (value) => !value,
         options: [
           { label: i18n.t("widget.public.left"), value: "left" },
-          { label: i18n.t("widget.public.right"), value: "right" },
+          { label: i18n.t("widget.public.top"), value: "top" },
         ],
       },
       {

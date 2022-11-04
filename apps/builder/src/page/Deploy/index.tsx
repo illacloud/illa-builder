@@ -10,8 +10,6 @@ import { useInitBuilderApp } from "@/hooks/useInitApp"
 import { Unsubscribe } from "@reduxjs/toolkit"
 import { startAppListening } from "@/store"
 import { setupExecutionListeners } from "@/redux/currentApp/executionTree/executionListener"
-import { Button } from "@illa-design/button"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 
 export const Deploy: FC = () => {

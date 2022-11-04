@@ -45,7 +45,7 @@ export const DIVIDER_PANEL_CONFIG: PanelConfig[] = [
   },
   {
     id: `${baseWidgetName}-layout`,
-    groupName: i18n.t("editor.inspect.setter_group.label"),
+    groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
       {
         id: `${baseWidgetName}-layout-hidden`,

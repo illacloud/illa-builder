@@ -22,19 +22,19 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
         setterType: "INPUT_SETTER",
         expectedType: VALIDATION_TYPES.STRING,
       },
+      {
+        id: `${baseWidgetName}-basic-showText`,
+        labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
+        attrName: "showText",
+        setterType: "DYNAMIC_SWITCH_SETTER",
+        useCustomLayout: true,
+      },
     ],
   },
   {
     id: `${baseWidgetName}-adornments`,
     groupName: i18n.t("editor.inspect.setter_group.adornments"),
     children: [
-      {
-        id: `${baseWidgetName}-adornments-showText`,
-        labelName: i18n.t("editor.inspect.setter_label.hide_value_label"),
-        attrName: "showText",
-        setterType: "DYNAMIC_SWITCH_SETTER",
-        useCustomLayout: true,
-      },
       {
         id: `${baseWidgetName}-adornments-tooltip`,
         labelName: i18n.t("editor.inspect.setter_label.tooltip"),

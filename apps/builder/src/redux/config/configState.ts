@@ -1,6 +1,5 @@
 import {
   ActionContent,
-  ActionEvents,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
 
@@ -14,8 +13,8 @@ export interface ConfigState {
   showDot: boolean
   scale: number
   selectedComponents: string[]
-  selectedAction: ActionItem<ActionContent, ActionEvents> | null
-  cachedAction: ActionItem<ActionContent, ActionEvents> | null
+  selectedAction: ActionItem<ActionContent> | null
+  cachedAction: ActionItem<ActionContent> | null
   expandedKeys: string[]
   mode: IllaMode
   freezeCanvas: boolean
