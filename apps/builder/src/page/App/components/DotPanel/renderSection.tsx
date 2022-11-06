@@ -75,7 +75,14 @@ export const RenderHeaderSection = forwardRef<
   HTMLDivElement,
   RenderHeaderSectionProps
 >((props, ref) => {
-  const { sectionNode, topHeight, offsetTop, mode } = props
+  const {
+    sectionNode,
+    topHeight,
+    offsetTop,
+    mode,
+    containerHeight,
+    footerHeight,
+  } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
   const isActive = useRef<boolean>(false)
@@ -101,15 +108,29 @@ export const RenderHeaderSection = forwardRef<
       if (isActive.current) {
         const { clientY } = e
         let currentPointPositionY = clientY - offsetTop
+        let otherPanelHeightPX = footerHeight
         if (currentPointPositionY % 8 !== 0) {
           currentPointPositionY = Math.round(currentPointPositionY / 8) * 8
         }
         if (currentPointPositionY < HEADER_MIN_HEIGHT) {
           currentPointPositionY = HEADER_MIN_HEIGHT
         }
+        if (
+          containerHeight - currentPointPositionY - otherPanelHeightPX <
+          BODY_MIN_HEIGHT
+        ) {
+          otherPanelHeightPX =
+            containerHeight - BODY_MIN_HEIGHT - currentPointPositionY
+          if (otherPanelHeightPX <= FOOTER_MIN_HEIGHT) {
+            otherPanelHeightPX = FOOTER_MIN_HEIGHT
+          }
+          currentPointPositionY =
+            containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
+        }
         dispatch(
           componentsActions.updateCurrentPagePropsReducer({
             topHeight: currentPointPositionY,
+            bottomHeight: otherPanelHeightPX,
           }),
         )
       }
@@ -124,7 +145,7 @@ export const RenderHeaderSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [dispatch, offsetTop])
+  }, [containerHeight, dispatch, footerHeight, offsetTop])
 
   return (
     <div
@@ -167,7 +188,14 @@ export const RenderFooterSection = forwardRef<
   HTMLDivElement,
   RenderFooterSectionProps
 >((props, ref) => {
-  const { sectionNode, bottomHeight, containerHeight, offsetTop, mode } = props
+  const {
+    sectionNode,
+    bottomHeight,
+    containerHeight,
+    offsetTop,
+    mode,
+    headerHeight,
+  } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
   const currentViewDisplayName = viewSortedKey[currentViewIndex]
@@ -194,15 +222,29 @@ export const RenderFooterSection = forwardRef<
       if (isActive.current) {
         const { clientY } = e
         let currentPointPositionY = containerHeight - (clientY - offsetTop)
+        let otherPanelHeightPX = headerHeight
         if (currentPointPositionY % 8 !== 0) {
           currentPointPositionY = Math.round(currentPointPositionY / 8) * 8
         }
         if (currentPointPositionY < FOOTER_MIN_HEIGHT) {
           currentPointPositionY = FOOTER_MIN_HEIGHT
         }
+        if (
+          containerHeight - currentPointPositionY - otherPanelHeightPX <
+          BODY_MIN_HEIGHT
+        ) {
+          otherPanelHeightPX =
+            containerHeight - BODY_MIN_HEIGHT - currentPointPositionY
+          if (otherPanelHeightPX <= HEADER_MIN_HEIGHT) {
+            otherPanelHeightPX = HEADER_MIN_HEIGHT
+          }
+          currentPointPositionY =
+            containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
+        }
         dispatch(
           componentsActions.updateCurrentPagePropsReducer({
             bottomHeight: currentPointPositionY,
+            topHeight: otherPanelHeightPX,
           }),
         )
       }
@@ -217,7 +259,7 @@ export const RenderFooterSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerHeight, dispatch, offsetTop])
+  }, [containerHeight, dispatch, headerHeight, offsetTop])
 
   return (
     <div
@@ -264,7 +306,7 @@ export const RenderLeftSection = forwardRef<
   HTMLDivElement,
   RenderLeftSectionProps
 >((props, ref) => {
-  const { sectionNode, offsetLeft, containerWidth, mode } = props
+  const { sectionNode, offsetLeft, containerWidth, mode, rightWidth } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
@@ -291,14 +333,28 @@ export const RenderLeftSection = forwardRef<
       if (isActive.current) {
         const { clientX } = e
         let currentPointPositionX = clientX - offsetLeft
+        let otherPanelWidthPX = rightWidth
         if (currentPointPositionX < LEFT_MIN_WIDTH) {
           currentPointPositionX = LEFT_MIN_WIDTH
         }
+        if (
+          containerWidth - currentPointPositionX - otherPanelWidthPX <
+          BODY_MIN_WIDTH
+        ) {
+          otherPanelWidthPX =
+            containerWidth - BODY_MIN_WIDTH - currentPointPositionX
+          if (otherPanelWidthPX <= RIGHT_MIN_WIDTH) {
+            otherPanelWidthPX = RIGHT_MIN_WIDTH
+          }
+          currentPointPositionX =
+            containerWidth - BODY_MIN_WIDTH - otherPanelWidthPX
+        }
         const presetWidth = (currentPointPositionX / containerWidth) * 100
-
+        const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
         dispatch(
           componentsActions.updateCurrentPagePropsReducer({
             leftWidth: presetWidth,
+            rightWidth: otherPanelWidth,
           }),
         )
       }
@@ -313,7 +369,7 @@ export const RenderLeftSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerWidth, dispatch, offsetLeft])
+  }, [containerWidth, dispatch, offsetLeft, rightWidth])
 
   return (
     <div css={applyLeftSectionWrapperStyle("240px", "0px")} ref={ref}>
@@ -353,7 +409,7 @@ export const RenderRightSection = forwardRef<
   HTMLDivElement,
   RenderRightSectionProps
 >((props, ref) => {
-  const { sectionNode, offsetLeft, containerWidth, mode } = props
+  const { sectionNode, offsetLeft, containerWidth, mode, leftWidth } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
@@ -380,15 +436,30 @@ export const RenderRightSection = forwardRef<
     const mouseMoveListener = (e: globalThis.MouseEvent) => {
       if (isActive.current) {
         const { clientX } = e
+        let otherPanelWidthPX = leftWidth
         let currentPointPositionX = containerWidth - (clientX - offsetLeft)
         if (currentPointPositionX < RIGHT_MIN_WIDTH) {
           currentPointPositionX = RIGHT_MIN_WIDTH
         }
+        if (
+          containerWidth - currentPointPositionX - otherPanelWidthPX <
+          BODY_MIN_WIDTH
+        ) {
+          otherPanelWidthPX =
+            containerWidth - BODY_MIN_WIDTH - currentPointPositionX
+          if (otherPanelWidthPX <= LEFT_MIN_WIDTH) {
+            otherPanelWidthPX = LEFT_MIN_WIDTH
+          }
+          currentPointPositionX =
+            containerWidth - BODY_MIN_WIDTH - otherPanelWidthPX
+        }
         const presetWidth = (currentPointPositionX / containerWidth) * 100
+        const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
 
         dispatch(
           componentsActions.updateCurrentPagePropsReducer({
             rightWidth: presetWidth,
+            leftWidth: otherPanelWidth,
           }),
         )
       }
@@ -403,7 +474,7 @@ export const RenderRightSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerWidth, dispatch, offsetLeft])
+  }, [containerWidth, dispatch, leftWidth, offsetLeft])
 
   return (
     <div css={applyRightSectionWrapperStyle("240px", "0px")} ref={ref}>

@@ -69,7 +69,9 @@ export interface RenderHeaderSectionProps {
   sectionNode: SectionNode
   topHeight: number
   offsetTop: number
+  containerHeight: number
   mode: IllaMode
+  footerHeight: number
 }
 
 export interface RenderFooterSectionProps {
@@ -78,6 +80,7 @@ export interface RenderFooterSectionProps {
   offsetTop: number
   containerHeight: number
   mode: IllaMode
+  headerHeight: number
 }
 
 export interface RenderLeftSectionProps {
@@ -85,6 +88,7 @@ export interface RenderLeftSectionProps {
   offsetLeft: number
   containerWidth: number
   mode: IllaMode
+  rightWidth: number
 }
 
 export interface RenderRightSectionProps {
@@ -92,6 +96,7 @@ export interface RenderRightSectionProps {
   offsetLeft: number
   containerWidth: number
   mode: IllaMode
+  leftWidth: number
 }
 
 export interface RenderContainerProps {

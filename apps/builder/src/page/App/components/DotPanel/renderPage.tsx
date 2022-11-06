@@ -1,4 +1,4 @@
-import { FC, useRef, useLayoutEffect } from "react"
+import { FC, useRef, useLayoutEffect, useMemo } from "react"
 import {
   PageNode,
   SectionNode,
@@ -94,28 +94,33 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     canvasShape.canvasWidth,
     dispatch,
   ])
-
-  useLayoutEffect(() => {
+  const realLeftWidth = useMemo(() => {
     const leftWidthPX = getLeftAndRightWidth(
       canvasSize,
       leftWidth,
       bounds.width,
     )
+    return hasLeft
+      ? leftWidthPX <= LEFT_MIN_WIDTH
+        ? LEFT_MIN_WIDTH
+        : leftWidthPX
+      : 0
+  }, [bounds.width, canvasSize, hasLeft, leftWidth])
+
+  const realRightWidth = useMemo(() => {
     const rightWidthPX = getLeftAndRightWidth(
       canvasSize,
       rightWidth,
       bounds.width,
     )
-    const realLeftWidth = hasLeft
-      ? leftWidthPX <= LEFT_MIN_WIDTH
-        ? LEFT_MIN_WIDTH
-        : leftWidthPX
-      : 0
-    const realRightWidth = hasRight
+    return hasRight
       ? rightWidthPX <= RIGHT_MIN_WIDTH
         ? RIGHT_MIN_WIDTH
         : rightWidthPX
       : 0
+  }, [bounds.width, canvasSize, hasRight, rightWidth])
+
+  useLayoutEffect(() => {
     let headerLeft = 0
     let headerWidth = bounds.width
     let leftTop = 0
@@ -191,7 +196,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     }
 
     if (hasFooter) {
-      bodyHeight -= topHeight
+      bodyHeight -= bottomHeight
     }
 
     if (hasLeft && leftRef.current) {
@@ -230,6 +235,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     hasRight,
     leftPosition,
     leftWidth,
+    realLeftWidth,
+    realRightWidth,
     rightPosition,
     rightWidth,
     topHeight,
@@ -258,6 +265,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           topHeight={topHeight}
           offsetTop={bounds.top}
           mode={mode}
+          footerHeight={hasFooter ? bottomHeight : 0}
+          containerHeight={bounds.height}
         />
       )}
       {hasLeft && leftSection && (
@@ -267,6 +276,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           offsetLeft={bounds.left}
           containerWidth={bounds.width}
           mode={mode}
+          rightWidth={realRightWidth}
         />
       )}
       {bodySection && (
@@ -279,6 +289,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           offsetLeft={bounds.left}
           containerWidth={bounds.width}
           mode={mode}
+          leftWidth={realLeftWidth}
         />
       )}
       {hasFooter && footerSection && (
@@ -289,6 +300,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           offsetTop={bounds.top}
           containerHeight={bounds.height}
           mode={mode}
+          headerHeight={hasHeader ? topHeight : 0}
         />
       )}
     </div>

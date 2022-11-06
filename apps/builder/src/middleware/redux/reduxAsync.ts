@@ -48,9 +48,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
     }
     return next(action)
   }
-  console.log("prevState", store.getState())
   const resp = next(action)
-  console.log("nextState", store.getState())
   //  TODO: @aruseito ws send message when connected
   try {
     switch (reduxType) {
