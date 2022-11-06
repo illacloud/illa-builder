@@ -8,6 +8,7 @@ export enum SECTION_POSITION {
   "BOTTOM" = "BOTTOM",
   "CENTER" = "CENTER",
   "FULL" = "FULL",
+  "NONE" = "NONE",
 }
 export interface ComponentNode {
   displayName: string

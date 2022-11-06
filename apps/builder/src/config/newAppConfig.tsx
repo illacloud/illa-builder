@@ -1,9 +1,12 @@
 import {
   ComponentNode,
   CONTAINER_TYPE,
+  PageNode,
+  SectionNode,
+  SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
 
-export const BASIC_BODY_SECTION_CONFIG: ComponentNode = {
+export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   displayName: "bodySection",
   parentNode: "page1",
   showName: "bodySection",
@@ -50,7 +53,7 @@ export const BASIC_BODY_SECTION_CONFIG: ComponentNode = {
   ],
 }
 
-export const BASIC_LEFT_SECTION_CONFIG: ComponentNode = {
+export const BASIC_LEFT_SECTION_CONFIG: SectionNode = {
   displayName: "leftSection",
   parentNode: "page1",
   showName: "leftSection",
@@ -97,7 +100,7 @@ export const BASIC_LEFT_SECTION_CONFIG: ComponentNode = {
   ],
 }
 
-export const BASIC_RIGHT_SECTION_CONFIG: ComponentNode = {
+export const BASIC_RIGHT_SECTION_CONFIG: SectionNode = {
   displayName: "rightSection",
   parentNode: "page1",
   showName: "rightSection",
@@ -144,7 +147,7 @@ export const BASIC_RIGHT_SECTION_CONFIG: ComponentNode = {
   ],
 }
 
-export const BASIC_HEADER_SECTION_CONFIG: ComponentNode = {
+export const BASIC_HEADER_SECTION_CONFIG: SectionNode = {
   displayName: "headerSection",
   parentNode: "page1",
   showName: "headerSection",
@@ -191,7 +194,7 @@ export const BASIC_HEADER_SECTION_CONFIG: ComponentNode = {
   ],
 }
 
-export const BASIC_FOOTER_SECTION_CONFIG: ComponentNode = {
+export const BASIC_FOOTER_SECTION_CONFIG: SectionNode = {
   displayName: "footerSection",
   parentNode: "page1",
   showName: "footerSection",
@@ -238,7 +241,7 @@ export const BASIC_FOOTER_SECTION_CONFIG: ComponentNode = {
   ],
 }
 
-export const DEFAULT_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
+export const DEFAULT_PAGE_LAYOUT_CONFIG: PageNode[] = [
   {
     displayName: "page1",
     parentNode: "root",
@@ -261,8 +264,8 @@ export const DEFAULT_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       canvasSize: "responsive",
       canvasWidth: "auto",
       layout: "default",
-      leftPosition: "NONE",
-      rightPosition: "NONE",
+      leftPosition: SECTION_POSITION.NONE,
+      rightPosition: SECTION_POSITION.NONE,
       hasFooter: false,
       hasHeader: false,
       hasLeft: false,
@@ -271,12 +274,16 @@ export const DEFAULT_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       rightWidth: 0,
       topHeight: 0,
       bottomHeight: 0,
+      isLeftFixed: true,
+      isRightFixed: true,
+      isHeaderFixed: true,
+      isFooterFixed: true,
     },
     childrenNode: [BASIC_BODY_SECTION_CONFIG],
   },
 ]
 
-export const PRESET_A_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
+export const PRESET_A_PAGE_LAYOUT_CONFIG: PageNode[] = [
   {
     displayName: "page1",
     parentNode: "root",
@@ -299,8 +306,8 @@ export const PRESET_A_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       canvasSize: "responsive",
       canvasWidth: "auto",
       layout: "presetA",
-      leftPosition: "FULL",
-      rightPosition: "NONE",
+      leftPosition: SECTION_POSITION.FULL,
+      rightPosition: SECTION_POSITION.NONE,
       hasFooter: false,
       hasHeader: false,
       hasLeft: true,
@@ -309,6 +316,10 @@ export const PRESET_A_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       rightWidth: 0,
       topHeight: 0,
       bottomHeight: 0,
+      isLeftFixed: true,
+      isRightFixed: true,
+      isHeaderFixed: true,
+      isFooterFixed: true,
     },
     childrenNode: [BASIC_LEFT_SECTION_CONFIG, BASIC_BODY_SECTION_CONFIG],
   },
@@ -347,6 +358,10 @@ export const PRESET_B_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       rightWidth: 0,
       topHeight: 96,
       bottomHeight: 96,
+      isLeftFixed: true,
+      isRightFixed: true,
+      isHeaderFixed: true,
+      isFooterFixed: true,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,
@@ -356,7 +371,7 @@ export const PRESET_B_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
   },
 ]
 
-export const PRESET_C_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
+export const PRESET_C_PAGE_LAYOUT_CONFIG: PageNode[] = [
   {
     displayName: "page1",
     parentNode: "root",
@@ -379,8 +394,8 @@ export const PRESET_C_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       canvasSize: "responsive",
       canvasWidth: "auto",
       layout: "presetC",
-      leftPosition: "BOTTOM",
-      rightPosition: "NONE",
+      leftPosition: SECTION_POSITION.BOTTOM,
+      rightPosition: SECTION_POSITION.NONE,
       hasFooter: true,
       hasHeader: true,
       hasLeft: true,
@@ -389,6 +404,10 @@ export const PRESET_C_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       rightWidth: 0,
       topHeight: 96,
       bottomHeight: 96,
+      isLeftFixed: true,
+      isRightFixed: true,
+      isHeaderFixed: true,
+      isFooterFixed: true,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,
@@ -399,7 +418,7 @@ export const PRESET_C_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
   },
 ]
 
-export const PRESET_D_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
+export const PRESET_D_PAGE_LAYOUT_CONFIG: PageNode[] = [
   {
     displayName: "page1",
     parentNode: "root",
@@ -422,8 +441,8 @@ export const PRESET_D_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       canvasSize: "responsive",
       canvasWidth: "auto",
       layout: "presetD",
-      leftPosition: "BOTTOM",
-      rightPosition: "BOTTOM",
+      leftPosition: SECTION_POSITION.BOTTOM,
+      rightPosition: SECTION_POSITION.BOTTOM,
       hasFooter: true,
       hasHeader: true,
       hasLeft: true,
@@ -432,6 +451,10 @@ export const PRESET_D_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       rightWidth: 20,
       topHeight: 96,
       bottomHeight: 96,
+      isLeftFixed: true,
+      isRightFixed: true,
+      isHeaderFixed: true,
+      isFooterFixed: true,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,
@@ -443,7 +466,7 @@ export const PRESET_D_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
   },
 ]
 
-export const PRESET_E_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
+export const PRESET_E_PAGE_LAYOUT_CONFIG: PageNode[] = [
   {
     displayName: "page1",
     parentNode: "root",
@@ -466,8 +489,8 @@ export const PRESET_E_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       canvasSize: "responsive",
       canvasWidth: "auto",
       layout: "presetE",
-      leftPosition: "FULL",
-      rightPosition: "NONE",
+      leftPosition: SECTION_POSITION.FULL,
+      rightPosition: SECTION_POSITION.NONE,
       hasFooter: true,
       hasHeader: true,
       hasLeft: true,
@@ -476,6 +499,10 @@ export const PRESET_E_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
       rightWidth: 20,
       topHeight: 96,
       bottomHeight: 96,
+      isLeftFixed: true,
+      isRightFixed: true,
+      isHeaderFixed: true,
+      isFooterFixed: true,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,
@@ -486,7 +513,7 @@ export const PRESET_E_PAGE_LAYOUT_CONFIG: ComponentNode[] = [
   },
 ]
 
-export const BASIC_APP_CONFIG: ComponentNode[] = [
+export const BASIC_APP_CONFIG: PageNode[] = [
   {
     displayName: "page1",
     parentNode: "root",
@@ -508,17 +535,21 @@ export const BASIC_APP_CONFIG: ComponentNode[] = [
     props: {
       canvasSize: "responsive",
       canvasWidth: "auto",
-      layout: "presetE",
-      leftPosition: "CENTER",
-      rightPosition: "CENTER",
-      hasFooter: true,
-      hasHeader: true,
-      hasLeft: true,
-      hasRight: true,
-      leftWidth: 20,
-      rightWidth: 20,
-      topHeight: 96,
-      bottomHeight: 96,
+      layout: "default",
+      leftPosition: SECTION_POSITION.NONE,
+      rightPosition: SECTION_POSITION.NONE,
+      hasFooter: false,
+      hasHeader: false,
+      hasLeft: false,
+      hasRight: false,
+      leftWidth: 0,
+      rightWidth: 0,
+      topHeight: 0,
+      bottomHeight: 0,
+      isLeftFixed: true,
+      isRightFixed: true,
+      isHeaderFixed: true,
+      isFooterFixed: true,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,

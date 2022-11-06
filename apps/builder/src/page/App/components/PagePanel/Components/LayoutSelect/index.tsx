@@ -37,7 +37,7 @@ export const LAYOUT_OPTIONS = [
 
 export const findLayoutOptionItem = (layoutValue: string) => {
   const targetItem = LAYOUT_OPTIONS.find((item) => item.value === layoutValue)
-  return targetItem?.label || "Customer"
+  return targetItem?.label || "Custom"
 }
 
 export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {

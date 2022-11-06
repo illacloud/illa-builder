@@ -329,7 +329,7 @@ export const PageFrame: FC = () => {
 
   return (
     <PanelBar title={t("editor.page.panel_bar_title.frame")}>
-      <LeftAndRightLayout>
+      {/* <LeftAndRightLayout>
         <RadioGroup
           type="button"
           options={canvasSizeOptions}
@@ -351,7 +351,7 @@ export const PageFrame: FC = () => {
           />
         </SetterPadding>
       </LeftAndRightLayout>
-      <PanelDivider />
+      <PanelDivider /> */}
       <LeftAndRightLayout>
         <PageLabel labelName={t("editor.page.label_name.preset")} size="big" />
         <SetterPadding>
@@ -373,6 +373,7 @@ export const PageFrame: FC = () => {
                 hasLeft: false,
                 leftWidth: 0,
                 leftPosition: "NONE",
+                layout: "Custom",
               })
             }}
             addPanelAction={() => {
@@ -380,6 +381,7 @@ export const PageFrame: FC = () => {
                 hasLeft: true,
                 leftWidth: 20,
                 leftPosition: "FULL",
+                layout: "Custom",
               })
             }}
           />
@@ -425,6 +427,7 @@ export const PageFrame: FC = () => {
                 hasRight: false,
                 rightWidth: 0,
                 rightPosition: "NONE",
+                layout: "Custom",
               })
             }}
             addPanelAction={() => {
@@ -432,6 +435,7 @@ export const PageFrame: FC = () => {
                 hasRight: true,
                 rightWidth: 20,
                 rightPosition: "FULL",
+                layout: "Custom",
               })
             }}
           />
@@ -476,12 +480,14 @@ export const PageFrame: FC = () => {
               handleDeleteSection("headerSection", {
                 hasHeader: false,
                 topHeight: 0,
+                layout: "Custom",
               })
             }}
             addPanelAction={() => {
               handleAddSection("headerSection", {
                 hasHeader: true,
                 topHeight: 96,
+                layout: "Custom",
               })
             }}
           />
@@ -514,12 +520,14 @@ export const PageFrame: FC = () => {
               handleDeleteSection("footerSection", {
                 hasFooter: false,
                 bottomHeight: 0,
+                layout: "Custom",
               })
             }}
             addPanelAction={() => {
               handleAddSection("footerSection", {
                 hasFooter: true,
                 bottomHeight: 96,
+                layout: "Custom",
               })
             }}
           />
