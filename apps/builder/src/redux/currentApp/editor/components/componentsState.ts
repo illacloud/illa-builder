@@ -134,7 +134,7 @@ export interface DeleteTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, boolean>
+  options: Record<string, any>
 }
 
 export interface AddTargetPageSectionPayload {
@@ -144,5 +144,5 @@ export interface AddTargetPageSectionPayload {
     | "rightSection"
     | "headerSection"
     | "footerSection"
-  options: Record<string, boolean>
+  options: Record<string, any>
 }

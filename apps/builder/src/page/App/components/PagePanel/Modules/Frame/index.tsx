@@ -68,7 +68,7 @@ export const PageFrame: FC = () => {
         | "rightSection"
         | "headerSection"
         | "footerSection",
-      options: Record<string, boolean>,
+      options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
       dispatch(
@@ -89,7 +89,7 @@ export const PageFrame: FC = () => {
         | "rightSection"
         | "headerSection"
         | "footerSection",
-      options: Record<string, boolean>,
+      options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
       dispatch(
@@ -145,30 +145,46 @@ export const PageFrame: FC = () => {
             isFixed={isLeftFixed}
             hasPanel={hasLeft}
             deletePanelAction={() => {
-              handleDeleteSection("leftSection", { hasLeft: false })
+              handleDeleteSection("leftSection", {
+                hasLeft: false,
+                leftWidth: 0,
+                leftPosition: "NONE",
+              })
             }}
             addPanelAction={() => {
-              handleAddSection("leftSection", { hasLeft: true })
+              handleAddSection("leftSection", {
+                hasLeft: true,
+                leftWidth: 20,
+                leftPosition: "FULL",
+              })
             }}
           />
         </SetterPadding>
       </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel labelName={widthI18n} size="small" />
-        <SetterPadding>
-          <InputNumber w="96px" value={leftWidth} borderColor="techPurple" />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel
-          labelName={t("editor.page.label_name.show_fold_icon")}
-          size="small"
-          tooltip="xxxxxxxxxx"
-        />
-        <SetterPadding>
-          <Switch />
-        </SetterPadding>
-      </LeftAndRightLayout>
+      {hasLeft && (
+        <>
+          <LeftAndRightLayout>
+            <PageLabel labelName={widthI18n} size="small" />
+            <SetterPadding>
+              <InputNumber
+                w="96px"
+                value={leftWidth}
+                borderColor="techPurple"
+              />
+            </SetterPadding>
+          </LeftAndRightLayout>
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={t("editor.page.label_name.show_fold_icon")}
+              size="small"
+              tooltip="xxxxxxxxxx"
+            />
+            <SetterPadding>
+              <Switch />
+            </SetterPadding>
+          </LeftAndRightLayout>
+        </>
+      )}
       <PanelDivider />
       <LeftAndRightLayout>
         <PageLabel
@@ -180,20 +196,30 @@ export const PageFrame: FC = () => {
             isFixed={isRightFixed}
             hasPanel={hasRight}
             deletePanelAction={() => {
-              handleDeleteSection("rightSection", { hasRight: false })
+              handleDeleteSection("rightSection", {
+                hasRight: false,
+                rightWidth: 0,
+                rightPosition: "NONE",
+              })
             }}
             addPanelAction={() => {
-              handleAddSection("rightSection", { hasRight: true })
+              handleAddSection("rightSection", {
+                hasRight: true,
+                rightWidth: 20,
+                rightPosition: "FULL",
+              })
             }}
           />
         </SetterPadding>
       </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel labelName={widthI18n} size="small" />
-        <SetterPadding>
-          <InputNumber w="96px" value={rightWidth} borderColor="techPurple" />
-        </SetterPadding>
-      </LeftAndRightLayout>
+      {hasRight && (
+        <LeftAndRightLayout>
+          <PageLabel labelName={widthI18n} size="small" />
+          <SetterPadding>
+            <InputNumber w="96px" value={rightWidth} borderColor="techPurple" />
+          </SetterPadding>
+        </LeftAndRightLayout>
+      )}
       <PanelDivider />
       <LeftAndRightLayout>
         <PageLabel labelName={t("editor.page.label_name.body")} size="big" />
@@ -212,23 +238,31 @@ export const PageFrame: FC = () => {
             isFixed={isHeaderFixed}
             hasPanel={hasHeader}
             deletePanelAction={() => {
-              handleDeleteSection("headerSection", { hasHeader: false })
+              handleDeleteSection("headerSection", {
+                hasHeader: false,
+                topHeight: 0,
+              })
             }}
             addPanelAction={() => {
-              handleAddSection("headerSection", { hasHeader: true })
+              handleAddSection("headerSection", {
+                hasHeader: true,
+                topHeight: 96,
+              })
             }}
           />
         </SetterPadding>
       </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel
-          labelName={`${t("editor.page.label_name.width")}(px)`}
-          size="small"
-        />
-        <SetterPadding>
-          <InputNumber w="96px" value={topHeight} borderColor="techPurple" />
-        </SetterPadding>
-      </LeftAndRightLayout>
+      {hasHeader && (
+        <LeftAndRightLayout>
+          <PageLabel
+            labelName={`${t("editor.page.label_name.width")}(px)`}
+            size="small"
+          />
+          <SetterPadding>
+            <InputNumber w="96px" value={topHeight} borderColor="techPurple" />
+          </SetterPadding>
+        </LeftAndRightLayout>
+      )}
       <PanelDivider />
       <LeftAndRightLayout>
         <PageLabel labelName={t("editor.page.label_name.footer")} size="big" />
@@ -237,23 +271,35 @@ export const PageFrame: FC = () => {
             isFixed={isFooterFixed}
             hasPanel={hasFooter}
             deletePanelAction={() => {
-              handleDeleteSection("footerSection", { hasFooter: false })
+              handleDeleteSection("footerSection", {
+                hasFooter: false,
+                bottomHeight: 0,
+              })
             }}
             addPanelAction={() => {
-              handleAddSection("footerSection", { hasFooter: true })
+              handleAddSection("footerSection", {
+                hasFooter: true,
+                bottomHeight: 96,
+              })
             }}
           />
         </SetterPadding>
       </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel
-          labelName={`${t("editor.page.label_name.width")}(px)`}
-          size="small"
-        />
-        <SetterPadding>
-          <InputNumber w="96px" value={bottomHeight} borderColor="techPurple" />
-        </SetterPadding>
-      </LeftAndRightLayout>
+      {hasFooter && (
+        <LeftAndRightLayout>
+          <PageLabel
+            labelName={`${t("editor.page.label_name.width")}(px)`}
+            size="small"
+          />
+          <SetterPadding>
+            <InputNumber
+              w="96px"
+              value={bottomHeight}
+              borderColor="techPurple"
+            />
+          </SetterPadding>
+        </LeftAndRightLayout>
+      )}
     </PanelBar>
   )
 }
