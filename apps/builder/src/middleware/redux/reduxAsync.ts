@@ -20,6 +20,7 @@ import {
   UpdateTargetPageLayoutPayload,
   AddTargetPageSectionPayload,
   DeleteTargetPageSectionPayload,
+  UpdateTargetPagePropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
   UpdateComponentContainerPayload,
@@ -382,6 +383,28 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 [addSectionNode],
+              ),
+            )
+            break
+          }
+          case "updateTargetPagePropsReducer": {
+            const { pageName } = action.payload as UpdateTargetPagePropsPayload
+            const pageNode = searchDsl(getCanvas(store.getState()), pageName)
+
+            if (!pageNode) break
+            const WSPagePayload =
+              transformComponentReduxPayloadToWsPayload(pageNode)
+
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                WSPagePayload,
               ),
             )
             break

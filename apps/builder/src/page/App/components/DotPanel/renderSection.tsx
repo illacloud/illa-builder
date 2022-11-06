@@ -82,6 +82,7 @@ export const RenderHeaderSection = forwardRef<
     mode,
     containerHeight,
     footerHeight,
+    currentPageDisplayName,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -128,9 +129,12 @@ export const RenderHeaderSection = forwardRef<
             containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
         }
         dispatch(
-          componentsActions.updateCurrentPagePropsReducer({
-            topHeight: currentPointPositionY,
-            bottomHeight: otherPanelHeightPX,
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              topHeight: currentPointPositionY,
+              bottomHeight: otherPanelHeightPX,
+            },
           }),
         )
       }
@@ -145,7 +149,13 @@ export const RenderHeaderSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerHeight, dispatch, footerHeight, offsetTop])
+  }, [
+    containerHeight,
+    currentPageDisplayName,
+    dispatch,
+    footerHeight,
+    offsetTop,
+  ])
 
   return (
     <div
@@ -195,6 +205,7 @@ export const RenderFooterSection = forwardRef<
     offsetTop,
     mode,
     headerHeight,
+    currentPageDisplayName,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -242,9 +253,12 @@ export const RenderFooterSection = forwardRef<
             containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
         }
         dispatch(
-          componentsActions.updateCurrentPagePropsReducer({
-            bottomHeight: currentPointPositionY,
-            topHeight: otherPanelHeightPX,
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              bottomHeight: currentPointPositionY,
+              topHeight: otherPanelHeightPX,
+            },
           }),
         )
       }
@@ -259,7 +273,13 @@ export const RenderFooterSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerHeight, dispatch, headerHeight, offsetTop])
+  }, [
+    containerHeight,
+    currentPageDisplayName,
+    dispatch,
+    headerHeight,
+    offsetTop,
+  ])
 
   return (
     <div
@@ -306,7 +326,14 @@ export const RenderLeftSection = forwardRef<
   HTMLDivElement,
   RenderLeftSectionProps
 >((props, ref) => {
-  const { sectionNode, offsetLeft, containerWidth, mode, rightWidth } = props
+  const {
+    sectionNode,
+    offsetLeft,
+    containerWidth,
+    mode,
+    rightWidth,
+    currentPageDisplayName,
+  } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
@@ -352,9 +379,12 @@ export const RenderLeftSection = forwardRef<
         const presetWidth = (currentPointPositionX / containerWidth) * 100
         const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
         dispatch(
-          componentsActions.updateCurrentPagePropsReducer({
-            leftWidth: presetWidth,
-            rightWidth: otherPanelWidth,
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              leftWidth: presetWidth,
+              rightWidth: otherPanelWidth,
+            },
           }),
         )
       }
@@ -369,7 +399,7 @@ export const RenderLeftSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerWidth, dispatch, offsetLeft, rightWidth])
+  }, [containerWidth, currentPageDisplayName, dispatch, offsetLeft, rightWidth])
 
   return (
     <div css={applyLeftSectionWrapperStyle("240px", "0px")} ref={ref}>
@@ -409,7 +439,14 @@ export const RenderRightSection = forwardRef<
   HTMLDivElement,
   RenderRightSectionProps
 >((props, ref) => {
-  const { sectionNode, offsetLeft, containerWidth, mode, leftWidth } = props
+  const {
+    sectionNode,
+    offsetLeft,
+    containerWidth,
+    mode,
+    leftWidth,
+    currentPageDisplayName,
+  } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
@@ -457,9 +494,12 @@ export const RenderRightSection = forwardRef<
         const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
 
         dispatch(
-          componentsActions.updateCurrentPagePropsReducer({
-            rightWidth: presetWidth,
-            leftWidth: otherPanelWidth,
+          componentsActions.updateTargetPagePropsReducer({
+            pageName: currentPageDisplayName,
+            newProps: {
+              rightWidth: presetWidth,
+              leftWidth: otherPanelWidth,
+            },
           }),
         )
       }
@@ -474,7 +514,7 @@ export const RenderRightSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerWidth, dispatch, leftWidth, offsetLeft])
+  }, [containerWidth, currentPageDisplayName, dispatch, leftWidth, offsetLeft])
 
   return (
     <div css={applyRightSectionWrapperStyle("240px", "0px")} ref={ref}>

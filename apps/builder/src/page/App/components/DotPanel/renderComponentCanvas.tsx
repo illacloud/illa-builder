@@ -189,7 +189,6 @@ export const RenderComponentCanvas: FC<{
             ...item,
             w: item.w * scale,
           }
-          console.log("scaleItem", scaleItem)
           let dragResult
           if (
             (item.x === -1 && item.y === -1) ||

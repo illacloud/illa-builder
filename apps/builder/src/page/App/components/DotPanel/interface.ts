@@ -58,6 +58,7 @@ export interface DebounceUpdateReflow {
 
 export interface RenderPageProps {
   pageNode: PageNode
+  currentPageDisplayName: string
 }
 
 export interface RenderSectionProps {
@@ -72,6 +73,7 @@ export interface RenderHeaderSectionProps {
   containerHeight: number
   mode: IllaMode
   footerHeight: number
+  currentPageDisplayName: string
 }
 
 export interface RenderFooterSectionProps {
@@ -81,6 +83,7 @@ export interface RenderFooterSectionProps {
   containerHeight: number
   mode: IllaMode
   headerHeight: number
+  currentPageDisplayName: string
 }
 
 export interface RenderLeftSectionProps {
@@ -89,6 +92,7 @@ export interface RenderLeftSectionProps {
   containerWidth: number
   mode: IllaMode
   rightWidth: number
+  currentPageDisplayName: string
 }
 
 export interface RenderRightSectionProps {
@@ -97,6 +101,7 @@ export interface RenderRightSectionProps {
   containerWidth: number
   mode: IllaMode
   leftWidth: number
+  currentPageDisplayName: string
 }
 
 export interface RenderContainerProps {

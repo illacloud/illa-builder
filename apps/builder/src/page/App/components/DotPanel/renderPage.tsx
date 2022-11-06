@@ -43,7 +43,7 @@ const getLeftAndRightWidth = (
 }
 
 export const RenderPage: FC<RenderPageProps> = (props) => {
-  const { pageNode } = props
+  const { pageNode, currentPageDisplayName } = props
   const headerRef = useRef<HTMLDivElement>(null)
   const footerRef = useRef<HTMLDivElement>(null)
   const leftRef = useRef<HTMLDivElement>(null)
@@ -267,6 +267,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           mode={mode}
           footerHeight={hasFooter ? bottomHeight : 0}
           containerHeight={bounds.height}
+          currentPageDisplayName={currentPageDisplayName}
         />
       )}
       {hasLeft && leftSection && (
@@ -277,6 +278,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           containerWidth={bounds.width}
           mode={mode}
           rightWidth={realRightWidth}
+          currentPageDisplayName={currentPageDisplayName}
         />
       )}
       {bodySection && (
@@ -290,6 +292,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           containerWidth={bounds.width}
           mode={mode}
           leftWidth={realLeftWidth}
+          currentPageDisplayName={currentPageDisplayName}
         />
       )}
       {hasFooter && footerSection && (
@@ -301,6 +304,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           containerHeight={bounds.height}
           mode={mode}
           headerHeight={hasHeader ? topHeight : 0}
+          currentPageDisplayName={currentPageDisplayName}
         />
       )}
     </div>

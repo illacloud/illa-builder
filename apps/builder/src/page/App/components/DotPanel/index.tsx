@@ -27,7 +27,12 @@ export const DotPanel: FC = () => {
   })
   if (currentChildrenNode == undefined) return null
 
-  return <RenderPage pageNode={currentChildrenNode as PageNode} />
+  return (
+    <RenderPage
+      pageNode={currentChildrenNode as PageNode}
+      currentPageDisplayName={currentDisplayName}
+    />
+  )
 }
 
 DotPanel.displayName = "DotPanel"
