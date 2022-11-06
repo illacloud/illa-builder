@@ -13,7 +13,7 @@ import {
   applyHeaderSectionWrapperStyle,
   applyLeftSectionWrapperStyle,
   applyRightSectionWrapperStyle,
-  containerWrapperStyle,
+  applyContainerWrapperStyle,
   resizeHorizontalBarStyle,
   resizeHorizontalBarWrapperStyle,
   resizeVerticalBarStyle,
@@ -26,10 +26,12 @@ export const HEADER_MIN_HEIGHT = 96
 export const FOOTER_MIN_HEIGHT = 96
 export const LEFT_MIN_WIDTH = 240
 export const RIGHT_MIN_WIDTH = 240
+export const BODY_MIN_WIDTH = 384
+export const BODY_MIN_HEIGHT = 512
 
 export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
-    const { sectionNode } = props
+    const { sectionNode, mode } = props
     const [containerBoundRef, containerBound] = useMeasure()
     const containerRef = useRef<HTMLDivElement>(
       null,
@@ -45,7 +47,7 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
     return (
       <div ref={ref}>
         <div
-          css={containerWrapperStyle}
+          css={applyContainerWrapperStyle(mode)}
           ref={(ele) => {
             containerBoundRef(ele)
             containerRef.current = ele
@@ -73,9 +75,7 @@ export const RenderHeaderSection = forwardRef<
   HTMLDivElement,
   RenderHeaderSectionProps
 >((props, ref) => {
-  const { sectionNode, topHeight, offsetTop } = props
-
-  let sectionNodeProps = sectionNode.props
+  const { sectionNode, topHeight, offsetTop, mode } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
   const isActive = useRef<boolean>(false)
@@ -132,7 +132,7 @@ export const RenderHeaderSection = forwardRef<
       ref={ref}
     >
       <div
-        css={containerWrapperStyle}
+        css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
           containerBoundRef(ele)
           containerRef.current = ele
@@ -149,13 +149,15 @@ export const RenderHeaderSection = forwardRef<
           />
         )}
       </div>
-      <div
-        css={resizeVerticalBarWrapperStyle}
-        onMouseDown={handleClickMoveBar}
-        draggable={false}
-      >
-        <div css={resizeVerticalBarStyle} draggable={false} />
-      </div>
+      {mode === "edit" && (
+        <div
+          css={resizeVerticalBarWrapperStyle}
+          onMouseDown={handleClickMoveBar}
+          draggable={false}
+        >
+          <div css={resizeVerticalBarStyle} draggable={false} />
+        </div>
+      )}
     </div>
   )
 })
@@ -165,7 +167,7 @@ export const RenderFooterSection = forwardRef<
   HTMLDivElement,
   RenderFooterSectionProps
 >((props, ref) => {
-  const { sectionNode, bottomHeight, containerHeight, offsetTop } = props
+  const { sectionNode, bottomHeight, containerHeight, offsetTop, mode } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
   const currentViewDisplayName = viewSortedKey[currentViewIndex]
@@ -227,7 +229,7 @@ export const RenderFooterSection = forwardRef<
       ref={ref}
     >
       <div
-        css={containerWrapperStyle}
+        css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
           containerBoundRef(ele)
           containerRef.current = ele
@@ -244,13 +246,15 @@ export const RenderFooterSection = forwardRef<
           />
         )}
       </div>
-      <div
-        css={resizeVerticalBarWrapperStyle}
-        onMouseDown={handleClickMoveBar}
-        draggable={false}
-      >
-        <div css={resizeVerticalBarStyle} draggable={false} />
-      </div>
+      {mode === "edit" && (
+        <div
+          css={resizeVerticalBarWrapperStyle}
+          onMouseDown={handleClickMoveBar}
+          draggable={false}
+        >
+          <div css={resizeVerticalBarStyle} draggable={false} />
+        </div>
+      )}
     </div>
   )
 })
@@ -260,9 +264,7 @@ export const RenderLeftSection = forwardRef<
   HTMLDivElement,
   RenderLeftSectionProps
 >((props, ref) => {
-  const { sectionNode, offsetLeft, containerWidth } = props
-
-  let sectionNodeProps = sectionNode.props
+  const { sectionNode, offsetLeft, containerWidth, mode } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
@@ -316,7 +318,7 @@ export const RenderLeftSection = forwardRef<
   return (
     <div css={applyLeftSectionWrapperStyle("240px", "0px")} ref={ref}>
       <div
-        css={containerWrapperStyle}
+        css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
           containerBoundRef(ele)
           containerRef.current = ele
@@ -334,12 +336,14 @@ export const RenderLeftSection = forwardRef<
           />
         )}
       </div>
-      <div
-        css={resizeHorizontalBarWrapperStyle}
-        onMouseDown={handleClickMoveBar}
-      >
-        <div css={resizeHorizontalBarStyle} />
-      </div>
+      {mode === "edit" && (
+        <div
+          css={resizeHorizontalBarWrapperStyle}
+          onMouseDown={handleClickMoveBar}
+        >
+          <div css={resizeHorizontalBarStyle} />
+        </div>
+      )}
     </div>
   )
 })
@@ -349,9 +353,7 @@ export const RenderRightSection = forwardRef<
   HTMLDivElement,
   RenderRightSectionProps
 >((props, ref) => {
-  const { sectionNode, offsetLeft, containerWidth } = props
-
-  let sectionNodeProps = sectionNode.props
+  const { sectionNode, offsetLeft, containerWidth, mode } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
 
@@ -406,7 +408,7 @@ export const RenderRightSection = forwardRef<
   return (
     <div css={applyRightSectionWrapperStyle("240px", "0px")} ref={ref}>
       <div
-        css={containerWrapperStyle}
+        css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
           containerBoundRef(ele)
           containerRef.current = ele
@@ -424,12 +426,14 @@ export const RenderRightSection = forwardRef<
           />
         )}
       </div>
-      <div
-        css={resizeHorizontalBarWrapperStyle}
-        onMouseDown={handleClickMoveBar}
-      >
-        <div css={resizeHorizontalBarStyle} />
-      </div>
+      {mode === "edit" && (
+        <div
+          css={resizeHorizontalBarWrapperStyle}
+          onMouseDown={handleClickMoveBar}
+        >
+          <div css={resizeHorizontalBarStyle} />
+        </div>
+      )}
     </div>
   )
 })

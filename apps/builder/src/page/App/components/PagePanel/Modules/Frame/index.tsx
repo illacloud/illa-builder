@@ -17,6 +17,15 @@ import {
 import { PageNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { PanelActionBar } from "@/page/App/components/PagePanel/Components/PanelActionBar"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { getCanvasShape } from "@/redux/config/configSelector"
+import {
+  BODY_MIN_HEIGHT,
+  BODY_MIN_WIDTH,
+  FOOTER_MIN_HEIGHT,
+  HEADER_MIN_HEIGHT,
+  LEFT_MIN_WIDTH,
+  RIGHT_MIN_WIDTH,
+} from "@/page/App/components/DotPanel/renderSection"
 
 const getRealCanvasWidth = (
   canvasSize: "fixed" | "responsive",
@@ -34,6 +43,7 @@ const canvasSizeOptions = [
 export const PageFrame: FC = () => {
   const { t } = useTranslation()
   const pageProps = useSelector(getCurrentPageProps) as PageNodeProps
+  const canvasShape = useSelector(getCanvasShape)
   const dispatch = useDispatch()
   const {
     canvasSize,
@@ -52,6 +62,14 @@ export const PageFrame: FC = () => {
     hasFooter,
     hasHeader,
   } = pageProps
+
+  const bodyWidth = useMemo(() => {
+    if (canvasSize === "responsive") {
+      return 100 - leftWidth - rightWidth
+    } else {
+      return 0
+    }
+  }, [canvasSize, leftWidth, rightWidth])
 
   const finalCanvasWidth = getRealCanvasWidth(canvasSize, canvasWidth)
   const widthI18n = useMemo(() => {
@@ -101,6 +119,212 @@ export const PageFrame: FC = () => {
       )
     },
     [currentPageDisplayName, dispatch],
+  )
+
+  const handleUpdateBodyPanelWidth = useCallback(
+    (value?: number) => {
+      if (!currentPageDisplayName || !value) return
+      let finalValue = value
+      let finalLeftValue = leftWidth
+      let finalRightValue = rightWidth
+      if (canvasSize === "responsive") {
+        let finalLeftValuePX = (finalLeftValue / 100) * canvasShape.canvasWidth
+        let finalRightValuePX =
+          (finalRightValue / 100) * canvasShape.canvasWidth
+        let finalValuePX = (finalValue / 100) * canvasShape.canvasWidth
+        if (finalValuePX <= BODY_MIN_HEIGHT) {
+          const restWidth = canvasShape.canvasWidth - BODY_MIN_HEIGHT
+          finalLeftValuePX =
+            (finalLeftValuePX / (finalLeftValuePX + finalRightValuePX)) *
+            restWidth
+          finalRightValuePX = restWidth - finalLeftValuePX
+          finalLeftValue = (finalLeftValuePX / canvasShape.canvasWidth) * 100
+          finalRightValue = (finalRightValuePX / canvasShape.canvasWidth) * 100
+        } else {
+          let restWidth = canvasShape.canvasWidth - finalValuePX
+          finalLeftValuePX =
+            (finalLeftValuePX / (finalLeftValuePX + finalRightValuePX)) *
+            restWidth
+          if (finalLeftValuePX < LEFT_MIN_WIDTH) {
+            finalLeftValuePX = LEFT_MIN_WIDTH
+          }
+          finalRightValuePX = restWidth - finalLeftValuePX
+          if (finalRightValuePX < RIGHT_MIN_WIDTH) {
+            finalRightValuePX = LEFT_MIN_WIDTH
+          }
+          finalLeftValue = (finalLeftValuePX / canvasShape.canvasWidth) * 100
+          finalRightValue = (RIGHT_MIN_WIDTH / canvasShape.canvasWidth) * 100
+        }
+      }
+      if (canvasSize === "fixed") {
+      }
+
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps: {
+            leftWidth: finalLeftValue,
+            rightWidth: finalRightValue,
+          },
+        }),
+      )
+    },
+    [
+      canvasShape.canvasWidth,
+      canvasSize,
+      currentPageDisplayName,
+      dispatch,
+      leftWidth,
+      rightWidth,
+    ],
+  )
+
+  const handleUpdateLeftPanelWidth = useCallback(
+    (value?: number) => {
+      if (!currentPageDisplayName || !value) return
+      let finalValue = value
+      if (canvasSize === "responsive") {
+        const leftWidthPX = (value / 100) * canvasShape.canvasWidth
+        const currentRightWidthPX = (rightWidth / 100) * canvasShape.canvasWidth
+        if (
+          canvasShape.canvasWidth - leftWidthPX - currentRightWidthPX <
+          BODY_MIN_WIDTH
+        ) {
+          finalValue =
+            ((canvasShape.canvasWidth - currentRightWidthPX - BODY_MIN_WIDTH) /
+              canvasShape.canvasWidth) *
+            100
+        }
+        if ((value / 100) * canvasShape.canvasWidth < LEFT_MIN_WIDTH) {
+          finalValue = (LEFT_MIN_WIDTH / canvasShape.canvasWidth) * 100
+        }
+      }
+      if (canvasSize === "fixed") {
+      }
+
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps: {
+            leftWidth: finalValue,
+          },
+        }),
+      )
+    },
+    [
+      canvasShape.canvasWidth,
+      canvasSize,
+      currentPageDisplayName,
+      dispatch,
+      rightWidth,
+    ],
+  )
+
+  const handleUpdateRightPanelWidth = useCallback(
+    (value?: number) => {
+      if (!currentPageDisplayName || !value) return
+      let finalValue = value
+      if (canvasSize === "responsive") {
+        const rightWidthPX = (value / 100) * canvasShape.canvasWidth
+        const currentLeftWidthPX = (leftWidth / 100) * canvasShape.canvasWidth
+        if (
+          canvasShape.canvasWidth - rightWidthPX - currentLeftWidthPX <
+          BODY_MIN_WIDTH
+        ) {
+          finalValue =
+            ((canvasShape.canvasWidth - currentLeftWidthPX - BODY_MIN_WIDTH) /
+              canvasShape.canvasWidth) *
+            100
+        }
+        if ((value / 100) * canvasShape.canvasWidth < RIGHT_MIN_WIDTH) {
+          finalValue = (RIGHT_MIN_WIDTH / canvasShape.canvasWidth) * 100
+        }
+      }
+      if (canvasSize === "fixed") {
+      }
+
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps: {
+            rightWidth: finalValue,
+          },
+        }),
+      )
+    },
+    [
+      canvasShape.canvasWidth,
+      canvasSize,
+      currentPageDisplayName,
+      dispatch,
+      leftWidth,
+    ],
+  )
+
+  const handleUpdateHeaderPanelWidth = useCallback(
+    (value?: number) => {
+      if (!currentPageDisplayName || !value) return
+      let finalValue = value
+      if (canvasSize === "responsive") {
+        if (canvasShape.canvasHeight - value - bottomHeight < BODY_MIN_HEIGHT) {
+          finalValue = canvasShape.canvasHeight - bottomHeight - BODY_MIN_HEIGHT
+        }
+        if (value < HEADER_MIN_HEIGHT) {
+          finalValue = HEADER_MIN_HEIGHT
+        }
+      }
+      if (canvasSize === "fixed") {
+      }
+
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps: {
+            topHeight: finalValue,
+          },
+        }),
+      )
+    },
+    [
+      bottomHeight,
+      canvasShape.canvasHeight,
+      canvasSize,
+      currentPageDisplayName,
+      dispatch,
+    ],
+  )
+
+  const handleUpdateFooterPanelWidth = useCallback(
+    (value?: number) => {
+      if (!currentPageDisplayName || !value) return
+      let finalValue = value
+      if (canvasSize === "responsive") {
+        if (canvasShape.canvasHeight - value - topHeight < BODY_MIN_HEIGHT) {
+          finalValue = canvasShape.canvasHeight - topHeight - BODY_MIN_HEIGHT
+        }
+        if (value < FOOTER_MIN_HEIGHT) {
+          finalValue = FOOTER_MIN_HEIGHT
+        }
+      }
+      if (canvasSize === "fixed") {
+      }
+
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps: {
+            bottomHeight: finalValue,
+          },
+        }),
+      )
+    },
+    [
+      canvasShape.canvasHeight,
+      canvasSize,
+      currentPageDisplayName,
+      dispatch,
+      topHeight,
+    ],
   )
 
   return (
@@ -168,8 +392,9 @@ export const PageFrame: FC = () => {
             <SetterPadding>
               <InputNumber
                 w="96px"
-                value={leftWidth}
+                value={leftWidth.toFixed(0)}
                 borderColor="techPurple"
+                onChange={handleUpdateLeftPanelWidth}
               />
             </SetterPadding>
           </LeftAndRightLayout>
@@ -216,7 +441,12 @@ export const PageFrame: FC = () => {
         <LeftAndRightLayout>
           <PageLabel labelName={widthI18n} size="small" />
           <SetterPadding>
-            <InputNumber w="96px" value={rightWidth} borderColor="techPurple" />
+            <InputNumber
+              w="96px"
+              value={rightWidth.toFixed(0)}
+              borderColor="techPurple"
+              onChange={handleUpdateRightPanelWidth}
+            />
           </SetterPadding>
         </LeftAndRightLayout>
       )}
@@ -227,7 +457,12 @@ export const PageFrame: FC = () => {
       <LeftAndRightLayout>
         <PageLabel labelName={widthI18n} size="small" />
         <SetterPadding>
-          <InputNumber w="96px" borderColor="techPurple" />
+          <InputNumber
+            w="96px"
+            borderColor="techPurple"
+            value={bodyWidth.toFixed(0)}
+            onChange={handleUpdateBodyPanelWidth}
+          />
         </SetterPadding>
       </LeftAndRightLayout>
       <PanelDivider />
@@ -259,7 +494,12 @@ export const PageFrame: FC = () => {
             size="small"
           />
           <SetterPadding>
-            <InputNumber w="96px" value={topHeight} borderColor="techPurple" />
+            <InputNumber
+              w="96px"
+              value={topHeight}
+              borderColor="techPurple"
+              onChange={handleUpdateHeaderPanelWidth}
+            />
           </SetterPadding>
         </LeftAndRightLayout>
       )}
@@ -296,6 +536,7 @@ export const PageFrame: FC = () => {
               w="96px"
               value={bottomHeight}
               borderColor="techPurple"
+              onChange={handleUpdateFooterPanelWidth}
             />
           </SetterPadding>
         </LeftAndRightLayout>

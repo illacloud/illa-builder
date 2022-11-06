@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef, useLayoutEffect } from "react"
+import { FC, useRef, useLayoutEffect } from "react"
 import {
   PageNode,
   SectionNode,
@@ -6,13 +6,18 @@ import {
 } from "@/redux/currentApp/editor/components/componentsState"
 import { RenderPageProps } from "./interface"
 import {
+  LEFT_MIN_WIDTH,
   RenderFooterSection,
   RenderHeaderSection,
   RenderLeftSection,
   RenderRightSection,
   RenderSection,
+  RIGHT_MIN_WIDTH,
 } from "./renderSection"
 import useMeasure from "react-use-measure"
+import { useDispatch, useSelector } from "react-redux"
+import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
+import { configActions } from "@/redux/config/configSlice"
 
 const getDisplayNameMapSectionNode = (pageNode: PageNode) => {
   const { childrenNode = [] } = pageNode
@@ -45,6 +50,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   const rightRef = useRef<HTMLDivElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
   const [containerRef, bounds] = useMeasure()
+  const canvasShape = useSelector(getCanvasShape)
+  const mode = useSelector(getIllaMode)
+  const dispatch = useDispatch()
 
   const displayNameMapSectionNode = getDisplayNameMapSectionNode(pageNode)
 
@@ -68,11 +76,45 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   } = pageProps
 
   useLayoutEffect(() => {
+    if (
+      canvasShape.canvasHeight !== bounds.height ||
+      canvasShape.canvasWidth !== bounds.width
+    ) {
+      dispatch(
+        configActions.updateCanvasShapeReducer({
+          canvasHeight: bounds.height,
+          canvasWidth: bounds.width,
+        }),
+      )
+    }
+  }, [
+    bounds.height,
+    bounds.width,
+    canvasShape.canvasHeight,
+    canvasShape.canvasWidth,
+    dispatch,
+  ])
+
+  useLayoutEffect(() => {
+    const leftWidthPX = getLeftAndRightWidth(
+      canvasSize,
+      leftWidth,
+      bounds.width,
+    )
+    const rightWidthPX = getLeftAndRightWidth(
+      canvasSize,
+      rightWidth,
+      bounds.width,
+    )
     const realLeftWidth = hasLeft
-      ? getLeftAndRightWidth(canvasSize, leftWidth, bounds.width)
+      ? leftWidthPX <= LEFT_MIN_WIDTH
+        ? LEFT_MIN_WIDTH
+        : leftWidthPX
       : 0
     const realRightWidth = hasRight
-      ? getLeftAndRightWidth(canvasSize, rightWidth, bounds.width)
+      ? rightWidthPX <= RIGHT_MIN_WIDTH
+        ? RIGHT_MIN_WIDTH
+        : rightWidthPX
       : 0
     let headerLeft = 0
     let headerWidth = bounds.width
@@ -215,6 +257,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           ref={headerRef}
           topHeight={topHeight}
           offsetTop={bounds.top}
+          mode={mode}
         />
       )}
       {hasLeft && leftSection && (
@@ -223,15 +266,19 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           ref={leftRef}
           offsetLeft={bounds.left}
           containerWidth={bounds.width}
+          mode={mode}
         />
       )}
-      {bodySection && <RenderSection sectionNode={bodySection} ref={bodyRef} />}
+      {bodySection && (
+        <RenderSection sectionNode={bodySection} ref={bodyRef} mode={mode} />
+      )}
       {hasRight && rightSection && (
         <RenderRightSection
           sectionNode={rightSection}
           ref={rightRef}
           offsetLeft={bounds.left}
           containerWidth={bounds.width}
+          mode={mode}
         />
       )}
       {hasFooter && footerSection && (
@@ -241,6 +288,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           bottomHeight={bottomHeight}
           offsetTop={bounds.top}
           containerHeight={bounds.height}
+          mode={mode}
         />
       )}
     </div>

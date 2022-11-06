@@ -2,9 +2,9 @@ import {
   ComponentNode,
   PageNode,
   SectionNode,
-  SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
-import { HTMLAttributes, RefObject } from "react"
+import { RefObject } from "react"
+import { IllaMode } from "@/redux/config/configState"
 
 export interface DragPosition {
   squareX: number
@@ -62,12 +62,14 @@ export interface RenderPageProps {
 
 export interface RenderSectionProps {
   sectionNode: SectionNode
+  mode: IllaMode
 }
 
 export interface RenderHeaderSectionProps {
   sectionNode: SectionNode
   topHeight: number
   offsetTop: number
+  mode: IllaMode
 }
 
 export interface RenderFooterSectionProps {
@@ -75,18 +77,21 @@ export interface RenderFooterSectionProps {
   bottomHeight: number
   offsetTop: number
   containerHeight: number
+  mode: IllaMode
 }
 
 export interface RenderLeftSectionProps {
   sectionNode: SectionNode
   offsetLeft: number
   containerWidth: number
+  mode: IllaMode
 }
 
 export interface RenderRightSectionProps {
   sectionNode: SectionNode
   offsetLeft: number
   containerWidth: number
+  mode: IllaMode
 }
 
 export interface RenderContainerProps {

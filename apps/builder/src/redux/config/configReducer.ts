@@ -8,6 +8,7 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import { UpdateCanvasShapePayload } from "./configPayload"
 
 export const updateLeftPanel: CaseReducer<
   ConfigState,
@@ -120,4 +121,13 @@ export const updateFreezeStateReducer: CaseReducer<
   PayloadAction<boolean>
 > = (state, action) => {
   state.freezeCanvas = action.payload
+}
+
+export const updateCanvasShapeReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<UpdateCanvasShapePayload>
+> = (state, action) => {
+  const { canvasHeight, canvasWidth } = action.payload
+  state.canvasHeight = canvasHeight
+  state.canvasWidth = canvasWidth
 }

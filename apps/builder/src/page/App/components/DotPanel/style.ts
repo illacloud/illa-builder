@@ -1,5 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
+import { IllaMode } from "@/redux/config/configState"
 
 export function applyScaleStyle(
   verticalResize: boolean,
@@ -247,9 +248,11 @@ export const applyRightSectionWrapperStyle = (
   `
 }
 
-export const containerWrapperStyle = css`
-  width: 100%;
-  height: 100%;
-  padding: 8px;
-  overflow-y: auto;
-`
+export const applyContainerWrapperStyle = (model: IllaMode) => {
+  return css`
+    width: 100%;
+    height: 100%;
+    padding: ${model !== "edit" ? "0" : "8px"};
+    overflow-y: auto;
+  `
+}
