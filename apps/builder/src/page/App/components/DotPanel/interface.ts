@@ -2,6 +2,7 @@ import {
   ComponentNode,
   PageNode,
   SectionNode,
+  SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { RefObject } from "react"
 import { IllaMode } from "@/redux/config/configState"
@@ -74,6 +75,8 @@ export interface RenderHeaderSectionProps {
   mode: IllaMode
   footerHeight: number
   currentPageDisplayName: string
+  leftPosition: SECTION_POSITION
+  rightPosition: SECTION_POSITION
 }
 
 export interface RenderFooterSectionProps {
@@ -84,6 +87,8 @@ export interface RenderFooterSectionProps {
   mode: IllaMode
   headerHeight: number
   currentPageDisplayName: string
+  leftPosition: SECTION_POSITION
+  rightPosition: SECTION_POSITION
 }
 
 export interface RenderLeftSectionProps {
@@ -93,6 +98,7 @@ export interface RenderLeftSectionProps {
   mode: IllaMode
   rightWidth: number
   currentPageDisplayName: string
+  leftPosition: SECTION_POSITION
 }
 
 export interface RenderRightSectionProps {
@@ -102,8 +108,18 @@ export interface RenderRightSectionProps {
   mode: IllaMode
   leftWidth: number
   currentPageDisplayName: string
+  rightPosition: SECTION_POSITION
 }
 
 export interface RenderContainerProps {
   containerNode: SectionNode
+}
+
+export interface ChangeLayoutBarProps {
+  sectionName: string
+  direction: "top" | "bottom" | "left" | "right"
+  changeAction: (
+    sectionName: string,
+    direction?: "top" | "bottom" | "left" | "right",
+  ) => void
 }

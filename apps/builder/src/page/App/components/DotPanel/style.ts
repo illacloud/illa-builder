@@ -256,3 +256,70 @@ export const applyContainerWrapperStyle = (model: IllaMode) => {
     overflow-y: auto;
   `
 }
+
+export const changeLayoutTopBarWrapperStyle = css`
+  position: absolute;
+  top: -9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 8px);
+  cursor: pointer;
+  z-index: 10;
+`
+
+export const changeLayoutBottomBarWrapperStyle = css`
+  position: absolute;
+  bottom: -9px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  width: calc(100% - 8px);
+  cursor: pointer;
+  z-index: 10;
+`
+
+export const changeLayoutLeftBarWrapperStyle = css`
+  position: absolute;
+  left: -9px;
+  display: flex;
+  align-items: center;
+  height: calc(100% - 8px);
+  cursor: pointer;
+  z-index: 10;
+`
+
+export const changeLayoutRightBarWrapperStyle = css`
+  position: absolute;
+  right: -9px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  height: calc(100% - 8px);
+  cursor: pointer;
+  z-index: 10;
+`
+
+export const changeLayoutHorizontalBarStyle = css`
+  width: 100%;
+  height: 2px;
+  background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+`
+
+export const changeLayoutBottomIconStyle = css`
+  transform: rotate(180deg);
+`
+
+export const changeLayoutLeftIconStyle = css`
+  transform: rotate(-90deg);
+`
+
+export const changeLayoutRightIconStyle = css`
+  transform: rotate(90deg);
+`
+
+export const changeLayoutVerticalBarStyle = css`
+  width: 2px;
+  height: 100%;
+  background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+`

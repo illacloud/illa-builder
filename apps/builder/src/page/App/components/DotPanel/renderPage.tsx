@@ -268,6 +268,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           footerHeight={hasFooter ? bottomHeight : 0}
           containerHeight={bounds.height}
           currentPageDisplayName={currentPageDisplayName}
+          leftPosition={leftPosition}
+          rightPosition={rightPosition}
         />
       )}
       {hasLeft && leftSection && (
@@ -279,6 +281,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           mode={mode}
           rightWidth={realRightWidth}
           currentPageDisplayName={currentPageDisplayName}
+          leftPosition={leftPosition}
         />
       )}
       {bodySection && (
@@ -293,6 +296,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           mode={mode}
           leftWidth={realLeftWidth}
           currentPageDisplayName={currentPageDisplayName}
+          rightPosition={rightPosition}
         />
       )}
       {hasFooter && footerSection && (
@@ -305,6 +309,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           mode={mode}
           headerHeight={hasHeader ? topHeight : 0}
           currentPageDisplayName={currentPageDisplayName}
+          leftPosition={leftPosition}
+          rightPosition={rightPosition}
         />
       )}
     </div>

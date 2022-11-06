@@ -1,4 +1,11 @@
-import { useEffect, useRef, forwardRef, MutableRefObject } from "react"
+import {
+  useEffect,
+  useRef,
+  forwardRef,
+  MutableRefObject,
+  useState,
+  useCallback,
+} from "react"
 import { useDispatch } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
@@ -21,6 +28,13 @@ import {
 } from "./style"
 import { RenderComponentCanvas } from "./renderComponentCanvas"
 import useMeasure from "react-use-measure"
+import {
+  ChangeLayoutBottomBar,
+  ChangeLayoutLeftBar,
+  ChangeLayoutRightBar,
+  ChangeLayoutTopBar,
+} from "./changeLayoutBar"
+import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
 
 export const HEADER_MIN_HEIGHT = 96
 export const FOOTER_MIN_HEIGHT = 96
@@ -83,6 +97,8 @@ export const RenderHeaderSection = forwardRef<
     containerHeight,
     footerHeight,
     currentPageDisplayName,
+    leftPosition,
+    rightPosition,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -157,11 +173,106 @@ export const RenderHeaderSection = forwardRef<
     offsetTop,
   ])
 
+  const [isInSection, setIsInSection] = useState(false)
+
+  const onMouseEnter = useCallback(() => {
+    setIsInSection(true)
+  }, [])
+
+  const onMouseLeave = useCallback(() => {
+    setIsInSection(false)
+  }, [])
+
+  const handleUpdateLayout = useCallback(
+    (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
+      if (sectionName === "leftSection") {
+        switch (leftPosition) {
+          case SECTION_POSITION.TOP: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  leftPosition: SECTION_POSITION.CENTER,
+                },
+              }),
+            )
+            break
+          }
+          case SECTION_POSITION.FULL: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  leftPosition: SECTION_POSITION.BOTTOM,
+                },
+              }),
+            )
+            break
+          }
+        }
+      }
+
+      if (sectionName === "rightSection") {
+        switch (rightPosition) {
+          case SECTION_POSITION.TOP: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  rightPosition: SECTION_POSITION.CENTER,
+                },
+              }),
+            )
+            break
+          }
+          case SECTION_POSITION.FULL: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  rightPosition: SECTION_POSITION.BOTTOM,
+                },
+              }),
+            )
+            break
+          }
+        }
+      }
+    },
+    [currentPageDisplayName, dispatch, leftPosition, rightPosition],
+  )
+
   return (
     <div
       css={applyHeaderSectionWrapperStyle(`${topHeight}px`, "240px", "500px")}
       ref={ref}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
+      {isInSection &&
+        mode === "edit" &&
+        (leftPosition === SECTION_POSITION.TOP ||
+          leftPosition === SECTION_POSITION.FULL) && (
+          <ChangeLayoutLeftBar
+            sectionName="leftSection"
+            direction="left"
+            changeAction={handleUpdateLayout}
+          />
+        )}
+      {isInSection &&
+        mode === "edit" &&
+        (rightPosition === SECTION_POSITION.TOP ||
+          rightPosition === SECTION_POSITION.FULL) && (
+          <ChangeLayoutRightBar
+            sectionName="rightSection"
+            direction="right"
+            changeAction={handleUpdateLayout}
+          />
+        )}
       <div
         css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
@@ -206,6 +317,8 @@ export const RenderFooterSection = forwardRef<
     mode,
     headerHeight,
     currentPageDisplayName,
+    leftPosition,
+    rightPosition,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -281,6 +394,79 @@ export const RenderFooterSection = forwardRef<
     offsetTop,
   ])
 
+  const [isInSection, setIsInSection] = useState(false)
+
+  const onMouseEnter = useCallback(() => {
+    setIsInSection(true)
+  }, [])
+
+  const onMouseLeave = useCallback(() => {
+    setIsInSection(false)
+  }, [])
+
+  const handleUpdateLayout = useCallback(
+    (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
+      if (sectionName === "leftSection") {
+        switch (leftPosition) {
+          case SECTION_POSITION.BOTTOM: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  leftPosition: SECTION_POSITION.CENTER,
+                },
+              }),
+            )
+            break
+          }
+          case SECTION_POSITION.FULL: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  leftPosition: SECTION_POSITION.TOP,
+                },
+              }),
+            )
+            break
+          }
+        }
+      }
+
+      if (sectionName === "rightSection") {
+        switch (rightPosition) {
+          case SECTION_POSITION.BOTTOM: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  rightPosition: SECTION_POSITION.CENTER,
+                },
+              }),
+            )
+            break
+          }
+          case SECTION_POSITION.FULL: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  rightPosition: SECTION_POSITION.TOP,
+                },
+              }),
+            )
+            break
+          }
+        }
+      }
+    },
+    [currentPageDisplayName, dispatch, leftPosition, rightPosition],
+  )
+
   return (
     <div
       css={applyFooterSectionWrapperStyle(
@@ -289,7 +475,29 @@ export const RenderFooterSection = forwardRef<
         "500px",
       )}
       ref={ref}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
+      {isInSection &&
+        mode === "edit" &&
+        (leftPosition === SECTION_POSITION.BOTTOM ||
+          leftPosition === SECTION_POSITION.FULL) && (
+          <ChangeLayoutLeftBar
+            sectionName="leftSection"
+            direction="left"
+            changeAction={handleUpdateLayout}
+          />
+        )}
+      {isInSection &&
+        mode === "edit" &&
+        (rightPosition === SECTION_POSITION.BOTTOM ||
+          rightPosition === SECTION_POSITION.FULL) && (
+          <ChangeLayoutRightBar
+            sectionName="rightSection"
+            direction="right"
+            changeAction={handleUpdateLayout}
+          />
+        )}
       <div
         css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
@@ -333,9 +541,11 @@ export const RenderLeftSection = forwardRef<
     mode,
     rightWidth,
     currentPageDisplayName,
+    leftPosition,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
+  const [isInSection, setIsInSection] = useState(false)
 
   const isActive = useRef<boolean>(false)
   const currentViewDisplayName = viewSortedKey[currentViewIndex]
@@ -401,8 +611,79 @@ export const RenderLeftSection = forwardRef<
     }
   }, [containerWidth, currentPageDisplayName, dispatch, offsetLeft, rightWidth])
 
+  const onMouseEnter = useCallback(() => {
+    setIsInSection(true)
+  }, [])
+
+  const onMouseLeave = useCallback(() => {
+    setIsInSection(false)
+  }, [])
+
+  const handleUpdateLayout = useCallback(
+    (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
+      if (sectionName === "leftSection") {
+        switch (leftPosition) {
+          case SECTION_POSITION.TOP:
+          case SECTION_POSITION.BOTTOM: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  leftPosition: SECTION_POSITION.FULL,
+                },
+              }),
+            )
+            break
+          }
+          case SECTION_POSITION.CENTER: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  leftPosition:
+                    direction === "top"
+                      ? SECTION_POSITION.TOP
+                      : SECTION_POSITION.BOTTOM,
+                },
+              }),
+            )
+            break
+          }
+        }
+      }
+    },
+    [currentPageDisplayName, dispatch, leftPosition],
+  )
+
   return (
-    <div css={applyLeftSectionWrapperStyle("240px", "0px")} ref={ref}>
+    <div
+      css={applyLeftSectionWrapperStyle("240px", "0px")}
+      ref={ref}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {isInSection &&
+        mode === "edit" &&
+        (leftPosition === SECTION_POSITION.BOTTOM ||
+          leftPosition === SECTION_POSITION.CENTER) && (
+          <ChangeLayoutTopBar
+            sectionName="leftSection"
+            direction="top"
+            changeAction={handleUpdateLayout}
+          />
+        )}
+      {isInSection &&
+        mode === "edit" &&
+        (leftPosition === SECTION_POSITION.TOP ||
+          leftPosition === SECTION_POSITION.CENTER) && (
+          <ChangeLayoutBottomBar
+            sectionName="leftSection"
+            direction="bottom"
+            changeAction={handleUpdateLayout}
+          />
+        )}
       <div
         css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
@@ -446,6 +727,7 @@ export const RenderRightSection = forwardRef<
     mode,
     leftWidth,
     currentPageDisplayName,
+    rightPosition,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -462,6 +744,7 @@ export const RenderRightSection = forwardRef<
   ) as MutableRefObject<HTMLDivElement | null>
 
   const isActive = useRef<boolean>(false)
+  const [isInSection, setIsInSection] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -516,8 +799,79 @@ export const RenderRightSection = forwardRef<
     }
   }, [containerWidth, currentPageDisplayName, dispatch, leftWidth, offsetLeft])
 
+  const onMouseEnter = useCallback(() => {
+    setIsInSection(true)
+  }, [])
+
+  const onMouseLeave = useCallback(() => {
+    setIsInSection(false)
+  }, [])
+
+  const handleUpdateLayout = useCallback(
+    (sectionName: string, direction?: "top" | "bottom" | "left" | "right") => {
+      if (sectionName === "rightSection") {
+        switch (rightPosition) {
+          case SECTION_POSITION.TOP:
+          case SECTION_POSITION.BOTTOM: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  rightPosition: SECTION_POSITION.FULL,
+                },
+              }),
+            )
+            break
+          }
+          case SECTION_POSITION.CENTER: {
+            dispatch(
+              componentsActions.updateTargetPagePropsReducer({
+                pageName: currentPageDisplayName,
+                newProps: {
+                  layout: "Custom",
+                  rightPosition:
+                    direction === "top"
+                      ? SECTION_POSITION.TOP
+                      : SECTION_POSITION.BOTTOM,
+                },
+              }),
+            )
+            break
+          }
+        }
+      }
+    },
+    [currentPageDisplayName, dispatch, rightPosition],
+  )
+
   return (
-    <div css={applyRightSectionWrapperStyle("240px", "0px")} ref={ref}>
+    <div
+      css={applyRightSectionWrapperStyle("240px", "0px")}
+      ref={ref}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {isInSection &&
+        mode === "edit" &&
+        (rightPosition === SECTION_POSITION.BOTTOM ||
+          rightPosition === SECTION_POSITION.CENTER) && (
+          <ChangeLayoutTopBar
+            sectionName="rightSection"
+            direction="top"
+            changeAction={handleUpdateLayout}
+          />
+        )}
+      {isInSection &&
+        mode === "edit" &&
+        (rightPosition === SECTION_POSITION.TOP ||
+          rightPosition === SECTION_POSITION.CENTER) && (
+          <ChangeLayoutBottomBar
+            sectionName="rightSection"
+            direction="bottom"
+            changeAction={handleUpdateLayout}
+          />
+        )}
       <div
         css={applyContainerWrapperStyle(mode)}
         ref={(ele) => {
