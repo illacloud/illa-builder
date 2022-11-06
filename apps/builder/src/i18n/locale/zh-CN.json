@@ -6,10 +6,10 @@
   "btn": {
     "choose_file": "选择文件"
   },
-  "collision_message": "按住D或K键，将组件拖进容器",
-  "create_fail": "创建失败",
   "change_fail": "修改失败",
   "change_success": "修改成功",
+  "collision_message": "按住D或K键，将组件拖进容器",
+  "create_fail": "创建失败",
   "create_new": "创建",
   "create_new_app": "创建项目",
   "created_at": "创建于",
@@ -556,7 +556,6 @@
         "pageSize": "每页行数",
         "pattern": "模式",
         "pending": "待处理节点",
-        "pageSize": "每页行数",
         "placeholder": "占位符",
         "prefix_text": "前缀文本",
         "radius": "圆角",
@@ -639,6 +638,16 @@
       "unselected_tip2": "请点击组件以选中。"
     },
     "page": {
+      "label_name": {
+        "body": "主体",
+        "footer": "页脚",
+        "header": "页头",
+        "left_panel": "左侧面板",
+        "preset": "预设",
+        "right_panel": "右侧面板",
+        "show_fold_icon": "显示折叠按钮",
+        "width": "宽度"
+      },
       "panel_bar_title": {
         "basic": "基础",
         "frame": "画布"
@@ -942,9 +951,9 @@
       "text_model": "纯文本"
     },
     "timeline": {
+      "horizontal": "横向",
       "name": "时间线",
-      "vertical": "纵向",
-      "horizontal": "横向"
+      "vertical": "纵向"
     }
   }
 }

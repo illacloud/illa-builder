@@ -1,5 +1,5 @@
 import { ExpandIcon, Trigger } from "@illa-design/react"
-import { FC } from "react"
+import { FC, useCallback } from "react"
 import {
   LayoutOptionItemProps,
   LayoutOptionsPanelProps,
@@ -18,6 +18,9 @@ import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/pr
 import { ReactComponent as PresetCIcon } from "@/assets/rightPagePanel/layout/preset-c.svg"
 import { ReactComponent as PresetDIcon } from "@/assets/rightPagePanel/layout/preset-d.svg"
 import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/preset-e.svg"
+import { useDispatch, useSelector } from "react-redux"
+import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
+import { getCurrentPageDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 
 export const LAYOUT_OPTIONS = [
   {
@@ -32,15 +35,34 @@ export const LAYOUT_OPTIONS = [
   { label: "Preset E", value: "presetE", icon: <PresetEIcon /> },
 ]
 
+export const findLayoutOptionItem = (layoutValue: string) => {
+  const targetItem = LAYOUT_OPTIONS.find((item) => item.value === layoutValue)
+  return targetItem?.label || "Customer"
+}
+
 export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
-  const { isSelected, label, value, icon } = props
+  const { isSelected, label, value, icon, selectedValue } = props
+  const dispatch = useDispatch()
+  const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
+
+  const handleChangeLayout = useCallback(() => {
+    if (selectedValue === value || !currentPageDisplayName) return
+    dispatch(
+      componentsActions.updateTargetPageLayoutReducer({
+        pageName: currentPageDisplayName,
+        layout: value as
+          | "default"
+          | "presetA"
+          | "presetB"
+          | "presetC"
+          | "presetD"
+          | "presetE",
+      }),
+    )
+  }, [currentPageDisplayName, dispatch, selectedValue, value])
+
   return (
-    <div
-      css={layoutOptionItemWrapperStyle}
-      onClick={(e) => {
-        console.log("eeeee")
-      }}
-    >
+    <div css={layoutOptionItemWrapperStyle} onClick={handleChangeLayout}>
       <div css={applyLayoutOptionItemIconStyle(isSelected)} data-value={value}>
         {icon}
       </div>
@@ -64,6 +86,7 @@ export const LayoutOptionsPanel: FC<LayoutOptionsPanelProps> = (props) => {
             value={item.value}
             icon={item.icon}
             isSelected={selectedValue === item.value}
+            selectedValue={selectedValue}
           />
         )
       })}
@@ -76,13 +99,13 @@ export const LayoutSelect: FC<LayoutSelectProps> = (props) => {
   return (
     <Trigger
       trigger="click"
-      content={<LayoutOptionsPanel selectedValue="default" />}
+      content={<LayoutOptionsPanel selectedValue={value} />}
       position="bottom-end"
       colorScheme="white"
       withoutPadding
     >
       <div css={layoutSelectWrapperStyle}>
-        <span>{value}</span>
+        <span>{findLayoutOptionItem(value)}</span>
         <ExpandIcon />
       </div>
     </Trigger>

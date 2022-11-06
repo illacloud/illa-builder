@@ -30,20 +30,38 @@ export const RIGHT_MIN_WIDTH = 240
 export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
     const { sectionNode } = props
-
-    if (
-      !sectionNode ||
-      sectionNode.type !== "SECTION_NODE" ||
-      !sectionNode.props
-    )
-      return null
-    let sectionNodeProps = sectionNode.props
+    const [containerBoundRef, containerBound] = useMeasure()
+    const containerRef = useRef<HTMLDivElement>(
+      null,
+    ) as MutableRefObject<HTMLDivElement | null>
 
     const { viewSortedKey, currentViewIndex } = sectionNode.props
+    const currentViewDisplayName = viewSortedKey[currentViewIndex]
+
+    const componentNode = sectionNode.childrenNode.find(
+      (node) => node.displayName === currentViewDisplayName,
+    )
 
     return (
       <div ref={ref}>
-        <div css={containerWrapperStyle} />
+        <div
+          css={containerWrapperStyle}
+          ref={(ele) => {
+            containerBoundRef(ele)
+            containerRef.current = ele
+          }}
+        >
+          {componentNode && (
+            <RenderComponentCanvas
+              componentNode={componentNode}
+              containerPadding={8}
+              containerRef={containerRef}
+              canResizeY
+              minHeight={containerBound.height - 16}
+              safeRowNumber={0}
+            />
+          )}
+        </div>
       </div>
     )
   },
@@ -148,8 +166,6 @@ export const RenderFooterSection = forwardRef<
   RenderFooterSectionProps
 >((props, ref) => {
   const { sectionNode, bottomHeight, containerHeight, offsetTop } = props
-
-  let sectionNodeProps = sectionNode.props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
   const currentViewDisplayName = viewSortedKey[currentViewIndex]

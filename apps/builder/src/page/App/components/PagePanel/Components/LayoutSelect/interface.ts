@@ -13,4 +13,5 @@ export interface LayoutOptionItemProps {
   label: string
   value: string
   icon: ReactChild
+  selectedValue: string
 }

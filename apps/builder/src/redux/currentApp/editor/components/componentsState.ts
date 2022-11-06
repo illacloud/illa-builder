@@ -47,7 +47,7 @@ export interface RootComponentNode extends ComponentNode {
 }
 
 export interface PageNodeProps {
-  canvasSize: "auto" | "fixed"
+  canvasSize: "responsive" | "fixed"
   canvasWidth: string
   layout: string
   leftPosition: SECTION_POSITION
@@ -115,4 +115,34 @@ export interface UpdateComponentReflowPayload {
 export interface CopyComponentPayload {
   oldComponentNode: ComponentNode
   newComponentNode: ComponentNode
+}
+
+export interface UpdateTargetPageLayoutPayload {
+  pageName: string
+  layout: "default" | "presetA" | "presetB" | "presetC" | "presetD" | "presetE"
+}
+
+export interface UpdateTargetPagePropsPayload {
+  pageName: string
+  newProps: Partial<PageNodeProps>
+}
+
+export interface DeleteTargetPageSectionPayload {
+  pageName: string
+  deleteSectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+  options: Record<string, boolean>
+}
+
+export interface AddTargetPageSectionPayload {
+  pageName: string
+  addedSectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+  options: Record<string, boolean>
 }

@@ -61,7 +61,7 @@ export interface RenderPageProps {
 }
 
 export interface RenderSectionProps {
-  sectionNode?: SectionNode
+  sectionNode: SectionNode
 }
 
 export interface RenderHeaderSectionProps {

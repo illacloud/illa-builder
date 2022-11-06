@@ -17,11 +17,13 @@ import {
   ComponentNode,
   CopyComponentPayload,
   sortComponentNodeChildrenPayload,
+  UpdateTargetPageLayoutPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
   UpdateComponentContainerPayload,
   UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
+import { layoutValueMapConfig } from "@/config/newAppConfig"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const { type, payload } = action
@@ -44,7 +46,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
     }
     return next(action)
   }
+  console.log("prevState", store.getState())
   const resp = next(action)
+  console.log("nextState", store.getState())
   //  TODO: @aruseito ws send message when connected
   try {
     switch (reduxType) {
@@ -278,6 +282,37 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 ],
               ),
             )
+            break
+          case "updateTargetPageLayoutReducer": {
+            const { pageName, layout } =
+              action.payload as UpdateTargetPageLayoutPayload
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_DELETE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [pageName],
+              ),
+            )
+            const config = layoutValueMapConfig[layout]
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                config,
+              ),
+            )
+            break
+          }
         }
         break
       case "dragShadow":

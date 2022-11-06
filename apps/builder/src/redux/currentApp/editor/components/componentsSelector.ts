@@ -144,3 +144,36 @@ export const getFlattenArrayComponentNodes = createSelector(
     return components || []
   },
 )
+
+export const getCurrentPageNode = createSelector([getCanvas], (rootDSL) => {
+  if (rootDSL == null || !rootDSL.props) {
+    return null
+  }
+  const { currentPageIndex, pageSortedKey } = rootDSL.props
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
+  const currentPage = rootDSL.childrenNode.find(
+    (node) => node.displayName === currentPageDisplayName,
+  )
+  if (!currentPage) return null
+  return currentPage
+})
+
+export const getCurrentPageProps = createSelector(
+  [getCurrentPageNode],
+  (currentPageNode) => {
+    if (currentPageNode == null || !currentPageNode.props) {
+      return {}
+    }
+    return currentPageNode.props
+  },
+)
+
+export const getCurrentPageDisplayName = createSelector(
+  [getCurrentPageNode],
+  (currentPageNode) => {
+    if (currentPageNode == null || !currentPageNode.props) {
+      return null
+    }
+    return currentPageNode.displayName
+  },
+)

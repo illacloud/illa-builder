@@ -26,7 +26,7 @@ const getDisplayNameMapSectionNode = (pageNode: PageNode) => {
 }
 
 const getLeftAndRightWidth = (
-  canvasSize: "auto" | "fixed",
+  canvasSize: "responsive" | "fixed",
   width: number,
   containerWidth: number,
 ) => {
@@ -85,6 +85,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     let bodyWidth = bounds.width
     let bodyTop = 0
     let bodyLeft = 0
+    let bodyHeight = bounds.height
 
     if (hasLeft) {
       bodyWidth -= realLeftWidth
@@ -122,7 +123,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       switch (rightPosition) {
         case SECTION_POSITION.TOP: {
           headerWidth -= realRightWidth
-          rightHeight -= topHeight
+          rightHeight -= bottomHeight
           break
         }
         case SECTION_POSITION.FULL: {
@@ -133,7 +134,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         case SECTION_POSITION.BOTTOM: {
           footerWidth -= realRightWidth
           rightTop = topHeight
-          rightHeight -= bottomHeight
+          rightHeight -= topHeight
           break
         }
         case SECTION_POSITION.CENTER: {
@@ -144,22 +145,22 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     }
     if (hasHeader) {
       bodyTop = topHeight
+      bodyHeight -= topHeight
+    }
+
+    if (hasFooter) {
+      bodyHeight -= topHeight
     }
 
     if (hasLeft && leftRef.current) {
       leftRef.current.style.width = `${realLeftWidth}px`
       leftRef.current.style.height = `${leftHeight}px`
-      if (leftTop > 0) {
-        leftRef.current.style.top = `${leftTop}px`
-      }
+      leftRef.current.style.top = `${leftTop}px`
     }
     if (hasRight && rightRef.current) {
       rightRef.current.style.width = `${realRightWidth}px`
       rightRef.current.style.height = `${rightHeight}px`
-
-      if (leftTop > 0) {
-        rightRef.current.style.top = `${rightTop}px`
-      }
+      rightRef.current.style.top = `${rightTop}px`
     }
     if (hasHeader && headerRef.current) {
       headerRef.current.style.width = `${headerWidth}px`
@@ -175,41 +176,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       bodyRef.current.style.width = `${bodyWidth}px`
       bodyRef.current.style.left = `${bodyLeft}px`
       bodyRef.current.style.top = `${bodyTop}px`
-      bodyRef.current.style.height = `100vh`
+      bodyRef.current.style.height = `${bodyHeight}px`
     }
-
-    // if (
-    //   hasLeft &&
-    //   (leftPosition === SECTION_POSITION.TOP ||
-    //     leftPosition === SECTION_POSITION.FULL)
-    // ) {
-    //   if (leftRef.current) {
-    //     leftRef.current.style.width = `${realLeftWidth}px`
-    //     headerLeft = realLeftWidth
-    //     headerWidth = headerWidth - realLeftWidth
-    //     footerLeft = realLeftWidth
-    //     footerWidth = footerWidth - realLeftWidth
-    //   }
-    // }
-    // if (
-    //   hasRight &&
-    //   (rightPosition === SECTION_POSITION.TOP ||
-    //     rightPosition === SECTION_POSITION.FULL)
-    // ) {
-    //   headerWidth = headerWidth - realRightWidth
-    //   footerWidth = footerWidth - realRightWidth
-
-    //   if (rightRef.current) {
-    //     rightRef.current.style.width = `${realRightWidth}px`
-    //   }
-    // }
-
-    // if (headerRef.current && footerRef.current) {
-    //   headerRef.current.style.width = `${headerWidth}px`
-    //   headerRef.current.style.left = `${headerLeft}px`
-    //   footerRef.current.style.width = `${footerWidth}px`
-    //   footerRef.current.style.left = `${footerLeft}px`
-    // }
   }, [
     bottomHeight,
     bounds,
@@ -239,11 +207,6 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   )
     return null
 
-  //     leftWidth,
-  // rightWidth,
-  // topHeight,
-  // bottomHeight,
-
   return (
     <div style={{ width: "100%", height: "100%" }} ref={containerRef}>
       {hasHeader && headerSection && (
@@ -262,7 +225,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           containerWidth={bounds.width}
         />
       )}
-      {/* <RenderSection sectionNode={bodySection} ref={bodyRef} /> */}
+      {bodySection && <RenderSection sectionNode={bodySection} ref={bodyRef} />}
       {hasRight && rightSection && (
         <RenderRightSection
           sectionNode={rightSection}

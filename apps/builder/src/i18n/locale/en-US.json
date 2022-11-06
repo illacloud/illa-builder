@@ -667,6 +667,16 @@
       "panel_bar_title": {
         "frame": "FRAME",
         "basic": "BASIC"
+      },
+      "label_name": {
+        "width": "Width",
+        "preset": "Preset",
+        "left_panel": "Left panel",
+        "right_panel": "Right panel",
+        "header": "Header",
+        "footer": "Footer",
+        "body": "Body",
+        "show_fold_icon": "Show fold icon"
       }
     }
   },
