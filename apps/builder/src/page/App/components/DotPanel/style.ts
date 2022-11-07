@@ -254,6 +254,7 @@ export const applyContainerWrapperStyle = (model: IllaMode) => {
     height: 100%;
     padding: ${model !== "edit" ? "0" : "8px"};
     overflow-y: auto;
+    overflow-x: hidden;
   `
 }
 
