@@ -677,6 +677,9 @@
         "footer": "Footer",
         "body": "Body",
         "show_fold_icon": "Show fold icon"
+      },
+      "tooltips": {
+        "show_fold_icon": "Show a button to collapse or expand the panel"
       }
     }
   },

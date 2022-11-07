@@ -652,7 +652,10 @@
         "basic": "基础",
         "frame": "画布"
       },
-      "tab_title": "页面"
+      "tab_title": "页面",
+      "tooltips": {
+        "show_fold_icon": "显示一个按钮，用于收起或展开面板"
+      }
     },
     "validate_message": {
       "email": "请输入有效的电子邮箱",

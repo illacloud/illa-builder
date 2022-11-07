@@ -425,7 +425,7 @@ export const PageFrame: FC = () => {
             <PageLabel
               labelName={t("editor.page.label_name.show_fold_icon")}
               size="small"
-              tooltip="xxxxxxxxxx"
+              tooltip={t("editor.page.tooltips.show_fold_icon")}
             />
             <SetterPadding>
               <Switch
@@ -484,7 +484,7 @@ export const PageFrame: FC = () => {
             <PageLabel
               labelName={t("editor.page.label_name.show_fold_icon")}
               size="small"
-              tooltip="xxxxxxxxxx"
+              tooltip={t("editor.page.tooltips.show_fold_icon")}
             />
             <SetterPadding>
               <Switch
