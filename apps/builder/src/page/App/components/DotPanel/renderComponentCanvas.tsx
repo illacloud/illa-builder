@@ -33,6 +33,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import {
   getDragResult,
   getReflowResult,
+  isAddAction,
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
@@ -134,6 +135,7 @@ export const RenderComponentCanvas: FC<{
               containerPadding={containerPadding}
               childrenNode={componentNode.childrenNode}
               collisionEffect={collisionEffect}
+              columnsNumber={blockColumns}
             />
           )
         default:
@@ -141,6 +143,7 @@ export const RenderComponentCanvas: FC<{
       }
     })
   }, [
+    blockColumns,
     canResizeY,
     collisionEffect,
     componentNode.childrenNode,
@@ -182,8 +185,8 @@ export const RenderComponentCanvas: FC<{
           setCollisionEffect(new Map())
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
-          const { item } = dragInfo
-          const scale = blockColumns / BASIC_BLOCK_COLUMNS
+          const { item, currentColumnNumber } = dragInfo
+          const scale = blockColumns / currentColumnNumber
 
           const scaleItem: ComponentNode = {
             ...item,
@@ -191,8 +194,12 @@ export const RenderComponentCanvas: FC<{
           }
           let dragResult
           if (
-            (item.x === -1 && item.y === -1) ||
-            item.parentNode !== componentNode.displayName
+            isAddAction(
+              item.x,
+              item.y,
+              item.parentNode,
+              componentNode.displayName,
+            )
           ) {
             dragResult = getDragResult(
               monitor,
@@ -315,10 +322,10 @@ export const RenderComponentCanvas: FC<{
       },
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
-        const { item } = dragInfo
+        const { item, currentColumnNumber } = dragInfo
         if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
-          const scale = blockColumns / BASIC_BLOCK_COLUMNS
+          const scale = blockColumns / currentColumnNumber
 
           const scaleItem: ComponentNode = {
             ...item,
@@ -326,8 +333,12 @@ export const RenderComponentCanvas: FC<{
           }
           let dragResult
           if (
-            (item.x === -1 && item.y === -1) ||
-            item.parentNode !== componentNode.displayName
+            isAddAction(
+              item.x,
+              item.y,
+              item.parentNode,
+              componentNode.displayName,
+            )
           ) {
             dragResult = getDragResult(
               monitor,
@@ -411,11 +422,23 @@ export const RenderComponentCanvas: FC<{
       },
       collect: (monitor) => {
         const dragInfo = monitor.getItem()
-        const scale = blockColumns / BASIC_BLOCK_COLUMNS
+        if (!dragInfo) {
+          return {
+            isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
+            nodeWidth: 0,
+            nodeHeight: 0,
+          }
+        }
+        const { item, currentColumnNumber } = dragInfo
+        let nodeX = item.x ?? 0
+        let nodeY = item.y ?? 0
+        let nodeWidth = item.w ?? 0
+        let nodeHeight = item.h ?? 0
+        nodeWidth = nodeWidth * (blockColumns / currentColumnNumber)
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
-          nodeWidth: dragInfo?.item?.w * scale ?? 0,
-          nodeHeight: dragInfo?.item?.h ?? 0,
+          nodeWidth: nodeWidth,
+          nodeHeight: nodeHeight,
         }
       },
     }),

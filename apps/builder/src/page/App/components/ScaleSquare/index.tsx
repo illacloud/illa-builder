@@ -69,6 +69,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
     containerHeight,
     childrenNode,
     collisionEffect,
+    columnsNumber,
   } = props
 
   const canRenderDashedLine = !collisionEffect.has(componentNode.displayName)
@@ -261,6 +262,7 @@ export const ScaleSquare = memo<ScaleSquareProps>((props: ScaleSquareProps) => {
         return {
           item: componentNode,
           childrenNodes,
+          currentColumnNumber: columnsNumber,
         }
       },
       collect: (monitor) => {

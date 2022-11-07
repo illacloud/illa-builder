@@ -17,6 +17,7 @@ export interface DragPosition {
 export interface DragInfo {
   item: ComponentNode
   childrenNodes: ComponentNode[]
+  currentColumnNumber: number
 }
 
 // return when drop trigger
