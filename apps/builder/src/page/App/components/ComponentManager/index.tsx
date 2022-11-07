@@ -1,6 +1,6 @@
 import { TabPane, Tabs } from "@illa-design/tabs"
 import { useTranslation } from "react-i18next"
-import { FC, HTMLAttributes, useEffect, useState } from "react"
+import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { componentPanelCss } from "./style"
@@ -17,14 +17,23 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   const [activeKey, setActiveKey] = useState("Insert")
 
   const selectedDisplayNames = useSelector(getSelectedComponents)
+  const isClickChange = useRef<boolean>(false)
 
   useEffect(() => {
-    if (selectedDisplayNames.length > 0) {
-      setActiveKey("Inspect")
-    } else {
-      setActiveKey("Insert")
+    if (!isClickChange.current) {
+      if (selectedDisplayNames.length > 0) {
+        setActiveKey("Inspect")
+      } else {
+        if (activeKey === "Page") {
+          setActiveKey("Page")
+        }
+        if (activeKey === "Inspect") {
+          setActiveKey("Insert")
+        }
+      }
     }
-  }, [selectedDisplayNames])
+    isClickChange.current = false
+  }, [activeKey, selectedDisplayNames])
 
   return (
     <div
@@ -39,6 +48,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
         activeKey={activeKey}
         colorScheme="grayBlue"
         onChange={(key) => {
+          isClickChange.current = true
           setActiveKey(key)
         }}
       >
