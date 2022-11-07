@@ -57,7 +57,7 @@ export const WrappedInputNumber = forwardRef<
         {
           displayName,
           value: {
-            value: value || "",
+            value: value === undefined ? "" : value,
             validateMessage: message,
           },
         },
