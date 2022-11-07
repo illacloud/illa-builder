@@ -85,5 +85,6 @@ export const applyWrapperStylesStyle = (
       ? backgroundColor || "white"
       : "transparent"};
     box-shadow: ${shadowStyle};
+    overflow-x: hidden;
   `
 }
