@@ -73,6 +73,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     isHeaderFixed,
     isLeftFixed,
     isRightFixed,
+    showLeftFoldIcon,
+    showRightFoldIcon,
   } = pageProps
 
   useLayoutEffect(() => {
@@ -133,6 +135,36 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     let bodyTop = 0
     let bodyLeft = 0
     let bodyHeight = bounds.height
+    let leftArea = {
+      top: leftTop,
+      bottom: leftTop + leftHeight,
+      left: 0,
+      right: realLeftWidth,
+    }
+    let rightArea = {
+      top: rightTop,
+      bottom: rightTop + rightHeight,
+      left: realRightWidth,
+      right: 0,
+    }
+    let headerArea = {
+      top: 0,
+      bottom: topHeight,
+      left: headerLeft,
+      right: headerLeft + headerWidth,
+    }
+    let footerArea = {
+      top: bodyTop + bodyHeight,
+      bottom: bodyTop + bodyHeight + bodyHeight,
+      left: footerLeft,
+      right: footerLeft + footerWidth,
+    }
+    let bodyArea = {
+      top: bodyTop,
+      bottom: bodyTop + bodyHeight,
+      left: bodyLeft,
+      right: bodyLeft + bodyWidth,
+    }
 
     if (hasLeft) {
       bodyWidth -= realLeftWidth
@@ -203,19 +235,43 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       leftRef.current.style.width = `${realLeftWidth}px`
       leftRef.current.style.height = `${leftHeight}px`
       leftRef.current.style.top = `${leftTop}px`
+      leftArea = {
+        top: leftTop,
+        bottom: leftTop + leftHeight,
+        left: 0,
+        right: realLeftWidth,
+      }
     }
     if (hasRight && rightRef.current) {
       rightRef.current.style.width = `${realRightWidth}px`
       rightRef.current.style.height = `${rightHeight}px`
       rightRef.current.style.top = `${rightTop}px`
+      rightArea = {
+        top: rightTop,
+        bottom: rightTop + rightHeight,
+        left: realRightWidth,
+        right: 0,
+      }
     }
     if (hasHeader && headerRef.current) {
       headerRef.current.style.width = `${headerWidth}px`
       headerRef.current.style.left = `${headerLeft}px`
+      headerArea = {
+        top: 0,
+        bottom: topHeight,
+        left: headerLeft,
+        right: headerLeft + headerWidth,
+      }
     }
     if (hasFooter && footerRef.current) {
       footerRef.current.style.width = `${footerWidth}px`
       footerRef.current.style.left = `${footerLeft}px`
+      footerArea = {
+        top: bodyTop + bodyHeight,
+        bottom: bodyTop + bodyHeight + bodyHeight,
+        left: footerLeft,
+        right: footerLeft + footerWidth,
+      }
     }
 
     if (bodyRef.current) {
@@ -224,6 +280,12 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
       bodyRef.current.style.left = `${bodyLeft}px`
       bodyRef.current.style.top = `${bodyTop}px`
       bodyRef.current.style.height = `${bodyHeight}px`
+      bodyArea = {
+        top: bodyTop,
+        bottom: bodyTop + bodyHeight,
+        left: bodyLeft,
+        right: bodyLeft + bodyWidth,
+      }
     }
   }, [
     bottomHeight,
@@ -282,6 +344,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           rightWidth={realRightWidth}
           currentPageDisplayName={currentPageDisplayName}
           leftPosition={leftPosition}
+          showFoldIcon={showLeftFoldIcon}
         />
       )}
       {bodySection && (
@@ -297,6 +360,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           leftWidth={realLeftWidth}
           currentPageDisplayName={currentPageDisplayName}
           rightPosition={rightPosition}
+          showFoldIcon={showRightFoldIcon}
         />
       )}
       {hasFooter && footerSection && (

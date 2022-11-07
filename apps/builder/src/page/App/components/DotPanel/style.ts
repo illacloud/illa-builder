@@ -323,3 +323,17 @@ export const changeLayoutVerticalBarStyle = css`
   height: 100%;
   background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
 `
+
+export const applySideBarWrapperStyle = (direction: "left" | "right") => {
+  return css`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: ${direction === "left" ? "flex-end" : "flex-start"};
+  `
+}
+
+export const sideBarIconStyle = css`
+  cursor: pointer;
+  flex: none;
+`

@@ -99,6 +99,7 @@ export interface RenderLeftSectionProps {
   rightWidth: number
   currentPageDisplayName: string
   leftPosition: SECTION_POSITION
+  showFoldIcon: boolean
 }
 
 export interface RenderRightSectionProps {
@@ -109,6 +110,7 @@ export interface RenderRightSectionProps {
   leftWidth: number
   currentPageDisplayName: string
   rightPosition: SECTION_POSITION
+  showFoldIcon: boolean
 }
 
 export interface RenderContainerProps {

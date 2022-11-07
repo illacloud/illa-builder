@@ -278,6 +278,8 @@ export const DEFAULT_PAGE_LAYOUT_CONFIG: PageNode[] = [
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
     },
     childrenNode: [BASIC_BODY_SECTION_CONFIG],
   },
@@ -320,6 +322,8 @@ export const PRESET_A_PAGE_LAYOUT_CONFIG: PageNode[] = [
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
     },
     childrenNode: [BASIC_LEFT_SECTION_CONFIG, BASIC_BODY_SECTION_CONFIG],
   },
@@ -408,6 +412,8 @@ export const PRESET_C_PAGE_LAYOUT_CONFIG: PageNode[] = [
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,
@@ -455,6 +461,8 @@ export const PRESET_D_PAGE_LAYOUT_CONFIG: PageNode[] = [
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,
@@ -503,6 +511,8 @@ export const PRESET_E_PAGE_LAYOUT_CONFIG: PageNode[] = [
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,
@@ -550,6 +560,8 @@ export const BASIC_APP_CONFIG: PageNode[] = [
       isRightFixed: true,
       isHeaderFixed: true,
       isFooterFixed: true,
+      showLeftFoldIcon: false,
+      showRightFoldIcon: false,
     },
     childrenNode: [
       BASIC_HEADER_SECTION_CONFIG,

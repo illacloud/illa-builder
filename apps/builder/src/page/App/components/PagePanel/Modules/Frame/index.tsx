@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo } from "react"
 import { PanelBar } from "@/components/PanelBar"
 import { useTranslation } from "react-i18next"
-import { Input, InputNumber, RadioGroup, Switch } from "@illa-design/react"
+import { InputNumber, Switch } from "@illa-design/react"
 import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-fixed.svg"
 import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
@@ -61,6 +61,8 @@ export const PageFrame: FC = () => {
     hasRight,
     hasFooter,
     hasHeader,
+    showLeftFoldIcon,
+    showRightFoldIcon,
   } = pageProps
 
   const bodyWidth = useMemo(() => {
@@ -327,6 +329,25 @@ export const PageFrame: FC = () => {
     ],
   )
 
+  const handleUpdateShowFoldIcon = useCallback(
+    (value: boolean, sectionName: string) => {
+      if (!currentPageDisplayName) return
+      const newProps =
+        sectionName === "leftSection"
+          ? {
+              showLeftFoldIcon: value,
+            }
+          : { showRightFoldIcon: value }
+      dispatch(
+        componentsActions.updateTargetPagePropsReducer({
+          pageName: currentPageDisplayName,
+          newProps,
+        }),
+      )
+    },
+    [currentPageDisplayName, dispatch],
+  )
+
   return (
     <PanelBar title={t("editor.page.panel_bar_title.frame")}>
       {/* <LeftAndRightLayout>
@@ -407,7 +428,12 @@ export const PageFrame: FC = () => {
               tooltip="xxxxxxxxxx"
             />
             <SetterPadding>
-              <Switch />
+              <Switch
+                checked={showLeftFoldIcon}
+                onChange={(value) => {
+                  handleUpdateShowFoldIcon(value, "leftSection")
+                }}
+              />
             </SetterPadding>
           </LeftAndRightLayout>
         </>
@@ -442,17 +468,34 @@ export const PageFrame: FC = () => {
         </SetterPadding>
       </LeftAndRightLayout>
       {hasRight && (
-        <LeftAndRightLayout>
-          <PageLabel labelName={widthI18n} size="small" />
-          <SetterPadding>
-            <InputNumber
-              w="96px"
-              value={rightWidth.toFixed(0)}
-              borderColor="techPurple"
-              onChange={handleUpdateRightPanelWidth}
+        <>
+          <LeftAndRightLayout>
+            <PageLabel labelName={widthI18n} size="small" />
+            <SetterPadding>
+              <InputNumber
+                w="96px"
+                value={rightWidth.toFixed(0)}
+                borderColor="techPurple"
+                onChange={handleUpdateRightPanelWidth}
+              />
+            </SetterPadding>
+          </LeftAndRightLayout>
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={t("editor.page.label_name.show_fold_icon")}
+              size="small"
+              tooltip="xxxxxxxxxx"
             />
-          </SetterPadding>
-        </LeftAndRightLayout>
+            <SetterPadding>
+              <Switch
+                checked={showRightFoldIcon}
+                onChange={(value) => {
+                  handleUpdateShowFoldIcon(value, "rightSection")
+                }}
+              />
+            </SetterPadding>
+          </LeftAndRightLayout>
+        </>
       )}
       <PanelDivider />
       <LeftAndRightLayout>

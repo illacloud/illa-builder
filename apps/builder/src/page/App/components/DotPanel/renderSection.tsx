@@ -25,6 +25,8 @@ import {
   resizeHorizontalBarWrapperStyle,
   resizeVerticalBarStyle,
   resizeVerticalBarWrapperStyle,
+  applySideBarWrapperStyle,
+  sideBarIconStyle,
 } from "./style"
 import { RenderComponentCanvas } from "./renderComponentCanvas"
 import useMeasure from "react-use-measure"
@@ -35,6 +37,7 @@ import {
   ChangeLayoutTopBar,
 } from "./changeLayoutBar"
 import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
+import { PreIcon, NextIcon } from "@illa-design/react"
 
 export const HEADER_MIN_HEIGHT = 96
 export const FOOTER_MIN_HEIGHT = 96
@@ -542,6 +545,7 @@ export const RenderLeftSection = forwardRef<
     rightWidth,
     currentPageDisplayName,
     leftPosition,
+    showFoldIcon,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -697,10 +701,19 @@ export const RenderLeftSection = forwardRef<
             containerPadding={8}
             containerRef={containerRef}
             canResizeY
-            minHeight={containerBound.height - 16}
+            minHeight={
+              showFoldIcon
+                ? containerBound.height - 8 - 32
+                : containerBound.height - 16
+            }
             safeRowNumber={0}
             blockColumns={16}
           />
+        )}
+        {showFoldIcon && (
+          <div css={applySideBarWrapperStyle("left")}>
+            <PreIcon css={sideBarIconStyle} />
+          </div>
         )}
       </div>
       {mode === "edit" && (
@@ -728,6 +741,7 @@ export const RenderRightSection = forwardRef<
     leftWidth,
     currentPageDisplayName,
     rightPosition,
+    showFoldIcon,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -885,10 +899,19 @@ export const RenderRightSection = forwardRef<
             containerPadding={8}
             containerRef={containerRef}
             canResizeY
-            minHeight={containerBound.height - 16}
+            minHeight={
+              showFoldIcon
+                ? containerBound.height - 8 - 32
+                : containerBound.height - 16
+            }
             safeRowNumber={0}
             blockColumns={16}
           />
+        )}
+        {showFoldIcon && (
+          <div css={applySideBarWrapperStyle("right")}>
+            <NextIcon css={sideBarIconStyle} />
+          </div>
         )}
       </div>
       {mode === "edit" && (

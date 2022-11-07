@@ -65,6 +65,8 @@ export interface PageNodeProps {
   rightWidth: number
   topHeight: number
   bottomHeight: number
+  showLeftFoldIcon: boolean
+  showRightFoldIcon: boolean
 }
 export interface PageNode extends ComponentNode {
   type: "PAGE_NODE"
