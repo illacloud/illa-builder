@@ -7,13 +7,13 @@ export const PanelActionBar: FC<PanelActionBarProps> = (props) => {
   const { isFixed, hasPanel, addPanelAction, deletePanelAction } = props
   return (
     <div css={panelActionBarWrapperStyle}>
-      {hasPanel ? (
+      {/* {hasPanel ? (
         isFixed ? (
           <LockIcon css={baseIconStyle} />
         ) : (
           <UnlockIcon css={baseIconStyle} />
         )
-      ) : null}
+      ) : null} */}
       {hasPanel ? (
         <MinusIcon css={baseIconStyle} onClick={deletePanelAction} />
       ) : (
