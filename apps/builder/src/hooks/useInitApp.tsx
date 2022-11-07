@@ -29,6 +29,9 @@ export const useInitBuilderApp = (model: IllaMode) => {
         signal: controller.signal,
       },
       (response) => {
+        if (model === "edit") {
+          dispatch(configActions.resetConfig())
+        }
         dispatch(configActions.updateIllaMode(model))
         dispatch(appInfoActions.updateAppInfoReducer(response.data.appInfo))
         dispatch(
@@ -52,9 +55,6 @@ export const useInitBuilderApp = (model: IllaMode) => {
           response.data.actions,
         )
         dispatch(executionActions.startExecutionReducer())
-        if (model === "edit") {
-          dispatch(configActions.resetConfig())
-        }
         if (model === "edit" && response.data.actions.length > 0) {
           dispatch(configActions.changeSelectedAction(response.data.actions[0]))
         }
