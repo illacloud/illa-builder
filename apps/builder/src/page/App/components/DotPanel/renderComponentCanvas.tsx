@@ -458,7 +458,7 @@ export const RenderComponentCanvas: FC<{
           ),
         )
       } else {
-        setRowNumber(Math.max(maxY, bounds.height / UNIT_HEIGHT))
+        setRowNumber(maxY)
       }
     }
   }, [
