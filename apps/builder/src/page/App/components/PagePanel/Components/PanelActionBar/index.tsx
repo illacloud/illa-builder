@@ -1,5 +1,9 @@
 import { FC } from "react"
-import { baseIconStyle, panelActionBarWrapperStyle } from "./style"
+import {
+  baseIconStyle,
+  clickHotpotWrapperStyle,
+  panelActionBarWrapperStyle,
+} from "./style"
 import { LockIcon, UnlockIcon, MinusIcon, PlusIcon } from "@illa-design/react"
 import { PanelActionBarProps } from "./interface"
 
@@ -15,9 +19,13 @@ export const PanelActionBar: FC<PanelActionBarProps> = (props) => {
         )
       ) : null} */}
       {hasPanel ? (
-        <MinusIcon css={baseIconStyle} onClick={deletePanelAction} />
+        <div css={clickHotpotWrapperStyle}>
+          <MinusIcon css={baseIconStyle} onClick={deletePanelAction} />
+        </div>
       ) : (
-        <PlusIcon css={baseIconStyle} onClick={addPanelAction} />
+        <div css={clickHotpotWrapperStyle}>
+          <PlusIcon css={baseIconStyle} onClick={addPanelAction} />
+        </div>
       )}
     </div>
   )

@@ -655,6 +655,12 @@
       "tab_title": "页面",
       "tooltips": {
         "show_fold_icon": "显示一个按钮，用于收起或展开面板"
+      },
+      "model_tips": {
+        "change_layout_message": "改变布局将清空所有数据，该操作无法恢复，请确认",
+        "delete_section_message": "隐藏后，这个部分的数据会被清空，该操作无法恢复，请确认",
+        "ok_button": "确认",
+        "cancel_button": "取消"
       }
     },
     "validate_message": {

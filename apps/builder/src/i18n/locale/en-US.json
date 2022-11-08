@@ -680,6 +680,12 @@
       },
       "tooltips": {
         "show_fold_icon": "Show a button to collapse or expand the panel"
+      },
+      "model_tips": {
+        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
+        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
+        "ok_button": "Confirm",
+        "cancel_button": "Cancel"
       }
     }
   },

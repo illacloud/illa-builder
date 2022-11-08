@@ -6,6 +6,7 @@ export const layoutSelectWrapperStyle = css`
   align-items: center;
   height: 22px;
   gap: 4px;
+  cursor: pointer;
 `
 
 export const layoutOptionsPanelWrapperStyle = css`

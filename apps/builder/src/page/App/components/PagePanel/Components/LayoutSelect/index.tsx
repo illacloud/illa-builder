@@ -1,4 +1,4 @@
-import { ExpandIcon, Trigger } from "@illa-design/react"
+import { ExpandIcon, Modal, Trigger } from "@illa-design/react"
 import { FC, useCallback } from "react"
 import {
   LayoutOptionItemProps,
@@ -21,6 +21,7 @@ import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/pr
 import { useDispatch, useSelector } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getCurrentPageDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
+import { useTranslation } from "react-i18next"
 
 export const LAYOUT_OPTIONS = [
   {
@@ -42,24 +43,37 @@ export const findLayoutOptionItem = (layoutValue: string) => {
 
 export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
   const { isSelected, label, value, icon, selectedValue } = props
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
 
   const handleChangeLayout = useCallback(() => {
     if (selectedValue === value || !currentPageDisplayName) return
-    dispatch(
-      componentsActions.updateTargetPageLayoutReducer({
-        pageName: currentPageDisplayName,
-        layout: value as
-          | "default"
-          | "presetA"
-          | "presetB"
-          | "presetC"
-          | "presetD"
-          | "presetE",
-      }),
-    )
-  }, [currentPageDisplayName, dispatch, selectedValue, value])
+    Modal.confirm({
+      w: "496px",
+      content: t("editor.page.model_tips.change_layout_message"),
+      cancelText: t("editor.page.model_tips.cancel_button"),
+      okText: t("editor.page.model_tips.ok_button"),
+      okButtonProps: {
+        colorScheme: "red",
+      },
+      closable: false,
+      onOk: () => {
+        dispatch(
+          componentsActions.updateTargetPageLayoutReducer({
+            pageName: currentPageDisplayName,
+            layout: value as
+              | "default"
+              | "presetA"
+              | "presetB"
+              | "presetC"
+              | "presetD"
+              | "presetE",
+          }),
+        )
+      },
+    })
+  }, [currentPageDisplayName, dispatch, selectedValue, t, value])
 
   return (
     <div css={layoutOptionItemWrapperStyle} onClick={handleChangeLayout}>
@@ -103,6 +117,7 @@ export const LayoutSelect: FC<LayoutSelectProps> = (props) => {
       position="bottom-end"
       colorScheme="white"
       withoutPadding
+      closeOnInnerClick
     >
       <div css={layoutSelectWrapperStyle}>
         <span>{findLayoutOptionItem(value)}</span>

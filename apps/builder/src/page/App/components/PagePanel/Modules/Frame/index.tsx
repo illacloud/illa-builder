@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo } from "react"
 import { PanelBar } from "@/components/PanelBar"
 import { useTranslation } from "react-i18next"
-import { InputNumber, Switch } from "@illa-design/react"
+import { InputNumber, Modal, Switch } from "@illa-design/react"
 import { ReactComponent as FrameFixedIcon } from "@/assets/rightPagePanel/frame-fixed.svg"
 import { ReactComponent as FrameResponsiveIcon } from "@/assets/rightPagePanel/frame-responsive.svg"
 import { PageLabel } from "@/page/App/components/PagePanel/Components/Label"
@@ -26,6 +26,7 @@ import {
   LEFT_MIN_WIDTH,
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/renderSection"
+import { groupWrapperStyle } from "./style"
 
 const getRealCanvasWidth = (
   canvasSize: "fixed" | "responsive",
@@ -91,15 +92,27 @@ export const PageFrame: FC = () => {
       options: Record<string, any>,
     ) => {
       if (!currentPageDisplayName) return
-      dispatch(
-        componentsActions.deleteTargetPageSectionReducer({
-          pageName: currentPageDisplayName,
-          deleteSectionName,
-          options,
-        }),
-      )
+      Modal.confirm({
+        w: "496px",
+        content: t("editor.page.model_tips.delete_section_message"),
+        cancelText: t("editor.page.model_tips.cancel_button"),
+        okText: t("editor.page.model_tips.ok_button"),
+        okButtonProps: {
+          colorScheme: "red",
+        },
+        closable: false,
+        onOk: () => {
+          dispatch(
+            componentsActions.deleteTargetPageSectionReducer({
+              pageName: currentPageDisplayName,
+              deleteSectionName,
+              options,
+            }),
+          )
+        },
+      })
     },
-    [currentPageDisplayName, dispatch],
+    [currentPageDisplayName, dispatch, t],
   )
 
   const handleAddSection = useCallback(
@@ -379,219 +392,236 @@ export const PageFrame: FC = () => {
           <LayoutSelect value={layout} />
         </SetterPadding>
       </LeftAndRightLayout>
+      <PanelDivider />
+      <div css={groupWrapperStyle}>
+        <LeftAndRightLayout>
+          <PageLabel
+            labelName={t("editor.page.label_name.left_panel")}
+            size="big"
+          />
+          <SetterPadding>
+            <PanelActionBar
+              isFixed={isLeftFixed}
+              hasPanel={hasLeft}
+              deletePanelAction={() => {
+                handleDeleteSection("leftSection", {
+                  hasLeft: false,
+                  leftWidth: 0,
+                  leftPosition: "NONE",
+                  layout: "Custom",
+                })
+              }}
+              addPanelAction={() => {
+                handleAddSection("leftSection", {
+                  hasLeft: true,
+                  leftWidth: 20,
+                  leftPosition: "FULL",
+                  layout: "Custom",
+                })
+              }}
+            />
+          </SetterPadding>
+        </LeftAndRightLayout>
+        {hasLeft && (
+          <>
+            <LeftAndRightLayout>
+              <PageLabel labelName={widthI18n} size="small" />
+              <SetterPadding>
+                <InputNumber
+                  w="96px"
+                  value={leftWidth.toFixed(0)}
+                  borderColor="techPurple"
+                  onChange={handleUpdateLeftPanelWidth}
+                />
+              </SetterPadding>
+            </LeftAndRightLayout>
+            <LeftAndRightLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.show_fold_icon")}
+                size="small"
+                tooltip={t("editor.page.tooltips.show_fold_icon")}
+              />
+              <SetterPadding>
+                <Switch
+                  checked={showLeftFoldIcon}
+                  onChange={(value) => {
+                    handleUpdateShowFoldIcon(value, "leftSection")
+                  }}
+                />
+              </SetterPadding>
+            </LeftAndRightLayout>
+          </>
+        )}
+      </div>
       <PanelDivider hasMargin={false} />
-      <LeftAndRightLayout>
-        <PageLabel
-          labelName={t("editor.page.label_name.left_panel")}
-          size="big"
-        />
-        <SetterPadding>
-          <PanelActionBar
-            isFixed={isLeftFixed}
-            hasPanel={hasLeft}
-            deletePanelAction={() => {
-              handleDeleteSection("leftSection", {
-                hasLeft: false,
-                leftWidth: 0,
-                leftPosition: "NONE",
-                layout: "Custom",
-              })
-            }}
-            addPanelAction={() => {
-              handleAddSection("leftSection", {
-                hasLeft: true,
-                leftWidth: 20,
-                leftPosition: "FULL",
-                layout: "Custom",
-              })
-            }}
-          />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      {hasLeft && (
-        <>
-          <LeftAndRightLayout>
-            <PageLabel labelName={widthI18n} size="small" />
-            <SetterPadding>
-              <InputNumber
-                w="96px"
-                value={leftWidth.toFixed(0)}
-                borderColor="techPurple"
-                onChange={handleUpdateLeftPanelWidth}
-              />
-            </SetterPadding>
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.show_fold_icon")}
-              size="small"
-              tooltip={t("editor.page.tooltips.show_fold_icon")}
-            />
-            <SetterPadding>
-              <Switch
-                checked={showLeftFoldIcon}
-                onChange={(value) => {
-                  handleUpdateShowFoldIcon(value, "leftSection")
-                }}
-              />
-            </SetterPadding>
-          </LeftAndRightLayout>
-        </>
-      )}
-      <PanelDivider />
-      <LeftAndRightLayout>
-        <PageLabel
-          labelName={t("editor.page.label_name.right_panel")}
-          size="big"
-        />
-        <SetterPadding>
-          <PanelActionBar
-            isFixed={isRightFixed}
-            hasPanel={hasRight}
-            deletePanelAction={() => {
-              handleDeleteSection("rightSection", {
-                hasRight: false,
-                rightWidth: 0,
-                rightPosition: "NONE",
-                layout: "Custom",
-              })
-            }}
-            addPanelAction={() => {
-              handleAddSection("rightSection", {
-                hasRight: true,
-                rightWidth: 20,
-                rightPosition: "FULL",
-                layout: "Custom",
-              })
-            }}
-          />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      {hasRight && (
-        <>
-          <LeftAndRightLayout>
-            <PageLabel labelName={widthI18n} size="small" />
-            <SetterPadding>
-              <InputNumber
-                w="96px"
-                value={rightWidth.toFixed(0)}
-                borderColor="techPurple"
-                onChange={handleUpdateRightPanelWidth}
-              />
-            </SetterPadding>
-          </LeftAndRightLayout>
-          <LeftAndRightLayout>
-            <PageLabel
-              labelName={t("editor.page.label_name.show_fold_icon")}
-              size="small"
-              tooltip={t("editor.page.tooltips.show_fold_icon")}
-            />
-            <SetterPadding>
-              <Switch
-                checked={showRightFoldIcon}
-                onChange={(value) => {
-                  handleUpdateShowFoldIcon(value, "rightSection")
-                }}
-              />
-            </SetterPadding>
-          </LeftAndRightLayout>
-        </>
-      )}
-      <PanelDivider />
-      <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.body")} size="big" />
-      </LeftAndRightLayout>
-      <LeftAndRightLayout>
-        <PageLabel labelName={widthI18n} size="small" />
-        <SetterPadding>
-          <InputNumber
-            w="96px"
-            borderColor="techPurple"
-            value={bodyWidth.toFixed(0)}
-            onChange={handleUpdateBodyPanelWidth}
-          />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      <PanelDivider />
-      <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.header")} size="big" />
-        <SetterPadding>
-          <PanelActionBar
-            isFixed={isHeaderFixed}
-            hasPanel={hasHeader}
-            deletePanelAction={() => {
-              handleDeleteSection("headerSection", {
-                hasHeader: false,
-                topHeight: 0,
-                layout: "Custom",
-              })
-            }}
-            addPanelAction={() => {
-              handleAddSection("headerSection", {
-                hasHeader: true,
-                topHeight: 96,
-                layout: "Custom",
-              })
-            }}
-          />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      {hasHeader && (
+      <div css={groupWrapperStyle}>
         <LeftAndRightLayout>
           <PageLabel
-            labelName={`${t("editor.page.label_name.width")}(px)`}
-            size="small"
+            labelName={t("editor.page.label_name.right_panel")}
+            size="big"
           />
           <SetterPadding>
-            <InputNumber
-              w="96px"
-              value={topHeight}
-              borderColor="techPurple"
-              onChange={handleUpdateHeaderPanelWidth}
+            <PanelActionBar
+              isFixed={isRightFixed}
+              hasPanel={hasRight}
+              deletePanelAction={() => {
+                handleDeleteSection("rightSection", {
+                  hasRight: false,
+                  rightWidth: 0,
+                  rightPosition: "NONE",
+                  layout: "Custom",
+                })
+              }}
+              addPanelAction={() => {
+                handleAddSection("rightSection", {
+                  hasRight: true,
+                  rightWidth: 20,
+                  rightPosition: "FULL",
+                  layout: "Custom",
+                })
+              }}
             />
           </SetterPadding>
         </LeftAndRightLayout>
-      )}
-      <PanelDivider />
-      <LeftAndRightLayout>
-        <PageLabel labelName={t("editor.page.label_name.footer")} size="big" />
-        <SetterPadding>
-          <PanelActionBar
-            isFixed={isFooterFixed}
-            hasPanel={hasFooter}
-            deletePanelAction={() => {
-              handleDeleteSection("footerSection", {
-                hasFooter: false,
-                bottomHeight: 0,
-                layout: "Custom",
-              })
-            }}
-            addPanelAction={() => {
-              handleAddSection("footerSection", {
-                hasFooter: true,
-                bottomHeight: 96,
-                layout: "Custom",
-              })
-            }}
-          />
-        </SetterPadding>
-      </LeftAndRightLayout>
-      {hasFooter && (
+        {hasRight && (
+          <>
+            <LeftAndRightLayout>
+              <PageLabel labelName={widthI18n} size="small" />
+              <SetterPadding>
+                <InputNumber
+                  w="96px"
+                  value={rightWidth.toFixed(0)}
+                  borderColor="techPurple"
+                  onChange={handleUpdateRightPanelWidth}
+                />
+              </SetterPadding>
+            </LeftAndRightLayout>
+            <LeftAndRightLayout>
+              <PageLabel
+                labelName={t("editor.page.label_name.show_fold_icon")}
+                size="small"
+                tooltip={t("editor.page.tooltips.show_fold_icon")}
+              />
+              <SetterPadding>
+                <Switch
+                  checked={showRightFoldIcon}
+                  onChange={(value) => {
+                    handleUpdateShowFoldIcon(value, "rightSection")
+                  }}
+                />
+              </SetterPadding>
+            </LeftAndRightLayout>
+          </>
+        )}
+      </div>
+
+      <PanelDivider hasMargin={false} />
+      <div css={groupWrapperStyle}>
         <LeftAndRightLayout>
-          <PageLabel
-            labelName={`${t("editor.page.label_name.width")}(px)`}
-            size="small"
-          />
+          <PageLabel labelName={t("editor.page.label_name.body")} size="big" />
+        </LeftAndRightLayout>
+        <LeftAndRightLayout>
+          <PageLabel labelName={widthI18n} size="small" />
           <SetterPadding>
             <InputNumber
               w="96px"
-              value={bottomHeight}
               borderColor="techPurple"
-              onChange={handleUpdateFooterPanelWidth}
+              value={bodyWidth.toFixed(0)}
+              onChange={handleUpdateBodyPanelWidth}
             />
           </SetterPadding>
         </LeftAndRightLayout>
-      )}
+      </div>
+      <PanelDivider hasMargin={false} />
+      <div css={groupWrapperStyle}>
+        <LeftAndRightLayout>
+          <PageLabel
+            labelName={t("editor.page.label_name.header")}
+            size="big"
+          />
+          <SetterPadding>
+            <PanelActionBar
+              isFixed={isHeaderFixed}
+              hasPanel={hasHeader}
+              deletePanelAction={() => {
+                handleDeleteSection("headerSection", {
+                  hasHeader: false,
+                  topHeight: 0,
+                  layout: "Custom",
+                })
+              }}
+              addPanelAction={() => {
+                handleAddSection("headerSection", {
+                  hasHeader: true,
+                  topHeight: 96,
+                  layout: "Custom",
+                })
+              }}
+            />
+          </SetterPadding>
+        </LeftAndRightLayout>
+        {hasHeader && (
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={`${t("editor.page.label_name.width")}(px)`}
+              size="small"
+            />
+            <SetterPadding>
+              <InputNumber
+                w="96px"
+                value={topHeight}
+                borderColor="techPurple"
+                onChange={handleUpdateHeaderPanelWidth}
+              />
+            </SetterPadding>
+          </LeftAndRightLayout>
+        )}
+      </div>
+      <PanelDivider hasMargin={false} />
+      <div css={groupWrapperStyle}>
+        <LeftAndRightLayout>
+          <PageLabel
+            labelName={t("editor.page.label_name.footer")}
+            size="big"
+          />
+          <SetterPadding>
+            <PanelActionBar
+              isFixed={isFooterFixed}
+              hasPanel={hasFooter}
+              deletePanelAction={() => {
+                handleDeleteSection("footerSection", {
+                  hasFooter: false,
+                  bottomHeight: 0,
+                  layout: "Custom",
+                })
+              }}
+              addPanelAction={() => {
+                handleAddSection("footerSection", {
+                  hasFooter: true,
+                  bottomHeight: 96,
+                  layout: "Custom",
+                })
+              }}
+            />
+          </SetterPadding>
+        </LeftAndRightLayout>
+        {hasFooter && (
+          <LeftAndRightLayout>
+            <PageLabel
+              labelName={`${t("editor.page.label_name.width")}(px)`}
+              size="small"
+            />
+            <SetterPadding>
+              <InputNumber
+                w="96px"
+                value={bottomHeight}
+                borderColor="techPurple"
+                onChange={handleUpdateFooterPanelWidth}
+              />
+            </SetterPadding>
+          </LeftAndRightLayout>
+        )}
+      </div>
     </PanelBar>
   )
 }

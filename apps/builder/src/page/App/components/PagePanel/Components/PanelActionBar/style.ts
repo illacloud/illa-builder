@@ -9,8 +9,15 @@ export const panelActionBarWrapperStyle = css`
 `
 
 export const baseIconStyle = css`
-  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  font-size: 12px;
+`
+
+export const clickHotpotWrapperStyle = css`
+  padding: 6px;
+  flex: none;
   cursor: pointer;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+
   :hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }

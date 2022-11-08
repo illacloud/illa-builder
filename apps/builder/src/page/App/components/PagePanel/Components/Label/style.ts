@@ -22,7 +22,7 @@ export function labelStyle(size: "big" | "small", disabledTooltip: boolean) {
   const borderStyle = disabledTooltip
     ? null
     : css`
-        border-bottom: 1px dashed black;
+        border-bottom: 1px dashed ${globalColor(`--${illaPrefix}-grayBlue-03`)};
       `
   return css`
     font-weight: 500;
