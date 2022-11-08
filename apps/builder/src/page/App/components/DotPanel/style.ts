@@ -382,3 +382,23 @@ export const rightOpenFoldPositionStyle = css`
   position: absolute;
   bottom: 8px;
 `
+
+export const applyLeftAnimationWrapperStyle = (isFold: boolean) => {
+  return css`
+    width: 100%;
+    height: 100%;
+    visibility: ${!isFold ? "visible" : "hidden"};
+    display: flex;
+    flex-direction: row;
+  `
+}
+
+export const applyRightAnimationWrapperStyle = (isFold: boolean) => {
+  return css`
+    width: 100%;
+    height: 100%;
+    visibility: ${!isFold ? "visible" : "hidden"};
+    display: flex;
+    flex-direction: row-reverse;
+  `
+}

@@ -17,7 +17,6 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
 
   const { t } = useTranslation()
   const mode = useSelector(getIllaMode)
-  const dispatch = useDispatch()
   const isFreeze = useSelector(getFreezeState)
 
   return (

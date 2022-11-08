@@ -32,6 +32,8 @@ import {
   applyNoBottomPaddingStyle,
   rightOpenFoldPositionStyle,
   disabledHorizontalBarWrapperStyle,
+  applyLeftAnimationWrapperStyle,
+  applyRightAnimationWrapperStyle,
 } from "./style"
 import { RenderComponentCanvas } from "./renderComponentCanvas"
 import useMeasure from "react-use-measure"
@@ -43,6 +45,7 @@ import {
 } from "./changeLayoutBar"
 import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
 import { PreIcon, NextIcon } from "@illa-design/react"
+import { motion, AnimatePresence } from "framer-motion"
 
 export const HEADER_MIN_HEIGHT = 96
 export const FOOTER_MIN_HEIGHT = 96
@@ -563,7 +566,7 @@ export const RenderLeftSection = forwardRef<
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
   const [isInSection, setIsInSection] = useState(false)
-
+  const [animationComplete, setAnimationComplete] = useState(true)
   const isActive = useRef<boolean>(false)
   const currentViewDisplayName = viewSortedKey[currentViewIndex]
 
@@ -692,28 +695,28 @@ export const RenderLeftSection = forwardRef<
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {isInSection &&
-        mode === "edit" &&
-        (leftPosition === SECTION_POSITION.BOTTOM ||
-          leftPosition === SECTION_POSITION.CENTER) && (
-          <ChangeLayoutTopBar
-            sectionName="leftSection"
-            direction="top"
-            changeAction={handleUpdateLayout}
-          />
-        )}
-      {isInSection &&
-        mode === "edit" &&
-        (leftPosition === SECTION_POSITION.TOP ||
-          leftPosition === SECTION_POSITION.CENTER) && (
-          <ChangeLayoutBottomBar
-            sectionName="leftSection"
-            direction="bottom"
-            changeAction={handleUpdateLayout}
-          />
-        )}
+      <div css={applyLeftAnimationWrapperStyle(isFold)}>
+        {isInSection &&
+          mode === "edit" &&
+          (leftPosition === SECTION_POSITION.BOTTOM ||
+            leftPosition === SECTION_POSITION.CENTER) && (
+            <ChangeLayoutTopBar
+              sectionName="leftSection"
+              direction="top"
+              changeAction={handleUpdateLayout}
+            />
+          )}
+        {isInSection &&
+          mode === "edit" &&
+          (leftPosition === SECTION_POSITION.TOP ||
+            leftPosition === SECTION_POSITION.CENTER) && (
+            <ChangeLayoutBottomBar
+              sectionName="leftSection"
+              direction="bottom"
+              changeAction={handleUpdateLayout}
+            />
+          )}
 
-      {!isFold ? (
         <div
           css={[
             applyContainerWrapperStyle(mode),
@@ -724,7 +727,7 @@ export const RenderLeftSection = forwardRef<
             containerRef.current = ele
           }}
         >
-          {componentNode && (
+          {componentNode && animationComplete && (
             <RenderComponentCanvas
               componentNode={componentNode}
               containerPadding={8}
@@ -745,29 +748,50 @@ export const RenderLeftSection = forwardRef<
             </div>
           )}
         </div>
-      ) : (
-        <div style={{ width: "100%" }} />
-      )}
 
-      {isFold && (
-        <div
-          css={[openFoldWrapperStyle, leftOpenFoldPositionStyle]}
-          onClick={handleOnClickFoldIcon}
-        >
-          <NextIcon />
-        </div>
-      )}
-      {mode === "edit" &&
-        (isFold ? (
-          <div css={disabledHorizontalBarWrapperStyle} />
-        ) : (
+        {mode === "edit" && animationComplete && (
           <div
             css={resizeHorizontalBarWrapperStyle}
             onMouseDown={handleClickMoveBar}
           >
             <div css={resizeHorizontalBarStyle} />
           </div>
-        ))}
+        )}
+      </div>
+
+      <AnimatePresence>
+        {isFold && (
+          <motion.div
+            css={[openFoldWrapperStyle, leftOpenFoldPositionStyle]}
+            onClick={handleOnClickFoldIcon}
+            initial={{ x: -34 }}
+            animate={{ x: 0 }}
+            exit={{ x: -34 }}
+            transition={{ duration: 0.3 }}
+          >
+            <NextIcon />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence
+        onExitComplete={() => {
+          setAnimationComplete(true)
+        }}
+      >
+        {mode === "edit" && isFold && (
+          <motion.div
+            css={disabledHorizontalBarWrapperStyle}
+            initial={{ left: leftWidth, position: "absolute" }}
+            animate={{ left: 34, position: "absolute" }}
+            exit={{ left: leftWidth - 8, position: "absolute" }}
+            transition={{ duration: 0.3 }}
+            onAnimationStart={() => {
+              setAnimationComplete(false)
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 })
@@ -806,6 +830,7 @@ export const RenderRightSection = forwardRef<
 
   const isActive = useRef<boolean>(false)
   const [isInSection, setIsInSection] = useState(false)
+  const [animationComplete, setAnimationComplete] = useState(true)
 
   const dispatch = useDispatch()
 
@@ -924,27 +949,27 @@ export const RenderRightSection = forwardRef<
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      {isInSection &&
-        mode === "edit" &&
-        (rightPosition === SECTION_POSITION.BOTTOM ||
-          rightPosition === SECTION_POSITION.CENTER) && (
-          <ChangeLayoutTopBar
-            sectionName="rightSection"
-            direction="top"
-            changeAction={handleUpdateLayout}
-          />
-        )}
-      {isInSection &&
-        mode === "edit" &&
-        (rightPosition === SECTION_POSITION.TOP ||
-          rightPosition === SECTION_POSITION.CENTER) && (
-          <ChangeLayoutBottomBar
-            sectionName="rightSection"
-            direction="bottom"
-            changeAction={handleUpdateLayout}
-          />
-        )}
-      {!isFold ? (
+      <div css={applyRightAnimationWrapperStyle(isFold)}>
+        {isInSection &&
+          mode === "edit" &&
+          (rightPosition === SECTION_POSITION.BOTTOM ||
+            rightPosition === SECTION_POSITION.CENTER) && (
+            <ChangeLayoutTopBar
+              sectionName="rightSection"
+              direction="top"
+              changeAction={handleUpdateLayout}
+            />
+          )}
+        {isInSection &&
+          mode === "edit" &&
+          (rightPosition === SECTION_POSITION.TOP ||
+            rightPosition === SECTION_POSITION.CENTER) && (
+            <ChangeLayoutBottomBar
+              sectionName="rightSection"
+              direction="bottom"
+              changeAction={handleUpdateLayout}
+            />
+          )}
         <div
           css={[
             applyContainerWrapperStyle(mode),
@@ -955,7 +980,7 @@ export const RenderRightSection = forwardRef<
             containerRef.current = ele
           }}
         >
-          {componentNode && (
+          {componentNode && animationComplete && (
             <RenderComponentCanvas
               componentNode={componentNode}
               containerPadding={8}
@@ -979,28 +1004,49 @@ export const RenderRightSection = forwardRef<
             </div>
           )}
         </div>
-      ) : (
-        <div style={{ width: "100%" }} />
-      )}
-      {isFold && (
-        <div
-          css={[openFoldWrapperStyle, rightOpenFoldPositionStyle]}
-          onClick={handleOnClickFoldIcon}
-        >
-          <NextIcon />
-        </div>
-      )}
-      {mode === "edit" &&
-        (isFold ? (
-          <div css={disabledHorizontalBarWrapperStyle} />
-        ) : (
+        {mode === "edit" && animationComplete && (
           <div
             css={resizeHorizontalBarWrapperStyle}
             onMouseDown={handleClickMoveBar}
           >
             <div css={resizeHorizontalBarStyle} />
           </div>
-        ))}
+        )}
+      </div>
+
+      <AnimatePresence>
+        {isFold && (
+          <motion.div
+            css={[openFoldWrapperStyle, rightOpenFoldPositionStyle]}
+            onClick={handleOnClickFoldIcon}
+            initial={{ x: 34, rotate: 180 }}
+            animate={{ x: 0, rotate: 180 }}
+            exit={{ x: 34, rotate: 180 }}
+            transition={{ duration: 0.3 }}
+          >
+            <NextIcon />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence
+        onExitComplete={() => {
+          setAnimationComplete(true)
+        }}
+      >
+        {mode === "edit" && isFold && (
+          <motion.div
+            css={disabledHorizontalBarWrapperStyle}
+            initial={{ right: rightWidth, position: "absolute" }}
+            animate={{ right: 34, position: "absolute" }}
+            exit={{ right: leftWidth - 8, position: "absolute" }}
+            transition={{ duration: 0.3 }}
+            onAnimationStart={() => {
+              setAnimationComplete(false)
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 })
