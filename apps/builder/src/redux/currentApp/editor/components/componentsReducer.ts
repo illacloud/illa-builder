@@ -381,3 +381,19 @@ export const addTargetPageSectionReducer: CaseReducer<
   targetPage.childrenNode.push(config)
   state.childrenNode.splice(targetPageIndex, 1, targetPage)
 }
+
+export const updateLocalTargetPagePropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateTargetPagePropsPayload>
+> = (state, action) => {
+  if (!state?.props) return state
+  const { pageName, newProps } = action.payload
+  const currentPage = state.childrenNode.find(
+    (node) => node.displayName === pageName,
+  )
+  if (!currentPage) return state
+  currentPage.props = {
+    ...currentPage.props,
+    ...newProps,
+  }
+}

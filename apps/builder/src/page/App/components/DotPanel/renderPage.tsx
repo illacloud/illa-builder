@@ -1,4 +1,4 @@
-import { FC, useRef, useLayoutEffect, useMemo } from "react"
+import { FC, useRef, useLayoutEffect, useMemo, useState } from "react"
 import {
   PageNode,
   SectionNode,
@@ -77,6 +77,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     showRightFoldIcon,
   } = pageProps
 
+  const [isLeftFold, setIsLeftFold] = useState(false)
+  const [isRightFold, setIsRightFold] = useState(false)
+
   useLayoutEffect(() => {
     if (
       canvasShape.canvasHeight !== bounds.height ||
@@ -121,6 +124,36 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
         : rightWidthPX
       : 0
   }, [bounds.width, canvasSize, hasRight, rightWidth])
+
+  const calcLeftWidth = useMemo(() => {
+    const leftWidthPX = getLeftAndRightWidth(
+      canvasSize,
+      leftWidth,
+      bounds.width,
+    )
+    return hasLeft
+      ? isLeftFold
+        ? 32
+        : leftWidthPX <= LEFT_MIN_WIDTH
+        ? LEFT_MIN_WIDTH
+        : leftWidthPX
+      : 0
+  }, [bounds.width, canvasSize, hasLeft, isLeftFold, leftWidth])
+
+  const calcRightWidth = useMemo(() => {
+    const rightWidthPX = getLeftAndRightWidth(
+      canvasSize,
+      rightWidth,
+      bounds.width,
+    )
+    return hasRight
+      ? isRightFold
+        ? 32
+        : rightWidthPX <= RIGHT_MIN_WIDTH
+        ? RIGHT_MIN_WIDTH
+        : rightWidthPX
+      : 0
+  }, [bounds.width, canvasSize, hasRight, isRightFold, rightWidth])
 
   useLayoutEffect(() => {
     let headerLeft = 0
@@ -167,25 +200,25 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     }
 
     if (hasLeft) {
-      bodyWidth -= realLeftWidth
-      bodyLeft = realLeftWidth
+      bodyWidth -= calcLeftWidth
+      bodyLeft = calcLeftWidth
       switch (leftPosition) {
         case SECTION_POSITION.TOP: {
-          headerLeft = realLeftWidth
-          headerWidth -= realLeftWidth
+          headerLeft = calcLeftWidth
+          headerWidth -= calcLeftWidth
           leftHeight -= bottomHeight
           break
         }
         case SECTION_POSITION.FULL: {
-          headerLeft = realLeftWidth
-          headerWidth -= realLeftWidth
-          footerLeft = realLeftWidth
-          footerWidth -= realLeftWidth
+          headerLeft = calcLeftWidth
+          headerWidth -= calcLeftWidth
+          footerLeft = calcLeftWidth
+          footerWidth -= calcLeftWidth
           break
         }
         case SECTION_POSITION.BOTTOM: {
-          footerLeft = realLeftWidth
-          footerWidth -= realLeftWidth
+          footerLeft = calcLeftWidth
+          footerWidth -= calcLeftWidth
           leftTop = topHeight
           leftHeight -= topHeight
           break
@@ -198,20 +231,20 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     }
 
     if (hasRight) {
-      bodyWidth -= realRightWidth
+      bodyWidth -= calcRightWidth
       switch (rightPosition) {
         case SECTION_POSITION.TOP: {
-          headerWidth -= realRightWidth
+          headerWidth -= calcRightWidth
           rightHeight -= bottomHeight
           break
         }
         case SECTION_POSITION.FULL: {
-          headerWidth -= realRightWidth
-          footerWidth -= realRightWidth
+          headerWidth -= calcRightWidth
+          footerWidth -= calcRightWidth
           break
         }
         case SECTION_POSITION.BOTTOM: {
-          footerWidth -= realRightWidth
+          footerWidth -= calcRightWidth
           rightTop = topHeight
           rightHeight -= topHeight
           break
@@ -232,24 +265,22 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     }
 
     if (hasLeft && leftRef.current) {
-      leftRef.current.style.width = `${realLeftWidth}px`
       leftRef.current.style.height = `${leftHeight}px`
       leftRef.current.style.top = `${leftTop}px`
       leftArea = {
         top: leftTop,
         bottom: leftTop + leftHeight,
         left: 0,
-        right: realLeftWidth,
+        right: calcLeftWidth,
       }
     }
     if (hasRight && rightRef.current) {
-      rightRef.current.style.width = `${realRightWidth}px`
       rightRef.current.style.height = `${rightHeight}px`
       rightRef.current.style.top = `${rightTop}px`
       rightArea = {
         top: rightTop,
         bottom: rightTop + rightHeight,
-        left: realRightWidth,
+        left: calcRightWidth,
         right: 0,
       }
     }
@@ -290,6 +321,8 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   }, [
     bottomHeight,
     bounds,
+    calcLeftWidth,
+    calcRightWidth,
     canvasSize,
     hasFooter,
     hasHeader,
@@ -341,10 +374,13 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           offsetLeft={bounds.left}
           containerWidth={bounds.width}
           mode={mode}
+          leftWidth={realLeftWidth}
           rightWidth={realRightWidth}
           currentPageDisplayName={currentPageDisplayName}
           leftPosition={leftPosition}
           showFoldIcon={showLeftFoldIcon}
+          isFold={isLeftFold}
+          setIsLeftFold={setIsLeftFold}
         />
       )}
       {bodySection && (
@@ -361,6 +397,9 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           currentPageDisplayName={currentPageDisplayName}
           rightPosition={rightPosition}
           showFoldIcon={showRightFoldIcon}
+          isFold={isRightFold}
+          rightWidth={realRightWidth}
+          setIsRightFold={setIsRightFold}
         />
       )}
       {hasFooter && footerSection && (

@@ -97,10 +97,13 @@ export interface RenderLeftSectionProps {
   offsetLeft: number
   containerWidth: number
   mode: IllaMode
+  leftWidth: number
   rightWidth: number
   currentPageDisplayName: string
   leftPosition: SECTION_POSITION
   showFoldIcon: boolean
+  isFold: boolean
+  setIsLeftFold: (isFold: boolean) => void
 }
 
 export interface RenderRightSectionProps {
@@ -109,9 +112,12 @@ export interface RenderRightSectionProps {
   containerWidth: number
   mode: IllaMode
   leftWidth: number
+  rightWidth: number
   currentPageDisplayName: string
   rightPosition: SECTION_POSITION
   showFoldIcon: boolean
+  isFold: boolean
+  setIsRightFold: (isFold: boolean) => void
 }
 
 export interface RenderContainerProps {

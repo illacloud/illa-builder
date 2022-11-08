@@ -1,18 +1,15 @@
-import { FC, ReactNode } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
   applyScaleContainerStyle,
-  previewStyle,
   messageStyle,
   messageWrapperStyle,
 } from "./style"
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
 import { useDispatch, useSelector } from "react-redux"
-import { FullScreenIcon, LockIcon } from "@illa-design/icon"
-import { Button } from "@illa-design/button"
+import { LockIcon } from "@illa-design/icon"
 import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
 import { FocusManager } from "@/utils/focusManager"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
@@ -34,17 +31,6 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
       <DotPanel />
       {mode === "edit" && (
         <>
-          <Button
-            css={previewStyle}
-            colorScheme="white"
-            variant="fill"
-            leftIcon={<FullScreenIcon />}
-            onClick={() => {
-              dispatch(configActions.updateIllaMode("preview"))
-            }}
-          >
-            {t("preview")}
-          </Button>
           {/*TODO: replace this to illa-design/Message,when Message is ok*/}
           {isFreeze ? (
             <div css={messageWrapperStyle}>

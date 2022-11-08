@@ -27,6 +27,11 @@ import {
   resizeVerticalBarWrapperStyle,
   applySideBarWrapperStyle,
   sideBarIconStyle,
+  openFoldWrapperStyle,
+  leftOpenFoldPositionStyle,
+  applyNoBottomPaddingStyle,
+  rightOpenFoldPositionStyle,
+  disabledHorizontalBarWrapperStyle,
 } from "./style"
 import { RenderComponentCanvas } from "./renderComponentCanvas"
 import useMeasure from "react-use-measure"
@@ -551,6 +556,9 @@ export const RenderLeftSection = forwardRef<
     currentPageDisplayName,
     leftPosition,
     showFoldIcon,
+    isFold,
+    leftWidth,
+    setIsLeftFold,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -669,9 +677,17 @@ export const RenderLeftSection = forwardRef<
     [currentPageDisplayName, dispatch, leftPosition],
   )
 
+  const handleOnClickFoldIcon = useCallback(() => {
+    setIsLeftFold(!isFold)
+  }, [isFold, setIsLeftFold])
+
   return (
     <div
-      css={applyLeftSectionWrapperStyle("240px", "0px")}
+      css={applyLeftSectionWrapperStyle(
+        `${isFold ? 40 : leftWidth}px`,
+        "0px",
+        isFold,
+      )}
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -696,42 +712,62 @@ export const RenderLeftSection = forwardRef<
             changeAction={handleUpdateLayout}
           />
         )}
-      <div
-        css={applyContainerWrapperStyle(mode)}
-        ref={(ele) => {
-          containerBoundRef(ele)
-          containerRef.current = ele
-        }}
-      >
-        {componentNode && (
-          <RenderComponentCanvas
-            componentNode={componentNode}
-            containerPadding={8}
-            containerRef={containerRef}
-            canResizeY
-            minHeight={
-              showFoldIcon
-                ? containerBound.height - 8 - 32
-                : containerBound.height - 16
-            }
-            safeRowNumber={0}
-            blockColumns={16}
-          />
-        )}
-        {showFoldIcon && (
-          <div css={applySideBarWrapperStyle("left")}>
-            <PreIcon css={sideBarIconStyle} />
-          </div>
-        )}
-      </div>
-      {mode === "edit" && (
+
+      {!isFold ? (
         <div
-          css={resizeHorizontalBarWrapperStyle}
-          onMouseDown={handleClickMoveBar}
+          css={[
+            applyContainerWrapperStyle(mode),
+            applyNoBottomPaddingStyle(showFoldIcon),
+          ]}
+          ref={(ele) => {
+            containerBoundRef(ele)
+            containerRef.current = ele
+          }}
         >
-          <div css={resizeHorizontalBarStyle} />
+          {componentNode && (
+            <RenderComponentCanvas
+              componentNode={componentNode}
+              containerPadding={8}
+              containerRef={containerRef}
+              canResizeY
+              minHeight={
+                showFoldIcon
+                  ? containerBound.height - 8 - 32
+                  : containerBound.height - 16
+              }
+              safeRowNumber={0}
+              blockColumns={16}
+            />
+          )}
+          {showFoldIcon && (
+            <div css={applySideBarWrapperStyle("left")}>
+              <PreIcon css={sideBarIconStyle} onClick={handleOnClickFoldIcon} />
+            </div>
+          )}
+        </div>
+      ) : (
+        <div style={{ width: "100%" }} />
+      )}
+
+      {isFold && (
+        <div
+          css={[openFoldWrapperStyle, leftOpenFoldPositionStyle]}
+          onClick={handleOnClickFoldIcon}
+        >
+          <NextIcon />
         </div>
       )}
+      {mode === "edit" &&
+        (isFold ? (
+          <div css={disabledHorizontalBarWrapperStyle} />
+        ) : (
+          <div
+            css={resizeHorizontalBarWrapperStyle}
+            onMouseDown={handleClickMoveBar}
+          >
+            <div css={resizeHorizontalBarStyle} />
+          </div>
+        ))}
     </div>
   )
 })
@@ -750,6 +786,9 @@ export const RenderRightSection = forwardRef<
     currentPageDisplayName,
     rightPosition,
     showFoldIcon,
+    isFold,
+    rightWidth,
+    setIsRightFold,
   } = props
 
   const { viewSortedKey, currentViewIndex } = sectionNode.props
@@ -870,9 +909,17 @@ export const RenderRightSection = forwardRef<
     [currentPageDisplayName, dispatch, rightPosition],
   )
 
+  const handleOnClickFoldIcon = useCallback(() => {
+    setIsRightFold(!isFold)
+  }, [isFold, setIsRightFold])
+
   return (
     <div
-      css={applyRightSectionWrapperStyle("240px", "0px")}
+      css={applyRightSectionWrapperStyle(
+        `${isFold ? 40 : rightWidth}px`,
+        "0px",
+        isFold,
+      )}
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -897,42 +944,63 @@ export const RenderRightSection = forwardRef<
             changeAction={handleUpdateLayout}
           />
         )}
-      <div
-        css={applyContainerWrapperStyle(mode)}
-        ref={(ele) => {
-          containerBoundRef(ele)
-          containerRef.current = ele
-        }}
-      >
-        {componentNode && (
-          <RenderComponentCanvas
-            componentNode={componentNode}
-            containerPadding={8}
-            containerRef={containerRef}
-            canResizeY
-            minHeight={
-              showFoldIcon
-                ? containerBound.height - 8 - 32
-                : containerBound.height - 16
-            }
-            safeRowNumber={0}
-            blockColumns={16}
-          />
-        )}
-        {showFoldIcon && (
-          <div css={applySideBarWrapperStyle("right")}>
-            <NextIcon css={sideBarIconStyle} />
-          </div>
-        )}
-      </div>
-      {mode === "edit" && (
+      {!isFold ? (
         <div
-          css={resizeHorizontalBarWrapperStyle}
-          onMouseDown={handleClickMoveBar}
+          css={[
+            applyContainerWrapperStyle(mode),
+            applyNoBottomPaddingStyle(showFoldIcon),
+          ]}
+          ref={(ele) => {
+            containerBoundRef(ele)
+            containerRef.current = ele
+          }}
         >
-          <div css={resizeHorizontalBarStyle} />
+          {componentNode && (
+            <RenderComponentCanvas
+              componentNode={componentNode}
+              containerPadding={8}
+              containerRef={containerRef}
+              canResizeY
+              minHeight={
+                showFoldIcon
+                  ? containerBound.height - 8 - 32
+                  : containerBound.height - 16
+              }
+              safeRowNumber={0}
+              blockColumns={16}
+            />
+          )}
+          {showFoldIcon && (
+            <div css={applySideBarWrapperStyle("right")}>
+              <NextIcon
+                css={sideBarIconStyle}
+                onClick={handleOnClickFoldIcon}
+              />
+            </div>
+          )}
+        </div>
+      ) : (
+        <div style={{ width: "100%" }} />
+      )}
+      {isFold && (
+        <div
+          css={[openFoldWrapperStyle, rightOpenFoldPositionStyle]}
+          onClick={handleOnClickFoldIcon}
+        >
+          <NextIcon />
         </div>
       )}
+      {mode === "edit" &&
+        (isFold ? (
+          <div css={disabledHorizontalBarWrapperStyle} />
+        ) : (
+          <div
+            css={resizeHorizontalBarWrapperStyle}
+            onMouseDown={handleClickMoveBar}
+          >
+            <div css={resizeHorizontalBarStyle} />
+          </div>
+        ))}
     </div>
   )
 })

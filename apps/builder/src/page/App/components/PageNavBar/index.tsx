@@ -6,6 +6,7 @@ import {
   BugIcon,
   CaretRightIcon,
   ExitIcon,
+  FullScreenIcon,
   LockIcon,
   UnlockIcon,
   WindowBottomIcon,
@@ -189,6 +190,15 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
                 onClick={handleClickFreezeIcon}
               />
             </Trigger>
+            <Button
+              colorScheme="gray"
+              leftIcon={<FullScreenIcon />}
+              onClick={() => {
+                dispatch(configActions.updateIllaMode("preview"))
+              }}
+            >
+              {t("preview")}
+            </Button>
             <Button
               loading={deployLoading}
               colorScheme="techPurple"

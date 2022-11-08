@@ -157,6 +157,12 @@ export const resizeVerticalBarStyle = css`
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-06`)};
 `
 
+export const disabledHorizontalBarWrapperStyle = css`
+  height: 100%;
+  width: 8px;
+  background-color: #f7f8fa;
+`
+
 export const resizeHorizontalBarWrapperStyle = css`
   height: 100%;
   width: 8px;
@@ -219,6 +225,7 @@ export const applyFooterSectionWrapperStyle = (
 export const applyLeftSectionWrapperStyle = (
   width: string,
   top: string = "0px",
+  isFold: boolean,
 ) => {
   return css`
     position: absolute;
@@ -228,13 +235,14 @@ export const applyLeftSectionWrapperStyle = (
     width: ${width};
     display: flex;
     flex-direction: row;
-    min-width: 240px;
+    min-width: ${isFold ? 0 : "240px"};
   `
 }
 
 export const applyRightSectionWrapperStyle = (
   width: string,
   top: string = "0px",
+  isFold: boolean,
 ) => {
   return css`
     position: absolute;
@@ -244,7 +252,7 @@ export const applyRightSectionWrapperStyle = (
     width: ${width};
     display: flex;
     flex-direction: row-reverse;
-    min-width: 240px;
+    min-width: ${isFold ? 0 : "240px"};
   `
 }
 
@@ -256,6 +264,14 @@ export const applyContainerWrapperStyle = (model: IllaMode) => {
     overflow-y: auto;
     overflow-x: hidden;
   `
+}
+
+export const applyNoBottomPaddingStyle = (isShowFold: boolean) => {
+  return isShowFold
+    ? css`
+        padding-bottom: 0;
+      `
+    : null
 }
 
 export const changeLayoutTopBarWrapperStyle = css`
@@ -331,10 +347,38 @@ export const applySideBarWrapperStyle = (direction: "left" | "right") => {
     display: flex;
     align-items: center;
     justify-content: ${direction === "left" ? "flex-end" : "flex-start"};
+    padding: 8px 0px;
+    color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+    font-size: 12px;
   `
 }
 
 export const sideBarIconStyle = css`
   cursor: pointer;
   flex: none;
+`
+
+export const openFoldWrapperStyle = css`
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 0px 16px 16px 0px;
+  cursor: pointer;
+  font-size: 12px;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+`
+
+export const leftOpenFoldPositionStyle = css`
+  position: absolute;
+  bottom: 8px;
+`
+
+export const rightOpenFoldPositionStyle = css`
+  transform: rotate(180deg);
+  position: absolute;
+  bottom: 8px;
 `
