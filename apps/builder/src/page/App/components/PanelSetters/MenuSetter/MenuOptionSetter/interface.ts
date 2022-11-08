@@ -5,25 +5,23 @@ import {
 } from "@/page/App/components/InspectPanel/interface"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
+import { MenuList, SubMenu } from "@/widgetLibrary/MenuWidget/interface"
 
 export interface HeaderProps {
   labelName: string
   handleAddOption: () => void
 }
 
-export interface ColumnItemProps extends Omit<ColumnItemShape, "disabled"> {
+export interface ColumnItemProps extends MenuList {
   index: number
 }
 
-export interface DragIconAndLabelProps {
+export interface DragIconAndLabelProps extends SubMenu {
   index: number
-  label?: string
-  visible?: boolean
-  custom?: boolean
 }
 
 export interface ColumnListSetterProps extends BaseSetter {
-  value: ColumnItemShape[]
+  value: MenuList[]
   childrenSetter?: PanelFieldConfig[]
 }
 

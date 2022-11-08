@@ -47,10 +47,10 @@ export const ListStyle = css`
 `
 
 export const optionListItemStyle = css`
-  display: flex;
-  justify-content: space-between;
+  //display: flex;
+  //justify-content: space-between;
   padding-right: 16px;
-  height: 40px;
+  //height: 40px;
   align-items: center;
   cursor: pointer;
 
@@ -63,10 +63,15 @@ export const optionListItemStyle = css`
 
 export const dragItemStyle = css`
   width: 100%;
-  height: 100%;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+export const subMenuItemStyle = css`
+  padding-left: 16px;
+  height: 32px;
 `
 
 export const labelNameAndIconStyle = css`

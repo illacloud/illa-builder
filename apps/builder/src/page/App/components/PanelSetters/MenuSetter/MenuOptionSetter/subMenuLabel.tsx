@@ -14,12 +14,13 @@ import {
   labelNameAndIconStyle,
   labelNameWrapperStyle,
   movableIconWrapperStyle,
+  subMenuItemStyle,
 } from "./style"
 import { DragIconAndLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "./context/columnListContext"
 
-export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
+export const SubMenuLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, title } = props
   const [modalVisible, setModalVisible] = useState(false)
   const {
@@ -29,8 +30,6 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     handleUpdateItemVisible,
     handleDeleteColumnItem,
   } = useContext(ColumnListSetterContext)
-
-  console.log(childrenSetter, "childrenSetter")
 
   const { t } = useTranslation()
 
@@ -47,7 +46,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         <BaseModal
           title={title ?? ""}
           handleCloseModal={handleCloseModal}
-          attrPath={`${attrPath}.${index}`}
+          attrPath={`${attrPath}.${index}.subMenu`}
           widgetDisplayName={widgetDisplayName}
           childrenSetter={childrenSetter}
         />
@@ -60,7 +59,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
         setModalVisible(visible)
       }}
     >
-      <div css={dragItemStyle}>
+      <div css={[dragItemStyle, subMenuItemStyle]}>
         <div css={labelNameAndIconStyle}>
           <span css={movableIconWrapperStyle} className="movableIconWrapper">
             <DragPointIcon />
@@ -86,4 +85,4 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   )
 }
 
-DragIconAndLabel.displayName = "DragIconAndLabel"
+SubMenuLabel.displayName = "SubMenuLabel"

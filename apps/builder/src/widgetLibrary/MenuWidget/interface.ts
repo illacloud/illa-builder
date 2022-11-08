@@ -5,6 +5,7 @@ import { HTMLAttributes } from "react"
 export interface WrappedMenuProps
   extends HTMLAttributes<HTMLDivElement>,
     MenuProps {
+  menuList?: MenuList[]
   emptyState?: string
   pageSize?: number
   defaultSortKey?: string
@@ -14,15 +15,16 @@ export interface WrappedMenuProps
   handleOnColumnFiltersChange?: () => void
 }
 
-interface MenuOption {}
+export interface SubMenu {
+  id?: string
+  title: string
+  icon?: string
+  hidden?: boolean
+  disabled?: boolean
+}
 
-const menuOption = [
-  {
-    title: "title",
-    icon: "icon",
-    hidden: true,
-    disabled: true,
-  },
-]
+export interface MenuList extends SubMenu {
+  subMenu?: SubMenu[]
+}
 
 export interface MenuWidgetProps extends WrappedMenuProps, BaseWidgetProps {}

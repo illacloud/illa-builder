@@ -1,18 +1,13 @@
 import { v4 } from "uuid"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
+import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
 
 export const generateColumnItemId = () => `column-${v4()}`
 
-export const generateNewColumnItem = (number: number): ColumnItemShape => {
+export const generateNewColumnItem = (number: number): MenuList => {
   const id = generateColumnItemId()
   return {
-    header: `Column ${number}`,
+    title: `Column ${number}`,
     id,
-    accessorKey: id,
-    enableSorting: true,
-    type: "text",
-    visible: true,
-    custom: true,
-    format: "YYYY-MM-DD",
   }
 }
