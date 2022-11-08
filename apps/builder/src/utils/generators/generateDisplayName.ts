@@ -11,8 +11,17 @@ export const ADD_DISPLAY_NAME = "addDisplayName"
 export const REMOVE_DISPLAY_NAME = "removeDisplayName"
 export const UPDATE_DISPLAY_NAME = "updateDisplayName"
 
+export const PLACEHOLDER_DISPLAYNAME = [
+  "root",
+  "leftSection",
+  "rightSection",
+  "footerSection",
+  "headerSection",
+  "bodySection",
+]
+
 export class DisplayNameGenerator {
-  static displayNameList = new Set<string>()
+  static displayNameList = new Set<string>(PLACEHOLDER_DISPLAYNAME)
 
   static appId: string = ""
 

@@ -39,6 +39,7 @@ export const getExecutionDebuggerData = createSelector(
   [getExecution],
   (execution) => execution.debuggerData ?? {},
 )
+const IGNORE_WIDGET_TYPES = new Set<string>(["PAGE_NODE", "SECTION_NODE"])
 
 export const getWidgetExecutionResult = createSelector(
   [getExecutionResult],
@@ -46,7 +47,10 @@ export const getWidgetExecutionResult = createSelector(
     const widgetExecutionResult: Record<string, any> = {}
     Object.keys(executionResult).forEach((key) => {
       const widgetOrAction = executionResult[key]
-      if (widgetOrAction.$type === "WIDGET") {
+      if (
+        widgetOrAction.$type === "WIDGET" &&
+        !IGNORE_WIDGET_TYPES.has(widgetOrAction.$widgetType)
+      ) {
         widgetExecutionResult[key] = widgetOrAction
       }
     })
