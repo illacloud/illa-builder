@@ -1,6 +1,9 @@
 import { createContext, FC, ReactNode, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
-import { generateColumnItemId } from "../utils/generateNewColumns"
+import {
+  generateColumnItemId,
+  generateNewColumnItem,
+} from "../utils/generateNewColumns"
 import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
 
 interface ProviderProps {
@@ -15,6 +18,7 @@ interface ProviderProps {
 interface Inject extends Omit<ProviderProps, "children"> {
   handleDeleteMenuItem: (index: number) => void
   handleCopyColumnItem: (index: number) => void
+  handleAddSubMenuItem: (index: number) => void
   handleDeleteSubMenuItem: (index: number, subIndex: number) => void
   handleMoveColumnItem: (dragIndex: number, hoverIndex: number) => void
   handleUpdateItemVisible: (attrName: string, visible?: boolean) => void
@@ -45,6 +49,19 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
           return i !== subIndex
         },
       )
+      handleUpdateDsl(attrPath, updatedArray)
+    },
+    [columnItems, handleUpdateDsl, attrPath],
+  )
+
+  const handleAddSubMenuItem = useCallback(
+    (index: number) => {
+      const updatedArray = JSON.parse(JSON.stringify(columnItems))
+      const num = updatedArray[index].subMenu.length + 1
+      const newItem = generateNewColumnItem(num)
+      // updatedArray[index].subMenu = [...updatedArray[index].subMenu, newItem]
+      updatedArray[index].subMenu.push(newItem)
+
       handleUpdateDsl(attrPath, updatedArray)
     },
     [columnItems, handleUpdateDsl, attrPath],
@@ -91,6 +108,7 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
     handleDeleteMenuItem,
     handleCopyColumnItem,
     handleMoveColumnItem,
+    handleAddSubMenuItem,
     handleUpdateItemVisible,
     handleDeleteSubMenuItem,
   }

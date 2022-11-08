@@ -24,6 +24,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     attrPath,
     childrenSetter,
     handleUpdateItemVisible,
+    handleAddSubMenuItem,
     handleDeleteMenuItem,
   } = useContext(ColumnListSetterContext)
 
@@ -83,7 +84,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           <span
             css={baseIconStyle}
             onClick={(event) => {
-              handleDeleteMenuItem(index)
+              handleAddSubMenuItem(index)
               event.stopPropagation()
             }}
           >
