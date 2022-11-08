@@ -430,10 +430,8 @@ export const RenderComponentCanvas: FC<{
           }
         }
         const { item, currentColumnNumber } = dragInfo
-        let nodeX = item.x ?? 0
-        let nodeY = item.y ?? 0
-        let nodeWidth = item.w ?? 0
-        let nodeHeight = item.h ?? 0
+        let nodeWidth = item?.w ?? 0
+        let nodeHeight = item?.h ?? 0
         nodeWidth = nodeWidth * (blockColumns / currentColumnNumber)
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),

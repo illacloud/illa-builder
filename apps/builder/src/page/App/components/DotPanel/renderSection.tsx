@@ -139,10 +139,12 @@ export const RenderHeaderSection = forwardRef<
           containerHeight - currentPointPositionY - otherPanelHeightPX <
           BODY_MIN_HEIGHT
         ) {
-          otherPanelHeightPX =
-            containerHeight - BODY_MIN_HEIGHT - currentPointPositionY
-          if (otherPanelHeightPX <= FOOTER_MIN_HEIGHT) {
-            otherPanelHeightPX = FOOTER_MIN_HEIGHT
+          if (footerHeight !== 0) {
+            otherPanelHeightPX =
+              containerHeight - BODY_MIN_HEIGHT - currentPointPositionY
+            if (otherPanelHeightPX <= FOOTER_MIN_HEIGHT) {
+              otherPanelHeightPX = FOOTER_MIN_HEIGHT
+            }
           }
           currentPointPositionY =
             containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
@@ -360,11 +362,14 @@ export const RenderFooterSection = forwardRef<
           containerHeight - currentPointPositionY - otherPanelHeightPX <
           BODY_MIN_HEIGHT
         ) {
-          otherPanelHeightPX =
-            containerHeight - BODY_MIN_HEIGHT - currentPointPositionY
-          if (otherPanelHeightPX <= HEADER_MIN_HEIGHT) {
-            otherPanelHeightPX = HEADER_MIN_HEIGHT
+          if (headerHeight !== 0) {
+            otherPanelHeightPX =
+              containerHeight - BODY_MIN_HEIGHT - currentPointPositionY
+            if (otherPanelHeightPX <= HEADER_MIN_HEIGHT) {
+              otherPanelHeightPX = HEADER_MIN_HEIGHT
+            }
           }
+
           currentPointPositionY =
             containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
         }
@@ -582,11 +587,14 @@ export const RenderLeftSection = forwardRef<
           containerWidth - currentPointPositionX - otherPanelWidthPX <
           BODY_MIN_WIDTH
         ) {
-          otherPanelWidthPX =
-            containerWidth - BODY_MIN_WIDTH - currentPointPositionX
-          if (otherPanelWidthPX <= RIGHT_MIN_WIDTH) {
-            otherPanelWidthPX = RIGHT_MIN_WIDTH
+          if (rightWidth !== 0) {
+            otherPanelWidthPX =
+              containerWidth - BODY_MIN_WIDTH - currentPointPositionX
+            if (otherPanelWidthPX <= RIGHT_MIN_WIDTH) {
+              otherPanelWidthPX = RIGHT_MIN_WIDTH
+            }
           }
+
           currentPointPositionX =
             containerWidth - BODY_MIN_WIDTH - otherPanelWidthPX
         }
@@ -779,11 +787,14 @@ export const RenderRightSection = forwardRef<
           containerWidth - currentPointPositionX - otherPanelWidthPX <
           BODY_MIN_WIDTH
         ) {
-          otherPanelWidthPX =
-            containerWidth - BODY_MIN_WIDTH - currentPointPositionX
-          if (otherPanelWidthPX <= LEFT_MIN_WIDTH) {
-            otherPanelWidthPX = LEFT_MIN_WIDTH
+          if (leftWidth !== 0) {
+            otherPanelWidthPX =
+              containerWidth - BODY_MIN_WIDTH - currentPointPositionX
+            if (otherPanelWidthPX <= LEFT_MIN_WIDTH) {
+              otherPanelWidthPX = LEFT_MIN_WIDTH
+            }
           }
+
           currentPointPositionX =
             containerWidth - BODY_MIN_WIDTH - otherPanelWidthPX
         }
