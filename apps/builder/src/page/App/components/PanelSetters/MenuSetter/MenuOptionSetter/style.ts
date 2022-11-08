@@ -73,6 +73,10 @@ export const subMenuItemStyle = css`
   padding-left: 16px;
   height: 32px;
 `
+export const deleteButtonStyle = css`
+  width: calc(100% - 32px);
+  margin: 0 16px 16px;
+`
 
 export const labelNameAndIconStyle = css`
   width: 100%;

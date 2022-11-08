@@ -6,6 +6,7 @@ import {
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
 import { MenuList, SubMenu } from "@/widgetLibrary/MenuWidget/interface"
+import { SubMenuLabel } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/subMenuLabel"
 
 export interface HeaderProps {
   labelName: string
@@ -18,6 +19,12 @@ export interface ColumnItemProps extends MenuList {
 
 export interface DragIconAndLabelProps extends SubMenu {
   index: number
+}
+
+export interface SubMenuLabelProps extends SubMenu {
+  index: number
+  subIndex: number
+  attrPath: string
 }
 
 export interface ColumnListSetterProps extends BaseSetter {

@@ -1,14 +1,10 @@
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  ReduceIcon,
-  DragPointIcon,
-  EyeOffIcon,
-  EyeOnIcon,
-} from "@illa-design/icon"
+import { ReduceIcon, DragPointIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
   baseIconStyle,
+  deleteButtonStyle,
   dragItemStyle,
   iconAreaStyle,
   labelNameAndIconStyle,
@@ -18,6 +14,7 @@ import {
 import { DragIconAndLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "./context/columnListContext"
+import { Button } from "@illa-design/button"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
   const { index, title } = props
@@ -27,7 +24,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     attrPath,
     childrenSetter,
     handleUpdateItemVisible,
-    handleDeleteColumnItem,
+    handleDeleteMenuItem,
   } = useContext(ColumnListSetterContext)
 
   console.log(childrenSetter, "childrenSetter")
@@ -50,6 +47,18 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           attrPath={`${attrPath}.${index}`}
           widgetDisplayName={widgetDisplayName}
           childrenSetter={childrenSetter}
+          extraElement={
+            <Button
+              css={deleteButtonStyle}
+              colorScheme="red"
+              variant="light"
+              onClick={() => {
+                handleDeleteMenuItem(index)
+              }}
+            >
+              Delete
+            </Button>
+          }
         />
       }
       trigger="click"
@@ -74,7 +83,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
           <span
             css={baseIconStyle}
             onClick={(event) => {
-              handleDeleteColumnItem(index)
+              handleDeleteMenuItem(index)
               event.stopPropagation()
             }}
           >

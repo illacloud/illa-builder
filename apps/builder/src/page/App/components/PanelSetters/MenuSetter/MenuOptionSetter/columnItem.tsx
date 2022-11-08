@@ -29,7 +29,7 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
           }}
           css={removeNativeStyle}
         >
-          {subMenu?.map((item, index) => {
+          {subMenu?.map((item, subIndex) => {
             return (
               <Reorder.Item
                 initial={false}
@@ -40,7 +40,12 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
                   // handleUpdateDsl(attrPath, items)
                 }}
               >
-                <SubMenuLabel {...item} index={index} />
+                <SubMenuLabel
+                  {...item}
+                  index={index}
+                  subIndex={subIndex}
+                  attrPath={`${attrPath}.${index}.subMenu.${subIndex}`}
+                />
               </Reorder.Item>
             )
           })}

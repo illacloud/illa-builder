@@ -1,4 +1,4 @@
-import { createContext, ReactNode, FC, useCallback } from "react"
+import { createContext, FC, ReactNode, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { generateColumnItemId } from "../utils/generateNewColumns"
 import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
@@ -13,8 +13,9 @@ interface ProviderProps {
 }
 
 interface Inject extends Omit<ProviderProps, "children"> {
-  handleDeleteColumnItem: (index: number) => void
+  handleDeleteMenuItem: (index: number) => void
   handleCopyColumnItem: (index: number) => void
+  handleDeleteSubMenuItem: (index: number, subIndex: number) => void
   handleMoveColumnItem: (dragIndex: number, hoverIndex: number) => void
   handleUpdateItemVisible: (attrName: string, visible?: boolean) => void
 }
@@ -24,11 +25,24 @@ export const ColumnListSetterContext = createContext<Inject>({} as Inject)
 export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
   const { columnItems, attrPath, handleUpdateDsl } = props
 
-  const handleDeleteColumnItem = useCallback(
+  const handleDeleteMenuItem = useCallback(
     (index: number) => {
       const updatedArray = columnItems.filter(
         (optionItem: Record<string, any>, i: number) => {
           return i !== index
+        },
+      )
+      handleUpdateDsl(attrPath, updatedArray)
+    },
+    [columnItems, handleUpdateDsl, attrPath],
+  )
+
+  const handleDeleteSubMenuItem = useCallback(
+    (index: number, subIndex: number) => {
+      const updatedArray = JSON.parse(JSON.stringify(columnItems))
+      updatedArray[index].subMenu = updatedArray[index].subMenu?.filter(
+        (optionItem: Record<string, any>, i: number) => {
+          return i !== subIndex
         },
       )
       handleUpdateDsl(attrPath, updatedArray)
@@ -74,10 +88,11 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
 
   const value = {
     ...props,
-    handleDeleteColumnItem,
+    handleDeleteMenuItem,
     handleCopyColumnItem,
     handleMoveColumnItem,
     handleUpdateItemVisible,
+    handleDeleteSubMenuItem,
   }
 
   return (

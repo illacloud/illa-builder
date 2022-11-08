@@ -1,14 +1,9 @@
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import {
-  ReduceIcon,
-  DragPointIcon,
-  EyeOffIcon,
-  EyeOnIcon,
-} from "@illa-design/icon"
+import { DragPointIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
-  baseIconStyle,
+  deleteButtonStyle,
   dragItemStyle,
   iconAreaStyle,
   labelNameAndIconStyle,
@@ -16,20 +11,16 @@ import {
   movableIconWrapperStyle,
   subMenuItemStyle,
 } from "./style"
-import { DragIconAndLabelProps } from "./interface"
+import { SubMenuLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
 import { ColumnListSetterContext } from "./context/columnListContext"
+import { Button } from "@illa-design/button"
 
-export const SubMenuLabel: FC<DragIconAndLabelProps> = (props) => {
-  const { index, title } = props
+export const SubMenuLabel: FC<SubMenuLabelProps> = (props) => {
+  const { index, subIndex, title, attrPath } = props
   const [modalVisible, setModalVisible] = useState(false)
-  const {
-    widgetDisplayName,
-    attrPath,
-    childrenSetter,
-    handleUpdateItemVisible,
-    handleDeleteColumnItem,
-  } = useContext(ColumnListSetterContext)
+  const { widgetDisplayName, childrenSetter, handleDeleteSubMenuItem } =
+    useContext(ColumnListSetterContext)
 
   const { t } = useTranslation()
 
@@ -46,9 +37,21 @@ export const SubMenuLabel: FC<DragIconAndLabelProps> = (props) => {
         <BaseModal
           title={title ?? ""}
           handleCloseModal={handleCloseModal}
-          attrPath={`${attrPath}.${index}.subMenu`}
+          attrPath={attrPath}
           widgetDisplayName={widgetDisplayName}
           childrenSetter={childrenSetter}
+          extraElement={
+            <Button
+              css={deleteButtonStyle}
+              colorScheme="red"
+              variant="light"
+              onClick={() => {
+                handleDeleteSubMenuItem(index, subIndex)
+              }}
+            >
+              Delete
+            </Button>
+          }
         />
       }
       trigger="click"
@@ -69,17 +72,7 @@ export const SubMenuLabel: FC<DragIconAndLabelProps> = (props) => {
               t("editor.inspect.setter_content.option_list.list_no_label")}
           </span>
         </div>
-        <div css={iconAreaStyle}>
-          <span
-            css={baseIconStyle}
-            onClick={(event) => {
-              handleDeleteColumnItem(index)
-              event.stopPropagation()
-            }}
-          >
-            <ReduceIcon />
-          </span>
-        </div>
+        <div css={iconAreaStyle}></div>
       </div>
     </Trigger>
   )
