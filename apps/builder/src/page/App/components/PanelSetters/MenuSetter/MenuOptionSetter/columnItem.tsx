@@ -14,6 +14,7 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
   return (
     <div css={optionListItemStyle}>
       <DragIconAndLabel
+        id={id}
         index={index}
         title={title}
         icon={icon}
@@ -34,7 +35,7 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
               <Reorder.Item
                 initial={false}
                 css={removeNativeStyle}
-                key={item.title}
+                key={item.id}
                 value={item}
                 onDragEnd={() => {
                   // handleUpdateDsl(attrPath, items)

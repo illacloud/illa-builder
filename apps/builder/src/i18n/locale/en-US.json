@@ -388,6 +388,11 @@
           "new": "New",
           "title": "Title"
         },
+        "menu_setter": {
+          "label": "Menus ({{number}})",
+          "new": "New",
+          "sub": "Sub"
+        },
         "event_handler_list": {
           "empty": "Trigger queries, control components, or call other APIs in response to component events.",
           "incomplete_selection": "Incomplete selection",
@@ -444,6 +449,7 @@
         "interaction": "INTERACTION",
         "label": "LABEL",
         "layout": "LAYOUT",
+        "menu": "MENU",
         "options": "OPTIONS",
         "pagination": "PAGINATION",
         "row_selection": "ROW SELECTION",

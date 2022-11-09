@@ -29,7 +29,7 @@ export const ListBody: FC = () => {
           <Reorder.Item
             initial={false}
             css={removeNativeStyle}
-            key={item.title}
+            key={item.id}
             value={item}
           >
             <ColumnItem {...item} index={index} />

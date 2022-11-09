@@ -110,7 +110,12 @@ export const emptyEmptyBodyStyle = css`
 export const iconAreaStyle = css`
   display: flex;
   flex-direction: row;
-  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  color: ${globalColor(`--${illaPrefix}-purple-01`)};
+  cursor: pointer;
+  font-weight: 400;
+  white-space: pre;
 `
 
 export const baseIconStyle = css`

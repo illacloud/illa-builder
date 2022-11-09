@@ -16,7 +16,7 @@ export interface WrappedMenuProps
 }
 
 export interface SubMenu {
-  id?: string
+  id: string
   title: string
   icon?: string
   hidden?: boolean

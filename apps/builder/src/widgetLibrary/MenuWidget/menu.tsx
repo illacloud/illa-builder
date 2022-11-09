@@ -1,25 +1,25 @@
-import { FC, forwardRef, useEffect, useMemo } from "react"
+import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
 import { Menu } from "@illa-design/menu"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 
 export const WrappedMenu = forwardRef<HTMLInputElement, WrappedMenuProps>(
   (props, ref) => {
-    const { menuList } = props
+    const { menuList, mode } = props
     const { Item, SubMenu } = Menu
 
     return (
-      <Menu>
+      <Menu mode={mode}>
         {menuList?.map((item, index) => {
           if (item.subMenu) {
             return (
-              <SubMenu key={item.title} title={item.title}>
+              <SubMenu key={item.id} title={item.title}>
                 {item.subMenu.map((subItem, index) => {
                   return <Item key={subItem.title} title={subItem.title} />
                 })}
               </SubMenu>
             )
           }
-          return <Item key={item.title} />
+          return <Item key={item.id} title={item.title} />
         })}
       </Menu>
     )
@@ -28,6 +28,7 @@ export const WrappedMenu = forwardRef<HTMLInputElement, WrappedMenuProps>(
 
 export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   const {
+    mode,
     menuList,
     emptyState,
     pageSize,
@@ -35,6 +36,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    updateComponentHeight,
   } = props
 
   useEffect(() => {
@@ -49,12 +51,23 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     handleDeleteGlobalData,
   ])
 
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      updateComponentHeight(wrapperRef.current?.clientHeight)
+    }
+  }, [mode])
+
   return (
-    <WrappedMenu
-      menuList={menuList}
-      emptyState={emptyState}
-      pageSize={pageSize}
-    />
+    <div ref={wrapperRef}>
+      <WrappedMenu
+        mode={mode}
+        menuList={menuList}
+        emptyState={emptyState}
+        pageSize={pageSize}
+      />
+    </div>
   )
 }
 

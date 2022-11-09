@@ -1,8 +1,8 @@
 import { createContext, FC, ReactNode, useCallback } from "react"
 import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import {
-  generateColumnItemId,
-  generateNewColumnItem,
+  generateMenuItemId,
+  generateNewSubMenuItem,
 } from "../utils/generateNewColumns"
 import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
 
@@ -57,10 +57,13 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
   const handleAddSubMenuItem = useCallback(
     (index: number) => {
       const updatedArray = JSON.parse(JSON.stringify(columnItems))
-      const num = updatedArray[index].subMenu.length + 1
-      const newItem = generateNewColumnItem(num)
-      // updatedArray[index].subMenu = [...updatedArray[index].subMenu, newItem]
-      updatedArray[index].subMenu.push(newItem)
+      const num = (updatedArray[index]?.subMenu?.length ?? 0) + 1
+      const newItem = generateNewSubMenuItem(num)
+      if (updatedArray[index].subMenu) {
+        updatedArray[index].subMenu.push(newItem)
+      } else {
+        updatedArray[index]["subMenu"] = [newItem]
+      }
 
       handleUpdateDsl(attrPath, updatedArray)
     },
@@ -77,7 +80,7 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
       if (!targetOptionItem) return
       targetOptionItem = {
         ...targetOptionItem,
-        id: generateColumnItemId(),
+        id: generateMenuItemId(),
       }
       const updatedArray = [...columnItems, targetOptionItem]
       handleUpdateDsl(attrPath, updatedArray)

@@ -14,32 +14,32 @@ const baseWidgetName = "table"
 
 export const MENU_PANEL_CONFIG: PanelConfig[] = [
   {
-    id: `${baseWidgetName}-column`,
-    groupName: i18n.t("editor.inspect.setter_group.column"),
+    id: `${baseWidgetName}-menu`,
+    groupName: i18n.t("editor.inspect.setter_group.menu"),
     children: [
       {
-        id: `${baseWidgetName}-basic-menuList`,
+        id: `${baseWidgetName}-menuList`,
         useCustomLayout: true,
         attrName: "menuList",
         setterType: "MENU_OPTION_SETTER",
         openDynamic: true,
         childrenSetter: [
           {
-            id: `${baseWidgetName}-column-title`,
+            id: `${baseWidgetName}-menu-title`,
             labelName: i18n.t("editor.inspect.setter_label.column_title"),
             attrName: "title",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
-            id: `${baseWidgetName}-column-icon`,
+            id: `${baseWidgetName}-menu-icon`,
             labelName: i18n.t("editor.inspect.setter_label.column_title"),
             attrName: "icon",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
-            id: `${baseWidgetName}-basic-hidden`,
+            id: `${baseWidgetName}-menu-hidden`,
             labelName: i18n.t("editor.inspect.setter_label.hidden"),
             attrName: "hidden",
             setterType: "DYNAMIC_SWITCH_SETTER",
@@ -48,7 +48,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
             useCustomLayout: true,
           },
           {
-            id: `${baseWidgetName}-column-format`,
+            id: `${baseWidgetName}-menu-format`,
             labelName: i18n.t("editor.inspect.setter_label.format"),
             attrName: "format",
             bindAttrName: ["type"],
@@ -63,7 +63,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
             ),
           },
           {
-            id: `${baseWidgetName}-basic-enableSorting`,
+            id: `${baseWidgetName}-menu-enableSorting`,
             labelName: i18n.t("editor.inspect.setter_label.enable_sorting"),
             attrName: "enableSorting",
             setterType: "DYNAMIC_SWITCH_SETTER",
@@ -103,6 +103,20 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
         useCustomLayout: true,
         openDynamic: true,
         expectedType: VALIDATION_TYPES.BOOLEAN,
+      },
+      {
+        id: `${baseWidgetName}-layout-direction`,
+        labelName: i18n.t("editor.inspect.setter_label.direction"),
+        labelDesc: i18n.t("editor.inspect.setter_tooltip.timeline_direction"),
+        setterType: "RADIO_GROUP_SETTER",
+        attrName: "mode",
+        options: [
+          { label: i18n.t("widget.timeline.vertical"), value: "vertical" },
+          {
+            label: i18n.t("widget.timeline.horizontal"),
+            value: "horizontal",
+          },
+        ],
       },
       {
         id: `${baseWidgetName}-layout-layout`,

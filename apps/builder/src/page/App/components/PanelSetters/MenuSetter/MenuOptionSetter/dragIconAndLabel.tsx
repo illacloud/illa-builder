@@ -1,11 +1,13 @@
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { ReduceIcon, DragPointIcon } from "@illa-design/icon"
+import { ReduceIcon, DragPointIcon, AddIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
+  addIconStyle,
   baseIconStyle,
   deleteButtonStyle,
   dragItemStyle,
+  headerActionButtonStyle,
   iconAreaStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
@@ -80,16 +82,15 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
               t("editor.inspect.setter_content.option_list.list_no_label")}
           </span>
         </div>
-        <div css={iconAreaStyle}>
-          <span
-            css={baseIconStyle}
-            onClick={(event) => {
-              handleAddSubMenuItem(index)
-              event.stopPropagation()
-            }}
-          >
-            <ReduceIcon />
-          </span>
+        <div
+          css={iconAreaStyle}
+          onClick={(event) => {
+            handleAddSubMenuItem(index)
+            event.stopPropagation()
+          }}
+        >
+          <AddIcon _css={addIconStyle} />
+          <span>{t("editor.inspect.setter_content.menu_setter.sub")}</span>
         </div>
       </div>
     </Trigger>

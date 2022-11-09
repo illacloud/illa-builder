@@ -2,12 +2,21 @@ import { v4 } from "uuid"
 import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
 
-export const generateColumnItemId = () => `column-${v4()}`
+export const generateMenuItemId = () => `menu-${v4()}`
+export const generateSubMenuItemId = () => `subMenu-${v4()}`
 
-export const generateNewColumnItem = (number: number): MenuList => {
-  const id = generateColumnItemId()
+export const generateNewMenuItem = (number: number): MenuList => {
+  const id = generateMenuItemId()
   return {
-    title: `Column ${number}`,
     id,
+    title: `Menu ${number}`,
+  }
+}
+
+export const generateNewSubMenuItem = (number: number): MenuList => {
+  const id = generateSubMenuItemId()
+  return {
+    id,
+    title: `subMenu ${number}`,
   }
 }

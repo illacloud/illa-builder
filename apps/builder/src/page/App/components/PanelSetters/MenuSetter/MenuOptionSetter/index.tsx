@@ -8,7 +8,7 @@ import {
   ListStyle,
   optionListHeaderStyle,
 } from "./style"
-import { generateNewColumnItem } from "./utils/generateNewColumns"
+import { generateNewMenuItem } from "./utils/generateNewColumns"
 import { ColumnsSetterProvider } from "./context/columnListContext"
 import { useTranslation } from "react-i18next"
 import { AddIcon } from "@illa-design/icon"
@@ -26,7 +26,7 @@ export const MenuOptionSetter: FC<ColumnListSetterProps> = (props) => {
 
   const handleAddOption = useCallback(() => {
     const num = value.length + 1
-    const newItem = generateNewColumnItem(num)
+    const newItem = generateNewMenuItem(num)
     handleUpdateDsl(attrName, [...value, newItem])
   }, [value, attrName, handleUpdateDsl])
 
@@ -42,20 +42,17 @@ export const MenuOptionSetter: FC<ColumnListSetterProps> = (props) => {
       attrPath={attrName}
       handleUpdateDsl={handleUpdateDsl}
     >
-      <div css={columnLabelStyle}>
-        <div>
-          {t("editor.inspect.setter_content.column_setter.label", {
-            number: value.length,
-          })}
-        </div>
-        <div css={headerActionButtonStyle} onClick={handleAddOption}>
-          <AddIcon _css={addIconStyle} />
-          <span>{t("editor.inspect.setter_content.column_setter.new")}</span>
-        </div>
-      </div>
       <div css={ListStyle}>
         <div css={optionListHeaderStyle}>
-          <div>{t("editor.inspect.setter_content.column_setter.title")}</div>
+          <div>
+            {t("editor.inspect.setter_content.menu_setter.label", {
+              number: value.length,
+            })}
+          </div>
+          <div css={headerActionButtonStyle} onClick={handleAddOption}>
+            <AddIcon _css={addIconStyle} />
+            <span>{t("editor.inspect.setter_content.column_setter.new")}</span>
+          </div>
         </div>
         <ListBody />
       </div>
