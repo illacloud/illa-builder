@@ -41,12 +41,15 @@ export interface ComponentNode {
   } | null
 }
 
+export interface RootComponentNodeProps {
+  currentPageIndex: number
+  pageSortedKey: string[]
+  homepageDisplayName?: string
+}
+
 export interface RootComponentNode extends ComponentNode {
   type: "DOT_PANEL"
-  props: {
-    currentPageIndex: number
-    pageSortedKey: string[]
-  }
+  props: RootComponentNodeProps
 }
 
 export interface PageNodeProps {
@@ -131,6 +134,8 @@ export interface UpdateTargetPagePropsPayload {
   pageName: string
   newProps: Partial<PageNodeProps>
 }
+
+export interface UpdateRootNodePropsPayload {}
 
 export interface DeleteTargetPageSectionPayload {
   pageName: string

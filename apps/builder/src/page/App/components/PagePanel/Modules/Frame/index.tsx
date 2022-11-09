@@ -11,8 +11,8 @@ import { SetterPadding } from "@/page/App/components/PagePanel/Layout/setterPadd
 import { PanelDivider } from "@/page/App/components/PagePanel/Layout/divider"
 import { useDispatch, useSelector } from "react-redux"
 import {
-  getCurrentPageDisplayName,
-  getCurrentPageProps,
+  getCanvas,
+  searchDsl,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { PageNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { PanelActionBar } from "@/page/App/components/PagePanel/Components/PanelActionBar"
@@ -27,6 +27,8 @@ import {
   RIGHT_MIN_WIDTH,
 } from "@/page/App/components/DotPanel/renderSection"
 import { groupWrapperStyle } from "./style"
+import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { RootState } from "@/store"
 
 const getRealCanvasWidth = (
   canvasSize: "fixed" | "responsive",
@@ -43,7 +45,14 @@ const canvasSizeOptions = [
 
 export const PageFrame: FC = () => {
   const { t } = useTranslation()
-  const pageProps = useSelector(getCurrentPageProps) as PageNodeProps
+  const rootNodeProps = useSelector(getRootNodeExecutionResult)
+  const { currentPageIndex, pageSortedKey } = rootNodeProps
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
+  const pageProps = useSelector<RootState>((state) => {
+    const canvas = getCanvas(state)
+    return searchDsl(canvas, currentPageDisplayName)?.props || {}
+  }) as PageNodeProps
+
   const canvasShape = useSelector(getCanvasShape)
   const dispatch = useDispatch()
   const {
@@ -80,7 +89,6 @@ export const PageFrame: FC = () => {
       ? `${t("editor.page.label_name.width")}(px)`
       : `${t("editor.page.label_name.width")}(%)`
   }, [canvasSize, t])
-  const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
 
   const handleDeleteSection = useCallback(
     (
@@ -389,7 +397,10 @@ export const PageFrame: FC = () => {
       <LeftAndRightLayout>
         <PageLabel labelName={t("editor.page.label_name.preset")} size="big" />
         <SetterPadding>
-          <LayoutSelect value={layout} />
+          <LayoutSelect
+            value={layout}
+            currentPageName={currentPageDisplayName}
+          />
         </SetterPadding>
       </LeftAndRightLayout>
       <PanelDivider />
@@ -432,6 +443,7 @@ export const PageFrame: FC = () => {
                   value={leftWidth.toFixed(0)}
                   borderColor="techPurple"
                   onChange={handleUpdateLeftPanelWidth}
+                  step={1}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -493,6 +505,7 @@ export const PageFrame: FC = () => {
                   value={rightWidth.toFixed(0)}
                   borderColor="techPurple"
                   onChange={handleUpdateRightPanelWidth}
+                  step={1}
                 />
               </SetterPadding>
             </LeftAndRightLayout>
@@ -528,6 +541,7 @@ export const PageFrame: FC = () => {
               borderColor="techPurple"
               value={bodyWidth.toFixed(0)}
               onChange={handleUpdateBodyPanelWidth}
+              step={1}
             />
           </SetterPadding>
         </LeftAndRightLayout>
@@ -572,6 +586,7 @@ export const PageFrame: FC = () => {
                 value={topHeight}
                 borderColor="techPurple"
                 onChange={handleUpdateHeaderPanelWidth}
+                step={1}
               />
             </SetterPadding>
           </LeftAndRightLayout>
@@ -617,6 +632,7 @@ export const PageFrame: FC = () => {
                 value={bottomHeight}
                 borderColor="techPurple"
                 onChange={handleUpdateFooterPanelWidth}
+                step={1}
               />
             </SetterPadding>
           </LeftAndRightLayout>

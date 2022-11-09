@@ -44,8 +44,7 @@ export function flattenDslToMap(rootNode: ComponentNode): {
   let res = {}
   while (queue.length > 0) {
     const head = queue[queue.length - 1]
-
-    if (head.containerType !== "EDITOR_DOT_PANEL") {
+    if (head.type !== "CONTAINER_NODE") {
       res = { ...res, [head.displayName]: head || {} }
     }
     queue.pop()
@@ -177,3 +176,13 @@ export const getCurrentPageDisplayName = createSelector(
     return currentPageNode.displayName
   },
 )
+
+export const getRootNodeProps = createSelector([getCanvas], (rootNode) => {
+  if (!rootNode)
+    return {
+      currentPageIndex: 0,
+      pageSortedKey: ["page1"],
+      homepageDisplayName: "page1",
+    }
+  return rootNode.props
+})

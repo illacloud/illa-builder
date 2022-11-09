@@ -339,10 +339,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Signal.SIGNAL_UPDATE_STATE,
                 Target.TARGET_COMPONENTS,
                 true,
-                {
-                  type,
-                  payload,
-                },
+                null,
                 WSPayload,
               ),
             )
@@ -366,10 +363,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 Signal.SIGNAL_UPDATE_STATE,
                 Target.TARGET_COMPONENTS,
                 true,
-                {
-                  type,
-                  payload,
-                },
+                null,
                 WSPagePayload,
               ),
             )
@@ -405,6 +399,51 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   payload,
                 },
                 WSPagePayload,
+              ),
+            )
+            break
+          }
+          case "updateRootNodePropsReducer": {
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const WSPagePayload =
+              transformComponentReduxPayloadToWsPayload(rootNode)
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                WSPagePayload,
+              ),
+            )
+            break
+          }
+          case "addPageNodeWithSortOrderReducer": {
+            const rootNode = getCanvas(store.getState())
+            const nodes = action.payload as ComponentNode[]
+            if (!rootNode || !Array.isArray(nodes) || nodes.length === 0) break
+            const rootNodeUpdateWSPayload =
+              transformComponentReduxPayloadToWsPayload(rootNode)
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                rootNodeUpdateWSPayload,
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                { type, payload },
+                nodes,
               ),
             )
             break

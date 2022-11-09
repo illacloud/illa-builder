@@ -18,7 +18,8 @@ import {
   updateTargetPagePropsReducer,
   deleteTargetPageSectionReducer,
   addTargetPageSectionReducer,
-  updateLocalTargetPagePropsReducer,
+  updateRootNodePropsReducer,
+  addPageNodeWithSortOrderReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
 
 const componentsSlice = createSlice({
@@ -42,7 +43,8 @@ const componentsSlice = createSlice({
     updateTargetPagePropsReducer,
     deleteTargetPageSectionReducer,
     addTargetPageSectionReducer,
-    updateLocalTargetPagePropsReducer,
+    updateRootNodePropsReducer,
+    addPageNodeWithSortOrderReducer,
   },
 })
 

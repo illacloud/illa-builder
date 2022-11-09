@@ -42,13 +42,13 @@ export const findLayoutOptionItem = (layoutValue: string) => {
 }
 
 export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
-  const { isSelected, label, value, icon, selectedValue } = props
+  const { isSelected, label, value, icon, selectedValue, currentPageName } =
+    props
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
 
   const handleChangeLayout = useCallback(() => {
-    if (selectedValue === value || !currentPageDisplayName) return
+    if (selectedValue === value || !currentPageName) return
     Modal.confirm({
       w: "496px",
       content: t("editor.page.model_tips.change_layout_message"),
@@ -61,7 +61,7 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
       onOk: () => {
         dispatch(
           componentsActions.updateTargetPageLayoutReducer({
-            pageName: currentPageDisplayName,
+            pageName: currentPageName,
             layout: value as
               | "default"
               | "presetA"
@@ -73,7 +73,7 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
         )
       },
     })
-  }, [currentPageDisplayName, dispatch, selectedValue, t, value])
+  }, [currentPageName, dispatch, selectedValue, t, value])
 
   return (
     <div css={layoutOptionItemWrapperStyle} onClick={handleChangeLayout}>
@@ -88,7 +88,7 @@ export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
 }
 
 export const LayoutOptionsPanel: FC<LayoutOptionsPanelProps> = (props) => {
-  const { selectedValue } = props
+  const { selectedValue, currentPageName } = props
 
   return (
     <div css={layoutOptionsPanelWrapperStyle}>
@@ -101,6 +101,7 @@ export const LayoutOptionsPanel: FC<LayoutOptionsPanelProps> = (props) => {
             icon={item.icon}
             isSelected={selectedValue === item.value}
             selectedValue={selectedValue}
+            currentPageName={currentPageName}
           />
         )
       })}
@@ -109,11 +110,16 @@ export const LayoutOptionsPanel: FC<LayoutOptionsPanelProps> = (props) => {
 }
 
 export const LayoutSelect: FC<LayoutSelectProps> = (props) => {
-  const { value } = props
+  const { value, currentPageName } = props
   return (
     <Trigger
       trigger="click"
-      content={<LayoutOptionsPanel selectedValue={value} />}
+      content={
+        <LayoutOptionsPanel
+          selectedValue={value}
+          currentPageName={currentPageName}
+        />
+      }
       position="bottom-end"
       colorScheme="white"
       withoutPadding

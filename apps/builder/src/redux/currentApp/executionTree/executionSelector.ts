@@ -47,10 +47,7 @@ export const getWidgetExecutionResult = createSelector(
     const widgetExecutionResult: Record<string, any> = {}
     Object.keys(executionResult).forEach((key) => {
       const widgetOrAction = executionResult[key]
-      if (
-        widgetOrAction.$type === "WIDGET" &&
-        !IGNORE_WIDGET_TYPES.has(widgetOrAction.$widgetType)
-      ) {
+      if (widgetOrAction.$type === "WIDGET") {
         widgetExecutionResult[key] = widgetOrAction
       }
     })
@@ -63,12 +60,44 @@ export const getWidgetExecutionResultArray = createSelector(
   (widgetExecutionResult) => {
     const widgetExecutionResultArray: Record<string, any>[] = []
     Object.keys(widgetExecutionResult).forEach((key) => {
-      widgetExecutionResultArray.push({
-        ...widgetExecutionResult[key],
-        displayName: key,
-      })
+      if (!IGNORE_WIDGET_TYPES.has(widgetExecutionResult[key].$widgetType)) {
+        widgetExecutionResultArray.push({
+          ...widgetExecutionResult[key],
+          displayName: key,
+        })
+      }
     })
     return widgetExecutionResultArray
+  },
+)
+
+export const getPageExecutionResultArray = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const widgetExecutionResultArray: Record<string, any>[] = []
+    Object.keys(widgetExecutionResult).forEach((key) => {
+      if (widgetExecutionResult[key].$widgetType === "SECTION_NODE") {
+        widgetExecutionResultArray.push({
+          ...widgetExecutionResult[key],
+          displayName: key,
+        })
+      }
+    })
+    return widgetExecutionResultArray
+  },
+)
+
+export const getRootNodeExecutionResult = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const rootNode = widgetExecutionResult["root"]
+    return rootNode
+      ? rootNode
+      : {
+          currentPageIndex: 0,
+          pageSortedKey: ["page1"],
+          homepageDisplayName: "page1",
+        }
   },
 )
 

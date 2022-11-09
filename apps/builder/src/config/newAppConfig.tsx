@@ -7,7 +7,7 @@ import {
 } from "@/redux/currentApp/editor/components/componentsState"
 
 export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
-  displayName: "bodySection",
+  displayName: "bodySection1",
   parentNode: "page1",
   showName: "bodySection",
   isDragging: false,
@@ -26,16 +26,16 @@ export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
   z: 0,
   props: {
     currentViewIndex: 0,
-    viewSortedKey: ["bodyContainer1"],
+    viewSortedKey: ["bodySection1-bodySectionContainer1"],
   },
   childrenNode: [
     {
-      displayName: "bodyContainer1",
+      displayName: "bodySection1-bodySectionContainer1",
       parentNode: "bodySection",
-      showName: "bodyContainer",
+      showName: "bodySection1-bodySectionContainer1",
       isDragging: false,
       isResizing: false,
-      type: "DOT_PANEL",
+      type: "CONTAINER_NODE",
       containerType: CONTAINER_TYPE.EDITOR_DOT_PANEL,
       verticalResize: true,
       h: 0,

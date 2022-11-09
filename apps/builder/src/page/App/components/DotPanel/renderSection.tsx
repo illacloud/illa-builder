@@ -68,7 +68,6 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
     const componentNode = sectionNode.childrenNode.find(
       (node) => node.displayName === currentViewDisplayName,
     )
-
     return (
       <div ref={ref}>
         <div

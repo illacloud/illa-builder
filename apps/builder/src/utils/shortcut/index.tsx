@@ -22,7 +22,10 @@ import {
   getCanvas,
   searchDSLByDisplayName,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  ComponentNode,
+  CONTAINER_TYPE,
+} from "@/redux/currentApp/editor/components/componentsState"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -61,9 +64,8 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] = useState<
-    boolean
-  >(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
+    useState<boolean>(false)
 
   const showDeleteDialog = (displayName: string[]) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
@@ -137,10 +139,14 @@ export const Shortcut: FC = ({ children }) => {
           break
         case "canvas": {
           if (canvasRootNode) {
-            const childNode = canvasRootNode.childrenNode
-            const childNodeDisplayNames = childNode.map((node) => {
-              return node.displayName
+            const childNodeDisplayNames: string[] = []
+
+            canvasRootNode.childrenNode.forEach((node) => {
+              if (node.containerType === CONTAINER_TYPE.EDITOR_PAGE_SQUARE) {
+                childNodeDisplayNames.push(node.displayName)
+              }
             })
+
             dispatch(
               configActions.updateSelectedComponent(childNodeDisplayNames),
             )

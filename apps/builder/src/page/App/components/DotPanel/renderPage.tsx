@@ -19,12 +19,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { getCanvasShape, getIllaMode } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
 
-const getDisplayNameMapSectionNode = (pageNode: PageNode) => {
+const getShowNameMapSectionNode = (pageNode: PageNode) => {
   const { childrenNode = [] } = pageNode
   const nameMapSection: Map<string, SectionNode> = new Map()
   childrenNode.forEach((node) => {
     if (node.type === "SECTION_NODE") {
-      nameMapSection.set(node.displayName, node as SectionNode)
+      nameMapSection.set(node.showName, node as SectionNode)
     }
   })
   return nameMapSection
@@ -54,7 +54,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
   const mode = useSelector(getIllaMode)
   const dispatch = useDispatch()
 
-  const displayNameMapSectionNode = getDisplayNameMapSectionNode(pageNode)
+  const showNameMapSectionNode = getShowNameMapSectionNode(pageNode)
 
   const { props: pageProps } = pageNode
   const {
@@ -337,17 +337,17 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
     topHeight,
   ])
 
-  const headerSection = displayNameMapSectionNode.get("headerSection")
-  const bodySection = displayNameMapSectionNode.get("bodySection")
-  const leftSection = displayNameMapSectionNode.get("leftSection")
-  const rightSection = displayNameMapSectionNode.get("rightSection")
-  const footerSection = displayNameMapSectionNode.get("footerSection")
+  const headerSection = showNameMapSectionNode.get("headerSection")
+  const bodySection = showNameMapSectionNode.get("bodySection")
+  const leftSection = showNameMapSectionNode.get("leftSection")
+  const rightSection = showNameMapSectionNode.get("rightSection")
+  const footerSection = showNameMapSectionNode.get("footerSection")
 
   if (
     !pageNode ||
     pageNode.type !== "PAGE_NODE" ||
     !pageNode.props ||
-    displayNameMapSectionNode.size === 0
+    showNameMapSectionNode.size === 0
   )
     return null
 
