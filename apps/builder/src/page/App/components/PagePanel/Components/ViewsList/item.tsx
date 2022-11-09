@@ -3,7 +3,7 @@ import { FC, useMemo, useState } from "react"
 import { LabelNameAndDragIcon } from "./labelName"
 import { deleteIconStyle, itemWrapperStyle } from "./style"
 import { ItemProps } from "./interface"
-
+import { Modal } from "./modal"
 export const Item: FC<ItemProps> = (props) => {
   const {
     name,
@@ -12,6 +12,9 @@ export const Item: FC<ItemProps> = (props) => {
     index,
     handleChangSectionView,
     handleDeleteSectionView,
+    path,
+    handleUpdateItem,
+    attrPath,
   } = props
   const [modalVisible, setModalVisible] = useState(false)
   const isDuplicationKey = useMemo(() => {
@@ -22,7 +25,17 @@ export const Item: FC<ItemProps> = (props) => {
       withoutPadding
       colorScheme="white"
       popupVisible={modalVisible}
-      content={<div>22222</div>}
+      content={
+        <Modal
+          onCloseModal={() => {
+            setModalVisible(false)
+          }}
+          name={name}
+          path={path}
+          handleUpdateItem={handleUpdateItem}
+          attrPath={attrPath}
+        />
+      }
       trigger="click"
       showArrow={false}
       position="left"

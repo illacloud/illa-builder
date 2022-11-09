@@ -652,13 +652,15 @@
         "footer": "Footer",
         "header": "Header",
         "left_panel": "Left panel",
-        "new": "",
         "preset": "Preset",
         "right_panel": "Right panel",
         "set_as_homepage": "Set as homepage",
         "show_fold_icon": "Show fold icon",
         "views": "Views",
-        "width": "Width"
+        "width": "Width",
+        "edit_view": "Edit view",
+        "key": "Key",
+        "view_path": "View path"
       },
       "model_tips": {
         "cancel_button": "Cancel",
@@ -672,7 +674,8 @@
       },
       "tab_title": "Page",
       "tooltips": {
-        "show_fold_icon": "Show a button to collapse or expand the panel"
+        "show_fold_icon": "Show a button to collapse or expand the panel",
+        "view_path": "A string after example.com/app/page/ to access this view"
       }
     },
     "validate_message": {

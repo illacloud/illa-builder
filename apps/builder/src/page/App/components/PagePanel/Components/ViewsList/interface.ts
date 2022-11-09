@@ -20,6 +20,8 @@ export interface ItemProps extends Omit<SectionViewShape, "id" | "key"> {
   index: number
   handleChangSectionView: (index: number) => void
   handleDeleteSectionView: (index: number) => void
+  handleUpdateItem: (path: string, value: string) => void
+  attrPath: string
 }
 
 export interface LabelNameAndDragIconProps {
@@ -28,4 +30,12 @@ export interface LabelNameAndDragIconProps {
   isSelected: boolean
   index: number
   handleChangSectionView: (index: number) => void
+}
+
+export interface ModalProps {
+  onCloseModal: () => void
+  name: string
+  path: string
+  handleUpdateItem: (path: string, value: string) => void
+  attrPath: string
 }

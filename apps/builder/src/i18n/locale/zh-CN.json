@@ -649,13 +649,16 @@
         "add": "新建",
         "body": "主体",
         "default_view": "默认视图",
+        "edit_view": "编辑视图",
         "footer": "页脚",
         "header": "页头",
+        "key": "键值",
         "left_panel": "左侧面板",
         "preset": "预设",
         "right_panel": "右侧面板",
         "set_as_homepage": "设置为主页",
         "show_fold_icon": "显示折叠按钮",
+        "view_path": "视图路径",
         "views": "视图",
         "width": "宽度"
       },
@@ -671,7 +674,8 @@
       },
       "tab_title": "页面",
       "tooltips": {
-        "show_fold_icon": "显示一个按钮，用于收起或展开面板"
+        "show_fold_icon": "显示一个按钮，用于收起或展开面板",
+        "view_path": "一个拼example.com/app/page/后面的字符串，用来访问这个视图"
       }
     },
     "validate_message": {
