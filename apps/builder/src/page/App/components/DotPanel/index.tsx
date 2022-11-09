@@ -15,16 +15,19 @@ export const DotPanel: FC = () => {
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
   const mode = useSelector(getIllaMode)
 
-  const { currentPageIndex, pageSortedKey, homepageDisplayName } =
-    rootExecutionProps
-  let { page1 } = useParams()
+  const {
+    currentPageIndex,
+    pageSortedKey,
+    homepageDisplayName,
+  } = rootExecutionProps
+  let { pageName = "page1" } = useParams()
   const currentDisplayName = useMemo(() => {
     if (mode === "production") {
-      return page1 || homepageDisplayName
+      return pageName || homepageDisplayName
     } else {
       return pageSortedKey[currentPageIndex] || homepageDisplayName
     }
-  }, [currentPageIndex, homepageDisplayName, mode, page1, pageSortedKey])
+  }, [currentPageIndex, homepageDisplayName, mode, pageName, pageSortedKey])
 
   if (
     !canvasTree ||

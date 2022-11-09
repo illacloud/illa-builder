@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom"
 
-export interface RoutesObjectPro extends RouteObject {
+export type RoutesObjectPro = RouteObject & {
   /**
    * @description need login, if use check role,can replace this
    */

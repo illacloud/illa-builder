@@ -1,3 +1,5 @@
+import { getIllaMode } from "./../../redux/config/configSelector"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
@@ -9,6 +11,8 @@ import {
   showNotification,
 } from "@/page/App/context/globalDataProvider"
 import { get } from "lodash"
+import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ILLARoute } from "@/router"
 
 export const transformEvents = (
   event: any,
@@ -45,7 +49,38 @@ export const transformEvents = (
     const { pagePath } = event
     let finalPath = `/${pagePath}`
     return {
-      script: () => {},
+      script: () => {
+        const originPath = window.location.pathname
+        const originPathArray = originPath.split("/")
+        const mode = getIllaMode(store.getState())
+        const rootNodeProps = getRootNodeExecutionResult(store.getState())
+        const { pageSortedKey } = rootNodeProps
+        const index = pageSortedKey.findIndex(
+          (path: string) => path === pagePath,
+        )
+        if (index === -1) return
+        if (mode === "production" && originPathArray.length >= 6) {
+          if (mode === "production") {
+            ILLARoute.navigate(originPathArray.join("/") + finalPath)
+          }
+          store.dispatch(
+            executionActions.updateExecutionByDisplayNameReducer({
+              displayName: "root",
+              value: {
+                currentPageIndex: index,
+              },
+            }),
+          )
+        }
+        store.dispatch(
+          executionActions.updateExecutionByDisplayNameReducer({
+            displayName: "root",
+            value: {
+              currentPageIndex: index,
+            },
+          }),
+        )
+      },
     }
   }
   if (actionType === "widget") {
