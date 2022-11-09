@@ -15,6 +15,14 @@ export interface WrappedMenuProps
   handleOnColumnFiltersChange?: () => void
 }
 
+export type MenuMode = "vertical" | "horizontal"
+
+export interface MenuItemLabelProps {
+  title?: string
+  icon?: string
+  mode?: MenuMode
+}
+
 export interface SubMenu {
   id: string
   title: string

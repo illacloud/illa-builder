@@ -1,13 +1,11 @@
 import { FC, useCallback, useContext, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { ReduceIcon, DragPointIcon, AddIcon } from "@illa-design/icon"
+import { DragPointIcon, AddIcon } from "@illa-design/icon"
 import { Trigger } from "@illa-design/trigger"
 import {
   addIconStyle,
-  baseIconStyle,
   deleteButtonStyle,
   dragItemStyle,
-  headerActionButtonStyle,
   iconAreaStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,

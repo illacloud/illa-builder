@@ -1,6 +1,8 @@
 import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
 import { Menu } from "@illa-design/menu"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
+import { css } from "@emotion/react"
+import { MenuItemLabel } from "@/widgetLibrary/MenuWidget/MenuItemLabel"
 
 export const WrappedMenu = forwardRef<HTMLInputElement, WrappedMenuProps>(
   (props, ref) => {
@@ -12,9 +14,19 @@ export const WrappedMenu = forwardRef<HTMLInputElement, WrappedMenuProps>(
         {menuList?.map((item, index) => {
           if (item.subMenu) {
             return (
-              <SubMenu key={item.id} title={item.title}>
+              <SubMenu
+                key={item.id}
+                title={<MenuItemLabel title={item.title} icon={item.icon} />}
+              >
                 {item.subMenu.map((subItem, index) => {
-                  return <Item key={subItem.title} title={subItem.title} />
+                  return (
+                    <Item
+                      key={subItem.title}
+                      title={
+                        <MenuItemLabel title={item.title} icon={item.icon} />
+                      }
+                    />
+                  )
                 })}
               </SubMenu>
             )
@@ -58,6 +70,10 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
   }, [mode])
+
+  const menu = useMemo(() => {
+    menuList?.map((item, index) => {})
+  }, [menuList])
 
   return (
     <div ref={wrapperRef}>
