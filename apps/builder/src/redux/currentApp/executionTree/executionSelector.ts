@@ -76,7 +76,7 @@ export const getPageExecutionResultArray = createSelector(
   (widgetExecutionResult) => {
     const widgetExecutionResultArray: Record<string, any>[] = []
     Object.keys(widgetExecutionResult).forEach((key) => {
-      if (widgetExecutionResult[key].$widgetType === "SECTION_NODE") {
+      if (widgetExecutionResult[key].$widgetType === "PAGE_NODE") {
         widgetExecutionResultArray.push({
           ...widgetExecutionResult[key],
           displayName: key,

@@ -349,7 +349,7 @@
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
       "globals_title": "GLOBALS ",
-      "pages_title": ""
+      "pages_title": "PAGES"
     },
     "deploy": {
       "fail": "Failed to deploy"
@@ -420,6 +420,9 @@
           "sortingChange": "Sort change",
           "submit": "Submit",
           "success": "Success"
+        },
+        "select_page_setter": {
+          "placeholder": "Select a page"
         }
       },
       "setter_default_value": {
@@ -566,6 +569,7 @@
         "reset_after_successful_submit": "Reset after successful submit",
         "run_script": "Run script",
         "scale_type": "Scale Type",
+        "set_router": "Set router",
         "set_temporary_state": "Set temporary state",
         "shadow": "Shadow",
         "show_character_count": "Show character count",
@@ -605,7 +609,9 @@
         "x_axis_type": "X-axis type",
         "x_axis_value": "X-axis value",
         "y_axis_name": "Y-axis name",
-        "y_axis_title": "Y-axis title"
+        "y_axis_title": "Y-axis title",
+        "router": "Router",
+        "page": "Page"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -646,9 +652,9 @@
         "left_panel": "Left panel",
         "preset": "Preset",
         "right_panel": "Right panel",
+        "set_as_homepage": "Set as homepage",
         "show_fold_icon": "Show fold icon",
-        "width": "Width",
-        "set_as_homepage": "Set as homepage"
+        "width": "Width"
       },
       "model_tips": {
         "cancel_button": "Cancel",

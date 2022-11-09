@@ -402,6 +402,9 @@
           "new": "新建",
           "title": "选项"
         },
+        "select_page_setter": {
+          "placeholder": "选择一个页面"
+        },
         "tabs_setter": {
           "tabs": "Tabs"
         },
@@ -554,6 +557,7 @@
         "new_tab": "在新标签中打开",
         "only_run_when": "先决条件",
         "overFlow": "翻页方式",
+        "page": "页面",
         "pageSize": "每页行数",
         "pattern": "模式",
         "pending": "待处理节点",
@@ -564,8 +568,10 @@
         "regex": "正则表达式",
         "required_field": "必需字段",
         "reset_after_successful_submit": "提交成功后重置输入内容",
+        "router": "路由",
         "run_script": "运行脚本",
         "scale_type": "缩放类型",
+        "set_router": "设置路由",
         "set_temporary_state": "设置临时状态",
         "shadow": "阴影",
         "show_character_count": "展示字符数量",
@@ -646,9 +652,9 @@
         "left_panel": "左侧面板",
         "preset": "预设",
         "right_panel": "右侧面板",
+        "set_as_homepage": "设置为主页",
         "show_fold_icon": "显示折叠按钮",
-        "width": "宽度",
-        "set_as_homepage": "设置为主页"
+        "width": "宽度"
       },
       "model_tips": {
         "cancel_button": "取消",

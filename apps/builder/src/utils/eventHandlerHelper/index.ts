@@ -41,6 +41,13 @@ export const transformEvents = (
       enabled,
     }
   }
+  if (actionType === "setRouter") {
+    const { pagePath } = event
+    let finalPath = `/${pagePath}`
+    return {
+      script: () => {},
+    }
+  }
   if (actionType === "widget") {
     const { widgetID, widgetMethod, enabled } = event
     if (
