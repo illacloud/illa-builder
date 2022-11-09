@@ -646,7 +646,9 @@
     },
     "page": {
       "label_name": {
+        "add": "新建",
         "body": "主体",
+        "default_view": "默认视图",
         "footer": "页脚",
         "header": "页头",
         "left_panel": "左侧面板",
@@ -654,6 +656,7 @@
         "right_panel": "右侧面板",
         "set_as_homepage": "设置为主页",
         "show_fold_icon": "显示折叠按钮",
+        "views": "视图",
         "width": "宽度"
       },
       "model_tips": {

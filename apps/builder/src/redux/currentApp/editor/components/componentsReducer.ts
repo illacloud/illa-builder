@@ -16,6 +16,9 @@ import {
   UpdateTargetPagePropsPayload,
   RootComponentNode,
   DeletePageNodePayload,
+  AddSectionViewPayload,
+  DeleteSectionViewPayload,
+  SectionViewShape,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -28,6 +31,7 @@ import {
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import {
   generateSectionConfig,
+  generateSectionContainerConfig,
   layoutValueMapGenerateConfig,
 } from "@/utils/generators/generatePageOrSectionConfig"
 
@@ -516,4 +520,42 @@ export const addPageNodeWithSortOrderReducer: CaseReducer<
       parentNode.childrenNode.push(node)
     }
   })
+}
+
+export const addSectionViewReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<AddSectionViewPayload>
+> = (state, action) => {
+  const { parentNodeName, containerNode, newSectionViewConfig } = action.payload
+  const parentNode = searchDsl(state, parentNodeName)
+  if (!parentNode || !parentNode.props) return
+  parentNode.childrenNode.push(containerNode)
+  parentNode.props.viewSortedKey.push(containerNode.displayName)
+  parentNode.props.sectionViewConfigs.push(newSectionViewConfig)
+}
+
+export const deleteSectionViewReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteSectionViewPayload>
+> = (state, action) => {
+  const { viewDisplayName } = action.payload
+  const currentNode = searchDsl(state, viewDisplayName)
+  if (!currentNode) return
+  const parentNode = searchDsl(state, currentNode.parentNode)
+  if (!parentNode || !parentNode.props) return
+  const currentIndex = parentNode.childrenNode.findIndex(
+    (node) => node.displayName === viewDisplayName,
+  )
+  if (currentIndex === -1) return
+  parentNode.childrenNode.splice(currentIndex, 1)
+  const viewSortedKeyIndex = parentNode.props.viewSortedKey.findIndex(
+    (key: string) => key === viewDisplayName,
+  )
+  if (viewSortedKeyIndex === -1) return
+  parentNode.props.viewSortedKey.splice(viewSortedKeyIndex, 1)
+  const sectionViewConfigsIndex = parentNode.props.sectionViewConfigs.findIndex(
+    (config: SectionViewShape) => config.viewDisplayName === viewDisplayName,
+  )
+  if (sectionViewConfigsIndex === -1) return
+  parentNode.props.sectionViewConfigs.splice(sectionViewConfigsIndex, 1)
 }

@@ -3,6 +3,7 @@ import {
   CONTAINER_TYPE,
   SECTION_POSITION,
 } from "@/redux/currentApp/editor/components/componentsState"
+import { v4 } from "uuid"
 import { DisplayNameGenerator } from "./generateDisplayName"
 
 export type SectionNodeType =
@@ -77,6 +78,14 @@ export const generateSectionConfig = (
     props: {
       currentViewIndex: 0,
       viewSortedKey: [childrenNode.displayName],
+      sectionViewConfigs: [
+        {
+          id: v4(),
+          viewDisplayName: childrenNode.displayName,
+          key: "view 1",
+          path: "view 1",
+        },
+      ],
     },
     childrenNode: [childrenNode],
   }

@@ -87,6 +87,22 @@ export const getPageExecutionResultArray = createSelector(
   },
 )
 
+export const getSectionExecutionResultArray = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const sectionExecutionResult: Record<string, any> = {}
+    Object.keys(widgetExecutionResult).forEach((key) => {
+      if (widgetExecutionResult[key].$widgetType === "SECTION_NODE") {
+        sectionExecutionResult[key] = {
+          ...widgetExecutionResult[key],
+          displayName: key,
+        }
+      }
+    })
+    return sectionExecutionResult
+  },
+)
+
 export const getRootNodeExecutionResult = createSelector(
   [getWidgetExecutionResult],
   (widgetExecutionResult) => {

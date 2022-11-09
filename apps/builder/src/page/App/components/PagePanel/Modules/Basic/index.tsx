@@ -8,6 +8,7 @@ import { Switch } from "@illa-design/react"
 import { useDispatch, useSelector } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { ViewList } from "../../Components/ViewsList"
 
 export const PageBasic: FC = () => {
   const { t } = useTranslation()
@@ -50,6 +51,9 @@ export const PageBasic: FC = () => {
           <Switch checked={isHomepage} onChange={handleChangeIsHomePage} />
         </SetterPadding>
       </LeftAndRightLayout>
+      <div style={{ padding: "0 16px" }}>
+        <ViewList sectionName="bodySection" />
+      </div>
     </PanelBar>
   )
 }

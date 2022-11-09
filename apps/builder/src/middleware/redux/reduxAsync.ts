@@ -22,12 +22,13 @@ import {
   DeleteTargetPageSectionPayload,
   UpdateTargetPagePropsPayload,
   DeletePageNodePayload,
+  AddSectionViewPayload,
+  DeleteSectionViewPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
   UpdateComponentContainerPayload,
   UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
-import { layoutValueMapConfig } from "@/config/newAppConfig"
 
 export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
   const { type, payload } = action
@@ -287,23 +288,20 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateTargetPageLayoutReducer": {
-            const {
-              pageName,
-              layout,
-            } = action.payload as UpdateTargetPageLayoutPayload
+            const { pageName } = action.payload as UpdateTargetPageLayoutPayload
+            const canvasNode = getCanvas(store.getState())
+
+            const pageNode = searchDsl(canvasNode, pageName)
+            if (!pageNode) break
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_DELETE_STATE,
                 Target.TARGET_COMPONENTS,
                 true,
-                {
-                  type,
-                  payload,
-                },
+                null,
                 [pageName],
               ),
             )
-            const config = layoutValueMapConfig[layout]
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_CREATE_STATE,
@@ -313,7 +311,7 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                   type,
                   payload,
                 },
-                config,
+                [pageNode],
               ),
             )
             break
@@ -489,6 +487,78 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 [deletePayload.displayName],
               ),
             )
+            break
+          }
+          case "addSectionViewReducer": {
+            const {
+              parentNodeName,
+              containerNode,
+            } = payload as AddSectionViewPayload
+            const rootNode = getCanvas(store.getState())
+
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, parentNodeName)
+            if (!targetNode) break
+            const updateWSPayload = transformComponentReduxPayloadToWsPayload(
+              targetNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                updateWSPayload,
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [containerNode],
+              ),
+            )
+            break
+          }
+          case "deleteSectionViewReducer": {
+            const {
+              viewDisplayName,
+              parentNodeName,
+            } = payload as DeleteSectionViewPayload
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, parentNodeName)
+            if (!targetNode) break
+            const updateWSPayload = transformComponentReduxPayloadToWsPayload(
+              targetNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_DELETE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                [viewDisplayName],
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                updateWSPayload,
+              ),
+            )
+            break
           }
         }
         break

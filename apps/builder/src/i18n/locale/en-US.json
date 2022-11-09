@@ -402,6 +402,9 @@
           "new": "New",
           "title": "Options"
         },
+        "select_page_setter": {
+          "placeholder": "Select a page"
+        },
         "tabs_setter": {
           "tabs": "Tabs"
         },
@@ -420,9 +423,6 @@
           "sortingChange": "Sort change",
           "submit": "Submit",
           "success": "Success"
-        },
-        "select_page_setter": {
-          "placeholder": "Select a page"
         }
       },
       "setter_default_value": {
@@ -557,6 +557,7 @@
         "new_tab": "New tab",
         "only_run_when": "Only run when",
         "overFlow": "OverFlow",
+        "page": "Page",
         "pageSize": "PageSize",
         "pattern": "Pattern",
         "pending": "Pending",
@@ -567,6 +568,7 @@
         "regex": "Regex",
         "required_field": "Required field",
         "reset_after_successful_submit": "Reset after successful submit",
+        "router": "Router",
         "run_script": "Run script",
         "scale_type": "Scale Type",
         "set_router": "Set router",
@@ -609,9 +611,7 @@
         "x_axis_type": "X-axis type",
         "x_axis_value": "X-axis value",
         "y_axis_name": "Y-axis name",
-        "y_axis_title": "Y-axis title",
-        "router": "Router",
-        "page": "Page"
+        "y_axis_title": "Y-axis title"
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
@@ -646,14 +646,18 @@
     },
     "page": {
       "label_name": {
+        "add": "Add",
         "body": "Body",
+        "default_view": "Default view",
         "footer": "Footer",
         "header": "Header",
         "left_panel": "Left panel",
+        "new": "",
         "preset": "Preset",
         "right_panel": "Right panel",
         "set_as_homepage": "Set as homepage",
         "show_fold_icon": "Show fold icon",
+        "views": "Views",
         "width": "Width"
       },
       "model_tips": {

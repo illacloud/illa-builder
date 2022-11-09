@@ -21,6 +21,8 @@ import {
   updateRootNodePropsReducer,
   addPageNodeWithSortOrderReducer,
   deletePageNodeReducer,
+  addSectionViewReducer,
+  deleteSectionViewReducer,
 } from "@/redux/currentApp/editor/components/componentsReducer"
 
 const componentsSlice = createSlice({
@@ -47,6 +49,8 @@ const componentsSlice = createSlice({
     updateRootNodePropsReducer,
     addPageNodeWithSortOrderReducer,
     deletePageNodeReducer,
+    addSectionViewReducer,
+    deleteSectionViewReducer,
   },
 })
 

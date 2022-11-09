@@ -78,20 +78,33 @@ export interface PageNode extends ComponentNode {
   props: PageNodeProps
 }
 
+export interface SectionViewShape {
+  viewDisplayName: string
+  key: string
+  id: string
+  path: string
+}
+
 export interface LeftOrRightSectionNodeProps {
   showFoldIcon: boolean
   currentViewIndex: number
   viewSortedKey: string[]
+  sectionViewConfigs: SectionViewShape[]
 }
 
 export interface HeaderOrBottomSectionNodeProps {
   currentViewIndex: number
   viewSortedKey: string[]
+  sectionViewConfigs: SectionViewShape[]
 }
+
+export type SectionNodeProps =
+  | LeftOrRightSectionNodeProps
+  | HeaderOrBottomSectionNodeProps
 
 export interface SectionNode extends ComponentNode {
   type: "SECTION_NODE"
-  props: LeftOrRightSectionNodeProps | HeaderOrBottomSectionNodeProps
+  props: SectionNodeProps
 }
 
 export type ComponentsState = ComponentNode | null
@@ -160,4 +173,15 @@ export interface AddTargetPageSectionPayload {
     | "headerSection"
     | "footerSection"
   options: Record<string, any>
+}
+
+export interface AddSectionViewPayload {
+  parentNodeName: string
+  containerNode: ComponentNode
+  newSectionViewConfig: SectionViewShape
+}
+
+export interface DeleteSectionViewPayload {
+  viewDisplayName: string
+  parentNodeName: string
 }
