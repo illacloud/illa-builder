@@ -95,8 +95,9 @@ async function handleStartExecutionOnCanvas(
   const rootState = listenerApi.getState()
   const oldExecutionTree = getExecutionResult(rootState)
   if (executionTree) {
-    const executionResult =
-      executionTree.updateTreeFromExecution(oldExecutionTree)
+    const executionResult = executionTree.updateTreeFromExecution(
+      oldExecutionTree,
+    )
     const evaluatedTree = executionResult.evaluatedTree
     const updates = diff(oldExecutionTree, evaluatedTree) || []
     listenerApi.dispatch(
@@ -126,6 +127,7 @@ export function setupExecutionListeners(
         componentsActions.addPageNodeWithSortOrderReducer,
         componentsActions.updateRootNodePropsReducer,
         componentsActions.updateTargetPageLayoutReducer,
+        componentsActions.deletePageNodeReducer,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,

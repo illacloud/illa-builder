@@ -64,10 +64,15 @@ export const Shortcut: FC = ({ children }) => {
   )
 
   // shortcut
-  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] =
-    useState<boolean>(false)
+  const [alreadyShowDeleteDialog, setAlreadyShowDeleteDialog] = useState<
+    boolean
+  >(false)
 
-  const showDeleteDialog = (displayName: string[]) => {
+  const showDeleteDialog = (
+    displayName: string[],
+    type?: "widget" | "page",
+    options?: Record<string, any>,
+  ) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
       const textList = displayName.join(", ").toString()
       setAlreadyShowDeleteDialog(true)
@@ -90,6 +95,15 @@ export const Shortcut: FC = ({ children }) => {
         },
         onOk: () => {
           setAlreadyShowDeleteDialog(false)
+          if (type === "page") {
+            dispatch(
+              componentsActions.deletePageNodeReducer({
+                displayName: displayName[0],
+                originPageSortedKey: options?.originPageSortedKey || [],
+              }),
+            )
+            return
+          }
           dispatch(
             componentsActions.deleteComponentNodeReducer({
               displayNames: displayName,

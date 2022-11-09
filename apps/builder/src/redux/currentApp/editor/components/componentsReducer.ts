@@ -15,6 +15,7 @@ import {
   UpdateTargetPageLayoutPayload,
   UpdateTargetPagePropsPayload,
   RootComponentNode,
+  DeletePageNodePayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -123,6 +124,51 @@ export const deleteComponentNodeReducer: CaseReducer<
   DisplayNameGenerator.removeDisplayNameMulti(allDisplayNames)
 }
 
+export const deletePageNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeletePageNodePayload>
+> = (state, action) => {
+  const { displayName } = action.payload
+  if (state == null) {
+    return
+  }
+  const rootNode = state
+  const allDisplayNames = [displayName]
+
+  const searchNode = searchDsl(rootNode, displayName)
+  if (!searchNode) return
+  const searchNodeChildNodes = searchNode.childrenNode
+  searchNodeChildNodes?.forEach((node) => {
+    allDisplayNames.push(node.displayName)
+  })
+  const parentNode = rootNode as RootComponentNode
+  const childrenNodes = parentNode.childrenNode
+  const currentIndex = childrenNodes.findIndex((value) => {
+    return value.displayName === searchNode.displayName
+  })
+  childrenNodes.splice(currentIndex, 1)
+  const indexOfSortedKey = parentNode.props.pageSortedKey.findIndex(
+    (key) => key === displayName,
+  )
+  if (indexOfSortedKey === -1) return
+  parentNode.props.pageSortedKey.splice(indexOfSortedKey, 1)
+  if (
+    indexOfSortedKey !== 0 &&
+    parentNode.props.pageSortedKey[parentNode.props.currentPageIndex] ===
+      displayName
+  ) {
+    parentNode.props.currentPageIndex = 0
+  }
+
+  if (
+    parentNode.props.homepageDisplayName === displayName ||
+    !parentNode.props.homepageDisplayName
+  ) {
+    parentNode.props.homepageDisplayName = parentNode.props.pageSortedKey[0]
+  }
+  DisplayNameGenerator.removeDisplayName(displayName)
+}
+
 export const sortComponentNodeChildrenReducer: CaseReducer<
   ComponentsState,
   PayloadAction<sortComponentNodeChildrenPayload>
@@ -195,6 +241,46 @@ export const updateComponentDisplayNameReducer: CaseReducer<
   const node = searchDsl(state, displayName)
   if (!node) return
   node.displayName = newDisplayName
+  if (Array.isArray(node.childrenNode)) {
+    node.childrenNode.forEach((child) => {
+      child.parentNode = newDisplayName
+    })
+  }
+  const parentNode = searchDsl(state, node.parentNode)
+  if (parentNode && parentNode.props) {
+    if (Array.isArray(parentNode.props.pageSortedKey)) {
+      const indexOfOldDisplayName = parentNode.props.pageSortedKey.findIndex(
+        (originDisplayName) => originDisplayName === displayName,
+      )
+      if (indexOfOldDisplayName !== -1) {
+        parentNode.props.pageSortedKey.splice(
+          indexOfOldDisplayName,
+          1,
+          newDisplayName,
+        )
+      }
+    }
+    if (Array.isArray(parentNode.props.viewSortedKey)) {
+      const indexOfOldDisplayName = parentNode.props.viewSortedKey.findIndex(
+        (originDisplayName) => originDisplayName === displayName,
+      )
+      if (indexOfOldDisplayName !== -1) {
+        parentNode.props.pageSortedKey.splice(
+          indexOfOldDisplayName,
+          1,
+          newDisplayName,
+        )
+      }
+    }
+    if (parentNode.displayName === "root" && parentNode.props) {
+      if (parentNode.props.homepageDisplayName === displayName) {
+        parentNode.props.homepageDisplayName = newDisplayName
+      }
+      if (!parentNode.props.homepageDisplayName) {
+        parentNode.props.homepageDisplayName = parentNode.props.pageSortedKey[0]
+      }
+    }
+  }
 }
 
 export const updateComponentsShape: CaseReducer<

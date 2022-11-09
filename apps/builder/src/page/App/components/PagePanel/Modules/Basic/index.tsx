@@ -14,14 +14,17 @@ export const PageBasic: FC = () => {
   const dispatch = useDispatch()
   const rootExecutionProps = useSelector(getRootNodeExecutionResult)
 
-  const { currentPageIndex, pageSortedKey, homepageDisplayName } =
-    rootExecutionProps
+  const {
+    currentPageIndex,
+    pageSortedKey,
+    homepageDisplayName,
+  } = rootExecutionProps
   const currentPageDisplayName = pageSortedKey[currentPageIndex]
 
   const isHomepage = useMemo(() => {
     return homepageDisplayName
       ? homepageDisplayName === currentPageDisplayName
-      : true
+      : currentPageDisplayName === "page1"
   }, [currentPageDisplayName, homepageDisplayName])
 
   const handleChangeIsHomePage = useCallback(

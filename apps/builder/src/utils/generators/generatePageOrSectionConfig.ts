@@ -82,6 +82,28 @@ export const generateSectionConfig = (
   }
 }
 
+export const defaultPageProps = {
+  canvasSize: "responsive",
+  canvasWidth: "auto",
+  layout: "default",
+  leftPosition: SECTION_POSITION.NONE,
+  rightPosition: SECTION_POSITION.NONE,
+  hasFooter: false,
+  hasHeader: false,
+  hasLeft: false,
+  hasRight: false,
+  leftWidth: 0,
+  rightWidth: 0,
+  topHeight: 0,
+  bottomHeight: 0,
+  isLeftFixed: true,
+  isRightFixed: true,
+  isHeaderFixed: true,
+  isFooterFixed: true,
+  showLeftFoldIcon: false,
+  showRightFoldIcon: false,
+}
+
 export const generatePageConfig = () => {
   const displayName = DisplayNameGenerator.generateDisplayName(
     "PAGE_NODE",
@@ -106,27 +128,7 @@ export const generatePageConfig = () => {
     x: -1,
     y: -1,
     z: 0,
-    props: {
-      canvasSize: "responsive",
-      canvasWidth: "auto",
-      layout: "default",
-      leftPosition: SECTION_POSITION.NONE,
-      rightPosition: SECTION_POSITION.NONE,
-      hasFooter: false,
-      hasHeader: false,
-      hasLeft: false,
-      hasRight: false,
-      leftWidth: 0,
-      rightWidth: 0,
-      topHeight: 0,
-      bottomHeight: 0,
-      isLeftFixed: true,
-      isRightFixed: true,
-      isHeaderFixed: true,
-      isFooterFixed: true,
-      showLeftFoldIcon: false,
-      showRightFoldIcon: false,
-    },
+    props: defaultPageProps,
     childrenNode: [childrenNode],
   }
 }

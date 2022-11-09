@@ -10,6 +10,8 @@ import { generatePageConfig } from "@/utils/generators/generatePageOrSectionConf
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { RootComponentNodeProps } from "@/redux/currentApp/editor/components/componentsState"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { Dropdown } from "@illa-design/dropdown"
+import { ActionMenu } from "@/page/App/components/PagePanel/Components/PanelHeader/actionMenu"
 
 export const PageItem: FC<PageItemProps> = (props) => {
   const {
@@ -18,17 +20,24 @@ export const PageItem: FC<PageItemProps> = (props) => {
     pageName,
     index,
     changeCurrentPageIndex,
+    allKeys,
   } = props
   return (
-    <div
-      css={pageItemWrapperStyle(isSelected)}
-      onClick={() => {
-        changeCurrentPageIndex(index)
-      }}
+    <Dropdown
+      position="bottom-start"
+      trigger="contextmenu"
+      dropList={<ActionMenu pageDisplayName={pageName} pageKeys={allKeys} />}
     >
-      <span css={pageNameStyle}>{pageName}</span>
-      {isHomePage && <HomepageIcon css={homePageIconStyle} />}
-    </div>
+      <div
+        css={pageItemWrapperStyle(isSelected)}
+        onClick={() => {
+          changeCurrentPageIndex(index)
+        }}
+      >
+        <span css={pageNameStyle}>{pageName}</span>
+        {isHomePage && <HomepageIcon css={homePageIconStyle} />}
+      </div>
+    </Dropdown>
   )
 }
 
@@ -77,6 +86,7 @@ export const PageSpaceTree: FC = () => {
               pageName={key}
               key={key}
               changeCurrentPageIndex={changeCurrentPage}
+              allKeys={pageSortedKey}
             />
           )
         })}
