@@ -19,6 +19,7 @@ import {
   AddSectionViewPayload,
   DeleteSectionViewPayload,
   SectionViewShape,
+  UpdateSectionViewPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -532,6 +533,19 @@ export const addSectionViewReducer: CaseReducer<
   parentNode.childrenNode.push(containerNode)
   parentNode.props.viewSortedKey.push(containerNode.displayName)
   parentNode.props.sectionViewConfigs.push(newSectionViewConfig)
+}
+
+export const updateSectionViewPropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateSectionViewPropsPayload>
+> = (state, action) => {
+  const { parentNodeName, newProps } = action.payload
+  const parentNode = searchDsl(state, parentNodeName)
+  if (!parentNode || !parentNode.props) return
+  parentNode.props = {
+    ...parentNode.props,
+    ...newProps,
+  }
 }
 
 export const deleteSectionViewReducer: CaseReducer<

@@ -43,9 +43,7 @@ export const ViewListHeader: FC<HeaderProps> = (props) => {
 
   return (
     <div css={viewsListHeaderWrapperStyle}>
-      <span css={headerLabelStyle}>
-        {t("editor.page.label_name.default_view")}
-      </span>
+      <span css={headerLabelStyle}>{t("editor.page.label_name.views")}</span>
       <Button
         colorScheme="techPurple"
         variant="text"

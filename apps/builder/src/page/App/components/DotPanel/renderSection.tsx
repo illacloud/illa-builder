@@ -6,7 +6,7 @@ import {
   useState,
   useCallback,
 } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import {
   RenderFooterSectionProps,
@@ -46,6 +46,7 @@ import {
 import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
 import { PreIcon, NextIcon } from "@illa-design/react"
 import { motion, AnimatePresence } from "framer-motion"
+import { getExecutionResult } from "../../../../redux/currentApp/executionTree/executionSelector"
 
 export const HEADER_MIN_HEIGHT = 96
 export const FOOTER_MIN_HEIGHT = 96
@@ -57,12 +58,14 @@ export const BODY_MIN_HEIGHT = 512
 export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
     const { sectionNode, mode } = props
+    const executionResult = useSelector(getExecutionResult)
+    const sectionNodeProps = executionResult[sectionNode.displayName]
     const [containerBoundRef, containerBound] = useMeasure()
     const containerRef = useRef<HTMLDivElement>(
       null,
     ) as MutableRefObject<HTMLDivElement | null>
 
-    const { viewSortedKey, currentViewIndex } = sectionNode.props
+    const { viewSortedKey, currentViewIndex } = sectionNodeProps
     const currentViewDisplayName = viewSortedKey[currentViewIndex]
 
     const componentNode = sectionNode.childrenNode.find(

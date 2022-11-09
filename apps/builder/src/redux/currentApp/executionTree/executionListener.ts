@@ -130,6 +130,7 @@ export function setupExecutionListeners(
         componentsActions.deletePageNodeReducer,
         componentsActions.addSectionViewReducer,
         componentsActions.deleteSectionViewReducer,
+        componentsActions.updateSectionViewPropsReducer,
         actionActions.addActionItemReducer,
         actionActions.removeActionItemReducer,
         actionActions.updateActionItemReducer,

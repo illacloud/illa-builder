@@ -93,6 +93,34 @@ async function handleChangeCurrentPageWhenDelete(
   }
 }
 
+async function handleChangeCurrentSectionWhenDelete(
+  action: ReturnType<typeof componentsActions.deleteSectionViewReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const {
+    viewDisplayName,
+    originPageSortedKey,
+    parentNodeName,
+  } = action.payload
+  const rootState = listenerApi.getState()
+  const executionTree = getExecutionResult(rootState)
+  const parentNode = executionTree[parentNodeName]
+  if (!parentNode) return
+  const oldIndex = originPageSortedKey.findIndex(
+    (key) => key === viewDisplayName,
+  )
+  if (oldIndex === parentNode.currentViewIndex) {
+    listenerApi.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: parentNodeName,
+        value: {
+          currentViewIndex: 0,
+        },
+      }),
+    )
+  }
+}
+
 function handleUpdateComponentReflowEffect(
   action: AnyAction,
   listenApi: AppListenerEffectAPI,
@@ -163,6 +191,10 @@ export function setupComponentsListeners(
     startListening({
       actionCreator: componentsActions.deletePageNodeReducer,
       effect: handleChangeCurrentPageWhenDelete,
+    }),
+    startListening({
+      actionCreator: componentsActions.deleteSectionViewReducer,
+      effect: handleChangeCurrentSectionWhenDelete,
     }),
   ]
 

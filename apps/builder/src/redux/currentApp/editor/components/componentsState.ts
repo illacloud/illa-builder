@@ -184,4 +184,10 @@ export interface AddSectionViewPayload {
 export interface DeleteSectionViewPayload {
   viewDisplayName: string
   parentNodeName: string
+  originPageSortedKey: string[]
+}
+
+export interface UpdateSectionViewPropsPayload {
+  parentNodeName: string
+  newProps: Record<string, any>
 }

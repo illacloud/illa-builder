@@ -24,6 +24,7 @@ import {
   DeletePageNodePayload,
   AddSectionViewPayload,
   DeleteSectionViewPayload,
+  UpdateSectionViewPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
   UpdateComponentContainerPayload,
@@ -545,6 +546,29 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                 null,
                 [viewDisplayName],
               ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                updateWSPayload,
+              ),
+            )
+            break
+          }
+          case "updateSectionViewPropsReducer": {
+            const { parentNodeName } = payload as UpdateSectionViewPropsPayload
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, parentNodeName)
+            if (!targetNode) break
+            const updateWSPayload = transformComponentReduxPayloadToWsPayload(
+              targetNode,
             )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
