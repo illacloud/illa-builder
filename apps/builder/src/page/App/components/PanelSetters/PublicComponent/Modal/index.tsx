@@ -15,6 +15,7 @@ export const BaseModal: FC<ModalProps> = (props) => {
     children,
     _css,
     header,
+    extraElement,
   } = props
 
   const _header = useMemo(() => {
@@ -42,6 +43,7 @@ export const BaseModal: FC<ModalProps> = (props) => {
     <div css={css(modalWrapperStyle, _css)}>
       {_header}
       {renderBody}
+      {extraElement}
     </div>
   )
 }

@@ -8,6 +8,8 @@
   },
   "collision_message": "按住D或K键，将组件拖进容器",
   "create_fail": "创建失败",
+  "change_fail": "修改失败",
+  "change_success": "修改成功",
   "create_new": "创建",
   "create_new_app": "创建项目",
   "created_at": "创建于",
@@ -386,6 +388,11 @@
           "new": "新建",
           "title": "标题"
         },
+        "menu_setter": {
+          "label": "菜单 ({{number}})",
+          "new": "新建",
+          "sub": "子菜单"
+        },
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
           "incomplete_selection": "不完整的选择",
@@ -442,6 +449,7 @@
         "interaction": "交互",
         "label": "标签",
         "layout": "布局",
+        "menu": "菜单",
         "options": "选项",
         "pagination": "翻页",
         "row_selection": "行选择",
@@ -915,6 +923,9 @@
     },
     "switch": {
       "name": "开关"
+    },
+    "menu": {
+      "name": "菜单"
     },
     "table": {
       "ascend": "升序",

@@ -46,6 +46,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       `${widgetDisplayName}.${attrPath}.${index}.label`,
     )
   }, [executionResult, widgetDisplayName, attrPath, index])
+  console.log(labelName, "labelName")
 
   return (
     <span css={labelAndDragIconWrapperStyle}>
