@@ -139,7 +139,12 @@ export const PageBasic: FC = () => {
               size="small"
             />
             <SetterPadding>
-              <Input />
+              <Input
+                value={targetDefaultViewValue("leftSection")}
+                onChange={(value) => {
+                  handleChangeDefaultView(value, "leftSection")
+                }}
+              />
             </SetterPadding>
           </LeftAndRightLayout>
         </>
@@ -161,7 +166,12 @@ export const PageBasic: FC = () => {
               size="small"
             />
             <SetterPadding>
-              <Input />
+              <Input
+                value={targetDefaultViewValue("rightSection")}
+                onChange={(value) => {
+                  handleChangeDefaultView(value, "rightSection")
+                }}
+              />
             </SetterPadding>
           </LeftAndRightLayout>
         </>
@@ -183,7 +193,12 @@ export const PageBasic: FC = () => {
               size="small"
             />
             <SetterPadding>
-              <Input />
+              <Input
+                value={targetDefaultViewValue("headerSection")}
+                onChange={(value) => {
+                  handleChangeDefaultView(value, "headerSection")
+                }}
+              />
             </SetterPadding>
           </LeftAndRightLayout>
         </>
@@ -205,7 +220,12 @@ export const PageBasic: FC = () => {
               size="small"
             />
             <SetterPadding>
-              <Input />
+              <Input
+                value={targetDefaultViewValue("footerSection")}
+                onChange={(value) => {
+                  handleChangeDefaultView(value, "footerSection")
+                }}
+              />
             </SetterPadding>
           </LeftAndRightLayout>
         </>
