@@ -7,6 +7,14 @@ export const pageNameStyle = css`
   font-weight: 500;
 `
 
+export const homePageIconHotSpot = css`
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 export const homePageIconStyle = css`
   font-size: 12px;
   width: 12px;
@@ -23,6 +31,7 @@ export const pageItemWrapperStyle = (isSelected: boolean) => {
     width: 100%;
     height: 24px;
     cursor: pointer;
+    font-family: "Fira Code", monospace;
     background-color: ${isSelected
       ? globalColor(`--${illaPrefix}-techPurple-07`)
       : globalColor(`--${illaPrefix}-white-01`)};

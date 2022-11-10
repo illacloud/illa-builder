@@ -51,8 +51,8 @@ export const panelBarItemAnimation: Variants = {
 
 export const addIconHotpotStyle = css`
   font-size: 12px;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;

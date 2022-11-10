@@ -390,6 +390,7 @@ export const applyLeftAnimationWrapperStyle = (isFold: boolean) => {
     visibility: ${!isFold ? "visible" : "hidden"};
     display: flex;
     flex-direction: row;
+    position: relative;
   `
 }
 
@@ -402,3 +403,39 @@ export const applyRightAnimationWrapperStyle = (isFold: boolean) => {
     flex-direction: row-reverse;
   `
 }
+
+export const basicTipsStyle = css`
+  position: absolute;
+  padding: 2px 4px;
+  background-color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
+  border: 1px solid ${globalColor(`--${illaPrefix}-white-01`)};
+  border-radius: 4px;
+  color: white;
+  user-select: none;
+  pointer-events: none;
+  font-size: 12px;
+  overflow: hidden;
+`
+
+export const leftWidthTipsStyle = css`
+  ${basicTipsStyle};
+  right: -35px;
+  top: calc(50% - 10px);
+`
+export const rightWidthTipsStyle = css`
+  ${basicTipsStyle};
+  left: -35px;
+  top: calc(50% - 10px);
+`
+
+export const headerHeightTipsStyle = css`
+  ${basicTipsStyle};
+  bottom: -20px;
+  left: calc(50% - 18px);
+`
+
+export const footerHeightTipsStyle = css`
+  ${basicTipsStyle};
+  top: -20px;
+  left: calc(50% - 18px);
+`

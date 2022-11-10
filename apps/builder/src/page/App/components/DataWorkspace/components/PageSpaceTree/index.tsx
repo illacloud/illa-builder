@@ -1,7 +1,12 @@
 import { FC, useCallback } from "react"
 import { PanelBar } from "@/components/PanelBar"
 import { useTranslation } from "react-i18next"
-import { homePageIconStyle, pageItemWrapperStyle, pageNameStyle } from "./style"
+import {
+  homePageIconHotSpot,
+  homePageIconStyle,
+  pageItemWrapperStyle,
+  pageNameStyle,
+} from "./style"
 import { PageItemProps } from "./interface"
 import { ReactComponent as HomepageIcon } from "@/assets/dataWorkspace/homepage.svg"
 import { useDispatch, useSelector } from "react-redux"
@@ -35,7 +40,9 @@ export const PageItem: FC<PageItemProps> = (props) => {
         }}
       >
         <span css={pageNameStyle}>{pageName}</span>
-        {isHomePage && <HomepageIcon css={homePageIconStyle} />}
+        <div css={homePageIconHotSpot}>
+          {isHomePage && <HomepageIcon css={homePageIconStyle} />}
+        </div>
       </div>
     </Dropdown>
   )

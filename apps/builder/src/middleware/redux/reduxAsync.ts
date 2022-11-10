@@ -356,12 +356,12 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               addedSectionName,
             } = action.payload as AddTargetPageSectionPayload
             const pageNode = searchDsl(getCanvas(store.getState()), pageName)
-            const addSectionNode = searchDsl(
-              getCanvas(store.getState()),
-              addedSectionName,
+            if (!pageNode) break
+            const addSectionNode = pageNode.childrenNode.find(
+              (node) => node.showName === addedSectionName,
             )
+            if (!addSectionNode) break
 
-            if (!pageNode || !addSectionNode) break
             const WSPagePayload = transformComponentReduxPayloadToWsPayload(
               pageNode,
             )

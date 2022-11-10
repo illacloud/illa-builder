@@ -35,6 +35,10 @@ import {
   disabledHorizontalBarWrapperStyle,
   applyLeftAnimationWrapperStyle,
   applyRightAnimationWrapperStyle,
+  leftWidthTipsStyle,
+  rightWidthTipsStyle,
+  headerHeightTipsStyle,
+  footerHeightTipsStyle,
 } from "./style"
 import { RenderComponentCanvas } from "./renderComponentCanvas"
 import useMeasure from "react-use-measure"
@@ -47,7 +51,7 @@ import {
 import { SECTION_POSITION } from "@/redux/currentApp/editor/components/componentsState"
 import { PreIcon, NextIcon } from "@illa-design/react"
 import { motion, AnimatePresence } from "framer-motion"
-import { getExecutionResult } from "../../../../redux/currentApp/executionTree/executionSelector"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { useParams } from "react-router-dom"
 
 export const HEADER_MIN_HEIGHT = 96
@@ -55,7 +59,7 @@ export const FOOTER_MIN_HEIGHT = 96
 export const LEFT_MIN_WIDTH = 240
 export const RIGHT_MIN_WIDTH = 240
 export const BODY_MIN_WIDTH = 384
-export const BODY_MIN_HEIGHT = 512
+export const BODY_MIN_HEIGHT = 320
 
 export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
@@ -142,7 +146,8 @@ export const RenderHeaderSection = forwardRef<
     leftPosition,
     rightPosition,
   } = props
-  const isActive = useRef<boolean>(false)
+  const [isResizeActive, setIsResizeActive] = useState(false)
+  const [heightPX, setHeightPX] = useState(topHeight)
   const [containerBoundRef, containerBound] = useMeasure()
   const containerRef = useRef<HTMLDivElement>(
     null,
@@ -180,9 +185,15 @@ export const RenderHeaderSection = forwardRef<
     viewPath,
     viewSortedKey,
   ])
+
+  const handleClickMoveBar = () => {
+    setHeightPX(topHeight)
+    setIsResizeActive(true)
+  }
+
   useEffect(() => {
     const mouseMoveListener = (e: globalThis.MouseEvent) => {
-      if (isActive.current) {
+      if (isResizeActive) {
         const { clientY } = e
         let currentPointPositionY = clientY - offsetTop
         let otherPanelHeightPX = footerHeight
@@ -206,6 +217,7 @@ export const RenderHeaderSection = forwardRef<
           currentPointPositionY =
             containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
         }
+        setHeightPX(currentPointPositionY)
         dispatch(
           componentsActions.updateTargetPagePropsReducer({
             pageName: currentPageDisplayName,
@@ -219,7 +231,7 @@ export const RenderHeaderSection = forwardRef<
     }
 
     const mouseUpListener = () => {
-      isActive.current = false
+      setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
     document.addEventListener("mouseup", mouseUpListener)
@@ -232,6 +244,7 @@ export const RenderHeaderSection = forwardRef<
     currentPageDisplayName,
     dispatch,
     footerHeight,
+    isResizeActive,
     offsetTop,
   ])
   const [isInSection, setIsInSection] = useState(false)
@@ -312,10 +325,6 @@ export const RenderHeaderSection = forwardRef<
     (node) => node.displayName === currentViewDisplayName,
   )
 
-  const handleClickMoveBar = () => {
-    isActive.current = true
-  }
-
   return (
     <div
       css={applyHeaderSectionWrapperStyle(`${topHeight}px`, "240px", "500px")}
@@ -325,6 +334,7 @@ export const RenderHeaderSection = forwardRef<
     >
       {isInSection &&
         mode === "edit" &&
+        !isResizeActive &&
         (leftPosition === SECTION_POSITION.TOP ||
           leftPosition === SECTION_POSITION.FULL) && (
           <ChangeLayoutLeftBar
@@ -335,6 +345,7 @@ export const RenderHeaderSection = forwardRef<
         )}
       {isInSection &&
         mode === "edit" &&
+        !isResizeActive &&
         (rightPosition === SECTION_POSITION.TOP ||
           rightPosition === SECTION_POSITION.FULL) && (
           <ChangeLayoutRightBar
@@ -370,6 +381,9 @@ export const RenderHeaderSection = forwardRef<
           <div css={resizeVerticalBarStyle} draggable={false} />
         </div>
       )}
+      {isResizeActive && (
+        <div css={headerHeightTipsStyle}>{heightPX.toFixed(0)}px</div>
+      )}
     </div>
   )
 })
@@ -391,6 +405,8 @@ export const RenderFooterSection = forwardRef<
     rightPosition,
   } = props
   const executionResult = useSelector(getExecutionResult)
+  const [isResizeActive, setIsResizeActive] = useState(false)
+  const [heightPX, setHeightPX] = useState(bottomHeight)
   const sectionNodeProps = executionResult[sectionNode.displayName] || {}
   const {
     viewSortedKey,
@@ -431,17 +447,16 @@ export const RenderFooterSection = forwardRef<
     null,
   ) as MutableRefObject<HTMLDivElement | null>
 
-  const isActive = useRef<boolean>(false)
-
   const dispatch = useDispatch()
 
   const handleClickMoveBar = () => {
-    isActive.current = true
+    setHeightPX(bottomHeight)
+    setIsResizeActive(true)
   }
 
   useEffect(() => {
     const mouseMoveListener = (e: globalThis.MouseEvent) => {
-      if (isActive.current) {
+      if (isResizeActive) {
         const { clientY } = e
         let currentPointPositionY = containerHeight - (clientY - offsetTop)
         let otherPanelHeightPX = headerHeight
@@ -466,6 +481,7 @@ export const RenderFooterSection = forwardRef<
           currentPointPositionY =
             containerHeight - BODY_MIN_HEIGHT - otherPanelHeightPX
         }
+        setHeightPX(currentPointPositionY)
         dispatch(
           componentsActions.updateTargetPagePropsReducer({
             pageName: currentPageDisplayName,
@@ -479,7 +495,7 @@ export const RenderFooterSection = forwardRef<
     }
 
     const mouseUpListener = () => {
-      isActive.current = false
+      setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
     document.addEventListener("mouseup", mouseUpListener)
@@ -492,6 +508,7 @@ export const RenderFooterSection = forwardRef<
     currentPageDisplayName,
     dispatch,
     headerHeight,
+    isResizeActive,
     offsetTop,
   ])
 
@@ -581,6 +598,7 @@ export const RenderFooterSection = forwardRef<
     >
       {isInSection &&
         mode === "edit" &&
+        !isResizeActive &&
         (leftPosition === SECTION_POSITION.BOTTOM ||
           leftPosition === SECTION_POSITION.FULL) && (
           <ChangeLayoutLeftBar
@@ -591,6 +609,7 @@ export const RenderFooterSection = forwardRef<
         )}
       {isInSection &&
         mode === "edit" &&
+        !isResizeActive &&
         (rightPosition === SECTION_POSITION.BOTTOM ||
           rightPosition === SECTION_POSITION.FULL) && (
           <ChangeLayoutRightBar
@@ -625,6 +644,9 @@ export const RenderFooterSection = forwardRef<
         >
           <div css={resizeVerticalBarStyle} draggable={false} />
         </div>
+      )}
+      {isResizeActive && (
+        <div css={footerHeightTipsStyle}>{heightPX.toFixed(0)}px</div>
       )}
     </div>
   )
@@ -682,7 +704,8 @@ export const RenderLeftSection = forwardRef<
   ])
   const [isInSection, setIsInSection] = useState(false)
   const [animationComplete, setAnimationComplete] = useState(true)
-  const isActive = useRef<boolean>(false)
+  const [isResizeActive, setIsResizeActive] = useState(false)
+  const [presetWidth, setPresetWidth] = useState(0)
 
   const componentNode = sectionNode.childrenNode.find(
     (node) => node.displayName === currentViewDisplayName,
@@ -696,12 +719,14 @@ export const RenderLeftSection = forwardRef<
   const dispatch = useDispatch()
 
   const handleClickMoveBar = () => {
-    isActive.current = true
+    const presetWidth = (leftWidth / containerWidth) * 100
+    setPresetWidth(presetWidth)
+    setIsResizeActive(true)
   }
 
   useEffect(() => {
     const mouseMoveListener = (e: globalThis.MouseEvent) => {
-      if (isActive.current) {
+      if (isResizeActive) {
         const { clientX } = e
         let currentPointPositionX = clientX - offsetLeft
         let otherPanelWidthPX = rightWidth
@@ -725,6 +750,7 @@ export const RenderLeftSection = forwardRef<
         }
         const presetWidth = (currentPointPositionX / containerWidth) * 100
         const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
+        setPresetWidth(presetWidth)
         dispatch(
           componentsActions.updateTargetPagePropsReducer({
             pageName: currentPageDisplayName,
@@ -738,7 +764,7 @@ export const RenderLeftSection = forwardRef<
     }
 
     const mouseUpListener = () => {
-      isActive.current = false
+      setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
     document.addEventListener("mouseup", mouseUpListener)
@@ -746,7 +772,14 @@ export const RenderLeftSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerWidth, currentPageDisplayName, dispatch, offsetLeft, rightWidth])
+  }, [
+    containerWidth,
+    currentPageDisplayName,
+    dispatch,
+    isResizeActive,
+    offsetLeft,
+    rightWidth,
+  ])
 
   const onMouseEnter = useCallback(() => {
     setIsInSection(true)
@@ -812,6 +845,7 @@ export const RenderLeftSection = forwardRef<
       <div css={applyLeftAnimationWrapperStyle(isFold)}>
         {isInSection &&
           mode === "edit" &&
+          !isResizeActive &&
           (leftPosition === SECTION_POSITION.BOTTOM ||
             leftPosition === SECTION_POSITION.CENTER) && (
             <ChangeLayoutTopBar
@@ -822,6 +856,7 @@ export const RenderLeftSection = forwardRef<
           )}
         {isInSection &&
           mode === "edit" &&
+          !isResizeActive &&
           (leftPosition === SECTION_POSITION.TOP ||
             leftPosition === SECTION_POSITION.CENTER) && (
             <ChangeLayoutBottomBar
@@ -870,6 +905,9 @@ export const RenderLeftSection = forwardRef<
           >
             <div css={resizeHorizontalBarStyle} />
           </div>
+        )}
+        {isResizeActive && (
+          <div css={leftWidthTipsStyle}>{presetWidth.toFixed(0)}%</div>
         )}
       </div>
 
@@ -970,19 +1008,22 @@ export const RenderRightSection = forwardRef<
     null,
   ) as MutableRefObject<HTMLDivElement | null>
 
-  const isActive = useRef<boolean>(false)
+  const [isResizeActive, setIsResizeActive] = useState(false)
+  const [presetWidth, setPresetWidth] = useState(0)
   const [isInSection, setIsInSection] = useState(false)
   const [animationComplete, setAnimationComplete] = useState(true)
 
   const dispatch = useDispatch()
 
   const handleClickMoveBar = () => {
-    isActive.current = true
+    const presetWidth = (rightWidth / containerWidth) * 100
+    setPresetWidth(presetWidth)
+    setIsResizeActive(true)
   }
 
   useEffect(() => {
     const mouseMoveListener = (e: globalThis.MouseEvent) => {
-      if (isActive.current) {
+      if (isResizeActive) {
         const { clientX } = e
         let otherPanelWidthPX = leftWidth
         let currentPointPositionX = containerWidth - (clientX - offsetLeft)
@@ -1006,6 +1047,7 @@ export const RenderRightSection = forwardRef<
         }
         const presetWidth = (currentPointPositionX / containerWidth) * 100
         const otherPanelWidth = (otherPanelWidthPX / containerWidth) * 100
+        setPresetWidth(presetWidth)
 
         dispatch(
           componentsActions.updateTargetPagePropsReducer({
@@ -1020,7 +1062,7 @@ export const RenderRightSection = forwardRef<
     }
 
     const mouseUpListener = () => {
-      isActive.current = false
+      setIsResizeActive(false)
     }
     document.addEventListener("mousemove", mouseMoveListener)
     document.addEventListener("mouseup", mouseUpListener)
@@ -1028,7 +1070,14 @@ export const RenderRightSection = forwardRef<
       document.removeEventListener("mousemove", mouseMoveListener)
       document.removeEventListener("mouseup", mouseUpListener)
     }
-  }, [containerWidth, currentPageDisplayName, dispatch, leftWidth, offsetLeft])
+  }, [
+    containerWidth,
+    currentPageDisplayName,
+    dispatch,
+    isResizeActive,
+    leftWidth,
+    offsetLeft,
+  ])
 
   const onMouseEnter = useCallback(() => {
     setIsInSection(true)
@@ -1094,6 +1143,7 @@ export const RenderRightSection = forwardRef<
       <div css={applyRightAnimationWrapperStyle(isFold)}>
         {isInSection &&
           mode === "edit" &&
+          !isResizeActive &&
           (rightPosition === SECTION_POSITION.BOTTOM ||
             rightPosition === SECTION_POSITION.CENTER) && (
             <ChangeLayoutTopBar
@@ -1104,6 +1154,7 @@ export const RenderRightSection = forwardRef<
           )}
         {isInSection &&
           mode === "edit" &&
+          !isResizeActive &&
           (rightPosition === SECTION_POSITION.TOP ||
             rightPosition === SECTION_POSITION.CENTER) && (
             <ChangeLayoutBottomBar
@@ -1153,6 +1204,9 @@ export const RenderRightSection = forwardRef<
           >
             <div css={resizeHorizontalBarStyle} />
           </div>
+        )}
+        {isResizeActive && (
+          <div css={rightWidthTipsStyle}>{presetWidth.toFixed(0)}%</div>
         )}
       </div>
 

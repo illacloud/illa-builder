@@ -12,7 +12,7 @@ export const layoutSelectWrapperStyle = css`
 export const layoutOptionsPanelWrapperStyle = css`
   padding: 16px;
   background-color: ${globalColor(`--${illaPrefix}-white-01`)};
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   display: grid;
   gap: 16px;
@@ -40,6 +40,7 @@ export const applyLayoutOptionItemIconStyle = (isSelected: boolean) => {
         ? globalColor(`--${illaPrefix}-techPurple-01`)
         : "transparent"};
     cursor: pointer;
+    transition: all 0.2s ease-in-out 0s;
     :hover {
       border: 1px solid ${globalColor(`--${illaPrefix}-techPurple-01`)};
       box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
