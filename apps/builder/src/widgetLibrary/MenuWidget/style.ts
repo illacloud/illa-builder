@@ -1,6 +1,9 @@
 import { css, SerializedStyles } from "@emotion/react"
 import { globalColor, illaPrefix } from "@illa-design/theme"
-import { MenuMode } from "@/widgetLibrary/MenuWidget/interface"
+import {
+  MenuHorizontalAlign,
+  MenuMode,
+} from "@/widgetLibrary/MenuWidget/interface"
 
 export const menuItemLabelStyle = css`
   display: inline-flex;

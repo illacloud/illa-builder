@@ -110,28 +110,12 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
         ],
       },
       {
-        id: `${baseWidgetName}-layout-layout`,
-        labelName: i18n.t("editor.inspect.setter_label.layout"),
-        setterType: "RADIO_GROUP_SETTER",
-        attrName: "tabPosition",
-        options: [
-          {
-            label: <HorizontalStartIcon />,
-            value: "horizontal",
-          },
-          {
-            label: <VerticalStartIcon />,
-            value: "vertical",
-          },
-        ],
-      },
-      {
         id: `${baseWidgetName}-layout-align`,
         labelName: i18n.t("editor.inspect.setter_label.align"),
-        attrName: "align",
+        attrName: "horizontalAlign",
         setterType: "RADIO_GROUP_SETTER",
-        bindAttrName: ["tabPosition"],
-        shown: (tabPosition) => tabPosition === "horizontal",
+        bindAttrName: ["mode"],
+        shown: (mode) => mode === "horizontal",
         options: [
           {
             label: <HorizontalStartIcon />,

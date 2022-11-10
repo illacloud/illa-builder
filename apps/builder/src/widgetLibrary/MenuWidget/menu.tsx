@@ -1,16 +1,20 @@
-import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
+import { FC, forwardRef, useCallback, useEffect, useRef } from "react"
 import { Menu } from "@illa-design/menu"
 import { MenuWidgetProps, WrappedMenuProps } from "./interface"
-import { css } from "@emotion/react"
 import { MenuItemLabel } from "@/widgetLibrary/MenuWidget/MenuItemLabel"
 
 export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
   (props, ref) => {
-    const { menuList, mode } = props
+    const { menuList, mode, horizontalAlign, onClickSubMenu } = props
     const { Item, SubMenu } = Menu
 
     return (
-      <Menu mode={mode} ref={ref}>
+      <Menu
+        mode={mode}
+        ref={ref}
+        horizontalAlign={horizontalAlign}
+        onClickSubMenu={onClickSubMenu}
+      >
         {menuList?.map((item) => {
           if (item.hidden) return null
           if (item.subMenu) {
@@ -50,6 +54,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     emptyState,
     pageSize,
     displayName,
+    horizontalAlign,
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
@@ -70,19 +75,29 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
 
   const wrapperRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  const updateHeight = useCallback(() => {
     if (wrapperRef.current) {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
-  }, [mode])
+  }, [updateComponentHeight])
+
+  useEffect(() => {
+    updateHeight()
+  }, [mode, updateHeight])
 
   return (
     <div ref={wrapperRef}>
       <WrappedMenu
         mode={mode}
+        horizontalAlign={horizontalAlign}
         menuList={menuList}
         emptyState={emptyState}
         pageSize={pageSize}
+        onClickSubMenu={() => {
+          setTimeout(() => {
+            updateHeight()
+          }, 180)
+        }}
       />
     </div>
   )
