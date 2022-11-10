@@ -9,7 +9,6 @@ import { ShortCutContext } from "@/utils/shortcut/shortcutProvider"
 import { searchDSLByDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
 import { defaultPageProps } from "@/utils/generators/generatePageOrSectionConfig"
-import { Message } from "@illa-design/react"
 
 const { Item } = DropList
 
@@ -40,20 +39,21 @@ export const ActionMenu: FC<PanelHeaderActionProps> = (props) => {
         title={t("editor.inspect.header.action_menu.reset_state")}
         onClick={handleClickDropListItem}
       />
-      <Item
-        key="delete"
-        title={t("editor.inspect.header.action_menu.delete")}
-        fontColor={globalColor(`--${illaPrefix}-red-03`)}
-        onClick={() => {
-          if (pageKeys.length === 1) {
-            Message.warning("不能删除")
-            return
-          }
-          shortcut.showDeleteDialog([pageDisplayName], "page", {
-            originPageSortedKey: pageKeys,
-          })
-        }}
-      />
+      {pageKeys.length > 1 && (
+        <Item
+          key="delete"
+          title={t("editor.inspect.header.action_menu.delete")}
+          fontColor={globalColor(`--${illaPrefix}-red-03`)}
+          onClick={() => {
+            if (pageKeys.length === 1) {
+              return
+            }
+            shortcut.showDeleteDialog([pageDisplayName], "page", {
+              originPageSortedKey: pageKeys,
+            })
+          }}
+        />
+      )}
     </DropList>
   )
 }
