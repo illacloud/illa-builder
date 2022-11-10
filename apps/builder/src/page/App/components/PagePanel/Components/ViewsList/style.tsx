@@ -7,13 +7,14 @@ export const viewsListWrapperStyle = css`
   border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   border-radius: 8px;
   overflow: hidden;
+  width: 287px;
 `
 
 export const viewsListHeaderWrapperStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 287px;
+  width: 100%;
   height: 40px;
   padding: 8px 8px 8px 16px;
   background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
@@ -85,7 +86,7 @@ export const deleteIconStyle = css`
 
 export const itemWrapperStyle = css`
   display: flex;
-  width: 287px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   padding: 9px 16px 9px 0;
