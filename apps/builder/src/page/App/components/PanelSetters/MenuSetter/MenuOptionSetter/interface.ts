@@ -1,19 +1,13 @@
 import { BaseSetter } from "@/page/App/components/PanelSetters/interface"
-import {
-  PanelFieldConfig,
-  PanelLabelProps,
-} from "@/page/App/components/InspectPanel/interface"
-import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
-import { ColumnsSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/columsSelectSetter"
+import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import { MenuList, SubMenu } from "@/widgetLibrary/MenuWidget/interface"
-import { SubMenuLabel } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/subMenuLabel"
 
 export interface HeaderProps {
   labelName: string
   handleAddOption: () => void
 }
 
-export interface ColumnItemProps extends MenuList {
+export interface MenuItemProps extends MenuList {
   index: number
 }
 
@@ -30,15 +24,4 @@ export interface SubMenuLabelProps extends SubMenu {
 export interface ColumnListSetterProps extends BaseSetter {
   value: MenuList[]
   childrenSetter?: PanelFieldConfig[]
-}
-
-export interface DragItem {
-  index: number
-  id: string
-  type: string
-}
-
-export interface ActionMenuProps {
-  index: number
-  handleCloseMode: () => void
 }

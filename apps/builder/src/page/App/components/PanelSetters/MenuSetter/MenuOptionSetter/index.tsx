@@ -8,8 +8,8 @@ import {
   ListStyle,
   optionListHeaderStyle,
 } from "./style"
-import { generateNewMenuItem } from "./utils/generateNewColumns"
-import { ColumnsSetterProvider } from "./context/columnListContext"
+import { generateNewMenuItem } from "./utils/generateNewMenu"
+import { MenusSetterProvider } from "./context/menuListContext"
 import { useTranslation } from "react-i18next"
 import { AddIcon } from "@illa-design/icon"
 
@@ -35,7 +35,7 @@ export const MenuOptionSetter: FC<ColumnListSetterProps> = (props) => {
   }
 
   return (
-    <ColumnsSetterProvider
+    <MenusSetterProvider
       childrenSetter={childrenSetter}
       widgetDisplayName={widgetDisplayName}
       columnItems={value}
@@ -56,7 +56,7 @@ export const MenuOptionSetter: FC<ColumnListSetterProps> = (props) => {
         </div>
         <ListBody />
       </div>
-    </ColumnsSetterProvider>
+    </MenusSetterProvider>
   )
 }
 

@@ -13,14 +13,14 @@ import {
 } from "./style"
 import { SubMenuLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { ColumnListSetterContext } from "./context/columnListContext"
+import { MenuListSetterContext } from "./context/menuListContext"
 import { Button } from "@illa-design/button"
 
 export const SubMenuLabel: FC<SubMenuLabelProps> = (props) => {
   const { index, subIndex, title, attrPath } = props
   const [modalVisible, setModalVisible] = useState(false)
   const { widgetDisplayName, childrenSetter, handleDeleteSubMenuItem } =
-    useContext(ColumnListSetterContext)
+    useContext(MenuListSetterContext)
 
   const { t } = useTranslation()
 

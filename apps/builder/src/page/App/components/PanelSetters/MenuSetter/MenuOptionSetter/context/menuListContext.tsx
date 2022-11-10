@@ -3,7 +3,7 @@ import { PanelFieldConfig } from "@/page/App/components/InspectPanel/interface"
 import {
   generateMenuItemId,
   generateNewSubMenuItem,
-} from "../utils/generateNewColumns"
+} from "../utils/generateNewMenu"
 import { MenuList } from "@/widgetLibrary/MenuWidget/interface"
 
 interface ProviderProps {
@@ -21,12 +21,11 @@ interface Inject extends Omit<ProviderProps, "children"> {
   handleAddSubMenuItem: (index: number) => void
   handleDeleteSubMenuItem: (index: number, subIndex: number) => void
   handleMoveColumnItem: (dragIndex: number, hoverIndex: number) => void
-  handleUpdateItemVisible: (attrName: string, visible?: boolean) => void
 }
 
-export const ColumnListSetterContext = createContext<Inject>({} as Inject)
+export const MenuListSetterContext = createContext<Inject>({} as Inject)
 
-export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
+export const MenusSetterProvider: FC<ProviderProps> = (props) => {
   const { columnItems, attrPath, handleUpdateDsl } = props
 
   const handleDeleteMenuItem = useCallback(
@@ -99,28 +98,20 @@ export const ColumnsSetterProvider: FC<ProviderProps> = (props) => {
     [attrPath, columnItems, handleUpdateDsl],
   )
 
-  const handleUpdateItemVisible = useCallback(
-    (attrName: string, visible?: boolean) => {
-      handleUpdateDsl(attrName, visible)
-    },
-    [handleUpdateDsl],
-  )
-
   const value = {
     ...props,
     handleDeleteMenuItem,
     handleCopyColumnItem,
     handleMoveColumnItem,
     handleAddSubMenuItem,
-    handleUpdateItemVisible,
     handleDeleteSubMenuItem,
   }
 
   return (
-    <ColumnListSetterContext.Provider value={value}>
+    <MenuListSetterContext.Provider value={value}>
       {props.children}
-    </ColumnListSetterContext.Provider>
+    </MenuListSetterContext.Provider>
   )
 }
 
-ColumnsSetterProvider.displayName = "ColumnsSetterProvider"
+MenusSetterProvider.displayName = "ColumnsSetterProvider"

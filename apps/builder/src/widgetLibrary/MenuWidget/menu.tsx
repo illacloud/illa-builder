@@ -4,26 +4,31 @@ import { MenuWidgetProps, WrappedMenuProps } from "./interface"
 import { css } from "@emotion/react"
 import { MenuItemLabel } from "@/widgetLibrary/MenuWidget/MenuItemLabel"
 
-export const WrappedMenu = forwardRef<HTMLInputElement, WrappedMenuProps>(
+export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
   (props, ref) => {
     const { menuList, mode } = props
     const { Item, SubMenu } = Menu
 
     return (
-      <Menu mode={mode}>
-        {menuList?.map((item, index) => {
+      <Menu mode={mode} ref={ref}>
+        {menuList?.map((item) => {
+          if (item.hidden) return null
           if (item.subMenu) {
             return (
               <SubMenu
                 key={item.id}
                 title={<MenuItemLabel title={item.title} icon={item.icon} />}
               >
-                {item.subMenu.map((subItem, index) => {
+                {item.subMenu.map((subItem) => {
+                  if (subItem.hidden) return null
                   return (
                     <Item
-                      key={subItem.title}
+                      key={subItem.id}
                       title={
-                        <MenuItemLabel title={item.title} icon={item.icon} />
+                        <MenuItemLabel
+                          title={subItem.title}
+                          icon={subItem.icon}
+                        />
                       }
                     />
                   )
@@ -70,10 +75,6 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
       updateComponentHeight(wrapperRef.current?.clientHeight)
     }
   }, [mode])
-
-  const menu = useMemo(() => {
-    menuList?.map((item, index) => {})
-  }, [menuList])
 
   return (
     <div ref={wrapperRef}>

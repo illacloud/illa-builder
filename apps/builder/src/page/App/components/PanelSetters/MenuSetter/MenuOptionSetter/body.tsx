@@ -1,13 +1,13 @@
 import { FC, useContext } from "react"
-import { Reorder, useDragControls } from "framer-motion"
-import { ColumnListSetterContext } from "./context/columnListContext"
+import { Reorder } from "framer-motion"
+import { MenuListSetterContext } from "./context/menuListContext"
 import { EmptyBody } from "./empty"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
-import { ColumnItem } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/columnItem"
+import { MenuItem } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/menuItem"
 
 export const ListBody: FC = () => {
   const { columnItems, handleUpdateDsl, attrPath } = useContext(
-    ColumnListSetterContext,
+    MenuListSetterContext,
   )
 
   if (!columnItems || !Array.isArray(columnItems) || columnItems.length === 0)
@@ -32,7 +32,7 @@ export const ListBody: FC = () => {
             key={item.id}
             value={item}
           >
-            <ColumnItem {...item} index={index} />
+            <MenuItem {...item} index={index} />
           </Reorder.Item>
         )
       })}

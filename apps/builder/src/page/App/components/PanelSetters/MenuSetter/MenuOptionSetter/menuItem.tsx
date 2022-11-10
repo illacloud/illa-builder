@@ -1,14 +1,14 @@
 import { FC, useContext } from "react"
-import { ColumnItemProps } from "./interface"
+import { MenuItemProps } from "./interface"
 import { optionListItemStyle } from "./style"
 import { DragIconAndLabel } from "./dragIconAndLabel"
 import { Reorder } from "framer-motion"
 import { removeNativeStyle } from "@/page/App/components/PanelSetters/TableSetter/ColumnSetter/style"
-import { ColumnListSetterContext } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/context/columnListContext"
+import { MenuListSetterContext } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/context/menuListContext"
 import { SubMenuLabel } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter/subMenuLabel"
 
-export const ColumnItem: FC<ColumnItemProps> = (props) => {
-  const { handleUpdateDsl, attrPath } = useContext(ColumnListSetterContext)
+export const MenuItem: FC<MenuItemProps> = (props) => {
+  const { handleUpdateDsl, attrPath } = useContext(MenuListSetterContext)
   const { title, id, disabled, icon, subMenu, index } = props
 
   return (
@@ -55,3 +55,5 @@ export const ColumnItem: FC<ColumnItemProps> = (props) => {
     </div>
   )
 }
+
+MenuItem.displayName = "MenuItem"

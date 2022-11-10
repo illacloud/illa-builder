@@ -13,7 +13,7 @@ import {
 } from "./style"
 import { DragIconAndLabelProps } from "./interface"
 import { BaseModal } from "@/page/App/components/PanelSetters/PublicComponent/Modal"
-import { ColumnListSetterContext } from "./context/columnListContext"
+import { MenuListSetterContext } from "./context/menuListContext"
 import { Button } from "@illa-design/button"
 
 export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
@@ -23,12 +23,9 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
     widgetDisplayName,
     attrPath,
     childrenSetter,
-    handleUpdateItemVisible,
     handleAddSubMenuItem,
     handleDeleteMenuItem,
-  } = useContext(ColumnListSetterContext)
-
-  console.log(childrenSetter, "childrenSetter")
+  } = useContext(MenuListSetterContext)
 
   const { t } = useTranslation()
 

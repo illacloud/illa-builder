@@ -3,7 +3,7 @@ import { globalColor, illaPrefix } from "@illa-design/theme"
 import { MenuMode } from "@/widgetLibrary/MenuWidget/interface"
 
 export const menuItemLabelStyle = css`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 `

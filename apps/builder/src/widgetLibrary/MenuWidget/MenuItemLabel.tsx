@@ -10,7 +10,7 @@ export const MenuItemLabel: FC<MenuItemLabelProps> = (props) => {
   return (
     <span css={menuItemLabelStyle}>
       {icon ? (
-        <img css={applyMenuItemIconStyle(mode)} src={icon} alt={title} />
+        <img css={applyMenuItemIconStyle(mode)} src={icon} alt="icon" />
       ) : null}
       {title}
     </span>
