@@ -11,6 +11,7 @@ export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
       horizontalAlign,
       selectedKeys,
       onClickSubMenu,
+      handleOnClickMenuItem,
       handleUpdateOriginalDSLMultiAttr,
     } = props
     const { Item, SubMenu } = Menu
@@ -22,9 +23,27 @@ export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
         selectedKeys={selectedKeys}
         horizontalAlign={horizontalAlign}
         onClickSubMenu={onClickSubMenu}
-        onClickMenuItem={(value) => {
-          handleUpdateOriginalDSLMultiAttr({
-            selectedKeys: value,
+        onClickMenuItem={(key) => {
+          let path = ""
+          menuList?.forEach((item, index) => {
+            if (item.id === key) {
+              path = `menuList.${index}.events`
+              return
+            }
+            item?.subMenu?.forEach((subItem, subIndex) => {
+              if (subItem.id === key) {
+                path = `menuList.${index}.subMenu.${subIndex}.events`
+                return
+              }
+            })
+          })
+          new Promise((resolve) => {
+            handleUpdateOriginalDSLMultiAttr({
+              selectedKeys: key,
+            })
+            resolve(true)
+          }).then(() => {
+            handleOnClickMenuItem?.(path)
           })
         }}
       >
@@ -73,7 +92,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     updateComponentHeight,
-    handleUpdateOriginalDSLMultiAttr,
+    ...rest
   } = props
 
   useEffect(() => {
@@ -103,13 +122,13 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   return (
     <div ref={wrapperRef}>
       <WrappedMenu
+        {...rest}
         mode={mode}
         selectedKeys={selectedKeys}
         horizontalAlign={horizontalAlign}
         menuList={menuList}
         emptyState={emptyState}
         pageSize={pageSize}
-        handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
         onClickSubMenu={() => {
           setTimeout(() => {
             updateHeight()
