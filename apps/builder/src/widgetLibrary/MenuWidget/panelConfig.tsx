@@ -67,21 +67,6 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
     ],
   },
   {
-    id: `${baseWidgetName}-interaction`,
-    groupName: i18n.t("editor.inspect.setter_group.interaction"),
-    children: [
-      {
-        id: `${baseWidgetName}-interaction-disabled`,
-        labelName: i18n.t("editor.inspect.setter_label.disabled"),
-        labelDesc: i18n.t("editor.inspect.setter_tooltip.disabled"),
-        attrName: "disabled",
-        setterType: "INPUT_SETTER",
-        placeholder: "{{false}}",
-        expectedType: VALIDATION_TYPES.BOOLEAN,
-      },
-    ],
-  },
-  {
     id: `${baseWidgetName}-layout`,
     groupName: i18n.t("editor.inspect.setter_group.layout"),
     children: [
@@ -128,28 +113,6 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
           {
             label: <HorizontalEndIcon />,
             value: "flex-end",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: `${baseWidgetName}-style`,
-    groupName: i18n.t("editor.inspect.setter_group.style"),
-    children: [
-      {
-        id: `${baseWidgetName}-style-color`,
-        setterType: "LIST_SETTER",
-        labelName: i18n.t("editor.inspect.setter_label.colors"),
-        attrName: "styles",
-        useCustomLayout: true,
-        childrenSetter: [
-          {
-            id: `${baseWidgetName}-style-color`,
-            labelName: i18n.t("editor.inspect.setter_label.text"),
-            setterType: "COLOR_PICKER_SETTER",
-            attrName: "colorScheme",
-            defaultValue: "blue",
           },
         ],
       },

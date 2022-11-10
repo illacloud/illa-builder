@@ -5,53 +5,31 @@ import i18n from "@/i18n/config"
 const menuList = [
   {
     id: "1",
-    title: "title",
-    icon: "icon",
-    hidden: true,
-    disabled: true,
+    title: "Menu 1",
     subMenu: [
       {
         id: "1-1",
-        title: "1111",
-        icon: "icon",
-        hidden: true,
-        disabled: true,
+        title: "SubMenu 1",
       },
       {
         id: "1-2",
-        title: "2222",
-        icon: "icon",
-        hidden: true,
-        disabled: true,
+        title: "SubMenu 2",
       },
     ],
   },
   {
     id: "2",
-    title: "answer",
-    icon: "icon",
-    hidden: true,
-    disabled: true,
+    title: "Menu 2",
     subMenu: [
       {
         id: "2-1",
-        title: "abcd",
-        icon: "icon",
-        hidden: true,
-        disabled: true,
+        title: "SubMenu 1",
       },
       {
         id: "2-2",
-        title: "edfg",
-        icon: "icon",
-        hidden: true,
-        disabled: true,
+        title: "SubMenu 2",
       },
     ],
-  },
-  {
-    id: "3",
-    title: "title",
   },
 ]
 
@@ -67,10 +45,6 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   defaults: {
     menuList,
     mode: "vertical",
-    emptyState: "No rows found",
-    overFlow: "pagination",
-    download: false,
-    filter: false,
-    pageSize: `{{10}}`,
+    horizontalAlign: "flex-start",
   },
 }
