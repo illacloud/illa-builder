@@ -42,7 +42,7 @@ export const EventTargetViewSelect: FC<BaseSelectSetterProps> = (props) => {
       ) {
         props.sectionViewConfigs.forEach((config) => {
           options.push({
-            label: config.key,
+            label: config.path,
             value: config.path,
           })
         })

@@ -33,7 +33,7 @@ export const BASIC_BODY_SECTION_CONFIG: SectionNode = {
         id: v4(),
         viewDisplayName: "bodySection1-bodySectionContainer1",
         key: "View 1",
-        path: "View1",
+        path: "View 1",
       },
     ],
   },

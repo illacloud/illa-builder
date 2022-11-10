@@ -291,7 +291,6 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
           case "updateTargetPageLayoutReducer": {
             const { pageName } = action.payload as UpdateTargetPageLayoutPayload
             const canvasNode = getCanvas(store.getState())
-
             const pageNode = searchDsl(canvasNode, pageName)
             if (!pageNode) break
             Connection.getRoom("app", currentAppID)?.send(

@@ -19,13 +19,13 @@ import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { RootState } from "@/store"
 import {
+  flattenAllComponentNodeToMap,
   getCanvas,
+  searchDsl,
   searchDSLByDisplayName,
 } from "@/redux/currentApp/editor/components/componentsSelector"
-import {
-  ComponentNode,
-  CONTAINER_TYPE,
-} from "@/redux/currentApp/editor/components/componentsState"
+import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -46,7 +46,7 @@ export const Shortcut: FC = ({ children }) => {
   const currentSelectedAction = useSelector(getSelectedAction)
 
   const canvasRootNode = useSelector(getCanvas)
-
+  const executionResult = useSelector(getExecutionResult)
   const freezeState = useSelector(getFreezeState)
 
   const showShadows = useSelector(isShowDot)
@@ -154,11 +154,41 @@ export const Shortcut: FC = ({ children }) => {
         case "canvas": {
           if (canvasRootNode) {
             const childNodeDisplayNames: string[] = []
-
-            canvasRootNode.childrenNode.forEach((node) => {
-              if (node.containerType === CONTAINER_TYPE.EDITOR_PAGE_SQUARE) {
-                childNodeDisplayNames.push(node.displayName)
+            const rootNode = executionResult.root
+            if (!rootNode) return
+            const currentPageDisplayName =
+              rootNode.pageSortedKey[rootNode.currentPageIndex]
+            const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
+            if (!pageNode) return
+            const sectionContainerNodeDisplayName: string[] = []
+            pageNode.childrenNode.forEach((sectionNode) => {
+              const displayName = sectionNode.displayName
+              const currentSectionProps = executionResult[displayName]
+              if (
+                currentSectionProps &&
+                currentSectionProps.viewSortedKey &&
+                currentSectionProps.currentViewIndex >= 0
+              ) {
+                const { currentViewIndex, viewSortedKey } = currentSectionProps
+                const currentDisplayName = viewSortedKey[currentViewIndex]
+                sectionContainerNodeDisplayName.push(currentDisplayName)
               }
+            })
+            const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
+            const allChildrenNodes: ComponentNode[] = []
+            sectionContainerNodeDisplayName.forEach((displayName) => {
+              if (componentNodesMap[displayName]) {
+                const childrenNode = Array.isArray(
+                  componentNodesMap[displayName].childrenNode,
+                )
+                  ? componentNodesMap[displayName].childrenNode
+                  : []
+                allChildrenNodes.push(...childrenNode)
+              }
+            })
+
+            allChildrenNodes.forEach((node) => {
+              childNodeDisplayNames.push(node.displayName)
             })
 
             dispatch(
@@ -168,7 +198,7 @@ export const Shortcut: FC = ({ children }) => {
         }
       }
     },
-    [canvasRootNode],
+    [canvasRootNode, executionResult],
   )
 
   useHotkeys(
