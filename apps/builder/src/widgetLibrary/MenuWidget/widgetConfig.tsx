@@ -44,7 +44,7 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   defaults: {
     menuList,
-    mode: "vertical",
+    mode: "horizontal",
     horizontalAlign: "flex-start",
   },
 }
