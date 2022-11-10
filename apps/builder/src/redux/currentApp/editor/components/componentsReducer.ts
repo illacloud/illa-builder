@@ -459,7 +459,7 @@ export const deleteTargetPageSectionReducer: CaseReducer<
   }
 
   const targetPageChildrenNodeIndex = targetPage.childrenNode.findIndex(
-    (node) => node.displayName === deleteSectionName,
+    (node) => node.showName === deleteSectionName,
   )
   if (targetPageChildrenNodeIndex === -1) return state
   targetPage.childrenNode.splice(targetPageChildrenNodeIndex, 1)
