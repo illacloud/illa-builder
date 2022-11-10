@@ -106,7 +106,9 @@ export const PageBasic: FC = () => {
         <PageLabel labelName={t("editor.page.label_name.body")} size="big" />
       </LeftAndRightLayout>
       <LeftAndRightLayout>
-        <ViewList sectionName="bodySection" />
+        <SetterPadding>
+          <ViewList sectionName="bodySection" />
+        </SetterPadding>
       </LeftAndRightLayout>
       <LeftAndRightLayout>
         <PageLabel
@@ -131,7 +133,9 @@ export const PageBasic: FC = () => {
             />
           </LeftAndRightLayout>
           <LeftAndRightLayout>
-            <ViewList sectionName="leftSection" />
+            <SetterPadding>
+              <ViewList sectionName="leftSection" />
+            </SetterPadding>
           </LeftAndRightLayout>
           <LeftAndRightLayout>
             <PageLabel
@@ -158,7 +162,9 @@ export const PageBasic: FC = () => {
             />
           </LeftAndRightLayout>
           <LeftAndRightLayout>
-            <ViewList sectionName="rightSection" />
+            <SetterPadding>
+              <ViewList sectionName="rightSection" />
+            </SetterPadding>
           </LeftAndRightLayout>
           <LeftAndRightLayout>
             <PageLabel
@@ -185,7 +191,9 @@ export const PageBasic: FC = () => {
             />
           </LeftAndRightLayout>
           <LeftAndRightLayout>
-            <ViewList sectionName="headerSection" />
+            <SetterPadding>
+              <ViewList sectionName="headerSection" />
+            </SetterPadding>
           </LeftAndRightLayout>
           <LeftAndRightLayout>
             <PageLabel
@@ -212,7 +220,9 @@ export const PageBasic: FC = () => {
             />
           </LeftAndRightLayout>
           <LeftAndRightLayout>
-            <ViewList sectionName="footerSection" />
+            <SetterPadding>
+              <ViewList sectionName="footerSection" />
+            </SetterPadding>
           </LeftAndRightLayout>
           <LeftAndRightLayout>
             <PageLabel
