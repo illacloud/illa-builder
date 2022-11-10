@@ -19,10 +19,13 @@ import { CopyManager } from "@/utils/copyManager"
 import { FocusManager } from "@/utils/focusManager"
 import { RootState } from "@/store"
 import {
+  flattenAllComponentNodeToMap,
   getCanvas,
+  searchDsl,
   searchDSLByDisplayName,
 } from "@/redux/currentApp/editor/components/componentsSelector"
 import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const Shortcut: FC = ({ children }) => {
   const dispatch = useDispatch()
@@ -43,7 +46,7 @@ export const Shortcut: FC = ({ children }) => {
   const currentSelectedAction = useSelector(getSelectedAction)
 
   const canvasRootNode = useSelector(getCanvas)
-
+  const executionResult = useSelector(getExecutionResult)
   const freezeState = useSelector(getFreezeState)
 
   const showShadows = useSelector(isShowDot)
@@ -65,7 +68,11 @@ export const Shortcut: FC = ({ children }) => {
     boolean
   >(false)
 
-  const showDeleteDialog = (displayName: string[]) => {
+  const showDeleteDialog = (
+    displayName: string[],
+    type?: "widget" | "page",
+    options?: Record<string, any>,
+  ) => {
     if (!alreadyShowDeleteDialog && displayName.length > 0) {
       const textList = displayName.join(", ").toString()
       setAlreadyShowDeleteDialog(true)
@@ -88,6 +95,15 @@ export const Shortcut: FC = ({ children }) => {
         },
         onOk: () => {
           setAlreadyShowDeleteDialog(false)
+          if (type === "page") {
+            dispatch(
+              componentsActions.deletePageNodeReducer({
+                displayName: displayName[0],
+                originPageSortedKey: options?.originPageSortedKey || [],
+              }),
+            )
+            return
+          }
           dispatch(
             componentsActions.deleteComponentNodeReducer({
               displayNames: displayName,
@@ -137,10 +153,44 @@ export const Shortcut: FC = ({ children }) => {
           break
         case "canvas": {
           if (canvasRootNode) {
-            const childNode = canvasRootNode.childrenNode
-            const childNodeDisplayNames = childNode.map((node) => {
-              return node.displayName
+            const childNodeDisplayNames: string[] = []
+            const rootNode = executionResult.root
+            if (!rootNode) return
+            const currentPageDisplayName =
+              rootNode.pageSortedKey[rootNode.currentPageIndex]
+            const pageNode = searchDsl(canvasRootNode, currentPageDisplayName)
+            if (!pageNode) return
+            const sectionContainerNodeDisplayName: string[] = []
+            pageNode.childrenNode.forEach((sectionNode) => {
+              const displayName = sectionNode.displayName
+              const currentSectionProps = executionResult[displayName]
+              if (
+                currentSectionProps &&
+                currentSectionProps.viewSortedKey &&
+                currentSectionProps.currentViewIndex >= 0
+              ) {
+                const { currentViewIndex, viewSortedKey } = currentSectionProps
+                const currentDisplayName = viewSortedKey[currentViewIndex]
+                sectionContainerNodeDisplayName.push(currentDisplayName)
+              }
             })
+            const componentNodesMap = flattenAllComponentNodeToMap(pageNode)
+            const allChildrenNodes: ComponentNode[] = []
+            sectionContainerNodeDisplayName.forEach((displayName) => {
+              if (componentNodesMap[displayName]) {
+                const childrenNode = Array.isArray(
+                  componentNodesMap[displayName].childrenNode,
+                )
+                  ? componentNodesMap[displayName].childrenNode
+                  : []
+                allChildrenNodes.push(...childrenNode)
+              }
+            })
+
+            allChildrenNodes.forEach((node) => {
+              childNodeDisplayNames.push(node.displayName)
+            })
+
             dispatch(
               configActions.updateSelectedComponent(childNodeDisplayNames),
             )
@@ -148,7 +198,7 @@ export const Shortcut: FC = ({ children }) => {
         }
       }
     },
-    [canvasRootNode],
+    [canvasRootNode, executionResult],
   )
 
   useHotkeys(

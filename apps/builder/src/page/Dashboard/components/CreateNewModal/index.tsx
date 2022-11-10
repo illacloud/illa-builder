@@ -9,6 +9,7 @@ import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { Api } from "@/api/base"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
 import { useNavigate } from "react-router-dom"
+import { BASIC_APP_CONFIG } from "@/config/newAppConfig"
 
 export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
   const { visible, onVisibleChange } = props
@@ -47,6 +48,7 @@ export const CreateNewModal: FC<CreateNewModalProps> = (props) => {
             method: "POST",
             data: {
               appName: name,
+              initScheme: BASIC_APP_CONFIG,
             },
           },
           (response) => {

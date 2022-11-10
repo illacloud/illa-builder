@@ -1,5 +1,5 @@
 import { css, Global } from "@emotion/react"
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, RouterProvider } from "react-router-dom"
 import { globalStyle } from "./style"
 import { ConfigProvider } from "@illa-design/config-provider"
 import "@/api/base"
@@ -27,16 +27,14 @@ function App() {
   }, [currentUserLanguage, i18n])
 
   return (
-    <BrowserRouter>
-      <DndProvider backend={HTML5Backend}>
-        <GlobalDataProvider>
-          <ConfigProvider locale={configLanguage}>
-            <Global styles={css(globalStyle)} />
-            <ILLARoute />
-          </ConfigProvider>
-        </GlobalDataProvider>
-      </DndProvider>
-    </BrowserRouter>
+    <DndProvider backend={HTML5Backend}>
+      <GlobalDataProvider>
+        <ConfigProvider locale={configLanguage}>
+          <Global styles={css(globalStyle)} />
+          <RouterProvider router={ILLARoute} />
+        </ConfigProvider>
+      </GlobalDataProvider>
+    </DndProvider>
   )
 }
 

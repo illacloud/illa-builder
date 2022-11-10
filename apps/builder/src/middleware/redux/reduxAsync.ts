@@ -17,6 +17,14 @@ import {
   ComponentNode,
   CopyComponentPayload,
   sortComponentNodeChildrenPayload,
+  UpdateTargetPageLayoutPayload,
+  AddTargetPageSectionPayload,
+  DeleteTargetPageSectionPayload,
+  UpdateTargetPagePropsPayload,
+  DeletePageNodePayload,
+  AddSectionViewPayload,
+  DeleteSectionViewPayload,
+  UpdateSectionViewPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import {
   UpdateComponentContainerPayload,
@@ -65,9 +73,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "copyComponentReducer":
-            const copyComponentPayload = (
-              payload as CopyComponentPayload[]
-            ).map((copyShape) => copyShape.newComponentNode)
+            const copyComponentPayload = (payload as CopyComponentPayload[]).map(
+              (copyShape) => copyShape.newComponentNode,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_CREATE_STATE,
@@ -83,10 +91,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             break
           case "updateComponentsShape":
             const singleComponentPayload: UpdateComponentsShapePayload = payload
-            const singleComponentWSPayload =
-              transformComponentReduxPayloadToWsPayload(
-                singleComponentPayload.components,
-              )
+            const singleComponentWSPayload = transformComponentReduxPayloadToWsPayload(
+              singleComponentPayload.components,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 singleComponentPayload.isMove
@@ -103,12 +110,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentReflowReducer":
-            const updateComponentReflowPayload: UpdateComponentReflowPayload =
-              payload
-            const updateComponentReflowWSPayload =
-              transformComponentReduxPayloadToWsPayload(
-                updateComponentReflowPayload.childNodes,
-              )
+            const updateComponentReflowPayload: UpdateComponentReflowPayload = payload
+            const updateComponentReflowWSPayload = transformComponentReduxPayloadToWsPayload(
+              updateComponentReflowPayload.childNodes,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -123,12 +128,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "sortComponentNodeChildrenReducer":
-            const sortComponentNodeChildrenPayload: sortComponentNodeChildrenPayload =
-              payload
-            const sortComponentNodeChildrenWSPayload =
-              transformComponentReduxPayloadToWsPayload(
-                sortComponentNodeChildrenPayload.newChildrenNode,
-              )
+            const sortComponentNodeChildrenPayload: sortComponentNodeChildrenPayload = payload
+            const sortComponentNodeChildrenWSPayload = transformComponentReduxPayloadToWsPayload(
+              sortComponentNodeChildrenPayload.newChildrenNode,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_MOVE_STATE,
@@ -143,12 +146,10 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentContainerReducer":
-            const updateComponentContainerPayload: UpdateComponentContainerPayload =
-              payload
-            const componentNodes =
-              updateComponentContainerPayload.updateSlice.map(
-                (slice) => slice.component,
-              )
+            const updateComponentContainerPayload: UpdateComponentContainerPayload = payload
+            const componentNodes = updateComponentContainerPayload.updateSlice.map(
+              (slice) => slice.component,
+            )
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_MOVE_STATE,
@@ -199,8 +200,9 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
               })
               .filter((node) => node !== null) as ComponentNode[]
             if (Array.isArray(finalNodes)) {
-              const wsPayload =
-                transformComponentReduxPayloadToWsPayload(finalNodes)
+              const wsPayload = transformComponentReduxPayloadToWsPayload(
+                finalNodes,
+              )
               Connection.getRoom("app", currentAppID)?.send(
                 getPayload(
                   Signal.SIGNAL_UPDATE_STATE,
@@ -249,13 +251,19 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
             )
             break
           case "updateComponentDisplayNameReducer":
-            const { displayName, newDisplayName } =
-              action.payload as UpdateComponentDisplayNamePayload
-            const findOldNode = searchDsl(
-              getCanvas(store.getState()),
+            const {
+              displayName,
               newDisplayName,
-            )
+            } = action.payload as UpdateComponentDisplayNamePayload
+            const canvasNode = getCanvas(store.getState())
+            const findOldNode = searchDsl(canvasNode, newDisplayName)
             if (!findOldNode) break
+            const parentNode = searchDsl(canvasNode, findOldNode.parentNode)
+            if (!parentNode) break
+            const WSPayload = transformComponentReduxPayloadToWsPayload([
+              parentNode,
+              ...findOldNode.childrenNode,
+            ])
             Connection.getRoom("app", currentAppID)?.send(
               getPayload(
                 Signal.SIGNAL_UPDATE_STATE,
@@ -275,9 +283,306 @@ export const reduxAsync: Redux.Middleware = (store) => (next) => (action) => {
                       displayName: newDisplayName,
                     },
                   },
+                  ...WSPayload,
                 ],
               ),
             )
+            break
+          case "updateTargetPageLayoutReducer": {
+            const { pageName } = action.payload as UpdateTargetPageLayoutPayload
+            const canvasNode = getCanvas(store.getState())
+            const pageNode = searchDsl(canvasNode, pageName)
+            if (!pageNode) break
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_DELETE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                [pageName],
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [pageNode],
+              ),
+            )
+            break
+          }
+          case "deleteTargetPageSectionReducer": {
+            const {
+              pageName,
+              deleteSectionName,
+            } = action.payload as DeleteTargetPageSectionPayload
+            const finalNode = searchDsl(getCanvas(store.getState()), pageName)
+
+            if (!finalNode) break
+            const WSPayload = transformComponentReduxPayloadToWsPayload(
+              finalNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_DELETE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [deleteSectionName],
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                WSPayload,
+              ),
+            )
+            break
+          }
+          case "addTargetPageSectionReducer": {
+            const {
+              pageName,
+              addedSectionName,
+            } = action.payload as AddTargetPageSectionPayload
+            const pageNode = searchDsl(getCanvas(store.getState()), pageName)
+            if (!pageNode) break
+            const addSectionNode = pageNode.childrenNode.find(
+              (node) => node.showName === addedSectionName,
+            )
+            if (!addSectionNode) break
+
+            const WSPagePayload = transformComponentReduxPayloadToWsPayload(
+              pageNode,
+            )
+
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                WSPagePayload,
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [addSectionNode],
+              ),
+            )
+            break
+          }
+          case "updateTargetPagePropsReducer": {
+            const { pageName } = action.payload as UpdateTargetPagePropsPayload
+            const pageNode = searchDsl(getCanvas(store.getState()), pageName)
+
+            if (!pageNode) break
+            const WSPagePayload = transformComponentReduxPayloadToWsPayload(
+              pageNode,
+            )
+
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                WSPagePayload,
+              ),
+            )
+            break
+          }
+          case "updateRootNodePropsReducer": {
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const WSPagePayload = transformComponentReduxPayloadToWsPayload(
+              rootNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                WSPagePayload,
+              ),
+            )
+            break
+          }
+          case "addPageNodeWithSortOrderReducer": {
+            const rootNode = getCanvas(store.getState())
+            const nodes = action.payload as ComponentNode[]
+            if (!rootNode || !Array.isArray(nodes) || nodes.length === 0) break
+            const rootNodeUpdateWSPayload = transformComponentReduxPayloadToWsPayload(
+              rootNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                rootNodeUpdateWSPayload,
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                { type, payload },
+                nodes,
+              ),
+            )
+            break
+          }
+          case "deletePageNodeReducer": {
+            const deletePayload = payload as DeletePageNodePayload
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const rootNodeUpdateWSPayload = transformComponentReduxPayloadToWsPayload(
+              rootNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                rootNodeUpdateWSPayload,
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_DELETE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [deletePayload.displayName],
+              ),
+            )
+            break
+          }
+          case "addSectionViewReducer": {
+            const {
+              parentNodeName,
+              containerNode,
+            } = payload as AddSectionViewPayload
+            const rootNode = getCanvas(store.getState())
+
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, parentNodeName)
+            if (!targetNode) break
+            const updateWSPayload = transformComponentReduxPayloadToWsPayload(
+              targetNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                updateWSPayload,
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_CREATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                [containerNode],
+              ),
+            )
+            break
+          }
+          case "deleteSectionViewReducer": {
+            const {
+              viewDisplayName,
+              parentNodeName,
+            } = payload as DeleteSectionViewPayload
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, parentNodeName)
+            if (!targetNode) break
+            const updateWSPayload = transformComponentReduxPayloadToWsPayload(
+              targetNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_DELETE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                null,
+                [viewDisplayName],
+              ),
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                updateWSPayload,
+              ),
+            )
+            break
+          }
+          case "updateSectionViewPropsReducer": {
+            const { parentNodeName } = payload as UpdateSectionViewPropsPayload
+            const rootNode = getCanvas(store.getState())
+            if (!rootNode) break
+            const targetNode = searchDsl(rootNode, parentNodeName)
+            if (!targetNode) break
+            const updateWSPayload = transformComponentReduxPayloadToWsPayload(
+              targetNode,
+            )
+            Connection.getRoom("app", currentAppID)?.send(
+              getPayload(
+                Signal.SIGNAL_UPDATE_STATE,
+                Target.TARGET_COMPONENTS,
+                true,
+                {
+                  type,
+                  payload,
+                },
+                updateWSPayload,
+              ),
+            )
+            break
+          }
         }
         break
       case "dragShadow":

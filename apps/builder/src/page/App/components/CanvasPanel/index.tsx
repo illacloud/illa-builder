@@ -1,29 +1,22 @@
-import { FC, ReactNode } from "react"
+import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import {
   applyScaleContainerStyle,
-  previewStyle,
   messageStyle,
   messageWrapperStyle,
 } from "./style"
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
 import { useDispatch, useSelector } from "react-redux"
-import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { FullScreenIcon, LockIcon } from "@illa-design/icon"
-import { Button } from "@illa-design/button"
+import { LockIcon } from "@illa-design/icon"
 import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
-import { configActions } from "@/redux/config/configSlice"
 import { FocusManager } from "@/utils/focusManager"
 
 export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
   const { ...otherProps } = props
 
   const { t } = useTranslation()
-  const canvasTree = useSelector(getCanvas)
   const mode = useSelector(getIllaMode)
-  const dispatch = useDispatch()
   const isFreeze = useSelector(getFreezeState)
 
   return (
@@ -34,20 +27,9 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
         FocusManager.switchFocus("canvas")
       }}
     >
-      {applyCanvasTree(canvasTree)}
+      <DotPanel />
       {mode === "edit" && (
         <>
-          <Button
-            css={previewStyle}
-            colorScheme="white"
-            variant="fill"
-            leftIcon={<FullScreenIcon />}
-            onClick={() => {
-              dispatch(configActions.updateIllaMode("preview"))
-            }}
-          >
-            {t("preview")}
-          </Button>
           {/*TODO: replace this to illa-design/Message,when Message is ok*/}
           {isFreeze ? (
             <div css={messageWrapperStyle}>
@@ -63,26 +45,6 @@ export const CanvasPanel: FC<CanvasPanelProps> = (props) => {
       )}
     </div>
   )
-}
-
-// current root must be dot panel
-function applyCanvasTree(
-  componentNode: ComponentNode | null,
-): ReactNode | null {
-  if (componentNode == null) {
-    return null
-  }
-  switch (componentNode.containerType) {
-    case "EDITOR_DOT_PANEL":
-      return (
-        <DotPanel
-          key={componentNode.displayName}
-          componentNode={componentNode}
-        />
-      )
-    default:
-      return null
-  }
 }
 
 CanvasPanel.displayName = "CanvasPanel"

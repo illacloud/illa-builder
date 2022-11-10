@@ -469,3 +469,14 @@ export const getNearComponentNodes = (
   const sortedComponentNodes = sortComponentNodesOnlyY(allComponentNodes)
   return getNearingNodes(currentNode, sortedComponentNodes)
 }
+
+export const isAddAction = (
+  x: number,
+  y: number,
+  oldParentDisplayName: string | null,
+  currentParentDisplayName: string,
+) => {
+  return (
+    (x === -1 && y === -1) || oldParentDisplayName !== currentParentDisplayName
+  )
+}

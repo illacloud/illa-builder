@@ -32,6 +32,7 @@ export const navbarStyle = css`
   box-sizing: border-box;
   width: 100%;
   height: ${NAVBAR_HEIGHT}px;
+  flex: none;
 `
 
 export const leftPanelStyle = css`

@@ -6,8 +6,10 @@ import { AppListenerEffectAPI, AppStartListening } from "@/store"
 import { Unsubscribe, isAnyOf, AnyAction } from "@reduxjs/toolkit"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
 import { getReflowResult } from "@/page/App/components/DotPanel/calc"
-import { ComponentNode } from "./componentsState"
+import { ComponentNode, CONTAINER_TYPE } from "./componentsState"
 import { configActions } from "@/redux/config/configSlice"
+import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 
 function handleCopyComponentReflowEffect(
   action: ReturnType<typeof componentsActions.copyComponentReducer>,
@@ -60,9 +62,61 @@ function handleUpdateComponentDisplayNameEffect(
   const rootState = listenApi.getState()
   const rootNode = getCanvas(rootState)
   const newComponent = searchDsl(rootNode, newDisplayName)
-  if (newComponent) {
+  if (
+    newComponent &&
+    newComponent.containerType === CONTAINER_TYPE.EDITOR_SCALE_SQUARE
+  ) {
     listenApi.dispatch(
       configActions.updateSelectedComponent([newComponent.displayName]),
+    )
+  }
+}
+
+async function handleChangeCurrentPageWhenDelete(
+  action: ReturnType<typeof componentsActions.deletePageNodeReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const rootState = listenerApi.getState()
+  const executionTree = getExecutionResult(rootState)
+  const rootNode = executionTree.root
+  const { displayName, originPageSortedKey } = action.payload
+  const oldIndex = originPageSortedKey.findIndex((key) => key === displayName)
+  if (oldIndex === rootNode.currentPageIndex) {
+    listenerApi.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: "root",
+        value: {
+          currentPageIndex: 0,
+        },
+      }),
+    )
+  }
+}
+
+async function handleChangeCurrentSectionWhenDelete(
+  action: ReturnType<typeof componentsActions.deleteSectionViewReducer>,
+  listenerApi: AppListenerEffectAPI,
+) {
+  const {
+    viewDisplayName,
+    originPageSortedKey,
+    parentNodeName,
+  } = action.payload
+  const rootState = listenerApi.getState()
+  const executionTree = getExecutionResult(rootState)
+  const parentNode = executionTree[parentNodeName]
+  if (!parentNode) return
+  const oldIndex = originPageSortedKey.findIndex(
+    (key) => key === viewDisplayName,
+  )
+  if (oldIndex === parentNode.currentViewIndex) {
+    listenerApi.dispatch(
+      executionActions.updateExecutionByDisplayNameReducer({
+        displayName: parentNodeName,
+        value: {
+          currentViewIndex: 0,
+        },
+      }),
     )
   }
 }
@@ -133,6 +187,14 @@ export function setupComponentsListeners(
         componentsActions.updateComponentContainerReducer,
       ),
       effect: handleUpdateComponentReflowEffect,
+    }),
+    startListening({
+      actionCreator: componentsActions.deletePageNodeReducer,
+      effect: handleChangeCurrentPageWhenDelete,
+    }),
+    startListening({
+      actionCreator: componentsActions.deleteSectionViewReducer,
+      effect: handleChangeCurrentSectionWhenDelete,
     }),
   ]
 

@@ -1,12 +1,13 @@
 import { TabPane, Tabs } from "@illa-design/tabs"
 import { useTranslation } from "react-i18next"
-import { FC, HTMLAttributes, useEffect, useState } from "react"
+import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { getSelectedComponents } from "@/redux/config/configSelector"
 import { componentPanelCss } from "./style"
 import { FocusManager } from "@/utils/focusManager"
 import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
+import { PagePanel } from "@/page/App/components/PagePanel"
 
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,
@@ -16,14 +17,23 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   const [activeKey, setActiveKey] = useState("Insert")
 
   const selectedDisplayNames = useSelector(getSelectedComponents)
+  const isClickChange = useRef<boolean>(false)
 
   useEffect(() => {
-    if (selectedDisplayNames.length > 0) {
-      setActiveKey("Inspect")
-    } else {
-      setActiveKey("Insert")
+    if (!isClickChange.current) {
+      if (selectedDisplayNames.length > 0) {
+        setActiveKey("Inspect")
+      } else {
+        if (activeKey === "Page") {
+          setActiveKey("Page")
+        }
+        if (activeKey === "Inspect") {
+          setActiveKey("Insert")
+        }
+      }
     }
-  }, [selectedDisplayNames])
+    isClickChange.current = false
+  }, [activeKey, selectedDisplayNames])
 
   return (
     <div
@@ -38,9 +48,13 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
         activeKey={activeKey}
         colorScheme="grayBlue"
         onChange={(key) => {
+          isClickChange.current = true
           setActiveKey(key)
         }}
       >
+        <TabPane title={t("editor.page.tab_title")} key="Page">
+          <PagePanel />
+        </TabPane>
         <TabPane title={t("editor.inspect.tab_title")} key="Inspect">
           <ConfigPanel />
         </TabPane>

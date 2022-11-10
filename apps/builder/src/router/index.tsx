@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 import { routerConfig } from "@/router/routerConfig"
 import { RoutesObjectPro } from "@/router/interface"
 import { CheckIsLogin } from "@/auth"
@@ -22,6 +22,4 @@ const wrappedRouter = (routesConfig: RoutesObjectPro[]) => {
   })
 }
 
-export const ILLARoute = () => {
-  return useRoutes(wrappedRouter(routerConfig))
-}
+export const ILLARoute = createBrowserRouter(wrappedRouter(routerConfig))
