@@ -110,13 +110,18 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   const updateHeight = useCallback(() => {
-    if (wrapperRef.current) {
-      updateComponentHeight(wrapperRef.current?.clientHeight)
-    }
+    setTimeout(() => {
+      if (wrapperRef.current) {
+        updateComponentHeight(wrapperRef.current?.clientHeight)
+      }
+    }, 180)
   }, [updateComponentHeight])
 
   useEffect(() => {
     updateHeight()
+    return () => {
+      clearTimeout()
+    }
   }, [mode, updateHeight])
 
   return (
@@ -129,11 +134,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
         menuList={menuList}
         emptyState={emptyState}
         pageSize={pageSize}
-        onClickSubMenu={() => {
-          setTimeout(() => {
-            updateHeight()
-          }, 180)
-        }}
+        onClickSubMenu={updateHeight}
       />
     </div>
   )
