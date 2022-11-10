@@ -5,15 +5,28 @@ import { MenuItemLabel } from "@/widgetLibrary/MenuWidget/MenuItemLabel"
 
 export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
   (props, ref) => {
-    const { menuList, mode, horizontalAlign, onClickSubMenu } = props
+    const {
+      menuList,
+      mode,
+      horizontalAlign,
+      selectedKeys,
+      onClickSubMenu,
+      handleUpdateOriginalDSLMultiAttr,
+    } = props
     const { Item, SubMenu } = Menu
 
     return (
       <Menu
         mode={mode}
         ref={ref}
+        selectedKeys={selectedKeys}
         horizontalAlign={horizontalAlign}
         onClickSubMenu={onClickSubMenu}
+        onClickMenuItem={(value) => {
+          handleUpdateOriginalDSLMultiAttr({
+            selectedKeys: value,
+          })
+        }}
       >
         {menuList?.map((item) => {
           if (item.hidden) return null
@@ -52,6 +65,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     mode,
     menuList,
     emptyState,
+    selectedKeys,
     pageSize,
     displayName,
     horizontalAlign,
@@ -59,6 +73,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateGlobalData,
     handleDeleteGlobalData,
     updateComponentHeight,
+    handleUpdateOriginalDSLMultiAttr,
   } = props
 
   useEffect(() => {
@@ -89,10 +104,12 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     <div ref={wrapperRef}>
       <WrappedMenu
         mode={mode}
+        selectedKeys={selectedKeys}
         horizontalAlign={horizontalAlign}
         menuList={menuList}
         emptyState={emptyState}
         pageSize={pageSize}
+        handleUpdateOriginalDSLMultiAttr={handleUpdateOriginalDSLMultiAttr}
         onClickSubMenu={() => {
           setTimeout(() => {
             updateHeight()
