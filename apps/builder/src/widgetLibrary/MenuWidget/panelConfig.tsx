@@ -26,14 +26,14 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
         childrenSetter: [
           {
             id: `${baseWidgetName}-menu-title`,
-            labelName: i18n.t("editor.inspect.setter_label.column_title"),
+            labelName: i18n.t("editor.inspect.setter_label.label"),
             attrName: "title",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
           },
           {
             id: `${baseWidgetName}-menu-icon`,
-            labelName: i18n.t("editor.inspect.setter_label.column_title"),
+            labelName: i18n.t("editor.inspect.setter_label.icon"),
             attrName: "icon",
             setterType: "INPUT_SETTER",
             expectedType: VALIDATION_TYPES.STRING,
