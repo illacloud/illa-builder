@@ -105,6 +105,16 @@ export const routerConfig: RoutesObjectPro[] = [
     needLogin: true,
   },
   {
+    path: "/deploy/app/:appId/version/:versionId/:pageName",
+    element: <Deploy />,
+    needLogin: true,
+  },
+  {
+    path: "/deploy/app/:appId/version/:versionId/:pageName/:viewPath",
+    element: <Deploy />,
+    needLogin: true,
+  },
+  {
     path: "/403",
     element: <Page403 />,
   },

@@ -15,6 +15,7 @@ import { getActionList } from "@/redux/currentApp/action/actionSelector"
 import { getGlobalInfoExecutionResult } from "@/redux/currentUser/currentUserSelector"
 import { FocusManager } from "@/utils/focusManager"
 import { cloneDeep } from "lodash"
+import { PageSpaceTree } from "./components/PageSpaceTree"
 
 interface DataWorkspaceProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -96,6 +97,7 @@ export const DataWorkspace: FC<DataWorkspaceProps> = (props) => {
 
   return (
     <div className={className}>
+      <PageSpaceTree />
       <WorkSpaceTree
         title={`${t("editor.data_work_space.components_title")}(${
           widgetExecutionArray.length

@@ -39,6 +39,12 @@ export const getExecutionDebuggerData = createSelector(
   [getExecution],
   (execution) => execution.debuggerData ?? {},
 )
+const IGNORE_WIDGET_TYPES = new Set<string>([
+  "PAGE_NODE",
+  "SECTION_NODE",
+  "CANVAS",
+  "DOT_PANEL",
+])
 
 export const getWidgetExecutionResult = createSelector(
   [getExecutionResult],
@@ -59,12 +65,60 @@ export const getWidgetExecutionResultArray = createSelector(
   (widgetExecutionResult) => {
     const widgetExecutionResultArray: Record<string, any>[] = []
     Object.keys(widgetExecutionResult).forEach((key) => {
-      widgetExecutionResultArray.push({
-        ...widgetExecutionResult[key],
-        displayName: key,
-      })
+      if (!IGNORE_WIDGET_TYPES.has(widgetExecutionResult[key].$widgetType)) {
+        widgetExecutionResultArray.push({
+          ...widgetExecutionResult[key],
+          displayName: key,
+        })
+      }
     })
     return widgetExecutionResultArray
+  },
+)
+
+export const getPageExecutionResultArray = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const widgetExecutionResultArray: Record<string, any>[] = []
+    Object.keys(widgetExecutionResult).forEach((key) => {
+      if (widgetExecutionResult[key].$widgetType === "PAGE_NODE") {
+        widgetExecutionResultArray.push({
+          ...widgetExecutionResult[key],
+          displayName: key,
+        })
+      }
+    })
+    return widgetExecutionResultArray
+  },
+)
+
+export const getSectionExecutionResultArray = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const sectionExecutionResult: Record<string, any> = {}
+    Object.keys(widgetExecutionResult).forEach((key) => {
+      if (widgetExecutionResult[key].$widgetType === "SECTION_NODE") {
+        sectionExecutionResult[key] = {
+          ...widgetExecutionResult[key],
+          displayName: key,
+        }
+      }
+    })
+    return sectionExecutionResult
+  },
+)
+
+export const getRootNodeExecutionResult = createSelector(
+  [getWidgetExecutionResult],
+  (widgetExecutionResult) => {
+    const rootNode = widgetExecutionResult["root"]
+    return rootNode
+      ? rootNode
+      : {
+          currentPageIndex: 0,
+          pageSortedKey: ["page1"],
+          homepageDisplayName: "page1",
+        }
   },
 )
 

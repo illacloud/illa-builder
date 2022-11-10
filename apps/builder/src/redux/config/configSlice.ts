@@ -17,6 +17,7 @@ import {
   updateRightPanel,
   updateSelectedComponent,
   updateShowDot,
+  updateCanvasShapeReducer,
 } from "@/redux/config/configReducer"
 
 const configSlice = createSlice({
@@ -39,6 +40,7 @@ const configSlice = createSlice({
     setExpandedKey,
     removeExpandedKey,
     updateFreezeStateReducer,
+    updateCanvasShapeReducer,
   },
 })
 

@@ -1,3 +1,4 @@
+import { isObject } from "@/utils/typeHelper"
 import { RawTreeShape } from "@/utils/executionTreeHelper/interface"
 import { cloneDeep, flatten, get, set, unset } from "lodash"
 import {
@@ -68,27 +69,29 @@ export class ExecutionTreeFactory {
         return current
       }
       const validationPaths = widgetOrAction.$validationPaths
-      Object.keys(validationPaths).forEach((validationPath) => {
-        const validationType = validationPaths[validationPath]
-        const fullPath = `${displayName}.${validationPath}`
-        const validationFunc = validationFactory[validationType]
-        const value = get(widgetOrAction, validationPath)
-        const { isValid, safeValue, errorMessage } = validationFunc(value)
-        set(current, fullPath, safeValue)
-        if (!isValid) {
-          let error = get(this.errorTree, fullPath)
-          if (!Array.isArray(error)) {
-            error = []
+      if (isObject(validationPaths)) {
+        Object.keys(validationPaths).forEach((validationPath) => {
+          const validationType = validationPaths[validationPath]
+          const fullPath = `${displayName}.${validationPath}`
+          const validationFunc = validationFactory[validationType]
+          const value = get(widgetOrAction, validationPath)
+          const { isValid, safeValue, errorMessage } = validationFunc(value)
+          set(current, fullPath, safeValue)
+          if (!isValid) {
+            let error = get(this.errorTree, fullPath)
+            if (!Array.isArray(error)) {
+              error = []
+            }
+            error.push({
+              errorType: ExecutionErrorType.VALIDATION,
+              errorMessage: errorMessage as string,
+              errorName: "Validation",
+            })
+            set(this.errorTree, fullPath, error)
+            this.debuggerData[fullPath] = error
           }
-          error.push({
-            errorType: ExecutionErrorType.VALIDATION,
-            errorMessage: errorMessage as string,
-            errorName: "Validation",
-          })
-          set(this.errorTree, fullPath, error)
-          this.debuggerData[fullPath] = error
-        }
-      })
+        })
+      }
 
       return current
     }, tree)

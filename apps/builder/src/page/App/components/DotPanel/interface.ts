@@ -1,9 +1,11 @@
-import { ComponentNode } from "@/redux/currentApp/editor/components/componentsState"
-import { HTMLAttributes, RefObject } from "react"
-
-export interface DotPanelProps extends HTMLAttributes<HTMLDivElement> {
-  componentNode: ComponentNode
-}
+import {
+  ComponentNode,
+  PageNode,
+  SectionNode,
+  SECTION_POSITION,
+} from "@/redux/currentApp/editor/components/componentsState"
+import { RefObject } from "react"
+import { IllaMode } from "@/redux/config/configState"
 
 export interface DragPosition {
   squareX: number
@@ -15,6 +17,7 @@ export interface DragPosition {
 export interface DragInfo {
   item: ComponentNode
   childrenNodes: ComponentNode[]
+  currentColumnNumber: number
 }
 
 // return when drop trigger
@@ -53,4 +56,79 @@ export interface RenderComponentCanvasProps {
 export interface DebounceUpdateReflow {
   parentDisplayName: string
   childNodes: ComponentNode[]
+}
+
+export interface RenderPageProps {
+  pageNode: PageNode
+  currentPageDisplayName: string
+}
+
+export interface RenderSectionProps {
+  sectionNode: SectionNode
+  mode: IllaMode
+}
+
+export interface RenderHeaderSectionProps {
+  sectionNode: SectionNode
+  topHeight: number
+  offsetTop: number
+  containerHeight: number
+  mode: IllaMode
+  footerHeight: number
+  currentPageDisplayName: string
+  leftPosition: SECTION_POSITION
+  rightPosition: SECTION_POSITION
+}
+
+export interface RenderFooterSectionProps {
+  sectionNode: SectionNode
+  bottomHeight: number
+  offsetTop: number
+  containerHeight: number
+  mode: IllaMode
+  headerHeight: number
+  currentPageDisplayName: string
+  leftPosition: SECTION_POSITION
+  rightPosition: SECTION_POSITION
+}
+
+export interface RenderLeftSectionProps {
+  sectionNode: SectionNode
+  offsetLeft: number
+  containerWidth: number
+  mode: IllaMode
+  leftWidth: number
+  rightWidth: number
+  currentPageDisplayName: string
+  leftPosition: SECTION_POSITION
+  showFoldIcon: boolean
+  isFold: boolean
+  setIsLeftFold: (isFold: boolean) => void
+}
+
+export interface RenderRightSectionProps {
+  sectionNode: SectionNode
+  offsetLeft: number
+  containerWidth: number
+  mode: IllaMode
+  leftWidth: number
+  rightWidth: number
+  currentPageDisplayName: string
+  rightPosition: SECTION_POSITION
+  showFoldIcon: boolean
+  isFold: boolean
+  setIsRightFold: (isFold: boolean) => void
+}
+
+export interface RenderContainerProps {
+  containerNode: SectionNode
+}
+
+export interface ChangeLayoutBarProps {
+  sectionName: string
+  direction: "top" | "bottom" | "left" | "right"
+  changeAction: (
+    sectionName: string,
+    direction?: "top" | "bottom" | "left" | "right",
+  ) => void
 }

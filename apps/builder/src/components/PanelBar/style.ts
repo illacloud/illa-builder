@@ -48,3 +48,19 @@ export const panelBarItemAnimation: Variants = {
   enter: { height: "auto", opacity: 1 },
   exit: { height: 0, opacity: 0 },
 }
+
+export const addIconHotpotStyle = css`
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
+  :hover {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  }
+  :active {
+    color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
+  }
+`
