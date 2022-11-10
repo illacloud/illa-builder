@@ -415,6 +415,7 @@ export const basicTipsStyle = css`
   pointer-events: none;
   font-size: 12px;
   overflow: hidden;
+  z-index: 10;
 `
 
 export const leftWidthTipsStyle = css`
