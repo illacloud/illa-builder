@@ -5,6 +5,7 @@ import {
   MutableRefObject,
   useState,
   useCallback,
+  useMemo,
 } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
@@ -47,6 +48,7 @@ import { SECTION_POSITION } from "@/redux/currentApp/editor/components/component
 import { PreIcon, NextIcon } from "@illa-design/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { getExecutionResult } from "../../../../redux/currentApp/executionTree/executionSelector"
+import { useParams } from "react-router-dom"
 
 export const HEADER_MIN_HEIGHT = 96
 export const FOOTER_MIN_HEIGHT = 96
@@ -59,14 +61,41 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
   (props, ref) => {
     const { sectionNode, mode } = props
     const executionResult = useSelector(getExecutionResult)
-    const sectionNodeProps = executionResult[sectionNode.displayName]
+    const sectionNodeProps = executionResult[sectionNode.displayName] || {}
     const [containerBoundRef, containerBound] = useMeasure()
     const containerRef = useRef<HTMLDivElement>(
       null,
     ) as MutableRefObject<HTMLDivElement | null>
-
-    const { viewSortedKey, currentViewIndex } = sectionNodeProps
-    const currentViewDisplayName = viewSortedKey[currentViewIndex]
+    const {
+      viewSortedKey,
+      currentViewIndex,
+      defaultViewKey,
+      sectionViewConfigs,
+    } = sectionNodeProps
+    let { viewPath = "View1" } = useParams()
+    const currentViewDisplayName = useMemo(() => {
+      if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
+        return "View 1"
+      const defaultedViewKey = viewSortedKey.includes(defaultViewKey)
+        ? defaultViewKey
+        : viewSortedKey[0]
+      if (mode === "production") {
+        const targetViewName = sectionViewConfigs.find(
+          (config) => config.path === decodeURIComponent(viewPath),
+        )
+        return targetViewName?.viewDisplayName || defaultedViewKey
+      } else {
+        return viewSortedKey[currentViewIndex] || defaultedViewKey
+      }
+    }, [
+      currentViewIndex,
+      defaultViewKey,
+      mode,
+      sectionViewConfigs,
+      viewPath,
+      viewSortedKey,
+    ])
+    if (!sectionNodeProps) return null
 
     const componentNode = sectionNode.childrenNode.find(
       (node) => node.displayName === currentViewDisplayName,
@@ -113,26 +142,44 @@ export const RenderHeaderSection = forwardRef<
     leftPosition,
     rightPosition,
   } = props
-
-  const { viewSortedKey, currentViewIndex } = sectionNode.props
   const isActive = useRef<boolean>(false)
-  const currentViewDisplayName = viewSortedKey[currentViewIndex]
-
-  const componentNode = sectionNode.childrenNode.find(
-    (node) => node.displayName === currentViewDisplayName,
-  )
-
   const [containerBoundRef, containerBound] = useMeasure()
   const containerRef = useRef<HTMLDivElement>(
     null,
   ) as MutableRefObject<HTMLDivElement | null>
 
   const dispatch = useDispatch()
-
-  const handleClickMoveBar = () => {
-    isActive.current = true
-  }
-
+  const executionResult = useSelector(getExecutionResult)
+  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const {
+    viewSortedKey,
+    currentViewIndex,
+    defaultViewKey,
+    sectionViewConfigs,
+  } = sectionNodeProps
+  let { viewPath = "View1" } = useParams()
+  const currentViewDisplayName = useMemo(() => {
+    if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
+      return "View 1"
+    const defaultedViewKey = viewSortedKey.includes(defaultViewKey)
+      ? defaultViewKey
+      : viewSortedKey[0]
+    if (mode === "production") {
+      const targetViewName = sectionViewConfigs.find(
+        (config) => config.path === decodeURIComponent(viewPath),
+      )
+      return targetViewName?.viewDisplayName || defaultedViewKey
+    } else {
+      return viewSortedKey[currentViewIndex] || defaultedViewKey
+    }
+  }, [
+    currentViewIndex,
+    defaultViewKey,
+    mode,
+    sectionViewConfigs,
+    viewPath,
+    viewSortedKey,
+  ])
   useEffect(() => {
     const mouseMoveListener = (e: globalThis.MouseEvent) => {
       if (isActive.current) {
@@ -187,7 +234,6 @@ export const RenderHeaderSection = forwardRef<
     footerHeight,
     offsetTop,
   ])
-
   const [isInSection, setIsInSection] = useState(false)
 
   const onMouseEnter = useCallback(() => {
@@ -260,6 +306,15 @@ export const RenderHeaderSection = forwardRef<
     },
     [currentPageDisplayName, dispatch, leftPosition, rightPosition],
   )
+  if (!sectionNodeProps) return null
+
+  const componentNode = sectionNode.childrenNode.find(
+    (node) => node.displayName === currentViewDisplayName,
+  )
+
+  const handleClickMoveBar = () => {
+    isActive.current = true
+  }
 
   return (
     <div
@@ -335,9 +390,37 @@ export const RenderFooterSection = forwardRef<
     leftPosition,
     rightPosition,
   } = props
-
-  const { viewSortedKey, currentViewIndex } = sectionNode.props
-  const currentViewDisplayName = viewSortedKey[currentViewIndex]
+  const executionResult = useSelector(getExecutionResult)
+  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const {
+    viewSortedKey,
+    currentViewIndex,
+    defaultViewKey,
+    sectionViewConfigs,
+  } = sectionNodeProps
+  let { viewPath = "View1" } = useParams()
+  const currentViewDisplayName = useMemo(() => {
+    if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
+      return "View 1"
+    const defaultedViewKey = viewSortedKey.includes(defaultViewKey)
+      ? defaultViewKey
+      : viewSortedKey[0]
+    if (mode === "production") {
+      const targetViewName = sectionViewConfigs.find(
+        (config) => config.path === decodeURIComponent(viewPath),
+      )
+      return targetViewName?.viewDisplayName || defaultedViewKey
+    } else {
+      return viewSortedKey[currentViewIndex] || defaultedViewKey
+    }
+  }, [
+    currentViewIndex,
+    defaultViewKey,
+    mode,
+    sectionViewConfigs,
+    viewPath,
+    viewSortedKey,
+  ])
 
   const componentNode = sectionNode.childrenNode.find(
     (node) => node.displayName === currentViewDisplayName,
@@ -566,11 +649,40 @@ export const RenderLeftSection = forwardRef<
     setIsLeftFold,
   } = props
 
-  const { viewSortedKey, currentViewIndex } = sectionNode.props
+  const executionResult = useSelector(getExecutionResult)
+  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const {
+    viewSortedKey,
+    currentViewIndex,
+    defaultViewKey,
+    sectionViewConfigs,
+  } = sectionNodeProps
+  let { viewPath = "View1" } = useParams()
+  const currentViewDisplayName = useMemo(() => {
+    if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
+      return "View 1"
+    const defaultedViewKey = viewSortedKey.includes(defaultViewKey)
+      ? defaultViewKey
+      : viewSortedKey[0]
+    if (mode === "production") {
+      const targetViewName = sectionViewConfigs.find(
+        (config) => config.path === decodeURIComponent(viewPath),
+      )
+      return targetViewName?.viewDisplayName || defaultedViewKey
+    } else {
+      return viewSortedKey[currentViewIndex] || defaultedViewKey
+    }
+  }, [
+    currentViewIndex,
+    defaultViewKey,
+    mode,
+    sectionViewConfigs,
+    viewPath,
+    viewSortedKey,
+  ])
   const [isInSection, setIsInSection] = useState(false)
   const [animationComplete, setAnimationComplete] = useState(true)
   const isActive = useRef<boolean>(false)
-  const currentViewDisplayName = viewSortedKey[currentViewIndex]
 
   const componentNode = sectionNode.childrenNode.find(
     (node) => node.displayName === currentViewDisplayName,
@@ -817,9 +929,37 @@ export const RenderRightSection = forwardRef<
     setIsRightFold,
   } = props
 
-  const { viewSortedKey, currentViewIndex } = sectionNode.props
-
-  const currentViewDisplayName = viewSortedKey[currentViewIndex]
+  const executionResult = useSelector(getExecutionResult)
+  const sectionNodeProps = executionResult[sectionNode.displayName] || {}
+  const {
+    viewSortedKey,
+    currentViewIndex,
+    defaultViewKey,
+    sectionViewConfigs,
+  } = sectionNodeProps
+  let { viewPath = "View1" } = useParams()
+  const currentViewDisplayName = useMemo(() => {
+    if (!Array.isArray(sectionViewConfigs) || !Array.isArray(viewSortedKey))
+      return "View 1"
+    const defaultedViewKey = viewSortedKey.includes(defaultViewKey)
+      ? defaultViewKey
+      : viewSortedKey[0]
+    if (mode === "production") {
+      const targetViewName = sectionViewConfigs.find(
+        (config) => config.path === decodeURIComponent(viewPath),
+      )
+      return targetViewName?.viewDisplayName || defaultedViewKey
+    } else {
+      return viewSortedKey[currentViewIndex] || defaultedViewKey
+    }
+  }, [
+    currentViewIndex,
+    defaultViewKey,
+    mode,
+    sectionViewConfigs,
+    viewPath,
+    viewSortedKey,
+  ])
 
   const componentNode = sectionNode.childrenNode.find(
     (node) => node.displayName === currentViewDisplayName,

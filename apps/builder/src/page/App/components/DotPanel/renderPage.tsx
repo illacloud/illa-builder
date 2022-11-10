@@ -353,7 +353,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
 
   return (
     <div style={{ width: "100%", height: "100%" }} ref={containerRef}>
-      {hasHeader && headerSection && (
+      {hasHeader && headerSection && currentPageDisplayName && (
         <RenderHeaderSection
           sectionNode={headerSection}
           ref={headerRef}
@@ -367,7 +367,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           rightPosition={rightPosition}
         />
       )}
-      {hasLeft && leftSection && (
+      {hasLeft && leftSection && currentPageDisplayName && (
         <RenderLeftSection
           sectionNode={leftSection}
           ref={leftRef}
@@ -383,10 +383,10 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           setIsLeftFold={setIsLeftFold}
         />
       )}
-      {bodySection && (
+      {bodySection && currentPageDisplayName && (
         <RenderSection sectionNode={bodySection} ref={bodyRef} mode={mode} />
       )}
-      {hasRight && rightSection && (
+      {hasRight && rightSection && currentPageDisplayName && (
         <RenderRightSection
           sectionNode={rightSection}
           ref={rightRef}
@@ -402,7 +402,7 @@ export const RenderPage: FC<RenderPageProps> = (props) => {
           setIsRightFold={setIsRightFold}
         />
       )}
-      {hasFooter && footerSection && (
+      {hasFooter && footerSection && currentPageDisplayName && (
         <RenderFooterSection
           sectionNode={footerSection}
           ref={footerRef}

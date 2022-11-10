@@ -33,7 +33,8 @@ export const DotPanel: FC = () => {
     !canvasTree ||
     canvasTree.containerType !== "EDITOR_DOT_PANEL" ||
     canvasTree.type !== "DOT_PANEL" ||
-    canvasTree.displayName !== "root"
+    canvasTree.displayName !== "root" ||
+    !rootExecutionProps
   )
     return null
 

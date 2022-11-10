@@ -6,8 +6,13 @@ import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/
 import { getPageExecutionResultArray } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
-  const { isSetterSingleRow, attrName, handleUpdateDsl, value } = props
-
+  const {
+    isSetterSingleRow,
+    attrName,
+    handleUpdateDsl,
+    value,
+    placeholder,
+  } = props
   const pageArray = useSelector(getPageExecutionResultArray)
 
   const finalOptions = useMemo(() => {
@@ -39,6 +44,7 @@ export const EventTargetPageSelect: FC<BaseSelectSetterProps> = (props) => {
         onChange={(value) => {
           handleUpdateDsl(attrName, value)
         }}
+        placeholder={placeholder}
       />
     </div>
   )

@@ -1,4 +1,9 @@
-import { getIllaMode } from "./../../redux/config/configSelector"
+import { SectionViewShape } from "@/redux/currentApp/editor/components/componentsState"
+import {
+  searchDsl,
+  getCanvas,
+} from "@/redux/currentApp/editor/components/componentsSelector"
+import { getIllaMode } from "@/redux/config/configSelector"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
 import store from "@/store"
 import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSelector"
@@ -13,6 +18,7 @@ import {
 import { get } from "lodash"
 import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import { ILLARoute } from "@/router"
+import { UpdateExecutionByDisplayNamePayload } from "@/redux/currentApp/executionTree/executionState"
 
 export const transformEvents = (
   event: any,
@@ -46,8 +52,10 @@ export const transformEvents = (
     }
   }
   if (actionType === "setRouter") {
-    const { pagePath } = event
+    console.log("event", event)
+    const { pagePath, viewPath } = event
     let finalPath = `/${pagePath}`
+    finalPath = viewPath ? finalPath + `/${viewPath}` : finalPath
     return {
       script: () => {
         const originPath = window.location.pathname
@@ -61,24 +69,52 @@ export const transformEvents = (
         if (index === -1) return
         if (mode === "production" && originPathArray.length >= 6) {
           if (mode === "production") {
-            ILLARoute.navigate(originPathArray.join("/") + finalPath)
+            ILLARoute.navigate(
+              originPathArray.slice(0, 6).join("/") + finalPath,
+            )
           }
-          store.dispatch(
-            executionActions.updateExecutionByDisplayNameReducer({
-              displayName: "root",
-              value: {
-                currentPageIndex: index,
-              },
-            }),
-          )
         }
-        store.dispatch(
-          executionActions.updateExecutionByDisplayNameReducer({
+        const updateSlice: UpdateExecutionByDisplayNamePayload[] = [
+          {
             displayName: "root",
             value: {
               currentPageIndex: index,
             },
-          }),
+          },
+        ]
+        if (viewPath) {
+          const canvas = getCanvas(store.getState())
+          if (!canvas) return
+          const pageNode = searchDsl(canvas, pagePath)
+          if (!pageNode) return
+          pageNode.childrenNode.forEach((node) => {
+            const sectionViewConfigs = node.props?.sectionViewConfigs || []
+            const viewSortedKey = node.props?.viewSortedKey || []
+            const findConfig = sectionViewConfigs.find(
+              (config: SectionViewShape) => {
+                return config.path === viewPath
+              },
+            )
+            if (findConfig) {
+              const viewDisplayName = findConfig.viewDisplayName
+              const indexOfViewKey = viewSortedKey.findIndex(
+                (key: string) => key === viewDisplayName,
+              )
+              if (indexOfViewKey !== -1) {
+                updateSlice.push({
+                  displayName: node.displayName,
+                  value: {
+                    currentViewIndex: indexOfViewKey,
+                  },
+                })
+              }
+            }
+          })
+        }
+        store.dispatch(
+          executionActions.updateExecutionByMultiDisplayNameReducer(
+            updateSlice,
+          ),
         )
       },
     }

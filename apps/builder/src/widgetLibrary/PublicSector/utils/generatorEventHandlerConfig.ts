@@ -267,8 +267,23 @@ export const generatorEventHandlerConfig = (
         id: `${baseWidgetName}-interaction-event-handler-page`,
         labelName: i18n.t("editor.inspect.setter_label.page"),
         setterType: "EVENT_TARGET_PAGE_SELECT_SETTER",
+        placeholder: i18n.t(
+          "editor.inspect.setter_content.select_page_setter.placeholder",
+        ),
         expectedType: VALIDATION_TYPES.STRING,
         attrName: "pagePath",
+        bindAttrName: ["actionType"],
+        shown: (type) => type === "setRouter",
+      },
+      {
+        id: `${baseWidgetName}-interaction-event-handler-view-path`,
+        labelName: i18n.t("editor.page.label_name.view_path"),
+        placeholder: i18n.t(
+          "editor.inspect.setter_content.select_view_setter.placeholder",
+        ),
+        setterType: "EVENT_TARGET_VIEW_PATH_SELECT_SETTER",
+        expectedType: VALIDATION_TYPES.STRING,
+        attrName: "viewPath",
         bindAttrName: ["actionType"],
         shown: (type) => type === "setRouter",
       },

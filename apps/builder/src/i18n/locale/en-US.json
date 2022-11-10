@@ -405,6 +405,9 @@
         "select_page_setter": {
           "placeholder": "Select a page"
         },
+        "select_view_setter": {
+          "placeholder": ""
+        },
         "tabs_setter": {
           "tabs": "Tabs"
         },
@@ -649,18 +652,18 @@
         "add": "Add",
         "body": "Body",
         "default_view": "Default view",
+        "edit_view": "Edit view",
         "footer": "Footer",
         "header": "Header",
+        "key": "Key",
         "left_panel": "Left panel",
         "preset": "Preset",
         "right_panel": "Right panel",
         "set_as_homepage": "Set as homepage",
         "show_fold_icon": "Show fold icon",
+        "view_path": "View path",
         "views": "Views",
-        "width": "Width",
-        "edit_view": "Edit view",
-        "key": "Key",
-        "view_path": "View path"
+        "width": "Width"
       },
       "model_tips": {
         "cancel_button": "Cancel",

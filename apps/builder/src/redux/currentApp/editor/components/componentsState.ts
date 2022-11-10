@@ -90,12 +90,14 @@ export interface LeftOrRightSectionNodeProps {
   currentViewIndex: number
   viewSortedKey: string[]
   sectionViewConfigs: SectionViewShape[]
+  defaultViewKey: string
 }
 
 export interface HeaderOrBottomSectionNodeProps {
   currentViewIndex: number
   viewSortedKey: string[]
   sectionViewConfigs: SectionViewShape[]
+  defaultViewKey: string
 }
 
 export type SectionNodeProps =

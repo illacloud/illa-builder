@@ -405,6 +405,9 @@
         "select_page_setter": {
           "placeholder": "选择一个页面"
         },
+        "select_view_setter": {
+          "placeholder": "选择一个视图路径"
+        },
         "tabs_setter": {
           "tabs": "Tabs"
         },
