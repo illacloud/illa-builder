@@ -7,7 +7,7 @@ export const MENU_EVENT_HANDLER_CONFIG: EventHandlerConfig = {
       label: i18n.t(
         "editor.inspect.setter_content.widget_action_type_name.click",
       ),
-      value: "click",
+      value: "clickMenuItem",
     },
   ],
   methods: [],

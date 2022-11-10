@@ -16,6 +16,7 @@ export interface WrappedMenuProps
   handleOnPaginationChange?: () => void
   handleOnColumnFiltersChange?: () => void
   handleUpdateOriginalDSLMultiAttr: (updateSlice: Record<string, any>) => void
+  handleOnClickMenuItem: (path: string) => void
 }
 
 export type MenuMode = "vertical" | "horizontal"
