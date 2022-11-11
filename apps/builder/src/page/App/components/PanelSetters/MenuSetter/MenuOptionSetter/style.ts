@@ -15,6 +15,10 @@ export const optionListHeaderStyle = css`
   ${publicPaddingStyle}
 `
 
+export const modalStyle = css`
+  width: 320px;
+`
+
 export const headerActionButtonStyle = css`
   display: flex;
   align-items: center;
