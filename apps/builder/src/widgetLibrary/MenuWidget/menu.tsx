@@ -39,7 +39,7 @@ export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
           })
           new Promise((resolve) => {
             handleUpdateOriginalDSLMultiAttr({
-              selectedKeys: key,
+              selectedKeys: [key],
             })
             resolve(true)
           }).then(() => {
