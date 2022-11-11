@@ -15,11 +15,15 @@ export const optionListHeaderStyle = css`
   ${publicPaddingStyle}
 `
 
+export const modalStyle = css`
+  width: 320px;
+`
+
 export const headerActionButtonStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${globalColor(`--${illaPrefix}-purple-01`)};
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   cursor: pointer;
   font-weight: 400;
   margin: 0 8px;
@@ -112,7 +116,7 @@ export const iconAreaStyle = css`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: ${globalColor(`--${illaPrefix}-purple-01`)};
+  color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
   cursor: pointer;
   font-weight: 400;
   white-space: pre;

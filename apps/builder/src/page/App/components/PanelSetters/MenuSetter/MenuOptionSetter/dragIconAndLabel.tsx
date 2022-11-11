@@ -9,6 +9,7 @@ import {
   iconAreaStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
+  modalStyle,
   movableIconWrapperStyle,
 } from "./style"
 import { DragIconAndLabelProps } from "./interface"
@@ -40,6 +41,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
       popupVisible={modalVisible}
       content={
         <BaseModal
+          _css={modalStyle}
           title={title ?? ""}
           handleCloseModal={handleCloseModal}
           attrPath={`${attrPath}.${index}`}

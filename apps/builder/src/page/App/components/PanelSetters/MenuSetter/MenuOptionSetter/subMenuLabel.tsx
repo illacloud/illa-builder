@@ -8,6 +8,7 @@ import {
   iconAreaStyle,
   labelNameAndIconStyle,
   labelNameWrapperStyle,
+  modalStyle,
   movableIconWrapperStyle,
   subMenuItemStyle,
 } from "./style"
@@ -35,6 +36,7 @@ export const SubMenuLabel: FC<SubMenuLabelProps> = (props) => {
       popupVisible={modalVisible}
       content={
         <BaseModal
+          _css={modalStyle}
           title={title ?? ""}
           handleCloseModal={handleCloseModal}
           attrPath={attrPath}
