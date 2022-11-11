@@ -6,16 +6,6 @@ const menuList = [
   {
     id: "1",
     title: "Menu 1",
-    subMenu: [
-      {
-        id: "1-1",
-        title: "SubMenu 1",
-      },
-      {
-        id: "1-2",
-        title: "SubMenu 2",
-      },
-    ],
   },
   {
     id: "2",
@@ -27,6 +17,20 @@ const menuList = [
       },
       {
         id: "2-2",
+        title: "SubMenu 2",
+      },
+    ],
+  },
+  {
+    id: "3",
+    title: "Menu 3",
+    subMenu: [
+      {
+        id: "3-1",
+        title: "SubMenu 1",
+      },
+      {
+        id: "3-2",
         title: "SubMenu 2",
       },
     ],
@@ -44,6 +48,7 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   sessionType: "PRESENTATION",
   defaults: {
     menuList,
+    selectedKeys: ["1"],
     mode: "horizontal",
     horizontalAlign: "flex-start",
   },
