@@ -383,6 +383,12 @@
           "new": "新建",
           "title": "标题"
         },
+        "menu_setter": {
+          "label": "菜单 ({{number}})",
+          "new": "新建",
+          "sub": "子菜单",
+          "delete": "删除"
+        },
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
           "incomplete_selection": "不完整的选择",
@@ -424,6 +430,7 @@
           "invalid": "校验失败",
           "paginationChange": "翻页配置改变",
           "sortingChange": "排序方式改变",
+          "clickMenuItem": "单击",
           "submit": "提交",
           "success": "成功后"
         }
@@ -451,6 +458,7 @@
         "interaction": "交互",
         "label": "标签",
         "layout": "布局",
+        "menu": "菜单",
         "options": "选项",
         "pagination": "翻页",
         "row_selection": "行选择",
@@ -964,6 +972,9 @@
     },
     "switch": {
       "name": "开关"
+    },
+    "menu": {
+      "name": "菜单"
     },
     "table": {
       "ascend": "升序",

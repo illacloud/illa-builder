@@ -142,6 +142,12 @@ import {
   TABS_EVENT_HANDLER_CONFIG,
   TabsWidget,
 } from "@/widgetLibrary/TabsWidget"
+import {
+  MENU_EVENT_HANDLER_CONFIG,
+  MENU_PANEL_CONFIG,
+  MENU_WIDGET_CONFIG,
+  MenuWidget,
+} from "@/widgetLibrary/MenuWidget"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -274,6 +280,12 @@ export const WidgetConfig: WidgetConfigs = {
     config: TABS_WIDGET_CONFIG,
     panelConfig: TABS_PANEL_CONFIG,
     eventHandlerConfig: TABS_EVENT_HANDLER_CONFIG,
+  },
+  MENU_WIDGET: {
+    widget: MenuWidget,
+    config: MENU_WIDGET_CONFIG,
+    panelConfig: MENU_PANEL_CONFIG,
+    eventHandlerConfig: MENU_EVENT_HANDLER_CONFIG,
   },
   CONTAINER_WIDGET: {
     widget: ContainerWidget,
