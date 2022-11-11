@@ -18,6 +18,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         attrName: "data",
         isSetterSingleRow: true,
         setterType: "TABLE_DATA_INPUT_SETTER",
+        expectedType: VALIDATION_TYPES.ARRAY,
       },
       {
         id: `${baseWidgetName}-basic-emptyState`,
