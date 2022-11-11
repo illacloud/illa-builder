@@ -36,8 +36,8 @@ const menuList = [
 export const MENU_WIDGET_CONFIG: WidgetConfig = {
   displayName: "menu",
   widgetName: i18n.t("widget.menu.name"),
-  h: 20,
-  w: 42,
+  h: 7,
+  w: 30,
   type: "MENU_WIDGET",
   icon: <MenuWidgetIcon />,
   keywords: ["Menu", "菜单"],
