@@ -430,6 +430,7 @@
           "invalid": "Invalid",
           "paginationChange": "Page change",
           "sortingChange": "Sort change",
+          "clickMenuItem": "Click",
           "submit": "Submit",
           "success": "Success"
         }
