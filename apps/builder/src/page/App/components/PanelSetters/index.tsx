@@ -30,6 +30,7 @@ import { ContainerDefaultViewKeySetter } from "@/page/App/components/PanelSetter
 import { TabListSetter } from "@/page/App/components/PanelSetters/TabsSetter/TabListSetter"
 import { TabsContainerSelectSetter } from "@/page/App/components/PanelSetters/TabsSetter/TabsContainerSelectSetter"
 import { TabsDefaultKeySetter } from "@/page/App/components/PanelSetters/TabsSetter/defaultTabKeySetter"
+import { MenuOptionSetter } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter"
 import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
 import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
 
@@ -68,6 +69,7 @@ const SetterTypeMapSetter = {
   CHART_TYPE_SELECT_SETTER: ChartTypeSelectSetter,
   CONTAINER_VIEW_SETTER: ViewsSetter,
   CONTAINER_DEFAULT_VIEW_SETTER: ContainerDefaultViewKeySetter,
+  MENU_OPTION_SETTER: MenuOptionSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

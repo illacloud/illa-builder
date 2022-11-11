@@ -383,6 +383,12 @@
           "new": "New",
           "title": "Title"
         },
+        "menu_setter": {
+          "label": "Menus ({{number}})",
+          "new": "New",
+          "sub": "Sub",
+          "delete": "Delete"
+        },
         "event_handler_list": {
           "empty": "Trigger queries, control components, or call other APIs in response to component events.",
           "incomplete_selection": "Incomplete selection",
@@ -406,7 +412,7 @@
           "placeholder": "Select a page"
         },
         "select_view_setter": {
-          "placeholder": ""
+          "placeholder": "Select a view"
         },
         "tabs_setter": {
           "tabs": "Tabs"
@@ -424,6 +430,7 @@
           "invalid": "Invalid",
           "paginationChange": "Page change",
           "sortingChange": "Sort change",
+          "clickMenuItem": "Click",
           "submit": "Submit",
           "success": "Success"
         }
@@ -451,6 +458,7 @@
         "interaction": "INTERACTION",
         "label": "LABEL",
         "layout": "LAYOUT",
+        "menu": "MENU",
         "options": "OPTIONS",
         "pagination": "PAGINATION",
         "row_selection": "ROW SELECTION",
@@ -749,6 +757,9 @@
   },
   "share": "Share",
   "status": {
+    "403": {
+      "des": "Access denied"
+    },
     "404": {
       "again": "Refresh",
       "des": "It seems that the page you were looking for could not be found."
@@ -961,6 +972,9 @@
     },
     "switch": {
       "name": "Switch"
+    },
+    "menu": {
+      "name": "Menu"
     },
     "table": {
       "ascend": "Asc",

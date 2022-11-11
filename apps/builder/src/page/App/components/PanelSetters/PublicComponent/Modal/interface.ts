@@ -24,4 +24,5 @@ export interface ModalProps extends HeaderProps {
   children?: ReactNode
   _css?: SerializedStyles
   header?: ReactNode
+  extraElement?: ReactNode
 }

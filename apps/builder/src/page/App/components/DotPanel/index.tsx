@@ -20,10 +20,15 @@ export const DotPanel: FC = () => {
     pageSortedKey,
     homepageDisplayName,
   } = rootExecutionProps
-  let { pageName = "page1" } = useParams()
+  let { pageName } = useParams()
   const currentDisplayName = useMemo(() => {
     if (mode === "production") {
-      return pageName || homepageDisplayName
+      return (
+        pageName ||
+        homepageDisplayName ||
+        pageSortedKey[currentPageIndex] ||
+        "page1"
+      )
     } else {
       return pageSortedKey[currentPageIndex] || homepageDisplayName
     }
