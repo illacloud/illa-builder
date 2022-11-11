@@ -33,6 +33,7 @@ import { componentsActions } from "@/redux/currentApp/editor/components/componen
 import {
   getDragResult,
   getReflowResult,
+  isAddAction,
 } from "@/page/App/components/DotPanel/calc"
 import { useDrop } from "react-dnd"
 import { PreviewPlaceholder } from "@/page/App/components/DotPanel/previewPlaceholder"
@@ -43,7 +44,7 @@ import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 
 const UNIT_HEIGHT = 8
-const BLOCK_COLUMNS = 64
+const BASIC_BLOCK_COLUMNS = 64
 
 export const RenderComponentCanvas: FC<{
   componentNode: ComponentNode
@@ -52,6 +53,7 @@ export const RenderComponentCanvas: FC<{
   minHeight?: number
   canResizeY?: boolean
   safeRowNumber: number
+  blockColumns?: number
 }> = (props) => {
   const {
     componentNode,
@@ -60,6 +62,7 @@ export const RenderComponentCanvas: FC<{
     minHeight,
     canResizeY = true,
     safeRowNumber,
+    blockColumns = BASIC_BLOCK_COLUMNS,
   } = props
 
   const isShowCanvasDot = useSelector(isShowDot)
@@ -81,8 +84,8 @@ export const RenderComponentCanvas: FC<{
   ) as MutableRefObject<HTMLDivElement | null>
 
   const unitWidth = useMemo(() => {
-    return bounds.width / BLOCK_COLUMNS
-  }, [bounds.width])
+    return bounds.width / blockColumns
+  }, [blockColumns, bounds.width])
 
   const componentTree = useMemo<ReactNode>(() => {
     const childrenNode = componentNode.childrenNode
@@ -132,6 +135,7 @@ export const RenderComponentCanvas: FC<{
               containerPadding={containerPadding}
               childrenNode={componentNode.childrenNode}
               collisionEffect={collisionEffect}
+              columnsNumber={blockColumns}
             />
           )
         default:
@@ -139,6 +143,7 @@ export const RenderComponentCanvas: FC<{
       }
     })
   }, [
+    blockColumns,
     canResizeY,
     collisionEffect,
     componentNode.childrenNode,
@@ -180,16 +185,26 @@ export const RenderComponentCanvas: FC<{
           setCollisionEffect(new Map())
         }
         if (monitor.isOver({ shallow: true }) && monitor.getClientOffset()) {
-          const { item } = dragInfo
+          const { item, currentColumnNumber } = dragInfo
+          const scale = blockColumns / currentColumnNumber
+
+          const scaleItem: ComponentNode = {
+            ...item,
+            w: item.w * scale,
+          }
           let dragResult
           if (
-            (item.x === -1 && item.y === -1) ||
-            item.parentNode !== componentNode.displayName
+            isAddAction(
+              item.x,
+              item.y,
+              item.parentNode,
+              componentNode.displayName,
+            )
           ) {
             dragResult = getDragResult(
               monitor,
               containerRef,
-              item,
+              scaleItem,
               unitWidth,
               UNIT_HEIGHT,
               bounds.width,
@@ -237,7 +252,7 @@ export const RenderComponentCanvas: FC<{
            */
           const oldParentDisplayName = item.parentNode
           const newItem = {
-            ...item,
+            ...scaleItem,
             parentNode: componentNode.displayName || "root",
             x: Math.round(landingX / unitWidth),
             y: Math.round(landingY / UNIT_HEIGHT),
@@ -307,18 +322,28 @@ export const RenderComponentCanvas: FC<{
       },
       drop: (dragInfo, monitor) => {
         const isDrop = monitor.didDrop()
-        const { item } = dragInfo
+        const { item, currentColumnNumber } = dragInfo
         if (isDrop || item.displayName === componentNode.displayName) return
         if (monitor.getClientOffset()) {
+          const scale = blockColumns / currentColumnNumber
+
+          const scaleItem: ComponentNode = {
+            ...item,
+            w: item.w * scale,
+          }
           let dragResult
           if (
-            (item.x === -1 && item.y === -1) ||
-            item.parentNode !== componentNode.displayName
+            isAddAction(
+              item.x,
+              item.y,
+              item.parentNode,
+              componentNode.displayName,
+            )
           ) {
             dragResult = getDragResult(
               monitor,
               containerRef,
-              item,
+              scaleItem,
               unitWidth,
               UNIT_HEIGHT,
               bounds.width,
@@ -330,7 +355,7 @@ export const RenderComponentCanvas: FC<{
             dragResult = getDragResult(
               monitor,
               containerRef,
-              item,
+              scaleItem,
               unitWidth,
               UNIT_HEIGHT,
               bounds.width,
@@ -347,7 +372,7 @@ export const RenderComponentCanvas: FC<{
            */
           const oldParentNodeDisplayName = item.parentNode || "root"
           const newItem = {
-            ...item,
+            ...scaleItem,
             parentNode: componentNode.displayName || "root",
             x: Math.round(landingX / unitWidth),
             y: Math.round(landingY / UNIT_HEIGHT),
@@ -397,10 +422,21 @@ export const RenderComponentCanvas: FC<{
       },
       collect: (monitor) => {
         const dragInfo = monitor.getItem()
+        if (!dragInfo) {
+          return {
+            isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
+            nodeWidth: 0,
+            nodeHeight: 0,
+          }
+        }
+        const { item, currentColumnNumber } = dragInfo
+        let nodeWidth = item?.w ?? 0
+        let nodeHeight = item?.h ?? 0
+        nodeWidth = nodeWidth * (blockColumns / currentColumnNumber)
         return {
           isActive: monitor.canDrop() && monitor.isOver({ shallow: true }),
-          nodeWidth: dragInfo?.item?.w ?? 0,
-          nodeHeight: dragInfo?.item?.h ?? 0,
+          nodeWidth: nodeWidth,
+          nodeHeight: nodeHeight,
         }
       },
     }),
@@ -422,7 +458,7 @@ export const RenderComponentCanvas: FC<{
           ),
         )
       } else {
-        setRowNumber(Math.max(maxY, bounds.height / UNIT_HEIGHT))
+        setRowNumber(maxY)
       }
     }
   }, [
@@ -446,7 +482,7 @@ export const RenderComponentCanvas: FC<{
       css={applyComponentCanvasStyle(
         bounds.width,
         bounds.height,
-        bounds.width / BLOCK_COLUMNS,
+        bounds.width / blockColumns,
         UNIT_HEIGHT,
         isShowCanvasDot,
         rowNumber * 8,

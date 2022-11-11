@@ -37,17 +37,40 @@ export function searchDsl(
   return null
 }
 
-export function flattenDslToMap(rootNode: ComponentNode): {
+export function flattenDslToMap(
+  rootNode: ComponentNode,
+): {
   [key: string]: ComponentNode
 } {
   const queue = [rootNode]
   let res = {}
   while (queue.length > 0) {
     const head = queue[queue.length - 1]
-
-    if (head.containerType !== "EDITOR_DOT_PANEL") {
+    if (head.type !== "CONTAINER_NODE") {
       res = { ...res, [head.displayName]: head || {} }
     }
+    queue.pop()
+    if (head.childrenNode) {
+      head.childrenNode.forEach((child) => {
+        if (child) {
+          queue.push(child)
+        }
+      })
+    }
+  }
+  return res
+}
+
+export function flattenAllComponentNodeToMap(
+  rootNode: ComponentNode,
+): {
+  [key: string]: ComponentNode
+} {
+  const queue = [rootNode]
+  let res = {}
+  while (queue.length > 0) {
+    const head = queue[queue.length - 1]
+    res = { ...res, [head.displayName]: head || {} }
     queue.pop()
     if (head.childrenNode) {
       head.childrenNode.forEach((child) => {
@@ -144,3 +167,46 @@ export const getFlattenArrayComponentNodes = createSelector(
     return components || []
   },
 )
+
+export const getCurrentPageNode = createSelector([getCanvas], (rootDSL) => {
+  if (rootDSL == null || !rootDSL.props) {
+    return null
+  }
+  const { currentPageIndex, pageSortedKey } = rootDSL.props
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
+  const currentPage = rootDSL.childrenNode.find(
+    (node) => node.displayName === currentPageDisplayName,
+  )
+  if (!currentPage) return null
+  return currentPage
+})
+
+export const getCurrentPageProps = createSelector(
+  [getCurrentPageNode],
+  (currentPageNode) => {
+    if (currentPageNode == null || !currentPageNode.props) {
+      return {}
+    }
+    return currentPageNode.props
+  },
+)
+
+export const getCurrentPageDisplayName = createSelector(
+  [getCurrentPageNode],
+  (currentPageNode) => {
+    if (currentPageNode == null || !currentPageNode.props) {
+      return null
+    }
+    return currentPageNode.displayName
+  },
+)
+
+export const getRootNodeProps = createSelector([getCanvas], (rootNode) => {
+  if (!rootNode)
+    return {
+      currentPageIndex: 0,
+      pageSortedKey: ["page1"],
+      homepageDisplayName: "page1",
+    }
+  return rootNode.props
+})

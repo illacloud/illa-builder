@@ -6,10 +6,10 @@
   "btn": {
     "choose_file": "Choose a file"
   },
-  "collision_message": "Press D or K  and drag the component into container",
-  "create_fail": "Failed to create",
   "change_fail": "Failed to change",
   "change_success": "Change successfully",
+  "collision_message": "Press D or K  and drag the component into container",
+  "create_fail": "Failed to create",
   "create_new": "Create New",
   "create_new_app": "Create New",
   "created_at": "Created at",
@@ -140,9 +140,6 @@
           "required": "{name} is required"
         }
       },
-      "resource_choose": {
-        "deleted": "Deleted"
-      },
       "panel": {
         "btn": {
           "disable": "Disable",
@@ -204,30 +201,30 @@
             "ca_certificate": "CA Certificate",
             "client_certificate": "Client Certificate",
             "client_key": "Client Key",
+            "config_type": "Config Type",
             "connect_type": "Connect Type",
             "connection_format": "Connection format",
+            "connection_string": "Connection String",
             "database": "Database",
             "database_index": "Database Index",
             "hostname": "Hostname",
             "hostname_port": "Hostname/Port",
-            "mongodb_ssl_client": "Client Cert and Key",
-            "mongodb_ssl_ca": "CA Cert",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
+            "mongodb_ssl_ca": "CA Cert",
+            "mongodb_ssl_client": "Client Cert and Key",
             "name": "Name",
             "port": "Port",
-            "config_type": "Config Type",
-            "connection_string": "Connection String",
             "private_key": "Private Key",
             "ssl_options": "SSL options",
             "username_password": "Username/Password"
           },
           "placeholder": {
-            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "certificate": "-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----",
             "database": "acme_production",
             "database_index": "default 0",
             "hostname": "Hostname",
+            "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "Password",
             "username": "Username"
@@ -319,6 +316,9 @@
           }
         }
       },
+      "resource_choose": {
+        "deleted": "Deleted"
+      },
       "result": {
         "title": {
           "api_request": "API Request",
@@ -348,7 +348,8 @@
     "data_work_space": {
       "actions_title": "ACTIONS & TRANSFORMERS ",
       "components_title": "COMPONENTS ",
-      "globals_title": "GLOBALS "
+      "globals_title": "GLOBALS ",
+      "pages_title": "PAGES"
     },
     "deploy": {
       "fail": "Failed to deploy"
@@ -376,12 +377,6 @@
         "color_picker": {
           "prefabricated": "Prefabricated color",
           "title": "Edit color"
-        },
-        "view_setter": {
-          "views": "Views"
-        },
-        "tabs_setter": {
-          "tabs": "Tabs"
         },
         "column_setter": {
           "label": "Columns ({{number}})",
@@ -412,6 +407,18 @@
           "model_title": "Edit Options",
           "new": "New",
           "title": "Options"
+        },
+        "select_page_setter": {
+          "placeholder": "Select a page"
+        },
+        "select_view_setter": {
+          "placeholder": ""
+        },
+        "tabs_setter": {
+          "tabs": "Tabs"
+        },
+        "view_setter": {
+          "views": "Views"
         },
         "widget_action_type_name": {
           "blur": "Blur",
@@ -501,9 +508,9 @@
         "decimal_places": "Decimal places",
         "default_sort_key": "Column",
         "default_sort_order": "Direction",
+        "default_tab": "Default tab",
         "default_value": "Default value",
         "default_views": "Default view",
-        "default_tab": "Default tab",
         "description": "Description",
         "direction": "Direction",
         "disable_submit": "Disable submit",
@@ -542,8 +549,8 @@
         "label_width": "Width(%)",
         "layout": "Layout",
         "legend_position": "Legend position",
-        "links_color": "Links",
         "link_to_container": "Link to a container",
+        "links_color": "Links",
         "loading": "Loading",
         "loop_back_to_start": "Loop back to start",
         "loop_start_to_back": "Loop start to back",
@@ -560,9 +567,10 @@
         "new_tab": "New tab",
         "only_run_when": "Only run when",
         "overFlow": "OverFlow",
+        "page": "Page",
+        "pageSize": "PageSize",
         "pattern": "Pattern",
         "pending": "Pending",
-        "pageSize": "PageSize",
         "placeholder": "Placeholder",
         "prefix_text": "Prefix text",
         "radius": "Radius",
@@ -570,8 +578,10 @@
         "regex": "Regex",
         "required_field": "Required field",
         "reset_after_successful_submit": "Reset after successful submit",
+        "router": "Router",
         "run_script": "Run script",
         "scale_type": "Scale Type",
+        "set_router": "Set router",
         "set_temporary_state": "Set temporary state",
         "shadow": "Shadow",
         "show_character_count": "Show character count",
@@ -643,6 +653,40 @@
       "tab_title": "Inspect",
       "unselected_tip1": "No components selected.",
       "unselected_tip2": "Click on a component to select it."
+    },
+    "page": {
+      "label_name": {
+        "add": "Add",
+        "body": "Body",
+        "default_view": "Default view",
+        "edit_view": "Edit view",
+        "footer": "Footer",
+        "header": "Header",
+        "key": "Key",
+        "left_panel": "Left panel",
+        "preset": "Preset",
+        "right_panel": "Right panel",
+        "set_as_homepage": "Set as homepage",
+        "show_fold_icon": "Show fold icon",
+        "view_path": "View path",
+        "views": "Views",
+        "width": "Width"
+      },
+      "model_tips": {
+        "cancel_button": "Cancel",
+        "change_layout_message": "After changing the layout, all data will be cleared. This operation can't be recovered, please confirm",
+        "delete_section_message": "After hiding, the data in this section will be cleared. This operation can't be recovered, please confirm",
+        "ok_button": "Confirm"
+      },
+      "panel_bar_title": {
+        "basic": "BASIC",
+        "frame": "FRAME"
+      },
+      "tab_title": "Page",
+      "tooltips": {
+        "show_fold_icon": "Show a button to collapse or expand the panel",
+        "view_path": "A string after example.com/app/page/ to access this view"
+      }
     },
     "validate_message": {
       "email": "Please enter a valid email address",
@@ -944,9 +988,9 @@
       "text_model": "Plain text"
     },
     "timeline": {
+      "horizontal": "horizontal",
       "name": "Timeline",
-      "vertical": "vertical",
-      "horizontal": "horizontal"
+      "vertical": "vertical"
     }
   }
 }

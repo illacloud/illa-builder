@@ -31,6 +31,8 @@ import { TabListSetter } from "@/page/App/components/PanelSetters/TabsSetter/Tab
 import { TabsContainerSelectSetter } from "@/page/App/components/PanelSetters/TabsSetter/TabsContainerSelectSetter"
 import { TabsDefaultKeySetter } from "@/page/App/components/PanelSetters/TabsSetter/defaultTabKeySetter"
 import { MenuOptionSetter } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter"
+import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
+import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -53,6 +55,8 @@ const SetterTypeMapSetter = {
   EVENT_HANDLER_SETTER: EventHandlerSetter,
   EVENT_TARGET_SELECT_SETTER: EventTargetWidgetSelect,
   EVENT_TARGET_ACTION_SELECT_SETTER: EventTargetActionSelect,
+  EVENT_TARGET_PAGE_SELECT_SETTER: EventTargetPageSelect,
+  EVENT_TARGET_VIEW_PATH_SELECT_SETTER: EventTargetViewSelect,
   OPTION_MAPPED_INPUT_SETTER: OptionMappedInputSetter,
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
