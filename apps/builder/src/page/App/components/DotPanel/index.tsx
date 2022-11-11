@@ -23,7 +23,12 @@ export const DotPanel: FC = () => {
   let { pageName } = useParams()
   const currentDisplayName = useMemo(() => {
     if (mode === "production") {
-      return pageName || homepageDisplayName
+      return (
+        pageName ||
+        homepageDisplayName ||
+        pageSortedKey[currentPageIndex] ||
+        "page1"
+      )
     } else {
       return pageSortedKey[currentPageIndex] || homepageDisplayName
     }
