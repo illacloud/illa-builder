@@ -49,7 +49,7 @@ export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
       >
         {menuList?.map((item) => {
           if (item.hidden) return null
-          if (item.subMenu) {
+          if (item.subMenu?.length) {
             return (
               <SubMenu
                 key={item.id}

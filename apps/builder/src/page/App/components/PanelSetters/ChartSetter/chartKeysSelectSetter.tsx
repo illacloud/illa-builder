@@ -97,7 +97,6 @@ export const ChartKeysSelectSetter: FC<ChartDataSourceSetterProps> = (
       if (attrName === "groupBy") {
         if ((!!value && !newValue) || (!value && !!newValue)) {
           const newDatasets = generateNewDatasets(!!newValue)
-          console.log("newDatasets", newDatasets)
           handleUpdateMultiAttrDSL?.({
             datasets: newDatasets,
             [attrName]: newValue,
