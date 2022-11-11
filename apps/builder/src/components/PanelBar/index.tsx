@@ -1,5 +1,6 @@
-import { FC, memo, useCallback, useState } from "react"
+import { FC, memo, useCallback, useState, MouseEvent } from "react"
 import {
+  addIconHotpotStyle,
   applyPanelBarOpenedIconStyle,
   panelBarHeaderStyle,
   panelBarItemAnimation,
@@ -8,7 +9,7 @@ import {
 } from "./style"
 import { PanelBarProps } from "./interface"
 import { AnimatePresence, motion } from "framer-motion"
-import { UpIcon } from "@illa-design/icon"
+import { PlusIcon, UpIcon } from "@illa-design/icon"
 
 export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
   const {
@@ -17,6 +18,8 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
     isOpened = true,
     saveToggleState,
     onIllaFocus,
+    isAddIcon = false,
+    addAction,
   } = props
   const [isOpenedState, setIsOpenedState] = useState(isOpened)
 
@@ -25,12 +28,23 @@ export const PanelBar: FC<PanelBarProps> = memo((props: PanelBarProps) => {
     setIsOpenedState(!isOpenedState)
   }, [isOpenedState, saveToggleState])
 
+  const handleClickAddIcon = (e: MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation()
+    addAction?.()
+  }
+
   return (
     <>
       <div css={panelBarHeaderStyle} onClick={handleToggle}>
         <span css={panelBarTitleStyle}>{title}</span>
         <span>
-          <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState)} />
+          {isAddIcon ? (
+            <div css={addIconHotpotStyle} onClick={handleClickAddIcon}>
+              <PlusIcon />
+            </div>
+          ) : (
+            <UpIcon css={applyPanelBarOpenedIconStyle(isOpenedState)} />
+          )}
         </span>
       </div>
       <AnimatePresence initial={false}>

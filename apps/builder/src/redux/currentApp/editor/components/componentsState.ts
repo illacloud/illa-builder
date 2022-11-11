@@ -1,6 +1,16 @@
 export enum CONTAINER_TYPE {
   "EDITOR_DOT_PANEL" = "EDITOR_DOT_PANEL",
   "EDITOR_SCALE_SQUARE" = "EDITOR_SCALE_SQUARE",
+  "EDITOR_PAGE_SQUARE" = "EDITOR_PAGE_SQUARE",
+  "EDITOR_LAYOUT_SQUARE" = "EDITOR_LAYOUT_SQUARE",
+}
+
+export enum SECTION_POSITION {
+  "TOP" = "TOP",
+  "BOTTOM" = "BOTTOM",
+  "CENTER" = "CENTER",
+  "FULL" = "FULL",
+  "NONE" = "NONE",
 }
 export interface ComponentNode {
   displayName: string
@@ -29,9 +39,74 @@ export interface ComponentNode {
   props: {
     [key: string]: any
   } | null
-  panelConfig?: {
-    dynamicStrings: string[]
-  }
+}
+
+export interface RootComponentNodeProps {
+  currentPageIndex: number
+  pageSortedKey: string[]
+  homepageDisplayName?: string
+}
+
+export interface RootComponentNode extends ComponentNode {
+  type: "DOT_PANEL"
+  props: RootComponentNodeProps
+}
+
+export interface PageNodeProps {
+  canvasSize: "responsive" | "fixed"
+  canvasWidth: string
+  layout: string
+  leftPosition: SECTION_POSITION
+  rightPosition: SECTION_POSITION
+  hasLeft: boolean
+  hasRight: boolean
+  hasHeader: boolean
+  hasFooter: boolean
+  isLeftFixed: boolean
+  isRightFixed: boolean
+  isHeaderFixed: boolean
+  isFooterFixed: boolean
+  leftWidth: number
+  rightWidth: number
+  topHeight: number
+  bottomHeight: number
+  showLeftFoldIcon: boolean
+  showRightFoldIcon: boolean
+}
+export interface PageNode extends ComponentNode {
+  type: "PAGE_NODE"
+  props: PageNodeProps
+}
+
+export interface SectionViewShape {
+  viewDisplayName: string
+  key: string
+  id: string
+  path: string
+}
+
+export interface LeftOrRightSectionNodeProps {
+  showFoldIcon: boolean
+  currentViewIndex: number
+  viewSortedKey: string[]
+  sectionViewConfigs: SectionViewShape[]
+  defaultViewKey: string
+}
+
+export interface HeaderOrBottomSectionNodeProps {
+  currentViewIndex: number
+  viewSortedKey: string[]
+  sectionViewConfigs: SectionViewShape[]
+  defaultViewKey: string
+}
+
+export type SectionNodeProps =
+  | LeftOrRightSectionNodeProps
+  | HeaderOrBottomSectionNodeProps
+
+export interface SectionNode extends ComponentNode {
+  type: "SECTION_NODE"
+  props: SectionNodeProps
 }
 
 export type ComponentsState = ComponentNode | null
@@ -39,6 +114,11 @@ export const ComponentsInitialState: ComponentsState = null
 
 export interface DeleteComponentNodePayload {
   displayNames: string[]
+}
+
+export interface DeletePageNodePayload {
+  displayName: string
+  originPageSortedKey: string[]
 }
 
 export interface sortComponentNodeChildrenPayload {
@@ -63,4 +143,53 @@ export interface UpdateComponentReflowPayload {
 export interface CopyComponentPayload {
   oldComponentNode: ComponentNode
   newComponentNode: ComponentNode
+}
+
+export interface UpdateTargetPageLayoutPayload {
+  pageName: string
+  layout: "default" | "presetA" | "presetB" | "presetC" | "presetD" | "presetE"
+}
+
+export interface UpdateTargetPagePropsPayload {
+  pageName: string
+  newProps: Partial<PageNodeProps>
+}
+
+export interface UpdateRootNodePropsPayload {}
+
+export interface DeleteTargetPageSectionPayload {
+  pageName: string
+  deleteSectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+  options: Record<string, any>
+}
+
+export interface AddTargetPageSectionPayload {
+  pageName: string
+  addedSectionName:
+    | "leftSection"
+    | "rightSection"
+    | "headerSection"
+    | "footerSection"
+  options: Record<string, any>
+}
+
+export interface AddSectionViewPayload {
+  parentNodeName: string
+  containerNode: ComponentNode
+  newSectionViewConfig: SectionViewShape
+}
+
+export interface DeleteSectionViewPayload {
+  viewDisplayName: string
+  parentNodeName: string
+  originPageSortedKey: string[]
+}
+
+export interface UpdateSectionViewPropsPayload {
+  parentNodeName: string
+  newProps: Record<string, any>
 }

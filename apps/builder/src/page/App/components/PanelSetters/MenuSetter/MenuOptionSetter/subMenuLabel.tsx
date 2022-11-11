@@ -49,7 +49,7 @@ export const SubMenuLabel: FC<SubMenuLabelProps> = (props) => {
                 handleDeleteSubMenuItem(index, subIndex)
               }}
             >
-              Delete
+              {t("editor.inspect.setter_content.menu_setter.delete")}
             </Button>
           }
         />

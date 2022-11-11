@@ -24,7 +24,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
       if (key !== widgetDisplayName) {
         const widgetType = widgetDisplayNameMapProps[key].$widgetType
         const widgetMethod =
-          widgetBuilder(widgetType).eventHandlerConfig?.methods ?? []
+          widgetBuilder(widgetType)?.eventHandlerConfig?.methods ?? []
         if (widgetMethod.length > 0) {
           tmpOptions.push({
             label: key,

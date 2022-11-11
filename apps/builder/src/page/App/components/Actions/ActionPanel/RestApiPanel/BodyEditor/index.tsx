@@ -101,8 +101,6 @@ export const BodyEditor: FC<BodyEditorProps> = (props) => {
                 }
               }
 
-              console.log("longbo", newBody)
-
               dispatch(
                 configActions.updateCachedAction({
                   ...actionItem,

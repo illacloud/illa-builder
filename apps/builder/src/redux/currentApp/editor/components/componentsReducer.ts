@@ -1,13 +1,25 @@
 import { CaseReducer, PayloadAction } from "@reduxjs/toolkit"
 import {
+  AddTargetPageSectionPayload,
   ComponentNode,
   ComponentsState,
   CopyComponentPayload,
   DeleteComponentNodePayload,
+  DeleteTargetPageSectionPayload,
+  PageNodeProps,
+  RootComponentNodeProps,
   sortComponentNodeChildrenPayload,
   UpdateComponentDisplayNamePayload,
   UpdateComponentPropsPayload,
   UpdateComponentReflowPayload,
+  UpdateTargetPageLayoutPayload,
+  UpdateTargetPagePropsPayload,
+  RootComponentNode,
+  DeletePageNodePayload,
+  AddSectionViewPayload,
+  DeleteSectionViewPayload,
+  SectionViewShape,
+  UpdateSectionViewPropsPayload,
 } from "@/redux/currentApp/editor/components/componentsState"
 import { cloneDeep } from "lodash"
 import { searchDsl } from "@/redux/currentApp/editor/components/componentsSelector"
@@ -18,6 +30,11 @@ import {
   UpdateComponentsShapePayload,
 } from "@/redux/currentApp/editor/components/componentsPayload"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
+import {
+  generateSectionConfig,
+  generateSectionContainerConfig,
+  layoutValueMapGenerateConfig,
+} from "@/utils/generators/generatePageOrSectionConfig"
 
 export const updateComponentReducer: CaseReducer<
   ComponentsState,
@@ -112,6 +129,51 @@ export const deleteComponentNodeReducer: CaseReducer<
   DisplayNameGenerator.removeDisplayNameMulti(allDisplayNames)
 }
 
+export const deletePageNodeReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeletePageNodePayload>
+> = (state, action) => {
+  const { displayName } = action.payload
+  if (state == null) {
+    return
+  }
+  const rootNode = state
+  const allDisplayNames = [displayName]
+
+  const searchNode = searchDsl(rootNode, displayName)
+  if (!searchNode) return
+  const searchNodeChildNodes = searchNode.childrenNode
+  searchNodeChildNodes?.forEach((node) => {
+    allDisplayNames.push(node.displayName)
+  })
+  const parentNode = rootNode as RootComponentNode
+  const childrenNodes = parentNode.childrenNode
+  const currentIndex = childrenNodes.findIndex((value) => {
+    return value.displayName === searchNode.displayName
+  })
+  childrenNodes.splice(currentIndex, 1)
+  const indexOfSortedKey = parentNode.props.pageSortedKey.findIndex(
+    (key) => key === displayName,
+  )
+  if (indexOfSortedKey === -1) return
+  parentNode.props.pageSortedKey.splice(indexOfSortedKey, 1)
+  if (
+    indexOfSortedKey !== 0 &&
+    parentNode.props.pageSortedKey[parentNode.props.currentPageIndex] ===
+      displayName
+  ) {
+    parentNode.props.currentPageIndex = 0
+  }
+
+  if (
+    parentNode.props.homepageDisplayName === displayName ||
+    !parentNode.props.homepageDisplayName
+  ) {
+    parentNode.props.homepageDisplayName = parentNode.props.pageSortedKey[0]
+  }
+  DisplayNameGenerator.removeDisplayName(displayName)
+}
+
 export const sortComponentNodeChildrenReducer: CaseReducer<
   ComponentsState,
   PayloadAction<sortComponentNodeChildrenPayload>
@@ -184,6 +246,46 @@ export const updateComponentDisplayNameReducer: CaseReducer<
   const node = searchDsl(state, displayName)
   if (!node) return
   node.displayName = newDisplayName
+  if (Array.isArray(node.childrenNode)) {
+    node.childrenNode.forEach((child) => {
+      child.parentNode = newDisplayName
+    })
+  }
+  const parentNode = searchDsl(state, node.parentNode)
+  if (parentNode && parentNode.props) {
+    if (Array.isArray(parentNode.props.pageSortedKey)) {
+      const indexOfOldDisplayName = parentNode.props.pageSortedKey.findIndex(
+        (originDisplayName) => originDisplayName === displayName,
+      )
+      if (indexOfOldDisplayName !== -1) {
+        parentNode.props.pageSortedKey.splice(
+          indexOfOldDisplayName,
+          1,
+          newDisplayName,
+        )
+      }
+    }
+    if (Array.isArray(parentNode.props.viewSortedKey)) {
+      const indexOfOldDisplayName = parentNode.props.viewSortedKey.findIndex(
+        (originDisplayName) => originDisplayName === displayName,
+      )
+      if (indexOfOldDisplayName !== -1) {
+        parentNode.props.pageSortedKey.splice(
+          indexOfOldDisplayName,
+          1,
+          newDisplayName,
+        )
+      }
+    }
+    if (parentNode.displayName === "root" && parentNode.props) {
+      if (parentNode.props.homepageDisplayName === displayName) {
+        parentNode.props.homepageDisplayName = newDisplayName
+      }
+      if (!parentNode.props.homepageDisplayName) {
+        parentNode.props.homepageDisplayName = parentNode.props.pageSortedKey[0]
+      }
+    }
+  }
 }
 
 export const updateComponentsShape: CaseReducer<
@@ -262,4 +364,212 @@ export const updateComponentReflowReducer: CaseReducer<
       })
     }
   })
+}
+
+export const updateHeaderSectionReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<string>
+> = (state, action) => {
+  const { payload } = action
+  const targetSection = searchDsl(state, "headerSection")
+  if (targetSection) {
+    targetSection.props = {
+      ...targetSection.props,
+      height: payload,
+    }
+  }
+}
+
+export const updateCurrentPagePropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<Partial<PageNodeProps>>
+> = (state, action) => {
+  if (!state?.props) return state
+  const { currentPageIndex, pageSortedKey } = state.props
+  const currentPageDisplayName = pageSortedKey[currentPageIndex]
+  const currentPage = state.childrenNode.find(
+    (node) => node.displayName === currentPageDisplayName,
+  )
+  if (!currentPage) return state
+  currentPage.props = {
+    ...currentPage.props,
+    ...action.payload,
+  }
+}
+
+const transComponentNode = (node: ComponentNode, displayName: string[]) => {
+  if (Array.isArray(node.childrenNode)) {
+    node.childrenNode.forEach((child) => {
+      displayName.push(child.displayName)
+      transComponentNode(child, displayName)
+    })
+  }
+}
+
+export const updateTargetPageLayoutReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateTargetPageLayoutPayload>
+> = (state, action) => {
+  if (!state) return state
+  const { pageName, layout } = action.payload
+  const config = layoutValueMapGenerateConfig[layout]
+  let targetPageNodeIndex = state.childrenNode.findIndex(
+    (node) => node.displayName === pageName,
+  )
+  if (targetPageNodeIndex === -1) return state
+  const targetPageNode = state.childrenNode[targetPageNodeIndex]
+  const allComponentDisplayName: string[] = []
+  transComponentNode(targetPageNode, allComponentDisplayName)
+  const pageConfig = config(targetPageNode.displayName)
+  DisplayNameGenerator.removeDisplayNameMulti(allComponentDisplayName)
+  state.childrenNode.splice(targetPageNodeIndex, 1, pageConfig)
+}
+
+export const updateTargetPagePropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateTargetPagePropsPayload>
+> = (state, action) => {
+  if (!state?.props) return state
+  const { pageName, newProps } = action.payload
+  const currentPage = state.childrenNode.find(
+    (node) => node.displayName === pageName,
+  )
+  if (!currentPage) return state
+  currentPage.props = {
+    ...currentPage.props,
+    ...newProps,
+  }
+}
+
+export const deleteTargetPageSectionReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteTargetPageSectionPayload>
+> = (state, action) => {
+  if (!state?.childrenNode) return state
+  const { pageName, deleteSectionName, options } = action.payload
+  const targetPageIndex = state.childrenNode.findIndex(
+    (node) => node.displayName === pageName,
+  )
+  if (targetPageIndex === -1) return state
+  const targetPage = cloneDeep(state.childrenNode[targetPageIndex])
+
+  targetPage.props = {
+    ...targetPage.props,
+    ...options,
+  }
+
+  const targetPageChildrenNodeIndex = targetPage.childrenNode.findIndex(
+    (node) => node.showName === deleteSectionName,
+  )
+  if (targetPageChildrenNodeIndex === -1) return state
+  targetPage.childrenNode.splice(targetPageChildrenNodeIndex, 1)
+  state.childrenNode.splice(targetPageIndex, 1, targetPage)
+}
+
+export const addTargetPageSectionReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<AddTargetPageSectionPayload>
+> = (state, action) => {
+  if (!state?.childrenNode) return state
+  const { pageName, addedSectionName, options } = action.payload
+  const targetPageIndex = state.childrenNode.findIndex(
+    (node) => node.displayName === pageName,
+  )
+  if (targetPageIndex === -1) return state
+  const targetPage = cloneDeep(state.childrenNode[targetPageIndex])
+
+  targetPage.props = {
+    ...targetPage.props,
+    ...options,
+  }
+
+  const config = generateSectionConfig(pageName, addedSectionName)
+  if (!config) return state
+  targetPage.childrenNode.push(config)
+  state.childrenNode.splice(targetPageIndex, 1, targetPage)
+}
+
+export const updateRootNodePropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<Partial<RootComponentNodeProps>>
+> = (state, action) => {
+  if (!state) return state
+  if (!state.props) {
+    state.props = action.payload
+  } else {
+    state.props = {
+      ...state.props,
+      ...action.payload,
+    }
+  }
+}
+
+export const addPageNodeWithSortOrderReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<ComponentNode[]>
+> = (state, action) => {
+  action.payload.forEach((node) => {
+    const parentNode = searchDsl(
+      state,
+      node.parentNode,
+    ) as RootComponentNode | null
+    if (!parentNode) return
+    parentNode.props.pageSortedKey.push(node.displayName)
+    if (!Array.isArray(parentNode.childrenNode)) {
+      parentNode.childrenNode = [node]
+    } else {
+      parentNode.childrenNode.push(node)
+    }
+  })
+}
+
+export const addSectionViewReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<AddSectionViewPayload>
+> = (state, action) => {
+  const { parentNodeName, containerNode, newSectionViewConfig } = action.payload
+  const parentNode = searchDsl(state, parentNodeName)
+  if (!parentNode || !parentNode.props) return
+  parentNode.childrenNode.push(containerNode)
+  parentNode.props.viewSortedKey.push(containerNode.displayName)
+  parentNode.props.sectionViewConfigs.push(newSectionViewConfig)
+}
+
+export const updateSectionViewPropsReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<UpdateSectionViewPropsPayload>
+> = (state, action) => {
+  const { parentNodeName, newProps } = action.payload
+  const parentNode = searchDsl(state, parentNodeName)
+  if (!parentNode || !parentNode.props) return
+  parentNode.props = {
+    ...parentNode.props,
+    ...newProps,
+  }
+}
+
+export const deleteSectionViewReducer: CaseReducer<
+  ComponentsState,
+  PayloadAction<DeleteSectionViewPayload>
+> = (state, action) => {
+  const { viewDisplayName } = action.payload
+  const currentNode = searchDsl(state, viewDisplayName)
+  if (!currentNode) return
+  const parentNode = searchDsl(state, currentNode.parentNode)
+  if (!parentNode || !parentNode.props) return
+  const currentIndex = parentNode.childrenNode.findIndex(
+    (node) => node.displayName === viewDisplayName,
+  )
+  if (currentIndex === -1) return
+  parentNode.childrenNode.splice(currentIndex, 1)
+  const viewSortedKeyIndex = parentNode.props.viewSortedKey.findIndex(
+    (key: string) => key === viewDisplayName,
+  )
+  if (viewSortedKeyIndex === -1) return
+  parentNode.props.viewSortedKey.splice(viewSortedKeyIndex, 1)
+  const sectionViewConfigsIndex = parentNode.props.sectionViewConfigs.findIndex(
+    (config: SectionViewShape) => config.viewDisplayName === viewDisplayName,
+  )
+  if (sectionViewConfigsIndex === -1) return
+  parentNode.props.sectionViewConfigs.splice(sectionViewConfigsIndex, 1)
 }

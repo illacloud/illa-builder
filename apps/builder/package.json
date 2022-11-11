@@ -22,6 +22,8 @@
     "@fontsource/fira-code": "^4.5.10",
     "@illa-design/react": "*",
     "@reduxjs/toolkit": "^1.8.1",
+    "@sentry/react": "^7.17.3",
+    "@sentry/tracing": "^7.17.3",
     "@uiw/react-color": "^1.1.0",
     "@uiw/react-color-sketch": "^1.1.0",
     "@uiw/react-color-swatch": "^1.1.0",
@@ -53,7 +55,7 @@
     "react-markdown": "^8.0.3",
     "react-redux": "^8.0.1",
     "react-rnd": "^10.3.7",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.4.3",
     "react-use": "^17.4.0",
     "react-use-measure": "^2.1.1",
     "redux": "^4.2.0",
@@ -61,9 +63,7 @@
     "remark-gfm": "^3.0.1",
     "tern": "^0.24.3",
     "toposort": "^2.0.2",
-    "uuid": "^8.3.2",
-    "@sentry/react": "^7.17.3",
-    "@sentry/tracing": "^7.17.3"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",

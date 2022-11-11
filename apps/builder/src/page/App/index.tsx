@@ -46,7 +46,7 @@ export const Editor: FC = () => {
   const currentUser = useSelector(getCurrentUser)
 
   useEffect(() => {
-    if (currentUser != null && currentUser.userId != 0) {
+    if (currentUser != null && currentUser.userId != "") {
       Connection.enterRoom(
         "app",
         appId ?? "",

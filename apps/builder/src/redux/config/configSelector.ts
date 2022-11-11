@@ -59,3 +59,10 @@ export const getExpandedKeys = (state: RootState) => {
 export const getFreezeState = (state: RootState) => {
   return state.config.freezeCanvas
 }
+
+export const getCanvasShape = (state: RootState) => {
+  return {
+    canvasWidth: state.config.canvasWidth,
+    canvasHeight: state.config.canvasHeight,
+  }
+}

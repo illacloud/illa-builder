@@ -10,3 +10,8 @@ export interface UpdateParamsPayload {
   index: number
   params: Params
 }
+
+export interface UpdateCanvasShapePayload {
+  canvasWidth: number
+  canvasHeight: number
+}

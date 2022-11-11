@@ -49,7 +49,7 @@ export const WrappedMenu = forwardRef<HTMLDivElement, WrappedMenuProps>(
       >
         {menuList?.map((item) => {
           if (item.hidden) return null
-          if (item.subMenu) {
+          if (item.subMenu?.length) {
             return (
               <SubMenu
                 key={item.id}
@@ -106,11 +106,11 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
     handleUpdateDsl,
     handleDeleteGlobalData,
   ])
-
+  const timeoutId = useRef<number>()
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   const updateHeight = useCallback(() => {
-    setTimeout(() => {
+    timeoutId.current = setTimeout(() => {
       if (wrapperRef.current) {
         updateComponentHeight(wrapperRef.current?.clientHeight)
       }
@@ -120,7 +120,7 @@ export const MenuWidget: FC<MenuWidgetProps> = (props) => {
   useEffect(() => {
     updateHeight()
     return () => {
-      clearTimeout()
+      clearTimeout(timeoutId.current)
     }
   }, [mode, updateHeight])
 

@@ -1,31 +1,55 @@
-import { FC, useRef } from "react"
-import { DotPanelProps } from "@/page/App/components/DotPanel/interface"
-import { applyScaleStyle } from "@/page/App/components/DotPanel/style"
+import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
-import { getPreviewEdgeWidth } from "@/redux/config/configSelector"
-import { RenderComponentCanvas } from "@/page/App/components/DotPanel/renderComponentCanvas"
+import { getIllaMode } from "@/redux/config/configSelector"
+import { getCanvas } from "@/redux/currentApp/editor/components/componentsSelector"
+import {
+  PageNode,
+  RootComponentNode,
+} from "@/redux/currentApp/editor/components/componentsState"
+import { RenderPage } from "./renderPage"
+import { getRootNodeExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
+import { useParams } from "react-router-dom"
 
-export const DotPanel: FC<DotPanelProps> = (props) => {
-  const { componentNode, ...otherProps } = props
+export const DotPanel: FC = () => {
+  const canvasTree = useSelector(getCanvas) as RootComponentNode
+  const rootExecutionProps = useSelector(getRootNodeExecutionResult)
+  const mode = useSelector(getIllaMode)
 
-  // canvas field
-  const edgeWidth = useSelector(getPreviewEdgeWidth)
+  const {
+    currentPageIndex,
+    pageSortedKey,
+    homepageDisplayName,
+  } = rootExecutionProps
+  let { pageName } = useParams()
+  const currentDisplayName = useMemo(() => {
+    if (mode === "production") {
+      return pageName || homepageDisplayName
+    } else {
+      return pageSortedKey[currentPageIndex] || homepageDisplayName
+    }
+  }, [currentPageIndex, homepageDisplayName, mode, pageName, pageSortedKey])
 
-  const containerRef = useRef<HTMLDivElement>(null)
+  if (
+    !canvasTree ||
+    canvasTree.containerType !== "EDITOR_DOT_PANEL" ||
+    canvasTree.type !== "DOT_PANEL" ||
+    canvasTree.displayName !== "root" ||
+    !rootExecutionProps
+  )
+    return null
+
+  const currentChildrenNode = canvasTree.childrenNode.find((node) => {
+    return node.displayName === currentDisplayName
+  })
+
+  if (currentChildrenNode == undefined) return null
 
   return (
-    <div
-      css={applyScaleStyle(componentNode.verticalResize, edgeWidth)}
-      {...otherProps}
-      ref={containerRef}
-    >
-      <RenderComponentCanvas
-        componentNode={componentNode}
-        containerRef={containerRef}
-        containerPadding={edgeWidth}
-        safeRowNumber={8}
-      />
-    </div>
+    <RenderPage
+      key={currentDisplayName}
+      pageNode={currentChildrenNode as PageNode}
+      currentPageDisplayName={currentDisplayName}
+    />
   )
 }
 

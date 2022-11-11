@@ -54,6 +54,7 @@ export const ComponentItem: FC<ComponentItemProps> = memo(
           return {
             item,
             childrenNodes,
+            currentColumnNumber: 64,
           }
         },
       }),
