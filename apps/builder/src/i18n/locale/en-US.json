@@ -391,7 +391,8 @@
         "menu_setter": {
           "label": "Menus ({{number}})",
           "new": "New",
-          "sub": "Sub"
+          "sub": "Sub",
+          "delete": "Delete"
         },
         "event_handler_list": {
           "empty": "Trigger queries, control components, or call other APIs in response to component events.",

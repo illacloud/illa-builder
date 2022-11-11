@@ -391,7 +391,8 @@
         "menu_setter": {
           "label": "菜单 ({{number}})",
           "new": "新建",
-          "sub": "子菜单"
+          "sub": "子菜单",
+          "delete": "删除"
         },
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。",

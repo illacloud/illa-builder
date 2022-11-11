@@ -54,7 +54,7 @@ export const DragIconAndLabel: FC<DragIconAndLabelProps> = (props) => {
                 handleDeleteMenuItem(index)
               }}
             >
-              Delete
+              {t("editor.inspect.setter_content.menu_setter.delete")}
             </Button>
           }
         />
