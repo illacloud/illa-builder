@@ -33,7 +33,7 @@ export const Databases: ActionDataItem[] = [
   },
   {
     actionType: "elastic",
-    isDraft: true,
+    isDraft: false,
   },
   {
     actionType: "snowflake",

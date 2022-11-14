@@ -33,7 +33,7 @@ export const Databases: ResourceDataItem[] = [
   },
   {
     resourceType: "elastic",
-    isDraft: true,
+    isDraft: false,
   },
   {
     resourceType: "snowflake",

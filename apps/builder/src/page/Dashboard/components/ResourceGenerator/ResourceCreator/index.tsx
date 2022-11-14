@@ -6,6 +6,7 @@ import { RootState } from "@/store"
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
+import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -54,6 +55,16 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "redis":
         return (
           <RedisConfigElement
+            resourceId={resourceId}
+            onBack={() => {
+              onBack("select")
+            }}
+            onFinished={onFinished}
+          />
+        )
+      case "elastic":
+        return (
+          <ElasticSearchConfigElement
             resourceId={resourceId}
             onBack={() => {
               onBack("select")

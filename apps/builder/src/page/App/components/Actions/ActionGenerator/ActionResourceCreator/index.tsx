@@ -6,6 +6,7 @@ import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeC
 import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
+import { ElasticSearchConfigElement } from "../../ElasticSearchConfigElement"
 
 export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
   const { onBack, onFinished, resourceType } = props
@@ -52,6 +53,19 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
       case "mongodb":
         return (
           <MongoDbConfigElement
+            onBack={() => {
+              if (resourceList.length > 0) {
+                onBack("createAction")
+              } else {
+                onBack("select")
+              }
+            }}
+            onFinished={onFinished}
+          />
+        )
+      case "elastic":
+        return (
+          <ElasticSearchConfigElement
             onBack={() => {
               if (resourceList.length > 0) {
                 onBack("createAction")
