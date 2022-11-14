@@ -112,6 +112,7 @@ export function applyCodeEditorStyle(
   inputState: EditorInputState,
 ): SerializedStyles {
   let stateStyle = css``
+  console.log("inputState", inputState)
   const stateColor = inputState.error ? "red" : "green"
   if (inputState.focus) {
     stateStyle = css`

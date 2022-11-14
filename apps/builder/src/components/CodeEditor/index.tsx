@@ -33,6 +33,7 @@ import {
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
   (props, ref) => {
@@ -67,7 +68,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     })
     const [previewVisible, setPreviewVisible] = useState<boolean>()
     const [focus, setFocus] = useState<boolean>()
-    const [error, setError] = useState<boolean>()
+    const [error, setError] = useState<boolean>(false)
     // Solve the closure problem
     const latestProps = useRef(props)
     latestProps.current = props
@@ -88,14 +89,22 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
         let previewType = expectedType
         setError(false)
         try {
-          console.log("executionResult", executionResult)
-          calcResult = evaluateDynamicString("", currentValue, executionResult)
+          const isDynamic = isDynamicString(currentValue)
+          if (isDynamic) {
+            calcResult = evaluateDynamicString(
+              "",
+              currentValue,
+              executionResult,
+            )
+          } else {
+            calcResult = currentValue
+          }
+
           // [TODO]: v1 evaluate
           // if (!currentValue?.includes("{{")) {
           //   calcResult = getEvalValue(previewType, calcResult)
           // }
-          console.log("calcResult", calcResult)
-          calcResult != undefined && isExpectType(previewType, calcResult)
+          calcResult && isExpectType(previewType, calcResult)
 
           setPreview({
             state: "default",
@@ -238,7 +247,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
 
     useEffect(() => {
       if (!ILLAEditor.current) {
-        const editor = CodeMirror(codeTargetRef.current!, {
+        ILLAEditor.current = CodeMirror(codeTargetRef.current!, {
           mode: EditorModes[mode],
           placeholder,
           lineNumbers,
@@ -256,23 +265,15 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
           },
         })
         if (noTab) {
-          editor?.setOption("extraKeys", { Tab: false })
+          ILLAEditor.current?.setOption("extraKeys", { Tab: false })
         }
         if (lineNumbers) {
-          editor?.setOption("gutters", ["CodeMirror-lint-markers"])
+          ILLAEditor.current?.setOption("gutters", ["CodeMirror-lint-markers"])
         }
-        editor.on("change", debounceHandleChange)
-        editor.on("keyup", handleKeyUp)
-        editor.on("focus", handleFocus)
-        editor.on("blur", handleBlur)
-        ILLAEditor.current = editor
-      }
-
-      return () => {
-        ILLAEditor.current?.off("change", debounceHandleChange)
-        ILLAEditor.current?.off("keyup", handleKeyUp)
-        ILLAEditor.current?.off("focus", handleFocus)
-        ILLAEditor.current?.off("blur", handleBlur)
+        ILLAEditor.current.on("change", debounceHandleChange)
+        ILLAEditor.current.on("keyup", handleKeyUp)
+        ILLAEditor.current.on("focus", handleFocus)
+        ILLAEditor.current.on("blur", handleBlur)
       }
     }, [
       debounceHandleChange,
@@ -284,6 +285,15 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
       readOnly,
       value,
     ])
+
+    useEffect(() => {
+      return () => {
+        ILLAEditor.current?.off("change", debounceHandleChange)
+        ILLAEditor.current?.off("keyup", handleKeyUp)
+        ILLAEditor.current?.off("focus", handleFocus)
+        ILLAEditor.current?.off("blur", handleBlur)
+      }
+    }, [])
 
     const inputState = {
       focus,
