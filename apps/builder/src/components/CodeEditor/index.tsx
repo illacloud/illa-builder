@@ -1,5 +1,12 @@
 /* eslint-disable */
-import { forwardRef, useContext, useEffect, useRef, useState } from "react"
+import {
+  forwardRef,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from "react"
 import { Global } from "@emotion/react"
 import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
@@ -69,11 +76,6 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     const latestProps = useRef(props)
     latestProps.current = props
 
-    const globalDataRef = useRef(globalData)
-    useEffect(() => {
-      globalDataRef.current = globalData
-    }, [globalData])
-
     const handleFocus = () => {
       setFocus(true)
     }
@@ -84,38 +86,37 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
       setPreviewVisible(false)
     }
 
-    const valueChanged = (currentValue: string) => {
-      let calcResult: any = null
-      let previewType = expectedType
-      setError(false)
-      try {
-        calcResult = evaluateDynamicString(
-          "",
-          currentValue,
-          globalDataRef.current,
-        )
-        // [TODO]: v1 evaluate
-        // if (!currentValue?.includes("{{")) {
-        //   calcResult = getEvalValue(previewType, calcResult)
-        // }
-        isExpectType(previewType, calcResult)
-        setPreview({
-          state: "default",
-          type: previewType,
-          content: calcResult,
-        })
-      } catch (e) {
-        setError(true)
-        if (e instanceof Error) {
+    const valueChanged = useCallback(
+      (currentValue: string) => {
+        let calcResult: any = null
+        let previewType = expectedType
+        setError(false)
+        try {
+          calcResult = evaluateDynamicString("", currentValue, globalData)
+          // [TODO]: v1 evaluate
+          // if (!currentValue?.includes("{{")) {
+          //   calcResult = getEvalValue(previewType, calcResult)
+          // }
+          isExpectType(previewType, calcResult)
           setPreview({
-            state: "error",
-            content: e.toString(),
+            state: "default",
+            type: previewType,
+            content: calcResult,
           })
+        } catch (e) {
+          setError(true)
+          if (e instanceof Error) {
+            setPreview({
+              state: "error",
+              content: e.toString(),
+            })
+          }
+        } finally {
+          latestProps.current.onChange?.(currentValue, calcResult)
         }
-      } finally {
-        latestProps.current.onChange?.(currentValue, calcResult)
-      }
-    }
+      },
+      [globalData, expectedType],
+    )
 
     useEffect(() => {
       if (path) {
@@ -148,6 +149,12 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
         }
       }
     }, [executionError, executionResult, path])
+
+    useEffect(() => {
+      if (!path) {
+        valueChanged(value || "")
+      }
+    }, [valueChanged])
 
     const handleChange = (editor: Editor) => {
       const currentValue = editor?.getValue()

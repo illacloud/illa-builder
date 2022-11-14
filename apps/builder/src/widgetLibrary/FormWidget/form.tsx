@@ -380,6 +380,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         canResizeY={false}
         minHeight={headerBounds.height - 16}
         padding={8}
+        addedRowNumber={0}
       />
     )
   }, [childrenNode, headerBounds.height])
@@ -392,6 +393,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         minHeight={bodyBounds.height - 2 * 8}
         padding={8}
         safeRowNumber={1}
+        addedRowNumber={20}
       />
     )
   }, [bodyBounds.height, childrenNode])
@@ -404,6 +406,7 @@ export const FormWidget: FC<FormWIdgetProps> = (props) => {
         canResizeY={false}
         minHeight={footerBounds.height - 2 * 8}
         padding={8}
+        addedRowNumber={0}
       />
     )
   }, [childrenNode, footerBounds.height])

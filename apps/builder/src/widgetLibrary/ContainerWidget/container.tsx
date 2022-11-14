@@ -41,6 +41,7 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
           minHeight={containerBounds.height - 8}
           padding={4}
           safeRowNumber={1}
+          addedRowNumber={20}
         />
       )
     }
