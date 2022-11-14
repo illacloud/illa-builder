@@ -35,10 +35,6 @@ export const Databases: ActionDataItem[] = [
     actionType: "elastic",
     isDraft: true,
   },
-  {
-    actionType: "snowflake",
-    isDraft: true,
-  },
 ]
 
 export const Apis: ActionDataItem[] = [
@@ -52,14 +48,6 @@ export const Apis: ActionDataItem[] = [
   },
   {
     actionType: "s3",
-    isDraft: true,
-  },
-  {
-    actionType: "zapier",
-    isDraft: true,
-  },
-  {
-    actionType: "datadog",
     isDraft: true,
   },
   {
