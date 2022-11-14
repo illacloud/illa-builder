@@ -1,5 +1,5 @@
 import { ReactComponent as MenuWidgetIcon } from "@/assets/widgetCover/menu.svg"
-import { WidgetConfig } from "@/widgetLibrary/interface"
+import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 
 const menuList = [
@@ -46,6 +46,7 @@ export const MENU_WIDGET_CONFIG: WidgetConfig = {
   icon: <MenuWidgetIcon />,
   keywords: ["Menu", "菜单"],
   sessionType: "PRESENTATION",
+  resizeDirection: RESIZE_DIRECTION.HORIZONTAL,
   defaults: {
     menuList,
     selectedKeys: ["1"],

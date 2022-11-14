@@ -412,7 +412,7 @@
           "placeholder": "Select a page"
         },
         "select_view_setter": {
-          "placeholder": ""
+          "placeholder": "Select a view"
         },
         "tabs_setter": {
           "tabs": "Tabs"
@@ -757,6 +757,9 @@
   },
   "share": "Share",
   "status": {
+    "403": {
+      "des": "Access denied"
+    },
     "404": {
       "again": "Refresh",
       "des": "It seems that the page you were looking for could not be found."
