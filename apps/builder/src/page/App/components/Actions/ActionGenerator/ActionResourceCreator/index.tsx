@@ -63,7 +63,7 @@ export const ActionResourceCreator: FC<ResourceEditorProps> = (props) => {
             onFinished={onFinished}
           />
         )
-      case "elastic":
+      case "elasticsearch":
         return (
           <ElasticSearchConfigElement
             onBack={() => {

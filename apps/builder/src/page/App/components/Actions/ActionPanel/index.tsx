@@ -43,7 +43,7 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
         return <MongoDbPanel />
       case "transformer":
         return <TransformerPanel />
-      case "elastic":
+      case "elasticsearch":
         return <ElasticSearchPanel />
       default:
         return <></>

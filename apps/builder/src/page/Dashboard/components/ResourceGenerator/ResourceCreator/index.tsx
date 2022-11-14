@@ -62,7 +62,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
             onFinished={onFinished}
           />
         )
-      case "elastic":
+      case "elasticsearch":
         return (
           <ElasticSearchConfigElement
             resourceId={resourceId}

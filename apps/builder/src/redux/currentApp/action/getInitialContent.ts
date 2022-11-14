@@ -21,7 +21,7 @@ export function getInitialContent(actionType: ActionType): ActionContent {
       return RedisActionInitial
     case "mongodb":
       return MongoDbActionInitial
-    case "elastic":
+    case "elasticsearch":
       return ElasticSearchActionInitial
     default:
       return {} as ActionContent

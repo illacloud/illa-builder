@@ -71,7 +71,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
               data: {
                 resourceId: data.resourceId,
                 resourceName: data.resourceName,
-                resourceType: "elastic",
+                resourceType: "elasticsearch",
                 content: {
                   host: data.host,
                   port: data.port.toString(),
@@ -102,7 +102,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
               url: `/resources`,
               data: {
                 resourceName: data.resourceName,
-                resourceType: "elastic",
+                resourceType: "elasticsearch",
                 content: {
                   host: data.host,
                   port: data.port.toString(),
@@ -327,7 +327,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                   data: {
                     resourceId: data.resourceId,
                     resourceName: data.resourceName,
-                    resourceType: "elastic",
+                    resourceType: "elasticsearch",
                     content: {
                       host: data.host,
                       port: data.port.toString(),

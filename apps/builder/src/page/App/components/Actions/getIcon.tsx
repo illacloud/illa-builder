@@ -24,7 +24,7 @@ export function getIconFromResourceType(
   switch (type) {
     case "graphql":
       return <GraphQLIcon size={size} />
-    case "elastic":
+    case "elasticsearch":
       return <ElasticIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />
@@ -61,7 +61,7 @@ export function getIconFromActionType(
   switch (type) {
     case "graphql":
       return <GraphQLIcon size={size} />
-    case "elastic":
+    case "elasticsearch":
       return <ElasticIcon size={size} />
     case "smtp":
       return <SmtpIcon size={size} />

@@ -32,7 +32,7 @@ export const Databases: ActionDataItem[] = [
     isDraft: false,
   },
   {
-    actionType: "elastic",
+    actionType: "elasticsearch",
     isDraft: false,
   },
   {

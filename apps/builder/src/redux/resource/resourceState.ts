@@ -10,7 +10,7 @@ export type ResourceType =
   | "graphql"
   | "mongodb"
   | "redis"
-  | "elastic"
+  | "elasticsearch"
   | "postgresql"
   | "mariadb"
   | "snowflake"

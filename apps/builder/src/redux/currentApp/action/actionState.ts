@@ -35,7 +35,7 @@ export type ActionType =
   | "graphql"
   | "mongodb"
   | "redis"
-  | "elastic"
+  | "elasticsearch"
   | "postgresql"
   | "mariadb"
   | "snowflake"
