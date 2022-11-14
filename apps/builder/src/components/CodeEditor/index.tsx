@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   forwardRef,
   useContext,
@@ -8,7 +7,7 @@ import {
   useCallback,
 } from "react"
 import { Global } from "@emotion/react"
-import { debounce, get } from "lodash"
+import { cloneDeep, debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/lib/codemirror"
@@ -19,7 +18,7 @@ import "codemirror/addon/display/placeholder"
 import "codemirror/addon/display/autorefresh"
 import "./modes"
 import "./hinter"
-import "./lintHelper"
+import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 import { BaseTern, TernServer } from "./TernSever"
 import { Trigger } from "@illa-design/trigger"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
@@ -27,14 +26,12 @@ import { CodePreview } from "./CodePreview"
 import { CodeEditorProps, EditorModes, ResultPreview } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
 import { isCloseKey, isExpectType } from "./utils"
-import { GLOBAL_DATA_CONTEXT } from "@/page/App/context/globalDataProvider"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 import {
   getExecutionError,
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { clearMarks, lineMarker } from "@/components/CodeEditor/lintHelper"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 
 export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
@@ -58,13 +55,12 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
       onChange,
       ...otherProps
     } = props
-    const { globalData } = useContext(GLOBAL_DATA_CONTEXT)
     const languageValue = useSelector(getLanguageValue)
     const executionError = useSelector(getExecutionError)
     const executionResult = useSelector(getExecutionResult)
     const codeTargetRef = useRef<HTMLDivElement>(null)
     const sever = useRef<CodeMirror.TernServer>()
-    const [editor, setEditor] = useState<Editor>()
+    const ILLAEditor = useRef<Editor | null>(null)
     const [preview, setPreview] = useState<ResultPreview>({
       state: "default",
       type: expectedType,
@@ -92,12 +88,15 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
         let previewType = expectedType
         setError(false)
         try {
-          calcResult = evaluateDynamicString("", currentValue, globalData)
+          console.log("executionResult", executionResult)
+          calcResult = evaluateDynamicString("", currentValue, executionResult)
           // [TODO]: v1 evaluate
           // if (!currentValue?.includes("{{")) {
           //   calcResult = getEvalValue(previewType, calcResult)
           // }
-          isExpectType(previewType, calcResult)
+          console.log("calcResult", calcResult)
+          calcResult != undefined && isExpectType(previewType, calcResult)
+
           setPreview({
             state: "default",
             type: previewType,
@@ -115,7 +114,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
           latestProps.current.onChange?.(currentValue, calcResult)
         }
       },
-      [globalData, expectedType],
+      [executionResult, expectedType],
     )
 
     useEffect(() => {
@@ -136,8 +135,8 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
               content: evalError.errorMessage,
             })
           }
-          if (lintError?.errorLine && editor) {
-            lineMarker(editor, lintError.errorLine - 1)
+          if (lintError?.errorLine && ILLAEditor.current) {
+            lineMarker(ILLAEditor.current, lintError.errorLine - 1)
           }
         } else {
           setError(false)
@@ -148,13 +147,13 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
           })
         }
       }
-    }, [executionError, executionResult, path])
+    }, [executionError, executionResult, expectedType, path])
 
     useEffect(() => {
       if (!path) {
         valueChanged(value || "")
       }
-    }, [valueChanged])
+    }, [valueChanged, value, path])
 
     const handleChange = (editor: Editor) => {
       const currentValue = editor?.getValue()
@@ -168,37 +167,40 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
 
     const debounceHandleChange = debounce(handleChange, 300)
 
-    const handleKeyUp = (editor: Editor, event: KeyboardEvent) => {
-      const key = event.key
-      const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
-      if (isCloseKey(code) || isCloseKey(key)) {
-        editor.closeHint()
-        return
-      }
-      const cursor = editor.getCursor()
-      const line = editor.getLine(cursor.line)
-      let showAutocomplete = false
-      if (mode === "XML_JS" || mode === "HTML_JS") {
-        showAutocomplete = true
-      }
-      if (key === "/") {
-        showAutocomplete = true
-      } else if (event.code === "Backspace") {
-        const prevChar = line[cursor.ch - 1]
-        showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
-      } else if (key === "{") {
-        const prevChar = line[cursor.ch - 2]
-        showAutocomplete = prevChar === "{"
-      } else if (key.length == 1) {
-        showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
-      }
-      showAutocomplete && handleAutocomplete(editor, line)
-    }
+    const handleKeyUp = useCallback(
+      (editor: Editor, event: KeyboardEvent) => {
+        const key = event.key
+        const code = `${event.ctrlKey ? "Ctrl+" : ""}${event.code}`
+        if (isCloseKey(code) || isCloseKey(key)) {
+          editor.closeHint()
+          return
+        }
+        const cursor = editor.getCursor()
+        const line = editor.getLine(cursor.line)
+        let showAutocomplete = false
+        if (mode === "XML_JS" || mode === "HTML_JS") {
+          showAutocomplete = true
+        }
+        if (key === "/") {
+          showAutocomplete = true
+        } else if (event.code === "Backspace") {
+          const prevChar = line[cursor.ch - 1]
+          showAutocomplete = !!prevChar && /[a-zA-Z_0-9.]/.test(prevChar)
+        } else if (key === "{") {
+          const prevChar = line[cursor.ch - 2]
+          showAutocomplete = prevChar === "{"
+        } else if (key.length == 1) {
+          showAutocomplete = /[a-zA-Z_0-9.]/.test(key)
+        }
+        showAutocomplete && handleAutocomplete(editor, line)
+      },
+      [mode],
+    )
 
     useEffect(() => {
-      const currentValue = editor?.getValue()
+      const currentValue = ILLAEditor.current?.getValue()
       if (value !== currentValue) {
-        editor?.setValue(value ?? "")
+        ILLAEditor.current?.setValue(value ?? "")
       }
     }, [value])
 
@@ -231,11 +233,11 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     }, [executionResult, languageValue])
 
     useEffect(() => {
-      editor?.setOption("mode", EditorModes[mode])
+      ILLAEditor.current?.setOption("mode", EditorModes[mode])
     }, [mode])
 
     useEffect(() => {
-      if (!editor) {
+      if (!ILLAEditor.current) {
         const editor = CodeMirror(codeTargetRef.current!, {
           mode: EditorModes[mode],
           placeholder,
@@ -263,16 +265,25 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
         editor.on("keyup", handleKeyUp)
         editor.on("focus", handleFocus)
         editor.on("blur", handleBlur)
-        setEditor(editor)
+        ILLAEditor.current = editor
       }
 
       return () => {
-        editor?.off("change", debounceHandleChange)
-        editor?.off("keyup", handleKeyUp)
-        editor?.off("focus", handleFocus)
-        editor?.off("blur", handleBlur)
+        ILLAEditor.current?.off("change", debounceHandleChange)
+        ILLAEditor.current?.off("keyup", handleKeyUp)
+        ILLAEditor.current?.off("focus", handleFocus)
+        ILLAEditor.current?.off("blur", handleBlur)
       }
-    }, [])
+    }, [
+      debounceHandleChange,
+      handleKeyUp,
+      lineNumbers,
+      mode,
+      noTab,
+      placeholder,
+      readOnly,
+      value,
+    ])
 
     const inputState = {
       focus,
