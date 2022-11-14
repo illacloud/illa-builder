@@ -3,6 +3,8 @@ import { ContainerProps } from "@/widgetLibrary/ContainerWidget/interface"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
 import { BasicContainer } from "@/widgetLibrary/BasicContainer/BasicContainer"
 import { ContainerEmptyState } from "./emptyState"
+import { containerWrapperStyle } from "./style"
+import useMeasure from "react-use-measure"
 
 export const ContainerWidget: FC<ContainerProps> = (props) => {
   const {
@@ -16,10 +18,9 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
     viewList,
     tooltipText,
     childrenNode,
-    h,
-    unitH,
   } = props
   const preCurrentViewIndex = useRef<number>(currentIndex)
+  const [containerRef, containerBounds] = useMeasure()
 
   useEffect(() => {
     if (typeof preCurrentViewIndex.current !== "number") {
@@ -37,13 +38,14 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
       return (
         <BasicContainer
           componentNode={currentViewComponentNode}
-          minHeight={h * unitH}
+          minHeight={containerBounds.height - 8}
           padding={4}
+          safeRowNumber={1}
         />
       )
     }
     return <ContainerEmptyState />
-  }, [childrenNode, currentIndex, h, unitH])
+  }, [childrenNode, containerBounds.height, currentIndex])
 
   useEffect(() => {
     handleUpdateGlobalData?.(displayName, {
@@ -148,7 +150,9 @@ export const ContainerWidget: FC<ContainerProps> = (props) => {
 
   return (
     <TooltipWrapper tooltipText={tooltipText} tooltipDisabled={!tooltipText}>
-      <span>{renderComponent}</span>
+      <div css={containerWrapperStyle} ref={containerRef}>
+        {renderComponent}
+      </div>
     </TooltipWrapper>
   )
 }
