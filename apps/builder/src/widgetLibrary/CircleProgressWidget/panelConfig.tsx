@@ -118,7 +118,7 @@ export const CIRCLE_PROGRESS_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-strokeWidth`,
             labelName: i18n.t("editor.inspect.setter_label.stroke_width"),
-            setterType: "EDITABLE_INPUT_SETTER",
+            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
             icon: <StrokeWidthIcon />,
             attrName: "strokeWidth",
             defaultValue: "4px",
