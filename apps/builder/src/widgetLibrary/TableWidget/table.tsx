@@ -5,7 +5,7 @@ import {
   TableWidgetProps,
   WrappedTableProps,
 } from "./interface"
-import { cloneDeep, isArray } from "lodash"
+import { cloneDeep } from "lodash"
 import { getCellForType } from "./utils"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
@@ -28,7 +28,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
     } = props
 
     const formatData = useMemo(() => {
-      if (data && isArray(data)) {
+      if (Array.isArray(data)) {
         return data
       }
       return []

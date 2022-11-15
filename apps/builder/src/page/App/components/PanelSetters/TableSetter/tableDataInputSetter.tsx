@@ -8,7 +8,6 @@ import { BaseInput } from "@/page/App/components/PanelSetters/InputSetter/baseIn
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { BUILDER_CALC_CONTEXT } from "@/page/App/context/globalDataProvider"
-import { isArray } from "@illa-design/system"
 
 export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
   const {
@@ -39,7 +38,7 @@ export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
     (attrName: string, newValue: any) => {
       try {
         const data = evaluateDynamicString("", newValue, BUILDER_CALC_CONTEXT)
-        if (isArray(data)) {
+        if (Array.isArray(data)) {
           let newColumns = tansTableDataToColumns(data)
           if (!isEqual(newColumns, columns)) {
             handleUpdateMultiAttrDSL?.({
