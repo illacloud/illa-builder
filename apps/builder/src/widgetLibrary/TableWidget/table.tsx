@@ -27,6 +27,13 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       handleOnColumnFiltersChange,
     } = props
 
+    const formatData = useMemo(() => {
+      if (Array.isArray(data)) {
+        return data
+      }
+      return []
+    }, [data])
+
     return (
       <Table
         bordered
@@ -35,7 +42,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         pinedHeader
         w="100%"
         h="100%"
-        data={data}
+        data={formatData}
         columns={columns}
         filter={filter}
         loading={loading}
