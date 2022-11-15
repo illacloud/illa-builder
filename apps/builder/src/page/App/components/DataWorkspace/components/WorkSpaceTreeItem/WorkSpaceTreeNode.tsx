@@ -26,13 +26,18 @@ export const renderJsonValue = (value: any) => {
     case "string":
       return <label css={applyJsonValueColorStyle(type)}>{`"${value}"`}</label>
     default:
-      return <label css={applyJsonValueColorStyle(type)}>{`${value}`}</label>
+      return (
+        <label
+          css={applyJsonValueColorStyle(type)}
+        >{`${value.toString()}`}</label>
+      )
   }
 }
 
 export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
   (props: WorkSpaceTreeNodeProps) => {
     const { name, value, itemKey, level = 0 } = props
+    console.log("value", value)
     const expandedKeys = useSelector(getExpandedKeys)
     const isExpanded = expandedKeys.includes(itemKey)
     const dispatch = useDispatch()
