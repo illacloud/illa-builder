@@ -15,6 +15,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   })
 
   const finalResourceType = resource ? resource.resourceType : resourceType
+  const handleBack = () => onBack("select")
 
   const element = useMemo(() => {
     switch (finalResourceType) {
@@ -26,9 +27,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
           <MysqlLikeConfigElement
             resourceType={finalResourceType}
             resourceId={resourceId}
-            onBack={() => {
-              onBack("select")
-            }}
+            onBack={handleBack}
             onFinished={onFinished}
           />
         )
@@ -36,9 +35,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return (
           <RestApiConfigElement
             resourceId={resourceId}
-            onBack={() => {
-              onBack("select")
-            }}
+            onBack={handleBack}
             onFinished={onFinished}
           />
         )
@@ -46,9 +43,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return (
           <MongoDbConfigElement
             resourceId={resourceId}
-            onBack={() => {
-              onBack("select")
-            }}
+            onBack={handleBack}
             onFinished={onFinished}
           />
         )
@@ -56,9 +51,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return (
           <RedisConfigElement
             resourceId={resourceId}
-            onBack={() => {
-              onBack("select")
-            }}
+            onBack={handleBack}
             onFinished={onFinished}
           />
         )
@@ -66,9 +59,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
         return (
           <ElasticSearchConfigElement
             resourceId={resourceId}
-            onBack={() => {
-              onBack("select")
-            }}
+            onBack={handleBack}
             onFinished={onFinished}
           />
         )

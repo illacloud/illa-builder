@@ -24,17 +24,17 @@ import { Select } from "@illa-design/select"
 import { InputRecordEditor } from "@/page/App/components/InputRecordEditor"
 import { BearerAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BearerAuthPanel"
 import { BasicAuthPanel } from "@/page/App/components/Actions/RestApiConfigElement/BasicAuthPanel"
-import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
-import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
   BasicAuth,
   BearerAuth,
   RestApiAuth,
   RestApiResource,
 } from "@/redux/resource/restapiResource"
+import { onActionConfigElementSubmit } from "@/page/App/components/Actions/api"
 
-function generateAuthContent(data: { [p: string]: any }): RestApiAuth | null {
+export function generateAuthContent(data: {
+  [p: string]: any
+}): RestApiAuth | null {
   let authContent: RestApiAuth | null = null
   switch (data.authentication) {
     case "basic":
@@ -79,76 +79,13 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
 
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          Api.request<Resource<RestApiResource<RestApiAuth>>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: "restapi",
-                content: {
-                  baseUrl: data.baseUrl,
-                  urlParams: data.urlParams,
-                  headers: data.headers,
-                  cookies: data.cookies,
-                  authentication: data.authentication,
-                  authContent: generateAuthContent(data),
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-              onFinished(response.data.resourceId)
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          Api.request<Resource<RestApiResource<RestApiAuth>>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType: "restapi",
-                content: {
-                  baseUrl: data.baseUrl,
-                  urlParams: data.urlParams,
-                  headers: data.headers,
-                  cookies: data.cookies,
-                  authentication: data.authentication,
-                  authContent: generateAuthContent(data),
-                },
-              },
-            },
-            (response) => {
-              onFinished(response.data.resourceId)
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "restapi",
+        onFinished,
+        setSaving,
+      )}
     >
       <div css={container}>
         <div css={divider} />

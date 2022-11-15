@@ -9,11 +9,12 @@ import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
   ElasticSearchAction,
   ElasticSearchActionList,
+  IDEditorType,
 } from "@/redux/currentApp/action/elasticSearchAction"
-import { TransformerComponent } from "../TransformerComponent"
-import { ActionEventHandler } from "../ActionEventHandler"
+import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
+import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
-import { ResourceChoose } from "../ResourceChoose"
+import { ResourceChoose } from "@/page/App/components/Actions/ActionPanel/ResourceChoose"
 import {
   codeEditorLabelStyle,
   esContainerStyle,
@@ -38,10 +39,7 @@ export const ElasticSearchPanel: FC = () => {
   let content = cachedAction.content as ElasticSearchAction
 
   const isShowIdEditor = useMemo(
-    () =>
-      ["get a document", "update a document", "delete a document"].includes(
-        cachedAction.content.operation,
-      ),
+    () => IDEditorType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
 

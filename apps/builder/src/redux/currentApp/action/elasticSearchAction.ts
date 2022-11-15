@@ -1,17 +1,24 @@
+export enum ElasticSearchActionType {
+  SEARCH = "search",
+  GET_ONE = "get a document",
+  INSERT_ONE = "insert a document",
+  UPDATE_ONE = "update a document",
+  DELETE_ONE = "delete a document",
+}
+
 export const ElasticSearchActionList = [
-  "search",
-  "get a document",
-  "insert a document",
-  "update a document",
-  "delete a document",
+  ElasticSearchActionType.SEARCH,
+  ElasticSearchActionType.GET_ONE,
+  ElasticSearchActionType.INSERT_ONE,
+  ElasticSearchActionType.UPDATE_ONE,
+  ElasticSearchActionType.DELETE_ONE,
 ]
 
-export type ElasticSearchActionType =
-  | "search"
-  | "get a document"
-  | "insert a document"
-  | "update a document"
-  | "delete a document"
+export const IDEditorType = [
+  ElasticSearchActionType.GET_ONE,
+  ElasticSearchActionType.UPDATE_ONE,
+  ElasticSearchActionType.DELETE_ONE,
+]
 
 export interface ElasticSearchAction {
   operation: ElasticSearchActionType
@@ -21,7 +28,7 @@ export interface ElasticSearchAction {
 }
 
 export const ElasticSearchActionInitial: ElasticSearchAction = {
-  operation: "search",
+  operation: ElasticSearchActionType.SEARCH,
   index: "",
   query: "",
   id: "",

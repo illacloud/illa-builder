@@ -21,17 +21,18 @@ import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon, WarningCircleIcon } from "@illa-design/icon"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Message } from "@illa-design/message"
 import {
   ElasticSearchResource,
   ElasticSearchResourceInitial,
 } from "@/redux/resource/elasticSearchResource"
 import { isURL } from "@/utils/typeHelper"
+import {
+  onActionConfigElementSubmit,
+  onActionConfigElementTest,
+} from "@/page/App/components/Actions/api"
 
 export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
   props,
@@ -39,8 +40,6 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
-
-  const dispatch = useDispatch()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -64,72 +63,13 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
 
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          Api.request<Resource<ElasticSearchResource>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: "elasticsearch",
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              Message.error(error.data.errorMessage)
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          Api.request<Resource<ElasticSearchResource>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType: "elasticsearch",
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              Message.error(error.data.errorMessage)
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "elasticsearch",
+        onFinished,
+        setSaving,
+      )}
     >
       <div css={container}>
         <div css={divider} />
@@ -331,34 +271,16 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<ElasticSearchResource>>(
+              onActionConfigElementTest(
+                data,
                 {
-                  method: "POST",
-                  url: `/resources/testConnection`,
-                  data: {
-                    resourceId: data.resourceId,
-                    resourceName: data.resourceName,
-                    resourceType: "elasticsearch",
-                    content: {
-                      host: data.host,
-                      port: data.port.toString(),
-                      databaseUsername: data.databaseUsername,
-                      databasePassword: data.databasePassword,
-                    },
-                  },
+                  host: data.host,
+                  port: data.port.toString(),
+                  databaseUsername: data.databaseUsername,
+                  databasePassword: data.databasePassword,
                 },
-                (response) => {
-                  Message.success(t("dashboard.resource.test_success"))
-                },
-                (error) => {
-                  Message.error(error.data.errorMessage)
-                },
-                () => {
-                  Message.error(t("dashboard.resource.test_fail"))
-                },
-                (loading) => {
-                  setTestLoading(loading)
-                },
+                "elasticsearch",
+                setTestLoading,
               )
             }}
           >

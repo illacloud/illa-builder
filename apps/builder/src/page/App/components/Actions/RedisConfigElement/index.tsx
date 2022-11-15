@@ -22,23 +22,22 @@ import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Message } from "@illa-design/message"
 import {
   RedisResource,
   RedisResourceInitial,
 } from "@/redux/resource/redisResource"
+import {
+  onActionConfigElementSubmit,
+  onActionConfigElementTest,
+} from "@/page/App/components/Actions/api"
 
 export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
-
-  const dispatch = useDispatch()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -64,76 +63,14 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
 
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          Api.request<Resource<RedisResource>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: "redis",
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseIndex: data.databaseIndex ?? 0,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: sslOpen,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              Message.error(error.data.errorMessage)
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          Api.request<Resource<RedisResource>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType: "redis",
-                content: {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseIndex: data.databaseIndex ?? 0,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: sslOpen,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              Message.error(error.data.errorMessage)
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "redis",
+        onFinished,
+        setSaving,
+        sslOpen,
+      )}
     >
       <div css={container}>
         <div css={divider} />
@@ -376,36 +313,18 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             type="button"
             onClick={() => {
               const data = getValues()
-              Api.request<Resource<RedisResource>>(
+              onActionConfigElementTest(
+                data,
                 {
-                  method: "POST",
-                  url: `/resources/testConnection`,
-                  data: {
-                    resourceId: data.resourceId,
-                    resourceName: data.resourceName,
-                    resourceType: "redis",
-                    content: {
-                      host: data.host,
-                      port: data.port.toString(),
-                      databaseIndex: data.databaseIndex ?? 0,
-                      databaseUsername: data.databaseUsername,
-                      databasePassword: data.databasePassword,
-                      ssl: sslOpen,
-                    },
-                  },
+                  host: data.host,
+                  port: data.port.toString(),
+                  databaseIndex: data.databaseIndex ?? 0,
+                  databaseUsername: data.databaseUsername,
+                  databasePassword: data.databasePassword,
+                  ssl: sslOpen,
                 },
-                (response) => {
-                  Message.success(t("dashboard.resource.test_success"))
-                },
-                (error) => {
-                  Message.error(error.data.errorMessage)
-                },
-                () => {
-                  Message.error(t("dashboard.resource.test_fail"))
-                },
-                (loading) => {
-                  setTestLoading(loading)
-                },
+                "redis",
+                setTestLoading,
               )
             }}
           >
