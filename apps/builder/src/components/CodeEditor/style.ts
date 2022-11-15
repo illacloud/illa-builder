@@ -112,7 +112,6 @@ export function applyCodeEditorStyle(
   inputState: EditorInputState,
 ): SerializedStyles {
   let stateStyle = css``
-  console.log("inputState", inputState)
   const stateColor = inputState.error ? "red" : "green"
   if (inputState.focus) {
     stateStyle = css`
@@ -133,7 +132,6 @@ export function applyCodeEditorStyle(
 
       &:hover {
         border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
-        z-index: 1;
       }
     `
   }

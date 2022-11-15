@@ -59,6 +59,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     const languageValue = useSelector(getLanguageValue)
     const executionError = useSelector(getExecutionError)
     const executionResult = useSelector(getExecutionResult)
+    const executionResultRef = useRef<Record<string, any>>(executionResult)
     const codeTargetRef = useRef<HTMLDivElement>(null)
     const sever = useRef<CodeMirror.TernServer>()
     const ILLAEditor = useRef<Editor | null>(null)
@@ -94,7 +95,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
             calcResult = evaluateDynamicString(
               "",
               currentValue,
-              executionResult,
+              executionResultRef.current || {},
             )
           } else {
             calcResult = currentValue
@@ -123,7 +124,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
           latestProps.current.onChange?.(currentValue, calcResult)
         }
       },
-      [executionResult, expectedType],
+      [expectedType],
     )
 
     useEffect(() => {
@@ -238,6 +239,10 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     }
 
     useEffect(() => {
+      executionResultRef.current = executionResult
+    }, [executionResult])
+
+    useEffect(() => {
       sever.current = TernServer(languageValue, { ...executionResult })
     }, [executionResult, languageValue])
 
@@ -292,6 +297,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
         ILLAEditor.current?.off("keyup", handleKeyUp)
         ILLAEditor.current?.off("focus", handleFocus)
         ILLAEditor.current?.off("blur", handleBlur)
+        ILLAEditor.current = null
       }
     }, [])
 
