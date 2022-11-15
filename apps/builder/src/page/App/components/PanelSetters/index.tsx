@@ -33,6 +33,7 @@ import { TabsDefaultKeySetter } from "@/page/App/components/PanelSetters/TabsSet
 import { MenuOptionSetter } from "@/page/App/components/PanelSetters/MenuSetter/MenuOptionSetter"
 import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
 import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
+import { EditableInputWithMeasureSetter } from "./InputSetter/editableInputSetterWithMeasure"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -61,6 +62,7 @@ const SetterTypeMapSetter = {
   EVENT_WIDGET_METHOD_SELECT_SETTER: EventWidgetMethodSelect,
   EVENT_ACTION_SELECT_SETTER: EventActionTypeSelect,
   EDITABLE_INPUT_SETTER: EditableInputSetter,
+  EDITABLE_INPUT_WITH_MEASURE_SETTER: EditableInputWithMeasureSetter,
   BASE_DYNAMIC_SELECT_SETTER: BaseDynamicSelect,
   CHART_DATASOURCE_SELECT_SETTER: ChartDataSourceSetter,
   CHART_KEYS_SELECT_SETTER: ChartKeysSelectSetter,

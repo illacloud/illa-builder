@@ -121,6 +121,8 @@ export const RenderSection = forwardRef<HTMLDivElement, RenderSectionProps>(
               canResizeY
               minHeight={containerBound.height - 16}
               safeRowNumber={0}
+              addedRowNumber={40}
+              canAutoScroll
             />
           )}
         </div>
@@ -369,6 +371,7 @@ export const RenderHeaderSection = forwardRef<
             canResizeY
             minHeight={containerBound.height - 16}
             safeRowNumber={0}
+            addedRowNumber={5}
           />
         )}
       </div>
@@ -633,6 +636,7 @@ export const RenderFooterSection = forwardRef<
             canResizeY
             minHeight={containerBound.height - 16}
             safeRowNumber={0}
+            addedRowNumber={5}
           />
         )}
       </div>
@@ -889,6 +893,8 @@ export const RenderLeftSection = forwardRef<
               }
               safeRowNumber={0}
               blockColumns={16}
+              addedRowNumber={40}
+              canAutoScroll
             />
           )}
           {showFoldIcon && (
@@ -1186,6 +1192,8 @@ export const RenderRightSection = forwardRef<
               }
               safeRowNumber={0}
               blockColumns={16}
+              addedRowNumber={40}
+              canAutoScroll
             />
           )}
           {showFoldIcon && (

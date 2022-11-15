@@ -149,3 +149,11 @@ export const getActionExecutionResultArray = createSelector(
     return actionExecutionResultArray
   },
 )
+
+export const getCurrentPageDisplayName = createSelector(
+  [getRootNodeExecutionResult],
+  (rootNode) => {
+    const { pageSortedKey, currentPageIndex } = rootNode
+    return pageSortedKey[currentPageIndex]
+  },
+)

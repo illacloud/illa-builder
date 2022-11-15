@@ -20,6 +20,7 @@ export const deployLogoStyle = css`
   align-items: center;
   font-weight: 500;
   cursor: pointer;
+  background-color: ${globalColor(`--${illaPrefix}-white-01`)};
 `
 export const logoStyle = css`
   width: 25px;
