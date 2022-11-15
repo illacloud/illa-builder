@@ -8,7 +8,7 @@
   "version": "1.3.2",
   "scripts": {
     "dev": "vite --mode cloud",
-    "build-cloud": "vite build --mode cloud",
+    "build-cloud": "NODE_OPTIONS=--max-old-space-size=14336 vite build --mode cloud",
     "build-self": "vite build --mode self",
     "preview": "vite preview",
     "test": "npx patch-package && npx jest && npx cypress run-ct -b chrome",

@@ -3,30 +3,13 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     },
-    "preview": {
-      "dependsOn": [
-        "build"
-      ]
-    },
+    "preview": {},
     "dev": {
-      "cache": false,
-      "dependsOn": [
-        "build"
-      ]
+      "cache": false
     },
-    "build-cloud": {
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "build-self": {
-      "dependsOn": [
-        "build"
-      ]
-    }
+    "build-cloud": {},
+    "build-self": {}
   }
 }
