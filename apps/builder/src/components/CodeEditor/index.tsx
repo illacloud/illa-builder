@@ -160,10 +160,10 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     }, [executionError, executionResult, expectedType, path])
 
     useEffect(() => {
-      if (!path) {
+      if (!path && previewVisible) {
         valueChanged(value || "")
       }
-    }, [valueChanged, value, path])
+    }, [valueChanged, value, path, previewVisible])
 
     const handleChange = (editor: Editor) => {
       const currentValue = editor?.getValue()
