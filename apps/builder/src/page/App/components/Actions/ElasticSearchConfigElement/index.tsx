@@ -7,6 +7,8 @@ import {
   connectTypeStyle,
   container,
   divider,
+  errorIconStyle,
+  errorMsgStyle,
   footerStyle,
   hostInputContainer,
   labelContainer,
@@ -18,7 +20,7 @@ import { Divider } from "@illa-design/divider"
 import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
-import { PaginationPreIcon } from "@illa-design/icon"
+import { PaginationPreIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
@@ -186,7 +188,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
               defaultValue={content.host}
               control={control}
               rules={{
-                required: true,
+                required: t("editor.action.form.required"),
                 validate: (value: string) => {
                   return isURL(value)
                     ? true
@@ -199,6 +201,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                   onBlur={onBlur}
                   onChange={onChange}
                   value={value}
+                  error={!!formState.errors.host}
                   borderColor="techPurple"
                   placeholder={t(
                     "editor.action.resource.db.placeholder.hosturl",
@@ -208,6 +211,14 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
               name="host"
             />
           </div>
+        </div>
+        <div css={configItemTip}>
+          {formState.errors.host && (
+            <div css={errorMsgStyle}>
+              <WarningCircleIcon css={errorIconStyle} />
+              {formState.errors.host.message}
+            </div>
+          )}
         </div>
         <div css={configItem}>
           <div css={labelContainer}>

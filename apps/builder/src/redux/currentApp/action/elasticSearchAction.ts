@@ -8,10 +8,10 @@ export const ElasticSearchActionList = [
 
 export type ElasticSearchActionType =
   | "search"
-  | "getOne"
-  | "insertOne"
-  | "updateOne"
-  | "deleteOne"
+  | "get a document"
+  | "insert a document"
+  | "update a document"
+  | "delete a document"
 
 export interface ElasticSearchAction {
   operation: ElasticSearchActionType

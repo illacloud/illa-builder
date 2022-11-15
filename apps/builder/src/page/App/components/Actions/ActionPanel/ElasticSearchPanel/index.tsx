@@ -39,7 +39,7 @@ export const ElasticSearchPanel: FC = () => {
 
   const isShowIdEditor = useMemo(
     () =>
-      ["getOne", "updateOne", "deleteOne"].includes(
+      ["get a document", "update a document", "delete a document"].includes(
         cachedAction.content.operation,
       ),
     [cachedAction.content],
@@ -91,6 +91,7 @@ export const ElasticSearchPanel: FC = () => {
           lineNumbers
           css={esItemCodeEditorStyle}
           mode="TEXT_JS"
+          height="88px"
           value={content.query}
           onChange={(value) => {
             dispatch(
