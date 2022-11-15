@@ -1,7 +1,7 @@
 {
   "name": "illa-builder",
   "description": "Help every Developer as fast as to build Business Tools",
-  "repository": "git@github.com:illa-family/illa-builder.git",
+  "repository": "git@github.com:illacloud/illa-builder.git",
   "private": true,
   "author": "illa Family",
   "license": "Apache-2.0",
