@@ -27,9 +27,9 @@ export const renderJsonValue = (value: any) => {
       return <label css={applyJsonValueColorStyle(type)}>{`"${value}"`}</label>
     default:
       return (
-        <label
-          css={applyJsonValueColorStyle(type)}
-        >{`${value.toString()}`}</label>
+        <label css={applyJsonValueColorStyle(type)}>
+          {value ? value.toString() : "undefined"}
+        </label>
       )
   }
 }
