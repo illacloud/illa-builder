@@ -37,7 +37,6 @@ export const renderJsonValue = (value: any) => {
 export const WorkSpaceTreeNode: FC<WorkSpaceTreeNodeProps> = memo(
   (props: WorkSpaceTreeNodeProps) => {
     const { name, value, itemKey, level = 0 } = props
-    console.log("value", value)
     const expandedKeys = useSelector(getExpandedKeys)
     const isExpanded = expandedKeys.includes(itemKey)
     const dispatch = useDispatch()
