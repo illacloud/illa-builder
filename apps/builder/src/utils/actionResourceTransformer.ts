@@ -1,5 +1,4 @@
 import { ActionType } from "@/redux/currentApp/action/actionState"
-import i18n from "@/i18n/config"
 import { ResourceType } from "@/redux/resource/resourceState"
 
 export function getActionTypeFromResourceType(
@@ -27,16 +26,10 @@ export function getActionNameFromActionType(actionType: ActionType): string {
         return "PostgreSQL"
       case "mariadb":
         return "MariaDB"
-      case "snowflake":
-        return "Snowflake"
       case "tidb":
         return "TiDB"
-      case "datadog":
-        return "DataDog"
       case "smtp":
         return "SMTP"
-      case "zapier":
-        return "Zapier"
       case "s3":
         return "Amazon S3"
       case "transformer":
@@ -70,16 +63,10 @@ export function getResourceNameFromResourceType(
         return "PostgreSQL"
       case "mariadb":
         return "MariaDB"
-      case "snowflake":
-        return "Snowflake"
       case "tidb":
         return "TiDB"
-      case "datadog":
-        return "DataDog"
       case "smtp":
         return "SMTP"
-      case "zapier":
-        return "Zapier"
       case "s3":
         return "Amazon S3"
       default:

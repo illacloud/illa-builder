@@ -17,7 +17,7 @@ test("Text renders with textColor", () => {
 test("Text renders with markdown", () => {
   render(
     <Text
-      value="**hello builder**<https://github.com/illa-family/illa-builder>"
+      value="**hello builder**<https://github.com/illacloud/illa-builder>"
       disableMarkdown={true}
       linkColor="purple"
     />,
@@ -26,7 +26,7 @@ test("Text renders with markdown", () => {
     "font-weight": "bold",
   })
   expect(
-    screen.getByText("https://github.com/illa-family/illa-builder"),
+    screen.getByText("https://github.com/illacloud/illa-builder"),
   ).toHaveStyle({
     color: "#833fdf",
   })

@@ -132,7 +132,6 @@ export function applyCodeEditorStyle(
 
       &:hover {
         border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
-        z-index: 1;
       }
     `
   }

@@ -293,12 +293,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       shadow,
     } = realProps
 
+    const _radius = !isNaN(Number(radius)) ? radius + "px" : radius?.toString()
+    const _borderWidth = !isNaN(Number(borderWidth))
+      ? borderWidth + "px"
+      : borderWidth?.toString()
+
     return hidden ? null : (
       <div
         css={applyWrapperStylesStyle(
           borderColor,
-          borderWidth,
-          radius,
+          _borderWidth,
+          _radius,
           backgroundColor,
           shadow,
           type,

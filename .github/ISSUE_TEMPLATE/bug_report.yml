@@ -11,7 +11,7 @@ body:
         Please search open/closed issues before submitting. Someone
         might have asked the same thing before 😉!
 
-        If you want to discuss sth, please go to the [Discussion](https://github.com/illa-family/discussions)
+        If you want to discuss sth, please go to the [Discussion](https://github.com/illacloud/discussions)
 
   - type: "input"
     id: "description"
