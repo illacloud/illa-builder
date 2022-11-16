@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const actionIconContainer = css`
   display: flex;
@@ -63,7 +63,6 @@ export function applyActionItemContainerStyle(
     padding-right: 16px;
     height: 40px;
     font-size: 14px;
-
     &:hover {
       background: ${selected
         ? globalColor(`--${illaPrefix}-techPurple-07`)

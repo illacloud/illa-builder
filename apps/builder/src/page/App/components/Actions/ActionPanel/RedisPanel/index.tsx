@@ -6,14 +6,10 @@ import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
-import { isObject } from "@illa-design/system"
+import { isObject } from "@illa-design/react"
 import { ResourcesData } from "@/redux/resource/resourceState"
 import { redisContainerStyle } from "@/page/App/components/Actions/ActionPanel/RedisPanel/style"
-import {
-  RedisAction,
-  RedisActionInitial,
-} from "@/redux/currentApp/action/redisAction"
-import { Controller, useForm } from "react-hook-form"
+import { RedisAction } from "@/redux/currentApp/action/redisAction"
 import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"

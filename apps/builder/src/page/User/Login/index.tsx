@@ -3,10 +3,13 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation, Trans } from "react-i18next"
 import { useDispatch } from "react-redux"
 import { useNavigate, useLocation } from "react-router-dom"
-import { Input, Password } from "@illa-design/input"
-import { Message } from "@illa-design/message"
-import { Button } from "@illa-design/button"
-import { WarningCircleIcon } from "@illa-design/icon"
+import {
+  Input,
+  Password,
+  Message,
+  Button,
+  WarningCircleIcon,
+} from "@illa-design/react"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { currentUserActions } from "@/redux/currentUser/currentUserSlice"
 import { Api } from "@/api/base"

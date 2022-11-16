@@ -1,4 +1,4 @@
-import { illaPrefix, globalColor } from "@illa-design/theme"
+import { illaPrefix, globalColor } from "@illa-design/react"
 import { css } from "@emotion/react"
 
 export const panelActionBarWrapperStyle = css`
@@ -17,7 +17,6 @@ export const clickHotpotWrapperStyle = css`
   flex: none;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-
   :hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }

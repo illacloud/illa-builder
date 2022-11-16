@@ -1,5 +1,5 @@
-import { FC, memo, useCallback, useMemo, MouseEvent } from "react"
-import { CaretRightIcon } from "@illa-design/icon"
+import { FC, memo, useMemo, MouseEvent } from "react"
+import { CaretRightIcon } from "@illa-design/react"
 import { motion } from "framer-motion"
 import { WorkSpaceTreeItemProps } from "./interface"
 import {

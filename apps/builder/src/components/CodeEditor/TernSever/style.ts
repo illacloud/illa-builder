@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import arraySvg from "./assets/array.svg"
 import booleanSvg from "./assets/boolean.svg"
 import stringSvg from "./assets/string.svg"
@@ -17,7 +17,6 @@ export const ternStyle = css`
     height: 24px;
     font-size: 12px;
   }
-
   .CodeMirror-Tern-completion:before {
     content: "";
     position: absolute;
@@ -34,7 +33,6 @@ export const ternStyle = css`
     box-sizing: border-box;
     font-family: "Helvetica Neue";
   }
-
   .CodeMirror-Tern-completion:after {
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
     font-weight: 400;
@@ -48,75 +46,60 @@ export const ternStyle = css`
     padding-right: 8px;
     padding-left: 10px;
   }
-
   .CodeMirror-Tern-completion-unknown:before {
     background: url(${nullSvg});
   }
-
   .CodeMirror-Tern-completion-object {
     &:before {
       background: url(${objectSvg});
     }
-
     &:after {
       content: "Object";
     }
   }
-
   .CodeMirror-Tern-completion-fn {
     &:before {
       background: url(${functionSvg});
     }
-
     &:after {
       content: "Function";
     }
   }
-
   .CodeMirror-Tern-completion-array {
     &:before {
       background: url(${arraySvg});
     }
-
     &:after {
       content: "Array";
     }
   }
-
   .CodeMirror-Tern-completion-number {
     &:before {
       background: url(${numberSvg});
     }
-
     &:after {
       content: "Number";
     }
   }
-
   .CodeMirror-Tern-completion-string {
     :before {
       background: url(${stringSvg});
     }
-
     &:after {
       content: "String";
     }
   }
-
   .CodeMirror-Tern-completion-bool {
     :before {
       background: url(${booleanSvg});
     }
-
     &:after {
       content: "Boolean";
     }
   }
-
   .CodeMirror-Tern-completion-guess {
     color: #999;
   }
-
   .CodeMirror-Tern-tooltip {
     border: 1px solid ${globalColor(`--${illaPrefix}-grayBlue-08`)};
     border-radius: 8px;
@@ -126,40 +109,32 @@ export const ternStyle = css`
     font-family: "Fira Code", monospace;
     background-color: white;
     white-space: pre-wrap;
-
     max-width: 40em;
     position: absolute;
     z-index: 10;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.16);
-
     transition: opacity 1s;
     -moz-transition: opacity 1s;
     -webkit-transition: opacity 1s;
     -o-transition: opacity 1s;
     -ms-transition: opacity 1s;
   }
-
   .CodeMirror-Tern-hint-doc {
     width: 287px;
     margin-top: -3px;
   }
-
   .CodeMirror-Tern-fname {
     color: black;
   }
-
   .CodeMirror-Tern-farg {
     color: #70a;
   }
-
   .CodeMirror-Tern-farg-current {
     text-decoration: underline;
   }
-
   .CodeMirror-Tern-type {
     color: #07c;
   }
-
   .CodeMirror-Tern-fhint-guess {
     opacity: 0.7;
   }

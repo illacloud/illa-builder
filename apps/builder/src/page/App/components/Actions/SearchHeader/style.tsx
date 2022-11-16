@@ -1,6 +1,6 @@
 import chroma from "chroma-js"
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const searchHeaderStyle = css`
   width: 100%;
@@ -31,14 +31,12 @@ export const searchHeaderTitleTextStyle = css`
 
 export const searchHeaderTitleIconStyle = css`
   cursor: pointer;
-
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-05`)};
   }
 `
 export const searchInputStyle = css`
   margin-right: 8px;
-
   & > span {
     border-radius: 8px !important;
     border-color: ${globalColor(`--${illaPrefix}-techPurple-01`)} !important;

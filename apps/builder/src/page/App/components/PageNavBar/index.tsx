@@ -12,10 +12,14 @@ import {
   WindowBottomIcon,
   WindowLeftIcon,
   WindowRightIcon,
-} from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
-import { Message } from "@illa-design/message"
-import { Button, ButtonGroup } from "@illa-design/button"
+  Trigger,
+  Message,
+  Button,
+  ButtonGroup,
+  globalColor,
+  illaPrefix,
+  Badge,
+} from "@illa-design/react"
 import { PageNavBarProps } from "@/page/App/components/PageNavBar/interface"
 import { configActions } from "@/redux/config/configSlice"
 import {
@@ -39,10 +43,8 @@ import {
   windowIconStyle,
 } from "./style"
 import { Api } from "@/api/base"
-import { Badge } from "@illa-design/badge"
 import { DeployResp } from "@/page/App/components/PageNavBar/resp"
 import { fromNow } from "@/utils/dayjs"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { getExecutionDebuggerData } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const PageNavBar: FC<PageNavBarProps> = (props) => {

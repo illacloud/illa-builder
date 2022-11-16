@@ -7,9 +7,7 @@ import {
   iconStyle,
   typeTextStyle,
 } from "./style"
-import { ErrorIcon, CopyIcon } from "@illa-design/icon"
-import { isString } from "@illa-design/system"
-import { Message } from "@illa-design/message"
+import { ErrorIcon, CopyIcon, isString, Message } from "@illa-design/react"
 import copy from "copy-to-clipboard"
 
 interface CodePreviewProps extends HTMLAttributes<HTMLDivElement> {

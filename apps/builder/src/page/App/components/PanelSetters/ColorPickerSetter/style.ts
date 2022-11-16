@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import alpha from "@/assets/alpha.svg"
 
 export function applyCircleStyle(color: string): SerializedStyles {
@@ -13,7 +13,6 @@ export function applyCircleStyle(color: string): SerializedStyles {
       width: 100%;
       height: 100%;
     }
-
     background-image: url(${alpha});
     width: 24px;
     height: 24px;
@@ -38,11 +37,9 @@ export const ButtonContentWrapperStyle = css`
   align-items: center;
   border-radius: 8px;
   padding: 8px;
-
   :hover {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }
-
   :active {
     background-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }

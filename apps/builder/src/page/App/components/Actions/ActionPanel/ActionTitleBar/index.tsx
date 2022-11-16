@@ -1,19 +1,24 @@
 import { FC, useEffect, useMemo, useState } from "react"
-import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
+import {
+  CaretRightIcon,
+  MoreIcon,
+  Button,
+  Dropdown,
+  DropList,
+  globalColor,
+  illaPrefix,
+  Message,
+} from "@illa-design/react"
 import {
   actionTitleBarSpaceStyle,
   actionTitleBarStyle,
   editableTitleBarWrapperStyle,
 } from "./style"
-import { Button } from "@illa-design/button"
 import { useTranslation } from "react-i18next"
-import { Dropdown, DropList } from "@illa-design/dropdown"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { useDispatch, useSelector } from "react-redux"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { Message } from "@illa-design/message"
 import { ActionTitleBarProps } from "./interface"
 import { EditableText } from "@/components/EditableText"
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"

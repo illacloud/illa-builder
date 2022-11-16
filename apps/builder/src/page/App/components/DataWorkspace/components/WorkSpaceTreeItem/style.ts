@@ -1,7 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react"
 // import "@fontsource/fira-code"
 import chroma from "chroma-js"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { Variants } from "framer-motion"
 
 export const itemNameStyle: SerializedStyles = css`

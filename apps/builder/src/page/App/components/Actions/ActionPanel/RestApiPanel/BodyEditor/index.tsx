@@ -7,7 +7,7 @@ import {
 } from "./style"
 import { useTranslation } from "react-i18next"
 import { BodyEditorProps } from "@/page/App/components/Actions/ActionPanel/RestApiPanel/BodyEditor/interface"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { Params } from "@/redux/resource/restapiResource"
 import { RecordEditor } from "@/page/App/components/Actions/ActionPanel/RecordEditor"
 import { CodeEditor } from "@/components/CodeEditor"

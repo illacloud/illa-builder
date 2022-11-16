@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react"
-import { Modal } from "@illa-design/modal"
+import { Modal } from "@illa-design/react"
 import { ActionCreatorPage, ActionGeneratorProps } from "./interface"
 import { ActionTypeSelector } from "./ActionTypeSelector"
 import { ActionResourceSelector } from "@/page/App/components/Actions/ActionGenerator/ActionResourceSelector"
@@ -14,7 +14,7 @@ import { modalContentStyle } from "@/page/Dashboard/components/ResourceGenerator
 import { useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
 
-export const ActionGenerator: FC<ActionGeneratorProps> = function (props) {
+export const ActionGenerator: FC<ActionGeneratorProps> = function(props) {
   const { visible, onClose } = props
   const [currentStep, setCurrentStep] = useState<ActionCreatorPage>("select")
 

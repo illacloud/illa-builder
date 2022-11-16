@@ -1,8 +1,13 @@
 import { FC, useCallback, useContext, useMemo, MouseEvent } from "react"
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { DragPointIcon, WarningCircleIcon } from "@illa-design/icon"
-import { Trigger } from "@illa-design/trigger"
+import {
+  DragPointIcon,
+  WarningCircleIcon,
+  Trigger,
+  globalColor,
+  illaPrefix,
+} from "@illa-design/react"
 import { get } from "lodash"
 import { getExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
 import {
@@ -11,7 +16,6 @@ import {
   labelWrapperStyle,
   moveIconStyle,
 } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/style"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 import { ViewListSetterContext } from "@/page/App/components/PanelSetters/ContainerSetter/ViewsSetter/context/viewsListContext"
 import {
   DragIconAndLabelProps,

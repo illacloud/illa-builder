@@ -18,9 +18,8 @@ import { ReactComponent as PresetBIcon } from "@/assets/rightPagePanel/layout/pr
 import { ReactComponent as PresetCIcon } from "@/assets/rightPagePanel/layout/preset-c.svg"
 import { ReactComponent as PresetDIcon } from "@/assets/rightPagePanel/layout/preset-d.svg"
 import { ReactComponent as PresetEIcon } from "@/assets/rightPagePanel/layout/preset-e.svg"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { componentsActions } from "@/redux/currentApp/editor/components/componentsSlice"
-import { getCurrentPageDisplayName } from "@/redux/currentApp/editor/components/componentsSelector"
 import { useTranslation } from "react-i18next"
 
 export const LAYOUT_OPTIONS = [
@@ -42,8 +41,14 @@ export const findLayoutOptionItem = (layoutValue: string) => {
 }
 
 export const LayoutOptionItem: FC<LayoutOptionItemProps> = (props) => {
-  const { isSelected, label, value, icon, selectedValue, currentPageName } =
-    props
+  const {
+    isSelected,
+    label,
+    value,
+    icon,
+    selectedValue,
+    currentPageName,
+  } = props
   const { t } = useTranslation()
   const dispatch = useDispatch()
 

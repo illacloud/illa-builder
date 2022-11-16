@@ -1,9 +1,13 @@
 import { FC, useRef } from "react"
 import { css } from "@emotion/react"
-import { DocsIcon } from "@illa-design/icon"
-import { Tag } from "@illa-design/tag"
-import { Trigger } from "@illa-design/trigger"
-import { isArray, isObject, isString } from "@illa-design/system"
+import {
+  DocsIcon,
+  Tag,
+  Trigger,
+  isArray,
+  isObject,
+  isString,
+} from "@illa-design/react"
 import { HintTooltipProps, TransQuery } from "./interface"
 import {
   contentAreaStyle,

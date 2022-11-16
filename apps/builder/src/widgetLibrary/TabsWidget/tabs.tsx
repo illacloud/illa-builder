@@ -1,8 +1,8 @@
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo } from "react"
 import { TabsWidgetProps, WrappedTabsProps } from "./interface"
 import { fullWidthAndFullHeightStyle } from "./style"
 import { TooltipWrapper } from "@/widgetLibrary/PublicSector/TooltipWrapper"
-import { TabPane, Tabs } from "@illa-design/tabs"
+import { TabPane, Tabs } from "@illa-design/react"
 
 export const WrappedTabs: FC<WrappedTabsProps> = (props) => {
   const {

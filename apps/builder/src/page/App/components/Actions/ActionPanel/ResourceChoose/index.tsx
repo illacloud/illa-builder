@@ -9,17 +9,22 @@ import {
   resourceTitleStyle,
 } from "./style"
 import { useTranslation } from "react-i18next"
-import { Option, Select } from "@illa-design/select"
+import {
+  Option,
+  Select,
+  Space,
+  AddIcon,
+  PenIcon,
+  globalColor,
+  illaPrefix,
+  Modal,
+  ButtonProps,
+} from "@illa-design/react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { Space } from "@illa-design/space"
-import { AddIcon, PenIcon } from "@illa-design/icon"
 import { getIconFromResourceType } from "@/page/App/components/Actions/getIcon"
 import { configActions } from "@/redux/config/configSlice"
-import { ButtonProps } from "@illa-design/button"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Modal } from "@illa-design/modal"
 import { ResourceCreator } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator"
 import {
   getResourceNameFromResourceType,

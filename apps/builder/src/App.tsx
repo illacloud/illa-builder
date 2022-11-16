@@ -1,7 +1,7 @@
 import { css, Global } from "@emotion/react"
 import { BrowserRouter, RouterProvider } from "react-router-dom"
 import { globalStyle } from "./style"
-import { ConfigProvider } from "@illa-design/config-provider"
+import { ConfigProvider } from "@illa-design/react"
 import "@/api/base"
 import { HTML5Backend } from "react-dnd-html5-backend"
 import { GlobalDataProvider } from "@/page/App/context/globalDataProvider"

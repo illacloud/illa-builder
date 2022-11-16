@@ -2,17 +2,21 @@ import { FC, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { DashboardItemMenuProps } from "@/page/Dashboard/components/DashboardItemMenu/interface"
-import { Space } from "@illa-design/space"
-import { Button } from "@illa-design/button"
+import {
+  Space,
+  Button,
+  globalColor,
+  illaPrefix,
+  Dropdown,
+  DropList,
+  MoreIcon,
+  Modal,
+  Message,
+} from "@illa-design/React"
 import { buttonVisibleStyle } from "@/page/Dashboard/components/DashboardResourceItemMenu/style"
-import { Dropdown, DropList } from "@illa-design/dropdown"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { MoreIcon } from "@illa-design/icon"
-import { Modal } from "@illa-design/modal"
 import { Api } from "@/api/base"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { dashboardAppActions } from "@/redux/dashboard/apps/dashboardAppSlice"
-import { Message } from "@illa-design/message"
 import { RootState } from "@/store"
 import { RenameModal } from "@/page/Dashboard/components/RenameModal"
 import { DuplicateModal } from "@/page/Dashboard/components/DuplicateModal"

@@ -1,4 +1,4 @@
-import { Trigger } from "@illa-design/trigger"
+import { Trigger } from "@illa-design/react"
 import { FC, memo } from "react"
 import { TooltipWrapperProps } from "./interface"
 import { Text } from "@/widgetLibrary/TextWidget"

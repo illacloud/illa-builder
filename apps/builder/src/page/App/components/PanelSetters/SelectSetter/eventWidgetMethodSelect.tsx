@@ -1,5 +1,5 @@
 import { FC, useEffect, useMemo } from "react"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { get } from "lodash"
 import { BaseSelectSetterProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"

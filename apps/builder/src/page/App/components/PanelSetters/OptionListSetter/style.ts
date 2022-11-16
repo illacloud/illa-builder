@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { publicPaddingStyle } from "@/page/App/components/InspectPanel/style"
 
 export const optionListHeaderStyle = css`
@@ -42,7 +42,6 @@ export const optionListItemStyle = css`
   height: 40px;
   align-items: center;
   cursor: pointer;
-
   &:hover {
     .movableIconWrapper {
       opacity: 1;

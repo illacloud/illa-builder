@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { TabPane, Tabs } from "@illa-design/tabs"
+import { TabPane, Tabs, PreIcon } from "@illa-design/react"
 import {
   backAreaStyle,
   preIconStyle,
@@ -7,7 +7,6 @@ import {
   tabPreTextStyle,
   tabSuffixStyle,
 } from "@/page/Setting/style"
-import { PreIcon } from "@illa-design/icon"
 import { css } from "@emotion/react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom"
 import { useTranslation } from "react-i18next"

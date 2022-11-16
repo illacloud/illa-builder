@@ -1,8 +1,7 @@
 import { FC } from "react"
 import { ErrorPage } from "@/page/status/errorPage"
-import { Result500Icon } from "@illa-design/icon"
+import { Result500Icon, Button } from "@illa-design/react"
 import { buttonStyle, iconStyle } from "@/page/status/style"
-import { Button } from "@illa-design/button"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 

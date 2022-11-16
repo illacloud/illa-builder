@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { ActionTypeSelectorProps } from "./interface"
 import { ActionTypeList } from "@/page/App/components/Actions/ActionGenerator/config"
 import { categoryStyle, containerStyle, resourceListStyle } from "./style"
-import { Spin } from "@illa-design/spin"
+import { Spin, Message } from "@illa-design/react"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
 import { getInitialContent } from "@/redux/currentApp/action/getInitialContent"
 import {
@@ -11,7 +11,6 @@ import {
   actionItemInitial,
 } from "@/redux/currentApp/action/actionState"
 import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
 import { useDispatch, useSelector } from "react-redux"

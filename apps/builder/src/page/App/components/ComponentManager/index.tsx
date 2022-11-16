@@ -1,4 +1,4 @@
-import { TabPane, Tabs } from "@illa-design/tabs"
+import { TabPane, Tabs } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import { FC, HTMLAttributes, useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"

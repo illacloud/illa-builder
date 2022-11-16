@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, useState } from "react"
-import { List } from "@illa-design/list"
+import { List, Button, Modal, Empty, AddIcon, Space } from "@illa-design/react"
 import { useDispatch, useSelector } from "react-redux"
 import { ActionListItem } from "@/page/App/components/Actions/ActionListItem"
 import { SearchHeader } from "@/page/App/components/Actions/SearchHeader"
@@ -10,15 +10,10 @@ import {
   listStyle,
   searchHeaderContainerStyle,
 } from "./style"
-import { Button } from "@illa-design/button"
 import { useTranslation } from "react-i18next"
 import { configActions } from "@/redux/config/configSlice"
-import { Modal } from "@illa-design/modal"
-import { Empty } from "@illa-design/empty"
 import { ReactComponent as ActionListEmptyState } from "@/assets/action-list-empty-state.svg"
 import { ActionGenerator } from "@/page/App/components/Actions/ActionGenerator"
-import { AddIcon } from "@illa-design/icon"
-import { Space } from "@illa-design/space"
 import {
   onCopyActionItem,
   onDeleteActionItem,

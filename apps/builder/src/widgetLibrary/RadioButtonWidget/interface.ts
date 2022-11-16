@@ -1,4 +1,4 @@
-import { RadioGroupProps } from "@illa-design/radio"
+import { RadioGroupProps } from "@illa-design/react"
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
 import LabelProps from "@/widgetLibrary/PublicSector/Label/interface"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"

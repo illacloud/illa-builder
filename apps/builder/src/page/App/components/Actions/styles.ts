@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export function applyActionEditorStyle(h: number) {
   return css`
@@ -16,7 +16,6 @@ export const actionEditorDragBarStyle = css`
   position: absolute;
   transition: all 0.2s;
   height: 5px;
-
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }

@@ -1,10 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import {
-  LEFT_PANEL_WIDTH,
-  MIDDLE_PANEL_WIDTH,
-  RIGHT_PANEL_WIDTH,
-} from "@/style"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const navBarStyle = css`
   display: flex;
@@ -24,7 +19,6 @@ export const rowCenter = css`
 
 export const viewControlStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
-
   ${rowCenter}
   & > svg {
     &:hover {
@@ -75,7 +69,6 @@ export const windowIconBodyStyle = css`
   margin-right: 2px;
   border-radius: 4px;
   cursor: pointer;
-
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
   }

@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react"
-import { PenIcon } from "@illa-design/icon"
-import { Input } from "@illa-design/input"
+import { PenIcon, Input } from "@illa-design/react"
 import { containerStyle } from "@/widgetLibrary/PublicSector/containerStyle"
 import { EditableTextWidgetProps, WrappedEditableTextProps } from "./interface"
 import { applyTextCss } from "./style"

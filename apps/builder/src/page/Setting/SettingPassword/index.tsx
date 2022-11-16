@@ -1,11 +1,9 @@
 import { FC, useCallback, useMemo, useState, ChangeEvent } from "react"
 import { useTranslation } from "react-i18next"
-import { Password } from "@illa-design/input"
+import { Password, Button, Message } from "@illa-design/react"
 import { publicButtonWrapperStyle } from "@/page/Setting/SettingAccount/style"
-import { Button } from "@illa-design/button"
 import { LabelAndSetter } from "@/page/Setting/Components/LabelAndSetter"
 import { Api } from "@/api/base"
-import { Message } from "@illa-design/message"
 
 const validatePasswordEmpty = (password: string) => {
   return !password

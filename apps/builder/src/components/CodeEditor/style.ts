@@ -1,7 +1,7 @@
 import chroma from "chroma-js"
 // import "@fontsource/fira-code"
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { EditorInputState } from "./interface"
 import { ternStyle } from "@/components/CodeEditor/TernSever/style"
 
@@ -9,36 +9,29 @@ export const codemirrorStyle = css`
   .CodeMirror {
     font-family: "Fira Code", monospace;
   }
-
   .CodeMirror-empty {
     color: ${globalColor(`--${illaPrefix}-grayBlue-04`)};
   }
-
   .CodeMirror-selected {
     background: ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
       .alpha(0.12)
       .hex()};
   }
-
   .CodeMirror-focused .CodeMirror-selected {
     background: ${chroma(globalColor(`--${illaPrefix}-techPurple-01`))
       .alpha(0.12)
       .hex()};
   }
-
   .CodeMirror-crosshair {
     cursor: crosshair;
   }
-
   .CodeMirror-lines {
     padding: 7px 0;
   }
-
   .CodeMirror pre.CodeMirror-line,
   .CodeMirror pre.CodeMirror-line-like {
     padding: 0 8px;
   }
-
   .CodeMirror-line::selection,
   .CodeMirror-line > span::selection,
   .CodeMirror-line > span > span::selection {
@@ -46,7 +39,6 @@ export const codemirrorStyle = css`
       .alpha(0.12)
       .hex()};
   }
-
   .CodeMirror-line::-moz-selection,
   .CodeMirror-line > span::-moz-selection,
   .CodeMirror-line > span > span::-moz-selection {
@@ -54,7 +46,6 @@ export const codemirrorStyle = css`
       .alpha(0.12)
       .hex()};
   }
-
   ${ternStyle}
   .CodeMirror-hints {
     font-family: "Fira Code", monospace;
@@ -64,34 +55,28 @@ export const codemirrorStyle = css`
     border-radius: 8px;
     box-shadow: 0 2px 16px 0 ${globalColor(`--${illaPrefix}-blackAlpha-05`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
-
     ::-webkit-scrollbar {
       display: none;
     }
   }
-
   li.CodeMirror-hint-active {
     background: ${globalColor(`--${illaPrefix}-grayBlue-09`)};
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }
-
   li.CodeMirror-hint {
     margin: 1px 0;
     transition: 0.2s ease-in-out;
-
     &:hover {
       background: ${globalColor(`--${illaPrefix}-techPurple-07`)};
       color: ${globalColor(`--${illaPrefix}-techPurple-01`)};
     }
   }
-
   .cm-default .cm-illa-expression {
     background: ${chroma(globalColor(`--${illaPrefix}-green-03`))
       .alpha(0.08)
       .hex()};
     color: ${globalColor(`--${illaPrefix}-green-03`)};
   }
-
   .cm-error .cm-illa-expression {
     background: ${chroma(globalColor(`--${illaPrefix}-red-03`))
       .alpha(0.08)
@@ -102,7 +87,6 @@ export const codemirrorStyle = css`
 
 export const inputErrorStyle = css`
   border-color: ${globalColor(`--${illaPrefix}-red-03`)};
-
   &:hover {
     border-color: ${globalColor(`--${illaPrefix}-red-02`)};
   }
@@ -129,7 +113,6 @@ export function applyCodeEditorStyle(
   } else {
     stateStyle = css`
       border-color: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
-
       &:hover {
         border-color: ${globalColor(`--${illaPrefix}-techPurple-06`)};
       }
@@ -145,12 +128,10 @@ export function applyCodeEditorStyle(
       transition: border 200ms ease-in-out;
       line-height: 16px;
       font-size: 14px;
-
       ${stateStyle}
       .CodeMirror-scroll {
         max-height: ${inputState.maxHeight};
       }
-
       ${inputState?.border ? css({ border: inputState?.border }) : null}
     }
   `
@@ -180,7 +161,6 @@ export const copyIconStyle = css`
   right: 4px;
   cursor: pointer;
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
-
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }

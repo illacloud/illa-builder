@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { Variants } from "framer-motion"
 
 export const errorContainerStyle = css`
@@ -28,7 +28,6 @@ export const sourceStyle = css`
   color: ${globalColor(`--${illaPrefix}-grayBlue-03`)};
   text-decoration-line: underline;
   cursor: pointer;
-
   &:hover {
     color: ${globalColor(`--${illaPrefix}-grayBlue-02`)};
   }

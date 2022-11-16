@@ -7,8 +7,8 @@ import {
 } from "./style"
 import { CanvasPanelProps } from "./interface"
 import { DotPanel } from "@/page/App/components/DotPanel"
-import { useDispatch, useSelector } from "react-redux"
-import { LockIcon } from "@illa-design/icon"
+import { useSelector } from "react-redux"
+import { LockIcon } from "@illa-design/react"
 import { getFreezeState, getIllaMode } from "@/redux/config/configSelector"
 import { FocusManager } from "@/utils/focusManager"
 

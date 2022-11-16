@@ -4,7 +4,7 @@ import "codemirror/addon/hint/sql-hint"
 import "codemirror/addon/hint/javascript-hint"
 import "codemirror/addon/hint/xml-hint"
 import "codemirror/addon/hint/html-hint"
-import { isString } from "@illa-design/system"
+import { isString } from "@illa-design/react"
 import { AutoCompleteItem } from "./AutoComplete"
 
 let origJsHint = CodeMirror.hint.javascript

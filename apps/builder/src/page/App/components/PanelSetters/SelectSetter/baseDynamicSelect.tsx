@@ -6,7 +6,7 @@ import {
   dynamicSelectSetterStyle,
 } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { BaseDynamicSelectSetterProps } from "@/page/App/components/PanelSetters/SelectSetter/interface"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { CodeEditor } from "@/components/CodeEditor"
 import { css } from "@emotion/react"
 

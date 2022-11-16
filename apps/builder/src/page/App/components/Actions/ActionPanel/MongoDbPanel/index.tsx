@@ -8,7 +8,7 @@ import {
   mongoItemLabelStyle,
   mongoItemStyle,
 } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel/style"
-import { Select } from "@illa-design/select"
+import { Select } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 import {
   AggregateContentInitial,
@@ -119,17 +119,16 @@ export const MongoDbPanel: FC = () => {
           ml="16px"
           width="100%"
           onChange={(value) => {
-            let newTypeContent: MongoDbActionTypeContent =
-              AggregateContentInitial
+            let newTypeContent: MongoDbActionTypeContent = AggregateContentInitial
             if (
               cachedAction.resourceId === selectedAction.resourceId &&
-              (
-                selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
-              ).actionType === value
+              (selectedAction.content as MongoDbAction<
+                MongoDbActionTypeContent
+              >).actionType === value
             ) {
-              newTypeContent = (
-                selectedAction.content as MongoDbAction<MongoDbActionTypeContent>
-              ).typeContent
+              newTypeContent = (selectedAction.content as MongoDbAction<
+                MongoDbActionTypeContent
+              >).typeContent
             } else {
               switch (value) {
                 case "aggregate":

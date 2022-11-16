@@ -1,7 +1,17 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
 
 export const globalStyle = css`
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, PingFang SC,
+      Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+  * {
+    outline: none !important;
+  }
   body {
     margin: 0;
     padding: 0;
@@ -18,6 +28,12 @@ export const globalStyle = css`
   /*
   *  Use a more-intuitive box-sizing model.
   */
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
   *,
   *::before,

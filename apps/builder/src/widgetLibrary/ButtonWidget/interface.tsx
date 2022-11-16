@@ -1,5 +1,5 @@
 import { BaseWidgetProps } from "@/widgetLibrary/interface"
-import { ButtonProps } from "@illa-design/button"
+import { ButtonProps } from "@illa-design/react"
 import { TooltipWrapperProps } from "@/widgetLibrary/PublicSector/TooltipWrapper/interface"
 
 export interface WrappedButtonProps
@@ -12,11 +12,11 @@ export interface WrappedButtonProps
     | "loading"
     | "borderColor"
     | "backgroundColor"
-    | "textColor"
   > {
   text?: string
   handleOnClick: () => void
   colorScheme?: string
+  textColor?: string
 }
 
 export interface ButtonWidgetProps

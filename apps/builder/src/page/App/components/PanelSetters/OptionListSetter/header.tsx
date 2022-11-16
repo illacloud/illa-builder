@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { AddIcon } from "@illa-design/icon"
+import { AddIcon } from "@illa-design/react"
 import {
   addIconStyle,
   optionListHeaderStyle,

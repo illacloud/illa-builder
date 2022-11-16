@@ -10,7 +10,7 @@ import {
   resetButtonStyle,
   resetIconStyle,
 } from "./style"
-import { ResetIcon } from "@illa-design/icon"
+import { ResetIcon } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
 
 export const ListSetter: FC<ListSetterProps> = memo(

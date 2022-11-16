@@ -8,7 +8,7 @@ import {
 import { CodeEditor } from "@/components/CodeEditor"
 import { PanelLabel } from "@/page/App/components/InspectPanel/label"
 import { useTranslation } from "react-i18next"
-import { RadioGroup } from "@illa-design/radio"
+import { RadioGroup } from "@illa-design/react"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { useDispatch, useSelector } from "react-redux"
 import {
@@ -16,7 +16,6 @@ import {
   getSelectedAction,
 } from "@/redux/config/configSelector"
 import { configActions } from "@/redux/config/configSlice"
-import { TransformerAction } from "@/redux/currentApp/action/transformerAction"
 import {
   Transformer,
   TransformerInitial,

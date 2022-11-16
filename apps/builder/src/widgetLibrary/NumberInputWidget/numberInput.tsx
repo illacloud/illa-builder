@@ -1,14 +1,5 @@
-import {
-  FC,
-  forwardRef,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
-import { InputNumber } from "@illa-design/input-number"
-import { LoadingIcon } from "@illa-design/icon"
+import { FC, forwardRef, useCallback, useEffect, useMemo, useRef } from "react"
+import { InputNumber, LoadingIcon } from "@illa-design/react"
 import {
   NumberInputWidgetProps,
   WrappedNumberInputProps,
@@ -23,7 +14,7 @@ import { InvalidMessage } from "@/widgetLibrary/PublicSector/InvalidMessage"
 import { handleValidateCheck } from "@/widgetLibrary/PublicSector/InvalidMessage/utils"
 
 const parserThousand = (value: number | string) =>
-  `${value}`.replace(/\d+/, function (s) {
+  `${value}`.replace(/\d+/, function(s) {
     return s.replace(/(\d)(?=(\d{3})+$)/g, "$1,")
   })
 

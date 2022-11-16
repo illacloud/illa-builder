@@ -2,12 +2,15 @@ import { FC, useState } from "react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
-import { Input, Password } from "@illa-design/input"
-import { Button } from "@illa-design/button"
-import { WarningCircleIcon } from "@illa-design/icon"
-import { Link } from "@illa-design/link"
-import { Message } from "@illa-design/message"
-import { Countdown } from "@illa-design/statistic"
+import {
+  Input,
+  Password,
+  Button,
+  WarningCircleIcon,
+  Link,
+  Message,
+  Countdown,
+} from "@illa-design/react"
 import { EMAIL_FORMAT } from "@/constants/regExp"
 import { Api } from "@/api/base"
 import {

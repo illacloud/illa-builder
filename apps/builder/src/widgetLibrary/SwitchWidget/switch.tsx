@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react"
-import { Switch } from "@illa-design/switch"
+import { Switch } from "@illa-design/react"
 import { SwitchWidgetProps, WrappedSwitchProps } from "./interface"
 import { Label } from "@/widgetLibrary/PublicSector/Label"
 import { applyCenterLabelAndComponentWrapperStyle } from "@/widgetLibrary/PublicSector/TransformWidgetWrapper/style"

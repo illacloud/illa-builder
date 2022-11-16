@@ -1,5 +1,5 @@
 import { FC, useCallback, useContext, useState } from "react"
-import { Trigger } from "@illa-design/trigger"
+import { Trigger } from "@illa-design/react"
 import { get } from "lodash"
 import {
   eventAndMethodWrapperStyle,

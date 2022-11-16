@@ -1,7 +1,13 @@
 import { FC, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { AddIcon, PaginationPreIcon } from "@illa-design/icon"
-import { Button, ButtonGroup } from "@illa-design/button"
+import {
+  AddIcon,
+  PaginationPreIcon,
+  Button,
+  ButtonGroup,
+  Message,
+  List,
+} from "@illa-design/react"
 import { ActionResourceSelectorProps } from "./interface"
 import {
   applyResourceItemStyle,
@@ -12,7 +18,6 @@ import {
 } from "./style"
 import { getIconFromActionType } from "@/page/App/components/Actions/getIcon"
 import { getAllResources } from "@/redux/resource/resourceSelector"
-import { List } from "@illa-design/list"
 import { fromNow } from "@/utils/dayjs"
 import { useTranslation } from "react-i18next"
 import {
@@ -22,7 +27,6 @@ import {
 } from "@/redux/currentApp/action/actionState"
 import { Api } from "@/api/base"
 import { getAppInfo } from "@/redux/currentApp/appInfo/appInfoSelector"
-import { Message } from "@illa-design/message"
 import { actionActions } from "@/redux/currentApp/action/actionSlice"
 import { configActions } from "@/redux/config/configSlice"
 import { DisplayNameGenerator } from "@/utils/generators/generateDisplayName"
@@ -104,8 +108,9 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
           <Button
             colorScheme="techPurple"
             onClick={() => {
-              const displayName =
-                DisplayNameGenerator.generateDisplayName(actionType)
+              const displayName = DisplayNameGenerator.generateDisplayName(
+                actionType,
+              )
               const initialContent = getInitialContent(actionType)
               const data: Partial<ActionItem<ActionContent>> = {
                 actionType,

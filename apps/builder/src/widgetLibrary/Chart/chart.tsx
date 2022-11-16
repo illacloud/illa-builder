@@ -25,7 +25,7 @@ import {
 } from "@/widgetLibrary/Chart/interface"
 import { formatDataAsObject } from "@/utils/formatData"
 import { get, groupBy as groupByFunc } from "lodash"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { globalColor, illaPrefix } from "@illa-design/react"
 import { CHART_COLOR_TYPE_CONFIG } from "@/page/App/components/PanelSetters/ChartSetter/chartDatasetsSetter/listItem"
 import { formatData, rotateGroupByData } from "@/widgetLibrary/Chart/utils"
 

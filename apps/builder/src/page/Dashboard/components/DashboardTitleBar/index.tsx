@@ -2,11 +2,15 @@ import { FC } from "react"
 import { useTranslation } from "react-i18next"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { TabPane, Tabs } from "@illa-design/tabs"
-import { DownIcon } from "@illa-design/icon"
-import { globalColor, illaPrefix } from "@illa-design/theme"
-import { Divider } from "@illa-design/divider"
-import { Dropdown } from "@illa-design/dropdown"
+import {
+  globalColor,
+  illaPrefix,
+  TabPane,
+  Tabs,
+  DownIcon,
+  Divider,
+  Dropdown,
+} from "@illa-design/react"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
 import {
   containerStyle,

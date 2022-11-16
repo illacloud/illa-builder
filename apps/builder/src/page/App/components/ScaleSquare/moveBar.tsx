@@ -8,12 +8,17 @@ import {
   moveBarDisplayNameStyle,
   warningStyle,
 } from "@/page/App/components/ScaleSquare/style"
-import { DragIcon, LockIcon, WarningCircleIcon } from "@illa-design/icon"
 import {
   MoveBarPositionShape,
   MoveBarProps,
 } from "@/page/App/components/ScaleSquare/interface"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import {
+  globalColor,
+  illaPrefix,
+  DragIcon,
+  LockIcon,
+  WarningCircleIcon,
+} from "@illa-design/react"
 import { useSelector } from "react-redux"
 import { getFreezeState } from "@/redux/config/configSelector"
 import { useTranslation } from "react-i18next"

@@ -3,11 +3,15 @@ import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import copy from "copy-to-clipboard"
-import { Button } from "@illa-design/button"
-import { List, ListItem, ListItemMeta } from "@illa-design/list"
-import { Divider } from "@illa-design/divider"
-import { Empty } from "@illa-design/empty"
-import { Message } from "@illa-design/message"
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemMeta,
+  Divider,
+  Empty,
+  Message,
+} from "@illa-design/react"
 import { DashboardApp } from "@/redux/dashboard/apps/dashboardAppState"
 import { getDashboardApps } from "@/redux/dashboard/apps/dashboardAppSelector"
 import {

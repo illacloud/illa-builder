@@ -1,5 +1,5 @@
-import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
-import { Table } from "@illa-design/table"
+import { FC, forwardRef, useEffect, useMemo } from "react"
+import { Table } from "@illa-design/react"
 import {
   ColumnItemShape,
   TableWidgetProps,

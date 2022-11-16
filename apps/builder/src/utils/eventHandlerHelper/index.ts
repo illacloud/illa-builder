@@ -10,7 +10,7 @@ import { getActionItemByDisplayName } from "@/redux/currentApp/action/actionSele
 import { runAction } from "@/page/App/components/Actions/ActionPanel/utils/runAction"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
-import { Message } from "@illa-design/message"
+import { Message } from "@illa-design/react"
 import {
   goToURL,
   showNotification,

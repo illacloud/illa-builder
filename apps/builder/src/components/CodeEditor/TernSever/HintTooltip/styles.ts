@@ -1,5 +1,5 @@
-import { css, SerializedStyles } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { css } from "@emotion/react"
+import { globalColor, illaPrefix } from "@illa-design/react"
 
 export const mainTitleStyle = css`
   display: flex;
@@ -50,11 +50,9 @@ export const docIconStyle = css`
   border-radius: 2px;
   cursor: pointer;
   transition: background 0.3s ease;
-
   &:hover {
     background: ${globalColor(`--${illaPrefix}-grayBlue-08`)};
   }
-
   &:active,
   &:visited,
   &:link,
