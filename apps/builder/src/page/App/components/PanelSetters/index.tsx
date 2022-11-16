@@ -34,6 +34,7 @@ import { MenuOptionSetter } from "@/page/App/components/PanelSetters/MenuSetter/
 import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
 import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
 import { EditableInputWithMeasureSetter } from "./InputSetter/editableInputSetterWithMeasure"
+import { TableDataSourceSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataSourceSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -52,6 +53,7 @@ const SetterTypeMapSetter = {
   TABS_DEFAULT_KEY_SETTER: TabsDefaultKeySetter,
   TABS_CONTAINER_SELECT_SETTER: TabsContainerSelectSetter,
   TABLE_DATA_INPUT_SETTER: TableDataInputSetter,
+  TABLE_DATASOURCE_SELECT_SETTER: TableDataSourceSelectSetter,
   OPTION_MAPPED_SETTER: MappedOptionSetter,
   EVENT_HANDLER_SETTER: EventHandlerSetter,
   EVENT_TARGET_SELECT_SETTER: EventTargetWidgetSelect,
