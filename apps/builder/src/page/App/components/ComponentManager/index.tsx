@@ -37,6 +37,7 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
     }
     if (prevPageDisplayName.current !== currentPageDisplayName) {
       setActiveKey("Page")
+      prevPageDisplayName.current = currentPageDisplayName
     }
     isClickChange.current = false
   }, [activeKey, currentPageDisplayName, selectedDisplayNames])
