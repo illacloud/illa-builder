@@ -1,13 +1,13 @@
 export interface ElasticSearchResource {
   host: string
   port: string
-  databaseUsername: string
-  databasePassword: string
+  username: string
+  password: string
 }
 
 export const ElasticSearchResourceInitial: ElasticSearchResource = {
-  databasePassword: "",
-  databaseUsername: "",
+  username: "",
+  password: "",
   host: "",
   port: "",
 }

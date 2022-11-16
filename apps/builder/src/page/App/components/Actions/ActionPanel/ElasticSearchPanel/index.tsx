@@ -64,7 +64,7 @@ export const ElasticSearchPanel: FC = () => {
               (selectedAction.content as ElasticSearchAction).operation ===
                 value
             ) {
-              newID = (selectedAction.content as ElasticSearchAction)?.id
+              newID = (selectedAction.content as ElasticSearchAction)?.id || ""
             }
 
             dispatch(
@@ -73,7 +73,7 @@ export const ElasticSearchPanel: FC = () => {
                 content: {
                   ...cachedAction.content,
                   operation: value,
-                  id: newID,
+                  ...(isShowIdEditor && { id: newID }),
                 },
               }),
             )

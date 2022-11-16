@@ -13,14 +13,11 @@ import store from "@/store"
 import { getAppId } from "@/redux/currentApp/appInfo/appInfoSelector"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import {
-  generateSSLConfig,
   Resource,
   ResourceContent,
   ResourceType,
 } from "@/redux/resource/resourceState"
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form"
-import { MongoConfigType, MongoDbSSL } from "@/redux/resource/mongodbResource"
-import { generateAuthContent } from "@/page/App/components/Actions/RestApiConfigElement"
 
 function getBaseActionUrl() {
   const rootState = store.getState()
@@ -88,103 +85,18 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   )
 }
 
-function getActionContentByType(
-  data: FieldValues,
-  type: ResourceType,
-  sslOpen: boolean = false,
-  mongoType: MongoConfigType = "gui",
-) {
-  const basicContent = {
-    host: data.host,
-    port: data.port.toString(),
-    databaseUsername: data.databaseUsername,
-    databasePassword: data.databasePassword,
-  }
-
-  switch (type) {
-    case "elasticsearch":
-      return basicContent
-    case "mysql":
-    case "tidb":
-    case "postgresql":
-    case "mariadb":
-      return {
-        ...basicContent,
-        databaseName: data.databaseName,
-        ssl: generateSSLConfig(sslOpen, data),
-      }
-    case "redis":
-      return {
-        ...basicContent,
-        databaseIndex: data.databaseIndex ?? 0,
-        ssl: sslOpen,
-      }
-    case "mongodb":
-      return mongoType === "gui"
-        ? {
-            configType: data.configType,
-            ssl: {
-              open: sslOpen,
-              client: data.client,
-              ca: data.ca,
-            } as MongoDbSSL,
-            configContent: {
-              host: data.host,
-              port:
-                data.connectionFormat === "standard"
-                  ? data.port.toString()
-                  : "",
-              connectionFormat: data.connectionFormat,
-              databaseName: data.databaseName,
-              databaseUsername: data.databaseUsername,
-              databasePassword: data.databasePassword,
-            },
-          }
-        : {
-            configType: data.configType,
-            ssl: {
-              open: sslOpen,
-              client: data.client,
-              ca: data.ca,
-            } as MongoDbSSL,
-            configContent: {
-              uri: data.uri,
-            },
-          }
-
-    case "restapi":
-      return {
-        baseUrl: data.baseUrl,
-        urlParams: data.urlParams,
-        headers: data.headers,
-        cookies: data.cookies,
-        authentication: data.authentication,
-        authContent: generateAuthContent(data),
-      }
-  }
-}
-
 export function onActionConfigElementSubmit(
   handleSubmit: UseFormHandleSubmit<FieldValues>,
   resourceId: string | undefined,
   resourceType: ResourceType,
   finishedHandler: (resourceId: string) => void,
   loadingHandler: (value: boolean) => void,
-  sslOpen?: boolean,
-  mongoType?: MongoConfigType,
 ) {
   const method = resourceId != undefined ? "PUT" : "POST"
   const url =
     resourceId != undefined ? `/resources/${resourceId}` : `/resources`
 
   return handleSubmit((data: FieldValues) => {
-    const content = getActionContentByType(
-      data,
-      resourceType,
-      sslOpen,
-      mongoType,
-    )
-
     Api.request<Resource<ResourceContent>>(
       {
         method,
@@ -193,7 +105,12 @@ export function onActionConfigElementSubmit(
           ...(resourceId !== undefined && { resourceId: data.resourceId }),
           resourceName: data.resourceName,
           resourceType: resourceType,
-          content,
+          content: {
+            host: data.host,
+            port: data.port.toString(),
+            username: data.username,
+            password: data.password,
+          },
         },
       },
       (response) => {

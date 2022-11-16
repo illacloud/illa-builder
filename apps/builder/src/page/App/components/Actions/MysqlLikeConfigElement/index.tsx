@@ -23,14 +23,13 @@ import { InputNumber } from "@illa-design/input-number"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
+import { Api } from "@/api/base"
+import { resourceActions } from "@/redux/resource/resourceSlice"
+import { Message } from "@illa-design/message"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
-import {
-  onActionConfigElementSubmit,
-  onActionConfigElementTest,
-} from "@/page/App/components/Actions/api"
 
 /**
  * include mariadb or tidb
@@ -43,6 +42,8 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   const { onBack, resourceType, resourceId, onFinished } = props
 
   const { t } = useTranslation()
+
+  const dispatch = useDispatch()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
@@ -62,14 +63,76 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
 
   return (
     <form
-      onSubmit={onActionConfigElementSubmit(
-        handleSubmit,
-        resourceId,
-        resourceType,
-        onFinished,
-        setSaving,
-        sslOpen,
-      )}
+      onSubmit={handleSubmit((data, event) => {
+        if (resourceId != undefined) {
+          Api.request<Resource<MysqlLikeResource>>(
+            {
+              method: "PUT",
+              url: `/resources/${resourceId}`,
+              data: {
+                resourceId: data.resourceId,
+                resourceName: data.resourceName,
+                resourceType: resource.resourceType,
+                content: {
+                  host: data.host,
+                  port: data.port.toString(),
+                  databaseName: data.databaseName,
+                  databaseUsername: data.databaseUsername,
+                  databasePassword: data.databasePassword,
+                  ssl: generateSSLConfig(sslOpen, data),
+                },
+              },
+            },
+            (response) => {
+              dispatch(resourceActions.updateResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
+            },
+            (error) => {
+              Message.error(error.data.errorMessage)
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        } else {
+          Api.request<Resource<MysqlLikeResource>>(
+            {
+              method: "POST",
+              url: `/resources`,
+              data: {
+                resourceName: data.resourceName,
+                resourceType,
+                content: {
+                  host: data.host,
+                  port: data.port.toString(),
+                  databaseName: data.databaseName,
+                  databaseUsername: data.databaseUsername,
+                  databasePassword: data.databasePassword,
+                  ssl: generateSSLConfig(sslOpen, data),
+                },
+              },
+            },
+            (response) => {
+              dispatch(resourceActions.addResourceItemReducer(response.data))
+              Message.success(t("dashboard.resource.save_success"))
+              onFinished(response.data.resourceId)
+            },
+            (error) => {
+              Message.error(error.data.errorMessage)
+            },
+            () => {
+              Message.error(t("dashboard.resource.save_fail"))
+            },
+            (loading) => {
+              setSaving(loading)
+            },
+          )
+        }
+      })}
     >
       <div css={container}>
         <div css={divider} />
@@ -425,18 +488,36 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             type="button"
             onClick={() => {
               const data = getValues()
-              onActionConfigElementTest(
-                data,
+              Api.request<Resource<MysqlLikeResource>>(
                 {
-                  host: data.host,
-                  port: data.port.toString(),
-                  databaseName: data.databaseName,
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
-                  ssl: generateSSLConfig(sslOpen, data),
+                  method: "POST",
+                  url: `/resources/testConnection`,
+                  data: {
+                    resourceId: data.resourceId,
+                    resourceName: data.resourceName,
+                    resourceType,
+                    content: {
+                      host: data.host,
+                      port: data.port.toString(),
+                      databaseName: data.databaseName,
+                      databaseUsername: data.databaseUsername,
+                      databasePassword: data.databasePassword,
+                      ssl: generateSSLConfig(sslOpen, data),
+                    },
+                  },
                 },
-                resourceType,
-                setTestLoading,
+                (response) => {
+                  Message.success(t("dashboard.resource.test_success"))
+                },
+                (error) => {
+                  Message.error(error.data.errorMessage)
+                },
+                () => {
+                  Message.error(t("dashboard.resource.test_fail"))
+                },
+                (loading) => {
+                  setTestLoading(loading)
+                },
               )
             }}
           >

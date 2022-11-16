@@ -20,6 +20,9 @@ import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
+import { generateSSLConfig, Resource } from "@/redux/resource/resourceState"
+import { Api } from "@/api/base"
+import { Message } from "@illa-design/message"
 import {
   MongoDbConfig,
   MongoDbResource,
@@ -31,10 +34,7 @@ import { MongoDbUriMode } from "@/page/App/components/Actions/MongoDbConfigEleme
 import { sslStyle } from "../MysqlLikeConfigElement/style"
 import { Switch } from "@illa-design/switch"
 import { RadioGroup } from "@illa-design/radio"
-import {
-  onActionConfigElementSubmit,
-  onActionConfigElementTest,
-} from "@/page/App/components/Actions/api"
+import { resourceActions } from "@/redux/resource/resourceSlice"
 
 export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -68,15 +68,177 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
 
   return (
     <form
-      onSubmit={onActionConfigElementSubmit(
-        handleSubmit,
-        resourceId,
-        "mongodb",
-        onFinished,
-        setSaving,
-        sslOpen,
-        configType,
-      )}
+      onSubmit={handleSubmit((data, event) => {
+        if (configType === "gui") {
+          if (resourceId != undefined) {
+            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+              {
+                method: "PUT",
+                url: `/resources/${resourceId}`,
+                data: {
+                  resourceName: data.resourceName,
+                  resourceType: "mongodb",
+                  content: {
+                    configType: data.configType,
+                    ssl: {
+                      open: sslOpen,
+                      client: data.client,
+                      ca: data.ca,
+                    } as MongoDbSSL,
+                    configContent: {
+                      host: data.host,
+                      port:
+                        data.connectionFormat === "standard"
+                          ? data.port.toString()
+                          : "",
+                      connectionFormat: data.connectionFormat,
+                      databaseName: data.databaseName,
+                      databaseUsername: data.databaseUsername,
+                      databasePassword: data.databasePassword,
+                    },
+                  },
+                },
+              },
+              (response) => {
+                dispatch(
+                  resourceActions.updateResourceItemReducer(response.data),
+                )
+                Message.success(t("dashboard.resource.save_success"))
+                onFinished(response.data.resourceId)
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              (loading) => {
+                setSaving(loading)
+              },
+            )
+          } else {
+            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+              {
+                method: "POST",
+                url: `/resources`,
+                data: {
+                  resourceName: data.resourceName,
+                  resourceType: "mongodb",
+                  content: {
+                    configType: data.configType,
+                    ssl: {
+                      open: sslOpen,
+                      client: data.client,
+                      ca: data.ca,
+                    } as MongoDbSSL,
+                    configContent: {
+                      host: data.host,
+                      port:
+                        data.connectionFormat === "standard"
+                          ? data.port.toString()
+                          : "",
+                      connectionFormat: data.connectionFormat,
+                      databaseName: data.databaseName,
+                      databaseUsername: data.databaseUsername,
+                      databasePassword: data.databasePassword,
+                    },
+                  },
+                },
+              },
+              (response) => {
+                onFinished(response.data.resourceId)
+                dispatch(resourceActions.addResourceItemReducer(response.data))
+                Message.success(t("dashboard.resource.save_success"))
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              (loading) => {
+                setSaving(loading)
+              },
+            )
+          }
+        } else {
+          if (resourceId != undefined) {
+            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+              {
+                method: "PUT",
+                url: `/resources/${resourceId}`,
+                data: {
+                  resourceName: data.resourceName,
+                  resourceType: "mongodb",
+                  content: {
+                    configType: data.configType,
+                    ssl: {
+                      open: sslOpen,
+                      client: data.client,
+                      ca: data.ca,
+                    } as MongoDbSSL,
+                    configContent: {
+                      uri: data.uri,
+                    },
+                  },
+                },
+              },
+              (response) => {
+                dispatch(
+                  resourceActions.updateResourceItemReducer(response.data),
+                )
+                Message.success(t("dashboard.resource.save_success"))
+                onFinished(response.data.resourceId)
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              (loading) => {
+                setSaving(loading)
+              },
+            )
+          } else {
+            Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+              {
+                method: "POST",
+                url: `/resources`,
+                data: {
+                  resourceName: data.resourceName,
+                  resourceType: "mongodb",
+                  content: {
+                    configType: data.configType,
+                    ssl: {
+                      open: sslOpen,
+                      client: data.client,
+                      ca: data.ca,
+                    } as MongoDbSSL,
+                    configContent: {
+                      uri: data.uri,
+                    },
+                  },
+                },
+              },
+              (response) => {
+                onFinished(response.data.resourceId)
+                dispatch(resourceActions.addResourceItemReducer(response.data))
+                Message.success(t("dashboard.resource.save_success"))
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              () => {
+                Message.error(t("dashboard.resource.save_fail"))
+              },
+              (loading) => {
+                setSaving(loading)
+              },
+            )
+          }
+        }
+      })}
     >
       <div css={container}>
         <div css={divider} />
@@ -279,36 +441,85 @@ export const MongoDbConfigElement: FC<MongoDbConfigElementProps> = (props) => {
             type="button"
             onClick={() => {
               const data = getValues()
-              const content = {
-                configType: data.configType,
-                ssl: {
-                  open: sslOpen,
-                  client: data.client,
-                  ca: data.ca,
-                } as MongoDbSSL,
-                configContent:
-                  configType === "gui"
-                    ? {
-                        host: data.host,
-                        port:
-                          data.connectionFormat === "standard"
-                            ? data.port.toString()
-                            : "",
-                        connectionFormat: data.connectionFormat,
-                        databaseName: data.databaseName,
-                        databaseUsername: data.databaseUsername,
-                        databasePassword: data.databasePassword,
-                      }
-                    : {
-                        uri: data.uri,
+              if (configType === "gui") {
+                Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+                  {
+                    method: "POST",
+                    url: `/resources/testConnection`,
+                    data: {
+                      resourceId: data.resourceId,
+                      resourceName: data.resourceName,
+                      resourceType: "mongodb",
+                      content: {
+                        configType: data.configType,
+                        ssl: {
+                          open: sslOpen,
+                          client: data.client,
+                          ca: data.ca,
+                        } as MongoDbSSL,
+                        configContent: {
+                          host: data.host,
+                          port:
+                            data.connectionFormat === "standard"
+                              ? data.port.toString()
+                              : "",
+                          connectionFormat: data.connectionFormat,
+                          databaseName: data.databaseName,
+                          databaseUsername: data.databaseUsername,
+                          databasePassword: data.databasePassword,
+                        },
                       },
+                    },
+                  },
+                  (response) => {
+                    Message.success(t("dashboard.resource.test_success"))
+                  },
+                  (error) => {
+                    Message.error(error.data.errorMessage)
+                  },
+                  () => {
+                    Message.error(t("dashboard.resource.test_fail"))
+                  },
+                  (loading) => {
+                    setTestLoading(loading)
+                  },
+                )
+              } else {
+                Api.request<Resource<MongoDbResource<MongoDbConfig>>>(
+                  {
+                    method: "POST",
+                    url: `/resources/testConnection`,
+                    data: {
+                      resourceId: data.resourceId,
+                      resourceName: data.resourceName,
+                      resourceType: "mongodb",
+                      content: {
+                        configType: data.configType,
+                        ssl: {
+                          open: sslOpen,
+                          client: data.client,
+                          ca: data.ca,
+                        } as MongoDbSSL,
+                        configContent: {
+                          uri: data.uri,
+                        },
+                      },
+                    },
+                  },
+                  (response) => {
+                    Message.success(t("dashboard.resource.test_success"))
+                  },
+                  (error) => {
+                    Message.error(error.data.errorMessage)
+                  },
+                  () => {
+                    Message.error(t("dashboard.resource.test_fail"))
+                  },
+                  (loading) => {
+                    setTestLoading(loading)
+                  },
+                )
               }
-              onActionConfigElementTest(
-                data,
-                content,
-                "mongodb",
-                setTestLoading,
-              )
             }}
           >
             {t("editor.action.form.btn.test_connection")}

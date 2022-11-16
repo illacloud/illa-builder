@@ -201,7 +201,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
           </div>
           <div css={hostInputContainer}>
             <Controller
-              defaultValue={content.databaseUsername}
+              defaultValue={content.username}
               control={control}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Input
@@ -215,11 +215,11 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                   )}
                 />
               )}
-              name="databaseUsername"
+              name="username"
             />
             <Controller
               control={control}
-              defaultValue={content.databasePassword}
+              defaultValue={content.password}
               render={({ field: { value, onChange, onBlur } }) => (
                 <Password
                   borderColor="techPurple"
@@ -233,7 +233,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                   )}
                 />
               )}
-              name="databasePassword"
+              name="password"
             />
           </div>
         </div>
@@ -276,8 +276,8 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                 {
                   host: data.host,
                   port: data.port.toString(),
-                  databaseUsername: data.databaseUsername,
-                  databasePassword: data.databasePassword,
+                  username: data.username,
+                  password: data.password,
                 },
                 "elasticsearch",
                 setTestLoading,

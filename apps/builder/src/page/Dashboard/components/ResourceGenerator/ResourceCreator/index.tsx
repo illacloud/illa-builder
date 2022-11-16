@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react"
+import { FC, useCallback, useMemo } from "react"
 import { ResourceCreatorProps } from "@/page/Dashboard/components/ResourceGenerator/ResourceCreator/interface"
 import { MysqlLikeConfigElement } from "@/page/App/components/Actions/MysqlLikeConfigElement"
 import { useSelector } from "react-redux"
@@ -15,7 +15,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   })
 
   const finalResourceType = resource ? resource.resourceType : resourceType
-  const handleBack = () => onBack("select")
+  const handleBack = useCallback(() => onBack("select"), [onBack])
 
   const element = useMemo(() => {
     switch (finalResourceType) {
@@ -66,7 +66,7 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       default:
         return null
     }
-  }, [finalResourceType, onBack, onFinished, resourceId])
+  }, [finalResourceType, onFinished, resourceId, handleBack])
 
   return <>{element}</>
 }

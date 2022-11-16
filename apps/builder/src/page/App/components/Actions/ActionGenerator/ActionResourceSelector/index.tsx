@@ -44,7 +44,6 @@ export const ActionResourceSelector: FC<ActionResourceSelectorProps> = (
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     )
-  console.log(useSelector(getAllResources), resourceList)
 
   const [selectedResourceId, setSelectedResourceId] = useState<string>(
     resourceList[0]?.resourceId,

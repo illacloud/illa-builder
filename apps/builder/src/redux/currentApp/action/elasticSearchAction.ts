@@ -6,30 +6,52 @@ export enum ElasticSearchActionType {
   DELETE_ONE = "delete a document",
 }
 
-export const ElasticSearchActionList = [
-  ElasticSearchActionType.SEARCH,
-  ElasticSearchActionType.GET_ONE,
-  ElasticSearchActionType.INSERT_ONE,
-  ElasticSearchActionType.UPDATE_ONE,
-  ElasticSearchActionType.DELETE_ONE,
-]
+export enum ElasticSearchActionRequestType {
+  SEARCH = "search",
+  GET_ONE = "get",
+  INSERT_ONE = "insert",
+  UPDATE_ONE = "update",
+  DELETE_ONE = "delete",
+}
 
 export const IDEditorType = [
-  ElasticSearchActionType.GET_ONE,
-  ElasticSearchActionType.UPDATE_ONE,
-  ElasticSearchActionType.DELETE_ONE,
+  ElasticSearchActionRequestType.GET_ONE,
+  ElasticSearchActionRequestType.UPDATE_ONE,
+  ElasticSearchActionRequestType.DELETE_ONE,
+]
+
+export const ElasticSearchActionList = [
+  {
+    label: ElasticSearchActionType.SEARCH,
+    value: ElasticSearchActionRequestType.SEARCH,
+  },
+  {
+    label: ElasticSearchActionType.GET_ONE,
+    value: ElasticSearchActionRequestType.GET_ONE,
+  },
+  {
+    label: ElasticSearchActionType.INSERT_ONE,
+    value: ElasticSearchActionRequestType.INSERT_ONE,
+  },
+  {
+    label: ElasticSearchActionType.UPDATE_ONE,
+    value: ElasticSearchActionRequestType.UPDATE_ONE,
+  },
+  {
+    label: ElasticSearchActionType.DELETE_ONE,
+    value: ElasticSearchActionRequestType.DELETE_ONE,
+  },
 ]
 
 export interface ElasticSearchAction {
-  operation: ElasticSearchActionType
+  operation: ElasticSearchActionRequestType
   index: string
   query: string
-  id: string
+  id?: string
 }
 
 export const ElasticSearchActionInitial: ElasticSearchAction = {
-  operation: ElasticSearchActionType.SEARCH,
+  operation: ElasticSearchActionRequestType.SEARCH,
   index: "",
   query: "",
-  id: "",
 }
