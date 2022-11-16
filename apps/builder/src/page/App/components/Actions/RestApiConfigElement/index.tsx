@@ -80,7 +80,6 @@ export const RestApiConfigElement: FC<RestApiConfigElementProps> = (props) => {
   return (
     <form
       onSubmit={handleSubmit((data, event) => {
-        console
         if (resourceId != undefined) {
           Api.request<Resource<RestApiResource<RestApiAuth>>>(
             {

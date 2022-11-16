@@ -38,7 +38,7 @@ export const ElasticSearchPanel: FC = () => {
 
   let content = cachedAction.content as ElasticSearchAction
 
-  const isShowIdEditor = useMemo(
+  const isShowID = useMemo(
     () => IDEditorType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
@@ -73,7 +73,7 @@ export const ElasticSearchPanel: FC = () => {
                 content: {
                   ...cachedAction.content,
                   operation: value,
-                  ...(isShowIdEditor && { id: newID }),
+                  ...(isShowID && { id: newID }),
                 },
               }),
             )
@@ -127,7 +127,7 @@ export const ElasticSearchPanel: FC = () => {
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
-      {isShowIdEditor && (
+      {isShowID && (
         <div css={esItemStyle}>
           <span css={esItemLabelStyle}>
             {t("editor.action.panel.elastic.id")}
