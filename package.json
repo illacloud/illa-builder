@@ -1,9 +1,9 @@
 {
   "name": "illa",
   "description": "Help developers build business tools more efficiently.",
-  "repository": "git@github.com:illa-family",
+  "repository": "git@github.com:illacloud",
   "private": true,
-  "author": "illa Family",
+  "author": "illa Cloud",
   "license": "Apache-2.0",
   "version": "0.0.0",
   "scripts": {

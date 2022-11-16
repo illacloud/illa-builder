@@ -7,4 +7,5 @@ export interface BasicContainerProps {
   canResizeY?: boolean
   padding?: number
   safeRowNumber?: number
+  addedRowNumber: number
 }

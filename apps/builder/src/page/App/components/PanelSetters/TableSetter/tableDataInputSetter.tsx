@@ -38,13 +38,15 @@ export const TableDataInputSetter: FC<TableDataInputSetterProps> = (props) => {
     (attrName: string, newValue: any) => {
       try {
         const data = evaluateDynamicString("", newValue, BUILDER_CALC_CONTEXT)
-        let newColumns = tansTableDataToColumns(data)
-        if (!isEqual(newColumns, columns)) {
-          handleUpdateMultiAttrDSL?.({
-            columns: newColumns,
-            [attrName]: newValue,
-          })
-          return
+        if (Array.isArray(data)) {
+          let newColumns = tansTableDataToColumns(data)
+          if (!isEqual(newColumns, columns)) {
+            handleUpdateMultiAttrDSL?.({
+              columns: newColumns,
+              [attrName]: newValue,
+            })
+            return
+          }
         }
       } catch {}
       handleUpdateMultiAttrDSL?.({

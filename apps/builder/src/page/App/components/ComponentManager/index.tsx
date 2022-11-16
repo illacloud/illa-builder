@@ -8,6 +8,7 @@ import { FocusManager } from "@/utils/focusManager"
 import { ConfigPanel } from "@/page/App/components/ConfigPanel"
 import { ComponentPanel } from "@/page/App/components/ComponentPanel"
 import { PagePanel } from "@/page/App/components/PagePanel"
+import { getCurrentPageDisplayName } from "@/redux/currentApp/executionTree/executionSelector"
 
 export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   props,
@@ -17,6 +18,8 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
   const [activeKey, setActiveKey] = useState("Insert")
 
   const selectedDisplayNames = useSelector(getSelectedComponents)
+  const currentPageDisplayName = useSelector(getCurrentPageDisplayName)
+  const prevPageDisplayName = useRef<string>(currentPageDisplayName)
   const isClickChange = useRef<boolean>(false)
 
   useEffect(() => {
@@ -32,8 +35,11 @@ export const ComponentsManager: FC<HTMLAttributes<HTMLDivElement>> = (
         }
       }
     }
+    if (prevPageDisplayName.current !== currentPageDisplayName) {
+      setActiveKey("Page")
+    }
     isClickChange.current = false
-  }, [activeKey, selectedDisplayNames])
+  }, [activeKey, currentPageDisplayName, selectedDisplayNames])
 
   return (
     <div

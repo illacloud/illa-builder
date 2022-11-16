@@ -35,10 +35,6 @@ export const Databases: ResourceDataItem[] = [
     resourceType: "elastic",
     isDraft: true,
   },
-  {
-    resourceType: "snowflake",
-    isDraft: true,
-  },
 ]
 
 export const Apis: ResourceDataItem[] = [
@@ -52,14 +48,6 @@ export const Apis: ResourceDataItem[] = [
   },
   {
     resourceType: "s3",
-    isDraft: true,
-  },
-  {
-    resourceType: "zapier",
-    isDraft: true,
-  },
-  {
-    resourceType: "datadog",
     isDraft: true,
   },
   {

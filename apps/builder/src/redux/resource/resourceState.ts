@@ -12,11 +12,8 @@ export type ResourceType =
   | "elastic"
   | "postgresql"
   | "mariadb"
-  | "snowflake"
   | "tidb"
-  | "datadog"
   | "smtp"
-  | "zapier"
   | "s3"
 
 export type ResourceContent =

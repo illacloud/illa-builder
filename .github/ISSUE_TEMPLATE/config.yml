@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Ask a question
-    url: https://github.com/orgs/illa-family/discussions
+    url: https://github.com/orgs/illacloud/discussions
     about: Ask questions and discuss topics with other community members
   - name: Chat with other community members
-    url: https://discord.gg/2tGBuJkgd6
-    about: The official illa Family Discord community
+    url: https://discord.gg/illacloud
+    about: The official illa Cloud Discord community
