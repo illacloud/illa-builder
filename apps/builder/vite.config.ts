@@ -45,6 +45,7 @@ export default defineConfig((props) => {
       alias: {
         "@": resolve(__dirname, "src"),
         "@assets": resolve(__dirname, "src/assets"),
+        "@illa-design": resolve(__dirname, "../../illa-design/packages"),
       },
     },
     build: {
