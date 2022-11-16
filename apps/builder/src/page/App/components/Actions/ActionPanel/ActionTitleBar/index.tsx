@@ -25,6 +25,10 @@ import {
   onCopyActionItem,
   onDeleteActionItem,
 } from "@/page/App/components/Actions/api"
+import {
+  ElasticSearchAction,
+  IDEditorType,
+} from "@/redux/currentApp/action/elasticSearchAction"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -138,12 +142,23 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           loading={loading}
           leftIcon={<CaretRightIcon />}
           onClick={() => {
+            let cachedActionValue = cachedAction
+            if (cachedAction?.actionType === "elasticsearch") {
+              const content = cachedAction.content as ElasticSearchAction
+              if (!IDEditorType.includes(content.operation)) {
+                const { id = "", ...otherContent } = content
+                cachedActionValue = {
+                  ...cachedAction,
+                  content: { ...otherContent },
+                }
+              }
+            }
             switch (runMode) {
               case "run":
                 setLoading(true)
-                if (cachedAction) {
+                if (cachedActionValue) {
                   runAction(
-                    cachedAction,
+                    cachedActionValue,
                     (result: unknown, error?: boolean) => {
                       setLoading(false)
                       onActionRun(result, error)
@@ -156,12 +171,14 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                   {
                     method: "PUT",
                     url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
-                    data: cachedAction,
+                    data: cachedActionValue,
                   },
                   () => {
-                    if (cachedAction) {
+                    if (cachedActionValue) {
                       dispatch(
-                        actionActions.updateActionItemReducer(cachedAction),
+                        actionActions.updateActionItemReducer(
+                          cachedActionValue,
+                        ),
                       )
                     }
                   },
@@ -181,16 +198,18 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                   {
                     method: "PUT",
                     url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
-                    data: cachedAction,
+                    data: cachedActionValue,
                   },
                   () => {
-                    if (cachedAction) {
+                    if (cachedActionValue) {
                       dispatch(
-                        actionActions.updateActionItemReducer(cachedAction),
+                        actionActions.updateActionItemReducer(
+                          cachedActionValue,
+                        ),
                       )
                       setLoading(true)
                       runAction(
-                        cachedAction,
+                        cachedActionValue,
                         (result: unknown, error?: boolean) => {
                           setLoading(false)
                           onActionRun(result, error)
