@@ -203,7 +203,7 @@
           "coming_soon": "即将更新"
         },
         "error": {
-          "url_invalid": "Please enter a valid URL, for example, https://example.com"
+          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "db": {
           "label": {

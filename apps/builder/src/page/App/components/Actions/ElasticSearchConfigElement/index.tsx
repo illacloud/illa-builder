@@ -132,7 +132,7 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
                 validate: (value: string) => {
                   return isURL(value)
                     ? true
-                    : t("editor.action.resource.error.url_invalid")
+                    : t("editor.action.resource.error.invalid_url")
                 },
               }}
               render={({ field: { value, onChange, onBlur } }) => (

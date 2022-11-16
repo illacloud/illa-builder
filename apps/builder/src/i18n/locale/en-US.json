@@ -203,7 +203,7 @@
           "coming_soon": "Coming Soon"
         },
         "error": {
-          "url_invalid": "Please enter a valid URL, for example, https://example.com"
+          "invalid_url": "Please enter a valid URL, for example, https://example.com"
         },
         "db": {
           "label": {
