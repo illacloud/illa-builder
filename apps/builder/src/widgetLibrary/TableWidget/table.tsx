@@ -121,12 +121,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     return dataSource ? dataSource : []
   }, [dataSource, dataSourceJS, dataSourceMode])
 
-  console.log(realDataSourceArray, "realDataSourceArray")
-
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       defaultSort,
-      data,
       columns,
     })
     return () => {
@@ -135,7 +132,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [
     displayName,
     defaultSort,
-    data,
     columns,
     handleUpdateGlobalData,
     handleUpdateDsl,
