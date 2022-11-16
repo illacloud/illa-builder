@@ -21,6 +21,13 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
         expectedType: VALIDATION_TYPES.ARRAY,
       },
       {
+        id: `${baseWidgetName}-data-source`,
+        labelName: i18n.t("editor.inspect.setter_label.data_source"),
+        useCustomLayout: true,
+        attrName: "dataSource",
+        setterType: "TABLE_DATASOURCE_SELECT_SETTER",
+      },
+      {
         id: `${baseWidgetName}-basic-emptyState`,
         labelName: i18n.t("editor.inspect.setter_label.empty_state"),
         labelDesc: i18n.t("editor.inspect.setter_tooltip.placeholder"),

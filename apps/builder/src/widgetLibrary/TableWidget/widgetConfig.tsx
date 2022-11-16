@@ -2,6 +2,8 @@ import { ReactComponent as TableWidgetIcon } from "@/assets/widgetCover/table.sv
 import { WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
 import { tansTableDataToColumns } from "@/widgetLibrary/TableWidget/utils"
+import store from "@/store"
+import { getActionList } from "@/redux/currentApp/action/actionSelector"
 
 const originData = [
   {
@@ -89,8 +91,17 @@ export const TABLE_WIDGET_CONFIG: WidgetConfig = {
 }
 
 export function initTableWidgetDefaultProps() {
+  const rootState = store.getState()
+  const actions = getActionList(rootState)
+  const dataSource = actions.length
+    ? `{{${actions[0]?.displayName}.data}}`
+    : undefined
+
+  console.log(actions[0], "actions[0]")
+
   return {
     data: `{{${JSON.stringify(originData)}}}`,
+    dataSource,
     columns: tansTableDataToColumns(originData),
     emptyState: "No rows found",
     overFlow: "pagination",
