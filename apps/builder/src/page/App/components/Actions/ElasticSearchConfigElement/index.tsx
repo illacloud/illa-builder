@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useState, useMemo } from "react"
 import { RedisConfigElementProps } from "./interface"
 import {
   applyConfigItemLabelText,
@@ -50,13 +50,13 @@ export const ElasticSearchConfigElement: FC<RedisConfigElementProps> = (
     return state.resource.find((r) => r.resourceId === resourceId)
   })
 
-  let content: ElasticSearchResource
-
-  if (findResource === undefined) {
-    content = ElasticSearchResourceInitial
-  } else {
-    content = (findResource as Resource<ElasticSearchResource>).content
-  }
+  const content = useMemo(() => {
+    if (findResource === undefined) {
+      return ElasticSearchResourceInitial
+    } else {
+      return (findResource as Resource<ElasticSearchResource>).content
+    }
+  }, [findResource])
 
   const [testLoading, setTestLoading] = useState(false)
   const [saving, setSaving] = useState(false)
