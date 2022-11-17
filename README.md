@@ -57,9 +57,10 @@
 
 #### 🎨 Step 3: Build UI with built-in components
 Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
+
 <p align="center">
 <a href="http://fast-try.illacloud.com/">
-  <img src="https://illa.s3.ap-northeast-1.amazonaws.com/edit-UI-with-components.gif">
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/edit-UI-with-components.gif">
 </a>
 </p>
 
