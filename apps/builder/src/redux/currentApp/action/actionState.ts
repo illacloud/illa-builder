@@ -3,6 +3,7 @@ import { BodyContent, RestApiAction } from "./restapiAction"
 import { TransformerAction } from "./transformerAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { RedisAction } from "./redisAction"
+import { ElasticSearchAction } from "./elasticSearchAction"
 
 export interface Transformer {
   rawData: string
@@ -34,7 +35,7 @@ export type ActionType =
   | "graphql"
   | "mongodb"
   | "redis"
-  | "elastic"
+  | "elasticsearch"
   | "postgresql"
   | "mariadb"
   | "tidb"
@@ -60,6 +61,7 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
 }
 
 export type ActionContent =
+  | ElasticSearchAction
   | MysqlLikeAction
   | RestApiAction<BodyContent>
   | TransformerAction

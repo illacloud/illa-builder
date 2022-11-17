@@ -32,8 +32,8 @@ export const Databases: ResourceDataItem[] = [
     isDraft: false,
   },
   {
-    resourceType: "elastic",
-    isDraft: true,
+    resourceType: "elasticsearch",
+    isDraft: false,
   },
 ]
 

@@ -179,6 +179,12 @@
           "sort_by": "Sort By",
           "update": "Update"
         },
+        "elastic": {
+          "action_type": "Action Type",
+          "query": "Query",
+          "index": "Index",
+          "id": "Id"
+        },
         "option": {
           "resource": {
             "new": "Create a new resource"
@@ -196,6 +202,9 @@
         "card": {
           "coming_soon": "Coming Soon"
         },
+        "error": {
+          "invalid_url": "Please enter a valid URL, for example, https://example.com"
+        },
         "db": {
           "label": {
             "ca_certificate": "CA Certificate",
@@ -208,6 +217,7 @@
             "database": "Database",
             "database_index": "Database Index",
             "hostname": "Hostname",
+            "hosturl": "Host Url",
             "hostname_port": "Hostname/Port",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
@@ -224,6 +234,7 @@
             "database": "acme_production",
             "database_index": "default 0",
             "hostname": "Hostname",
+            "hosturl": "i.e. https://example.com",
             "mongo_certificate": "-----BEGIN RSA PRIVATE KEY-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END RSA PRIVATE KEY-----\n-----BEGIN CERTIFICATE-----\nMIIEMDCCApigAwIBAgIDI2GWMA0GCSqGSIb3DQEBDAUAMDoxODA2BgNVBAMML2Fm\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\nDTE5MDQwODAzNDIyMloXDTI5MDQwNTAzNDIyMlowOjE4MDYGA1UEAwwvYWY1ZjU4\n...\n-----END CERTIFICATE-----\n",
             "name": "i.e.\"Users DB(readonly)\" or \"Internal Admin API\"",
             "password": "Password",

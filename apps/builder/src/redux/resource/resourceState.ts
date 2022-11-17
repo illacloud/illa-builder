@@ -2,6 +2,7 @@ import { MongoDbConfig, MongoDbResource } from "./mongodbResource"
 import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { RedisResource } from "./redisResource"
 import { MysqlLikeResource } from "./mysqlLikeResource"
+import { ElasticSearchResource } from "./elasticSearchResource"
 
 export type ResourceType =
   | "mysql"
@@ -9,7 +10,7 @@ export type ResourceType =
   | "graphql"
   | "mongodb"
   | "redis"
-  | "elastic"
+  | "elasticsearch"
   | "postgresql"
   | "mariadb"
   | "tidb"
@@ -17,6 +18,7 @@ export type ResourceType =
   | "s3"
 
 export type ResourceContent =
+  | ElasticSearchResource
   | MysqlLikeResource
   | RestApiResource<RestApiAuth>
   | RedisResource

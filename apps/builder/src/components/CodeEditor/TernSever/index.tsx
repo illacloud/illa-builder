@@ -75,7 +75,7 @@ const transDataToDefs = (
     const def: Record<string, any> = {}
     if (current) {
       path = path ? path + "." + current : current
-      def["!doc"] = JSON.stringify({ path, data })
+      def["!doc"] = btoa(JSON.stringify({ path, data }))
     }
     for (const dataKey in data) {
       let newPath = path ? path + "." + dataKey : dataKey
@@ -84,12 +84,12 @@ const transDataToDefs = (
         def[dataKey] = {
           ...d,
           ...transDataToDefs(d),
-          "!doc": JSON.stringify({ path: newPath, data: data[dataKey] }),
+          "!doc": btoa(JSON.stringify({ path: newPath, data: data[dataKey] })),
         }
       } else {
         def[dataKey] = {
           "!type": transTernTypeName(data[dataKey]),
-          "!doc": JSON.stringify({ path: newPath, data: data[dataKey] }),
+          "!doc": btoa(JSON.stringify({ path: newPath, data: data[dataKey] })),
         }
       }
     }
@@ -134,7 +134,7 @@ const filterDataWithCallBack = (
   callback?: (key: string) => boolean,
 ) => {
   return JSON.parse(
-    JSON.stringify(data, function(key, value) {
+    JSON.stringify(data, function (key, value) {
       if (callback && callback(key)) {
         return undefined
       } else {

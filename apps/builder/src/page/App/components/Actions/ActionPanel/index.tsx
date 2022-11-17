@@ -15,6 +15,7 @@ import { RedisPanel } from "@/page/App/components/Actions/ActionPanel/RedisPanel
 import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbPanel"
 import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
+import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
 
 export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const { maxHeight } = props
@@ -42,6 +43,8 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
         return <MongoDbPanel />
       case "transformer":
         return <TransformerPanel />
+      case "elasticsearch":
+        return <ElasticSearchPanel />
       default:
         return <></>
     }

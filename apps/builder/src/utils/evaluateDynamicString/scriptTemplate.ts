@@ -11,7 +11,7 @@ export const EvaluationScripts: Record<EvaluationScriptType, string> = {
     const result = ${ScriptTemplate}
     return result;
   }
-  closedFunction.call(THIS_CONTEXT)
+  return closedFunction()
   `,
   [EvaluationScriptType.ASYNC_ANONYMOUS_FUNCTION]: `
   async function callback (script) {
@@ -19,7 +19,7 @@ export const EvaluationScripts: Record<EvaluationScriptType, string> = {
     const result = await userFunction?.apply(THIS_CONTEXT, ARGUMENTS);
     return result;
   }
-  callback(${ScriptTemplate})
+    callback(${ScriptTemplate})
   `,
 }
 
