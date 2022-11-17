@@ -30,14 +30,8 @@ export function getIconFromResourceType(
       return <SmtpIcon size={size} />
     case "mariadb":
       return <MariaDbIcon size={size} />
-    case "snowflake":
-      return <SnowflakeIcon size={size} />
     case "tidb":
       return <TidbIcon size={size} />
-    case "datadog":
-      return <DataDogIcon size={size} />
-    case "zapier":
-      return <ZapierIcon size={size} />
     case "s3":
       return <S3Icon size={size} />
     case "mysql":
@@ -69,14 +63,8 @@ export function getIconFromActionType(
       return <TransformerIcon size={size} />
     case "mariadb":
       return <MariaDbIcon size={size} />
-    case "snowflake":
-      return <SnowflakeIcon size={size} />
     case "tidb":
       return <TidbIcon size={size} />
-    case "datadog":
-      return <DataDogIcon size={size} />
-    case "zapier":
-      return <ZapierIcon size={size} />
     case "s3":
       return <S3Icon size={size} />
     case "mysql":

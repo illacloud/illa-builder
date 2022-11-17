@@ -71,6 +71,7 @@ export const routerConfig: RoutesObjectPro[] = [
     path: "/app/:appId",
     element: <Editor />,
     needLogin: true,
+    errorElement: <Page403 />,
   },
   {
     path: "/setting",

@@ -177,6 +177,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       return []
     }, [realProps])
 
+    const getOnClickMenuItemEventScripts = useCallback(
+      (path: string) => {
+        const events = get(realProps, path)
+        if (events) {
+          return getEventScripts(events, "clickMenuItem")
+        }
+        return []
+      },
+      [realProps],
+    )
+
     const getOnSortingChangeEventScripts = useCallback(() => {
       const events = get(realProps, "events")
       if (events) {
@@ -212,6 +223,15 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
         runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
       })
     }, [getOnClickEventScripts])
+
+    const handleOnClickMenuItem = useCallback(
+      (path: string) => {
+        getOnClickMenuItemEventScripts(path).forEach((scriptObj) => {
+          runEventHandler(scriptObj, BUILDER_CALC_CONTEXT)
+        })
+      },
+      [getOnClickMenuItemEventScripts],
+    )
 
     const handleOnSortingChange = useCallback(() => {
       getOnSortingChangeEventScripts().forEach((scriptObj) => {
@@ -273,12 +293,17 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
       shadow,
     } = realProps
 
+    const _radius = !isNaN(Number(radius)) ? radius + "px" : radius?.toString()
+    const _borderWidth = !isNaN(Number(borderWidth))
+      ? borderWidth + "px"
+      : borderWidth?.toString()
+
     return hidden ? null : (
       <div
         css={applyWrapperStylesStyle(
           borderColor,
-          borderWidth,
-          radius,
+          _borderWidth,
+          _radius,
           backgroundColor,
           shadow,
           type,
@@ -298,6 +323,7 @@ export const TransformWidgetWrapper: FC<TransformWidgetProps> = memo(
           }
           handleOnChange={handleOnChange}
           handleOnClick={handleOnClick}
+          handleOnClickMenuItem={handleOnClickMenuItem}
           handleOnSortingChange={handleOnSortingChange}
           handleOnPaginationChange={handleOnPaginationChange}
           handleOnColumnFiltersChange={handleOnColumnFiltersChange}

@@ -93,7 +93,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
           {
             id: `${baseWidgetName}-style-radius`,
             labelName: i18n.t("editor.inspect.setter_label.radius"),
-            setterType: "EDITABLE_INPUT_SETTER",
+            setterType: "EDITABLE_INPUT_WITH_MEASURE_SETTER",
             attrName: "radius",
             icon: <RadioIcon />,
             defaultValue: "0px",

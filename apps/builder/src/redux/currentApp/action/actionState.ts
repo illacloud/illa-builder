@@ -38,11 +38,8 @@ export type ActionType =
   | "elasticsearch"
   | "postgresql"
   | "mariadb"
-  | "snowflake"
   | "tidb"
-  | "datadog"
   | "smtp"
-  | "zapier"
   | "s3"
   | "transformer"
 

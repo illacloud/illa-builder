@@ -13,11 +13,8 @@ export type ResourceType =
   | "elasticsearch"
   | "postgresql"
   | "mariadb"
-  | "snowflake"
   | "tidb"
-  | "datadog"
   | "smtp"
-  | "zapier"
   | "s3"
 
 export type ResourceContent =
