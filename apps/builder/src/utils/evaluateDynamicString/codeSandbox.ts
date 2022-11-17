@@ -13,7 +13,7 @@ export function evalScript(
   dataTree: Record<string, any>,
   isTriggerBased: boolean,
 ): any {
-  return (function() {
+  return (function () {
     let result: any
 
     const GlobalData = createGlobalData(dataTree)
