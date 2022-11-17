@@ -7,6 +7,7 @@ import {
 } from "@/redux/config/configSelector"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
 import {
+  BodyContentType,
   ElasticSearchAction,
   ElasticSearchActionList,
   IDEditorType,
@@ -40,6 +41,11 @@ export const ElasticSearchPanel: FC = () => {
 
   const isShowID = useMemo(
     () => IDEditorType.includes(cachedAction.content.operation),
+    [cachedAction.content],
+  )
+
+  const isBodyContent = useMemo(
+    () => BodyContentType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
 
@@ -90,14 +96,20 @@ export const ElasticSearchPanel: FC = () => {
           css={esItemCodeEditorStyle}
           mode="TEXT_JS"
           height="88px"
-          value={content.query}
+          value={isBodyContent ? content.body : content.query}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
                 ...cachedAction,
                 content: {
                   ...cachedAction.content,
-                  query: value,
+                  ...(isBodyContent
+                    ? {
+                        body: value,
+                      }
+                    : {
+                        query: value,
+                      }),
                 },
               }),
             )

@@ -20,6 +20,11 @@ export const IDEditorType = [
   ElasticSearchActionRequestType.DELETE_ONE,
 ]
 
+export const BodyContentType = [
+  ElasticSearchActionRequestType.INSERT_ONE,
+  ElasticSearchActionRequestType.UPDATE_ONE,
+]
+
 export const ElasticSearchActionList = [
   {
     label: ElasticSearchActionType.SEARCH,
@@ -46,7 +51,8 @@ export const ElasticSearchActionList = [
 export interface ElasticSearchAction {
   operation: ElasticSearchActionRequestType
   index: string
-  query: string
+  query?: string
+  body?: string
   id?: string
 }
 

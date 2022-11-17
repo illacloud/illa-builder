@@ -26,9 +26,14 @@ import {
   onDeleteActionItem,
 } from "@/page/App/components/Actions/api"
 import {
+  BodyContentType,
   ElasticSearchAction,
   IDEditorType,
 } from "@/redux/currentApp/action/elasticSearchAction"
+import {
+  ActionContent,
+  ActionItem,
+} from "@/redux/currentApp/action/actionState"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
@@ -142,13 +147,32 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           loading={loading}
           leftIcon={<CaretRightIcon />}
           onClick={() => {
-            let cachedActionValue = cachedAction
-            if (cachedAction?.actionType === "elasticsearch") {
-              const content = cachedAction.content as ElasticSearchAction
+            let cachedActionValue: ActionItem<ActionContent> | null =
+              cachedAction
+            if (
+              !!cachedActionValue &&
+              cachedAction?.actionType === "elasticsearch"
+            ) {
+              let content = cachedAction.content as ElasticSearchAction
               if (!IDEditorType.includes(content.operation)) {
                 const { id = "", ...otherContent } = content
+
                 cachedActionValue = {
                   ...cachedAction,
+                  content: { ...otherContent },
+                }
+                content = otherContent
+              }
+              if (BodyContentType.includes(content.operation)) {
+                const { query = "", ...otherContent } = content
+                cachedActionValue = {
+                  ...cachedActionValue,
+                  content: { ...otherContent },
+                }
+              } else {
+                const { body = "", ...otherContent } = content
+                cachedActionValue = {
+                  ...cachedActionValue,
                   content: { ...otherContent },
                 }
               }
