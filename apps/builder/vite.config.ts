@@ -2,10 +2,12 @@ import { defineConfig, loadEnv } from "vite"
 import { resolve } from "path"
 import react from "@vitejs/plugin-react"
 import svgr from "vite-plugin-svgr"
+import basicSsl from "@vitejs/plugin-basic-ssl"
 
 // https://vitejs.dev/config/
 export default defineConfig((props) => {
   const env = loadEnv(props.mode, process.cwd(), "")
+  console.log("env", env)
   return {
     plugins: [
       react({
@@ -25,6 +27,7 @@ export default defineConfig((props) => {
         include: ["**/*.tsx", "**/*.ts"],
       }),
       svgr(),
+      basicSsl(),
     ],
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
@@ -39,15 +42,12 @@ export default defineConfig((props) => {
       sourcemap: true,
     },
     server: {
+      https: true,
       proxy: {
         "/api": {
-          target: env.VITE_API_BASE_URL,
+          target: env.VITE_PROXY_API_BASE_URL,
           changeOrigin: true,
-        },
-        "/room/.*": {
-          target: env.VITE_API_BASE_URL,
-          changeOrigin: true,
-          ws: true,
+          secure: false,
         },
       },
     },

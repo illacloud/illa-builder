@@ -32,7 +32,7 @@ export function evalScript(
           return target.hasOwnProperty(prop)
         }
         if (!target.hasOwnProperty(prop)) {
-          return false
+          throw new Error(`${prop} is not defined`)
         }
         return true
       },

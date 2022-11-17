@@ -14,4 +14,10 @@ export type SelectOptions = (
 export interface ColumnsSelectSetterProps extends BaseSetter, PanelLabelProps {
   allowClear?: boolean
 }
+export interface TableDataSourceSetterProps
+  extends BaseSetter,
+    PanelLabelProps {
+  allowClear?: boolean
+}
+
 export interface TableDataInputSetterProps extends BaseInputSetterProps {}

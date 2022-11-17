@@ -52,4 +52,8 @@ export interface WrappedTableProps
   handleOnColumnFiltersChange?: () => void
 }
 
-export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {}
+export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {
+  dataSource: any[]
+  dataSourceJS: any[]
+  dataSourceMode: "select" | "dynamic"
+}

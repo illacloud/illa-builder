@@ -13,12 +13,11 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
     groupName: i18n.t("editor.inspect.setter_group.data"),
     children: [
       {
-        id: `${baseWidgetName}-basic-data`,
-        labelName: i18n.t("editor.inspect.setter_label.data"),
-        attrName: "data",
-        isSetterSingleRow: true,
-        setterType: "TABLE_DATA_INPUT_SETTER",
-        expectedType: VALIDATION_TYPES.ARRAY,
+        id: `${baseWidgetName}-data-source`,
+        labelName: i18n.t("editor.inspect.setter_label.data_source"),
+        useCustomLayout: true,
+        attrName: "dataSource",
+        setterType: "TABLE_DATASOURCE_SELECT_SETTER",
       },
       {
         id: `${baseWidgetName}-basic-emptyState`,

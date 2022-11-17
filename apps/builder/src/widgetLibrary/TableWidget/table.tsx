@@ -71,6 +71,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     download,
     overFlow,
     pageSize,
+    dataSource,
+    dataSourceJS,
+    dataSourceMode,
     displayName,
     defaultSortKey,
     defaultSortOrder,
@@ -111,10 +114,16 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     return res
   }, [columns])
 
+  const realDataSourceArray = useMemo(() => {
+    if (dataSourceMode === "dynamic") {
+      return dataSourceJS ? dataSourceJS : []
+    }
+    return dataSource ? dataSource : []
+  }, [dataSource, dataSourceJS, dataSourceMode])
+
   useEffect(() => {
     handleUpdateGlobalData(displayName, {
       defaultSort,
-      data,
       columns,
     })
     return () => {
@@ -123,7 +132,6 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   }, [
     displayName,
     defaultSort,
-    data,
     columns,
     handleUpdateGlobalData,
     handleUpdateDsl,
@@ -132,7 +140,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   return (
     <WrappedTable
-      data={data}
+      data={realDataSourceArray}
       emptyState={emptyState}
       loading={loading}
       filter={filter}
