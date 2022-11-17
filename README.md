@@ -1,6 +1,6 @@
 <div align="center">
     <p align="center">
-<a href="https://www.illacloud.com/">
+<a href="http://fast-try.illacloud.com/">
   <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/ILLALogo.svg"/>
 </a>
 </p>
