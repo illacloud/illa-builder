@@ -186,7 +186,7 @@ export const CHECKBOX_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG.events,
+          CHECK_BOX_GROUP_EVENT_HANDLER_CONFIG,
         ),
       },
       {

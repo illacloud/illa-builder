@@ -88,7 +88,7 @@ export const SWITCH_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          SWITCH_EVENT_HANDLER_CONFIG.events,
+          SWITCH_EVENT_HANDLER_CONFIG,
         ),
       },
       {

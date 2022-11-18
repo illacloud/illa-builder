@@ -194,7 +194,7 @@ export const SELECT_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          SELECT_EVENT_HANDLER_CONFIG.events,
+          SELECT_EVENT_HANDLER_CONFIG,
         ),
       },
       {

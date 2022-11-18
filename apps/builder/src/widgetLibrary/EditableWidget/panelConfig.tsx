@@ -98,7 +98,7 @@ export const EDITABLE_TEXT_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          EDITABLE_EVENT_HANDLER_CONFIG.events,
+          EDITABLE_EVENT_HANDLER_CONFIG,
         ),
       },
       {
