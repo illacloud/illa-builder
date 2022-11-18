@@ -15,7 +15,7 @@ export const FORM_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          FORM_EVENT_HANDLER_CONFIG,
+          FORM_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {

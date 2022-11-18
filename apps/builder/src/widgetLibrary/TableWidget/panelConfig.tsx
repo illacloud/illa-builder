@@ -191,7 +191,7 @@ export const TABLE_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          TABLE_EVENT_HANDLER_CONFIG,
+          TABLE_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {

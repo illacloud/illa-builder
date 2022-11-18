@@ -134,7 +134,7 @@ export const TABS_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          TABS_EVENT_HANDLER_CONFIG,
+          TABS_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {

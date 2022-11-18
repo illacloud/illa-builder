@@ -185,7 +185,7 @@ export const RADIO_GROUP_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          RADIO_GROUP_EVENT_HANDLER_CONFIG,
+          RADIO_GROUP_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {

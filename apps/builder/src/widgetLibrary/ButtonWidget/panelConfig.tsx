@@ -26,7 +26,7 @@ export const BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          BUTTON_EVENT_HANDLER_CONFIG,
+          BUTTON_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {

@@ -185,7 +185,7 @@ export const RADIO_BUTTON_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          RADIO_BUTTON_EVENT_HANDLER_CONFIG,
+          RADIO_BUTTON_EVENT_HANDLER_CONFIG.events,
         ),
       },
       {
