@@ -135,7 +135,7 @@ export const DATE_TIME_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          DATE_TIME_EVENT_HANDLER_CONFIG.events,
+          DATE_TIME_EVENT_HANDLER_CONFIG,
         ),
       },
       {

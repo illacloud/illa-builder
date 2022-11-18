@@ -135,7 +135,7 @@ export const DATE_RANGE_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          DATE_RANGE_EVENT_HANDLER_CONFIG.events,
+          DATE_RANGE_EVENT_HANDLER_CONFIG,
         ),
       },
       {

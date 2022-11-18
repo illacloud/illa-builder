@@ -138,7 +138,7 @@ export const RATE_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          RATE_EVENT_HANDLER_CONFIG.events,
+          RATE_EVENT_HANDLER_CONFIG,
         ),
       },
       {

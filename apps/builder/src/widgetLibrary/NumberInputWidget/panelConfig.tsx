@@ -132,7 +132,7 @@ export const NUMBER_INPUT_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           widgetBaseName,
-          INPUT_NUMBER_EVENT_HANDLER_CONFIG.events,
+          INPUT_NUMBER_EVENT_HANDLER_CONFIG,
         ),
       },
       {
