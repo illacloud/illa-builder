@@ -70,55 +70,85 @@ export const ElasticSearchPanel: FC = () => {
           ml="16px"
           width="100%"
           onChange={(value) => {
-            let newID = ""
+            let content = {
+              operation: value,
+              index: cachedAction.content.index,
+            } as ElasticSearchAction
             if (
               cachedAction.resourceId === selectedAction.resourceId &&
               (selectedAction.content as ElasticSearchAction).operation ===
                 value
             ) {
-              newID = (selectedAction.content as ElasticSearchAction)?.id || ""
+              if (isShowID) {
+                content["id"] =
+                  (selectedAction.content as ElasticSearchAction)?.id || ""
+              }
+              if (isBodyContent) {
+                content["body"] =
+                  (selectedAction.content as ElasticSearchAction)?.body || ""
+              }
+              if (isQueryContent) {
+                content["query"] =
+                  (selectedAction.content as ElasticSearchAction)?.query || ""
+              }
             }
 
             dispatch(
               configActions.updateCachedAction({
                 ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  operation: value,
-                  ...(isShowID && { id: newID }),
-                },
+                content,
               }),
             )
           }}
           options={ElasticSearchActionList}
         />
       </div>
-      {(isQueryContent || isBodyContent) && (
+      {isBodyContent && (
         <div css={esItemStyle}>
           <span css={codeEditorLabelStyle}>
-            {isQueryContent
-              ? t("editor.action.panel.elastic.query")
-              : t("editor.action.panel.elastic.body")}
+            {t("editor.action.panel.elastic.body")}
           </span>
           <CodeEditor
             lineNumbers
             css={esItemCodeEditorStyle}
             mode="TEXT_JS"
             height="88px"
-            value={isBodyContent ? content.body : content.query}
+            key={cachedAction.content.operation}
+            value={content.body}
             onChange={(value) => {
               dispatch(
                 configActions.updateCachedAction({
                   ...cachedAction,
                   content: {
                     ...cachedAction.content,
-                    ...(isBodyContent
-                      ? {
-                          body: value,
-                        }
-                      : {
-                          query: value,
-                        }),
+                    body: value,
+                  },
+                }),
+              )
+            }}
+            expectedType={VALIDATION_TYPES.STRING}
+          />
+        </div>
+      )}
+      {isQueryContent && (
+        <div css={esItemStyle}>
+          <span css={codeEditorLabelStyle}>
+            {t("editor.action.panel.elastic.query")}
+          </span>
+          <CodeEditor
+            lineNumbers
+            css={esItemCodeEditorStyle}
+            mode="TEXT_JS"
+            key={cachedAction.content.operation}
+            height="88px"
+            value={content.query}
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...cachedAction,
+                  content: {
+                    ...cachedAction.content,
+                    query: value,
                   },
                 }),
               )
