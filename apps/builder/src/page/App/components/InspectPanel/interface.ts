@@ -1,6 +1,7 @@
 import { SetterType } from "@/page/App/components/PanelSetters"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { ReactNode } from "react"
+import { EventHandlerConfig } from "@/widgetLibrary/interface"
 
 export interface PanelHeaderActionProps {
   widgetDisplayName: string
@@ -11,6 +12,10 @@ export interface PanelLabelProps {
   labelName?: any
   labelDesc?: string
   isInList?: boolean
+}
+
+export interface EventHandlerPanelConfig extends PanelFieldConfig {
+  eventHandlerConfig: EventHandlerConfig
 }
 
 export interface PanelFieldConfig extends PanelLabelProps {

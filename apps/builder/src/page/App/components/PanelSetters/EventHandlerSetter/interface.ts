@@ -3,9 +3,11 @@ import {
   PanelFieldConfig,
   PanelLabelProps,
 } from "@/page/App/components/InspectPanel/interface"
+import { EventHandlerConfig } from "@/widgetLibrary/interface"
 
 export interface NewBaseEventHandlerSetterProps
   extends BaseSetter,
     PanelLabelProps {
   childrenSetter?: PanelFieldConfig[]
+  eventHandlerConfig?: EventHandlerConfig
 }
