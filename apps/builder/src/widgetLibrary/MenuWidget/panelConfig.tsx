@@ -59,7 +59,7 @@ export const MENU_PANEL_CONFIG: PanelConfig[] = [
           {
             ...generatorEventHandlerConfig(
               baseWidgetName,
-              MENU_EVENT_HANDLER_CONFIG,
+              MENU_EVENT_HANDLER_CONFIG.events,
             ),
           },
         ],

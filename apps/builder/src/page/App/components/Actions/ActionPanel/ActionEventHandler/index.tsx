@@ -77,17 +77,14 @@ export const ActionEventHandler: FC = () => {
           {renderFieldAndLabel(
             generatorEventHandlerConfig(
               "success-event",
-              {
-                events: [
-                  {
-                    label: t(
-                      "editor.inspect.setter_content.widget_action_type_name.success",
-                    ),
-                    value: "success",
-                  },
-                ],
-                methods: [],
-              },
+              [
+                {
+                  label: t(
+                    "editor.inspect.setter_content.widget_action_type_name.success",
+                  ),
+                  value: "success",
+                },
+              ],
               t("editor.inspect.setter_label.success"),
               "successEvent",
               "success",
@@ -99,17 +96,14 @@ export const ActionEventHandler: FC = () => {
           {renderFieldAndLabel(
             generatorEventHandlerConfig(
               "failed-event",
-              {
-                events: [
-                  {
-                    label: t(
-                      "editor.inspect.setter_content.widget_action_type_name.fail",
-                    ),
-                    value: "fail",
-                  },
-                ],
-                methods: [],
-              },
+              [
+                {
+                  label: t(
+                    "editor.inspect.setter_content.widget_action_type_name.fail",
+                  ),
+                  value: "fail",
+                },
+              ],
               t("editor.inspect.setter_label.failure"),
               "failedEvent",
               "fail",

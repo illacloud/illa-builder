@@ -43,7 +43,7 @@ export const IMAGE_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          IMAGE_EVENT_HANDLER_CONFIG,
+          IMAGE_EVENT_HANDLER_CONFIG.events,
         ),
       },
     ],

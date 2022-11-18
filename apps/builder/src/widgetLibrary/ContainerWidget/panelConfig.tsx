@@ -66,7 +66,7 @@ export const CONTAINER_PANEL_CONFIG: PanelConfig[] = [
       {
         ...generatorEventHandlerConfig(
           baseWidgetName,
-          CONTAINER_EVENT_HANDLER_CONFIG,
+          CONTAINER_EVENT_HANDLER_CONFIG.events,
         ),
       },
     ],
