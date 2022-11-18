@@ -29,6 +29,7 @@ import {
   BodyContentType,
   ElasticSearchAction,
   IDEditorType,
+  QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import {
   ActionContent,
@@ -43,6 +44,40 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
 
   const selectedAction = useSelector(getSelectedAction)
   const cachedAction = useSelector(getCachedAction)
+
+  const getESActionFilteredContent = (
+    cachedAction: ActionItem<ActionContent> | null,
+  ) => {
+    let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
+    if (!!cachedActionValue && cachedAction?.actionType === "elasticsearch") {
+      let content = cachedAction.content as ElasticSearchAction
+      if (!IDEditorType.includes(content.operation)) {
+        const { id = "", ...otherContent } = content
+
+        cachedActionValue = {
+          ...cachedAction,
+          content: { ...otherContent },
+        }
+        content = otherContent
+      }
+      if (!BodyContentType.includes(content.operation)) {
+        const { body = "", ...otherContent } = content
+        cachedActionValue = {
+          ...cachedActionValue,
+          content: { ...otherContent },
+        }
+        content = otherContent
+      }
+      if (!QueryContentType.includes(content.operation)) {
+        const { query = "", ...otherContent } = content
+        cachedActionValue = {
+          ...cachedActionValue,
+          content: { ...otherContent },
+        }
+      }
+    }
+    return cachedActionValue
+  }
 
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
@@ -148,35 +183,8 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           leftIcon={<CaretRightIcon />}
           onClick={() => {
             let cachedActionValue: ActionItem<ActionContent> | null =
-              cachedAction
-            if (
-              !!cachedActionValue &&
-              cachedAction?.actionType === "elasticsearch"
-            ) {
-              let content = cachedAction.content as ElasticSearchAction
-              if (!IDEditorType.includes(content.operation)) {
-                const { id = "", ...otherContent } = content
+              getESActionFilteredContent(cachedAction)
 
-                cachedActionValue = {
-                  ...cachedAction,
-                  content: { ...otherContent },
-                }
-                content = otherContent
-              }
-              if (BodyContentType.includes(content.operation)) {
-                const { query = "", ...otherContent } = content
-                cachedActionValue = {
-                  ...cachedActionValue,
-                  content: { ...otherContent },
-                }
-              } else {
-                const { body = "", ...otherContent } = content
-                cachedActionValue = {
-                  ...cachedActionValue,
-                  content: { ...otherContent },
-                }
-              }
-            }
             switch (runMode) {
               case "run":
                 setLoading(true)

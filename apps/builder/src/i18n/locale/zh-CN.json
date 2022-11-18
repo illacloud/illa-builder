@@ -182,6 +182,7 @@
         "elastic": {
           "action_type": "Action Type",
           "query": "Query",
+          "body": "Body",
           "index": "Index",
           "id": "Id"
         },
