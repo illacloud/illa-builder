@@ -19,18 +19,34 @@
 </p>
 
 
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
-[![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
-[![license](https://img.shields.io/github/license/illacloud/illa-builder)](./LICENSE)
-[![contributing](https://badgen.net/badge/PRs/Welcome/green?icon=storybook)](./CONTRIBUTING.md)
+<p align="center">
+  <a href="https://discord.gg/zKf3WKCufR"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
+  <a href="https://github.com/orgs/illacloud/discussions"><img src="https://img.shields.io/badge/discussions-GitHub-333333?logo=github" height=18></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/illacloud/illa-builder" height=18></a>
+  <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
+</p>
+
+
+
+## 🚀Get Started
+The most convenient way to try ILLA Builder is by creating an ILLA account on [Fast-try](https://fast-try.illacloud.com/). You can also deploy ILLA utils manually(Docker, docker-compose, and k8s). ILLA Cloud service is coming this December, join our [Discord Community](https://discord.gg/zKf3WKCufR) to get Free Cloud Service Code.
+
+<p align="center">
+  <a href="https://github.com/illacloud/deploy-illa-manually"><img src="https://github.com/illacloud/.github/blob/main/assets/images/Group%202950.png" height=60></a>
+  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/Group%202949.png" height=60></a>
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/Group%202948%20(3).png?raw=true" height=60>
+</p>
+
+
 
 ## ✨ Features
 
 1. ⚽ **Real-time Collaboration:** We can create everything in real-time together.
 2. 🛠 **Custom Plugin:** Build any custom plugin to do what you want.
 3. 🤖 **Automate Support:** Connect everything and automate them in 5 seconds.
-4. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
-5. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
+4. 🖥 **Self-hosted:** supports Docker & k8s
+5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
+6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
 
 ## 🖥 Live Demo
 <p>We have just released a demo version that can be used to build internal tools quickly🎉</p>
@@ -78,7 +94,7 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
 
 ## 🚀 Deploy
 
-You can use [ILLA](https://github.com/illacloud/illa) to host it on ILLA Cloud or local.
+Deploy illa utils manually. Docker, docker compose and k8s are all avaliable in [this repo](https://github.com/illacloud/deploy-illa-manually).
 
 ## 💬 Community
 
