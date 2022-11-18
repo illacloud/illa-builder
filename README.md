@@ -20,7 +20,7 @@
 
 
 <p align="center">
-  <a href="https://discord.gg/zKf3WKCufR"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
+  <a href="https://discord.gg/illacloud"><img src="https://img.shields.io/badge/chat-Discord-7289DA?logo=discord" height=18></a>
   <a href="https://github.com/orgs/illacloud/discussions"><img src="https://img.shields.io/badge/discussions-GitHub-333333?logo=github" height=18></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/illacloud/illa-builder" height=18></a>
   <a href="./CONTRIBUTING.md"><img src="https://badgen.net/badge/PRs/Welcome/green?icon=storybook" height=18></a>
@@ -106,7 +106,7 @@ Join ILLA Community to share your ideas, suggestions, or questions and connect w
 
 <b>Hangout together!</b>
 
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/zKf3WKCufR)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
 
 ## 🌱 Contributing
 
