@@ -70,7 +70,7 @@ export const ElasticSearchPanel: FC = () => {
           ml="16px"
           width="100%"
           onChange={(value) => {
-            let content = {
+            const content = {
               operation: value,
               index: cachedAction.content.index,
             } as ElasticSearchAction
