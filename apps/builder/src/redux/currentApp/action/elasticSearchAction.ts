@@ -25,6 +25,8 @@ export const BodyContentType = [
   ElasticSearchActionRequestType.UPDATE_ONE,
 ]
 
+export const QueryContentType = [ElasticSearchActionRequestType.SEARCH]
+
 export const ElasticSearchActionList = [
   {
     label: ElasticSearchActionType.SEARCH,
