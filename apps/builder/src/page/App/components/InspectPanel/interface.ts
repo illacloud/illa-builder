@@ -34,7 +34,6 @@ export interface PanelFieldConfig extends PanelLabelProps {
   bindAttrName?: string | string[]
   openDynamic?: boolean
   allowClear?: boolean
-  methods?: string[]
 }
 
 export interface PanelFieldGroupConfig {

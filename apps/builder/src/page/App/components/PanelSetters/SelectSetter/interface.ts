@@ -22,7 +22,3 @@ export interface BaseDynamicSelectSetterProps extends PanelLabelProps {
   inputPlaceholder?: string
   isError: boolean
 }
-
-export interface EventTargetWidgetSelectProps extends BaseSelectSetterProps {
-  methods: string[]
-}
