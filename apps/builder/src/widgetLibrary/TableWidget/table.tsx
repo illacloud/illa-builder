@@ -1,8 +1,16 @@
-import { FC, forwardRef, useEffect, useMemo, useRef } from "react"
+import {
+  createContext,
+  FC,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react"
 import { Table } from "@illa-design/table"
 import {
   ColumnItemShape,
   TableWidgetProps,
+  WrappedTableContextProps,
   WrappedTableProps,
 } from "./interface"
 import { cloneDeep } from "lodash"
@@ -81,6 +89,8 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
     handleUpdateDsl,
     handleUpdateGlobalData,
     handleDeleteGlobalData,
+    handleOnClickMenuItem,
+    ...otherProps
   } = props
 
   const defaultSort = useMemo(() => {
@@ -106,13 +116,18 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   const columnsDef = useMemo(() => {
     const res: ColumnItemShape[] = []
-    columns?.forEach((item) => {
+    columns?.forEach((item, index) => {
+      const eventPath = `columns.${index}.events`
       const transItem = cloneDeep(item) as ColumnItemShape
-      transItem["cell"] = getCellForType(transItem)
+      transItem["cell"] = getCellForType(
+        transItem,
+        eventPath,
+        handleOnClickMenuItem,
+      )
       res.push(transItem)
     })
     return res
-  }, [columns])
+  }, [columns, handleOnClickMenuItem])
 
   const realDataSourceArray = useMemo(() => {
     if (dataSourceMode === "dynamic") {
@@ -140,6 +155,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
 
   return (
     <WrappedTable
+      {...otherProps}
       data={realDataSourceArray}
       emptyState={emptyState}
       loading={loading}

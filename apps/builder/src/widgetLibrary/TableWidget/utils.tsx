@@ -2,6 +2,8 @@ import { ColumnItemShape } from "@/widgetLibrary/TableWidget/interface"
 import { dayjsPro, isNumber } from "@illa-design/system"
 import { CellContext } from "@tanstack/table-core"
 import { Link } from "@illa-design/link"
+import { Button } from "@illa-design/button"
+import { FC } from "react"
 
 export const tansTableDataToColumns = (
   data: Record<any, any>[],
@@ -32,12 +34,35 @@ const renderTableLink = (props: CellContext<any, any>) => {
   )
 }
 
-export const getCellForType = (data: ColumnItemShape) => {
+const RenderTableButton: FC<{
+  cell: CellContext<any, any>
+  eventPath: string
+  mappedValue?: string
+  handleOnClickMenuItem?: (path: string) => void
+}> = (props) => {
+  const { cell, mappedValue, eventPath, handleOnClickMenuItem } = props
+
+  const clickEvent = () => {
+    handleOnClickMenuItem?.(eventPath)
+  }
+
+  return (
+    <Button w={"100%"} onClick={clickEvent}>{`${
+      mappedValue ? mappedValue : cell.getValue() ?? "-"
+    }`}</Button>
+  )
+}
+
+export const getCellForType = (
+  data: ColumnItemShape,
+  eventPath: string,
+  handleOnClickMenuItem?: (path: string) => void,
+) => {
   const {
     type = "text",
     decimalPlaces = 0,
     format = "YYYY-MM-DD",
-    header,
+    mappedValue,
   } = data
 
   switch (type) {
@@ -66,6 +91,15 @@ export const getCellForType = (data: ColumnItemShape) => {
         const cellValue = props?.getValue()
         const formatVal = dayjsPro(cellValue).format(format)
         return formatVal ? formatVal : "-"
+      }
+    case "button":
+      return (props: CellContext<any, any>) => {
+        return RenderTableButton({
+          cell: props,
+          mappedValue,
+          eventPath,
+          handleOnClickMenuItem,
+        })
       }
   }
 }
