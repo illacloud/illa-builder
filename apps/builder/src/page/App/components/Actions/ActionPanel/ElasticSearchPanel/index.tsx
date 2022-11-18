@@ -11,6 +11,7 @@ import {
   ElasticSearchAction,
   ElasticSearchActionList,
   IDEditorType,
+  QueryContentType,
 } from "@/redux/currentApp/action/elasticSearchAction"
 import { TransformerComponent } from "@/page/App/components/Actions/ActionPanel/TransformerComponent"
 import { ActionEventHandler } from "@/page/App/components/Actions/ActionPanel/ActionEventHandler"
@@ -46,6 +47,11 @@ export const ElasticSearchPanel: FC = () => {
 
   const isBodyContent = useMemo(
     () => BodyContentType.includes(cachedAction.content.operation),
+    [cachedAction.content],
+  )
+
+  const isQueryContent = useMemo(
+    () => QueryContentType.includes(cachedAction.content.operation),
     [cachedAction.content],
   )
 
@@ -87,36 +93,40 @@ export const ElasticSearchPanel: FC = () => {
           options={ElasticSearchActionList}
         />
       </div>
-      <div css={esItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.elastic.query")}
-        </span>
-        <CodeEditor
-          lineNumbers
-          css={esItemCodeEditorStyle}
-          mode="TEXT_JS"
-          height="88px"
-          value={isBodyContent ? content.body : content.query}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  ...(isBodyContent
-                    ? {
-                        body: value,
-                      }
-                    : {
-                        query: value,
-                      }),
-                },
-              }),
-            )
-          }}
-          expectedType={VALIDATION_TYPES.STRING}
-        />
-      </div>
+      {(isQueryContent || isBodyContent) && (
+        <div css={esItemStyle}>
+          <span css={codeEditorLabelStyle}>
+            {isQueryContent
+              ? t("editor.action.panel.elastic.query")
+              : t("editor.action.panel.elastic.body")}
+          </span>
+          <CodeEditor
+            lineNumbers
+            css={esItemCodeEditorStyle}
+            mode="TEXT_JS"
+            height="88px"
+            value={isBodyContent ? content.body : content.query}
+            onChange={(value) => {
+              dispatch(
+                configActions.updateCachedAction({
+                  ...cachedAction,
+                  content: {
+                    ...cachedAction.content,
+                    ...(isBodyContent
+                      ? {
+                          body: value,
+                        }
+                      : {
+                          query: value,
+                        }),
+                  },
+                }),
+              )
+            }}
+            expectedType={VALIDATION_TYPES.STRING}
+          />
+        </div>
+      )}
       <div css={esItemStyle}>
         <span css={esItemLabelStyle}>
           {t("editor.action.panel.elastic.index")}
