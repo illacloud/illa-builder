@@ -1,12 +1,13 @@
-import { FC, useEffect, useMemo } from "react"
+import { FC, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { Select } from "@illa-design/select"
-import { BaseSelectSetterProps } from "./interface"
+import { EventTargetWidgetSelectProps } from "./interface"
 import { applyBaseSelectWrapperStyle } from "@/page/App/components/PanelSetters/SelectSetter/style"
 import { getWidgetExecutionResult } from "@/redux/currentApp/executionTree/executionSelector"
-import { widgetBuilder } from "@/widgetLibrary/widgetBuilder"
 
-export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
+export const EventTargetWidgetSelect: FC<EventTargetWidgetSelectProps> = (
+  props,
+) => {
   const {
     isSetterSingleRow,
     attrName,
@@ -14,6 +15,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     handleUpdateDsl,
     value,
     widgetOrAction,
+    methods,
   } = props
 
   const widgetDisplayNameMapProps = useSelector(getWidgetExecutionResult)
@@ -22,9 +24,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
     const tmpOptions: { label: string; value: string }[] = []
     Object.keys(widgetDisplayNameMapProps).forEach((key) => {
       if (key !== widgetDisplayName) {
-        const widgetType = widgetDisplayNameMapProps[key].$widgetType
-        const widgetMethod =
-          widgetBuilder(widgetType)?.eventHandlerConfig?.methods ?? []
+        const widgetMethod = methods ?? []
         if (widgetMethod.length > 0) {
           tmpOptions.push({
             label: key,
@@ -34,7 +34,7 @@ export const EventTargetWidgetSelect: FC<BaseSelectSetterProps> = (props) => {
       }
     })
     return tmpOptions
-  }, [widgetDisplayName, widgetDisplayNameMapProps])
+  }, [methods, widgetDisplayName, widgetDisplayNameMapProps])
 
   const actionFinalValue = useMemo(() => {
     const index = finalOptions.findIndex((option) => {

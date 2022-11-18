@@ -20,7 +20,6 @@ export interface WidgetConfigs {
     widget: FC<any>
     config: WidgetConfig
     panelConfig: PanelConfig[]
-    eventHandlerConfig?: EventHandlerConfig
   }
 }
 

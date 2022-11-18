@@ -81,6 +81,7 @@ export const generatorEventHandlerConfig = (
         attrName: "widgetID",
         bindAttrName: ["actionType"],
         shown: (type) => type === "widget",
+        methods: eventHandlerConfig.methods,
       },
       {
         id: `${baseWidgetName}-interaction-event-handler-Method`,
