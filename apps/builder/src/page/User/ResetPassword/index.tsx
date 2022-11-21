@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router-dom"
 import { Input, Password } from "@illa-design/input"
 import { Button } from "@illa-design/button"
-import { WarningCircleIcon } from "@illa-design/icon"
+import { PreIcon, WarningCircleIcon } from "@illa-design/icon"
 import { Link } from "@illa-design/link"
 import { Message } from "@illa-design/message"
 import { Countdown } from "@illa-design/statistic"
@@ -19,6 +19,8 @@ import {
   gridValidStyle,
   errorMsgStyle,
   errorIconStyle,
+  resetPasswordSubtitleWrapperStyle,
+  prevIconStyle,
 } from "@/page/User/style"
 import { ResetPwdFields } from "./interface"
 
@@ -80,9 +82,23 @@ export const ResetPassword: FC = () => {
       },
     )
   }
+
+  const onClickBackToLogin = () => {
+    navigate("/user/login")
+  }
+
   return (
     <form css={gridFormStyle} onSubmit={handleSubmit(onSubmit)}>
-      <header css={formTitleStyle}>{t("user.forgot_password.title")}</header>
+      <header css={formTitleStyle}>
+        {t("user.forgot_password.title")}
+        <div
+          css={resetPasswordSubtitleWrapperStyle}
+          onClick={onClickBackToLogin}
+        >
+          <PreIcon css={prevIconStyle} />
+          {t("user.forgot_password.subtitle")}
+        </div>
+      </header>
       <section css={gridFormFieldStyle}>
         <section css={gridItemStyle}>
           <label css={formLabelStyle}>

@@ -816,6 +816,7 @@
         "email": "Enter your email",
         "verification_code": "Please enter verification code"
       },
+      "subtitle": "Back to sign in",
       "tips": {
         "fail": "Failed to reset password",
         "fail_sent": "Failed to send verification code",
