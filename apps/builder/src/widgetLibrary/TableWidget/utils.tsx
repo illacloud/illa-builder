@@ -70,25 +70,25 @@ export const getCellForType = (
       return (props: CellContext<any, any>) => `${props.getValue() ?? "-"}`
     case "text":
       return (props: CellContext<any, any>) => {
-        return `${props.getValue() ?? "-"}`
+        return `${mappedValue ? mappedValue : props.getValue() ?? "-"}`
       }
     case "link":
       return renderTableLink
     case "number":
       return (props: CellContext<any, any>) => {
-        const formatVal = Number(props?.getValue())
+        const formatVal = Number(mappedValue ? mappedValue : props?.getValue())
         return isNumber(formatVal) ? formatVal.toFixed(decimalPlaces) : "-"
       }
     case "percent":
       return (props: CellContext<any, any>) => {
-        const formatVal = Number(props?.getValue())
+        const formatVal = Number(mappedValue ? mappedValue : props?.getValue())
         return isNumber(formatVal)
           ? `${(formatVal * 100).toFixed(decimalPlaces)}%`
           : "-"
       }
     case "date":
       return (props: CellContext<any, any>) => {
-        const cellValue = props?.getValue()
+        const cellValue = mappedValue ? mappedValue : props?.getValue()
         const formatVal = dayjsPro(cellValue).format(format)
         return formatVal ? formatVal : "-"
       }
