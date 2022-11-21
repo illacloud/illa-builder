@@ -79,12 +79,13 @@ export class ILLAWebsocket {
   }
 
   private reconnect() {
+    if (this.forbidReconnect) return
     if (this.isOnline) {
       store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
       this.isOnline = false
     }
     if (REPEAT_LIMIT <= this.repeat) return
-    if (this.lockReconnect || this.forbidReconnect) return
+    if (this.lockReconnect) return
     this.lockReconnect = true
     this.repeat++
     setTimeout(() => {
