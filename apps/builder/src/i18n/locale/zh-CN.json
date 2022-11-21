@@ -150,6 +150,13 @@
           "save_and_run": "保存 & 运行",
           "save_fail": "保存失败"
         },
+        "elastic": {
+          "action_type": "Action Type",
+          "body": "Body",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
         "label": {
           "event_handler": "事件处理器",
           "failure": "失败",
@@ -179,13 +186,6 @@
           "sort_by": "Sort By",
           "update": "Update"
         },
-        "elastic": {
-          "action_type": "Action Type",
-          "query": "Query",
-          "body": "Body",
-          "index": "Index",
-          "id": "Id"
-        },
         "option": {
           "resource": {
             "new": "添加资源"
@@ -202,9 +202,6 @@
       "resource": {
         "card": {
           "coming_soon": "即将更新"
-        },
-        "error": {
-          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "db": {
           "label": {
@@ -251,6 +248,9 @@
             "advanced_option": "高级配置",
             "general_option": "通常"
           }
+        },
+        "error": {
+          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "restapi": {
           "btns": {
@@ -395,12 +395,6 @@
           "new": "新建",
           "title": "标题"
         },
-        "menu_setter": {
-          "label": "菜单 ({{number}})",
-          "new": "新建",
-          "sub": "子菜单",
-          "delete": "删除"
-        },
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
           "incomplete_selection": "不完整的选择",
@@ -409,6 +403,12 @@
         },
         "list_setter": {
           "reset": "重置"
+        },
+        "menu_setter": {
+          "delete": "删除",
+          "label": "菜单 ({{number}})",
+          "new": "新建",
+          "sub": "子菜单"
         },
         "option_list": {
           "action_menu": {
@@ -436,13 +436,13 @@
           "blur": "失焦",
           "change": "内容改变",
           "click": "单击",
+          "clickMenuItem": "单击",
           "columnFiltersChange": "行筛选改变",
           "fail": "失败后",
           "focus": "聚焦",
           "invalid": "校验失败",
           "paginationChange": "翻页配置改变",
           "sortingChange": "排序方式改变",
-          "clickMenuItem": "单击",
           "submit": "提交",
           "success": "成功后"
         }
@@ -797,7 +797,6 @@
           "require": "邮箱不能为空"
         },
         "newPassword": {
-          "length": "密码须为6～20个字符",
           "require": "密码不能为空"
         },
         "verification_code": {
@@ -813,7 +812,6 @@
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "newPassword": "请输入密码（6-20个字符）",
         "verification_code": "请输入验证码"
       },
       "tips": {
@@ -823,6 +821,9 @@
         "verification_code": "验证码已发送"
       },
       "title": "重置密码"
+    },
+    "password": {
+      "placeholder": "请输入密码（不少于6个字符）"
     },
     "sign_in": {
       "actions": {
@@ -841,8 +842,8 @@
         },
         "password": {
           "incorrect": "请输入正确的账号密码",
-          "length": "密码须为6～20个字符",
           "locked": "密码输错超过5次，账户将被锁定1小时",
+          "min_length": "密码须至少6个字符",
           "require": "密码不能为空"
         }
       },
@@ -851,8 +852,7 @@
         "password": "密码"
       },
       "placeholder": {
-        "email": "请输入邮箱",
-        "password": "请输入密码（6-20个字符）"
+        "email": "请输入邮箱"
       },
       "tips": {
         "fail": "登录失败",
@@ -877,7 +877,6 @@
           "require": "邮箱不能为空"
         },
         "password": {
-          "length": "密码须为6～20个字符",
           "require": "密码不能为空"
         },
         "username": {
@@ -898,7 +897,6 @@
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "password": "请输入密码（6-20个字符）",
         "username": "请输入用户名",
         "verification_code": "请输入验证码"
       },
@@ -958,6 +956,9 @@
     "input": {
       "name": "输入框"
     },
+    "menu": {
+      "name": "菜单"
+    },
     "number_input": {
       "name": "数字输入框"
     },
@@ -984,9 +985,6 @@
     },
     "switch": {
       "name": "开关"
-    },
-    "menu": {
-      "name": "菜单"
     },
     "table": {
       "ascend": "升序",

@@ -150,6 +150,13 @@
           "save_and_run": "Save & Run",
           "save_fail": "Failed to save"
         },
+        "elastic": {
+          "action_type": "Action Type",
+          "body": "Body",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
         "label": {
           "event_handler": "Event Handler",
           "failure": "Failure",
@@ -179,13 +186,6 @@
           "sort_by": "Sort By",
           "update": "Update"
         },
-        "elastic": {
-          "action_type": "Action Type",
-          "query": "Query",
-          "body": "Body",
-          "index": "Index",
-          "id": "Id"
-        },
         "option": {
           "resource": {
             "new": "Create a new resource"
@@ -203,9 +203,6 @@
         "card": {
           "coming_soon": "Coming Soon"
         },
-        "error": {
-          "invalid_url": "Please enter a valid URL, for example, https://example.com"
-        },
         "db": {
           "label": {
             "ca_certificate": "CA Certificate",
@@ -218,8 +215,8 @@
             "database": "Database",
             "database_index": "Database Index",
             "hostname": "Hostname",
-            "hosturl": "Host Url",
             "hostname_port": "Hostname/Port",
+            "hosturl": "Host Url",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
             "mongodb_ssl_ca": "CA Cert",
@@ -251,6 +248,9 @@
             "advanced_option": "Advanced Options",
             "general_option": "GENERAL"
           }
+        },
+        "error": {
+          "invalid_url": "Please enter a valid URL, for example, https://example.com"
         },
         "restapi": {
           "btns": {
@@ -395,12 +395,6 @@
           "new": "New",
           "title": "Title"
         },
-        "menu_setter": {
-          "label": "Menus ({{number}})",
-          "new": "New",
-          "sub": "Sub",
-          "delete": "Delete"
-        },
         "event_handler_list": {
           "empty": "Trigger queries, control components, or call other APIs in response to component events.",
           "incomplete_selection": "Incomplete selection",
@@ -409,6 +403,12 @@
         },
         "list_setter": {
           "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Delete",
+          "label": "Menus ({{number}})",
+          "new": "New",
+          "sub": "Sub"
         },
         "option_list": {
           "action_menu": {
@@ -436,13 +436,13 @@
           "blur": "Blur",
           "change": "Change",
           "click": "Click",
+          "clickMenuItem": "Click",
           "columnFiltersChange": "Filter change",
           "fail": "Fail",
           "focus": "Focus",
           "invalid": "Invalid",
           "paginationChange": "Page change",
           "sortingChange": "Sort change",
-          "clickMenuItem": "Click",
           "submit": "Submit",
           "success": "Success"
         }
@@ -797,7 +797,6 @@
           "require": "Please enter your email"
         },
         "newPassword": {
-          "length": "The password must be 6~20 characters",
           "require": "Please enter your password"
         },
         "verification_code": {
@@ -813,7 +812,6 @@
       },
       "placeholder": {
         "email": "Enter your email",
-        "newPassword": "Enter your new password(6~20 characters)",
         "verification_code": "Please enter verification code"
       },
       "tips": {
@@ -823,6 +821,9 @@
         "verification_code": "Verification code sent"
       },
       "title": "Reset Password"
+    },
+    "password": {
+      "placeholder": "Enter your new password(at least 6 characters)"
     },
     "sign_in": {
       "actions": {
@@ -841,8 +842,8 @@
         },
         "password": {
           "incorrect": "Incorrect email or password",
-          "length": "The password must be 6~20 characters",
           "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
+          "min_length": "The password must be at least 6 characters",
           "require": "Please enter password"
         }
       },
@@ -851,8 +852,7 @@
         "password": "Password"
       },
       "placeholder": {
-        "email": "Enter your email",
-        "password": "Enter your password(6~20 characters)"
+        "email": "Enter your email"
       },
       "tips": {
         "fail": "Failed to sign in",
@@ -877,7 +877,6 @@
           "require": "Please enter your email"
         },
         "password": {
-          "length": "The password must be 6~20 characters",
           "require": "Please enter password"
         },
         "username": {
@@ -898,7 +897,6 @@
       },
       "placeholder": {
         "email": "Enter your email",
-        "password": "Create a password(6~20 characters)",
         "username": "Enter your username",
         "verification_code": "Please enter verification code"
       },
@@ -958,6 +956,9 @@
     "input": {
       "name": "Input"
     },
+    "menu": {
+      "name": "Menu"
+    },
     "number_input": {
       "name": "Number Input"
     },
@@ -984,9 +985,6 @@
     },
     "switch": {
       "name": "Switch"
-    },
-    "menu": {
-      "name": "Menu"
     },
     "table": {
       "ascend": "Asc",
