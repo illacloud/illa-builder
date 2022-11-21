@@ -816,6 +816,7 @@
         "email": "请输入邮箱",
         "verification_code": "请输入验证码"
       },
+      "subtitle": "返回登录",
       "tips": {
         "fail": "重置密码失败",
         "fail_sent": "发送验证码失败",
