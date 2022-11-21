@@ -8,6 +8,8 @@ import {
 import store from "@/store"
 import { getLocalStorage } from "@/utils/storage"
 import { getPayload } from "@/api/ws/index"
+import { configActions } from "@/redux/config/configSlice"
+import { getIsOnline } from "@/redux/config/configSelector"
 
 const HEARTBEAT_PING_TIMEOUT = 2 * 1000
 const HEARTBEAT_PONG_TIMEOUT = 5 * 1000
@@ -30,6 +32,7 @@ export class ILLAWebsocket {
   forbidReconnect: boolean = false
   pingTimeoutId: number = -1
   pongTimeoutId: number = -1
+  isOnline: boolean = getIsOnline(store.getState())
 
   constructor(url: string) {
     this.url = url
@@ -56,6 +59,7 @@ export class ILLAWebsocket {
       }
       this.ws.onopen = () => {
         console.log(`[WS OPENED](${this.url}) connection succeeded`)
+        store.dispatch(configActions.updateDevicesOnlineStatusReducer(true))
         this.send(
           getPayload(Signal.SIGNAL_ENTER, Target.TARGET_NOTHING, false, null, [
             {
@@ -63,6 +67,7 @@ export class ILLAWebsocket {
             },
           ]),
         )
+        this.isOnline = true
         this.repeat = 0
         this.heartCheck()
       }
@@ -74,6 +79,10 @@ export class ILLAWebsocket {
   }
 
   private reconnect() {
+    if (this.isOnline) {
+      store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
+      this.isOnline = false
+    }
     if (REPEAT_LIMIT <= this.repeat) return
     if (this.lockReconnect || this.forbidReconnect) return
     this.lockReconnect = true
@@ -94,6 +103,10 @@ export class ILLAWebsocket {
     this.pingTimeoutId = setTimeout(() => {
       this.ws?.send(pingMessage)
       this.pongTimeoutId = setTimeout(() => {
+        if (this.isOnline) {
+          store.dispatch(configActions.updateDevicesOnlineStatusReducer(false))
+          this.isOnline = false
+        }
         this.ws?.close()
       }, HEARTBEAT_PONG_TIMEOUT)
     }, HEARTBEAT_PING_TIMEOUT)

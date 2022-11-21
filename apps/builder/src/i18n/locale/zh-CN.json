@@ -64,6 +64,7 @@
   "duplicate": "复制",
   "edit": "编辑",
   "edit_at": "上次编辑于",
+  "edit_failed": "保存失败，请检查网络连接。",
   "edit_success": "修改成功！",
   "editor": {
     "action": {
@@ -150,6 +151,12 @@
           "save_and_run": "保存 & 运行",
           "save_fail": "保存失败"
         },
+        "elastic": {
+          "action_type": "Action Type",
+          "id": "Id",
+          "index": "Index",
+          "query": "Query"
+        },
         "label": {
           "event_handler": "事件处理器",
           "failure": "失败",
@@ -179,12 +186,6 @@
           "sort_by": "Sort By",
           "update": "Update"
         },
-        "elastic": {
-          "action_type": "Action Type",
-          "query": "Query",
-          "index": "Index",
-          "id": "Id"
-        },
         "option": {
           "resource": {
             "new": "添加资源"
@@ -201,9 +202,6 @@
       "resource": {
         "card": {
           "coming_soon": "即将更新"
-        },
-        "error": {
-          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "db": {
           "label": {
@@ -250,6 +248,9 @@
             "advanced_option": "高级配置",
             "general_option": "通常"
           }
+        },
+        "error": {
+          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "restapi": {
           "btns": {
@@ -394,12 +395,6 @@
           "new": "新建",
           "title": "标题"
         },
-        "menu_setter": {
-          "label": "菜单 ({{number}})",
-          "new": "新建",
-          "sub": "子菜单",
-          "delete": "删除"
-        },
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
           "incomplete_selection": "不完整的选择",
@@ -408,6 +403,12 @@
         },
         "list_setter": {
           "reset": "重置"
+        },
+        "menu_setter": {
+          "delete": "删除",
+          "label": "菜单 ({{number}})",
+          "new": "新建",
+          "sub": "子菜单"
         },
         "option_list": {
           "action_menu": {
@@ -435,13 +436,13 @@
           "blur": "失焦",
           "change": "内容改变",
           "click": "单击",
+          "clickMenuItem": "单击",
           "columnFiltersChange": "行筛选改变",
           "fail": "失败后",
           "focus": "聚焦",
           "invalid": "校验失败",
           "paginationChange": "翻页配置改变",
           "sortingChange": "排序方式改变",
-          "clickMenuItem": "单击",
           "submit": "提交",
           "success": "成功后"
         }
@@ -732,6 +733,7 @@
   "freeze_tips": "画布已冻结，点击解冻。",
   "link_copied": "链接已复制",
   "network_error": "网络异常",
+  "not_online_tips": "网络已断开，请检查此设备的网络",
   "preview": "预览",
   "remove_fail": "删除失败",
   "rename": "重命名",
@@ -957,6 +959,9 @@
     "input": {
       "name": "输入框"
     },
+    "menu": {
+      "name": "菜单"
+    },
     "number_input": {
       "name": "数字输入框"
     },
@@ -983,9 +988,6 @@
     },
     "switch": {
       "name": "开关"
-    },
-    "menu": {
-      "name": "菜单"
     },
     "table": {
       "ascend": "升序",

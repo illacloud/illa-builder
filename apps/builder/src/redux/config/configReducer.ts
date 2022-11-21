@@ -131,3 +131,10 @@ export const updateCanvasShapeReducer: CaseReducer<
   state.canvasHeight = canvasHeight
   state.canvasWidth = canvasWidth
 }
+
+export const updateDevicesOnlineStatusReducer: CaseReducer<
+  ConfigState,
+  PayloadAction<boolean>
+> = (state, action) => {
+  state.isOnline = action.payload
+}
