@@ -9,9 +9,12 @@ import "@/utils/dayjs"
 import * as Sentry from "@sentry/react"
 import { BrowserTracing } from "@sentry/tracing"
 
-if (import.meta.env.VITE_INSTANCE_ID === "CLOUD") {
+if (
+  import.meta.env.VITE_INSTANCE_ID === "CLOUD" &&
+  import.meta.env.VITE_SENTRY_SERVER_API
+) {
   Sentry.init({
-    dsn: "https://bc9865122a714315921fbb995643f7cb@sentry.illasoft.com/1",
+    dsn: import.meta.env.VITE_SENTRY_SERVER_API,
     integrations: [new BrowserTracing()],
     environment: import.meta.env.VITE_SENTRY_ENV,
     tracesSampleRate: 1.0,
