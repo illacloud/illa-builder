@@ -153,9 +153,10 @@
         },
         "elastic": {
           "action_type": "Action Type",
-          "id": "Id",
+          "query": "Query",
+          "body": "Body",
           "index": "Index",
-          "query": "Query"
+          "id": "Id"
         },
         "label": {
           "event_handler": "事件处理器",

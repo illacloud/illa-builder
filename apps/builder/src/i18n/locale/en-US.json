@@ -151,12 +151,6 @@
           "save_and_run": "Save & Run",
           "save_fail": "Failed to save"
         },
-        "elastic": {
-          "action_type": "Action Type",
-          "id": "Id",
-          "index": "Index",
-          "query": "Query"
-        },
         "label": {
           "event_handler": "Event Handler",
           "failure": "Failure",
@@ -185,6 +179,13 @@
           "skip": "Skip",
           "sort_by": "Sort By",
           "update": "Update"
+        },
+        "elastic": {
+          "action_type": "Action Type",
+          "query": "Query",
+          "body": "Body",
+          "index": "Index",
+          "id": "Id"
         },
         "option": {
           "resource": {
