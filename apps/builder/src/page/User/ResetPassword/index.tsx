@@ -21,6 +21,7 @@ import {
   errorIconStyle,
   resetPasswordSubtitleWrapperStyle,
   prevIconStyle,
+  hotspotWrapperStyle,
 } from "@/page/User/style"
 import { ResetPwdFields } from "./interface"
 
@@ -95,8 +96,10 @@ export const ResetPassword: FC = () => {
           css={resetPasswordSubtitleWrapperStyle}
           onClick={onClickBackToLogin}
         >
-          <PreIcon css={prevIconStyle} />
-          {t("user.forgot_password.subtitle")}
+          <span css={hotspotWrapperStyle}>
+            <PreIcon css={prevIconStyle} />
+            {t("user.forgot_password.subtitle")}
+          </span>
         </div>
       </header>
       <section css={gridFormFieldStyle}>
