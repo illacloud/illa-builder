@@ -12,7 +12,13 @@ export const ColumnTypeOption = [
   { label: "Button", value: "button" },
 ]
 
-type ColumnType = "text" | "date" | "number" | "percent" | "link" | "button"
+export type ColumnType =
+  | "text"
+  | "date"
+  | "number"
+  | "percent"
+  | "link"
+  | "button"
 
 export interface ColumnItemShape
   extends Pick<ColumnDef<object>, "cell" | "id"> {
