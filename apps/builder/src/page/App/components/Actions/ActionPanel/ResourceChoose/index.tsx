@@ -58,6 +58,7 @@ export const ResourceChoose: FC = () => {
           <Select
             flexShrink="1"
             flexGrow="0"
+            minW="240px"
             colorScheme="techPurple"
             value={
               currentSelectResource

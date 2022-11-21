@@ -45,6 +45,7 @@ const Evaluate: FC<{ type: string; data?: any }> = (props) => {
     <Trigger
       _css={css`
         padding-right: 4px;
+        z-index: 10;
       `}
       content={
         <div css={evaluationTriggerStyle}>
@@ -68,8 +69,9 @@ const Evaluate: FC<{ type: string; data?: any }> = (props) => {
 
 const handleTernCompletions = (data: TypeQueryResult): TransQuery => {
   const result: TransQuery = data ?? {}
-  if (data.doc?.slice(0, 1) === "{") {
-    const format = JSON.parse(data.doc)
+  const doc = decodeURI(data?.doc ?? "")
+  if (doc?.slice(0, 1) === "{") {
+    const format = JSON.parse(doc)
     result["data"] = format.data
     result["path"] = format.path
     result["name"] = format.path

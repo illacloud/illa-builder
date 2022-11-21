@@ -2,6 +2,8 @@ import { FC, useCallback, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useTranslation } from "react-i18next"
 import { ReactComponent as Logo } from "@/assets/illa-logo.svg"
+import { ReactComponent as SnowIcon } from "@/assets/snow-icon.svg"
+
 import {
   BugIcon,
   CaretRightIcon,
@@ -21,6 +23,7 @@ import { configActions } from "@/redux/config/configSlice"
 import {
   getFreezeState,
   getIllaMode,
+  getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
   isOpenLeftPanel,
@@ -34,6 +37,7 @@ import {
   nameStyle,
   navBarStyle,
   rowCenter,
+  saveFailedTipStyle,
   viewControlStyle,
   windowIconBodyStyle,
   windowIconStyle,
@@ -56,6 +60,7 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
   const bottomPanelVisible = useSelector(isOpenBottomPanel)
   const debuggerVisible = useSelector(isOpenDebugger)
   const isFreezeCanvas = useSelector(getFreezeState)
+  const isOnline = useSelector(getIsOnline)
 
   const debuggerData = useSelector(getExecutionDebuggerData)
 
@@ -121,9 +126,16 @@ export const PageNavBar: FC<PageNavBarProps> = (props) => {
         />
         <div css={informationStyle}>
           <div css={nameStyle}>{appInfo?.appName}</div>
-          <div css={descriptionStyle}>
-            {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
-          </div>
+          {isOnline ? (
+            <div css={descriptionStyle}>
+              {t("edit_at") + " " + fromNow(appInfo?.updatedAt)}
+            </div>
+          ) : (
+            <div css={saveFailedTipStyle}>
+              <SnowIcon />
+              <span> {t("edit_failed")}</span>
+            </div>
+          )}
         </div>
       </div>
       <div css={viewControlStyle}>
