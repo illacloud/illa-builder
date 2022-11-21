@@ -46,13 +46,6 @@ export interface Callback<T> {
   errorCode: number
 }
 
-export interface ILLAWebSocket extends WebSocket {
-  timeout?: any
-  serverTimeout?: any
-  debounceTimeout?: any
-  offline?: boolean
-}
-
 export interface ILLAWebSocketComponentPayload {
   before: {
     displayName: string

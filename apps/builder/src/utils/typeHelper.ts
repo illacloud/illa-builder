@@ -66,3 +66,5 @@ export const isInt = (val: string | number): boolean => {
 
 export const isValidDisplayName = (displayName: string): boolean =>
   DISPLAY_NAME_REGEX.test(displayName)
+
+export const isCloudVersion = import.meta.env.VITE_INSTANCE_ID === "CLOUD"

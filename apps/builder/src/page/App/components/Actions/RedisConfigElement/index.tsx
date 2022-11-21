@@ -32,6 +32,7 @@ import {
   RedisResource,
   RedisResourceInitial,
 } from "@/redux/resource/redisResource"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -304,19 +305,26 @@ export const RedisConfigElement: FC<RedisConfigElementProps> = (props) => {
             />
           </div>
         </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.db.tip.username_password")}
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.connect_type")}
-            </span>
-          </div>
-          <span css={connectTypeStyle}>
-            {t("editor.action.resource.db.tip.connect_type")}
-          </span>
-        </div>
+        {isCloudVersion && (
+          <>
+            <div css={configItemTip}>
+              {t("editor.action.resource.db.tip.username_password")}
+            </div>
+            <div css={configItem}>
+              <div css={labelContainer}>
+                <span
+                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
+                >
+                  {t("editor.action.resource.db.label.connect_type")}
+                </span>
+              </div>
+              <span css={connectTypeStyle}>
+                {t("editor.action.resource.db.tip.connect_type")}
+              </span>
+            </div>
+          </>
+        )}
+
         <Divider
           direction="horizontal"
           ml="24px"

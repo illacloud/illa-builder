@@ -182,8 +182,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           loading={loading}
           leftIcon={<CaretRightIcon />}
           onClick={() => {
-            let cachedActionValue: ActionItem<ActionContent> | null =
-              getESActionFilteredContent(cachedAction)
+            let cachedActionValue: ActionItem<
+              ActionContent
+            > | null = getESActionFilteredContent(cachedAction)
 
             switch (runMode) {
               case "run":
