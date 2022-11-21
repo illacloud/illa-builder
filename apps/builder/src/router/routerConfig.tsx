@@ -80,7 +80,7 @@ export const routerConfig: RoutesObjectPro[] = [
     children: [
       {
         index: true,
-        element: <Navigate to="/account" replace />,
+        element: <Navigate to="./account" replace />,
         needLogin: true,
       },
       {
