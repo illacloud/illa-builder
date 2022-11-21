@@ -7,13 +7,17 @@ import {
   contentStyle,
   editorContainerStyle,
   leftPanelStyle,
+  messageWrapperStyle,
   middlePanelStyle,
+  modalStyle,
   navbarStyle,
   rightPanelStyle,
+  waringIconStyle,
 } from "./style"
 import { Connection } from "@/api/ws"
 import { useDispatch, useSelector } from "react-redux"
 import {
+  getIsOnline,
   isOpenBottomPanel,
   isOpenDebugger,
   isOpenLeftPanel,
@@ -37,10 +41,12 @@ import { Debugger } from "@/page/App/components/Debugger"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupConfigListeners } from "@/redux/config/configListener"
+import { Message, WarningCircleIcon } from "@illa-design/react"
+import { useTranslation } from "react-i18next"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
-
+  const { t } = useTranslation()
   let { appId } = useParams()
 
   const currentUser = useSelector(getCurrentUser)
@@ -73,6 +79,7 @@ export const Editor: FC = () => {
   const showRightPanel = useSelector(isOpenRightPanel)
   const showBottomPanel = useSelector(isOpenBottomPanel)
   const showDebugger = useSelector(isOpenDebugger)
+  const isOnline = useSelector(getIsOnline)
 
   // init app
   const loadingState = useInitBuilderApp("edit")
@@ -111,6 +118,14 @@ export const Editor: FC = () => {
             </div>
             {showRightPanel && <ComponentsManager css={rightPanelStyle} />}
           </div>
+          {!isOnline && (
+            <div css={modalStyle}>
+              <div css={messageWrapperStyle}>
+                <WarningCircleIcon css={waringIconStyle} />
+                {t("not_online_tips")}
+              </div>
+            </div>
+          )}
         </Shortcut>
       )}
     </div>

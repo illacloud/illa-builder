@@ -64,6 +64,7 @@
   "duplicate": "复制",
   "edit": "编辑",
   "edit_at": "上次编辑于",
+  "edit_failed": "保存失败，请检查网络连接。",
   "edit_success": "修改成功！",
   "editor": {
     "action": {
@@ -733,6 +734,7 @@
   "freeze_tips": "画布已冻结，点击解冻。",
   "link_copied": "链接已复制",
   "network_error": "网络异常",
+  "not_online_tips": "网络已断开，请检查此设备的网络",
   "preview": "预览",
   "remove_fail": "删除失败",
   "rename": "重命名",

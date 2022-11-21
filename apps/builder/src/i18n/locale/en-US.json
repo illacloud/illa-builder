@@ -64,6 +64,7 @@
   "duplicate": "Duplicate",
   "edit": "Edit",
   "edit_at": "Edited at",
+  "edit_failed": "Failed to save, please check your network.",
   "edit_success": "Edited successfully",
   "editor": {
     "action": {
@@ -733,6 +734,7 @@
   "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
   "link_copied": "Link Copied",
   "network_error": "Network disconnected. Please check this device's network",
+  "not_online_tips": "Network disconnected. Please check this device's network",
   "preview": "Preview",
   "remove_fail": "Failed to remove",
   "rename": "Rename",
