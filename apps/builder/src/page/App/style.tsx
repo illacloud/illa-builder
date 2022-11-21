@@ -80,11 +80,10 @@ export const modalStyle = css`
   top: 47px;
   width: 100vw;
   height: calc(100vh - 47px);
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(4px);
   z-index: 100;
   display: flex;
   justify-content: center;
+  user-select: none;
 `
 
 export const messageWrapperStyle = css`

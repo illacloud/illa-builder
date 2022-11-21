@@ -238,26 +238,16 @@ export const ResetPassword: FC = () => {
                   size="large"
                   error={!!errors.newPassword}
                   variant="fill"
-                  placeholder={t(
-                    "user.forgot_password.placeholder.newPassword",
-                  )}
+                  placeholder={t("user.password.placeholder")}
                 />
               )}
               rules={{
                 required: t(
                   "user.forgot_password.error_message.newPassword.require",
                 ),
-                maxLength: {
-                  value: 20,
-                  message: t(
-                    "user.forgot_password.error_message.newPassword.length",
-                  ),
-                },
                 minLength: {
                   value: 6,
-                  message: t(
-                    "user.forgot_password.error_message.newPassword.length",
-                  ),
+                  message: t("user.sign_in.error_message.password.min_length"),
                 },
               }}
             />

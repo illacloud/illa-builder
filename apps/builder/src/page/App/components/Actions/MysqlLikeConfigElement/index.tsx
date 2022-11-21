@@ -30,6 +30,7 @@ import { Api } from "@/api/base"
 import { resourceActions } from "@/redux/resource/resourceSlice"
 import { Message } from "@illa-design/message"
 import { MysqlLikeResource } from "@/redux/resource/mysqlLikeResource"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 /**
  * include mariadb or tidb
@@ -51,9 +52,9 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find(
-      (r) => r.resourceId === resourceId,
-    ) as Resource<MysqlLikeResource>
+    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
+      MysqlLikeResource
+    >
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)
@@ -316,19 +317,25 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
             />
           </div>
         </div>
-        <div css={configItemTip}>
-          {t("editor.action.resource.db.tip.username_password")}
-        </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.connect_type")}
-            </span>
-          </div>
-          <span css={connectTypeStyle}>
-            {t("editor.action.resource.db.tip.connect_type")}
-          </span>
-        </div>
+        {isCloudVersion && (
+          <>
+            <div css={configItemTip}>
+              {t("editor.action.resource.db.tip.username_password")}
+            </div>
+            <div css={configItem}>
+              <div css={labelContainer}>
+                <span
+                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
+                >
+                  {t("editor.action.resource.db.label.connect_type")}
+                </span>
+              </div>
+              <span css={connectTypeStyle}>
+                {t("editor.action.resource.db.tip.connect_type")}
+              </span>
+            </div>
+          </>
+        )}
         <Divider
           direction="horizontal"
           ml="24px"

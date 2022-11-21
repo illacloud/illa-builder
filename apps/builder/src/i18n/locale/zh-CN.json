@@ -153,10 +153,10 @@
         },
         "elastic": {
           "action_type": "Action Type",
-          "query": "Query",
           "body": "Body",
+          "id": "Id",
           "index": "Index",
-          "id": "Id"
+          "query": "Query"
         },
         "label": {
           "event_handler": "事件处理器",
@@ -799,7 +799,6 @@
           "require": "邮箱不能为空"
         },
         "newPassword": {
-          "length": "密码须为6～20个字符",
           "require": "密码不能为空"
         },
         "verification_code": {
@@ -815,7 +814,6 @@
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "newPassword": "请输入密码（6-20个字符）",
         "verification_code": "请输入验证码"
       },
       "tips": {
@@ -825,6 +823,9 @@
         "verification_code": "验证码已发送"
       },
       "title": "重置密码"
+    },
+    "password": {
+      "placeholder": "请输入密码（不少于6个字符）"
     },
     "sign_in": {
       "actions": {
@@ -843,8 +844,8 @@
         },
         "password": {
           "incorrect": "请输入正确的账号密码",
-          "length": "密码须为6～20个字符",
           "locked": "密码输错超过5次，账户将被锁定1小时",
+          "min_length": "密码须至少6个字符",
           "require": "密码不能为空"
         }
       },
@@ -853,8 +854,7 @@
         "password": "密码"
       },
       "placeholder": {
-        "email": "请输入邮箱",
-        "password": "请输入密码（6-20个字符）"
+        "email": "请输入邮箱"
       },
       "tips": {
         "fail": "登录失败",
@@ -879,7 +879,6 @@
           "require": "邮箱不能为空"
         },
         "password": {
-          "length": "密码须为6～20个字符",
           "require": "密码不能为空"
         },
         "username": {
@@ -900,7 +899,6 @@
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "password": "请输入密码（6-20个字符）",
         "username": "请输入用户名",
         "verification_code": "请输入验证码"
       },
