@@ -7,14 +7,12 @@
 </div>
 
 <h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder</a></h1>
-<p align="center">To accelerate your internal tools development.</p>
+<p>ILLA is a robust open-source framework for developers to build internal tools. By providing many components(Table, Chart, Container, and more), developers can save massive amounts of time on building responsive front-end pages by drag & drop. Our "Page" feature allows users to construct multi-page apps in minutes. With "Action" features, developers can CRUD and connect to their databases（MongoDB, MySQL, PostgresSQL, and more) with very few codes. ILLA also supports different deployment methods, such as Self-hosting and using our Cloud services.</p>
 
-<div align="center">
-  <p>Created with ❤︎ by <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
-</div>
+
 <p align="center">
 <a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/newBuilder.png">
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/Github%20home.png">
 </a>
 </p>
 
@@ -49,30 +47,17 @@ The most convenient way to try ILLA Builder is by creating an ILLA account on [F
 5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
 6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
 
-## 🖥 Live Demo
-<p>We have just released a demo version that can be used to build internal tools quickly🎉</p>
-<p>Click the button below to try out ILLA Builder</p>
-<a href="https://fast-try.illacloud.com">
-<img alt="Live Demo" width="350px" height="56.85px" src="https://github.com/illacloud/.github/blob/main/assets/images/newdemo2.png" />
-</a>
 
-## Tutorial
-#### 🆓 Step 1: Create an account for free and sign in
+## 4 steps to build your app
 
+#### 🎯 Step 1: Connect to your database
 <p align="center">
 <a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/login.png">
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/SQL.jpeg">
 </a>
 </p>
 
-#### 🎯 Step 2: Create a new app and enter the editor
-<p align="center">
-<a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/create-a-new-app1.gif">
-</a>
-</p>
-
-#### 🎨 Step 3: Build UI with built-in components
+#### 🎨 Step 2: Build UI with built-in components
 Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
 
 <p align="center">
@@ -81,7 +66,7 @@ Build your UI by dragging components to the canvas. We provide dozens of compone
 </a>
 </p>
 
-#### 🔌 Step 4: Connect to your data
+#### 🔌 Step 3: Connect to your data
 Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
 <p align="center">
 <a href="https://fast-try.illacloud.com/">
@@ -89,29 +74,32 @@ Connect to MySQL or REST API through our GUI data connectors. And we will add mo
 </a>
 </p>
 
-**🔴 The current version is still in beta, each version update will clear the  data, please do not store important data.**
+#### 🚀 Step 4: Deploy your app
+Deploy your app and self host it. 
+<p align="center">
+<a href="https://fast-try.illacloud.com/">
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
+  </a>
+  </p>
+  
 
-**💞 Thank you for using ILLA Builder.** 
 
-## 🚀 Deploy
+**❗ The current version is still in beta, each version update will clear the  data, please do not store important data in our live demo.**
 
-Deploy illa utils manually. Docker, docker compose and k8s are all avaliable in [this repo](https://github.com/illacloud/deploy-illa-manually).
+
+
+
 
 ## 💬 Community
 
 Join ILLA Community to share your ideas, suggestions, or questions and connect with other users and contributors.
 
-<b>Discussion</b>
-
-[![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)
-
-<b>Hangout together!</b>
-
-[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)
+[![Chat on Discord](https://img.shields.io/badge/chat-Discord-7289DA?logo=discord)](https://discord.gg/illacloud)   [![Discuss on GitHub](https://img.shields.io/badge/discussions-GitHub-333333?logo=github)](https://github.com/orgs/illacloud/discussions)   
 
 ## 🌱 Contributing
 
 Thinking about contributing? All kinds of contributions to ILLA are greatly appreciated and welcomed! Check out [Contributing Guide](./CONTRIBUTING.md) for details about how you can get involved.
+<p>Appreciate all the contributions from ❤︎  <a href="https://github.com/illacloud/illa-builder/graphs/contributors">contributors</a></p>
 
 ## 🔥 We're Hiring
 
