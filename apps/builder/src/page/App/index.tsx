@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC, useCallback, useEffect, MouseEvent } from "react"
 import { PageNavBar } from "./components/PageNavBar"
 import { DataWorkspace } from "./components/DataWorkspace"
 import {
@@ -41,13 +41,15 @@ import { Debugger } from "@/page/App/components/Debugger"
 import { ComponentsManager } from "@/page/App/components/ComponentManager"
 import { setupActionListeners } from "@/redux/currentApp/action/actionListener"
 import { setupConfigListeners } from "@/redux/config/configListener"
-import { Message, WarningCircleIcon } from "@illa-design/react"
+import { WarningCircleIcon } from "@illa-design/react"
 import { useTranslation } from "react-i18next"
+import { motion, useAnimation } from "framer-motion"
 
 export const Editor: FC = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   let { appId } = useParams()
+  const controls = useAnimation()
 
   const currentUser = useSelector(getCurrentUser)
 
@@ -101,6 +103,28 @@ export const Editor: FC = () => {
     }
   }, [dispatch])
 
+  const handleMouseDownOnModal = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      controls
+        .start({
+          scale: 1.05,
+          transition: {
+            duration: 0.2,
+          },
+        })
+        .then(() => {
+          controls.start({
+            scale: 1,
+            transition: {
+              duration: 0.2,
+            },
+          })
+        })
+    },
+    [controls],
+  )
+
   return (
     <div css={editorContainerStyle}>
       {loadingState && <AppLoading />}
@@ -119,11 +143,11 @@ export const Editor: FC = () => {
             {showRightPanel && <ComponentsManager css={rightPanelStyle} />}
           </div>
           {!isOnline && (
-            <div css={modalStyle}>
-              <div css={messageWrapperStyle}>
+            <div css={modalStyle} onMouseDown={handleMouseDownOnModal}>
+              <motion.div css={messageWrapperStyle} animate={controls}>
                 <WarningCircleIcon css={waringIconStyle} />
                 {t("not_online_tips")}
-              </div>
+              </motion.div>
             </div>
           )}
         </Shortcut>
