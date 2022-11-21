@@ -112,14 +112,17 @@ export const errorIconStyle: SerializedStyles = css`
 
 export const resetPasswordSubtitleWrapperStyle = css`
   margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   color: ${getColor("grayBlue", "02")};
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
   user-select: none;
+`
+
+export const hotspotWrapperStyle = css`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
 `
 
