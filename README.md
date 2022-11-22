@@ -7,7 +7,7 @@
 </div>
 
 <h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder</a></h1>
-<p>ILLA is a robust open-source framework for developers to build internal tools. By providing many components(Table, Chart, Container, and more), developers can save massive amounts of time on building responsive front-end pages by drag & drop. Our "Page" feature allows users to construct multi-page apps in minutes. With "Action" features, developers can CRUD and connect to their databases（MongoDB, MySQL, PostgresSQL, and more) with very few codes. ILLA also supports different deployment methods, such as Self-hosting and using our Cloud services.</p>
+<p align="center">ILLA is a robust open source low-code patform for developers to build internal tools. By using ILLA's library of Components and Actions developers can save massive amounts of time on building tools. </p>
 
 
 <p align="center">
@@ -31,9 +31,12 @@
 The most convenient way to try ILLA Builder is by creating an ILLA account on [Fast-try](https://fast-try.illacloud.com/). You can also deploy ILLA utils manually(Docker, docker-compose, and k8s). ILLA Cloud service is coming this December, join our [Discord Community](https://discord.gg/zKf3WKCufR) to get Free Cloud Service Code.
 
 <p align="center">
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/Group%202950.png" height=60></a>
-  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/Group%202949.png" height=60></a>
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/Group%202948%20(3).png?raw=true" height=60>
+  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted(1).png" height=120></a>
+  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live%20demo(1).png" height=120></a>
+  <picture>
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLA%20Cloud(1).png" height=120>
+</picture>
+  
 </p>
 
 
