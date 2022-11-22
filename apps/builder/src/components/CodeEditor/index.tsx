@@ -25,7 +25,7 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
 import { CodeEditorProps, EditorModes, ResultPreview } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
-import { isCloseKey, isExpectType } from "./utils"
+import { getValueType, isCloseKey, isExpectType } from "./utils"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 import {
@@ -149,10 +149,11 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
             lineMarker(ILLAEditor.current, lintError.errorLine - 1)
           }
         } else {
+          const type = props.expectedType ?? getValueType(result)
           setError(false)
           setPreview({
             state: "default",
-            type: expectedType,
+            type: type,
             content: result?.toString() ?? "",
           })
         }
