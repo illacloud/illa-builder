@@ -18,11 +18,6 @@ export function evalScript(
 
     const GlobalData = createGlobalData(dataTree)
 
-    for (const entity in GlobalData) {
-      // @ts-ignore: No types available
-      self[entity] = GlobalData[entity]
-    }
-
     const ctxProxy = new Proxy(GlobalData, {
       has: (target, prop) => {
         if (typeof prop === "symbol") {
@@ -39,7 +34,6 @@ export function evalScript(
     })
 
     const userScript = getScriptToEval(script, isTriggerBased)
-
     try {
       result = runUsersCode(userScript).call(ctxProxy, ctxProxy)
     } catch (error) {

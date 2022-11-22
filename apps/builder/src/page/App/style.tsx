@@ -1,5 +1,5 @@
 import { css } from "@emotion/react"
-import { globalColor, illaPrefix } from "@illa-design/theme"
+import { getColor, globalColor, illaPrefix } from "@illa-design/theme"
 import { SerializedStyles } from "@emotion/serialize"
 import { LEFT_PANEL_WIDTH, RIGHT_PANEL_WIDTH, NAVBAR_HEIGHT } from "@/style"
 
@@ -73,4 +73,35 @@ export const middlePanelStyle = css`
   flex-direction: column;
   overflow: hidden;
   background: ${globalColor(`--${illaPrefix}-white-01`)};
+`
+
+export const modalStyle = css`
+  position: absolute;
+  top: 47px;
+  width: 100vw;
+  height: calc(100vh - 47px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+`
+
+export const messageWrapperStyle = css`
+  position: absolute;
+  top: 17px;
+  height: 40px;
+  background-color: ${getColor("white", "01")};
+  padding: 9px 16px;
+  border: 1px solid ${getColor("grayBlue", "08")};
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`
+
+export const waringIconStyle = css`
+  color: ${getColor("orange", "03")};
+  font-size: 16px;
 `
