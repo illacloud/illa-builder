@@ -158,7 +158,7 @@ export const S3ActionInitial: S3Action<ListAllContent> = {
     prefix: "",
     delimiter: "",
     signedURL: false,
-    expiry: 5, // int
-    maxKeys: 100, // int
+    expiry: 5,
+    maxKeys: 100,
   },
 }

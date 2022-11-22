@@ -59,7 +59,7 @@ export const S3Panel: FC = () => {
         return <DeleteMultiplePart commandArgs={content.commandArgs} />
       case S3ActionRequestType.UPLOAD:
         return <UploadPart commandArgs={content.commandArgs} />
-      case S3ActionRequestType.DELETE_MULTIPLE:
+      case S3ActionRequestType.UPLOAD_MULTIPLE:
         return <UploadMultiplePart commandArgs={content.commandArgs} />
       default:
         return <></>
