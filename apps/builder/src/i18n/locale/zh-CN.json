@@ -185,6 +185,22 @@
           "index": "Index",
           "id": "Id"
         },
+        "s3": {
+          "action_type": "Action Type",
+          "bucket_name": "桶名",
+          "prefix_to_filter_reseults": "用于过滤结果的前缀",
+          "delimiter": "分隔符",
+          "generate_signed_url": "生成签名网址",
+          "expiry_duration_of_signed_url": "签名网址的有效期(分钟)",
+          "max_keys": "最大键值",
+          "object_key": "对象键值",
+          "object_key_list": "对象键值列表",
+          "content_type": "内容类型",
+          "upload_object_name": "上传对象名称",
+          "upload_data": "上传数据",
+          "upload_object_name_list": "上传对象名称列表",
+          "upload_data_list": "上传数据列表"
+        },
         "option": {
           "resource": {
             "new": "添加资源"
@@ -248,7 +264,25 @@
           },
           "title": {
             "advanced_option": "高级配置",
-            "general_option": "通常"
+            "general_option": "通用"
+          }
+        },
+        "s3": {
+          "label": {
+            "bucket_name": "桶名",
+            "region": "区域",
+            "custome_s3_endpoint": "自定义S3端点",
+            "base_url": "基准网址",
+            "access_key": "访问密钥",
+            "secret_access_key": "秘密访问密钥",
+            "use_custome_s3_endpoint": "使用自定义S3端点"
+          },
+          "placeholder": {
+            "region": "us-west-1",
+            "base_url": "例如https://example.com"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "用于连接到其他非S3服务，如Digital Ocean Spaces或Wasabi。"
           }
         },
         "restapi": {

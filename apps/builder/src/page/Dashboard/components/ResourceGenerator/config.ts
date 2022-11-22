@@ -48,7 +48,7 @@ export const Apis: ResourceDataItem[] = [
   },
   {
     resourceType: "s3",
-    isDraft: true,
+    isDraft: false,
   },
   {
     resourceType: "smtp",

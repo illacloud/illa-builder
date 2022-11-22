@@ -4,6 +4,7 @@ import { TransformerAction } from "./transformerAction"
 import { MongoDbAction, MongoDbActionTypeContent } from "./mongoDbAction"
 import { RedisAction } from "./redisAction"
 import { ElasticSearchAction } from "./elasticSearchAction"
+import { S3Action, S3ActionTypeContent } from "./s3Action"
 
 export interface Transformer {
   rawData: string
@@ -61,6 +62,7 @@ export const actionItemInitial: Partial<ActionItem<ActionContent>> = {
 }
 
 export type ActionContent =
+  | S3Action<S3ActionTypeContent>
   | ElasticSearchAction
   | MysqlLikeAction
   | RestApiAction<BodyContent>

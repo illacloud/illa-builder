@@ -7,6 +7,7 @@ import { RestApiConfigElement } from "@/page/App/components/Actions/RestApiConfi
 import { RedisConfigElement } from "@/page/App/components/Actions/RedisConfigElement"
 import { MongoDbConfigElement } from "@/page/App/components/Actions/MongoDbConfigElement"
 import { ElasticSearchConfigElement } from "@/page/App/components/Actions/ElasticSearchConfigElement"
+import { S3ConfigElement } from "@/page/App/components/Actions/S3ConfigElement"
 
 export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
   const { resourceType, resourceId, onBack, onFinished } = props
@@ -58,6 +59,14 @@ export const ResourceCreator: FC<ResourceCreatorProps> = (props) => {
       case "elasticsearch":
         return (
           <ElasticSearchConfigElement
+            resourceId={resourceId}
+            onBack={handleBack}
+            onFinished={onFinished}
+          />
+        )
+      case "s3":
+        return (
+          <S3ConfigElement
             resourceId={resourceId}
             onBack={handleBack}
             onFinished={onFinished}

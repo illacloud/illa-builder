@@ -185,6 +185,22 @@
           "index": "Index",
           "id": "Id"
         },
+        "s3": {
+          "action_type": "Action Type",
+          "bucket_name": "Bucket name",
+          "prefix_to_filter_reseults": "Prefix to filter results",
+          "delimiter": "Delimiter",
+          "generate_signed_url": "Generate Signed URL",
+          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
+          "max_keys": "Max keys",
+          "object_key": "Object key",
+          "object_key_list": "Object key list",
+          "content_type": "Content-Type",
+          "upload_object_name": "Upload object name",
+          "upload_data": "Upload data",
+          "upload_object_name_list": "Upload object name list",
+          "upload_data_list": "Upload data list"
+        },
         "option": {
           "resource": {
             "new": "Create a new resource"
@@ -249,6 +265,24 @@
           "title": {
             "advanced_option": "Advanced Options",
             "general_option": "GENERAL"
+          }
+        },
+        "s3": {
+          "label": {
+            "bucket_name": "Bucket name",
+            "region": "Region",
+            "custome_s3_endpoint": "Custom S3 endpoint",
+            "base_url": "Base URL",
+            "access_key": "Access key",
+            "secret_access_key": "Secret access key",
+            "use_custome_s3_endpoint": "Use custom S3 endpoint"
+          },
+          "placeholder": {
+            "region": "us-west-1",
+            "base_url": "i.e. https://example.com"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
           }
         },
         "restapi": {
