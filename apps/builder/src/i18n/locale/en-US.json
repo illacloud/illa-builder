@@ -555,6 +555,7 @@
         "img_height": "Height",
         "img_width": "Width",
         "index": "Index",
+        "item_background_color": "Item background",
         "items": "Items",
         "key": "Key",
         "label": "Label",
@@ -958,6 +959,9 @@
     },
     "input": {
       "name": "Input"
+    },
+    "list": {
+      "name": "List"
     },
     "menu": {
       "name": "Menu"

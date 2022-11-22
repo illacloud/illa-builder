@@ -555,6 +555,7 @@
         "img_height": "高度",
         "img_width": "宽度",
         "index": "索引",
+        "item_background_color": "项目背景色",
         "items": "项",
         "key": "键值",
         "label": "标签",
@@ -958,6 +959,9 @@
     },
     "input": {
       "name": "输入框"
+    },
+    "list": {
+      "name": "列表"
     },
     "menu": {
       "name": "菜单"
