@@ -30,13 +30,10 @@
 ## 🚀Get Started
 The most convenient way to try ILLA Builder is by creating an ILLA account on [Fast-try](https://fast-try.illacloud.com/). You can also deploy ILLA utils manually(Docker, docker-compose, and k8s). ILLA Cloud service is coming this December, join our [Discord Community](https://discord.gg/zKf3WKCufR) to get Free Cloud Service Code.
 
-<p align="center">
-  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted(1).png" height=120></a>
-  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live%20demo(1).png" height=120></a>
-  <picture>
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLA%20Cloud(1).png" height=120>
-</picture>
-  
+<p>
+  <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted.png" height=120 />
+  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live%20demo.png" height=120></a>
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLA%20Cloud.png" height=120>
 </p>
 
 
