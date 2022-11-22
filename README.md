@@ -51,7 +51,7 @@ The most convenient way to try ILLA Builder is by creating an ILLA account on [F
 6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
 
 
-## 4 steps to build your app
+## How to Build you tool
 
 #### 🎯 Step 1: Connect to your database
 <p align="center">
