@@ -1,9 +1,7 @@
 <div align="center">
-    <p align="center">
-<a href="https://fast-try.illacloud.com/">
-  <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/ILLALogo.svg"/>
-</a>
-</p>
+  <a href="https://fast-try.illacloud.com/">
+    <img alt="ILLA Design Logo" width="120px" height="120px" src="https://github.com/illacloud/.github/blob/main/assets/images/illa-logo.svg"/>
+  </a>
 </div>
 
 <h1 align="center"><a href="https://fast-try.illacloud.com/">ILLA Builder</a></h1>
@@ -12,7 +10,7 @@
 
 <p align="center">
 <a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/Github%20home.png">
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/github-home.png">
 </a>
 </p>
 
@@ -32,8 +30,8 @@ The most convenient way to try ILLA Builder is by creating an ILLA account on [F
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted.png" height=120 />
-  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live%20demo.png" height=120></a>
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/ILLA%20Cloud.png" height=120>
+  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live-demo.png" height=120></a>
+  <img src="https://github.com/illacloud/.github/blob/main/assets/images/illa-cloud.png" height=120>
 </p>
 
 
@@ -47,48 +45,41 @@ The most convenient way to try ILLA Builder is by creating an ILLA account on [F
 5. 📝 **Page Support:** The base of creating a content-rich and UI-friendly tool.
 6. 🎨 **Powered by [ILLA Design](https://github.com/illacloud/illa-design):** Components should not constrain your imagination.
 
-
 ## How to Build you tool
 
 #### 🎯 Step 1: Connect to your database
 <p align="center">
-<a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/SQL.jpeg">
-</a>
+  <a href="https://fast-try.illacloud.com/">
+    <img src="https://github.com/illacloud/.github/blob/main/assets/images/sql.jpeg">
+  </a>
 </p>
 
 #### 🎨 Step 2: Build UI with built-in components
 Build your UI by dragging components to the canvas. We provide dozens of components including charts, tables, forms, and many more in Illa Builder and Illa Design. When components overlap, their position will be automatically adjusted, which makes the layout development easy and flexible.
 
 <p align="center">
-<a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/edit-UI-with-components.gif">
-</a>
+  <a href="https://fast-try.illacloud.com/">
+    <img src="https://github.com/illacloud/.github/blob/main/assets/images/edit-ui-with-components.gif">
+  </a>
 </p>
 
 #### 🔌 Step 3: Connect to your data
 Connect to MySQL or REST API through our GUI data connectors. And we will add more than 10 databases and APIs soon.
 <p align="center">
-<a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
-</a>
+  <a href="https://fast-try.illacloud.com/">
+    <img src="https://github.com/illacloud/.github/blob/main/assets/images/connect-your-data.gif">
+  </a>
 </p>
 
 #### 🚀 Step 4: Deploy your app
 Deploy your app and self host it. 
 <p align="center">
-<a href="https://fast-try.illacloud.com/">
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
+  <a href="https://fast-try.illacloud.com/">
+    <img src="https://github.com/illacloud/.github/blob/main/assets/images/deploy.gif">
   </a>
-  </p>
-  
+</p>
 
-
-**❗ The current version is still in beta, each version update will clear the  data, please do not store important data in our live demo.**
-
-
-
-
+**❗ The current version is still in beta, each version update will clear the data, please do not store important data in our live demo.**
 
 ## 💬 Community
 
