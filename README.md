@@ -30,8 +30,8 @@ The most convenient way to try ILLA Builder is by creating an ILLA account on [F
 
 <p>
   <a href="https://www.illacloud.com/en-US/docs/deploy-introduction"><img src="https://github.com/illacloud/.github/blob/main/assets/images/self-hosted.png" height=120 />
-  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live-demo.png" height=120></a>
-  <img src="https://github.com/illacloud/.github/blob/main/assets/images/illa-cloud.png" height=120>
+  <a href="https://fast-try.illacloud.com/"><img src="https://github.com/illacloud/.github/blob/main/assets/images/live-demo.png" height=120 />
+  <a href="https://illacloud.com"><img src="https://github.com/illacloud/.github/blob/main/assets/images/illa-cloud.png" height=120></a>
 </p>
 
 
