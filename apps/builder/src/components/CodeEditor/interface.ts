@@ -29,6 +29,7 @@ export interface CodeEditorProps
   borderRadius?: string
   noTab?: boolean
   path?: string
+  extendedData?: Record<string, any>
   // sql table data
   tables?: Record<string, any>
   onBlur?: () => void

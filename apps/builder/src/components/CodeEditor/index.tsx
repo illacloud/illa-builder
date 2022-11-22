@@ -46,6 +46,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
       borderRadius = "8px",
       path,
       tables = {},
+      extendedData = {},
       lineNumbers,
       noTab,
       value,
@@ -244,8 +245,11 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     }, [executionResult])
 
     useEffect(() => {
-      sever.current = TernServer(languageValue, { ...executionResult })
-    }, [executionResult, languageValue])
+      sever.current = TernServer(languageValue, {
+        ...executionResult,
+        ...extendedData,
+      })
+    }, [executionResult, languageValue, extendedData])
 
     useEffect(() => {
       ILLAEditor.current?.setOption("mode", EditorModes[mode])
