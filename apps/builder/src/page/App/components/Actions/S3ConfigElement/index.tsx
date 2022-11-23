@@ -218,9 +218,6 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
           <>
             <div css={configItem}>
               <div css={labelContainer}>
-                <span css={applyConfigItemLabelText(getColor("red", "02"))}>
-                  *
-                </span>
                 <span
                   css={applyConfigItemLabelText(
                     getColor("grayBlue", "02"),
@@ -234,7 +231,6 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
                 defaultValue={content.baseURL}
                 control={control}
                 rules={{
-                  required: t("editor.action.form.required"),
                   validate: (value: string) => {
                     return isURL(value)
                       ? true
