@@ -209,7 +209,8 @@
             "data_list": "[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]"
           },
           "tips": {
-            "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。"
+            "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。",
+            "delimiter": "分隔符是一个用来分组键值的字符。"
           },
           "error": {
             "max_file": "文件大小不能超过5M。"

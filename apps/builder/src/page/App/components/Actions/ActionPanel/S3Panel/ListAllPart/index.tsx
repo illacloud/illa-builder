@@ -82,9 +82,14 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
         />
       </div>
       <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.delimiter")}
-        </span>
+        <Popover
+          title={t("editor.action.panel.s3.tips.delimiter")}
+          trigger="hover"
+        >
+          <span css={codeEditorLabelStyle}>
+            {t("editor.action.panel.s3.delimiter")}
+          </span>
+        </Popover>
         <CodeEditor
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
