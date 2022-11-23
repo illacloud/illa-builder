@@ -50,7 +50,7 @@ const MAX_SIZE = 5
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { onActionRun } = props
 
-  const selectedAction = useSelector(getSelectedAction)
+  const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)
 
   const getActionFilteredContent = (
@@ -137,6 +137,87 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }, [isChanged, cachedAction])
 
+  const handleActionOperation = () => {
+    let cachedActionValue: ActionItem<ActionContent> | null =
+      getActionFilteredContent(cachedAction)
+    const canRunS3Action = getCanRunS3Action(cachedAction)
+
+    switch (runMode) {
+      case "run":
+        if (!canRunS3Action) {
+          Message.error(t("editor.action.panel.s3.error.max_file"))
+          return
+        }
+        setLoading(true)
+        if (cachedActionValue) {
+          runAction(cachedActionValue, (result: unknown, error?: boolean) => {
+            setLoading(false)
+            onActionRun(result, error)
+          })
+        }
+        break
+      case "save":
+        Api.request(
+          {
+            method: "PUT",
+            url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
+            data: cachedActionValue,
+          },
+          () => {
+            if (cachedActionValue) {
+              dispatch(actionActions.updateActionItemReducer(cachedActionValue))
+            }
+          },
+          () => {
+            Message.error(t("create_fail"))
+          },
+          () => {
+            Message.error(t("create_fail"))
+          },
+          (l) => {
+            setLoading(l)
+          },
+        )
+        break
+      case "save_and_run":
+        if (!canRunS3Action) {
+          Message.error(t("editor.action.panel.s3.error.max_file"))
+          return
+        }
+        Api.request(
+          {
+            method: "PUT",
+            url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
+            data: cachedActionValue,
+          },
+          () => {
+            if (cachedActionValue) {
+              dispatch(actionActions.updateActionItemReducer(cachedActionValue))
+              setLoading(true)
+
+              runAction(
+                cachedActionValue,
+                (result: unknown, error?: boolean) => {
+                  setLoading(false)
+                  onActionRun(result, error)
+                },
+              )
+            }
+          },
+          () => {
+            Message.error(t("editor.action.panel.btn.save_fail"))
+          },
+          () => {
+            Message.error(t("editor.action.panel.btn.save_fail"))
+          },
+          (l) => {
+            setLoading(l)
+          },
+        )
+        break
+    }
+  }
+
   const renderButton = useMemo(() => {
     return runMode === "run" ? cachedAction?.actionType !== "transformer" : true
   }, [cachedAction?.actionType, runMode])
@@ -217,97 +298,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           size="medium"
           loading={loading}
           leftIcon={<CaretRightIcon />}
-          onClick={() => {
-            let cachedActionValue: ActionItem<ActionContent> | null =
-              getActionFilteredContent(cachedAction)
-            const canRunS3Action = getCanRunS3Action(cachedAction)
-
-            switch (runMode) {
-              case "run":
-                if (!canRunS3Action) {
-                  Message.error(t("editor.action.panel.s3.error.max_file"))
-                  return
-                }
-                setLoading(true)
-                if (cachedActionValue) {
-                  runAction(
-                    cachedActionValue,
-                    (result: unknown, error?: boolean) => {
-                      setLoading(false)
-                      onActionRun(result, error)
-                    },
-                  )
-                }
-                break
-              case "save":
-                Api.request(
-                  {
-                    method: "PUT",
-                    url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
-                    data: cachedActionValue,
-                  },
-                  () => {
-                    if (cachedActionValue) {
-                      dispatch(
-                        actionActions.updateActionItemReducer(
-                          cachedActionValue,
-                        ),
-                      )
-                    }
-                  },
-                  () => {
-                    Message.error(t("create_fail"))
-                  },
-                  () => {
-                    Message.error(t("create_fail"))
-                  },
-                  (l) => {
-                    setLoading(l)
-                  },
-                )
-                break
-              case "save_and_run":
-                if (!canRunS3Action) {
-                  Message.error(t("editor.action.panel.s3.error.max_file"))
-                  return
-                }
-                Api.request(
-                  {
-                    method: "PUT",
-                    url: `/apps/${currentApp.appId}/actions/${selectedAction.actionId}`,
-                    data: cachedActionValue,
-                  },
-                  () => {
-                    if (cachedActionValue) {
-                      dispatch(
-                        actionActions.updateActionItemReducer(
-                          cachedActionValue,
-                        ),
-                      )
-                      setLoading(true)
-
-                      runAction(
-                        cachedActionValue,
-                        (result: unknown, error?: boolean) => {
-                          setLoading(false)
-                          onActionRun(result, error)
-                        },
-                      )
-                    }
-                  },
-                  () => {
-                    Message.error(t("editor.action.panel.btn.save_fail"))
-                  },
-                  () => {
-                    Message.error(t("editor.action.panel.btn.save_fail"))
-                  },
-                  (l) => {
-                    setLoading(l)
-                  },
-                )
-                break
-            }
-          }}
+          onClick={handleActionOperation}
         >
           {t(`editor.action.panel.btn.${runMode}`)}
         </Button>

@@ -118,7 +118,6 @@ export function onActionConfigElementSubmit(
     resourceId != undefined ? `/resources/${resourceId}` : `/resources`
 
   return handleSubmit((data: FieldValues) => {
-    const content = getActionContentByType(data, resourceType)
     Api.request<Resource<ResourceContent>>(
       {
         method,
@@ -127,7 +126,7 @@ export function onActionConfigElementSubmit(
           ...(resourceId !== undefined && { resourceId: data.resourceId }),
           resourceName: data.resourceName,
           resourceType: resourceType,
-          content,
+          content: getActionContentByType(data, resourceType),
         },
       },
       (response) => {

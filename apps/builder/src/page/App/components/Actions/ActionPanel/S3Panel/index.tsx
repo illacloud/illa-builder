@@ -66,6 +66,52 @@ export const S3Panel: FC = () => {
     }
   }, [content.commands, content.commandArgs])
 
+  const handleActionChange = (value: S3ActionRequestType) => {
+    let newCommandArgs: S3ActionTypeContent = ListAllContentInitial
+    if (
+      cachedAction.resourceId === selectedAction.resourceId &&
+      (selectedAction.content as S3Action<S3ActionTypeContent>).commands ===
+        value
+    ) {
+      newCommandArgs = (selectedAction.content as S3Action<S3ActionTypeContent>)
+        .commandArgs
+    } else {
+      switch (value) {
+        case S3ActionRequestType.LIST_ALL:
+          newCommandArgs = ListAllContentInitial
+          break
+        case S3ActionRequestType.READ_ONE:
+          newCommandArgs = ReadOneContentInitial
+          break
+        case S3ActionRequestType.DOWNLOAD_ONE:
+          newCommandArgs = DownloadOneContentInitial
+          break
+        case S3ActionRequestType.DELETE_ONE:
+          newCommandArgs = DeleteOneContentInitial
+          break
+        case S3ActionRequestType.DELETE_MULTIPLE:
+          newCommandArgs = DeleteMultipleContentInitial
+          break
+        case S3ActionRequestType.UPLOAD:
+          newCommandArgs = UploadContentInitial
+          break
+        case S3ActionRequestType.UPLOAD_MULTIPLE:
+          newCommandArgs = UploadMultipleContentInitial
+          break
+      }
+    }
+    dispatch(
+      configActions.updateCachedAction({
+        ...cachedAction,
+        content: {
+          ...cachedAction.content,
+          commands: value,
+          commandArgs: newCommandArgs,
+        },
+      }),
+    )
+  }
+
   return (
     <div css={s3ContainerStyle}>
       <ResourceChoose />
@@ -80,52 +126,7 @@ export const S3Panel: FC = () => {
           value={content.commands}
           ml="16px"
           width="100%"
-          onChange={(value) => {
-            let newCommandArgs: S3ActionTypeContent = ListAllContentInitial
-            if (
-              cachedAction.resourceId === selectedAction.resourceId &&
-              (selectedAction.content as S3Action<S3ActionTypeContent>)
-                .commands === value
-            ) {
-              newCommandArgs = (
-                selectedAction.content as S3Action<S3ActionTypeContent>
-              ).commandArgs
-            } else {
-              switch (value) {
-                case S3ActionRequestType.LIST_ALL:
-                  newCommandArgs = ListAllContentInitial
-                  break
-                case S3ActionRequestType.READ_ONE:
-                  newCommandArgs = ReadOneContentInitial
-                  break
-                case S3ActionRequestType.DOWNLOAD_ONE:
-                  newCommandArgs = DownloadOneContentInitial
-                  break
-                case S3ActionRequestType.DELETE_ONE:
-                  newCommandArgs = DeleteOneContentInitial
-                  break
-                case S3ActionRequestType.DELETE_MULTIPLE:
-                  newCommandArgs = DeleteMultipleContentInitial
-                  break
-                case S3ActionRequestType.UPLOAD:
-                  newCommandArgs = UploadContentInitial
-                  break
-                case S3ActionRequestType.UPLOAD_MULTIPLE:
-                  newCommandArgs = UploadMultipleContentInitial
-                  break
-              }
-            }
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commands: value,
-                  commandArgs: newCommandArgs,
-                },
-              }),
-            )
-          }}
+          onChange={handleActionChange}
           options={S3ActionList}
         />
       </div>

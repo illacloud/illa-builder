@@ -24,8 +24,21 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
   >
-
   const commandArgs = props.commandArgs as UploadMultipleContent
+  const handleValueChange = (value: string, name: string) => {
+    dispatch(
+      configActions.updateCachedAction({
+        ...cachedAction,
+        content: {
+          ...cachedAction.content,
+          commandArgs: {
+            ...commandArgs,
+            [name]: value,
+          } as UploadMultipleContent,
+        },
+      }),
+    )
+  }
 
   return (
     <>
@@ -37,20 +50,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    bucketName: value,
-                  } as UploadMultipleContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "bucketName")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -62,20 +62,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.contentType}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    contentType: value,
-                  } as UploadMultipleContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "contentType")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -90,20 +77,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           mode="TEXT_JS"
           placeholder={t("editor.action.panel.s3.placeholder.object_name_list")}
           value={commandArgs.objectKeyList}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    objectKeyList: value,
-                  } as UploadMultipleContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "objectKeyList")}
           expectedType={VALIDATION_TYPES.ARRAY}
         />
       </div>
@@ -118,20 +92,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           mode="TEXT_JS"
           placeholder={t("editor.action.panel.s3.placeholder.data_list")}
           value={commandArgs.objectDataList}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    objectDataList: value,
-                  } as UploadMultipleContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "objectDataList")}
           expectedType={VALIDATION_TYPES.ARRAY}
         />
       </div>

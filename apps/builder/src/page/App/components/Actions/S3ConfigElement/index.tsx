@@ -61,6 +61,23 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
   const [baseURLOpen, setBaseURLOpen] = useState(false)
 
+  const handleBack = () => {
+    onBack()
+  }
+
+  const handleConnectionTest = () => {
+    const data = getValues()
+    const content = {
+      bucketName: data.bucketName,
+      region: data.region,
+      endpoint: data.endpoint,
+      baseURL: data.baseURL,
+      accessKeyID: data.accessKeyID,
+      secretAccessKey: data.secretAccessKey,
+    }
+    onActionConfigElementTest(data, content, "s3", setTestLoading)
+  }
+
   return (
     <form
       onSubmit={onActionConfigElementSubmit(
@@ -344,9 +361,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
           variant="text"
           colorScheme="gray"
           type="button"
-          onClick={() => {
-            onBack()
-          }}
+          onClick={handleBack}
         >
           {t("back")}
         </Button>
@@ -356,18 +371,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
             loading={testLoading}
             disabled={!formState.isValid}
             type="button"
-            onClick={() => {
-              const data = getValues()
-              const content = {
-                bucketName: data.bucketName,
-                region: data.region,
-                endpoint: data.endpoint,
-                baseURL: data.baseURL,
-                accessKeyID: data.accessKeyID,
-                secretAccessKey: data.secretAccessKey,
-              }
-              onActionConfigElementTest(data, content, "s3", setTestLoading)
-            }}
+            onClick={handleConnectionTest}
           >
             {t("editor.action.form.btn.test_connection")}
           </Button>

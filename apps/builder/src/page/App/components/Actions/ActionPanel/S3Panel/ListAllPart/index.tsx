@@ -30,6 +30,21 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
   const commandArgs = props.commandArgs as ListAllContent
   const isShowSignedURL = commandArgs.signedURL
 
+  const handleValueChange = (value: string | boolean, name: string) => {
+    dispatch(
+      configActions.updateCachedAction({
+        ...cachedAction,
+        content: {
+          ...cachedAction.content,
+          commandArgs: {
+            ...commandArgs,
+            [name]: value,
+          } as ListAllContent,
+        },
+      }),
+    )
+  }
+
   return (
     <>
       <div css={s3ItemStyle}>
@@ -40,20 +55,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    bucketName: value,
-                  } as ListAllContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "bucketName")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -65,20 +67,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.prefix}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    prefix: value,
-                  } as ListAllContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "prefix")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -90,20 +79,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.delimiter}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    delimiter: value,
-                  } as ListAllContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "delimiter")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -117,20 +93,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           value={+commandArgs.signedURL}
           ml="16px"
           width="100%"
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    signedURL: !!value,
-                  } as ListAllContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(!!value, "signedURL")}
           options={[
             {
               label: "No",
@@ -152,20 +115,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
             css={s3ItemCodeEditorStyle}
             mode="TEXT_JS"
             value={String(commandArgs.expiry)}
-            onChange={(value) => {
-              dispatch(
-                configActions.updateCachedAction({
-                  ...cachedAction,
-                  content: {
-                    ...cachedAction.content,
-                    commandArgs: {
-                      ...commandArgs,
-                      expiry: value,
-                    } as ListAllContent,
-                  },
-                }),
-              )
-            }}
+            onChange={(value) => handleValueChange(value, "expiry")}
             expectedType={VALIDATION_TYPES.NUMBER}
           />
         </div>
@@ -183,20 +133,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.maxKeys}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    maxKeys: value,
-                  } as ListAllContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "maxKeys")}
           expectedType={VALIDATION_TYPES.NUMBER}
         />
       </div>

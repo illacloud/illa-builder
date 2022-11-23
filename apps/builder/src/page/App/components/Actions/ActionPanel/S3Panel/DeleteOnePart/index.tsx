@@ -26,6 +26,21 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
   >
   const commandArgs = props.commandArgs as DeleteOneContent
 
+  const handleValueChange = (value: string, name: string) => {
+    dispatch(
+      configActions.updateCachedAction({
+        ...cachedAction,
+        content: {
+          ...cachedAction.content,
+          commandArgs: {
+            ...commandArgs,
+            [name]: value,
+          } as DeleteOneContent,
+        },
+      }),
+    )
+  }
+
   return (
     <>
       <div css={s3ItemStyle}>
@@ -36,20 +51,7 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    bucketName: value,
-                  } as DeleteOneContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "bucketName")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -61,20 +63,7 @@ export const DeleteOnePart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.objectKey}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    objectKey: value,
-                  } as DeleteOneContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "objectKey")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>

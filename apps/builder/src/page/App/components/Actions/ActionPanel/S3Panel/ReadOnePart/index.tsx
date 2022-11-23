@@ -24,8 +24,21 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
   >
-
   const commandArgs = props.commandArgs as ReadOneContent
+  const handleValueChange = (value: string, name: string) => {
+    dispatch(
+      configActions.updateCachedAction({
+        ...cachedAction,
+        content: {
+          ...cachedAction.content,
+          commandArgs: {
+            ...commandArgs,
+            [name]: value,
+          } as ReadOneContent,
+        },
+      }),
+    )
+  }
 
   return (
     <>
@@ -37,20 +50,7 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    bucketName: value,
-                  } as ReadOneContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "bucketName")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -62,20 +62,7 @@ export const ReadOnePart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.objectKey}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    objectKey: value,
-                  } as ReadOneContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "objectKey")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>

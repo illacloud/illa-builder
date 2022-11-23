@@ -24,8 +24,21 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
   >
-
   const commandArgs = props.commandArgs as UploadContent
+  const handleValueChange = (value: string, name: string) => {
+    dispatch(
+      configActions.updateCachedAction({
+        ...cachedAction,
+        content: {
+          ...cachedAction.content,
+          commandArgs: {
+            ...commandArgs,
+            [name]: value,
+          } as UploadContent,
+        },
+      }),
+    )
+  }
 
   return (
     <>
@@ -37,20 +50,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    bucketName: value,
-                  } as UploadContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "bucketName")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -62,20 +62,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.contentType}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    contentType: value,
-                  } as UploadContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "contentType")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -88,20 +75,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           mode="TEXT_JS"
           placeholder={t("editor.action.panel.s3.placeholder.object_name")}
           value={commandArgs.objectKey}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    objectKey: value,
-                  } as UploadContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "objectKey")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
@@ -115,20 +89,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.objectData}
-          onChange={(value) => {
-            dispatch(
-              configActions.updateCachedAction({
-                ...cachedAction,
-                content: {
-                  ...cachedAction.content,
-                  commandArgs: {
-                    ...commandArgs,
-                    objectData: value,
-                  } as UploadContent,
-                },
-              }),
-            )
-          }}
+          onChange={(value) => handleValueChange(value, "objectData")}
           expectedType={VALIDATION_TYPES.STRING}
         />
       </div>
