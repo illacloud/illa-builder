@@ -64,6 +64,7 @@
   "duplicate": "Duplicate",
   "edit": "Edit",
   "edit_at": "Edited at",
+  "edit_failed": "Failed to save, please check your network.",
   "edit_success": "Edited successfully",
   "editor": {
     "action": {
@@ -182,9 +183,37 @@
         "elastic": {
           "action_type": "Action Type",
           "query": "Query",
-          "body": "Body",
           "index": "Index",
-          "id": "Id"
+          "id": "Id",
+          "body": "Body"
+        },
+        "s3": {
+          "action_type": "Action Type",
+          "bucket_name": "Bucket name",
+          "prefix_to_filter_reseults": "Prefix to filter results",
+          "delimiter": "Delimiter",
+          "generate_signed_url": "Generate Signed URL",
+          "expiry_duration_of_signed_url": "Expiry Duration of Signed URL(Minutes)",
+          "max_keys": "Max keys",
+          "object_key": "Object key",
+          "object_key_list": "Object key list",
+          "content_type": "Content-Type",
+          "upload_object_name": "Upload object name",
+          "upload_data": "Upload data",
+          "upload_object_name_list": "Upload object name list",
+          "upload_data_list": "Upload data list",
+          "placeholder": {
+            "object_key_list": "[\"myDir/file1.txt\", \"myDir/file2.txt\"]",
+            "object_name": "export.csv",
+            "object_name_list": "[\"export.csv\",\"export1.csv\"]",
+            "data_list": "[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]"
+          },
+          "tips": {
+            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names."
+          },
+          "error": {
+            "max_file": "The size of file can't exceed 5M."
+          }
         },
         "option": {
           "resource": {
@@ -203,9 +232,6 @@
         "card": {
           "coming_soon": "Coming Soon"
         },
-        "error": {
-          "invalid_url": "Please enter a valid URL, for example, https://example.com"
-        },
         "db": {
           "label": {
             "ca_certificate": "CA Certificate",
@@ -218,8 +244,8 @@
             "database": "Database",
             "database_index": "Database Index",
             "hostname": "Hostname",
-            "hosturl": "Host Url",
             "hostname_port": "Hostname/Port",
+            "hosturl": "Host Url",
             "mongodb_connection_dns_seed_list": "DNS seed list connection",
             "mongodb_connection_standard": "Standard Connection",
             "mongodb_ssl_ca": "CA Cert",
@@ -251,6 +277,27 @@
             "advanced_option": "Advanced Options",
             "general_option": "GENERAL"
           }
+        },
+        "s3": {
+          "label": {
+            "bucket_name": "Bucket name",
+            "region": "Region",
+            "custome_s3_endpoint": "Custom S3 endpoint",
+            "base_url": "Base URL",
+            "access_key": "Access key",
+            "secret_access_key": "Secret access key",
+            "use_custome_s3_endpoint": "Use custom S3 endpoint"
+          },
+          "placeholder": {
+            "region": "us-west-1",
+            "base_url": "i.e. https://example.com"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "This is used to connect to other non-S3 services, like Digital Ocean Spaces or Wasabi."
+          }
+        },
+        "error": {
+          "invalid_url": "Please enter a valid URL, for example, https://example.com"
         },
         "restapi": {
           "btns": {
@@ -395,12 +442,6 @@
           "new": "New",
           "title": "Title"
         },
-        "menu_setter": {
-          "label": "Menus ({{number}})",
-          "new": "New",
-          "sub": "Sub",
-          "delete": "Delete"
-        },
         "event_handler_list": {
           "empty": "Trigger queries, control components, or call other APIs in response to component events.",
           "incomplete_selection": "Incomplete selection",
@@ -409,6 +450,12 @@
         },
         "list_setter": {
           "reset": "Reset"
+        },
+        "menu_setter": {
+          "delete": "Delete",
+          "label": "Menus ({{number}})",
+          "new": "New",
+          "sub": "Sub"
         },
         "option_list": {
           "action_menu": {
@@ -436,13 +483,13 @@
           "blur": "Blur",
           "change": "Change",
           "click": "Click",
+          "clickMenuItem": "Click",
           "columnFiltersChange": "Filter change",
           "fail": "Fail",
           "focus": "Focus",
           "invalid": "Invalid",
           "paginationChange": "Page change",
           "sortingChange": "Sort change",
-          "clickMenuItem": "Click",
           "submit": "Submit",
           "success": "Success"
         }
@@ -733,6 +780,7 @@
   "freeze_tips": "The canvas is frozen. Click here to unfreeze it.",
   "link_copied": "Link Copied",
   "network_error": "Network disconnected. Please check this device's network",
+  "not_online_tips": "Network disconnected. Please check this device's network",
   "preview": "Preview",
   "remove_fail": "Failed to remove",
   "rename": "Rename",
@@ -797,7 +845,6 @@
           "require": "Please enter your email"
         },
         "newPassword": {
-          "length": "The password must be 6~20 characters",
           "require": "Please enter your password"
         },
         "verification_code": {
@@ -813,9 +860,9 @@
       },
       "placeholder": {
         "email": "Enter your email",
-        "newPassword": "Enter your new password(6~20 characters)",
         "verification_code": "Please enter verification code"
       },
+      "subtitle": "Back to sign in",
       "tips": {
         "fail": "Failed to reset password",
         "fail_sent": "Failed to send verification code",
@@ -823,6 +870,9 @@
         "verification_code": "Verification code sent"
       },
       "title": "Reset Password"
+    },
+    "password": {
+      "placeholder": "Enter your new password(at least 6 characters)"
     },
     "sign_in": {
       "actions": {
@@ -841,8 +891,8 @@
         },
         "password": {
           "incorrect": "Incorrect email or password",
-          "length": "The password must be 6~20 characters",
           "locked": "Too many bad attempts, please reset your password or try again after 1 hour",
+          "min_length": "The password must be at least 6 characters",
           "require": "Please enter password"
         }
       },
@@ -851,8 +901,7 @@
         "password": "Password"
       },
       "placeholder": {
-        "email": "Enter your email",
-        "password": "Enter your password(6~20 characters)"
+        "email": "Enter your email"
       },
       "tips": {
         "fail": "Failed to sign in",
@@ -877,7 +926,6 @@
           "require": "Please enter your email"
         },
         "password": {
-          "length": "The password must be 6~20 characters",
           "require": "Please enter password"
         },
         "username": {
@@ -898,7 +946,6 @@
       },
       "placeholder": {
         "email": "Enter your email",
-        "password": "Create a password(6~20 characters)",
         "username": "Enter your username",
         "verification_code": "Please enter verification code"
       },
@@ -958,6 +1005,9 @@
     "input": {
       "name": "Input"
     },
+    "menu": {
+      "name": "Menu"
+    },
     "number_input": {
       "name": "Number Input"
     },
@@ -984,9 +1034,6 @@
     },
     "switch": {
       "name": "Switch"
-    },
-    "menu": {
-      "name": "Menu"
     },
     "table": {
       "ascend": "Asc",

@@ -64,6 +64,7 @@
   "duplicate": "复制",
   "edit": "编辑",
   "edit_at": "上次编辑于",
+  "edit_failed": "保存失败，请检查网络连接。",
   "edit_success": "修改成功！",
   "editor": {
     "action": {
@@ -182,9 +183,37 @@
         "elastic": {
           "action_type": "Action Type",
           "query": "Query",
-          "body": "Body",
           "index": "Index",
-          "id": "Id"
+          "id": "Id",
+          "body": "Body"
+        },
+        "s3": {
+          "action_type": "Action Type",
+          "bucket_name": "桶名",
+          "prefix_to_filter_reseults": "用于过滤结果的前缀",
+          "delimiter": "分隔符",
+          "generate_signed_url": "生成签名网址",
+          "expiry_duration_of_signed_url": "签名网址的有效期(分钟)",
+          "max_keys": "最大键值",
+          "object_key": "对象键值",
+          "object_key_list": "对象键值列表",
+          "content_type": "内容类型",
+          "upload_object_name": "上传对象名称",
+          "upload_data": "上传数据",
+          "upload_object_name_list": "上传对象名称列表",
+          "upload_data_list": "上传数据列表",
+          "placeholder": {
+            "object_key_list": "[\"myDir/file1.txt\", \"myDir/file2.txt\"]",
+            "object_name": "export.csv",
+            "object_name_list": "[\"export.csv\",\"export1.csv\"]",
+            "data_list": "[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]"
+          },
+          "tips": {
+            "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。"
+          },
+          "error": {
+            "max_file": "文件大小不能超过5M。"
+          }
         },
         "option": {
           "resource": {
@@ -202,9 +231,6 @@
       "resource": {
         "card": {
           "coming_soon": "即将更新"
-        },
-        "error": {
-          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "db": {
           "label": {
@@ -249,8 +275,29 @@
           },
           "title": {
             "advanced_option": "高级配置",
-            "general_option": "通常"
+            "general_option": "通用"
           }
+        },
+        "s3": {
+          "label": {
+            "bucket_name": "桶名",
+            "region": "区域",
+            "custome_s3_endpoint": "自定义S3端点",
+            "base_url": "基准网址",
+            "access_key": "访问密钥",
+            "secret_access_key": "秘密访问密钥",
+            "use_custome_s3_endpoint": "使用自定义S3端点"
+          },
+          "placeholder": {
+            "region": "us-west-1",
+            "base_url": "例如https://example.com"
+          },
+          "tip": {
+            "custome_s3_endpoint_tip": "用于连接到其他非S3服务，如Digital Ocean Spaces或Wasabi。"
+          }
+        },
+        "error": {
+          "invalid_url": "请输入可用的URL，例如http://example.com"
         },
         "restapi": {
           "btns": {
@@ -395,12 +442,6 @@
           "new": "新建",
           "title": "标题"
         },
-        "menu_setter": {
-          "label": "菜单 ({{number}})",
-          "new": "新建",
-          "sub": "子菜单",
-          "delete": "删除"
-        },
         "event_handler_list": {
           "empty": "触发查询、控制组件或调用其他API以响应组件事件。",
           "incomplete_selection": "不完整的选择",
@@ -409,6 +450,12 @@
         },
         "list_setter": {
           "reset": "重置"
+        },
+        "menu_setter": {
+          "delete": "删除",
+          "label": "菜单 ({{number}})",
+          "new": "新建",
+          "sub": "子菜单"
         },
         "option_list": {
           "action_menu": {
@@ -436,13 +483,13 @@
           "blur": "失焦",
           "change": "内容改变",
           "click": "单击",
+          "clickMenuItem": "单击",
           "columnFiltersChange": "行筛选改变",
           "fail": "失败后",
           "focus": "聚焦",
           "invalid": "校验失败",
           "paginationChange": "翻页配置改变",
           "sortingChange": "排序方式改变",
-          "clickMenuItem": "单击",
           "submit": "提交",
           "success": "成功后"
         }
@@ -733,6 +780,7 @@
   "freeze_tips": "画布已冻结，点击解冻。",
   "link_copied": "链接已复制",
   "network_error": "网络异常",
+  "not_online_tips": "网络已断开，请检查此设备的网络",
   "preview": "预览",
   "remove_fail": "删除失败",
   "rename": "重命名",
@@ -797,7 +845,6 @@
           "require": "邮箱不能为空"
         },
         "newPassword": {
-          "length": "密码须为6～20个字符",
           "require": "密码不能为空"
         },
         "verification_code": {
@@ -813,9 +860,9 @@
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "newPassword": "请输入密码（6-20个字符）",
         "verification_code": "请输入验证码"
       },
+      "subtitle": "返回登录",
       "tips": {
         "fail": "重置密码失败",
         "fail_sent": "发送验证码失败",
@@ -823,6 +870,9 @@
         "verification_code": "验证码已发送"
       },
       "title": "重置密码"
+    },
+    "password": {
+      "placeholder": "请输入密码（不少于6个字符）"
     },
     "sign_in": {
       "actions": {
@@ -841,8 +891,8 @@
         },
         "password": {
           "incorrect": "请输入正确的账号密码",
-          "length": "密码须为6～20个字符",
           "locked": "密码输错超过5次，账户将被锁定1小时",
+          "min_length": "密码须至少6个字符",
           "require": "密码不能为空"
         }
       },
@@ -851,8 +901,7 @@
         "password": "密码"
       },
       "placeholder": {
-        "email": "请输入邮箱",
-        "password": "请输入密码（6-20个字符）"
+        "email": "请输入邮箱"
       },
       "tips": {
         "fail": "登录失败",
@@ -877,7 +926,6 @@
           "require": "邮箱不能为空"
         },
         "password": {
-          "length": "密码须为6～20个字符",
           "require": "密码不能为空"
         },
         "username": {
@@ -898,7 +946,6 @@
       },
       "placeholder": {
         "email": "请输入邮箱",
-        "password": "请输入密码（6-20个字符）",
         "username": "请输入用户名",
         "verification_code": "请输入验证码"
       },
@@ -958,6 +1005,9 @@
     "input": {
       "name": "输入框"
     },
+    "menu": {
+      "name": "菜单"
+    },
     "number_input": {
       "name": "数字输入框"
     },
@@ -984,9 +1034,6 @@
     },
     "switch": {
       "name": "开关"
-    },
-    "menu": {
-      "name": "菜单"
     },
     "table": {
       "ascend": "升序",

@@ -48,7 +48,7 @@ export const Apis: ActionDataItem[] = [
   },
   {
     actionType: "s3",
-    isDraft: true,
+    isDraft: false,
   },
   {
     actionType: "smtp",

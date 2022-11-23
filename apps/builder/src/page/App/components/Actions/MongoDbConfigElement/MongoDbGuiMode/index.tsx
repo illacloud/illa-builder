@@ -23,6 +23,7 @@ import {
 import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource, ResourceContent } from "@/redux/resource/resourceState"
+import { isCloudVersion } from "@/utils/typeHelper"
 
 export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
   const { control, resourceId } = props
@@ -248,19 +249,23 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
           />
         </div>
       </div>
-      <div css={configItemTip}>
-        {t("editor.action.resource.db.tip.username_password")}
-      </div>
-      <div css={configItem}>
-        <div css={labelContainer}>
-          <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-            {t("editor.action.resource.db.label.connect_type")}
-          </span>
-        </div>
-        <span css={connectTypeStyle}>
-          {t("editor.action.resource.db.tip.connect_type")}
-        </span>
-      </div>
+      {isCloudVersion && (
+        <>
+          <div css={configItemTip}>
+            {t("editor.action.resource.db.tip.username_password")}
+          </div>
+          <div css={configItem}>
+            <div css={labelContainer}>
+              <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
+                {t("editor.action.resource.db.label.connect_type")}
+              </span>
+            </div>
+            <span css={connectTypeStyle}>
+              {t("editor.action.resource.db.tip.connect_type")}
+            </span>
+          </div>
+        </>
+      )}
     </>
   )
 }

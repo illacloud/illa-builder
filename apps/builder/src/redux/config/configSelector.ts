@@ -66,3 +66,7 @@ export const getCanvasShape = (state: RootState) => {
     canvasHeight: state.config.canvasHeight,
   }
 }
+
+export const getIsOnline = (state: RootState) => {
+  return state.config.isOnline
+}

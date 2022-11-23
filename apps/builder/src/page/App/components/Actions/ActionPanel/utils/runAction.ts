@@ -22,35 +22,31 @@ import {
 } from "@/redux/currentApp/action/restapiAction"
 import { isObject } from "@/utils/typeHelper"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
 function calcRealContent(content: Record<string, any>) {
   let realContent: Record<string, any> = {}
-  for (let key in content) {
-    // @ts-ignore
-    const value = content[key]
-    if (Array.isArray(value)) {
-      realContent[key] = value.map((item) => {
-        return calcRealContent(item)
-      })
-    }
-    if (isObject(value)) {
-      realContent[key] = calcRealContent(value)
-    }
-    if (isDynamicString(value)) {
-      try {
-        realContent[key] = evaluateDynamicString(
-          "",
-          value,
-          BUILDER_CALC_CONTEXT,
-        )
-      } catch (e) {
-        Message.error(`maybe run error`)
+  if (Array.isArray(content) || isObject(content)) {
+    for (let key in content) {
+      const value = content[key]
+      if (isDynamicString(value)) {
+        try {
+          realContent[key] = evaluateDynamicString(
+            "",
+            value,
+            BUILDER_CALC_CONTEXT,
+          )
+        } catch (e) {
+          Message.error(`maybe run error`)
+        }
+      } else {
+        realContent[key] = calcRealContent(value)
       }
-    } else {
-      realContent[key] = value
     }
+  } else {
+    realContent = content
   }
   return realContent
 }
@@ -136,6 +132,41 @@ function getRealEventHandler(eventHandler?: any[]) {
   return realEventHandler
 }
 
+const transformDataFormat = (
+  actionType: string,
+  content: Record<string, any>,
+) => {
+  switch (actionType) {
+    case "s3":
+      const { commands, commandArgs } = content
+      if (commands === S3ActionRequestType.UPLOAD) {
+        const { objectData } = commandArgs
+        return {
+          ...content,
+          commandArgs: {
+            ...content.commandArgs,
+            objectData: window.btoa(objectData),
+          },
+        }
+      }
+      if (commands === S3ActionRequestType.UPLOAD_MULTIPLE) {
+        const { objectDataList = [] } = commandArgs
+        return {
+          ...content,
+          commandArgs: {
+            ...content.commandArgs,
+            objectDataList: objectDataList.map((value: string) =>
+              window.btoa(value),
+            ),
+          },
+        }
+      }
+      return content
+    default:
+      return content
+  }
+}
+
 export const runAction = (
   action: ActionItem<ActionContent>,
   resultCallback?: (data: unknown, error: boolean) => void,
@@ -159,13 +190,16 @@ export const runAction = (
     const realFailedEvent: any[] = isTrigger
       ? failedEvent || []
       : getRealEventHandler(failedEvent)
+    const actionContent = transformDataFormat(actionType, realContent) as
+      | MysqlLikeAction
+      | RestApiAction<BodyContent>
     fetchActionResult(
       resourceId || "",
       actionType,
       displayName,
       appId,
       actionId,
-      realContent as MysqlLikeAction | RestApiAction<BodyContent>,
+      actionContent,
       realSuccessEvent,
       realFailedEvent,
       transformer,

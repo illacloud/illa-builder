@@ -139,7 +139,6 @@ export const IllaApp: FC = () => {
           <div css={errorDescriptionStyle}>
             {t("dashboard.common.error_description")}
           </div>
-          {/*TODO: @aruseito retry function */}
           <Button
             colorScheme="techPurple"
             onClick={() => {
