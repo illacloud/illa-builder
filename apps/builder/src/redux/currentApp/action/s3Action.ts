@@ -54,8 +54,8 @@ export interface ListAllContent {
   prefix: string
   delimiter: string
   signedURL: boolean
-  expiry: number
-  maxKeys: number
+  expiry: string
+  maxKeys: string
 }
 
 export const ListAllContentInitial: ListAllContent = {
@@ -63,8 +63,8 @@ export const ListAllContentInitial: ListAllContent = {
   prefix: "",
   delimiter: "",
   signedURL: false,
-  expiry: 5,
-  maxKeys: 100,
+  expiry: "{{5}}",
+  maxKeys: "{{100}}",
 }
 
 export interface ReadOneContent {
@@ -99,12 +99,12 @@ export const DeleteOneContentInitial: DeleteOneContent = {
 
 export interface DeleteMultipleContent {
   bucketName: string
-  objectKeyList: string[]
+  objectKeyList: string
 }
 
 export const DeleteMultipleContentInitial: DeleteMultipleContent = {
   bucketName: "",
-  objectKeyList: [],
+  objectKeyList: "",
 }
 
 export type ContentType = "base64" | "text" | "binary"
@@ -126,15 +126,15 @@ export const UploadContentInitial: UploadContent = {
 export interface UploadMultipleContent {
   bucketName: string
   contentType: string
-  objectKeyList: string[]
-  objectDataList: string[]
+  objectKeyList: string
+  objectDataList: string
 }
 
 export const UploadMultipleContentInitial: UploadMultipleContent = {
   bucketName: "",
   contentType: "",
-  objectKeyList: [],
-  objectDataList: [],
+  objectKeyList: "",
+  objectDataList: "",
 }
 
 export type S3ActionTypeContent =
@@ -158,7 +158,7 @@ export const S3ActionInitial: S3Action<ListAllContent> = {
     prefix: "",
     delimiter: "",
     signedURL: false,
-    expiry: 5,
-    maxKeys: 100,
+    expiry: "{{5}}",
+    maxKeys: "{{100}}",
   },
 }

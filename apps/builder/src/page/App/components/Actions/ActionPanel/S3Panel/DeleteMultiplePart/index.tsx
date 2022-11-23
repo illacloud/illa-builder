@@ -34,8 +34,6 @@ export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
-          lineNumbers
-          height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
@@ -61,10 +59,10 @@ export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.object_key_list")}
         </span>
         <CodeEditor
-          lineNumbers
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
-          //   value={commandArgs.objectKeyList}
+          placeholder={t("editor.action.panel.s3.placeholder.object_key_list")}
+          value={commandArgs.objectKeyList}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({

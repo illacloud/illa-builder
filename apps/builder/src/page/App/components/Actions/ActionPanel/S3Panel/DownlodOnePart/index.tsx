@@ -24,7 +24,6 @@ export const DownloadOnePart: FC<S3ActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
   >
-
   const commandArgs = props.commandArgs as DownloadOneContent
 
   return (
@@ -34,8 +33,6 @@ export const DownloadOnePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
-          lineNumbers
-          height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
@@ -61,7 +58,6 @@ export const DownloadOnePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.object_key")}
         </span>
         <CodeEditor
-          lineNumbers
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.objectKey}

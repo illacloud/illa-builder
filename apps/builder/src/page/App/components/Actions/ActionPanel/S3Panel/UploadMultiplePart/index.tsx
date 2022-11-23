@@ -34,8 +34,6 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
-          lineNumbers
-          height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
@@ -61,7 +59,6 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.content_type")}
         </span>
         <CodeEditor
-          lineNumbers
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.contentType}
@@ -91,7 +88,8 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
           height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
-          //   value={commandArgs.objectKeyList}
+          placeholder={t("editor.action.panel.s3.placeholder.object_name_list")}
+          value={commandArgs.objectKeyList}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -106,7 +104,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectedType={VALIDATION_TYPES.ARRAY}
         />
       </div>
       <div css={s3ItemStyle}>
@@ -115,9 +113,11 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
         </span>
         <CodeEditor
           lineNumbers
+          height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
-          //   value={commandArgs.objectDataList}
+          placeholder={t("editor.action.panel.s3.placeholder.data_list")}
+          value={commandArgs.objectDataList}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -132,7 +132,7 @@ export const UploadMultiplePart: FC<S3ActionPartProps> = (props) => {
               }),
             )
           }}
-          expectedType={VALIDATION_TYPES.STRING}
+          expectedType={VALIDATION_TYPES.ARRAY}
         />
       </div>
     </>

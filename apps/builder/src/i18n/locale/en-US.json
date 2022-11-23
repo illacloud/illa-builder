@@ -184,7 +184,8 @@
           "action_type": "Action Type",
           "query": "Query",
           "index": "Index",
-          "id": "Id"
+          "id": "Id",
+          "body": "Body"
         },
         "s3": {
           "action_type": "Action Type",
@@ -200,7 +201,19 @@
           "upload_object_name": "Upload object name",
           "upload_data": "Upload data",
           "upload_object_name_list": "Upload object name list",
-          "upload_data_list": "Upload data list"
+          "upload_data_list": "Upload data list",
+          "placeholder": {
+            "object_key_list": "[\"myDir/file1.txt\", \"myDir/file2.txt\"]",
+            "object_name": "export.csv",
+            "object_name_list": "[\"export.csv\",\"export1.csv\"]",
+            "data_list": "[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]"
+          },
+          "tips": {
+            "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names."
+          },
+          "error": {
+            "max_file": "The size of file can't exceed 5M."
+          }
         },
         "option": {
           "resource": {

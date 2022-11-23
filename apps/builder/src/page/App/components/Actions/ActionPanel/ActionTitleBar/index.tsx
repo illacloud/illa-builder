@@ -35,9 +35,17 @@ import {
   ActionContent,
   ActionItem,
 } from "@/redux/currentApp/action/actionState"
+import {
+  S3Action,
+  S3ActionRequestType,
+  S3ActionTypeContent,
+  UploadContent,
+} from "@/redux/currentApp/action/s3Action"
+import { calculateFileSize } from "../utils/calculateFileSize"
 
 const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
+const MAX_SIZE = 5
 
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { onActionRun } = props
@@ -45,7 +53,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const selectedAction = useSelector(getSelectedAction)
   const cachedAction = useSelector(getCachedAction)
 
-  const getESActionFilteredContent = (
+  const getActionFilteredContent = (
     cachedAction: ActionItem<ActionContent> | null,
   ) => {
     let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
@@ -77,6 +85,34 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
       }
     }
     return cachedActionValue
+  }
+
+  const getCanRunS3Action = (
+    cachedAction: ActionItem<ActionContent> | null,
+  ) => {
+    if (!cachedAction || cachedAction.actionType !== "s3") {
+      return true
+    }
+    const content = cachedAction.content as S3Action<S3ActionTypeContent>
+    let commandArgs, size
+
+    switch (content.commands) {
+      case S3ActionRequestType.UPLOAD:
+        commandArgs = content.commandArgs as UploadContent
+        size = calculateFileSize(commandArgs.objectData)
+        if (size > MAX_SIZE) {
+          return false
+        }
+        break
+      case S3ActionRequestType.UPLOAD_MULTIPLE:
+        commandArgs = content.commandArgs as UploadContent
+        size = calculateFileSize(commandArgs.objectData)
+        if (size > MAX_SIZE) {
+          return false
+        }
+        break
+    }
+    return true
   }
 
   const isChanged =
@@ -183,10 +219,15 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
           leftIcon={<CaretRightIcon />}
           onClick={() => {
             let cachedActionValue: ActionItem<ActionContent> | null =
-              getESActionFilteredContent(cachedAction)
+              getActionFilteredContent(cachedAction)
+            const canRunS3Action = getCanRunS3Action(cachedAction)
 
             switch (runMode) {
               case "run":
+                if (!canRunS3Action) {
+                  Message.error(t("editor.action.panel.s3.error.max_file"))
+                  return
+                }
                 setLoading(true)
                 if (cachedActionValue) {
                   runAction(
@@ -226,6 +267,10 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                 )
                 break
               case "save_and_run":
+                if (!canRunS3Action) {
+                  Message.error(t("editor.action.panel.s3.error.max_file"))
+                  return
+                }
                 Api.request(
                   {
                     method: "PUT",
@@ -240,6 +285,7 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
                         ),
                       )
                       setLoading(true)
+
                       runAction(
                         cachedActionValue,
                         (result: unknown, error?: boolean) => {

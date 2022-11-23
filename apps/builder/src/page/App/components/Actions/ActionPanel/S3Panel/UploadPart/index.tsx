@@ -34,8 +34,6 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.bucket_name")}
         </span>
         <CodeEditor
-          lineNumbers
-          height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
@@ -61,7 +59,6 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.content_type")}
         </span>
         <CodeEditor
-          lineNumbers
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.contentType}
@@ -87,10 +84,9 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
           {t("editor.action.panel.s3.upload_object_name")}
         </span>
         <CodeEditor
-          lineNumbers
-          height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
+          placeholder={t("editor.action.panel.s3.placeholder.object_name")}
           value={commandArgs.objectKey}
           onChange={(value) => {
             dispatch(
@@ -115,6 +111,7 @@ export const UploadPart: FC<S3ActionPartProps> = (props) => {
         </span>
         <CodeEditor
           lineNumbers
+          height="88px"
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.objectData}

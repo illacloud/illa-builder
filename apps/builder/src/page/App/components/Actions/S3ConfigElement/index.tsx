@@ -26,12 +26,12 @@ import { PaginationPreIcon, WarningCircleIcon } from "@illa-design/icon"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
-import { Api } from "@/api/base"
-import { resourceActions } from "@/redux/resource/resourceSlice"
-import { Message } from "@illa-design/message"
 import { S3Resource, S3ResourceInitial } from "@/redux/resource/s3Resource"
-import { onActionConfigElementTest } from "@/page/App/components/Actions/api"
-import { isURL } from "@/utils/typeHelper"
+import {
+  onActionConfigElementTest,
+  onActionConfigElementSubmit,
+} from "@/page/App/components/Actions/api"
+import { isCloudVersion, isURL } from "@/utils/typeHelper"
 
 export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
@@ -63,76 +63,13 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
 
   return (
     <form
-      onSubmit={handleSubmit((data, event) => {
-        if (resourceId != undefined) {
-          Api.request<Resource<S3Resource>>(
-            {
-              method: "PUT",
-              url: `/resources/${resourceId}`,
-              data: {
-                resourceId: data.resourceId,
-                resourceName: data.resourceName,
-                resourceType: "s3",
-                content: {
-                  bucketName: data.bucketName,
-                  region: data.region,
-                  endpoint: data.endpoint,
-                  baseURL: data.baseURL,
-                  accessKeyID: data.accessKeyID,
-                  secretAccessKey: data.secretAccessKey,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.updateResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              Message.error(error.data.errorMessage)
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        } else {
-          Api.request<Resource<S3Resource>>(
-            {
-              method: "POST",
-              url: `/resources`,
-              data: {
-                resourceName: data.resourceName,
-                resourceType: "s3",
-                content: {
-                  bucketName: data.bucketName,
-                  region: data.region,
-                  endpoint: data.endpoint,
-                  baseURL: data.baseURL,
-                  accessKeyID: data.accessKeyID,
-                  secretAccessKey: data.secretAccessKey,
-                },
-              },
-            },
-            (response) => {
-              dispatch(resourceActions.addResourceItemReducer(response.data))
-              Message.success(t("dashboard.resource.save_success"))
-              onFinished(response.data.resourceId)
-            },
-            (error) => {
-              Message.error(error.data.errorMessage)
-            },
-            () => {
-              Message.error(t("dashboard.resource.save_fail"))
-            },
-            (loading) => {
-              setSaving(loading)
-            },
-          )
-        }
-      })}
+      onSubmit={onActionConfigElementSubmit(
+        handleSubmit,
+        resourceId,
+        "s3",
+        onFinished,
+        setSaving,
+      )}
     >
       <div css={container}>
         <div css={divider} />
@@ -346,6 +283,11 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
             name="accessKeyID"
           />
         </div>
+        {isCloudVersion && (
+          <div css={configItemTip}>
+            {t("editor.action.resource.db.tip.username_password")}
+          </div>
+        )}
         <div css={configItem}>
           <div css={labelContainer}>
             <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
@@ -376,16 +318,25 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
             name="secretAccessKey"
           />
         </div>
-        <div css={configItem}>
-          <div css={labelContainer}>
-            <span css={applyConfigItemLabelText(getColor("grayBlue", "02"))}>
-              {t("editor.action.resource.db.label.connect_type")}
-            </span>
-          </div>
-          <span css={connectTypeStyle}>
-            {t("editor.action.resource.db.tip.connect_type")}
-          </span>
-        </div>
+        {isCloudVersion && (
+          <>
+            <div css={configItemTip}>
+              {t("editor.action.resource.db.tip.username_password")}
+            </div>
+            <div css={configItem}>
+              <div css={labelContainer}>
+                <span
+                  css={applyConfigItemLabelText(getColor("grayBlue", "02"))}
+                >
+                  {t("editor.action.resource.db.label.connect_type")}
+                </span>
+              </div>
+              <span css={connectTypeStyle}>
+                {t("editor.action.resource.db.tip.connect_type")}
+              </span>
+            </div>
+          </>
+        )}
       </div>
       <div css={footerStyle}>
         <Button

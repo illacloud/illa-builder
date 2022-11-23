@@ -6,6 +6,7 @@ import {
 } from "@/page/App/components/Actions/ActionPanel/S3Panel/style"
 import { CodeEditor } from "@/components/CodeEditor"
 import { VALIDATION_TYPES } from "@/utils/validationFactory"
+import { Popover } from "@illa-design/popover"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { getCachedAction } from "@/redux/config/configSelector"
@@ -130,14 +131,17 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
               }),
             )
           }}
-        >
-          <Option value={0} defaultChecked>
-            No
-          </Option>
-          <Option value={1} defaultChecked>
-            Yes
-          </Option>
-        </Select>
+          options={[
+            {
+              label: "No",
+              value: 0,
+            },
+            {
+              label: "Yes",
+              value: 1,
+            },
+          ]}
+        ></Select>
       </div>
       {isShowSignedURL && (
         <div css={s3ItemStyle}>
@@ -156,7 +160,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
                     ...cachedAction.content,
                     commandArgs: {
                       ...commandArgs,
-                      expiry: +value,
+                      expiry: value,
                     } as ListAllContent,
                   },
                 }),
@@ -167,13 +171,18 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
         </div>
       )}
       <div css={s3ItemStyle}>
-        <span css={codeEditorLabelStyle}>
-          {t("editor.action.panel.s3.max_keys")}
-        </span>
+        <Popover
+          title={t("editor.action.panel.s3.tips.max_keys")}
+          trigger="hover"
+        >
+          <span css={codeEditorLabelStyle}>
+            {t("editor.action.panel.s3.max_keys")}
+          </span>
+        </Popover>
         <CodeEditor
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
-          //   value={commandArgs.maxKeys}
+          value={commandArgs.maxKeys}
           onChange={(value) => {
             dispatch(
               configActions.updateCachedAction({
@@ -182,7 +191,7 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
                   ...cachedAction.content,
                   commandArgs: {
                     ...commandArgs,
-                    maxKeys: +value,
+                    maxKeys: value,
                   } as ListAllContent,
                 },
               }),
