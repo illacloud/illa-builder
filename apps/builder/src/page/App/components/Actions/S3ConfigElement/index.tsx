@@ -23,7 +23,7 @@ import { Switch } from "@illa-design/switch"
 import { Controller, useForm } from "react-hook-form"
 import { Button, ButtonGroup } from "@illa-design/button"
 import { PaginationPreIcon, WarningCircleIcon } from "@illa-design/icon"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { RootState } from "@/store"
 import { Resource } from "@/redux/resource/resourceState"
 import { S3Resource, S3ResourceInitial } from "@/redux/resource/s3Resource"
@@ -37,8 +37,6 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
   const { onBack, resourceId, onFinished } = props
 
   const { t } = useTranslation()
-
-  const dispatch = useDispatch()
 
   const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
