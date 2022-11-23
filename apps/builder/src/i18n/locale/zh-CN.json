@@ -537,6 +537,7 @@
         "end_placeholder": "结束日期占位符",
         "event": "事件",
         "event_handler": "事件处理器",
+        "expansion_method": "展开方式",
         "failure": "请求失败",
         "filter": "筛选",
         "font_size": "字号",
@@ -555,6 +556,7 @@
         "img_height": "高度",
         "img_width": "宽度",
         "index": "索引",
+        "item_background_color": "项目背景色",
         "items": "项",
         "key": "键值",
         "label": "标签",
@@ -920,6 +922,9 @@
       "default_text": "Button",
       "name": "按钮"
     },
+    "cascader": {
+      "name": "级联选择"
+    },
     "chart": {
       "name": "图表"
     },
@@ -958,6 +963,9 @@
     },
     "input": {
       "name": "输入框"
+    },
+    "list": {
+      "name": "列表"
     },
     "menu": {
       "name": "菜单"

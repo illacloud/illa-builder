@@ -148,6 +148,17 @@ import {
   MENU_WIDGET_CONFIG,
   MenuWidget,
 } from "@/widgetLibrary/MenuWidget"
+import {
+  LIST_PANEL_CONFIG,
+  LIST_WIDGET_CONFIG,
+  ListWidget,
+} from "@/widgetLibrary/ListWidget"
+import {
+  CASCADER_PANEL_CONFIG,
+  CASCADER_WIDGET_CONFIG,
+  CascaderWidget,
+} from "@/widgetLibrary/CascaderWidget"
+import { CASCADER_EVENT_HANDLER_CONFIG } from "@/widgetLibrary/CascaderWidget/eventHandlerConfig"
 
 export const WidgetConfig: WidgetConfigs = {
   TEXT_WIDGET: {
@@ -298,6 +309,17 @@ export const WidgetConfig: WidgetConfigs = {
     config: FORM_WIDGET_CONFIG,
     panelConfig: FORM_PANEL_CONFIG,
     eventHandlerConfig: FORM_EVENT_HANDLER_CONFIG,
+  },
+  // LIST_WIDGET: {
+  //   widget: ListWidget,
+  //   config: LIST_WIDGET_CONFIG,
+  //   panelConfig: LIST_PANEL_CONFIG,
+  // },
+  CASCADER_WIDGET: {
+    widget: CascaderWidget,
+    config: CASCADER_WIDGET_CONFIG,
+    panelConfig: CASCADER_PANEL_CONFIG,
+    eventHandlerConfig: CASCADER_EVENT_HANDLER_CONFIG,
   },
 }
 

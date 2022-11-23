@@ -35,6 +35,7 @@ import { EventTargetPageSelect } from "./SelectSetter/pageSelect"
 import { EventTargetViewSelect } from "./SelectSetter/eventBodyViewSelect"
 import { EditableInputWithMeasureSetter } from "./InputSetter/editableInputSetterWithMeasure"
 import { TableDataSourceSelectSetter } from "@/page/App/components/PanelSetters/TableSetter/tableDataSourceSelectSetter"
+import { DataSourceSetter } from "@/page/App/components/PanelSetters/SelectSetter/dataSourceSelectSetter"
 
 const SetterTypeMapSetter = {
   INPUT_SETTER: BaseInput,
@@ -74,6 +75,7 @@ const SetterTypeMapSetter = {
   CONTAINER_VIEW_SETTER: ViewsSetter,
   CONTAINER_DEFAULT_VIEW_SETTER: ContainerDefaultViewKeySetter,
   MENU_OPTION_SETTER: MenuOptionSetter,
+  DATA_SOURCE_SELECT_SETTER: DataSourceSetter,
 }
 
 export type SetterType = keyof typeof SetterTypeMapSetter

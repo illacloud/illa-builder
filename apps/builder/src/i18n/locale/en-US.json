@@ -537,6 +537,7 @@
         "end_placeholder": "End placeholder",
         "event": "Event",
         "event_handler": "Event handler",
+        "expansion_method": "Expansion method",
         "failure": "Failure",
         "filter": "Filter",
         "font_size": "Font size",
@@ -555,6 +556,7 @@
         "img_height": "Height",
         "img_width": "Width",
         "index": "Index",
+        "item_background_color": "Item background",
         "items": "Items",
         "key": "Key",
         "label": "Label",
@@ -920,6 +922,9 @@
       "default_text": "Button",
       "name": "Button"
     },
+    "cascader": {
+      "name": "Cascader"
+    },
     "chart": {
       "name": "Chart"
     },
@@ -958,6 +963,9 @@
     },
     "input": {
       "name": "Input"
+    },
+    "list": {
+      "name": "List"
     },
     "menu": {
       "name": "Menu"
