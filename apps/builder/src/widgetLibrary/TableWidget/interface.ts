@@ -50,7 +50,8 @@ export interface WrappedTableProps
       | "columnVisibility"
       | "multiRowSelection"
       | "data"
-    > {
+    >,
+    BaseWidgetProps {
   emptyState?: string
   pageSize?: number
   defaultSortKey?: string
@@ -59,6 +60,12 @@ export interface WrappedTableProps
   handleOnSortingChange?: () => void
   handleOnPaginationChange?: () => void
   handleOnColumnFiltersChange?: () => void
+  handleUpdateMultiExecutionResult: (
+    updateSlice: {
+      displayName: string
+      value: Record<string, any>
+    }[],
+  ) => void
 }
 
 export interface TableWidgetProps extends WrappedTableProps, BaseWidgetProps {

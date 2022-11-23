@@ -1,24 +1,19 @@
-import {
-  createContext,
-  FC,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react"
+import { FC, forwardRef, useCallback, useEffect, useMemo } from "react"
 import { Table } from "@illa-design/table"
+import { Updater, RowSelectionState } from "@tanstack/table-core"
 import {
   ColumnItemShape,
   TableWidgetProps,
-  WrappedTableContextProps,
   WrappedTableProps,
 } from "./interface"
 import { cloneDeep } from "lodash"
 import { getCellForType } from "./utils"
+import { isObject } from "@illa-design/system"
 
 export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
   (props, ref) => {
     const {
+      displayName,
       data,
       loading,
       emptyState,
@@ -33,6 +28,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       handleOnSortingChange,
       handleOnPaginationChange,
       handleOnColumnFiltersChange,
+      handleUpdateMultiExecutionResult,
     } = props
 
     const formatData = useMemo(() => {
@@ -41,6 +37,28 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
       }
       return []
     }, [data])
+
+    const onRowSelectionChange = useCallback(
+      (value: Updater<RowSelectionState>) => {
+        if (!isObject(value)) return
+        let selectedRow: unknown[] = []
+        Object.keys(value)?.map((key) => {
+          const index = Number(key)
+          if (formatData[index]) {
+            selectedRow.push(formatData[index])
+          }
+        })
+        handleUpdateMultiExecutionResult([
+          {
+            displayName,
+            value: {
+              selectedRow: selectedRow,
+            },
+          },
+        ])
+      },
+      [displayName, formatData, handleUpdateMultiExecutionResult],
+    )
 
     return (
       <Table
@@ -64,6 +82,7 @@ export const WrappedTable = forwardRef<HTMLInputElement, WrappedTableProps>(
         onSortingChange={handleOnSortingChange}
         onPaginationChange={handleOnPaginationChange}
         onColumnFiltersChange={handleOnColumnFiltersChange}
+        onRowSelectionChange={onRowSelectionChange}
       />
     )
   },
@@ -156,6 +175,7 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
   return (
     <WrappedTable
       {...otherProps}
+      displayName={displayName}
       data={realDataSourceArray}
       emptyState={emptyState}
       loading={loading}
@@ -167,6 +187,9 @@ export const TableWidget: FC<TableWidgetProps> = (props) => {
       columnVisibility={columnVisibility}
       defaultSort={defaultSort}
       multiRowSelection={multiRowSelection}
+      handleUpdateGlobalData={handleUpdateGlobalData}
+      handleDeleteGlobalData={handleDeleteGlobalData}
+      handleUpdateDsl={handleUpdateDsl}
     />
   )
 }
