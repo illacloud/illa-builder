@@ -25,12 +25,17 @@ export const tansTableDataToColumns = (
   return columns
 }
 
-const renderTableLink = (props: CellContext<any, any>) => {
-  const cellValue = props.getValue()
+const RenderTableLink: FC<{
+  cell: CellContext<any, any>
+  mappedValue?: string
+}> = (props) => {
+  const { cell, mappedValue } = props
+  const cellValue = mappedValue ? mappedValue : cell.getValue()
+
   return cellValue ? (
     <Link href={cellValue} target="_blank">{`${cellValue}`}</Link>
   ) : (
-    "-"
+    <span>{"-"}</span>
   )
 }
 
@@ -73,7 +78,12 @@ export const getCellForType = (
         return `${mappedValue ? mappedValue : props.getValue() ?? "-"}`
       }
     case "link":
-      return renderTableLink
+      return (props: CellContext<any, any>) => {
+        return RenderTableLink({
+          cell: props,
+          mappedValue,
+        })
+      }
     case "number":
       return (props: CellContext<any, any>) => {
         const formatVal = Number(mappedValue ? mappedValue : props?.getValue())
