@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { CaretRightIcon, MoreIcon } from "@illa-design/icon"
 import {
   actionTitleBarSpaceStyle,
@@ -122,6 +122,10 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
+  const canRunS3Action = useMemo(
+    () => getCanRunS3Action(cachedAction),
+    [cachedAction],
+  )
 
   let runMode: RunMode = useMemo(() => {
     if (cachedAction != undefined && isChanged) {
@@ -137,10 +141,9 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
     }
   }, [isChanged, cachedAction])
 
-  const handleActionOperation = () => {
+  const handleActionOperation = useCallback(() => {
     let cachedActionValue: ActionItem<ActionContent> | null =
       getActionFilteredContent(cachedAction)
-    const canRunS3Action = getCanRunS3Action(cachedAction)
 
     switch (runMode) {
       case "run":
@@ -216,7 +219,16 @@ export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
         )
         break
     }
-  }
+  }, [
+    cachedAction,
+    runMode,
+    canRunS3Action,
+    currentApp.appId,
+    selectedAction.actionId,
+    t,
+    onActionRun,
+    dispatch,
+  ])
 
   const renderButton = useMemo(() => {
     return runMode === "run" ? cachedAction?.actionType !== "transformer" : true

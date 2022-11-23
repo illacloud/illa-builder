@@ -16,9 +16,20 @@ import {
   S3Action,
   S3ActionTypeContent,
 } from "@/redux/currentApp/action/s3Action"
-import { Option, Select } from "@illa-design/select"
+import { Select } from "@illa-design/select"
 import { S3ActionPartProps } from "@/page/App/components/Actions/ActionPanel/S3Panel/interface"
 import { ActionItem } from "@/redux/currentApp/action/actionState"
+
+const SelectOption = [
+  {
+    label: "No",
+    value: 0,
+  },
+  {
+    label: "Yes",
+    value: 1,
+  },
+]
 
 export const ListAllPart: FC<S3ActionPartProps> = (props) => {
   const { t } = useTranslation()
@@ -26,7 +37,6 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
   const cachedAction = useSelector(getCachedAction) as ActionItem<
     S3Action<S3ActionTypeContent>
   >
-
   const commandArgs = props.commandArgs as ListAllContent
   const isShowSignedURL = commandArgs.signedURL
 
@@ -94,17 +104,8 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
           ml="16px"
           width="100%"
           onChange={(value) => handleValueChange(!!value, "signedURL")}
-          options={[
-            {
-              label: "No",
-              value: 0,
-            },
-            {
-              label: "Yes",
-              value: 1,
-            },
-          ]}
-        ></Select>
+          options={SelectOption}
+        />
       </div>
       {isShowSignedURL && (
         <div css={s3ItemStyle}>
