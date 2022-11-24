@@ -3,6 +3,7 @@ import { RestApiAuth, RestApiResource } from "./restapiResource"
 import { RedisResource } from "./redisResource"
 import { MysqlLikeResource } from "./mysqlLikeResource"
 import { ElasticSearchResource } from "./elasticSearchResource"
+import { S3Resource } from "./s3Resource"
 
 export type ResourceType =
   | "mysql"
@@ -18,6 +19,7 @@ export type ResourceType =
   | "s3"
 
 export type ResourceContent =
+  | S3Resource
   | ElasticSearchResource
   | MysqlLikeResource
   | RestApiResource<RestApiAuth>

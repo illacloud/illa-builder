@@ -16,6 +16,7 @@ import { MongoDbPanel } from "@/page/App/components/Actions/ActionPanel/MongoDbP
 import { ActionPanelContainerProps } from "@/page/App/components/Actions/ActionPanel/interface"
 import { ActionPanelContext } from "@/page/App/components/Actions/ActionPanel/actionPanelContext"
 import { ElasticSearchPanel } from "@/page/App/components/Actions/ActionPanel/ElasticSearchPanel"
+import { S3Panel } from "@/page/App/components/Actions/ActionPanel/S3Panel"
 
 export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
   const { maxHeight } = props
@@ -45,6 +46,8 @@ export const ActionPanel: FC<ActionPanelContainerProps> = (props) => {
         return <TransformerPanel />
       case "elasticsearch":
         return <ElasticSearchPanel />
+      case "s3":
+        return <S3Panel />
       default:
         return <></>
     }
