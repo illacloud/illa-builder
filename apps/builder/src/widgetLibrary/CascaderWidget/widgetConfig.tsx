@@ -1,13 +1,13 @@
 import { RESIZE_DIRECTION, WidgetConfig } from "@/widgetLibrary/interface"
 import i18n from "@/i18n/config"
-import { ReactComponent as ButtonWidgetIcon } from "@/assets/widgetCover/button.svg"
+import { ReactComponent as CascaderWidgetIcon } from "@/assets/widgetCover/cascader.svg"
 
 export const CASCADER_WIDGET_CONFIG: WidgetConfig = {
   type: "CASCADER_WIDGET",
   displayName: "cascader",
   widgetName: i18n.t("widget.cascader.name"),
   keywords: ["cascader", "级联选择"],
-  icon: <ButtonWidgetIcon />,
+  icon: <CascaderWidgetIcon />,
   sessionType: "PRESENTATION",
   w: 12,
   h: 5,
@@ -52,7 +52,7 @@ export const CASCADER_WIDGET_CONFIG: WidgetConfig = {
       ]
   }
 ]}}`,
-    defaultValue: "",
+    value: `{{["media_source_1","campaign_1-1"]}}`,
     placeholder: "",
     label: "Label",
     labelAlign: "left",
