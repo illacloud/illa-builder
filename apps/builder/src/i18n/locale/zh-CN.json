@@ -203,10 +203,10 @@
           "upload_object_name_list": "上传对象名称列表",
           "upload_data_list": "上传数据列表",
           "placeholder": {
-            "object_key_list": "[\"myDir/file1.txt\", \"myDir/file2.txt\"]",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
             "object_name": "export.csv",
-            "object_name_list": "[\"export.csv\",\"export1.csv\"]",
-            "data_list": "[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]"
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}",
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}"
           },
           "tips": {
             "max_keys": "设置响应中返回的键的最大数量。默认情况下，该动作最多返回1000个键名。",
@@ -584,6 +584,7 @@
         "end_placeholder": "结束日期占位符",
         "event": "事件",
         "event_handler": "事件处理器",
+        "expansion_method": "展开方式",
         "failure": "请求失败",
         "filter": "筛选",
         "font_size": "字号",
@@ -602,6 +603,7 @@
         "img_height": "高度",
         "img_width": "宽度",
         "index": "索引",
+        "item_background_color": "项目背景色",
         "items": "项",
         "key": "键值",
         "label": "标签",
@@ -615,6 +617,7 @@
         "loading": "加载中",
         "loop_back_to_start": "列表循环",
         "loop_start_to_back": "列表循环",
+        "mapped_value": "映射值",
         "mapped_option": "映射选项",
         "max_count": "最大数量",
         "max_date": "最大日期",
@@ -686,6 +689,7 @@
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
+        "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组,可以创建同一级别的选项，添加 children 属性可以添加子集",
         "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
         "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
         "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
@@ -967,6 +971,9 @@
       "default_text": "Button",
       "name": "按钮"
     },
+    "cascader": {
+      "name": "级联选择"
+    },
     "chart": {
       "name": "图表"
     },
@@ -1005,6 +1012,9 @@
     },
     "input": {
       "name": "输入框"
+    },
+    "list": {
+      "name": "列表"
     },
     "menu": {
       "name": "菜单"

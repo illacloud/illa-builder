@@ -12,6 +12,10 @@ export function applyTableTextStyle(highlight: boolean): SerializedStyles {
 }
 
 export const hoverStyle = css`
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   tr {
     &:hover {
       .dashboardResourceEditButton {

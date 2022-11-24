@@ -203,10 +203,10 @@
           "upload_object_name_list": "Upload object name list",
           "upload_data_list": "Upload data list",
           "placeholder": {
-            "object_key_list": "[\"myDir/file1.txt\", \"myDir/file2.txt\"]",
+            "object_key_list": "{{[\"myDir/file1.txt\", \"myDir/file2.txt\"]}}",
             "object_name": "export.csv",
-            "object_name_list": "[\"export.csv\",\"export1.csv\"]",
-            "data_list": "[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]"
+            "object_name_list": "{{[\"export.csv\",\"export1.csv\"]}}",
+            "data_list": "{{[\"e1xydGYxXGFuc2lcYW5zaWNwZzkzNlxjb2NvYXJ0ZjI2MzgKXGNvY29hdGV4dHNjYWxpbmcwXGNvY29hcGxhdGZvcm0we1xmb250dGJ\nsXGYwXGZzd2lzc1xmY2hhcnNldDAgSGVsdmV0aWNhO30Ke1xjb2xvcnRibDtccmVkMjU1XGdyZWVuMjU1XGJsdWUyNTU7fQp7XCpcZXhw\nYW5kZWRjb2xvcnRibDs7\", \"fQpccGFwZXJ3MTE5MDBccGFwZXJoMTY4NDBcbWFyZ2wxNDQwXG1hcmdyMTQ0MFx2aWV3dzExNTIwXHZpZXdoODQw\nMFx2aWV3a2luZDAKXHBhcmRcdHg1NjZcdHgxMTMzXHR4MTcwMFx0eDIyNjdcdHgy\"]}}"
           },
           "tips": {
             "max_keys": "Sets the maximum number of keys returned in the response. By default the action returns up to 1,000 key names.",
@@ -584,6 +584,7 @@
         "end_placeholder": "End placeholder",
         "event": "Event",
         "event_handler": "Event handler",
+        "expansion_method": "Expansion method",
         "failure": "Failure",
         "filter": "Filter",
         "font_size": "Font size",
@@ -602,6 +603,7 @@
         "img_height": "Height",
         "img_width": "Width",
         "index": "Index",
+        "item_background_color": "Item background",
         "items": "Items",
         "key": "Key",
         "label": "Label",
@@ -615,6 +617,7 @@
         "loading": "Loading",
         "loop_back_to_start": "Loop back to start",
         "loop_start_to_back": "Loop start to back",
+        "mapped_value": "Mapped Value",
         "mapped_option": "Mapped Option",
         "max_count": "Max count",
         "max_date": "Max date",
@@ -686,6 +689,7 @@
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
         "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
         "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
         "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
@@ -967,6 +971,9 @@
       "default_text": "Button",
       "name": "Button"
     },
+    "cascader": {
+      "name": "Cascader"
+    },
     "chart": {
       "name": "Chart"
     },
@@ -1005,6 +1012,9 @@
     },
     "input": {
       "name": "Input"
+    },
+    "list": {
+      "name": "List"
     },
     "menu": {
       "name": "Menu"
