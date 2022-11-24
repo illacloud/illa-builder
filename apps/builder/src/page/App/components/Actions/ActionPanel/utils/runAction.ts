@@ -1,6 +1,7 @@
 import {
   ActionContent,
   ActionItem,
+  ActionRunResult,
   Events,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
@@ -68,6 +69,20 @@ function runTransformer(transformer: Transformer, rawData: any) {
   return calcResult
 }
 
+const downloadActionResult = (
+  contentType: string,
+  fileName: string,
+  data: string,
+) => {
+  const a = document.createElement("a")
+  a.download = fileName
+  a.style.display = "none"
+  a.href = `data:${contentType};base64,${data}`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+}
+
 const fetchActionResult = (
   resourceId: string,
   actionType: string,
@@ -92,10 +107,16 @@ const fetchActionResult = (
         content: actionContent,
       },
     },
-    (data) => {
+    (data: ActionRunResult) => {
       // @ts-ignore
       //TODO: @aruseito not use any
       const rawData = data.data.Rows
+      const extraData = data.data?.Extra
+      if (extraData && extraData.Download) {
+        const { ContentType, ObjectKey } = extraData
+        downloadActionResult(ContentType, ObjectKey, rawData[0].objectData)
+      }
+
       let calcResult = runTransformer(transformer, rawData)
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
@@ -145,7 +166,7 @@ const transformDataFormat = (
           ...content,
           commandArgs: {
             ...content.commandArgs,
-            objectData: window.btoa(objectData),
+            objectData: window.btoa(window.encodeURIComponent(objectData)),
           },
         }
       }
@@ -156,7 +177,7 @@ const transformDataFormat = (
           commandArgs: {
             ...content.commandArgs,
             objectDataList: objectDataList.map((value: string) =>
-              window.btoa(value),
+              window.btoa(window.encodeURIComponent(value)),
             ),
           },
         }

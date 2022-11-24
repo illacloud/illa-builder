@@ -51,6 +51,7 @@ export const DeleteMultiplePart: FC<S3ActionPartProps> = (props) => {
           css={s3ItemCodeEditorStyle}
           mode="TEXT_JS"
           value={commandArgs.bucketName}
+          // TODO: refactor inline function
           onChange={(value) => handleValueChange(value, "bucketName")}
           expectedType={VALIDATION_TYPES.STRING}
         />

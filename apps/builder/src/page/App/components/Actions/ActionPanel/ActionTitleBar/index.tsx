@@ -47,85 +47,79 @@ const Item = DropList.Item
 export type RunMode = "save" | "run" | "save_and_run"
 const MAX_SIZE = 5
 
+const getCanRunS3Action = (cachedAction: ActionItem<ActionContent> | null) => {
+  if (!cachedAction || cachedAction.actionType !== "s3") {
+    return true
+  }
+  const content = cachedAction.content as S3Action<S3ActionTypeContent>
+  let commandArgs, size
+
+  switch (content.commands) {
+    case S3ActionRequestType.UPLOAD:
+      commandArgs = content.commandArgs as UploadContent
+      size = calculateFileSize(commandArgs.objectData)
+      if (size > MAX_SIZE) {
+        return false
+      }
+      break
+    case S3ActionRequestType.UPLOAD_MULTIPLE:
+      commandArgs = content.commandArgs as UploadContent
+      size = calculateFileSize(commandArgs.objectData)
+      if (size > MAX_SIZE) {
+        return false
+      }
+      break
+  }
+  return true
+}
+
+const getActionFilteredContent = (
+  cachedAction: ActionItem<ActionContent> | null,
+) => {
+  let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
+  if (!!cachedActionValue && cachedAction?.actionType === "elasticsearch") {
+    let content = cachedAction.content as ElasticSearchAction
+    if (!IDEditorType.includes(content.operation)) {
+      const { id = "", ...otherContent } = content
+
+      cachedActionValue = {
+        ...cachedAction,
+        content: { ...otherContent },
+      }
+      content = otherContent
+    }
+    if (!BodyContentType.includes(content.operation)) {
+      const { body = "", ...otherContent } = content
+      cachedActionValue = {
+        ...cachedActionValue,
+        content: { ...otherContent },
+      }
+      content = otherContent
+    }
+    if (!QueryContentType.includes(content.operation)) {
+      const { query = "", ...otherContent } = content
+      cachedActionValue = {
+        ...cachedActionValue,
+        content: { ...otherContent },
+      }
+    }
+  }
+  return cachedActionValue
+}
+
 export const ActionTitleBar: FC<ActionTitleBarProps> = (props) => {
   const { onActionRun } = props
 
   const selectedAction = useSelector(getSelectedAction)!
   const cachedAction = useSelector(getCachedAction)
 
-  const getActionFilteredContent = (
-    cachedAction: ActionItem<ActionContent> | null,
-  ) => {
-    let cachedActionValue: ActionItem<ActionContent> | null = cachedAction
-    if (!!cachedActionValue && cachedAction?.actionType === "elasticsearch") {
-      let content = cachedAction.content as ElasticSearchAction
-      if (!IDEditorType.includes(content.operation)) {
-        const { id = "", ...otherContent } = content
-
-        cachedActionValue = {
-          ...cachedAction,
-          content: { ...otherContent },
-        }
-        content = otherContent
-      }
-      if (!BodyContentType.includes(content.operation)) {
-        const { body = "", ...otherContent } = content
-        cachedActionValue = {
-          ...cachedActionValue,
-          content: { ...otherContent },
-        }
-        content = otherContent
-      }
-      if (!QueryContentType.includes(content.operation)) {
-        const { query = "", ...otherContent } = content
-        cachedActionValue = {
-          ...cachedActionValue,
-          content: { ...otherContent },
-        }
-      }
-    }
-    return cachedActionValue
-  }
-
-  const getCanRunS3Action = (
-    cachedAction: ActionItem<ActionContent> | null,
-  ) => {
-    if (!cachedAction || cachedAction.actionType !== "s3") {
-      return true
-    }
-    const content = cachedAction.content as S3Action<S3ActionTypeContent>
-    let commandArgs, size
-
-    switch (content.commands) {
-      case S3ActionRequestType.UPLOAD:
-        commandArgs = content.commandArgs as UploadContent
-        size = calculateFileSize(commandArgs.objectData)
-        if (size > MAX_SIZE) {
-          return false
-        }
-        break
-      case S3ActionRequestType.UPLOAD_MULTIPLE:
-        commandArgs = content.commandArgs as UploadContent
-        size = calculateFileSize(commandArgs.objectData)
-        if (size > MAX_SIZE) {
-          return false
-        }
-        break
-    }
-    return true
-  }
-
   const isChanged =
     JSON.stringify(selectedAction) !== JSON.stringify(cachedAction)
-
   const currentApp = useSelector(getAppInfo)
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
-  const canRunS3Action = useMemo(
-    () => getCanRunS3Action(cachedAction),
-    [cachedAction],
-  )
+  const canRunS3Action = getCanRunS3Action(cachedAction)
 
   let runMode: RunMode = useMemo(() => {
     if (cachedAction != undefined && isChanged) {

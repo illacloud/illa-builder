@@ -59,10 +59,6 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
   const [saving, setSaving] = useState(false)
   const [baseURLOpen, setBaseURLOpen] = useState(false)
 
-  const handleBack = () => {
-    onBack()
-  }
-
   const handleConnectionTest = () => {
     const data = getValues()
     const content = {
@@ -159,6 +155,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
         </div>
         <div css={configItem}>
           <div css={labelContainer}>
+            <span css={applyConfigItemLabelText(getColor("red", "02"))}>*</span>
             <span
               css={applyConfigItemLabelText(getColor("grayBlue", "02"), true)}
             >
@@ -168,6 +165,9 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
           <Controller
             defaultValue={content.region}
             control={control}
+            rules={{
+              required: true,
+            }}
             render={({ field: { value, onChange, onBlur } }) => (
               <Input
                 w="100%"
@@ -355,7 +355,7 @@ export const S3ConfigElement: FC<S3ConfigElementProps> = (props) => {
           variant="text"
           colorScheme="gray"
           type="button"
-          onClick={handleBack}
+          onClick={onBack}
         >
           {t("back")}
         </Button>

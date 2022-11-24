@@ -83,8 +83,11 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
       </div>
       <div css={s3ItemStyle}>
         <Popover
-          title={t("editor.action.panel.s3.tips.delimiter")}
+          content={t("editor.action.panel.s3.tips.delimiter")}
+          hasCloseIcon={false}
           trigger="hover"
+          colorScheme="gray"
+          showArrow={false}
         >
           <span css={codeEditorLabelStyle}>
             {t("editor.action.panel.s3.delimiter")}
@@ -128,8 +131,11 @@ export const ListAllPart: FC<S3ActionPartProps> = (props) => {
       )}
       <div css={s3ItemStyle}>
         <Popover
-          title={t("editor.action.panel.s3.tips.max_keys")}
+          content={t("editor.action.panel.s3.tips.max_keys")}
+          colorScheme="gray"
+          showArrow={false}
           trigger="hover"
+          hasCloseIcon={false}
         >
           <span css={codeEditorLabelStyle}>
             {t("editor.action.panel.s3.max_keys")}
