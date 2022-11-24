@@ -5,6 +5,7 @@ import {
   addRequestPendingPool,
   removeRequestPendingPool,
 } from "@/api/helpers/axiosPendingPool"
+import { ILLARoute } from "@/router"
 
 export interface Success {
   status: string // always ok
@@ -16,7 +17,7 @@ export interface ApiError {
 }
 // TODO: @aruseito use OOP to create request
 const axios = Axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: `${location.protocol}//${import.meta.env.VITE_API_BASE_URL}`,
   timeout: 10000,
   headers: {
     "Content-Encoding": "gzip",
@@ -56,11 +57,20 @@ axios.interceptors.response.use(
       if (status === 401) {
         clearLocalStorage()
         const { pathname } = location
-        location.href = "/user/login?from=" + pathname || "/"
+        ILLARoute.navigate("/user/login", {
+          replace: true,
+          state: {
+            form: pathname || "/",
+          },
+        })
       } else if (status === 403) {
-        location.href = "/403"
+        ILLARoute.navigate("/403", {
+          replace: true,
+        })
       } else if (status >= 500) {
-        location.href = "/500"
+        ILLARoute.navigate("/500", {
+          replace: true,
+        })
       }
     }
     return Promise.reject(error)

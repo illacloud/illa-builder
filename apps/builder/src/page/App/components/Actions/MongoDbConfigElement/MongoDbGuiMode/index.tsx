@@ -41,18 +41,17 @@ export const MongoDbGuiMode: FC<MongoDbConfigModeProps> = (props) => {
   if (findResource === undefined) {
     content = MongoDbGuiConfigContentInitial
   } else {
-    const mongoDbResource = (findResource as Resource<
-      MongoDbResource<MongoDbGuiConfigContent>
-    >).content
+    const mongoDbResource = (
+      findResource as Resource<MongoDbResource<MongoDbGuiConfigContent>>
+    ).content
     content =
       mongoDbResource.configType === "gui"
         ? mongoDbResource.configContent
         : MongoDbGuiConfigContentInitial
   }
 
-  const [connectionFormat, setConnectionFormat] = useState<
-    MongoDbConnectionFormat
-  >(content.connectionFormat ?? "standard")
+  const [connectionFormat, setConnectionFormat] =
+    useState<MongoDbConnectionFormat>(content.connectionFormat ?? "standard")
 
   return (
     <>

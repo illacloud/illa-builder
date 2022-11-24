@@ -30,9 +30,9 @@ import { configActions } from "@/redux/config/configSlice"
 
 export const ElasticSearchPanel: FC = () => {
   const { t } = useTranslation()
-  const cachedAction = useSelector(getCachedAction) as ActionItem<
-    ElasticSearchAction
-  >
+  const cachedAction = useSelector(
+    getCachedAction,
+  ) as ActionItem<ElasticSearchAction>
 
   const selectedAction = useSelector(getSelectedAction)!!
 

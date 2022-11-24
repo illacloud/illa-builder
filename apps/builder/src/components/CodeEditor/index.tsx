@@ -1,13 +1,6 @@
-import {
-  forwardRef,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-} from "react"
+import { forwardRef, useEffect, useRef, useState, useCallback } from "react"
 import { Global } from "@emotion/react"
-import { cloneDeep, debounce, get } from "lodash"
+import { debounce, get } from "lodash"
 import CodeMirror, { Editor } from "codemirror"
 import "codemirror/lib/codemirror.css"
 import "codemirror/lib/codemirror"
@@ -25,14 +18,13 @@ import { evaluateDynamicString } from "@/utils/evaluateDynamicString"
 import { CodePreview } from "./CodePreview"
 import { CodeEditorProps, EditorModes, ResultPreview } from "./interface"
 import { applyCodeEditorStyle, codemirrorStyle } from "./style"
-import { isCloseKey, isExpectType } from "./utils"
+import { getValueType, isCloseKey, isExpectType } from "./utils"
 import { useSelector } from "react-redux"
 import { getLanguageValue } from "@/redux/builderInfo/builderInfoSelector"
 import {
   getExecutionError,
   getExecutionResult,
 } from "@/redux/currentApp/executionTree/executionSelector"
-import { VALIDATION_TYPES } from "@/utils/validationFactory"
 import { isDynamicString } from "@/utils/evaluateDynamicString/utils"
 
 export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
@@ -42,10 +34,11 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
       mode = "TEXT_JS",
       placeholder,
       border,
-      expectedType = VALIDATION_TYPES.STRING,
+      expectedType,
       borderRadius = "8px",
       path,
       tables = {},
+      extendedData = {},
       lineNumbers,
       noTab,
       value,
@@ -87,7 +80,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     const valueChanged = useCallback(
       (currentValue: string) => {
         let calcResult: any = null
-        let previewType = expectedType
+        let previewType: string = expectedType
         setError(false)
         try {
           const isDynamic = isDynamicString(currentValue)
@@ -100,6 +93,7 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
           } else {
             calcResult = currentValue
           }
+          previewType = getValueType(calcResult)
 
           // [TODO]: v1 evaluate
           // if (!currentValue?.includes("{{")) {
@@ -149,10 +143,11 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
             lineMarker(ILLAEditor.current, lintError.errorLine - 1)
           }
         } else {
+          const type = props.expectedType ?? getValueType(result)
           setError(false)
           setPreview({
             state: "default",
-            type: expectedType,
+            type: type,
             content: result?.toString() ?? "",
           })
         }
@@ -243,8 +238,11 @@ export const CodeEditor = forwardRef<HTMLDivElement, CodeEditorProps>(
     }, [executionResult])
 
     useEffect(() => {
-      sever.current = TernServer(languageValue, { ...executionResult })
-    }, [executionResult, languageValue])
+      sever.current = TernServer(languageValue, {
+        ...executionResult,
+        ...extendedData,
+      })
+    }, [executionResult, languageValue, extendedData])
 
     useEffect(() => {
       ILLAEditor.current?.setOption("mode", EditorModes[mode])

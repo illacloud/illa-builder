@@ -64,7 +64,7 @@ export const CHART_PANEL_CONFIG: PanelConfig[] = [
         labelName: i18n.t("editor.inspect.setter_label.data_source"),
         useCustomLayout: true,
         attrName: "dataSource",
-        setterType: "CHART_DATASOURCE_SELECT_SETTER",
+        setterType: "DATA_SOURCE_SELECT_SETTER",
       },
       {
         id: `${baseWidgetName}-data-chart-type`,

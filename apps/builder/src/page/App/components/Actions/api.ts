@@ -85,6 +85,27 @@ export function onDeleteActionItem(action: ActionItem<ActionContent>) {
   )
 }
 
+function getActionContentByType(data: FieldValues, type: ResourceType) {
+  switch (type) {
+    case "elasticsearch":
+      return {
+        host: data.host,
+        port: data.port.toString(),
+        username: data.username,
+        password: data.password,
+      }
+    case "s3":
+      return {
+        bucketName: data.bucketName,
+        region: data.region,
+        endpoint: data.endpoint,
+        baseURL: data.baseURL,
+        accessKeyID: data.accessKeyID,
+        secretAccessKey: data.secretAccessKey,
+      }
+  }
+}
+
 export function onActionConfigElementSubmit(
   handleSubmit: UseFormHandleSubmit<FieldValues>,
   resourceId: string | undefined,
@@ -105,12 +126,7 @@ export function onActionConfigElementSubmit(
           ...(resourceId !== undefined && { resourceId: data.resourceId }),
           resourceName: data.resourceName,
           resourceType: resourceType,
-          content: {
-            host: data.host,
-            port: data.port.toString(),
-            username: data.username,
-            password: data.password,
-          },
+          content: getActionContentByType(data, resourceType),
         },
       },
       (response) => {

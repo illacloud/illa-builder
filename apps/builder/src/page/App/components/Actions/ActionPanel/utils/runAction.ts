@@ -1,6 +1,7 @@
 import {
   ActionContent,
   ActionItem,
+  ActionRunResult,
   Events,
   Transformer,
 } from "@/redux/currentApp/action/actionState"
@@ -22,35 +23,31 @@ import {
 } from "@/redux/currentApp/action/restapiAction"
 import { isObject } from "@/utils/typeHelper"
 import { executionActions } from "@/redux/currentApp/executionTree/executionSlice"
+import { S3ActionRequestType } from "@/redux/currentApp/action/s3Action"
 
 export const actionDisplayNameMapFetchResult: Record<string, any> = {}
 
 function calcRealContent(content: Record<string, any>) {
   let realContent: Record<string, any> = {}
-  for (let key in content) {
-    // @ts-ignore
-    const value = content[key]
-    if (Array.isArray(value)) {
-      realContent[key] = value.map((item) => {
-        return calcRealContent(item)
-      })
-    }
-    if (isObject(value)) {
-      realContent[key] = calcRealContent(value)
-    }
-    if (isDynamicString(value)) {
-      try {
-        realContent[key] = evaluateDynamicString(
-          "",
-          value,
-          BUILDER_CALC_CONTEXT,
-        )
-      } catch (e) {
-        Message.error(`maybe run error`)
+  if (Array.isArray(content) || isObject(content)) {
+    for (let key in content) {
+      const value = content[key]
+      if (isDynamicString(value)) {
+        try {
+          realContent[key] = evaluateDynamicString(
+            "",
+            value,
+            BUILDER_CALC_CONTEXT,
+          )
+        } catch (e) {
+          Message.error(`maybe run error`)
+        }
+      } else {
+        realContent[key] = calcRealContent(value)
       }
-    } else {
-      realContent[key] = value
     }
+  } else {
+    realContent = content
   }
   return realContent
 }
@@ -70,6 +67,20 @@ function runTransformer(transformer: Transformer, rawData: any) {
     }
   }
   return calcResult
+}
+
+const downloadActionResult = (
+  contentType: string,
+  fileName: string,
+  data: string,
+) => {
+  const a = document.createElement("a")
+  a.download = fileName
+  a.style.display = "none"
+  a.href = `data:${contentType};base64,${data}`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
 }
 
 const fetchActionResult = (
@@ -96,10 +107,16 @@ const fetchActionResult = (
         content: actionContent,
       },
     },
-    (data) => {
+    (data: ActionRunResult) => {
       // @ts-ignore
       //TODO: @aruseito not use any
       const rawData = data.data.Rows
+      const extraData = data.data?.Extra
+      if (extraData && extraData.Download) {
+        const { ContentType, ObjectKey } = extraData
+        downloadActionResult(ContentType, ObjectKey, rawData[0].objectData)
+      }
+
       let calcResult = runTransformer(transformer, rawData)
       resultCallback?.(calcResult, false)
       actionDisplayNameMapFetchResult[displayName] = calcResult
@@ -136,6 +153,41 @@ function getRealEventHandler(eventHandler?: any[]) {
   return realEventHandler
 }
 
+const transformDataFormat = (
+  actionType: string,
+  content: Record<string, any>,
+) => {
+  switch (actionType) {
+    case "s3":
+      const { commands, commandArgs } = content
+      if (commands === S3ActionRequestType.UPLOAD) {
+        const { objectData } = commandArgs
+        return {
+          ...content,
+          commandArgs: {
+            ...content.commandArgs,
+            objectData: window.btoa(window.encodeURIComponent(objectData)),
+          },
+        }
+      }
+      if (commands === S3ActionRequestType.UPLOAD_MULTIPLE) {
+        const { objectDataList = [] } = commandArgs
+        return {
+          ...content,
+          commandArgs: {
+            ...content.commandArgs,
+            objectDataList: objectDataList.map((value: string) =>
+              window.btoa(window.encodeURIComponent(value)),
+            ),
+          },
+        }
+      }
+      return content
+    default:
+      return content
+  }
+}
+
 export const runAction = (
   action: ActionItem<ActionContent>,
   resultCallback?: (data: unknown, error: boolean) => void,
@@ -159,13 +211,16 @@ export const runAction = (
     const realFailedEvent: any[] = isTrigger
       ? failedEvent || []
       : getRealEventHandler(failedEvent)
+    const actionContent = transformDataFormat(actionType, realContent) as
+      | MysqlLikeAction
+      | RestApiAction<BodyContent>
     fetchActionResult(
       resourceId || "",
       actionType,
       displayName,
       appId,
       actionId,
-      realContent as MysqlLikeAction | RestApiAction<BodyContent>,
+      actionContent,
       realSuccessEvent,
       realFailedEvent,
       transformer,

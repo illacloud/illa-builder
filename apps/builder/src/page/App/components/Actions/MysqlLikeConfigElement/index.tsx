@@ -52,9 +52,9 @@ export const MysqlLikeConfigElement: FC<MysqlLikeConfigElementProps> = (
   })
 
   const resource = useSelector((state: RootState) => {
-    return state.resource.find((r) => r.resourceId === resourceId) as Resource<
-      MysqlLikeResource
-    >
+    return state.resource.find(
+      (r) => r.resourceId === resourceId,
+    ) as Resource<MysqlLikeResource>
   })
 
   const [sslOpen, setSSLOpen] = useState(resource?.content.ssl.ssl ?? false)

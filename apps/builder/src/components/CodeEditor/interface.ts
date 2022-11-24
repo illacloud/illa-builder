@@ -29,6 +29,7 @@ export interface CodeEditorProps
   borderRadius?: string
   noTab?: boolean
   path?: string
+  extendedData?: Record<string, any>
   // sql table data
   tables?: Record<string, any>
   onBlur?: () => void
@@ -56,7 +57,7 @@ export type FieldEntityInformation = {
 
 export interface ResultPreview {
   state?: "default" | "error"
-  type?: VALIDATION_TYPES
+  type?: string
   content?: string
 }
 
