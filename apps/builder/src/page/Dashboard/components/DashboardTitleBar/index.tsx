@@ -22,6 +22,7 @@ import {
 } from "./style"
 import { clearLocalStorage } from "@/utils/storage"
 import { getCurrentUser } from "@/redux/currentUser/currentUserSelector"
+import { ILLARoute } from "@/router"
 
 const SettingTrigger: FC<{
   avatarBgColor: string
@@ -51,7 +52,9 @@ const SettingTrigger: FC<{
           css={settingItemStyle}
           onClick={() => {
             clearLocalStorage()
-            window.location.href = "/user/login"
+            ILLARoute.navigate("/user/login", {
+              replace: true,
+            })
           }}
         >
           {t("Logout")}

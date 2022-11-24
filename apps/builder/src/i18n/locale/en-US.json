@@ -537,6 +537,7 @@
         "end_placeholder": "End placeholder",
         "event": "Event",
         "event_handler": "Event handler",
+        "expansion_method": "Expansion method",
         "failure": "Failure",
         "filter": "Filter",
         "font_size": "Font size",
@@ -555,6 +556,7 @@
         "img_height": "Height",
         "img_width": "Width",
         "index": "Index",
+        "item_background_color": "Item background",
         "items": "Items",
         "key": "Key",
         "label": "Label",
@@ -639,6 +641,7 @@
       },
       "setter_tooltip": {
         "action": "Your actions to components trigger queries, control components, or call the data in your resources. Multiple async actions will be executed in parallel.",
+        "cascader_data": "Each option must be JSON format and contain two keys, value and label. By using arrays, you can create options at the same level. And child options can be created by using \"children\" attribute. ",
         "component_default_value": "The initial value of the component. You can dynamically change the initial value by typing JavaScript in {{}}.",
         "custom_rule": "Create your validation logic here. The rules should be made in JavaScript and covered by {{}}.",
         "date_format": "A valid date format string. See [dayJS](https://day.js.org/docs/en/parse/string-format).",
@@ -920,6 +923,9 @@
       "default_text": "Button",
       "name": "Button"
     },
+    "cascader": {
+      "name": "Cascader"
+    },
     "chart": {
       "name": "Chart"
     },
@@ -958,6 +964,9 @@
     },
     "input": {
       "name": "Input"
+    },
+    "list": {
+      "name": "List"
     },
     "menu": {
       "name": "Menu"

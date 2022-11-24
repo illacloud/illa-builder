@@ -537,6 +537,7 @@
         "end_placeholder": "结束日期占位符",
         "event": "事件",
         "event_handler": "事件处理器",
+        "expansion_method": "展开方式",
         "failure": "请求失败",
         "filter": "筛选",
         "font_size": "字号",
@@ -555,6 +556,7 @@
         "img_height": "高度",
         "img_width": "宽度",
         "index": "索引",
+        "item_background_color": "项目背景色",
         "items": "项",
         "key": "键值",
         "label": "标签",
@@ -639,6 +641,7 @@
       },
       "setter_tooltip": {
         "action": "您对组件的操作会触发查询、控制组件或调用资源中的数据等操作。多个异步操作将并行执行。",
+        "cascader_data": "每个选项必须是JSON格式，包含value和label两个键，值可以自定义。通过使用数组,可以创建同一级别的选项，添加 children 属性可以添加子集",
         "component_default_value": "组件的默认值。您可以使用模版语法在框中输入 JavaScript 语句动态改变默认值。",
         "custom_rule": "在此处输入验证规则。 验证规则应该由 JavaScript 构成。",
         "date_format": "一个符合规范的时间格式，请参考 [dayJs](https://day.js.org/docs/en/parse/string-format)",
@@ -920,6 +923,9 @@
       "default_text": "Button",
       "name": "按钮"
     },
+    "cascader": {
+      "name": "级联选择"
+    },
     "chart": {
       "name": "图表"
     },
@@ -958,6 +964,9 @@
     },
     "input": {
       "name": "输入框"
+    },
+    "list": {
+      "name": "列表"
     },
     "menu": {
       "name": "菜单"
